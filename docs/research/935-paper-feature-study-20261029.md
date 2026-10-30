@@ -95,6 +95,15 @@ initial inspector. It also recomputes angular support and retention. Regression
 tests reject forged scores, angular coverage, acceptance flags and lost/leaked
 evaluation points. The fit thresholds and original frozen evidence are unchanged.
 
+A region without a model is checked rather than refused. Point counts alone do
+not prove that fitting succeeded: a degenerate or non-convergent fit on
+well-supported points is a real outcome, so the validator reads the recorded
+rejection reason, requires one, and holds it against the frozen counts using the
+contract's own minima - a short-support refusal may be claimed only when support
+really is short, and admitted support demands some other stated reason. A region
+retained as a candidate without a model is always refused. A run that retains
+nothing therefore still validates, and exports an empty selection.
+
 Private study directories under
 `~/Developer/PorschePartsArtifacts/935-scan-tools-20261029/` are:
 

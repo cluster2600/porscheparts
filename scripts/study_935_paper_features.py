@@ -20,6 +20,7 @@ ARRAY_HASHES = {"vertices": "9c62ec1ff0cb72a26908878cd8607699745d0c7da20a5f9705a
                 "triangles": "84177b945a073ff4f30c75983131584c2b7ed7101f9570b38d95894e8d013303"}
 LIMITS = {"p95_limit_mm": .4, "minimum_span_mm": 3., "minimum_coverage_degrees": 300.,
           "maximum_tilt_degrees": 15.}
+SUPPORT_REJECTION = "insufficient source support"
 SELECTOR = {"C_min_mm": -101., "C_max_mm": -89., "radial_min_mm": 3., "radial_max_mm": 10.,
             "maximum_abs_normal_C": .55, "minimum_abs_radial_normal_alignment": .8}
 
@@ -168,7 +169,7 @@ def run(source, arrays, baseline, output, support_policy="broad_roi"):
                   "evaluation_points": len(held), "physical_dimension_accepted": False}
         try:
             if len(train) < 40 or len(held) < 20 or len(train) + len(held) < 100:
-                raise ValueError("insufficient source support")
+                raise ValueError(SUPPORT_REJECTION)
             if region["kind"] == "plane":
                 model = fit_plane(vertices[train])
                 distance = abs(vertices[held] @ model["normal"] - model["offset_mm"])
@@ -201,7 +202,9 @@ def run(source, arrays, baseline, output, support_policy="broad_roi"):
     np.savez_compressed(output / "labelled-training-source-ids.npz", source_vertex_ids=ids, labels=labels)
     cloud = np.c_[vertices[ids], labels]
     np.savetxt(output / "labelled-training-xyzc.txt", cloud, fmt=["%.17g", "%.17g", "%.17g", "%d"])
-    reread = np.loadtxt(output / "labelled-training-xyzc.txt", ndmin=2)
+    export = output / "labelled-training-xyzc.txt"
+    reread = np.loadtxt(export, ndmin=2) if export.stat().st_size else np.empty((0, 4))
+    assert reread.shape == (len(ids), 4)
     assert np.array_equal(reread[:, :3], vertices[ids]) and np.array_equal(reread[:, 3], labels)
     write_json(output / "primitive-fits.json", {"records": records, "all_fits_stored": models,
                "complete_head_created": False, "physical_acceptance": False})

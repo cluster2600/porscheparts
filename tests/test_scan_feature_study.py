@@ -120,6 +120,129 @@ class ScanFeatureStudyTests(unittest.TestCase):
             with self.subTest(field=field), self.assertRaises(ValueError):
                 verify_evaluation(model, points, {**record, field: value}, limits, [0, 0, 1])
 
+    def test_independent_checker_admits_a_documented_fitting_failure(self):
+        from scripts.validate_scan_feature_study import (
+            SUPPORT_REJECTION, admits_support, verify_rejection,
+        )
+        thresholds = {"minimum_training_points": 40, "minimum_evaluation_points": 20,
+                      "minimum_selected_points": 100}
+        train, held = split_source_ids(np.arange(200))
+        self.assertTrue(admits_support(train, held, thresholds))
+        # A degenerate or non-convergent fit on well-supported points is a real outcome.
+        failed = {"id": "collinear_wall", "retained_as_scan_fit_candidate": False,
+                  "rejection_reasons": ["cylinder fit did not converge"]}
+        report = verify_rejection(failed, train, held, thresholds)
+        self.assertTrue(report["passed"])
+        self.assertTrue(report["admitted_support"])
+        # Claiming short support with ample points, or the reverse, is refused.
+        with self.assertRaisesRegex(ValueError, "contradicts the registered point counts"):
+            verify_rejection({**failed, "rejection_reasons": [SUPPORT_REJECTION]}, train, held, thresholds)
+        short_train, short_held = split_source_ids(np.arange(80))
+        self.assertFalse(admits_support(short_train, short_held, thresholds))
+        verify_rejection({**failed, "rejection_reasons": [SUPPORT_REJECTION]},
+                         short_train, short_held, thresholds)
+        with self.assertRaisesRegex(ValueError, "contradicts the registered point counts"):
+            verify_rejection(failed, short_train, short_held, thresholds)
+
+    def test_independent_checker_refuses_a_silent_or_promoted_gap(self):
+        from scripts.validate_scan_feature_study import verify_rejection
+        thresholds = {"minimum_training_points": 40, "minimum_evaluation_points": 20,
+                      "minimum_selected_points": 100}
+        train, held = split_source_ids(np.arange(200))
+        for reasons in [None, [], ["  "], "cylinder fit did not converge"]:
+            record = {"id": "wall", "retained_as_scan_fit_candidate": False}
+            if reasons is not None:
+                record["rejection_reasons"] = reasons
+            with self.subTest(reasons=reasons), self.assertRaisesRegex(ValueError, "recorded rejection reason"):
+                verify_rejection(record, train, held, thresholds)
+        with self.assertRaisesRegex(ValueError, "without a model"):
+            verify_rejection({"id": "wall", "retained_as_scan_fit_candidate": True,
+                              "rejection_reasons": ["cylinder fit did not converge"]},
+                             train, held, thresholds)
+
+    def test_support_minima_come_from_the_registered_contract(self):
+        from scripts.study_935_paper_features import SUPPORT_REJECTION as driver_reason
+        from scripts.validate_scan_feature_study import SUPPORT_REJECTION, support_thresholds
+        # The checker keeps its own copy to stay independent; the two must still agree.
+        self.assertEqual(driver_reason, SUPPORT_REJECTION)
+        contract = {"minimum_training_points": 40, "minimum_evaluation_points": 20,
+                    "minimum_selected_points": 100}
+        self.assertEqual(support_thresholds(contract), contract)
+        for bad in [{}, {**contract, "minimum_selected_points": 0},
+                    {**contract, "minimum_training_points": "many"}]:
+            with self.subTest(contract=bad), self.assertRaises(ValueError):
+                support_thresholds(bad)
+
+    def build_study(self, root, reasons, retained=False):
+        """Write the smallest study the independent checker will read, with one failed fit."""
+        import hashlib
+        import json
+        from scripts.validate_scan_feature_study import digest
+        study, baseline = root / "study", root / "baseline"
+        (baseline / "geometry").mkdir(parents=True)
+        study.mkdir()
+        rng = np.random.default_rng(5)
+        vertices = rng.normal(size=(120, 3))
+        triangles = np.arange(120, dtype=np.int64).reshape(40, 3)
+        arrays = root / "source.npz"
+        np.savez(arrays, vertices=vertices, triangles=triangles)
+        np.save(baseline / "geometry/source-frame-ABC.npy", np.eye(3))
+        train, held = split_source_ids(np.arange(120))
+        np.savez_compressed(study / "wall-partition.npz", training_source_vertex_ids=train,
+                            evaluation_source_vertex_ids=held,
+                            selected_source_face_ids=np.arange(40))
+        contract = {"physical_acceptance": False, "manufacturing_acceptance": False,
+                    "arrays_sha256": digest(arrays),
+                    "source_array_hashes": {name: hashlib.sha256(
+                        value.astype(dtype, copy=False).tobytes()).hexdigest()
+                        for name, value, dtype in [("vertices", vertices, "<f8"),
+                                                   ("triangles", triangles, "<i8")]},
+                    "baseline_inputs": {"geometry/source-frame-ABC.npy":
+                                        digest(baseline / "geometry/source-frame-ABC.npy")},
+                    "cylinder_evaluation_limits": {"p95_limit_mm": .4, "minimum_span_mm": 3.,
+                                                   "minimum_coverage_degrees": 300.,
+                                                   "maximum_tilt_degrees": 15.},
+                    "minimum_training_points": 40, "minimum_evaluation_points": 20,
+                    "minimum_selected_points": 100}
+        record = {"id": "wall", "kind": "cylinder", "training_points": len(train),
+                  "evaluation_points": len(held), "physical_dimension_accepted": False,
+                  "retained_as_scan_fit_candidate": retained, "rejection_reasons": reasons}
+        for name, value in [("registered-contract.json", contract),
+                            ("summary.json", {"functional_head_created": False, "physics_run": False,
+                                              "physical_acceptance": False,
+                                              "manufacturing_acceptance": False}),
+                            ("registered-partitions.json", {"partitions": [
+                                {"id": "wall", "kind": "cylinder", "file": "wall-partition.npz",
+                                 "sha256": digest(study / "wall-partition.npz")}]}),
+                            ("primitive-fits.json", {"records": [record]})]:
+            (study / name).write_text(json.dumps(value, indent=2) + "\n")
+        np.savez_compressed(study / "labelled-training-source-ids.npz",
+                            source_vertex_ids=np.empty(0, dtype=np.int64),
+                            labels=np.empty(0, dtype=np.int32))
+        np.savetxt(study / "labelled-training-xyzc.txt", np.empty((0, 4)),
+                   fmt=["%.17g"] * 3 + ["%d"])
+        return (study, arrays, baseline, digest(study / "registered-contract.json"),
+                digest(study / "registered-partitions.json"))
+
+    def test_whole_study_with_a_failed_fit_and_no_retained_region_still_validates(self):
+        import tempfile
+        from scripts.validate_scan_feature_study import SUPPORT_REJECTION, validate
+        with tempfile.TemporaryDirectory() as name:
+            root = __import__("pathlib").Path(name)
+            result = validate(*self.build_study(root / "ok", ["cylinder fit did not converge"]))
+            self.assertTrue(result["passed"])
+            self.assertEqual(result["heldout_checks"], [])
+            self.assertEqual(result["exported_original_training_vertices_verified"], 0)
+            self.assertEqual([r["id"] for r in result["rejected_attempts"]], ["wall"])
+            self.assertTrue(result["rejected_attempts"][0]["admitted_support"])
+            # The same study is refused if it mislabels the refusal or promotes it.
+            for folder, kwargs in [("mislabelled", {"reasons": [SUPPORT_REJECTION]}),
+                                   ("silent", {"reasons": []}),
+                                   ("promoted", {"reasons": ["cylinder fit did not converge"],
+                                                 "retained": True})]:
+                with self.subTest(folder=folder), self.assertRaises(ValueError):
+                    validate(*self.build_study(root / folder, **kwargs))
+
     def test_independent_checker_rejects_partition_loss_and_leakage(self):
         from scripts.validate_scan_feature_study import verify_partition
         selected = np.arange(30)

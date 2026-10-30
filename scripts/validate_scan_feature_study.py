@@ -86,6 +86,51 @@ def verify_evaluation(model, points, record, limits, axis_seed):
             "retained_as_scan_fit_candidate": expected_retention, "passed": True}
 
 
+SUPPORT_REJECTION = "insufficient source support"
+
+
+def support_thresholds(contract):
+    """Read the driver's registered support minima from the hash-pinned contract."""
+    try:
+        values = {key: int(contract[key]) for key in
+                  ("minimum_training_points", "minimum_evaluation_points", "minimum_selected_points")}
+    except (KeyError, TypeError, ValueError):
+        raise ValueError("registered contract declares no support minima")
+    if min(values.values()) <= 0:
+        raise ValueError("registered support minima are not positive")
+    return values
+
+
+def admits_support(train, held, thresholds):
+    """Mirror the driver's pre-fit support rule, including its minimum total selection."""
+    return (len(train) >= thresholds["minimum_training_points"]
+            and len(held) >= thresholds["minimum_evaluation_points"]
+            and len(train) + len(held) >= thresholds["minimum_selected_points"])
+
+
+def verify_rejection(record, train, held, thresholds):
+    """Verify a record that carries no model: a documented refusal, not a silent gap.
+
+    Point counts alone do not prove that fitting succeeded. A degenerate or
+    non-convergent fit on well-supported points is a legitimate recorded
+    outcome, so what gets checked is the stated reason against the frozen
+    counts: a support failure may be claimed only when support really is short,
+    and admitted support demands some other reason.
+    """
+    if record["retained_as_scan_fit_candidate"]:
+        raise ValueError("region retained as a scan-fit candidate without a model")
+    reasons = record.get("rejection_reasons")
+    if (not isinstance(reasons, list) or not reasons
+            or not all(isinstance(reason, str) and reason.strip() for reason in reasons)):
+        raise ValueError("model missing without a recorded rejection reason")
+    admitted = admits_support(train, held, thresholds)
+    if (SUPPORT_REJECTION in reasons) != (not admitted):
+        raise ValueError("recorded rejection reason contradicts the registered point counts")
+    return {"id": record["id"], "training_points": len(train), "evaluation_points": len(held),
+            "admitted_support": admitted, "rejection_reasons": list(reasons),
+            "retained_as_scan_fit_candidate": False, "passed": True}
+
+
 def validate(study, arrays, baseline, contract_sha256, partitions_sha256):
     if digest(study / "registered-contract.json") != contract_sha256:
         raise ValueError("registered contract changed")
@@ -108,6 +153,7 @@ def validate(study, arrays, baseline, contract_sha256, partitions_sha256):
     axis_seed = np.load(baseline / "geometry/source-frame-ABC.npy")[2]
     if digest(baseline / "geometry/source-frame-ABC.npy") != contract["baseline_inputs"]["geometry/source-frame-ABC.npy"]:
         raise ValueError("axis-frame input changed")
+    thresholds = support_thresholds(contract)
     partitions = json.loads((study / "registered-partitions.json").read_text())["partitions"]
     records = json.loads((study / "primitive-fits.json").read_text())["records"]
     if {p["id"] for p in partitions} != {r["id"] for r in records} or len(partitions) != len(records):
@@ -121,7 +167,7 @@ def validate(study, arrays, baseline, contract_sha256, partitions_sha256):
         data = np.load(path, allow_pickle=False)
         selected[part["id"]] = np.unique(faces[data["selected_source_face_ids"]])
         membership[selected[part["id"]]] += 1
-    reports = []
+    reports, rejections = [], []
     expected_export_ids, expected_export_labels = [], []
     for part, record in zip(partitions, records):
         if part["id"] != record["id"]:
@@ -132,22 +178,32 @@ def validate(study, arrays, baseline, contract_sha256, partitions_sha256):
         train, held = data["training_source_vertex_ids"], data["evaluation_source_vertex_ids"]
         ids = selected[part["id"]]
         verify_partition(ids[membership[ids] == 1], train, held)
+        if record["training_points"] != len(train) or record["evaluation_points"] != len(held):
+            raise ValueError("reported point counts differ from the registered partition")
         if "model" in record:
             reports.append(verify_evaluation(record["model"], vertices[held], record,
                                              contract["cylinder_evaluation_limits"], axis_seed))
-        elif record["retained_as_scan_fit_candidate"] or len(train) >= 40 and len(held) >= 20:
-            raise ValueError("model missing despite admitted support")
+        else:
+            rejections.append(verify_rejection(record, train, held, thresholds))
         if record["retained_as_scan_fit_candidate"]:
             expected_export_ids.append(train)
             expected_export_labels.append(np.full(len(train), len(expected_export_ids) - 1, dtype=int))
     original = np.load(study / "labelled-training-source-ids.npz", allow_pickle=False)
     ids, labels = original["source_vertex_ids"], original["labels"]
-    if not np.array_equal(ids, np.concatenate(expected_export_ids)) or not np.array_equal(labels, np.concatenate(expected_export_labels)):
+    # A study may retain nothing at all; that exports an empty selection rather than failing.
+    expected_ids = np.concatenate(expected_export_ids) if expected_export_ids else np.empty(0, dtype=ids.dtype)
+    expected_labels = (np.concatenate(expected_export_labels) if expected_export_labels
+                       else np.empty(0, dtype=labels.dtype))
+    if not np.array_equal(ids, expected_ids) or not np.array_equal(labels, expected_labels):
         raise ValueError("export selector differs from retained training regions")
-    cloud = np.loadtxt(study / "labelled-training-xyzc.txt", ndmin=2)
-    if not np.array_equal(cloud[:, :3], vertices[ids]) or not np.array_equal(cloud[:, 3], labels):
+    export = study / "labelled-training-xyzc.txt"
+    # An empty retained set exports an empty file, which np.loadtxt cannot shape on its own.
+    cloud = np.loadtxt(export, ndmin=2) if export.stat().st_size else np.empty((0, 4))
+    if (cloud.shape != (len(ids), 4) or not np.array_equal(cloud[:, :3], vertices[ids])
+            or not np.array_equal(cloud[:, 3], labels)):
         raise ValueError("export coordinates or labels changed")
     return {"passed": True, "source_ID_partitions_verified": len(partitions), "heldout_checks": reports,
+            "rejected_attempts": rejections,
             "exported_original_training_vertices_verified": len(ids), "coordinates_unchanged": True,
             "physical_acceptance": False, "manufacturing_acceptance": False}
 
