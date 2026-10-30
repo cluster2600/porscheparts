@@ -38,6 +38,7 @@ flowchart LR
 | [architecture/scan-repair-workflow.md](architecture/scan-repair-workflow.md) | private scan repair, closed reconstruction and independent export verification |
 | [research/935-scan-repair-20261029.md](research/935-scan-repair-20261029.md) | the completed 935 head repair trials, deviations and private evidence location |
 | [research/935-scan-engineering-20261029.md](research/935-scan-engineering-20261029.md) | source-supported partial CAD, open section curves and guarded engineering inputs |
+| [research/935-hypothesis-study-20261029.md](research/935-hypothesis-study-20261029.md) | conditional 3MF preparation, actual mechanics/thermal/air/cooldown cases, hypotheses and independent numerical limits |
 | [research/935-paper-feature-study-20261029.md](research/935-paper-feature-study-20261029.md) | paper-guided surface-label experiments, cavity controls and independent source checks |
 | [research/935-horizontal-cooling/README.md](research/935-horizontal-cooling/README.en.md) | research and reconstruction for a lighter, improved horizontal 935 cooling system |
 | [PORSCHEFANATICS_993_TURBO_AUDIT.md](PORSCHEFANATICS_993_TURBO_AUDIT.md) | local audit of a 993 Turbo source |

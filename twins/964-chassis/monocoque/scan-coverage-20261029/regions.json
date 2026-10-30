@@ -1,0 +1,25 @@
+{
+  "classification": "geometric_search_windows_not_identified_parts",
+  "units": "provisional_vehicle_frame_mm",
+  "selection": "All three original vertices must be inside the inclusive window; first matching window owns a face. Unselected faces remain in Context.",
+  "regions": [
+    {"name": "FloorLeftSearch", "bounds": [-1650, -500, 150, 520, 0, 900], "colour": [0.12, 0.61, 0.77]},
+    {"name": "FloorRightSearch", "bounds": [-1650, -500, -520, -150, 0, 900], "colour": [0.12, 0.61, 0.77]},
+    {"name": "CentralRouteSearch", "bounds": [-1650, -500, -150, 150, 0, 900], "colour": [0.95, 0.59, 0.12]},
+    {"name": "SillLeftSearch", "bounds": [-1650, -500, 520, 780, 0, 900], "colour": [0.54, 0.35, 0.76]},
+    {"name": "SillRightSearch", "bounds": [-1650, -500, -780, -520, 0, 900], "colour": [0.54, 0.35, 0.76]},
+    {"name": "FrontTransitionSearch", "bounds": [-500, 100, -780, 780, 0, 900], "colour": [0.26, 0.66, 0.42]},
+    {"name": "RearTransitionSearch", "bounds": [-2200, -1650, -780, 780, 0, 900], "colour": [0.77, 0.36, 0.36]}
+  ],
+  "sections": [
+    {"name": "transverse_x_minus_600", "axis": 0, "position_mm": -600},
+    {"name": "transverse_x_minus_1000", "axis": 0, "position_mm": -1000},
+    {"name": "transverse_x_minus_1400", "axis": 0, "position_mm": -1400},
+    {"name": "longitudinal_y_zero", "axis": 1, "position_mm": 0},
+    {"name": "longitudinal_y_plus_300", "axis": 1, "position_mm": 300},
+    {"name": "longitudinal_y_minus_300", "axis": 1, "position_mm": -300}
+  ],
+  "section_scope_bounds": [-2200, 100, -800, 800, 0, 900],
+  "unobserved_requirements": ["InteriorFootwells", "InteriorTunnel", "InteriorFrontBulkhead", "InteriorRearBulkhead", "DoorApertureInterfaces", "UpperCellLoadPaths"],
+  "warning": "Bounds and section stations are inspection choices, not measured component limits, mounting coordinates or tolerances. Regions may contain body, covers, services and mechanical assemblies. Opposite-side rendering does not reveal an interior surface."
+}

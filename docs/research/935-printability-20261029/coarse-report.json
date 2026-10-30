@@ -1,0 +1,85 @@
+{
+  "classification": "process_independent_study_mesh_printability_screen",
+  "input_sha256": "e6878961194caf209cbb0521709b5041cf6ff62cced7f63560acddeef9252f94",
+  "scale": "owner_confirmed_1_OBJ_unit_is_1_mm",
+  "vertices": 1048504,
+  "triangles": 2099584,
+  "elapsed_seconds": 179.00212065898813,
+  "thickness": {
+    "method": "Trimesh max_sphere at deterministic area-weighted face centres",
+    "sample_count": 500,
+    "quantile_mm": {
+      "min": 0.09179532341410772,
+      "p01": 0.19474580237558337,
+      "p05": 0.4550496223519009,
+      "median": 2.692234307527993,
+      "p95": 13.706970813915861
+    },
+    "sample_fractions_below_mm": {
+      "0.5": 0.068,
+      "1": 0.184,
+      "1.5": 0.298,
+      "2": 0.374
+    },
+    "limitation": "Exploratory local thickness samples, not a certified minimum wall; thresholds are reporting bins, not process limits"
+  },
+  "orientations": [
+    {
+      "up_axis": "X",
+      "direction": -1,
+      "build_height_mm": 197.82271575927734,
+      "downward_projected_area_mm2_at_45deg": 14710.317262495373
+    },
+    {
+      "up_axis": "X",
+      "direction": 1,
+      "build_height_mm": 197.82271575927734,
+      "downward_projected_area_mm2_at_45deg": 14862.459450088747
+    },
+    {
+      "up_axis": "Y",
+      "direction": -1,
+      "build_height_mm": 198.72734832763672,
+      "downward_projected_area_mm2_at_45deg": 32407.066833609082
+    },
+    {
+      "up_axis": "Y",
+      "direction": 1,
+      "build_height_mm": 198.72734832763672,
+      "downward_projected_area_mm2_at_45deg": 29132.28302793128
+    },
+    {
+      "up_axis": "Z",
+      "direction": -1,
+      "build_height_mm": 226.97695922851562,
+      "downward_projected_area_mm2_at_45deg": 10709.639592605567
+    },
+    {
+      "up_axis": "Z",
+      "direction": 1,
+      "build_height_mm": 226.97695922851562,
+      "downward_projected_area_mm2_at_45deg": 13288.587672328373
+    }
+  ],
+  "cavities": {
+    "pitch_mm": 2.0,
+    "grid_shape": [
+      104,
+      105,
+      118
+    ],
+    "query_count": 1288560,
+    "uncertain_winding_cells": 0,
+    "nominal_enclosed_air_cells": 30,
+    "nominal_enclosed_air_volume_mm3": 240.0,
+    "certain_air_enclosed_with_uncertain_cells_open": 30,
+    "certain_air_enclosed_with_uncertain_cells_blocked": 30,
+    "method": "Approximate winding at cell centres; 6-connected air flood-fill from every grid boundary; no solid filling",
+    "limitation": "Sampled connectivity can miss sub-grid walls and passages; not a depowdering or cavity-clearance certificate"
+  },
+  "orientation_selected": false,
+  "supports_validated": false,
+  "material_or_machine_selected": false,
+  "print_ready": false,
+  "source_fidelity_accepted": false
+}

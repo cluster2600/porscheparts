@@ -1,0 +1,66 @@
+{
+  "scope": "interior mesh sensitivity on identical boundary vertices and boundary-condition masks",
+  "common_boundary_nodes": 1048504,
+  "same_boundary_nodes_and_condition_masks": true,
+  "geometry_refinement_convergence_established": false,
+  "comparisons": [
+    {
+      "case": "pressure-direct",
+      "from": "head-fea",
+      "to": "intermediate-fea",
+      "units": "mm",
+      "difference_quantiles_0_50_95_99_100": [
+        0.0,
+        0.00019114920559603078,
+        0.0005690576134602246,
+        0.0007611587302139588,
+        0.001738952974896101
+      ],
+      "relative_L2_change": 0.02416102835210678
+    },
+    {
+      "case": "thermal-direct",
+      "from": "head-fea",
+      "to": "intermediate-fea",
+      "units": "C",
+      "difference_quantiles_0_50_95_99_100": [
+        0.0,
+        0.0030000000000143245,
+        0.6399999999999864,
+        1.6850000000000023,
+        20.308600000000013
+      ],
+      "relative_L2_change": 0.0027359832071503962
+    },
+    {
+      "case": "thermal-direct",
+      "from": "intermediate-fea",
+      "to": "fine-fea",
+      "units": "C",
+      "difference_quantiles_0_50_95_99_100": [
+        0.0,
+        0.006000000000000227,
+        0.8359999999999843,
+        1.9910000000000134,
+        15.269499999999994
+      ],
+      "relative_L2_change": 0.0032470172234227187
+    },
+    {
+      "case": "thermomechanical",
+      "from": "head-fea",
+      "to": "intermediate-fea",
+      "units": "mm",
+      "difference_quantiles_0_50_95_99_100": [
+        0.0,
+        0.00046820286201602196,
+        0.000973661706743916,
+        0.0014916719161426064,
+        0.033795150975372196
+      ],
+      "relative_L2_change": 0.0036099185427058526
+    }
+  ],
+  "manufacturing_qualified": false,
+  "engine_qualified": false
+}

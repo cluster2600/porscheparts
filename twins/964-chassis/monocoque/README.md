@@ -1,5 +1,28 @@
 # 964 monocoque shell, from plate 50-05a
 
+**29 October geometry review:** the retained whole-body envelope is
+[rejected as the product geometry baseline](shape-review-20261029/README.md).
+It does not reproduce the central-cell architecture requested from the
+ZESAD/RUF references. The historical studies below remain exploratory evidence;
+the next task is central-cell reconstruction before further paid product review.
+
+The [source-preserving scan workspace](scan-coverage-20261029/README.md) now
+retains all original underbody triangles in selectable OpenUSD search regions,
+with independently checked source correspondence, six sections and private local
+views/video. It supplies observed surfaces for that reconstruction; interior
+surfaces and functional interfaces remain unestablished.
+
+The [component identity review](component-review-20261029/README.md) now relates
+the observed floor and central-strip features to Porsche's German parts catalogue.
+The central strip is a removable-cover candidate; it cannot define the tunnel
+interior or a structural wall. Component boundaries remain to be identified.
+
+The [observed-boundary audit](observed-boundaries-20261029/README.md) distinguishes
+original scan openings from selection cuts. The dominant floor and central-cover
+observations share one connected source mesh, so component extraction cannot
+separate them into physical parts. Exact-edge USD overlays and local views/video
+make the unresolved contours visible before CAD reconstruction.
+
 A 911-shaped body shell for the
 [carbon monocoque programme](../../../docs/MONOCOQUE_964_993_PROGRAMME.md).
 Until now the programme's only whole-body model was the box cell of
@@ -14,8 +37,9 @@ S3-derived grading, define a fitted core or add a structural strength result.
 
 The [OpenUSD review bundle](omniverse/README.md) preserves the complete
 four-group architecture and includes verified local views and a turntable.
-Omniverse RTX execution remains a separate pending step; the review bundle
-does not establish fitment, composite strength or manufacturing readiness.
+[Native RTX capture](omniverse/native-review-20261029/README.md) has now run,
+but interactive Kit review was interrupted. The bundle does not establish
+acceptable product geometry, fitment, composite strength or manufacturing readiness.
 
 The [29 October force-and-moment audit](s6-equilibrium-20261029/README.md)
 closes the global equilibrium output gap for the finest carbon torsion and
