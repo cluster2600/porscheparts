@@ -241,3 +241,10 @@ component size do not identify the bare head or attached hardware. The original
 scan, native atlas/reference capsule and CADAM coupon capsule remain unchanged.
 The full engineering goal remains active; this local increment accepts no new
 head solid, physics domain or manufacturing job and rents no paid compute.
+
+The [opaque component review](../research/935-component-visual-review-20261104/README.md)
+localises the second component as a tubular surface fragment while threaded
+protrusions remain connected to the main surfaces. All original triangles and
+the independent partitions are retained. Removing small components cannot
+supply an accepted bare-head domain; missing interfaces and hidden surfaces
+remain separate acquisition requirements. The review images stay private.
