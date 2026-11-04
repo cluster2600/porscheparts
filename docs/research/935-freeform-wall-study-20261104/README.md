@@ -158,3 +158,9 @@ remains incomplete. Full observed geometry and component separation, unobserved
 internals, independently measured interfaces, specimen material/load data,
 qualified machine/process data and professional/physical validation remain
 necessary. The previously delivered exact references are retained, not replaced.
+
+The subsequent [exact source-facet CAD charts](../935-source-shells-20261104/README.md)
+preserve the original observed detail and edge adjacency, while explicitly
+separating source vertex point contacts into incident-face fans. Independent
+actual-STEP and native FreeCAD checks pass for those open reference surfaces;
+they do not create a complete head or reverse this freeform candidate's rejection.

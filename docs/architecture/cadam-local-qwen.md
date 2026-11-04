@@ -138,3 +138,10 @@ uses registered acquired-face masks and unchanged baseline primitive parameters.
 It produces private STEP/FreeCAD references with independent source-membership,
 export and distance checks. CADAM/Qwen did not author or approve those faces;
 the coupon branch and scan-derived reconstruction retain separate evidence.
+
+The later [exact source-facet charts](../research/935-source-shells-20261104/README.md)
+also preserve original triangle/edge adjacency after actual STEP reload and
+native FreeCAD save/reopen. Vertex-only contacts in the selected masks are
+explicitly separated with source-ID provenance. These remain open reference
+surfaces; [native Kali verification](../research/935-kali-validation-20261104/README.md)
+checks the repository software independently and does not grant head release.

@@ -1,0 +1,145 @@
+{
+  "date": "2026-11-04",
+  "scope": "Native Kali1 software repository validation; no head engineering release",
+  "tested_commit": "df7d0982d6266907e0fc7ace1894bf196aeb0fc4",
+  "host": {
+    "hostname": "kali1",
+    "architecture": "x86_64",
+    "uid": 1000,
+    "filesystem": "ext4",
+    "logical_cpus": 12,
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "git_head": "df7d0982d6266907e0fc7ace1894bf196aeb0fc4",
+    "default_ssh_umask": "0002",
+    "current_tree_objects_audited": 30290,
+    "current_tree_missing_objects": 0
+  },
+  "runtime": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "dotnet_sdk": "9.0.320",
+    "dotnet_executable_sha256": "9d9655398a422c94aff3f88e55dc9b98d0d3840f57e34fc2fd289f2316a6390d"
+  },
+  "limits": {
+    "cpu_affinity": [
+      2,
+      3
+    ],
+    "address_space_bytes": 6442450944,
+    "timeout_seconds": 900,
+    "test_process_umask": "022",
+    "result_directory_mode": "0700"
+  },
+  "unit_tests": {
+    "run": 5172,
+    "passed": 4762,
+    "skipped": 410,
+    "failures": 0,
+    "errors": 0
+  },
+  "subsequent_contract_and_evidence_tests": {
+    "passed": 17,
+    "groups": [
+      10,
+      7
+    ]
+  },
+  "focused_permission_replay": {
+    "tests": 17,
+    "passed": true
+  },
+  "native_execution": {
+    "commit": "df7d0982d6266907e0fc7ace1894bf196aeb0fc4",
+    "exit_code": 2,
+    "timed_out": false,
+    "elapsed_seconds": 235.0402188450098,
+    "peak_child_rss_kib": 687248,
+    "tracked_source_unchanged": true,
+    "log_sha256": "b800d3ed3319a8de612a2d7f33fd4b6e2d3681849247c00090a7b9e5fd984482",
+    "finished_utc": "2026-11-04T16:48:56.204083+00:00",
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "full_native_make_check_passed": false,
+  "blocker": {
+    "target": "917-manufacturing-f37-lpbf-audit-check",
+    "reason": "Docker socket permission denied",
+    "socket_owner": "root",
+    "socket_group": "docker",
+    "socket_mode": "0660",
+    "admin_or_service_changes_made": false
+  },
+  "github_ci": {
+    "conclusion": "success",
+    "createdAt": "2026-11-04T16:20:35Z",
+    "headSha": "df7d0982d6266907e0fc7ace1894bf196aeb0fc4",
+    "status": "completed",
+    "updatedAt": "2026-11-04T16:27:11Z",
+    "url": "https://github.com/cluster2600/porscheparts/actions/runs/41866259218",
+    "workflowName": "Validate catalogue"
+  },
+  "attempts": [
+    {
+      "attempt": "bootstrap",
+      "status": "recovered_in_new_checkout",
+      "reason": "Native GitHub DNS failure and incomplete existing Git cache; hash-checked standalone objects supplied only to task-owned clones."
+    },
+    {
+      "attempt": "launcher-001",
+      "status": "failed_before_tests",
+      "reason": "GNU time was unavailable; retained exit 127/log; bounded stdlib runner used subsequently."
+    },
+    {
+      "attempt": "kali-results-002",
+      "status": "test_target_failed",
+      "tests": 5167,
+      "failures": 26,
+      "errors": 97,
+      "skipped": 410,
+      "reason": "Inherited 002 permissions tripped safety guards; system .NET 6 could not target .NET 9."
+    },
+    {
+      "attempt": "kali-results-003",
+      "status": "test_target_failed",
+      "tests": 5172,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 410,
+      "reason": "077 process umask changed an intentional 0755 negative fixture to 0700."
+    },
+    {
+      "attempt": "narrow-004",
+      "status": "passed",
+      "tests": 17,
+      "reason": "Existing GHCR wrapper module passes with normal 022 test-process umask; no test or guard changed."
+    },
+    {
+      "attempt": "kali-results-004",
+      "status": "unit_tests_passed_full_make_blocked",
+      "tests": 5172,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 410,
+      "reason": "Unit target and subsequent 10/7 contract/evidence checks pass; Docker audit denied by existing socket permissions."
+    }
+  ],
+  "source_sha256": {
+    "run_repository_check.py": "a9596803520e3906767af961f6c4d3f7cb0bac4278caf18a8abe7c26daec630b"
+  },
+  "transfer_file_sha256": {
+    "pr380-df7d0982d.bundle": "efec0c915a2e22243ef85a7882fb5cccb6f8f2cce7d265f64bcd3c18ec5b6be9",
+    "trees.pack": "3043bda7404b6375b5696323ba677f939f4a4b11402c364c13fd57574c04f3dd",
+    "transfer-002.pack": "5a43f2203ec1097b05c3b82916264fda89e15e1ab671431c1420d767fc3931ec",
+    "commit-graph.pack": "fd460c0c8ad7f86c49d953bd69f75a211c77bc951d0e34c5741bc955dfc7b139"
+  },
+  "private_files": 38,
+  "private_manifest_sha256": "8f731e293ec3bde3e881d8d5abaa53d8e44982663154288e9bc8eeacf04a2d43",
+  "source_unchanged": true,
+  "new_paid_rental": false,
+  "supplier_contacted": false,
+  "physical_acceptance": false,
+  "manufacturing_authorized": false
+}
