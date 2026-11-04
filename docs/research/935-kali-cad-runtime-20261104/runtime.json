@@ -1,0 +1,375 @@
+{
+  "date": "2026-11-04",
+  "scope": "Isolated Linux x86_64 native CAD runtime; registered source patch qualification",
+  "status": "executed_native_export_and_cross_host_reinspection_passed",
+  "original_obj_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "runtime_contract_sha256": "b8d998cb98cd04a07085140364e7c1d4b4175147c592a225b1fd3dbbcdddce1d",
+  "runtime_archive_sha256": "43d23347bb0e68b28387c8cc6cf6337093e424386c1f2dd2a957c784b9b8e896",
+  "runtime_archive_bytes": 119654400,
+  "locked_wheels": [
+    {
+      "package": "cadquery-ocp-novtk",
+      "version": "7.9.3.1.1",
+      "filename": "cadquery_ocp_novtk-7.9.3.1.1-cp312-cp312-manylinux_2_31_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/4d/32/8907aae7ee5c5c968a50a1d382a01854ca3abdc830a486e79dda64a66746/cadquery_ocp_novtk-7.9.3.1.1-cp312-cp312-manylinux_2_31_x86_64.whl",
+      "sha256": "60497cf42419dd2000d323ab772937f61539f2f0a5d3ef1b288611b13254c587",
+      "bytes": 67452403,
+      "metadata_file": "pypi-ocp.json"
+    },
+    {
+      "package": "cadquery-ocp-proxy",
+      "version": "7.9.3.1.1",
+      "filename": "cadquery_ocp_proxy-7.9.3.1.1-py3-none-any.whl",
+      "url": "https://files.pythonhosted.org/packages/30/c0/04e9363a99fee892de2776820e3dcf04f8825b6edc9580efe3416c9465a7/cadquery_ocp_proxy-7.9.3.1.1-py3-none-any.whl",
+      "sha256": "ca4164ec4b54956d9fc3e68c67d555b5486cb963c2f71e18df005ba16b921c91",
+      "bytes": 3322,
+      "metadata_file": "pypi-proxy.json"
+    },
+    {
+      "package": "numpy",
+      "version": "2.5.4",
+      "filename": "numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/43/a3/c799c62e19c337e6d3770b08e475887fb30ce8477d3c09efca6b2f0228a6/numpy-2.5.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "sha256": "fbde6962867ee75b48b0ee29b2b9372ec5d617799dbaf38e82dc0596f2f7738a",
+      "bytes": 16727283,
+      "metadata_file": "pypi-numpy.json"
+    },
+    {
+      "package": "scipy",
+      "version": "1.18.1",
+      "filename": "scipy-1.18.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "url": "https://files.pythonhosted.org/packages/df/64/ff35eb9e54894cf471ff4716abd3c81eb0a0626869217ce3e6ba4ccf17d7/scipy-1.18.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "sha256": "f55fa87b6c612ecd6b058f167c53231b1d14e412efe361d3d6e38b3631c73218",
+      "bytes": 35344199,
+      "metadata_file": "pypi-scipy.json"
+    }
+  ],
+  "runtime": {
+    "status": "passed",
+    "python": "3.12.11",
+    "python_binary_sha256": "ccc93c55c24bb92866cc2f9eff61b124abf5d1ee6c8da0ef9b5eed4d78a21f07",
+    "machine": "x86_64",
+    "libc": [
+      "glibc",
+      "2.43"
+    ],
+    "OCP_module_version": "7.9.3.1",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "packages": [
+      {
+        "package": "cadquery-ocp-novtk",
+        "version": "7.9.3.1.1",
+        "record_sha256": "c02ee5137291cdea4c03941ed71a18e8bb6c9cdc97279f669916eed5c1617e8a",
+        "hashed_installed_files_verified": 397,
+        "unhashed_record_entries": 322
+      },
+      {
+        "package": "cadquery-ocp-proxy",
+        "version": "7.9.3.1.1",
+        "record_sha256": "33020ec9778a248e9c201bd37a1a2ec3ebd2706389a47e40f7aeaece4292cefa",
+        "hashed_installed_files_verified": 6,
+        "unhashed_record_entries": 3
+      },
+      {
+        "package": "numpy",
+        "version": "2.5.4",
+        "record_sha256": "3d54f2f6152eb33861caa6f0b86c028b85744f0bde91e7eb2094275fc8f9b1f4",
+        "hashed_installed_files_verified": 929,
+        "unhashed_record_entries": 408
+      },
+      {
+        "package": "scipy",
+        "version": "1.18.1",
+        "record_sha256": "97014a6514db2fa42950d9ae19e02d125b0e325a9f20454fe9d833ad5f176835",
+        "hashed_installed_files_verified": 1433,
+        "unhashed_record_entries": 989
+      }
+    ],
+    "isolated_site_packages_confirmed": true,
+    "entire_operating_system_fingerprinted": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "qualification": {
+    "status": "passed",
+    "stages": [
+      {
+        "stage": "create-venv",
+        "exit_code": 0,
+        "seconds": 1.4197633042931557
+      },
+      {
+        "stage": "offline-install",
+        "exit_code": 0,
+        "seconds": 5.484850252047181
+      },
+      {
+        "stage": "pip-check",
+        "exit_code": 0,
+        "seconds": 0.21552166994661093
+      },
+      {
+        "stage": "inspect-runtime",
+        "exit_code": 0,
+        "seconds": 1.2191505571827292
+      },
+      {
+        "stage": "raw-input-verification",
+        "exit_code": 0,
+        "seconds": 5.334423608146608
+      },
+      {
+        "stage": "build-source-reference",
+        "exit_code": 0,
+        "seconds": 1.8246677932329476
+      },
+      {
+        "stage": "verify-actual-reference",
+        "exit_code": 0,
+        "seconds": 2.8785671372897923
+      },
+      {
+        "stage": "inspect-native-controls",
+        "exit_code": 0,
+        "seconds": 0.7704641437157989
+      },
+      {
+        "stage": "wrong-actual-STEP-refusal",
+        "exit_code": 1,
+        "seconds": 0.9694224800914526
+      }
+    ],
+    "base_interpreter_OCP_still_absent": true,
+    "venv_isolated_from_existing_site_packages": true,
+    "offline_hash_required_install": true,
+    "actual_STEP_sha256": "8a3ec590e7781327dfa46be5c55dcd72d6156e9e35f80adb66844021caec7f4c",
+    "explicit_STEP_millimetres": true,
+    "source_sha256": "0b6149c35ce428b53a5df101d9cf7961c6bb2e96088dd03dbeb2b40f433d985d",
+    "native_source_patch_only": true,
+    "complete_engineering_chain_prepared": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "construction": {
+    "source_vertices": 1536,
+    "native_chart_vertices": 1536,
+    "source_vertices_split_into_fans": 0,
+    "additional_coincident_chart_vertices": 0,
+    "source_faces": 2790,
+    "source_edges": 4327,
+    "boundary_edges": 284,
+    "edge_connected_components": 1,
+    "source_face_and_edge_adjacency_preserved": true,
+    "source_corner_mapping_exact": true,
+    "coordinates_changed": false,
+    "vertex_point_contacts_separated": false,
+    "original_vertex_contact_topology_preserved": true,
+    "step_sha256": "8a3ec590e7781327dfa46be5c55dcd72d6156e9e35f80adb66844021caec7f4c",
+    "adapter_source_sha256": "fe1997d68e6b18e09b8ff61ae4ef126d57a95f3066d0b99b976b4b49ca0ef242",
+    "retained_helper_sha256": "fca5259ef3b3412a72e441fea39816e14fea4e375095e1c83def2e4117f6ae8e",
+    "acquired_coordinates_changed": false,
+    "cylinder_fit_adopted": false,
+    "charts_are_physical_components": false,
+    "full_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "native_constructor_controls": {
+    "square": {
+      "source_vertices": 4,
+      "native_chart_vertices": 4,
+      "source_vertices_split_into_fans": 0,
+      "additional_coincident_chart_vertices": 0,
+      "source_faces": 2,
+      "source_edges": 5,
+      "boundary_edges": 4,
+      "edge_connected_components": 1,
+      "source_face_and_edge_adjacency_preserved": true,
+      "source_corner_mapping_exact": true,
+      "coordinates_changed": false,
+      "vertex_point_contacts_separated": false,
+      "original_vertex_contact_topology_preserved": true
+    },
+    "point_contact": {
+      "source_vertices": 5,
+      "native_chart_vertices": 6,
+      "source_vertices_split_into_fans": 1,
+      "additional_coincident_chart_vertices": 1,
+      "source_faces": 2,
+      "source_edges": 6,
+      "boundary_edges": 6,
+      "edge_connected_components": 2,
+      "source_face_and_edge_adjacency_preserved": true,
+      "source_corner_mapping_exact": true,
+      "coordinates_changed": false,
+      "vertex_point_contacts_separated": true,
+      "original_vertex_contact_topology_preserved": false
+    },
+    "refusals": {
+      "inconsistent_winding": true,
+      "nonmanifold_edge": true,
+      "degenerate_triangle": true,
+      "coincident_distinct_ids": true
+    }
+  },
+  "independently_reloaded_native_controls": {
+    "status": "passed",
+    "fixtures": [
+      {
+        "fixture": "shared-square-control.step",
+        "source_vertices": 4,
+        "native_vertices": 4,
+        "edges": 5,
+        "faces": 2,
+        "shells": 1,
+        "source_boundary_edges": 4,
+        "vertex_roundtrip_maximum_mm": 0.0,
+        "normal_roundtrip_maximum_error": 0.0,
+        "checks": {
+          "every_original_triangle_once": true,
+          "original_orientation": true,
+          "straight_source_edges": true,
+          "exact_source_edge_adjacency": true,
+          "exact_source_vertex_fans": true,
+          "exact_source_shell_components": true,
+          "valid_reopened_native_shape": true,
+          "zero_solids": true
+        },
+        "original_vertex_point_contacts_separated": false,
+        "actual_zero_solids": true,
+        "explicit_STEP_millimetres": true
+      },
+      {
+        "fixture": "point-contact-control.step",
+        "source_vertices": 5,
+        "native_vertices": 6,
+        "edges": 6,
+        "faces": 2,
+        "shells": 2,
+        "source_boundary_edges": 6,
+        "vertex_roundtrip_maximum_mm": 0.0,
+        "normal_roundtrip_maximum_error": 0.0,
+        "checks": {
+          "every_original_triangle_once": true,
+          "original_orientation": true,
+          "straight_source_edges": true,
+          "exact_source_edge_adjacency": true,
+          "exact_source_vertex_fans": true,
+          "exact_source_shell_components": true,
+          "valid_reopened_native_shape": true,
+          "zero_solids": true
+        },
+        "original_vertex_point_contacts_separated": true,
+        "actual_zero_solids": true,
+        "explicit_STEP_millimetres": true
+      }
+    ],
+    "physical_acceptance": false
+  },
+  "linux_actual_STEP_check": {
+    "source_vertices": 1536,
+    "native_vertices": 1536,
+    "edges": 4327,
+    "faces": 2790,
+    "shells": 1,
+    "source_boundary_edges": 284,
+    "vertex_roundtrip_maximum_mm": 0.0,
+    "normal_roundtrip_maximum_error": 4.440892098500626e-16,
+    "checks": {
+      "every_original_triangle_once": true,
+      "original_orientation": true,
+      "straight_source_edges": true,
+      "exact_source_edge_adjacency": true,
+      "exact_source_vertex_fans": true,
+      "exact_source_shell_components": true,
+      "valid_reopened_native_shape": true,
+      "zero_solids": true
+    },
+    "original_vertex_point_contacts_separated": false,
+    "actual_step_sha256": "8a3ec590e7781327dfa46be5c55dcd72d6156e9e35f80adb66844021caec7f4c",
+    "native_solids": 0,
+    "native_plane_corner_maximum_mm": 1.2683742944830101e-11,
+    "adapter_source_sha256": "fe1997d68e6b18e09b8ff61ae4ef126d57a95f3066d0b99b976b4b49ca0ef242",
+    "retained_helper_sha256": "3a2ddf947a1083399890dc167ec631fec0bce4d5a7a564613a765fcd95158658",
+    "acquired_coordinates_changed": false,
+    "cylinder_fit_adopted": false,
+    "charts_are_physical_components": false,
+    "full_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "mac_actual_STEP_reinspection": {
+    "source_vertices": 1536,
+    "native_vertices": 1536,
+    "edges": 4327,
+    "faces": 2790,
+    "shells": 1,
+    "source_boundary_edges": 284,
+    "vertex_roundtrip_maximum_mm": 0.0,
+    "normal_roundtrip_maximum_error": 4.440892098500626e-16,
+    "checks": {
+      "every_original_triangle_once": true,
+      "original_orientation": true,
+      "straight_source_edges": true,
+      "exact_source_edge_adjacency": true,
+      "exact_source_vertex_fans": true,
+      "exact_source_shell_components": true,
+      "valid_reopened_native_shape": true,
+      "zero_solids": true
+    },
+    "original_vertex_point_contacts_separated": false,
+    "actual_step_sha256": "8a3ec590e7781327dfa46be5c55dcd72d6156e9e35f80adb66844021caec7f4c",
+    "native_solids": 0,
+    "native_plane_corner_maximum_mm": 1.2683717355273602e-11,
+    "adapter_source_sha256": "fe1997d68e6b18e09b8ff61ae4ef126d57a95f3066d0b99b976b4b49ca0ef242",
+    "retained_helper_sha256": "3a2ddf947a1083399890dc167ec631fec0bce4d5a7a564613a765fcd95158658",
+    "acquired_coordinates_changed": false,
+    "cylinder_fit_adopted": false,
+    "charts_are_physical_components": false,
+    "full_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "source_and_previous_native_master_unchanged": true,
+  "new_source_coverage_faces": 0,
+  "qualified_patch_source_faces": 2790,
+  "current_reference_unique_source_faces": 21472,
+  "recovered_result_files": 29,
+  "recovered_results_all_match": true,
+  "public_source_sha256": {
+    "check_native_controls.py": "070bd7328b5bd9828699b998e2cdfbb5b323cd01f75c3855cd43321ec940682f",
+    "inspect_runtime.py": "6190a71e943c1796779099050a40323cd5544691cb5ee6b88ede842324156ab2",
+    "install_and_qualify.py": "0b6149c35ce428b53a5df101d9cf7961c6bb2e96088dd03dbeb2b40f433d985d"
+  },
+  "requirements_lock_sha256": "f013f843b1d5f49528067656bb2e9f5be02241d9cfc24e335a371f84342fc875",
+  "wheel_lock_sha256": "347f2578e8179af4d18e60877cbd789d1d88fc0876342dcd7df9490d888fdb74",
+  "private_manifest_sha256": "ac3bd73170b4737a928545ff5de6d89d8df47a5e077607f166cc5b9ba26e2b60",
+  "private_files": 81,
+  "execution": {
+    "transfer": {
+      "exit_code": 0,
+      "seconds": 0.7150760000804439
+    },
+    "qualification": {
+      "exit_code": 0,
+      "seconds": 20.437076417030767
+    },
+    "mac-reinspection": {
+      "exit_code": 0,
+      "seconds": 3.4893834999529645
+    }
+  },
+  "Linux_OS_network_sandbox_claimed": false,
+  "Mac_reinspection_outbound_denied": true,
+  "base_scientific_interpreter_unchanged": true,
+  "complete_engineering_chain_prepared": false,
+  "full_head_created": false,
+  "functional_interfaces_accepted": 0,
+  "physics_admitted": false,
+  "manufacturing_authorized": false,
+  "paid_compute_used_for_this_qualification": false,
+  "external_model_or_CAD_service_used": false,
+  "supplier_contacted": false,
+  "public_geometry_or_wheels_added": false
+}

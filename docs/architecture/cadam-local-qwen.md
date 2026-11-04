@@ -193,3 +193,10 @@ checked directly against the exact arrays on ext4. Owner-confirmed millimetres
 and the provider's cast/machined correction are explicit; historical records stay
 unchanged. OCP is absent in the inspected Kali interpreter, so this source-reader
 qualification does not claim that the complete CAD/solver chain is ready.
+
+The [isolated native Kali CAD runtime](../research/935-kali-cad-runtime-20261104/README.md)
+closes that OCP gap in a new venv with offline, hash-required wheel installation.
+It constructs the registered acquired patch and passes actual STEP/source,
+native fixture and cross-host Mac reinspection checks. The earlier scientific
+interpreter remains unchanged; this runtime qualification adds no new source
+coverage and does not admit a complete head or manufacturing job.
