@@ -196,3 +196,20 @@ not establish a functional clearance or a manufactured part.
 
 The [private detailed report](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/sweep-added-surfaces-replay-20261104.json)
 has SHA-256 `d08d47693a3e6f26e660e6113bea1f661fe7885b40ec4c0f71302293e20c7709`.
+
+## Relation between the observed shaft and support-axis candidates
+
+The [axis-relation screen](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/axis_relation.py)
+compares the candidate shaft axis with the fitted support-bore arc axis in the
+common scan-derived frame. Their acute angle is 1.956°. The shortest distance
+between the infinitely extended fitted axes is 62.978 source units; restricting
+the calculation to the shaft profile's three fitted axial sections and the
+support model's fitted axial span gives 243.710 source units. These are axis
+centreline distances, not surface clearances or physical dimensions. The
+source units and both fitted axes remain unverified as functional datums.
+
+This supports keeping the observed fragments as separate evidence objects; it
+does not rule out an unobserved shaft extension, bearing or other linkage.
+Parallel, endpoint-limited and crossing-segment analytic controls passed. The
+[private receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/axis-relation-20261104.json)
+has SHA-256 `0160109c6aef9484e37ae410c21987d95d660f4c1afc8c10a16bf64c4ac25905`.
