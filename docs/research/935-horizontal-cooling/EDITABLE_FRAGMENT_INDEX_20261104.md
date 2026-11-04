@@ -313,3 +313,24 @@ All members passed extraction and checksum readback. Point overlap in the XY
 projection can hide markers; the table is authoritative for these samples.
 The result helps select local regions for scan inspection, not automatic
 replacement or manufacturing release.
+
+## Selected hub scan triangles in the animated scene
+
+The [scan-patch composer](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/assembly-placement/add_hub_scan_patches.py)
+adds the scan triangles selected in the original hub-fit report as separate
+children of the animated rotor: 2,888 for the cylindrical candidate and 2,963
+for the conical candidate. It verifies every input scan vertex under the
+recorded seed-to-rotor transform, with maximum coordinate difference
+`8.53e-14` source unit, and verifies unchanged face indexing. All added USD
+points and connectivity were reread; both patches inherit the rotor transform
+at five sampled times. This is a numeric frame check, not physical
+registration or scale calibration.
+
+The [private layer package and comparison plot](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-usd-hub-scan-patches-20261104.tar.gz)
+have SHA-256 `317eba2a88ca4108550d6fcf978d8d0604a5226be94cb2c59336b6f7eabf8fb8`.
+All members passed checksum readback; the original-bound USDC base must be
+restored beside the layers as described above. The plotted dots are triangle
+centroids, so their apparent rows and sparse regions also reflect tessellation.
+These are selected input scan mesh triangles from the same acquisition used to
+fit the surfaces; they do not independently certify material identity,
+metrology, missing geometry or manufacturing readiness.
