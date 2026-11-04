@@ -376,3 +376,41 @@ uv run --no-project --python 3.12 --with numpy==2.5.4 --with scipy==1.18.1 --wit
 
 The output paths must not already exist. Level 2 uses `--subdivisions 2` and a
 separate new output directory. The scripts reject input hash mismatches.
+
+## Corrected USD inspection timeline
+
+Two private layers from the November 4 nearest-scan and refit packages omitted
+explicit timeline metadata. USD composition therefore remapped the underlying
+60 Hz rotor animation and gave an incorrect playback interval. The earlier
+child-to-parent transform checks did not detect this. The layers are retained
+as rejected animation evidence; their geometry comparisons are unaffected.
+
+The [private corrected scene layers and shaft-motion hypothesis](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-kinematic-correction-20261104.tar.gz)
+replace them for animation; archive SHA-256
+`ff17477a3589775e0ddc853ec0f6f838230bd542bad5d990a62adadf03766c4d`.
+The corrected timeline spans 0–240 at 60 frames and time codes per second.
+An independent check of all 241 integer frames compares the rotor rotation and
+shaft point motion with the authored 1:1 hypothesis. This is a visualization
+convention: the shaft's identity, axis as a functional datum, gear ratio,
+rotation sign, physical speed and mechanical connection remain unverified.
+The full scan of the drive stays static and can overlap the animated fragment.
+
+The [timeline guard](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/assembly-placement/check_rotor_timeline.py)
+checks composed stage metadata and each rotor angle, rather than only comparing
+a child and its parent. The regression fixture covers a valid layer, a
+24-versus-60 time-code mismatch and an altered rotation. With the private
+scene and its base layers restored, run:
+
+```sh
+uv run --no-project --python 3.12 --with usd-core python twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/assembly-placement/check_rotor_timeline.py work/935-editable-fragments-20261104/assembly-shaft-motion-004/935-shaft-rotor-hypothesis.usda
+uv run --no-project --python 3.12 --with usd-core python -m unittest discover -s tests -p test_935_usd_timeline_guard.py -v
+```
+
+A simultaneous 240-phase FCL surface screen for the assumed 1:1 motion found
+no sampled crossings between the shaft fragment and rotor, support, provisional
+shroud or provisional engine envelope. In that particular pose the fragment
+remains far from the rotor and support; the visualization is not a connected
+mechanism. The [private screen](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-simultaneous-sweep-20261104.tar.gz)
+has SHA-256 `12a50c48ff271a86f92f4b7966a7272dbfe62372f6c35768517708921b1d212b`.
+It excludes the unsegmented drive scan, containment, thermal and elastic
+changes, and does not validate fitment or manufacturing.
