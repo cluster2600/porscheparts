@@ -191,3 +191,8 @@ material properties, calibrated/converged physics, machine-specific metal
 process qualification, professional review or physical inspection/testing.
 Falcontech/Farsoon and BLT remain process candidates, not selected qualified
 suppliers. No print-ready or engine-ready claim follows from this result.
+
+The subsequent [periodic freeform trial](../935-freeform-wall-study-20261104/README.md)
+tests one richer surface class on region 1. Native verification rejects it under
+a stricter digital-preservation screen; residuals span all acquired components.
+It does not replace any geometry or acceptance decision recorded above.

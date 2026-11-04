@@ -1,0 +1,253 @@
+{
+  "date": "2026-11-04",
+  "scope": "One rejected periodic freeform wall candidate; source-supported reconstruction research",
+  "evaluation_scope": "Conditional transductive within-scan check: coefficients use training IDs only, but the observed axial parameter domain uses all mask-point extrema, including evaluation points. Not blind generalization or physical metrology.",
+  "plan": {
+    "region": "stud_passage_1_wall_candidate",
+    "input_sha256": {
+      "arrays": "dd94c37117a1f1277a4f2b7f0bf0023e0d1858991b943f766cf447db319a101a",
+      "contract": "49fc806e1f9d6f129892d1cdd15505b4ed304a68ee84f37bcbf1fd1c8461f779",
+      "partitions": "bca11c2633ed6fae331b9bd47d420f07f170b6f34d4ba232d68c87f37f1aa824",
+      "partition": "eba29c259b600c086ed16e0e305c679d770fcb7ad7bcda849d4e956acf93b573",
+      "preparation_models": "6c6033d5feb766d8bc7c534af08bc28a4f7527106ccaa3c2ffdf77e203d8122f",
+      "preparation_admission": "921f7d13d8b32076da3c42a42207ac1f27336184978afc4f46e7deb969486645"
+    },
+    "source_sha256": "54949a58864666a9b2543f8d28d1f2cf49e91c20c23560b70967bd3fc1f6627f",
+    "degree": 3,
+    "independent_poles": [
+      16,
+      6
+    ],
+    "periodic_angular_basis": true,
+    "candidate_count": 1,
+    "full_rank_required": 96,
+    "maximum_condition": 100000000.0,
+    "point_correspondence_limit_mm": 0.01,
+    "geometry_policy": "No scan edit, refit of baseline frame, extrapolated trim, or automatic acceptance; no knot/degree sweep.",
+    "selection_policy": "First existing wall mask with valid injective UV coverage and rejected cylindrical projection; conditional within-scan evaluation.",
+    "physical_tolerance_mm": null,
+    "manufacturing_authorized": false
+  },
+  "analytic_controls": {
+    "checks": {
+      "analytic_heldout_under_0p01mm": true,
+      "periodic_position_under_1e_minus_12mm": true,
+      "full_rank": true,
+      "condition_under_1e8": true
+    },
+    "analytic_heldout_maximum_mm": 0.0007721249690316026,
+    "seam_maximum_mm": 0.0,
+    "rank": 96,
+    "condition": 19.331629189455974
+  },
+  "fit": {
+    "region": "stud_passage_1_wall_candidate",
+    "source_faces": 1700,
+    "rank": 96,
+    "condition": 67.79574638895446,
+    "training": {
+      "points": 841,
+      "p95_mm": 0.1305102686923469,
+      "maximum_mm": 0.33838991591850937,
+      "over_limit": 763
+    },
+    "evaluation": {
+      "points": 191,
+      "p95_mm": 0.11400164036786992,
+      "maximum_mm": 0.2917595356198404,
+      "over_limit": 177
+    },
+    "all_source": {
+      "points": 1032,
+      "p95_mm": 0.12532412311965208,
+      "maximum_mm": 0.33838991591850937,
+      "over_limit": 940
+    },
+    "checks": {
+      "full_rank": true,
+      "bounded_condition": true,
+      "all_correspondence_points": false,
+      "heldout_correspondence_points": false
+    },
+    "correspondence_screen_passed": false,
+    "trimmed_cad_exported": false,
+    "baseline_replaced": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "native_verification": {
+    "region": "stud_passage_1_wall_candidate",
+    "checks": {
+      "source_membership_exact": true,
+      "frame_unchanged": true,
+      "training_evaluation_disjoint": true,
+      "native_correspondence_matches_report": true,
+      "periodic_position_under_1e_minus_10mm": true,
+      "periodic_derivative_under_1e_minus_9mm": true
+    },
+    "native_controls": {
+      "known_radius_maximum_error_mm": 0.00032174686420738396,
+      "known_0p6mm_distance_detected_mm": 0.6000343101877451,
+      "checks_passed": true
+    },
+    "native_correspondence_all": {
+      "points": 1032,
+      "p95_mm": 0.12532412311965296,
+      "maximum_mm": 0.3383899159185102,
+      "over_limit": 940
+    },
+    "native_correspondence_heldout": {
+      "points": 191,
+      "p95_mm": 0.11400164036787885,
+      "maximum_mm": 0.2917595356198515,
+      "over_limit": 177
+    },
+    "native_untrimmed_projection_all": {
+      "points": 1032,
+      "p95_mm": 0.12220270075700083,
+      "maximum_mm": 0.327093484212662,
+      "over_limit": 894
+    },
+    "native_untrimmed_projection_heldout": {
+      "points": 191,
+      "p95_mm": 0.10817240465816527,
+      "maximum_mm": 0.28443051423344107,
+      "over_limit": 171
+    },
+    "seam_position_maximum_mm": 1.7763568394002505e-15,
+    "seam_derivative_maximum_mm": 1.3322676295501878e-15,
+    "correspondence_gate_passed": false,
+    "projection_domain": "Untrimmed parameter rectangle, diagnostic only; not an observed-surface CAD export or formal global-distance bound.",
+    "candidate_sha256": "eea6cf629e4762c8a102a221c1a7bb75ab6451db18e7c9c429e71324540db804",
+    "verifier_source_sha256": "0811b66eff1e9fb5945a97229f7040197608a4291addf7b90bab12af7c4b7d9e",
+    "fit_report_sha256": "a8d52224050d2fe01aa0cea4f5461d2e935c44fdcd46819b65f2f7387dc629a5",
+    "trimmed_cad_exported": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "residual_audit": {
+    "source_faces": 1700,
+    "source_vertices": 1032,
+    "components": [
+      {
+        "faces": 1680,
+        "vertices": 1005,
+        "vertices_over_limit": 914,
+        "faces_incident_to_over_limit_vertices": 1673
+      },
+      {
+        "faces": 6,
+        "vertices": 8,
+        "vertices_over_limit": 8,
+        "faces_incident_to_over_limit_vertices": 6
+      },
+      {
+        "faces": 3,
+        "vertices": 5,
+        "vertices_over_limit": 4,
+        "faces_incident_to_over_limit_vertices": 3
+      },
+      {
+        "faces": 2,
+        "vertices": 4,
+        "vertices_over_limit": 3,
+        "faces_incident_to_over_limit_vertices": 2
+      },
+      {
+        "faces": 2,
+        "vertices": 4,
+        "vertices_over_limit": 4,
+        "faces_incident_to_over_limit_vertices": 2
+      },
+      {
+        "faces": 1,
+        "vertices": 3,
+        "vertices_over_limit": 3,
+        "faces_incident_to_over_limit_vertices": 1
+      },
+      {
+        "faces": 1,
+        "vertices": 3,
+        "vertices_over_limit": 3,
+        "faces_incident_to_over_limit_vertices": 1
+      },
+      {
+        "faces": 1,
+        "vertices": 3,
+        "vertices_over_limit": 3,
+        "faces_incident_to_over_limit_vertices": 1
+      },
+      {
+        "faces": 1,
+        "vertices": 3,
+        "vertices_over_limit": 3,
+        "faces_incident_to_over_limit_vertices": 1
+      },
+      {
+        "faces": 1,
+        "vertices": 3,
+        "vertices_over_limit": 3,
+        "faces_incident_to_over_limit_vertices": 1
+      },
+      {
+        "faces": 1,
+        "vertices": 3,
+        "vertices_over_limit": 3,
+        "faces_incident_to_over_limit_vertices": 1
+      },
+      {
+        "faces": 1,
+        "vertices": 3,
+        "vertices_over_limit": 3,
+        "faces_incident_to_over_limit_vertices": 1
+      }
+    ],
+    "components_with_over_limit_vertices": 12,
+    "faces_incident_to_over_limit_vertices": 1693,
+    "faces_with_all_three_vertices_over_limit": 1342,
+    "source_boundary_edges": 418,
+    "nonmanifold_source_edges": 0,
+    "source_internal_dihedral_p95_degrees": 28.11989328306412,
+    "source_internal_edges_over_30_degrees": 89,
+    "native_projection_vertices_over_limit": 894,
+    "refusal_controls": {
+      "changed_source_membership": true,
+      "forged_maximum_score": true,
+      "existing_output": true
+    },
+    "verifier_source_sha256": "0811b66eff1e9fb5945a97229f7040197608a4291addf7b90bab12af7c4b7d9e",
+    "audit_source_sha256": "c0b3c0878efec536f4a72864047075eadb00f5d3e5eac09b5971ddd395138b75",
+    "interpretation": "Residuals describe this rejected smooth model, not defects or deletable outliers in the acquired specimen.",
+    "source_geometry_changed": false,
+    "baseline_replaced": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "runtime": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "ocp_distribution": "7.9.3.1.1",
+    "native_ocp_sha256": "ca5449f0d8073bae9e4fadd8ad168bdb9acd1edd9fcc9e11b89a6aa5f26a2864"
+  },
+  "preservation": {
+    "inputs_unchanged": true,
+    "baseline_unchanged": {
+      "original_baseline": true,
+      "previous_review": true
+    },
+    "full_head_created": false,
+    "new_solver_run": false,
+    "new_paid_rental": false,
+    "supplier_contacted": false
+  },
+  "private_manifest_sha256": "fe62430b56467a8e1953f66c50640407cf16c4a92156e9f3e4e8f6e6d49164ea",
+  "source_sha256": {
+    "audit_rejected_wall.py": "c0b3c0878efec536f4a72864047075eadb00f5d3e5eac09b5971ddd395138b75",
+    "verify_periodic_wall.py": "0811b66eff1e9fb5945a97229f7040197608a4291addf7b90bab12af7c4b7d9e",
+    "fit_periodic_wall.py": "54949a58864666a9b2543f8d28d1f2cf49e91c20c23560b70967bd3fc1f6627f"
+  },
+  "network_policy_sha256": "cf35cca89f2e1b677995e788c0fe365bf627c641f260a3e4ea80cbde31a0c60e",
+  "candidate_adopted": false,
+  "full_goal_completed": false
+}
