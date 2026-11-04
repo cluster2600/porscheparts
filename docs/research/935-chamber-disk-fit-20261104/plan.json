@@ -1,0 +1,23 @@
+{
+  "scope": "Compact plane/quadratic proposal admission on every fixed verified disk domain; no reference replacement",
+  "source_arrays_sha256": "dd94c37117a1f1277a4f2b7f0bf0023e0d1858991b943f766cf447db319a101a",
+  "parent_manifest_sha256": "67ba667a7e2ebf240079276e2bd6cdccea89eeda29b3fbe8045d76a297e9fe24",
+  "parent_atlas": "atlas-002",
+  "fitter_sha256": "9518d2e6ac5e92ecf1f0c1b23dfc74cda4671b2fe147758521d9d43737af63a0",
+  "source_topology_sha256": "fca5259ef3b3412a72e441fea39816e14fea4e375095e1c83def2e4117f6ae8e",
+  "independent_evaluator_sha256": "5edae0828f23856c2cc7eb942c9d8520b174433149fa478fee4ddb3826cf23d6",
+  "domain_selection": "All 405 unchanged atlas domains, every acquired face once, no fit-dependent crop or merging",
+  "fit": "Unchanged frozen plane/quadratic fitter, source-ID modulo-five holdout, training-only frame/scale and full-source triangle-area vertex weights",
+  "minimum_training_vertices": 40,
+  "minimum_holdout_vertices": 10,
+  "digital_correspondence_limit_mm": 0.01,
+  "short_support": "Keep as exact native acquired-facet reference; do not fit or reduce support limits",
+  "projection": "Each newly fitted training frame needs complete original shared-simplex contact admission; inherited parent-frame admission is not transferred",
+  "boundary_checks": "For every fitted proposal, compute full quadratic-curve source-boundary correspondence bounds. Separately diagnose every cut and original shared-vertex inter-domain contact for two fixed plane/quadratic families; unfitted neighbors use exact original source geometry. Rejected fits remain diagnostic, never adopted.",
+  "numerical_continuity_limit_mm": 0.000001,
+  "bound_method": "Producer power-basis quadratic vector curves converted to Bernstein; independent verifier obtains coefficients from endpoint/midpoint positions. Maximum control-vector norm bounds all edge parameters. Explicit sample norms are lower witnesses.",
+  "acceptance": "A domain needs complete-triangle digital bound, new-frame projection admission and source-boundary continuity before native export eligibility; shared-chart continuity remains an additional assembly requirement. No native export or geometry adoption occurs in this trial.",
+  "inference_limits": "Within-scan transductive digital tests, not physical tolerance/metrology or general model evaluation. Source observations and existing exact native references remain unchanged.",
+  "physical_acceptance": false,
+  "manufacturing_authorized": false
+}

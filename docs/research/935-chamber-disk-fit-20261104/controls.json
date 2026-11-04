@@ -1,0 +1,51 @@
+{
+  "analytic_curves": {
+    "exact_source_plane": {
+      "upper_mm": 0.0,
+      "sample_max_mm": 0.0,
+      "independently_checked": true
+    },
+    "constant_offset": {
+      "upper_mm": 0.02,
+      "sample_max_mm": 0.02,
+      "independently_checked": true
+    },
+    "zero_endpoints_interior_bubble": {
+      "upper_mm": 2.0,
+      "sample_max_mm": 1.0,
+      "independently_checked": true
+    },
+    "rigidly_transformed_bubble": {
+      "upper_mm": 2.0,
+      "sample_max_mm": 1.0,
+      "independently_checked": true
+    }
+  },
+  "refusals": {
+    "source_split": {
+      "refused": true,
+      "reason": "Fixed source-ID split or source coverage changed",
+      "no_success_output": true
+    },
+    "coefficient": {
+      "refused": true,
+      "reason": "Training-only normal equations changed",
+      "no_success_output": true
+    },
+    "boundary_curve": {
+      "refused": true,
+      "reason": "Source boundary curve certificate changed",
+      "no_success_output": true
+    },
+    "cut_curve": {
+      "refused": true,
+      "reason": "Seam Bernstein curve certificate changed",
+      "no_success_output": true
+    },
+    "native_admission": {
+      "refused": true,
+      "reason": "Unsupported digital/boundary/native admission",
+      "no_success_output": true
+    }
+  }
+}

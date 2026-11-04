@@ -223,3 +223,11 @@ explicitly rejected and retained; it is not repaired by coordinate welding.
 Across separate source-reference documents, 35,495 distinct acquired faces are
 represented. These remain open observation references, without a complete head,
 accepted smooth surface, qualified physics domain or manufacturing job.
+
+The [fixed disk-domain primitive trial](../research/935-chamber-disk-fit-20261104/README.md)
+then retains all 405 domains and fits only the nine meeting unchanged support
+requirements. All eighteen plane/quadratic proposals fail the digital screen.
+Independent full-triangle, boundary-curve, cut-seam and shared-vertex checks
+preserve these rejections; 396 short-support domains retain exact references.
+Point contacts without a cut at that vertex expose additional diagnostic gaps.
+No smooth surface is adopted, and the exact native references remain unchanged.
