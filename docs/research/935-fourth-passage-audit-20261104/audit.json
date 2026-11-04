@@ -1,0 +1,165 @@
+{
+  "scope": "Fourth legacy passage search region; acquired-source section audit",
+  "date": "2026-11-04",
+  "status": "executed_independently_verified",
+  "original_obj_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "original_arrays_sha256": "dd94c37117a1f1277a4f2b7f0bf0023e0d1858991b943f766cf447db319a101a",
+  "source_frame_sha256": "3a5ffb7316148716b3668ec762e284feb67bda040cbda81ba7697cf39765b289",
+  "private_bundle_manifest": {
+    "files": 19,
+    "sha256": "bfd1a5d0fe39f9f5bf90d5d4bff45d365873c6a54fb358f4665959edfbf8224e"
+  },
+  "source_sha256": {
+    "audit_sections.py": "3edf660250a1675d506ff9236444842280f0209ec59a8b78e9d6cdbb4443406c",
+    "verify_sections.py": "3080091d701a8044f86c38f111a40244a2d7fbf6cd4539c0d0373998974bb946"
+  },
+  "private_report_sha256": {
+    "audit": "9457ac219ffdbc5edb9deba5237d82e97263c8512852db6a918dffe496d47629",
+    "verification": "20b399b7da0e041c43cc97a9cf47d852db7086f9d6ab47b807c70161509e0568",
+    "negative_controls": "a2b2e978976647c49b080e4f567f419d70ca0a2b361b835b7bbf0c49d503e833"
+  },
+  "runtime": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1"
+  },
+  "stations": [
+    {
+      "station_id": "legacy_C_91",
+      "source_faces": 204,
+      "components": 1,
+      "closed_components": 1,
+      "open_endpoints_on_original_boundary": 0,
+      "edge_distance_max_mm": 9.073341394925289e-14,
+      "plane_distance_max_mm": 4.263256414560601e-14,
+      "section_sha256": "aea268a6c52a6976310aaeeddf8701cfa563a89b93f1a12f5d08c7af42f49c82",
+      "endpoint_replay_max_mm": 2.237927638478769e-13,
+      "profiles": [
+        {
+          "segments": 204,
+          "points": 204,
+          "closed": true,
+          "branch_nodes": 0,
+          "endpoint_origin_counts": {},
+          "circle_diagnostic": {
+            "state": "diagnostic_only",
+            "points": 204,
+            "training_points": 159,
+            "holdout_points": 45,
+            "coverage_degrees": 353.76708154231414,
+            "holdout_p95_mm": 0.4016592835824287,
+            "holdout_max_mm": 0.4705650090782809,
+            "all_point_max_mm": 0.4792891021666916,
+            "legacy_exploratory_limits_pass": false,
+            "physical_dimension_accepted": false
+          }
+        }
+      ]
+    },
+    {
+      "station_id": "legacy_C_94",
+      "source_faces": 197,
+      "components": 2,
+      "closed_components": 0,
+      "open_endpoints_on_original_boundary": 4,
+      "edge_distance_max_mm": 8.706413979514587e-14,
+      "plane_distance_max_mm": 4.263256414560601e-14,
+      "section_sha256": "641d7d55a936a098f26be3f02a21fcbac882091fa936cd75aab1d57c5d6feefe",
+      "endpoint_replay_max_mm": 2.0885605716641563e-13,
+      "profiles": [
+        {
+          "segments": 195,
+          "points": 196,
+          "closed": false,
+          "branch_nodes": 0,
+          "endpoint_origin_counts": {
+            "original_mesh_boundary": 2
+          },
+          "circle_diagnostic": {
+            "state": "diagnostic_only",
+            "points": 196,
+            "training_points": 155,
+            "holdout_points": 41,
+            "coverage_degrees": 349.0354686844392,
+            "holdout_p95_mm": 0.4245198149366791,
+            "holdout_max_mm": 0.47096211889070805,
+            "all_point_max_mm": 0.47096211889070805,
+            "legacy_exploratory_limits_pass": false,
+            "physical_dimension_accepted": false
+          }
+        },
+        {
+          "segments": 2,
+          "points": 3,
+          "closed": false,
+          "branch_nodes": 0,
+          "endpoint_origin_counts": {
+            "original_mesh_boundary": 2
+          },
+          "circle_diagnostic": {
+            "state": "insufficient_points",
+            "points": 3
+          }
+        }
+      ]
+    },
+    {
+      "station_id": "legacy_C_97",
+      "source_faces": 98,
+      "components": 1,
+      "closed_components": 0,
+      "open_endpoints_on_original_boundary": 2,
+      "edge_distance_max_mm": 8.689635541710323e-14,
+      "plane_distance_max_mm": 4.263256414560601e-14,
+      "section_sha256": "2d90e04ed43a2dbcd8fc8d4437678b03ec481f8ac83063eeb3adc34c31e0cb0a",
+      "endpoint_replay_max_mm": 2.7149799812125933e-13,
+      "profiles": [
+        {
+          "segments": 98,
+          "points": 99,
+          "closed": false,
+          "branch_nodes": 0,
+          "endpoint_origin_counts": {
+            "original_mesh_boundary": 2
+          },
+          "circle_diagnostic": {
+            "state": "diagnostic_only",
+            "points": 99,
+            "training_points": 78,
+            "holdout_points": 21,
+            "coverage_degrees": 182.6461603770713,
+            "holdout_p95_mm": 0.09404173974145014,
+            "holdout_max_mm": 0.11137342902651337,
+            "all_point_max_mm": 0.11157540360043594,
+            "legacy_exploratory_limits_pass": false,
+            "physical_dimension_accepted": false
+          }
+        }
+      ]
+    }
+  ],
+  "independent_checks": {
+    "exact_legacy_source_face_coverage": true,
+    "actual_points_on_original_XYZ_edges": true,
+    "actual_points_on_source_section_planes": true,
+    "shared_source_edge_identity": true,
+    "independent_graph_components": true,
+    "all_open_endpoints_are_original_mesh_boundaries": true
+  },
+  "producer_controls": {
+    "closed_loop": true,
+    "open_chain": true,
+    "distinct_edge_identity": true,
+    "known_triangle_cut": true,
+    "altered_support_refused": true
+  },
+  "additional_negative_controls_passed": 3,
+  "actual_successful_stages_sandboxed": true,
+  "circle_accepted": false,
+  "anatomical_identity_accepted": false,
+  "functional_interface_acceptances": 0,
+  "required_functional_interfaces": 8,
+  "manufacturing_authorized": false,
+  "geometry_bytes_published": false,
+  "paid_compute_used_for_this_audit": false
+}

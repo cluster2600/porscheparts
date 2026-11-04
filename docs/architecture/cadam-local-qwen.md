@@ -157,3 +157,10 @@ adds 13,895 exact acquired facets to the private native reference document.
 It rejects a single-plane approximation and independently checks both the STEP
 and the actual feature exported from the saved/reopened FreeCAD file. No hidden
 geometry, physical tolerance, complete head or manufacturing job is inferred.
+
+The [fourth-passage source audit](../research/935-fourth-passage-audit-20261104/README.md)
+continues from fixed historical acquired-face selections. It preserves one
+closed and three open section components, independently verifies their original
+source edges and identifies all six open endpoints as original scan boundaries.
+The circle diagnostic remains rejected; no fourth cylinder or stud pattern is
+completed by symmetry.
