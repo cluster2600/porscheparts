@@ -220,3 +220,27 @@ physical dimension, or exclude additional errors between samples. The
 has SHA-256 `d7509f4bc84a9477904e51ed6ee2eb1572c5b4a64a46949373145a4bd09a8f5b`.
 The [private point archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/reverse-outlier-points-20261104.npz)
 has SHA-256 `8436da55838c6e3963dfd397c4e8edf9f0d310fe38af138b25d89d33ab7cc59f`.
+
+## Three outliers against the aligned scan
+
+The [point comparison](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/outlier_scan_comparison.py)
+queries the aligned scan triangles for each of the three input points and its
+nearest point on the triangulated cfMesh wall. Its
+[receipt](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/case-006-outlier-scan-comparison.json)
+pins both private inputs. All distances below are uncalibrated source units.
+
+| Point | Input to cfMesh wall | Input to scan | Wall point to scan |
+|---|---:|---:|---:|
+| 1 | 0.5570 | 0.1277 | 0.5461 |
+| 2 | 0.5871 | 0.0134 | 0.4937 |
+| 3 | 0.5019 | 0.1542 | 0.4613 |
+
+For these three points the input is closer to the aligned scan than its
+nearest exported cfMesh-wall point. This indicates local displacement in the
+provisional wall representation relative to that input, under the existing
+unverified registration. The nearest scan point can differ between the two
+queries; the comparison does not establish which surfaces were directly
+measured, prove the cause of poor volume quality, or validate the complete
+rotor. The three locations should be considered when choosing a future
+boundary-preserving reconstruction or meshing method; the existing CFD gate
+remains closed.
