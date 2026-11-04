@@ -28,3 +28,22 @@ for the hub and support, and
 [`build_drive_cad.py`](../../../twins/935-horizontal-cooling-system-f0/source/build_drive_cad.py).
 The [original-bound assembly review](ORIGINAL_BOUND_ASSEMBLY_20261028.md)
 explains the unresolved rotor/drive separation and engine-envelope interference.
+
+## Shaft-to-support frame mapping
+
+The shaft profile and support surface reports identify the same original drive
+scan. The [frame-composition program](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/compose_drive_frames.py)
+checks those reports' hashes, their common source hash, the shaft transform and
+its inverse, rigid handedness and the support candidate-frame identity. It
+composes shaft candidate → original drive source → support normalized frame.
+Both CAD receipts use the same unverified scale assumption of one millimetre
+per source unit. This numeric frame mapping is not a physical mating datum or
+an assertion that the shaft belongs to a particular bearing or rotor coupling.
+
+The [private transform receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/shaft-to-support-transform.json)
+has SHA-256 `11039619a1e206090b28ee919faaf4d2f96107d47a63809a9f77a39811cf0d04`.
+Its output was reproduced byte-for-byte; synthetic translation composition and
+reflection-rejection controls passed. Placement of the rotor remains
+independent: it comes from a different scan, and the registration between the
+two physical parts is not verified. A future scene must label these fragments
+as open surfaces and retain that distinction.
