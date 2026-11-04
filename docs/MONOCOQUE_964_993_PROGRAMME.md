@@ -11,6 +11,12 @@ mass and member rankings do not qualify a replacement cell. The original donor
 is unavailable; [alternative acquisition routes](../twins/964-chassis/alternative-measurement-sources-20261104/README.md)
 are now required for missing measurements and physical correlation.
 
+The separate [993 body-dimension review](../twins/964-chassis/993-body-dimensions-20261104/README.md)
+adds 25 scalar observations from 19 floor-control rows. Its point crosswalk
+identifies eight matching named spans, a P3 dimensional discrepancy and
+generation-specific rear attachment numbering. These data support M1/M2
+research; they establish no common interface geometry or valid structural model.
+
 Status: **programme definition**. This document contains no geometry and
 authorizes none. It states what has to be established, in what order, and what
 is blocking today.

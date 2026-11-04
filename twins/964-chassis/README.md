@@ -1,5 +1,12 @@
 # Digital twin of the Porsche 911 (964) chassis
 
+**Separate 993 reference, 4 November 2026:** the
+[body-dimension review](993-body-dimensions-20261104/README.md) adds 19 printed
+floor-control rows (25 scalar observations) and a generation-qualified point
+crosswalk. Eight named spans match the 964 record, while P3 differs and rear
+point numbers identify different features. This is a documentary comparison,
+not 964/993 interface interchangeability; no new XYZ or tunnel surface is admitted.
+
 **Alternative measurement sources, 4 November 2026:** the original donor is
 unavailable for a further survey. The [acquisition review](alternative-measurement-sources-20261104/README.md)
 identifies TetraVision's published stripped-body scan as a concrete availability
