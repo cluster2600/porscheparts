@@ -117,3 +117,10 @@ analytic surface bound and native topology/intersection checks pass, with all
 vertices and protected face rows unchanged. The 19% quality improvement misses
 the registered 50% gate; no volume mesh or physics case is admitted. A conditional
 candidate-count ceiling rules out fixing that deficit by reordering this pass.
+
+The subsequent [bounded vertex-relocation trial](BOUNDED_RELOCATION.md) changes
+only free vertex coordinates, with fixed connectivity and all sharp/protected
+edge endpoints exact. Independent complete-surface correspondence and native
+checks pass; bad triangles decrease from 8,489 to 1,792 (78.89%). This passes
+the registered surface gate for a bounded study-volume mesh trial, while the
+original inferred-domain and physical release limitations remain.

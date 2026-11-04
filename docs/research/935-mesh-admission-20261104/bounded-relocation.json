@@ -1,0 +1,269 @@
+{
+  "date": "2026-11-04",
+  "scope": "Local surface and Kali checkpoint; subsequent paid retry terminal outcome is not covered",
+  "plan": {
+    "input_sha256": "fa2f082be38f50fcd8e00b8f384d9824a22bf1d7fcba6aa88472a10c82a4831a",
+    "protection_sha256": "f9172eabbabd4ea979c93b47afa72f3952feb325daf5c95045c3a5ca6b43b6e2",
+    "inspector_sha256": "3e7917f938055267516032069c833481d5fd0bcad4078778f81a8ec84edb65b4",
+    "helper_sha256": "57a29abf66e66f59e5eb8926fdf0dd75a3880e57928f9d28dd587a27d7d96c92",
+    "source_sha256": "827c3298310aeb090a4f02fcf153ea5d2db42131a4cc2d1aaadf57b36fd25ee5",
+    "passes": 1,
+    "candidate_vertex_bound_mm": 0.0099,
+    "admission_bound_mm": 0.01,
+    "relative_volume_change_limit": 0.0001,
+    "bad_triangle_reduction_min_fraction": 0.5,
+    "fixed_connectivity": true,
+    "locked_edges": "Protected-face edges and original dihedrals over 30 degrees; all endpoints fixed",
+    "operator": "Worst-first single visit; projected local quality gradients; full/half fixed bound; no worsening bad faces or new bad faces",
+    "upstream_admission": "Reconstructed assembly study only; inferred surfaces and missing specimen interfaces remain",
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "preflight": {
+    "locked_edges": 492169,
+    "locked_vertices": 342090,
+    "initial_bad_faces": 8489,
+    "bad_faces_all_vertices_locked": 1338,
+    "maximum_possible_reduction_fraction_fixed_connectivity": 0.8423842619860997
+  },
+  "driver_controls": {
+    "equilateral_quality": true,
+    "analytic_gradient_matches_finite_difference": true,
+    "skinny_fan_actually_changes": true,
+    "skinny_fan_clears_quality_gate": true,
+    "witness_locked_coordinates_exact": true,
+    "witness_motion_within_bound": true,
+    "witness_tangent_motion": true
+  },
+  "driver_execution": {
+    "exit_code": 0,
+    "seconds": 27.185509582981467,
+    "log_sha256": "1aabb3e53c702e031c590862b821d470b43bd8433116c92c7b7b4fedfd2251b1"
+  },
+  "preparation_failure": {
+    "state": "failed_before_trial_output",
+    "reason": "Initial environment lacked libigl; unchanged source reused in existing repair runtime",
+    "exit_code": 1
+  },
+  "surface_verification": {
+    "scope": "Fixed-connectivity reconstructed assembly study, not acquired scan or accepted physical head",
+    "locked_edges": 492169,
+    "locked_vertices": 342090,
+    "moved_vertices": 6296,
+    "before": {
+      "bad_triangles": 8489,
+      "minimum_quality": 3.303568619914881e-06,
+      "signed_volume_mm3": 1106103.0255224346
+    },
+    "after": {
+      "bad_triangles": 1792,
+      "minimum_quality": 3.303568619914881e-06,
+      "signed_volume_mm3": 1106103.0255797373
+    },
+    "maximum_vertex_displacement_mm": 0.009900000000026199,
+    "bad_triangle_reduction_fraction": 0.7889032866061962,
+    "surface_bound_proof": "Same indexed triangle and barycentric coordinates; norm of weighted displacement <= weighted vertex norms <= maximum vertex norm; two directions use the same correspondence",
+    "bound_limit": "Double-precision coordinate bound; not interval certification, true specimen fidelity, surface-normal or thickness bound",
+    "checks": {
+      "locked_coordinates_exact": true,
+      "protected_triangles_exact": true,
+      "same_connectivity": true,
+      "whole_surface_correspondence_bound": true,
+      "no_new_bad_triangles": true,
+      "no_bad_triangle_worsened": true,
+      "native_parent_and_candidate_pass": true,
+      "relative_volume": true,
+      "bad_triangle_reduction_at_least_half": true
+    },
+    "controls": {
+      "changed_connectivity": true,
+      "changed_locked_coordinate": true,
+      "excess_motion": true,
+      "reversed_triangle": true,
+      "barycentric_sample_bound": true
+    },
+    "accepted_for_volume_meshing": true,
+    "candidate_npz_sha256": "7b40f5eb3707fa0dfe80c154058f759135070c81a710df2b9dfa01c42043ee16",
+    "native_off_sha256": "16c7dcec52cebb6b96bbe75ee06fe0db0f756af7ce59a79c45405cb075985a8f",
+    "native_report_sha256": "7fbc82a633e7dca9b4b83c3b648f8c4aafbe776c6749aab7d0e8e3f70c1c9307",
+    "source_sha256": "eee9271dd7934f7dd23edfcd8d3e9d8979f3a59c0eb37ff3edd3df45b04b6ede",
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "verification_execution": {
+    "exit_code": 0,
+    "seconds": 2.778398583061062,
+    "log_sha256": "e0e56d06859ec48a44374d7f3672b8790d93a5625bbb189167d62a8b49020779"
+  },
+  "residual_lock_audit": {
+    "remaining_bad_triangles": 1792,
+    "remaining_bad_all_vertices_locked": 1338,
+    "remaining_bad_with_a_free_vertex": 454,
+    "remaining_bad_directly_protected_faces": 670,
+    "minimum_quality_faces": 1,
+    "all_minimum_quality_faces_have_all_vertices_locked": true,
+    "scope": "Constraint classification of exact study parent/candidate; not anatomical defect identification",
+    "minimum_quality": 3.303568619914881e-06
+  },
+  "actual_cube_verification": {
+    "actual_cube_npz_sha256": "7f51242e375ecfd2f69e4c399724c697e873bea9fed43a15f3d36c86deb414e7",
+    "verifier_source_sha256": "2542096b1453646744b43961d1c45fe337027d67b4c2afbe966fec8d32302400",
+    "metric_source_sha256": "c1d93c8018e03c628cda261c16304b0dca26eb575967953e828e9a16cb9f610c",
+    "controls": {
+      "one_tet_outward_boundary": true,
+      "same_winding_interior_refused": true,
+      "triple_face_refused": true,
+      "two_tets_cancel_one_shared_face": true,
+      "oriented_cycle_invariant": true,
+      "orientation_reversal_detected": true
+    },
+    "mesh": {
+      "input_sha256": "7f51242e375ecfd2f69e4c399724c697e873bea9fed43a15f3d36c86deb414e7",
+      "nodes": 9,
+      "tetrahedra": 12,
+      "boundary_triangles": 12,
+      "boundary_nodes": 8,
+      "ordered_boundary_xyz_sha256": "4e503890b40ba324a87202e2a2762ba1a2d18f3be325111db17eef1476af4f99",
+      "signed_volume_mm3": 0.9999999999999999,
+      "nonpositive_tetrahedra": 0,
+      "quantile_probabilities": [
+        0,
+        0.001,
+        0.01,
+        0.05,
+        0.5,
+        1
+      ],
+      "tetra_mean_ratio_quantiles": [
+        0.5890254326585702,
+        0.5891787841434124,
+        0.5905589475069923,
+        0.5966930069006812,
+        0.7380607362491302,
+        0.8618245653134367
+      ],
+      "triangle_shape_quality_quantiles": [
+        0.8660254037844386,
+        0.8660254037844386,
+        0.8660254037844386,
+        0.8660254037844386,
+        0.8660254037844386,
+        0.8660254037844386
+      ],
+      "zero_area_boundary_triangles": 0,
+      "diagnostic_bins": [
+        {
+          "mean_ratio_below": 0.01,
+          "count": 0,
+          "fraction": 0.0,
+          "absolute_volume_fraction": 0.0,
+          "bad_touching_any_boundary_node": 0,
+          "boundary_touching_cell_bad_fraction": 0.0,
+          "interior_cell_bad_fraction": null
+        },
+        {
+          "mean_ratio_below": 0.1,
+          "count": 0,
+          "fraction": 0.0,
+          "absolute_volume_fraction": 0.0,
+          "bad_touching_any_boundary_node": 0,
+          "boundary_touching_cell_bad_fraction": 0.0,
+          "interior_cell_bad_fraction": null
+        }
+      ],
+      "touch_definition": "At least one vertex belongs to the supplied surface; not an exact boundary-face adjacency classification."
+    },
+    "interior_paired_faces": 18,
+    "actual_oriented_boundary_matches_declared": true,
+    "unit_volume_positive_cells": true
+  },
+  "source_sha256": {
+    "trial_bounded_relocation.py": "827c3298310aeb090a4f02fcf153ea5d2db42131a4cc2d1aaadf57b36fd25ee5",
+    "verify_bounded_relocation.py": "eee9271dd7934f7dd23edfcd8d3e9d8979f3a59c0eb37ff3edd3df45b04b6ede",
+    "run_relocated_tet.py": "3d7e5a0fd2f34e74df9fb34e12a0bd254b28ebfe37e951d383b180478a56c82f",
+    "verify_relocated_tet.py": "2542096b1453646744b43961d1c45fe337027d67b4c2afbe966fec8d32302400",
+    "trial_planar_flips.py": "57a29abf66e66f59e5eb8926fdf0dd75a3880e57928f9d28dd587a27d7d96c92",
+    "audit_retained_meshes.py": "c1d93c8018e03c628cda261c16304b0dca26eb575967953e828e9a16cb9f610c",
+    "guard_mesh_rental.py": "f5a07d536b582696424d713d4af9e6951d08b4017f4780260dd60ae14651c295",
+    "run_cloud_relocated_tet.py": "41bfe9de4dcf5e8c420ef574d07798a05221954b51d15a1e4e6fcadc01dd321e"
+  },
+  "independent_surface_verification_state": "completed_accepted_for_study_volume_meshing",
+  "physics_admitted": false,
+  "full_head_created": false,
+  "physical_acceptance": false,
+  "manufacturing_authorized": false,
+  "paid_rental": true,
+  "output_refusals": {
+    "driver_existing_output_refused_before_input_read": true,
+    "verifier_existing_output_refused_before_input_read": true,
+    "existing_independent_report_unchanged": true,
+    "driver_exit_code": 1,
+    "verifier_exit_code": 1
+  },
+  "kali_mesh_plan": {
+    "source_sha256": "3d7e5a0fd2f34e74df9fb34e12a0bd254b28ebfe37e951d383b180478a56c82f",
+    "candidate_sha256": "7b40f5eb3707fa0dfe80c154058f759135070c81a710df2b9dfa01c42043ee16",
+    "surface_verification_sha256": "2958a36e5c9be0de7d5f23c513af7207540d218c57f09fa1378be33eddc3ea1e",
+    "mesher_sha256": "3cf167772ab4e4d90674693cb47e986e08c43e872db0b43c7529a533dc07dae6",
+    "runtime": {
+      "python": "3.12.11",
+      "gmsh": "4.12.1",
+      "numpy": "2.5.4",
+      "gmsh_module": "task runtime/lib/python3.12/site-packages/gmsh.py"
+    },
+    "interior_size_mm": 1.5,
+    "threads": 2,
+    "child_address_space_gib": 7,
+    "cube_deadline_seconds": 60,
+    "head_deadline_seconds": 900,
+    "physical_geometry_accepted": false,
+    "scope": "Single local study-mesh comparison; no solver, manufacturing or physical release"
+  },
+  "kali_mesh_execution": {
+    "exit_code": -15,
+    "timeout": true,
+    "seconds": 900.0684683448635,
+    "log_sha256": "455fff2b3ff5dcaba635a59c00a54efbf9e91f5b10aec4dca82305b82e5eaaea",
+    "peak_children_rss_kib_cumulative": 5809556,
+    "cube_control_accepted": true,
+    "runtime_plan_sha256": "b2f0b6568e3a775004213985b10b8bca7079140c028054d9f31e0150868f932a"
+  },
+  "kali_terminal_state": {
+    "head_tet_trial_state": "terminated_at_registered_900_second_deadline",
+    "matching_mesher_processes_remaining": 0,
+    "head_output_directory_empty": true,
+    "new_volume_mesh_accepted": false,
+    "unrelated_resources_untouched": true
+  },
+  "kali_terminal_recovery": {
+    "archive_sha256": "5db4200cb3c801fecbaf854192a66880743b082cc2c68567c5da88aab715a2f8",
+    "manifest_files_checked": 16,
+    "all_files_match": true,
+    "head_output_directory_empty": true,
+    "mesher_process_absent_verified": true,
+    "surface_report_matches_mac_original": true
+  },
+  "cloud_guard_offline_control": {
+    "exit_code": 0,
+    "seconds": 10.650043625035323,
+    "owned_id_123_destroyed": true,
+    "foreign_id_999_not_modified": true,
+    "absence_verified": true,
+    "actual_vast_api_called": false,
+    "guard_source_sha256": "f5a07d536b582696424d713d4af9e6951d08b4017f4780260dd60ae14651c295"
+  },
+  "cloud_retry_at_checkpoint": {
+    "created": true,
+    "image_runtime_verified": true,
+    "cube_control_passed": true,
+    "transferred_input_hashes_passed": true,
+    "head_mesh_state": "active_at_checkpoint",
+    "terminal_result_covered": false,
+    "attempt_cap_including_network_usd": 1.5,
+    "hard_deadline_seconds": 3600,
+    "hourly_ceiling_including_120gb_disk_usd": 0.4,
+    "budget_reset": false
+  },
+  "private_local_manifest_sha256": "e626b088ee3640e0a283c81d9745c6bf550792d2ccb6f7e30cf2d1e310a930c4",
+  "private_local_files": 61
+}
