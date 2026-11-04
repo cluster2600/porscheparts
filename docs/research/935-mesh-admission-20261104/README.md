@@ -97,3 +97,10 @@ long-edge criterion rejects the full head's 0.5 mm uniform target before
 remeshing. A 0.7 mm target passes that length check only; no head result is
 produced or accepted. An independent constraint/quality audit bounds the next
 sizing-field design.
+
+The [variable-size trial](VARIABLE_SIZING.md) subsequently executes on the full
+surface within its resource bounds. All 111,463 protected triangles are preserved
+exactly, but 35 intersection pairs and excessive sampled deviations reject the
+candidate. This verified failure returns the next admission work to
+source-supported CAD regions and geometry diagnosis; no volume mesh or solver
+case is launched from the rejected surface.
