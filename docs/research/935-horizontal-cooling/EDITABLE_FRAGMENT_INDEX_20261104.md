@@ -103,3 +103,32 @@ connection or functional twin. The [private mesh archive](https://github.com/clu
 has SHA-256 `fb31d926964e5b8670144b507b72600af5b3e574e3f859792c2888d6a36ec592`;
 all archive files passed checksum verification after extraction. Scale,
 physical registration, mating and manufacturing remain unverified.
+
+## Open drive fragments in the provisional 935 USD scene
+
+The [placement program](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/assembly-placement/place_fragments.py)
+uses the existing 935 assembly case's drive transform. Before placing either
+fragment it checks all 2,484,656 original drive triangles against the retained
+placed drive; the largest coordinate discrepancy is 0.00004951 source unit.
+The shaft and support STL transformations independently retain their triangle
+counts and match transformed coordinates within 0.00000763 source unit.
+These are numeric checks on an assumed assembly pose, not evidence of fit.
+
+The [USD composer](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/assembly-placement/compose_usd.py)
+adds the two open fragment meshes as separately classified inspection prims to
+a layer over the existing four-component scene. It checks the base stage's
+metre/Z-up metadata and explicitly sets these values on the new root layer;
+the initial attempt without root metadata was rejected. Every added point was
+reread exactly. The source-to-metre factor 0.001 is conditional on the
+unverified one-millimetre/source-unit assumption.
+
+The [private layer package](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-usd-drive-fragments-layer-20261104.tar.gz)
+has SHA-256 `906970da881461ace16a37fa810a8d62d45de44e34e003d7136c48fb876ae2af`.
+Its contents passed extraction and checksum readback. It requires the separately
+retained base `assembly-inspection.usdc`, SHA-256
+`22fa354baa2d69d22e21b4677625023259cd529e22708b25aeba0affe87f10ce`,
+from `exports-002/` in the [original-bound assembly archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-original-bound-assembly-20261028.tar.zst).
+Place that base next to the USDA layer. The [private overview](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/assembly-fragments-review.png)
+has SHA-256 `3523382b130b53314f74877b0307302f9d2a91978b98fb0b7e0bfc1e871d9254`.
+The engine and shroud remain placeholders; rotor/drive mating, scale and
+physical operation are not established.
