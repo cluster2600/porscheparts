@@ -185,3 +185,11 @@ with complete parent membership retained. Independent ranking and complete-face
 checks pass; all sixteen proposals still fail the unchanged digital screen.
 Neither the smaller fitting domain nor its lower residuals establish a valve
 surface, hidden geometry or physical dimensional acceptance.
+
+The [native Kali acquired-input receipt](../research/935-kali-acquired-inputs-20261104/README.md)
+provides a new private input root and checksum-bound effective contract, avoiding
+the absent historical catalogue path. Every original OBJ vertex and triangle is
+checked directly against the exact arrays on ext4. Owner-confirmed millimetres
+and the provider's cast/machined correction are explicit; historical records stay
+unchanged. OCP is absent in the inspected Kali interpreter, so this source-reader
+qualification does not claim that the complete CAD/solver chain is ready.
