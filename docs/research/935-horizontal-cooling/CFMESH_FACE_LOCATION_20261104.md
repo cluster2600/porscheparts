@@ -114,3 +114,15 @@ between selected faces**. Unselected wall faces may connect these components,
 so this count is neither the number of physical defects nor proof of spatial
 separation. A synthetic control checks edge sharing and vertex-only contact.
 No physical coordinates or private mesh are published.
+
+## Private spatial view
+
+The [three-view plot](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-wall-reach-20261104.png)
+shows vertex-mean positions of the 257 incident wall faces against one sampled
+face in 20 from the case's rotor patch. SHA-256:
+`f59cc6b413e698ed0fb55785e98bd2eb49733da2abf06952d39058423d33a411`.
+The highlights appear on multiple sectors, including near blade tips. This is
+the rejected provisional CFD boundary, not a direct scan overlay; perspective
+and marker overlap do not establish how many physical defects exist. The
+[renderer](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/render_wall_reach.py)
+reads the retained case and refuses to overwrite its output.
