@@ -1,5 +1,17 @@
 # Interface survey — 964 first, then a 993 check
 
+**4 November 2026 DDK update:** use the
+[source-linked survey sheet](ddk-interface-bridge-20261104/interface-crosswalk.csv)
+alongside the existing span sheet. The
+[review by cell area](ddk-interface-bridge-20261104/README.md#consequences-by-part-of-the-cell)
+adds glazing, front services, installed linkage and maintenance access to the
+survey, and separates configuration-specific masses from structural loads.
+DDK point links are investigation context, never identified holes. The Celette
+heights have no confirmed donor/datum match; early-911 spacing and mixed
+drivetrain offsets must not close the 964 chain. The lower cover, body tunnel,
+linkage motion and service access require separate observations. No existing
+XYZ or surface gap is closed by the forum data.
+
 **30 October 2026 update:** use the
 [current 19-row span sheet](interface-exploitation-20261030/interface-spans.csv)
 and [scalar contract](interface-exploitation-20261030/contract.json) for the next

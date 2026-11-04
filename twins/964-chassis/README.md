@@ -1,5 +1,13 @@
 # Digital twin of the Porsche 911 (964) chassis
 
+**DDK evidence update, 4 November 2026:** the
+[source-to-interface bridge](ddk-interface-bridge-20261104/README.md) connects
+15 reviewed facts from nine original posts to the manual identities and scan
+search regions. It adds glazing, services, packaging and mass investigation
+requirements, while excluding early-car and mixed-drivetrain dimensions.
+The [19-row crosswalk](ddk-interface-bridge-20261104/interface-crosswalk.csv)
+preserves both P14 families and unknown XYZ; no new geometry or load is admitted.
+
 **Engineering admission update, 30 October 2026:** the
 [interface exploitation and chain audit](interface-exploitation-20261030/README.md)
 now maps all 18 documentary identities to transverse spans (19 observations,
