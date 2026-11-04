@@ -164,3 +164,10 @@ closed and three open section components, independently verifies their original
 source edges and identifies all six open endpoints as original scan boundaries.
 The circle diagnostic remains rejected; no fourth cylinder or stud pattern is
 completed by symmetry.
+
+The [fourth-region native CAD continuation](../research/935-fourth-region-cad-20261104/README.md)
+then preserves 2,790 acquired facets around those fixed profiles as an exact
+open reference. Independent STEP and actual saved-FreeCAD-feature checks pass;
+140 acquired boundary edges and 144 selection cuts remain explicit. The five
+combined reference objects contain 21,472 unique acquired faces, with zero
+solids and no accepted complete-head domain.

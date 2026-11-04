@@ -1,0 +1,19 @@
+{
+  "scope": "Observed-source fourth legacy search region; no anatomical acceptance",
+  "inputs": "Original acquired arrays, pinned original frame, three independently replayed unfiltered legacy fourth-region section selections",
+  "selection_fixed_before_measurement": true,
+  "AB_window": "Union of all observed legacy section endpoints, expanded by 1 mm on each side; search margin only",
+  "C_window": "Between the outermost two historical section planes, inclusive",
+  "triangle_eligibility": "Whole acquired triangle whose ABC bounding box overlaps the search box; no clipping or moved vertices",
+  "connectivity": "Original indexed edge adjacency, with all eligible components containing any original legacy section face retained",
+  "seed_coverage": "All original faces from all three unfiltered section selections must be retained",
+  "failure_policy": "No alternative crop or filtered replacement when native admission fails",
+  "maximum_selected_faces": 60000,
+  "native_admission": "No original indexed intersection face, zero-area triangle, ambiguous coincident source vertices, nonmanifold edge or inconsistent winding",
+  "native_representation": "Exact source-facet charts with source vertex-fan provenance; open acquired boundaries retained",
+  "source_coordinates_may_change_mm": 0,
+  "native_roundtrip_limit_mm": 0.000001,
+  "full_head_created": false,
+  "physical_acceptance": false,
+  "manufacturing_authorized": false
+}
