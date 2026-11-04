@@ -207,3 +207,10 @@ input packages. An independently checked acquired-point distance excludes any
 single rigid placement of the current unseparated scan in the optimistic FS121M
 box. Larger nominal boxes remain candidates, without a printer/material choice
 or manufacturing acceptance. No scan was transferred to an external service.
+
+The [chamber projection and trim-domain audit](../research/935-chamber-chart-audit-20261104/README.md)
+then independently classifies all 79,610 fixed-chart candidate pairs with exact
+rational predicates. No projected positive-area overlap is found, but 296
+original boundary vertices branch. A source-preserving contact/trim atlas is
+required before more flexible fitting; neither the rejected smooth models nor
+the existing exact native references are changed by this audit.
