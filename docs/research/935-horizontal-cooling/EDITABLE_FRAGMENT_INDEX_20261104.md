@@ -66,3 +66,20 @@ The displayed patches are spatially separated in this scan-derived frame; no
 mating or contact is inferred. Dimensions, scale, assembly fit and suitability
 for manufacture remain unverified. The rotor from the separate scan is not
 registered by this result.
+
+## Review against the same drive scan
+
+The [private three-view overlay and receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-drive-fragments-scan-overlay-20261104.tar.gz)
+have archive SHA-256 `45f74de14f6e57595153c607b9a75e203c1d1750b52b8302aa44626423e9d679`;
+its extracted files and release digest were verified. The plot places the two
+fragments on separate areas of the normalized drive scan. It is a review of
+coordinate transport using the **same scan** that informed the fits, not an
+independent dimensional or mating validation.
+
+The [render and distance screen](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/render_drive_context.py)
+compares tessellated CAD triangle centres to the nearest scan vertex. For 2,112
+shaft samples the median upper bound is 0.1832 source unit and p95 is 0.4681;
+for 94 support samples they are 0.1662 and 0.3479. Nearest-vertex distance is
+an upper bound on point-to-triangle-scan distance. These numbers depend on the
+tessellation and do not certify physical scale, complete scan coverage, or a
+functional contact. The support crop is not asserted to be a material edge.
