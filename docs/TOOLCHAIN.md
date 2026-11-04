@@ -38,6 +38,7 @@ otherwise it explicitly carries the `manual_entry` flag.
 |---|---|---|
 | Mechanical parts | build123d or CadQuery | CAD written in Python on the OCCT kernel, STEP export |
 | Simple generative geometry | OpenSCAD | Models reproducible as code |
+| Local AI coupon proposals | CADAM local entry + Qwen/MLX | OpenSCAD proposal, upstream WASM preview/export, independent STL checks; [tested scope and runbook](architecture/cadam-local-qwen.md) |
 | Organic surfaces | Blender then solid reconstruction | Mesh reference, then parametric solid |
 | Human review and interactive FEM | FreeCAD | STEP inspection, visual check |
 | Functional assemblies | FreeCAD Assembly | Constraints, motion and interface review |
