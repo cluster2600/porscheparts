@@ -150,3 +150,24 @@ matches. It requires the same separately retained original-bound USDC base
 specified above; place that file beside both USDA layers before opening the
 witness layer. The added geometry does not resolve the engine mount, hub
 connection, physical scale or internal transmission.
+
+## Provisional rotor revolution with the added fragments
+
+The [animation composer](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/assembly-placement/animate_scene.py)
+layers a single Z rotation on the original rotor candidate while retaining the
+two open drive fragments and eight flange witnesses. The existing, pinned
+240-phase rigid surface sweep is used only for the same original rotor, drive
+and provisional shroud. It does not assess collision with the added witness
+meshes or open CAD fragments. Frames 0–240 contain 241 samples at 1.5°
+intervals; 60 frames per second is an arbitrary preview rate, not a measured
+operating speed. The shaft, support and witnesses are fixed inspection geometry;
+no transmission ratio or physical joint is modelled.
+
+All 241 rotor transforms matched an independent point-rotation calculation to
+within `1.25e-16` stage metre; a separate readback checked that all ten added
+inspection prims remain stationary at five sampled times. The stage metre uses
+the same unverified source-unit conversion. The [private animation-layer package](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-usd-drive-fragments-animation-20261104.tar.gz)
+has SHA-256 `7340f6d385d63c74b40a7771dab1144d79767cdb9079cf01a7c1c902003df45d`.
+Its files passed extraction and checksum readback. Restore the separately
+retained original-bound USDC base beside its three layers, as described above.
+The result is a kinematic visualization, not validated physical operation.
