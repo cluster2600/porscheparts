@@ -151,3 +151,9 @@ indexes the intact private deliverables, distinguishes the twelve incomplete
 input packages from completed digital work, and retains the manufacturer-data
 requests as unsent drafts. It also corrects the current original-scan location
 without modifying historical evidence.
+
+The [acquired axial-sheet increment](../research/935-observed-axial-sheet-20261104/README.md)
+adds 13,895 exact acquired facets to the private native reference document.
+It rejects a single-plane approximation and independently checks both the STEP
+and the actual feature exported from the saved/reopened FreeCAD file. No hidden
+geometry, physical tolerance, complete head or manufacturing job is inferred.
