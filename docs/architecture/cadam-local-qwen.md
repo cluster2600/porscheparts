@@ -145,3 +145,9 @@ native FreeCAD save/reopen. Vertex-only contacts in the selected masks are
 explicitly separated with source-ID provenance. These remain open reference
 surfaces; [native Kali verification](../research/935-kali-validation-20261104/README.md)
 checks the repository software independently and does not grant head release.
+
+The [current completion review](../research/935-readiness-20261104/README.md)
+indexes the intact private deliverables, distinguishes the twelve incomplete
+input packages from completed digital work, and retains the manufacturer-data
+requests as unsent drafts. It also corrects the current original-scan location
+without modifying historical evidence.
