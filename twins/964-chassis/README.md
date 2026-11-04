@@ -1,5 +1,13 @@
 # Digital twin of the Porsche 911 (964) chassis
 
+**993 drawing continuation, 4 November 2026:** the
+[body-network audit](993-body-network-20261104/README.md) adds 15 observations
+from the remaining body views, bringing the separate 993 inventory to 40.
+Its rear-subframe projection check closes within 0.018 mm nominally; using the
+direct diagonal as a horizontal length would shift the longitudinal result by
+38.950 mm. This is a documentary consistency check. P7 digits, P23 identity,
+the donor interfaces and the tunnel interior remain unresolved.
+
 **Separate 993 reference, 4 November 2026:** the
 [body-dimension review](993-body-dimensions-20261104/README.md) adds 19 printed
 floor-control rows (25 scalar observations) and a generation-qualified point
