@@ -4,6 +4,10 @@
 
 <sub><i>A computer simulation of a 964 body shell being twisted. Colors show where the stress goes. It is a calculation, not a product.</i></sub>
 
+![Layer-by-layer metal 3D printing preview of the 993 cooling-fan impeller, with hypothetical support regions](parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif)
+
+<sub><i>A layer-by-layer preview of how the 993 cooling-fan impeller would build up in a metal (LPBF) printer, with guessed support regions. It shows geometry only: it models no process physics, and it is neither a build file nor a release to print.</i></sub>
+
 # porscheparts
 
 **Studying and redesigning parts of the Porsche 911 (964 and 993 generations) on a computer,
@@ -258,6 +262,31 @@ make check
 including their Python subprocesses. The system Python and specialized CAD/AI
 environments stay separate. Run `make check-setup` again after dependency updates.
 Use `.venv-check/bin/python` when running a check script directly.
+
+## Repository map
+
+The top level stays flat on purpose: locked container recipes and frozen
+evidence files cite these paths, so folders are not moved
+([AGENTS.md](AGENTS.md)).
+
+| folder | what it holds |
+|---|---|
+| [`catalog/`](catalog/) | the catalogue records, the source of truth (`catalog/parts/*.json`) and registers |
+| [`parts/`](parts/) | one folder per catalogued part: geometry, README and public media |
+| [`components/`](components/) | shared interface proxies (for example Fuchs wheel hubs) used by parts and images |
+| [`twins/`](twins/) | digital twins and their workstreams: code, contracts and evidence |
+| [`models/`](models/) | larger reconstruction models (917 engine, horizontal fan) |
+| [`manufacturing/`](manufacturing/) | manufacturing runtimes and process workflows |
+| [`benchmarks/`](benchmarks/) | solver and process benchmarks (LPBF, GPU geometry, free tools) |
+| [`outils/`](outils/) | OpenFOAM verification benchmark copied into the CFD images |
+| [`containers/`](containers/) | reproducible, digest-locked images for heavy compute |
+| [`deploy/`](deploy/) | host and cloud deployment (Intel hosts, OpenBao secrets, Vast) |
+| [`training/`](training/) | local model training runs and their recorded evaluation |
+| [`work/`](work/) | in-progress engine and simulation workstreams |
+| [`scripts/`](scripts/) | generators, validators and audit scripts run by `make` |
+| [`tests/`](tests/) | the test suite run by `make check` |
+| [`docs/`](docs/) | documentation, research notes, architecture and media |
+| [`archive/`](archive/) | archived studies kept for provenance |
 
 ## Disclaimer and license
 
