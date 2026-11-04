@@ -1,0 +1,130 @@
+{
+  "schema_version": "1.0.0",
+  "review_date": "2026-10-29",
+  "reviewed_commit": "0be3667ff627e10e575001ea9ee9e620fd502586",
+  "decision": "rejected_as_product_geometry_baseline",
+  "reason": "Whole-body exterior envelope with assumed closed sections does not reproduce the requested central-cell architecture.",
+  "scope": "Qualitative architecture comparison and source-construction audit; no dimensional reverse engineering of vendor images.",
+  "enforcement": "Documented workflow decision; no new executable gate.",
+  "geometry_changed": false,
+  "new_solver_run": false,
+  "new_paid_instance_created": false,
+  "new_twin_validated": false,
+  "reviewed_repository_inputs": [
+    {
+      "path": "twins/964-chassis/monocoque/derived/zesad-monocoque.vtp",
+      "sha256": "2b55f2e7154ccfb7601805ce0861983a95bce8db85cec14bf8640c9c6c2ade07"
+    },
+    {
+      "path": "twins/964-chassis/monocoque/derived/zesad-monocoque.report.json",
+      "sha256": "42d097111da49b38e8b87caaceae5a783a1b8c275c5c3fd2b1b4f3968e62f8f1"
+    },
+    {
+      "path": "twins/964-chassis/monocoque/source/build_shell.py",
+      "sha256": "0cb1ef0baa0c8d233cb1a2da4b3644081f7042bdc8d69211f7a2dfc4c615f6d8"
+    },
+    {
+      "path": "twins/964-chassis/monocoque/picogk/src/Program.cs",
+      "sha256": "07f8756c9af463b1374a27433ee74d61da4e4c376e8865acf6c9a1f5e531e024"
+    },
+    {
+      "path": "twins/964-chassis/monocoque/omniverse/bundle-001/geometry.usdc",
+      "sha256": "7eda9fca37a0959c5c672d61e420bd3bcda0180cbbd0403a74f64ea985d84228"
+    },
+    {
+      "path": "twins/964-chassis/monocoque/omniverse/media/local-001/front.png",
+      "sha256": "12f42789375b9a80cb8db9cf200a2cedda1ef3d24da758c13b0aef3c6be292ad"
+    },
+    {
+      "path": "twins/964-chassis/monocoque/omniverse/native-review-20261029/rtx/interior.png",
+      "sha256": "8d4ab2e91b549631df631bf478282aae9d4e5b025236b101f37bd75360738caa"
+    }
+  ],
+  "reference_images": [
+    {
+      "id": "zesad-front-detail",
+      "url": "https://zesad.com/wp-content/uploads/2025/09/DMC_964-993_Carbon_Fiber_Monocoque_1.jpg",
+      "page_url": "https://zesad.com/product/porsche-964-and-993-carbon-fiber-monocoque-for-restomods/",
+      "sha256": "9d84cfa9989e70e49196e30de8c627ab483f8d9277aa5a88f66b2a12db86bc8c",
+      "inspection": "original_resolution_visual_review",
+      "rights": "reference_only_no_redistribution_licence_established",
+      "committed": false,
+      "dimensional_authority": false
+    },
+    {
+      "id": "zesad-complete-assembly",
+      "url": "https://zesad.com/wp-content/uploads/2025/09/DMC_964-993_Carbon_Fiber_Monocoque_2.jpg",
+      "page_url": "https://zesad.com/product/porsche-964-and-993-carbon-fiber-monocoque-for-restomods/",
+      "sha256": "ace246993772697b15381db6db2471ed43441aff3a6784dd61fd47e1e9933bae",
+      "inspection": "original_resolution_visual_review",
+      "rights": "reference_only_no_redistribution_licence_established",
+      "committed": false,
+      "dimensional_authority": false
+    },
+    {
+      "id": "vela-ruf-chassis",
+      "url": "https://static.wixstatic.com/media/7f6314_a710be091e81457caef17a203678fc6f~mv2.png",
+      "page_url": "https://www.vela-group.com/en/performance-vehicles",
+      "sha256": "25998c172247591f94f4b7710ef78b36e6acc725121a00a5df78ea235563dd85",
+      "inspection": "original_resolution_visual_review",
+      "rights": "reference_only_no_redistribution_licence_established",
+      "committed": false,
+      "dimensional_authority": false
+    }
+  ],
+  "ruf_architecture_source": "https://www.ruf-automobile.de/de/modelle/serie/",
+  "donor_scope": {
+    "generation": "964",
+    "variant": "Carrera 2",
+    "identity_basis": "owner_reported",
+    "model_year": null,
+    "gearbox": null,
+    "validated_xyz_anchors": 0,
+    "c4_fitment_verified": false,
+    "993_fitment_verified": false
+  },
+  "next_revision_acceptance": [
+    {
+      "id": "central-cell-architecture",
+      "criterion": "Central load-bearing cell distinguished from exterior bodywork and front/rear assemblies.",
+      "status": "open",
+      "evidence": []
+    },
+    {
+      "id": "source-coverage",
+      "criterion": "Observed body patches, uncertain identity, occlusions and inferred surfaces are explicitly recorded.",
+      "status": "open",
+      "evidence": []
+    },
+    {
+      "id": "measured-interfaces",
+      "criterion": "Required mounting axes, faces, patterns, datums and tolerances have independent applicable evidence.",
+      "status": "open",
+      "evidence": []
+    },
+    {
+      "id": "c2-package",
+      "criterion": "Installed gearbox, shift linkage, occupant and service envelopes constrain the tunnel and floor.",
+      "status": "open",
+      "evidence": []
+    },
+    {
+      "id": "local-geometry-review",
+      "criterion": "Orthographic, interior and section views expose the actual cell and unresolved junctions.",
+      "status": "open",
+      "evidence": []
+    },
+    {
+      "id": "surface-manufacturing-definition",
+      "criterion": "Junction topology, wall/core construction, radii, mould splits and demoulding access are defined.",
+      "status": "open",
+      "evidence": []
+    },
+    {
+      "id": "analysis-correspondence",
+      "criterion": "Analysis geometry, joints and boundary conditions correspond to the reconstructed revision before new conclusions.",
+      "status": "open",
+      "evidence": []
+    }
+  ]
+}

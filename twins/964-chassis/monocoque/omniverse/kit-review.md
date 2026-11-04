@@ -36,8 +36,12 @@ receipts remain unchanged.
 
 ## Execute only within the approved session
 
-Keep the existing USD 5 / 90-minute proposal pending until the user approves
-it. Recheck the offer, driver and deadline guard before any paid launch.
+The USD 5 / 90-minute proposal was approved for the
+[29 October attempt](native-review-20261029/README.md), which ended with verified
+cleanup before this protocol completed. Coordinate the shared account and
+obtain a fresh bounded authorization before another paid attempt. Recheck the
+offer, driver and deadline guard before launch; this document does not renew
+the previous approval.
 The compute image plus these Kit layers total **37.806 GB compressed**, within
 the proposed 40 GB download allowance, with about 2.19 GB remaining for other
 transfers. Check that remaining allowance before installing missing libraries
@@ -93,6 +97,9 @@ Collect and verify the outputs on the Mac, destroy the exact rented instance
 under its guard and verify its absence. A stalled editor, failed stream or
 failed collection must not extend the approved duration.
 
-**Still pending:** actual Kit startup, private relay operation on this host,
-native screenshots, RTX output and collection. Local preparation does not
-close those requirements or any engineering/manufacturing approval gate.
+**Observed on 29 October:** Kit startup, scene-open notification and 26 decoded
+loading-editor frames through the private relay; standalone RTX media were
+collected and hash-verified. **Still pending:** full native model viewport,
+selection, save/reopen, reconnection, complete logs and corrected RTX framing.
+See the [partial execution receipt](native-review-20261029/session.json).
+These observations close no engineering or manufacturing approval gate.

@@ -1,5 +1,27 @@
 # Interface survey — 964 first, then a 993 check
 
+**4 November 2026 DDK update:** use the
+[source-linked survey sheet](ddk-interface-bridge-20261104/interface-crosswalk.csv)
+alongside the existing span sheet. The
+[review by cell area](ddk-interface-bridge-20261104/README.md#consequences-by-part-of-the-cell)
+adds glazing, front services, installed linkage and maintenance access to the
+survey, and separates configuration-specific masses from structural loads.
+DDK point links are investigation context, never identified holes. The Celette
+heights have no confirmed donor/datum match; early-911 spacing and mixed
+drivetrain offsets must not close the 964 chain. The lower cover, body tunnel,
+linkage motion and service access require separate observations. No existing
+XYZ or surface gap is closed by the forum data.
+
+**30 October 2026 update:** use the
+[current 19-row span sheet](interface-exploitation-20261030/interface-spans.csv)
+and [scalar contract](interface-exploitation-20261030/contract.json) for the next
+survey. Seven additional mappings cover P1, P2, P4, P7, P11, P15 and P16.
+Both P14 year families are explicit. The
+[chain audit](interface-exploitation-20261030/README.md) supersedes the following
+historical `DETERMINE`/uncertainty claims for engineering use: P12/P21 depend on
+unresolved height/projection interpretations. No donor XYZ is validated.
+The older sheet and review remain unchanged to preserve their evidence hashes.
+
 Status as of 2026-10-08: **measurement preparation, not a released design**.
 The [CSV sheet](derived/interface-measurements-20261008.csv) keeps the 18
 identities of the manual's register. Nine carry a documentary transverse span
@@ -70,6 +92,15 @@ are confirmed. The CSV sheet is a state of knowledge, not a form to fill in by
 overwriting earlier values.
 
 ## Proposed survey order
+
+**Web-research update, 30 October 2026:** [four official Celette setup PDFs
+and a German tunnel reference](body-reference-research-20261030/README.md)
+were recovered. The current manufacturer PDF confirms the 564.307 complement
+to 564.320 and supplies C2/C4 fixture arrangements. These support feature and
+variant identification; no fixture label is imported as a body coordinate.
+Additional height-table previews are now a specific acquisition target. The
+18-point measurement sheet remains unchanged until admissible coordinates and
+feature identities are established.
 
 | Priority | Zone / identities | Survey to obtain | What it unlocks |
 |---|---|---|---|

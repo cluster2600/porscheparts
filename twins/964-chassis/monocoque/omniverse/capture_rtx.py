@@ -54,7 +54,8 @@ def capture(bundle, output):
             frame("/Render/" + name, 0., 64, output / (name.lower() + ".png"))
         with tempfile.TemporaryDirectory(prefix="964-rtx-frames-") as temp:
             for index in range(120):
-                frame("/Render/Orbit", float(index), 16, Path(temp) / f"{index:04d}.png")
+                # OVRTX takes seconds; the retained USD authors 24 timecodes/second.
+                frame("/Render/Orbit", index / 24.0, 16, Path(temp) / f"{index:04d}.png")
             subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-n", "-framerate", "24",
                             "-i", str(Path(temp) / "%04d.png"), "-c:v", "libx264", "-pix_fmt", "yuv420p",
                             "-crf", "21", "-movflags", "+faststart", str(output / "turntable.mp4")], check=True)

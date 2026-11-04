@@ -1,5 +1,36 @@
 # Digital twin of the Porsche 911 (964) chassis
 
+**Separate 993 reference, 4 November 2026:** the
+[body-dimension review](993-body-dimensions-20261104/README.md) adds 19 printed
+floor-control rows (25 scalar observations) and a generation-qualified point
+crosswalk. Eight named spans match the 964 record, while P3 differs and rear
+point numbers identify different features. This is a documentary comparison,
+not 964/993 interface interchangeability; no new XYZ or tunnel surface is admitted.
+
+**Alternative measurement sources, 4 November 2026:** the original donor is
+unavailable for a further survey. The [acquisition review](alternative-measurement-sources-20261104/README.md)
+identifies TetraVision's published stripped-body scan as a concrete availability
+lead and provides unsent requests and a blank interface capture form. No new
+scan dataset, XYZ or surface geometry has been admitted.
+
+**DDK evidence update, 4 November 2026:** the
+[source-to-interface bridge](ddk-interface-bridge-20261104/README.md) connects
+15 reviewed facts from nine original posts to the manual identities and scan
+search regions. It adds glazing, services, packaging and mass investigation
+requirements, while excluding early-car and mixed-drivetrain dimensions.
+The [19-row crosswalk](ddk-interface-bridge-20261104/interface-crosswalk.csv)
+preserves both P14 families and unknown XYZ; no new geometry or load is admitted.
+
+**Engineering admission update, 30 October 2026:** the
+[interface exploitation and chain audit](interface-exploitation-20261030/README.md)
+now maps all 18 documentary identities to transverse spans (19 observations,
+including both P14 year families). Seven mappings were missing from the old
+contract. The audit also withdraws the old rear-coordinate/`u95` admission:
+two unresolved diagonal interpretations differ by 41.40 mm at P12 and
+51.91 mm at P21. The [current scalar contract](interface-exploitation-20261030/contract.json)
+keeps XYZ, axes and mating faces unknown. Earlier chain claims and figures below
+are historical studies, retained for reproducibility, not current fitment evidence.
+
 Level reached: **`F1_envelope`** (ADR 0003). An envelope at scale and a
 documented frame. Neither `F2_interface` nor any releasable part geometry.
 
@@ -42,6 +73,12 @@ It validates no mounting, dimension or clearance; C4 and 993 applicability
 remain separate investigations.
 
 ## What is established
+
+**Additional body-reference research, 30 October 2026:**
+[public Celette setup sheets, forum attachment review and coordinate-table
+leads](body-reference-research-20261030/README.md). The current store's public
+documents correct the earlier access limitation. They add fixture/version
+evidence and tunnel context, not validated XYZ anchors.
 
 **The scale of the scan is verified.** The four tires were isolated as connected
 components, then fitted with a robust circle in the YZ plane, which gives the

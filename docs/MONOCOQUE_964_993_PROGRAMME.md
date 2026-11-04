@@ -1,5 +1,22 @@
 # 964/993 carbon monocoque programme — definition
 
+**Current evidence, 4 November 2026:** the
+[30 October interface audit](../twins/964-chassis/interface-exploitation-20261030/README.md)
+supersedes the coordinate, network-closure and uncertainty claims in the
+historical studies below. The current contract contains 18 manual identities
+and 19 span observations; body XYZ, axes and mating faces remain unknown.
+The [shape review](../twins/964-chassis/monocoque/shape-review-20261029/README.md)
+rejects the old whole-body model as the central-cell baseline. Its stiffness,
+mass and member rankings do not qualify a replacement cell. The original donor
+is unavailable; [alternative acquisition routes](../twins/964-chassis/alternative-measurement-sources-20261104/README.md)
+are now required for missing measurements and physical correlation.
+
+The separate [993 body-dimension review](../twins/964-chassis/993-body-dimensions-20261104/README.md)
+adds 25 scalar observations from 19 floor-control rows. Its point crosswalk
+identifies eight matching named spans, a P3 dimensional discrepancy and
+generation-specific rear attachment numbering. These data support M1/M2
+research; they establish no common interface geometry or valid structural model.
+
 Status: **programme definition**. This document contains no geometry and
 authorizes none. It states what has to be established, in what order, and what
 is blocking today.
@@ -361,7 +378,7 @@ will come out of this repository without tests.
 | phase | content | exit criterion | dependency |
 |---|---|---|---|
 | M0 | identity and homologation study, market by market | route identified or programme stopped | lawyer |
-| M1 | registration of the datum network: closed from plates 50-02/03/05a (2026-10-08), +/- 2 to 9 mm | 964 at `F2_interface`, interfaces at +/- 1 mm | +/- 1 mm needs a jig-bench table or published rear dimensions |
+| M1 | identify and register measured interface datums; existing scalar spans alone do not close the network | `F2_interface` with verified axes, mating faces and interface-specific tolerances accepted by the engineering reviewer | qualified nominal/contact data and common-frame measurements from another reference body or licensed dataset |
 | M2 | torsion test on a donor 964 body shell | denominator measured, protocol published | donor body shell |
 | M3 | recalibration of the shell model against M2 | model/measurement gap known and documented | M1, M2 |
 | M4 | target specification filled | section 5 table complete | M2, M3 |
@@ -369,9 +386,10 @@ will come out of this repository without tests.
 | M6 | process and subcontractor qualification | coupon plan validated, scatter measured | M5 |
 | M7 | engineering review and physical test plan | review signed in the sense of `SAFETY.md` | M6 |
 
-M0, M1 and M2 run in parallel and are the only ones to commit now. **M1 and M2
-are the two that drive everything else**, and M2 is the only one entirely under
-our control.
+M0, M1 and M2 are the current preparation paths. **M1 and M2 drive the later
+phases.** With the original donor unavailable, M2 also requires another suitable
+reference body or an admissible existing test dataset; no physical test is
+currently scheduled or authorised by this document.
 
 ## 10. What this document is not
 
