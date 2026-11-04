@@ -1,5 +1,11 @@
 # Digital twin of the Porsche 911 (964) chassis
 
+**Alternative measurement sources, 4 November 2026:** the original donor is
+unavailable for a further survey. The [acquisition review](alternative-measurement-sources-20261104/README.md)
+identifies TetraVision's published stripped-body scan as a concrete availability
+lead and provides unsent requests and a blank interface capture form. No new
+scan dataset, XYZ or surface geometry has been admitted.
+
 **DDK evidence update, 4 November 2026:** the
 [source-to-interface bridge](ddk-interface-bridge-20261104/README.md) connects
 15 reviewed facts from nine original posts to the manual identities and scan
