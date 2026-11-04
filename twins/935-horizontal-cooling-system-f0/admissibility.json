@@ -7,7 +7,7 @@
     "held_in": "private evidence release; not committed"
   },
   "verdict": "inadmissible_for_cfd_parameter_studies",
-  "statement": "The surface carries 24 triangles below normalized quality 0.01. Nine of them project beyond the last registered acquired section of their nearest blade, and eight of those nine also sit more than one source unit from the aligned scan at a sampled point. The geometry the mesh is asked to resolve is therefore not traceable to acquired data in exactly the region where every mesh trial fails. No mesher or solver setting can repair that, so a sweep over those settings records tuning rather than engineering.",
+  "statement": "The protected surface carries 24 triangles below normalized quality 0.01. Nine project beyond the last registered section station of their nearest blade, and eight of those have at least one sampled point more than one uncalibrated source unit from the aligned scan. These screens do not establish surface provenance or the cause of volume-mesh failures; nearby good-quality control faces show similar distances. The recorded volume-mesh trials failed their quality gates. The wall remains inadmissible for CFD parameter studies until the stated evidence and validation conditions are met.",
   "basis": [
     {
       "finding": "Nine of the 24 worst facets lie beyond the last acquired section station of their nearest blade; eight of those also exceed one source unit of sampled distance to the scan. Maximum angular offset 17.36 degrees.",
@@ -16,7 +16,7 @@
       "caveat": "A positional screen, not proof that a face is measured or reconstructed. Source units are uncalibrated and the physical datum is unverified."
     },
     {
-      "finding": "Vertex transport from the original OBJ to the axis-aligned scan is exact to 1.41753e-13 source unit over 624,492 vertices, so the facet provenance question is about acquisition coverage, not about numeric transport.",
+      "finding": "Vertex transport from the original OBJ to the axis-aligned scan agrees within 1.41753e-13 source unit over 624,492 vertices; this checks coordinate transport but does not establish acquisition coverage or facet provenance.",
       "report": "docs/research/935-horizontal-cooling/THIN_FACET_SCAN_PROXIMITY_20261028.md",
       "evidence_sha256": "79e37ea6bd8f114225c5b56e7cb2d56730805b92f291bcc1f7396c4909a22609",
       "caveat": "Verifies stored coordinates only; does not validate the physical datum or calibrate the unit."
