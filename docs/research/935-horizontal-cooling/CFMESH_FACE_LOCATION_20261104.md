@@ -170,3 +170,21 @@ concave polygon, and these samples do not bound complete polygons or provide
 the reverse input-to-output distance. Thus they are a diagnostic only, not a
 surface-fidelity admission, physical tolerance, or proof that a local feature
 caused the volume-quality failures.
+
+## Reverse sampled vertex bound
+
+The [reverse screen](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/reverse_vertex_bound.py)
+selects 4,096 deterministic input-triangle centroids and queries the nearest
+of 349,542 vertices of the cfMesh rotor boundary. The median nearest-vertex
+distance is 0.2846 source unit, p95 is 0.6880 and maximum is 0.9906. All
+figures use the unverified scale conversion described above. Since a mesh
+vertex lies on the boundary, each value is an upper bound on that sampled
+point's distance to the polygonal wall; it is not the exact surface distance.
+Values over a chosen threshold therefore do not prove an actual wall deviation.
+
+The [aggregate receipt](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/case-006-reverse-vertex-bound.json)
+pins the rotor and wall-vertex hashes. The wall vertices are stored in the
+[private archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-cfmesh-rotor-vertices-20261104.npz),
+SHA-256 `0d7b4fa7d7456670cd22970c3f772be7f8d852c40e55fb6680233dbba22bfef7`.
+The result is not a complete bidirectional surface bound and cannot admit the
+mesh for CFD. Polygon-aware closest-point and coverage checks remain open.
