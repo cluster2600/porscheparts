@@ -171,3 +171,10 @@ open reference. Independent STEP and actual saved-FreeCAD-feature checks pass;
 140 acquired boundary edges and 144 selection cuts remain explicit. The five
 combined reference objects contain 21,472 unique acquired faces, with zero
 solids and no accepted complete-head domain.
+
+The [chamber-mask surface admission study](../research/935-chamber-surface-admission-20261104/README.md)
+then tests plane and quadratic graphs on all eight fixed historical masks.
+All sixteen proposals fail the existing 0.01 mm digital screen at actual source
+vertices. Independent training/score checks and complete-triangle Bernstein
+bounds preserve these rejections; no smooth native surface or valve axis is
+adopted from the fragmented masks.

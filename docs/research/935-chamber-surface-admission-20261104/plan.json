@@ -1,0 +1,16 @@
+{
+  "scope": "Eight historical chamber-search masks; physical anatomy unaccepted",
+  "selection": "Every original face from each of the eight frozen masks; no fit-driven trimming or mask replacement",
+  "upstream_admission": "Pinned original arrays/masks, no original indexed intersection face, valid source manifold charts, no source welding or coordinate change",
+  "models": ["Plane graph, three affine coefficients", "Quadratic graph, six polynomial coefficients"],
+  "split": "Original vertex ID modulo five: zero held out, other remainders training",
+  "frame": "Weighted training-only principal frame; coordinate normalization from training only",
+  "weighting": "Original triangle area divided equally among its vertices; inherited full-mask geometry makes this transductive within-scan evaluation",
+  "whole_triangle_check": "Degree-two Bernstein convex-hull bound on the graph-height difference over every original triangle; no surface extension outside the projected original triangles",
+  "digital_correspondence_limit_mm": 0.01,
+  "limit_role": "Existing digital reconstruction screen, not a physical tolerance or scanner uncertainty",
+  "native_surface_admission": "Whole-triangle bound must pass; projection/trim topology and actual native export checks remain separately required",
+  "rejection_policy": "Retain every rejection and observed source surface; no higher degree, alternative split, threshold relaxation or paid sweep in this trial",
+  "physical_metrology_accepted": false,
+  "manufacturing_authorized": false
+}
