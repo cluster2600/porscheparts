@@ -209,3 +209,14 @@ rotor triangles. In uncalibrated source units its median is 0.03998, p95 is
 records hashes. This is a sampled comparison to OpenFOAM's triangulation, not a
 whole-surface Hausdorff bound or a tolerance decision. The provisional scale,
 scan coverage, boundary fidelity and failed volume checks remain unresolved.
+
+## Spatial review of the three reverse-sample outliers
+
+The three sampled input points over 0.5 source unit from the triangulated wall
+appear on different rotor sectors; their minimum pairwise separation is 69.67
+uncalibrated source units. This does not identify the cause, establish a
+physical dimension, or exclude additional errors between samples. The
+[private view](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/reverse-outliers-20261104.png)
+has SHA-256 `d7509f4bc84a9477904e51ed6ee2eb1572c5b4a64a46949373145a4bd09a8f5b`.
+The [private point archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/reverse-outlier-points-20261104.npz)
+has SHA-256 `8436da55838c6e3963dfd397c4e8edf9f0d310fe38af138b25d89d33ab7cc59f`.
