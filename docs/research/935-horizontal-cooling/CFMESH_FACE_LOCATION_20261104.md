@@ -149,3 +149,24 @@ not tightly matched surface patches. The distances concern one point per face,
 not full-face containment. Similar medians do not identify why the volume
 mesh failed, establish measured-surface identity, or validate the frame.
 [Aggregate receipt](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/case-006-scan-proximity.json).
+
+## Sampled distance to the mesher input
+
+The [input-distance screen](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/wall_input_distance.py)
+compares the 257 incident wall-face vertex means and 2,048 deterministic points
+from the sampled wall to triangles of the broader-repair rotor input. It uses
+case coordinates multiplied by 1,000, the inverse of the provisional export
+conversion. A single-triangle analytic distance control passed. The
+[aggregate receipt](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/case-006-input-distance.json)
+pins both inputs.
+
+| Sample | Median distance | 95th percentile | Maximum |
+|---|---:|---:|---:|
+| Incident face means, 257 | 0.000398 | 0.027698 | 0.327132 |
+| Sampled wall means, 2,048 | 0.000693 | 0.044979 | 0.383747 |
+
+All figures are in uncalibrated source units. A vertex mean need not lie on a
+concave polygon, and these samples do not bound complete polygons or provide
+the reverse input-to-output distance. Thus they are a diagnostic only, not a
+surface-fidelity admission, physical tolerance, or proof that a local feature
+caused the volume-quality failures.
