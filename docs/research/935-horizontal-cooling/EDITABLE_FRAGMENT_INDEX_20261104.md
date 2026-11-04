@@ -232,3 +232,16 @@ axial taper, independent measurement uncertainty or manufacturing tolerance.
 Rigid-transform, leave-one-out and rank-deficient synthetic controls passed.
 The [private report](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/flange-band-consistency-20261104.json)
 has SHA-256 `059558161ffe9a1460249b33c453915c759c32edf7ee1f824e91ea5d36621df7`.
+
+## Independent placed-CAD vertex review
+
+The [independent FreeCAD reviewer](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/review_placed_vertices.py)
+compares all 1,584 ordered shaft BRep vertices with the original STEP vertices
+transformed by the pinned same-scan matrix; the largest coordinate error is
+`7.461e-14` source unit. All eight ordered support vertices are unchanged.
+It checks the two named objects remain open, rejects incorrect input hashes
+without writing a report, and ran on FreeCAD 1.1.4. This strengthens the
+coordinate-transport evidence only: vertices alone do not independently
+certify curved face interiors, assembly fit or physical scale.
+The [private receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/independent-vertex-review-20261104.json)
+has SHA-256 `b812fa5f80e8a0b336e82579f6e0b12f5a1504cba8f42d45295f5d4c97e2ca2e`.
