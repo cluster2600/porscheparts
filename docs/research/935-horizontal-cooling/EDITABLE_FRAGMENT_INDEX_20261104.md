@@ -132,3 +132,21 @@ Place that base next to the USDA layer. The [private overview](https://github.co
 has SHA-256 `3523382b130b53314f74877b0307302f9d2a91978b98fb0b7e0bfc1e871d9254`.
 The engine and shroud remain placeholders; rotor/drive mating, scale and
 physical operation are not established.
+
+## PicoGK flange witnesses in the same scene
+
+The [witness layer composer](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/assembly-placement/add_flange_witnesses.py)
+adds the eight existing PicoGK lower-flange location witnesses to the prior
+fragment scene. The witness receipt pins the same placed drive scan used by
+the original 935 assembly. The witnesses contain 221,304 triangles and remain
+explicitly classified as location aids, not mounting material or verified
+through-holes. All witness coordinates and triangle indices were reread from
+the USD; a fresh rerun reproduced the layer byte-for-byte.
+
+The [private two-layer package](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-usd-drive-fragments-witnesses-20261104.tar.gz)
+has SHA-256 `acbec1767e379122cc0d997e76044158b2f22e9d37307dc0a77967a7556fc769`.
+Its files passed extraction and checksum readback and its release digest
+matches. It requires the same separately retained original-bound USDC base
+specified above; place that file beside both USDA layers before opening the
+witness layer. The added geometry does not resolve the engine mount, hub
+connection, physical scale or internal transmission.
