@@ -1,0 +1,25 @@
+{
+  "scope": "Source-preserving disk-domain atlas and conditional exact native reference export; no smooth fit or hidden geometry",
+  "source_arrays_sha256": "dd94c37117a1f1277a4f2b7f0bf0023e0d1858991b943f766cf447db319a101a",
+  "parent_manifest_sha256": "fd9e4bf885d6361a45879c96bd5db773bf528f51376703471ac5bb7d4563abb5",
+  "parent_final_audit": "audit-002",
+  "retained_predicate_source_sha256": "625331bb7e070cda2cc006f6e6a606d2fce2ed6dfc92243a5c06ebe3b9f2bbad",
+  "selection": "All unchanged 14,023 acquired faces in the eight frozen connected selections; no source point welding or deletion",
+  "contact_rule": "Every closed triangle intersection must be exactly the simplex of their shared original vertex IDs. Positive-area overlap is forbidden. For a zero-area contact sharing one original vertex, a nonshared triangle vertex contained in the other projected closed triangle is forbidden.",
+  "arithmetic": "Exact dyadic integers and independent Fraction predicates on inherited rounded binary64 UV charts; no physical/interval claim",
+  "partition_rule": "Seed with the remaining face of minimum original ID. Repeatedly add the first admissible face in original-ID-sorted edge frontier. Its intersection with the current disk must be one connected boundary arc of one or two triangle edges; every already-present candidate vertex must belong to this arc. End a domain when no frontier face is admissible; repeat until every source face is assigned once.",
+  "domain_checks": [
+    "exact all-face partition",
+    "connected source face adjacency",
+    "one degree-two boundary cycle",
+    "Euler characteristic one",
+    "single incident face fan at every domain vertex",
+    "complete shared-simplex projected contact classification"
+  ],
+  "cuts": "Only existing original shared edges may become inter-domain boundaries; log both incident domain labels and original edge IDs privately",
+  "native_export": "Only after all eight source/contact/domain checks pass; immutable retained native triangle constructor with original vertices, original triangles and disk labels as shell groups. Global original vertex and edge sharing within each region must survive actual STEP reload.",
+  "native_independent_checks": "Unchanged independent source-shell inspector on every actual re-exported shell; independent global original vertex/edge uniqueness, shell membership and zero-solids checks. No fan split or new source coordinate.",
+  "native_is": "Editable acquired-facet reference in STEP, not a smooth parametric head, closed body, qualified solver domain or fabrication job",
+  "physical_acceptance": false,
+  "manufacturing_authorized": false
+}

@@ -1,0 +1,52 @@
+{
+  "expected_fixture_vertices_edges_shells": [
+    4,
+    5,
+    2
+  ],
+  "profiles": [
+    {
+      "profile": "native-001",
+      "file_sha256": "c4c8d9c08aeeea16cf80b13a8c0c611f07322ef4902576e4d8673a22d3a09f9e",
+      "step_vertex_points": 6,
+      "step_edge_curves": 6,
+      "actual_read_vertices_edges_shells": [
+        6,
+        6,
+        2
+      ],
+      "read.step.nonmanifold": 0,
+      "topology_roundtrip_accepted": false
+    },
+    {
+      "profile": "nonmanifold-fixture-001",
+      "file_sha256": "1e1a5bcb67204c2f1136e76f27f5941eeac86a58682df381742a4a5a5e8e46f7",
+      "step_vertex_points": 4,
+      "step_edge_curves": 5,
+      "actual_read_vertices_edges_shells": [
+        6,
+        6,
+        2
+      ],
+      "read.step.nonmanifold": 1,
+      "topology_roundtrip_accepted": false
+    },
+    {
+      "profile": "nonmanifold-fixture-002",
+      "file_sha256": "d02103cf106d064c1409baf1568172ca57e6c03b36ebc8485b6428df285df7d9",
+      "step_vertex_points": 4,
+      "step_edge_curves": 5,
+      "actual_read_vertices_edges_shells": [
+        6,
+        6,
+        2
+      ],
+      "read.step.nonmanifold": 1,
+      "topology_roundtrip_accepted": false
+    }
+  ],
+  "native_brep_fixture_accepted": true,
+  "step_shared_topology_gate_passed": false,
+  "native_brep_is_not_step_qualification": true,
+  "occt_primary_source": "https://raw.githubusercontent.com/Open-Cascade-SAS/OCCT/V7_9_3/src/STEPControl/STEPControl_Controller.cxx"
+}

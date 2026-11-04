@@ -214,3 +214,12 @@ rational predicates. No projected positive-area overlap is found, but 296
 original boundary vertices branch. A source-preserving contact/trim atlas is
 required before more flexible fitting; neither the rejected smooth models nor
 the existing exact native references are changed by this audit.
+
+The [source-preserving chamber disk atlas](../research/935-chamber-disk-atlas-20261104/README.md)
+then retains all 14,023 selected faces in 405 independently verified disk domains.
+A new private native BREP/FreeCAD reference preserves source point/edge sharing
+after actual saved-feature reinspection. The STEP shared-topology round-trip is
+explicitly rejected and retained; it is not repaired by coordinate welding.
+Across separate source-reference documents, 35,495 distinct acquired faces are
+represented. These remain open observation references, without a complete head,
+accepted smooth surface, qualified physics domain or manufacturing job.
