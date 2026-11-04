@@ -17,11 +17,13 @@ constitue un projet distinct.
 > **Before any mesh or solver trial on the rotor wall, read the
 > [admissibility verdict](../../../twins/935-horizontal-cooling-system-f0/admissibility.json).**
 > The wall is currently recorded `inadmissible_for_cfd_parameter_studies`: nine of
-> its 24 worst facets project beyond the last acquired section of their nearest
-> blade, so the geometry is untraceable exactly where every mesh trial fails.
-> Eight parameter trials were spent on 2026-10-28 before that was established and
-> all eight were rejected; they are listed in the record. Provenance audits and
-> reacquisition stay open. `make check` validates the record.
+> its 24 worst facets project beyond the last registered section station of their
+> nearest blade. This positional screen does not establish surface provenance or
+> the cause of the mesh failures. The recorded trials were rejected and are
+> listed in the record. Provenance audits and reacquisition stay open.
+> `make check` validates the record structure, not the private geometry.
+
+[cfMesh face-set location diagnostic (4 November)](CFMESH_FACE_LOCATION_20261104.md).
 
 
 [25 October continuation: guarded PicoGK root repair and actual mesh reconstruction](ROOT_MESH_RESUME_20261025.md).

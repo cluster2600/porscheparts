@@ -2,7 +2,8 @@
 
 > **CFD input status: the rotor wall is recorded
 > [`inadmissible_for_cfd_parameter_studies`](admissibility.json).** Nine of its 24
-> worst facets project beyond the last acquired section of their nearest blade.
+> worst facets project beyond the last registered section station of their nearest
+> blade; this alone does not establish provenance or the cause of mesh failures.
 > Mesh and solver parameter sweeps on that wall are refused until the facet
 > provenance is settled; provenance audits, reacquisition and non-CFD work on this
 > twin stay open. `make check` validates the record.

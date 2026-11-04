@@ -2,11 +2,9 @@
 """Validate the 935 rotor CFD admissibility verdict and keep it tied to its reports.
 
 A mesh or solver study inherits every defect of the geometry it consumes. The
-935 rotor wall carries facets that are not traceable to an acquired section, and
-on 2026-10-28 eight parameter trials were run and rejected before that was
-established. The verdict record exists so the next trial consults one authority
-instead of rediscovering this, and so the trials already spent stay visible next
-to it.
+935 rotor wall has unresolved provenance and rejected mesh trials. Positional
+screens do not establish the cause of those failures. The verdict record keeps
+the evidence, rejected trials and conditions for admission visible together.
 
 This validator does not recompute the geometry: the surface and the audit
 outputs live in the private evidence release. It checks the things a committed
