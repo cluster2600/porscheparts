@@ -79,3 +79,8 @@ This is a new experiment proposal, not an executed remesh. The
 for editable proposals; its synthetic coupon cannot approve this domain or
 replace this mesh audit. All functional and manufacturing release flags remain
 false. No rental, supplier message or fabrication order was created.
+
+The subsequent [full-surface planar-flip trial](PLANAR_FLIP.md) executes a
+connectivity-only candidate. It passes its geometric screen but is not advanced
+to volume meshing because the quality improvement is negligible. The original
+meshes and this audit remain unchanged.
