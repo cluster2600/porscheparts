@@ -126,3 +126,26 @@ the rejected provisional CFD boundary, not a direct scan overlay; perspective
 and marker overlap do not establish how many physical defects exist. The
 [renderer](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/render_wall_reach.py)
 reads the retained case and refuses to overwrite its output.
+
+## Point-sampled proximity to the aligned scan
+
+The incident wall-face vertex means and a 1-in-20 wall-face sample were exported
+from the retained case. Their [private coordinate archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-wall-centres-20261104.npz)
+has SHA-256 `fd93d57463e616e3b1940ecf9ff8d7931c0db17fcdd95e01a258e245a0ad7954`.
+The [scan screen](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/scan_proximity.py)
+multiplies case coordinates by 1,000, reversing the recorded provisional
+0.001 conversion, and measures each point against scan triangles. The aligned
+scan and the numeric transform are previously documented; their physical
+registration and scale remain unverified.
+
+| Point sample | Count | Median scan distance | 95th percentile | Over 1 source unit |
+|---|---:|---:|---:|---:|
+| Incident wall-face means | 257 | 0.0586 | 4.8701 | 39 |
+| Distinct nearby sampled-wall controls | 257 | 0.0621 | 4.6822 | 64 |
+
+Controls are selected from the sparse wall sample, with a median separation
+of 1.953 and maximum 5.882 source units from their paired target. These are
+not tightly matched surface patches. The distances concern one point per face,
+not full-face containment. Similar medians do not identify why the volume
+mesh failed, establish measured-surface identity, or validate the frame.
+[Aggregate receipt](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/case-006-scan-proximity.json).
