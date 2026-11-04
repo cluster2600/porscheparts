@@ -104,3 +104,9 @@ exactly, but 35 intersection pairs and excessive sampled deviations reject the
 candidate. This verified failure returns the next admission work to
 source-supported CAD regions and geometry diagnosis; no volume mesh or solver
 case is launched from the rejected surface.
+
+The subsequent [observed-wall CAD review](../935-observed-wall-cad-20261104/README.md)
+returns to registered acquired-face masks. It delivers exact faceted references
+and one independently checked partial cylindrical fit in STEP and a private
+native FreeCAD companion. It creates no complete head solid and does not admit
+the rejected remesh or a new solver case.

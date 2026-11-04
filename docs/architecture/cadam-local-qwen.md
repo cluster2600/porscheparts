@@ -132,3 +132,9 @@ close material, manufacturing or engine gates. For 962 work, the mandatory
 19-phase workflow remains unchanged; this optional 935 coupon branch does not
 advance any 962 phase or waive its input requirements. No compute was rented,
 message sent or fabrication ordered for this integration.
+
+Executed continuation: the [observed-wall CAD review](../research/935-observed-wall-cad-20261104/README.md)
+uses registered acquired-face masks and unchanged baseline primitive parameters.
+It produces private STEP/FreeCAD references with independent source-membership,
+export and distance checks. CADAM/Qwen did not author or approve those faces;
+the coupon branch and scan-derived reconstruction retain separate evidence.
