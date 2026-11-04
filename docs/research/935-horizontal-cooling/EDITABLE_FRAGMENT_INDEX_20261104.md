@@ -47,3 +47,22 @@ reflection-rejection controls passed. Placement of the rotor remains
 independent: it comes from a different scan, and the registration between the
 two physical parts is not verified. A future scene must label these fragments
 as open surfaces and retain that distinction.
+
+## Open fragments placed together
+
+The [composition program](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/compose_step_fragments.py)
+imports the hash-pinned shaft and support STEP fragments and applies the
+same-scan transform to the shaft in FreeCAD 1.1.4 on the Mac. It checks input
+validity, preserved surface area and a transformed vertex, then rereads the
+exported STEP and FCStd. The result contains 1,056 shaft faces and two support
+faces, and no solids. This is an open-surface pose study, not an assembled
+bearing or torque path.
+
+The [private editable and STEP package](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-posed-drive-fragments-20261104.tar.gz)
+has SHA-256 `4b362dfd71380f553087986819beb9bc80dd64a04813fa9de2f7f2ca89cc843f`;
+its files passed checksum verification after extraction. The [three-view review](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/posed-drive-fragments-review.png)
+has SHA-256 `478d3d6caa62e607e25e7321d8596555c4d2fbc8bbf10526549a1ea74067436f`.
+The displayed patches are spatially separated in this scan-derived frame; no
+mating or contact is inferred. Dimensions, scale, assembly fit and suitability
+for manufacture remain unverified. The rotor from the separate scan is not
+registered by this result.
