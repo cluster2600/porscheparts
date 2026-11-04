@@ -84,3 +84,9 @@ The subsequent [full-surface planar-flip trial](PLANAR_FLIP.md) executes a
 connectivity-only candidate. It passes its geometric screen but is not advanced
 to volume meshing because the quality improvement is negligible. The original
 meshes and this audit remain unchanged.
+
+The [projected remeshing trials](PROJECTED_REMESH.md) then improve triangle
+quality substantially, but both fail independent admission. The masked trial
+eliminates intersections while still changing protected geometry and exceeding
+the deviation limit. These rejections motivate an explicitly constrained patch
+witness rather than further unconstrained remeshing or interior-size sweeps.

@@ -1,0 +1,355 @@
+{
+  "date": "2026-11-04",
+  "scope": "Projected remeshing of the coarse reconstructed assembly; not a functional bare head",
+  "input_sha256": {
+    "coarse_solid": "fa2f082be38f50fcd8e00b8f384d9824a22bf1d7fcba6aa88472a10c82a4831a",
+    "exact_scan_arrays": "dd94c37117a1f1277a4f2b7f0bf0023e0d1858991b943f766cf447db319a101a"
+  },
+  "runtime": {
+    "python": "3.12.11 (main, Aug 18 2025, 19:02:39) [Clang 20.1.4 ]",
+    "packages": {
+      "pymeshlab": "2025.7.post1",
+      "numpy": "2.5.4",
+      "libigl": "2.6.3"
+    },
+    "host": "local Mac",
+    "paid_rental": false
+  },
+  "cgal_version": "6.2.1",
+  "unmasked": {
+    "parameters": {
+      "iterations": 3,
+      "adaptive": false,
+      "selectedonly": false,
+      "targetlen_mm": 0.5,
+      "featuredeg": 30.0,
+      "checksurfdist": true,
+      "maxsurfdist_mm": 0.01,
+      "splitflag": true,
+      "collapseflag": true,
+      "swapflag": true,
+      "smoothflag": true,
+      "reprojectflag": true
+    },
+    "predeclared_gates": {
+      "parent_sampled_max_mm": 0.01,
+      "candidate_vertex_parent_max_mm": 0.01,
+      "relative_volume_change_max": 0.0001,
+      "bad_triangle_reduction_min_fraction": 0.5,
+      "vertex_and_closed_edge_manifold": true,
+      "same_euler_and_components": true,
+      "zero_native_intersections_and_degeneracies": true
+    },
+    "assessment": {
+      "before": {
+        "quantiles": [
+          3.303568619914881e-06,
+          0.002531815836550919,
+          0.025120719807763342,
+          0.12321452642538443,
+          0.8122858208825356,
+          1.0
+        ],
+        "below_0p01": 8489,
+        "below_0p1": 85069,
+        "surface_area_mm2": 173298.45456554726,
+        "signed_volume_mm3": 1106103.0255224346
+      },
+      "after": {
+        "quantiles": [
+          3.303568619914881e-06,
+          0.041973925086735336,
+          0.25993991471273353,
+          0.5539419802010794,
+          0.8967097926628321,
+          1.0
+        ],
+        "below_0p01": 406,
+        "below_0p1": 5072,
+        "surface_area_mm2": 173207.18809192232,
+        "signed_volume_mm3": 1106100.5798917
+      },
+      "filter_seconds": 135.05391883850098,
+      "vertices": 961817,
+      "triangles": 1926210,
+      "bad_triangle_reduction_fraction": 0.9521734008717163,
+      "parent_to_candidate": {
+        "samples": 100000,
+        "p50_mm": 0.0006877273194828251,
+        "p95_mm": 0.006215067123391947,
+        "sampled_max_mm": 0.03554858778474992
+      },
+      "candidate_to_parent": {
+        "samples": 100000,
+        "p50_mm": 0.0006710440152953242,
+        "p95_mm": 0.0060984064197528295,
+        "sampled_max_mm": 0.022974925648483496
+      },
+      "all_candidate_vertices_to_parent": {
+        "samples": 961817,
+        "p50_mm": 0.0,
+        "p95_mm": 2.847716647714797e-14,
+        "sampled_max_mm": 6.329811765270194e-09
+      },
+      "scan_to_candidate": {
+        "samples": 100000,
+        "p50_mm": 0.011085108700874792,
+        "p95_mm": 0.10251625001322495,
+        "sampled_max_mm": 4.72412337228018
+      },
+      "candidate_to_scan": {
+        "samples": 100000,
+        "p50_mm": 0.013744066921933782,
+        "p95_mm": 1.5533868300111737,
+        "sampled_max_mm": 10.714359711790335
+      },
+      "checks": {
+        "native": false,
+        "topology": true,
+        "same_euler_and_components": true,
+        "parent_sampled_deviations": false,
+        "all_candidate_vertices_to_parent": true,
+        "relative_volume_change": true,
+        "material_quality_improvement": true
+      },
+      "accepted_for_volume_study": false,
+      "source_inputs_unchanged": true,
+      "functional_geometry_accepted": false,
+      "manufacturing_authorized": false,
+      "limitations": "Surface samples are not Hausdorff bounds. No accepted anatomical crease/interface mask exists; feature-angle preservation and topology cannot prove physical feature fidelity."
+    },
+    "native": {
+      "vertices": 961817,
+      "faces": 1926210,
+      "degenerate_faces": 0,
+      "intersection_check_executed": true,
+      "intersection_pairs": 3,
+      "closed": true,
+      "valid_polygon_mesh": true,
+      "exit_code": 1
+    },
+    "topology": {
+      "open3d_version": "0.20.0",
+      "controls": {
+        "closed_tetrahedron_accepted": true,
+        "closed_edge_manifold_pinched_vertex_rejected": true
+      },
+      "vertices": 961817,
+      "triangles": 1926210,
+      "arrays_preserved": true,
+      "vertex_manifold": true,
+      "closed_edge_manifold": true,
+      "orientable": true,
+      "euler_characteristic": -1288,
+      "edge_connected_components": 1,
+      "exit_code": 0
+    },
+    "diagnostic": {
+      "parent_triangles_checked": 2099584,
+      "candidate_triangles_checked": 1926210,
+      "parent_centroid_failures": 6577,
+      "candidate_centroid_failures": 8409,
+      "parent_centroid_max_mm": 0.03162440296635178,
+      "candidate_centroid_max_mm": 0.0272800604638088,
+      "intersection_pairs": 3,
+      "intersecting_candidate_faces": 4,
+      "parent_seed_faces": 13521,
+      "parent_seed_fraction": 0.006439847131622265,
+      "raw_scan_edited": false,
+      "candidate_repaired": false,
+      "admission": "Rejected candidate retained; diagnostic seeds are not an accepted repair mask.",
+      "limitations": "Centroids and finite crossing probes do not bound whole triangles. OFF import counts are checked; semantic face identity and complete geometric mapping remain outside this diagnostic."
+    },
+    "guards": {
+      "existing_output_refused": true,
+      "registered_plan_unchanged": true,
+      "corrupt_prior_inspector_refused": true,
+      "no_output_after_prior_rejection": true
+    },
+    "execution": {
+      "exit_code": 0,
+      "timed_out": false
+    }
+  },
+  "masked": {
+    "parameters": {
+      "iterations": 3,
+      "adaptive": false,
+      "selectedonly": true,
+      "targetlen_mm": 0.5,
+      "featuredeg": 30.0,
+      "checksurfdist": true,
+      "maxsurfdist_mm": 0.01,
+      "splitflag": true,
+      "collapseflag": true,
+      "swapflag": true,
+      "smoothflag": true,
+      "reprojectflag": true
+    },
+    "predeclared_gates": {
+      "parent_sampled_max_mm": 0.01,
+      "candidate_vertex_parent_max_mm": 0.01,
+      "relative_volume_change_max": 0.0001,
+      "bad_triangle_reduction_min_fraction": 0.5,
+      "vertex_and_closed_edge_manifold": true,
+      "same_euler_and_components": true,
+      "zero_native_intersections_and_degeneracies": true,
+      "exact_oriented_protected_triangles": true
+    },
+    "seed_faces": 13521,
+    "protected_faces": 111463,
+    "protected_fraction": 0.05308813555447174,
+    "edge_rings": 2,
+    "assessment": {
+      "before": {
+        "quantiles": [
+          3.303568619914881e-06,
+          0.002531815836550919,
+          0.025120719807763342,
+          0.12321452642538443,
+          0.8122858208825356,
+          1.0
+        ],
+        "below_0p01": 8489,
+        "below_0p1": 85069,
+        "surface_area_mm2": 173298.45456554726,
+        "signed_volume_mm3": 1106103.0255224346
+      },
+      "after": {
+        "quantiles": [
+          3.303568619914881e-06,
+          0.014148996530136201,
+          0.13187905470322422,
+          0.4369699798790701,
+          0.888591939400077,
+          1.0
+        ],
+        "below_0p01": 1360,
+        "below_0p1": 14380,
+        "surface_area_mm2": 173227.9543193009,
+        "signed_volume_mm3": 1106102.5890869724
+      },
+      "vertices": 966210,
+      "triangles": 1934996,
+      "filter_seconds": 125.32960772514343,
+      "protected_triangles_missing_or_changed": 275,
+      "parent_to_candidate": {
+        "samples": 100000,
+        "p50_mm": 0.00045366812865711486,
+        "p95_mm": 0.005600533550868775,
+        "sampled_max_mm": 0.02822490568834731
+      },
+      "candidate_to_parent": {
+        "samples": 100000,
+        "p50_mm": 0.0004494469235144932,
+        "p95_mm": 0.005622283464454801,
+        "sampled_max_mm": 0.02120833952817388
+      },
+      "all_candidate_vertices_to_parent": {
+        "samples": 966210,
+        "p50_mm": 0.0,
+        "p95_mm": 2.416106516409301e-14,
+        "sampled_max_mm": 6.329811765270194e-09
+      },
+      "scan_to_candidate": {
+        "samples": 100000,
+        "p50_mm": 0.010977068343914596,
+        "p95_mm": 0.10266832224478474,
+        "sampled_max_mm": 4.823123266234583
+      },
+      "candidate_to_scan": {
+        "samples": 100000,
+        "p50_mm": 0.013629916842851883,
+        "p95_mm": 1.5665004566663052,
+        "sampled_max_mm": 10.653075380175048
+      },
+      "checks": {
+        "native": true,
+        "topology": true,
+        "same_euler_and_components": true,
+        "exact_protected_oriented_triangles": false,
+        "parent_sampled_deviations": false,
+        "all_candidate_vertices_to_parent": true,
+        "relative_volume_change": true,
+        "material_quality_improvement": true
+      },
+      "accepted_for_volume_study": false,
+      "functional_geometry_accepted": false,
+      "manufacturing_authorized": false,
+      "limitations": "Finite sampling is not a Hausdorff bound; diagnostic masks do not establish missing anatomy or physical feature identity."
+    },
+    "native": {
+      "vertices": 966210,
+      "faces": 1934996,
+      "degenerate_faces": 0,
+      "intersection_check_executed": true,
+      "intersection_pairs": 0,
+      "closed": true,
+      "valid_polygon_mesh": true,
+      "exit_code": 0
+    },
+    "topology": {
+      "open3d_version": "0.20.0",
+      "controls": {
+        "closed_tetrahedron_accepted": true,
+        "closed_edge_manifold_pinched_vertex_rejected": true
+      },
+      "vertices": 966210,
+      "triangles": 1934996,
+      "arrays_preserved": true,
+      "vertex_manifold": true,
+      "closed_edge_manifold": true,
+      "orientable": true,
+      "euler_characteristic": -1288,
+      "edge_connected_components": 1,
+      "exit_code": 0
+    },
+    "protected_diagnostic": {
+      "tolerance_mm": 1e-10,
+      "protected_faces": 111463,
+      "protected_vertices": 114941,
+      "protected_vertices_displaced_above_tolerance": 16,
+      "max_protected_vertex_nearest_distance_mm": 0.20515840219534548,
+      "protected_faces_without_same_oriented_connectivity_and_close_vertices": 275,
+      "protected_faces_with_all_original_vertices_close_but_connectivity_changed": 259,
+      "input_sha256": {
+        "parent": "93e08936b4f959f195fe83e6eea3de24b50a5445ac4030bdba2e4bc9ccc4da48",
+        "candidate": "2b186b8b5987dc444b03e5942a5a797e4ff4ce2dcf0fca1c5a445fe21c7b8e5c",
+        "protected": "f9172eabbabd4ea979c93b47afa72f3952feb325daf5c95045c3a5ca6b43b6e2"
+      },
+      "scope": "Independent nearest-coordinate/index diagnostic; the original exact-preservation gate is unchanged."
+    },
+    "comparison_controls": {
+      "cyclic_face_order_preserved": true,
+      "reversed_winding_rejected": true,
+      "coordinate_change_rejected": true
+    },
+    "execution": {
+      "exit_code": 0,
+      "timed_out": false
+    },
+    "failed_preflight_attempt": {
+      "exit_code": 1,
+      "full_surface_filter_executed": false,
+      "reason": "Protected triangle serialization shape error detected by control before the full filter; fixed in separately named v2 driver. Original source and log preserved privately."
+    }
+  },
+  "all_original_inputs_rechecked_unchanged": true,
+  "next_volume_mesh_admitted": false,
+  "functional_geometry_accepted": false,
+  "manufacturing_authorized": false,
+  "new_paid_rental": false,
+  "private_bundle_manifests": {
+    "935-isotropic-20261104": "588f7d69221a8738ccdefefcf71d8b7549ec8d779f1de7efcaa62ced12662c60",
+    "935-masked-isotropic-20261104-v2": "59650d62734696eb52bc7f7296c9640da67a9426f630ba85a5935617758cde36",
+    "935-masked-isotropic-20261104": "b9710e35113d61340d53e4247a5f1c198768bcb20abdefe4352ebc0dfd36029b"
+  },
+  "source_sha256": {
+    "trial_isotropic.py": "272cb604b00cb446c0247dd9d45b1e1b7239d0b3ddf5d680cdd2b5df5846c3ed",
+    "trial_masked_isotropic_v2.py": "5430b17d029247f7fc5c5f65717bf7ed06c4261f8e695ddea8deecc7c23f5dfc",
+    "inspect_vertex_topology.py": "a36df815e394f045fcdc0ed58b80d4a09208e129a09fcf6a659c22c53857292a",
+    "localize_remesh_defects.py": "68901b3e1e0575062782369bee748f1abf1b61340ac026f41dfc508e65d795a2",
+    "inspect_intersection_indices.cpp": "f45a3dee28cf4f6a240b67251aaf474b7f45ded01e73936a20e6c200f151f9bc",
+    "audit_protected_faces.py": "b90b1ed8d0d9380a868b49e2b3b2d4cb3c72eb9cd05fc99624bff50aa3338609"
+  }
+}
