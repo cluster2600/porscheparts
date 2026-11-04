@@ -83,3 +83,23 @@ for 94 support samples they are 0.1662 and 0.3479. Nearest-vertex distance is
 an upper bound on point-to-triangle-scan distance. These numbers depend on the
 tessellation and do not certify physical scale, complete scan coverage, or a
 functional contact. The support crop is not asserted to be a material edge.
+
+## PicoGK inspection overlay
+
+The [binary-input preparer](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/prepare_picogk_inputs.py)
+converts the normalized drive scan and the two placed open-fragment
+visualization meshes to binary STL, checks every float32 triangle after
+readback, and pins all inputs. A first PicoGK import rejected the original
+ASCII FreeCAD STL; the separate binary conversion is retained as the successful
+path. The input conversion was reproduced with identical hashes.
+
+The [PicoGK program](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/picogk-drive-overlay/Program.cs)
+imports and appends the three meshes without voxelization. It emitted 2,486,862
+triangles: 2,484,656 for the scan, 2,112 for the shaft and 94 for the support.
+An independent binary STL readback compared all concatenated triangle vertices
+to the respective inputs exactly at float32 precision. This is an inspection
+mesh, not a solid reconstruction, Boolean union, watertight assembly, physical
+connection or functional twin. The [private mesh archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-picogk-drive-overlay-20261104.tar.gz)
+has SHA-256 `fb31d926964e5b8670144b507b72600af5b3e574e3f859792c2888d6a36ec592`;
+all archive files passed checksum verification after extraction. Scale,
+physical registration, mating and manufacturing remain unverified.
