@@ -171,3 +171,28 @@ has SHA-256 `7340f6d385d63c74b40a7771dab1144d79767cdb9079cf01a7c1c902003df45d`.
 Its files passed extraction and checksum readback. Restore the separately
 retained original-bound USDC base beside its three layers, as described above.
 The result is a kinematic visualization, not validated physical operation.
+
+## Rigid surface sweep against added geometry
+
+The [FCL screen](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/assembly-placement/sweep_added_surfaces.py)
+checks the retained original-bound rotor at 240 phases against the placed open
+shaft, open support and eight combined flange-location witnesses. It uses the
+same assumed Z axis and pose as the prior sweep, with a conservative bound on
+between-phase rotor displacement. Synthetic separated, crossing and moving
+triangle fixtures passed. An independent second run reproduced all 720 phase
+results.
+
+| Fixed geometry | Sampled surface crossings | Minimum sampled surface distance | Continuous rigid-surface lower bound |
+|---|---:|---:|---:|
+| Open shaft fragment | 0 | 189.559 | 187.677 |
+| Open support fragments | 0 | 15.944 | 14.063 |
+| Flange-location witnesses | 0 | 146.000 | 144.118 |
+
+Distances are uncalibrated source units. Bounds concern only the listed triangle
+surfaces in the assumed pose. The flange witnesses are artificial inspection
+markers, not material surfaces. This screen does not test enclosed solids,
+thermal growth, deflection, rotor mounting, actual bearings or 935 fit. It does
+not establish a functional clearance or a manufactured part.
+
+The [private detailed report](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/sweep-added-surfaces-replay-20261104.json)
+has SHA-256 `d08d47693a3e6f26e660e6113bea1f661fe7885b40ec4c0f71302293e20c7709`.
