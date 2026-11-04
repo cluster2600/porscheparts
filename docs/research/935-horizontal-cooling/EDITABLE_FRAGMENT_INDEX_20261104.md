@@ -293,3 +293,23 @@ existing rotor and its unresolved physical registration.
 The [private patch meshes and receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-hub-patch-comparison-20261104.tar.gz)
 have archive SHA-256 `055061d443acd81ca4a2cc2e5652ea4a94d867e592611d24e3f1c147b6ef7f87`;
 all archived files passed hash readback. No result authorizes manufacturing.
+
+## Joint cone-to-scan and cone-to-rotor screen
+
+The [joint screen](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/hub_cone_joint_screen.py)
+queries the same 654 cone tessellation centroids against both aligned scan and
+candidate rotor triangles. Of 62 samples farther than 1 source unit from the
+candidate, 56 are also farther than 1 from the scan, three are within 0.5 of
+the scan, and three are between 0.5 and 1. The bins are diagnostic choices in
+uncalibrated source units, not scanner tolerances. The cone and scan are not
+independent: the same acquisition informed the fit. A short scan distance does
+not establish physical correspondence or certify an acquired surface, and a
+long one does not prove a missing acquisition. Individual centroids are not an
+area-weighted or whole-surface comparison.
+
+The [private report, points and plots](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-hub-cone-joint-screen-20261104.tar.gz)
+have archive SHA-256 `82e9d6e77a9c19ef0e211d50c697f06a678210d55939c0648174eb970f61dc8b`.
+All members passed extraction and checksum readback. Point overlap in the XY
+projection can hide markers; the table is authoritative for these samples.
+The result helps select local regions for scan inspection, not automatic
+replacement or manufacturing release.
