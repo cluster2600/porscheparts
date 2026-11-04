@@ -213,3 +213,22 @@ does not rule out an unobserved shaft extension, bearing or other linkage.
 Parallel, endpoint-limited and crossing-segment analytic controls passed. The
 [private receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/axis-relation-20261104.json)
 has SHA-256 `0160109c6aef9484e37ae410c21987d95d660f4c1afc8c10a16bf64c4ac25905`.
+
+## Cross-band opening-pattern consistency
+
+The [band-consistency screen](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/flange_band_consistency.py)
+uses the eight previously paired lower-flange openings. It fits one 2D proper
+rigid transform between their independently fitted centres in the two axial
+bands, then repeats the fit while withholding one pair at a time. The
+centre-set mean translation is 0.1921 source unit, with fitted in-plane rotation
+0.00448°. The in-sample RMS and maximum residual are 0.0790 and 0.1496 source
+unit; leave-one-out RMS and maximum are 0.0967 and 0.1838. Raw paired-centre
+shifts range from 0.1218 to 0.2620 source unit.
+
+The bands come from the same scan, the opening pairing follows visual seeds,
+and each sidewall fit uses many correlated triangles. These results screen fit
+consistency only: they do not establish a machined pattern, through-holes, an
+axial taper, independent measurement uncertainty or manufacturing tolerance.
+Rigid-transform, leave-one-out and rank-deficient synthetic controls passed.
+The [private report](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/flange-band-consistency-20261104.json)
+has SHA-256 `059558161ffe9a1460249b33c453915c759c32edf7ee1f824e91ea5d36621df7`.
