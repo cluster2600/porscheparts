@@ -94,3 +94,11 @@ associated rotor faces, not a CFD performance claim.
 python3 twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/adjacency_screen.py \
   "$CASE/constant/polyMesh" nonOrthoFaces lowWeightFaces lowVolRatioFaces
 ```
+
+The flagged faces touch 92, 138 and 231 distinct rotor-owner cells for the
+three sets respectively. Those cells own 257, 335 and 651 of the 341,555 rotor
+boundary faces. These are incidence counts, not distinct spatial clusters or a
+fraction of acquired scan surface. A separately written calculation reproduced
+the counts. The next inspection should map these boundary faces to surface
+regions and distinguish measured, interpolated and reconstructed areas where
+that provenance can be established.

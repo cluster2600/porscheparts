@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Count flagged internal faces incident to rotor boundary-owner cells."""
 import argparse
+from collections import Counter
 import json
 import re
 from pathlib import Path
@@ -29,6 +30,7 @@ def main():
     wanted = set(i for ids in selected.values() for i in ids)
     owners = {}
     rotor_cells = set()
+    rotor_face_owners = []
     owner_count = 0
     for i, line in enumerate(body(p / 'owner')):
         owner_count += 1
@@ -40,6 +42,7 @@ def main():
                 owners[i] = value
             if start <= i < start + count:
                 rotor_cells.add(value)
+                rotor_face_owners.append(value)
     neighbours = {}
     neighbour_count = 0
     for i, line in enumerate(body(p / 'neighbour')):
@@ -49,8 +52,9 @@ def main():
             if value < 0:
                 raise ValueError('internal face has negative neighbour')
             neighbours[i] = value
-    if len(owners) != len(wanted) or len(neighbours) != len(wanted) or owner_count < start + count or not rotor_cells:
+    if len(owners) != len(wanted) or len(neighbours) != len(wanted) or len(rotor_face_owners) != count or not rotor_cells:
         raise ValueError('missing faces or empty rotor')
+    rotor_faces_per_cell = Counter(rotor_face_owners)
     output = {'boundary_sha256': digest(p / 'boundary'), 'owner_sha256': digest(p / 'owner'),
               'neighbour_sha256': digest(p / 'neighbour'), 'rotor_owner_cells': len(rotor_cells),
               'owner_list_count': owner_count, 'neighbour_list_count': neighbour_count, 'sets': {}}
@@ -58,9 +62,12 @@ def main():
         owner_hit = sum(owners[i] in rotor_cells for i in ids)
         neighbour_hit = sum(neighbours[i] in rotor_cells for i in ids)
         both = sum(owners[i] in rotor_cells and neighbours[i] in rotor_cells for i in ids)
+        incident_cells = {cell for i in ids for cell in (owners[i], neighbours[i])} & rotor_cells
         output['sets'][name] = {'sha256': digest(p / 'sets' / name), 'count': len(ids),
             'owner_incident': owner_hit, 'neighbour_incident': neighbour_hit,
-            'both_incident': both, 'either_incident': owner_hit + neighbour_hit - both}
+            'both_incident': both, 'either_incident': owner_hit + neighbour_hit - both,
+            'rotor_owner_cells_incident': len(incident_cells),
+            'rotor_faces_incident': sum(rotor_faces_per_cell[cell] for cell in incident_cells)}
     print(json.dumps(output, indent=2, sort_keys=True))
 
 
