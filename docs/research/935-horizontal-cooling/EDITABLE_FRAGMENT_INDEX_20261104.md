@@ -265,3 +265,31 @@ certificate, and the visible discrepancy is not silently repaired. The
 has SHA-256 `35b466c9eda8349e2b6a31d43cc5d8553bcd28ecaf0165bfc0322ee7eda70eba`;
 its files passed extraction and checksum readback. It requires the separately
 retained original-bound USDC base described above.
+
+## Individual hub-patch proximity screen
+
+The two original open FreeCAD hub candidates were tessellated separately at
+0.1 assumed source unit: patch 00 is the fitted cylinder (252 triangles) and
+patch 01 the fitted cone (654 triangles). The [point-sampled comparison](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/hub_patch_proximity.py)
+measures every tessellation triangle centroid against the aligned rotor scan
+and the original-bound candidate rotor triangles. Distances are in uncalibrated
+source units, not millimetres or tolerances.
+
+| Patch | Median / p95 to scan | Samples over 1 to scan | Median / p95 to candidate | Maximum to candidate |
+|---|---:|---:|---:|---:|
+| Cylinder | 0.213 / 4.599 | 63 of 252 | 0.046 / 0.067 | 0.073 |
+| Cone | 0.145 / 3.411 | 130 of 654 | 0.244 / 1.959 | 3.672 |
+
+The separate-patch tessellation is not identical to the earlier combined-shape
+tessellation, so their extrema need not match. The cylinder samples stay close
+to the candidate, while the cone samples contain larger local differences.
+Both have samples far from scan triangles. These are point-to-triangle samples,
+not complete surface bounds; tessellation density is not area weighting and
+the aligned scan is the same acquisition used for fitting. The results neither
+classify individual areas as measured nor identify which geometry is correct.
+They direct the next repair study toward the conical region while preserving the
+existing rotor and its unresolved physical registration.
+
+The [private patch meshes and receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-hub-patch-comparison-20261104.tar.gz)
+have archive SHA-256 `055061d443acd81ca4a2cc2e5652ea4a94d867e592611d24e3f1c147b6ef7f87`;
+all archived files passed hash readback. No result authorizes manufacturing.
