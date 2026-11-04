@@ -200,3 +200,10 @@ It constructs the registered acquired patch and passes actual STEP/source,
 native fixture and cross-host Mac reinspection checks. The earlier scientific
 interpreter remains unchanged; this runtime qualification adds no new source
 coverage and does not admit a complete head or manufacturing job.
+
+The [public process-reference and machine-envelope review](../research/935-public-process-data-20261104/README.md)
+keeps three literature recipes separate and records the remaining manufacturer
+input packages. An independently checked acquired-point distance excludes any
+single rigid placement of the current unseparated scan in the optimistic FS121M
+box. Larger nominal boxes remain candidates, without a printer/material choice
+or manufacturing acceptance. No scan was transferred to an external service.

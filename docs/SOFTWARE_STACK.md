@@ -1,5 +1,13 @@
 # Digital twin software stack
 
+Current 935 addendum (2026-11-04): [local CADAM/Qwen proposals and calibration](architecture/cadam-local-qwen.md)
+are an executed auxiliary branch with independent export checks and no external
+fallback. See [ADR 0015](decisions/0015-local-cadam-qwen-proposals.md) and the
+[process-data and nominal machine-envelope review](research/935-public-process-data-20261104/README.md).
+PicoGK, STEP/FreeCAD, Gmsh, OpenFOAM, CalculiX and Adamantine retain their
+documented roles and per-case admission requirements. The dated baseline below
+is preserved; the coupon test does not qualify a head or a metal build.
+
 For the owner's September 28 tool photographs, see the
 [Mac/Linux selection and executed acceptance trials](reports/M64_PHOTO_TOOL_SELECTION_20260928.md).
 That addendum does not upgrade the historical execution statuses below.
