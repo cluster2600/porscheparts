@@ -110,3 +110,10 @@ returns to registered acquired-face masks. It delivers exact faceted references
 and one independently checked partial cylindrical fit in STEP and a private
 native FreeCAD companion. It creates no complete head solid and does not admit
 the rejected remesh or a new solver case.
+
+The later [bounded quad-flip study](BOUNDED_QUADS.md) changes only disjoint
+triangle pairs on the complete frozen study surface. A separately recomputed
+analytic surface bound and native topology/intersection checks pass, with all
+vertices and protected face rows unchanged. The 19% quality improvement misses
+the registered 50% gate; no volume mesh or physics case is admitted. A conditional
+candidate-count ceiling rules out fixing that deficit by reordering this pass.
