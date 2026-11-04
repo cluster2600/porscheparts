@@ -178,3 +178,10 @@ All sixteen proposals fail the existing 0.01 mm digital screen at actual source
 vertices. Independent training/score checks and complete-triangle Bernstein
 bounds preserve these rejections; no smooth native surface or valve axis is
 adopted from the fragmented masks.
+
+The [source-connectivity follow-up](../research/935-chamber-connected-20261104/README.md)
+selects the largest acquired-area component of each chamber mask before fitting,
+with complete parent membership retained. Independent ranking and complete-face
+checks pass; all sixteen proposals still fail the unchanged digital screen.
+Neither the smaller fitting domain nor its lower residuals establish a valve
+surface, hidden geometry or physical dimensional acceptance.

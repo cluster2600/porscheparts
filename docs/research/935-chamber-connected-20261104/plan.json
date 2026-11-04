@@ -1,0 +1,15 @@
+{
+  "scope": "Separate upstream selection after rejection of eight fragmented historical masks",
+  "selection_before_fitting": "Decompose each complete frozen mask by original indexed shared edges; select exactly the component with greatest acquired triangle area; ties use minimum original face ID",
+  "retention": "Store all parent face memberships, component labels and component area/face-count ledger; unselected components are retained observations, not deleted physical geometry",
+  "fallback_selection": false,
+  "geometry_change": "None; source indices and coordinates remain original",
+  "fitting": "Reuse the unchanged pinned plane/quadratic fitter, fixed original-ID split, full-mask area weighting policy and complete-triangle Bernstein screen",
+  "digital_correspondence_limit_mm": 0.01,
+  "limit_is_physical_tolerance": false,
+  "short_support": "Retain without fitting when the unchanged fitter's 40 training / 10 holdout source-vertex minima fail",
+  "native_acceptance": "No automatic native acceptance; projection/trim topology and native export remain independent requirements even if a graph bound passes",
+  "no_threshold_degree_or_split_sweep": true,
+  "physical_acceptance": false,
+  "manufacturing_authorized": false
+}
