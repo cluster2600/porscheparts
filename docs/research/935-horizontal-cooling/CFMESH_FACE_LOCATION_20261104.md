@@ -188,3 +188,24 @@ pins the rotor and wall-vertex hashes. The wall vertices are stored in the
 SHA-256 `0d7b4fa7d7456670cd22970c3f772be7f8d852c40e55fb6680233dbba22bfef7`.
 The result is not a complete bidirectional surface bound and cannot admit the
 mesh for CFD. Polygon-aware closest-point and coverage checks remain open.
+
+## Reverse sample against a triangulated wall
+
+OpenFOAM 13 `foamToSurface -constant -tri` produced a four-patch OBJ for the
+retained case. Its default six-digit output was rejected for this comparison.
+With a temporary `writePrecision 17` controlDict, every one of the 445,416
+exported boundary vertices had an exactly matching native mesh point. The
+rotor group contains 699,084 triangles. The [private rotor OBJ](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/cfmesh-rotor17-20261104.obj)
+has SHA-256 `60f8564a87add660078b8609b09d6bfe6b8e439f146afe02ad6de91457b37f35`.
+The entire four-patch OBJ hash is
+`ef55f2f8da305459209538c5580a438d4998abea4f28425ad1b84e584733958b`.
+The coordinate check does not independently certify every triangulated polygon.
+
+The [reverse triangle screen](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/reverse_triangle_sample.py)
+compares the same 4,096 deterministic input-triangle centres to the exported
+rotor triangles. In uncalibrated source units its median is 0.03998, p95 is
+0.18500 and maximum is 0.58706; three sampled points exceed 0.5. The
+[aggregate receipt](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/case-006-reverse-triangle-sample.json)
+records hashes. This is a sampled comparison to OpenFOAM's triangulation, not a
+whole-surface Hausdorff bound or a tolerance decision. The provisional scale,
+scan coverage, boundary fidelity and failed volume checks remain unresolved.
