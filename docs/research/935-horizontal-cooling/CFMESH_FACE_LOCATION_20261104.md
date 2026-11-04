@@ -102,3 +102,15 @@ fraction of acquired scan surface. A separately written calculation reproduced
 the counts. The next inspection should map these boundary faces to surface
 regions and distinguish measured, interpolated and reconstructed areas where
 that provenance can be established.
+
+## Connected subsets of incident wall faces
+
+Among the 257 rotor faces incident to cells touching `nonOrthoFaces`, the
+[edge-connectivity screen](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/wall_components.py)
+finds 44 components; the largest contains 10 faces. The
+[receipt](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/case-006-wall-components.json)
+records the input hashes. Connectivity uses shared whole mesh edges **only
+between selected faces**. Unselected wall faces may connect these components,
+so this count is neither the number of physical defects nor proof of spatial
+separation. A synthetic control checks edge sharing and vertex-only contact.
+No physical coordinates or private mesh are published.
