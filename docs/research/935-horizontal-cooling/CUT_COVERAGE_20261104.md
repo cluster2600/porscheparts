@@ -35,3 +35,18 @@ to use the result as a physical datum or for manufacture.
 The [private correction package](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-blade05-provenance-correction-20261104.tar.gz)
 contains the visual overlay and sampled distances; its SHA-256 is
 `a80f6e51ebdaf1d1d749719b1319a85343d0d38cc49571fdc65b93e1b264ccd3`.
+
+## Guarded tip recovery
+
+For new tip experiments use `guarded_tip_recovery.py` in the same source
+folder with the same case and fresh output arguments as `recover_tip_sections.py`.
+It runs the existing recovery with a call-scoped contour guard: there must be
+one selected contour, every supplied observed edge must be retained, and any
+new contour edge must match a declared gap repair. It restores the historical
+function after success or failure and does not modify the pinned script. Other
+legacy entry points do not automatically inherit this guard.
+
+On the private blade-05 case, the guard rejected the first closed cut because
+observed segments were omitted, before creating the requested output directory.
+A declared repair is still an assumption and does not certify its geometry or
+physical validity. Continue to review acquisition, registration and scale.
