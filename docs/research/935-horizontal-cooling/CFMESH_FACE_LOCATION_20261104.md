@@ -36,3 +36,35 @@ python3 twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261
 
 The script checks the set counts, uniqueness and boundary-range continuity.
 It does not parse the full faces file or independently rerun `checkMesh`.
+
+## Distance screen on Kali1
+
+A follow-up [screen](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/distance_screen.py)
+compares the arithmetic mean of each selected face's vertices with the nearest
+of 349,542 vertices on the **meshed** rotor patch. The corresponding
+[aggregate receipt](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/case-006-distance.json)
+records the input hashes. Because a patch vertex is a point on the mesh, this
+is an upper bound to the distance from the selected face's vertex mean to that
+patch; it is not the exact closest-triangle distance or a face-to-face bound.
+
+| Internal face set | Count | Median upper bound | Maximum upper bound |
+|---|---:|---:|---:|
+| nonOrthoFaces | 49 | 0.00014565 | 0.00027935 |
+| lowWeightFaces | 91 | 0.00015165 | 0.00030535 |
+| lowVolRatioFaces | 134 | 0.00013106 | 0.00030535 |
+
+Distances are in case coordinates, treated as metres only under the unverified
+0.001 m/source-unit assumption. All selected vertex means are within 0.001 case
+unit of a rotor patch vertex. The sets overlap; proximity is not proof of a
+causal geometric defect and does not establish physical blade dimensions.
+The result supports inspecting the rotor-adjacent cells rather than assuming
+that every internal defect is remote from the wall. No mesh is admitted and no
+fluid solution follows from this screen.
+
+```sh
+python3 twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/distance_screen.py \
+  "$CASE/constant/polyMesh" nonOrthoFaces lowWeightFaces lowVolRatioFaces
+```
+
+Kali1 ran Python with NumPy 2.3.5 and SciPy 1.16.3. Exact patch-surface
+closest-point checks and spatial clustering remain future diagnostics.
