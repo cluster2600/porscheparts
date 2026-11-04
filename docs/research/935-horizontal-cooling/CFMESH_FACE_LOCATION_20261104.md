@@ -68,3 +68,29 @@ python3 twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261
 
 Kali1 ran Python with NumPy 2.3.5 and SciPy 1.16.3. Exact patch-surface
 closest-point checks and spatial clustering remain future diagnostics.
+
+## Cell connectivity to the rotor patch
+
+The [connectivity screen](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/adjacency_screen.py)
+reads OpenFOAM owner and neighbour labels and forms the set of cells owning a
+rotor boundary face. Input hashes and counts are preserved in the
+[aggregate receipt](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/case-006-adjacency.json).
+A synthetic four-face case checks the owner/neighbour logic, including a face
+with both cells on the wall and rejection of a boundary face in an internal set.
+
+| Internal face set | Faces | At least one wall-adjacent cell | Both cells wall-adjacent |
+|---|---:|---:|---:|
+| nonOrthoFaces | 49 | 49 | 49 |
+| lowWeightFaces | 91 | 91 | 91 |
+| lowVolRatioFaces | 134 | 134 | 131 |
+
+Here, wall-adjacent means the cell owns at least one face in the serialized
+rotor patch. It does not mean that the flagged face itself is on the wall or
+that a specific scan defect caused its quality failure. Sets overlap. The
+rejected trial's topology motivates local inspection of these cells and their
+associated rotor faces, not a CFD performance claim.
+
+```sh
+python3 twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/adjacency_screen.py \
+  "$CASE/constant/polyMesh" nonOrthoFaces lowWeightFaces lowVolRatioFaces
+```
