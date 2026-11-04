@@ -245,3 +245,23 @@ coordinate-transport evidence only: vertices alone do not independently
 certify curved face interiors, assembly fit or physical scale.
 The [private receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/independent-vertex-review-20261104.json)
 has SHA-256 `b812fa5f80e8a0b336e82579f6e0b12f5a1504cba8f42d45295f5d4c97e2ca2e`.
+
+## Open rotor-hub surfaces in the animated scene
+
+The two analytic open hub candidates were tessellated in FreeCAD 1.1.4 and
+converted to binary STL with exact float32 triangle readback. They are added
+as a child of the animated rotor by the [hub-layer composer](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/assembly-placement/add_rotor_hub.py).
+All 906 triangles and their connectivity were reread from USD, and the hub
+witness inherited the rotor transform at five sampled animation times. A second
+run reproduced the layer byte-for-byte. This child relationship expresses a
+visualization convention for the fitted surfaces, not a verified mechanical
+joint or complete hub.
+
+An exploratory nearest-triangle query of all 906 hub tessellation centroids
+against the rotor candidate gave a median distance of 0.120 and a maximum of
+3.377 uncalibrated source units. It is not a whole-surface bound or scan-fit
+certificate, and the visible discrepancy is not silently repaired. The
+[private layered scene package](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-usd-animated-hub-witness-20261104.tar.gz)
+has SHA-256 `35b466c9eda8349e2b6a31d43cc5d8553bcd28ecaf0165bfc0322ee7eda70eba`;
+its files passed extraction and checksum readback. It requires the separately
+retained original-bound USDC base described above.
