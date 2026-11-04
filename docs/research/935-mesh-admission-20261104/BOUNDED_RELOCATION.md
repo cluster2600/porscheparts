@@ -7,6 +7,8 @@ checked surface passes the registered gate for a study-volume meshing trial.
 It is not an acquired-scan repair, a complete bare head or a functional release.
 The [surface and Kali checkpoint](bounded-relocation.json) retains aggregate
 results and hashes. The subsequent paid retry is tracked separately.
+Its [terminal volume/closeout report](CLOUD_VOLUME.md) now records the completed
+mesh, independent checks, remaining quality limits and verified destruction.
 
 ## Input admission and fixed contract
 

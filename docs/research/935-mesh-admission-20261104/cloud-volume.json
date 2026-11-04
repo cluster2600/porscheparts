@@ -1,0 +1,303 @@
+{
+  "date": "2026-11-04",
+  "scope": "Terminal prepared Vast study-volume mesh, independent geometry checks and closeout; no functional head acceptance",
+  "source_checkpoint_commit": "e31f87288efca9fc278d4d8b81a0ba7f4419c2a8",
+  "instance_id": 59142713,
+  "plan": {
+    "source_sha256": "41bfe9de4dcf5e8c420ef574d07798a05221954b51d15a1e4e6fcadc01dd321e",
+    "candidate_sha256": "7b40f5eb3707fa0dfe80c154058f759135070c81a710df2b9dfa01c42043ee16",
+    "surface_verification_sha256": "2958a36e5c9be0de7d5f23c513af7207540d218c57f09fa1378be33eddc3ea1e",
+    "mesher_sha256": "3cf167772ab4e4d90674693cb47e986e08c43e872db0b43c7529a533dc07dae6",
+    "runtime": {
+      "python": "3.12.3",
+      "numpy": "2.5.2",
+      "gmsh_api": "4.12.1",
+      "gmsh_module": "image /usr/lib/python3/dist-packages/gmsh.py"
+    },
+    "threads": 24,
+    "child_address_space_gib": 24,
+    "interior_size_mm": 1.5,
+    "algorithm": 10,
+    "head_deadline_seconds": 1800,
+    "image": "ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f",
+    "physical_geometry_accepted": false,
+    "physics_admitted": false
+  },
+  "native_execution": {
+    "exit_code": 0,
+    "timeout": false,
+    "seconds": 273.453654628247,
+    "log_sha256": "14a793b98dc29ad661a376bc65c8d5c352a9ee72bbe1c329fad7d642eb1d5a35",
+    "peak_children_rss_kib_cumulative": 5786640,
+    "cube_control_passed": true
+  },
+  "native_mesh_report": {
+    "source_sha256": "7b40f5eb3707fa0dfe80c154058f759135070c81a710df2b9dfa01c42043ee16",
+    "gmsh_version": "4.12.1",
+    "units": "mm",
+    "nodes": 1228103,
+    "tetrahedra": 3770701,
+    "boundary_triangles": 2099584,
+    "signed_volume_mm3": 1106103.0255797368,
+    "nonpositive_tetrahedra": 0,
+    "quality_minSICN_quantiles": [
+      2.7843767696988122e-06,
+      0.017330253797139265,
+      0.47262028904138276,
+      0.9997360672938915
+    ],
+    "elapsed_seconds": 272.86517020035535,
+    "physical_geometry_accepted": false
+  },
+  "runtime_verification": {
+    "python": "3.12.3",
+    "numpy": "2.5.2",
+    "gmsh_api": "4.12.1",
+    "gmsh_module_sha256": "275cd3fa7141a723e22c717ebd70a8760683e3a2692598f780874ce3386b9cb6",
+    "gmsh_distribution": "4.12.1.dev1"
+  },
+  "recovery": {
+    "archive_sha256": "d4760efa6860aaad5fca37c25898b3c408569048d9fdc50e99e9f11c9ed0d213",
+    "archive_bytes": 102492536,
+    "manifest_files_verified": 22,
+    "all_match": true,
+    "worker_source_matches": true,
+    "surface_admission_matches": true,
+    "geometry_verification_separate": true
+  },
+  "independent_tet_verification": {
+    "scope": "Face-incidence-checked study-volume mesh; not a physical head or engineering-quality acceptance",
+    "source_sha256": "2542096b1453646744b43961d1c45fe337027d67b4c2afbe966fec8d32302400",
+    "metric_helper_sha256": "c1d93c8018e03c628cda261c16304b0dca26eb575967953e828e9a16cb9f610c",
+    "surface_sha256": "7b40f5eb3707fa0dfe80c154058f759135070c81a710df2b9dfa01c42043ee16",
+    "surface_verification_sha256": "2958a36e5c9be0de7d5f23c513af7207540d218c57f09fa1378be33eddc3ea1e",
+    "metric_controls": {
+      "regular_analytic_volume_and_unit_quality": true,
+      "inversion_preserves_shape_but_reverses_signed_volume": true,
+      "coplanar_element_zero_volume_and_quality": true,
+      "translation_and_scale_invariance": true
+    },
+    "incidence_controls": {
+      "one_tet_outward_boundary": true,
+      "same_winding_interior_refused": true,
+      "triple_face_refused": true,
+      "two_tets_cancel_one_shared_face": true,
+      "oriented_cycle_invariant": true,
+      "orientation_reversal_detected": true
+    },
+    "mesh_audit": {
+      "input_sha256": "6834ce643765953f6ed462c5ba577c41d409b8da132b0689f95f6a0982755e39",
+      "nodes": 1228103,
+      "tetrahedra": 3770701,
+      "boundary_triangles": 2099584,
+      "boundary_nodes": 1048504,
+      "ordered_boundary_xyz_sha256": "becf3aa72f9d25f168c07cf63a01ea507e7f853eb3acd78f568ff877a7568dda",
+      "signed_volume_mm3": 1106103.0255797366,
+      "nonpositive_tetrahedra": 0,
+      "quantile_probabilities": [
+        0,
+        0.001,
+        0.01,
+        0.05,
+        0.5,
+        1
+      ],
+      "tetra_mean_ratio_quantiles": [
+        1.0961003192441681e-07,
+        0.0028747830191725517,
+        0.025815062100827294,
+        0.09519314450467507,
+        0.48203972605989487,
+        0.999736591641006
+      ],
+      "triangle_shape_quality_quantiles": [
+        3.303568619914881e-06,
+        0.010383349564542198,
+        0.030797513737936672,
+        0.12332083672519176,
+        0.8122256879159877,
+        1.0
+      ],
+      "zero_area_boundary_triangles": 0,
+      "diagnostic_bins": [
+        {
+          "mean_ratio_below": 0.01,
+          "count": 14752,
+          "fraction": 0.003912269893582122,
+          "absolute_volume_fraction": 5.247149754347269e-07,
+          "bad_touching_any_boundary_node": 14752,
+          "boundary_touching_cell_bad_fraction": 0.005248269995599166,
+          "interior_cell_bad_fraction": 0.0
+        },
+        {
+          "mean_ratio_below": 0.1,
+          "count": 199928,
+          "fraction": 0.053021440840841,
+          "absolute_volume_fraction": 0.0003778258129483191,
+          "bad_touching_any_boundary_node": 199928,
+          "boundary_touching_cell_bad_fraction": 0.07112771988070432,
+          "interior_cell_bad_fraction": 0.0
+        }
+      ],
+      "touch_definition": "At least one vertex belongs to the supplied surface; not an exact boundary-face adjacency classification."
+    },
+    "interior_paired_faces": 6491610,
+    "surface_volume_mm3": 1106103.025579737,
+    "relative_surface_volume_error": 4.440892098500626e-16,
+    "checks": {
+      "original_surface_coordinates_exact": true,
+      "declared_oriented_surface_exact": true,
+      "actual_tetrahedral_oriented_surface_exact": true,
+      "interior_faces_cancel": true,
+      "all_nodes_used": true,
+      "all_tetrahedra_positive": true,
+      "surface_volume_agreement": true
+    },
+    "study_mesh_geometry_passed": true,
+    "physics_admitted": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "remaining_limit": "Poor-quality cells, convergence and specimen/material/load/process requirements remain; diagnostic bins are not engineering allowables"
+  },
+  "independent_execution": {
+    "exit_code": 0,
+    "seconds": 10.255431332974695,
+    "log_sha256": "8b653b4a58eca5c4c00dc1ba11b24d3e3eaff59c3d199be3802d47eb9c7ed3d8"
+  },
+  "closeout": {
+    "instance_id": 59142713,
+    "destroyed_and_absence_verified": true,
+    "closed_at_epoch": 1793816948.097357,
+    "destruction_requested_epoch": 1793816928.3720388,
+    "seconds_from_prelaunch_intent_to_verified_absence": 1116.537605047226,
+    "rate_usd_per_hour_including_120gb_disk": 0.26888888888888884,
+    "continuous_rate_time_estimate_usd": 0.08339571000661378,
+    "network_rate_each_direction_usd_per_gb": 0.00390625,
+    "network_planning_allowance_gb": 13,
+    "rate_estimate_plus_network_planning_allowance_usd": 0.13417696000661378,
+    "attempt_cap_usd": 1.5,
+    "network_actual_invoice_available": false,
+    "final_invoice_available": false,
+    "unrelated_resources_touched": false,
+    "recovery_and_geometry_checks_passed_before_destroy": true
+  },
+  "guard_terminal": {
+    "instance_id": 59142713,
+    "absence_verified": true,
+    "deadline_reached": false,
+    "confirmed_at_epoch": 1793816937.880995
+  },
+  "guard_offline_control": {
+    "exit_code": 0,
+    "seconds": 10.650043625035323,
+    "owned_id_123_destroyed": true,
+    "foreign_id_999_not_modified": true,
+    "absence_verified": true,
+    "actual_vast_api_called": false,
+    "guard_source_sha256": "f5a07d536b582696424d713d4af9e6951d08b4017f4780260dd60ae14651c295"
+  },
+  "failed_offer_lookup": {
+    "offer_id": 47767669,
+    "wrapper_refused_before_creation": true,
+    "zero_instances_verified_afterward": true,
+    "uncertain_creation_retried": false
+  },
+  "budget": {
+    "program_total_usd": 35,
+    "program_compute_allocation_usd": 30,
+    "transfer_closeout_reserve_usd": 5,
+    "this_attempt_cap_including_network_usd": 1.5,
+    "reset": false,
+    "historical_final_invoices_available": false
+  },
+  "physics_admitted": false,
+  "complete_faithful_bare_head_created": false,
+  "manufacturing_authorized": false,
+  "supplier_contacted": false,
+  "original_obj_uploaded": false,
+  "independent_cloud_cube": {
+    "actual_mesh": {
+      "input_sha256": "7f51242e375ecfd2f69e4c399724c697e873bea9fed43a15f3d36c86deb414e7",
+      "nodes": 9,
+      "tetrahedra": 12,
+      "boundary_triangles": 12,
+      "boundary_nodes": 8,
+      "ordered_boundary_xyz_sha256": "4e503890b40ba324a87202e2a2762ba1a2d18f3be325111db17eef1476af4f99",
+      "signed_volume_mm3": 0.9999999999999999,
+      "nonpositive_tetrahedra": 0,
+      "quantile_probabilities": [
+        0,
+        0.001,
+        0.01,
+        0.05,
+        0.5,
+        1
+      ],
+      "tetra_mean_ratio_quantiles": [
+        0.5890254326585702,
+        0.5891787841434124,
+        0.5905589475069923,
+        0.5966930069006812,
+        0.7380607362491302,
+        0.8618245653134367
+      ],
+      "triangle_shape_quality_quantiles": [
+        0.8660254037844386,
+        0.8660254037844386,
+        0.8660254037844386,
+        0.8660254037844386,
+        0.8660254037844386,
+        0.8660254037844386
+      ],
+      "zero_area_boundary_triangles": 0,
+      "diagnostic_bins": [
+        {
+          "mean_ratio_below": 0.01,
+          "count": 0,
+          "fraction": 0.0,
+          "absolute_volume_fraction": 0.0,
+          "bad_touching_any_boundary_node": 0,
+          "boundary_touching_cell_bad_fraction": 0.0,
+          "interior_cell_bad_fraction": null
+        },
+        {
+          "mean_ratio_below": 0.1,
+          "count": 0,
+          "fraction": 0.0,
+          "absolute_volume_fraction": 0.0,
+          "bad_touching_any_boundary_node": 0,
+          "boundary_touching_cell_bad_fraction": 0.0,
+          "interior_cell_bad_fraction": null
+        }
+      ],
+      "touch_definition": "At least one vertex belongs to the supplied surface; not an exact boundary-face adjacency classification."
+    },
+    "interior_paired_faces": 18,
+    "actual_oriented_boundary_matches_declared": true,
+    "unit_volume_positive_cells": true,
+    "metric_controls": {
+      "regular_analytic_volume_and_unit_quality": true,
+      "inversion_preserves_shape_but_reverses_signed_volume": true,
+      "coplanar_element_zero_volume_and_quality": true,
+      "translation_and_scale_invariance": true
+    },
+    "incidence_controls": {
+      "one_tet_outward_boundary": true,
+      "same_winding_interior_refused": true,
+      "triple_face_refused": true,
+      "two_tets_cancel_one_shared_face": true,
+      "oriented_cycle_invariant": true,
+      "orientation_reversal_detected": true
+    }
+  },
+  "financial_snapshot_metadata": {
+    "checked_at_utc": "2026-11-04T18:39:27.327932+00:00",
+    "account_credit_drop_usd": 0.08747868380010004,
+    "drop_is_account_wide_not_attributable_invoice": true,
+    "owned_instance_absent": true,
+    "automatic_recharge_requested": false,
+    "program_budget_not_reset": true
+  },
+  "private_cloud_manifest_sha256": "59d519f1895dad8b8c56993c9617b85f2ad0f4c85bc6756f34a7ec2b4e70787e",
+  "private_cloud_files": 60
+}

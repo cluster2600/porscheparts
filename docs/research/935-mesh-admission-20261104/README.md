@@ -124,3 +124,10 @@ edge endpoints exact. Independent complete-surface correspondence and native
 checks pass; bad triangles decrease from 8,489 to 1,792 (78.89%). This passes
 the registered surface gate for a bounded study-volume mesh trial, while the
 original inferred-domain and physical release limitations remain.
+
+The [terminal Vast volume result](CLOUD_VOLUME.md) subsequently produces a
+3,770,701-tetrahedron study mesh and passes seven independent geometry checks.
+All recovered files match and the created instance is destroyed with verified
+absence. A separate fixed-face quality bound identifies boundary triangles that
+force low-quality incident cells while retained, directing further work upstream
+instead of treating a new interior-size sweep as engineering acceptance.
