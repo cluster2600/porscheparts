@@ -334,3 +334,45 @@ centroids, so their apparent rows and sparse regions also reflect tessellation.
 These are selected input scan mesh triangles from the same acquisition used to
 fit the surfaces; they do not independently certify material identity,
 metrology, missing geometry or manufacturing readiness.
+
+## Cone sampling sensitivity and reverse comparison
+
+The [seven-sample cone screen](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/trim_hub_cone_witness.py)
+compares each open fitted-cone triangle at its vertices, edge midpoints and
+centroid to the 2,963 scan triangles selected for the cone fit. Midpoint
+subdivision preserves the original piecewise-planar cone but changes the
+samples; it does not refine the acquired scan. At successive subdivision
+levels 0, 1 and 2, the numbers of triangles whose seven samples are within
+1.0 source unit are 2/654, 40/2,616 and 681/10,464. Their respective
+fractions of the original tessellated area are approximately 0.37%, 1.45%
+and 6.18%. At 0.5 source unit the counts are 0, 0 and 4. This strong sampling
+sensitivity prevents using these masks as complete measured-surface bounds.
+
+In the [reverse centroid comparison](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/scan_to_hub_cone.py),
+area-weighting the 2,963 selected scan triangle centroids gives a median
+nearest-cone distance of 0.0876 source unit and a 95th percentile of 0.3585.
+The scan was also used to fit the cone, so the two calculations are not an
+independent validation. A centroid is not a whole-face distance bound and the
+selection may exclude other acquired surfaces. Neither calculation confirms
+scale, physical alignment, repair, assembly, nor manufacturing readiness.
+Both thresholds are exploratory values in uncalibrated source units, not
+scanner tolerances.
+
+The [sampling package](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-hub-cone-sample-sensitivity-20261104.tar.gz)
+and [reverse-comparison package](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-hub-cone-reverse-distance-20261104.tar.gz)
+are private. Their SHA-256 values are respectively
+`9d8cb39cf836dbd9ed1a7d95441cf600d02ad4c515c8bb8d549f0417c0eee95e`
+and `7e3e6a7cefc423d51bf8c72d2e1d868300677e4dee70d580983faeb009bededf`.
+The archived scripts and images use local private input paths; the pinned
+input files must be retained separately for reproduction.
+
+From the repository root, with the pinned private inputs restored, reproduce
+level 1 and the reverse comparison into new private directories:
+
+```sh
+uv run --no-project --python 3.12 --with numpy==2.5.4 --with scipy==1.18.1 --with trimesh==5.2.0 --with rtree==1.4.1 python twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/trim_hub_cone_witness.py work/935-editable-fragments-20261104/hub-patches-001/patch-01.stl work/935-hub-surfaces-20261006/hub-surfaces-20261006-001/hub-surfaces.json work/935-reconstruction-20261005/surfaces-002/rotor/axis-aligned.npz work/935-editable-fragments-20261104/new-cone-sampling --subdivisions 1
+uv run --no-project --python 3.12 --with numpy==2.5.4 --with scipy==1.18.1 --with trimesh==5.2.0 --with rtree==1.4.1 --with matplotlib python twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/scan_to_hub_cone.py work/935-editable-fragments-20261104/new-scan-to-cone
+```
+
+The output paths must not already exist. Level 2 uses `--subdivisions 2` and a
+separate new output directory. The scripts reject input hash mismatches.
