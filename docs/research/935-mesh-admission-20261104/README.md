@@ -90,3 +90,10 @@ quality substantially, but both fail independent admission. The masked trial
 eliminates intersections while still changing protected geometry and exceeding
 the deviation limit. These rejections motivate an explicitly constrained patch
 witness rather than further unconstrained remeshing or interior-size sweeps.
+
+The subsequent [CGAL constraint witness and real-input preflight](CONSTRAINTS.md)
+verify exact protection on a changed software patch. The installed 4/3
+long-edge criterion rejects the full head's 0.5 mm uniform target before
+remeshing. A 0.7 mm target passes that length check only; no head result is
+produced or accepted. An independent constraint/quality audit bounds the next
+sizing-field design.
