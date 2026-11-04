@@ -16,6 +16,10 @@ adds 25 scalar observations from 19 floor-control rows. Its point crosswalk
 identifies eight matching named spans, a P3 dimensional discrepancy and
 generation-specific rear attachment numbering. These data support M1/M2
 research; they establish no common interface geometry or valid structural model.
+The [subsequent drawing audit](../twins/964-chassis/993-body-network-20261104/README.md)
+adds 15 observations and checks the rear-subframe projection independently,
+for 40 combined 993 scalar observations. Its six documentary longitudinal
+stations are not vehicle XYZ and do not change the functional-geometry gate.
 
 Status: **programme definition**. This document contains no geometry and
 authorizes none. It states what has to be established, in what order, and what

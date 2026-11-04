@@ -1,0 +1,451 @@
+{
+  "classification": "documentary_constraints_not_vehicle_geometry",
+  "input_admissibility": "Reviewed scalar data admitted for documentary checks only",
+  "counts": {
+    "floor_observations": 25,
+    "additional_body_observations": 15,
+    "combined_scalar_observations": 40,
+    "defined_point_identities": 19,
+    "point_identities_with_pair_spans": 18,
+    "matching_964_candidate_pairs": 13,
+    "new_validated_xyz_points": 0
+  },
+  "rear_subframe_projection_check": {
+    "input_value_ids": [
+      "MNL-993BD-P13-P14",
+      "MNL-993FC-I-DIRECT",
+      "MNL-993FC-K-DIRECT",
+      "MNL-993FC-S-HORIZONTAL"
+    ],
+    "assumptions": [
+      "Pairs share a symmetry midplane in the drawing",
+      "Each left/right pair has equal height",
+      "S joins opposite-side P13/P14 centres as drawn"
+    ],
+    "equation": "horizontal_S = hypot(P13_P14_longitudinal, (P13_span + P14_span)/2)",
+    "predicted_horizontal_mm": 1122.017985596,
+    "published_horizontal_mm": 1122,
+    "nominal_residual_mm": 0.017985596,
+    "predicted_worst_case_interval_mm": [
+      1120.216233591,
+      1123.819740884
+    ],
+    "published_interval_mm": [
+      1119,
+      1125
+    ],
+    "intervals_overlap": true,
+    "misinterpretation_example": {
+      "assumption": "Incorrectly treating direct S as a horizontal diagonal",
+      "implied_longitudinal_mm": 629.549839171,
+      "difference_from_published_longitudinal_mm": 38.949839171,
+      "admitted": false
+    },
+    "meaning": "Internal documentary consistency only; not independent metrology or fitment"
+  },
+  "conditional_height_differences": {
+    "N": {
+      "nominal_abs_delta_z_mm": 97.857038582,
+      "worst_case_feasible_interval_mm": [
+        0.0,
+        154.725563499
+      ],
+      "height_sign": null,
+      "absolute_z_mm": null,
+      "accepted_coordinate_uncertainty_mm": null,
+      "input_value_ids": [
+        "MNL-993FC-N-DIRECT",
+        "MNL-993FC-N-HORIZONTAL"
+      ]
+    },
+    "P": {
+      "nominal_abs_delta_z_mm": 342.059936268,
+      "worst_case_feasible_interval_mm": [
+        311.36313205,
+        370.220204743
+      ],
+      "height_sign": null,
+      "absolute_z_mm": null,
+      "accepted_coordinate_uncertainty_mm": null,
+      "input_value_ids": [
+        "MNL-993FC-P-DIRECT",
+        "MNL-993FC-P-HORIZONTAL"
+      ]
+    },
+    "R": {
+      "nominal_abs_delta_z_mm": 307.266984884,
+      "worst_case_feasible_interval_mm": [
+        277.933445271,
+        334.034429363
+      ],
+      "height_sign": null,
+      "absolute_z_mm": null,
+      "accepted_coordinate_uncertainty_mm": null,
+      "input_value_ids": [
+        "MNL-993FC-R-DIRECT",
+        "MNL-993FC-R-HORIZONTAL"
+      ]
+    },
+    "S": {
+      "nominal_abs_delta_z_mm": 218.094016424,
+      "worst_case_feasible_interval_mm": [
+        184.323085912,
+        247.295369953
+      ],
+      "height_sign": null,
+      "absolute_z_mm": null,
+      "accepted_coordinate_uncertainty_mm": null,
+      "input_value_ids": [
+        "MNL-993FC-S-DIRECT",
+        "MNL-993FC-S-HORIZONTAL"
+      ]
+    },
+    "T": {
+      "nominal_abs_delta_z_mm": 275.76801845,
+      "worst_case_feasible_interval_mm": [
+        244.442222212,
+        303.881555873
+      ],
+      "height_sign": null,
+      "absolute_z_mm": null,
+      "accepted_coordinate_uncertainty_mm": null,
+      "input_value_ids": [
+        "MNL-993FC-T-DIRECT",
+        "MNL-993FC-T-HORIZONTAL"
+      ]
+    },
+    "U": {
+      "nominal_abs_delta_z_mm": 91.257876372,
+      "worst_case_feasible_interval_mm": [
+        0.0,
+        144.291371883
+      ],
+      "height_sign": null,
+      "absolute_z_mm": null,
+      "accepted_coordinate_uncertainty_mm": null,
+      "input_value_ids": [
+        "MNL-993FC-U-DIRECT",
+        "MNL-993FC-U-HORIZONTAL"
+      ]
+    }
+  },
+  "drawing_station_convention": "Positive rearward from the printed zero line; no surveyed origin or vehicle-frame transform. P4 is not assigned station zero.",
+  "drawing_stations": {
+    "993:P1": {
+      "drawing_station_mm": -722,
+      "worst_case_half_interval_mm": 2,
+      "input_value_ids": [
+        "MNL-993BD-P1-ZERO"
+      ],
+      "vehicle_xyz_mm": null,
+      "axis": null,
+      "mating_face": null
+    },
+    "993:P3": {
+      "drawing_station_mm": -215,
+      "worst_case_half_interval_mm": null,
+      "input_value_ids": [
+        "MNL-993BD-P3-ZERO"
+      ],
+      "vehicle_xyz_mm": null,
+      "axis": null,
+      "mating_face": null
+    },
+    "993:P5": {
+      "drawing_station_mm": 143,
+      "worst_case_half_interval_mm": 2,
+      "input_value_ids": [
+        "MNL-993BD-ZERO-P5"
+      ],
+      "vehicle_xyz_mm": null,
+      "axis": null,
+      "mating_face": null
+    },
+    "993:P17": {
+      "drawing_station_mm": 3026,
+      "worst_case_half_interval_mm": 6,
+      "input_value_ids": [
+        "MNL-993BD-P1-P17",
+        "MNL-993BD-P1-ZERO"
+      ],
+      "vehicle_xyz_mm": null,
+      "axis": null,
+      "mating_face": null
+    },
+    "993:P13": {
+      "drawing_station_mm": 1953,
+      "worst_case_half_interval_mm": 8,
+      "input_value_ids": [
+        "MNL-993BD-P1-P17",
+        "MNL-993BD-P1-ZERO",
+        "MNL-993BD-P13-P17"
+      ],
+      "vehicle_xyz_mm": null,
+      "axis": null,
+      "mating_face": null
+    },
+    "993:P14": {
+      "drawing_station_mm": 2543.6,
+      "worst_case_half_interval_mm": 9,
+      "input_value_ids": [
+        "MNL-993BD-P1-P17",
+        "MNL-993BD-P1-ZERO",
+        "MNL-993BD-P13-P17",
+        "MNL-993BD-P13-P14"
+      ],
+      "vehicle_xyz_mm": null,
+      "axis": null,
+      "mating_face": null
+    }
+  },
+  "station_interval_policy": "Worst-case sums of printed limits, not confidence intervals. Derived stations share inputs; their marginal intervals must not be treated as independent measurements.",
+  "pair_inventory": [
+    {
+      "id": "993:P1",
+      "value_id": "MNL-993BD-P1-SPAN",
+      "span_mm": 788,
+      "printed_half_tolerance_mm": 1,
+      "semantic_964_candidate": "964:P1",
+      "candidate_964_value_ids": [
+        "MNL-964IS-0001"
+      ],
+      "same_nominal_and_tolerance": true,
+      "geometry_interchangeability_verified": false
+    },
+    {
+      "id": "993:P2",
+      "value_id": "MNL-993BD-P2-SPAN",
+      "span_mm": 600,
+      "printed_half_tolerance_mm": 1,
+      "semantic_964_candidate": "964:P2",
+      "candidate_964_value_ids": [
+        "MNL-964IS-0002"
+      ],
+      "same_nominal_and_tolerance": true,
+      "geometry_interchangeability_verified": false
+    },
+    {
+      "id": "993:P3",
+      "value_id": "MNL-993FC-B-DIRECT",
+      "span_mm": 670,
+      "printed_half_tolerance_mm": 0.5,
+      "semantic_964_candidate": "964:P3",
+      "candidate_964_value_ids": [
+        "MNL-964IS-0003"
+      ],
+      "same_nominal_and_tolerance": false,
+      "geometry_interchangeability_verified": false
+    },
+    {
+      "id": "993:P4",
+      "value_id": "MNL-993BD-P4-SPAN",
+      "span_mm": 869,
+      "printed_half_tolerance_mm": 2,
+      "semantic_964_candidate": "964:P4",
+      "candidate_964_value_ids": [
+        "MNL-964IS-0004"
+      ],
+      "same_nominal_and_tolerance": true,
+      "geometry_interchangeability_verified": false
+    },
+    {
+      "id": "993:P5",
+      "value_id": "MNL-993FC-C-DIRECT",
+      "span_mm": 770,
+      "printed_half_tolerance_mm": 2,
+      "semantic_964_candidate": "964:P5",
+      "candidate_964_value_ids": [
+        "MNL-964IS-0005"
+      ],
+      "same_nominal_and_tolerance": true,
+      "geometry_interchangeability_verified": false
+    },
+    {
+      "id": "993:P6",
+      "value_id": "MNL-993FC-D-DIRECT",
+      "span_mm": 204,
+      "printed_half_tolerance_mm": 2,
+      "semantic_964_candidate": "964:P6",
+      "candidate_964_value_ids": [
+        "MNL-964IS-0006"
+      ],
+      "same_nominal_and_tolerance": true,
+      "geometry_interchangeability_verified": false
+    },
+    {
+      "id": "993:P11",
+      "value_id": "MNL-993BD-P11-SPAN",
+      "span_mm": 1236,
+      "printed_half_tolerance_mm": 1,
+      "semantic_964_candidate": "964:P11",
+      "candidate_964_value_ids": [
+        "MNL-964IS-0008"
+      ],
+      "same_nominal_and_tolerance": true,
+      "geometry_interchangeability_verified": false
+    },
+    {
+      "id": "993:P12",
+      "value_id": "MNL-993FC-G-DIRECT",
+      "span_mm": 278,
+      "printed_half_tolerance_mm": 1,
+      "semantic_964_candidate": "964:P12",
+      "candidate_964_value_ids": [
+        "MNL-964IS-0009"
+      ],
+      "same_nominal_and_tolerance": true,
+      "geometry_interchangeability_verified": false
+    },
+    {
+      "id": "993:P13",
+      "value_id": "MNL-993FC-I-DIRECT",
+      "span_mm": 935,
+      "printed_half_tolerance_mm": 1.5,
+      "semantic_964_candidate": null,
+      "candidate_964_value_ids": [],
+      "same_nominal_and_tolerance": false,
+      "geometry_interchangeability_verified": false
+    },
+    {
+      "id": "993:P14",
+      "value_id": "MNL-993FC-K-DIRECT",
+      "span_mm": 973,
+      "printed_half_tolerance_mm": 1.5,
+      "semantic_964_candidate": null,
+      "candidate_964_value_ids": [],
+      "same_nominal_and_tolerance": false,
+      "geometry_interchangeability_verified": false
+    },
+    {
+      "id": "993:P15",
+      "value_id": "MNL-993BD-P15-SPAN",
+      "span_mm": 893.4,
+      "printed_half_tolerance_mm": 1.5,
+      "semantic_964_candidate": "964:P14",
+      "candidate_964_value_ids": [
+        "MNL-964IS-0011",
+        "MNL-964IS-0012"
+      ],
+      "same_nominal_and_tolerance": false,
+      "geometry_interchangeability_verified": false
+    },
+    {
+      "id": "993:P16",
+      "value_id": "MNL-993BD-P16-SPAN",
+      "span_mm": 748,
+      "printed_half_tolerance_mm": 1,
+      "semantic_964_candidate": "964:P15",
+      "candidate_964_value_ids": [
+        "MNL-964IS-0013"
+      ],
+      "same_nominal_and_tolerance": true,
+      "geometry_interchangeability_verified": false
+    },
+    {
+      "id": "993:P17",
+      "value_id": "MNL-993BD-P17-SPAN",
+      "span_mm": 1006,
+      "printed_half_tolerance_mm": 1,
+      "semantic_964_candidate": "964:P16",
+      "candidate_964_value_ids": [
+        "MNL-964IS-0014"
+      ],
+      "same_nominal_and_tolerance": false,
+      "geometry_interchangeability_verified": false
+    },
+    {
+      "id": "993:P18",
+      "value_id": "MNL-993FC-E-DIRECT",
+      "span_mm": 1330,
+      "printed_half_tolerance_mm": 1,
+      "semantic_964_candidate": "964:P17",
+      "candidate_964_value_ids": [
+        "MNL-964IS-0015"
+      ],
+      "same_nominal_and_tolerance": true,
+      "geometry_interchangeability_verified": false
+    },
+    {
+      "id": "993:P19",
+      "value_id": "MNL-993FC-F-DIRECT",
+      "span_mm": 1236,
+      "printed_half_tolerance_mm": 1,
+      "semantic_964_candidate": "964:P18",
+      "candidate_964_value_ids": [
+        "MNL-964IS-0016"
+      ],
+      "same_nominal_and_tolerance": true,
+      "geometry_interchangeability_verified": false
+    },
+    {
+      "id": "993:P20",
+      "value_id": "MNL-993FC-H-DIRECT",
+      "span_mm": 1018,
+      "printed_half_tolerance_mm": 1,
+      "semantic_964_candidate": "964:P19",
+      "candidate_964_value_ids": [
+        "MNL-964IS-0017"
+      ],
+      "same_nominal_and_tolerance": true,
+      "geometry_interchangeability_verified": false
+    },
+    {
+      "id": "993:P21",
+      "value_id": "MNL-993FC-A-DIRECT",
+      "span_mm": 440,
+      "printed_half_tolerance_mm": 2,
+      "semantic_964_candidate": "964:P20",
+      "candidate_964_value_ids": [
+        "MNL-964IS-0018"
+      ],
+      "same_nominal_and_tolerance": true,
+      "geometry_interchangeability_verified": false
+    },
+    {
+      "id": "993:P22",
+      "value_id": "MNL-993FC-L-DIRECT",
+      "span_mm": 640,
+      "printed_half_tolerance_mm": 1,
+      "semantic_964_candidate": "964:P21",
+      "candidate_964_value_ids": [
+        "MNL-964IS-0019"
+      ],
+      "same_nominal_and_tolerance": true,
+      "geometry_interchangeability_verified": false
+    }
+  ],
+  "unresolved": {
+    "993:P7_span_mm": null,
+    "993:P23_identity": null,
+    "D215_tolerance_mm": null,
+    "donor_model_year": null,
+    "donor_gearbox": null,
+    "reason_P7": "Digits remain ambiguous in the enlarged preview",
+    "tunnel_interior_surface": null
+  },
+  "release_flags": {
+    "functional_geometry": false,
+    "torsion_or_strength_validated": false,
+    "manufacturing_validated": false,
+    "omniverse_validated_twin": false
+  },
+  "inputs": [
+    {
+      "path": "catalog/measurements/MEAS-MANUAL-993-FLOOR-CONTROL-20261104.json",
+      "sha256": "15421620c8e6cf6d76bd91f37efd4cb264cbe01b4bb819c666e2446f449b1628"
+    },
+    {
+      "path": "catalog/measurements/MEAS-MANUAL-993-BODY-DRAWING-20261104.json",
+      "sha256": "1ce73c136a35ff543d789486205c965be2b164a4ee9d7cbd6b0ea13e0ecf0476"
+    },
+    {
+      "path": "twins/964-chassis/993-body-dimensions-20261104/contract.json",
+      "sha256": "19b5c02380d2a73779e6fbb48b946eaabfb60a29e7471f52e37b0046cdc3bc88"
+    },
+    {
+      "path": "catalog/measurements/MEAS-MANUAL-964-INTERFACE-SPANS-20261030.json",
+      "sha256": "d99ab6717cc8326b627a22a369fb2f347da001743f1213f4e2579604667980be"
+    }
+  ],
+  "builder_sha256": "583e21c7fce6bde1c0c624b750e9eb40abe47927ee7f7038b7785b6fee0cd59a"
+}
