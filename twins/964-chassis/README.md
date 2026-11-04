@@ -1,5 +1,14 @@
 # Digital twin of the Porsche 911 (964) chassis
 
+**Public-preview extraction, 4 November 2026:** the
+[CarGeometry audit](preview-extraction-20261104/README.md) inventories all 23
+technical images and eight larger links, corrects two earlier image references,
+and records a bounded attempt to read the additional height/point sheets.
+Seven alternate-domain images are byte-identical. The readable 2272 mm wheelbase
+repeats the existing reference; no new interface coordinate is admitted.
+Public preview access is available, and the paid archive's additional content
+or resolution remains unknown.
+
 **993 drawing continuation, 4 November 2026:** the
 [body-network audit](993-body-network-20261104/README.md) adds 15 observations
 from the remaining body views, bringing the separate 993 inventory to 40.
