@@ -231,3 +231,13 @@ Independent full-triangle, boundary-curve, cut-seam and shared-vertex checks
 preserve these rejections; 396 short-support domains retain exact references.
 Point contacts without a cut at that vertex expose additional diagnostic gaps.
 No smooth surface is adopted, and the exact native references remain unchanged.
+
+The [whole-source separation audit](../research/935-source-separation-20261104/README.md)
+then reparses every original OBJ face on Kali1 with independent Python and C++
+implementations and reinspects the recovered partitions on the Mac. There are
+four edge-connected components, but no named objects, groups or materials; all
+eight fixed chamber masks belong to the largest component. Connectivity and
+component size do not identify the bare head or attached hardware. The original
+scan, native atlas/reference capsule and CADAM coupon capsule remain unchanged.
+The full engineering goal remains active; this local increment accepts no new
+head solid, physics domain or manufacturing job and rents no paid compute.
