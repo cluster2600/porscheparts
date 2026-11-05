@@ -82,7 +82,7 @@ profile, and that profile is what gets them through:
   under titanium's creep ceiling, whereas the exchanger itself, at 900 °C, is a
   nickel case;
 - **in sheet steel today** — titanium genuinely wins there, in mass and in
-  resistance to condensate corrosion, which it never wins against aluminum;
+  resistance to condensate corrosion, which it never wins against aluminium;
 - **thin and consolidable** — tubes, manifolds, flap boxes;
 - **benign on failure** — you lose heating or emissions compliance, not control
   of the vehicle.
@@ -99,7 +99,7 @@ its reasons**. That is the guard the earlier screenings lacked.
 
 | reason | examples |
 |---|---|
-| titanium does not improve on the original material | intake and coolers in aluminum, polymer trim |
+| titanium does not improve on the original material | intake and coolers in aluminium, polymer trim |
 | domain presumed critical | brake, clutch and fuel lines, bumper absorber tubes |
 | none of the three additive families | flat heat shields, brackets, guides |
 | physical impossibility | oil cooler and electronics heat sink: their function is to conduct heat |

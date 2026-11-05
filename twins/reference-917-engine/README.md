@@ -19,11 +19,11 @@ Two families of output are planned:
 - a closed, simplified `display_print` model to make a non-functional display
   model.
 
-The project owner confirms that the file is under an open, reusable license, but
-the standardized identifier of that license is not yet archived. Independently
+The project owner confirms that the file is under an open, reusable licence, but
+the standardised identifier of that licence is not yet archived. Independently
 of that right, the owner's instruction is to keep the scan and all its geometric
 derivatives outside Git. Neither the exact identification nor the scale in
-millimeters is confirmed. No artifact may be presented as a functional engine
+millimetres is confirmed. No artifact may be presented as a functional engine
 part, compatible with the 993 or ready for a test.
 
 ## Running
@@ -68,7 +68,7 @@ USD files and the images stay outside Git pending clarification of the rights.
 
 The 600,000-triangle working mesh preserves the scan with a p95 deviation of
 0.107 OBJ units over 50,000 sampled points. The 250,000-triangle version reaches
-0.244 units p95 and is reserved for visualization.
+0.244 units p95 and is reserved for visualisation.
 
 Detection by projection, Hough transform and RANSAC fitting finds two rows of
 six openings:
@@ -80,7 +80,7 @@ six openings:
 - median longitudinal offset between rows: 36.94.
 
 These values describe the visible openings of the scan. They prove neither the
-bore diameter, nor the engine variant, nor a millimeter unit.
+bore diameter, nor the engine variant, nor a millimetre unit.
 
 ## Measured re-engineering F11–F13
 
@@ -117,7 +117,7 @@ hardware.
 
 F29 publishes a concept study independent of the scan: four clean-sheet
 cylinder-head solids cover the 5.0 l naturally aspirated and 5.374 l turbo
-scenarios, each in 2V and 4V architecture. The canonicalized STEP files, the
+scenarios, each in 2V and 4V architecture. The canonicalised STEP files, the
 STLs, the figures and the SHA-256 reports can be consulted in the
 [F29 evidence package](evidence/f29/README.md). The method, the screening
 equations, the provisional material and valvetrain choices and the limits are
@@ -142,7 +142,7 @@ images are CAD previews, not Omniverse renders.
 
 *The four F29 clean-sheet solids reopened in OCCT. A conceptual CAD preview, as
 its own banner says: not a CFD, FEA or Omniverse result, and engine fit and
-manufacturing are not authorized.*
+manufacturing are not authorised.*
 
 ## Reference FE computation of the F31 deck
 
@@ -213,7 +213,7 @@ The F2 layer adds a timeline of 240 frames at 24 frames/s on top of an existing
 USD. It animates the crankshaft, the four camshafts, the twelve pistons and
 connecting rods, and the valvetrain. The crank-slider computation uses the
 sourced stroke of 66 mm; the connecting-rod length, the bank numbering and the
-valve lifts remain visualization assumptions declared in `kinematics-f2.json`.
+valve lifts remain visualisation assumptions declared in `kinematics-f2.json`.
 
 ```bash
 make 917-kinematics-f2 F2_INPUT=/path/to/enriched-engine.usd
@@ -247,7 +247,7 @@ turbo rotordynamics.
 The `systems-f4.json` contract describes four separate domains: external
 cooling, intake, exhaust and dry-sump oil. It also describes a functional
 electrical network from the battery bus to the alternator, the starter, the two
-distributors and the 24 spark plugs. The routes are topologies and visualization
+distributors and the 24 spark plugs. The routes are topologies and visualisation
 proxies; the internal passages, sections, lengths, pressure losses, electrical
 characteristics and boundary conditions are not known. `PhysicsNeMo` is
 therefore reserved for a future surrogate model trained after a controlled
@@ -255,7 +255,7 @@ OpenFOAM reference and physical measurements.
 
 The virtual bench adds a plate, four hypothetical mounts, a disabled
 dynamometer, a kinematic coupling, a battery, a fuel supply, an oil tank and an
-emergency stop. The preflight only authorizes the visualization of an external
+emergency stop. The preflight only authorises the visualisation of an external
 drive at 120 rpm, without fuel or ignition:
 
 ```bash
@@ -328,7 +328,7 @@ make 917-motion-video-render-f7
 The video carries a burned-in notice stating that it is a dry kinematic drive,
 without combustion, load or computed pressure. It has no audio so as not to
 suggest a physically simulated engine speed. The 31 families also receive a
-deterministic `UsdPreviewSurface` material for rendering. These colors are
+deterministic `UsdPreviewSurface` material for rendering. These colours are
 visual assumptions; they are neither a historical alloy identification nor
 physical properties for computation.
 
@@ -380,8 +380,8 @@ passed on by the project owner confirms, as a secondary lead, an air-cooled
 flat-12, two camshafts per bank, a central power take-off, a crankshaft
 announced at 757 mm and forged titanium connecting rods. It notably
 distinguishes 85 × 66 mm for the first definition and 86 × 70.2 mm for the
-4,907 cm³ version. These data help to name and parameterize future 917
-components, but they give neither a piston contour, nor a connecting-rod center
+4,907 cm³ version. These data help to name and parameterise future 917
+components, but they give neither a piston contour, nor a connecting-rod centre
 distance, nor a cam profile, nor the geometry of the two turbos of the 917/30.
 They therefore do not, on their own, calibrate the scan.
 
@@ -434,7 +434,7 @@ python twins/reference-917-engine/source/summarize_openfoam.py \
 This scan serves to test the methods for large assemblies, cylinder repetition,
 external cooling and display-model printing. It provides no 993 mounting
 interface. The dimensional comparison stays blocked until a named 993 engine is
-available, with its measured center distances and registers, and a confirmed
+available, with its measured centre distances and registers, and a confirmed
 scale for both data sets.
 
 ## Geometry and kinematics branches F10
@@ -480,7 +480,7 @@ The validators reject shared stage paths, an unsourced dimension, a return to
 the visibility variant set, a stroke different from the contract, a naturally
 aspirated branch containing turbo components, and any physics, manufacturing,
 combustion or power gate switched to true prematurely. F10 is a separation of
-visualization and kinematics; it proves neither clearances, nor masses, nor
+visualisation and kinematics; it proves neither clearances, nor masses, nor
 inertias, nor contacts, nor operation, nor 1,600 HP.
 
 ## Physical re-engineering and 2V/4V comparison F11
@@ -509,11 +509,11 @@ nor actuation. It requires an independent parametric CAD and will be compared
 with the 2V under the same boundary conditions.
 
 The material shortlist keeps only two LPBF cylinder-head candidates to
-characterize, AlSi10Mg and AlF357. No winner is declared before correlated
+characterise, AlSi10Mg and AlF357. No winner is declared before correlated
 thermal and thermomechanical computations and coupons produced with the final
 machine, orientation and treatment. The valves and springs are not parts to be
 printed: titanium intake and INCONEL 751 exhaust remain supplier candidates,
-while the spring remains a specialized chrome-silicon steel family to be sized
+while the spring remains a specialised chrome-silicon steel family to be sized
 from measured cam profiles, masses, gas pressures, temperatures and speeds.
 
 The audit is launched by:
@@ -525,10 +525,10 @@ make 917-reengineering-f11
 It writes `work/917-reengineering-f11/readiness.json`. With the local integrity
 manifest shipped in the repository and no other engineering evidence, the
 expected result is `F0_source_integrity`: the hash of the local raw scan is
-recomputed and the F10 scenes are recognized as separate visual assumptions, but
+recomputed and the F10 scenes are recognised as separate visual assumptions, but
 the external CFD mesh stays blocked, no cylinder-head physics is computed, no
 material is selected, and no metal printing, start-up or power claim is
-authorized.
+authorised.
 
 ```mermaid
 flowchart LR
@@ -680,7 +680,7 @@ The OVRTX render keeps exactly the coordinates of the welded STL: 34,313 points,
 and schema evidence is neither a CFD, nor an FEA, nor an LPBF distortion
 simulation. The official CAD router, the SimReady profile, the manufacturable
 B-Rep, the hot material properties, the supplier supports and the physical
-qualification remain blocking; no printing or start-up is authorized.
+qualification remain blocking; no printing or start-up is authorised.
 
 ![OVRTX render of the welded F41 cylinder-head mesh from the exact USD](evidence/f42-omniverse-validation/917-head-f41-welded-ovrtx-preview.png)
 
@@ -716,7 +716,7 @@ make 917-variant-authority-f43-check
 ## Detailed demonstration connecting rod F44
 
 F44 adds a single connecting rod for visual review, with separate body and cap,
-two holes in lugs with real parameterized counterbores and two identifiable
+two holes in lugs with real parameterised counterbores and two identifiable
 bolts, two bearing half-shells, a small-end bush and a continuous subtractive oil
 channel. The lug margins, the radial clearance and the counterbore depth are
 explicit parameters of the contract. A BRep audit forbids missing holes,
@@ -731,7 +731,7 @@ Side-by-side mounting remains deliberately blocked: two 22 mm connecting rods
 and the F35 visual clearance take up 45.32 mm on a crankpin declared at 26 mm.
 F44 changes none of these values and exports only one connecting rod. It is
 neither a physical simulation, nor a validation of lubrication or fatigue, nor
-a manufacturing authorization or evidence of 1,600 hp.
+a manufacturing authorisation or evidence of 1,600 hp.
 
 ```bash
 make 917-connecting-rod-cad-f44-check

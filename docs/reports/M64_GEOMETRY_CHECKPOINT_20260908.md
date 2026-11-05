@@ -60,7 +60,7 @@ boundary and CAD unchanged; five families remain refused. See the
 [correction as actually checked](M64_APEX_TRANSITIONS_20260909.md).
 
 Previous trial: the OpenFOAM defects are exported and attributed to the source
-cells; see the [actual localization](M64_DEFECT_LOCALISATION_20260909.md).
+cells; see the [actual localisation](M64_DEFECT_LOCALISATION_20260909.md).
 
 Previous trial: the hybrid domain of 785,883 cells is assembled and
 cross-checked. OpenFOAM finds a connected domain and three patches, but
@@ -84,7 +84,7 @@ elsewhere: candidate refused, boundary and master unchanged. See
 the [native trial and its counter-calculation](M64_EDGE82_JOINT_REMESH_20260909.md).
 
 Previous trial: the proposed flip introduces two intersections
-with the neighboring face 36. The 27 interior diagonals adjacent to the 22
+with the neighbouring face 36. The 27 interior diagonals adjacent to the 22
 obstructing triangles are then tested: no single flip gives a strict
 gain while keeping all criteria. No candidate applied; see
 the [audit of diagonals and contacts](M64_SURFACE_DIAGONAL_AUDIT_20260909.md).
@@ -111,7 +111,7 @@ neither a strength improvement nor fitness for manufacturing.
 the 136 gas non-overlap checks also pass.** The new
 full boundary diagnostic completes 104 subtractions: 102 pass,
 two remain warned on the same group of three faces. The
-reserialization differences are now attributed on Linux as on macOS, with no
+reserialisation differences are now attributed on Linux as on macOS, with no
 proof of global equivalence of the solids and no lifting of the historical refusal.
 The master `21c9c40b…` remains unchanged, with no promotion of candidate `450ba081…`.
 The nominal guide contacts are measured, with no hot qualification.
@@ -128,7 +128,7 @@ revalidation of the labels. A first mesh of the **V5 solid**, separate from the 
 is obtained, then rejected: **4,871 elements out of 271,001 below the quality threshold**.
 
 This checkpoint follows the [material and seat checks](M64_EXHAUST_MATERIAL_CONTROLS_20260908.md)
-and the [localization of mesh defects](M64_ANNULAR_MESH_LOCALISATION_20260908.md).
+and the [localisation of mesh defects](M64_ANNULAR_MESH_LOCALISATION_20260908.md).
 The [receipt digests](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json)
 separate the successive operations and keep the failures. The units remain
 those of the scan, with no certification of the scale or of the M64 interfaces.
@@ -219,7 +219,7 @@ This diagnostic rebuilds nothing and does not modify the body, in memory or
 on disk. It identifies a program correction to be tested, not an
 already established correction of the body.
 
-### V5: candidate saved and reread, different reserialization
+### V5: candidate saved and reread, different reserialisation
 
 The limited correction of the two hierarchy traversals is executed on Kali.
 It produces a private binary candidate: one solid, one shell, 4,900 faces,
@@ -234,7 +234,7 @@ and the coefficients of the fifteen segmented supports match exactly.
 The source body remains unchanged in memory and on disk.
 
 The next guard nevertheless refuses the candidate: its in-memory binary
-serialization digest differs after reread (`reread_serialized_representation_equal=false`).
+serialisation digest differs after reread (`reread_serialized_representation_equal=false`).
 The previous checks do not yet identify the difference; it must
 neither be equated with a deformation without diagnosis, nor dismissed as harmless.
 The comparative quadratures and the five planned BOP modes are not reached.
@@ -255,13 +255,13 @@ This result concerns these five modes, not every possible OCCT criterion.
 
 Exact `BRepCheck` passes before and after. The raw/effective tolerances and the
 binary digests of the same loaded object remain identical during the check.
-The source file is unchanged; the earlier reserialization refusal is not
+The source file is unchanged; the earlier reserialisation refusal is not
 erased. Durations: 173.501 s for BOP, 178.128 s for the worker and 178.849 s
 including cleanup. Exits 0, with no OOM and no timeout. The effective caps
 2 CPU/4 GiB, the read-only root file system and the absence of
 network are verified. Container removed, absence rechecked separately.
 
-### Serialization: the 1,114 differing bytes are localized on macOS
+### Serialisation: the 1,114 differing bytes are localised on macOS
 
 A read by path followed by two writes **in memory** reproduces a
 difference of 1,114 bytes out of 5,205,080, with no change of length. The two
@@ -278,9 +278,9 @@ the topological references, the orientations, the flags and the end of file.
 
 No differing byte remains unattributed. The locations, points,
 B-spline coefficients, radii, intervals, tolerances, references and
-serialized topological flags do not change in this comparison.
+serialised topological flags do not change in this comparison.
 The directions are dimensionless; a UV deviation **is not** a 3D distance.
-The 32 exact matches to a simple normalization among 45 changed groups of
+The 32 exact matches to a simple normalisation among 45 changed groups of
 2D directions do not justify attributing all the deviations to that single
 operation. The format rebuilds directions/frames and recomputes UV
 caches on reading; these are mechanisms to be distinguished.
@@ -313,9 +313,9 @@ against 1,114 on macOS. No new BOP and no CAD export is executed.
 | UV endpoint caches | 13 | 10 edges of the TShapes table |
 
 All differing bytes are attributed. Points, B-spline coefficients,
-radii, intervals, tolerances, locations, references and serialized topological
+radii, intervals, tolerances, locations, references and serialised topological
 flags remain unchanged in this comparison. The 32
-changed 2D directions match the simple normalization formula
+changed 2D directions match the simple normalisation formula
 tested; this finding does not describe every reconstruction mechanism of the
 3D frames. The maximum deviation of the caches remains a UV quantity (`1.42109e−14`),
 not a spatial distance. The Linux result does not erase the macOS result.
@@ -351,7 +351,7 @@ not the Hausdorff distance between solids, OCCT floating-point evaluation
 errors or the UV endpoint caches. The provisional representation budget
 `1e−9` scan unit, set before the computation, is neither a machining
 tolerance nor an automatic lifting of the historical refusal. No physical
-precision, global equivalence or manufacturing authorization is inferred from it.
+precision, global equivalence or manufacturing authorisation is inferred from it.
 
 ## Gas partition: refusal kept
 
@@ -493,7 +493,7 @@ comes before its exception-capture block. No capture failure is observed.
 
 ### Complementary identity of the three faces: strict test refused
 
-A separate check serializes each whole face, contours included, as binary
+A separate check serialises each whole face, contours included, as binary
 V3 in memory. The six BRep checks pass and the matching root placements
 and orientations agree. However, faces 28 and 29 have
 different representations, despite lengths respectively equal
@@ -506,7 +506,7 @@ on its own, prove a difference in shape. Its fields must be identified
 before deciding on a relevant geometric comparison.
 
 Durations: 0.461 s native / 1.034 s including cleanup; exits 2, no
-normalization requested, no smoothing, `CUT`, BOP or export. Inputs and loaded
+normalisation requested, no smoothing, `CUT`, BOP or export. Inputs and loaded
 objects unchanged, 2 CPU/4 GiB caps checked, container absence confirmed.
 The two warned subtractions are not renamed as successes.
 
@@ -514,7 +514,7 @@ The two warned subtractions are not renamed as successes.
 
 The full decoder then locates **two bytes per face**, four in total.
 Only the X/Y directions of an auxiliary plane change, with a maximum
-per-component deviation of `1.23260e−32`, dimensionless. No other serialized field
+per-component deviation of `1.23260e−32`, dimensionless. No other serialised field
 differs. The digests of the four source/candidate faces reproduce
 those of the previous test; the decoders remain unchanged.
 
@@ -525,7 +525,7 @@ Each face has an unchanged main B-spline support. This link is
 established by the file's references, not assumed from the surface
 numbers. [Reading of type 4 and of the face support in OCCT](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BinTools/BinTools_ShapeSet.cxx#L976-L1054).
 
-The serialized subgraph defining the two faces is therefore identical in
+The serialised subgraph defining the two faces is therefore identical in
 this Linux/OCP reread: main support, 3D curves, p-curves and ranges,
 oriented contours, vertices, locations and tolerances. A pure review of
 dependencies, reproduced independently, also rejects two altered controls:
@@ -554,7 +554,7 @@ The eight successes are on the **complete bytes of each loaded face,
 BinTools VERSION_3**, contours and tolerances included, with a separate check of
 the exact root placement, the orientation and the support digest.
 **No exclusion of auxiliary data is needed here.** The same plane,
-an identical area, center or number is not enough for a match.
+an identical area, centre or number is not enough for a match.
 The equality of the numbers below is a result, not an assumption.
 
 | Group | Candidate face | Source face | Transferred source role |
@@ -622,9 +622,9 @@ The conversion attributes 118 differing bytes in the ASCII bridge and 101 in
 the reread of the Gmsh export, notably frames, vertices, intervals and
 UV caches. These counts are not a geometric distance.
 
-The attempt is explicitly authorized as an **unqualified import diagnostic**:
+The attempt is explicitly authorised as an **unqualified import diagnostic**:
 global geometric comparison `false`, cumulative spatial bound `null`, no
-CAE or manufacturing authorization. This does not reduce the geometric budget
+CAE or manufacturing authorisation. This does not reduce the geometric budget
 `1e−9` and does not declare it met. Before generation, the reimport
 exactly reproduces the exported BRep and the Gmsh inventory examined. The original
 V5 file stays intact; no intentional repair, decimation or
@@ -643,7 +643,7 @@ The composite check `mesh_export_roundtrip=false` includes the quality
 criterion: this is not file corruption. The maximum coordinate deviation
 after reread is `5.7396e−14` scan unit. The 4,871 overly distorted elements
 comprise 2,916 elements adjacent to a boundary face and 1,955 with no boundary
-face; their private localization does not assign them an anatomical role.
+face; their private localisation does not assign them an anatomical role.
 
 A projection of 46,583 triangle centroids onto their Gmsh supports
 gives a maximum of **0.38760 scan unit**. This is a sampled diagnostic,
@@ -660,22 +660,22 @@ meshing 2 expected, no OOM; the four containers were removed and their
 absence rechecked. Eight pure tests of the wrapper and 21 of the producer pass.
 No new Vast spend, engine load, thermal or mechanical simulation.
 
-### Interior optimization of the V5 solid, frozen boundary
+### Interior optimisation of the V5 solid, frozen boundary
 
 Two attempts each start from a copy of the **same initial MSH** `763a2ad9…`.
 They load no CAD and generate no new mesh from the geometry. Gmsh's default
-native optimizer changes the connectivity and interior nodes; the elements and
+native optimiser changes the connectivity and interior nodes; the elements and
 nodes of dimension 0/1/2 entities must remain strictly identical. The true
 boundary of the tetrahedra is also compared with the stored triangles, and the
 boundary nodes must not be classified as movable volume nodes.
 
-The first attempt runs the optimizer but then fails with
-`Unknown element 396236` during the quality computation. No optimized MSH is
+The first attempt runs the optimiser but then fails with
+`Unknown element 396236` during the quality computation. No optimised MSH is
 exported and no improvement is credited to this receipt `67c8fb6b…`. The old
 element cache was not invalidated after the swaps, with `Mesh.Renumber=0`. The
 second version adds only
 [`rebuildElementCache(onlyIfNecessary=False)`](https://gmsh.info/doc/texinfo/gmsh.html#index-gmsh_002fmodel_002fmesh_002frebuildElementCache)
-after the optimization, and its trace in the report. This operation rebuilds
+after the optimisation, and its trace in the report. This operation rebuilds
 the tags→elements index, not the geometry; renumbering, boundary, metric and
 thresholds are unchanged. The initial receipt and both versions are kept.
 
@@ -696,7 +696,7 @@ boundary entities, tags, orientations, connectivities and binary64 coordinates
 are preserved exactly. The whole post-optimization mesh is identical after
 binary MSH 4.1 export/read-back.
 
-The optimizer internally uses `gamma = 3 r_inscribed / R_circumscribed`, not
+The optimiser internally uses `gamma = 3 r_inscribed / R_circumscribed`, not
 `minSICN`. Its reports of "ill-shaped" tetrahedra do not replace our
 recomputation of the `0.1` threshold. A single API call per attempt,
 `force=True` for the discrete volume, `OptimizeThreshold=0.3`, without Netgen
@@ -717,15 +717,15 @@ counts 2,431 tests, of which 108 are skipped depending on available
 dependencies, then the complementary checks pass. This does not mean that all
 native solvers were exercised, nor that the part is physically validated.
 
-Reading the initial surface diagnostic, preserved by this optimization, finds
+Reading the initial surface diagnostic, preserved by this optimisation, finds
 **856 triangles below `minSICN = 0.1` on 146 faces**, with a 2D minimum of
 `0.0018031574`. This 2D value is not treated as a 3D quality bound. It points
-to a separate piece of work: redo the surface discretization on the existing
+to a separate piece of work: redo the surface discretisation on the existing
 CAD supports, then check conformity, boundary and volume quality again. No
 silhouette change is justified by these mesh defects alone. The anatomical
 assignment of the faces is not inferred from their Gmsh numbers. The earlier
 CAD import and conformity limits remain in full; the repeatability of several
-complete optimizations is not demonstrated.
+complete optimisations is not demonstrated.
 
 ### MeshAdapt run: 433 insufficient tetrahedra, no admission
 
@@ -741,7 +741,7 @@ traced. No new smoothing, repair or CAD silhouette change is requested by this
 change of meshing method; the already documented limits of the Gmsh import
 still apply.
 
-| Indicator | Previous optimization | New run, after optimization |
+| Indicator | Previous optimisation | New run, after optimisation |
 | --- | ---: | ---: |
 | Tetrahedra | 260,107 | 273,576 |
 | Below `minSICN = 0.1` | 1,722 | **433 (0.15827 %)** |
@@ -750,14 +750,14 @@ still apply.
 | Surface triangles below the threshold / faces affected | 856 / 146 | 51 / 23 |
 | Minimum `minSICN` of the triangles | 0.00180316 | 0.01592716 |
 
-The drop in count is 74.8548 % relative to the last optimized run, and
+The drop in count is 74.8548 % relative to the last optimised run, and
 91.1107 % relative to the 4,871 initial defects. These percentages concern
 different meshes, not a material or engine improvement. Before the single
-interior optimization, the new mesh has 284,333 tetrahedra, of which 3,226
+interior optimisation, the new mesh has 284,333 tetrahedra, of which 3,226
 are below the threshold; afterward, 433 remain, of which 367 are adjacent to
 a boundary face and 66 have no boundary face. The 67,931 nodes, 45,751
 boundary nodes and 91,530 triangles remain identical **during this
-optimization**, not relative to the previous mesh.
+optimisation**, not relative to the previous mesh.
 
 The oriented digests of eight surfaces change between 2D and 3D generation.
 The exact unoriented geometric signatures and the triangle counts remain
@@ -786,7 +786,7 @@ exits 0 for the diagnostic, the helper 2 for the quality refusal. No OOM;
 exact container removed, absence re-checked by root, sources and programs
 unchanged. Six pure selection and scope tests pass, with an independent review
 of the hooks before execution. No Vast cost, no new simulation of engine
-load, thermal behavior or strength.
+load, thermal behaviour or strength.
 
 ### Additional targeted run: face 4839, 3D minimum improved
 
@@ -801,7 +801,7 @@ defect.
 A second run adds **only this face** to the requested MeshAdapt assignments,
 same data, sizes, options and thresholds. The test therefore covers 147
 assignments; 41 additional automatic fallbacks are traced. The interior
-optimization goes from 285,772 tetrahedra, of which 3,202 are insufficient,
+optimisation goes from 285,772 tetrahedra, of which 3,202 are insufficient,
 to **274,680, of which 346 are insufficient (0.12596 %)**. The final minimum
 is **0.00300248**, i.e. 73.8 times the minimum of the first run; the 0.1
 limit is still refused. The insufficient count drops by 20.09 % relative to
@@ -819,7 +819,7 @@ without evidence of continuous conformity. The parser exits 0 in 2.679 s,
 with no native module, no new generation and no CAD change.
 
 The 68,139 nodes, 45,757 boundary nodes and 91,542 triangles are preserved
-during the optimization. The unoriented signatures of the 4,900 surfaces
+during the optimisation. The unoriented signatures of the 4,900 surfaces
 remain exact between 2D and 3D; nine oriented signatures change. One
 component, complete boundary, positive Jacobians and signed volumes. After
 binary read-back of MSH `362c3e75…`, connectivities, checked tags and
@@ -848,12 +848,12 @@ have four boundary vertices; these proportions are not extrapolated to the
 
 A single run adds these 45 faces to the 147 previous assignments, i.e. 192
 selected faces, without changing the CAD, sizes or thresholds. After one
-interior optimization, **309 insufficient elements out of 276,262** remain,
+interior optimisation, **309 insufficient elements out of 276,262** remain,
 versus 346 before. However, the minimum SICN degrades from 0.00300248 to
 **0.00079205**: this result is not an improvement on all criteria and
 remains refused. The independent comparison of the complete MSH files finds
 each of the 51 targeted quadruplets once in the old mesh, and none in the
-new one. This exact absence demonstrates neither the absence of neighboring
+new one. This exact absence demonstrates neither the absence of neighbouring
 defects nor that of other flattened tetrahedra.
 The 41 automatic fallbacks remain traced, i.e. 233 faces actually meshed by
 MeshAdapt. Between the two runs, 395 face digests change: no exclusive global
@@ -863,7 +863,7 @@ vertex; the triangulation of this face is nonetheless exactly identical to
 that of the previous result.
 
 The 68,422 nodes, 45,830 boundary nodes and 91,688 triangles are preserved
-during the optimization. The mesh has one component, a complete boundary,
+during the optimisation. The mesh has one component, a complete boundary,
 positive Jacobians and signed volumes; its binary read-back preserves the
 checked connectivities and coordinates exactly.
 The unoriented signatures of the 4,900 surfaces are preserved between 2D and
@@ -879,7 +879,7 @@ or mechanical result credited.
 
 The MSH of batch 192 is read back directly, without CAD import or mesh
 regeneration. A `Relocate3D` call, `force=False`, `niter=1`, performs three
-internal passes in Gmsh 4.15.2. This method optimizes the local gamma of the
+internal passes in Gmsh 4.15.2. This method optimises the local gamma of the
 incident tetrahedra, not the SICN; no monotonicity of all indicators is
 assumed. The element search cache is rebuilt before they are re-evaluated.
 
@@ -988,7 +988,7 @@ qualification verdict.
 
 ### Gas pilot V2: volume obtained, topological defects still refused
 
-A single discretization change is applied: 25 nodes on each of the eight
+A single discretisation change is applied: 25 nodes on each of the eight
 outer arcs 128–135. The 104 earlier requests, the 72 transfinite faces, the
 17 volumes and the BRep are kept. The 162 anchors and the 114 tracked chains
 — 104 old, eight added and two interior constraints — remain exactly
@@ -1057,7 +1057,7 @@ The [Gmsh 4.15.2 source](https://gitlab.onelab.info/gmsh/gmsh/-/blob/gmsh_4_15_2
 separates this pass from boundary recovery and pyramid creation, which would
 not be removed by this change.
 
-### Gas pilot V3: disabling the final optimization is not enough
+### Gas pilot V3: disabling the final optimisation is not enough
 
 The counter-run is now executed. The V2 and V3 receipts confirm that **only
 the effective option `Mesh.Optimize` goes from 1 to 0**; Netgen remains
@@ -1082,7 +1082,7 @@ quadrangles number 71,152 in both cases. Despite the same inputs, this is
 therefore not a paired comparison on the same initial mesh. The disappearance
 of the duplicates cannot be attributed to the removed pass alone. The V3 log
 keeps the smoothing specific to the pyramids, distinct from the removed final
-optimization.
+optimisation.
 
 The pure counter-computation `a06e14e6…` confirms **132 distinct pairs of
 tetrahedra that locally overlap**, involving 163 core tetrahedra, all with a
@@ -1118,8 +1118,8 @@ A complete cross-read of the before/after MSH files, with no new native call,
 confirms that tetrahedron 1776107 keeps its four binary64 coordinates, its
 connectivity and its boundary triangle on face 2868. Node 118057 is really
 interior, classified `(3,1)`; it is therefore not frozen by the boundary
-guard. Its star remains made of 34 tetrahedra and 19 neighbors, of which six
-interior neighbors have moved.
+guard. Its star remains made of 34 tetrahedra and 19 neighbours, of which six
+interior neighbours have moved.
 
 On each of the two saved states, the direction toward the mean of the 136
 vertex occurrences used by the method is locally unfavorable: the targeted
@@ -1139,10 +1139,10 @@ contour change or physical tolerance is introduced by this analysis.
 
 ### Local solid run: no displacement retained
 
-An SLSQP optimizer separate from the Gmsh smoothing was executed once on
+An SLSQP optimiser separate from the Gmsh smoothing was executed once on
 interior node 118057. The goal was to increase the smallest "mean ratio"
 quality of its 34 tetrahedra, without degrading any of the 34 individual
-qualities, without moving the 19 neighbors and keeping the volumes positive.
+qualities, without moving the 19 neighbours and keeping the volumes positive.
 This measure is neither `minSICN` nor a mechanical stress. The allowed
 numerical radius was a quarter of the shortest incident edge; it is not a
 manufacturing tolerance.
@@ -1166,7 +1166,7 @@ existing 67,200 hexahedra and 384 pyramids. The shell has 33,422 triangles:
 
 The 15 topological guards pass: one component, 16,711 nodes, no open edge, no
 duplicate, no area exactly zero and no orientation inconsistency. Vertex
-neighborhoods are simple cycles. Orientations on the pyramid side are opposite
+neighbourhoods are simple cycles. Orientations on the pyramid side are opposite
 to those of the core. Receipt `8163b885…` and the private shell `073539bc…`
 bind these checks to the unchanged inputs; seven pure tests also pass in root
 cross-verification.
@@ -1180,7 +1180,7 @@ continuous CAD is inferred from topological closure.
 
 The discrete route was checked against the Gmsh 4.15.2 code: the call
 `createGeometry([(3, 1)])` targets only the volume. The surfaces are neither
-parameterized nor reconstructed; their before/after snapshots remain exact.
+parameterised nor reconstructed; their before/after snapshots remain exact.
 A small closed tetrahedron first follows the same route, with HXT generation,
 quality checks, boundary and binary reread all successful. The real core is
 then generated once only; the log markers confirm the HXT backend in both
@@ -1208,7 +1208,7 @@ evaluation problem before any new trial.
 
 The pure cross-reading of the saved file is now complete (`28a0521c…`):
 733,762 tetrahedra and 122,354 nodes. It finds no duplicate, repeated node,
-manifold defect or orientation conflict between neighboring cells; the
+manifold defect or orientation conflict between neighbouring cells; the
 tetrahedra form one component and their oriented boundary matches exactly the
 33,422 recorded facets. The determinants computed in floating point are all
 positive, but the smallest is very small: `det6 ≈ 3.4174e−16` in cubed scan
@@ -1217,7 +1217,7 @@ recomputed in rationals and remain strictly positive; the other 733,709 do not
 benefit from this exact recomputation. Four pure tests pass, repeated by root.
 
 This cross-reading therefore does not find the local conflicts observed in the
-source mesh. It does not authorize clearing the native refusal, nor declaring
+source mesh. It does not authorise clearing the native refusal, nor declaring
 the new mesh converged or fit for CFD. The next step is the native reading of
 the **same saved MSH**, keeping the quality arrays and identifying the elements
 concerned, without new generation. Global intersections and reassembly remain
@@ -1226,7 +1226,7 @@ to be checked.
 ### Native reread of the same core: anomalies attributed, without mutation
 
 The Gmsh 4.15.2 audit reads the file `1740a425…` without generation,
-optimization, CAD access or mesh export. It keeps the four complete arrays of
+optimisation, CAD access or mesh export. It keeps the four complete arrays of
 733,762 values, with the element identifiers in API order. The direct Jacobian
 arrays are also kept: nine components, one determinant and three evaluation
 coordinates per tetrahedron, at the reference point `(0.25; 0.25; 0.25)`.
@@ -1269,7 +1269,7 @@ Fifteen pure tests of the auditor and seven of the runner also pass in root
 cross-verification. No new Vast spending, no reassembly, no CFD or
 manufacturing admission.
 
-### September 9: one interior optimization run and reread
+### September 9: one interior optimisation run and reread
 
 A single Gmsh 4.15.2 `optimize("", force=True)` works on a copy of the core
 `1740a425…`, without generation or CAD access. The repair entry is distinct
@@ -1307,7 +1307,7 @@ intersection search and the hexa/pyramid reassembly.
 
 Receipt `cd9d965e…` keeps 140.609 s for the whole copy/optimization/
 audits/reread, 141.271 s including cleanup. The log attributes 0.939 s to the
-optimization proper. Exit codes 0, no OOM, timeout or native error; the shape
+optimisation proper. Exit codes 0, no OOM, timeout or native error; the shape
 warning above is kept. The effective ceilings of 4 CPU/4 GiB are checked;
 container removed and absence rechecked. Eight pure tests of the worker and
 eight of the runner pass, repeated by root, including the refusal to claim a
@@ -1318,16 +1318,16 @@ trial.
 
 The pure cross-reading of the candidate (`94c1a588…`, 12.880 s) detects no
 duplicate, repeated vertex, manifold defect or orientation conflict between
-neighboring cells. The 718,294 tetrahedra form one component and their oriented
+neighbouring cells. The 718,294 tetrahedra form one component and their oriented
 boundary matches exactly the previous HXT core and the initially extracted
 shell. No boundary identifier changes relative to the previous MSH. All
 floating-point determinants are positive; the only element selected by the same
 small-determinant detector is also positive in rationals. The others are not
-all recomputed in exact arithmetic. Four pure tests of the reused analyzer
+all recomputed in exact arithmetic. Four pure tests of the reused analyser
 pass, repeated by root. This topological check is not an exhaustive
 intersection search and does not lift the shape-quality refusal.
 
-The independent localization (`f3ba307a…`, 4.321 s) selects **all 148 elements
+The independent localisation (`f3ba307a…`, 4.321 s) selects **all 148 elements
 whose saved `gamma` is below 0.001**, without equating them with the 75
 announced by the log. All touch the boundary: 37 have four boundary vertices,
 96 have three, 11 have two and 4 only one. 112 share at least one boundary
@@ -1343,16 +1343,16 @@ unchanged, moving only interior vertices cannot correct it. The next search
 therefore addresses local connectivity, without modifying the contour or the
 imposed facets. Three synthetic geometry tests pass, repeated by root; the full
 selection from the compressed array and the input digests are also rechecked.
-No new native computation and no mesh written for this localization.
+No new native computation and no mesh written for this localisation.
 
 Two local replacements of two tetrahedra by three are then evaluated in
 rationals (receipt c7730c12…, 2.484 s), each with one of the two interior
-neighbors of 49443. The oriented boundaries and signed volumes of the cavities
+neighbours of 49443. The oriented boundaries and signed volumes of the cavities
 remain identical, but each proposal contains a negative determinant and its new
 diagonal crosses the plane outside the shared triangle. **Both proposals are
 rejected**, without artificially reorienting the cells and without writing a
 mesh. Five synthetic tests pass, repeated by root. This closes these two
-trials, not every possibility of correction in a wider neighborhood.
+trials, not every possibility of correction in a wider neighbourhood.
 
 ### Local rework: one new interior point, boundary unchanged
 
@@ -1363,7 +1363,7 @@ in rationals: each introduces at least one inversion and is refused (receipt
 of the same edge swaps.
 
 Three cavities of 5, 12 and 26 tetrahedra are then studied. A linear program
-proposes, for each, a point maximizing the minimum distance to the boundary
+proposes, for each, a point maximising the minimum distance to the boundary
 planes. Its numerical tolerances are not admission: the final binary64
 coordinates are converted back to rationals to check all determinants, the
 oriented boundary and the volume. The three proposals pass these local checks.
@@ -1479,7 +1479,7 @@ conservative counting bound is at least 166 insufficient tetrahedra in any
 remeshing that keeps exactly these facets; it does not apply after their
 subdivision or retriangulation. This proves neither the origin of each of the
 96 refusals, nor the impossibility of manufacturing the part. The threshold is
-a numerical diagnostic, not a CFD authorization. The other defects remain to be
+a numerical diagnostic, not a CFD authorisation. The other defects remain to be
 addressed.
 
 Next correction: redo the **tessellation on the same CAD surfaces**, starting
@@ -1515,7 +1515,7 @@ That filter does count quadrilaterals; it is not reserved for triangles.
 
 The fifth trial temporarily hides the off-target curves and surfaces with
 `MeshOnlyVisible`, without recursion, then restores visibilities before
-export. A single 2D generation is called, with no optimization and no automatic
+export. A single 2D generation is called, with no optimisation and no automatic
 algorithm fallback. The log confirms that only surface 37 is meshed. Candidate
 `dfecbc5e…` contains **85,386 nodes, 32,068 triangles and the 71,152
 quadrilaterals kept**. The independent cross-reading confirms all off-target
@@ -1543,7 +1543,7 @@ are not proof of continuous conformity to the CAD.
 
 On the target: **2,289 → 2,471 triangles**, **18 → 17** SICN bounds below 0.1,
 minimum bound **`2.223e−5 → 3.157e−5`**. This is a limited reduction of a
-discretization obstruction, not a gain in efficiency or strength. The 155
+discretisation obstruction, not a gain in efficiency or strength. The 155
 oriented boundary segments are identical. The mesh has three boundary cycles,
 one component and an Euler characteristic of −1, before as after; the two CAD
 wires must not be confused with these three cycles. No zero triangle,
@@ -1565,13 +1565,13 @@ this batch, and no Vast spending is committed. Receipts and digests:
 
 Priorities: establish the admission decision from the separate evidence on
 representation, boundaries and the register of 124 roles; conclude the coverage
-and the volume balance before admitting the gas domain. The localization of the
+and the volume balance before admitting the gas domain. The localisation of the
 17 Delaunay obstructions is complete; it led to the MeshAdapt counter-trial,
-then to the localization of its 22 cases. Real isolation by temporary removal
+then to the localisation of its 22 cases. Real isolation by temporary removal
 of the off-target elements allowed a Relocate2D pass; it is refused for
 degradation of the minima and deviation of the normals. The monotone selection
 of proposals yields no targeted gain and is not applied. Now evaluate the
-connectivities and the 1D splitting with the neighbors concerned, without
+connectivities and the 1D splitting with the neighbours concerned, without
 touching the CAD curves. Do not promote these pilots into the volume core
 without checking the junctions and the quality. For the solid, the results 147
 then 192 and Relocate3D show a drop of the insufficient count to 283, but the

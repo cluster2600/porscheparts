@@ -31,14 +31,14 @@ The [base generator](source/architecture/Head962ArchitectureStudy.cs) builds
 the shapes in local frames, modulates their sections and subtracts the
 reservations. Four inclined guides and two spark plug wells are represented.
 The [rib runner](source/bionic/HeadBionicRunner.cs) adds complete cells
-joined to the flanks, with no optimization under load.
+joined to the flanks, with no optimisation under load.
 The two wells are our modern adaptation; the chamber photo
 examined shows a single central opening. Assembled seats, springs and spark plugs
 are not represented by the orange volumes.
 
 The jacket follows the chamber and gas reservations through offsets and Booleans.
 The nominal coolant/dry-volume separation is 4.5 mm and the nominal outer skin
-5 mm, before discretization and intersection: **these are not
+5 mm, before discretisation and intersection: **these are not
 qualified thicknesses**. Purging, depowdering,
 supports, flow, fatigue and retention of guides/seats still need examination. The
 [interface contract](interface-contract.json) remains unknown.
@@ -92,4 +92,4 @@ The [inspection/render script](source/architecture/inspect_and_render.py) checks
 the three volumes and reuses the closed virtual cut. The cut uses
 [VTK ClipClosedSurface](https://vtk.org/doc/nightly/html/classvtkClipClosedSurface.html).
 The STL files and binaries stay local; the sources and renders are
-shareable. No manufacturing or engine performance is authorized.
+shareable. No manufacturing or engine performance is authorised.

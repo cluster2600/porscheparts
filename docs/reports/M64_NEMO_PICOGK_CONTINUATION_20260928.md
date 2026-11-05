@@ -14,7 +14,7 @@ audit rejects the roundtrip; generation success is not geometry acceptance.
 
 This follows the [precision/remeshing checkpoint](M64_MESH_PRECISION_RECOVERY_20260928.md).
 All computation ran on the existing Mac. No Vast instance was rented. The
-NVIDIA skill catalog was checked; its discovery and domain-sharding guides
+NVIDIA skill catalogue was checked; its discovery and domain-sharding guides
 did not directly match this small geometry/mesh experiment. The actual Mesh
 API and existing repository producers were used instead.
 
@@ -26,7 +26,7 @@ mandatory surface-algorithm companion, and calls actual `Mesh.cell_areas` and
 `Mesh.quality_metrics`. The [official Mesh API](https://docs.nvidia.com/physicsnemo/latest/physicsnemo/api/mesh/core.html)
 defines these geometric operations; this is not a learned thermal surrogate.
 
-All 241,299 volumes, edge-length ratios and normalized aspect ratios agree
+All 241,299 volumes, edge-length ratios and normalised aspect ratios agree
 with an independently formulated NumPy reference at **rtol 1e-10, atol 0**.
 The volume reference uses a determinant; the aspect reference uses cross-product
 face areas and tetrahedral altitudes. Maximum absolute discrepancies are
@@ -34,11 +34,11 @@ face areas and tetrahedral altitudes. Maximum absolute discrepancies are
 arrays are finite. This does not validate every library quality formula, and
 PhysicsNeMo's combined quality score is **not** Gmsh's minSICN criterion.
 
-The 160 rejected elements have normalized aspect ratios between 16.45 and
+The 160 rejected elements have normalised aspect ratios between 16.45 and
 108.15. The bridge also exports the oriented tetrahedral boundary for PicoGK:
 90,986 triangles, one connected vertex component, zero boundary/nonmanifold
 edges, consistent winding and no zero-area or duplicate triangles after STL
-float32 serialization. The surface is the **linear volume-mesh boundary**, not
+float32 serialisation. The surface is the **linear volume-mesh boundary**, not
 a new fine tessellation or a 0.040-unit bound against the native CAD.
 
 No installed PhysicsNeMo code was patched. The previous rejected CUDA area
@@ -78,9 +78,9 @@ An independent repeat of the same bounded job produced a **byte-identical
 saved MSH file** and the same 145 rejected elements. This establishes repeatability
 on this runtime, not cross-platform reproducibility or physical accuracy.
 
-The first attempt's final JSON serialization failed on a NumPy integer from
+The first attempt's final JSON serialisation failed on a NumPy integer from
 the topology helper. Its source and partial receipt are retained privately,
-not counted as accepted evidence. Normalizing the helper's input coordinates
+not counted as accepted evidence. Normalising the helper's input coordinates
 to Python scalars fixed that reporting boundary; the full second execution
 produced the accepted arithmetic receipt. No old published producer or
 evidence file was overwritten.
@@ -184,4 +184,4 @@ functional-interface and native-CAD deviation checks before any local adoption.
 Global voxel substitution is not justified by these results. Continuous valve
 motion, thermal/structural convergence, material cards, print-process
 qualification and physical interface uncertainty remain open. No 0.040 mm
-certificate, 700 hp result or manufacturing authorization is issued.
+certificate, 700 hp result or manufacturing authorisation is issued.

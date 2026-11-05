@@ -15,12 +15,12 @@ The newly expressed target is **700hp**. The repository keeps its historical ref
 | Subject | Deliverable and immediate use |
 |---|---|
 | CAD, drafting, scan, LLMs and checkers | [Review of ten publications](../research/M64_CAD_LLM_REVIEW_20260912.md): editable local reconstruction, preservation of interfaces, dimension checks and cost of agents |
-| CFD, thermal, operation and twins | [Review of ten publications](../research/M64_CFD_TWINS_REVIEW_20260912.md): moving cases, CHT, uncertainties, learned operators and limits of generalization |
+| CFD, thermal, operation and twins | [Review of ten publications](../research/M64_CFD_TWINS_REVIEW_20260912.md): moving cases, CHT, uncertainties, learned operators and limits of generalisation |
 | LPBF process, oil and durability | [Review of nine publications](../research/M64_LPBF_OIL_REVIEW_20260912.md): local melt pool, global distortion, galleries, cleanliness and deposits |
-| Materials and heat transfer | [Materials complement](../research/M64_MATERIAL_REVIEW_20260912.md): three articles analyzed, one 2026 lead not accessible, datasheets and tests to obtain |
+| Materials and heat transfer | [Materials complement](../research/M64_MATERIAL_REVIEW_20260912.md): three articles analysed, one 2026 lead not accessible, datasheets and tests to obtain |
 | Delegated work | [24 JSON missions](../research/m64-research-missions-20260912.json), executed in batches of at most four; [18 citation checks passed, six reports refused](../research/M64_RESEARCH_VAST_RUN_20260912.md) |
 
-This is a **targeted review**, mainly 2023–2026, closed on September 12, 2026, complemented by the useful foundations and datasheets. It is not an exhaustive reading of all the world's articles. Each appendix distinguishes full text, sections, abstract, catalog record and preprint; published gains are not gains measured on the M64. The earlier publications already covered in the [Neural Concept review](M64_NEURAL_CONCEPT_20260912.md) are reused, not presented as a new discovery.
+This is a **targeted review**, mainly 2023–2026, closed on September 12, 2026, complemented by the useful foundations and datasheets. It is not an exhaustive reading of all the world's articles. Each appendix distinguishes full text, sections, abstract, catalogue record and preprint; published gains are not gains measured on the M64. The earlier publications already covered in the [Neural Concept review](M64_NEURAL_CONCEPT_20260912.md) are reused, not presented as a new discovery.
 
 ## What actually changes in the strategy
 
@@ -38,7 +38,7 @@ The Porsche precedent does not demonstrate a mathematical impossibility of an ai
 | Proposed variant | Intervention | Trade-off to compute |
 |---|---|---|
 | A — air | Reference fins and shrouds; controlled air distribution | Real fan flow, recirculation, bridge temperature, absorbed power |
-| B — air + accessible oil | Pocket or jet aimed at the hot zones, cleaning access and drainable return | Flow available without penalizing lubrication, heat exchange, oil retention, sealing |
+| B — air + accessible oil | Pocket or jet aimed at the hot zones, cleaning access and drainable return | Flow available without penalising lubrication, heat exchange, oil retention, sealing |
 | C — air + LPBF galleries | A few short parallel branches, accessible manifolds, sections manufacturable depending on orientation | Residual wall, flow imbalance, roughness, pressure, depowdering and hot deposits |
 
 Oil carries heat to a heat exchanger; it does not make it disappear. The three variants will be compared with **the same auxiliary power budget and the fan/pump curves actually available**, then under identical boundary conditions to isolate the effect of geometry. The external surfaces and interfaces remain locked; a change is admitted only with a quantified benefit and evidence of compatibility. No substitute oval contour.
@@ -105,7 +105,7 @@ Omniverse will receive geometries, units, motion, temperatures and stresses **co
 
 The [q10/q20 batch of September 12](M64_QUADRATURE_EXECUTION_20260912.md) ran two coupons to 40 µs. The energy removed by the limiter still represents **9.8133% / 8.8675%** of the absorbed laser energy; both maximum temperatures are censored at 3,300 K. This pair therefore does not prove physical convergence. It is distinct from the September 8 coupon at 109.55 µs. Correct/calibrate source, properties and physical conditions; raising the cap alone is not a demonstrated correction.
 
-The hybrid gas volume and its bridge to a tetrahedral optimizer remain refused. The CAD/mesh priority is the boundary zone and its blends, not another repeat of HXT or a displacement of points on an incompatible submesh. The solid, external air and oil domains cannot be inferred from this intake gas alone.
+The hybrid gas volume and its bridge to a tetrahedral optimiser remain refused. The CAD/mesh priority is the boundary zone and its blends, not another repeat of HXT or a displacement of points on an incompatible submesh. The solid, external air and oil domains cannot be inferred from this intake gas alone.
 
 The [existing jobs 2–3–4](M64_JOBS_234_20260912.md) remain the preparation basis. Their package can be generated locally but does not admit the full jobs for execution. Older notes diverge between MOOSE/MALAMUTE and Adamantine: a **single common distortion control case** will decide the path retained after verifying functions and cost, without integrating two new full chains simultaneously.
 
@@ -116,7 +116,7 @@ displayed credit decrease of 0.224 USD (final invoice not confirmed).
 The [results and limits of the batch](../research/M64_RESEARCH_VAST_RUN_20260912.md)
 constitute neither a physical validation nor a measurement of OpenAI savings.
 
-The reference dossier is **GitHub**: `docs/research/`. The agents' raw reports remain private until citations, rights, sensitive information and contradictions are checked. No GitHub or OpenBao token is given to the Vast agents; publication happens from the authorized workstation. The [manifest](../research/m64-research-missions-20260912.json) is consumed by an [implemented and tested dispatcher](../../twins/m64-cylinder-head/source/run_research_readers.py). It executes independent reading missions on a supplied corpus, not autonomous browsers roaming the whole Web.
+The reference dossier is **GitHub**: `docs/research/`. The agents' raw reports remain private until citations, rights, sensitive information and contradictions are checked. No GitHub or OpenBao token is given to the Vast agents; publication happens from the authorised workstation. The [manifest](../research/m64-research-missions-20260912.json) is consumed by an [implemented and tested dispatcher](../../twins/m64-cylinder-head/source/run_research_readers.py). It executes independent reading missions on a supplied corpus, not autonomous browsers roaming the whole Web.
 
 ```mermaid
 flowchart LR
@@ -133,7 +133,7 @@ The initial credit reread through the OpenBao wrapper on September 12 is **38.27
 
 The Flash Next image by digest `6b3b1790dd3140c27a5b5f85181dccef06c8d96c02f3003bb3c9b267b8758e34` was reread in GHCR: `linux/amd64` variant present. Its documented profile requires two 96 GB Blackwell cards, at least 128 GB of RAM and 300 GB of disk, for about 189 GB of weights. This establishes neither its loading cost on a current offer nor the economic gain of 24 readers. A smaller public model can be compared for document extraction, without being presented as Flash Next nor as its validated equivalent.
 
-**Research profile retained:** public Qwen3-Coder-30B-A3B-Instruct-FP8, on an L40S, with the vLLM image and the weights revision pinned. It avoids transferring an HF secret. The [bounded profile](../../deploy/vast/research/README.md) exposes `research-offers`, `launch-research` and `reconcile-research`; it does not modify the older profiles. The collector assembled 42 private sources, nine of them catalog records without technical text: the access level and the SHAs are kept. Neither the success of the offline tests nor the allocation of a machine establishes that the model answers; see the log for the state actually reached.
+**Research profile retained:** public Qwen3-Coder-30B-A3B-Instruct-FP8, on an L40S, with the vLLM image and the weights revision pinned. It avoids transferring an HF secret. The [bounded profile](../../deploy/vast/research/README.md) exposes `research-offers`, `launch-research` and `reconcile-research`; it does not modify the older profiles. The collector assembled 42 private sources, nine of them catalogue records without technical text: the access level and the SHAs are kept. Neither the success of the offline tests nor the allocation of a machine establishes that the model answers; see the log for the state actually reached.
 
 Flash Next is not presented as used: the wrapper does not yet expose its dedicated route and its launcher requires a token even with a cache. The [verified local HF access](../../deploy/openbao/HUGGINGFACE.md) does not establish a safe transfer to this remote workload. The old launch with a public API is not used.
 
@@ -146,7 +146,7 @@ Before any creation: narrow launch recipe, pinned image and weights revision, SS
 3. **After admission:** flow bench, motored cycle then combustion/CHT, contacts/strength and global LPBF build. The time is estimated after a pilot on the real case; no full computation duration is guaranteed before these measurements.
 4. **Industrial closure:** editable dossier and drawings, printing/treatment/machining routing, qualified material/process, inspected parts and correlated physical tests with professional review. Computing resources alone do not replace these elements.
 
-With the scan alone, the visible regions can be reconstructed and the unknowns bracketed for the studies. The invisible interfaces, the real holding, the internal cleanliness and the qualification of the batch cannot be certified by multiplying photos or agents. The current status remains **research and test preparation, engine manufacturing not authorized**.
+With the scan alone, the visible regions can be reconstructed and the unknowns bracketed for the studies. The invisible interfaces, the real holding, the internal cleanliness and the qualification of the batch cannot be certified by multiplying photos or agents. The current status remains **research and test preparation, engine manufacturing not authorised**.
 
 ## Manufacturer and historical sources
 

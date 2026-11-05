@@ -2,7 +2,7 @@
 
 **Hypothetical numerical verification only. Whole-head LPBF remains open.**
 No physical alloy or process is calibrated by this fixture. Manufacturing
-qualification and authorization are false in the [receipt](receipt.json).
+qualification and authorisation are false in the [receipt](receipt.json).
 
 The [accepted contract](frozen-contract.json) is an exact copy of the contract
 used by all three passing native MOOSE runs. Its SHA-256 is

@@ -4,14 +4,14 @@ This document decides **what the repository is allowed to publish**, and under
 what conditions. It overrides the technical interest of a part, the quality of a
 calculation and the urge to manufacture.
 
-One sentence sums it up: **a calculation never authorizes manufacturing.**
+One sentence sums it up: **a calculation never authorises manufacturing.**
 
 ## 1. Classes
 
 | Class | Definition | Publication allowed |
 |---|---|---|
 | `non_critical` | Trim, or a part whose failure creates no immediate hazard | After dimensional and fit validation |
-| `functional` | Loaded part whose failure can immobilize or damage the vehicle | After documented functional testing |
+| `functional` | Loaded part whose failure can immobilise or damage the vehicle | After documented functional testing |
 | `safety_critical` | Failure could cause loss of control, fire or injury | Only after formal engineering review |
 | `prohibited_pending_engineering` | Risk, or insufficient data | Never as a released part |
 
@@ -28,11 +28,11 @@ flowchart TD
     D -- no --> Q{"What happens<br/>when it breaks?"}
     Q -- "no immediate hazard" --> NC["non_critical"]
     NC --> NCa["Publish after dimensional<br/>and fit validation"]:::open
-    Q -- "can immobilize or<br/>damage the vehicle" --> F["functional"]
+    Q -- "can immobilise or<br/>damage the vehicle" --> F["functional"]
     F --> Fa["Publish after documented<br/>functional testing"]:::open
     Q -- "loss of control,<br/>fire or injury" --> SC["safety_critical"]
     SC --> SCa["Publish only after formal<br/>engineering review"]:::open
-    S["A calculation or a screening"] --> SX["Never authorizes manufacturing"]:::stop
+    S["A calculation or a screening"] --> SX["Never authorises manufacturing"]:::stop
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
     classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
     classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
@@ -66,11 +66,11 @@ So the question to ask is not "which group does the part belong to", but
 
 A part that fits its location can still fail through fatigue, creep,
 temperature, vibration, corrosion, incorrect tightening or a manufacturing
-defect. Catalog statuses must never be inferred from a photograph alone.
+defect. Catalogue statuses must never be inferred from a photograph alone.
 
 Likewise, **a digital screening is not evidence**. The repository produces
 geometric, thermal and route screenings; they serve to rule out, not to
-authorize. A report whose gates were all green would still release no part:
+authorise. A report whose gates were all green would still release no part:
 only the signed engineering review does that, at the end of the
 [additive manufacturing pipeline](AM_VALIDATION_PIPELINE.md), whose eleven
 stages must all be `passed`.
@@ -159,7 +159,7 @@ flowchart TD
 
 - publish a `prohibited_pending_engineering` part as released, however good its
   dossier;
-- present a screening as an authorization;
+- present a screening as an authorisation;
 - infer an original material from a reseller's claim;
 - replace a missing measurement with a convenient assumption;
 - manufacture, or have manufactured, a load-bearing structural part or a

@@ -33,7 +33,7 @@ inside the existing rootless, network-isolated Foundation 13 runtime. A fresh
 analytic cube then passes four-rank decomposition, full parallel quality,
 reconstruction and full serial quality. Independent readback checks all 756
 faces, 343 points and 216 cells, boundary planes and closed oriented topology.
-Its exact serialized volume differs from the analytic unit volume by
+Its exact serialised volume differs from the analytic unit volume by
 `5.09e-17`. This validates that control, not the real rotor mesh.
 
 Fresh real-case preparation reuses the saved castellation and decomposes it

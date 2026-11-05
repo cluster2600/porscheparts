@@ -30,8 +30,8 @@ mask is not automatically a single continuous trimmed CAD face.
 
 Original vertex IDs divisible by five are held out; all other IDs train the
 fit. Each vertex receives one third of its incident acquired triangle areas.
-Only training-point coordinates enter the weighted principal frame, centering,
-chart normalization and least-squares equations. However, the inherited masks
+Only training-point coordinates enter the weighted principal frame, centring,
+chart normalisation and least-squares equations. However, the inherited masks
 and area weights use full-source geometry. This remains a **transductive,
 within-scan evaluation**, not independent physical metrology or unbiased sensor
 validation. The verifier's training-only checks are conditional on those fixed
@@ -101,7 +101,7 @@ smooth surfaces; it rejects these two representations on these fixed masks.
 The verifier imports no fitting code. It requires the separately pinned original
 engineering manifest, checks all original face/vertex memberships, independently
 reconstructs mask connectivity, and checks the orthonormal training frame,
-normalization, weighted normal equations, held-out scores, every full-face bound
+normalisation, weighted normal equations, held-out scores, every full-face bound
 and acceptance flags. All six verification groups pass across eight regions and
 sixteen fits. Five reason-specific controls refuse forged scores, acceptance
 flags, per-face certificates, changed coefficients and lost source membership.

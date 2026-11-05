@@ -1,4 +1,4 @@
-# M64 — OpenFOAM defects localized, without modifying the outline
+# M64 — OpenFOAM defects localised, without modifying the outline
 
 **The native export of the defects and their attribution to the source cells are
 complete. The five quality families remain rejected. This batch corrects the
@@ -79,8 +79,8 @@ of the 785,883 cells by bijection, and the owner/neighbour orientations.
 The 99,470 external faces and their roles agree; the 1,536
 tetrahedron/pyramid interfaces are internal. The check takes 28.895 s.
 
-The maximum deviation from a direct multiplication without serialization is
-5.003 × 10⁻¹³ in the scaled numerical frame. This number characterizes
+The maximum deviation from a direct multiplication without serialisation is
+5.003 × 10⁻¹³ in the scaled numerical frame. This number characterises
 the write chain, **not the accuracy of the scan**. The OpenFOAM `cellZones`,
 the UV parameters/node classes, the CAD identity and the global absence of
 overlap are not certified by this reader.
@@ -90,11 +90,11 @@ overlap are not certified by this reader.
 The independent attribution takes 8.449 s. It rereads all native IDs,
 recounts the internal faces and cross-checks the 1,536 interfaces. The private
 outputs provide all markers and the real boundary, without
-subsampling the defects. The visualization uses two orthographic
+subsampling the defects. The visualisation uses two orthographic
 projections with identical scales across rows; it shows **the air
 domain**, not the metal cylinder head. The face/cell markers are
 the means of the unique vertices, not the weighted native centroids.
-The axes remain in scan units, not certified. Neither thermal colors
+The axes remain in scan units, not certified. Neither thermal colours
 nor engine performance are invented. The meshes, coordinates and
 geometric derivatives remain private in accordance with the repository rules.
 
@@ -104,7 +104,7 @@ the two cells adjacent to the 190 hexahedron/pyramid transitions.
 The next computation must measure their projected face-center distances,
 their volumes and the layer geometry before choosing a redistribution.
 For the rank-deficient tets, a local agglomeration remains an option
-to be tried, with a check of the neighbors and of the
+to be tried, with a check of the neighbours and of the
 [native concavity predicate](M64_AGGLOMERATION_LOCALE_20260908.md).
 No new selection or corrective transformation is executed here.
 

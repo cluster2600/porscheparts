@@ -20,7 +20,7 @@ flowchart TD
   classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
 ```
 
-*Diagram: how this page is organized, restated from its sections. It adds no value to the tables below, and nothing in it is a measurement of a part.*
+*Diagram: how this page is organised, restated from its sections. It adds no value to the tables below, and nothing in it is a measurement of a part.*
 
 ## Access and provenance
 
@@ -38,7 +38,7 @@ flowchart TD
 
 The PDF file consulted locally is not added to the repository. The Porsche
 Fanatics project keeps its extractions to allow search and traceability, but
-they do not replace the authorized copy of the manual. The public pages also
+they do not replace the authorised copy of the manual. The public pages also
 state that the procedures, warnings and exploded views must be read in the
 manual.
 
@@ -51,7 +51,7 @@ manual.
 | Carrera 4 transmission | group 3, p. 354 onward | G64 identification and procedure specific to all-wheel drive |
 | Clutch actuation, pedals and controls | group 30, p. 261–263 ("Clutch, Controls") and p. 268–276 ("Clutch, Operation"); Tiptronic selector lever p. 444–447 | service settings, pedal and switch travel, fastener sizes; OCR not yet reviewed, and no lever or pedal geometry |
 | Chassis and steering | groups 4–5 | procedures and torques; no manufacturing geometry on its own |
-| Brakes | group 46, p. 725–728 | variant data and service limits; never an authorization to manufacture |
+| Brakes | group 46, p. 725–728 | variant data and service limits; never an authorisation to manufacture |
 | Body and interior | groups 51–68 | identification, removal and installation; generally no dimensioned drawings |
 | Heating and air conditioning | group 87 | procedures and identification of subassemblies |
 | Electrical | groups 90–97 | identification and procedures, without extrapolating connector geometry |
@@ -166,7 +166,7 @@ PDF page 121:
 - stated tool: Porsche 9574; shims 0.5 and 0.7 mm, the latter being
   identified by a 2 mm hole.
 
-These graduations are specific to the instrument and are not millimeters.
+These graduations are specific to the instrument and are not millimetres.
 
 ### Manual transmission and associated torques
 
@@ -208,7 +208,7 @@ testing and documented regulatory validation.
    gear and console elements.
 3. Check a future scan or an acquired part against published values, without
    declaring the interface "fitted" before a direct measurement.
-4. Prioritize non-critical interior parts, notably the 964/993 console tab
+4. Prioritise non-critical interior parts, notably the 964/993 console tab
    listed by `SRC-PRINTABLES-964-993-CONSOLE-SWITCH-TAB`.
 
 Family by family, the official sources that cover each system of the assembly

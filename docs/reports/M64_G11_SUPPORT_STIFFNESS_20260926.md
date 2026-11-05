@@ -45,7 +45,7 @@ The two controls also reproduce the historical G7 STEP solids: symmetric B-Rep
 differences are zero, with unchanged bounds; [independent comparison](../../twins/m64-cylinder-head/evidence/g11-support-stiffness-20260926/baseline-brep-comparison.json).
 
 These are native CAD views of the baseline and the most reinforced outer candidate,
-**not a selected or released design**. PNGs are rasterized from the native SVG
+**not a selected or released design**. PNGs are rasterised from the native SVG
 exports, not generated illustrations. The section crosses the intake journal;
 other unsectioned features remain behind the cutting plane.
 
@@ -98,7 +98,7 @@ mobile-to-mobile clearance audit of the whole valvetrain.
 
 The numerical campaign preserves G9's E=70,000 MPa, ν=0.33, fixed-foot restraint
 and frozen forces. These are study hypotheses, not selected hot-alloy properties.
-The reactions come from G7's idealized support model, not a measured or
+The reactions come from G7's idealised support model, not a measured or
 phase-correlated 700 hp turbo cycle. The +x and -z directions are separate load
 cases; they do not qualify the complete operating load envelope.
 The mesher checks each declared journal's actual axial interval and area instead
@@ -108,7 +108,7 @@ of reusing the old hardcoded 10 mm central width.
   and −z loads. Rank worst journal motion, then material volume.
 - Refine the two best designs per component at 1.5 and 1.0 mm; retain failures.
 - Require ≤0.040 mm for every journal/case, ≤1% journal-vector change and ≤5%
-  stress-p95 change between the finest two meshes. This stabilization test is
+  stress-p95 change between the finest two meshes. This stabilisation test is
   not a quantified discretization-error bound; maximum stress remains unqualified.
 - Require force/moment balance ≤1e-4, FP64 CUDA equation residual ≤1e-8 and
   CalculiX/CUDA nodal agreement ≤1e-4 of maximum reference motion. They share
@@ -144,7 +144,7 @@ python twins/m64-cylinder-head/source/fourvalve/g11_campaign.py \
 ```
 
 The GPU shell bootstraps the pinned G9 numerical environment and preserved
-CalculiX 2.21 runtime. A CUDA FP64 witness, native Gmsh initialization and focused
+CalculiX 2.21 runtime. A CUDA FP64 witness, native Gmsh initialisation and focused
 tests precede real solves. The computation deadline must precede the separately
 armed billing guard, leaving time to collect and verify the private result archive.
 The total user-authorized budget is USD 15; no automatic recharge is requested.
@@ -186,10 +186,10 @@ central wall to the end traverses. Neither has been generated or solved by G11.
 Each must preserve the journal bands and axes and recheck the moving envelopes,
 oil paths, fastener access, assembly sequence and real load-bearing interfaces.
 The subsequent [local G12 CAD pilot](M64_G12_LOCAL_BUTTRESSES_20260926.md) now
-retains two localized buttresses after rejecting two full-width feet. It is a
+retains two localised buttresses after rejecting two full-width feet. It is a
 separate geometry-only iteration, not a recovered G11 result or a stiffness pass.
 The full shaft/contact/preload model must then test redistribution of G7's
-idealized reactions; artificial bonded contact across a nominal clearance is
+idealised reactions; artificial bonded contact across a nominal clearance is
 not a valid way to pass the displacement gate.
 
 ```mermaid

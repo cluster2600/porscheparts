@@ -76,7 +76,7 @@ refined patch. That does not compensate for the edge defect. Sewing and
 BRepCheck can succeed while this independent geometric check
 fails; no tolerance is relaxed to declare the candidate accepted.
 
-The last authorized attempt increases the resolution only
+The last authorised attempt increases the resolution only
 (120 points/curve, six iterations, degree 14, 96 segments). It is stopped
 by the **300-second** cap, `exit 124`, during `building_filling`.
 No new candidate is produced. The processes are verified as terminated.
@@ -173,4 +173,4 @@ part remain to be addressed. Thermal/CHT, strength, fatigue, oil
 circulation, M64 interfaces and full LPBF are not validated. The geometry
 remains a scan-derived 935 research reference; scan units do not
 constitute a certified scale. No manufacturing or start-up
-is authorized, and no private STEP/STL is added to the repository.
+is authorised, and no private STEP/STL is added to the repository.

@@ -20,5 +20,5 @@ The minimum USD validator requires its own `openusd_python` preflight entry;
 this deliberately narrow conversion manifest does not contain that component.
 Any later asset conversion and minimum-validation result need separate evidence.
 Full validation services, physical materials, solver fields and rendering are
-outside this receipt. Historical fidelity and manufacturing authorization remain
+outside this receipt. Historical fidelity and manufacturing authorisation remain
 false. No private host/path, command, binary or third-party geometry is published.

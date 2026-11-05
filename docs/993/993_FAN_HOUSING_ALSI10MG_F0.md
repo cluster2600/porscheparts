@@ -6,7 +6,7 @@ to the whole engine: its fit and its sealing are functional.
 
 FVD publishes the reference `993 106 667 03`, a product envelope of
 `300 × 300 × 170 mm` and `1.9 kg`. Centre Porsche Roissy publishes `1.86 kg` and
-also links `993 106 667 01`. A reseller describes the part as aluminum, without
+also links `993 106 667 01`. A reseller describes the part as aluminium, without
 grade, process or certificate. These elements are enough to bound an F0, not to
 rebuild a fittable part.
 

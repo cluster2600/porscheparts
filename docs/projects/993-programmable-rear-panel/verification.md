@@ -27,7 +27,7 @@ content changed, and nothing here validates the coupon.
 
 ## Full PicoGK concept model — October 10, 2026
 
-Base `5b7cb552`, isolated branch `codex/993-rear-panel-picogk`. The authorization
+Base `5b7cb552`, isolated branch `codex/993-rear-panel-picogk`. The authorisation
 covers a **visual concept model with provisional dimensions**. Adds the C#/JSON
 generator, four objects in a GLB, an assembled/exploded view and a
 digest/check report. No change to the E0 electronics or the website.
@@ -78,7 +78,7 @@ Documentation, unsent RFQ and backlog updated. No purchase and no manufacturing.
 | Same command on macOS without KiCad | 17 tests run, **OK, 1 skipped** (the schematic); does not replace the Linux check |
 | KiCad PDF export | Three A3 pages visually reviewed, fields legible, author metadata absent; no PCB drawing |
 | `make docs-links-check reports-index-check` | Passed, 0 broken links in 641 Markdown files; reports index up to date |
-| `git diff --cached --check` | Passed after removing a trailing space in the imported license text |
+| `git diff --cached --check` | Passed after removing a trailing space in the imported licence text |
 | `make check`, native Linux | Suite of **3,250 tests, OK, 159 skipped**, then F32/F34/F37 checks passed. Stopped at `917-manufacturing-f37-lpbf-audit-check`, `/bin/sh: 1: docker: not found`, Makefile line 1014, overall exit code **2**; later targets not run |
 
 Environment: local Debian trixie arm64 container, image
@@ -97,7 +97,7 @@ files to the Git index: five links reported missing, then zero after adding them
 No check disabled to obtain these results.
 
 The schematic is **not validated for manufacturing**: footprints not assigned,
-no PCB/DRC, no analog simulation and no measurement of current, temperature,
+no PCB/DRC, no analogue simulation and no measurement of current, temperature,
 shutdown or parasitic power. Independent review, then routing and E0 tests
 remain open. The power calculation, the costs and the hung-MCU limits from
 September 28 remain unchanged assumptions. The global `make check` must still be
@@ -162,7 +162,7 @@ No purchase, quote request sent or commercial deployment.
 Environment: local image `nikolaik/python-nodejs:python3.11-nodejs20` (arm64),
 image ID `sha256:8f958bdc1b4a422bfafd97cab4f69836401f616ae985d4b57a53d254f5bcb038`,
 copy on a Linux file system, user 1000:1000, umask 022, local Git index
-initialized. NumPy/Pillow installed only in the disposable container;
+initialised. NumPy/Pillow installed only in the disposable container;
 network disconnected **before** the tests. No access to the host Docker engine
 exposed to the container. No project dependency, locked image or repository rule
 modified.

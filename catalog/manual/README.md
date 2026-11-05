@@ -20,7 +20,7 @@ when they are used.
 
 Each row carries the PDF page. The structured tables are derived facts, and the
 OCR occurrences carry `ocr_unreviewed`: they must be checked visually in the
-authorized copy before being used for CAD or manufacturing. The register is not
+authorised copy before being used for CAD or manufacturing. The register is not
 a copy of the PDF and contains no image and no full procedure text.
 
 Regenerate from the Porsche Fanatics project data:

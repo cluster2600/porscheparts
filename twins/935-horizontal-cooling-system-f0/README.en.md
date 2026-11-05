@@ -73,7 +73,7 @@ This is a check of the runtime on this witness, without validation of a
 fan or general guarantee of geometric convergence.
 
 The two prepared OBJ files were then loaded as `PicoGK.Mesh`, without
-voxelization. All triangle indices were read back in the kernel before
+voxelisation. All triangle indices were read back in the kernel before
 export; the new audit of the exported OBJ files keeps the boundary counts,
 with no new zero area, non-manifold edge or orientation inconsistency.
 PicoGK stores positions in float32: the maximum deviation of each scan is
@@ -118,7 +118,7 @@ The
 [picogk-rotor-visual-proxy](source/picogk-rotor-visual-proxy/Program.cs) program
 had produced an explicit visual topology with a disk, a hub
 and ten curved blades. PicoGK aligns it to the PCA envelope of the scan, without
-converting the source unit to millimeters or inferring an interface. The
+converting the source unit to millimetres or inferring an interface. The
 [proxy documentation](../../docs/research/935-horizontal-cooling/PICOGK_ROTOR_VISUAL_PROXY.en.md)
 records its audit and its limits. The count of ten blades was a
 visual hypothesis; it is not carried over by the generator based on the observed

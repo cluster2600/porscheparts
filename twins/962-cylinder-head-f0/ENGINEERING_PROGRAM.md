@@ -14,7 +14,7 @@ a physical engineering stage.
 | 2. Material and strength | Admit each head mesh, select a documented material/process state and calculate thermal and structural responses. | Convergence, equilibrium, operating loads, temperature-dependent properties and applicable allowables; physical correlation and engineering review for qualification. |
 | 3. LPBF | Simulate deposition, cooling, supports, heat treatment and support release for the chosen machine and build route. | Calibrated process inputs and coupon measurements, distortion/residual-stress comparison, inspection and machining allowances. |
 | 4. Omniverse | Assemble the geometry family and attach accepted fields with units, coordinate frames, time and provenance. | Assembly/conformance checks and a traceable connection to the accepted engineering results. |
-| 5. PhysicsNeMo | Train and evaluate a surrogate from accepted reference solutions, then connect checked inference to the twin. | Split complete geometry/build/load cases before normalization; evaluate independent cases, errors and operating limits. |
+| 5. PhysicsNeMo | Train and evaluate a surrogate from accepted reference solutions, then connect checked inference to the twin. | Split complete geometry/build/load cases before normalisation; evaluate independent cases, errors and operating limits. |
 
 Execution follows this order. The existing synthetic coupons, USD checks and
 runtime preparations remain evidence for their stated software scope. They do
@@ -47,7 +47,7 @@ labels or trained surrogate are accepted.
 | Strength and material | Resolve the 24 remaining head-mesh quality failures; establish operating loads and a documented material/process/heat-treatment state. Review hot-property references separately from the existing hypothetical cards. | Admitted meshes, equilibrium and convergence; temperature-dependent constitutive data and stated allowable stresses. Fatigue, creep and physical correlation need their own evidence. |
 | LPBF | Inspect the captured residual/correction vectors after the additional-update trial retained all 12 aggregate failures. Keep every original limit and verify whole-trajectory deposition, cooling and release before a head calculation. | Numerical verification plus machine/material-specific calibration against measured temperature, distortion and residual stress. A complete diagnostic alone does not qualify LPBF. |
 | Omniverse | After accepted strength and LPBF results exist, assemble the family in OpenUSD and attach those fields. Track native mesh/field identities, units, frames, associations and time. | Preflight, required service readiness, asset/conformance checks, native-field mapping checks and measurement correlation. Preserve the six current substantive USD profile failures until their repairs are verified. |
-| PhysicsNeMo | Build a dataset from accepted solver cases; split whole geometries, builds and load cases before normalization. Compare suitable model families and simple baselines, then train, evaluate and connect checked inference to the twin. | Independent-case field and hotspot errors, conservation checks, uncertainty and out-of-domain limits, reproducible training and end-to-end inference timings. Recheck proposed designs with the reference solvers. |
+| PhysicsNeMo | Build a dataset from accepted solver cases; split whole geometries, builds and load cases before normalisation. Compare suitable model families and simple baselines, then train, evaluate and connect checked inference to the twin. | Independent-case field and hotspot errors, conservation checks, uncertainty and out-of-domain limits, reproducible training and end-to-end inference timings. Recheck proposed designs with the reference solvers. |
 
 Strength and material data are coupled: early calculations may use declared
 assumptions, while qualification requires the matching measured material state.
@@ -87,7 +87,7 @@ data and its own BEGIN80 references. It records 66,590 scalar comparisons with
 zero exceedances, but 12 of 36 aggregate checks still fail, including three of
 the 12 native constrained/all-row criteria. Independent saved arithmetic verifies
 all 1,275 force-component differences and 36 resultants. Every original limit
-remains unchanged. The full per-QP table is not serialized; scalar comparison
+remains unchanged. The full per-QP table is not serialised; scalar comparison
 counts and maxima remain execution-attributed evidence. The three native
 failures reduce to individual constrained components, eliminating downstream
 resultant summation as their explanation. The later
@@ -241,7 +241,7 @@ coupon solve remain pending, with the twelve equilibrium failures unchanged.
 
 The [instrumented observer004 native capture](derived/engineering/cp1-END181-observer-native-capture-refusal/README.md)
 is refused despite native exit 0: caller exits 1 and outer owner exits 2 after
-an unlocalized permission error in resource/group observation. Full stopped text,
+an unlocalised permission error in resource/group observation. Full stopped text,
 controls and separate saved refusal review remain inspectable. The map/vector
 bodies are excluded; no measurement completeness, retry or engineering acceptance
 follows. All twelve equilibrium failures and 24 poor head cells remain.
@@ -280,7 +280,7 @@ adds an HT1 hot-strength comparison and process-specific CuCrZr/CP1 data leads;
 it selects no production material.
 
 The [material-gap audit](derived/engineering/material-production-gap-audit/README.md)
-records a separate Nikon CP1 characterization state with bounded primary-source
+records a separate Nikon CP1 characterisation state with bounded primary-source
 and independent reviews. Matched hot-property laws, fatigue/TMF, creep and the
 head's load/interface histories remain open. Supplier recipes and synthetic
 solver coefficients remain distinct; no production material or process is selected.
@@ -304,7 +304,7 @@ completes native capture for all 183 steps and the separate lexical-storage chec
 The unchanged 3D assessor then refuses global force balance: 1.965162169881296e-6 N
 against 1e-7 N. No complete mechanical field dataset, release-energy or final-hold
 assessment is accepted. The separate [balance diagnostics](derived/engineering/cp1-cooling-release-balance-diagnostics/README.md)
-localize the failing reaction force and moments to END181, immediately after
+localise the failing reaction force and moments to END181, immediately after
 support release. Independent force assembly reproduces the imbalance while its
 individual scalar checks meet their limits. These synthetic software results do
 not qualify a head, material or LPBF process.
@@ -555,7 +555,7 @@ Its [exact MSH review download](derived/engineering/atomic-cavity-volume-raw-rev
 preserves the rejection and completed readback. All 34 archive members pass
 independent full-byte checks; the three uploaded assets match GitHub digests
 and sizes while preserving all 36 preceding assets.
-The [subsequent optimizer and diagnosis](derived/engineering/atomic-cavity-volume-followup/README.md)
+The [subsequent optimiser and diagnosis](derived/engineering/atomic-cavity-volume-followup/README.md)
 record the separate 1,200-second stop with no saved result, followed by complete
 poor-cell classification. With boundary coordinates and connectivity fixed,
 interior movement cannot alter 245,420 of the 283,853 poor tetrahedra. The next
@@ -593,7 +593,7 @@ whose four native fixtures pass independent saved-array checks. The original
 separated boundary runs. The separately compiled boundary-only successor uses
 2,212 edges and 510 contiguous groups. Its single native head trial reports
 1,122 remaining poor faces and rejects the proposal without exports. Mapped-cap
-coverage is a native observation; later global/patch topology, neighbor and
+coverage is a native observation; later global/patch topology, neighbour and
 envelope gates were not reached. No accepted volume or head field follows.
 The [later mixed-side and cap refinement](derived/engineering/atomic-cavity-plane-clip-cap-refinement/README.md)
 records a separate mixed-side census with zero poor survivors and a cap-only
@@ -634,10 +634,10 @@ The [separate Delaunay trial and saved-file first pass](derived/engineering/atom
 records 3,961,773 tetrahedra and 73,924 below SICN 0.1, including one
 nonpositive SICN value. Full first-pass boundary checks are saved; both deadline
 stops and the unfinished final reopen remain explicit. This volume is rejected.
-The [completed default optimizer and independent diagnosis](derived/engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-default-postexport/README.md)
+The [completed default optimiser and independent diagnosis](derived/engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-default-postexport/README.md)
 record 3,802,217 tetrahedra, 3,438 positive cells below SICN 0.1 and no
 nonpositive metrics. Independent saved-file arrays and metrics match the
-optimizer's after-proof. Of the poor cells, 1,435 use only retained boundary
+optimiser's after-proof. Of the poor cells, 1,435 use only retained boundary
 vertices and 2,003 involve an interior vertex. With connectivity and boundary
 coordinates fixed, interior movement alone cannot repair the first group.
 The unchanged quality gate still rejects this volume; no head field is accepted.
@@ -647,9 +647,9 @@ minimum SICN 0.4780600202533193 after exact saved-file readback. Both generated
 cube meshes and complete arrays are included. This toy software result supplies
 no head mesh acceptance or physical qualification.
 The [direct-SICN tiny attempt](derived/engineering/direct-sicn-cube-import-failure/README.md)
-stops during SciPy import before any optimizer call, Gmsh calibration or mesh
+stops during SciPy import before any optimiser call, Gmsh calibration or mesh
 export. Source/math and mocked lifecycle guards pass separately; the preserved
-import failure establishes no optimizer result or head-repair feasibility.
+import failure establishes no optimiser result or head-repair feasibility.
 The [completed tiny direct-SICN witness](derived/engineering/direct-sicn-cube-software-witness/README.md)
 uses a separately reviewed existing runtime and passes the unchanged SICN 0.1
 rule on all 12 cube tetrahedra, improving the native minimum from 0.0148139 to
@@ -676,7 +676,7 @@ constraints; no repair, exterior-face membership or head acceptance is establish
 The [complete seed-star census](derived/engineering/atomic-cavity-plane-clip-cap-assembly-netgen-full-stars/README.md)
 identifies 156 candidate interior nodes and 5,355 incident tetrahedra: 210 poor
 and 5,145 initially good. It retains 468 possible coordinate variables and the
-complete geometric census data. No joint feasibility, optimization or new
+complete geometric census data. No joint feasibility, optimisation or new
 candidate mesh is established; the saved head remains rejected.
 The [bounded coordinate trial](derived/engineering/direct-sicn-head-proposer-rejected/README.md)
 records solver-reported success but fails the unchanged all-cell 0.1 gate:
@@ -698,7 +698,7 @@ retains 1,098 selected node positions and all 29,473 analytic qualities.
 Its 315 cells below 0.1 and minimum 0.030665 fail the unchanged quality gate.
 The full numeric diagnostic is retained losslessly alongside the failed report.
 No accepted coordinate proposal or native head application was produced.
-The [normalized initial-barrier trial](derived/engineering/direct-sicn-sparse-head-proposer-normalized-rejection/README.md)
+The [normalised initial-barrier trial](derived/engineering/direct-sicn-sparse-head-proposer-normalized-rejection/README.md)
 retains a second complete returned diagnostic: minimum 0.067817, with 244 of
 29,473 cells below the unchanged 0.1 gate. The epigraph inequalities also fail.
 Every returned quality is independently reconstructed from the saved rows.
@@ -749,7 +749,7 @@ The [expanded interior-node census](derived/engineering/atomic-cavity-plane-clip
 contains 1,098 movable nodes and 29,473 coupled cells, including all 210 poor
 cells and 29,263 initially good cells. Its complete geometric JSON is retained
 losslessly through gzip; all 10,969 other context nodes remain fixed.
-This read-only expansion establishes no optimization or accepted head mesh.
+This read-only expansion establishes no optimisation or accepted head mesh.
 The [exact assembled-model download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 includes BIN, lossless PLY, all seven maps and the complete sealed evidence.
 All 151 members pass independent full-byte checks. GitHub verifies the three
@@ -791,7 +791,7 @@ an explicit research assumption can support a conditional calculation.
 | Stage | Required outcome | Current evidence and remaining work |
 | --- | --- | --- |
 | 1. English baseline | English review documents, captions, GitHub description and download guidance; traceable sources | Delivered at `9c35e27c`: English documents, sixteen actual-mesh views and four English review ZIPs. The original twelve draft-release assets, six USD-review assets, three analysis-review assets, three rejected-volume review assets and three rejected-sized-volume review assets match local sizes and GitHub SHA-256 digests. The [new numerical-candidate download](derived/engineering/analysis-quality-review-delivery/README.md) includes exact BIN/PLY geometry and scoped evidence; the [separate rejected-volume download](derived/engineering/rejected-volume-seed-review-delivery/README.md) adds the exact raw MSH and its rejection evidence. The [later sized-volume download](derived/engineering/rejected-sized-volume-review-delivery/README.md) adds the sized MSH and its independent rejection evidence; all 24 preceding asset identities remain unchanged. Verified baseline `8168ff8c` passes full CI run 38955794356 (4,168 main-suite tests, 229 skips, plus the remaining Make targets). Historical hash-bound evidence remains unchanged. |
-| 2. Material, cooling and strength | Process-specific material comparison; accepted thermal/structural models for the family; converged results and an explicit operating envelope | Seven manufacturer recipes and the [actual point/mass comparison](ENGINEERING_MATERIALS.md) are recorded. [HXT meshing and independent audit](MESHING_ENGINEERING.md) produced an exact-boundary tetrahedral volume, but its near-degenerate elements prevent engineering acceptance. [Separate analysis-surface trials](ANALYSIS_SURFACE_ENGINEERING.md) retain topology, distance and intersection rejections. [A new original-source quality candidate](ANALYSIS_QUALITY_ENGINEERING.md) removes all 744 facets failing the necessary face-quality bound; full-array, topology, global-intersection and scoped feature checks pass. Its [separate continuous-distance audit](derived/engineering/analysis-quality-distance/README.md) bounds deviation by 0.07192053 mm. These are surface checks. One [bounded HXT volume trial](derived/engineering/analysis-quality-volume/README.md) stopped at its 300 s deadline inside optimization, before any MSH export; final tetrahedral quality and interior DOFs are unknown. A [separate raw seed](derived/engineering/analysis-quality-volume-seed/README.md) saves 3,096,408 tetrahedra with exact boundary/readback and positive volume, but 1,478,281 elements fail SICN 0.1 and only three interior nodes exist. Independent saved-file reading confirms the rejection. A [separate 1.75 mm sized seed](derived/engineering/analysis-quality-volume-sized/README.md) increases referenced interior nodes to 77,307 and reduces the below-0.1 count to 284,806. Its 3,059,463 tetrahedra retain the exact boundary, volume and saved-array checks, but the unchanged quality gate still rejects it. Independent readback locates two nonpositive-SICN cells made exclusively from fixed boundary nodes, so interior-only relocation cannot repair them. A [saved-cube default optimizer](derived/engineering/saved-cube-default/README.md) changes internal connectivity and passes the later independent cube quality check (minimum SICN 0.1909054), while its original post-export API audit failure remains recorded. A [separate head post-export optimizer](derived/engineering/analysis-quality-volume-postexport/README.md) reaches its 300 s deadline before returning or exporting a mesh; its cache-refresh step is not reached. Volume quality and thermal resolution remain open. That earlier surface also exceeds the unchanged finest 0.0625 mm representation budget; a closer surface is required for the complete refinement study. [Native constitutive witnesses](derived/engineering/constitutive-witnesses/README.md) verify temperature-dependent software laws. No head stress, thermal field, fatigue life or material selection is accepted yet. |
+| 2. Material, cooling and strength | Process-specific material comparison; accepted thermal/structural models for the family; converged results and an explicit operating envelope | Seven manufacturer recipes and the [actual point/mass comparison](ENGINEERING_MATERIALS.md) are recorded. [HXT meshing and independent audit](MESHING_ENGINEERING.md) produced an exact-boundary tetrahedral volume, but its near-degenerate elements prevent engineering acceptance. [Separate analysis-surface trials](ANALYSIS_SURFACE_ENGINEERING.md) retain topology, distance and intersection rejections. [A new original-source quality candidate](ANALYSIS_QUALITY_ENGINEERING.md) removes all 744 facets failing the necessary face-quality bound; full-array, topology, global-intersection and scoped feature checks pass. Its [separate continuous-distance audit](derived/engineering/analysis-quality-distance/README.md) bounds deviation by 0.07192053 mm. These are surface checks. One [bounded HXT volume trial](derived/engineering/analysis-quality-volume/README.md) stopped at its 300 s deadline inside optimisation, before any MSH export; final tetrahedral quality and interior DOFs are unknown. A [separate raw seed](derived/engineering/analysis-quality-volume-seed/README.md) saves 3,096,408 tetrahedra with exact boundary/readback and positive volume, but 1,478,281 elements fail SICN 0.1 and only three interior nodes exist. Independent saved-file reading confirms the rejection. A [separate 1.75 mm sized seed](derived/engineering/analysis-quality-volume-sized/README.md) increases referenced interior nodes to 77,307 and reduces the below-0.1 count to 284,806. Its 3,059,463 tetrahedra retain the exact boundary, volume and saved-array checks, but the unchanged quality gate still rejects it. Independent readback locates two nonpositive-SICN cells made exclusively from fixed boundary nodes, so interior-only relocation cannot repair them. A [saved-cube default optimiser](derived/engineering/saved-cube-default/README.md) changes internal connectivity and passes the later independent cube quality check (minimum SICN 0.1909054), while its original post-export API audit failure remains recorded. A [separate head post-export optimiser](derived/engineering/analysis-quality-volume-postexport/README.md) reaches its 300 s deadline before returning or exporting a mesh; its cache-refresh step is not reached. Volume quality and thermal resolution remain open. That earlier surface also exceeds the unchanged finest 0.0625 mm representation budget; a closer surface is required for the complete refinement study. [Native constitutive witnesses](derived/engineering/constitutive-witnesses/README.md) verify temperature-dependent software laws. No head stress, thermal field, fatigue life or material selection is accepted yet. |
 | 3. LPBF simulation | Verified process solver configuration; representative calibration and independent checks; full declared deposition/cooling/release sequence; distortion and residual-stress assessment | MOOSE constitutive witnesses verify variable elasticity, expansion and perfect-J2 yield. A [thermal birth witness](derived/engineering/thermal-birth-witness/README.md) verifies moving heat, k(T), cp(T), activation/history and nonlinear enthalpy; three time levels give energy errors of 1.3048%, 0.6794% and 0.3481%. A [mechanical birth and support-release witness](derived/engineering/mechanical-birth-witness/README.md) passes 5,514 full-field comparisons; its [independent review](derived/engineering/mechanical-birth-review-001.json) also verifies original capture bytes, all nodal histories, quadrature fields and force balance. All three use hypothetical software cards. Whole-head deposition/cooling/release and process calibration remain open; corrected Adamantine/CalculiX coupon evidence stays separate. |
 | 4. Omniverse twin | OpenUSD family assembly with correctly mapped computed fields, units, frames, time, provenance and physical correlation where available | [Four exact solid USD exports](derived/engineering/usd-exact-family/README.md) preserve every source triangle, coordinate, winding and bound; all pass the official eight-check minimum reference in identity Z-up/mm frames. [Four review ZIPs are uploaded and verified](derived/engineering/usd-review-delivery/README.md) in the existing draft delivery. The vendor derivative losing 254 triangles stays rejected. [The full native CPU validation dependencies are now ready](derived/engineering/usd-full-validation-bore95/README.md). The original bore95 export retains its missing-normal findings. A [separate full normal-only derivative](USD_NORMALS_ENGINEERING.md) now passes all eight minimum checks and generic, Geometry and Physics CPU checks; the substantive formal profile still has six failed feature rows. There are no authored bodies, colliders or material bindings, so the Physics-category pass grants no physical validation. Fluids/assembly, remaining conformance repairs, computed fields and physical correlation remain open. |
 | 5. PhysicsNeMo | Accepted dataset, model comparison, training, independent evaluation, operating-domain limits and inference integrated into the twin | Current geometric STL/VDB files are not solved-field training labels. No accepted 962 reference dataset, trained surrogate or inference result exists. |
@@ -822,7 +822,7 @@ now checks the separate nine-node ASCII2.2 import, discrete P1 solution and
 complete Exodus geometry, sideset and nodal-field readback. The original
 binary-format refusal and incorrect-sign assessor failure remain preserved;
 the corrected saved-output assessment uses the unchanged native data. This
-normalized w field is in mm². Its 25% continuum flux deficit remains unresolved,
+normalised w field is in mm². Its 25% continuum flux deficit remains unresolved,
 so the discrete software pass does not establish head or mesh convergence.
 
 The [endpoint-collapse reference cases](derived/engineering/finest-endpoint-fixtures/README.md)
@@ -863,7 +863,7 @@ The [later atomic cavity repair](ATOMIC_CAVITY_ENGINEERING.md) exports a separat
 local candidate with 901,727 vertices, 1,803,870 triangles and zero remaining
 facets below 2/29. Full root and independent peer readback confirm every point,
 origin and oriented face, the fixed exterior, boundaries and all 933 affected
-neighbor comparisons. The native immutable-patch envelope remains 0.0625 mm.
+neighbour comparisons. The native immutable-patch envelope remains 0.0625 mm.
 Its [actual compilation and three synthetic fixtures](derived/engineering/atomic-cavity-fixtures/README.md)
 are retained separately. This local result supplies no global distance,
 intersection, feature, volume-mesh or head-physics admission.

@@ -20,7 +20,7 @@ candidate grades pull in opposite directions.
 
 | | 6063 T6 | 6061 T6 |
 |---|---|---|
-| bright anodizing | **reference grade**, low iron content, uniform surface | adequate, without the architectural quality |
+| bright anodising | **reference grade**, low iron content, uniform surface | adequate, without the architectural quality |
 | turning | soft and gummy, long stringy chips | noticeably more pleasant, short chips |
 | strength | sufficient — the part carries nothing | higher, of no use here |
 
@@ -45,7 +45,7 @@ seven for LPBF, but the two that matter are the same as before:
   ring is judged first on its front edge.
 
 Added to these are workholding on a 1.25 mm wall, i.e. 4.1% of the outside
-diameter, and anodizing growth of 5 to 15 µm, of the same order as the
+diameter, and anodising growth of 5 to 15 µm, of the same order as the
 clearance sought.
 
 ## The proposed way out for the fit dimension
@@ -53,7 +53,7 @@ clearance sought.
 On a turned part, the second and third pieces cost a fraction of the first. The
 quote therefore asks for **three bare, non-anodized rings, at Ø30.40, Ø30.50 and
 Ø30.60 mm**. They are tried, the right one is kept, and only that one is
-anodized, subtracting the coating thickness at that point.
+anodised, subtracting the coating thickness at that point.
 
 This does not replace the measurement of the housing, which remains to be done.
 It makes it possible to move forward without vehicle metrology, which is
@@ -64,4 +64,4 @@ different.
 The ring's original grade remains unknown. 6063 T6 is the repository's choice,
 based on the appearance criterion, not an identification of the commercial part.
 Nothing that comes out of this quote conforms to the original, and nothing is
-authorized for fitting.
+authorised for fitting.

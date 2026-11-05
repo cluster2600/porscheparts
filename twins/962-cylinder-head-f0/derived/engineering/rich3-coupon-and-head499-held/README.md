@@ -19,7 +19,7 @@ The [complete diagnostic](originals/rich3-END181-equilibrium-execution-001/diagn
 reports **66,590 scalar comparisons with zero exceedances**.
 Root and the saved-result reviewer independently recomputed both reports'
 1,275 saved component rows and all 36 force/moment aggregates. The complete
-scalar/QP table is not serialized and was not independently replayed. The
+scalar/QP table is not serialised and was not independently replayed. The
 reviewer authored the literal diagnostic rebind; that affiliation is retained in
 the [saved comparison review](originals/rich3-END181-equilibrium-result-peer-001/review.json).
 The [root disposition](originals/rich3-END181-equilibrium-root-result-review-001/review.json)
@@ -52,7 +52,7 @@ operational resource gate. The offline diagnostic has its own completed
 20-second/32 MiB scope: 17,361,031 bytes and approximately 0.756 seconds through
 its census. Late tool-return records and later reviews are separately identified;
 an exact companion preserves the original tool output after an earlier nested
-boolean serialization error. Scientific files are unchanged.
+boolean serialisation error. Scientific files are unchanged.
 
 Raw scientific CSV/Exodus/PETSc bodies, native console, host process tables and
 installed software bodies are excluded from this publication. Their selected
@@ -83,7 +83,7 @@ head acceptance.
 3. **Omniverse:** repair the six substantive USD profile failures and attach
    accepted fields with checked units, frames, associations and time.
 4. **PhysicsNeMo:** build accepted reference cases, split whole geometries,
-   builds and loads before normalization, then train, evaluate and connect
+   builds and loads before normalisation, then train, evaluate and connect
    checked inference to the twin.
 
 All new work stays in English. This checkpoint does not complete head strength,

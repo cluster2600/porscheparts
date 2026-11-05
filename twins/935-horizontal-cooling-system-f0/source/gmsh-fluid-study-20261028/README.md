@@ -32,7 +32,7 @@ topology, then creates one fluid volume with the rotor as an interior void.
 The surface triangles are reused rather than remeshed. This follows Gmsh's
 [discrete-surface and volume workflow](https://gmsh.info/doc/texinfo/gmsh.html).
 The trial uses Gmsh 4.15.2 Delaunay 3D, 2–20 mm nominal size limits under the
-conditional SI scale, and standard mesh optimization. The independent audit
+conditional SI scale, and standard mesh optimisation. The independent audit
 compares every surface triangle by coordinates and marker after meshing and
 checks every tetrahedron's orientation and mean-ratio quality.
 
@@ -77,14 +77,14 @@ still required before CFD or release claims.
 The [weak-cell locator](localize_weak.py) checks all 4,915,307 tetrahedra and
 finds that **all 1,169** cells with mean ratio below 0.01 touch a rotor-wall
 node; none touches the outer duct. Its top and side views show concentrations
-at the inner annulus and selected blade roots. This localizes the remaining
+at the inner annulus and selected blade roots. This localises the remaining
 shape problem but does not prove whether the surface triangles or the 3D fill
 caused it. The complete private cell indices, ratios, centres and figure are
 retained for the next local mesh experiment.
 
 The [exact face-incidence audit](audit_wall_faces.py) then found that 1,109 of
 the 1,169 weak cells share a complete rotor boundary triangle. Those incident
-rotor triangles have median normalized quality 0.1876, versus 0.8121 for all
+rotor triangles have median normalised quality 0.1876, versus 0.8121 for all
 rotor triangles; 404 of the 1,748 incident faces are below 0.1. Under the
 conditional scale, 961 weak-cell centres have radius 70–100 mm. This makes
 the inner annulus and blade-root wall facets a specific target for a
@@ -116,7 +116,7 @@ that local surface repair cannot help this mesher.
 
 The [Gmsh-targeted proposal](propose_targeted_flips.py) instead starts with
 the 1,748 source faces incident to weak Gmsh cells, including 404 with
-normalized triangle quality below 0.1. It found 106 geometrically eligible
+normalised triangle quality below 0.1. It found 106 geometrically eligible
 edge-flip pairs and selected 32 disjoint pairs without moving vertices. This
 is a candidate selection, not a validated fluid or manufacturing geometry.
 The private candidate has SHA-256
@@ -229,7 +229,7 @@ requires the corresponding successful envelope receipt, and writes a fresh
 private PLC. The three reproduced PLC hashes matched the trial inputs. Then
 use `generate_fluid.py` and `audit_fluid.py` as shown above, pointing at the
 new `boundary.npz`; both programs admit the three new PLC hashes and refuse
-unrecognized inputs. Full volume generation is resource intensive.
+unrecognised inputs. Full volume generation is resource intensive.
 
 The best 0.001 case was imported into native OpenFOAM Foundation 13 on Kali1.
 `gmshToFoam` and `checkMesh` exited zero, but the full check reported **seven
@@ -252,7 +252,7 @@ fitment, or manufacturing claim follows from these results.
 
 The [private full trial archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-short-edge-sweep-20261028.tar.zst)
 contains the three candidate surfaces and PLCs, their Gmsh volumes and audits,
-the CGAL logs, localization data, and the best candidate's native OpenFOAM
+the CGAL logs, localisation data, and the best candidate's native OpenFOAM
 logs. Its downloaded SHA-256 was verified as
 `193d913e0def086c422cba7c1023e30594a2fb4f0e780299edc3ff321cb6f4d`.
 
@@ -308,7 +308,7 @@ the independent mean-ratio calculation found **1,459 below 0.01**
 and **2,043 below 0.05**. These are separate quality definitions. All 1,459
 weak cells touch a rotor node, 1,397 share a complete rotor face, and 1,247
 lie at radius 70–100 mm under the conditional scale. The wall-face audit
-found 541 of 2,172 incident rotor-face occurrences below normalized quality
+found 541 of 2,172 incident rotor-face occurrences below normalised quality
 0.1; the inner annulus and blade roots remain the dominant observed region.
 
 This fidelity-preserving Delaunay volume is **rejected for CFD**. It is worse
@@ -320,6 +320,6 @@ bounded rotor, plus measured same-part dimensions and 935 interfaces, is still
 required. No native OpenFOAM check or flow solve was run on this rejected
 volume.
 
-The [private input, volume, audit and localization archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-original-bound-gmsh-20261028.tar.zst)
+The [private input, volume, audit and localisation archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-original-bound-gmsh-20261028.tar.zst)
 was downloaded, decompressed and SHA-256 verified as
 `7b9ba572e43ac91e6a7f3e5df043027684814b47e3161dca8a48482f9205fcf1`.

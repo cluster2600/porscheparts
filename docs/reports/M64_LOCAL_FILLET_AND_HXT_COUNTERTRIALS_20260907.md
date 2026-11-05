@@ -2,7 +2,7 @@
 
 Continuation of the [previous local corrections](M64_LOCAL_MESH_AND_JUNCTION_FOLLOWUP_20260907.md).
 The goal is to treat a real internal shoulder and to improve the
-discretization without arbitrarily changing the outer silhouette.
+discretisation without arbitrarily changing the outer silhouette.
 **These trials remain CAD and meshing developments, not a thermally
 or mechanically validated cylinder head.**
 
@@ -79,7 +79,7 @@ added surfaces; it is neither a temperature nor a stress field.
 The section is an intersection of the triangles with a plane, not a new solid.
 
 After independent review, the [render](../../twins/m64-cylinder-head/source/render_local_port_junction.py)
-also verifies that the colored IDs match the difference of the support
+also verifies that the coloured IDs match the difference of the support
 signatures and the number of faces in the builder's history. Four
 [tests](../../tests/test_local_port_junction_render.py) notably reject an
 old face wrongly presented as new. The real render rerun with
@@ -110,14 +110,14 @@ propagate a rejected negative into the full model.
 
 The [HXT10 counter-trial](../../twins/m64-cylinder-head/evidence/native-mesh-trial05-HXT10-20260907.json)
 keeps the CAD, the three MeshAdapt assignments, the sizes and the settings
-without optimization. The only explicit option changed is the Gmsh volume
+without optimisation. The only explicit option changed is the Gmsh volume
 generator, from Delaunay1 to HXT10. This is a mesh comparison,
 **not two independent physical validation methods**.
 
 A synthetic control case first observed HXT, surface preservation,
 MSH reread and positive Jacobians. Its quality threshold fails for
 both generators: one tet below 0.1. The control case remains rejected. A single
-diagnostic trial on the part was then explicitly authorized on the basis
+diagnostic trial on the part was then explicitly authorised on the basis
 of the observed API checks; no quality criterion was lowered
 and no CAE qualification was granted by this control case.
 

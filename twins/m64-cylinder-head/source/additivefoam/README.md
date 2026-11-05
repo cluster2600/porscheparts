@@ -8,7 +8,7 @@ properties. It is not a cylinder head qualification.
 
 The upstream file, under **GPL-3.0-or-later**, is
 [`marangoniFvPatchVectorField.H`](https://github.com/ORNL/AdditiveFOAM/blob/9c05c5eb54db03faa342b14b0806efe740de8c44/applications/solvers/additiveFoam/derivedFvPatchFields/marangoni/marangoniFvPatchVectorField.H).
-The patch is distributed under the same license. The tested context is
+The patch is distributed under the same licence. The tested context is
 OpenFOAM 14, commit `7b05503f98a85be88af930df48623b4d152bfc35`.
 The diff has no context lines: the exact input digest below is therefore a
 precondition, and the output digest must be verified.

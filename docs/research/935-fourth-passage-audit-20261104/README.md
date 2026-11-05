@@ -47,7 +47,7 @@ physical tolerance decision. Different point selections, splitting and fitting
 explain differences from the historical robust fits; no improvement is claimed.
 
 The closed first profile supplies real observations, but closure alone does not
-prove circularity. The open deeper profiles do not authorize a complete cylinder,
+prove circularity. The open deeper profiles do not authorise a complete cylinder,
 a full axis or an extrapolated mounting pattern. All eight required functional
 interfaces remain unaccepted. Alloy, loads and process qualification remain
 separate missing inputs. No fabrication file or functional head is released.

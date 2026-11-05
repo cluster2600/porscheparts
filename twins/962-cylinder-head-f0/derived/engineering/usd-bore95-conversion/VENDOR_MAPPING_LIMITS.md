@@ -1,6 +1,6 @@
 # Why another vendor flag is not yet an exact-preservation remedy
 
-The pinned NVIDIA guidance describes three relevant behaviors: removal of
+The pinned NVIDIA guidance describes three relevant behaviours: removal of
 degenerate triangles, float32 mesh points recentered at the representation
 item's bounding-box centroid, and optional welding of repeated position/normal
 pairs. These are distinct operations. See the official [mapping description at
@@ -14,7 +14,7 @@ triangle, coordinate and pivot. Native inspection of the installed 0.2.0
 control. The pinned public repository supplies guidance, not the native
 implementation or its numerical degeneracy threshold.
 
-The documented behavior is consistent with the rejected derivative's face
+The documented behaviour is consistent with the rejected derivative's face
 loss and recentering. It does not independently identify all 254 omitted source
 triangles. No additional vendor conversion or tolerance change was performed.
 

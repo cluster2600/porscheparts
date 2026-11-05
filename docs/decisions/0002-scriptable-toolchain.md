@@ -18,7 +18,7 @@ agent and no continuous integration can replay it.
 ## Decision
 
 For each need, the tool chosen is the one that has a **command-line interface or
-a complete Python API**, at equivalent quality and license.
+a complete Python API**, at equivalent quality and licence.
 
 | Need | 0001 | Chosen | Reason for the change |
 |---|---|---|---|
@@ -47,6 +47,6 @@ a complete Python API**, at equivalent quality and license.
 - A part's master geometry can be a versioned Python file producing a
   reproducible STEP, alongside the `.FCStd` and `.scad` formats.
 - Every step becomes replayable: same inputs, same command, same output.
-- The container images in `containers/` materialize this chain.
+- The container images in `containers/` materialise this chain.
 - Cost: authors used to interactive drawing must read CAD code. The trade-off is
   that review by diff becomes possible, which a binary file rules out.

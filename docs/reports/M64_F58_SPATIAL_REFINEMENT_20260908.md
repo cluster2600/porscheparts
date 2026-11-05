@@ -52,7 +52,7 @@ is used to artificially improve the verdict.
 ## Preparation and cross-audit actually executed
 
 The mesh is regenerated; the old 57,600-value powder list is
-not reused on 460,800 cells. A provisional uniform initialization
+not reused on 460,800 cells. A provisional uniform initialisation
 is followed by the unchanged native `setFields`, then checked independently.
 
 - OpenFOAM: **Mesh OK**, 460,800 hexahedra, one region, zero non-orthogonality,
@@ -76,7 +76,7 @@ current model and is not a proof of stability for any added physics.
 
 Kali x86, serial, cap of 4 CPUs/4 GiB and 1,500 s. Container root read-only,
 network disabled, bounded temporary space and limited Docker logs.
-The authorization to fire the laser is separate from the mesh acceptance
+The authorisation to fire the laser is separate from the mesh acceptance
 receipt. No GPU and no Vast rental are used in this sub-batch.
 
 The requested balance includes sensible storage, latent, boundaries, advection,
@@ -105,7 +105,7 @@ logs contain the 4,800 steps of 25 ns, up to 120 µs.
 | Cap reached | 3,300 K | 3,300 K |
 
 The integrals change by 2.12 % for the sensible term and by 10.96 % for the
-limiter, in absolute value **normalized by the h reference**. This last
+limiter, in absolute value **normalised by the h reference**. This last
 decrease is neither a cylinder head efficiency gain nor an established spatial
 convergence. The absorbed laser remains below the 45.60 mJ incident;
 none of the 4,800 steps exceeds 380 W absorbed, according to the instrumented logs.
@@ -154,7 +154,7 @@ The next priority is to check the validity domain of the source,
 of the powder/solid properties and of the melt-pool model, then to qualify any
 added physics on a control case and an independent calibration. The cap
 will not be raised and the absorptivity will not be tuned to obtain a
-favorable verdict. The distortion of the whole cylinder head has not been computed.
+favourable verdict. The distortion of the whole cylinder head has not been computed.
 
 ## Preparation traceability
 
@@ -195,4 +195,4 @@ for this sub-batch**: the control case is run on the existing Kali machine.
 An announced credit is not a guaranteed balance nor proof of a completed computation.
 
 The private sources and earlier cases are kept. These diagnostics
-give **no authorization to print or to start an engine**.
+give **no authorisation to print or to start an engine**.

@@ -1,4 +1,4 @@
-# Chain case, plate 103-05 — a good additive candidate, in aluminum
+# Chain case, plate 103-05 — a good additive candidate, in aluminium
 
 The third part examined after the tip and the turbo oil circuit. The verdict
 follows the same pattern, and that is what makes it interesting: the process
@@ -10,9 +10,9 @@ flowchart TD
   P --> Q2{"Material question:<br/>titanium?"}
   Q1 -->|"consolidation and<br/>internal passages, +4"| AM["Real additive candidate"]
   Q2 -->|"galling, galvanic couple"| M["Conditions to lift<br/>by known mitigations"]
-  Q2 -->|"differential expansion;<br/>no gain over aluminum"| TI["Titanium refused"]
-  AM --> V["prohibited_pending_engineering<br/>timing drive, pressurized oil,<br/>hot neighborhood"]
-  V -.->|"if one day remanufactured"| AL["In aluminum, not titanium"]
+  Q2 -->|"differential expansion;<br/>no gain over aluminium"| TI["Titanium refused"]
+  AM --> V["prohibited_pending_engineering<br/>timing drive, pressurised oil,<br/>hot neighbourhood"]
+  V -.->|"if one day remanufactured"| AL["In aluminium, not titanium"]
   class AM ok
   class M,AL open
   class TI,V stop
@@ -40,7 +40,7 @@ add-on oil galleries on a single plate describe a subassembly that additive
 manufacturing consolidates naturally.
 
 And the heat protection plate at position 24 tells the rest of the context:
-this part has hot neighbors.
+this part has hot neighbours.
 
 ## Why it is a real additive candidate
 
@@ -56,7 +56,7 @@ The screening gives it a raw score of **+4**.
 Two reasons, after examination — and not the ones you would expect.
 
 **Galling and the galvanic couple are not enough to refuse.** The case is
-removed at service and bolts onto aluminum, that is true. But steel inserts in
+removed at service and bolts onto aluminium, that is true. But steel inserts in
 the stud bosses deal with the first, and a coating plus a sealing compound deal
 with the second. These are known mitigations. The grid itself says "**untreated**
 sliding contact" and "**uncontrolled** galvanic couple", and `SAFETY.md` lists
@@ -64,13 +64,13 @@ their prevention among the minimum requirements for metal: they are work to be
 done, not reasons to abandon.
 
 **Differential expansion, on the other hand, has no mitigation.** The case bolts
-onto the aluminum crankcase, over an extended joint face. Titanium expands
+onto the aluminium crankcase, over an extended joint face. Titanium expands
 roughly half as much. At oil temperature, a long assembly between two materials
 this far apart works its gasket and its fasteners. I have no joint-face design
 to propose that absorbs this, and as long as I do not, the condition blocks.
 
 **And above all, titanium does not improve on the original material.** An
-aluminum casting bolted onto an aluminum crankcase: titanium loses there on
+aluminium casting bolted onto an aluminium crankcase: titanium loses there on
 expansion, on the galvanic couple and on price, while bringing nothing in
 temperature or corrosion. It is the simplest reason, and it is the one the
 screening could not formulate before this part.
@@ -88,16 +88,16 @@ mitigation turns it into a requirement carried to the route, which the supplier
 will have to hold. And the question the grid nonetheless asks explicitly was
 missing — "problematic corrosion **with the original material**": **does
 titanium beat the incumbent?** Without it, the screening scored words instead of
-comparing metals, and ranked first a lukewarm aluminum intake manifold.
+comparing metals, and ranked first a lukewarm aluminium intake manifold.
 
 ## Verdict
 
 `prohibited_pending_engineering`, and not only for data reasons: the case
-carries the timing drive and pressurized oil, its failure can cost the engine,
-and the plate itself flags a hot neighborhood.
+carries the timing drive and pressurised oil, its failure can cost the engine,
+and the plate itself flags a hot neighbourhood.
 
 If this subassembly is one day remanufactured in additive — and it deserves to
-be — it will be **in aluminum**, which follows the expansion of the crankcase and
+be — it will be **in aluminium**, which follows the expansion of the crankcase and
 removes the galvanic couple. Not in titanium.
 
 This is the third time in a row that the examination separates the two

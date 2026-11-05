@@ -13,7 +13,7 @@ work without promoting an unfinished variant.
 |---|---:|---|
 | R2 reference | 1.298199813 kg | Existing carrier geometry |
 | 6 mm closed chambers | 1.292162707 kg | Exact exterior preserved; no self-intersections; fails the initial 1 mm cross-network target |
-| 10 mm all-edge G1 candidate | 1.294345998 kg | Volume stabilizes and the cross-network bound passes; **2,174 intersecting triangle pairs: refused** |
+| 10 mm all-edge G1 candidate | 1.294345998 kg | Volume stabilises and the cross-network bound passes; **2,174 intersecting triangle pairs: refused** |
 
 The four accepted internal envelopes contain **2,364.281 mm³**. Even removing
 their entire volume would save only **10.450 g** at the declared density of
@@ -127,7 +127,7 @@ retest is claimed here.
 
 The [native report](evidence/surface-repair-001/cuda/report.json),
 [failure coordinates](evidence/surface-repair-001/parameters-and-diagnostics/cuda-distance-failure-diagnostic-001.json)
-and [sanitized lease receipt](evidence/surface-repair-001/cuda/lease-receipt.json)
+and [sanitised lease receipt](evidence/surface-repair-001/cuda/lease-receipt.json)
 retain the evidence. The instance was destroyed and independently verified
 absent. A one-hour deadline guard and USD 2 envelope were armed before launch.
 

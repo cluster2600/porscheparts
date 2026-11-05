@@ -26,12 +26,12 @@ Statuses used:
   part in question;
 - **evaluated, not selected**: tool studied but absent from the authoritative
   path;
-- **blocked**: missing input, GPU, license, measurement or correlation.
+- **blocked**: missing input, GPU, licence, measurement or correlation.
 
 For the current execution order and the roles of **our qwen-picogk project,
 PicoGK and our PorscheFanatics.com information catalogue**, start
 with the [software-chain diagram of the engineering overview](ENGINEERING_OVERVIEW.md#software-chain-qwen-and-picogk)
-and [engineering workflow](architecture/engineering-workflow.md). Visualization
+and [engineering workflow](architecture/engineering-workflow.md). Visualisation
 and PhysicsNeMo are optional branches, not prerequisites for fabrication.
 The dated execution statuses below remain attached to their original evidence.
 
@@ -44,7 +44,7 @@ separate evidence; it does not resume the stopped fan experiment.
 
 | Step | Authoritative tool | Normal location | Input → output | Current status |
 |---|---|---|---|---|
-| Catalog | JSON Schema, Python, PorscheFanatics/PET and manufacturer sources | Mac | source → record with provenance | executed |
+| Catalogue | JSON Schema, Python, PorscheFanatics/PET and manufacturer sources | Mac | source → record with provenance | executed |
 | Orchestration | Codex, Git, GitHub, GitHub Actions, Make | Mac/CI | request → reviewed and tested change | executed, never CAE evidence |
 | BREP CAD | build123d 0.11.1, OCCT 7.9.3.1, FreeCAD for review | X1/Mac | parameters → STEP | executed |
 | Implicit geometry | PicoGK 2.3.0 + runtime `picogk.26.2` | X1 amd64 | domain/keep-outs → voxel/mesh | executed on the piston, screening only |
@@ -73,12 +73,12 @@ Where each part of the chain runs, and what a green run can and cannot say:
 
 ```mermaid
 flowchart LR
-    MAC["Mac<br/>controller, catalog,<br/>tests, review, documentation"] --> X1["X1 / Kali<br/>linux/amd64 CPU containers"]
+    MAC["Mac<br/>controller, catalogue,<br/>tests, review, documentation"] --> X1["X1 / Kali<br/>linux/amd64 CPU containers"]
     MAC --> G{"Gates before paid GPU:<br/>image by digest, GPU smoke,<br/>frozen inputs, cost, teardown"}
     G --> VAST["Vast.ai, rented only for<br/>CUDA/RTX, PhysicsNeMo, dense photogrammetry,<br/>Content Agents or OVRTX"]
     X1 --> OUT["Green output"]
     VAST --> OUT
-    OUT --> NO["Validates the software chain, never part<br/>accuracy, engine physics or a<br/>manufacturing authorization"]:::stop
+    OUT --> NO["Validates the software chain, never part<br/>accuracy, engine physics or a<br/>manufacturing authorisation"]:::stop
     SUP["Supplier machine preparation<br/>blocked until the route is qualified"]:::open
     LAB["Correlation in lab or at supplier<br/>not started for the F0 parts"]:::open
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
@@ -96,7 +96,7 @@ flowchart LR
 | Containers | Docker, Buildx, GHCR | `linux/amd64` images by immutable digest |
 | Secrets/rental | OpenBao wrappers, Vast.ai CLI | Bounded access, singleton, retrieval and teardown |
 | Master formats | build123d, `.FCStd`, OpenSCAD, STEP | Editable and dimensional geometry |
-| Derived formats | STL, 3MF, OBJ, PLY, OpenUSD | Printing, scanning, assembly and visualization |
+| Derived formats | STL, 3MF, OBJ, PLY, OpenUSD | Printing, scanning, assembly and visualisation |
 
 See also [TOOLCHAIN.md](TOOLCHAIN.md),
 [COMPUTE_ENVIRONMENT.md](COMPUTE_ENVIRONMENT.md) and
@@ -125,7 +125,7 @@ go to the X1 or a rented machine.
 | Structural/thermal | CalculiX `ccx` | No automatic physical validation |
 | CFD | OpenFOAM 13; OpenFOAM 14 + ICengines/AATE at commit `c0f75f953d67cd325d28d1300672d14288f22934` | A build does not validate an engine |
 | Thermochemistry/networks | Cantera 3.2.0, NumPy 2.5.2 | Uncorrelated fixtures and models |
-| LBM cross-check | FluidX3D at commit `aba941305a2cc67b0953ba1d2ba177b590dcccc3` | Non-commercial license |
+| LBM cross-check | FluidX3D at commit `aba941305a2cc67b0953ba1d2ba177b590dcccc3` | Non-commercial licence |
 | Post-processing | meshio, PyVista, ParaView, `ccx2paraview` | Field inspection and conversion |
 
 ## AI and PhysicsNeMo
@@ -155,7 +155,7 @@ PicoGK 2.3.0 with the native runtime `picogk.26.2` now runs on the X1 amd64.
 A sweep of six variants of the CP1 F0 piston reached at best `1.60%` gross
 weight reduction, but no variant meets the provisional mechanical margin and
 every raw STL fails the manifold integrity check. PicoGK is therefore qualified
-as a screening geometry generator, not as a physics optimizer nor as the source
+as a screening geometry generator, not as a physics optimiser nor as the source
 of a released part.
 
 CalculiX 2.21 then ran, offline on the X1, six cases of the sound piston
@@ -168,7 +168,7 @@ CP1 allowable, no fatigue and no engine validation.
 
 ## Omniverse and SimReady
 
-The Omniverse generation visible in the NVIDIA organization is a suite of
+The Omniverse generation visible in the NVIDIA organisation is a suite of
 embeddable libraries, not a monolithic application:
 
 ```mermaid
@@ -324,7 +324,7 @@ above is that of the local X1 build, not a published registry digest.
 
 | Node | Observed stack | Role |
 | --- | --- | --- |
-| Apple Silicon Mac | macOS 27.0, `arm64`, 10 CPUs, 64 GiB; Docker 29.7.2, Compose 5.4.0, Python 3.10.11 | Controller, catalog, tests and review |
+| Apple Silicon Mac | macOS 27.0, `arm64`, 10 CPUs, 64 GiB; Docker 29.7.2, Compose 5.4.0, Python 3.10.11 | Controller, catalogue, tests and review |
 | X1 | Kali Rolling, `x86_64`, 12 CPUs, 15 GiB; Docker 28.5.2, Buildx 0.29.1, Compose 2.40.3, Python 3.13.14 | Native `linux/amd64` Docker CPU worker |
 | Vast.ai | `linux/amd64` containers by digest on NVIDIA GPUs rented on demand | CUDA reconstruction, PhysicsNeMo, Omniverse |
 
@@ -333,7 +333,7 @@ Private addresses, accounts and keys are not published. The scripts in
 transfer an allowlist, retrieve the results and verify teardown.
 The installed GHCR wrapper matches the repository. The Vast.ai wrapper answers
 its read check but differs from the versioned copy; it must be
-resynchronized before any paid rental.
+resynchronised before any paid rental.
 
 ## Gates before paid GPU computation
 
@@ -345,7 +345,7 @@ resynchronized before any paid rental.
 
 The runbook is [917_VAST_SIMREADY_NATIVE.md](../archive/917/docs/917_VAST_SIMREADY_NATIVE.md).
 A green output validates the software chain, never the accuracy of a part,
-the physics of an engine or a manufacturing authorization.
+the physics of an engine or a manufacturing authorisation.
 
 ## Free engineering tools carrier pilot
 

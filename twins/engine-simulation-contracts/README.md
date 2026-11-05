@@ -8,10 +8,10 @@ outside Git, as instructed by the owner.
 ## State reached
 
 The geometric refinement of the 917 engine assigns each face to at most one
-opening neighborhood. On the local mesh of 599,999 triangles, 118,938 triangles
-are distributed among twelve neighborhoods and 481,061 remain in the
+opening neighbourhood. On the local mesh of 599,999 triangles, 118,938 triangles
+are distributed among twelve neighbourhoods and 481,061 remain in the
 unclassified body, i.e. zero overlap by construction. These regions are visible
-neighborhoods, not yet manufacturable cylinders.
+neighbourhoods, not yet manufacturable cylinders.
 
 For the 935 cylinder head, the connectivity split keeps nine external components
 of more than 250 triangles. The labels `stud_or_long_fastener` and
@@ -76,6 +76,6 @@ left K16 and right K16. The parameters and their evidence level are in
 merged into a supposedly measured dimension.
 
 - piston: 100 mm diameter = nominal engine bore, not piston diameter;
-- connecting rod: center distance, bores, widths and mass declared; outer contour hypothetical;
+- connecting rod: centre distance, bores, widths and mass declared; outer contour hypothetical;
 - camshaft: layout topology only, profile and timing not measured;
-- K16: supplier envelope and masses, catalog wheel diameters on the right-hand side; housings and aerodynamic surfaces hypothetical.
+- K16: supplier envelope and masses, catalogue wheel diameters on the right-hand side; housings and aerodynamic surfaces hypothetical.

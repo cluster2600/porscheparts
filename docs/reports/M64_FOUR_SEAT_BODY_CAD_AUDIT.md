@@ -11,7 +11,7 @@ flowchart LR
     B --> C["5 InvalidCurveOnSurface<br/>local 2D curve rebuild"]
     C --> D["STEP: 1 solid, BRep valid<br/>5 BOP modes clean"]
     D --> E["12 closed contacts + 8 valve checks<br/>zero intersection volume"]
-    E --> F["No functional head<br/>no manufacturing authorization"]
+    E --> F["No functional head<br/>no manufacturing authorisation"]
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
     classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
     class D,E ok;
@@ -88,4 +88,4 @@ Ports and final chamber, cam carriers and the full valvetrain, piston and
 continuous kinematics, oil galleries, threads, cold/hot interference fits,
 materials and M64 interfaces all remain to be defined or qualified. No
 thermal, mechanical or LPBF process result is validated for this body by this audit.
-**No manufacturing or engine-operation authorization follows from it.**
+**No manufacturing or engine-operation authorisation follows from it.**

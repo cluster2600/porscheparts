@@ -23,7 +23,7 @@ a strictly convex, nondegenerate cavity, positive children, the same exact volum
 and all six original outer faces. An already existing proposed edge is refused.
 Changes in a batch have disjoint affected cell neighbourhoods.
 
-The local selection filter checks five quantities: counts and squared normalized
+The local selection filter checks five quantities: counts and squared normalised
 severity of non-orthogonality above 70°, interpolation weight below 0.05 and
 0.02, neighbour volume ratio below 0.01, and cell determinant below 0.001.
 Every selected count must not rise and the failed-determinant count must fall.

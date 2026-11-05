@@ -95,7 +95,7 @@ constitute a demonstrated correction.
 Kali x86: four CPUs, 4 GiB, container network cut off and read-only roots.
 Meshing: 37 s supervised wall time, limit 300 s; OpenFOAM check: 9 s. Both
 containers are removed, absence verified. No new Vast rental in this batch.
-Authorized budget: 44 USD maximum, no top-up; this ceiling is not a
+Authorised budget: 44 USD maximum, no top-up; this ceiling is not a
 measurement of the remaining balance.
 Neither strength, nor heat dissipation, nor printing, nor 700 PS is validated
 by this mesh diagnostic.

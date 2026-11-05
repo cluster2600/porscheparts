@@ -9,7 +9,7 @@ or machined part, but the geometric integration justifies the LPBF screening.
 
 PorscheFanatics ties the function to the PET references left `993 555 851 00`
 and right `993 555 852 00`. For its aftermarket pair, FVD publishes an envelope
-of `108 × 45 × 27 mm`, a total mass of `180 g` and a "high-strength" aluminum
+of `108 × 45 × 27 mm`, a total mass of `180 g` and a "high-strength" aluminium
 without grade. These data describe neither the OEM surfaces, nor the pivot, nor
 the fixings, nor the linkage. The F0 is therefore an independent concept within
 that envelope only, not a fittable copy.
@@ -20,7 +20,7 @@ flowchart LR
   G --> R["Screens run: analytical,<br/>LPBF slicing, CalculiX,<br/>OpenUSD, PhysX"]
   R --> C["Step 04 route card<br/>5 gates pass, 6 stay closed"]
   C --> Q["Request for quotation,<br/>not a manufacturing order"]
-  Q --> V["No print authorized"]
+  Q --> V["No print authorised"]
   class S ok
   class R,C,Q open
   class V stop
@@ -48,13 +48,13 @@ corrosion and batch must be qualified.
 
 | Domain | Execution | Useful result | Limit of authority |
 |---|---|---|---|
-| CAD | build123d 0.11.1 / OCCT 7.9.3.1 | single BREP `108 × 45 × 27 mm`, reproducible normalized STEP, volume `26,824.19 mm³` | hypothetical functional shapes |
+| CAD | build123d 0.11.1 / OCCT 7.9.3.1 | single BREP `108 × 45 × 27 mm`, reproducible normalised STEP, volume `26,824.19 mm³` | hypothetical functional shapes |
 | Mass | `m=ρV` | `71.621 g` per lever, i.e. `143.241 g` per pair | the FVD pair may include other items |
 | Analytical | bending, shear, von Mises, deflection, pressure, expansion | `45.633 MPa`, `0.282 mm`, free growth `0.1426 mm` under synthetic `150 N` and `+60 K` | nominal beam, not the real interface |
 | LPBF | real section of every layer | `2,664` layers, `roll_y_45`, proxy supports `2,714.4975 mm³`, p01 `2 mm`, no trapped void at the `0.75 mm` voxel | not EOSPRINT nor a laser simulation |
 | CalculiX | six C3D10 cases on three meshes | fine mesh `31,666` nodes; p95 `45.227 MPa` cold and `46.546 MPa` hot; max cold deflection `1.033 mm` | synthetic supports, force and temperatures |
 | Fatigue | zero-to-peak Goodman against the EOS coupon | proxy ratio `4.626`, no life computed | not transferable to the part |
-| OpenUSD | `usd-convert-cad 0.2.0`, OpenUSD 26.8 | binary Z-up asset, millimeters | exchange only |
+| OpenUSD | `usd-convert-cad 0.2.0`, OpenUSD 26.8 | binary Z-up asset, millimetres | exchange only |
 | NVIDIA validation | `nvidia_usd_validate 1.21.0` | asset and scene with no failing rule | not a complete SimReady profile |
 | PhysX | ovstage 0.1.1.355824, ovphysx 0.5.11 CPU | `10 g` witness settled from `35` to `29 mm` in `240` steps | software contact, not a door mechanism |
 | PhysicsNeMo | not run | six synthetic cases do not make a surrogate dataset | blocked until correlated cases exist |
@@ -63,7 +63,7 @@ corrosion and batch must be qualified.
 Comparing the two finest meshes gives a `1.143 %` variation of the cold p95 and
 `0.276 %` of the hot p95, under the `10 %` numerical screening threshold. This
 only indicates the stability of this model. The local cold maximum reaches
-`174.657 MPa` and the hot maximum `185.636 MPa` near the idealized supports;
+`174.657 MPa` and the hot maximum `185.636 MPa` near the idealised supports;
 neither these peaks nor the p95 are a safety margin for the part.
 
 ![LPBF geometric slicing screen of the F0 door opener lever: section per layer, newly unsupported region and conservative support envelope against build height, with the roll_y_45 summary](../../twins/993-door-opener-lever-alsi10mg-f0/evidence/lpbf-f0/993-int-door-opener-lever-f0-0001-lpbf-geometry-screen.png)
@@ -90,7 +90,7 @@ manufacturing order.
 
 Evidence: [`route-f0/`](../../twins/993-door-opener-lever-alsi10mg-f0/evidence/route-f0/).
 
-## Why no print is authorized
+## Why no print is authorised
 
 - no measurement of the OEM lever, pins, bearing faces, fixings, stops or
   clearances;

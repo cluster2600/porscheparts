@@ -5,7 +5,7 @@ flowchart LR
   A["Two real runs on Kali<br/>100 ns and 50 ns, 120 µs"] --> B["Discrete balance closes<br/>residual 3.77e-7 / 7.67e-7"]
   B --> C["Limiter removes<br/>10.58% / 10.56% of laser energy"]
   C --> D["Still capped at 3,300 K<br/>not a process correction"]
-  D --> E["Printing not authorized"]
+  D --> E["Printing not authorised"]
   classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
   class D,E stop;
 ```
@@ -16,7 +16,7 @@ Two real runs on Kali reach 120 µs, with solver returns of zero:
 1,200 steps of 100 ns (59 s wall time) and 2,400 steps of 50 ns (90 s wall
 time). The spatial maximum of temperature is recorded at **every step**. Both
 cases remain capped at 3,300 K: this diagnostic is not a physical correction
-of the process nor an authorization to print.
+of the process nor an authorisation to print.
 
 The [public F58 receipt in JSON](../../twins/reference-917-engine/evidence/f58-energy-diagnostic/energy-summary.json)
 contains the two time steps, the recomputed energies and residuals, the
@@ -74,17 +74,17 @@ before/after each solve:
 - limiter: integral of the implicit term `A*(T-Tmax)/dt` of the last thermal
   correction, separated from the physical losses.
 
-The sensible storage is a term of the discretized equation using the solver's
+The sensible storage is a term of the discretised equation using the solver's
 lagged Cp. It is **neither** the pseudo-enthalpy `rho*Cp*T`, **nor** a new
 calibrated caloric law. The measured closure is therefore that of the equation
 actually solved, not an external thermodynamic validation.
 The net boundary flux is positive here. The initial field is at 293.15 K while
 the boundary reference temperatures are at 300 K; these inherited inputs were
-kept, not silently harmonized.
+kept, not silently harmonised.
 
 Primary sources verified:
 [ORNL thermal assembly](https://github.com/ORNL/AdditiveFOAM/blob/9c05c5eb54db03faa342b14b0806efe740de8c44/applications/solvers/additiveFoam/thermo/thermoScheme.H),
-[ORNL melting and penalization](https://github.com/ORNL/AdditiveFOAM/blob/9c05c5eb54db03faa342b14b0806efe740de8c44/applications/solvers/additiveFoam/thermo/TEqn.H),
+[ORNL melting and penalisation](https://github.com/ORNL/AdditiveFOAM/blob/9c05c5eb54db03faa342b14b0806efe740de8c44/applications/solvers/additiveFoam/thermo/TEqn.H),
 [ORNL property update](https://github.com/ORNL/AdditiveFOAM/blob/9c05c5eb54db03faa342b14b0806efe740de8c44/applications/solvers/additiveFoam/updateProperties.H).
 
 Direct check of the files actually compiled: `additiveFoam.C` calls
@@ -117,8 +117,8 @@ adaptive step with `adjustTimeStep no` in both members of the comparison.
 Between them, only the `deltaT` value differs in `system/controlDict`.
 
 The diagnostic engine refuses a changing mesh, an implicit scheme or an
-adaptive step. It measures the latent term but adds no model of vaporization,
-vapor recoil or melt pool convection. No result on fatigue, cylinder head
+adaptive step. It measures the latent term but adds no model of vaporisation,
+vapour recoil or melt pool convection. No result on fatigue, cylinder head
 strength or distortion of a complete build follows from this pair.
 
 ## Reproducibility and preservation
@@ -172,7 +172,7 @@ not a constant absorption. The final computed absorption is about 0.772.
 The depth used is that of a simulated isotherm: this agreement does not
 calibrate the physical absorption or the laser keyhole.
 
-The exact F55/F58 trajectory is 2 mm at 1.3 m/s; the analyzed window covers
+The exact F55/F58 trajectory is 2 mm at 1.3 m/s; the analysed window covers
 only its first 120 µs, i.e. 0.156 mm nominal. Do not substitute for it the
 0.4 mm track of the general F50 campaign. No solver was rerun for this check.
 The private algebraic script has SHA256
@@ -187,4 +187,4 @@ F55 had already shown the sensitivity to absorption.
 Do not select 0.35 as the truth and do not remove the cap to get a green gate.
 Any future correction must keep this balance, the peaks at every step and the
 time comparison, then verify spatial convergence. Manufacturing and startup
-remain unauthorized.
+remain unauthorised.

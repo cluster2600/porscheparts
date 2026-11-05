@@ -18,7 +18,7 @@ That rules out plate bending, but NOT thin-walled beam bending: see section
 not in shear, contrary to what the dossier claimed.
 
 **What pays is closing the rings, not the material.** From the bare floor pan to
-the closed cell, K x 3.7. But the windshield frame, 1.1 kg, returns 172 to 191
+the closed cell, K x 3.7. But the windscreen frame, 1.1 kg, returns 172 to 191
 times more per kilogram than the roof, 10.5 kg; and the B-pillars added alone,
 with nothing to close the front, return zero for 7.5 kg.
 
@@ -37,8 +37,8 @@ beams. Order established by `ring_study.py` and `body_study.py`:
 
 | ring / element | function | measured return |
 |---|---|---|
-| windshield frame | closes the cell at the top front | **the highest in the whole model** |
-| center tunnel or equivalent longitudinal beam | connects the two end rings | +71 % on its own |
+| windscreen frame | closes the cell at the top front | **the highest in the whole model** |
+| centre tunnel or equivalent longitudinal beam | connects the two end rings | +71 % on its own |
 | wheel arches | extend the side rail upward at the ends | high |
 | front bulkhead and rear bulkhead | close the box section at the ends | medium |
 | B-pillars and sills | only worth anything if a ring closes | zero in isolation |
@@ -50,7 +50,7 @@ Two consequences that run against the "monocoque = shell" intuition:
   removable, or glazed, without notable loss of torsional stiffness. That is a
   design freedom, and it is free;
 - **the B-pillars are not sized in isolation.** They only serve as the upright
-  of a closed ring. A massive B-pillar without a windshield frame is dead mass,
+  of a closed ring. A massive B-pillar without a windscreen frame is dead mass,
   measured as such.
 
 **Caveat.** The model that produces this ranking has no bonded glazing, no
@@ -134,10 +134,10 @@ Consequence for the material conclusions: for the floor pan alone, the
 criterion is `E/rho`, not `G/rho`. The carbon > aramid ranking is not affected,
 since carbon dominates on both criteria.
 
-## 4. The question of the steel windshield frame
+## 4. The question of the steel windscreen frame
 
-ZESAD sells a "monocoque with steel windshield frame" configuration. Our own
-ranking puts the windshield frame first in return. Three possible readings, not
+ZESAD sells a "monocoque with steel windscreen frame" configuration. Our own
+ranking puts the windscreen frame first in return. Three possible readings, not
 mutually exclusive, none confirmed:
 
 1. **structural**: it is the most loaded ring, and a laminate handles

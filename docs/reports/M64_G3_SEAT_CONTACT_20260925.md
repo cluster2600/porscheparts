@@ -6,7 +6,7 @@ the G3 results remain historical observations, not a current manufacturability v
 
 [PR #72](https://github.com/cluster2600/porscheparts/pull/72) was merged on September 25,
 commit `7fe668b`. This follow-up optionally replaces the seat/valve contacts with concordant conical
-faces. **G2 fixture and cylinder head body unchanged; no manufacturing authorization.**
+faces. **G2 fixture and cylinder head body unchanged; no manufacturing authorisation.**
 
 ## What was corrected
 

@@ -16,7 +16,7 @@ two small segments of edge 99.
 
 - A single native launch on Kali, four CPUs, 4 GiB; no Vast rental.
 - Temporary 1D generation checkpoint reached at 1.098 s from the start of the
-  worker. Same 64-node profile, last segment 82 / neighboring segment 93 =
+  worker. Same 64-node profile, last segment 82 / neighbouring segment 93 =
   0.96736.
 - Reinjection verified at 7.587 s from the start of the worker. The reinjected
   file is byte-for-byte identical to the reference `7af7f207…`.

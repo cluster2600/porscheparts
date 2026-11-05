@@ -52,7 +52,7 @@ rounded to the multiple of 4 that a symmetric QI stack requires.
 stiffness, a quasi-isotropic aramid laminate is **30 % heavier than steel**.
 This is no surprise once the computation is set up: aramid has a mediocre
 specific modulus. Its real value is damage tolerance, penetration resistance and
-energy-absorption behavior, not stiffness. If it has a place in a chassis, it is
+energy-absorption behaviour, not stiffness. If it has a place in a chassis, it is
 as a local sacrificial skin or an anti-shatter layer, **not in the torsional
 load path**.
 
@@ -86,7 +86,7 @@ instead of a spot-welded assembly, a larger enclosed area, the removal of
 overlaps and joints, and the freedom to put material where the load path goes
 instead of where stamping allows it. **None of this can be demonstrated on a
 floor pan alone**: it would take the front bulkhead, the rear bulkhead, the
-tunnel, the wheel arches, the B-pillars and the windshield frame, which carry
+tunnel, the wheel arches, the B-pillars and the windscreen frame, which carry
 most of the torsion of a complete body shell and which no source in the dossier
 dimensions.
 
@@ -132,7 +132,7 @@ other. Choosing carbon does not exempt you from closing the body shell, and
 closing the body shell does not make carbon useless.
 
 The detail is instructive: most of the architectural gain comes not from the
-bulkheads but from the **center tunnel**, which on its own takes the stiffness
+bulkheads but from the **centre tunnel**, which on its own takes the stiffness
 from 3147 to 5371 N.m/deg, i.e. +71 %. A longitudinal beam closed over the full
 length is worth more than two bulkheads at the ends.
 
@@ -168,12 +168,12 @@ section are `ASSUMED`: none is published. The absolute values in the table are
 therefore not 964 stiffnesses. **Only the ratios count**, and they are what
 answers the question asked.
 
-The roof, the B-pillars, the wheel arches and the windshield frame were also
+The roof, the B-pillars, the wheel arches and the windscreen frame were also
 missing from this study. They have since been added to the model, and the result
 reinforces this page's conclusion rather than qualifying it: from the bare floor
 pan to a closed cell, stiffness is multiplied by 3.7, and what carries this gain
 is not the amount of material added but the closing of the rings. The
-windshield frame, 1.1 kg, yields two orders of magnitude more per kilogram than
+windscreen frame, 1.1 kg, yields two orders of magnitude more per kilogram than
 the roof, 10.5 kg. See `twins/964-chassis/fea/README.md`.
 
 ## Correction of 2026-09-04: the criterion for the floor pan is not `G/rho`
@@ -211,10 +211,10 @@ architecture**. See `docs/MONOCOQUE_964_993_ARCHITECTURE.md`.
   never been compared with a factory value: none is published.
 - **Only stiffness is addressed.** Nothing here says anything about laminate
   strength, delamination, bonded joints — which are the real weak point of a
-  composite monocoque —, buckling, crash behavior, fire behavior, fatigue or
+  composite monocoque —, buckling, crash behaviour, fire behaviour, fatigue or
   aging. A composite failure criterion is not a von Mises stress.
 - **The ply constants are textbook-class, evidence level D.** They are certified
-  by no supplier. A real fiber volume fraction, a porosity rate and a cure cycle
+  by no supplier. A real fibre volume fraction, a porosity rate and a cure cycle
   would shift them.
 - **The geometry remains unanchored.** The longitudinal anchoring of the 964
   twin's datum network is not resolved, and the side rail and cross member

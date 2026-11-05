@@ -29,23 +29,23 @@ additional multiplication by the step is applied.
 
 The six fields saved to VDB were reread and their float values compared
 **bit for bit on each of their enclosing native boxes**: no difference. Values
-beyond these boxes were not compared. This serialization proof is neither a
+beyond these boxes were not compared. This serialisation proof is neither a
 proof of the quality of the signed distance nor a physical validation.
 
-| Surface | Raw faces | Exactly zero faces removed in the copy | Normalized result |
+| Surface | Raw faces | Exactly zero faces removed in the copy | Normalised result |
 |---|---:|---:|---|
 | Before | 89,708 | 0 | One combinatorially closed oriented component |
 | After | 90,028 | 16 | One combinatorially closed oriented component |
 | Diagnostic addition | 4,464 | 8 | One combinatorially closed oriented component |
 
-**The raw rejection stays kept.** Normalization is a distinct step: in-memory
+**The raw rejection stays kept.** Normalisation is a distinct step: in-memory
 deletion of only the triangles of exactly zero area according to a dyadic
 integer predicate, without displacement, deletion of a non-zero triangle,
 filling, retriangulation, normal repair or discarded component. The
 combinatorial audit includes the vertex links, the edge incidences, duplicate
 faces and orientations.
 
-The multiset of normalized oriented triangles finds 5,804 faces removed and
+The multiset of normalised oriented triangles finds 5,804 faces removed and
 6,108 added: **none has its support outside the allowed ROI**. Since the ROI is
 convex, checking its three vertices contains the whole triangle. This is a proof
 on the two given triangulated surfaces, not on an underlying B-Rep or continuous
@@ -62,9 +62,9 @@ flowchart TD
     A["A ∪ (C ∩ R inner), step 0.2<br/>mask set back 0.6 unit"] --> B["Occupancy and SDF values<br/>unchanged outside ROI and protections"]:::ok
     B --> C["Six VDB fields<br/>bit-for-bit on native boxes"]:::ok
     C --> D["Raw meshes: 16 and 8<br/>zero-area triangles, rejection kept"]:::stop
-    C --> E["Normalized copy: one closed<br/>oriented component each"]:::ok
-    E --> F["declared_exploratory_screen_pass<br/>normalized chain only"]:::open
-    F --> G["No step 0.1, no private<br/>intake run or authorized"]:::stop
+    C --> E["Normalised copy: one closed<br/>oriented component each"]:::ok
+    E --> F["declared_exploratory_screen_pass<br/>normalised chain only"]:::open
+    F --> G["No step 0.1, no private<br/>intake run or authorised"]:::stop
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
     classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
     classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
@@ -81,9 +81,9 @@ flowchart TD
 - Decision regressions: each occupancy, VDB-reread, normalized-topology or
   outside-ROI-support guard must prevent success.
 
-The status obtained is **`declared_exploratory_screen_pass` for the normalized
+The status obtained is **`declared_exploratory_screen_pass` for the normalised
 chain only**. No comparison at step 0.1 and no application to the private intake
-was run or automatically authorized. The witness proves no G1 junction, no CFD
+was run or automatically authorised. The witness proves no G1 junction, no CFD
 benefit, no mechanical/thermal strength and no printability.
 
 Digests of the kept private receipts:

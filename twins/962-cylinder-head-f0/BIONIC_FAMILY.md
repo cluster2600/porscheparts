@@ -26,7 +26,7 @@ and their exact scope.
 | 3.2 L stroke | 74.4 mm | Documented 3.2 L rebuild |
 | Intake disc | 35 mm | 956/962 part reference and 3.2 L rebuild; assumed application transfer |
 | Exhaust disc | 30.5 mm | Same evidence level and limitation |
-| Projected centers of the four reservations | X = ±19, Y = ±19 mm | Assumed design layout |
+| Projected centres of the four reservations | X = ±19, Y = ±19 mm | Assumed design layout |
 | Chamber depth | 13 mm | Assumption independent of displacement |
 | Intake/exhaust throat diameters | 30 / 26 mm | Assumptions, not Porsche seat or port dimensions |
 | Guides | Ø7 mm, axis from Y = ±22 to ±36 mm over 75 mm | Assumed reservations, without functional guides |
@@ -36,14 +36,14 @@ and their exact scope.
 
 The [research register](dimensional-research.json) distinguishes manufacturer,
 parts supplier, individual-car record and restoration account.
-Unknown angles, studs, center distances, registers, seats, sealing surfaces
+Unknown angles, studs, centre distances, registers, seats, sealing surfaces
 and oil are not presented as original measurements.
 The Ø35/30.5 values size the reservations; the model does not deliver a
 functional valve, seat, spring or valvetrain.
 
 <a id="paramétrage-local-sans-agrandissement-global"></a>
 
-## Local parameterization without global scaling
+## Local parameterisation without global scaling
 
 The [generator](source/family/HeadFamilyStudy.cs) continues the previous study
 while preserving its sources and evidence. It constructs the three domains
@@ -54,7 +54,7 @@ The 2 and 8 mm margins are study choices, without sealing or strength evidence.
 The valve reservations use the recovered diameters. Their layout and
 transitions into the ports remain assumed. Galleries follow the hot volumes
 and maintain a reservation around dry areas. The 36 external BCC cells are
-retained; they do not result from stress or heat-transfer optimization.
+retained; they do not result from stress or heat-transfer optimisation.
 
 Stroke remains in the [engine register](bionic-family.json), outside the
 head-geometry inputs. Two displacements at the same bore can therefore
@@ -73,7 +73,7 @@ compression nor assembly interchangeability.
 Calculated strokes do not select available crankshafts. Actual displacements
 of the two rounded historical pairs are retained in the JSON.
 Proposed bores do not prove clearance within an original case or cylinder pitch.
-No compression ratio is imposed on the new models from a catalog piston or
+No compression ratio is imposed on the new models from a catalogue piston or
 another restoration.
 
 <a id="exécution-et-contrôle"></a>
@@ -174,7 +174,7 @@ their publication. `SHA256SUMS.txt` and `archives.json` check the original
 archives; `ENGLISH_SHA256SUMS.txt` and `ENGLISH_ARCHIVES.json` check the English
 review packages. Draft release permalinks can change when GitHub edits the
 draft, so this page uses the stable repository releases entry point.
-Repository and dependency licenses remain applicable. Remote CI is available
+Repository and dependency licences remain applicable. Remote CI is available
 on the PR; no merge, physical qualification or functional release is claimed.
 
 <a id="limites-fonctionnelles"></a>

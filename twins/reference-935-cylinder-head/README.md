@@ -109,7 +109,7 @@ solution and invents no boundary condition.
 
 ## Provisional interfaces
 
-The following values are expressed in OBJ units; millimeters are not yet
+The following values are expressed in OBJ units; millimetres are not yet
 established:
 
 - visible outer register: diameter 113.53;
@@ -140,8 +140,8 @@ compatibility can therefore be concluded.
 - Associate any metal version with a material, a process, a treatment, an
   orientation, machining, an inspection plan and material traceability.
 - Keep the raw mesh and all its derivatives outside Git as instructed by the
-  owner, even though the owner confirms an open, reusable license whose
-  standardized identifier remains to be archived.
+  owner, even though the owner confirms an open, reusable licence whose
+  standardised identifier remains to be archived.
 - Do not release a metal valve from the F1 proxies; require a complete
   definition, a material/process qualification and hot valvetrain tests under
   professional engineering review.

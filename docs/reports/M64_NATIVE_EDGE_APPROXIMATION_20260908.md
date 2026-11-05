@@ -13,7 +13,7 @@ They constitute neither a CFD result nor a physical accuracy of the scan.
 1. **Native representation / projection tolerance:** `5e−6` scan unit
    is the tolerance of the OCCT edges concerned. It is used for the native split
    and for matching the nodes to their supports.
-2. **Continuous discretization error:** distance between an entire curve and
+2. **Continuous discretisation error:** distance between an entire curve and
    its chords. No global contract imposing `5e−6` on this error was
    found in the active checks. The incidence test had explicitly
    left this proof at `false`.
@@ -23,7 +23,7 @@ They constitute neither a CFD result nor a physical accuracy of the scan.
 
 The [OCCT BRep_Tool](https://occt3d.com/dev/doc/refman/html/class_b_rep___tool.html) API
 describes the tolerance of the entity, while [Gmsh](https://gmsh.info/doc/texinfo/gmsh.html#Specifying-mesh-element-sizes)
-has distinct constraints for curve discretization and for mesh
+has distinct constraints for curve discretisation and for mesh
 sizes. **Our engineering conclusion:** a B-Rep tolerance is not enough,
 on its own, to define the admissible error of a CFD mesh.
 
@@ -61,7 +61,7 @@ and the [incidence auditor](../../twins/m64-cylinder-head/source/flowbench-intak
 ## Next decision
 
 The reduction to two nodes is **neither launched nor qualified here**. Before a
-comparative run: define a discretization budget specific to the local
+comparative run: define a discretisation budget specific to the local
 functions, match the Gmsh tags to the native edges without assuming their numbers
 are identical, keep the vertices/C0 and the shared boundaries, check
 the faces actually produced and their intersections, then run the
@@ -77,7 +77,7 @@ flowchart TD
     A["Same native B-Rep, digest unchanged"] --> B["Incidence and projection of the nodes"]
     A --> C["Continuous curve / chord error"]
     A --> D["Local functional clearances"]
-    B --> E["Separate, declared discretization budget"]
+    B --> E["Separate, declared discretisation budget"]
     C --> E
     D --> E
     E --> F["Meshing run, then check of faces and volume"]

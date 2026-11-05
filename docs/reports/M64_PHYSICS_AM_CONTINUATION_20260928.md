@@ -5,7 +5,7 @@
 This follows the [full-height slicing and junction screen](M64_JUNCTION_AM_SCREEN_20260928.md).
 The existing native head and 13-solid assembly remain unchanged. No oval,
 generic block, welded mesh or deleted cell replaces them. **Manufacturing and
-engine-operation authorization remain false.** Physical scale, interfaces,
+engine-operation authorisation remain false.** Physical scale, interfaces,
 complete assembly and hot material/process data are not certified.
 
 The new work separates three questions: whether a mesh can represent the body,
@@ -16,7 +16,7 @@ physical safety factor or evidence of 700 hp output.
 ## Why the 14 coincident vertex pairs cannot simply be welded
 
 The [new diagnostic](../../twins/m64-cylinder-head/source/wholebody/audit_coincident_junctions.py)
-checks the previous mesh arrays against the hash-bound Gmsh serialization and
+checks the previous mesh arrays against the hash-bound Gmsh serialisation and
 locates coincident groups against the unchanged native BRep. All **14 groups**
 contain separate indexed vertex stars that coincide geometrically.
 
@@ -29,7 +29,7 @@ combinatorial tests, not a global geometric intersection certificate.
 
 The groups lie near five native face-pair families: seven near 893/1154, two
 near 679/897, two near 712/952, two near 679/888, and one near 1177/1427.
-Indices are localization aids, not functional labels or permission to trim
+Indices are localisation aids, not functional labels or permission to trim
 material. A synthetic pair of tetrahedral stars demonstrates the failure;
 half-ball and spherical-link witnesses demonstrate the accepted topology.
 
@@ -93,7 +93,7 @@ Dynamic columns use the existing assumed cam/spring/contact model at an
 Each case also runs at 3,600 and 7,200 steps: 36 integrations in total.
 Only native valve mass changes; the spring's material law, geometry and
 calibration do not become titanium properties. All 12 cases retain some
-modeled contact loss. Gas-pressure forces, actual cam data, temperature,
+modelled contact loss. Gas-pressure forces, actual cam data, temperature,
 spring/contact damping calibration and periodic steady state are absent.
 This comparison is not an installed valvetrain pass.
 
@@ -118,7 +118,7 @@ Solid intake mass becomes **65.967 g steel / 37.143 g Ti**; solid exhaust
 mass becomes **52.732 / 29.691 g**. In the same assumed dynamics, their maximum
 separations become **0.07938 / 0.03380 mm** for intake and **0.07848 / 0.04176 mm**
 for exhaust. This detects the added inertia that an original-length comparison
-would omit. All 12 extended cases still show modeled contact loss. It does not
+would omit. All 12 extended cases still show modelled contact loss. It does not
 validate the scan registration, hot guide clearance, added-stem stiffness or
 complete actuator. No assembled valve is replaced by these comparison solids.
 
@@ -132,7 +132,7 @@ heat-transfer calculation. Seat/guide contact paths remain unsolved.
 
 MAHLE treats [valves, seats and guides as a system](https://www.mahle.com/en/products-and-services/engine_components/)
 and describes sodium-filled high-temperature valve options. Sodium transport
-must be modeled separately from an empty bore, with supplier geometry,
+must be modelled separately from an empty bore, with supplier geometry,
 fill, orientation, motion and temperature data. No vendor temperature
 reduction is transferred to this M64. **No valve material or construction is
 selected for release.**
@@ -187,7 +187,7 @@ different alloy's benchmark.
 
 Both containers exit **0**, reach exactly **4 ms**, and pass `checkMesh`.
 The [independent history audit](../../twins/m64-cylinder-head/source/additivefoam/audit_amb2018_thermal.py)
-requires synchronized finite diagnostics, the complete log time grid, unchanged
+requires synchronised finite diagnostics, the complete log time grid, unchanged
 listed physics/mesh inputs and only the declared time-control differences.
 The [aggregate receipt](../../twins/m64-cylinder-head/evidence/amb2018-thermal-comparison-20260928.json)
 binds logs, histories and the actual 2 ms temperature fields by hash.
@@ -268,7 +268,7 @@ flowchart TD
 PicoGK remains available for targeted new channels/features after protected
 interfaces and physical roles are assigned. Previous rejected global roundtrips
 are not rehabilitated by this work. PhysicsNeMo cannot supply missing measured
-material laws; Omniverse visualization cannot replace CFD, hot strength or AM
+material laws; Omniverse visualisation cannot replace CFD, hot strength or AM
 qualification. Their earlier receipts remain historical, not new runs claimed
 in this continuation. NVIDIA's CAD-to-SimReady workflow reinforces this
 separation between geometry, physical metadata and actual solver evidence.
@@ -316,7 +316,7 @@ advertised RAM and an RTX 2080 Ti; the mesher is CPU work, not a claimed GPU
 simulation. Advertised rate was **$0.354074/h**, reserved disk 100 GB, hard
 budget $2.50 with a three-hour guard. The credit readback changed from
 **$35.775680 to $35.504361**, approximately **$0.2713 observed debit**; this is
-an account snapshot difference, not an itemized invoice. No recharge was
+an account snapshot difference, not an itemised invoice. No recharge was
 requested. The instance is verified absent and the guard has exited. The
 five local task containers are also removed after their logs and states
 were retained; source, binaries and computed fields remain on local disk.
@@ -329,7 +329,7 @@ Local container state capture SHA-256:
 Repository verification: `make check` passes, including **3,183 tests,
 147 explicitly skipped**, native container checks and zero broken Markdown
 links. The four new targeted tests also pass in the actual local numerical
-environment. This verifies software behavior, not physical qualification.
+environment. This verifies software behaviour, not physical qualification.
 The original-profile study was rerun with the final extended-capable producer;
 all numerical case results exactly match run 03. Both original and extended
 studies are now reproducible from source SHA-256

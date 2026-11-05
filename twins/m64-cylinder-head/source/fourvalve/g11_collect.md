@@ -1,7 +1,7 @@
 # G11 bounded private collection
 
 Stop the campaign and its telemetry producer before packing. The collector reads
-outputs; it does not stop jobs, rent machines, transfer files, or authorize parts.
+outputs; it does not stop jobs, rent machines, transfer files, or authorise parts.
 
 On the owned compute instance, after copying `g11_collect.py` there:
 

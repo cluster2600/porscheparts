@@ -2,10 +2,10 @@
 
 Describe the part, documentation or tool being added.
 
-## Provenance and license
+## Provenance and licence
 
 - Sources:
-- License of data and geometry:
+- Licence of data and geometry:
 - Third-party content committed: yes / no
 
 ## Safety

@@ -13,7 +13,7 @@ These instructions apply to `twins/962-cylinder-head-f0/` and its descendants.
   Retain explicit legacy anchors when translating linked headings.
 - Keep original-reference measurements, assumed design inputs and calculated
   results distinct. Missing measurements remain unknown. The owner's
-  authorization permits bionic studies with explicit assumptions; it does
+  authorisation permits bionic studies with explicit assumptions; it does
   not establish fitment, strength, thermal performance or manufacturing release.
 - Preserve historical candidates and rejected results. New calculations and
   exports use fresh output directories with source/input/runtime provenance.
@@ -24,7 +24,7 @@ These instructions apply to `twins/962-cylinder-head-f0/` and its descendants.
 - Read [WORKFLOW.md](WORKFLOW.md) and [workflow-contract.json](workflow-contract.json)
   before planning or executing a checkpoint. Every agent must account for all
   nineteen phase IDs, even when its own task changes only one phase.
-- Before a paid session, materialize a full ledger with
+- Before a paid session, materialise a full ledger with
   `python3 twins/962-cylinder-head-f0/source/workflow_plan.py --output <new-dir>`.
   Bind every affected job's inputs and runtime; supply explicit blockers for
   the rest. Generated command templates are not executable preparation.

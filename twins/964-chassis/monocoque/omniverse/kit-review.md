@@ -39,7 +39,7 @@ receipts remain unchanged.
 The USD 5 / 90-minute proposal was approved for the
 [29 October attempt](native-review-20261029/README.md), which ended with verified
 cleanup before this protocol completed. Coordinate the shared account and
-obtain a fresh bounded authorization before another paid attempt. Recheck the
+obtain a fresh bounded authorisation before another paid attempt. Recheck the
 offer, driver and deadline guard before launch; this document does not renew
 the previous approval.
 The compute image plus these Kit layers total **37.806 GB compressed**, within
@@ -86,7 +86,7 @@ closed sections, then hide `OuterSkin` in the working layer for a tunnel and
 interior view. Save and reopen that working layer, reconnect the browser and
 verify that native frames resume. Check the retained bundle hashes again.
 
-Keep screenshots, sanitized frame counters/resolution, Kit version and logs,
+Keep screenshots, sanitised frame counters/resolution, Kit version and logs,
 GPU/driver identity, the saved working layer, and hashes of all collected
 media. Visually inspect the geometry; a connected socket or non-empty UI alone
 does not prove that the correct scene was displayed. Do not publish raw ICE

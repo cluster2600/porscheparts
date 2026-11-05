@@ -17,7 +17,7 @@ functional geometry. No new parameter sweep or paid compute was run.
 The [report](audit.json) records complete denominators, original input hashes,
 the recovery-manifest digest and audit-source digest. The
 [source](source/audit_retained_meshes.py) computes signed tetrahedral volumes,
-a normalized tetrahedral mean-ratio metric, boundary triangle quality and
+a normalised tetrahedral mean-ratio metric, boundary triangle quality and
 boundary-node incidence. This metric is **not** Gmsh minSICN. Its 0.01 and 0.1
 bins are diagnostic thresholds, not engineering acceptance criteria.
 
@@ -34,7 +34,7 @@ boundary XYZ bytes are identical across meshes. Triangle quality ranges from
 3.304e-6 to 1; its first percentile is 0.02512. Every element in either bad-quality
 bin touches at least one boundary node; no entirely interior element is in those
 bins. This is a node-incidence classification, not exact boundary-face adjacency.
-It supports investigating the fixed boundary discretization; it does not prove
+It supports investigating the fixed boundary discretisation; it does not prove
 the cause of each bad element or a defect in the physical specimen.
 
 All volumes are positive and total 1,106,103.025522435 mm³ within floating-point

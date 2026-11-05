@@ -49,7 +49,7 @@ producing a diagram or a model response.
 | Architecture Change Management | ADR updates when a runtime, material, host or claim changes |
 | Requirements Management | R-* table maintained throughout every increment |
 
-No enterprise repository service, new scheduler or modeling server is needed.
+No enterprise repository service, new scheduler or modelling server is needed.
 Markdown, Mermaid, existing JSON records and Git reviews are the initial tools.
 
 ## Verification and failure handling

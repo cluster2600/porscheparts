@@ -5,9 +5,9 @@ continuous envelope. The [corrected gallery](GALLERY.md) shows the added body.
 These renders come from the **meshes actually calculated and inspected**.
 The reference geometry remains that of the unmeasured F0: four
 valve/guide reservations and two spark plug wells, with no functional valvetrain or
-mountings. Gray is a presentation shade; blue represents
+mountings. Grey is a presentation shade; blue represents
 the coolant volume, orange the volumes reserved for passages and spark plugs.
-The colors do not represent a calculated temperature.
+The colours do not represent a calculated temperature.
 
 ## Frame around the ports, before the envelope was added
 
@@ -15,7 +15,7 @@ The colors do not represent a calculated temperature.
 
 ## Cutaway and internal passages
 
-![Virtual cut: metal in gray, coolant in blue, dry volumes in orange](derived/views/cutaway.png)
+![Virtual cut: metal in grey, coolant in blue, dry volumes in orange](derived/views/cutaway.png)
 
 ## Coolant circuit and transparent body
 

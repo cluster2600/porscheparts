@@ -60,10 +60,10 @@ Minimal plan format (the illustrative values must be replaced):
 links two pinned receipts (native and independent comparison), checks the
 statuses and the nine sets, then produces only the counts and the quality
 refusal. It **does not rerun the audit** and does not export coordinates.
-Even an accepted mesh is not enough to authorize CFD or manufacturing.
+Even an accepted mesh is not enough to authorise CFD or manufacturing.
 
 Pilot actually run on September 12: eight reader tests pass, then the two
-private receipts are summarized. Both commands finish with exit code zero; the
+private receipts are summarised. Both commands finish with exit code zero; the
 campaign stops in **0.162 s**, code two, reason `gate_not_true`, because five
 quality checks remain refused. This code two is the expected stop of the
 chain, not a solver failure. The
@@ -126,10 +126,10 @@ for replacing a verified method.
 
 | Avenue | What it brings and decision for the M64 |
 |---|---|
-| [PhysicsNeMo-Mesh, NVIDIA post of April 7, 2026](https://nvidia.github.io/physicsnemo/blog/2026/04/07/physicsnemo-mesh/) | Geometry, neighborhood and discrete computation operations on GPU, simplicial meshes. Candidate for batch processing of surfaces/tets; do not blindly convert the hybrid polyMesh into it nor call its outputs OpenFOAM evidence. CPU/GPU benchmark only after a tested adapter; not installed in this batch. |
-| [Gmsh/HXT](https://gmsh.info/doc/texinfo/gmsh.html#Choosing-the-right-unstructured-algorithm) | CPU/OpenMP parallelization. HXT has already been tried on the core; repeating the same mesh with more RAM does not fix its small boundary facets. No new HXT run launched. |
-| [fTetWild](https://github.com/wildmeshing/fTetWild) | Robust tetrahedralization within an approximation envelope, MPL-2.0 license, 2020 paper. Not a hybrid fixer that exactly preserves our interfaces. Admissible geometric deviation to be defined before any trial; the default ε=diagonal/1000 is not an engine tolerance. Not retained to replace the master. |
-| [TMOP/MFEM, Camier et al., 2022](https://arxiv.org/pdf/2205.12721) | Optimization by node displacement and partial GPU assembly; quality functions and displacement limiting. Older methodological paper, not a new September 2026 advance. A representation change/adapter would be needed for our polyhedra; the published gains are not performance measured on this cylinder head. |
+| [PhysicsNeMo-Mesh, NVIDIA post of April 7, 2026](https://nvidia.github.io/physicsnemo/blog/2026/04/07/physicsnemo-mesh/) | Geometry, neighbourhood and discrete computation operations on GPU, simplicial meshes. Candidate for batch processing of surfaces/tets; do not blindly convert the hybrid polyMesh into it nor call its outputs OpenFOAM evidence. CPU/GPU benchmark only after a tested adapter; not installed in this batch. |
+| [Gmsh/HXT](https://gmsh.info/doc/texinfo/gmsh.html#Choosing-the-right-unstructured-algorithm) | CPU/OpenMP parallelisation. HXT has already been tried on the core; repeating the same mesh with more RAM does not fix its small boundary facets. No new HXT run launched. |
+| [fTetWild](https://github.com/wildmeshing/fTetWild) | Robust tetrahedralisation within an approximation envelope, MPL-2.0 licence, 2020 paper. Not a hybrid fixer that exactly preserves our interfaces. Admissible geometric deviation to be defined before any trial; the default ε=diagonal/1000 is not an engine tolerance. Not retained to replace the master. |
+| [TMOP/MFEM, Camier et al., 2022](https://arxiv.org/pdf/2205.12721) | Optimisation by node displacement and partial GPU assembly; quality functions and displacement limiting. Older methodological paper, not a new September 2026 advance. A representation change/adapter would be needed for our polyhedra; the published gains are not performance measured on this cylinder head. |
 
 PhysicsNeMo as a reduced model and Qwen/vLLM as an assistant remain optional.
 A reduced model will have to be evaluated on separate reference cases; no
@@ -147,7 +147,7 @@ by this batch.
 2. **Independent process**: isolate the source quadrature on the existing F58
    coupon, thermal only, common window 0–40 µs at 25 ns. Compare
    `nPoints=(10,10,10)` and `(20,20,20)` without changing laser, material or
-   limiter. The pinned code of `movingHeatSource.C` normalizes the energy only
+   limiter. The pinned code of `movingHeatSource.C` normalises the energy only
    if `abs(1-sumWeights/V0)<0.05`: this numerical sensitivity deserves a test,
    without presuming it explains the 3,300 K. Proposed pilot: two CPUs,
    4 GiB, 600 s including cleanup, single stop, no GPU justified.

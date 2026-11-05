@@ -13,7 +13,7 @@ A single global trial uses `polyDualMesh` from **Foundation 14,
 commit `7b05503f98a85be88af930df48623b4d152bfc35`**, with a boundary feature
 detection angle of 0°. This is not the old rectangular control case of 1,768
 tetrahedra tested at 60°, nor a repeat of the local contraction. The whole
-hybrid discretization is transformed, not only its tetrahedra.
+hybrid discretisation is transformed, not only its tetrahedra.
 
 The [primary polyDualMesh code](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/applications/utilities/mesh/manipulation/polyDualMesh/polyDualMesh.C)
 uses this angle to detect boundary edges. **0° guarantees neither zero
@@ -35,7 +35,7 @@ is created to make the diagnostic pass.
 
 The homogeneous `air` zone is verified then archived on the copy before the
 conversion. After conversion, its full list is rebuilt from `owner` **and**
-`neighbour`: nonnegative labels, neighbor order, exact coverage of `0…N−1`,
+`neighbour`: nonnegative labels, neighbour order, exact coverage of `0…N−1`,
 consistent face count. No primal cell identifier is reused as a dual
 identifier. This metadata reconstruction does not modify the five
 geometry/connectivity files.
@@ -76,7 +76,7 @@ set sizes, without confusing occurrences, faces and tetrahedra. The 15
 `shortEdges` entries are **points**, not a number of edges.
 
 The before/after counters do not rest on an individual cell correspondence
-between the two discretizations. The isolated gains in determinant or weight
+between the two discretisations. The isolated gains in determinant or weight
 do not offset the negative volumes and the new defects. A connected region
 and kept patch names do not prove the geometric equivalence of the domain.
 
@@ -91,13 +91,13 @@ fans**.
 
 The exact comparison of coordinates finds 82,400 of the 83,526 former unique
 boundary points: 1,126 are missing and 280,248 are new. These numbers describe
-a new discretization; they do not by themselves constitute evidence of a
+a new discretisation; they do not by themselves constitute evidence of a
 difference, or of identity, of the continuous domain.
 
 The maximum planarity residual is `0.0024871448012475667` mesh unit on the
 candidate, versus `1.3099984372445823e−13` on the source. The exact test also
 reports 50,239 non-strictly-planar polygons in the source: this diagnostic of
-serialized numbers is **not a CFD acceptance threshold** nor a reason to
+serialised numbers is **not a CFD acceptance threshold** nor a reason to
 modify the CAD. The projection and the fan from the first vertex are declared
 measurement conventions.
 
@@ -138,11 +138,11 @@ identifier sets are not published.
 
 The next avenue retained is a **conservative, quality-driven agglomeration of
 the primal mesh**, with no new dual and no lowering of thresholds. It must
-examine disjoint neighboring groups, including the pyramid/tetrahedron
+examine disjoint neighbouring groups, including the pyramid/tetrahedron
 transitions that the current tetrahedral utility does not handle.
 Preconditions before a new native batch: admissible unions, external
 coordinates and facets kept, checked volume balance, then quality of all
-neighboring faces and correspondence of the defect sets. **This extension is
+neighbouring faces and correspondence of the defect sets. **This extension is
 not yet executed**; the earlier tet/tet merges do not prove that it will
 resolve all defects.
 

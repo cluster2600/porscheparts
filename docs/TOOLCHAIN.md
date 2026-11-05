@@ -1,6 +1,6 @@
 # Toolchain
 
-The selection favors free, open-source, cross-platform software and open
+The selection favours free, open-source, cross-platform software and open
 formats. A proprietary tool is accepted only when an industrial machine or a
 service provider imposes it, and it must not become the project's only editable
 source.

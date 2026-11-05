@@ -1,7 +1,7 @@
 # Bench protocol for the horizontal 935 system
 
 This protocol prepares future tests of the reference and of the variant.
-It gives no authorized speed. The maximum speed, vibration thresholds,
+It gives no authorised speed. The maximum speed, vibration thresholds,
 temperatures, loads and lubrication conditions remain to be
 defined by the mechanical review and the component data. The
 [measurement contract](../../../twins/935-horizontal-cooling-system-f0/measurement-contract.json)
@@ -20,14 +20,14 @@ The bench uses a controlled drive, independent speed measurements
 at the input and at the rotor, a torque measurement and an enclosure suited to the rotor.
 The shutdown protocol follows from the documented limits of the parts and the bench.
 Any overspeed test is the subject of a specific protocol, after
-the initial characterization. This document triggers no physical test.
+the initial characterisation. This document triggers no physical test.
 
 ## Acquisition and calculations
 
 | Measurements | Placement and processing |
 |---|---|
 | Input/output speeds | Independent sensors; positive direction defined per axis and view; signed ratio and slip measured. |
-| Input and rotor torque | Calibrated chains; `P = 2π n τ / 60` for `n` in rpm; losses from the difference of powers after stabilization. |
+| Input and rotor torque | Calibrated chains; `P = 2π n τ / 60` for `n` in rpm; losses from the difference of powers after stabilisation. |
 | Flow | Calibrated flow-measurement device in the bench circuit; keep actual volumetric flow, mass flow, temperature and absolute pressure. |
 | Pressures | Identified upstream/downstream stations and probes; distinguish static and total; keep the same reference frame as the CFD. |
 | Vibrations | Mount accelerometers and rotor phase measurement; spectra, orders and evolution with speed. |
@@ -35,7 +35,7 @@ the initial characterization. This document triggers no physical test.
 | Lubrication | Pressure, temperature and supply actually defined for the angle drive; check losses and leaks. |
 
 Document sensor number, position/reference mark, calibration before/after,
-sampling frequency, filtering, synchronization, unit and uncertainty.
+sampling frequency, filtering, synchronisation, unit and uncertainty.
 The vibration acquisition frequency must resolve the orders studied,
 with an anti-aliasing filter; it depends on the identified speeds and gear teeth.
 The blade-passing frequency is `Z |n| / 60`. The current geometric
@@ -48,12 +48,12 @@ thresholds.
 
 ## Sequence
 
-1. Transmission alone: controlled ramp-up within the authorized envelope, check
+1. Transmission alone: controlled ramp-up within the authorised envelope, check
    of the ratio, directions, vibrations, lubrication and losses.
 2. Rotor and housing on the bench: for each selected speed, vary the
    circuit resistance; measure flow, pressure and torque up to the documented
    allowable domain. Keep a common measurement station across variants.
-3. Repeatability: repeat points, repeat at stabilized temperature and
+3. Repeatability: repeat points, repeat at stabilised temperature and
    compare ramp-up/ramp-down. Record drifts and interventions.
 4. Validation: reserve points before any model adjustment; compare
    predictions and measurements with their uncertainties and the pre-established tolerances.

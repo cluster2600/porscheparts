@@ -162,7 +162,7 @@ A disconnected two-loop witness is now rejected.
 
 This is a real software-contract fix, **not the cause of the head's entire
 reconstruction failure**: four repeats still fail with the same native results.
-An additional initialization uses the original plane (142 below, 1412 above).
+An additional initialisation uses the original plane (142 below, 1412 above).
 Only a plane is admitted, ensuring orthogonal local coordinates as required by
 the same API; this is an initial surface, not permission to flatten the part.
 
@@ -171,9 +171,9 @@ the same API; this is an initial surface, not permission to flatten the part.
 | Lower, ordered boundary only | 0.1981524648 | Invalid patch; reject |
 | Lower, ordered boundary + 33 interior constraints | 0.0710922485 | Invalid patch; reject |
 | Upper, ordered boundary only / interior constraints | No completed patch | Both rejected |
-| Lower, native plane initialization, boundary only | 0.1552171844 | Invalid patch; reject |
-| Lower, native plane initialization + 33 interior constraints | 0.0206819153 | Invalid patch; reject |
-| Upper, native plane initialization, both settings | Native `Standard_Failure` | Both rejected |
+| Lower, native plane initialisation, boundary only | 0.1552171844 | Invalid patch; reject |
+| Lower, native plane initialisation + 33 interior constraints | 0.0206819153 | Invalid patch; reject |
+| Upper, native plane initialisation, both settings | Native `Standard_Failure` | Both rejected |
 
 The lower error reduction does not meet the unchanged **1e-7 boundary
 construction guard**. It is not a 0.020 or 0.040 engineering result. No patch
@@ -219,7 +219,7 @@ execution. The later recovery below supersedes that collection status.
 ## Reproduction
 
 Use the existing isolated OCP 7.9.3.1 / Gmsh 4.15.2 environment and private
-inputs; the compound jobs use the existing authorized Linux host.
+inputs; the compound jobs use the existing authorised Linux host.
 
 ```sh
 python twins/m64-cylinder-head/source/wholebody/trial_constrained_patch.py \
@@ -760,7 +760,7 @@ The private reproduction needs two rounds, considering five new points:
 three common-edge projections and two shared-face projections. The first
 round resolves the initial parent but exposes one neighbour; the second
 resolves it. The original CAD is not edited. A synthetic box-corner regression
-checks common-edge versus nearest-face projection, same-face behavior,
+checks common-edge versus nearest-face projection, same-face behaviour,
 unchanged inputs, bad indices and bounds, off-surface endpoints, and nearby
 but topologically disconnected faces. No scan coordinates are added to tests.
 
@@ -2038,7 +2038,7 @@ patch and 6 bounded-chamfer tests. Final frozen-code Kali2 `make check` exits
 **0**: 3,232 main tests, 168 optional skips, 155.451 seconds, followed by all
 remaining targets. Optional native tests skipped there run on Mac instead.
 The four modified code/test files have identical Mac/Linux hashes. One earlier
-rerun was not launched because recursive permission normalization encountered
+rerun was not launched because recursive permission normalisation encountered
 root-owned Docker bytecode; limiting it to the two changed source files fixed
 the preparation without altering those unrelated files.
 
@@ -2230,7 +2230,7 @@ bad triangles occur on those two endpoint faces. It is rejected.
 
 The coupled trial explicitly includes five edges: 2/142, 2/141, 2/143, 141/142,
 and 142/143. There is no contour propagation. Exactly six original faces change
-(2, 131, 140, 141, 142, 143); all **4,912** other face identities and serialized
+(2, 131, 140, 141, 142, 143); all **4,912** other face identities and serialised
 data remain intact in memory. One valid solid, 4,925 faces, unchanged maximum
 tolerances, and BOP with no errors/warnings/faults are obtained. BOP takes
 118.110 seconds. A metadata-only producer rerun emits the **same BRep SHA-256**.
@@ -2256,7 +2256,7 @@ trimmed-face interiors, finds maxima of **0.0207106781** (11,164 original-to-new
 samples) and **0.0146446609** (13,442 new-to-original samples). No sampled value
 exceeds 0.040. This is neither a Hausdorff bound, a whole-head dimensional
 certificate nor a physical 0.040 mm result. A separate readback face-byte lookup
-matches only 4,804 of the 4,912 protected face serializations; representation
+matches only 4,804 of the 4,912 protected face serialisations; representation
 differences are **not** proof of movement, but this lookup cannot be advertised
 as a protected-face export certificate. The patch audit uses the producer's
 explicit result-face indices bound to the emitted BRep hash instead.
@@ -2300,7 +2300,7 @@ smooth-face compound or local retriangulation. The 90-degree and 16-degree
 boundaries adjacent to face 147 must not disappear. In parallel with that
 numerical work, the upper spring-pocket/pad transition still requires its own
 source-based reconstruction. None of these rejected recipes justifies a volume
-optimizer run, a looser quality threshold or a changed physical design envelope.
+optimiser run, a looser quality threshold or a changed physical design envelope.
 
 ```sh
 python twins/m64-cylinder-head/source/wholebody/trial_acute_cylinder_blend.py \
@@ -2331,8 +2331,8 @@ as a rejected experiment, not as progress toward zero by changing the gate.
 ### The diagnosed regions are not established port-branch junctions
 
 A read-only comparison of nine retained native stages matches the exact
-serialization of their supporting surfaces. This is not a recovered Boolean
-history, identical trimming, or proof that differently parameterized surfaces
+serialisation of their supporting surfaces. This is not a recovered Boolean
+history, identical trimming, or proof that differently parameterised surfaces
 are different geometries. Nevertheless, it identifies relevant construction
 inputs before changing an unrelated port generator:
 
@@ -2367,7 +2367,7 @@ unobserved scan cavities. Both diagnosed lower tips are processed at radius
 | Check | Observed result |
 |---|---|
 | Original faces modified | Exactly 2, 141, 142, 143 |
-| Other original faces | 4,914 identities and serializations preserved in memory |
+| Other original faces | 4,914 identities and serialisations preserved in memory |
 | Saved/read-back candidate | Valid, one solid, one shell, 4,922 faces |
 | Original body/tool/stock | Preserved; source hashes checked |
 | Maximum stored tolerances | Not increased |
@@ -2384,7 +2384,7 @@ minimum q2 0.02134670874. It uses the previously documented curvature-aware
 MeshAdapt recipe; this comparison is not a runtime benchmark. No new
 volume-quality result replaces the retained **32 rejected tetrahedra** baseline.
 
-### Why another volume optimizer cannot rescue these caps
+### Why another volume optimiser cannot rescue these caps
 
 The new planar cap faces 280/281 each contain two straight edges meeting at
 **1.005738323 degrees**. Native point classification finds the short forward
@@ -2394,7 +2394,7 @@ locates two incompatible triangles on each cap.
 
 For a convex straight-sided planar corner of angle `theta <= 60 degrees`,
 every conforming linear triangle fan contains angles no larger than `theta`.
-For a fixed angle, equal adjacent sides maximize triangle SICN:
+For a fixed angle, equal adjacent sides maximise triangle SICN:
 
 ```text
 q2 <= sqrt(3) * sin(theta) / (2 - cos(theta))

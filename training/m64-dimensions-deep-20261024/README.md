@@ -3,7 +3,7 @@
 This separate pack prepares authored English CPT passages and synthetic,
 supplied-record SFT conversations from the reviewed
 [dimensional register](../../catalog/reference/m64-dimensions-deep-20261024/facts.json).
-It prepares data only: no model training, tokenization, context-fit evaluation or
+It prepares data only: no model training, tokenisation, context-fit evaluation or
 weights are produced.
 
 | Dataset | Train | Validation | Test |
@@ -96,7 +96,7 @@ records, reserved IDs, count summaries, reconstructed connected components,
 all four prior partition constraints, exact trainer registrations, native message
 roles, stable citations, exact authored answers and complete measurement
 metadata. Each accepted record must appear once in each dataset; refreshed
-hashes and inflated counts cannot legitimize duplicated targets.
+hashes and inflated counts cannot legitimise duplicated targets.
 
 All 23 focused tests pass. They cover fourth-pack accepted/excluded ID
 reservation, frozen dependency coverage and partition corruption; exact legacy

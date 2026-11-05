@@ -63,7 +63,7 @@ Native execution limited to 2 CPU/4 GiB/300 s, without network or rental.
 The [three targeted tests](../../tests/test_m64_ported_chamber_candidate.py)
 check the software rules; they do not replace these CAD findings.
 
-The private render `render-02/corps-admission-coupe.png` shows the body in gray,
+The private render `render-02/corps-admission-coupe.png` shows the body in grey,
 the port in blue and a section of the module. Its digest and that of the
 render receipt are linked in the body receipt. It comes from the native B-Rep
 `33375e12…`, not from the rejected STEP; it is neither a manufacturing
@@ -206,7 +206,7 @@ flowchart TD
 The new [OpenFOAM history auditor](../../twins/m64-cylinder-head/evidence/intake-openfoam-flow-audit-20260908.json)
 was run read-only on the existing smoke test: its 20 iterations do not satisfy
 the two planned 100-iteration windows. It therefore validates neither a
-stabilized balance nor convergence, even if the last balance looks balanced.
+stabilised balance nor convergence, even if the last balance looks balanced.
 It also checks zero flux at the fixed walls; two identical averages are not
 enough to qualify an oscillating signal. No new smoke-test computation was
 started to manufacture a flow-rate result.
@@ -216,7 +216,7 @@ domain. The [OpenFOAM smoke test](M64_DOMAINE_GAZ_OPENFOAM_20260908.md)
 checks a software chain on a separate port, not the cylinder-head flow rate.
 The 700 PS, heat-rejection, fatigue and printing objectives remain to be
 demonstrated with the loads and the [material/process to be selected](M64_700CH_MATERIAL_COOLING_LPBF.md).
-**No authorization for manufacture or engine start.**
+**No authorisation for manufacture or engine start.**
 
 ## Compute and budget
 
@@ -241,5 +241,5 @@ source; no executed Mermaid rendering is claimed.
 
 The test strategy separates software regressions from runs on the private
 geometry. The documentation keeps the rejected trials and links the digests;
-the colors of the render identify the parts and not a computed physical
+the colours of the render identify the parts and not a computed physical
 performance.

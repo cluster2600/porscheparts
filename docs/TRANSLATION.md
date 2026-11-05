@@ -34,7 +34,10 @@ h=$(sha256sum FILE | cut -c1-64); git grep -F "$h" && echo "PINNED — do not ed
 
 ## Style
 
-- American English spelling (`center`, `modeling`, `fiber`).
+- British English spelling with `-ise` (`centre`, `modelling`, `fibre`,
+  `aluminium`, `colour`, `licence` as a noun, `optimise`). Identifiers, schema
+  fields, status enums, filenames, URLs, code and named licences (`MIT License`)
+  keep their original spelling.
 - Keep the house voice: short declarative sentences, claims tied to evidence,
   explicit about what is **not** claimed. Do not soften "prohibited" or
   "not validated" into friendlier words.
@@ -78,11 +81,11 @@ h=$(sha256sum FILE | cut -c1-64); git grep -F "$h" && echo "PINNED — do not ed
 | plancher (nu) | (bare) floor pan |
 | longeron | side rail |
 | cloison | bulkhead |
-| tunnel central | center tunnel |
+| tunnel central | centre tunnel |
 | passage de roue | wheel arch |
 | pied milieu | B-pillar |
 | pavillon | roof |
-| cadre de pare-brise / de baie | windshield frame |
+| cadre de pare-brise / de baie | windscreen frame |
 | raideur en torsion | torsional stiffness |
 | coques linéaires / quadratiques | linear / quadratic shells |
 | substitut (de conception) | (design) surrogate model |

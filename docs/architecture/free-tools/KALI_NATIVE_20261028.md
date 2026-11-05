@@ -6,7 +6,7 @@ The working connection was recovered from the concurrent local session, then
 independently verified here. No SSH service, authentication, route or host-key
 policy was changed.
 
-The [sanitized execution receipt](../../../benchmarks/free-tools/results/kali-20261028.json)
+The [sanitised execution receipt](../../../benchmarks/free-tools/results/kali-20261028.json)
 records actual execution, versions, commands, hashes and remaining blockers.
 PR #297 is merged. This follow-up verifies the storage and Python stages on the
 native Linux worker; full host acceptance remains incomplete.
@@ -20,11 +20,11 @@ native Linux worker; full host acceptance remains incomplete.
 | Mac → Kali transfer | Public pilot packet and private DVC object archive transferred over SFTP; archive SHA-256 verified before extraction | Five registered pilot inputs; no historical archive migration |
 | Kali independent recovery | Restored from the persistent Kali store into a fresh DVC workspace/cache; all five SHA-256 identities match | Replica store is separate from disposable caches |
 | Kali → Mac recovery | Returned the Kali store objects and restored them into another fresh Mac cache | Recovery used only the returned Kali objects; the original primary store remains intact |
-| Focused tests | 32 tests: 31 passed, one explicit CloudCompare skip, zero failures/errors | Native Python tests; the infeasible optimization control deliberately prints a rejected optimizer result |
-| SQLite FTS5 | 30/30 frozen retrieval/boundary cases passed; authorized PorscheFanatics identity reference appears in the production results | Retrieval and source attribution, not Qwen answer qualification |
+| Focused tests | 32 tests: 31 passed, one explicit CloudCompare skip, zero failures/errors | Native Python tests; the infeasible optimisation control deliberately prints a rejected optimiser result |
+| SQLite FTS5 | 30/30 frozen retrieval/boundary cases passed; authorised PorscheFanatics identity reference appears in the production results | Retrieval and source attribution, not Qwen answer qualification |
 | OpenTURNS | Indices 0.19942885009108358 / 0.8017120442305217 | Synthetic expected 0.2/0.8, unchanged absolute tolerance 0.03 |
 | OpenMDAO | Optimum height 0.010455159171866592 m; independent target 0.010455159171494206 m; external replay passed | Synthetic constrained beam, unchanged relative tolerance 0.005 |
-| Carrier admission | `blocked_engineering` from the frozen independent contract | No native carrier FEM solve, geometry replacement or optimization |
+| Carrier admission | `blocked_engineering` from the frozen independent contract | No native carrier FEM solve, geometry replacement or optimisation |
 
 The worker inherited CPU affinity limited to two logical CPUs, a 4 GiB address
 space limit, single-threaded BLAS/OpenMP settings and finite command deadlines.
@@ -52,7 +52,7 @@ ssh -6 -o BatchMode=yes -o StrictHostKeyChecking=yes \
 ```
 
 Keep strict host-key checking enabled. A host-key alias selects an existing
-trusted identity; it does not authorize an unknown or changed key. Recheck the
+trusted identity; it does not authorise an unknown or changed key. Recheck the
 host and resources before execution. Link-local interface scopes are local to
 the Mac and are not portable hostnames.
 
@@ -83,7 +83,7 @@ noninteractive sudo probe returned **password required**. CloudCompare and
 SALOME container execution on Kali therefore remains **unexecuted**. Their
 earlier native Linux CI results remain valid for their tested image identities;
 they are not Kali host receipts. No group, socket-permission or daemon change
-was made. An administrator must provide authorized Docker access before running
+was made. An administrator must provide authorised Docker access before running
 the existing bounded image commands in the [runbook](IMPLEMENTATION_TEST_PLAN.md).
 
 The carrier still lacks measured interfaces, verified loads and established
@@ -91,4 +91,4 @@ mechanical convergence. Its external component currently replays admission;
 the requested numerical FEM baseline replay remains an outstanding integration
 step. Documentary Qwen output remains unqualified; no model inference was
 performed on Kali and the existing Mac geometry command was not changed. No
-training, paid infrastructure, publication or manufacturing authorization follows.
+training, paid infrastructure, publication or manufacturing authorisation follows.

@@ -100,7 +100,7 @@ compare with, and no 964 body-in-white mass is recorded in the repository.
   finest mesh, still +14% on the last refinement, 17 to 21 times the same
   model without its tubes. The result hinges on the bond: from 12,301
   (single-node ties, a lower bound) to 33,972 (60 mm strip, an upper bound,
-  since a beam's section cannot ovalize). Against the skin-formed boxes of
+  since a beam's section cannot ovalise). Against the skin-formed boxes of
   `../picogk/` (19,900), the ranking is not settled. (In S3, superseded:
   38,630, 23,665 to 57,508, and 35,462 for the boxes.) With the tubes meshed
   as shells and bonded along their line of tangency

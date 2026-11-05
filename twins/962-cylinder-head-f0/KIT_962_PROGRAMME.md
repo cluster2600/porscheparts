@@ -68,9 +68,9 @@ transfer to a Carrera by assumption.
 | Six heads, 24 valves, 12 spark plugs | LPBF bodies; machined seats, guides, threads and planes; dedicated valve components | M64 metrology, chambers/ports, seat retention, sealing and fatigue |
 | Camshaft carrier and DOHC drive | Donor-compatible architecture to define; machined gears/chains, shafts and contacts | Kinematics, lubrication, clearances, piston/valve clearance and lifetime |
 | Cylinders and head connection | Reuse or replacement according to CHT; full water cooling to compare with a mixed solution | Combustion decks, registers, preload, distortion and seals |
-| Bottom end | Inspected then analyzed case; conventional pistons/rods/crankshaft or qualified specialized components | Cylinder pressure, bearings, fatigue, detonation, speeds and torque |
+| Bottom end | Inspected then analysed case; conventional pistons/rods/crankshaft or qualified specialised components | Cylinder pressure, bearings, fatigue, detonation, speeds and torque |
 | Water and oil | Complex galleries/manifolds as AM candidates; qualified pumps, radiators, seals and fittings | Flow, pressure loss, degassing, boiling, oil return and thermal load |
-| Forced induction and charge air | Purchased and characterized turbos; manifolds/plenums as AM candidates; dedicated exchangers and wastegates | Flow/pressure maps, backpressure, temperatures and transient response |
+| Forced induction and charge air | Purchased and characterised turbos; manifolds/plenums as AM candidates; dedicated exchangers and wastegates | Flow/pressure maps, backpressure, temperatures and transient response |
 | Fuel supply and control | Qualified injectors/pumps/sensors/ECU, twin-ignition calibration | Fuel and pressure, knock, mixture, protections and degraded modes |
 | Vehicle installation | Variant-specific mounts and lines; verified clutch, gearbox and drivetrain | Torque, in-car cooling, braking/tires and intended use |
 | Commercial delivery | BOM, manual, approved torques/clearances, serial numbers, final inspection, maintenance and spares | Manufacturing repeatability, workshop installation, total cost and usage rules |

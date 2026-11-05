@@ -8,7 +8,7 @@
 
 | Level | Content | Required to pass |
 |---|---|---|
-| F0 | raw scan and digest | provenance, license and identity documented |
+| F0 | raw scan and digest | provenance, licence and identity documented |
 | F1 | surfaces, envelope and visible interfaces | unit and three physical dimensions confirmed |
 | F2 | semantic assembly | each subassembly identified and registered |
 | F3 | internal volumes | CT, disassembly or direct metrology |
@@ -69,7 +69,7 @@ The first case serves only to qualify the meshing chain. Before a solver:
 
 ## Blocking data
 
-- exact text of the Wolfe Classics license, redistribution right and an
+- exact text of the Wolfe Classics licence, redistribution right and an
   independent report on the declared accuracy of 0.5 mm;
 - exact 917 variant represented and meaning of `0.5mm`;
 - unit of the scan and at least three control dimensions;

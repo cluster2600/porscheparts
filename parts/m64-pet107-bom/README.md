@@ -2,7 +2,7 @@
 
 `PET107-BOM-V1` — the print-buy-manufacture view of the master engine BOM,
 restricted to parts that the PET107 wave-2 lane judges printable in a
-polymer FDM/FFF (PETG-PET-class) route or buyable as catalog consumables.
+polymer FDM/FFF (PETG-PET-class) route or buyable as catalogue consumables.
 
 **Status of every line:** candidate only. Nothing here is fitted, tested,
 safe, released, or manufacturing-ready — no line has metrology or physical

@@ -19,7 +19,7 @@ flowchart LR
     B --> D["1-DOF model: micro-liftoff<br/>from 6,250 rpm"]
     C --> E["Sensitivity study only"]
     D --> E
-    E --> F["No selection, no<br/>manufacturing authorization"]
+    E --> F["No selection, no<br/>manufacturing authorisation"]
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
     classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
     class D,E open;
@@ -36,7 +36,7 @@ flowchart LR
 | Valve axis inclination | 8° | `repository_design_candidate` |
 | Connecting rod | 127 mm | `assumed` |
 | Main duration + 2 × 40° ramp | 240 / 236° crank | `assumed` |
-| Lift centers | 105° after / 108° before overlap TDC | `assumed` |
+| Lift centres | 105° after / 108° before overlap TDC | `assumed` |
 | Cold clearance; hot Δ | 0.10; −0.03 / 0.15; −0.05 mm | `assumed` |
 | Equivalent mass (valve + retainer + actuator + spring/3) | 110 / 102 g | `assumed` |
 | Spring: wire 3.8, mean Ø 22, 5 active coils, installed L 40 mm, preload 300 / 280 N | k = 38.8 N/mm (computed) | `assumed` |
@@ -104,9 +104,9 @@ the jerk. Its amplitude depends on the assumed stiffnesses and damping.
 - Stiffnesses of the kinematic chain, shaft and rocker bending, hydraulic dynamics.
 - Actual geometry of the piston, valve pockets and chamber. The clearance is reduced to a single axial point.
 - Computed hot expansions. The clearance Δ is only a parameter.
-- Spring surge modeled as a continuum. Only its frequency is given;
+- Spring surge modelled as a continuum. Only its frequency is given;
   the dynamics is not coupled to the train.
-- Test-bench correlation: none. Nothing here counts as a selection or a manufacturing authorization.
+- Test-bench correlation: none. Nothing here counts as a selection or a manufacturing authorisation.
 
 ## Cross-computations in the tests
 
@@ -137,6 +137,6 @@ each value re-read on the page image (`page_checked`). **Applicability: 993 Carr
 | Cylinder head | nuts 20 Nm + 90° ±2°; studs M8×22 protrusion 23 −0.5 | 148, 150 |
 
 Absent from the manual: seat angle/width, spring free length and forces, max
-lift, camshaft clearances, flatness/resurfacing, cylinder centering, any M64/60 data.
-The set `stock_993_manual_parameters()` replaces only the lift centers (119.5° / 610.5°)
+lift, camshaft clearances, flatness/resurfacing, cylinder centring, any M64/60 data.
+The set `stock_993_manual_parameters()` replaces only the lift centres (119.5° / 610.5°)
 and the clearance (0, hydraulic); the defaults remain unchanged. It is not used by `run_study.py`.

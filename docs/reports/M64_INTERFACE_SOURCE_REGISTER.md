@@ -81,7 +81,7 @@ They are not a turbo compression recommendation. The announced speed of
 
 ## Interfaces still not dimensioned in this register
 
-| Interface | Evidence still required | Next authorized work |
+| Interface | Evidence still required | Next authorised work |
 | --- | --- | --- |
 | Main stud pattern, dowels | Coordinates, axes, tolerances, datum planes | PET then manual/TI or traceable supplier drawing |
 | Cylinder/cylinder-head register and sealing face | Diameters, depths, groove, flatness and surface finish per version | Read TI 1570 and cross-check cylinder/gasket part numbers |
@@ -119,7 +119,7 @@ without copying the pages.
 | Guide value 0.06–0.08 mm | PDF 153, line 56 | Do not call it a running clearance or interference fit without full context |
 | Valve dimensions, notably "b" 7.970 − 0.012 mm | PDF 155, line 22 | Carrera/RS columns mixed by OCR; no promotion to CAD |
 | Intake dimension "A" 36.7 + 0.3 mm and 37.2 + 0.3 mm | PDF 157, line 35 | Variant assignment and definition of A unresolved |
-| Cylinder head: 20 Nm then 90°; cam carriers: M8, 23 Nm | Structured table PDF 60 | Torques/procedure, not center distances nor a directly computable preload force |
+| Cylinder head: 20 Nm then 90°; cam carriers: M8, 23 Nm | Structured table PDF 60 | Torques/procedure, not centre distances nor a directly computable preload force |
 
 Pages 152–157 appear in the global list `manually_checked_pages`, but
 the occurrences individually keep `ocr_unreviewed`. That list is not
@@ -148,7 +148,7 @@ There was therefore **no new visual reading** of these pages, and no
 requalification of any dimension. A commercial manual reference and an earlier
 mention of consultation do not prove that the copy is accessible
 today. The next useful input is the exact file or its page renders
-from a copy whose access is authorized, not a second reading
+from a copy whose access is authorised, not a second reading
 of the same OCR. This does not suspend the search of the official catalogues nor the
 independent work on these interfaces.
 

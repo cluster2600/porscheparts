@@ -52,7 +52,7 @@ The old study and its evidence remain unchanged. The generated probe is
 authored from repository parameters; no raw scan or proprietary manual is
 included in this continuation.
 
-## Frame, discretization and volume limits
+## Frame, discretisation and volume limits
 
 The intended design remains the same nine 12 mm BCC cells, with the original
 graded diameters and clipping envelope. F0 is millimetres, X forward, Y left,

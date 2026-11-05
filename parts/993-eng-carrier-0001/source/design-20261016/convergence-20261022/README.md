@@ -82,7 +82,7 @@ Collect complete outputs, verify their hashes, destroy the exact owned instance,
 and independently confirm its absence. Transport loss is not solver failure or
 proof of provider teardown.
 
-## Further cellular optimization
+## Further cellular optimisation
 
 Replace eligible solid material; filling existing hollow arms increases mass.
 The report describes the current nominal thin walls and the earlier, different
@@ -109,7 +109,7 @@ comparison limits; the quadratic attempt failed its 24 GiB allocation cap.
 The executed 2,349 s fine T10 repeat timed out and contributes no result.
 
 
-## Imported-volume quality optimization (25 October)
+## Imported-volume quality optimisation (25 October)
 
 The existing Gmsh 4.15.2 geometry runtime runs `optimize_tetrahedra_gmsh.py` with
 `--mesh`, its `--expected-sha256`, a fresh `--output`, and `--method` (`default`,

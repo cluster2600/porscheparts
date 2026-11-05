@@ -5,8 +5,8 @@ reference-mark cage for the USA profile of the 993. It is built from seven
 dimensions declared in the Porsche manual, not from a scan or a part.
 
 The cage does not represent the body. It contains no curvature, no sourced
-overhang, no wheel, no interface and no interior volume. The axles are centered
-along the length only to visualize the wheelbase; that position is a graphical
+overhang, no wheel, no interface and no interior volume. The axles are centred
+along the length only to visualise the wheelbase; that position is a graphical
 assumption and not a Porsche dimension.
 
 ## Source and generation
@@ -22,7 +22,7 @@ Regenerate both files from the measurement register:
 python3 scripts/generate_twin_envelope.py
 ```
 
-If OpenSCAD is installed, produce a visualization mesh:
+If OpenSCAD is installed, produce a visualisation mesh:
 
 ```bash
 mkdir -p twins/993-reference-envelope/derived
@@ -50,7 +50,7 @@ flowchart LR
 
 1. Add the ROW profile once its values and their reference page have been
    recorded in machine form.
-2. Acquire body-shell geometry under license, or organize a scan campaign with
+2. Acquire body-shell geometry under licence, or organise a scan campaign with
    scale, reference marks, uncertainty and reuse rights.
 3. Progressively replace the cage with identified surfaces and subassemblies,
    linking each interface to a measurement or a source.

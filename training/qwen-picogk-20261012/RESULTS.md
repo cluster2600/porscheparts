@@ -58,7 +58,7 @@ candidate, and keep the same per-category/no-regression threshold. This is an
 adaptive development correction; the comparison does not isolate the causal
 contribution of data, extra updates or warm start.
 
-The first preparation's tokenizer mapping-key count is preserved as an invalid
+The first preparation's tokeniser mapping-key count is preserved as an invalid
 preparation audit, with no model run. The corrected package reuses the existing
 token-ID length helper, measures 547 maximum sequence tokens and prohibits
 truncation beyond 1,024. Only training/validation JSONL enters the trainer.

@@ -3,7 +3,7 @@
 ## Result in the README software chain
 
 The [preceding interior-kernel study](FLUID_KERNEL_CONTINUATION_20261022.md)
-stabilized at 519 failed cell determinants using four points on the line from
+stabilised at 519 failed cell determinants using four points on the line from
 each interior-edge midpoint to its maximum-face-height LP target. Searching
 three-dimensional cavity point placement now selects **67 additional interior
 air-mesh points** and reduces that count to **448**, a 13.7% reduction. Severe
@@ -22,26 +22,26 @@ the existing Mac and Kali1 environments.
 ## Bounded direct search with existing guards
 
 The [point-placement recipe](../../../twins/935-horizontal-cooling-system-f0/source/optimize_fluid_edge_stars.py)
-reuses the frozen cavity construction, exact partition checker, normalized LP
+reuses the frozen cavity construction, exact partition checker, normalised LP
 target and finite-volume filter. It adds the edge midpoint as a fifth control
-and a seeded SciPy differential-evolution search over three normalized point
+and a seeded SciPy differential-evolution search over three normalised point
 coordinates. Linear face-plane constraints keep candidate cones inside the
 cavity kernel; exact predicates independently check a selected partition.
 
-The search uses `rng=0`, Sobol initialization, `popsize=5`, at most 15
+The search uses `rng=0`, Sobol initialisation, `popsize=5`, at most 15
 generations, one worker and no polishing. Its maximum is 256 DE objective calls
 plus five explicit controls per tested cavity. These are exploration bounds,
-not a convergence certificate. The scalar search cost combines normalized
+not a convergence certificate. The scalar search cost combines normalised
 severity with penalties for worsening severity or failure counts. Admission
 still requires the existing filter: fewer failed determinants, no increase in
-any selected count, and no worsening normalized severity beyond its existing
+any selected count, and no worsening normalised severity beyond its existing
 floating-point comparison allowance. Neighbourhoods in a batch are disjoint.
 
 The installed native SciPy version is 1.17.1. The current
 [SciPy API reference](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.differential_evolution.html)
-documents population sizing, initialization, reproducibility and constraints;
+documents population sizing, initialisation, reproducibility and constraints;
 actual versioned execution and unit/translated-scale controls are recorded
-separately. Optimizer `success` is not used as an engineering gate. Budget-limited
+separately. Optimiser `success` is not used as an engineering gate. Budget-limited
 searches can supply guarded candidates while global optimality remains unproved.
 
 The CLI considers only interior edges touching cells with at least two boundary
@@ -111,7 +111,7 @@ original points, finite budgets and rejection of non-improving or incomplete
 parent evidence.
 
 The next mesh work must address rank-two cells with topology changes or guarded
-convex cell agglomeration, and optimize existing interior points for the remaining
+convex cell agglomeration, and optimise existing interior points for the remaining
 nonorthogonality/interpolation defects. Native quality thresholds stay unchanged.
 Mixed polyhedral cells would require their own partition, exact volume and
 independent readback proofs. Scale, the 17 interfaces, hidden transmission,

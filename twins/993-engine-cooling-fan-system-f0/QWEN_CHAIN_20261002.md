@@ -49,7 +49,7 @@ The surface used for the structural mesh is a validated 50,000-face reduction;
 its volume is checked, but no surface-distance or mesh-independence study has
 been completed for this candidate. Pressure, temperature, fatigue, resonance,
 bearing contact and manufacturing defects are absent. No strength pass/fail or
-manufacturing authorization follows from these values.
+manufacturing authorisation follows from these values.
 
 ## Flow-mesh recovery
 
@@ -121,5 +121,5 @@ original and projected SHA-256 identities separately. Original payloads remain
 preserved privately. Three lines in the repository-check log and two traceback
 lines in the USD log contain path substitutions; every other decoded byte is
 unchanged. Test outcomes, skips, errors, geometry, solver results and all earlier
-scores retain their original meaning. These copies are sanitized projections,
+scores retain their original meaning. These copies are sanitised projections,
 not byte-exact original logs or newly executed calculations.

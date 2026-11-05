@@ -1,8 +1,8 @@
-# M64 — defects localized, HXT trial and native correction
+# M64 — defects localised, HXT trial and native correction
 
 Follow-up to this milestone: [86-face package, new volume and OpenFOAM/C0 checks](M64_MAILLAGE_PARTITION_UNIFIEE_20260908.md).
 The new volume is obtained; it remains rejected for CFD. The HXT and
-localization results below remain those of their historical execution.
+localisation results below remain those of their historical execution.
 
 ## Result
 
@@ -13,13 +13,13 @@ to be addressed. **The HXT trial did not produce a usable volume.** A
 native correction then created a candidate, still without a completed independent
 review and without a mesh. The reference volume keeps its six rejected families.
 No CFD, thermal, mechanical or LPBF computation is validated by this step;
-it authorizes neither printing nor engine operation.
+it authorises neither printing nor engine operation.
 
 The [diagnostic receipt](../../twins/m64-cylinder-head/evidence/hxt-native-diagnostic-20260908.json)
 gathers the digests and the limits. The geometries, coordinates,
 entity sets and detailed reports remain private.
 
-## Localization on the reference volume
+## Localisation on the reference volume
 
 The check concerns only the native domain `7fc114c1…` and the MSH
 `7774e94e…` of **469,985 tetrahedra**. The 125,027 OpenFOAM points are
@@ -28,10 +28,10 @@ uniquely matched to MSH nodes, then the topology recovers the
 with no orientation disagreement. No VTK is used as geometry.
 
 The OpenFOAM coordinates are written with **12 significant digits**:
-the matching accounts for serialization rounding, not a binary identity
-nor a simple nearest neighbor. The maximum observed gap is
+the matching accounts for serialisation rounding, not a binary identity
+nor a simple nearest neighbour. The maximum observed gap is
 4.996×10⁻¹³ m in the scaled case. The factor 0.001 remains tied to
-the uncertified assumption "one scan unit = one millimeter".
+the uncertified assumption "one scan unit = one millimetre".
 
 | Rejected family | Selected entities | Cells touching face 38 | Cells touching the guide–stem rings | Cells without a boundary face |
 | --- | ---: | ---: | ---: | ---: |
@@ -43,7 +43,7 @@ the uncertified assumption "one scan unit = one millimeter".
 | Low volume ratio | 540 faces | 146 | 0 | 331 |
 
 For face sets, the affected cells are the union of their
-owners and neighbors: their count is not that of the faces.
+owners and neighbours: their count is not that of the faces.
 The columns do not form an exhaustive partition. The per-face
 histograms may overlap; no distance to interior cells
 is computed. **An observed adjacency does not establish causality.**
@@ -87,9 +87,9 @@ Three `ShapeUpgrade_UnifySameDomain` trials were run with OCP
 | 3 — `fab1338a…` | Old faces 37, 38 and 40 → new face 37, in 7.133 s | 86 / 191 / 118 |
 
 The third trial releases only one additional protection: that
-of seam 105, natively recognized as closed on face 40 and incident
+of seam 105, natively recognised as closed on face 40 and incident
 to that face alone, with no interface between physical roles. The
-`KeepShape` protection can prevent a face merge; its behavior is described
+`KeepShape` protection can prevent a face merge; its behaviour is described
 in the [OCCT reference](https://dev.opencascade.org/doc/refman/html/class_shape_upgrade___unify_same_domain.html).
 The comparison of the trials identifies here the protection of this seam
 as the lock on the full unification of the group.
@@ -104,17 +104,17 @@ calls no tolerance change. In the third trial, the 190 edges
 outside the four partitions and the seam are protected, notably the
 seat interfaces and the C0 segments, still identical in memory.
 After re-export and re-read, BRepCheck and the five BOP modes used
-detect no defect. The inputs and their in-memory serialization
+detect no defect. The inputs and their in-memory serialisation
 remain unchanged. A rerun with a guard enforcing in-memory
 immutability and preservation of the protected edges reproduces **exactly
 the same file `fab1338a…`**, in 7.306 s.
 
 ### Independent cross-check completed
 
-The audit compares the candidate with an **OCCT serialization witness**: source
+The audit compares the candidate with an **OCCT serialisation witness**: source
 read, written, then re-read once, with no reconstruction operation. This in-memory
 witness corresponds exactly to the no-effect disk witness `cf81801a…`.
-The raw comparison with the source is not identical: normalizations of
+The raw comparison with the source is not identical: normalisations of
 supports, curves and of two preexisting p-curves are recorded, not
 erased by a widened comparison tolerance.
 
@@ -155,11 +155,11 @@ been run yet.** The receipts of the previous domain are not transferred to it.
 
 ## Traceability and cost
 
-The full SHA-256 digests are kept in the receipt linked above: localization
+The full SHA-256 digests are kept in the receipt linked above: localisation
 `c8a5de6b…`, intrinsic audit `f147ca56…`, HXT process `d7a13e82…`,
 HXT checkpoint `bf30d87b…`, native trials `27550019…`, `90319cb9…`
 and `291f4258…`, protected rerun `efd98c21…`, cross-audit `7bd9c92d…`.
-The targeted tests pass: mesher **20/20**, localization **5/5**,
+The targeted tests pass: mesher **20/20**, localisation **5/5**,
 merge protection **5/5**. `make check` completes successfully:
 **2,326 tests in the main suite, of which 108 skipped**, then the complementary
 targets; log `c2832b91…`. These are software witnesses,

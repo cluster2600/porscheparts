@@ -33,7 +33,7 @@ expresses the intended setting; a separate preserved interpretation corrects it.
 
 The unchanged upstream TetGen 1.5.1 release is built locally with assertions and
 passes the analytic tetrahedron control. The old-surface rotor job reaches its
-900-second limit. Rootless Gmsh 4.12.1 passes raw and optimized tetrahedron
+900-second limit. Rootless Gmsh 4.12.1 passes raw and optimised tetrahedron
 controls; its old-surface Delaunay job reaches 900 seconds and HXT exits 139 after
 272.96 seconds. These trials supply no accepted rotor volume.
 
@@ -69,7 +69,7 @@ The corrected rotor contains **435,529 vertices and 871,078 triangles**. The act
 float32 export passes the complete bidirectional check against all **1,322,970**
 original triangles, including topology and self-intersections, at **0.0225
 uncalibrated scan units**. The original 0.0025-unit reserve remains. The published
-generator reproduces the accepted double OFF bytes and every quantized coordinate
+generator reproduces the accepted double OFF bytes and every quantised coordinate
 and triangle exactly; this identity permits explicit reuse of the complete
 geometric certificate.
 
@@ -87,8 +87,8 @@ STL and writes a fresh explicit analysis case. TetGen 1.6 still aborts after
 improvement alone has therefore not resolved that mesher failure.
 
 Gmsh's documented initial-volume mode completes, saves a raw checkpoint, and
-optimizes it explicitly. The raw mesh contains **1,451,658 tetrahedra**, the
-optimized proposal **1,381,778**, with 441,241 nodes and 871,080 stored boundary
+optimises it explicitly. The raw mesh contains **1,451,658 tetrahedra**, the
+optimised proposal **1,381,778**, with 441,241 nodes and 871,080 stored boundary
 triangles. The native job completes in 186.98 seconds. The boundary triangulation
 changes. The independent audit refuses **both volumes**: each contains **ten
 exactly zero-volume cells**, with no inverted cells. Exact integer predicates
@@ -101,7 +101,7 @@ CalculiX job is launched on these proposals.
 
 The ten flat cells involve sixteen vertices in two local regions; their complete
 incident star contains 180 cells. Some affected vertices are on the boundary.
-This localization is preserved for a targeted follow-up; no coordinate is moved
+This localisation is preserved for a targeted follow-up; no coordinate is moved
 and no cell deleted by the diagnostic. A further ordinary Delaunay run on the
 corrected surface reaches its 900-second limit.
 

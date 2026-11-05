@@ -15,7 +15,7 @@ The computational rig is a 248 mm diameter, 360 mm long cylinder around the
 nominal 245 mm rotor: 1.5 mm nominal radial clearance. Rotation is −3,000 rpm
 about +Z. These are modelling assumptions, not measured Porsche interfaces.
 The PMB alternator, its supports, shaft and installed cooling shroud are absent.
-This study cannot establish airflow delivered to the engine or authorize a part
+This study cannot establish airflow delivered to the engine or authorise a part
 for manufacture or installation.
 
 The [PMB 240 A listing](https://pmbperformance.com/products/high-output-240a-alternator-for-porsche-964-and-993-90-99),
@@ -60,7 +60,7 @@ audits are not aerodynamic predictions.
 ## Volume-mesh diagnosis
 
 The conforming Gmsh mesh preserves the rotor surface instead of decimating it
-again. HXT generates tetrahedra; Netgen optimizes them in the original native
+again. HXT generates tetrahedra; Netgen optimises them in the original native
 model in millimetres, before the metre export to OpenFOAM.
 
 The 2.74-million-cell attempt passed standard OpenFOAM 14 checks but failed
@@ -160,7 +160,7 @@ on incoming ambient air; it does not impose an outlet flow rate. See the
 
 Both runs stopped normally and resumed from their saved fields at iterations
 408 and 672. Native `foamDictionary` changed only the outlet entry in pressure
-fields; serialized internal pressure values were verified identical in all 66
+fields; serialised internal pressure values were verified identical in all 66
 modified files. Original files, logs and change hashes are retained. The final
 convergence windows must lie entirely in the new boundary-condition segments.
 The generator now applies this ambient-reservoir boundary to future pilots and

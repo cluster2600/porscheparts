@@ -5,7 +5,7 @@ parameters per component: [`params/`](../../twins/m64-cylinder-head/source/fourv
 evidence: [`evidence/g1-four-valve-20260914/`](../../twins/m64-cylinder-head/evidence/g1-four-valve-20260914/manifest.json);
 tests: [`test_m64_g1_four_valve_twins.py`](../../tests/test_m64_g1_four_valve_twins.py).
 
-**This is neither a master geometry nor a manufacturing authorization**
+**This is neither a master geometry nor a manufacturing authorisation**
 (`master_geometry: false`, `manufacturing_authorized: false`). The geometry is
 synthetic: no scan mesh is imported. The 935 dimensions are numbers from the
 interfaces JSON (level C, uncalibrated units ≈ mm). The previous G1 skeleton
@@ -47,7 +47,7 @@ module (`cad/<component>.py`) and its STEP:
 The common frame is the sealing plane: Z toward the shafts, X intake < 0.
 It is linked to the scan frame by x = −y_scan, y = −x_scan, z = −z_scan. Side 1
 of the scan (axis 26.6°, high flange, throat 45.7) is **assigned** to intake:
-this is a modeling choice.
+this is a modelling choice.
 
 The computation (`provenance`, `layout`, `kinematics`, `checks`, `iterate`)
 depends only on numpy and runs in CI. The CAD and the BRep counter-check require
@@ -101,7 +101,7 @@ touch-up. The stud, port, pocket, guide and well recesses are capsules, which is
 conservative for finite cylinders. The bridges are computed in projection on
 the sealing plane. The piston–valve clearance is vertical and takes bowl and
 pockets into account. The lift law is the V1 model's `CamLaw`, with the Swindon
-lift and the assumed V1 centers (105° / 612°).
+lift and the assumed V1 centres (105° / 612°).
 
 | Check | Threshold | 935 start | Retained | Margin |
 |---|---|---:|---:|---:|
@@ -178,7 +178,7 @@ The most frequent limiting constraints among the refused trials are:
 |---|---:|---:|
 | intake axis angle | 26.58° (935) | 33.38° |
 | exhaust axis angle | 29.16° (935) | 24.62° |
-| x of intake / exhaust head center | −19.39 / +15.91 | −20.12 / +27.40 |
+| x of intake / exhaust head centre | −19.39 / +15.91 | −20.12 / +27.40 |
 | additional spacing within a pair | 0 | 0.19 |
 | spark plugs at the plane (x, ±y) | (15.94; 20.27) and (−8.66; −20.38) | (2.88; ±32.49) |
 | spark plug tilt / azimuth | 28.3° / 154.5° and 29.7° / −23.6° | 6.9° / ±30.1° |
@@ -196,7 +196,7 @@ of each pair, at y = ±32.5. The exhaust was moved outward.
 The sweep covers 13 bores from 95 to 106 mm, with 5,535 trials logged.
 
 For each bore, the stage 1 search is rerun: 80 draws and 200 local
-evaluations, bore fixed, warm start from the accepted neighbor.
+evaluations, bore fixed, warm start from the accepted neighbour.
 The 935 stud pattern is tried first. If the bore fails, the stud spacing is
 freed (`derived_by_iteration`). Reported consequence: **case and cylinders not
 M64-compatible**.
@@ -211,7 +211,7 @@ New checks become limiting with a large bore:
   ≥ bore + 2 × 4 (assumed wall) + 2 × 0.1.
 - **Required liner OD vs stud holes**: the free Ø between the stud holes is
   2 × (60.95 − 5.44) = 111.03 with the 935 pattern.
-- **Bridge between neighboring cylinders**: `not_computable`. No M64 cylinder
+- **Bridge between neighbouring cylinders**: `not_computable`. No M64 cylinder
   spacing is sourced; the only spacing in the repository is 917/Type 912 at
   118 mm, level C, not transferable.
 
@@ -264,14 +264,14 @@ bore on a real block**.
    would require Ø ≥ 39.7 for the V1 law (a value consistent with the Ø39.2 of
    the 935). It cannot be fitted here between the studs and within the exhaust
    pair.
-4. The V1 law and timing are assumed (durations, centers, ramps). The retained
+4. The V1 law and timing are assumed (durations, centres, ramps). The retained
    timing retards the intake by 5.7° to gain piston clearance.
 5. Several dimensions are only C candidates from a 2-valve 935, not
    transferable to an M64: studs, spigot, cam carrier face, flanges. Cylinder
    spacing, block, oil passages, lateral exit of the spark plug wells and
-   cooling are not modeled.
+   cooling are not modelled.
 6. The bridges are projected and the ports are straight cylinders. The
-   compression ratio, the loads and the thermal behavior are not computed.
+   compression ratio, the loads and the thermal behaviour are not computed.
 
 ## Outputs
 

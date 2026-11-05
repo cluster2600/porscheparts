@@ -24,7 +24,7 @@ measurement before it serves a manufacturing decision.
 ## Battery of numerical tests
 
 1. **Geometry and metrology** — scan/CAD deviation map, flatness, coaxiality,
-   center distances, minimum thicknesses, collisions and assembly tolerances.
+   centre distances, minimum thicknesses, collisions and assembly tolerances.
 2. **Cold CFD** — pressure loss, discharge coefficient, velocity uniformity,
    separation, swirl/tumble and sensitivity to valve lifts.
 3. **Compressible CFD** — transient pressure and temperature on the turbo side;
@@ -57,12 +57,12 @@ combustion, stiffness, fatigue, machinability or mass.
 
 A variant is retained only if it improves a Pareto front and respects the
 constraints. A simple increase in peak flow is not a cylinder-head
-optimization.
+optimisation.
 
 ## Materials to compare
 
-Aluminum must remain the thermal reference as long as the original material is
-not identified. Ti-6Al-4V and Inconel 718 can be modeled as comparisons, but
+Aluminium must remain the thermal reference as long as the original material is
+not identified. Ti-6Al-4V and Inconel 718 can be modelled as comparisons, but
 their much lower thermal conductivity makes a complete cylinder head likely to
 retain more heat. Inconel is more naturally a candidate near very hot exhaust
 gases; titanium can be relevant for some inserts or lightened elements. Neither

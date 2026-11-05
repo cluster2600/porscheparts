@@ -66,7 +66,7 @@ status `failed_closed_no_output` and an internal error `authoring_failed:OSError
 The cause is that authoring publishes its output through POSIX operations
 relative to a directory descriptor — creating a staging directory, then an
 atomic rename — which DrvFs does not serve correctly. The script therefore fails
-closed, which is the intended behavior, but for an environment reason rather
+closed, which is the intended behaviour, but for an environment reason rather
 than a data one.
 
 Verified: the same commit passes on ext4 and fails on `/mnt/c`, including on
@@ -114,7 +114,7 @@ outside the head directory, first read
 [machine-readable contract](twins/962-cylinder-head-f0/workflow-contract.json).
 This applies to the primary agent and every delegated agent. Include these
 references and the affected phase IDs in any handoff; delegation never waives
-the workflow. Do not delegate unless the current task otherwise authorizes it.
+the workflow. Do not delegate unless the current task otherwise authorises it.
 
 Prepare a complete phase ledger before renting compute or claiming that the
 chain is prepared. Each phase needs its concrete inputs, runtime, commands,

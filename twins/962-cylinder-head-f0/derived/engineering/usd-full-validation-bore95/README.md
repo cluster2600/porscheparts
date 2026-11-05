@@ -20,11 +20,11 @@ remain unchanged.
 | Generic Asset Validator | Fail: `NormalsExistChecker`, requirement `VG.027@1.0.0`, on `/Head/Solid`. The mesh has no authored normals and uses `subdivisionScheme=none`. |
 | Geometry category | Same `VG.027` finding. |
 | Physics category | No findings. The asset has no physics schemas or materials; this result supplies no physical validation. |
-| `Prop-Robotics-Neutral@1.0.0` | Fail: six normalized feature findings across five requirement IDs, listed below. |
+| `Prop-Robotics-Neutral@1.0.0` | Fail: six normalised feature findings across five requirement IDs, listed below. |
 
 The formal profile findings are:
 
-- `NP.006`: missing standardized SimReady metadata.
+- `NP.006`: missing standardised SimReady metadata.
 - `UN.007`: the profile requires `metersPerUnit=1.0`; this exact source uses `0.001`.
 - `RB.001`: missing rigid-body data, reported in two features.
 - `GSP.001`: missing grasp data.
@@ -33,7 +33,7 @@ The formal profile findings are:
 The installed reference preserves `RB.MB.001` as an ignored finding under its
 declared single-component policy. The report contains one mesh and no
 `GeomSubset` components. This exception does not remove the other failures.
-`GSP.001` repair is classified as outside this validation-only authorization:
+`GSP.001` repair is classified as outside this validation-only authorisation:
 earlier minimal/rigid-body gates fail, and robotic handling, gripper constraints
 and visually reviewed local-space grasp points have not been established.
 No grasp line was authored.
@@ -67,7 +67,7 @@ validation environment.
 
 The initial bootstrap imported every pinned package successfully, then its
 controller failed to parse JSON because Asset Validator printed startup logs
-before the JSON line. A separate finalization verified those exact versions.
+before the JSON line. A separate finalisation verified those exact versions.
 The first real preflight then reported missing PyYAML. Both failures remain
 preserved; PyYAML was added to the new environment before a fresh successful
 preflight.
@@ -77,15 +77,15 @@ original `.usdc` invocation therefore evaluated no asset and produced an empty
 report. That failure is not credited as a compliance result. A separate
 byte-for-byte `.usd` copy, with the **same SHA-256**, received its own genuine
 ready preflight and produced the substantive profile report. This copy involved
-no OpenUSD serialization or source conversion. Both payload hashes remained
+no OpenUSD serialisation or source conversion. Both payload hashes remained
 unchanged after validation.
 
 The source and the copy retain `metersPerUnit=0.001`. Simply changing that
 metadata to `1.0` would change physical interpretation by a factor of 1000;
-no unit normalization was attempted. The earlier exact authoring/minimum
+no unit normalisation was attempted. The earlier exact authoring/minimum
 validation evidence remains intact. Full profile passage, solved-field
 mapping, physical material calibration, head simulation and manufacturing
-authorization remain false.
+authorisation remain false.
 
 Primary references:
 [NVIDIA standalone Asset Validator](https://docs.omniverse.nvidia.com/kit/docs/asset-validator/latest/source/python/docs/index.html),

@@ -36,7 +36,7 @@ The hypothesis `1 scan unit = 1 mm` is not M64 metrology.
 - The raw negative still intersects each intake valve open at 6
   (735.415 units³) and each guide (797.705 units³). These parts must be
   subtracted from the gas, not ignored in a CFD.
-- The center of the master is solid at the axial points tested between
+- The centre of the master is solid at the axial points tested between
   Z=0.001 and 10. This initial master did not contain a chamber roof designed
   for this four-valve M64; the prototype described above is a separate
   operation.
@@ -75,7 +75,7 @@ This is not an engine fit tolerance or a measured precision of the scan.
 
 The replayed candidate has the same digest as the v1 one. The 70 3D curve/
 p-curve checks, the 66 vertex/curve checks, the four protected external edges,
-the nine sections examined outside the authorized region and the BOP after
+the nine sections examined outside the authorised region and the BOP after
 re-read pass the declared checks. The section changes **within** the junction
 zone are quantified: requiring their absence would contradict the intended
 shape change.
@@ -108,7 +108,7 @@ engine measurements. The reference ideal isentropic flux is
 therefore not be excluded without verification. **This is not the cylinder
 head's flow rate.**
 The [NASA formulation](https://www.grc.nasa.gov/www/k-12/airplane/mflchk.html)
-provides the normalization and the sonic limit of the ideal gas.
+provides the normalisation and the sonic limit of the ideal gas.
 
 The [reproducible analytic calculation](../../twins/m64-cylinder-head/targets/flowbench_reference.py)
 explicitly leaves the real flow rate and the discharge coefficient at `null`.

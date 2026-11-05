@@ -141,7 +141,7 @@ These are software checks only and do not change the open items below.
 
 This screen does not detect every self-intersection, establish clearances,
 measure OEM interfaces, validate materials or prove fatigue/thermal performance.
-VDB equality proves serialization fidelity, not correct physics or geometry.
+VDB equality proves serialisation fidelity, not correct physics or geometry.
 Full HelixHeatX, additional lattice/boolean/frame operations, scalar/vector
 fields, CFD/FEA and manufacturing review require their own contracts and checks.
 Native export defects need geometry/kernel investigation; more training cannot

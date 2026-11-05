@@ -11,7 +11,7 @@ no change to its geometry ([decision 0010](../../../docs/decisions/0010-print-th
 
 | dimension | value | where it comes from |
 |---|---|---|
-| outer diameter | 30.5 mm | supplier sheet of the aluminum ring EQ850101 |
+| outer diameter | 30.5 mm | supplier sheet of the aluminium ring EQ850101 |
 | depth | 10.5 mm | supplier sheet |
 | front inner diameter | 23.0 mm | supplier sheet |
 | rear inner diameter | 28.0 mm | supplier sheet |
@@ -61,7 +61,7 @@ Sliced with PrusaSlicer on a generic 0.4 mm nozzle: **17 min 12 s, 2.28 cm³**
 
 - It **is** the repository's own F1 design, and it prints: the file slices
   cleanly, with no supports.
-- It is **not** the original ring: the original is aluminum, and the inner cone
+- It is **not** the original ring: the original is aluminium, and the inner cone
   of this design is an assumption.
 - It is **not** checked against the car: the dashboard opening and the
   clearance or interference it needs have never been measured. Whether it

@@ -46,7 +46,7 @@ substitute for a type-approved lamp.
 - Candidate LM7480-Q1 with back-to-back MOSFETs [S08]: this component replaces
   neither a TVS energy analysis, nor the MOSFET SOA, nor a correctly coordinated fuse.
   Choose the buck and the capacitors **after** the clamped maximum is defined,
-  with voltage/temperature margins and short-circuit behavior.
+  with voltage/temperature margins and short-circuit behaviour.
 - LEDs disabled in hardware at reset (pull-down on enable), independent current
   limit and thermal shutdown; brownout, watchdog and corrupted flash give a
   black screen. The shutdown must not disable the original lamps.
@@ -65,7 +65,7 @@ deduced from the average animation alone.
 
 For an abstract example of 625 mono pixels, 2 V and 2 mA **average** per pixel,
 PLED≈2.5 W; RGB with three channels at the same current would require a sum
-using the real Vf of each color. This is neither a guaranteed flux nor an
+using the real Vf of each colour. This is neither a guaranteed flux nor an
 automotive profile. In multiplexing, do not multiply an already-average current
 by the duty cycle again; the permissible peak current must come from the LED/driver datasheet.
 
@@ -104,5 +104,5 @@ screws locked by a compatible process and PCB support against bending/vibration.
 
 Files to order from the specialist: native KiCad (or an agreed editable format),
 PDF schematics, BOM with MPN/alternatives, stack-up, rules, Gerbers, drill files,
-placement, test plan, ERC/DRC/review reports, license and transfer of the sources.
-Manufacturing exports remain blocked until a signed review and a separate authorization.
+placement, test plan, ERC/DRC/review reports, licence and transfer of the sources.
+Manufacturing exports remain blocked until a signed review and a separate authorisation.

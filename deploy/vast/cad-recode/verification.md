@@ -57,7 +57,7 @@ La réussite SimReady concerne uniquement la fixture synthétique.
   anciennes culasses. Original 935 inchangé ; empreinte vérifiée avant analyse.
 - Brut analysé : 1 281 608 sommets, 2 466 040 triangles, quatre composants connexes.
   Les unités demeurent inconnues ; la segmentation anatomique reste à revoir.
-- Poids CAD-Recode v1.5 et tokenizer téléchargés par révision, empreintes locales
+- Poids CAD-Recode v1.5 et tokeniser téléchargés par révision, empreintes locales
   conservées. Une vraie inférence CPU produit une proposition non tronquée en
   62,39 secondes. Ce temps exclut chargement et vérification des poids.
 - Première proposition exécutée dans le conteneur CAD confiné ; export STEP

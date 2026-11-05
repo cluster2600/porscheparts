@@ -89,9 +89,9 @@ bound the real duration and then verify deletion. At 2.50 USD/h maximum, this
 represents at most 5 USD of conservative hourly rate before transfers and
 deletion margin. A target envelope below 6 USD requires reserving less than
 1 USD for these costs; this is not a guarantee if transfers are repeated
-without measurement. The authorized ceiling remains **20 USD**, with no
+without measurement. The authorised ceiling remains **20 USD**, with no
 top-up or new automatic rental on failure.
 
-The simulated-clock tests cover an authorized 35-minute loading, both
+The simulated-clock tests cover an authorised 35-minute loading, both
 expirations, a return to loading without reset, a late READY and the bounded
 429s. They prove neither a GPU computation nor a cylinder head.

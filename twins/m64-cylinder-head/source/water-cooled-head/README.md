@@ -13,7 +13,7 @@ carries this target separately from the historical M64/60. The earlier
 conductance gains are not transferred to water cooling.
 The bionic form becomes a network of branched passages and of material
 distributed according to the heat flows and loads. The first routing is not
-optimized.
+optimised.
 
 ## What Porsche documents
 
@@ -21,7 +21,7 @@ optimized.
 |---|---|
 | [Porsche, 40 Years Group C, p. 18](https://newsroom.porsche.com/dam/jcr:a6f33b52-c47d-47b4-98c1-7e963661f587/40%20Years%20Group%20C.pdf) | 956: four valves, water-cooled cylinder heads, air-cooled cylinders. |
 | Same dossier, p. 19 | Water passages close to the exhaust ports; independent circuits with one pump per bank. Porsche also describes welding the cylinder head to the cylinder to address gasket preload losses during thermal transients. |
-| [Porsche, Turbo technology in motorsport](https://newsroom.porsche.com/en/press-kits/50-years-porsche-turbo/Porsche-and-turbo-technology-in-motorsport--from-pioneer-to-world-champion.html), 956/962 section | The initial 962 IMSA uses an air-cooled engine; the 962 C also receives a fully water-cooled 3.0 liter. "962" therefore does not define a single engine. |
+| [Porsche, Turbo technology in motorsport](https://newsroom.porsche.com/en/press-kits/50-years-porsche-turbo/Porsche-and-turbo-technology-in-motorsport--from-pioneer-to-world-champion.html), 956/962 section | The initial 962 IMSA uses an air-cooled engine; the 962 C also receives a fully water-cooled 3.0 litre. "962" therefore does not define a single engine. |
 | [Porsche, Staying Power](https://newsroom.porsche.com/en/2024/products/porsche-911-carrera-gts-drive-technology-christophorus-411-36736.html), water-cooling section | Porsche reports the difficulties of its air-cooled four-valve experiment and cites the water-cooled cylinder heads of the 962 and 959. This does not qualify our design. |
 
 The principles come from the Group C family; Porsche attributes the details of
@@ -109,7 +109,7 @@ surface and connectivity. Intersections with the twelve references and their
 margin are kept, including collisions. The gas, oil, stud and spark-plug domains
 and the complete seating faces are missing; even a result without collision of
 the twelve parts does not allow a water jacket to be accepted. There is neither
-a structural mask nor an authorization to remove material in this dossier.
+a structural mask nor an authorisation to remove material in this dossier.
 [render.py](render.py) shows the real routing triangles with the cylinder head
 transparent and the containment diagnostic, without touching the master.
 
@@ -127,7 +127,7 @@ python render.py --inputs PRIVATE_INPUTS --directory NEW_PRIVATE_OUTPUT --output
 ```
 
 The input directory is the retained private module, not another scan.
-Outputs must be new; a modified input or a contract that authorizes
+Outputs must be new; a modified input or a contract that authorises
 manufacturing is refused. Inspection requires NumPy and SciPy, rendering
 requires VTK. No private scan or derivative is published in Git.
 

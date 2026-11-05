@@ -67,7 +67,7 @@ authentication failure, no additional key, no host key relaxation.
 
 Three additional tests cover the complete proxy pair, an absent or null proxy
 port, and incomplete pairs. **90 wrapper tests passed** after the fix.
-The normalized snapshot of the failed attempt does not keep the provenance of
+The normalised snapshot of the failed attempt does not keep the provenance of
 the port: this defect is reproduced synthetically, but **is not established as
 the cause of the paid failure**. No new live call or rental during this
 diagnosis.

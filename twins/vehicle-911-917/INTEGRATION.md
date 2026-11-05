@@ -7,7 +7,7 @@ suspension, driveline or functional engine component.
 
 The preview was generated from this repository's hypothetical solids. It does
 not contain the private engine scan or the owner's reference photograph.
-Gray shapes are structural space reservations, not verified beam sections;
+Grey shapes are structural space reservations, not verified beam sections;
 the ochre gearbox is not a selected supplier product. French annotations are
 retained from the original study.
 

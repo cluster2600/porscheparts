@@ -35,7 +35,7 @@ The shaft profile and support surface reports identify the same original drive
 scan. The [frame-composition program](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/compose_drive_frames.py)
 checks those reports' hashes, their common source hash, the shaft transform and
 its inverse, rigid handedness and the support candidate-frame identity. It
-composes shaft candidate → original drive source → support normalized frame.
+composes shaft candidate → original drive source → support normalised frame.
 Both CAD receipts use the same unverified scale assumption of one millimetre
 per source unit. This numeric frame mapping is not a physical mating datum or
 an assertion that the shaft belongs to a particular bearing or rotor coupling.
@@ -72,7 +72,7 @@ registered by this result.
 The [private three-view overlay and receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-drive-fragments-scan-overlay-20261104.tar.gz)
 have archive SHA-256 `45f74de14f6e57595153c607b9a75e203c1d1750b52b8302aa44626423e9d679`;
 its extracted files and release digest were verified. The plot places the two
-fragments on separate areas of the normalized drive scan. It is a review of
+fragments on separate areas of the normalised drive scan. It is a review of
 coordinate transport using the **same scan** that informed the fits, not an
 independent dimensional or mating validation.
 
@@ -87,14 +87,14 @@ functional contact. The support crop is not asserted to be a material edge.
 ## PicoGK inspection overlay
 
 The [binary-input preparer](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/prepare_picogk_inputs.py)
-converts the normalized drive scan and the two placed open-fragment
-visualization meshes to binary STL, checks every float32 triangle after
+converts the normalised drive scan and the two placed open-fragment
+visualisation meshes to binary STL, checks every float32 triangle after
 readback, and pins all inputs. A first PicoGK import rejected the original
 ASCII FreeCAD STL; the separate binary conversion is retained as the successful
 path. The input conversion was reproduced with identical hashes.
 
 The [PicoGK program](../../../twins/935-horizontal-cooling-system-f0/source/fragment-frames-20261104/picogk-drive-overlay/Program.cs)
-imports and appends the three meshes without voxelization. It emitted 2,486,862
+imports and appends the three meshes without voxelisation. It emitted 2,486,862
 triangles: 2,484,656 for the scan, 2,112 for the shaft and 94 for the support.
 An independent binary STL readback compared all concatenated triangle vertices
 to the respective inputs exactly at float32 precision. This is an inspection
@@ -170,7 +170,7 @@ the same unverified source-unit conversion. The [private animation-layer package
 has SHA-256 `7340f6d385d63c74b40a7771dab1144d79767cdb9079cf01a7c1c902003df45d`.
 Its files passed extraction and checksum readback. Restore the separately
 retained original-bound USDC base beside its three layers, as described above.
-The result is a kinematic visualization, not validated physical operation.
+The result is a kinematic visualisation, not validated physical operation.
 
 ## Rigid surface sweep against added geometry
 
@@ -254,7 +254,7 @@ as a child of the animated rotor by the [hub-layer composer](../../../twins/935-
 All 906 triangles and their connectivity were reread from USD, and the hub
 witness inherited the rotor transform at five sampled animation times. A second
 run reproduced the layer byte-for-byte. This child relationship expresses a
-visualization convention for the fitted surfaces, not a verified mechanical
+visualisation convention for the fitted surfaces, not a verified mechanical
 joint or complete hub.
 
 An exploratory nearest-triangle query of all 906 hub tessellation centroids
@@ -292,7 +292,7 @@ existing rotor and its unresolved physical registration.
 
 The [private patch meshes and receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-hub-patch-comparison-20261104.tar.gz)
 have archive SHA-256 `055061d443acd81ca4a2cc2e5652ea4a94d867e592611d24e3f1c147b6ef7f87`;
-all archived files passed hash readback. No result authorizes manufacturing.
+all archived files passed hash readback. No result authorises manufacturing.
 
 ## Joint cone-to-scan and cone-to-rotor screen
 
@@ -390,7 +390,7 @@ replace them for animation; archive SHA-256
 `ff17477a3589775e0ddc853ec0f6f838230bd542bad5d990a62adadf03766c4d`.
 The corrected timeline spans 0–240 at 60 frames and time codes per second.
 An independent check of all 241 integer frames compares the rotor rotation and
-shaft point motion with the authored 1:1 hypothesis. This is a visualization
+shaft point motion with the authored 1:1 hypothesis. This is a visualisation
 convention: the shaft's identity, axis as a functional datum, gear ratio,
 rotation sign, physical speed and mechanical connection remain unverified.
 The full scan of the drive stays static and can overlap the animated fragment.
@@ -409,7 +409,7 @@ uv run --no-project --python 3.12 --with usd-core python -m unittest discover -s
 A simultaneous 240-phase FCL surface screen for the assumed 1:1 motion found
 no sampled crossings between the shaft fragment and rotor, support, provisional
 shroud or provisional engine envelope. In that particular pose the fragment
-remains far from the rotor and support; the visualization is not a connected
+remains far from the rotor and support; the visualisation is not a connected
 mechanism. The [private screen](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-simultaneous-sweep-20261104.tar.gz)
 has SHA-256 `12a50c48ff271a86f92f4b7966a7272dbfe62372f6c35768517708921b1d212b`.
 It excludes the unsegmented drive scan, containment, thermal and elastic

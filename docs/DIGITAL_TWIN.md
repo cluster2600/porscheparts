@@ -4,7 +4,7 @@
 
 The twin serves first to inventory, represent and assemble what is known. The
 active phase plans no printing. When the evidence allows it, the twin may later
-eliminate fitting errors and study mechanical or thermal behavior. It does not
+eliminate fitting errors and study mechanical or thermal behaviour. It does not
 claim to be a certified copy of every 993.
 
 A component enters the active graph only if its size, mass, material and
@@ -19,7 +19,7 @@ zone can combine visual trim at `F0` and measured fasteners at `F2`.
 ```mermaid
 flowchart LR
     subgraph acc["Accuracy, per component and per interface"]
-        F0["F0<br/>visual trim"] --> F1["F1_envelope<br/>interface proxies"] --> F2["F2_interface<br/>measured fasteners, mounting face,<br/>centering, tolerances, transforms"]
+        F0["F0<br/>visual trim"] --> F1["F1_envelope<br/>interface proxies"] --> F2["F2_interface<br/>measured fasteners, mounting face,<br/>centring, tolerances, transforms"]
     end
     subgraph tst["What tested in the twin means"]
         GR["geometry_ready<br/>required geometry and<br/>uncertainties exist"] --> DC["digitally_checked<br/>declared rules executed,<br/>report versioned"] --> PC["physically_correlated<br/>real fit compared with predictions<br/>future level"]:::open
@@ -62,7 +62,7 @@ reproducible from the same build123d master:
 - Fuchs 10J × 18 ET65, rear.
 
 These objects are `F1_envelope` interface proxies: nominal cylinder, nominal
-width and center bore. They make the components visible and assemblable in
+width and centre bore. They make the components visible and assemblable in
 FreeCAD, but reproduce neither the spokes, nor the actual rim profile, nor the
 bolt seats. The two hubs remain logical reference frames with no geometry. The
 twin is therefore at status `concept`, not `digitally_checked`.
@@ -72,7 +72,7 @@ twin is therefore at status `concept`, not `digitally_checked`.
 *The sourced state as a register: wheel sets, masses and known interfaces, logically assembled; the brakes are not admitted and the global 3D transforms are unknown. It shows what is recorded, not a positioned or validated assembly.*
 
 Moving to `F2_interface` requires measuring or sourcing the mounting face, the
-hub centering, the fastener seat type, the brake envelope, the tolerances and
+hub centring, the fastener seat type, the brake envelope, the tolerances and
 the transforms in the vehicle frame. Only then can a collision or margin
 calculation become numerical evidence.
 

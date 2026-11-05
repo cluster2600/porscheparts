@@ -1,6 +1,6 @@
 # 4 L head: bounded Vast campaign preparation
 
-The owner authorized moving the next engineering iterations to a larger Vast
+The owner authorised moving the next engineering iterations to a larger Vast
 machine on 28 October 2026. This supersedes the local-only allocation for this
 campaign; it does not change numerical or physical acceptance criteria.
 No rental has been created. The spending ceiling is still awaiting the owner,
@@ -95,7 +95,7 @@ real-input preparation checks, but no native execution qualification yet.
 
 The [prepared-case receipt](derived/vast-preparation-20261028/preparation.json)
 records the real local pilot inputs. `CAMPAIGN_DEADLINE_EPOCH` is required at
-execution; it does not itself authorize or create a rental.
+execution; it does not itself authorise or create a rental.
 The [pilot archive](derived/vast-preparation-20261028/bundle.json) is 511,549,491
 bytes with 140 payloads. Full archive and per-payload hash, size and CRC checks
 pass on [both Mac and kali1](derived/vast-preparation-20261028/replicas.json).
@@ -110,7 +110,7 @@ in the isolated Python 3.12 environment, with seven skips; the system Python
 
 Measured donor dimensions, combustion/SP95 knock limits, CHT, strength,
 manufacturing process qualification and dyno validation remain open.
-Manufacturing remains unauthorized.
+Manufacturing remains unauthorised.
 
 Primary references: [Foundation 13 parallel execution](https://doc.cfd.direct/openfoam/user-guide-v13/running-applications-parallel),
 [Vast Docker environment](https://docs.vast.ai/guides/instances/docker-environment),

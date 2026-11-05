@@ -97,7 +97,7 @@ The results of this first fix above remain those of commit `f4cfddb`, without sp
    closed. Do not add digital plugs to make the check pass.
 2. Define the volume below the rings and verify that the connected volume is independent of the
    measurement window; then recompute the ratio and recalibrate the proxy.
-3. Resume the chamber optimization and the flow/thermal calculations on this geometry.
+3. Resume the chamber optimisation and the flow/thermal calculations on this geometry.
 
 This axial closure check is a local prerequisite: it validates neither the M64 interfaces,
-nor physical sealing, nor thermal behavior, nor the 700 hp, nor metal printing.
+nor physical sealing, nor thermal behaviour, nor the 700 hp, nor metal printing.

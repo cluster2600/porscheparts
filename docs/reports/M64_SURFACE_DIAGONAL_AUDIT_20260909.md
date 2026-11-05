@@ -1,8 +1,8 @@
-# M64 — diagonal flips and neighboring contacts
+# M64 — diagonal flips and neighbouring contacts
 
 **No flip applied.** The first proposal improves some indicators, but fails the
-local normal criterion and introduces two intersections with a neighboring
-face. Examining the 27 neighboring interior diagonals finds no single strictly
+local normal criterion and introduces two intersections with a neighbouring
+face. Examining the 27 neighbouring interior diagonals finds no single strictly
 improving flip that meets all the criteria.
 
 This computation follows the [rejected isolated smoothing](M64_SURFACE_RELOCATION_20260909.md).
@@ -25,7 +25,7 @@ data remain identical.
 
 The new small facet has a negative exact dot product with each of the two old
 normals. A separate mathematical cross-reading confirms this result. A shape
-improvement therefore does not authorize this flip.
+improvement therefore does not authorise this flip.
 
 The intersection audit filters all surface elements by closed bounding boxes,
 then checks **95 pairs**, including the two internal before/after pairs. All
@@ -76,19 +76,19 @@ flowchart LR
     A["Source surface: 22 obstructions"] --> B["First flip: apparent gain"]
     B --> C["Normals outside criterion and two intersections introduced"]
     C --> D["Proposal rejected"]
-    A --> E["27 neighboring diagonals tested"]
+    A --> E["27 neighbouring diagonals tested"]
     E --> F["No admissible strict gain"]
     D --> G["Nothing applied, contour unchanged"]
     F --> G
-    G --> H["Examine edge discretization with the neighboring faces"]
+    G --> H["Examine edge discretisation with the neighbouring faces"]
 ```
 
 ## Practical consequence and evidence kept
 
-The next avenue chosen is the discretization of the edges with a joint remesh
+The next avenue chosen is the discretisation of the edges with a joint remesh
 of the connected faces. The proposed perimeter is edge 82 and faces 30/37;
 edge 93, face 36 and the 72 faces with quadrilaterals remain protected. A
-64-node profile with a progression toward the small neighboring segment is a
+64-node profile with a progression toward the small neighbouring segment is a
 numerical trial parameter, not a new part dimension. It remains to be produced
 and checked. A simple subdivision of a long side can move the thin triangle
 next to it; it is not enough on its own. The CAD curves and the Porsche

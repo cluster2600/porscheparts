@@ -7,7 +7,7 @@ The new private candidate removes the diagnosed small lip by extending its
 existing bilinear support surface, without a spherical crater. It passes native
 validity, export/readback and the separate BOP check. Exactly **six original
 faces** change. All other **4,912 original faces** retain their identity and
-serialized data in memory; the on-disk original remains hash-identical.
+serialised data in memory; the on-disk original remains hash-identical.
 
 However, its completed surface mesh contains **20 triangles incompatible with
 tetrahedral minSICN 0.1**, versus **seven** in the matched unchanged-CAD control.
@@ -61,7 +61,7 @@ are still unverified. There is no automatic replacement of the CAD master.
 | Changed original faces | 1165, 1411, 1412, 1413, 1647, 1648 — exactly the six allowed |
 | Removed original lip faces | 1412 and 1648 deleted; candidate face numbering is different |
 | Native topology | One valid solid, one shell, 4,918 faces |
-| Protected original faces | 4,912 identities and serializations unchanged in memory |
+| Protected original faces | 4,912 identities and serialisations unchanged in memory |
 | Tolerances | Maximum stored face/edge/vertex tolerances not increased |
 | Original source | In-memory and on-disk source unchanged for this candidate |
 | Export/readback | Valid, one solid |
@@ -81,7 +81,7 @@ remaining endpoint transitions.
 ## Rejected alternatives
 
 The [constrained patch trial](../../twins/m64-cylinder-head/source/wholebody/trial_constrained_patch.py)
-tries N-side filling over two measured neighborhoods: lower (141,142,143) and
+tries N-side filling over two measured neighbourhoods: lower (141,142,143) and
 upper (1411,1412,1413,1647,1648). Their exterior boundaries each have one closed
 edge loop (18 and 13 edges respectively), not a verified rectangular patch.
 The boundary is copied before construction so a builder cannot mutate the
@@ -97,22 +97,22 @@ these particular junctions can be filled.
 | Lower patch, boundary + 33 interior constraints | Reported G0 error **0.07109225**; fixed-boundary guard fails |
 | Upper patch, boundary only | Native surface builder does not complete |
 | Upper patch, interior constraints | Native surface builder does not complete |
-| Same-domain merge after support reconstruction | One valid solid, 4,917 faces, but protected and source in-memory serializations change; rejected |
+| Same-domain merge after support reconstruction | One valid solid, 4,917 faces, but protected and source in-memory serialisations change; rejected |
 | Two selected floor-edge fillets, radii 0.010 and 0.020 | Preflight detects propagation to a third circle edge; both stopped before building |
 | Three explicitly selected circle edges, radii 0.010 and 0.020 | Builders complete, but native validity, tolerance and protected-data checks fail; both rejected |
 
 The third fillet edge is the observed 1165/1415 adjacency, not a silently
 accepted arbitrary contour extension. The second experiment explicitly names
-all three pairs and permits only their bounded endpoint neighborhood (11
+all three pairs and permits only their bounded endpoint neighbourhood (11
 original faces). It still fails. The same-domain trial uses
 [KeepShape and safe-input mode](https://occt3d.com/dev/doc/refman/html/class_shape_upgrade___unify_same_domain.html)
 and fences protected edges; those API settings do not override the observed
 mutation checks. The original file remains unchanged in every trial.
 
 The [cross-patch mesher](../../twins/m64-cylinder-head/source/wholebody/trial_compound_junction_mesh.py)
-also tests the same neighborhoods **without modifying native CAD**, following
+also tests the same neighbourhoods **without modifying native CAD**, following
 [Gmsh tutorial 12](https://gmsh.info/doc/texinfo/#t12). This is discrete
-reparametrization, not reconstruction of editable native surfaces, nor proof
+reparametrisation, not reconstruction of editable native surfaces, nor proof
 of exact CAD conformance. Its classification option and size factor are
 recorded explicitly.
 
@@ -164,7 +164,7 @@ orientation rewrite is used to force acceptance.
 This volume job regenerated a surface with **441,524 triangles**, also zero
 incompatible. The shape-sampling table above belongs to the separate 441,590
 surface and its exact SHA, not a claimed audit of every regenerated boundary
-triangle. Repeated multithreaded discretizations are not assumed identical.
+triangle. Repeated multithreaded discretisations are not assumed identical.
 
 ### Targeted refinement, not just a smaller global mesh
 
@@ -234,7 +234,7 @@ flowchart TD
     D --> E["Do not adopt; retained mesh unchanged"]
     C --> F["Local volume + actual CAD section"]
     D --> G["Endpoint fillets: invalid; reject"]
-    A --> H["Cross-patch reparametrization countercheck"]
+    A --> H["Cross-patch reparametrisation countercheck"]
     H --> I["Check quality AND closed material boundary"]
     I --> J["Coarse surface: zero poor triangles, shape mismatch"]
     J --> K["Local refinement: sampled mismatch still above 0.040 scan unit"]
@@ -273,7 +273,7 @@ and area on two analytic rectangles, protected-edge unification fencing,
 the native support tool's analytic prism volume and input preservation,
 surface-hole/duplicate detection, a translated box's oriented volume, and
 native sample distances to an offset triangle.
-They validate software behavior, not this head's suitability for service.
+They validate software behaviour, not this head's suitability for service.
 Earlier producer revisions are saved in private source archives with their
 receipts; historical receipts are not rewritten after code changes.
 
@@ -284,7 +284,7 @@ qualified environment with no skips. These software checks do not close any
 manufacturing gate. The final-code full check completes in **233.63 s**;
 the focused CAD checks also pass after that run.
 
-No paid instance is rented. The Mac and the existing authorized Kali host
+No paid instance is rented. The Mac and the existing authorised Kali host
 provide the tested CAD/meshing runtimes. No release record, catalogue
 qualification, design master or PorscheFanatics deployment changes.
 All numerical jobs launched for this iteration have ended; there is no

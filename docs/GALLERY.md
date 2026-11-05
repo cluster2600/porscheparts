@@ -2,7 +2,7 @@
 
 The repository's existing figures in one place, grouped by workstream. Every
 image below is a computed figure, a CAD render or a diagram. **None is a
-photograph of a part, and none is evidence of physical behavior**: each caption
+photograph of a part, and none is evidence of physical behaviour**: each caption
 says what the image shows, and the linked page says what it does and does not
 prove. Near-duplicates are left out; the `archive/` tree is not shown.
 
@@ -39,7 +39,7 @@ Geometric LPBF slicing screens (labels in French) and Omniverse renders of F0/F1
 </tr>
 <tr>
 <td width="33%" valign="top"><a href="993/993_TURBO_HEAT_SHIELD_IN625_F0.md"><img src="../parts/993-eng-turbo-heat-shield-in625-f0-0001/evidence/lpbf-f0/993-eng-turbo-heat-shield-in625-f0-0001-lpbf-geometry-screen.png" alt="LPBF slicing screen of the IN625 turbo heat shield F0" width="100%"></a><br><sub>Left turbo heat shield F0, IN625, build_x. Geometry only. <a href="993/993_TURBO_HEAT_SHIELD_IN625_F0.md">Explained here</a>.</sub></td>
-<td width="33%" valign="top"><a href="993/993_DOOR_OPENER_LEVER_ALSI10MG_F0.md"><img src="../twins/993-door-opener-lever-alsi10mg-f0/evidence/lpbf-f0/993-int-door-opener-lever-f0-0001-lpbf-geometry-screen.png" alt="LPBF slicing screen of the AlSi10Mg door opener lever F0" width="100%"></a><br><sub>Door opener lever F0, roll_y_45, 2,664 layers. No print authorized. <a href="993/993_DOOR_OPENER_LEVER_ALSI10MG_F0.md">Explained here</a>.</sub></td>
+<td width="33%" valign="top"><a href="993/993_DOOR_OPENER_LEVER_ALSI10MG_F0.md"><img src="../twins/993-door-opener-lever-alsi10mg-f0/evidence/lpbf-f0/993-int-door-opener-lever-f0-0001-lpbf-geometry-screen.png" alt="LPBF slicing screen of the AlSi10Mg door opener lever F0" width="100%"></a><br><sub>Door opener lever F0, roll_y_45, 2,664 layers. No print authorised. <a href="993/993_DOOR_OPENER_LEVER_ALSI10MG_F0.md">Explained here</a>.</sub></td>
 <td width="33%" valign="top"><a href="993/993_SWITCH_TRIM_RING_F1.md"><img src="../twins/993-switch-trim-ring-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-lpbf-geometry-screen.png" alt="LPBF slicing screen of the switch trim ring F1" width="100%"></a><br><sub>Switch trim ring F1 at 50 µm, 580 layers; the ring has since moved to a turned route. <a href="993/993_SWITCH_TRIM_RING_F1.md">Explained here</a>.</sub></td>
 </tr>
 <tr>

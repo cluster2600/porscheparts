@@ -17,9 +17,9 @@ flow rates computed there are sensitivity bounds, not measurements.
 | Maximum boost of the base 993 Turbo | 0.8 bar | Public load case, not a design limit |
 | Power/torque of the base version | 408 hp / 540 Nm | Public engine case, not a turbo map |
 | K16 family and references 5316-988-6735/6 | Cross-checked manufacturer/distributors | Identification to be confirmed |
-| K16 sub-assembly references | Supplier catalog | Bill-of-materials leads only |
+| K16 sub-assembly references | Supplier catalogue | Bill-of-materials leads only |
 | Envelope and mass of the complete K16 units | FVD: 280 x 190 x 210 mm; 5.76 kg left / 5.6 kg right | Mass and packaging check; supplier declaration |
-| Right K16 wheel diameters | 54.96/48.97 mm turbine; 40.6/60.5 mm compressor | Parameterization bounds; supplier declaration, not aero profiles |
+| Right K16 wheel diameters | 54.96/48.97 mm turbine; 40.6/60.5 mm compressor | Parameterisation bounds; supplier declaration, not aero profiles |
 | A/R 8.00 | TurboMaster declaration on 5316-988-6735 | Not to be turned into a manufacturing dimension |
 | Turbo-intercooler pressure hoses | FVD: 430 x 70 x 90 mm right / 430 x 70 x 115 mm left; 0.42 kg each | Envelope of supplier replacements; alternative EQ masses 0.52/0.44 kg |
 | Intercooler air duct `993 110 340 54` | FVD: 600 x 280 x 50 mm; 0.9 kg | FVD in-house developed product; packaging reference, not OEM geometry |
@@ -41,7 +41,7 @@ German-language research brought additional bounds: FVD publishes the
 dimensions and masses of both K16 units, and Invasion Auto Products publishes
 wheel references and a few diameters for the right K16. These data are now
 traced in `catalog/reference/993-declared-part-data.json` and in the
-corresponding source records. They allow an initial parameterization and a
+corresponding source records. They allow an initial parameterisation and a
 consistency check; they replace neither a part, nor metrology, nor a
 compressor map.
 
@@ -53,7 +53,7 @@ long, 70 mm wide, with 90 mm high on the right and 115 mm on the left. The
 duct `993 110 340 54` is advertised at 600 x 280 x 50 mm. These three FVD
 listings state that they are products developed by FVD: they are useful for
 packaging and for reconstructing an envelope, but do not give the OEM
-cross-section, radii, wall thicknesses, end fittings or center distances.
+cross-section, radii, wall thicknesses, end fittings or centre distances.
 
 For the intercooler, the German AKS DASIS 177020T listing associated with
 `993 110 330 53` declares a 260 x 270 x 60 mm core and a mass of 7.06 kg.
@@ -75,7 +75,7 @@ the adjacent references and their positions, not their dimensions.
 - legible photo of each nameplate and left/right identification;
 - engine number, model year and exact configuration: Turbo, Turbo S, GT2 or
   tuned;
-- metrology scan or CAD whose license allows use;
+- metrology scan or CAD whose licence allows use;
 - common datum: rotor axis, flange planes, oil/air/exhaust interfaces;
 - surfaces of the wheels, housings, volute, diffuser, wastegate and oil
   passages;
@@ -112,7 +112,7 @@ The language model can orchestrate the variants, check the files and
 produce hypotheses. It replaces neither the solver, nor metrology, nor the
 qualification of the additive process.
 
-The first 0D normalizer for dyno data is in
+The first 0D normaliser for dyno data is in
 `work/simulation/993-turbo-dyno/`. It converts the torque and power points,
 computes BMEP and attaches an engine flow envelope to the published speeds.
 Chassis points, tuner targets and reported engine curves stay separated by
@@ -142,7 +142,7 @@ turbo.
 The first demonstrator is a cold-side adapter or duct, non-rotating,
 non-structural and amenable to an envelope check. The validation flow is:
 
-1. CAD parameterization with ranges and uncertainties;
+1. CAD parameterisation with ranges and uncertainties;
 2. polymer fit-check prototype;
 3. pressure-loss and temperature computation;
 4. metal version only after choosing the material and the process;
@@ -156,11 +156,11 @@ approved validation plan are available.
 
 Vast.ai can be rented once the package contains at least:
 
-- a geometry or a parameterization with explicit provenance;
+- a geometry or a parameterisation with explicit provenance;
 - a boundary-conditions file and its units;
 - a deterministic mesh and a reference case that runs locally;
 - a matrix of unknowns and a stop rule in case of overrun;
-- a manifest of sources, licenses, container versions and input hashes;
+- a manifest of sources, licences, container versions and input hashes;
 - an output folder separate from the repository, with checkpoint restart.
 
 This threshold is met for a numerical study of a cold-side adapter. It is not

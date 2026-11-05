@@ -8,8 +8,8 @@ The master scan and the reference BRep are neither overwritten nor replaced.
 
 The reference model comes from the work on the 935 scan; its adaptation to an
 M64/993 variant and its absolute scale are not certified. Coordinates remain
-scan units assumed to be millimeters. This file delivers no functional part and
-no manufacturing authorization.
+scan units assumed to be millimetres. This file delivers no functional part and
+no manufacturing authorisation.
 
 **Retained deliverable: `native-004/head-bionic.brep`**, editable native CAD,
 accompanied by `head-bionic.stl` and the views in `native-004-views/`.
@@ -38,13 +38,13 @@ cell placed unmodified in the cylinder head.
 ShapeKernel (`BaseBox`, `LocalFrame`, `LineModulation`), merges them, removes
 body material only inside the mask, and joins the retained body with the new
 sheets. The scale and frame of the body remain those of the private inputs,
-with a common grid phase canceled at export.
+with a common grid phase cancelled at export.
 
-The voxelization trials of the complete body are rejected for their small
+The voxelisation trials of the complete body are rejected for their small
 parasitic fragments. [build_native.py](build_native.py) then keeps the body in
 OpenCASCADE CAD, cuts only the two zones and merges into them the **analytical
 counterpart of the same PicoGK profile**. The base BRep does not go through a
-voxelization. This counterpart is not a STEP exported from a PicoGK mesh. Its
+voxelisation. This counterpart is not a STEP exported from a PicoGK mesh. Its
 fin volume differs by **0.0988%** from that of the fine PicoGK calculation,
 which checks the representation of the profile, not its thermal effectiveness.
 
@@ -63,7 +63,7 @@ task's worktree. The `coarse-001/` and `fine-001/` folders contain:
 | File | Interpretation |
 | --- | --- |
 | `head-bionic.stl` | Candidate cylinder-head body with integrated fins |
-| `baseline.stl` | Baseline voxelized at the same step and phase |
+| `baseline.stl` | Baseline voxelised at the same step and phase |
 | `fins.stl` | Six new ribs, separate diagnostic |
 | `added.stl` / `removed.stl` | Raw material differences with the baseline |
 | `integration.json` | Inputs, digests, connections and producer checks |
@@ -73,7 +73,7 @@ export. `native-004-views/` contains the views `assembled.png`, `opposite.png`
 and the section `section.png`. [render.py](render.py) uses **all the real
 triangles**, without smoothing, decimation or image synthesis. The other
 components stay in their recorded position. Orange marks the reshaped zones,
-gray the retained body; the colors assign no material property.
+grey the retained body; the colours assign no material property.
 
 These STL files and views derive from a private scan: they are not added to
 Git. Only the sources, contracts, tests and non-geometric summaries are
@@ -122,7 +122,7 @@ to this body. The radial compression, the connection, the obstacles, the
 convection and the pressure losses have changed. No CHT simulation of this
 cylinder head, no strength/fatigue analysis and no hardware test has been run.
 The air passages, the strength of the roots and the installed envelope remain
-to be qualified; voxelized boxes and fields do not prove an engine installation.
+to be qualified; voxelised boxes and fields do not prove an engine installation.
 
 ## Reproduction and software validation
 

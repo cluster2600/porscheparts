@@ -11,7 +11,7 @@ in with the quotes.
 
 | Baseline supplied by the project owner | CHF | Status |
 |---|---:|---|
-| Prototype | 685–1,450 | Non-contractual historical estimate; scope not itemized |
+| Prototype | 685–1,450 | Non-contractual historical estimate; scope not itemised |
 | 100 series | 223–420 / unit | Same status; proves neither Swissness nor road approval |
 | 1,000 series | 138–271 / unit | Same status; economies of scale to be demonstrated |
 | Manufacturing target | about 250 / unit | Goal; not a sale price |
@@ -57,7 +57,7 @@ not a quote or a measured cost.*
   10.26 CHF; at 90%: 21.67 CHF. Do not add these surcharges on top of a
   provision that already covers the same losses.
 - Warranty: a provision of 25 CHF, not a failure-rate prediction; recalculate as
-  frequency × after-sales cost (part, labor, returns, shipping).
+  frequency × after-sales cost (part, labour, returns, shipping).
 
 **Costed trade-offs, hypothetical:** the display ceiling is 250−190=60 CHF.
 An offer at 95 CHF instead of 60 would give 285 CHF; adding 5 CHF of power
@@ -72,7 +72,7 @@ PCB, placement, drivers, yield and power supply all count. **It cannot be
 demonstrated today that an undefined resolution is incompatible with 250 CHF.**
 Ask for a PCBA price per useful panel at three pitches; never extrapolate from
 tens of thousands of LEDs bought at retail. Reducing active area, pitch, number
-of colors or frame rate are the levers; compare the effect on readability on
+of colours or frame rate are the levers; compare the effect on readability on
 the coupon.
 
 The observed public price of the Waveshare module [S02] is a range of
@@ -92,13 +92,13 @@ Full-width injection tooling, rework after failure, third-party licensing and a
 commercial campaign are not costed: quotes are needed. The NRE total is
 therefore partial: **21,230–64,980 CHF** under the current assumptions,
 including valued internal time; this amount does not replace the historical
-685–1,450 CHF for the prototype alone. Illustrative amortization: 212.30–649.80 CHF
+685–1,450 CHF for the prototype alone. Illustrative amortisation: 212.30–649.80 CHF
 at 100 units, or 21.23–64.98 CHF at 1,000 units, on top of the unit cost.
 The 180 CHF part and the coupons are included as launch assumptions; the
 historical prototype is still shown separately. Before committing, reconcile the
 quote scopes so that coupons/boards/services are not counted twice.
 
-Commercial amortization = actual NRE / reasonably forecast number of sellable
+Commercial amortisation = actual NRE / reasonably forecast number of sellable
 units, added to the unit cost. The script shows the effects at 100 and 1,000
 parts. This does not turn a one-off expense into a recurring manufacturing cost,
 and it is not the origin calculation: that one has its own rules.
@@ -115,7 +115,7 @@ Without R&D: 115 / 205 = **56.10%**, so the 60% goal is not met in this
 example. For illustration only, 20,700 CHF of eligible R&D carried out entirely
 in Switzerland, allocated to 1,000 units, would give (115+20.7)/(205+20.7)
 = **60.12%**; at 2,000 units, only **58.21%**. The result is sensitive to the
-base and to the amortization. No R&D expense is deemed actually Swiss or
+base and to the amortisation. No R&D expense is deemed actually Swiss or
 eligible without evidence. Do not choose an artificially low volume to reach the
 threshold; validate the allocation with the IPI (Swiss Federal Institute of
 Intellectual Property) or a competent advisor.

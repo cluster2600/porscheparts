@@ -5,7 +5,7 @@
 A new local surface is built on the retained scan-derived head. Unlike the
 [rejected fillets and chamfers](M64_PHOTO_TOOL_SELECTION_20260928.md), it keeps
 the original four boundary curves and changes the surface only near the
-diagnosed air-gap corner. Native validity, protected-face serialization,
+diagnosed air-gap corner. Native validity, protected-face serialisation,
 all stored entity tolerances and native-file readback pass. The seven fixed
 air-gap rays increase. The full-body self-intersection check completes without
 reported fault or error. A full coarse volume mesh is generated, but rejected
@@ -28,7 +28,7 @@ native body. Its four trimming edges are checked before construction. A
 separate native read remains the unmodified reference. The representation
 neighbourhood is declared before deformation: faces 893, 895, 1154, 1399 and
 1400. Adjacent edges carry references to the modified surface, but their 3D
-boundary geometry is retained. Every other face must retain its serialization.
+boundary geometry is retained. Every other face must retain its serialisation.
 
 The displacement uses two degree-four Bernstein basis functions:
 
@@ -64,7 +64,7 @@ discard the placement or relax the geometric tolerances.
 | Boundary curve/surface discrepancy, 121 samples per edge | 5.62e-12 scan units |
 | Minimum sampled orientation dot ratio | 0.972432, positive |
 | Complete entity tolerance arrays | Identical |
-| Protected-face serializations | Unchanged |
+| Protected-face serialisations | Unchanged |
 | Native validity, including saved-file readback | Pass |
 | Full-body BOP self-intersection check | No reported fault or error |
 | Fixed air-gap rays | All seven increase |

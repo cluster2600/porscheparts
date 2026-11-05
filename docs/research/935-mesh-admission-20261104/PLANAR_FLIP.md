@@ -13,7 +13,7 @@ limitations. The original scan arrays are used only for independent distance
 assessment. Both input hashes were checked before and after execution.
 
 The first experiment deliberately changes connectivity only: PyMeshLab planar
-edge optimization, crease/planarity threshold 0.001 degrees, mean-ratio metric,
+edge optimisation, crease/planarity threshold 0.001 degrees, mean-ratio metric,
 zero post-relaxation iterations, all faces. No coordinate smoothing, feature
 redesign or volume meshing is performed. These parameters use the installed
 [PyMeshLab filter API](https://pymeshlab.readthedocs.io/en/latest/filter_list.html#meshing-edge-flip-by-planar-optimization).

@@ -18,7 +18,7 @@ split cap that bolts back on.
 
 | dimension | value | where it comes from |
 |---|---|---|
-| center distance | 127.0 mm | published by TZR/PAUTER for the 993 rod |
+| centre distance | 127.0 mm | published by TZR/PAUTER for the 993 rod |
 | big-end bore | 58.0 mm (published housing 58.01) | TZR/PAUTER |
 | small-end bore | 23.02 mm (published pin 23.01) | TZR/PAUTER |
 | big-end / small-end width | 18.75 / 19.58 mm | TZR/PAUTER |

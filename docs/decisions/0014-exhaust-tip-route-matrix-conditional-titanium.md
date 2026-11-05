@@ -60,7 +60,7 @@ says so instead of relabelling it.
 
 - The record's class is `functional`
   ([record](../../catalog/parts/993-exh-oval-tip-ti-f1-0001.json)):
-  "loaded part whose failure can immobilize or damage the vehicle"
+  "loaded part whose failure can immobilise or damage the vehicle"
   ([SAFETY.md](../SAFETY.md), section 1). 0007's "benign failure" is a
   judgement, not a class.
 - Under SAFETY.md a `functional` part is published only after **documented
@@ -197,7 +197,7 @@ temperature unless an inner-wall value is sourced too.
 | T_max | decision for Ti-6Al-4V | consequence |
 |---|---|---|
 | not sourced, or synthetic | **no-go** | current state; the request stays a draft |
-| ≤ 350 °C | **conditional go** | a reviewed supplier feasibility request may proceed if every condition below holds; not a manufacturing authorization |
+| ≤ 350 °C | **conditional go** | a reviewed supplier feasibility request may proceed if every condition below holds; not a manufacturing authorisation |
 | 350 to 400 °C | **no-go** | inside the source's own 350–400 °C uncertainty band; reopened only with creep and oxidation data for the delivered condition of the actual route, and professional review |
 | 400 to 550 °C | **no-go** | above the Ti-6Al-4V ceiling; Ti-6242 fits but has no supply route; fall back to stainless, or IN625 if the one-piece double wall is kept |
 | > 550 °C | **no-go** | no titanium route |

@@ -50,7 +50,7 @@ flowchart LR
   no selected alloy, temperature, yield allowable or safety factor.
 - Every node on each component's actual bottom mounting face is fixed. This
   omits head, bolt and joint compliance and separation. It is an optimistic
-  mounting idealization, not a representation of a selected bolted connection.
+  mounting idealisation, not a representation of a selected bolted connection.
 - Loads use maxima of the G7 released-shaft-bay reactions, independently per
   intake/exhaust side. The centre receives two bay reactions per side; each
   outer local rib receives one. These are hypothetical load envelopes, **not
@@ -69,7 +69,7 @@ flowchart LR
   that length. All integration-point Jacobians must be finite and positive.
 - Surface selection checks cylinder radius, local-rib extent and area, and
   rejects missing loads or overlap with fixed nodes. Applied force and moment
-  must balance support reactions within 1e-4 (moment normalized by F × 100 mm).
+  must balance support reactions within 1e-4 (moment normalised by F × 100 mm).
 - Reported stress p95 is an **unweighted integration-point percentile**. It is
   mesh-density-dependent, not a volume percentile, allowable or fatigue metric.
   Maximum stresses at sharp edges and clamps may not converge.
@@ -85,7 +85,7 @@ exact solution of the solid problem.
 
 The witness gives **0.375264 mm**, 2.263% below the beam-plus-shear reference.
 All completed direct solves satisfy force balance with relative errors at most
-1.13e-7 and normalized moment errors at most 1.46e-8.
+1.13e-7 and normalised moment errors at most 1.46e-8.
 
 | Component / nominal mesh | Nodes / C3D10 elements | Largest journal mean displacement, +x | Largest journal mean displacement, -z |
 |---|---:|---:|---:|
@@ -132,12 +132,12 @@ at 304.43 MiB child RSS / 347.50 MiB container memory. However:
 - its force-balance relative error is **0.001483**, above the unchanged 1e-4
   gate;
 - its maximum nodal displacement-vector difference from the direct solution,
-  normalized by the direct maximum displacement, is **4.291%**, above 1e-4;
+  normalised by the direct maximum displacement, is **4.291%**, above 1e-4;
 - the native solver says it converged, but these independent checks reject it.
   The adapter exits 1, records `retry_accepted: false`, and does **not** attempt
   the larger deck. The acceptance tolerances were not relaxed.
 
-This is an algebraic-solver comparison on the **same** discretization, not an
+This is an algebraic-solver comparison on the **same** discretisation, not an
 independent physical model. The initial exploratory retry gave the same
 rejection; the published rerun records it explicitly. No 2 mm or 1.5 mm carrier
 result is accepted, and no full campaign completion marker exists.
@@ -213,4 +213,4 @@ software/data-integrity checks, not physical qualification.
   applied-plus-reaction output.
 
 No numerical verification in this report replaces hot coupons, dimensional
-inspection, joint characterization or professionally reviewed physical tests.
+inspection, joint characterisation or professionally reviewed physical tests.

@@ -2,7 +2,7 @@
 
 PorscheFanatics corroborates FVD's front left or right `Lightweight Bumper
 Support 993` at **145 g**. The FVD sheet publishes **139 × 100 × 53 mm** and
-states only aluminum. No alloy, drawing, hole, interface, force-displacement
+states only aluminium. No alloy, drawing, hole, interface, force-displacement
 curve or crash test is available.
 
 The F0 keeps this envelope and builds an independent topology: a `3 mm` back
@@ -12,7 +12,7 @@ front face and do not trap powder. No mounting hole is invented.
 
 ```mermaid
 flowchart LR
-  S["Published: FVD 139 × 100 × 53 mm<br/>145 g, aluminum only"] --> G["Independent F0 topology<br/>shell and cruciform core<br/>144.65 g"]
+  S["Published: FVD 139 × 100 × 53 mm<br/>145 g, aluminium only"] --> G["Independent F0 topology<br/>shell and cruciform core<br/>144.65 g"]
   G --> A["Analytical screens<br/>no real crush predicted"]
   G --> P["LPBF print screen<br/>roll_y_45, 30 µm"]
   A --> V["Manufacture, fitting and<br/>driving prohibited"]
@@ -31,7 +31,7 @@ flowchart LR
 
 LPBF could combine plate, shell and graded core in a single BREP, with a crush
 progression impossible to obtain with a simple tube. It still has to beat an
-extruded or assembled aluminum support on scatter, cost, repairability and
+extruded or assembled aluminium support on scatter, cost, repairability and
 above all the dynamic force-displacement curve.
 
 The STEP theoretically weighs `144.65 g`, i.e. `99.76 %` of the published

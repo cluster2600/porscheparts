@@ -79,6 +79,6 @@ quadrature value or an engineering mesh-convergence study.
 
 Pinned primary-source semantics:
 [variable elasticity](https://github.com/idaholab/moose/blob/167ee97da204df5e8643695e18b9b28910f0014b/modules/solid_mechanics/src/materials/ADComputeVariableIsotropicElasticityTensor.C),
-[mean CTE and reference-length normalization](https://github.com/idaholab/moose/blob/167ee97da204df5e8643695e18b9b28910f0014b/modules/solid_mechanics/src/materials/ComputeMeanThermalExpansionEigenstrainBase.C),
+[mean CTE and reference-length normalisation](https://github.com/idaholab/moose/blob/167ee97da204df5e8643695e18b9b28910f0014b/modules/solid_mechanics/src/materials/ComputeMeanThermalExpansionEigenstrainBase.C),
 [CTE function argument](https://github.com/idaholab/moose/blob/167ee97da204df5e8643695e18b9b28910f0014b/modules/solid_mechanics/src/materials/ComputeMeanThermalExpansionFunctionEigenstrain.C),
 [temperature-dependent yield and plastic history](https://github.com/idaholab/moose/blob/167ee97da204df5e8643695e18b9b28910f0014b/modules/solid_mechanics/src/materials/IsotropicPlasticityStressUpdate.C).

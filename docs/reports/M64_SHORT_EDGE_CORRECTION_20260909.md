@@ -5,7 +5,7 @@ hybrid domain. The worst aspect ratio drops from 54,610 to 15,882. The domain
 nevertheless remains refused on five quality families:
 **no CFD, thermal, mechanical or manufacturing admission**.
 
-This is a discretization correction, not a new cylinder head shape or an
+This is a discretisation correction, not a new cylinder head shape or an
 efficiency gain. The master CAD is not modified. This mesh candidate remains
 distinct from the previous reference as long as its conformity to the CAD and
 the remaining defects are not resolved.
@@ -18,7 +18,7 @@ flagged by OpenFOAM, two are below the numerical displacement budget `1e-7` in
 the mesh frame. The four possible directions pass the initial local check;
 they overlap and **are not applied as a batch**.
 
-A single discretization point is contracted to an existing vertex:
+A single discretisation point is contracted to an existing vertex:
 `1177 → 65`, OpenFOAM identifiers of this source only. Loaded distance:
 `2.4139292929076296e-8` mesh unit. The earlier scaling
 `0.001 m/scan unit` remains an uncertified hypothesis; no second scaling is
@@ -31,7 +31,7 @@ correspond to `1e-4` scan unit, i.e. twenty times the recorded native curve
 tolerance of `5e-6`. Even a better mesh does not lift this reservation.
 
 The [C++ program](../../twins/m64-cylinder-head/source/flowbench-intake/contract_edge/contractTetEdge.C)
-explicitly rebuilds the faces of the surviving neighbors with
+explicitly rebuilds the faces of the surviving neighbours with
 `polyTopoChange`. Merely triggering `allowCellCollapse` in
 [Foundation 14's edgeCollapser](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/polyTopoChange/polyTopoChange/edgeCollapser.C)
 is not enough to stitch back the triangles that became coincident.
@@ -106,7 +106,7 @@ passed and a full `make check`, exit 0. Some optional native tests of the
 repository are skipped for lack of their runtimes; they are not counted as
 passed. The OpenFOAM pilot described here, however, was actually run.
 
-Reproducing the program in the initialized Foundation 14 environment:
+Reproducing the program in the initialised Foundation 14 environment:
 
 ```sh
 cd twins/m64-cylinder-head/source/flowbench-intake/contract_edge
@@ -126,7 +126,7 @@ published; the public pure tests are run from the parent folder with
 
 ```mermaid
 flowchart TD
-    A["Frozen hybrid source"] --> B["Localization and choice of a single contraction"]
+    A["Frozen hybrid source"] --> B["Localisation and choice of a single contraction"]
     B --> C["Native witnesses then corrected copy"]
     C --> D["Topological and geometric cross-check"]
     D --> E["checkMesh: five families still refused"]

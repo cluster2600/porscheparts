@@ -41,7 +41,7 @@ are not reproduced.
   Without a drawing no tolerance can be quoted.
 - Units: mm
 - Quantity: **open** — owner decision.
-- Declared use: none authorized at this revision. The catalogue record allows
+- Declared use: none authorised at this revision. The catalogue record allows
   screening only: no manufacturing for fitting and no vehicle installation.
 - Safety class: `functional`
   ([record](../../catalog/parts/993-exh-oval-tip-ti-f1-0001.json)). Not

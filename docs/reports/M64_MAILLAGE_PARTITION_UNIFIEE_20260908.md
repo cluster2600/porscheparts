@@ -15,9 +15,9 @@ alone remains recorded, without being requalified as a success. The central
 subdivision trial run afterward lowers the low determinants, but degrades
 other indicators: **it is not adopted**.
 
-This step validates neither CFD, nor thermal behavior, nor strength, nor the
+This step validates neither CFD, nor thermal behaviour, nor strength, nor the
 LPBF process. Printing, M64 mounting and operation at 700 PS twin-turbo are
-neither authorized nor demonstrated. The detailed geometric data remain
+neither authorised nor demonstrated. The detailed geometric data remain
 private.
 
 ## From the checked candidate to the computation package
@@ -27,7 +27,7 @@ explain the unification of the former faces 37, 38 and 40 into a single port
 face. The seat interfaces, the C0 segments and the annular passages were not
 removed to ease the computation.
 
-Review `7bd9c92d…` compares the candidate with the **OCCT serialization
+Review `7bd9c92d…` compares the candidate with the **OCCT serialisation
 control** `cf81801a…`, not with a raw identity of all the scan descriptors.
 This distinction remains kept in the new manifest `58b8be5a…`. The
 correspondence comprises 85 one-to-one faces and the three-to-one group; it is
@@ -35,7 +35,7 @@ therefore not a global bijection between the old and new indices.
 
 The [package builder](../../twins/m64-cylinder-head/source/flowbench-intake/package_unified_gas_domain.py)
 explicitly binds domain, original manifest, review and sources by their
-digests. It exports and rereads the **86 native faces**: each is recognized as
+digests. It exports and rereads the **86 native faces**: each is recognised as
 a face and passes BRepCheck. The roles are assigned with no unmatched or
 ambiguous face; the inputs and the master domain remain unchanged.
 
@@ -48,7 +48,7 @@ indeed performed. No STEP export is qualified.
 The checks of the intake throats and of the communication of the guide
 extensions are **inherited through the boundary correspondence review**. No
 new Boolean intersection of the throats or guides was computed on this
-package. The bench stem seals remain idealized; their physical sealing is not
+package. The bench stem seals remain idealised; their physical sealing is not
 qualified. The historical values do not become new measurements on this
 candidate.
 
@@ -103,7 +103,7 @@ OpenFOAM criteria nor evidence of CFD accuracy.
 
 ## OpenFOAM check actually executed
 
-Review `48c9803b…` authorized only conversion and diagnostics, with no solver.
+Review `48c9803b…` authorised only conversion and diagnostics, with no solver.
 It finds before/after 3D the 93,185 boundary nodes and 186,370 oriented
 triangles with their roles and 86 native faces. The ASCII coordinates are
 identical; 185,881 triangle identifiers are reassigned with no change of
@@ -159,7 +159,7 @@ The four chains alone prove neither complete coverage, nor the native 1D
 classification of the mesh, nor the continuous fidelity of the chords to the
 CAD. The extended check below addresses the first of these gaps.
 
-## Additional results: full interface and localized defects
+## Additional results: full interface and localised defects
 
 The new check `dfdeb376…` examines **the eight native curves 93–100** and
 their chains: **34 of 34 mesh edges covered**, with no gap, excess or double
@@ -171,7 +171,7 @@ interface is not removing the 16 remaining edges from the criterion. It still
 proves neither continuous conformity of the chords, nor CFD or manufacturing
 quality.
 
-The five OpenFOAM families are now localized on **this same volume**, through
+The five OpenFOAM families are now localised on **this same volume**, through
 the native labels, the 112,649 points and the 186,370 boundary triangles; the
 86 faces and their roles are found. The matching accounts for OpenFOAM writing
 at 12 significant digits, without claiming binary identity of the coordinates
@@ -211,7 +211,7 @@ from the list of OpenFOAM defects alone.
 Cross-audit `2d9cdd23…`, in 11.879 s, keeps exactly the 112,649 original node
 records, the 186,370 boundary triangles and the 401,250 untargeted tetrahedra.
 The 711 new nodes are verified separately. In rational arithmetic on the
-serialized decimal coordinates, each child has exactly **one quarter of the
+serialised decimal coordinates, each child has exactly **one quarter of the
 positive volume of the parent**. The real boundary and the internal
 orientations are preserved. This transformation check does not accept the
 quality of the candidate.
@@ -228,7 +228,7 @@ quality of the candidate.
 | Tetrahedra with SICN below 0.1 | 491 | **1,000** |
 | Minimum SICN | 1.29054×10⁻⁵ | 1.29054×10⁻⁵ |
 
-The Gmsh rereading takes 1.287 s, with no optimization of the file. The
+The Gmsh rereading takes 1.287 s, with no optimisation of the file. The
 OpenFOAM chain ends in about 9 s: its four commands return zero, but **five
 families remain rejected** and the supervisor returns 2. The reduction of 183
 low determinants does not offset the observed degradations; **the reference
@@ -237,7 +237,7 @@ computation or LPBF trial is launched.
 
 ```mermaid
 flowchart TD
-    A["Real boundary kept; 8 curves cover 34/34 edges"] --> B["Native localization of the 5 families and internal degrees"]
+    A["Real boundary kept; 8 curves cover 34/34 edges"] --> B["Native localisation of the 5 families and internal degrees"]
     B --> C["711 parents subdivided; transformation cross-checked"]
     C --> D["Same checkMesh: 5 families rejected, other indicators degraded"]
     D --> E["Candidate not adopted; reference kept"]
@@ -249,7 +249,7 @@ The results of the older meshes are not attributed to this pass. The next
 step aims at a conforming mesh of the annular passages and a suitable local
 volume partition, **without deforming the CAD or widening the clearances to
 make the check pass**. No simplified annular model has yet been run or
-qualified. A produced volume is not enough to authorize a CFD solver.
+qualified. A produced volume is not enough to authorise a CFD solver.
 
 ## Traceability and resources
 
@@ -279,7 +279,7 @@ cross-audit is `ec44d805…`, bound to source `d29d5dae…`; its 20 targeted tes
 pass with no test skipped. These software tests do not replace the rejection
 observed on the real mesh.
 
-New receipts: full interface inventory `dfdeb376…`, localization `801dad7d…`,
+New receipts: full interface inventory `dfdeb376…`, localisation `801dad7d…`,
 degree complement `ca37bc26…`, export of the native sets `4eb33217…`. They
 concern the same files `c0cbb257…` and `0ab139b2…`; they are distinct from the
 receipts of the subdivision trial `7e942138…`.

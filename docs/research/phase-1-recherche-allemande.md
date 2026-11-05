@@ -14,7 +14,7 @@ German, in particular:
 - `Porsche 993 Maße Toleranzen Reparaturleitfaden`
 - `Porsche 993 3D Druck Ersatzteile`
 
-Third-party files were not downloaded into the repository. A license declared
+Third-party files were not downloaded into the repository. A licence declared
 by a secondary index remains to be confirmed on the original publication.
 
 ## Direct results
@@ -23,7 +23,7 @@ by a secondary index remains to be confirmed on the original publication.
    674-page PDF covering Carrera, Carrera S, Carrera 4/4S, Carrera RS,
    Cabriolet, Targa and Turbo. It provides part numbers, variants and exploded
    views, but no dimensioned manufacturing geometry.
-2. The [German literature catalog](../../catalog/sources/src-porsche-literature-catalogue-de.json)
+2. The [German literature catalogue](../../catalog/sources/src-porsche-literature-catalogue-de.json)
    confirms the part numbers of the German repair guides and OBD-II guides for
    Carrera and Turbo. It does not contain the guides themselves.
 3. The [technical literature shop](../../catalog/sources/src-porsche-technical-literature-de.json)
@@ -32,13 +32,13 @@ by a secondary index remains to be confirmed on the original publication.
 4. The [German Parts Finder](../../catalog/sources/src-porsche-classic-partsfinder-de.json)
    is used to date price and availability. A lack of results does not prove
    that a part is discontinued.
-5. Nine community 993 assets were found with author, declared license, number
+5. Nine community 993 assets were found with author, declared licence, number
    of files and declared dimensions. None has yet had an independent
    dimensional check.
 
 The search found no complete 993 scan that is freely redistributable and comes
 with demonstrated metrological accuracy. The commercial body models found are
-mainly visualization meshes; they do not replace measuring a part.
+mainly visualisation meshes; they do not replace measuring a part.
 
 ## Targeted wave: frame bench and workshop manual
 
@@ -73,8 +73,8 @@ be measured or legally reconstructed.
 
 | # | Candidate | Origin | Current evidence | Gap before CAD or prototype | Priority |
 |---:|---|---|---|---|---|
-| 1 | Pollen filter cover tab | [Asset](../../catalog/sources/src-renn3d-pollen-filter-cover-tabs.json) | 4 STL, photos, CC-BY declared, level D | Exact license, measurement and 993 fit | High |
-| 2 | Console switch cover tab | [Asset](../../catalog/sources/src-renn3d-console-switch-tab-repair.json) | 1 STL, photo, CC-BY declared, level D | Exact license and 993 fit | High |
+| 1 | Pollen filter cover tab | [Asset](../../catalog/sources/src-renn3d-pollen-filter-cover-tabs.json) | 4 STL, photos, CC-BY declared, level D | Exact licence, measurement and 993 fit | High |
+| 2 | Console switch cover tab | [Asset](../../catalog/sources/src-renn3d-console-switch-tab-repair.json) | 1 STL, photo, CC-BY declared, level D | Exact licence and 993 fit | High |
 | 3 | Console cup holder | [Asset](../../catalog/sources/src-renn3d-center-console-cup-holder.json) | 1 STL, fitted photo, public domain declared, level D | Confirm rights, variant and interferences | High |
 | 4 | Phone mount on 82 mm gauge | [Asset](../../catalog/sources/src-renn3d-gauge-ring-phone-mount.json) | 1 STL, CC-BY declared, level D | Trademark risk on the bezel, and stability | Medium |
 | 5 | 4x6 speaker adapter frames | [Asset](../../catalog/sources/src-renn3d-hifi-speaker-adapter-frames.json) | 2 STL, public domain declared by the archive only, level D | Published scale obviously inconsistent; 2026-10-15: original Thingiverse page unreadable, licence and scale unresolved, excluded from use until checked | Blocked |
@@ -105,7 +105,7 @@ Renn 3D Parts archive, and the asset records now carry redistribution
 | Question | State | Project decision |
 |---|---|---|
 | Open, metrological complete 993 scan | Not found | Do not build the twin from an artistic mesh |
-| Exact license of the community assets | Often declared by a secondary index | Check the original page before any import |
+| Exact licence of the community assets | Often declared by a secondary index | Check the original page before any import |
 | Dimensions of the PET candidates | Absent from the exploded views | Measure an original or its surroundings |
 | Current commercial availability | Not audited part by part | Use the Parts Finder with a date and otherwise keep `unknown` |
 | First titanium part | Outside this wave | Wait for mechanical needs, loads and a demonstrated material benefit |

@@ -17,7 +17,7 @@ The base control also has errors and is not scientifically qualified.
 
 D uses the original historical adapter and pinned public Qwen3 base.
 No rejected checkpoint was reused. Both the initial two-trial ceiling and
-separate numerical recovery authorizations C and D remain recorded.
+separate numerical recovery authorisations C and D remain recorded.
 The exact conversion, finite gradients, checkpoint reload and all-base integrity
 receipts are under [candidate-d-001](runs/candidate-d-001/training-receipt.json).
 
@@ -37,7 +37,7 @@ be transferred to this runtime. Native MLX rounds the LoRA delta differently.
 
 ## Paired scientific development review
 
-Both reviewers evaluated all sixty anonymized responses using the same supplied
+Both reviewers evaluated all sixty anonymised responses using the same supplied
 source excerpts, without model roles or historical gold answers. All acceptance
 judgments agree. These are assistant judgments, not human engineering review.
 
@@ -92,4 +92,4 @@ control tests and zero broken links in 688 Markdown files. Runtime was 186.93
 seconds and sampled peak check-group RSS 409.4 MiB, within registered resources.
 See [the exact tested-snapshot receipt](checks/public-check-summary.json).
 Three planning/README documents changed during that check; the final commit's
-GitHub CI must also pass before review or merge. No merge is authorized here.
+GitHub CI must also pass before review or merge. No merge is authorised here.

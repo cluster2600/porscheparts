@@ -71,7 +71,7 @@ point is present and finite. Relative force and discrete-moment balance errors
 are 7.06536e-10 and 5.17547e-9. The independent equilibrium checks pass.
 
 The repeated C3D4 calculation on Kali agrees with the Mac: the largest global
-normalized field difference is **6.435e-7**, below the declared 1e-5 numerical
+normalised field difference is **6.435e-7**, below the declared 1e-5 numerical
 comparison limit. The formulation comparison also uses one Mac binary for both
 element types. The quadratic maximum displacement is **3.3376 times** the linear
 value. The outside-bore stress statistic differs by **27.20%** relative to the
@@ -98,9 +98,9 @@ for manufacture.
 4. Continue the 17-interface and hidden-transmission definition alongside
    conditional studies. The observed drive exterior and six-cylinder engine
    packaging placeholder do not define a complete historical mechanism.
-5. Use accepted reference results for SciPy/OpenMDAO optimization; evaluate
+5. Use accepted reference results for SciPy/OpenMDAO optimisation; evaluate
    PhysicsNeMo only after a suitable independently tested dataset exists.
 
 The USD/Omniverse assembly remains a presentation and inspection branch.
 Historical fit, full-mechanism function, process qualification, fatigue,
-balancing and bench validation remain open. Manufacturing is not authorized.
+balancing and bench validation remain open. Manufacturing is not authorised.

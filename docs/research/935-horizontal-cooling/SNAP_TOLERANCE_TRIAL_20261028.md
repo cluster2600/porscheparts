@@ -58,4 +58,4 @@ fails. **The case is rejected for CFD**, and no MRF, SST, flow, pressure or torq
 result follows from it. The next meshing experiment should alter the
 near-wall refinement topology or transition placement with an independent
 wall-fidelity check; another unmotivated snap-parameter sweep would not address
-the localized transition evidence.
+the localised transition evidence.

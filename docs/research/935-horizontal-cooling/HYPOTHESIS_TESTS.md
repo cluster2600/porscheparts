@@ -16,8 +16,8 @@ Zero uncertainties describe fixed points, not a measured precision.
 | Domain | Assumptions | Required confrontation |
 |---|---|---|
 | Reduced rotor | Ring Ø 275 mm, bore Ø 40 mm, thickness 4 mm; nine equivalent blade masses of 6 cm³ each, at a radius of 100 mm. | Volume and inertia of the calibrated reconstruction; measured mass and balancing. The point masses ignore the blades' own inertia. |
-| Speeds | 3,000, 6,000, 8,500, 11,000 rpm; total ratio 1 and zero slip. | Simultaneous engine/rotor speeds. 11,000 rpm is an exploration point, not an authorized speed. |
-| Braking | Constant deceleration to zero in 0.1 or 1 second. | Tachometer trace, inertias of the whole transmission, behavior of the coupling and the belt. |
+| Speeds | 3,000, 6,000, 8,500, 11,000 rpm; total ratio 1 and zero slip. | Simultaneous engine/rotor speeds. 11,000 rpm is an exploration point, not an authorised speed. |
+| Braking | Constant deceleration to zero in 0.1 or 1 second. | Tachometer trace, inertias of the whole transmission, behaviour of the coupling and the belt. |
 | Transmission | Steady-state efficiency 95%, pulley pitch radius 50 mm, gear pitch diameter 40 mm, solid shaft Ø 16 mm. | Measurements of the disassembled mechanism and definition of the gear teeth, shafts, bearings and losses. |
 | Air | Curve chosen at 6,000 rpm: `(Q,Δp,η)` = `(0,1200,0.4)`, `(0.6,1050,0.65)`, `(1.2,650,0.55)`, `(1.8,0,0.2)`; units m³/s, Pa, 1, decimal point notation. | Accepted CFD curves, then bench, at the same total-pressure stations. No Porsche curve is claimed. |
 | Network | Six equal branches of 15,000 Pa·s²/m⁶, one leak of 50,000, common resistance of 100; two global multipliers: 0.5 and 2. | Passage geometry and loss measurements. The six branches are fictitious zones, not the six identified cylinders. |
@@ -36,7 +36,7 @@ material property; the cards do not constitute a production dossier.
 ## Independent centrifugal check
 
 The witness is **the ring only**, without the nine blade masses. Its
-radial edges are free. The half-thickness is modeled in CAX8, with
+radial edges are free. The half-thickness is modelled in CAX8, with
 axial symmetry at the mid-plane, and three meshes of 16, 32, 64 radial
 elements, each with two elements through the half-thickness. The nine runs
 are fresh solves for AlSi10Mg, WE43 and Ti64 at 8,500 rpm.

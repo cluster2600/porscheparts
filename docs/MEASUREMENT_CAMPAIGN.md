@@ -34,7 +34,7 @@ contributor read the option label before taking out an instrument.
 ## Contributor prerequisites
 
 - Identify the vehicle's variant, model year and equipment without recording a
-  chassis number, a license plate or any personal data.
+  chassis number, a licence plate or any personal data.
 - Photograph the part and its surroundings before removal, then identify the
   surfaces and axes with the same reference marks as in the measurement record.
 - Declare the model, resolution, interface and calibration state of each
@@ -43,7 +43,7 @@ contributor read the option label before taking out an instrument.
   stays `manual_entry`; it must never be presented as an instrumented stream.
 - Keep raw images and point clouds out of the repository when they contain a
   vehicle identifier or data whose rights are not established. Submit only
-  authorized, anonymized evidence.
+  authorised, anonymised evidence.
 
 ## Session procedure
 

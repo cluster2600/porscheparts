@@ -45,7 +45,7 @@ workers with the same source hashes and input bytes, enabling a cross-platform
 comparison rather than silently substituting historical results.
 
 Each native candidate preserves boundary curves, stored entity tolerances and
-protected-face serializations; it must survive exact native validity, readback,
+protected-face serialisations; it must survive exact native validity, readback,
 self-intersection and seven fixed-gap witness checks. Volume removal must agree
 between the rectangular-face divergence integral and adaptive whole-solid
 integration. No default non-adaptive volume value is used to overrule disagreement.
@@ -145,7 +145,7 @@ qualified library versions; separate baseline hashes are used for each.
 ### Native candidates and independent volume checks
 
 Both amplitudes pass on **both platforms**: native validity, exact stored
-tolerances, protected-face serializations, readback, self-intersection and
+tolerances, protected-face serialisations, readback, self-intersection and
 all seven fixed gap witnesses. For the 0.020 candidate, face-flux integration
 gives approximately −0.00295736994 scan units³; the adaptive whole-solid
 difference is −0.00295736990. For 0.035, these are −0.00517539739 and

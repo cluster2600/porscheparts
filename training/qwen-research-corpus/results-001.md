@@ -144,7 +144,7 @@ not establish a reliable free-answer research assistant.
 
 Original M64 interfaces, cam/valvetrain data, K16 maps and fan measurements
 remain open acquisition gates. Additional training cannot supply those
-measurements or authorize manufacture.
+measurements or authorise manufacture.
 
 ## Repository verification
 

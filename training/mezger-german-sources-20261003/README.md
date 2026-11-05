@@ -37,7 +37,7 @@ metadata and are not repeated in English training targets.
 
 This is grounded record extraction, not an independent engineering reasoning
 benchmark or a test of unaided recall. Wording is synthetic; the reviewed source
-facts are attributed metadata. This increment does not run training, tokenize
+facts are attributed metadata. This increment does not run training, tokenise
 the text, evaluate model quality or produce weights. Token lengths, context fit
 and assistant loss masking remain to be checked with the chosen model and
 trainer before training.

@@ -78,7 +78,7 @@ xychart-beta
 | M64 G10 — PhysicsNeMo field trial and the 0.040 mm stiffness target | [`M64_G10_PHYSICSNEMO_20260926.md`](M64_G10_PHYSICSNEMO_20260926.md) |
 | M64 G11 — bounded support redesign toward 0.040 mm | [`M64_G11_SUPPORT_STIFFNESS_20260926.md`](M64_G11_SUPPORT_STIFFNESS_20260926.md) |
 | M64 G12 — central-support FEA and rejected refinements | [`M64_G12_FEA_20260926.md`](M64_G12_FEA_20260926.md) |
-| M64 G12 — localized central-foot reinforcement | [`M64_G12_LOCAL_BUTTRESSES_20260926.md`](M64_G12_LOCAL_BUTTRESSES_20260926.md) |
+| M64 G12 — localised central-foot reinforcement | [`M64_G12_LOCAL_BUTTRESSES_20260926.md`](M64_G12_LOCAL_BUTTRESSES_20260926.md) |
 | M64 G13 — reference repair and unchanged-foot upper spines | [`M64_G13_SUPPORT_REFERENCE_20260926.md`](M64_G13_SUPPORT_REFERENCE_20260926.md) |
 | M64 G14 — targeted support stiffening | [`M64_G14_TARGETED_SUPPORTS_20260926.md`](M64_G14_TARGETED_SUPPORTS_20260926.md) |
 
@@ -139,7 +139,7 @@ xychart-beta
 | report | file |
 |---|---|
 | M64 — targeted correction of the hexahedron/pyramid transitions | [`M64_APEX_TRANSITIONS_20260909.md`](M64_APEX_TRANSITIONS_20260909.md) |
-| M64 — OpenFOAM defects localized, without modifying the outline | [`M64_DEFECT_LOCALISATION_20260909.md`](M64_DEFECT_LOCALISATION_20260909.md) |
+| M64 — OpenFOAM defects localised, without modifying the outline | [`M64_DEFECT_LOCALISATION_20260909.md`](M64_DEFECT_LOCALISATION_20260909.md) |
 | M64 — edge redistribution and joint remeshing | [`M64_EDGE82_JOINT_REMESH_20260909.md`](M64_EDGE82_JOINT_REMESH_20260909.md) |
 | M64 — global dual conversion executed, then rejected | [`M64_GLOBAL_DUAL_REJECTION_20260909.md`](M64_GLOBAL_DUAL_REJECTION_20260909.md) |
 | M64 — hybrid domain assembled; OpenFOAM check executed and refused | [`M64_HYBRID_OPENFOAM_20260909.md`](M64_HYBRID_OPENFOAM_20260909.md) |
@@ -148,7 +148,7 @@ xychart-beta
 | M64 — conservative correction of mixed groups | [`M64_MIXED_CELL_CORRECTION_20260909.md`](M64_MIXED_CELL_CORRECTION_20260909.md) |
 | M64 — native size field: remeshing still incomplete | [`M64_NATIVE_SIZE_TRIAL_20260909.md`](M64_NATIVE_SIZE_TRIAL_20260909.md) |
 | M64 — controlled correction of a very small edge in the gas mesh | [`M64_SHORT_EDGE_CORRECTION_20260909.md`](M64_SHORT_EDGE_CORRECTION_20260909.md) |
-| M64 — diagonal flips and neighboring contacts | [`M64_SURFACE_DIAGONAL_AUDIT_20260909.md`](M64_SURFACE_DIAGONAL_AUDIT_20260909.md) |
+| M64 — diagonal flips and neighbouring contacts | [`M64_SURFACE_DIAGONAL_AUDIT_20260909.md`](M64_SURFACE_DIAGONAL_AUDIT_20260909.md) |
 | M64 — Delaunay / MeshAdapt comparison on the port | [`M64_SURFACE_METHOD_COMPARISON_20260909.md`](M64_SURFACE_METHOD_COMPARISON_20260909.md) |
 | M64 — isolated surface relocation, candidate rejected | [`M64_SURFACE_RELOCATION_20260909.md`](M64_SURFACE_RELOCATION_20260909.md) |
 
@@ -171,7 +171,7 @@ xychart-beta
 | M64 — Marangoni predictor contract: native control case passed | [`M64_F58_PREDICTOR_CONTRACT_20260908.md`](M64_F58_PREDICTOR_CONTRACT_20260908.md) |
 | M64 — spatial refinement of the AdditiveFOAM F58 control case | [`M64_F58_SPATIAL_REFINEMENT_20260908.md`](M64_F58_SPATIAL_REFINEMENT_20260908.md) |
 | M64 — guide contacts and geometric preparation | [`M64_GEOMETRY_CHECKPOINT_20260908.md`](M64_GEOMETRY_CHECKPOINT_20260908.md) |
-| M64 — defects localized, HXT trial and native correction | [`M64_LOCALISATION_ET_HXT_20260908.md`](M64_LOCALISATION_ET_HXT_20260908.md) |
+| M64 — defects localised, HXT trial and native correction | [`M64_LOCALISATION_ET_HXT_20260908.md`](M64_LOCALISATION_ET_HXT_20260908.md) |
 | M64 — meshing the unified-partition domain | [`M64_MAILLAGE_PARTITION_UNIFIEE_20260908.md`](M64_MAILLAGE_PARTITION_UNIFIEE_20260908.md) |
 | M64 — approximating the short edges: result and scope of the tolerances | [`M64_NATIVE_EDGE_APPROXIMATION_20260908.md`](M64_NATIVE_EDGE_APPROXIMATION_20260908.md) |
 | M64 — Netgen recovery and OpenFOAM cross-check | [`M64_NETGEN_CONTRECONTROLE_20260908.md`](M64_NETGEN_CONTRECONTROLE_20260908.md) |

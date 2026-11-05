@@ -24,7 +24,7 @@ published.
 
 ## Why change the tessellation, not the CAD
 
-After agglomeration 04, the localization actually matches the identifiers
+After agglomeration 04, the localisation actually matches the identifiers
 against the exported native sets, not only their counts. It finds 2,886
 low-determinant cells, 2,082 of which touch an annular boundary; the three
 excessive aspect ratios touch native face 37. The ten excessive-skewness faces
@@ -105,7 +105,7 @@ this incidence audit.
 
 Receipt `c46d8703…` separately checks the roles of the 86 faces and the
 effective physical groups: 184,973 wall triangles, 1,191 outlet, 262 inlet, and
-401,861 tetrahedra in an `air` volume. It authorizes only conversion and
+401,861 tetrahedra in an `air` volume. It authorises only conversion and
 `checkMesh`, not running the solver.
 
 The OpenFOAM diagnostic **14-7b05503f98a8** starts again from the new MSH
@@ -133,7 +133,7 @@ counts do not prove the identity of the new labels. No threshold is relaxed.
 **Decision:** keep this rejection as evidence, do not launch the CFD and do
 not chain the 77 marginal merges. Before another trial, determine the local
 grading constraints between native curves and face interiors. The three
-critical segments localized on agglomeration 04 belong to edges 98/99;
+critical segments localised on agglomeration 04 belong to edges 98/99;
 removing them without justification would change the geometry. No thermal,
 strength, printing or engine performance improvement is demonstrated here.
 
@@ -148,6 +148,6 @@ missing optional dependencies remain reported as skipped. The 26 targeted
 interface tests and the two OpenFOAM diagnostic tests pass separately. No
 software success lifts the five quality rejections of the real mesh.
 
-No new Vast machine rented: **0 USD of new Vast spending**, for an authorized
+No new Vast machine rented: **0 USD of new Vast spending**, for an authorised
 project budget of 44 USD. The coordinates, meshes and account details remain
 private. No CFD solver was launched by this trial.

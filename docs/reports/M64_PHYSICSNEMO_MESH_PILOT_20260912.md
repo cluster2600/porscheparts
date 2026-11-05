@@ -17,7 +17,7 @@ interfaces remain uncertified.
 | Separate adapter: Mesh construction, areas and normals by cross product | 8.555 ms | 0.253 ms | 33.75 |
 
 Medians of five repetitions after a separate warm-up; a fresh Mesh object on
-each call, CUDA synchronized before/after. **Ratios exclude transfers, warm-up,
+each call, CUDA synchronised before/after. **Ratios exclude transfers, warm-up,
 imports and installation; the workloads differ between the rows.** The round
 trip transfers are 2.067/18.694 ms for the first batch and 2.063/1.439 ms for
 the second. The NumPy copy to CPU (~3.9 ms) is separate again. No end-to-end
@@ -37,7 +37,7 @@ $$
 The native version 2.2.2 computes the triangle areas through a difference of
 dot products. It exceeds our strict numerical threshold on **4,438 triangles
 (1.513%)**, on CPU as on GPU: maximum relative error **3.232 × 10⁻⁶**, no
-positive area canceled on this body. The normals pass. CPU/GPU agreement alone
+positive area cancelled on this body. The normals pass. CPU/GPU agreement alone
 would therefore have hidden this gap from the cross-computation. The seven
 qualities agree between CPU and GPU, but have no independent NumPy reference
 and are not the criteria of the OpenFOAM hybrid polyMesh.
@@ -86,7 +86,7 @@ flowchart LR
   NumPy 2.4.6. PhysicsNeMo wheel and five source files verified by SHA-256.
   The pip reports and the dependency freeze are kept privately; not all
   transitive dependencies are locked in advance.
-- First bootstrap rejected: old pip and normalization of the name
+- First bootstrap rejected: old pip and normalisation of the name
   `typing_extensions`. Second fresh venv, pip 26.2.1: installation and GPU check
   completed in 155.04 s. No second machine purchase.
 - Observed price: 0.708889 USD/h; pilot capped at 3 USD, external timeout of
@@ -96,7 +96,7 @@ flowchart LR
   independent watchdog finished. Reports, images and environment archive
   retrieved with comparison of remote/local digests.
 - Credit before/after: 38.480688 → 38.283279 USD, i.e. **0.197409 USD of
-  observed decrease**. This reading is not a final itemized invoice. No
+  observed decrease**. This reading is not a final itemised invoice. No
   additional purchase and no automatic top-up; user cap of 38 USD total kept.
 
 ## Evidence and reproduction
@@ -111,7 +111,7 @@ The NPZ packages, input receipts and digests are frozen for this trial. Their
 regeneration must go through a new audit and new explicit digests; do not
 disable the checks to accept another body. No raw mesh, coordinate or image
 derived from the scan is added to this public commit. Two private 1800 × 1250
-views were produced and inspected: gray body and triangle quality
+views were produced and inspected: grey body and triangle quality
 `q=4sqrt(3)A/sum(lengths²)`, fixed scale [0,1], without temperature, stress,
 decimation or smoothing.
 

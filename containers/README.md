@@ -60,7 +60,7 @@ image: `simready-services start` refuses to start before the OpenBao wrapper has
 installed `/workspace/secrets/nvidia.env`. It then runs
 `simready-nvidia-auth-check`: a minimal call to the configured model must
 succeed before OVRTX and the agents are launched, so as not to pay for a render
-bound to end on an authorization error.
+bound to end on an authorisation error.
 
 ```mermaid
 flowchart TD
@@ -100,8 +100,8 @@ use forward compatibility. The weights add about 16.6 GB to the image; this
 variant is therefore reserved for rentals with 500 GB of disk and at least 48 GB
 of VRAM, 80 GB being preferable so that OVRTX and the solvers can coexist.
 
-This image combines components under distinct licenses. The NVIDIA CAD
-converter remains subject to its own Omniverse license and must not be presented
+This image combines components under distinct licences. The NVIDIA CAD
+converter remains subject to its own Omniverse licence and must not be presented
 as a free component, even though the repository's orchestration is.
 
 `physicsml` bundles JAX-FEM, PhysicsNeMo and DeepXDE with the

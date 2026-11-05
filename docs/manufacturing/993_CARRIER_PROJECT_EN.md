@@ -97,13 +97,13 @@ comparisons remain false and are preserved in the report.
 **A mechanical calculation and audit chain.** Ten declared loading cases are
 run with two mounting models: fixed end eyes and distributed elastic supports.
 The chain retains every integration-point stress maximum, all-node maximum
-displacement, serialized loads, equilibrium observations and an independent
+displacement, serialised loads, equilibrium observations and an independent
 energy audit. It never drops an inconvenient peak from the comparison.
 
 **A growing print-preparation chain.** The current pose, seven inputs and
 1,034-layer calendar are recorded. All seven geometric envelopes have been
 joined and checked for this exact surface. The source-2 repair retains four
-explicitly unknown faces, which cannot authorize attachment anchors. The
+explicitly unknown faces, which cannot authorise attachment anchors. The
 current layer-cache run was stopped cleanly on the pause request after
 **440 contiguous layers**; its partial files are preserved. Complete support,
 layer-vector and machine-job stages have not been completed.

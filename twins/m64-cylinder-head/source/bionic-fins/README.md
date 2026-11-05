@@ -2,7 +2,7 @@
 
 This iteration produces **synthetic fin cells**, three-fin coupons and a
 reproducible thermal comparison. It does not replace the M64/993 four-valve
-cylinder head and is not its complete optimization. The owner confirmed the
+cylinder head and is not its complete optimisation. The owner confirmed the
 target on October 11, 2026.
 
 The reference body remains intact. It comes from the 935 scan used for the M64
@@ -16,7 +16,7 @@ The retained bionic cell is a tapered rib with a bifurcation: a thick root
 conducts heat toward two thinner branches. The baseline is a straight fin;
 simply tapered baselines are also compared. The sheets are extruded along Y,
 the assumed air direction. This shape does not derive from a mechanical
-topology optimization, from Murray's law or from a flow calculation.
+topology optimisation, from Murray's law or from a flow calculation.
 
 | Study parameter | Value |
 | --- | --- |
@@ -60,7 +60,7 @@ process or convection coefficient is selected.
    Y; the air is not resolved.
 3. [Program.cs](Program.cs) actually uses ShapeKernel's `BaseBox`, `LocalFrame`
    and `LineModulation`, then PicoGK's native unions. Exports are computed at
-   steps of 0.30 and 0.15 mm. A common grid phase is canceled at export. No
+   steps of 0.30 and 0.15 mm. A common grid phase is cancelled at export. No
    smoothing or repair is applied to the STL files.
 4. The existing inspector
    [audit_surface_topology.py](../picogk-local-junction/audit_surface_topology.py)
@@ -145,16 +145,16 @@ floating-point comparisons in the fan studies. No merge proposed.
 
 | Step | Required data and expected result |
 | --- | --- |
-| 1. Define the modifiable domain | Calibrated frame and scale; interfaces of cylinder, studs, cam carriers, ports, spark plugs and baffles. Independent mask protecting the chamber, seats, guides, valve bridges, bearing faces and load paths. No hollowing of the current body is authorized by this study. |
+| 1. Define the modifiable domain | Calibrated frame and scale; interfaces of cylinder, studs, cam carriers, ports, spark plugs and baffles. Independent mask protecting the chamber, seats, guides, valve bridges, bearing faces and load paths. No hollowing of the current body is authorised by this study. |
 | 2. Define the thermal loading | Chamber and exhaust flux maps, seat/guide conduction, oil and contact temperatures, idle/load/transient cases, `k(T)` properties of the retained material. These values remain unknown. |
 | 3. Define the installed air | Pressure–flow curve and speed of the fan, flow per cylinder head, inlet temperature, ducts/baffles, recirculation and roughness. Surface area alone is not enough. |
-| 4. Compare in 3D CHT | Conjugate body and air; retained baseline and PicoGK variants. Minimize exhaust-seat and bridge temperatures at comparable fan power, with mass and pressure-loss limits. Study three meshes and the energy balance. |
+| 4. Compare in 3D CHT | Conjugate body and air; retained baseline and PicoGK variants. Minimise exhaust-seat and bridge temperatures at comparable fan power, with mass and pressure-loss limits. Study three meshes and the energy balance. |
 | 5. Qualify the bionic geometry | Roots and branches sized by the local fluxes, measured air clearances, powder removal/cleaning, thickness/process, distortion and thermomechanical fatigue. Coupon test, then cylinder-head bench, professional review before functional manufacturing. |
 
 The intended heat path is chamber/exhaust → bridges, seats and guides →
 conducting roots → branches → air. Combustion loads, stud clamping and
 valvetrain keep their own load path. The missing interfaces, loads and process
-prevent claiming that the complete cylinder head is optimized or printable.
+prevent claiming that the complete cylinder head is optimised or printable.
 
 Sources: [PicoGK / LEAP 71](https://leap71.com/PicoGK/),
 [ShapeKernel documentation](https://github.com/leap71/LEAP71_ShapeKernel/blob/7b9097842446a28bb5d49203724622e594ce7510/Documentation/README-GettingStarted.md),

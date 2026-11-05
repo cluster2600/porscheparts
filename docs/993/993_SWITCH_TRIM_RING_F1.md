@@ -1,6 +1,6 @@
 # 993 switch trim ring — F1 twin
 
-This non-critical aluminum ring is the first metal pilot of the 993 flow. The
+This non-critical aluminium ring is the first metal pilot of the 993 flow. The
 commercial listing provides four dimensions: outer Ø 30.5 mm, depth 10.5 mm,
 front inner Ø 23 mm and rear inner Ø 28 mm. The `build123d` master rebuilds a
 ring with a conical bore and compares its OCCT volume with the analytical
@@ -8,7 +8,7 @@ volume of a cylinder minus a truncated cone.
 
 The result is deliberately at the **F1 / concept** level. The inner cone is an
 interpretation, not a measurement. The tolerances, radii, dashboard opening,
-surface finish and aluminum grade remain unknown. The STEP must therefore not
+surface finish and aluminium grade remain unknown. The STEP must therefore not
 be sent to manufacturing or installed on a vehicle.
 
 ```mermaid
@@ -190,7 +190,7 @@ never been chosen, it was the only grade documented in the repository. See
 [decision 0005](../decisions/0005-alsi10mg-nest-pas-un-choix.md) and
 [decision 0006](../decisions/0006-bague-tournee-6063-t6.md).
 
-The part is now **turned in EN AW-6063 T6**, bright anodized. Its
+The part is now **turned in EN AW-6063 T6**, bright anodised. Its
 `preferred_process` is `CNC`. LPBF steps 02, 03 and 04 stay published: they
 state what an additive screening can and cannot say, and they served to find
 the layer thickness inconsistency.

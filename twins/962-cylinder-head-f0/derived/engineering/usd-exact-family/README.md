@@ -13,6 +13,6 @@ The four inspected project solids now have native USDC exports that preserve eve
 
 The [bore 95 record](../usd-exact-bore95/README.md) established and independently reviewed this explicit source-authoring route. The separately frozen [98](../usd-exact-bore98/README.md), [100](../usd-exact-bore100/README.md) and [102](../usd-exact-bore102/README.md) records use the unchanged code, exact mapping policy, genuine minimum-validator prerequisite and bounded native execution. The earlier [vendor derivative](../usd-bore95-conversion/README.md) remains rejected for its topology/coordinate changes.
 
-This establishes preservation of the existing study meshes. Historical accuracy, fitment, full Asset Validator/SimReady validation, rendering, head CFD/CHT/FEA and calibrated LPBF/material performance remain open. These exports do not authorize manufacturing.
+This establishes preservation of the existing study meshes. Historical accuracy, fitment, full Asset Validator/SimReady validation, rendering, head CFD/CHT/FEA and calibrated LPBF/material performance remain open. These exports do not authorise manufacturing.
 
 [Download the four verified review ZIPs](../usd-review-delivery/README.md) from the existing draft release. The publication receipt verifies new server digests and preservation of the twelve older assets.

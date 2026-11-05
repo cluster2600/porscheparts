@@ -32,7 +32,7 @@ pair. It refuses a different returned ID and masks an incomplete or invalid
 pair. It does not change the wrapper's current choice, does not attempt a
 connection and does not present this metadata as proof of reachability.
 
-The existing selector also normalizes the direct `HostPort` to an integer: Vast
+The existing selector also normalises the direct `HostPort` to an integer: Vast
 may return it as a decimal string. Non-decimal formats, booleans and values
 outside 1 to 65535 are refused. The priority of the complete proxy pair is
 unchanged; no proxy address is combined with the direct port, and no

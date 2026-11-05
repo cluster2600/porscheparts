@@ -58,7 +58,7 @@ replace the original.
 | Zero-area triangles | 8 |
 | Groups, materials, normals, UV | absent |
 
-The dimensions are consistent with millimeters, but the OBJ format declares no
+The dimensions are consistent with millimetres, but the OBJ format declares no
 unit. The mesh is not watertight; its signed volume must therefore not be
 interpreted as a volume or mass measurement.
 
@@ -101,8 +101,8 @@ To study an interface with a 993:
 
 - measure the bore and the chamber;
 - measure the pattern, diameter and usable height of the studs;
-- measure the gasket planes and intake/exhaust center distances;
-- characterize the ports, seats, guides and valve angles;
+- measure the gasket planes and intake/exhaust centre distances;
+- characterise the ports, seats, guides and valve angles;
 - identify the material and mass of the cylinder head;
 - compare these values with a 993 cylinder head of a known engine variant.
 

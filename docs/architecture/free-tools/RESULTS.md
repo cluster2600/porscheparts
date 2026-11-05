@@ -13,7 +13,7 @@ are retained in the [machine-readable report](../../../benchmarks/free-tools/res
 | DVC failure controls | Two independent local test stores, corrupt/missing objects and simulated interruption checked | The two local test directories do not establish a Kali backup |
 | OpenTURNS native | First-order indices 0.1994288501 and 0.8017120442 | Synthetic expected 0.2/0.8, absolute tolerance 0.03 |
 | OpenMDAO native | Thickness 0.010455159171866592 m; independent target 0.010455159171494206 m | Synthetic constrained beam; separate analytical process and independent replay |
-| Carrier external component | Executed admission replay; `blocked_engineering` | No new carrier FEM solve or optimization claimed |
+| Carrier external component | Executed admission replay; `blocked_engineering` | No new carrier FEM solve or optimisation claimed |
 | Local Qwen documentary inference | Actual MLX inference attempted; malformed draft rejected | Documentary adaptation is unqualified; original geometry command unchanged |
 | CloudCompare | Native Linux controls passed: six points each at 0, 1 and 0 mm expected distance; all recovered exactly | CloudCompare 2.13.2, immutable CPU image, unsigned C2M; sampled diagnostics only |
 | SALOME/NETGEN | Native Linux controls passed: cube 20 tetrahedra; bore 254 tetrahedra | Exact positive C3D4 determinants, unchanged boundary/groups and INP round-trip; native MED and raw connectivity retained |
@@ -22,8 +22,8 @@ are retained in the [machine-readable report](../../../benchmarks/free-tools/res
 The optional native Python suite ran 32 tests and passed with one explicit local
 CloudCompare skip. CloudCompare was separately
 [executed with SALOME in Linux CI](https://github.com/cluster2600/porscheparts/actions/runs/40196260525).
-Its negative controls deliberately include an infeasible optimization, which
-prints an optimizer failure while the test correctly verifies rejection.
+Its negative controls deliberately include an infeasible optimisation, which
+prints an optimiser failure while the test correctly verifies rejection.
 
 Full `make check` passes in
 [Linux CI](https://github.com/cluster2600/porscheparts/actions/runs/40194342447).
@@ -36,7 +36,7 @@ were visually reviewed.
 
 The carrier's independent contract still lacks measured interfaces and loads;
 the registered R2 comparison does not establish mesh convergence. The tools
-therefore cannot authorize carrier optimization, fitment, strength, fatigue,
+therefore cannot authorise carrier optimisation, fitment, strength, fatigue,
 LPBF process suitability or manufacturing.
 
 The actual carrier admission receipt also reports each blocked stage: no

@@ -4,7 +4,7 @@
 
 Scripts, documents, schemas, records, CAD and print files, renders and data
 created for this project are **© 2026 Maxime Grenu, all rights reserved**, under
-the custom [porscheparts Proprietary License](../LICENSE): viewing only; copying,
+the custom [porscheparts Proprietary Licence](../LICENSE): viewing only; copying,
 modifying, printing, manufacturing, redistributing, commercial use and AI
 training all need prior written permission.
 
@@ -18,12 +18,12 @@ Content that can be viewed or downloaded on the Internet is not necessarily
 free. Before adding a geometry, a photograph or a dataset:
 
 1. identify the author and the original URL;
-2. record the exact license and the access date;
+2. record the exact licence and the access date;
 3. check that modification and redistribution are permitted;
 4. keep the required attribution;
-5. do not import the file if the license is unknown.
+5. do not import the file if the licence is unknown.
 
-Sources under a restrictive license may serve as a local documentary reference,
+Sources under a restrictive licence may serve as a local documentary reference,
 but their content must not be committed. A record may store their URL with
 `license: unknown-reference-only`.
 
@@ -36,4 +36,4 @@ independent creation.
 ## Trademarks
 
 The names Porsche, 911 and 993 are used solely to identify part compatibility.
-No logo or badge may be integrated into a geometry without authorization.
+No logo or badge may be integrated into a geometry without authorisation.

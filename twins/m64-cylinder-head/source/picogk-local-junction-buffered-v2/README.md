@@ -20,7 +20,7 @@ is not confused with this difference of global volumes.
 `audit_buffered_surface.py` v2 explicitly requires zero SDF counters and deltas
 outside the ROI and at the protections, **zero unavailable pairs**, the exact six
 VDB field names with successful and non-empty bit-for-bit comparisons, the
-occupancy guards of both zero conventions, the normalized topology and the
+occupancy guards of both zero conventions, the normalised topology and the
 support of all modified triangles within the ROI. The v1 audit displayed the SDF
 differences but did not include them in its decision.
 

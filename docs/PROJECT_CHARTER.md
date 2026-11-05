@@ -29,7 +29,7 @@ For every published part:
 4. a prototype file;
 5. the relevant manufacturing instructions;
 6. the fit and test evidence;
-7. an explicit license;
+7. an explicit licence;
 8. a version and a change history.
 
 For every zone of the twin: host geometry, reference frame, components,
@@ -38,7 +38,7 @@ correlation.
 
 ## Success metrics
 
-- Percentage of parts with complete license and provenance
+- Percentage of parts with complete licence and provenance
 - Percentage of parts with an editable source file
 - Number of prototypes with a documented fit
 - Number of sub-twins at level `F2_interface` or higher
@@ -50,7 +50,7 @@ correlation.
 ## Decision governance
 
 - An issue carries the initial discussion.
-- A lasting decision is summarized in `docs/decisions/`.
+- A lasting decision is summarised in `docs/decisions/`.
 - A pull request changes the record and the affected files.
 - Automated validation checks structure, not mechanical safety.
 - A part can be downgraded immediately if new evidence contradicts its status.

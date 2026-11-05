@@ -2,7 +2,7 @@
 
 This read-only diagnostic classifies the OpenFOAM face sets from the existing
 case 006 of the [broader facet trial](BROADER_FACET_REPAIR_20261028.md). It
-uses the serialized `boundary` face ranges, not geometric proximity. The
+uses the serialised `boundary` face ranges, not geometric proximity. The
 [script and aggregate receipt](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/)
 record SHA-256 hashes of each input. The complete native case is in the
 private archive cited in the earlier report. The labels are case-local indices;
@@ -84,7 +84,7 @@ with both cells on the wall and rejection of a boundary face in an internal set.
 | lowWeightFaces | 91 | 91 | 91 |
 | lowVolRatioFaces | 134 | 134 | 131 |
 
-Here, wall-adjacent means the cell owns at least one face in the serialized
+Here, wall-adjacent means the cell owns at least one face in the serialised
 rotor patch. It does not mean that the flagged face itself is on the wall or
 that a specific scan defect caused its quality failure. Sets overlap. The
 rejected trial's topology motivates local inspection of these cells and their

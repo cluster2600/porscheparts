@@ -70,7 +70,7 @@ downstream physics does not prevent an independent provenance or software
 qualification task. Witnesses remain separate from numerical head acceptance.
 The paid instance still needs the approved budget, identity, digest, compatible
 cost/deadline guard and collection/destruction controller. This plan checker
-does not create an instance, authorize spending or replace those controls.
+does not create an instance, authorise spending or replace those controls.
 
 Source hashes bind the recipe snapshot. When source changes, preserve the old
 plan and prepare a fresh one. Bind the exact variant, domain and material state

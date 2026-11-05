@@ -6,10 +6,10 @@ The selected reference is the **3.0 L 962 C with water-cooled heads and
 cylinders**. The exact engine type, model year, part numbers and inspection
 specimen remain to be selected. Fidelity therefore cannot yet be quantified.
 This dossier prepares their acquisition; it provides no Porsche dimensions
-and authorizes no manufacturing.
+and authorises no manufacturing.
 
 The [Porsche dossier, pages 18–20](https://newsroom.porsche.com/dam/jcr:a6f33b52-c47d-47b4-98c1-7e963661f587/40%2520Years%2520Group%2520C.pdf)
-describes aluminum cylinder/head assemblies welded by electron beam
+describes aluminium cylinder/head assemblies welded by electron beam
 (“blind cylinders”), gear-driven valvetrain, two camshafts per bank,
 tappets and shims, and an independent coolant circuit per bank.
 It also describes chamber-volume inspection. This establishes a historical
@@ -51,7 +51,7 @@ to the hypothetical generator to make deviations artificially small.
 | Cylinder and chamber | Bore, profile, stack height, combustion deck and chamber surface; volume measured with defined valves and blanking, traceable condition and method |
 | Valves and ignition | Every seat/guide axis, angle and position, geometry and interference fit; observed spark-plug count, axis, thread and seat |
 | Intake and exhaust | Faces, fasteners, axes, sections and internal port profiles; connections to identified manifolds |
-| Camshaft carrier and valvetrain | Planes and bearings, shaft and gear axes, center distances, tappet/shim interfaces and envelopes; timing and clearances documented separately |
+| Camshaft carrier and valvetrain | Planes and bearings, shaft and gear axes, centre distances, tappet/shim interfaces and envelopes; timing and clearances documented separately |
 | Oil and water | CT if necessary: connections, sections, gallery continuity, thicknesses and unresolved areas; connection to the bank circuits |
 | Sealing and thermal condition | Cylinder/head weld, actual seats/seals, surface finishes; establish materials and thermal conditions needed to assess expansion |
 
@@ -89,7 +89,7 @@ Stroke can change displacement without changing the head bore, but requires
 checks of piston position at TDC, stack height, clearances, compression and
 valvetrain. A bore change requires a separate study of the chamber,
 combustion deck, cylinder, thicknesses and cooling. Do not scale the entire
-model: historical center distances, fasteners, bearings and connections remain
+model: historical centre distances, fasteners, bearings and connections remain
 constrained by the reference unless a change is explicitly identified and reviewed.
 Each derivative up to 4.0 L receives its bore/stroke definition, its list of
 deviations from the master and its own mechanical, thermal and assembly evidence.
@@ -98,7 +98,7 @@ deviations from the master and its own mechanical, thermal and assembly evidence
 
 ## Provenance and campaign output
 
-Retain authorized access, source owner, measurement and reuse rights,
+Retain authorised access, source owner, measurement and reuse rights,
 private locator, digest, date and review decision. Scans, CT, proprietary
 drawings and personal data stay out of Git; publish only shareable elements.
 The [register](research.json) retains documentary references; a public

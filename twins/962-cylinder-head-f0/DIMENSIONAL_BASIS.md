@@ -8,8 +8,8 @@ model year and part numbers to reproduce remain unselected.
 The [structured register](dimensional-research.json) distinguishes published
 values, restoration accounts, proposed transfers and unknowns.
 
-The owner now authorizes continued geometry work using explicit assumptions
-after researching available dimensions. This authorizes studies and their
+The owner now authorises continued geometry work using explicit assumptions
+after researching available dimensions. This authorises studies and their
 exports; it validates neither installation nor manufacturing.
 
 | Data | Value | Source and evidence level | Usage limit |
@@ -19,7 +19,7 @@ exports; it validates neither installation nor manufacturing.
 | Published 935/83 compression ratio | 9.5:1 | Same Brunn technical register, 1989 Group C | Specific to that configuration, not the unselected donor |
 | Water/water head bore | 95 mm | [Retro Sport, MP1.7 water/water](https://retro-sport.com/products/porsche-race-cars/porsche-962/porsche-962-c-mp1-7-water-water-heads), supplier | Four-valve assembly with welded cylinders; stroke not given |
 | Intake valve | Ø35 mm, `93510540102` | [Retro Sport](https://retro-sport.com/products/porsche-race-cars/porsche-962/engine-1/porsche-962-intake-and-exhaust-valve-set-1), supplier; [Freisinger](https://www.freisinger-motorsport.de/en/part/678) confirms the 956/962 part number | No exact 3.0 L application or published tolerance |
-| Exhaust valve | Ø30.5 mm, `93510541103` | Same supplier catalogs | Same limit; no stem diameter or interference fit |
+| Exhaust valve | Ø30.5 mm, `93510541103` | Same supplier catalogues | Same limit; no stem diameter or interference fit |
 | Stroke of a restored 3.2 L engine | 74.4 mm with 95 mm bore | [Ralph, visit to Neil Harvey, page 12, post 224](https://forums.pelicanparts.com/911-engine-rebuilding-forum/248909-rebuilding-962-motor-12.html), firsthand account | 3.2 L variant; does not define the 3.0 L |
 | Cam lift in that restoration | 9.3 mm intake and exhaust | Same account, post 230 | Complete profiles and timing not published |
 | Durations in that restoration | 276° intake; 288° exhaust at 0.5 mm | Same account, post 230 | Data for that engine, not a universal valvetrain selection |
@@ -28,7 +28,7 @@ exports; it validates neither installation nor manufacturing.
 | Offered late 3.0 L connecting rod | 127.8 mm, `93510301203` | [Retro Sport](https://retro-sport.com/porsche-962-titanium-30-liter-rods-late-shot-peened), supplier | Length convention not stated; check before using in a dimensional stack |
 
 The account explicitly distinguishes its 3.2 L engine from the 956 and
-describes welded water/water assemblies. The catalogs corroborate the published
+describes welded water/water assemblies. The catalogues corroborate the published
 valves; they do not measure the axes or interfaces of our future reference.
 No dimension is extracted from the apparent scale of a photograph.
 
@@ -61,7 +61,7 @@ with cases, cylinders, pistons or camshaft carriers.
 For the exact historical part, valve angles and positions, stems/guides and
 seats, chamber volume and surface, ignition, cylinder pitch, mounting axes,
 dimensioned exterior, camshaft carrier and galleries remain unknown.
-Their absence does not prevent the authorized study; it limits claimed
+Their absence does not prevent the authorised study; it limits claimed
 fidelity and leaves functional qualification open. The [metrology campaign](REPLICA_METROLOGY.md)
 and its blank sheet remain the planned route for replacing these assumptions.
 
@@ -70,5 +70,5 @@ confirms that service's access to factory drawings and archives for its restorat
 It publishes no cylinder-head dimensions; no private document was obtained and
 no contact was made.
 
-Only summarized facts, links and design choices are retained here.
+Only summarised facts, links and design choices are retained here.
 Third-party photographs, complete pages, drawings and geometry are not redistributed.

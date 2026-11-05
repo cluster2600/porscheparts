@@ -22,11 +22,11 @@ for 40 combined 993 scalar observations. Its six documentary longitudinal
 stations are not vehicle XYZ and do not change the functional-geometry gate.
 
 Status: **programme definition**. This document contains no geometry and
-authorizes none. It states what has to be established, in what order, and what
+authorises none. It states what has to be established, in what order, and what
 is blocking today.
 
 Target: a replacement carbon monocoque for 964 and 993 restomods, an
-alternative to the `SRC-ZESAD-CARBON-MONOCOQUE-964-993` offering, industrialized
+alternative to the `SRC-ZESAD-CARBON-MONOCOQUE-964-993` offering, industrialised
 in China.
 
 Scope is a decision of the project owner, not a technical conclusion. On
@@ -55,7 +55,7 @@ levels, quality gates, a documented refusal to claim beyond the evidence. **The
 repository's method is the product.** That is a real advantage and it is not
 copied quickly.
 
-Design consequence: everything that follows is organized to produce publishable
+Design consequence: everything that follows is organised to produce publishable
 evidence, not just a part.
 
 ## 2. What the repository has already established that bears on the product
@@ -71,14 +71,14 @@ it gets the closures **by construction**, in one piece, without the assembly
 compromises of a welded sheet-steel body shell.
 
 **Ring closure dominates everything.** From the bare floor pan to a closed cell,
-K x 3.7. The ranking does not follow mass: the windshield frame, 1.1 kg,
+K x 3.7. The ranking does not follow mass: the windscreen frame, 1.1 kg,
 returns 172 to 191 times more per kilogram than the roof, 10.5 kg. The
 B-pillars and sills, added alone with nothing to close the front, return zero
 for 7.5 kg. Verified at three mesh densities.
 
 **Product corollary, and a reading of the competing offering.** ZESAD sells a
-"monocoque with steel windshield frame" configuration. Our own calculation says
-the windshield frame is the most cost-effective element of the whole body
+"monocoque with steel windscreen frame" configuration. Our own calculation says
+the windscreen frame is the most cost-effective element of the whole body
 shell. Putting steel precisely there is therefore defensible, and probably not
 an aesthetic compromise: it is the most loaded ring, the one where a laminated
 composite handles concentrated loads and glass bonding least well.
@@ -105,7 +105,7 @@ reference frame and to better than its tolerance, at minimum:
 | rear trailing-arm mounts | ~ +/- 1 mm | P13, P14 scaled off plate 50-05a, +/- 8.6 mm |
 | engine and gearbox mounts | ~ +/- 1 mm | P12, P21 from published diagonals (+/- 9 mm); P15 scaled, +/- 8.6 mm |
 | seat belt and seat anchorages | regulatory | not established |
-| hinges, strikers, windshield aperture | ~ +/- 1 mm | not established |
+| hinges, strikers, windscreen aperture | ~ +/- 1 mm | not established |
 
 **Update 2026-10-08: the front and centre of the chain are closed.** Plate
 50-05a of volume V dimensions P1, P3 and P5 from a 0 line through the front
@@ -146,7 +146,7 @@ and a first torsion run on it. It is a design envelope for M5, not a design:
 no thickness, layup or tolerance is proposed.
 
 **A monocoque architecture in it, in PicoGK (2026-10-08).**
-`twins/964-chassis/monocoque/picogk/` voxelizes a ZESAD-type carbon
+`twins/964-chassis/monocoque/picogk/` voxelises a ZESAD-type carbon
 monocoque inside that shell with the pinned PicoGK kernel. Every aperture
 is framed by a closed section, the sills, tunnel and rails are closed boxes,
 and the floor and bulkheads are sandwich panels: the closures of section 2,
@@ -271,42 +271,42 @@ not published. That is the product.
 merely match ZESAD, it surpasses it.** ZESAD is a German workshop founded in
 2013, a developer of competition parts. The aerospace-grade Chinese composites
 industry — autoclave infrastructure built around the domestic civil aircraft
-programmes, the world's largest carbon fiber capacity — works at a higher
+programmes, the world's largest carbon fibre capacity — works at a higher
 level, on larger parts and under more demanding quality systems.
 
 The question is therefore not "will we manage to do as well". It is "will we
 manage to **choose** the right shop", which is a different and easier problem.
 
 **Correction of an analysis error.** A previous version of this document ruled
-out the autoclave on the grounds that amortizing it would be brutal at low
+out the autoclave on the grounds that amortising it would be brutal at low
 volume. That is wrong as soon as the work is **subcontracted**: autoclave time
-is rented from someone who already owns one; the vessel is not amortized by us.
+is rented from someone who already owns one; the vessel is not amortised by us.
 ZESAD's exact route — autoclave-cured prepreg — is therefore fully accessible,
 and it is in China that it is most accessible. Tooling cost remains, and it is
 real, but it bears no comparison with European tooling.
 
-| route | fiber volume fraction | tooling | remark |
+| route | fibre volume fraction | tooling | remark |
 |---|---|---|---|
 | autoclave prepreg | highest, most consistent | expensive | ZESAD route, accessible through subcontracting; **the reference to aim for** |
 | out-of-autoclave (OOA) prepreg, oven | close to autoclave | medium | credible alternative if the autoclave brings nothing measurable |
 | vacuum infusion (VARTM) | lower, more scattered | cheapest | to be adopted only if the scatter is proven under control |
 | RTM / C-RTM | high, very consistent | very expensive, press | only if volume rises |
 
-The choice is decided on the **measured scatter** of fiber volume fraction and
+The choice is decided on the **measured scatter** of fibre volume fraction and
 coupon properties, not on a preference or on the listed price.
 
 **The real trap in Chinese sourcing is not capacity, it is sorting.** The
 Chinese automotive carbon industry is huge but overwhelmingly **cosmetic**:
-panels, aero, trim, often wet layup, optimized for the look of the twill weave
+panels, aero, trim, often wet layup, optimised for the look of the twill weave
 and not for a structural property. A safety part is not ordered from that pool.
 The relevant shops are the aerospace- or motorsport-grade ones, which exist and
 are numerous, but which are a distinct population. Confusing the two is the only
 real risk in this part of the programme, and it is handled by the requirements
 below.
 
-**Fiber.** China produces its own T700/T800-class fiber — candidates to be
+**Fibre.** China produces its own T700/T800-class fibre — candidates to be
 verified: Weihai Guangwei, Zhongfu Shenying, Hengshen, Jilin. That is a real
-advantage and not only a cost one: high-modulus, high-strength fiber falls
+advantage and not only a cost one: high-modulus, high-strength fibre falls
 under dual-use export-control regimes, and a domestic supply chain avoids those
 import frictions. **To be verified with the datasheet in hand**: advertised
 T700/T800 equivalences require coupon qualification, not a catalogue reading.
@@ -350,7 +350,7 @@ approval dossier out of all proportion to a restomod.
 This document does not settle that question: it is legal, it depends on the
 country of registration, and it must be investigated market by market
 **before** any tooling commitment. A hypothesis to be verified: the ZESAD
-configuration "with steel windshield frame" could serve to retain an original
+configuration "with steel windscreen frame" could serve to retain an original
 element carrying the identity, as much as to meet the structural need
 identified in section 2.
 
@@ -398,12 +398,12 @@ currently scheduled or authorised by this document.
 ## 10. What this document is not
 
 - It is not a design. No dimension, no layup, no geometry.
-- It is not an authorization. The `prohibited_pending_engineering` class is
+- It is not an authorisation. The `prohibited_pending_engineering` class is
   unchanged.
 - It is not a market study, nor a business plan, nor an evaluation of the ZESAD
   product, of which nothing structural is published and therefore nothing can
   be checked against.
-- The fiber producers named are candidates to be verified, not qualified
+- The fibre producers named are candidates to be verified, not qualified
   suppliers. None has been contacted.
 - The scope of `ROADMAP.md` was changed by the owner on 2026-10-08, to a
   study-only track; this document does not widen it.

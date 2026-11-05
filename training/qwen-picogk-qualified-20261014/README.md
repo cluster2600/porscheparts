@@ -130,7 +130,7 @@ matches its pre-installation hash. These operational smokes are separate from
 the sixty-case final score.
 
 No external Hugging Face model or dataset is imported. The roadmap's related
-CAD research informs the method; licenses and incompatible architectures remain
+CAD research informs the method; licences and incompatible architectures remain
 as recorded. Broader library curricula are separate from this six-recipe profile.
 
 ## First independent trial: completed and rejected

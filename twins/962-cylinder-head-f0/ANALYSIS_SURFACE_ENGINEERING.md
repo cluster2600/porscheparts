@@ -7,10 +7,10 @@ result or manufacturing qualification is established.** The retained original
 source snapshots, original receipts, candidate arrays and independent audits
 by SHA-256. Large NPZ arrays and private runtime payloads are not published.
 
-The original source uses a 0.5 mm voxel discretization. The first
+The original source uses a 0.5 mm voxel discretisation. The first
 [contract](engineering/analysis-mesh-contract.json) declares a two-sided
 continuous surface-deviation budget of **0.25 mm**, half that voxel size. This
-is an analysis discretization budget relative to the retained polygon surface,
+is an analysis discretisation budget relative to the retained polygon surface,
 not original Porsche dimensional accuracy or a manufacturing tolerance.
 Tighter 0.125 and 0.0625 mm representations and volume-mesh convergence remain
 required. The existing minimum tetrahedral SICN gate stays **0.1**.

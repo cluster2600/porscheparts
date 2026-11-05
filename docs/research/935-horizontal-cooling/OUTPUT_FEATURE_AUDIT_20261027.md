@@ -15,7 +15,7 @@ reads the pinned observed drive STL and four-band metrology receipt. It selects
 face centroids at radial positions 5.5–8.5 source units, with Z from −20 to 0.
 In each five-unit band it fits a baseline linear in Z plus the first angular
 harmonic, then adds one 6–40-lobe harmonic at a time. A synthetic 22-lobe
-fixture passes before the scan is analyzed.
+fixture passes before the scan is analysed.
 
 | Z band, source units | Faces | Highest in-sample period | Highest variance reduction | 22-lobe reduction |
 |---|---:|---:|---:|---:|

@@ -33,7 +33,7 @@ remained composed; only their temporary render copies were flattened.
 
 The final renders passed `--fail-on-uniform`:
 
-| Local evidence outside Git | Size | Triangles inspected | Reduced colors | SHA-256 |
+| Local evidence outside Git | Size | Triangles inspected | Reduced colours | SHA-256 |
 |---|---:|---:|---:|---|
 | `valvetrain-rig-final.png` | 1024 × 1024 | 2,466,032 | 117 | `9960952fa086a88a381fc86948324f93560c4016b2cec9b0eb37b9395485539c` |
 | `engine-overview-final.png` | 1280 × 720 | 4,931,909 | 64 | `a0b629f75815c7a4bf1e002a0a6eb31f7dd35aeab06f96665b89fc2dc812c4ef` |

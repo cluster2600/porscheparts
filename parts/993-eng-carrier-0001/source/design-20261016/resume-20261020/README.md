@@ -110,7 +110,7 @@ $CARRIER_VOLUME_PYTHON "$CARRIER_SOURCE/wildmeshing_carrier_checkpoint.py" \
   --output work/carrier-volume-checkpoint
 ```
 
-The checkpoint worker requests nine optimization passes, a 0.06 mm mesher
+The checkpoint worker requests nine optimisation passes, a 0.06 mm mesher
 envelope and a 9 mm ideal edge length. It resolves input paths before running
 inside its fresh output directory, so native debug files stay there. For the
 0.03 mm fidelity refinement, use `wildmeshing_carrier_tighter_envelope.py` with
@@ -160,7 +160,7 @@ this stage has not yet been packaged as a standalone portable runtime.
 SHA-256 (decompressed) `23a05f9836ae1a99391440e6b795636c3f829aaf91dbab5e0b1e581e39acb223`.
 The exact-master-to-surface complete L1 bound is 0.023852782 mm. The new
 `tetgen-volume-outward.npz` contains the completed 927,734-cell mesh, with its
-boundary winding normalized against this exact input. Original raw outputs
+boundary winding normalised against this exact input. Original raw outputs
 and negative-skin-volume refusal remain in the report evidence.
 
 ```sh
@@ -187,7 +187,7 @@ The Docker launcher requires the already installed pinned libigl image;
 input hashes and terminal receipt, with network disabled, 1 CPU, 6 GiB and a
 300-second worker limit. Each output directory must be fresh. The worker's
 analytic control and full-mesh triangle bijection run on every attempt.
-`run_tetgen_quality.py` is the separate `pYMQq2` interior-refinement experiment. It completed with 351,600 nodes and 1,163,760 exact-positive cells; use the same winding normalization and audits on its fresh output. `tetgen-volume-refined-outward.npz` preserves that completed result without altering the first checkpoint.
+`run_tetgen_quality.py` is the separate `pYMQq2` interior-refinement experiment. It completed with 351,600 nodes and 1,163,760 exact-positive cells; use the same winding normalisation and audits on its fresh output. `tetgen-volume-refined-outward.npz` preserves that completed result without altering the first checkpoint.
 
 The WildMeshing tetrahedron control passed initially, but an isolated repeat
 stalled in native Delaunay point location. The supervised control above bounds
@@ -373,7 +373,7 @@ python "$CARRIER_SOURCE/restore_intruding_tool_facets.py" \
 
 Repeat the full surface audit, original gauge screen and independent open-column
 certificate on that new surface, then TetGen, exact volume audit and winding
-normalization. `certify_surface_mass.py` computes a complete exact surface volume
+normalisation. `certify_surface_mass.py` computes a complete exact surface volume
 and the nominal mass at the explicit 4,420 kg/m³ density. Its exact Fraction
 matches the independent per-tetrahedron volume sum. The published R2 surface and
 both ledgers are in `picogk-R2-study/`.

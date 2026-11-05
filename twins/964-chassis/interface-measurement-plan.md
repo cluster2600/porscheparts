@@ -80,7 +80,7 @@ centres were not independently identified in the scan, so neither model-year
 group is selected. The 616.6 mm in the current contract is documentary input.
 
 A point visually close to a skin does not prove it is the right mounting.
-No nearest neighbor fills in Z automatically. The tie of the chain to the scan,
+No nearest neighbour fills in Z automatically. The tie of the chain to the scan,
 `REGISTRATION_X` (P17 at -465.7 mm in the vehicle frame), carries
 +/- 7.6 mm and is **not validated**. P12 designates the gearbox crossmember
 support, never the rear suspension. The span P5 to P12 (1535.6 mm) does not
@@ -106,8 +106,8 @@ feature identities are established.
 |---|---|---|---|
 | 0 | Vehicle and acquisition | Independently confirm the user-reported C2; identify model year, factory or modified wide body, gearbox and suspension modifications; unit, instrument, stated accuracy, scan processing, assembled/disassembled state | Applicability of the scan; no automatic transfer to C4 or 993 |
 | 1 | Structural frame; P17/P18/P19 | Physically identify the L/R reference surfaces; XYZ and uncertainties; independent checks of the spans and of distances R/S | Registration on the body shell instead of a ground plane derived from the tires |
-| 2 | Front P3/P4/P5/P6 | Mount centers and axes, seating planes, center distances, diameters and bracket geometry; survey P6 without giving it an X by symmetry | Front axle and suspension strut interfaces |
-| 2 | Rear P13/P14, engine P15/P21, gearbox P12 | Identification by photos and markers; XYZ, axes, seating faces, hole patterns, limits of neighboring parts | Real rear interfaces; physical check of the published X of P12/P21 and of the drawing-scaled X of P13/P14/P15 |
+| 2 | Front P3/P4/P5/P6 | Mount centres and axes, seating planes, centre distances, diameters and bracket geometry; survey P6 without giving it an X by symmetry | Front axle and suspension strut interfaces |
+| 2 | Rear P13/P14, engine P15/P21, gearbox P12 | Identification by photos and markers; XYZ, axes, seating faces, hole patterns, limits of neighbouring parts | Real rear interfaces; physical check of the published X of P12/P21 and of the drawing-scaled X of P13/P14/P15 |
 | 3 | Tunnel and shift linkage, per variant | Interior-side and underside scan with identified fairings; brackets, axes, joints, swept envelope over all gears, removal access | Shift routing and tunnel shape; not only its lower skin |
 | 3 | C4 driveline | Tube/shaft, flanges and front differential: geometry, axis line, mounts, powertrain motion and access; documented states | C4 provision; no arbitrary diameter or clearance |
 | 4 | Upper shell and openings | Bulkhead, wheel arches, pillars, roof, window openings, doors, hinges and locks; inner/outer surfaces and accessible thicknesses | A complete shell, not a floor pan with invented volumes |
@@ -127,10 +127,10 @@ Keep a new record, without modifying the historical evidence:
   plane, etc.);
 - generation/variant, vehicle configuration and load state;
 - XYZ, units, frame, transformation to the scan and justified uncertainty;
-- useful axes, diameters, surfaces and center distances; both sides measured
+- useful axes, diameters, surfaces and centre distances; both sides measured
   separately;
 - instrument, metrological verification, date, operator and method kept in the
-  private file; public data anonymized and authorized;
+  private file; public data anonymised and authorised;
 - native file, file digest, rights and check points independent of those used
   for registration.
 

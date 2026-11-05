@@ -143,18 +143,18 @@ NGC image are not used until a driver preflight of the target machine has been
 archived. This choice avoids confusing assumed compatibility with evidence of
 execution.
 
-## Licenses and software provenance
+## Licences and software provenance
 
-| Component | Main license or condition |
+| Component | Main licence or condition |
 |---|---|
 | PhysicsNeMo | Apache-2.0 |
 | PyTorch / torchvision | BSD-3-Clause |
 | PyTorch Geometric and extensions | MIT |
 | ANTLR4 Python runtime | BSD-3-Clause |
-| NVIDIA CUDA/cuDNN base image | NVIDIA Deep Learning Container License and NVIDIA CUDA Toolkit EULA |
-| Scripts in this repository | repository license |
+| NVIDIA CUDA/cuDNN base image | NVIDIA Deep Learning Container Licence and NVIDIA CUDA Toolkit EULA |
+| Scripts in this repository | repository licence |
 
-The build transfers no license over the scans, drawings, Porsche data or
+The build transfers no licence over the scans, drawings, Porsche data or
 datasets mounted at run time. An SBOM and generated notices for the published
 image are still required before external distribution, notably to inventory the
 transitive Python dependencies and Ubuntu packages.

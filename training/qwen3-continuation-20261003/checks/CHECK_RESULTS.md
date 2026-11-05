@@ -22,14 +22,14 @@ Its manifest SHA-256 is
 - Every transferred source, receipt and weight hash, and the exact training
   file roster, were verified before and after the checks.
 
-The neighboring `training/qwen3-next-preparation-20261003` package was excluded.
+The neighbouring `training/qwen3-next-preparation-20261003` package was excluded.
 The local `NEXT_DATA_PLAN.md`, `next-data-plan.json` and `README.md` changed
 during the check; their tested and subsequent hashes are explicitly retained
 in `current-snapshot-diff.json`. No code, data, protocol, weight, outcome or
 review file changed in that comparison. These later documentation edits and
 the final commit require the final PR HEAD CI.
 
-The sanitized `public-check-summary.json` contains all tested file hashes and
+The sanitised `public-check-summary.json` contains all tested file hashes and
 receipt hashes. Raw infrastructure evidence remains local in
 `check-receipt.json`, `make-check.log`, `linux-ssh-execution.json` and
 `snapshot-integrity-receipt.json`. The earlier 22-file successful check and

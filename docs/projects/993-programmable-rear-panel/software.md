@@ -15,14 +15,14 @@ firmware, the real SPI transport or BLE security.
 
 ## Software scope
 
-First version: text rasterized on the phone, drawing, simple animations and GIFs
+First version: text rasterised on the phone, drawing, simple animations and GIFs
 converted off the MCU into bounded frames. No cloud, account, microphone,
 telemetry or collection of personal identifiers. Native iOS CoreBluetooth and
 Android BLE app to be built after coupon validation; no mobile application
 delivered and no OS compatibility tested. Functional wireframes: connect/pair,
 edit/import, preview at the negotiated resolution, send/progress, arm in physical
 presence, stop. Show the usage limit, the errors and the actual number of
-available colors; no "approved" button.
+available colours; no "approved" button.
 
 ## v0 contract and limits chosen for the simulator
 
@@ -82,7 +82,7 @@ Private project UUIDs, not a standard Bluetooth SIG service.
 | PLAY / STOP | session ID | state; PLAY conditional on local arming |
 | HEARTBEAT | session ID | state, fault counter; expiry closes the session |
 
-The GATT/session IDs and the binary serialization are a porting specification,
+The GATT/session IDs and the binary serialisation are a porting specification,
 not implemented in the simulator. The peripheral creates a new random ID for
 each session; reject an old ID, an excessive size and unencrypted writes.
 No OTA command in this content protocol.
@@ -96,7 +96,7 @@ OOB mechanism to be validated with iOS/Android. Refuse a silent fallback to
 long as the display is not ready. A single active owner; bonds erased by an
 explicit local gesture, documented revocation, back-off against repeated
 attempts. Keys generated and kept on the device, never in this repository. Test
-interception, replay, unauthorized device and loss of the phone.
+interception, replay, unauthorised device and loss of the phone.
 
 Firmware: sensor acquisition, power management and watchdog independent of the
 transfer; bounded, non-blocking rendering; double buffer. LED driver behind a
@@ -121,18 +121,18 @@ python3 docs/projects/993-programmable-rear-panel/software/panel_simulator.py --
 
 Local conversion: file cap 5 MiB, source dimensions 1 megapixel maximum,
 60 frames maximum; GIF compositing by Pillow then black background, 16×8
-letterbox, 8-bit gray, duration bounded to 100–10,000 ms. Oversized images or
+letterbox, 8-bit grey, duration bounded to 100–10,000 ms. Oversized images or
 overly long animations are rejected, not silently truncated. No GIF decoding on
 the MCU. The real red rendering will use a measured LUT/calibration; RGB would
 require a distinct versioned format. Third-party GIFs: check the rights before
-use and do not commit content received without a license.
+use and do not commit content received without a licence.
 
 ## Music title: separate study
 
 | Source | Real lead | Limit / test to run |
 |---|---|---|
 | iPhone | **Apple Media Service** client accessory [S10]: iOS player information over BLE | Archived documentation; test iOS versions and chosen players, notifications, locked screen and BLE coexistence. An ordinary iOS app does not automatically get the titles of all other apps |
-| Android | MediaSessionManager and MediaController [S11] | `MEDIA_CONTENT_CONTROL` or a notification listener authorized by the user; respect for refusal, player/OS variations, background and BLE permissions |
+| Android | MediaSessionManager and MediaController [S11] | `MEDIA_CONTENT_CONTROL` or a notification listener authorised by the user; respect for refusal, player/OS variations, background and BLE permissions |
 | Car radio | Documented API of the model, or an appropriate AVRCP role if available | Exact reference and Bluetooth roles to be identified; BLE is not Bluetooth Classic AVRCP. An A2DP receiver does not necessarily offer third-party access to metadata; no invented teardown/bus |
 
 Accept the absence of a title and erase the data on disconnection. Do not keep

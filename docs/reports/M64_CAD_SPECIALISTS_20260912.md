@@ -5,14 +5,14 @@ Both candidates are excluded from the master model: missing details and deviatio
 
 ## Purpose and limits
 
-Compare two specialized models on **the same input**, before correcting the cylinder head.
-This pilot simulates neither thermal behavior, nor strength, nor printing, and qualifies no 700 hp engine.
+Compare two specialised models on **the same input**, before correcting the cylinder head.
+This pilot simulates neither thermal behaviour, nor strength, nor printing, and qualifies no 700 hp engine.
 A generative model proposes a hypothesis; it does not by itself justify a change to the Porsche outline.
 
 ```mermaid
 flowchart LR
     A["Original private 935 scan"] --> B["Unrepaired local crop"]
-    B --> C["256 shared normalized points"]
+    B --> C["256 shared normalised points"]
     C --> D["cadrille - Apple MPS"]
     C --> E["CAD-Recode - Apple MPS"]
     D --> F["Generated code kept as data"]
@@ -37,8 +37,8 @@ flowchart LR
   8,192 area-weighted surface points, PCG64 seed `20260912`, start 0.
   This strategy follows the authors, with no bit-for-bit identity claimed with their
   random generator or PyTorch3D kernel. The initial uniform input is kept.
-- Normalization by box center and half of the largest dimension; inverse
-  transformation recorded privately. The absolute scale in millimeters is not attested.
+- Normalisation by box centre and half of the largest dimension; inverse
+  transformation recorded privately. The absolute scale in millimetres is not attested.
 - Separate check references: 32,768 points, seeds `20260913` and `20260914`.
 
 SHA-256 of the main FPS input `points.npy`:
@@ -59,7 +59,7 @@ from the first notebook cell are extracted; demos, renders and `exec` are exclud
 The processor/tokenizer revisions are also frozen.
 
 The **weights of both models are CC-BY-NC-4.0**: non-commercial research trial
-only, with no commercial authorization inferred from this trial. The Apache-2.0
+only, with no commercial authorisation inferred from this trial. The Apache-2.0
 cadrille code does not lift the restriction on the weights. Sources:
 [cadrille, official model card](https://huggingface.co/maksimko123/cadrille),
 [CAD-Recode v1.5, official model card](https://huggingface.co/filapro/cad-recode-v1.5),
@@ -97,7 +97,7 @@ containers** on Kali: network cut, unprivileged user, read-only root,
 two CPUs, 4 GiB, 128 processes and 120 s per step. AST analysis is not
 a security boundary. **Remaining limit:** the cumulative volume of the output
 directory and the host logs are not capped; the per-file limit is not
-enough. This supervised pilot therefore does not authorize an autonomous service running
+enough. This supervised pilot therefore does not authorise an autonomous service running
 arbitrary LLM code. Quota-bound outputs and bounded logs will be needed.
 
 The [redacted public receipt](../../twins/m64-cylinder-head/evidence/cad-specialists-20260912.json)
@@ -128,8 +128,8 @@ presented as green and no merge into the main branch is proposed.
 | Measured loading, different caches | 5.078 s | 68.441 s |
 | Current MPS / driver memory, decimal GB, not peaks | 8.879 / 9.757 | 6.209 / 7.776 |
 | CadQuery 2.8.0 / OCP 7.9.3.1 audit | 1 valid solid, 19 faces | 1 valid solid, 26 faces |
-| p95 distance scan → candidate, normalized | 0.326215 | 0.352646 |
-| p95 distance candidate → scan, normalized | 0.123551 | 0.197387 |
+| p95 distance scan → candidate, normalised | 0.326215 | 0.352646 |
+| p95 distance candidate → scan, normalised | 0.123551 | 0.197387 |
 
 Distances between two samples of 32,768 points, not exact distances to the
 surfaces nor a Hausdorff bound. Resampling of the scan alone: p95 **0.012359**,

@@ -58,7 +58,7 @@ A fleet of more than a hundred BLT, Farsoon, EOS and UnionTech machines, SLM
 systems with four and six lasers. Build volume up to 800 × 800 × 700 mm.
 Minimum wall **0.5 mm**. Tolerance ±0.2 mm below 100 mm. SLM lead time **5 to
 7 working days**. **No minimum order**. ISO 9001, ISO 14001, ISO 13485 and
-IATF 16949. CNC machining, polishing, heat treatment and anodizing as
+IATF 16949. CNC machining, polishing, heat treatment and anodising as
 post-processing. Inspection by CMM and 3D scanner.
 
 On its AlSi10Mg sheet: Rp0.2 180 MPa, Rm 300 MPa, A ≥ 8 %, 2.67 g/cm³,

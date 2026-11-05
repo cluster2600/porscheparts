@@ -128,7 +128,7 @@ avant nettoyage et inspection.
    Un profil d'hélice seul n'établit pas une courbe de ventilateur en conduit.
 4. Dessiner les alimentations d'air séparées et l'évacuation chaude, puis mesurer
    la réaspiration et les pressions sous aileron. L'absence de réaspiration dans
-   ce calcul est une hypothèse favorable.
+   ce calcul est une hypothèse favourable.
 5. Résoudre et vérifier les collecteurs, les interfaces de tubes et les efforts
    de pression/thermiques ; ensuite éprouver fuite, pression et fatigue.
 

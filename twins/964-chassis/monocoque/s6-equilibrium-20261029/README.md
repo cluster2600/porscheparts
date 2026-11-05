@@ -11,7 +11,7 @@ strength, fitment or manufacturing qualification.
 
 [admissibility.json](admissibility.json) was written **before** either full-size
 solver launch. The retained input and DAT files were admitted by their frozen
-SHA-256 digests. The geometry remains a drawing-derived envelope with modeled
+SHA-256 digests. The geometry remains a drawing-derived envelope with modelled
 sections, an isotropic carbon surrogate and synthetic load/support patches.
 The audit is admissible for checking the existing solver's output completeness.
 It does not admit a geometry/mesh parameter sweep or vehicle load validation.
@@ -67,17 +67,17 @@ before using the printing allowance**. The executable audit and publication
 test both require this unadjusted residual criterion. The [aggregate audit](audit.json) contains all three
 components, reference scales, origins, uncertainty bounds and file hashes.
 
-The origin is the mean of the original input coordinates. Force normalization
-uses the sum of the magnitudes of the applied nodal forces; moment normalization
+The origin is the mean of the original input coordinates. Force normalisation
+uses the sum of the magnitudes of the applied nodal forces; moment normalisation
 uses the sum of their individual moment magnitudes about that origin. They are
 2,000.000056 N / 2,580,080.524 N.mm in torsion and 2,000.000002 N /
 1,463,155.983 N.mm in bending. The small differences from 2,000 N come from
-the six-decimal CLOAD serialization. These scales are documented numerical
+the six-decimal CLOAD serialisation. These scales are documented numerical
 references, not vehicle design loads or safety factors.
 
 The FRD fields have fewer significant digits than DAT. Half-last-digit bounds
 are propagated through each cross product, including the product of coordinate
-and force bounds. They describe **serialization uncertainty only**. Worst-case
+and force bounds. They describe **serialisation uncertainty only**. Worst-case
 component bounds are deliberately conservative; they are reported without
 claiming measurement accuracy. The unadjusted residuals above pass independently.
 External work is reported as `sum(F · u)`; no independent strain-energy output

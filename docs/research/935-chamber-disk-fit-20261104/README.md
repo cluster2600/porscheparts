@@ -67,7 +67,7 @@ or scanner uncertainty.
 Each fitted model is checked on every original edge in its domain boundary.
 Two fixed diagnostic families, plane and quadratic, are also checked across all
 **1,890** existing source-edge cuts and **3,130** original shared-vertex/domain
-pairs. An unfitted neighbor uses its exact acquired geometry. Rejected models
+pairs. An unfitted neighbour uses its exact acquired geometry. Rejected models
 remain in these diagnostics deliberately; this is not an adopted hybrid CAD
 assembly and does not describe gaps in the original scan or exact references.
 

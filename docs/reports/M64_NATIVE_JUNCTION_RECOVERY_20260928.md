@@ -63,7 +63,7 @@ Default construction also reveals why validity alone is insufficient:
 - On 893/1154, stored face/edge/vertex tolerances rise to about **0.121871**
   provisional units, despite `IsValid=true`.
 - On 712/952, the maximum edge tolerance reaches **0.000696041** and the
-  working in-memory input serialization changes. The on-disk original does
+  working in-memory input serialisation changes. The on-disk original does
   not change.
 - On 679/888, the contour would propagate to another edge. The runner stops
   before construction.
@@ -78,11 +78,11 @@ an untouched reference and reuses the existing
 [strict fillet construction helper](../../twins/m64-cylinder-head/source/build_local_port_junction_fillet.py).
 Construction parameters are tightened before creating the contour; no
 acceptance threshold is relaxed. Every non-patch source face must retain
-its identity and serialized representation. The whole original reference
+its identity and serialised representation. The whole original reference
 must remain byte-identical in memory as well as unchanged on disk.
 
 An intermediate attempt using `BRepBuilderAPI_Copy` is rejected before
-filleting because its serialization differs from the source. That does
+filleting because its serialisation differs from the source. That does
 not prove a geometric defect in copying; it fails the deliberately exact
 copy check. Re-reading the native file satisfies the check without a new
 copying/repair algorithm.
@@ -92,8 +92,8 @@ The five completed strict runs still fail:
 | Pair / radius | Kernel result | Reason not accepted |
 |---|---|---|
 | 893 / 1154, 0.02 | One valid solid, six patch faces changed | Maximum tolerance about 0.121872; strict construction does not resolve this junction |
-| 712 / 952, 0.02 | One valid solid, four patch faces changed | Edge tolerance about 0.000696044; a protected-face serialization also changes |
-| 679 / 897, 0.02 | One solid, four patch faces changed; invalid | Native validity and protected-face serialization fail, despite unchanged maximum tolerances |
+| 712 / 952, 0.02 | One valid solid, four patch faces changed | Edge tolerance about 0.000696044; a protected-face serialisation also changes |
+| 679 / 897, 0.02 | One solid, four patch faces changed; invalid | Native validity and protected-face serialisation fail, despite unchanged maximum tolerances |
 | 1177 / 1427, 0.02 | One solid, six patch faces changed; invalid | Face/edge tolerance about 0.0426722; vertex tolerance about 4.48471 |
 | 893 / 1154, 0.10 | One solid, six patch faces changed; invalid | Maximum tolerance about 0.936765; a larger radius does not fix this trial |
 
@@ -113,7 +113,7 @@ not weaken that guard or repeat the same uncheckpointed paid job. Native
 diagnostics and receipts are written locally before each expensive operation.
 
 Inspection of the upstream
-[Python tetrahedralizer API](https://wildmeshing.github.io/python/) and
+[Python tetrahedraliser API](https://wildmeshing.github.io/python/) and
 [binding source](https://github.com/wildmeshing/wildmeshing-python/blob/bc835076c1e2b2c92fe5364f5bc7f4119e6c5fd3/src/tetrahedralize.cpp)
 found no exposed identical-state checkpoint/resume operation in that inspected
 revision. Exporting a completed bounded-pass mesh and remeshing its boundary

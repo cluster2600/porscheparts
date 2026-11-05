@@ -46,7 +46,7 @@ classDiagram
 
 Keep editable C# and parameters, then export separate analysis, print and visual
 meshes. A mesh is not a native editable STEP solid. Resolve dimensional units at
-each boundary; use millimeters and Z-up in the assembled USD, consistent with
+each boundary; use millimetres and Z-up in the assembled USD, consistent with
 the existing assembly validator, with explicit conversion from SI solver data.
 
 Every result records source revision, input/output hashes, tool versions,
@@ -84,7 +84,7 @@ and galvanic isolation. Highly loaded parts retain professional-review gates.
 
 ## Local USD and final rental
 
-Compose geometry, assembly, display materials and result visualizations as
+Compose geometry, assembly, display materials and result visualisations as
 separate USD layers. Keep full scientific fields in solver formats and link
 their hashes. Use relative assets, an explicit default prim, units and axis.
 Validate a relocated copy so the original workspace cannot conceal dependencies.

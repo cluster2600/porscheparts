@@ -7,10 +7,10 @@ no M64 training and no engine performance gain demonstrated.
 
 | Primary source | Contribution and limit for our project |
 |---|---|
-| [Baqué et al., Geodesic Convolutional Shape Optimization, ICML 2018](https://proceedings.mlr.press/v80/baque18a.html), §3 and §4.1–4.3 | Predictor trained on simulations, optimization, new simulation when the shape leaves the learned domain. 3D experiment on 2,000 synthetic shapes: not a prescribed minimum for the M64. No reusable official repository identified in this search. |
-| [Remelli et al., MeshSDF, NeurIPS 2020](https://arxiv.org/html/2006.03997v2), §3.2, §4.3 and supplement §8.7 | Gradients toward an implicit representation. The automotive experiment uses 1,400 cars and OpenFOAM, not photos alone. No code license identified in the [official repository](https://github.com/cvlab-epfl/MeshSDF) at the time of the check: clarification needed before integration. |
+| [Baqué et al., Geodesic Convolutional Shape Optimisation, ICML 2018](https://proceedings.mlr.press/v80/baque18a.html), §3 and §4.1–4.3 | Predictor trained on simulations, optimisation, new simulation when the shape leaves the learned domain. 3D experiment on 2,000 synthetic shapes: not a prescribed minimum for the M64. No reusable official repository identified in this search. |
+| [Remelli et al., MeshSDF, NeurIPS 2020](https://arxiv.org/html/2006.03997v2), §3.2, §4.3 and supplement §8.7 | Gradients toward an implicit representation. The automotive experiment uses 1,400 cars and OpenFOAM, not photos alone. No code licence identified in the [official repository](https://github.com/cvlab-epfl/MeshSDF) at the time of the check: clarification needed before integration. |
 | [Durasov et al., Enabling Uncertainty Estimation in Iterative Neural Networks, ICML 2024](https://proceedings.mlr.press/v235/durasov24a.html), §3.2, §4.2 and §5.1 | Spread across iterations as an uncertainty indicator for selecting new simulations. Not a universal bound on physical error. [MIT code](https://github.com/cvlab-epfl/iter_unc/blob/main/LICENSE); full reproduction of the CFD corpus not documented in the README consulted. |
-| [Talabot et al., PartSDF, TMLR 2025, version of October 20](https://arxiv.org/html/2502.12985v3), §4.4, §5 and appendix D | Component-based representation, with an example of a car body optimized around fixed wheels. Part labels required; difficulties on thin structures and spurious fragments. [MIT code](https://github.com/cvlab-epfl/PartSDF/blob/main/LICENSE), [data/checkpoints CC BY 4.0](https://zenodo.org/records/17466765). These data do not qualify a cylinder head. |
+| [Talabot et al., PartSDF, TMLR 2025, version of October 20](https://arxiv.org/html/2502.12985v3), §4.4, §5 and appendix D | Component-based representation, with an example of a car body optimised around fixed wheels. Part labels required; difficulties on thin structures and spurious fragments. [MIT code](https://github.com/cvlab-epfl/PartSDF/blob/main/LICENSE), [data/checkpoints CC BY 4.0](https://zenodo.org/records/17466765). These data do not qualify a cylinder head. |
 
 The [Neural Concept commercial benchmark of September 10, 2025](https://www.neuralconcept.com/post/from-dataset-to-design-impact-how-neural-concept-set-a-new-benchmark-on-mits-drivaernet)
 announces four A100s and 24 hours of training on DrivAerNet++. It is a
@@ -43,8 +43,8 @@ data; a steady-flow bench does not simulate the engine cycle. Start with a
 simple KPI predictor on parameters, then consider
 [DoMINO/PhysicsNeMo](https://docs.nvidia.com/physicsnemo/latest/physicsnemo/api/models/operators.html)
 for surface/volume fields if the data justify that complexity.
-PartSDF comes next if the parametrization becomes insufficient. PicoGK
-is not assumed to be differentiable: bounded derivative-free optimization, or
+PartSDF comes next if the parametrisation becomes insufficient. PicoGK
+is not assumed to be differentiable: bounded derivative-free optimisation, or
 a separate, explicitly verified differentiable path.
 
 Each sample must link geometry/parent, parameters, units, material,
@@ -69,5 +69,5 @@ actually processed by the hosted LLM separately from an OpenAI saving,
 which remains an unmeasured counterfactual.
 
 Compare "CAE data + training + new simulations + final recomputation"
-against a direct CAE optimization. Fast inference is not enough to prove
+against a direct CAE optimisation. Fast inference is not enough to prove
 payback. No token saving or engine efficiency gain is measured here.

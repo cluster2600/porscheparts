@@ -35,7 +35,7 @@ The raw and relocated volume SHA-256 values are
 `a19db57819dfd2d6aed18bb8de50dd59e3d4262b1dc4c61386e7e359342d4add`
 and `a32ee01c27be982db4cd39fa5b5948b8323d5963a205264d55f06e91bad41f9a`.
 The signs above are from the float64 independent audit. Gmsh also reported
-deleted-tetrahedron cavity warnings during optimization. The lower count
+deleted-tetrahedron cavity warnings during optimisation. The lower count
 of cells below 0.01 cannot compensate for nonpositive volumes; relocation
 made the inversion count worse. **This candidate is rejected and has not
 been sent to OpenFOAM for CFD.** No airflow, fitment or manufacturing claim
@@ -47,7 +47,7 @@ at radius 84–86 mm and 30 at 86–90 mm; one lies at 80–84 mm. The
 [private locator receipt](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-ring-edge-split-nonpositive-cells-20261028.json)
 has SHA-256
 `803538b2dd4c42768d5ea57d737aa6f1c8eee834e9d8330a1235a6ab349c0828`,
-matching its release digest. This localizes the failed boundary band without
+matching its release digest. This localises the failed boundary band without
 establishing the true 935 physical radius.
 
 The [private trial archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-ring-edge-split-20261028.tar.zst)

@@ -88,7 +88,7 @@ pattern or a model-generated strength claim.
 
 The new 360-step Qwen candidate was also run on this real brief as a separate
 diagnostic. It returned all three interfaces as missing and unverified, with
-unknown material and no manufacturing authorization; that matches the external
+unknown material and no manufacturing authorisation; that matches the external
 audit because no replacement geometry exists. The input, raw response and
 adapter hash are retained in [requirements.json](requirements.json). This one
 result does not rescue its failed 39/70 validation score or select the adapter.

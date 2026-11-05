@@ -44,7 +44,7 @@ flowchart LR
 |---|---|---|
 | v1 | Compilation rejected, exit 2, 7.130 s | `fvCFD.H` missing; no control case run. |
 | v2 | Compilation and `Mesh OK`, exit 134, 58.850 s | Old guard rejected as expected; new one stopped before `adjustPhi` by the "exact zero" oracle. The reader also wrongly expected numeric booleans. |
-| v3 | Native pair passed, exit 0, 23.927 s | Old `adjustPhi`: expected exit 1; new: exit 0, domain recognized as closed. |
+| v3 | Native pair passed, exit 0, 23.927 s | Old `adjustPhi`: expected exit 1; new: exit 0, domain recognised as closed. |
 
 v3 corrects the oracle and the reader, without retroactively accepting v2. It
 reuses the normal velocity budget **already set at 10⁻¹⁴ m/s** by the earlier
@@ -94,4 +94,4 @@ memory+swap, 180 s, network disabled. No new Vast rental was used.
 at the top:** apply only this fix to a new copy of the F58 sources, compile a
 new pinned binary, then review a bounded coupled trial with all guards kept.
 The 3,300 K cap and the LPBF validation questions remain open; no cylinder
-head is validated or authorized for manufacturing by this control case.
+head is validated or authorised for manufacturing by this control case.

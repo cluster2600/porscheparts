@@ -43,7 +43,7 @@ This check does not prove the absence of useful documents in the rest of
 the FIA archive. The copy transferred to Group B remains a separate source.
 
 The [1976 Appendix J, articles 268–269](https://argent.fia.com/web/fia-public.nsf/ABCF4550D7659360C12574A5003C6CA0/$FILE/Hist_App_J_76_Art_269_a.pdf)
-defines Group 5 from cars recognized in Groups 1–4 and leaves the other
+defines Group 5 from cars recognised in Groups 1–4 and leaves the other
 mechanical elements free under article 269(d), subject to its
 conditions. **Documentary inference:** a form for the base car
 can therefore be useful without containing the manufacturing drawings of the
@@ -81,12 +81,12 @@ tip diameter, of the bare rotor mass or of a 935 part.
 
 The [materials survey](MATERIALS.en.md) complements this section: Jim Torres
 describes the factory metal housings in magnesium, then his reproductions in
-aluminum. This observation concerns the drive housings; it does not
+aluminium. This observation concerns the drive housings; it does not
 give the material of the owner's 935 rotor.
 
 [Jim Torres Racing](https://jimtorresracing.com/for-sale/reproduction-flat-fan)
-describes its reproduction with cast aluminum housings, a rotor machined from
-7075 aluminum, an oil distribution shaft, a long banjo bolt and a supply
+describes its reproduction with cast aluminium housings, a rotor machined from
+7075 aluminium, an oil distribution shaft, a long banjo bolt and a supply
 line. Alternator and belt are excluded from the advertised assembly.
 The manufacturer reports a 60–90 minute run-in/test, between 2,000 and
 8,500 rpm; the shaft to which this speed refers is not stated.
@@ -112,7 +112,7 @@ according to the manufacturer. These product pages do not provide the
 qualification dossier for the titanium, nor the exact interfaces, nor the mass of the complete system.
 
 The [Design911 `93510610300R/1`](https://www.design911.co.uk/p/fan-housing-with-fan-blades-porsche-935/) assembly
-combines a GRP funnel/housing with an aluminum fan. Its diameter
+combines a GRP funnel/housing with an aluminium fan. Its diameter
 is not advertised on the page read. The **225 mm** visible nearby in
 a product list concerns the `90110610300R/1` RSR/906/914, a different
 part: it must not be assigned to the horizontal 935 rotor.

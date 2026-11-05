@@ -55,8 +55,8 @@ docker run --rm --network none --read-only --tmpfs /tmp \
 
 The witness subtracts one octant from a unit sphere. Expected volume is 7π/6;
 integration accuracy is 1e-7 and relative acceptance tolerance is 1e-6.
-It exports `cut.usda`, reloads it and checks the volume again. Its modeling
-units are synthetic, not millimeters from a measured part. The output is not
+It exports `cut.usda`, reloads it and checks the volume again. Its modelling
+units are synthetic, not millimetres from a measured part. The output is not
 a SimReady review bundle: unit/axis/default-prim and relocated semantic checks
 remain required before that handoff.
 

@@ -22,7 +22,7 @@ flowchart LR
   G --> Pr["Pressure and bending<br/>ratio 23.35: passes"]
   G --> T["Blocked thermal<br/>ratio 0.395: fail"]
   G --> P["LPBF print screen<br/>build_x, 40 µm"]
-  T --> V["Process undecided<br/>all manufacturing, oil, turbo,<br/>engine, vehicle authorizations closed"]
+  T --> V["Process undecided<br/>all manufacturing, oil, turbo,<br/>engine, vehicle authorisations closed"]
   P --> V
   class S open
   class Hy,Pr,P open
@@ -70,7 +70,7 @@ Rp0.2 `640 MPa` is `23.35`: this screen passes by a wide margin.
 
 It covers neither the bend, nor the flange root, nor LPBF defects, nor residual
 stress, nor vibration. The algebraic burst pressure is therefore not an
-authorized pressure.
+authorised pressure.
 
 ## Thermal and compliance
 
@@ -121,7 +121,7 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
 
 PhysicsNeMo stays deferred until correlated CFD/CHT/structure series exist with
 holdout and out-of-distribution cases. All manufacturing, oil, turbo, engine
-and vehicle authorizations stay closed.
+and vehicle authorisations stay closed.
 
 <!-- print-screen:begin -->
 

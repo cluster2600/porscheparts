@@ -23,9 +23,9 @@ failures and must never present the faceted B-Rep as production CAD.
 
 - `assets/` — images and sequences computed from the F38 geometry, adopted locally with their provenance.
 
-## Customizations
+## Customisations
 
-- Slow rotation of the part, cutaway opening and synchronized animation of the four valves.
+- Slow rotation of the part, cutaway opening and synchronised animation of the four valves.
 - Overlay of the thermal fields, the air/oil flows and the LPBF criteria.
 
 ## Notes

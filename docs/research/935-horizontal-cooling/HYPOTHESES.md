@@ -11,11 +11,11 @@ into a measurement and does not change the 17 independent interfaces still open.
 
 | Identifier | Working hypothesis | Planned confrontation |
 |---|---|---|
-| H-SCALE | Provisionally reuse 1 mm per OBJ unit; compare 0.9 and 1.1 without imposing a nominal diameter. | Two independent dimensions on the same parts; consistency of the seats and the stack-up. A partial bore assumed to be standardized is not enough to calibrate. |
+| H-SCALE | Provisionally reuse 1 mm per OBJ unit; compare 0.9 and 1.1 without imposing a nominal diameter. | Two independent dimensions on the same parts; consistency of the seats and the stack-up. A partial bore assumed to be standardised is not enough to calibrate. |
 | H-DRIVE | Belt, horizontal shaft and angle drive to the vertical shaft; bevel gearing as the first internal candidate. | Architecture documented by [Gunnar Racing](https://www.gunnarracing.com/team/lola/stage4.htm). Photograph a disassembled angle drive; record axes, gear teeth, tooth counts and ratios. The exact type remains hypothetical. |
 | H-RATIO | Compare three total rotor/engine speed ratios: 0.8, 1.0 and 1.2. | Measure both speeds simultaneously and record the pitch diameters/gear teeth. These are exploration points, not published Porsche ratios. |
-| H-ROTOR | Use nine blades for the first kinematics, based on the nine acquired regions. | Check the repetition over the full revolution, then the roots, tips and back-side acquisitions; keep the localized repairs. |
-| H-COUPLING | Provide a flexible coupling in the torque path; do not replace it outright with a rigid connection. | Usage account in the [Rennlist thread](https://rennlist.com/forums/911-turbo-930-forum/94486-935-users-flat-fan.html). Locate the component on a disassembled view and characterize its stiffness/damping. |
+| H-ROTOR | Use nine blades for the first kinematics, based on the nine acquired regions. | Check the repetition over the full revolution, then the roots, tips and back-side acquisitions; keep the localised repairs. |
+| H-COUPLING | Provide a flexible coupling in the torque path; do not replace it outright with a rigid connection. | Usage account in the [Rennlist thread](https://rennlist.com/forums/911-turbo-930-forum/94486-935-users-flat-fan.html). Locate the component on a disassembled view and characterise its stiffness/damping. |
 
 The bearing references, their preloads and the lubrication become
 design variants to compare once the envelopes and load

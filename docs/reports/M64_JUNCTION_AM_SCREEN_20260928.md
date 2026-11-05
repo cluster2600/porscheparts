@@ -19,7 +19,7 @@ private under the [existing source policy](../../twins/m64-cylinder-head/README.
 
 ```mermaid
 flowchart LR
-    A["Rejected three-tetrahedron island"] --> B["Native face localization and section"]
+    A["Rejected three-tetrahedron island"] --> B["Native face localisation and section"]
     B --> C["Local size 0.020 / 0.005<br/>unchanged CAD"]
     C --> D["Independent envelope remeshing"]
     C --> E["Orientation and full-height slicing"]
@@ -29,7 +29,7 @@ flowchart LR
     G --> H
 ```
 
-## Native cause localization
+## Native cause localisation
 
 The [diagnostic](../../twins/m64-cylinder-head/source/wholebody/audit_pinched_junction.py)
 reads the exact prior three-tetrahedron component, not a new hand-picked point.
@@ -81,7 +81,7 @@ in the [Gmsh API](https://gmsh.info/doc/texinfo/#gmsh_002fmodel_002fmesh_002fset
 Both new trials contain one face-connected material region, zero nonpositive
 Jacobians, all 4,918 CAD faces and complete tetrahedral boundaries. Mesh nodes
 and connectivity survive file readback exactly. The combined export gate stays
-false because of the quality failure; this is not a serialization failure.
+false because of the quality failure; this is not a serialisation failure.
 
 The 0.020 trial improves both the count and worst quality against its native
 control. The 0.005 trial worsens them; **finer is not automatically better**.
@@ -141,7 +141,7 @@ element quality to a CAE pass. Mesh vertex positions are not repaired or moved.
 Two full-height geometric runs use layer increments **0.060 and 0.120 scan
 units**, under the explicit, unverified hypothesis **1 mm per scan unit**. Six
 orientations are screened at a provisional 45-degree overhang angle. Selection
-minimizes projected downward area, **not** actual support volume or removability.
+minimises projected downward area, **not** actual support volume or removability.
 The vertical-column support proxy uses a 0.5-unit raster. Tiny unsupported
 polygon regions below the inherited 0.01-unit² filter are excluded, so the proxy
 is not a rigorous conservative bound. Invalid polygons are refused rather than
@@ -176,7 +176,7 @@ This is the body alone, not the 13-solid assembly or a calibrated physical box.
 | Sliced / input-polygon volume relative difference | 2.808e-6 | 8.888e-6 |
 | Computation time | 50.83 s | 24.99 s |
 
-Support proxy volume changes by about **0.40%** between these two discretizations.
+Support proxy volume changes by about **0.40%** between these two discretisations.
 This is a sensitivity check, not asymptotic convergence or a physical supports
 qualification. Proxy volume is not a supplier support lattice volume or mass.
 Both sliced-volume sums agree closely with the **input polygon mesh**, which
@@ -190,7 +190,7 @@ not a percentage of the part certified too thin. Pressure walls, fins and
 machining edges still need separate role-based treatment.
 
 The first Linux runs completed geometry calculations but failed final JSON
-serialization on a NumPy boolean. Their partial reports were retained. The
+serialisation on a NumPy boolean. Their partial reports were retained. The
 adapter converts polygon volume to a built-in float; **both jobs were rerun
 into new directories** and completed successfully. No partial report was
 edited into a pass. The final source SHA-256 is
@@ -199,13 +199,13 @@ edited into a pass. The final source SHA-256 is
 ### Independent empty-region classification
 
 The [new cavity screen](../../twins/m64-cylinder-head/source/wholebody/screen_powder_connectivity.py)
-voxelizes only the surface, labels six-connected empty regions and classifies
+voxelises only the surface, labels six-connected empty regions and classifies
 enclosed regions using up to eight ray-parity samples each. It does **not** fill
 the surface before asking whether a void exists. Mixed classifications remain
 ambiguous rather than passing. A hollow-box witness detects its known closed
 cavity; a solid-box witness detects none. Both run in the Linux runtime.
 
-This remains resolution-limited. Voxelization can seal a narrow open channel,
+This remains resolution-limited. Voxelisation can seal a narrow open channel,
 and sparse region classification does not prove every point's state. No powder
 grain size, cohesion, vibration, gravity flow or cleaning operation is simulated.
 The script always leaves physical powder-removal validation false.

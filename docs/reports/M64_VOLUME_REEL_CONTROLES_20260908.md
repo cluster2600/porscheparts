@@ -12,7 +12,7 @@ refining the eight cylindrical guide–stem portions. The CAD, its diameters and
 its tolerances were not changed.
 
 **OpenFOAM nevertheless rejects this mesh on six quality checks. No flow
-solver was launched.** This batch validates neither the thermal behavior, nor
+solver was launched.** This batch validates neither the thermal behaviour, nor
 the strength, nor the printing of the cylinder head.
 
 The target remains an M64 twin-turbo, four valves, **700 PS at the crankshaft
@@ -71,11 +71,11 @@ after rereading, among others. **1,409 tetrahedra have a minSICN below 0.1,
 eight of them below 10⁻⁶.**
 
 Exit 2 of the generator keeps the status "diagnostic mesh integrity passed,
-native C0 defect unresolved". It does not mean a tetrahedralization failure
-here, but does not authorize CFD.
+native C0 defect unresolved". It does not mean a tetrahedralisation failure
+here, but does not authorise CFD.
 
 An independent review of the volume file `98c6628b…` confirms the 88 boundary
-assignments: inlet 258 triangles, outlet 1,191, walls 190,519. It authorizes
+assignments: inlet 258 triangles, outlet 1,191, walls 190,519. It authorises
 only conversion and checking. The
 [diagnostic program](../../twins/m64-cylinder-head/source/flowbench-intake/check_openfoam_mesh.py)
 contains **no solver step**. The same receipt is refused by the CFD program,
@@ -94,7 +94,7 @@ case, with exit 2.
 | Cells with a small OpenFOAM quality determinant | 4,243 |
 | Cells concave according to the planes of their faces | 25 |
 | Faces with a low interpolation weight | 1,200 |
-| Faces with a low neighboring volume ratio | 532 |
+| Faces with a low neighbouring volume ratio | 532 |
 
 The OpenFOAM quality determinant is not the geometric Jacobian of the Gmsh
 tetrahedra. Positive volumes are therefore not enough. The log also reports
@@ -112,7 +112,7 @@ concern the guide–stem passages. These contact counts can overlap; they are
 not disjoint regions. The entities without verifiable contact remain
 unattributed.
 
-## Metal body: STEP defect localized, not repaired
+## Metal body: STEP defect localised, not repaired
 
 The [STEP audit](../../twins/m64-cylinder-head/evidence/ported-body-step-context-20260908.json)
 identifies 23 `UnorientableShape` faces after import. Eight edges also carry
@@ -140,7 +140,7 @@ flowchart TD
     A["Native inventory: 14 fragments, 8 in the clearances"] --> B["Refinement and full radial checks"]
     B --> C["Real volume: 481,189 tetrahedra"]
     C --> D["OpenFOAM: six quality checks failed"]
-    D --> E["Defects localized: face 38 and guide-stem passages notably"]
+    D --> E["Defects localised: face 38 and guide-stem passages notably"]
     E --> J["Correct the CAD blend and the quality of the elements concerned"]
     J --> F["Recheck the mesh before CFD and convergence"]
     G["Native body / STEP exchange rejected"] --> H["Locally repair the exchange inconsistencies"]
@@ -149,7 +149,7 @@ flowchart TD
 ```
 
 The coming corrections must distinguish interior element defects from
-boundary/C0 CAD defects. A volume optimization will not necessarily repair a
+boundary/C0 CAD defects. A volume optimisation will not necessarily repair a
 defective boundary. The global thickness checks, engine interfaces, hot
 retention of the guides, material and process also remain open; see the
 [body batch](M64_CORPS_ADMISSION_MAILLAGE_20260908.md).
@@ -177,4 +177,4 @@ concerns the software and the evidence contracts, not the mechanical or
 thermal qualification of the part. The Mermaid diagram is provided as source;
 no check of its rendering is claimed in this batch.
 
-**No authorization for functional printing or engine starting.**
+**No authorisation for functional printing or engine starting.**

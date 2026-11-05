@@ -31,7 +31,7 @@ diagram carrying the same identifiers as the measurements.
 - Holes, axes and threads:
 - Contact planes:
 - Functional clearances:
-- Neighboring parts:
+- Neighbouring parts:
 - Motion or travel:
 
 ## 3D acquisition

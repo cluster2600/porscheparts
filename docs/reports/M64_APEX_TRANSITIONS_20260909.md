@@ -12,7 +12,7 @@ The CAD, the Porsche contour and the engine interfaces do not change in this bat
 
 A C++ reader is compiled and run with **OpenFOAM Foundation
 14-7b05503f98a8**, on the original case of 785,883 cells. It reads the native
-face/cell centers, oriented areas, volumes and interpolation weights.
+face/cell centres, oriented areas, volumes and interpolation weights.
 It moves no point, does not re-stitch the mesh, does not convert the
 geometry and launches no solver. The source case is mounted read-only.
 
@@ -24,16 +24,16 @@ The 99,470 external faces are counted separately.
 | Measurement | Result over the 190 interfaces |
 |---|---|
 | Minimum interpolation weight on both sides | 0.041395602449 to 0.041395602756; native threshold 0.05 |
-| Normal distance hex center / face | About 1.0000 × 10⁻⁴ |
-| Normal distance pyramid center / face | About 4.3183 × 10⁻⁶ |
+| Normal distance hex centre / face | About 1.0000 × 10⁻⁴ |
+| Normal distance pyramid centre / face | About 4.3183 × 10⁻⁶ |
 | Normal height of the pyramid apex | About 1.7273 × 10⁻⁵ |
 | Normal thickness of the hex | About 2.0000 × 10⁻⁴ |
 | Hex / pyramid volume ratio | About 34.736 |
 
 The lengths are those of the **already scaled numerical frame**;
 they are not certified physical dimensions. All signed projections
-of centers are positive. The defect is therefore not explained here
-by centers lying on the wrong side of the face.
+of centres are positive. The defect is therefore not explained here
+by centres lying on the wrong side of the face.
 
 Compilation and measurement take 1.781 s and 1.618 s respectively;
 the whole process, cleanup included, **4.314 s**. The 29 files of the source
@@ -47,9 +47,9 @@ The second calculation re-reads the `polyMesh` and applies the formulas of the
 pinned commit: [face centers/areas](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/OpenFOAM/meshes/meshShapes/face/faceTemplates.C#L72-L138),
 [cell centers/volumes](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCellCentresAndVols.C#L65-L144)
 and [check weights](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/meshCheck/polyMeshCheck/polyMeshCheck.C#L163-L214).
-It does not substitute a vertex average for the native center of a polyhedron.
+It does not substitute a vertex average for the native centre of a polyhedron.
 
-Over the 190 interfaces, centers, areas, volumes, signed distances and
+Over the 190 interfaces, centres, areas, volumes, signed distances and
 heights agree **bit for bit** with the C++. The maximum deviation of the weights
 is 1.249 × 10⁻¹⁶. This verifies a numerical implementation on the same
 data; it is not an independent validation of the engine physics.
@@ -59,7 +59,7 @@ half-spaces with rational arithmetic on the stored coordinates.
 ## First candidate: real gain, but a regression detected
 
 A candidate moves the 190 apexes toward a recomputed weight of 0.055.
-Generation takes 13.418 s. After serialization at 17 digits and re-reading,
+Generation takes 13.418 s. After serialisation at 17 digits and re-reading,
 the 1,142 tetrahedral inequalities remain strictly positive; the exact
 volumes of the 190 stars are preserved. The other lines of the points file
 remain unchanged. External coordinates and connectivity are preserved.
@@ -114,7 +114,7 @@ mesh checks. It receives **no CFD admission**: there remain
 1 low-weight hex/pyramid transition, 1,301 other low-weight faces
 between tets, as well as the other defects in the table. The next piece of work
 must treat this remaining junction and the core/wall defects, keeping
-the native criteria and the neighborhood checks. No thermal,
+the native criteria and the neighbourhood checks. No thermal,
 structural or LPBF solver is launched on this still-refused mesh.
 
 ## Correction criterion
@@ -127,14 +127,14 @@ pyramids therefore change consistently on both sides: they can no longer
 be declared identical to the old geometric interfaces.
 
 The local checks must cover the coordinates actually rewritten,
-the pyramids and the 1,142 neighboring tets, not only the targeted weight.
+the pyramids and the 1,142 neighbouring tets, not only the targeted weight.
 A second global `checkMesh` must then compare the defect identifiers
 before/after, in order to detect new defects elsewhere in the
 stars. A successful program run is not an acceptance of the mesh.
 
 ```mermaid
 flowchart TD
-    A["190 localized transitions"] --> B["Native OpenFOAM centers and volumes"]
+    A["190 localised transitions"] --> B["Native OpenFOAM centres and volumes"]
     A --> C["Independent polyhedral cross-calculation"]
     B --> D["Weight 0.0414: pyramids too flat"]
     C --> D

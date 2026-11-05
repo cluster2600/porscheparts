@@ -1,13 +1,13 @@
-# 993 wheel center cap — AlSi10Mg F0 concept
+# 993 wheel centre cap — AlSi10Mg F0 concept
 
-PorscheFanatics identifies `993 361 303 07` as a wheel center cap and keeps its
+PorscheFanatics identifies `993 361 303 07` as a wheel centre cap and keeps its
 historical PET status `U`, discontinued without replacement, while stating
 that its current availability is unknown. Partworks currently sells an
 original variant and declares: plastic, outer diameter `76 mm`, inner diameter
 `60 mm` and height `46 mm`.
 
 The F0 keeps only these three dimensions. Its face is deliberately neutral: no
-Porsche crest, logo or design is reproduced. The skirt, the centering ring and
+Porsche crest, logo or design is reproduced. The skirt, the centring ring and
 the four tabs with beads are the project's own assumptions.
 
 ```mermaid
@@ -30,7 +30,7 @@ flowchart LR
 ## Why test metal AM
 
 LPBF consolidates into a single solid a face, two rings and four tabs with
-undercuts. This may be of interest for a small series or a customized variant.
+undercuts. This may be of interest for a small series or a customised variant.
 Since the original is plastic, however, MJF, SLS and injection molding remain
 competitors that are probably lighter and more flexible. The process therefore
 stays `undecided`.

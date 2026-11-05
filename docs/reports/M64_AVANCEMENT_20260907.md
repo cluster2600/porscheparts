@@ -6,7 +6,7 @@ This state keeps the evidence from the previous batches; their results do
 not automatically qualify the new geometric derivatives.
 
 **The project has not yet delivered a functional cylinder head, nor one that is
-qualified or authorized for printing.** The software checks, the geometry
+qualified or authorised for printing.** The software checks, the geometry
 checks and the physical computations below concern different objects. They do
 not add up to an overall validation of the engine.
 
@@ -80,7 +80,7 @@ artifact; its results do not qualify the private body.
 
 Missing data will not be replaced by values presented as measured. Without
 evidence of engine compatibility, material / process qualification and a
-documented professional review, no authorization to print for engine operation
+documented professional review, no authorisation to print for engine operation
 or to start the engine will be issued.
 
 ## Batch verification
@@ -88,10 +88,10 @@ or to start the engine will be issued.
 `make check` passed after integrating the F58 diagnostic and the SSH selection
 fix: general discovery ran 1,989 tests, then the repository's additional
 targets passed. This count is of software tests, not engine tests. The full
-log is kept locally; the specialized reports linked above define the scope of
+log is kept locally; the specialised reports linked above define the scope of
 each result.
 
 The documentation deliberately separates source, assumption, executed
-operation, numerical result and manufacturing authorization. The NVIDIA
+operation, numerical result and manufacturing authorisation. The NVIDIA
 workflow also enforces explicit USD checks rather than treating an image or a
 return code as evidence of engine physics.

@@ -195,7 +195,7 @@ remove bending stresses. The new `*EL PRINT, GLOBAL=YES` output records all
 179,216 integration points, including both thickness points of each S3.
 This distinction follows the [CalculiX manual, sections 7.51–7.52](https://www.dhondt.de/ccx_2.22.pdf).
 An independent cantilever test checks the through-thickness axial stress
-against beam theory away from its clamp and load, with a 15% discretization
+against beam theory away from its clamp and load, with a 15% discretisation
 tolerance. It also confirms that the averaged plot omits most of this bending
 stress (but retains transverse shear).
 
@@ -432,7 +432,7 @@ over a strip, it no longer converges in S6 either: 18,791 then 21,409
 | 60 mm | 30,583 / 33,972 | ×1.99 |
 
 A beam element has a rigid cross-section. Tying a skin strip rigidly to
-it assumes that the tube never ovalizes and passes all the shear: the
+it assumes that the tube never ovalises and passes all the shear: the
 wider the strip, the more stiffness the model invents. That makes the
 strip ties an upper bound, while the point tie, which sinks, is a lower
 bound. **The skin boxes, at 19,900, sit inside that bracket.**
@@ -447,7 +447,7 @@ bound. **The skin boxes, at 19,900, sit inside that bracket.**
 - tied to each other where they meet.
 
 On a cantilever plate carrying a tube, this bond converges to 9% softer
-than composite beam theory. That is physical: the shell can ovalize. Tying
+than composite beam theory. That is physical: the shell can ovalise. Tying
 more lines around the tube was tried and rejected, because it came out
 stiffer than the theory, which is impossible.
 

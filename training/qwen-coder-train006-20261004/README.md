@@ -2,7 +2,7 @@
 
 Train006 completed its registered numerical training. Its adapter was rejected on one already exposed synthetic spacer task; the base output was also rejected. No utility gain or adoption is demonstrated.
 
-The base is `mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit`, revision `b3252a2f97102b1fb1571fec2c9b27219a8536be`. Training started from a fresh base and adapter: five exposed development rows in two dependent source groups, seed 42, 16 optimizer updates, and the predeclared final-step16 checkpoint. Recorded finiteness checks, strict reload and terminal supervision passed. Train005 remains quarantined. Train006 produced byte-identical adapter data under a clean recorded execution; this does not retroactively admit train005 or demonstrate another model improvement.
+The base is `mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit`, revision `b3252a2f97102b1fb1571fec2c9b27219a8536be`. Training started from a fresh base and adapter: five exposed development rows in two dependent source groups, seed 42, 16 optimiser updates, and the predeclared final-step16 checkpoint. Recorded finiteness checks, strict reload and terminal supervision passed. Train005 remains quarantined. Train006 produced byte-identical adapter data under a clean recorded execution; this does not retroactively admit train005 or demonstrate another model improvement.
 
 | Check | Observed result |
 | --- | --- |
@@ -15,6 +15,6 @@ Both outputs contain incomplete numeric guards, unsupported API routes and geome
 
 The final adapter SHA-256 is `93f4d64cde2567fa8cffb222360131338fac1f1b737f52584d3bd5c9288c845e`. [results.json](results.json) is an explicit public metadata projection, not an end-to-end reproduction package. It includes receipt/protocol/source commitments; weights, datasets, source bodies and raw receipts are excluded. Resource measurements are sampled, with overlapping conservative memory accounting, not hard OS limits or complete Metal-driver accounting. Reporting prose follows the repository licence and grants no additional rights to underlying training data or code.
 
-One exposed case establishes no independent generalization, scientific validity or Porsche part qualification. Reserved evaluations stayed closed. Scientific Qwen3 and the distinct PR117 Coder/MLX pilot keep their own data and metrics; PR127 preserves earlier negative findings. The adapter is not selected, and the base remains only the comparison reference.
+One exposed case establishes no independent generalisation, scientific validity or Porsche part qualification. Reserved evaluations stayed closed. Scientific Qwen3 and the distinct PR117 Coder/MLX pilot keep their own data and metrics; PR127 preserves earlier negative findings. The adapter is not selected, and the base remains only the comparison reference.
 
 A separate base-only natural-language pilot and offline fence/content diagnostic are recorded in [NATURAL_LANGUAGE_PILOT.md](NATURAL_LANGUAGE_PILOT.md) and [natural-language-results.json](natural-language-results.json), alongside [PR128](https://github.com/cluster2600/porscheparts/pull/128). The train006 results above remain unchanged.

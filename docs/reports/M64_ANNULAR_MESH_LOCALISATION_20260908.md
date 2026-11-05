@@ -1,7 +1,7 @@
 # M64 — locating the rejected mesh, before a multi-zone rebuild
 
 The latest mesh remains rejected: **five families of defects**, with no CFD and
-no manufacturing authorization. The local diagnostic finds **4,655 of the 5,733
+no manufacturing authorisation. The local diagnostic finds **4,655 of the 5,733
 low-determinant cells in direct contact with the stem–guide bands** (81.2%).
 But the single cell with an excessive aspect ratio and the eleven highly skewed
 faces sit elsewhere: fixing the rings alone will not be enough.
@@ -9,7 +9,7 @@ faces sit elsewhere: fixing the rings alone will not be enough.
 This domain is the **intake gas pilot**, derived from the four-valve candidate,
 not the metal of the full cylinder head nor an engine cycle. The 935 scan remains a
 reference; the M64 interfaces are not measured and the assumed scale
-"one scan unit = one millimeter" is not certified.
+"one scan unit = one millimetre" is not certified.
 
 ## What was actually executed
 
@@ -57,7 +57,7 @@ OpenFOAM sets. Eight targeted tests pass; they are not physical tests.
 ## Physical assumption kept: dry bench with plugged guides
 
 The rings represent two air pockets connected to the port, closed at the top
-by idealized plugs: faces **57 and 58**, role `fixture_stem_seals`, of the
+by idealised plugs: faces **57 and 58**, role `fixture_stem_seals`, of the
 manifest `58b8be…` linked in the [localisation receipt](../../twins/m64-cylinder-head/evidence/annular-mesh-localisation-20260908.json).
 The [domain builder](../../twins/m64-cylinder-head/source/flowbench-intake/build_gas_domain.py)
 adds the inner space of the guides then subtracts the twelve
@@ -67,8 +67,8 @@ assigns them to `walls`, with the [stationary `noSlip` velocity condition](../..
 
 This assumption of a **dry bench, stationary valves and plugged guides** is kept
 for the diagnostic. No real stem seal, oil film, camshaft-carrier-side
-pressure or leakage law is modeled. It therefore qualifies neither the lubricated
-stem–guide interface nor the leaks of a turbo engine. It does not authorize
+pressure or leakage law is modelled. It therefore qualifies neither the lubricated
+stem–guide interface nor the leaks of a turbo engine. It does not authorise
 filling the clearances, moving the plugs or silently modifying the domain.
 
 ## Decision for the next run — not executed
@@ -80,7 +80,7 @@ seat–port transitions carrying the twelve extreme defects. The partitions must
 move the physical walls, widen the clearances or close the passages.
 Conformity between blocks and core, the roles, the complete boundaries and the
 eight interface curves will have to be proven; no implicit non-conforming
-joint nor relaxation of the thresholds is authorized.
+joint nor relaxation of the thresholds is authorised.
 
 ```mermaid
 flowchart LR

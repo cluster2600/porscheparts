@@ -24,7 +24,7 @@ the test.
 
 The mechanism of a transient refusal before injection/permission correction is
 therefore **reproduced locally**. This does not prove that this mechanism
-occurred on Vast, nor the real order of its launcher, nor the behavior of its
+occurred on Vast, nor the real order of its launcher, nor the behaviour of its
 proxy. The full local-ai image is not run here: its SSH parent is tested. No
 production script was modified.
 

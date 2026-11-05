@@ -1,6 +1,6 @@
-# M64 G12 — localized central-foot reinforcement
+# M64 G12 — localised central-foot reinforcement
 
-**Two localized candidates pass the declared native geometry checks.** This
+**Two localised candidates pass the declared native geometry checks.** This
 report preserves the CAD-only stage; the subsequent paid mechanical campaign is
 documented separately in the [G12 FEA report](M64_G12_FEA_20260926.md).
 The unchanged G7 head is not released for printing or engine operation.
@@ -16,8 +16,8 @@ the producer and unchanged G7/G11 inputs. Each support is checked against the
 |---|---|---|---:|
 | Full-width control A | 24 mm base, 40 mm taper height | Rejected: spring-envelope interference | 26,969 mm³ |
 | Full-width control B | 30 mm base, 50 mm taper height | Rejected: spring-envelope interference | 49,270 mm³ |
-| Localized A | Two 24 mm x-spans around the existing mounts; 24 mm base, 40 mm height | Passes declared geometric checks | 12,480 mm³ |
-| Localized B | Two 28 mm x-spans around the existing mounts; 30 mm base, 50 mm height | Passes declared geometric checks | 26,600 mm³ |
+| Localised A | Two 24 mm x-spans around the existing mounts; 24 mm base, 40 mm height | Passes declared geometric checks | 12,480 mm³ |
+| Localised B | Two 28 mm x-spans around the existing mounts; 30 mm base, 50 mm height | Passes declared geometric checks | 26,600 mm³ |
 
 The dimensions above are explicit design hypotheses, not newly recovered Porsche
 dimensions. The mounts stay at x=±25 mm; the reinforcement stops at x=±37/39 mm.
@@ -26,7 +26,7 @@ conservative spring x keep-outs. Both rejected controls interfere with all four
 spring envelopes throughout the sampled cycle; maximum overlap is respectively
 40.23 / 106.58 mm³. No moving-part volume was subtracted to force a pass.
 
-The localized supports are valid single solids, with no detected enclosed cavity,
+The localised supports are valid single solids, with no detected enclosed cavity,
 blocked existing oil path, static interference or sampled moving-part interference.
 Upper journal bands stay **11 mm** wide; their axes, bores, existing fastener
 holes, oil passages and the head are unchanged. The nominal exhaust rocker axial
@@ -34,18 +34,18 @@ gap remains **0.59375 mm**, not a qualified hot operating clearance.
 
 ## Native views — support only, not the complete head
 
-![Localized A central support](../../twins/m64-cylinder-head/evidence/g12-local-buttresses-20260926/local24-preview.png)
+![Localised A central support](../../twins/m64-cylinder-head/evidence/g12-local-buttresses-20260926/local24-preview.png)
 
-![Localized A native section at x=0](../../twins/m64-cylinder-head/evidence/g12-local-buttresses-20260926/local24-section-x0.png)
+![Localised A native section at x=0](../../twins/m64-cylinder-head/evidence/g12-local-buttresses-20260926/local24-section-x0.png)
 
-These are rasterized native CAD exports, not generated product illustrations.
-The section is at x=0, between the localized buttresses; the retained half also
+These are rasterised native CAD exports, not generated product illustrations.
+The section is at x=0, between the localised buttresses; the retained half also
 shows geometry behind the cutting plane. Editable STEP files remain private.
 
 ## What this proves, and what it does not
 
 The geometric footprint check projects a 0.05 mm foot slice onto the unchanged
-head. Localized A/B project **1,695.56 / 2,135.42 mm²** onto existing head solid,
+head. Localised A/B project **1,695.56 / 2,135.42 mm²** onto existing head solid,
 versus 1,071.95 mm² for centre_w11. A residual 0.625 mm² unsupported projection
 is inherited from the baseline. This is not a contact-pressure, flatness,
 fastener-preload or structural-bearing-area qualification.

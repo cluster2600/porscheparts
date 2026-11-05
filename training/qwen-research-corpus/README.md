@@ -44,7 +44,7 @@ opinion about every possible use.
 ## Prepare, check and freeze
 
 Use a new output directory. The builder refuses an existing directory and
-preserves the source collection. The token check uses the existing tokenizer
+preserves the source collection. The token check uses the existing tokeniser
 offline and loads no model weights. `tokens` needs the installed Transformers
 runtime; preparation, search, scoring and checks otherwise use the standard
 library and the existing `pdftotext` executable.
@@ -70,7 +70,7 @@ An existing frozen dataset must never be extended in place; make a new version.
 
 The self-check covers source alias union, licence/reading exclusions, partition
 leakage, exact-answer grading, right-censored fatigue records, XLSX phonetic
-annotations, tokenizer mapping/list formats and path containment.
+annotations, tokeniser mapping/list formats and path containment.
 
 ## Retrieval and evaluation
 
@@ -204,4 +204,4 @@ Set `QWEN_RESEARCH_ENGINEERING_ROOT` to the preserved engineering checkout,
 continuation uses `QWEN_RESEARCH_PARENT_ADAPTER` for pilot 001's preserved
 adapter. Defaults are relative to the current checkout's `work/` area; the
 unchanged integrity gates reject missing or different artifacts. These path
-settings do not authorize training, downloading or installing anything.
+settings do not authorise training, downloading or installing anything.

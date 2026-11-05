@@ -35,7 +35,7 @@ The completed new volume meshes have zero nonpositive Jacobians, one connected
 tetrahedral region, all CAD faces meshed and complete boundary matching. Their
 saved mesh connectivity survives readback, but their quality still fails after
 readback. The frozen helper's combined export gate therefore correctly remains
-false; that verdict does not mean the connectivity serialization failed.
+false; that verdict does not mean the connectivity serialisation failed.
 
 The 0.5 trial raises surface triangles from 91,030 to 308,328 and improves
 the worst **surface** minSICN from 0.01460028 to 0.03816906. This does **not**
@@ -49,10 +49,10 @@ the local size callback overrides the frozen helper's minimum size on selected
 entities; the helper report alone is **not** the complete runtime configuration.
 The original floor of 1 is retained outside those entities. The
 [Gmsh API manual](https://gmsh.info/doc/texinfo/#gmsh_002fmodel_002fmesh_002fsetSizeCallback)
-documents the callback and optimization operations. Installed libraries were
+documents the callback and optimisation operations. Installed libraries were
 not edited.
 
-Interior surface-node coordinates were checked against their CAD parametrization
+Interior surface-node coordinates were checked against their CAD parametrisation
 on all 159 selected surfaces: maximum residuals were 1.95e-14 for the control
 and 5.91e-14 for the refined trial. This is neither a continuous deviation bound
 nor a trim-domain/nonintersection proof. The failed Relocate2D trial demonstrates
@@ -80,7 +80,7 @@ Observed candidate:
 - only original edges 2869–2873 disappear; all other native edges are retained
   by identity, as are the other 4,916 faces;
 - the merged plane retains its four outer native edges and orientation;
-- source in-memory serialization and source file hash remain unchanged;
+- source in-memory serialisation and source file hash remain unchanged;
 - saved candidate rereads as one exact-valid solid and one shell.
 
 The existing [error-aware native BOP auditor](../../twins/m64-cylinder-head/source/wholebody/audit_native_bop.py)
@@ -162,4 +162,4 @@ receipts cannot be transferred automatically. The full project still requires
 actuator integration, continuous valve motion, hot-material/thermal/structural
 convergence, LPBF qualification and professional engineering review. The lack
 of physical interface metrology remains explicit. **No perfect-part claim,
-0.040 mm certificate, 700 hp qualification or print authorization is issued.**
+0.040 mm certificate, 700 hp qualification or print authorisation is issued.**

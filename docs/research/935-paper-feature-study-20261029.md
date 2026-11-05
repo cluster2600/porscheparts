@@ -90,7 +90,7 @@ segmentation or proof that Point2CAD can reconstruct it.
 
 The separate read-only validator checks the registered contract/partition hashes,
 all source-ID memberships and disjoint splits, exported coordinates/labels, and
-held-out distances using an expression different from the optimizer and the
+held-out distances using an expression different from the optimiser and the
 initial inspector. It also recomputes angular support and retention. Regression
 tests reject forged scores, angular coverage, acceptance flags and lost/leaked
 evaluation points. The fit thresholds and original frozen evidence are unchanged.

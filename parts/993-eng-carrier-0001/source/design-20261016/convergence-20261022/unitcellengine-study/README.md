@@ -47,7 +47,7 @@ timeout --kill-after=10 600 python run_shared.py 16 1e-6 gyroid adapted-n16 adap
 ```
 
 The original uniform soft-material control deliberately exposes the difference
-between the assembly regularization and the upstream raw-density tensor
+between the assembly regularisation and the upstream raw-density tensor
 postprocessing. The adapted mode writes a separate operator copy and changes
 only that postprocessing scale to match the assembled operator. Its SHA-256 is
 `f71812c8a245a377a277320a66584306896a24700ca9d9237c5587fef904438c`.
@@ -59,7 +59,7 @@ all eight integration-point stress tensors for each of the six actual cases,
 internal energies, physical nodal forces and periodic force balance. It also
 records the actual six-RHS call and its full symmetric-matrix residual.
 `stress-all-ip.npy` and `fields.npz` retain the full fields outside Git.
-Unit macroscopic strain is a linear coefficient normalization; comparison to
+Unit macroscopic strain is a linear coefficient normalisation; comparison to
 the CCX reference scales it to amplitude 0.001.
 
 Before any N=64 run, place the separately generated complete CCX N=16 fixture

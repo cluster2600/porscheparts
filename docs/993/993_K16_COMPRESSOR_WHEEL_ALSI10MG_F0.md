@@ -17,7 +17,7 @@ flowchart LR
   G --> A["Synthetic aerodynamic point<br/>not a K16 map"]
   G --> M["Blade at overspeed 390.9 MPa<br/>ratio 0.627: F0 rejected"]
   G --> P["LPBF print screen<br/>roll_y_45, 30 µm"]
-  M --> V["Not authorized for manufacturing,<br/>rotation, turbo or engine"]
+  M --> V["Not authorised for manufacturing,<br/>rotation, turbo or engine"]
   P --> V
   class S ok
   class H,A,P open
@@ -32,13 +32,13 @@ flowchart LR
 ## Why study additive
 
 Twelve blades, their fillets and the hub can be produced and iterated without
-foundry tooling. LPBF is, however, only relevant if an optimized geometry or
+foundry tooling. LPBF is, however, only relevant if an optimised geometry or
 internal features bring a gain that five-axis machining does not. Roughness,
 defects, distortion and HCF strength may on the contrary make LPBF inferior.
 
 The mandatory comparison remains:
 
-1. cast and qualified aluminum wheel;
+1. cast and qualified aluminium wheel;
 2. wheel cut on five axes from a billet;
 3. AlSi10Mg LPBF wheel, machined, balanced and qualified in overspeed/burst.
 
@@ -65,7 +65,7 @@ with neither surge, nor choke, nor incidence, nor real efficiency.
 
 ## Mechanical screening — F0 rejected
 
-The idealized rotating disc reaches `119.4 MPa`, then `171.9 MPa` at `1.2×`
+The idealised rotating disc reaches `119.4 MPa`, then `171.9 MPa` at `1.2×`
 overspeed. The straight main blade reaches `271.5 MPa` at the nominal point and
 `390.9 MPa` at overspeed. Against the EOS room-temperature comparison value of
 `245 MPa`, the ratio is only `0.627`: **the F0 topology fails** and must not go
@@ -105,7 +105,7 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
 
 PhysicsNeMo awaits correlated CFD-structure-rotordynamics cases with train,
 holdout and out-of-distribution sets. SimReady awaits the measured assembly.
-This F0 STEP is authorized neither for manufacturing, nor for rotation, nor for
+This F0 STEP is authorised neither for manufacturing, nor for rotation, nor for
 turbo or engine use.
 
 <!-- print-screen:begin -->

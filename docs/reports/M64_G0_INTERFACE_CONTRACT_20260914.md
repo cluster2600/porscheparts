@@ -61,14 +61,14 @@ M64 Turbo cylinder head interface. Pages 152–157 of the manual remain unread
 
 Proposed datum system: **A** = cylinder head–cylinder sealing plane (3 probing
 points), **B** = axis of the register/spigot of the cylinder considered, **C** = axis of the
-front stud on the chain side. Measurements on a CMM at 20 ± 1 °C, part stabilized 4 h,
+front stud on the chain side. Measurements on a CMM at 20 ± 1 °C, part stabilised 4 h,
 variant (engine number, M64.50/60) and condition (new/refaced) recorded,
 3 repetitions. The target uncertainties (k = 2) are **metrology
 objectives** and not design tolerances.
 
 | Interface | Quantities | Instrument | Datum | Target uncertainty |
 |---|---|---|---|---|
-| main_stud_axes | XY position of each stud hole, diameter, perpendicularity to A, cylinder-to-cylinder center distances | CMM probe; plain plug gauges | A, B, C | ±0.02 mm position; ±0.01 mm Ø |
+| main_stud_axes | XY position of each stud hole, diameter, perpendicularity to A, cylinder-to-cylinder centre distances | CMM probe; plain plug gauges | A, B, C | ±0.02 mm position; ±0.01 mm Ø |
 | cylinder_register_diameter | Ø of the spigot (mean, roundness, 4 heights) | CMM, or calibrated 3-point bore gauge | A, B | ±0.005 mm |
 | cylinder_register_depth | Depth of the spigot relative to A; bottom radius or chamfer | CMM; dial indicator on surface plate | A | ±0.01 mm |
 | sealing_surface_definition | Inner/outer Ø of the sealing face, flatness, Ra/Rz, any groove relief on the cylinder head side; cylinder groove as a complement | CMM; stylus profilometer (Lc 0.8 mm); straightedge and feeler gauges | A | Flatness ±0.005 mm; Ra ±10 %; Ø ±0.02 mm |

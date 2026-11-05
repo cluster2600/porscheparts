@@ -8,7 +8,7 @@ The archived E `checkMesh -allGeometry -allTopology` report contains 11,331 conc
 
 The alternative `source/build_fan_tetmesh.py` preserves separately labelled rotor, duct, inlet and outlet triangulations and constructs a conforming Delaunay tetrahedral fluid volume using Gmsh 4.15.2. The pilot holds the previous assumed 248 mm duct diameter, 360 mm domain length and 245 mm rotor. It has no wall layers and no alternator. Its output must pass the OpenFOAM extended check, surface-distance checks and mesh sensitivity before design ranking.
 
-The 40,000-face surface failed the topology/volume-conservation assertion and was rejected. The 80,000-face Netgen attempt reconstructed the volume but stalled with 188 remaining illegal tetrahedra; it was terminated and its log preserved. A separate Delaunay run retains Gmsh's default optimization instead of that stalled Netgen pass. Signed tetrahedron quality is checked explicitly; generating a mesh is not CFD validation.
+The 40,000-face surface failed the topology/volume-conservation assertion and was rejected. The 80,000-face Netgen attempt reconstructed the volume but stalled with 188 remaining illegal tetrahedra; it was terminated and its log preserved. A separate Delaunay run retains Gmsh's default optimisation instead of that stalled Netgen pass. Signed tetrahedron quality is checked explicitly; generating a mesh is not CFD validation.
 
 ## Installed assembly remains unresolved
 

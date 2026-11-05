@@ -19,7 +19,7 @@ expected. No image was retouched to conceal the geometry or framing defects.
 
 ## Runtime and the first failure
 
-The first upstream example failed at Vulkan initialization. NVIDIA's GLX
+The first upstream example failed at Vulkan initialisation. NVIDIA's GLX
 library loaded but its `vk_icdGetInstanceProcAddr` returned no `vkCreateInstance`
 entry point. The same driver's EGL implementation returned that entry point.
 A separate runtime ICD JSON changed only `library_path` from
@@ -44,7 +44,7 @@ no Qwen weights or Content Agents were started.
 Kit 110.2.0 started, selected one Vulkan GPU at PCI bus 1, reported the scene
 opened and sent **26 decoded frames at 1920 × 1080** through the bounded SSH
 media relay. The observed editor showed the monocoque stage tree and an
-`RTX Loading` viewport. The [sanitized client observation](kit/client-observation.json)
+`RTX Loading` viewport. The [sanitised client observation](kit/client-observation.json)
 records those counters. A loading screen does not establish that the body
 was successfully displayed in the interactive viewport.
 
@@ -74,7 +74,7 @@ The review guard now logs the nonexclusive instance IDs and rejected cost
 fields, without changing ownership or cost decisions. Its executed source
 hash remains recorded separately from this later diagnostic improvement.
 A subsequent attempt requires account coordination and a new bounded
-authorization; this receipt does not reset the spent attempt.
+authorisation; this receipt does not reset the spent attempt.
 
 ## Framing correction prepared after the run
 
@@ -106,7 +106,7 @@ python -m unittest discover -s tests -p test_964_review_framing.py -v
 ## Remaining acceptance work
 
 1. Coordinate the shared Vast account, retain a diagnostic inventory and arm
-   a fresh guard under the authorized total cost and deadline before launch.
+   a fresh guard under the authorised total cost and deadline before launch.
 2. Render the corrected copy and inspect complete-body framing throughout the
    orbit. Preserve the original and corrected output identities separately.
 3. Complete the [native Kit protocol](../kit-review.md): actual body viewport,

@@ -1,6 +1,6 @@
 # 935 rotor: thin-facet proximity to the aligned scan
 
-This diagnostic targets the 24 triangles below normalized quality 0.01 on the
+This diagnostic targets the 24 triangles below normalised quality 0.01 on the
 protected 0.7-root analysis surface. It does not establish historical
 dimensions, measured-surface identity, or permission to manufacture. The
 scan's source unit is uncalibrated; its acquisitions and functional axis

@@ -3,7 +3,7 @@
 This separate increment prepares authored English CPT passages and synthetic,
 supplied-record SFT conversations from the reviewed
 [dimension register](../../catalog/reference/m64-precision-20261025/facts.json).
-It prepares data only. No model training, tokenization, context-fit evaluation or
+It prepares data only. No model training, tokenisation, context-fit evaluation or
 weights are produced.
 
 | Dataset | Train | Validation | Test |
@@ -84,7 +84,7 @@ The verifier checks complete input/output hashes, canonical source provenance,
 reserved IDs, reconstructed connected components, all six prior partition
 constraints, exact trainer registrations, native message roles, stable citations,
 exact authored answers and full measurement metadata. Each accepted record
-appears once per dataset; refreshed hashes and inflated counts cannot legitimize
+appears once per dataset; refreshed hashes and inflated counts cannot legitimise
 duplicated targets.
 
 All 32 focused tests pass. They exercise deterministic isolated rebuilds,

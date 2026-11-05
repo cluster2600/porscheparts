@@ -11,7 +11,7 @@ no Gerber, no placement and no PCB DRC check; footprints are unassigned.
 ## Starting choices
 
 - **128 red LEDs, 16 × 8**, identical to the format of the existing simulator.
-  Two placement variants: 2.5 and 4 mm pitch, same circuit. The outermost centers
+  Two placement variants: 2.5 and 4 mm pitch, same circuit. The outermost centres
   are spaced 37.5 × 17.5 and 60 × 28 mm respectively. These are proposed coupon
   dimensions, never measurements of the panel; PCB outline not defined.
 - Candidate LED **APHHS1005LSECK/J3-PF**, 1 × 0.5 mm package [S01]. The miniature
@@ -71,7 +71,7 @@ the USB-powered DK provides 3.3 V GPIOs: its usual VDD is 3 V [S34].
 Expected bench logic inputs: high ≥2.0 V, low ≤0.8 V. Measurements of edges,
 overshoot and pin voltage remain necessary. No SOUT return to the
 MCU; only a test point. No hot plugging: MCU outputs at zero,
-sources off before wiring. The behavior of the two supplies in sequence
+sources off before wiring. The behaviour of the two supplies in sequence
 must be tested; these buffers do not constitute galvanic isolation.
 
 BLANK is pulled high by 10 kΩ; DISPLAY_EN is pulled low by 100 kΩ.
@@ -120,7 +120,7 @@ python3 docs/projects/993-programmable-rear-panel/software/coupon_driver.py --pi
 python3 -m unittest discover -s tests -p 'test_993_rear_panel*.py' -v
 ```
 
-Outputs: `channel-map.csv` (connections and LED centers), `frames-spi.hex` (one line
+Outputs: `channel-map.csv` (connections and LED centres), `frames-spi.hex` (one line
 per demonstration frame), `estimate.json` (calculations and hypotheses). `--input`
 can be passed for a mono8 document from the existing simulator; only 16 × 8 is accepted.
 **No SPI/USB/BLE write, no GPIO and no real-time scheduler in this code.**
@@ -133,7 +133,7 @@ XLAT low. Hold DISPLAY_EN low, transmit 216 zero bytes, then a high XLAT
 pulse of 1 µs. Keep at least 1 µs before a new clock and enabling.
 Then transfer each image in the blank state and release BLANK only after a valid latch,
 authentication and local arming. These chosen delays exceed the datasheet
-minimums; verify them with the logic analyzer, not through Python timings.
+minimums; verify them with the logic analyser, not through Python timings.
 
 The mono8→PWM12 encoding is linear, capped at 1024 by default; the 16 unused
 outputs are always zero. No assumed gamma/LUT: calibrate behind
@@ -147,14 +147,14 @@ tests black after a fault; electrical blanking also requires BLANK/S1.
 | E0-01 | Review of DAP pins, LED A/K, IREF, grounds, no-connects, polarity; ERC/DRC and assembly check | Signed review with no open error; no vehicle cable |
 | E0-02 | Without DK; S1 open; 3.3 V source limited to 50 mA; measure VCC and BLANK | Rail 3.201–3.399 V; BLANK high; no heating and no limiting; otherwise switch off and diagnose |
 | E0-03 | DK connected while unpowered; power and reset sequences | BLANK high and no flash before the zero frame; no measurable parasitic powering outside the agreed budget |
-| E0-04 | One moving pixel, levels 0/64/128/255; logic analyzer + external shunt | 128 correct positions; 216 bytes per latch; 16 unused channels at zero; peak current consistent with the approved measurements |
-| E0-05 | Checkerboard then all pixels; raise the source limit in steps, study maximum 0.75 A | Stop if total I >0.65 A stabilized, current fault, insufficient Vf/headroom or surface ≥50 °C; conservative bench thresholds to be reviewed |
+| E0-04 | One moving pixel, levels 0/64/128/255; logic analyser + external shunt | 128 correct positions; 216 bytes per latch; 16 unused channels at zero; peak current consistent with the approved measurements |
+| E0-05 | Checkerboard then all pixels; raise the source limit in steps, study maximum 0.75 A | Stop if total I >0.65 A stabilised, current fault, insufficient Vf/headroom or surface ≥50 °C; conservative bench thresholds to be reviewed |
 | E0-06 | Reset, control disconnection, deliberate firmware hang, opening S1 | Reset/cable removed: black; hung MCU: record the E0 limitation and verify S1; do not declare a hardware watchdog successful |
 | E0-07 | Red facade, 2.5/4 pitch, same pattern/current/exposure/ambient | Table of contrast/lux/current/temperature and aesthetic validation; no promise of sunlight visibility before measurements |
 
 Measure driver, PCB back and facade temperature; log voltage, current,
 time, PWM setting and ambient temperature. Checking by touch is not enough.
-E0 includes neither automotive ESD, nor vibration, nor rain; stop and analyze before E1.
+E0 includes neither automotive ESD, nor vibration, nor rain; stop and analyse before E1.
 
 ## E1 automotive board — decisions still blocking
 

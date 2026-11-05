@@ -44,7 +44,7 @@ the new support geometry and fin spacing. It is not the complete assembly.
 The same 72 G6 spring, gas-force, effective-mass and speed scenarios are reused,
 with their source fingerprints checked before execution. Effective mass is still
 assumed, not re-derived from this modified rocker CAD. Each local shaft bay is
-idealized as simply supported with released end rotations. This is not the
+idealised as simply supported with released end rotations. This is not the
 continuous multi-bearing shaft or a compliant carrier model.
 Shaft modulus remains the G6 assumption of 200 GPa, not a qualified hot material law.
 
@@ -127,7 +127,7 @@ local native checks. No closed native cavity is found in the three checked
 solids, which does not prove powder evacuation or support removability.
 No melt-pool, residual-stress, distortion or supplier build simulation was run.
 Machining stock is still absent. G7 therefore does not select a production fin
-layout or authorize printing.
+layout or authorise printing.
 
 ## Replay, evidence and next gate
 

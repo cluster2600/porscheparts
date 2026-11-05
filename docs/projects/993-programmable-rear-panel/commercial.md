@@ -1,10 +1,10 @@
-# Commercialization — unpublished internal mockups
+# Commercialisation — unpublished internal mockups
 
 ## Packaging to be quoted
 
 Corrugated cardboard shipping box with replaceable inserts supporting the
 structural areas, with no pressure on the lens or on a fragile clip. Inner
-dimensions, mass, center of gravity and clearances are calculated **after CAD**;
+dimensions, mass, centre of gravity and clearances are calculated **after CAD**;
 no format is presumed. Non-abrasive anti-scratch protection, separation of loose
 parts, ESD bag for the relevant electronics/accessories, a slot for the
 instructions and seals. Test film/tint/varnish compatibility in hot and humid
@@ -32,9 +32,9 @@ coupon method, actual status and limits. The 250 CHF is an internal target cost
 and does not appear as a sale price. The graphic preview is an illustration of
 pixels, not a product photo, a mechanical drawing or evidence of fitment.
 
-Visuals actually needed before product promotion: authorized original part
+Visuals actually needed before product promotion: authorised original part
 without vehicle identifier, coupon lit/unlit under comparable lighting,
-authorized fitted view on a verified variant, detail of removability and tested
+authorised fitted view on a verified variant, detail of removability and tested
 packaging. None of these visuals blocks this mockup. Photo, design and trademark
 rights are to be established before any reuse; no manufacturer logo is supplied.
 
@@ -46,12 +46,12 @@ programmable panel for the Porsche 993: messages and simple drawings, with
 Bluetooth control planned. First step: test a small display behind a red front
 face. Project under development, with no commercial availability and no road
 approval established. Independent project, not affiliated with Porsche."
-Required visual: an authorized photograph of the coupon, captioned "Bench prototype".
+Required visual: an authorised photograph of the coupon, captioned "Bench prototype".
 Alt text: "Small LED coupon behind a red sample, on a workbench."
 
 **B — Behind the scenes, carousel**
 Planned slides: 1 "A 1 mm LED is not a pixel at a 1 mm pitch";
-2 pitch comparison; 3 red filter and colors; 4 "Measure before promising".
+2 pitch comparison; 3 red filter and colours; 4 "Measure before promising".
 Text: "We are comparing readability, power consumption and the unlit look.
 Resolution, compatibility per variant and cost remain to be validated.
 Independent study for the 993, not available to order. No road use approved at
@@ -68,5 +68,5 @@ public road, no promise of lead time, Swiss origin or pre-order.
 
 All these texts are **drafts that must not be published without review**:
 replace the intentions with proven results, check the rights, the compliance of
-the offer and the publication authorization. No submission to a social tool,
+the offer and the publication authorisation. No submission to a social tool,
 advertising budget, tracking or campaign is created.

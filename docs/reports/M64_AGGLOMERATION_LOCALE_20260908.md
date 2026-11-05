@@ -8,7 +8,7 @@ correcting the selection, finds **zero cells flagged as concave**.
 Low determinants go from **5,442 to 2,886**, about 47 %
 fewer than the reference, but **five families remain refused**.
 Trial 04 is kept as a diagnostic candidate, **not as a mesh
-qualified for CFD or as a cylinder head authorized for manufacturing**.
+qualified for CFD or as a cylinder head authorised for manufacturing**.
 
 Trial 04 merges 2,549 disjoint pairs: 399,412 cells, of which 396,863
 unchanged tetrahedra and 2,549 six-faced polyhedra. The independent
@@ -35,7 +35,7 @@ with a low determinant; 2,411 pairs touch a native annular boundary.
 The preflight requires in particular a convex union of the represented points,
 `D ≥ 0.001`, an aspect ratio of at most 1,000, interpolation weights
 of at least 0.05, volume ratios of at least 0.01 and a skewness
-of at most 4. It re-checks the neighbors already selected. These estimates
+of at most 4. It re-checks the neighbours already selected. These estimates
 are neither the native result of `checkMesh` nor a continuous conformity to the CAD.
 
 The [native agglomeration utility](../../twins/m64-cylinder-head/source/flowbench-intake/agglomerate_tet_pairs/agglomerateTetPairs.C)
@@ -97,7 +97,7 @@ flowchart TD
     A["Reference and selection 01 tied by SHA"] --> B["Native union of 2,809 pairs"]
     B --> C["Independent cross-audit"]
     C --> D["checkMesh: six families refused"]
-    D --> E["Selection 02: native margin and neighbors re-checked"]
+    D --> E["Selection 02: native margin and neighbours re-checked"]
     E --> F["Native union of 2,549 pairs"]
     F --> G["New independent cross-audit"]
     G --> H["New checkMesh: five families refused"]
@@ -142,7 +142,7 @@ selected unions and remain convex in the sense of the closed half-spaces
 tested in rationals on the binary64 points: 89 include an exact
 coplanarity, the other 171 are near-coplanar.
 
-The native test compares the normalized direction between face centers with
+The native test compares the normalised direction between face centres with
 the outward normal. It also flags planar or nearly
 planar situations when their dot product exceeds `−10⁻⁶`: **weak mathematical
 convexity and native admissibility are not equivalent**.
@@ -155,13 +155,13 @@ The 260 native labels were not exported for comparison: only the
 **reproduction of the count**, not the identity of the native list, is proved.
 The initial selection therefore covered the native predicate insufficiently.
 This finding motivated subset 04 below: built-in margin,
-re-checked neighbors, new union, cross-audit and `checkMesh`. Neither threshold,
+re-checked neighbours, new union, cross-audit and `checkMesh`. Neither threshold,
 nor geometry, nor historical receipt is modified by this diagnostic.
 
 ## Trial 04: corrected selection, partial improvement only
 
 The preflight `18450384…` removes the 260 pairs computed as inadmissible,
-then re-checks the neighbors: **2,549 pairs**, all from the initial
+then re-checks the neighbours: **2,549 pairs**, all from the initial
 selection, no new pair. It requires the same native margin `≤ −10⁻⁶`
 in addition to the earlier criteria, without relaxing them. It finishes in
 2.969 s and remains a proposal, distinct from the executed OpenFOAM result.
@@ -181,7 +181,7 @@ in the comparison table; they prove neither CFD convergence nor accuracy.
 
 **Decision:** keep trial 04 as a diagnostic candidate, preserve
 the reference and the rejected trial 03, launch no solver. The next
-step is to relocalize the five remaining families on this new
+step is to relocalise the five remaining families on this new
 mesh and to choose a verifiable targeted correction. No other trial
 is run in this sequence and no future result is anticipated.
 
@@ -200,5 +200,5 @@ suites pass. It includes the auditor's 34 tests; this is
 not a physical acceptance or a cancellation of the `checkMesh` refusal.
 
 No Vast job was created for these trials: **0 USD of new Vast
-spending**, against an authorized project budget of 44 USD. Account
+spending**, against an authorised project budget of 44 USD. Account
 information and other projects' activities are not published in this evidence.

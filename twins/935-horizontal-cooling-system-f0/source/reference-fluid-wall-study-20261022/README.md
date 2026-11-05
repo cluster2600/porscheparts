@@ -10,7 +10,7 @@ results remain private.
   retains the old outer duct. Nested boxes and an open-surface refusal run before
   the real construction. Its scientific environment includes Trimesh.
 - `verify-reference-wall-001.py` uses the independent existing OBJ reader and
-  reads the complete SMESH to check serialized wall identity.
+  reads the complete SMESH to check serialised wall identity.
 - `diagnose-added-boundary-point-001.py` locates the refused boundary subdivision
   and checks collinearity using exact integer coordinates.
 - `restore-reference-edge-001.py` restores the original two wall facets and

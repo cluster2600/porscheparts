@@ -21,7 +21,7 @@ record, and the assistant extracts it with a record citation. This is supplied
 record extraction, not an independent engineering reasoning benchmark or a
 test of unaided recall. Both CPT wording and SFT wording are synthetic; the
 underlying attributed factual metadata is not invented. No model has been
-trained, no weights produced, and no tokenizer, context-fit or model-quality
+trained, no weights produced, and no tokeniser, context-fit or model-quality
 evaluation performed.
 
 Factory material statements retain their precise engine and component scope.
@@ -76,7 +76,7 @@ trainer payload. [`dataset_info.json`](dataset_info.json) provides conventional
 LLaMA-Factory-style ShareGPT role and CPT text-column registrations; it is not
 a complete trainer configuration.
 
-Before training, pin the model, tokenizer and trainer revisions, apply the
+Before training, pin the model, tokeniser and trainer revisions, apply the
 model's native chat template, audit lengths and truncation, and verify assistant
 loss masking for SFT. Keep validation and test out of both CPT and SFT training,
 including when combining increments. Use validation for settings and reserve

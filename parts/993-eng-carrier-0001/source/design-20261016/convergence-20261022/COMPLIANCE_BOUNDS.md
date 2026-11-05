@@ -11,7 +11,7 @@ stiffness be `K0 > 0`, with the selected elements contributing `Kc`. Then
 `0 <= Kc <= K0`. Let the proposed tensor obey
 `eta_min*C0 <= Ccell <= eta_max*C0`, with `0 < eta_min <= eta_max <= 1`.
 These are positive-semidefinite matrix inequalities, not componentwise ones.
-The generalized tensor eigenvalues determine the two eta values.
+The generalised tensor eigenvalues determine the two eta values.
 
 For the original solution `u0 = inverse(K0)*f`, define
 
@@ -22,7 +22,7 @@ q  = transpose(u0)*Kc*u0 / J0 = selected baseline strain energy / total energy
 
 The same force-controlled objective is the standard matrix fractional function
 `transpose(f)*inverse(K)*f`; see the
-[Boyd–Vandenberghe convex optimization text](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf).
+[Boyd–Vandenberghe convex optimisation text](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf).
 The following envelope is derived directly for this selected-region problem:
 
 ```text
@@ -30,7 +30,7 @@ The following envelope is derived directly for this selected-region problem:
 ```
 
 For the lower bound, use `u0` as a trial displacement in the variational
-expression for `Jnew`. Optimizing its scalar multiplier gives
+expression for `Jnew`. Optimising its scalar multiplier gives
 `Jnew >= J0^2 / (transpose(u0)*Knew*u0)`. The upper constitutive inequality
 bounds that denominator by `J0*(1-(1-eta_max)*q)`.
 

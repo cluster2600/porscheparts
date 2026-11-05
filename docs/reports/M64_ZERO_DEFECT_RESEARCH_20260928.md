@@ -77,7 +77,7 @@ Therefore do not run unmodified `-a` and call the resulting shape acceptable.
 A separately pinned research build must expose a finite positive chamfer bound
 and record the safe/heuristic mode. Keep constraint filtering disabled. Audit
 the actual intermediate writer and its interior/exterior split. Reuse our
-[serialization patch](../../twins/m64-cylinder-head/source/wholebody/delmesher-tet-precision.patch)
+[serialisation patch](../../twins/m64-cylinder-head/source/wholebody/delmesher-tet-precision.patch)
 and independent readback checks where applicable; never silently reorder mixed
 cell signs or drop almost-flat cells. The existing historical runner stays
 unchanged. These source facts make the alternative actionable, but **this new

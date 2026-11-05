@@ -25,7 +25,7 @@ A single `Relocate2D` pass, `niter=1`, is executed. No generation call,
 global mesh clear, reclassification or renumbering.
 The pre-check verifies the absence of periodic correspondences on 291
 edges and 156 faces; the effects of automatic post-processing are
-checked immediately after the optimization.
+checked immediately after the optimisation.
 
 The data are captured **before** the removed elements are restored.
 Only the interior vertices of 37 may move. The outer elements
@@ -102,13 +102,13 @@ selector pass; the computation on the two real files takes 8.369 s.
 
 The plan remains private and **not applied**: no new MSH or B-Rep is
 written. There is no gain on the targeted objectives justifying a native
-effector for this plan. This result does not exclude all other optimizations;
+effector for this plan. This result does not exclude all other optimisations;
 it closes this deterministic selection of the proposals from this single pass.
 
-The next step must examine the connectivities and the discretization of the edges
-with the neighboring faces concerned. Neither lowering the marker, nor blind
-repetition of the same optimizer, nor modifying the CAD curves are
-authorized by the present result.
+The next step must examine the connectivities and the discretisation of the edges
+with the neighbouring faces concerned. Neither lowering the marker, nor blind
+repetition of the same optimiser, nor modifying the CAD curves are
+authorised by the present result.
 
 ```mermaid
 flowchart LR

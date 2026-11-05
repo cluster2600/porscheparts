@@ -62,5 +62,5 @@ representative.
 - `provenance.json` and `printability.md` are present in this lane; they
   record labels and a screening note only — no new measurement enters
   through them.
-- Per SAFETY.md: a calculation never authorizes manufacturing; engine-critical
+- Per SAFETY.md: a calculation never authorises manufacturing; engine-critical
   parts stay `prohibited_pending_engineering`.

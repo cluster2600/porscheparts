@@ -15,7 +15,7 @@ Absolute scale and M64 interfaces remain uncertified. The values and digests
 are in the [evidence register](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
 entry `gas_surface_method_comparison`.
 
-## What the localization established
+## What the localisation established
 
 The Delaunay file `81bac4db…` contains 17 triangles whose maximum SICN bound,
 for a positive tetrahedron sharing that triangle, is below 0.1.
@@ -50,7 +50,7 @@ A single numerical change: `setAlgorithm(2, target, 5)` becomes
 output names. Inputs, size parameters, tolerances, temporary visibility, exact
 restoration of identifiers and guards remain unchanged. A single 2D
 generation, no automatic fallback, no CAD repair operation or explicit call to
-an optimizer.
+an optimiser.
 
 | Indicator, face 37 only | Reference, algorithm 6 | Delaunay 5 | MeshAdapt 1 |
 |---|---:|---:|---:|
@@ -75,19 +75,19 @@ is proven by these checks.
 
 ## Where to act next
 
-The second localization recomputes the 22 MeshAdapt cases: 17 have one 2D
+The second localisation recomputes the 22 MeshAdapt cases: 17 have one 2D
 interior vertex, four have two and one has none. Eighteen touch a boundary,
 four are interior. One component contains 21 cases; the isolated case keeps
 the triangle linking edges 82 and 93. These edges also touch face 30 and face
 36 respectively, in addition to 37: re-splitting them would require reworking
-the affected neighbors too, not just 36/37.
+the affected neighbours too, not just 36/37.
 
 A separate avenue is moving the interior vertices, without changing the
 connections. **Do not run `optimize("Relocate2D", dimTags=[(2,37)])` on the
 complete model**: in Gmsh 4.15.2, `dimTags` is ignored and the loop visits all
 faces. Visibility and `force=False` do not isolate this call. It first
 requires a representation where only the target carries 2D elements, then an
-exactly controlled reintegration. The objective of this optimizer differs from
+exactly controlled reintegration. The objective of this optimiser differs from
 our counter; its name does not guarantee non-regression. This trial was not
 run in this batch.
 
@@ -112,11 +112,11 @@ and CAD read-only. Total limit 300 s, including 30 s for cleanup. MeshAdapt
 takes 16.16 s of worker time, 16.86 s including cleanup; pure read-back
 1.70 s. Exact container deleted and absence rechecked, with no OOM or timeout.
 No new Vast cost; the instance list read back is empty. `make check` finishes
-with exit code 0. The localization and variant tests are software tests,
+with exit code 0. The localisation and variant tests are software tests,
 separate from the physical calculations still to be done.
 
 The chart is generated solely from the two pinned native reports and their
 common reference, with no synthetic image of the part. It exposes neither scan
-nor private coordinates. Its creation follows the visualization rules:
+nor private coordinates. Its creation follows the visualisation rules:
 announced logarithmic scales, same reference and scope limits written in the
 image.

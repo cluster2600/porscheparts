@@ -3,7 +3,7 @@
 ## Decision
 
 The hook is a good first metal additive candidate: a small repair series, hollow
-geometry, very low mass and a commercial precedent printed in aluminum or
+geometry, very low mass and a commercial precedent printed in aluminium or
 stainless. Unlike a standard bolt, additive manufacturing can make sense for
 restoring a function that has become hard to source.
 
@@ -52,7 +52,7 @@ orientation must be qualified.
 | Analytical equations | bending, shear, von Mises, deflection, mean bond, expansion | mass `2.352 g`; von Mises `15.348 MPa`; free growth `0.0352 mm` | synthetic regression |
 | LPBF geometry | 4,000 probes and section of every layer | `425` layers; orientation `roll_y_45`; proxy supports `3.06 mm³`; no trapped powder at `0.25 mm` | screening, not EOSPRINT |
 | CalculiX | six C3D10 runs, cold and hot, three meshes | fine p95 `10.786 MPa` cold and `141.898 MPa` hot; p95 variation fine/previous `0.47 %` and `2.84 %` | synthetic load case |
-| OpenUSD | STEP conversion with `usd-convert-cad 0.2.0` | binary Z-up asset in millimeters | exchange compliance |
+| OpenUSD | STEP conversion with `usd-convert-cad 0.2.0` | binary Z-up asset in millimetres | exchange compliance |
 | NVIDIA validation | `nvidia_usd_validate 1.21.0` | asset and rigid scene with no failing rule | USD schema/quality |
 | Rigid bodies | `ovstage 0.1.1.355824` + `ovphysx 0.5.11` CPU | witness settled from `22` to `17 mm` in `240` steps | software integration only |
 | PhysicsNeMo | not run | six uncorrelated cases are insufficient to train a surrogate | blocked |

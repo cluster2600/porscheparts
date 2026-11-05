@@ -76,7 +76,7 @@ pass and five warm repetitions. Maximum error is **0.0000306 mm on CUDA** and
 
 The median complete warm pipeline is **2.354 s on CPU** and **0.0492 s on CUDA**,
 about **47.8× for this fixture**. Each repetition creates a fresh mesh/BVH,
-allocates buffers, transfers inputs, queries, synchronizes and reads results
+allocates buffers, transfers inputs, queries, synchronises and reads results
 back. Fixture generation, input loading and oracle assessment are excluded on
 both devices. The kernel disk cache can reuse the earlier pilot compilation;
 these are not universal speedups or finite-element solver timings.
@@ -179,7 +179,7 @@ Displacement changes **0.0612%**, compliance **0.0720%**, and volume-weighted
 p95 stress **0.0760%**. However, global and central peaks change **26.54%** and
 **20.57%**. The central p95 changes **0.489%**. This is one interior-refinement
 comparison; **complete spatial convergence remains false**. Removing the end
-region does not stabilize the central peak.
+region does not stabilise the central peak.
 
 ![Accepted quadratic comparison](../../media/carrier-convergence-20261022/P2/carrier-spatial-comparison.png)
 
@@ -222,7 +222,7 @@ qualify the solver's numerical accuracy.
 Two binaries were built from the same pinned Debian CalculiX 2.21 source and
 patches, with identical C flags and Fortran flags except for **`-frecursive`**.
 The [GFortran documentation](https://gcc.gnu.org/onlinedocs/gfortran/Code-Gen-Options.html)
-describes its local-array storage behavior. Both binaries pass all three original
+describes its local-array storage behaviour. Both binaries pass all three original
 analytic controls with eight threads. The production inputs and numeric source
 are unchanged. Compiler banners, archive identities, flags, binary hashes and
 linked-library metadata are retained.
@@ -272,7 +272,7 @@ claim that every large raw artifact is committed to Git.
 
 ## Further weight reduction with small cells
 
-Cellular replacement remains a useful optimization candidate. It is not an
+Cellular replacement remains a useful optimisation candidate. It is not an
 established mass saving on R2. The retained model already has hollow arms with
 nominal **1.5 mm caps and 1.61 mm webs**, while the central plate is **8 mm**
 thick. Putting a lattice into an existing void adds material; reducing weight
@@ -375,8 +375,8 @@ worst-cell limitation. This does not prove the cause of the earlier stress peaks
 
 ### Native Netgen import defect and explicit recovery
 
-The [Gmsh optimization API](https://gmsh.info/doc/texinfo/#gmsh_002fmodel_002fmesh_002foptimize)
-allows optimization of imported discrete entities with `force=True`. In the
+The [Gmsh optimisation API](https://gmsh.info/doc/texinfo/#gmsh_002fmodel_002fmesh_002foptimize)
+allows optimisation of imported discrete entities with `force=True`. In the
 executed one-volume import, Netgen leaves the complete original **343,283-cell**
 block intact and appends **381,564 new cells**. The combined output has the same
 stored surface and positive cell determinants, but its integrated volume doubles
@@ -390,8 +390,8 @@ requires equality of every original vertex and cell in the complete prefixes,
 plus the complete unchanged boundary array, before removing the old cell block.
 It compacts only unused vertices and saves the new block as a fresh candidate.
 The raw output and its rejection remain immutable. Gmsh warns that per-entity
-optimization selection is not interfaced; this fixture contains only one volume,
-so no claim of selective optimization is made.
+optimisation selection is not interfaced; this fixture contains only one volume,
+so no claim of selective optimisation is made.
 
 The extracted block has **119,948 nodes and 381,564 cells**. A fresh independent
 audit checks every cell with exact dyadic rational arithmetic and every indexed
@@ -974,7 +974,7 @@ three completed resolutions below.
 | 24 | 0.41204 | 0.16585 | 2.434% |
 | 32 | 0.39648 | 0.16081 | 4.271% |
 
-The stiffness ratios are generalized eigenvalues against the full dense
+The stiffness ratios are generalised eigenvalues against the full dense
 elasticity tensor, with engineering shear conventions preserved. They describe
 all six macroscopic strain combinations. They are **not** yield, fatigue or
 buckling allowables. At N=32, the largest ratio is about 0.20: density 0.40 does
@@ -1192,7 +1192,7 @@ These are backend qualification results, not additional spatial refinements.
 ### What smaller micro-cells can and cannot save
 
 For this ideal periodic gyroid sheet, fixing the threshold fixes its relative
-density. Rescaling its pitch leaves both that density and its homogenized
+density. Rescaling its pitch leaves both that density and its homogenised
 linear-elastic tensor unchanged. **Smaller cells alone do not remove additional
 mass.** More saving requires a lower solid fraction, a thinner outer skin or a
 different region/architecture, followed by calculation of that modified part.
@@ -1213,13 +1213,13 @@ escape still belong to the eventual explicit cellular geometry.
 
 The pinned Apache-2.0 **UnitcellEngine** experiment uses one direct SPD solve
 call with **six actual right-hand sides**. This avoids repeating the same cell
-matrix factorization independently for every strain case. Its independent
+matrix factorisation independently for every strain case. Its independent
 postprocessor reconstructs all eight trilinear Gauss-point operators, stresses,
 energies, physical forces and periodic equilibrium; no strain case is inferred
 from cubic symmetry.
 
 A uniform `1e-6` stiffness control exposes the difference between the upstream
-assembly's ersatz regularization and raw-density tensor postprocessing: its
+assembly's ersatz regularisation and raw-density tensor postprocessing: its
 energy residual is **1.0101%**, exceeding the unchanged 0.01% energy condition.
 A separate, versioned one-line adaptation applies the same phase scaling to
 both. Both full-solid and uniform-soft analytic controls then pass. The pinned
@@ -1255,7 +1255,7 @@ The complete baseline T10 energy field supports a further **conditional
 mathematical bound**, without pretending that the cellular carrier has already
 been generated. Assign the computed N=64 homogeneous cell tensor to precisely
 the selected FE elements and keep the original external forces, zero restraints
-and mesh. Its generalized stiffness eigenvalues relative to dense titanium range
+and mesh. Its generalised stiffness eigenvalues relative to dense titanium range
 from **0.167073 to 0.202924**. Compliance measures flexibility under the same
 loads; a higher value means a more flexible model.
 
@@ -1334,7 +1334,7 @@ complete native tensor from those partial results.
 ![Five actual C3D8 levels and the failed N=64 refinement condition](../../media/carrier-convergence-20261022/shared-N64-refinement-020/periodic-cell-N64-refinement.png)
 
 The [collected tensor assessment](evidence/mesh-quality-20261025/shared-N64-refinement-020/assessment.json)
-gives actual solid fraction **0.40380859375** and minimum normalized stiffness
+gives actual solid fraction **0.40380859375** and minimum normalised stiffness
 **0.1670730**. Void-floor sensitivity is **0.073295%**, within the unchanged 1%
 condition. However, the full N=48→64 tensor change is **2.236922%**, exceeding
 the unchanged **2%** condition. The earlier N=32→48 pass therefore has no second

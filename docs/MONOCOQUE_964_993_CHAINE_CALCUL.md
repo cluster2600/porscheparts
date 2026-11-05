@@ -18,7 +18,7 @@ flowchart LR
     CW["Crashworthiness claimed<br/>without physical tests"]:::stop
     OR --> PT
     OR -. "allows no one" .-> CW
-    OV["Omniverse / USD<br/>visualization, assembly"] --> NP["Demonstrates no<br/>physical behavior"]:::stop
+    OV["Omniverse / USD<br/>visualisation, assembly"] --> NP["Demonstrates no<br/>physical behaviour"]:::stop
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
     classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
     classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
@@ -60,7 +60,7 @@ on the `prohibited_pending_engineering` class.
 
 Verified on 2026-09-04.
 
-| project | license | status |
+| project | licence | status |
 |---|---|---|
 | **[OpenRadioss](https://github.com/OpenRadioss/OpenRadioss)** | **AGPL-3.0** | **industrial** explicit solver, opened by Altair in September 2022. It is the same code as the commercial Radioss used in automotive crash by manufacturers. **The answer.** |
 | FrontISTR | open | explicit present, much less mature in crash |
@@ -75,7 +75,7 @@ not an obstacle, and public human body models are usable.
 repository lists lightweight and composite materials as an area for
 improvement, which means it is not its established strength, and the project's
 issue tracker carries an open question on composite crash. Yet the crash
-behavior of a carbon laminate — progressive crushing, delamination, fiber
+behaviour of a carbon laminate — progressive crushing, delamination, fibre
 failure — is **the hardest problem in all of crash simulation**, including in
 commercial codes. It cannot be predicted without calibration on coupon tests
 and crush-tube tests.
@@ -88,9 +88,9 @@ us nor a commercial vendor, to claim crashworthiness without physical tests.
 
 PhysicsNeMo **is not a structural solver**. It is a physics-ML framework: it
 produces surrogate models trained on existing calculations. It does not replace
-CalculiX, it amortizes it.
+CalculiX, it amortises it.
 
-Legitimate use in this programme: once the zoned layup is parameterized, the
+Legitimate use in this programme: once the zoned layup is parameterised, the
 design space has tens of dimensions — angles per zone, number of plies,
 sections, ring heights. Exploring it by direct calculation is out of reach; a
 surrogate trained on a few hundred CalculiX cases makes it practical.
@@ -107,7 +107,7 @@ Two lessons, and they confirm the role assigned here:
   replace it. The chain remains solver -> corpus -> surrogate;
 - **sample sizes are modest** — on the order of 121 training cases for the
   bumper beam. This is design exploration, not certification. The example
-  carries its own declared limitations, moreover: incomplete normalization,
+  carries its own declared limitations, moreover: incomplete normalisation,
   `batch_size=1`.
 
 Lead to verify: the example ingests LS-DYNA `d3plot`. Whether OpenRadioss output
@@ -118,13 +118,13 @@ branch. To be investigated before committing to it.
 
 1. **A coherent corpus.** The dossier currently holds about fifteen cases,
    several with changing geometry. That is not a training set, it is a series
-   of trials. Hundreds are needed, on a frozen parameterization.
+   of trials. Hundreds are needed, on a frozen parameterisation.
 2. **The repository rule.** `ROADMAP.md` puts "AI surrogate model before a
    coherent FEA/CFD corpus exists" out of scope. Condition 1 is not a
    preference, it is a written rule.
 3. **The container.** `archive/917/docs/917_MODULAR_COMPUTE_STACK.md` states
    that `physicsnemo-cae-cu12` has a verified OCI lock but that **its GPU smoke
-   test and its SSH transport are still false**: it is not authorized for a long
+   test and its SSH transport are still false**: it is not authorised for a long
    job.
 
 Add a hardware fact: **there is no GPU on this machine** (`nvidia-smi` absent).
@@ -179,8 +179,8 @@ the stiffest case, which gives the surrogate something to learn other than
 noise.
 
 **The two lost cases are instructive.** Both are `fbtap` — the open cage:
-B-pillars and sills with no windshield frame or roof to close the front.
-CalculiX stops in the middle of factorization, with no message, which was first
+B-pillars and sills with no windscreen frame or roof to close the front.
+CalculiX stops in the middle of factorisation, with no message, which was first
 read as the signature of a near-singular system — a near-mechanism that
 computes badly because it is a near-mechanism.
 
@@ -300,22 +300,22 @@ of architecture, training, and above all **validation of the surrogate against
 CalculiX cases held out of training**. An unvalidated surrogate is worth no more
 than a rendered image.
 
-## 4. Omniverse: visualization and assembly, not physics
+## 4. Omniverse: visualisation and assembly, not physics
 
 Omniverse and the SimReady chain serve for visual context, USD assembly and
-rendering. **They demonstrate no physical behavior.** The 917 dossier already
+rendering. **They demonstrate no physical behaviour.** The 917 dossier already
 states this rule word for word: « un rendu OVRTX, une photo ou un film ne
 demontre ni comportement physique, ni puissance, ni tenue thermique, ni aptitude
 a la fabrication » ("an OVRTX render, a photo or a film demonstrates neither
-physical behavior, nor power, nor thermal performance, nor manufacturability").
+physical behaviour, nor power, nor thermal performance, nor manufacturability").
 
 It applies identically here, and more so: a beautiful image of a monocoque is
 exactly the kind of evidence ZESAD does not provide, and that we have chosen not
 to put up against it. Status of the images: the four `simready-*` images are not
-authorized as long as their smoke tests are not green.
+authorised as long as their smoke tests are not green.
 
 Useful and honest use: showing the registered datum network on the scan,
-visualizing the load paths from CalculiX, presenting the assembly. Never as a
+visualising the load paths from CalculiX, presenting the assembly. Never as a
 structural argument.
 
 ## 5. Sequencing
@@ -323,12 +323,12 @@ structural argument.
 | step | tool | GPU | blocked by |
 |---|---|---|---|
 | stiffness, layup, architecture | CalculiX | no | nothing — **available now** |
-| design of experiments, corpus | CalculiX in parallel | no | frozen parameterization |
+| design of experiments, corpus | CalculiX in parallel | no | frozen parameterisation |
 | **corpus generation** | **CalculiX, CPU** | **no** | **done on 2026-09-07: 3000 audited S3 cases, S6 corpus in progress** |
 | design surrogate | PhysicsNeMo | yes, Vast.ai | corpus + container GPU smoke test |
 | crash | OpenRadioss | no | geometry, hence M1 |
 | crash correlation | physical tests | — | nothing replaces them |
-| visualization, assembly | Omniverse / USD | yes | image smoke tests |
+| visualisation, assembly | Omniverse / USD | yes | image smoke tests |
 
 **Nothing in this chain is currently blocked by missing software, except
 crash.** What blocks is elsewhere: the datum network, and the absence of a

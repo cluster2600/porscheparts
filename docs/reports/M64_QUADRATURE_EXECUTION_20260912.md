@@ -110,7 +110,7 @@ for 18 non-conforming oriented shell edges. These 18 occurrences are
 not necessarily 18 distinct geometric edges.
 
 Five synthetic bridge tests pass; no native MFEM import,
-reverse polyMesh write, point optimization or qualification of the
+reverse polyMesh write, point optimisation or qualification of the
 cylinder head follows from them. The master and its outline are unchanged.
 
 An additional attempt at closure by adjacent tetrahedra found
@@ -140,5 +140,5 @@ OpenBao path for this Hugging Face access. No secret retrieved, no
 image rebuilt and no LLM machine rented. The user budget remains
 38 USD; a published image is not an endpoint ready to serve.
 
-**Manufacturing and engine start-up not authorized.** Material/process to be qualified,
+**Manufacturing and engine start-up not authorised.** Material/process to be qualified,
 M64 interfaces, the complete domain and physical correlation remain necessary.

@@ -33,7 +33,7 @@ an exploratory path target of `1.60`. **This target is not a
 new solid intersection result**, since the trial stops
 before that step.
 
-The chosen support is the largest UV rectangle centered on the target point
+The chosen support is the largest UV rectangle centred on the target point
 and contained in the existing bilinear face. In each local direction,
 the factor is `b(t) = 64 t³(1−t)³`, and the displacement is
 `D = δ b(s) b(t)` inside, zero outside. The value and the first two
@@ -96,7 +96,7 @@ as a physical interface, a fin edge or a mere seam.
 Holding them fixed was therefore a **conservative constraint of this
 trial**, not an established Porsche requirement. The rejection establishes neither
 the impossibility of thickening the zone, nor the necessity of a spike. Before
-another strategy, the real boundaries and neighboring faces must be
+another strategy, the real boundaries and neighbouring faces must be
 attributed; an artificial seam must not be turned into an untouchable physical
 boundary. This additional attribution was not executed
 during the closure of this trial.

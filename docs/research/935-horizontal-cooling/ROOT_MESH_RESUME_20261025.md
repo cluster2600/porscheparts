@@ -20,7 +20,7 @@ the [surface homology construction](https://jeffe.cs.illinois.edu/teaching/compt
 Sphere, torus winding, unsigned-index, large-index and malformed-surface controls
 exercise the implementation. Every vertex link must be one circle.
 
-The existing native root-screening program first showed that revoxelization
+The existing native root-screening program first showed that revoxelisation
 alone changes the topology. That route remains diagnostic because it also
 changes the reference surface outside the repair. The retained correction
 instead inserts a guarded addition into a fresh copy of the original C# recipe,
@@ -134,7 +134,7 @@ duplicate-face causes, and pass the same full checks. Measured interfaces,
 hidden transmission, historical shroud and engine installation remain separate
 open work. PhysicsNeMo has no newly accepted fan dataset.
 
-## 28 October: native concavity localization on Kali1
+## 28 October: native concavity localisation on Kali1
 
 Kali1 was reached over its existing IPv6 Thunderbolt address. A **new copy** of
 the rejected `reconstructed-snap-002` case retained the original six input-file
@@ -147,7 +147,7 @@ non-baffle faces. The exit code is not treated as quality acceptance.
 `postProcess -func writeCellCentres -constant` then wrote centre coordinates
 for all **4,666,166** cells in this copied case.
 
-The [localization program](../../../twins/935-horizontal-cooling-system-f0/source/snap-resume-study-20261025/localize_concave_cells.py)
+The [localisation program](../../../twins/935-horizontal-cooling-system-f0/source/snap-resume-study-20261025/localize_concave_cells.py)
 checks the copied and parent input hashes, parses the native `concaveCells` set
 and centre field, and walks internal owner/neighbour faces from cells touching
 the rotor wall. Every cell is counted once in the radial and axial summaries.
@@ -368,7 +368,7 @@ on the lower-level side. The 3/4 interface contributes 31,523 concave cells
 with spacing 3 and 34,610 with spacing 5. Increasing spacing therefore did
 not remove the dominant defect: it added 3,194 concave cells while moving
 more of them farther from the rotor wall in the internal-face graph. This
-localizes the next investigation to refinement transitions; it does not prove
+localises the next investigation to refinement transitions; it does not prove
 that the transition algorithm alone causes concavity. Both full native
 `checkMesh` results remain failed, so neither mesh is admitted to CFD.
 
@@ -435,7 +435,7 @@ its downloaded SHA-256 is
 Both download hashes match the uploaded local archives. No geometry from
 either bundle is committed to public Git.
 
-The [full weak-cell localization program](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/localize_weak.py)
+The [full weak-cell localisation program](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/localize_weak.py)
 found that **all 1,169** tetrahedra below mean ratio 0.01 touch rotor-wall
 nodes; none touches the outer duct. In the
 [private top/side figure](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/gmsh-root0p7-weak-cells-20261028.png),
@@ -451,10 +451,10 @@ the figure has downloaded SHA-256
 
 The [exact rotor-face incidence audit](../../../twins/935-horizontal-cooling-system-f0/source/gmsh-fluid-study-20261028/audit_wall_faces.py)
 shows that 1,109 of the 1,169 weak cells share a complete rotor boundary
-triangle. The 1,748 incident rotor faces have median normalized triangle
+triangle. The 1,748 incident rotor faces have median normalised triangle
 quality 0.1876, compared with 0.8121 over all rotor faces; 404 incident
 faces are below 0.1. Under the unverified scale, 961 weak-cell centres lie
-at radial distance 70–100 mm. This prioritizes an inner-annulus/blade-root
+at radial distance 70–100 mm. This prioritises an inner-annulus/blade-root
 facet study with an independently checked scan-envelope bound. It does not
 establish whether the wall facets or volume-filling algorithm caused each
 bad cell.

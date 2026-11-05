@@ -68,7 +68,7 @@ flowchart TD
 
 The reference replay preserves every outcome. A successful serial repeat is
 not, by itself, proof of a SPOOLES race. All CalculiX thread selectors are
-explicit, because specialized selectors override the general thread count.
+explicit, because specialised selectors override the general thread count.
 See the [official CalculiX 2.21 manual, section 2](https://www.dhondt.de/ccx_2.21.pdf).
 The frozen G8–G12 sources and their original results are not edited.
 
@@ -191,4 +191,4 @@ and no 1.5→1 mm convergence result is claimed.
 
 The [original G12 results and rejected fields](M64_G12_FEA_20260926.md) remain
 unchanged. Engine start, manufacturing, hot resistance, fatigue and complete
-assembled stiffness remain unauthorized.
+assembled stiffness remain unauthorised.

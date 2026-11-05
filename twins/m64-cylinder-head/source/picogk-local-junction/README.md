@@ -46,7 +46,7 @@ The residual between the difference of the global volumes and the volume of the
 Boolean addition is 0.860474131 unit³, unexplained. The volumes are integrated
 from the oriented triangles, not taken from `CalculateProperties`, which remeshes
 the field. The STLs and receipts are preserved; the intermediate fields of this
-pass were not serialized to VDB. A resumption would require a new traced run,
+pass were not serialised to VDB. A resumption would require a new traced run,
 not a supposed reuse of nonexistent fields.
 
 ## Files and execution

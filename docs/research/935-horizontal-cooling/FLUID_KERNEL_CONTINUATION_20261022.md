@@ -29,9 +29,9 @@ checkout; copying the exact existing helper into the new experiment directory
 resolved that environment issue. The refusal log is retained.
 
 An interior edge's incident tetrahedra define a cavity. The recipe preserves its
-outer triangles and cones them to one new interior point. The LP maximizes the
+outer triangles and cones them to one new interior point. The LP maximises the
 minimum distance from that point to the oriented cavity-face planes. Translation
-and span normalization avoid treating millimetre-scale coordinates as unit-scale
+and span normalisation avoid treating millimetre-scale coordinates as unit-scale
 constraints. Unit and translated/scaled right-tetrahedron controls recover the
 analytic incenter and prove exact positive volume partition on Mac and Linux.
 The installed native runtime uses NumPy 2.2.6 and SciPy 1.17.1; the
@@ -44,7 +44,7 @@ at most 5,000 index-stratified edges. Four fixed fractions, `1, .75, .5, .25`,
 between the edge midpoint and LP target are tested. Exact predicates require
 positive children, identical outer triangles and identical rational cavity
 volume. A disjoint-neighbourhood batch retains only changes that reduce failed
-determinants without worsening any selected count or normalized severity.
+determinants without worsening any selected count or normalised severity.
 This local filter selects candidates; the independent full native audit decides
 whether they are admissible.
 
@@ -54,7 +54,7 @@ The 100-edge pilot selects 82 cavities. Subsequent full sweeps select 1,136,
 262, 51 and six. The last sweep tests all 394 eligible edges and accepts none;
 its candidate array archive is byte-identical to its parent. This only exhausts
 the stated LP-target/four-fraction family on these edges. It does not establish
-global optimization or spatial convergence.
+global optimisation or spatial convergence.
 
 | Candidate | Fluid cells | New points in batch | Failed determinants | Faces >70° | Weights <0.05 | Volume ratios <0.01 | Failed native checks |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -112,7 +112,7 @@ exact partition, nonmanifold/degenerate refusal and export rejection when
 original coordinates, boundary triangles or markers are changed, even if the
 candidate's hash is recomputed.
 
-Next optimize interior point positions against the direct finite-volume
+Next optimise interior point positions against the direct finite-volume
 objective inside guarded cavities, or assess a suitable hybrid mesh. Retain the
 full native gates before a new rotor PDE. The snapped-wall deviation bound,
 compressibility/domain review, three-grid CFD convergence, accepted fan curves,

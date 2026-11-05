@@ -187,7 +187,7 @@ The 935 execution used 100,000 area-weighted points per surface, seed 93529,
 plus every original boundary vertex. Retain samples, percentiles, maxima and
 coverage fractions. Report component-selection effects. A sampled maximum is
 not a Hausdorff bound; missing surfaces have no measured ground truth. Do not
-quote only the more favorable direction.
+quote only the more favourable direction.
 
 Keep authoritative double-precision arrays and a 17-significant-digit OBJ.
 Verify coordinate/index round trips where applicable. Independently stream-check
@@ -242,7 +242,7 @@ Complete each phase and retain its evidence before advancing:
 | Closed outputs | `run_volume_reconstruction.py`, native `repair_intersections ... smooth`, `import_cgal_outputs.py` | Reconstructed parents at each resolution |
 | Inspection | `audit_candidates.py`, `audit_structure.py` | Whole-parent intersections, degeneracies, edges, vertices, components |
 | Delivery | `package_deliverables.py`, `measure_deviations.py`, `verify_3mf.py` | Selected arrays, exclusions, deviations, exact 3MF checks |
-| Receipt | `render_deliverables.py`, `make_final_report.py`, `freeze_receipt.py` | Labeled previews, full ledger, versions, hashes, acceptance state |
+| Receipt | `render_deliverables.py`, `make_final_report.py`, `freeze_receipt.py` | Labelled previews, full ledger, versions, hashes, acceptance state |
 
 Read-only archive inspection does not require rebuilding. Do not rerun the
 receipt writer merely to inspect it: it rewrites dated metadata. Rollback means

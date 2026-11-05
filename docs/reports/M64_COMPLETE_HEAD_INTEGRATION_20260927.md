@@ -80,7 +80,7 @@ The [later geometry checkpoint](M64_GEOMETRY_CHECKPOINT_20260908.md#independent-
 already records the exhaust-equipped V5 candidate
 `450ba0816bf355f350b45e1878e3327f2070cd10b405f885afb3ef2c026bff0e`:
 one solid, one shell and 4,900 faces. Its five selected BOP modes passed.
-Its Linux reserialization differences have already been attributed, with
+Its Linux reserialisation differences have already been attributed, with
 local representation bounds; global solid equivalence is not established.
 The historical master `21c9c40b…` and its rejection remain unchanged.
 Neither those passed BOP tests nor the byte-attribution work need repeating
@@ -276,7 +276,7 @@ floor. All eight port gates ran before cutting. The new body has **one solid,
 one shell and 4,917 faces**, remains exact BRepCheck-valid after native
 save/readback, and removes approximately 43,070.19 scan-unit³. A separate
 read-only check confirmed these counts and the artifact/source fingerprints.
-The retained original body's before/after native serializations are identical;
+The retained original body's before/after native serialisations are identical;
 its input file and historical masters are unchanged. This is a separate
 diagnostic candidate, not a promoted replacement.
 
@@ -292,7 +292,7 @@ manufacturing qualification.** Prior V5 BOP passes do not transfer to it.
 The [before/after view producer](../../twins/m64-cylinder-head/source/wholebody/render_spring_pocket_sections.py)
 uses the same native section plane through two of the four valve axes. It
 shows the actual body change, without smoothing or invented internals. SVG
-display curves are sampled, then rasterized by macOS `sips`; this is not a
+display curves are sampled, then rasterised by macOS `sips`; this is not a
 render of a complete assembled head. The native cut run took **25.276 s**
 locally; no new Vast rental or expense was incurred in this continuation.
 
@@ -420,7 +420,7 @@ used CUDA. The recorded all-in hourly rate was USD 0.9859259259. About
 time charges; even using all 8 GB of reserved image/input/output traffic
 adds USD 0.03125 at the quoted tariffs. **Approximately USD 0.89 is a
 conservative estimate, not a provider invoice**, below the separately
-authorized USD 5 cap. The earlier full-balance figure is not treated as
+authorised USD 5 cap. The earlier full-balance figure is not treated as
 spending authority for another attempt.
 
 ### Software verification

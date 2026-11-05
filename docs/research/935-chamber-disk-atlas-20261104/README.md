@@ -128,7 +128,7 @@ The Mac uses Python 3.12.11, NumPy 2.5.4, SciPy 1.18.1 and OCP module 7.9.3.1
 (distribution 7.9.3.1.1); the native document uses FreeCAD 1.1.4. Acquired-data
 construction, independent checks, refusals and document stages run with the
 retained local-only sandbox and 600-second command bounds. Separate synthetic
-STEP serialization probes have no sandbox claim. No model service, paid
+STEP serialisation probes have no sandbox claim. No model service, paid
 compute, scan upload, supplier contact or fabrication order is used.
 
 Use fresh output directories and the pinned helpers:
