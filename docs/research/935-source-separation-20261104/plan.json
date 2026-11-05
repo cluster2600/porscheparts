@@ -1,0 +1,22 @@
+{
+  "scope": "Whole original OBJ metadata and edge-versus-vertex source connectivity; no body/hardware classification by component size",
+  "original_obj_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "source_arrays_sha256": "dd94c37117a1f1277a4f2b7f0bf0023e0d1858991b943f766cf447db319a101a",
+  "vertex_count": 1281608,
+  "triangle_count": 2466040,
+  "metadata": "Read every o/g/usemtl/mtllib/comment tag, retain raw names and face spans privately, and compare every original OBJ face index to the frozen decoded triangle array. Publish counts and hashes only.",
+  "topology": "Preserve all original indexed faces including the eight degenerate faces. Compute face components by shared indexed edges and vertex components separately. Do not weld coincident positions or remove small components.",
+  "independence": "Python packed-edge ordering plus SciPy sparse components; separate C++ pair-of-endpoints ordering plus disjoint sets, including a fresh original OBJ face/metadata parse. Compare complete partitions up to label bijection.",
+  "seed_mapping": "Map all eight fixed chamber selections into whole-source components without assigning physical identities.",
+  "controls": [
+    "shared edge joins both notions",
+    "shared vertex without edge separates face components",
+    "disconnected triangles",
+    "nonmanifold edge refused"
+  ],
+  "execution": "Owner Kali1, existing verified original/arrays and scientific Python runtime; native Linux filesystem; private new output root; no paid compute.",
+  "anatomical_acceptance": false,
+  "complete_bare_head_selected": false,
+  "physical_acceptance": false,
+  "manufacturing_authorized": false
+}

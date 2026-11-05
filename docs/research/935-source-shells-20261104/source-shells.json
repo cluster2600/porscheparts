@@ -1,0 +1,321 @@
+{
+  "date": "2026-11-04",
+  "scope": "Exact source-facet native CAD charts with explicit vertex-fan separation; no full head",
+  "plan": {
+    "inputs_sha256": {
+      "region_1": "79cf0df10b8c11dae9c3234ff4df8792d11f70f8643e0df803398ab531e9d878",
+      "region_2": "0dc98a5da293b512fed4820ea9048923ea0aa958a10c55c8611bc89fd02087fc",
+      "region_3": "eb21c978a2bb67b2da3c746be33b02800ba57300a14a8e06b08d75f0a99a4408"
+    },
+    "source_sha256": "fca5259ef3b3412a72e441fea39816e14fea4e375095e1c83def2e4117f6ae8e",
+    "construction": "One native vertex per original edge-connected incident-face fan; one native edge per original edge; exact planar triangle faces.",
+    "source_coordinate_change_allowed_mm": 0.0,
+    "roundtrip_coordinate_limit_mm": 1e-06,
+    "automatic_welding_or_healing": false,
+    "physical_acceptance": false
+  },
+  "construction": {
+    "regions": [
+      {
+        "source_vertices": 1032,
+        "native_chart_vertices": 1055,
+        "source_vertices_split_into_fans": 22,
+        "additional_coincident_chart_vertices": 23,
+        "source_faces": 1700,
+        "source_edges": 2759,
+        "boundary_edges": 418,
+        "edge_connected_components": 12,
+        "source_face_and_edge_adjacency_preserved": true,
+        "source_corner_mapping_exact": true,
+        "coordinates_changed": false,
+        "vertex_point_contacts_separated": true,
+        "original_vertex_contact_topology_preserved": false,
+        "region": "stud_passage_1_wall_candidate",
+        "step_sha256": "185eb61e5b6bbd3d92025f02e57ecfcea691e11ca6274e0e46b6dc9797ffb613",
+        "solids_created": 0,
+        "functional_anatomy_identified": false
+      },
+      {
+        "source_vertices": 985,
+        "native_chart_vertices": 998,
+        "source_vertices_split_into_fans": 13,
+        "additional_coincident_chart_vertices": 13,
+        "source_faces": 1667,
+        "source_edges": 2664,
+        "boundary_edges": 327,
+        "edge_connected_components": 8,
+        "source_face_and_edge_adjacency_preserved": true,
+        "source_corner_mapping_exact": true,
+        "coordinates_changed": false,
+        "vertex_point_contacts_separated": true,
+        "original_vertex_contact_topology_preserved": false,
+        "region": "stud_passage_2_wall_candidate",
+        "step_sha256": "bf5b7e019d8e629261a19b5cb05e89cc61e466b8383de87dcdbad0c4c1b4e672",
+        "solids_created": 0,
+        "functional_anatomy_identified": false
+      },
+      {
+        "source_vertices": 826,
+        "native_chart_vertices": 829,
+        "source_vertices_split_into_fans": 3,
+        "additional_coincident_chart_vertices": 3,
+        "source_faces": 1420,
+        "source_edges": 2250,
+        "boundary_edges": 240,
+        "edge_connected_components": 2,
+        "source_face_and_edge_adjacency_preserved": true,
+        "source_corner_mapping_exact": true,
+        "coordinates_changed": false,
+        "vertex_point_contacts_separated": true,
+        "original_vertex_contact_topology_preserved": false,
+        "region": "stud_passage_3_wall_candidate",
+        "step_sha256": "6dea5847d907ea22d5bed7908c1541b56955e40c3bb1378041bc94ff5fd76839",
+        "solids_created": 0,
+        "functional_anatomy_identified": false
+      }
+    ],
+    "source_geometry_modified": false,
+    "charts_are_physical_parts": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "controls": {
+    "square": {
+      "source_vertices": 4,
+      "native_chart_vertices": 4,
+      "source_vertices_split_into_fans": 0,
+      "additional_coincident_chart_vertices": 0,
+      "source_faces": 2,
+      "source_edges": 5,
+      "boundary_edges": 4,
+      "edge_connected_components": 1,
+      "source_face_and_edge_adjacency_preserved": true,
+      "source_corner_mapping_exact": true,
+      "coordinates_changed": false,
+      "vertex_point_contacts_separated": false,
+      "original_vertex_contact_topology_preserved": true
+    },
+    "point_contact": {
+      "source_vertices": 5,
+      "native_chart_vertices": 6,
+      "source_vertices_split_into_fans": 1,
+      "additional_coincident_chart_vertices": 1,
+      "source_faces": 2,
+      "source_edges": 6,
+      "boundary_edges": 6,
+      "edge_connected_components": 2,
+      "source_face_and_edge_adjacency_preserved": true,
+      "source_corner_mapping_exact": true,
+      "coordinates_changed": false,
+      "vertex_point_contacts_separated": true,
+      "original_vertex_contact_topology_preserved": false
+    },
+    "refusals": {
+      "inconsistent_winding": true,
+      "nonmanifold_edge": true,
+      "degenerate_triangle": true,
+      "coincident_distinct_ids": true
+    }
+  },
+  "independent_step_verification": {
+    "regions": [
+      {
+        "source_vertices": 1032,
+        "native_vertices": 1055,
+        "edges": 2759,
+        "faces": 1700,
+        "shells": 12,
+        "source_boundary_edges": 418,
+        "vertex_roundtrip_maximum_mm": 0.0,
+        "normal_roundtrip_maximum_error": 4.440892098500626e-16,
+        "checks": {
+          "every_original_triangle_once": true,
+          "original_orientation": true,
+          "straight_source_edges": true,
+          "exact_source_edge_adjacency": true,
+          "exact_source_vertex_fans": true,
+          "exact_source_shell_components": true,
+          "valid_reopened_native_shape": true,
+          "zero_solids": true
+        },
+        "original_vertex_point_contacts_separated": true,
+        "region": "stud_passage_1_wall_candidate",
+        "actual_step_sha256": "185eb61e5b6bbd3d92025f02e57ecfcea691e11ca6274e0e46b6dc9797ffb613"
+      },
+      {
+        "source_vertices": 985,
+        "native_vertices": 998,
+        "edges": 2664,
+        "faces": 1667,
+        "shells": 8,
+        "source_boundary_edges": 327,
+        "vertex_roundtrip_maximum_mm": 0.0,
+        "normal_roundtrip_maximum_error": 4.440892098500626e-16,
+        "checks": {
+          "every_original_triangle_once": true,
+          "original_orientation": true,
+          "straight_source_edges": true,
+          "exact_source_edge_adjacency": true,
+          "exact_source_vertex_fans": true,
+          "exact_source_shell_components": true,
+          "valid_reopened_native_shape": true,
+          "zero_solids": true
+        },
+        "original_vertex_point_contacts_separated": true,
+        "region": "stud_passage_2_wall_candidate",
+        "actual_step_sha256": "bf5b7e019d8e629261a19b5cb05e89cc61e466b8383de87dcdbad0c4c1b4e672"
+      },
+      {
+        "source_vertices": 826,
+        "native_vertices": 829,
+        "edges": 2250,
+        "faces": 1420,
+        "shells": 2,
+        "source_boundary_edges": 240,
+        "vertex_roundtrip_maximum_mm": 0.0,
+        "normal_roundtrip_maximum_error": 4.440892098500626e-16,
+        "checks": {
+          "every_original_triangle_once": true,
+          "original_orientation": true,
+          "straight_source_edges": true,
+          "exact_source_edge_adjacency": true,
+          "exact_source_vertex_fans": true,
+          "exact_source_shell_components": true,
+          "valid_reopened_native_shape": true,
+          "zero_solids": true
+        },
+        "original_vertex_point_contacts_separated": true,
+        "region": "stud_passage_3_wall_candidate",
+        "actual_step_sha256": "6dea5847d907ea22d5bed7908c1541b56955e40c3bb1378041bc94ff5fd76839"
+      }
+    ],
+    "controls": {
+      "shared-square-control.step": [
+        4,
+        5,
+        2,
+        1
+      ],
+      "point-contact-control.step": [
+        6,
+        6,
+        2,
+        2
+      ]
+    },
+    "verifier_source_sha256": "3a2ddf947a1083399890dc167ec631fec0bce4d5a7a564613a765fcd95158658",
+    "acquired_geometry_preserved": true,
+    "source_index_array_modified": false,
+    "chart_vertex_point_contacts_are_separated": true,
+    "charts_are_physical_components": false,
+    "full_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "unsewn_negative_control": {
+    "unsewn_exact_facets_refused": true,
+    "no_successful_output_created": true,
+    "scope": "Original geometric facets alone do not prove shared edge/vertex-fan topology.",
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "native_document": {
+    "native_document_reopened": true,
+    "objects": [
+      {
+        "object": "ObservedRegion1",
+        "counts_vertices_edges_faces_shells_solids": [
+          1055,
+          2759,
+          1700,
+          12,
+          0
+        ],
+        "valid": true
+      },
+      {
+        "object": "ObservedRegion2",
+        "counts_vertices_edges_faces_shells_solids": [
+          998,
+          2664,
+          1667,
+          8,
+          0
+        ],
+        "valid": true
+      },
+      {
+        "object": "ObservedRegion3",
+        "counts_vertices_edges_faces_shells_solids": [
+          829,
+          2250,
+          1420,
+          2,
+          0
+        ],
+        "valid": true
+      }
+    ],
+    "freecad_version": [
+      "1",
+      "1",
+      "4"
+    ],
+    "output_sha256": "3d495950adecf1af6995e798dbb88eb87e3df11ee6d9caec87fa1591691db37b",
+    "full_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "native_offline_reopen": {
+    "native_readonly_reopen_passed": true,
+    "document_sha256": "3d495950adecf1af6995e798dbb88eb87e3df11ee6d9caec87fa1591691db37b",
+    "source_sha256": "da0fc8c5216bf4444a55aa7d168567131db78ee3946bb35167cfe70b46449d4b",
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "preservation": {
+    "old_native_documents_unchanged": true,
+    "source_arrays_modified": false,
+    "new_paid_rental": false,
+    "supplier_contacted": false,
+    "new_solver_run": false
+  },
+  "attempts": [
+    {
+      "attempt": "build-001",
+      "status": "superseded_not_forwarded",
+      "reason": "Winding-refusal fixture was degenerate and could be refused for the wrong reason; source and original log retained."
+    },
+    {
+      "attempt": "build-002",
+      "status": "independently_verified",
+      "reason": "Nondegenerate winding fixture, separate nonmanifold-edge refusal and exact exception checks; same acquired geometry and construction policy."
+    }
+  ],
+  "runtime": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "cadquery-ocp-novtk": "7.9.3.1.1"
+  },
+  "source_sha256": {
+    "verify_saved_chart_document.py": "da0fc8c5216bf4444a55aa7d168567131db78ee3946bb35167cfe70b46449d4b",
+    "create_chart_document.py": "835ed61ebdfe8e4d1d27e22ba71a1070c91692daf0ddb03f429cae9bb06277bc",
+    "build_source_shells.py": "fca5259ef3b3412a72e441fea39816e14fea4e375095e1c83def2e4117f6ae8e",
+    "verify_source_shells.py": "3a2ddf947a1083399890dc167ec631fec0bce4d5a7a564613a765fcd95158658",
+    "check_source_shell_refusal.py": "a8292bcddc06b962fdfdc90e9f40de33bb8391d213070df82fae000e4775fed8"
+  },
+  "private_manifest_sha256": "a182aabd4e7c0d324bcb1b3cf0e7aed1b523fcbc6b13d00a0d142b65489ebd14",
+  "private_files": 48,
+  "delivered_file_sha256": {
+    "935-observed-region-1-exact-source-charts.step": "185eb61e5b6bbd3d92025f02e57ecfcea691e11ca6274e0e46b6dc9797ffb613",
+    "935-observed-region-2-exact-source-charts.step": "bf5b7e019d8e629261a19b5cb05e89cc61e466b8383de87dcdbad0c4c1b4e672",
+    "935-exact-source-charts.FCStd": "3d495950adecf1af6995e798dbb88eb87e3df11ee6d9caec87fa1591691db37b",
+    "935-observed-region-3-exact-source-charts.step": "6dea5847d907ea22d5bed7908c1541b56955e40c3bb1378041bc94ff5fd76839"
+  },
+  "accepted_scope": "Exact geometric and source adjacency reference; vertex point-contact topology is separated",
+  "original_vertex_contact_topology_preserved": false,
+  "full_head_created": false,
+  "physical_acceptance": false,
+  "manufacturing_authorized": false
+}

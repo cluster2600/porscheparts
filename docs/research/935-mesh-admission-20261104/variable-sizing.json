@@ -1,0 +1,279 @@
+{
+  "date": "2026-11-04",
+  "scope": "Constrained variable-size remeshing of the full coarse study assembly; candidate rejected",
+  "sizing": {
+    "locked_target_mm": 0.7,
+    "free_target_min_mm": 0.2,
+    "transition_graph_distance_mm": 1.0,
+    "split_vertex_update": "arithmetic mean of edge endpoint sizes"
+  },
+  "gates": {
+    "exact_protected_triangles": true,
+    "native_intersections": 0,
+    "parent_sampled_max_mm": 0.01,
+    "relative_volume_change_max": 0.0001,
+    "bad_triangle_reduction_min_fraction": 0.5,
+    "topology_unchanged": true
+  },
+  "runtime": {
+    "cgal_version": "6.2.1",
+    "compiler_version": "Apple clang version 21.0.0 (clang-2100.3.34.2)",
+    "kernel_source_sha256": "85002ad1e9cfe9c372e80268cba5dc9a9096f81f8aa07ec3106bbff58d8accc3",
+    "kernel_binary_sha256": "bb8476db1e566092b33b99d7e7ca681062d8c137c90a994330c626ac4abf71b1",
+    "compile_arguments": [
+      "clang++",
+      "-std=c++17",
+      "-O2",
+      "-I/opt/homebrew/include",
+      "constrained_variable_sizing.cpp",
+      "-L/opt/homebrew/lib",
+      "-lgmp",
+      "-lmpfr",
+      "-o",
+      "constrained_variable_sizing"
+    ],
+    "installed_header_sha256": {
+      "remesh.h": "05fa7984340fe16b81e809392c5a95f38bda9239a780b8c4ad079e67eabaf585",
+      "Adaptive_sizing_field.h": "5913d757bcfe98d89946200b08c86880028360255799ff0716765acdac454a5f"
+    },
+    "no_precondition_disabling_defines": true,
+    "host": "local Mac; no rental"
+  },
+  "witness_native": {
+    "input_vertices": 289,
+    "input_faces": 512,
+    "vertices": 1499,
+    "faces": 2932,
+    "protected_faces": 2,
+    "locked_edges": 69,
+    "locked_vertices": 68,
+    "initial_target_min_mm": 0.19999999999999996,
+    "initial_target_max_mm": 0.7,
+    "final_target_min_mm": 0.19999999999999996,
+    "final_target_max_mm": 0.7,
+    "oversize_locked_edges": 0,
+    "remesher_executed": true,
+    "setup_seconds": 0.001236042,
+    "elapsed_seconds": 0.026617417,
+    "peak_rss_bytes": 4096000
+  },
+  "witness_assessment": {
+    "checks": {
+      "exact_protected_triangles": true,
+      "unprotected_geometry_actually_changed": true,
+      "zero_intersections": true,
+      "zero_degeneracies": true,
+      "native_precondition_passed": true,
+      "field_reaches_fine_target": true,
+      "final_field_bounds": true,
+      "witness_refined": true
+    },
+    "input_faces": 512,
+    "output_faces": 2932,
+    "native_geometry": {
+      "vertices": 1499,
+      "faces": 2932,
+      "degenerate_faces": 0,
+      "intersection_check_executed": true,
+      "intersection_pairs": 0,
+      "closed": false,
+      "valid_polygon_mesh": true
+    }
+  },
+  "head_preflight": {
+    "input_vertices": 1048504,
+    "input_faces": 2099584,
+    "vertices": 1048504,
+    "faces": 2099584,
+    "protected_faces": 111463,
+    "locked_edges": 492169,
+    "locked_vertices": 342090,
+    "initial_target_min_mm": 0.19999999999999996,
+    "initial_target_max_mm": 0.7,
+    "final_target_min_mm": 0.19999999999999996,
+    "final_target_max_mm": 0.7,
+    "oversize_locked_edges": 0,
+    "remesher_executed": false,
+    "setup_seconds": 3.369826417,
+    "elapsed_seconds": 3.372771875,
+    "peak_rss_bytes": 428670976
+  },
+  "head_native": {
+    "input_vertices": 1048504,
+    "input_faces": 2099584,
+    "vertices": 2844918,
+    "faces": 5692412,
+    "protected_faces": 111463,
+    "locked_edges": 492169,
+    "locked_vertices": 342090,
+    "initial_target_min_mm": 0.19999999999999996,
+    "initial_target_max_mm": 0.7,
+    "final_target_min_mm": 0.19999999999999996,
+    "final_target_max_mm": 0.7,
+    "oversize_locked_edges": 0,
+    "remesher_executed": true,
+    "setup_seconds": 3.384649,
+    "elapsed_seconds": 158.224344625,
+    "peak_rss_bytes": 2385215488
+  },
+  "native_execution": {
+    "exit_code": 0,
+    "termination_reason": null,
+    "elapsed_seconds": 158.30797066597734,
+    "sampled_peak_rss_bytes": 2385215488,
+    "rss_limit_bytes": 12884901888,
+    "wall_limit_seconds": 900
+  },
+  "independent_assessment_execution": {
+    "exit_code": 0,
+    "termination_reason": null,
+    "elapsed_seconds": 133.34798437496647,
+    "sampled_peak_rss_bytes": 4606050304,
+    "rss_limit_bytes": 12884901888,
+    "wall_limit_seconds": 1800
+  },
+  "guards": {
+    "existing_output_refused": true,
+    "existing_mesh_unchanged": true,
+    "invalid_mask_refused": true,
+    "invalid_mask_no_mesh": true,
+    "long_constraint_refused": true,
+    "long_constraint_no_mesh": true
+  },
+  "assessment": {
+    "before": {
+      "quantiles": [
+        3.303568619914881e-06,
+        0.002531815836550919,
+        0.025120719807763342,
+        0.12321452642538443,
+        0.8122858208825356,
+        1.0
+      ],
+      "below_0p01": 8489,
+      "below_0p1": 85069,
+      "surface_area_mm2": 173298.45456554726,
+      "signed_volume_mm3": 1106103.0255224346
+    },
+    "after": {
+      "quantiles": [
+        3.303568619914881e-06,
+        0.029378812435846113,
+        0.29695062065750527,
+        0.7642924806825385,
+        0.9574447877398696,
+        1.0
+      ],
+      "below_0p01": 2008,
+      "below_0p1": 18560,
+      "surface_area_mm2": 173064.683549434,
+      "signed_volume_mm3": 1106075.5973491052
+    },
+    "vertices": 2844918,
+    "triangles": 5692412,
+    "native_geometry": {
+      "vertices": 2844918,
+      "faces": 5692412,
+      "degenerate_faces": 0,
+      "intersection_check_executed": true,
+      "intersection_pairs": 35,
+      "closed": true,
+      "valid_polygon_mesh": true
+    },
+    "topology": {
+      "parent": {
+        "open3d_version": "0.20.0",
+        "controls": {
+          "closed_tetrahedron_accepted": true,
+          "closed_edge_manifold_pinched_vertex_rejected": true
+        },
+        "vertices": 1048504,
+        "triangles": 2099584,
+        "arrays_preserved": true,
+        "vertex_manifold": true,
+        "closed_edge_manifold": true,
+        "orientable": true,
+        "euler_characteristic": -1288,
+        "edge_connected_components": 1,
+        "process_exit_code": 0
+      },
+      "candidate": {
+        "open3d_version": "0.20.0",
+        "controls": {
+          "closed_tetrahedron_accepted": true,
+          "closed_edge_manifold_pinched_vertex_rejected": true
+        },
+        "vertices": 2844918,
+        "triangles": 5692412,
+        "arrays_preserved": true,
+        "vertex_manifold": true,
+        "closed_edge_manifold": true,
+        "orientable": true,
+        "euler_characteristic": -1288,
+        "edge_connected_components": 1,
+        "process_exit_code": 0
+      }
+    },
+    "protected_triangles_missing_or_changed": 0,
+    "parent_to_candidate": {
+      "samples": 100000,
+      "p50_mm": 0.00024071920847112873,
+      "p95_mm": 0.010484294005524189,
+      "sampled_max_mm": 0.08284631384572357
+    },
+    "candidate_to_parent": {
+      "samples": 100000,
+      "p50_mm": 0.00023348048350020417,
+      "p95_mm": 0.010020523342085884,
+      "sampled_max_mm": 0.09070025880190442
+    },
+    "all_candidate_vertices_to_parent": {
+      "samples": 2844918,
+      "p50_mm": 5.0242958677880805e-15,
+      "p95_mm": 3.162713435991701e-14,
+      "sampled_max_mm": 4.202720633727944e-12
+    },
+    "scan_to_candidate": {
+      "samples": 100000,
+      "p50_mm": 0.011109148927874343,
+      "p95_mm": 0.10273739185091361,
+      "sampled_max_mm": 5.056448190492454
+    },
+    "candidate_to_scan": {
+      "samples": 100000,
+      "p50_mm": 0.01371578826544494,
+      "p95_mm": 1.545426004517071,
+      "sampled_max_mm": 10.805880875889883
+    },
+    "checks": {
+      "native_geometry": false,
+      "vertex_edge_topology": true,
+      "euler_and_components": true,
+      "exact_protected_triangles": true,
+      "parent_sampled_deviations": false,
+      "all_candidate_vertices_to_parent": true,
+      "relative_volume_change": true,
+      "material_quality_improvement": true
+    },
+    "accepted_for_volume_study": false,
+    "physical_geometry_accepted": false,
+    "manufacturing_authorized": false,
+    "limitations": "Sampled surface distances are not Hausdorff bounds. Study assembly and inferred surfaces do not establish faithful bare-head CAD."
+  },
+  "source_and_mask_inputs_rechecked_unchanged": true,
+  "private_manifest_sha256": "74cd05ffd54eeb000eaf713bf8c77a3199a26b6639a322089df634267baa9318",
+  "source_sha256": {
+    "constrained_variable_sizing.cpp": "85002ad1e9cfe9c372e80268cba5dc9a9096f81f8aa07ec3106bbff58d8accc3",
+    "run_variable_sizing.py": "a024c9e406f31aae8d06fa7899300e22a6f3eed296a981e021bfc8fe0fd97e7f",
+    "assess_variable_sizing.py": "249f4a55afd959b311856618fa801b504d577642ee10008d3cfd30c2138c7148",
+    "trial_planar_flips.py": "57a29abf66e66f59e5eb8926fdf0dd75a3880e57928f9d28dd587a27d7d96c92",
+    "trial_isotropic.py": "272cb604b00cb446c0247dd9d45b1e1b7239d0b3ddf5d680cdd2b5df5846c3ed",
+    "trial_masked_isotropic_v2.py": "5430b17d029247f7fc5c5f65717bf7ed06c4261f8e695ddea8deecc7c23f5dfc",
+    "run_constraint_controls.py": "9d8edf82ba0b1b44851a526e58453c1e3770e650dcd8758b1b7509f0d8b06388",
+    "inspect_vertex_topology.py": "a36df815e394f045fcdc0ed58b80d4a09208e129a09fcf6a659c22c53857292a"
+  },
+  "volume_mesh_admitted": false,
+  "functional_geometry_accepted": false,
+  "manufacturing_authorized": false,
+  "new_paid_rental": false
+}

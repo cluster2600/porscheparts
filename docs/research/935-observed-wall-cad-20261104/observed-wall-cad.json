@@ -1,0 +1,386 @@
+{
+  "date": "2026-11-04",
+  "scope": "Partial observed-wall CAD references and conditional primitive fit; no complete head",
+  "input_contract_sha256": "49fc806e1f9d6f129892d1cdd15505b4ed304a68ee84f37bcbf1fd1c8461f779",
+  "partition_sha256": "bca11c2633ed6fae331b9bd47d420f07f170b6f34d4ba232d68c87f37f1aa824",
+  "admissibility": {
+    "regions": [
+      {
+        "id": "stud_passage_1_wall_candidate",
+        "source_faces": 1700,
+        "source_vertices": 1032,
+        "source_components": 12,
+        "projection_p95_mm": 0.21745269250968238,
+        "projection_max_mm": 0.5702233275831388,
+        "reversed_uv_faces": 0,
+        "zero_uv_area_faces": 0,
+        "projected_overlap_fraction": 0.0,
+        "trim_domains": 12,
+        "expected_cylinder_area_mm2": 96.71076719483523,
+        "checks": {
+          "native_source_valid": true,
+          "bounded_projection": false,
+          "no_uv_fold": true,
+          "no_uv_degeneracy": true,
+          "no_projected_overlap": true
+        },
+        "analytic_candidate_admitted": false,
+        "reference_geometry_exact": true,
+        "physical_acceptance": false
+      },
+      {
+        "id": "stud_passage_2_wall_candidate",
+        "source_faces": 1667,
+        "source_vertices": 985,
+        "source_components": 8,
+        "projection_p95_mm": 0.387762651642781,
+        "projection_max_mm": 0.6589179643518106,
+        "reversed_uv_faces": 3,
+        "zero_uv_area_faces": 0,
+        "projected_overlap_fraction": 3.799719702179842e-16,
+        "trim_domains": 8,
+        "expected_cylinder_area_mm2": 101.8228308489638,
+        "checks": {
+          "native_source_valid": true,
+          "bounded_projection": false,
+          "no_uv_fold": false,
+          "no_uv_degeneracy": true,
+          "no_projected_overlap": true
+        },
+        "analytic_candidate_admitted": false,
+        "reference_geometry_exact": true,
+        "physical_acceptance": false
+      },
+      {
+        "id": "stud_passage_3_wall_candidate",
+        "source_faces": 1420,
+        "source_vertices": 826,
+        "source_components": 2,
+        "projection_p95_mm": 0.1821647441849159,
+        "projection_max_mm": 0.2593925413094711,
+        "reversed_uv_faces": 0,
+        "zero_uv_area_faces": 0,
+        "projected_overlap_fraction": 1.8898259555183945e-16,
+        "trim_domains": 2,
+        "expected_cylinder_area_mm2": 99.64813698223304,
+        "checks": {
+          "native_source_valid": true,
+          "bounded_projection": true,
+          "no_uv_fold": true,
+          "no_uv_degeneracy": true,
+          "no_projected_overlap": true
+        },
+        "analytic_candidate_admitted": true,
+        "reference_geometry_exact": true,
+        "physical_acceptance": false
+      }
+    ],
+    "gates": {
+      "max_source_vertex_projection_mm": 0.4,
+      "reversed_uv_faces": 0,
+      "zero_uv_area_faces": 0,
+      "maximum_relative_projected_overlap": 1e-08
+    },
+    "baseline_changed": false,
+    "hidden_geometry_added": false,
+    "manufacturing_authorized": false
+  },
+  "periodic_atlas": {
+    "input_domains_sha256": "6c6033d5feb766d8bc7c534af08bc28a4f7527106ccaa3c2ffdf77e203d8122f",
+    "source_sha256": "7b9180092e0c68455f91816276638aeedddea05814f16c7d929998f3562c21c1",
+    "regions": [
+      {
+        "id": "stud_passage_3_wall_candidate",
+        "original_domains": 2,
+        "charts": 3,
+        "relative_symmetric_difference": 1.8455331596859324e-19,
+        "model_parameters_changed": false
+      }
+    ],
+    "scope": "Representation seams only; no source gap fill, model refit or support extension."
+  },
+  "contact_atlas": [
+    {
+      "id": "stud_passage_3_wall_candidate",
+      "input_charts": 3,
+      "output_charts": 5,
+      "source_contact_cuts": 2,
+      "relative_support_difference": 1.3466624774583294e-18,
+      "model_parameters_changed": false
+    }
+  ],
+  "native_step_reopen": {
+    "regions": [
+      {
+        "id": "stud_passage_1_wall_candidate",
+        "reference_faces": 1700,
+        "reference_vertex_max_error_mm": 0.0,
+        "reference_normal_mismatches": 0,
+        "reference_checks": {
+          "all_source_triangles_exactly_once": true,
+          "vertex_roundtrip_under_1e-6mm": true,
+          "source_orientation_preserved": true
+        },
+        "zero_solids": true
+      },
+      {
+        "id": "stud_passage_2_wall_candidate",
+        "reference_faces": 1667,
+        "reference_vertex_max_error_mm": 0.0,
+        "reference_normal_mismatches": 0,
+        "reference_checks": {
+          "all_source_triangles_exactly_once": true,
+          "vertex_roundtrip_under_1e-6mm": true,
+          "source_orientation_preserved": true
+        },
+        "zero_solids": true
+      },
+      {
+        "id": "stud_passage_3_wall_candidate",
+        "reference_faces": 1420,
+        "reference_vertex_max_error_mm": 0.0,
+        "reference_normal_mismatches": 0,
+        "reference_checks": {
+          "all_source_triangles_exactly_once": true,
+          "vertex_roundtrip_under_1e-6mm": true,
+          "source_orientation_preserved": true
+        },
+        "zero_solids": true,
+        "analytic_faces": 5,
+        "all_surfaces_cylindrical": true,
+        "radius_roundtrip_max_error_mm": 2.877698079828406e-13,
+        "axis_alignment_min": 1.0000000000000002,
+        "actual_step_tessellation_triangles": 510,
+        "tessellation_deflection_mm": 0.005
+      }
+    ],
+    "actual_files_reopened": true,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "source_support": {
+    "regions": [
+      {
+        "id": "stud_passage_3_wall_candidate",
+        "source_faces": 1420,
+        "native_source_vertices": {
+          "source_vertices": 826,
+          "p95_mm": 0.18216474418955234,
+          "max_mm": 0.2593925413039263,
+          "all_vertices_within_exploratory_0p4mm": true,
+          "input_sha256": {
+            "step": "5462274c1060ab1f79c21e8d140de513d3c31ea4bded79150c9fb19cd151f8a4",
+            "arrays": "dd94c37117a1f1277a4f2b7f0bf0023e0d1858991b943f766cf447db319a101a",
+            "reference": "eb21c978a2bb67b2da3c746be33b02800ba57300a14a8e06b08d75f0a99a4408"
+          },
+          "method": "OCCT native point-to-trimmed-face distance after STEP reload; no tessellation proxy",
+          "physical_metrology": false
+        },
+        "source_to_actual_step_mesh": {
+          "samples": 10000,
+          "p95_mm": 0.167444830876324,
+          "sampled_max_mm": 0.25060328170332735
+        },
+        "actual_step_mesh_to_source": {
+          "samples": 10000,
+          "p95_mm": 0.16381868281601178,
+          "sampled_max_mm": 0.25120362377458183
+        },
+        "checks": {
+          "native_source_vertices": true,
+          "sampled_source_to_export": true,
+          "sampled_export_to_source": true
+        },
+        "accepted_as_partial_scan_fit": true,
+        "physical_acceptance": false
+      }
+    ],
+    "actual_step_files_unchanged": true,
+    "original_source_unchanged": true,
+    "full_head_created": false,
+    "manufacturing_authorized": false
+  },
+  "independent_source_membership_and_controls": {
+    "regions": [
+      {
+        "id": "stud_passage_1_wall_candidate",
+        "source_faces": 1700,
+        "checks": {
+          "source_vertices_exact": true,
+          "source_connectivity_exact": true,
+          "registered_face_selection_exact": true,
+          "baseline_origin_unchanged": true,
+          "baseline_axis_unchanged": true,
+          "baseline_radius_unchanged": true
+        }
+      },
+      {
+        "id": "stud_passage_2_wall_candidate",
+        "source_faces": 1667,
+        "checks": {
+          "source_vertices_exact": true,
+          "source_connectivity_exact": true,
+          "registered_face_selection_exact": true,
+          "baseline_origin_unchanged": true,
+          "baseline_axis_unchanged": true,
+          "baseline_radius_unchanged": true
+        }
+      },
+      {
+        "id": "stud_passage_3_wall_candidate",
+        "source_faces": 1420,
+        "checks": {
+          "source_vertices_exact": true,
+          "source_connectivity_exact": true,
+          "registered_face_selection_exact": true,
+          "baseline_origin_unchanged": true,
+          "baseline_axis_unchanged": true,
+          "baseline_radius_unchanged": true
+        }
+      }
+    ],
+    "negative_controls": {
+      "altered_contract_refused": true,
+      "no_output_on_contract_failure": true,
+      "known_0p6mm_radial_error_detected": true
+    },
+    "exact_reference_source_faces": 4787,
+    "axes_or_radii_refitted": false,
+    "physical_acceptance": false
+  },
+  "native_review": {
+    "native_reopen_verified": true,
+    "new_objects": [
+      {
+        "object": "ObservedRegion1",
+        "role": "exact_scan_facet_reference",
+        "faces": 1700,
+        "solids": 0,
+        "valid": true,
+        "cylindrical_faces": 0
+      },
+      {
+        "object": "ObservedRegion2",
+        "role": "exact_scan_facet_reference",
+        "faces": 1667,
+        "solids": 0,
+        "valid": true,
+        "cylindrical_faces": 0
+      },
+      {
+        "object": "ObservedRegion3",
+        "role": "exact_scan_facet_reference",
+        "faces": 1420,
+        "solids": 0,
+        "valid": true,
+        "cylindrical_faces": 0
+      },
+      {
+        "object": "WallFitRegion3",
+        "role": "conditional_cylindrical_fit",
+        "faces": 5,
+        "solids": 0,
+        "valid": true,
+        "cylindrical_faces": 5
+      }
+    ],
+    "baseline_unchanged": true,
+    "freecad_version": [
+      "1",
+      "1",
+      "4"
+    ],
+    "new_solid_created": false,
+    "functional_head_accepted": false,
+    "manufacturing_authorized": false,
+    "output_sha256": "67ce227a046eb1ea5b8658bda06f43e6ccb1262acd1fde69c251339364d84f76"
+  },
+  "cad_runtime": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "OCP_version": "7.9.3.1",
+    "OCP_distributions": {
+      "ocpsvg": "0.6.0",
+      "cadquery-ocp-novtk": "7.9.3.1.1",
+      "ocp_gordon": "0.2.2",
+      "cadquery-ocp-proxy": "7.9.3.1.1"
+    },
+    "OCP_binary_sha256": "ca5449f0d8073bae9e4fadd8ad168bdb9acd1edd9fcc9e11b89a6aa5f26a2864"
+  },
+  "native_controls": {
+    "trim_with_hole_area": true,
+    "periodic_patch_area": true
+  },
+  "attempts": [
+    {
+      "stage": "preparation-001",
+      "state": "retained_not_forwarded",
+      "reason": "Per-triangle UV arithmetic produced subprecision boundary segments; canonical per-source-vertex UV used subsequently."
+    },
+    {
+      "stage": "cad-001",
+      "state": "failed",
+      "reason": "Native intersecting UV wires on a full-period face."
+    },
+    {
+      "stage": "cad-002",
+      "state": "failed",
+      "reason": "Half-period charts still contain source boundary contacts."
+    },
+    {
+      "stage": "cad-003",
+      "state": "failed",
+      "reason": "Unanchored contact cuts introduced arithmetic slivers; native curve construction refused."
+    },
+    {
+      "stage": "preparation-005/cad-004",
+      "state": "failed",
+      "reason": "Attempted duplicate consolidation collapsed an arithmetic sliver; no valid preparation was produced or adopted."
+    },
+    {
+      "stage": "preparation-006/cad-005",
+      "state": "executed_and_verified",
+      "reason": "Cuts explicitly anchored at source UV contact and hole interior; support union preserved without snapping or cleanup."
+    }
+  ],
+  "existing_feature_pipeline_tests": {
+    "tests": 18,
+    "passed": true
+  },
+  "offline_assessment_passed": true,
+  "network_policy_sha256": "cf35cca89f2e1b677995e788c0fe365bf627c641f260a3e4ea80cbde31a0c60e",
+  "exact_source_face_coverage": {
+    "unique_faces": 4787,
+    "whole_acquired_faces": 2466040,
+    "fraction": 0.001941168837488443
+  },
+  "private_manifest_sha256": "63f6e3ad4af71c19b5bee62bb4d90541cfe2a28781cc522521d000d0a7349c6c",
+  "source_sha256": {
+    "native_wall_distances.py": "8d7e1b49f62326d38a56ab7add3b01ff11538814782498ede85e61357d344896",
+    "local-only.sb": "cf35cca89f2e1b677995e788c0fe365bf627c641f260a3e4ea80cbde31a0c60e",
+    "verify_observed_wall_evidence.py": "9e3bbbde8263f076d653ddb34f345b837ec423832093ed2c9ba0efb0b43224af",
+    "inspect_wall_step.py": "e936f33351eb2361296923821ec82212ff284f7139a7b4a55c322e606f73bb58",
+    "assess_wall_support.py": "4a6adc4b1d45bb64bfec1ab7d210e999c49c8a74d1485eb8bf7bc7b9ed5c55ce",
+    "split_touching_domains_v2.py": "adaca0a4e49b1e22a7593044f1c4ea634d68147f3c58f7ceb9eac592ecfce53f",
+    "split_periodic_atlas.py": "7b9180092e0c68455f91816276638aeedddea05814f16c7d929998f3562c21c1",
+    "create_native_review.py": "85142c1f632063d3922184ba3c2d2f9cf3f579b55d902d37eee203d231c5e2d0",
+    "build_wall_cad.py": "2d3424c64f40c5e3cdc0759e6bf69f29a153f088217e7df9c1bcb63f5717c712",
+    "prepare_wall_domains_v2.py": "60e0da4b207bbf0824c58bf33689a4f901a3c619cc2a0e6d655150346e0ff0e1"
+  },
+  "delivered_file_sha256": {
+    "935-observed-region-2-exact-reference.step": "c4b1bf21b65b1f3ea359240d22ea84ecd81cf7febcad4e10305ddbd55980fbcc",
+    "935-observed-region-3-exact-reference.step": "21d7a15e21e4c021c05625fa3599250bc9e17f00b81a1bf1dcf2115b57bfa6d3",
+    "source-models-and-trims.json": "ceb7ab48ab002b08dd90879b31280b6b61af8a16397b225d2a3b3721425a1b64",
+    "935-observed-region-3-cylinder-study.step": "5462274c1060ab1f79c21e8d140de513d3c31ea4bded79150c9fb19cd151f8a4",
+    "935-observed-wall-review.FCStd": "67ce227a046eb1ea5b8658bda06f43e6ccb1262acd1fde69c251339364d84f76",
+    "935-observed-region-1-exact-reference.step": "ee817760882612bd9a9899a781bb9bd2589f90fab09398f065c75c2869d8bb42"
+  },
+  "baseline_catalogue_adopted_or_changed": false,
+  "full_head_created": false,
+  "physical_acceptance": false,
+  "manufacturing_authorized": false,
+  "new_solver_run": false,
+  "new_paid_rental": false,
+  "supplier_contacted": false
+}

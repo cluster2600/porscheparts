@@ -1,0 +1,198 @@
+{
+  "scope": "Read-only retained study-mesh admission audit",
+  "manifest_sha256": "0e9c78cd4433892ac141047f4788886c03798c34de120aaa1d6be7b218bd4b88",
+  "controls": {
+    "regular_analytic_volume_and_unit_quality": true,
+    "inversion_preserves_shape_but_reverses_signed_volume": true,
+    "coplanar_element_zero_volume_and_quality": true,
+    "translation_and_scale_invariance": true
+  },
+  "meshes": {
+    "coarse-tet": {
+      "input_sha256": "fa2f082be38f50fcd8e00b8f384d9824a22bf1d7fcba6aa88472a10c82a4831a",
+      "nodes": 1122773,
+      "tetrahedra": 3098918,
+      "boundary_triangles": 2099584,
+      "boundary_nodes": 1048504,
+      "ordered_boundary_xyz_sha256": "eec5b92ce60d7b889fc7fa2014193175c9e65cfba64872f31c13ea47db90a2e5",
+      "signed_volume_mm3": 1106103.0255224349,
+      "nonpositive_tetrahedra": 0,
+      "quantile_probabilities": [
+        0,
+        0.001,
+        0.01,
+        0.05,
+        0.5,
+        1
+      ],
+      "tetra_mean_ratio_quantiles": [
+        1.0687924700326332e-07,
+        0.0010024855449239545,
+        0.014115608436482867,
+        0.06406287687301389,
+        0.3563476178614303,
+        0.9996378754506343
+      ],
+      "triangle_shape_quality_quantiles": [
+        3.303568619914881e-06,
+        0.002531815836550919,
+        0.025120719807763342,
+        0.12321452642538443,
+        0.8122858208825356,
+        1.0
+      ],
+      "zero_area_boundary_triangles": 0,
+      "diagnostic_bins": [
+        {
+          "mean_ratio_below": 0.01,
+          "count": 22259,
+          "fraction": 0.007182829619886683,
+          "absolute_volume_fraction": 1.4913028107984777e-06,
+          "bad_touching_any_boundary_node": 22259,
+          "boundary_touching_cell_bad_fraction": 0.00816418001321879,
+          "interior_cell_bad_fraction": 0.0
+        },
+        {
+          "mean_ratio_below": 0.1,
+          "count": 263081,
+          "fraction": 0.08489446961810541,
+          "absolute_volume_fraction": 0.0008772766003607912,
+          "bad_touching_any_boundary_node": 263081,
+          "boundary_touching_cell_bad_fraction": 0.09649313275787827,
+          "interior_cell_bad_fraction": 0.0
+        }
+      ],
+      "touch_definition": "At least one vertex belongs to the supplied surface; not an exact boundary-face adjacency classification."
+    },
+    "intermediate-tet": {
+      "input_sha256": "e111536611baf85fb4d3f0cccc5165b3e85131da47a9e6582a44b069230c1b75",
+      "nodes": 1228283,
+      "tetrahedra": 3771342,
+      "boundary_triangles": 2099584,
+      "boundary_nodes": 1048504,
+      "ordered_boundary_xyz_sha256": "eec5b92ce60d7b889fc7fa2014193175c9e65cfba64872f31c13ea47db90a2e5",
+      "signed_volume_mm3": 1106103.0255224349,
+      "nonpositive_tetrahedra": 0,
+      "quantile_probabilities": [
+        0,
+        0.001,
+        0.01,
+        0.05,
+        0.5,
+        1
+      ],
+      "tetra_mean_ratio_quantiles": [
+        1.3835773289379592e-07,
+        0.0015857490389337909,
+        0.022017790250373207,
+        0.09551839126173692,
+        0.4840028991475931,
+        0.9993304838005372
+      ],
+      "triangle_shape_quality_quantiles": [
+        3.303568619914881e-06,
+        0.002531815836550919,
+        0.025120719807763342,
+        0.12321452642538443,
+        0.8122858208825356,
+        1.0
+      ],
+      "zero_area_boundary_triangles": 0,
+      "diagnostic_bins": [
+        {
+          "mean_ratio_below": 0.01,
+          "count": 17823,
+          "fraction": 0.004725903935522156,
+          "absolute_volume_fraction": 6.822010389663212e-07,
+          "bad_touching_any_boundary_node": 17823,
+          "boundary_touching_cell_bad_fraction": 0.006338991466208762,
+          "interior_cell_bad_fraction": 0.0
+        },
+        {
+          "mean_ratio_below": 0.1,
+          "count": 199048,
+          "fraction": 0.05277909030790631,
+          "absolute_volume_fraction": 0.0003625137650215803,
+          "bad_touching_any_boundary_node": 199048,
+          "boundary_touching_cell_bad_fraction": 0.07079411846299286,
+          "interior_cell_bad_fraction": 0.0
+        }
+      ],
+      "touch_definition": "At least one vertex belongs to the supplied surface; not an exact boundary-face adjacency classification."
+    },
+    "fine-interior-tet": {
+      "input_sha256": "dc975dfe28a2c28f75422c7f309f125c4d9003b3da6c06be6216ab14b87814c1",
+      "nodes": 1667305,
+      "tetrahedra": 6624763,
+      "boundary_triangles": 2099584,
+      "boundary_nodes": 1048504,
+      "ordered_boundary_xyz_sha256": "eec5b92ce60d7b889fc7fa2014193175c9e65cfba64872f31c13ea47db90a2e5",
+      "signed_volume_mm3": 1106103.0255224346,
+      "nonpositive_tetrahedra": 0,
+      "quantile_probabilities": [
+        0,
+        0.001,
+        0.01,
+        0.05,
+        0.5,
+        1
+      ],
+      "tetra_mean_ratio_quantiles": [
+        2.4400927305583894e-07,
+        0.004415210214116196,
+        0.05131588132063325,
+        0.19929721477673176,
+        0.7336755393689557,
+        0.9997689432686983
+      ],
+      "triangle_shape_quality_quantiles": [
+        3.303568619914881e-06,
+        0.002531815836550919,
+        0.025120719807763342,
+        0.12321452642538443,
+        0.8122858208825356,
+        1.0
+      ],
+      "zero_area_boundary_triangles": 0,
+      "diagnostic_bins": [
+        {
+          "mean_ratio_below": 0.01,
+          "count": 13258,
+          "fraction": 0.0020012791400990495,
+          "absolute_volume_fraction": 2.435248838876709e-07,
+          "bad_touching_any_boundary_node": 13258,
+          "boundary_touching_cell_bad_fraction": 0.004257152838786907,
+          "interior_cell_bad_fraction": 0.0
+        },
+        {
+          "mean_ratio_below": 0.1,
+          "count": 141748,
+          "fraction": 0.021396689964607037,
+          "absolute_volume_fraction": 0.00012407893937366405,
+          "bad_touching_any_boundary_node": 141748,
+          "boundary_touching_cell_bad_fraction": 0.04551537943825362,
+          "interior_cell_bad_fraction": 0.0
+        }
+      ],
+      "touch_definition": "At least one vertex belongs to the supplied surface; not an exact boundary-face adjacency classification."
+    }
+  },
+  "all_three_ordered_surfaces_identical": true,
+  "quality_metric": "12*(3*absolute_volume)^(2/3) / sum(six_edge_lengths_squared); regular tetrahedron = 1. Not Gmsh minSICN.",
+  "threshold_scope": "0.01 and 0.1 are diagnostic bins, not engineering acceptance tolerances.",
+  "geometry_admissibility": "Closed reconstructed assembly under explicit hypotheses, with inferred closures and unresolved thin regions; not an accepted bare-head domain.",
+  "engineering_mesh_accepted": false,
+  "physical_geometry_accepted": false,
+  "manufacturing_authorized": false,
+  "audit_source_sha256": "c1d93c8018e03c628cda261c16304b0dca26eb575967953e828e9a16cb9f610c",
+  "runtime": {
+    "python": "3.13.18",
+    "numpy": "2.3.4"
+  },
+  "negative_controls": {
+    "existing_output_refused": true,
+    "existing_output_unchanged": true,
+    "input_hash_mismatch_refused": true,
+    "no_output_after_input_rejection": true
+  }
+}

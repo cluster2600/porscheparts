@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "scope": "local CADAM/Qwen synthetic coupon software acceptance",
+  "date": "2026-11-04",
+  "cadam_commit": "e339e3ad85601bb1e23a5ff9c7f33b51ddf602f5",
+  "model": "lmstudio-community/Qwen3.6-35B-A3B-MLX-4bit",
+  "upstream_model_revision": null,
+  "model_provenance": "Existing local bytes; private model receipt pins all 15 model/config/tokenizer files by SHA-256. No download.",
+  "runtime": {
+    "mlx": "0.32.3",
+    "mlx_lm": "0.31.3",
+    "transformers": "5.17.0",
+    "node": "26.12.1"
+  },
+  "private_bundle": "~/Developer/PorschePartsArtifacts/cadam-qwen-calibration-20261104",
+  "private_manifest_sha256": "93ee9f47384435d384fe525ee26be5928725ef575b9e2dce821828a130a9c12d",
+  "trials": [
+    {
+      "id": "2026-11-04T12-40-45-125Z-319cd924",
+      "source_sha256": "45cdef0e1f2b887272aca1196455476e2e8d06dd81c1b780525e2ab3276acf53",
+      "stl_sha256": "9e4dba550ad6ea406a8b7300791e8ababd5c26fa96c830c3f9905ff5fc21bfbe",
+      "model": "Qwen3.6-35B-A3B \u00b7 4-bit \u00b7 local MLX",
+      "seconds": 23.038,
+      "checks": 70,
+      "passed": true,
+      "uiSourceMatchesModel": true,
+      "downloadMatchesVerifiedMesh": true
+    },
+    {
+      "id": "2026-11-04T12-42-31-596Z-3db81bb1",
+      "source_sha256": "45cdef0e1f2b887272aca1196455476e2e8d06dd81c1b780525e2ab3276acf53",
+      "stl_sha256": "9e4dba550ad6ea406a8b7300791e8ababd5c26fa96c830c3f9905ff5fc21bfbe",
+      "model": "Qwen3.6-35B-A3B \u00b7 4-bit \u00b7 local MLX",
+      "seconds": 17.385,
+      "checks": 70,
+      "passed": true,
+      "uiSourceMatchesModel": true,
+      "downloadMatchesVerifiedMesh": true
+    }
+  ],
+  "backend_unit_checks": 8,
+  "api_negative_controls": 9,
+  "nonlocal_socket_denied_by_os": true,
+  "browser_external_attempts": 0,
+  "no_scan_input": true,
+  "functional_head_accepted": false,
+  "metal_process_qualified": false,
+  "manufacturing_authorized": false,
+  "limitations": [
+    "Explicit synthetic design dimensions, not physical specimen measurements.",
+    "Initial invalid model attempts and exhausted reasoning budget retained privately.",
+    "Final prompt uses a generic CSG grammar example; no reference coupon source sent.",
+    "Two successful runs do not establish general CAD generation reliability.",
+    "No new head simulations or manufacturing job executed in this documentation increment."
+  ]
+}

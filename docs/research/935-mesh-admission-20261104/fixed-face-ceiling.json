@@ -1,0 +1,51 @@
+{
+  "scope": "Necessary shape-quality bound for exact fixed study boundary triangles; no physical-part verdict",
+  "source_sha256": "d2c856515389e88ee95092a399dd953841ff790c93212d2673985be1a6df48f6",
+  "input_sha256": {
+    "mesh": "6834ce643765953f6ed462c5ba577c41d409b8da132b0689f95f6a0982755e39",
+    "surface": "7b40f5eb3707fa0dfe80c154058f759135070c81a710df2b9dfa01c42043ee16",
+    "parent": "e6878961194caf209cbb0521709b5041cf6ff62cced7f63560acddeef9252f94",
+    "protected": "f9172eabbabd4ea979c93b47afa72f3952feb325daf5c95045c3a5ca6b43b6e2"
+  },
+  "tet_verification_sha256": "2f8b082ce330dffa21e4011632b8e2bd4653d9013b38d8d443534b26af5db5a0",
+  "controls": {
+    "optimal_apex_equality_0": true,
+    "off_optimum_samples_bounded_0": true,
+    "optimal_apex_equality_1": true,
+    "off_optimum_samples_bounded_1": true,
+    "optimal_apex_equality_2": true,
+    "off_optimum_samples_bounded_2": true,
+    "optimal_apex_equality_3": true,
+    "off_optimum_samples_bounded_3": true,
+    "regular_face_ceiling_one": true
+  },
+  "formula": "maximum tetrahedron mean ratio = triangle shape quality ** (2/3)",
+  "diagnostic_mean_ratio_threshold": 0.01,
+  "tetrahedra": 3770701,
+  "actual_cells_below_threshold": 14752,
+  "boundary_faces_forcing_subthreshold_tets": 213,
+  "distinct_actual_cells_adjacent_to_forced_faces": 208,
+  "forced_faces_all_vertices_locked": 157,
+  "distinct_cells_forced_by_all_vertex_locked_faces": 155,
+  "forced_faces_directly_protected": 75,
+  "distinct_cells_forced_by_directly_protected_faces": 75,
+  "minimum_boundary_triangle_quality": 3.303568619914881e-06,
+  "smallest_fixed_face_tetra_mean_ratio_ceiling": 0.0002218139665591461,
+  "actual_cell_bound_checks_pass": true,
+  "all_forced_faces_match_one_actual_low_quality_cell": true,
+  "provenance_sha256": "f769f9b462955de62613998b270e1deb700c1a794d497e2d0dcbf2f9b1b48006",
+  "bound_limit": "Double-precision analytic evaluation; diagnostic threshold, not an engineering allowable. Applies while these exact boundary triangles are retained; no bound on alternative surface tessellations.",
+  "physics_admitted": false,
+  "physical_acceptance": false,
+  "manufacturing_authorized": false,
+  "execution": {
+    "exit_code": 0,
+    "seconds": 2.18784304196015,
+    "log_sha256": "0a22da6a123384be7dcd5040917c191fc702f333dc293fa0e029ec8e7c154fa1"
+  },
+  "private_manifest_sha256": "1df193219464f033af704905386c480d9fba001a1a221e7bfd3ae729e0fb7929",
+  "private_files": 8,
+  "combinatorial_floor_if_all_forced_faces_retained": 54,
+  "combinatorial_floor_if_directly_protected_forced_faces_retained": 19,
+  "combinatorial_floor_scope": "At most four boundary faces per tet; floor across tessellations retaining the counted exact triangles. Distinct actual-cell counts above refer only to this generated mesh."
+}

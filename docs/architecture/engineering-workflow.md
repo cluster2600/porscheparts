@@ -118,6 +118,15 @@ Reuse the existing Vast deadline guard and narrow OpenBao wrapper. A collection
 failure must not leave an unlimited rental running. Never upload raw restricted
 scans or proprietary manuals as part of an AI dataset.
 
+## Local CADAM/Qwen coupon branch
+
+Use the [local proposal runbook](cadam-local-qwen.md) for the separately tested
+CADAM/MLX branch. Its contract is prompt → Qwen OpenSCAD → CADAM WASM STL →
+independent dimensional assessment. Keep every failed candidate. A source edit
+invalidates its prior verification. Its accepted synthetic coupon does not admit
+a head to reconstruction, CFD, CHT, strength or LPBF. PicoGK remains the
+new-engine-geometry route; no STL-to-STEP or OpenSCAD-to-PicoGK bridge is claimed.
+
 ## Local Qwen pilot
 
 The owner's follow-up changes the first increment to **documentation, then

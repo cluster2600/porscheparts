@@ -1,0 +1,12 @@
+{
+  "scope": "Follow-up preserving native OCCT/FreeCAD reference after the STEP reader-sharing gate failed; original STEP gate remains unaccepted",
+  "parent_atlas_plan_sha256": "44474c8d5de477d225361a7ac538f190d581a0f37e4c97264a79ebc71b23875f",
+  "evidence": "Default unit-square STEP reopened with 6 vertices / 6 edges instead of original 4 / 5. Nonmanifold writer profiles serialized 4 / 5 but the inspected reader still reopened 6 / 6.",
+  "method": "Write the same independently admitted original-vertex/original-edge disk-grouped compound as native OCCT BREP. Independently reopen and check every source triangle, global sharing, disk shells and zero solids. Preserve rejected STEP files and all failures.",
+  "units": "BREP is unitless; a SHA-bound units sidecar records owner-confirmed millimetres, not independent metrology.",
+  "followup": "If native BREP passes, create a separate source-reference FreeCAD document, save/reopen, export each actual saved feature as BREP and repeat independent original-source inspection.",
+  "unchanged": "No geometry repair, point welding, coordinate changes, dropped faces, inferred galleries, fitting or fabrication; original STEP sharing requirement is not relaxed.",
+  "occt_primary_source": "https://raw.githubusercontent.com/Open-Cascade-SAS/OCCT/V7_9_3/src/STEPControl/STEPControl_Controller.cxx",
+  "physical_acceptance": false,
+  "manufacturing_authorized": false
+}

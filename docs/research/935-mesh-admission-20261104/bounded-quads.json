@@ -1,0 +1,157 @@
+{
+  "date": "2026-11-04",
+  "scope": "Whole reconstructed assembly study surface; bounded face-disjoint quad flips",
+  "plan": {
+    "input_sha256": "fa2f082be38f50fcd8e00b8f384d9824a22bf1d7fcba6aa88472a10c82a4831a",
+    "protection_sha256": "f9172eabbabd4ea979c93b47afa72f3952feb325daf5c95045c3a5ca6b43b6e2",
+    "source_sha256": "a525da760cd59953cff64e158de35142de64861a50fb32e160e855e101fc6254",
+    "helper_sha256": "57a29abf66e66f59e5eb8926fdf0dd75a3880e57928f9d28dd587a27d7d96c92",
+    "inspector_sha256": "3e7917f938055267516032069c833481d5fd0bcad4078778f81a8ec84edb65b4",
+    "passes": 1,
+    "selection": "Only edges incident to quality<0.01 faces; deterministic maximal disjoint face-pair selection",
+    "candidate_bound_limit_mm": 0.0099,
+    "admission_bound_limit_mm": 0.01,
+    "relative_volume_change_limit": 0.0001,
+    "bad_triangle_reduction_min_fraction": 0.5,
+    "identical_vertices_and_protected_face_rows": true,
+    "upstream_admission": "Closed reconstructed assembly study only; inferred surfaces and unknown physical interfaces persist",
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "controls": {
+    "known_twist_0": true,
+    "known_twist_0.01": true,
+    "known_twist_0.2": true,
+    "degenerate_chart_refused": true,
+    "concave_chart_refused": true,
+    "planar_flip_has_zero_distance_bound": true,
+    "asymmetric_quad_quality_improves": true
+  },
+  "assessment": {
+    "before": {
+      "quantiles": [
+        3.303568619914881e-06,
+        0.002531815836550919,
+        0.025120719807763342,
+        0.12321452642538443,
+        0.8122858208825356,
+        1.0
+      ],
+      "below_0p01": 8489,
+      "below_0p1": 85069,
+      "surface_area_mm2": 173298.45456554726,
+      "signed_volume_mm3": 1106103.0255224346
+    },
+    "after": {
+      "quantiles": [
+        3.303568619914881e-06,
+        0.0026074204074463423,
+        0.025618273037100077,
+        0.1232882473208107,
+        0.8122553253717555,
+        1.0
+      ],
+      "below_0p01": 6876,
+      "below_0p1": 84985,
+      "surface_area_mm2": 173298.4497563905,
+      "signed_volume_mm3": 1106103.0255226304
+    },
+    "eligible_edges": 22725,
+    "qualified_candidates": 1615,
+    "flips": 1609,
+    "changed_rows": 3218,
+    "bad_triangle_reduction_fraction": 0.19001060195547181,
+    "maximum_patch_bound_mm": 0.008534347723521268,
+    "processing_seconds": 17.508784875040874,
+    "checks": {
+      "native_geometry": true,
+      "protected_rows_exact": true,
+      "same_face_count": true,
+      "quality_reduction": false,
+      "relative_volume": true,
+      "all_disjoint_patch_bounds": true
+    },
+    "accepted_for_next_study_stage": false,
+    "independent_verification_pending": true,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "independent_verification": {
+    "before": {
+      "bad_triangles": 8489,
+      "minimum_quality": 3.303568619914881e-06,
+      "signed_volume_mm3": 1106103.0255224346,
+      "zero_area_faces": 0
+    },
+    "after": {
+      "bad_triangles": 6876,
+      "minimum_quality": 3.303568619914881e-06,
+      "signed_volume_mm3": 1106103.0255226304,
+      "zero_area_faces": 0
+    },
+    "flips": 1609,
+    "maximum_independent_patch_bound_mm": 0.008534347723522224,
+    "components": 1,
+    "euler_characteristic": -1288,
+    "protected_triangles": 111463,
+    "refusal_controls": {
+      "forged_bound": true,
+      "overlapping_patches": true
+    },
+    "bad_triangle_reduction_fraction": 0.19001060195547181,
+    "checks": {
+      "unchanged_vertices": true,
+      "unchanged_protected_triangles": true,
+      "disjoint_patch_bound_under_0p01mm": true,
+      "same_topology": true,
+      "no_zero_area_faces": true,
+      "native_no_intersections": true,
+      "relative_volume": true,
+      "bad_triangle_reduction_at_least_half": false
+    },
+    "accepted_for_volume_meshing": false,
+    "native_input_sha256": "96ab1e4528cb460aa049d6ba646baef1fc60f88bb1006fc4a02e8a2565ebbe50",
+    "native_report_sha256": "7fbc82a633e7dca9b4b83c3b648f8c4aafbe776c6749aab7d0e8e3f70c1c9307",
+    "source_sha256": "dda5508ecc09146264ec8bf6e0dd935ec4cd41d0ea563243e63004ec9786d6aa",
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "bound_scope": "Double-precision analytic corresponding-point bound on convex, face-disjoint quads; not interval-arithmetic certification or scan-to-specimen metrology."
+  },
+  "selection_ceiling": {
+    "qualified_original_edges": 1615,
+    "bad_faces_removed_per_flip_maximum": 2,
+    "conservative_bad_triangle_reduction_ceiling": 3230,
+    "ceiling_fraction": 0.38049240193191186,
+    "required_reduction_fraction": 0.5,
+    "scope": "Combinatorial upper bound conditional on the recorded initial candidate enumeration and face-disjoint one-pass contract; not a bound on all remeshing algorithms."
+  },
+  "execution": {
+    "driver_exit_code": 0,
+    "verifier_exit_code": 0,
+    "timeout_occurred": false,
+    "controller": "gtimeout --signal=TERM --kill-after=10s 600s",
+    "native_child_timeout_seconds": 300,
+    "source_inputs_rehashed_unchanged": true,
+    "paid_rental": false,
+    "solver_launched": false
+  },
+  "runtime": {
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "libigl": "2.6.3",
+    "pymeshlab": "2025.7.post1"
+  },
+  "source_sha256": {
+    "trial_bounded_quad_flips.py": "a525da760cd59953cff64e158de35142de64861a50fb32e160e855e101fc6254",
+    "verify_bounded_quad_flips.py": "dda5508ecc09146264ec8bf6e0dd935ec4cd41d0ea563243e63004ec9786d6aa",
+    "trial_planar_flips.py": "57a29abf66e66f59e5eb8926fdf0dd75a3880e57928f9d28dd587a27d7d96c92"
+  },
+  "private_files": 18,
+  "private_manifest_sha256": "793308cee3fdd22be76aadbf802cc9c1cc0cf42a19a1018e0960af5f5b9f54e1",
+  "accepted_for_volume_meshing": false,
+  "full_head_created": false,
+  "physical_acceptance": false,
+  "manufacturing_authorized": false,
+  "private_command_record_sha256": "ff29c984daef80369a1bc3d3e97ada939955051836c3b4dcfb821756fc451f4a",
+  "independent_verification_state": "completed_rejected_for_quality"
+}

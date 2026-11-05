@@ -1,5 +1,12 @@
 # Part workflow
 
+For explicitly dimensioned auxiliary coupons, the optional
+[local CADAM/Qwen branch](architecture/cadam-local-qwen.md) supplies proposals
+and independently checked STL exports. It sits within reconstruction studies;
+it does not bypass acquisition, specimen metrology, simulation or manufacturing
+qualification. [ADR 0015](decisions/0015-local-cadam-qwen-proposals.md) records
+the accepted software scope and private-data boundary.
+
 ```mermaid
 flowchart TD
     S0["0 · Candidate selection<br/>a list to sort, not a decision"] --> S1["1 · Need qualification<br/>accepted or rejected, justified"]

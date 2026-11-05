@@ -1,0 +1,141 @@
+{
+  "date": "2026-11-04",
+  "scope": "Explicit-constraint software witness and real-input preflight only",
+  "native_controls": {
+    "controls": {
+      "positive_protected_oriented_triangles_exact": true,
+      "positive_output_changed": true,
+      "positive_no_intersections": true,
+      "positive_no_degeneracies": true,
+      "positive_valid_polygon_mesh": true,
+      "short_constraint_rejected": true,
+      "short_constraint_no_mesh": true,
+      "head_0p5_refused_before_remeshing": true,
+      "head_0p7_length_check_passes_only": true,
+      "inputs_unchanged": true
+    },
+    "all_checks_passed": true,
+    "head_preflight": {
+      "head-0p5": {
+        "vertices": 1048504,
+        "triangles": 2099584,
+        "protected_faces": 111463,
+        "locked_edges": 492169,
+        "locked_vertices": 342090,
+        "target_mm": 0.5,
+        "max_locked_edge_mm": 0.8658035326517453,
+        "oversize_locked_edges": 102444,
+        "installed_long_edge_factor": 1.3333333333333333,
+        "preflight_only": true,
+        "length_precondition_passed": false,
+        "remeshing_requested_after_preflight": false
+      },
+      "head-0p7": {
+        "vertices": 1048504,
+        "triangles": 2099584,
+        "protected_faces": 111463,
+        "locked_edges": 492169,
+        "locked_vertices": 342090,
+        "target_mm": 0.7,
+        "max_locked_edge_mm": 0.8658035326517453,
+        "oversize_locked_edges": 0,
+        "installed_long_edge_factor": 1.3333333333333333,
+        "preflight_only": true,
+        "length_precondition_passed": true,
+        "remeshing_requested_after_preflight": false
+      }
+    },
+    "witness_before": {
+      "vertices": 25,
+      "faces": 32
+    },
+    "witness_after": {
+      "vertices": 25,
+      "faces": 32
+    },
+    "full_head_remesher_executed": false,
+    "full_head_accepted": false,
+    "manufacturing_authorized": false,
+    "scope": "Exact-protection runtime witness and real-data length admission, not a qualified head mesh."
+  },
+  "order_independent_witness": {
+    "original_faces": 32,
+    "output_faces": 32,
+    "original_oriented_triangles_not_exactly_preserved": 22,
+    "protected_oriented_triangles_exact": true,
+    "unprotected_original_triangles_changed": 22,
+    "input_hashes": {
+      "before": "71deeec1c5308d3e97584989e6f7638aab7a42e46da77c711129089948ab1fa1",
+      "after": "79226c1e925db0c69ff61cfafbadedcca5f022dcac0850c778622fa777a07f29",
+      "mask": "f2fee51a01545828f1efd49c3b3330adad9e60af1499c53414288fbfed3dddfb"
+    },
+    "passed": true
+  },
+  "constraint_quality_feasibility": {
+    "locked_edges_independent": 492169,
+    "locked_vertices_independent": 342090,
+    "immutable_triangle_bound": 132519,
+    "original_bad_triangles": 8489,
+    "bad_triangles_with_all_three_edges_locked": 708,
+    "best_possible_bad_triangle_reduction_if_all_locked_edges_preserved": 0.9165979502886088,
+    "native_counts_match": true,
+    "input_hashes": {
+      "parent": "93e08936b4f959f195fe83e6eea3de24b50a5445ac4030bdba2e4bc9ccc4da48",
+      "protected": "f9172eabbabd4ea979c93b47afa72f3952feb325daf5c95045c3a5ca6b43b6e2",
+      "native": "b1a91056081b496d98a80447d96c87fa25ca442fa4678624e9d3d947bb601d4f"
+    },
+    "scope": "Necessary quality-feasibility bound only; no full remesh or physical acceptance."
+  },
+  "full_parent_roundtrip": {
+    "vertex_arrays_identical": true,
+    "face_arrays_identical": true,
+    "vertices": 1048504,
+    "faces": 2099584,
+    "off_sha256": "7124f38238782e6f7a07c3d2cfe73c0c988f6147bd8ac734748e8d0c83b5111a",
+    "npz_sha256": "93e08936b4f959f195fe83e6eea3de24b50a5445ac4030bdba2e4bc9ccc4da48"
+  },
+  "runtime": {
+    "cgal_version": "6.2.1",
+    "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)\nTarget: arm64-apple-darwin27.2.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+    "kernel_source_sha256": "6d9e0d93c16c312afd0aeb84bd895e1daf276e3539a7993344417b470c54c0f7",
+    "kernel_binary_sha256": "1e77d42dd18aa8de0da7632a795ea4e3ddd6ccea5ec91aef1922c6821827024d",
+    "installed_header_sha256": {
+      "remesh.h": "05fa7984340fe16b81e809392c5a95f38bda9239a780b8c4ad079e67eabaf585",
+      "Uniform_sizing_field.h": "55c92743b7959958dda319bd580a3325ed727d8753b744749468674b58137dd3"
+    },
+    "compile_arguments": [
+      "/usr/bin/clang++",
+      "-std=c++17",
+      "-O2",
+      "-I/opt/homebrew/include",
+      "constrained_patch_witness.cpp",
+      "-L/opt/homebrew/lib",
+      "-lgmp",
+      "-lmpfr",
+      "-o",
+      "constrained_patch_witness"
+    ],
+    "no_precondition_disabling_defines": true,
+    "scope": "Native local constraint witness; compilation does not accept full-head geometry."
+  },
+  "execution": {
+    "exit_code": 0,
+    "timed_out": false
+  },
+  "private_manifest_sha256": "831743594439f419d0a3721efc0318db72df1b54dacdf9c103130800942ceaa3",
+  "source_sha256": {
+    "constrained_patch_witness.cpp": "6d9e0d93c16c312afd0aeb84bd895e1daf276e3539a7993344417b470c54c0f7",
+    "run_constraint_controls.py": "9d8edf82ba0b1b44851a526e58453c1e3770e650dcd8758b1b7509f0d8b06388",
+    "verify_constraint_witness.py": "b08815869d0506435363152e48cb69fc407ceda909978785cc8546f406d46c05",
+    "audit_constraint_feasibility.py": "4f1f490c51bd3573728610f8f06b2a825423866c8ab66a7cc3618387f3df2b8d",
+    "trial_planar_flips.py": "57a29abf66e66f59e5eb8926fdf0dd75a3880e57928f9d28dd587a27d7d96c92",
+    "trial_isotropic.py": "272cb604b00cb446c0247dd9d45b1e1b7239d0b3ddf5d680cdd2b5df5846c3ed",
+    "trial_masked_isotropic_v2.py": "5430b17d029247f7fc5c5f65717bf7ed06c4261f8e695ddea8deecc7c23f5dfc",
+    "inspect_vertex_topology.py": "a36df815e394f045fcdc0ed58b80d4a09208e129a09fcf6a659c22c53857292a"
+  },
+  "minimum_uniform_target_from_longest_constraint_mm": 0.6493526494888089,
+  "full_head_remesher_executed": false,
+  "functional_geometry_accepted": false,
+  "manufacturing_authorized": false,
+  "new_paid_rental": false
+}

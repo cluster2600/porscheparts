@@ -109,6 +109,14 @@ flowchart TB
 `deployment` is an explicit project shorthand, not a standard ArchiMate edge.
 The view documents allocation; the workflow defines execution order.
 
+## Local CADAM proposal service
+
+The [CADAM/Qwen runbook](cadam-local-qwen.md) and
+[ADR 0015](../decisions/0015-local-cadam-qwen-proposals.md) add a tested Mac-only
+OpenSCAD proposal service for synthetic coupons. Two local generations passed
+independent digital checks. This service does not replace PicoGK, existing
+STEP/FreeCAD masters or solver admission.
+
 ## Runtime choices
 
 The [USD BRep and LPBF extension](usd-brep-lpbf.md) adds an isolated exact-solid
