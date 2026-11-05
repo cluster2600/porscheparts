@@ -1,18 +1,18 @@
-# Revue de la recette v3
+# Review of the v3 recipe
 
-La [recette](../../../../../manufacturing/workflows/993-carrier-lpbf-v3.json)
-comporte 37 étapes et 271 fichiers épinglés. Le
-[reçu](assessment.json) conserve la vérification des identités, des commandes
-et de la fermeture des sources nécessaires aux calculs et aux installateurs.
-Les douze premières étapes, les 45 entrées v1 et les 211 entrées v2 restent
-identiques. Les archives logicielles binaires sont conservées hors Git.
+The [recipe](../../../../../manufacturing/workflows/993-carrier-lpbf-v3.json)
+has 37 steps and 271 pinned files. The
+[receipt](assessment.json) preserves the verification of identities, commands
+and source closure needed by the calculations and the installers.
+The first twelve steps, the 45 v1 entries and the 211 v2 entries remain
+identical. Binary software archives are kept outside Git.
 
-Les [arguments](argv-results.json) ont été acceptés par 36 parseurs réellement
-importés ; la CLI restante, à un seul chemin, a été vérifiée statiquement.
-Aucun corps de commande, solveur ou tranchage n’a été exécuté par cette revue.
-La [fermeture des sources](closure-results.json) distingue les dépendances
-utilisées des fichiers de sortie et des anciens chemins optionnels.
+The [arguments](argv-results.json) were accepted by 36 actually imported
+parsers; the remaining single-path CLI was checked statically.
+No command body, solver or slicing was executed by this review.
+The [source closure](closure-results.json) distinguishes the dependencies
+used from the output files and from old optional paths.
 
-Les trois reçus sont des copies exactes du contrôle effectué avant le gel.
-Ils ne constituent pas un rejeu complet du carrier. Les passages réels et
-leurs admissions gardent leurs résultats propres.
+The three receipts are exact copies of the check carried out before the freeze.
+They do not constitute a complete replay of the carrier. The real runs and
+their admissions keep their own results.

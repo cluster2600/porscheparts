@@ -72,7 +72,7 @@ or fetching anything else; do not assume that startup downloads are free.
    `--exec open_scene.py` arguments. This private-only adaptation still needs
    native verification; the station launcher's public-port prerequisite must
    not be satisfied with fabricated provider metadata.
-5. Reuse [the bounded SSH media relay](../../../../containers/picogk-station-kit/README.md#repli-média-par-ssh)
+5. Reuse [the bounded SSH media relay](../../../../containers/picogk-station-kit/README.md#ssh-media-fallback)
    with the current manifest deadline, without its persistent mode. Forward
    TCP 49100 and 47999 to local loopback through the approved SSH connection.
    Serve the built client on local loopback, and connect it to loopback media

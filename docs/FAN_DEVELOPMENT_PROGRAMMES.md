@@ -1,93 +1,93 @@
-# Deux programmes de ventilation améliorée : 993 et architecture 935
+# Two improved cooling-fan programmes: 993 and 935 architecture
 
-Périmètre confirmé le 3 octobre 2026 : deux projets distincts, avec réduction
-de masse et augmentation de l'air utile envoyé sur le moteur dans les deux cas.
-PicoGK sert à construire les géométries éditables ; les calculs et les mesures
-établissent les caractéristiques et alimentent les jumeaux numériques.
+Scope confirmed on 3 October 2026: two distinct projects, with mass
+reduction and an increase in useful air delivered to the engine in both cases.
+PicoGK is used to build the editable geometries; calculations and measurements
+establish the characteristics and feed the digital twins.
 
-| Programme | Architecture conservée | Objectif et dossier |
+| Programme | Architecture kept | Objective and dossier |
 |---|---|---|
-| `FAN-993-VERTICAL` | Rotor dans un plan vertical ; axe horizontal dans le repère moteur | Améliorer le ventilateur 993 et son fonctionnement dans le circuit moteur : masse, pales, débit utile et distribution. [Programme existant](../twins/993-engine-cooling-fan-system-f0/README.md) |
-| `FAN-935-HORIZONTAL` | Rotor à plat au-dessus du moteur ; axe vertical dans le repère moteur | Recréer l'ensemble rotor, support, entraînement, carter et guides de l'architecture 935, puis l'améliorer avec matériaux, procédés et géométries actuels. [Recherche système](research/935-horizontal-cooling/README.md) |
+| `FAN-993-VERTICAL` | Rotor in a vertical plane; horizontal axis in the engine frame | Improve the 993 fan and its operation in the engine circuit: mass, blades, useful flow and distribution. [Existing programme](../twins/993-engine-cooling-fan-system-f0/README.md) |
+| `FAN-935-HORIZONTAL` | Rotor lying flat above the engine; vertical axis in the engine frame | Recreate the rotor, support, drive, housing and guide assembly of the 935 architecture, then improve it with current materials, processes and geometries. [System research](research/935-horizontal-cooling/README.md) |
 
-Le programme 993 existant étudie une référence hypothétique Turbo M64.60 ;
-la variante exacte et ses interfaces restent à qualifier avant une pièce
-fonctionnelle.
+The existing 993 programme studies a hypothetical Turbo M64.60 reference;
+the exact variant and its interfaces remain to be qualified before a functional
+part.
 
-Ordre confirmé par le propriétaire le 6 octobre 2026 pour le programme
-horizontal : reproduire d'abord le système et son montage sur une **935**,
-puis développer une version horizontale adaptée à un **moteur de 993**.
-La première étape conserve la géométrie, l'implantation et les interfaces
-historiques documentées ; l'adaptation possède ses propres fixations,
-transmission, carter et guides d'air. Les variantes exactes du donneur 935 et
-des moteurs récepteurs restent à identifier. Le programme `FAN-993-VERTICAL`
-reste distinct de cette adaptation horizontale.
+Order confirmed by the owner on 6 October 2026 for the horizontal
+programme: first reproduce the system and its mounting on a **935**,
+then develop a horizontal version adapted to a **993 engine**.
+The first step keeps the documented historical geometry, layout and
+interfaces; the adaptation has its own mountings,
+transmission, housing and air guides. The exact variants of the 935 donor and
+of the receiving engines remain to be identified. The `FAN-993-VERTICAL` programme
+remains distinct from this horizontal adaptation.
 
-## Référence et versions améliorées
+## Reference and improved versions
 
-Chaque programme possède une référence caractérisée, puis des variantes
-`improved-*` avec géométrie, matériaux, interfaces et résultats propres.
-La référence sert à mesurer les gains. Une région interne redessinée dispose
-d'un statut de reconception ; elle n'est pas déclarée copiée du scan extérieur.
+Each programme has a characterised reference, then `improved-*` variants
+with their own geometry, materials, interfaces and results.
+The reference is used to measure the gains. A redesigned internal region has
+a redesign status; it is not declared copied from the external scan.
 
-Les deux programmes peuvent partager outils, méthodes de calcul et essais.
-Leurs paramètres, assemblages et champs de simulation restent associés à leur
-identité. Les scans annoncés par le propriétaire comme pièces 935 alimentent
-le programme horizontal ; leur ancien classement M64 ne démontre pas une
-compatibilité 993.
+The two programmes may share tools, calculation methods and tests.
+Their parameters, assemblies and simulation fields remain tied to their
+identity. The scans announced by the owner as 935 parts feed
+the horizontal programme; their former M64 classification does not demonstrate
+993 compatibility.
 
-## Mesurer les gains
+## Measuring the gains
 
-Comparer séparément masse du rotor, inertie tournante et masse de l'ensemble,
-avec bilan matière et composants normalisés inclus. Un rotor allégé peut
-modifier les transitoires sans réduire autant la masse du système complet.
+Compare separately rotor mass, rotating inertia and assembly mass,
+with material balance and standard components included. A lightened rotor can
+change the transients without reducing the mass of the complete system as much.
 
-Comparer référence et variante à régime de rotor, densité d'air, circuit et
-contre-pression cohérents. Publier débit, pression, couple, puissance et
-répartition entre zones moteur. Une seconde comparaison à budget de puissance
-commun permet d'évaluer le coût du gain de débit. Le rapport d'entraînement
-établit le lien entre régime moteur et régime du rotor.
+Compare reference and variant at consistent rotor speed, air density, circuit and
+back-pressure. Publish flow, pressure, torque, power and
+distribution between engine zones. A second comparison at a common power
+budget makes it possible to assess the cost of the flow gain. The drive ratio
+establishes the link between engine speed and rotor speed.
 
-L'objectif porte sur l'air qui atteint les passages de refroidissement et sur
-les températures correspondantes lorsque les charges thermiques sont connues.
-Les mesures et les calculs doivent résoudre les gains au-delà de leurs
-incertitudes. Aucun pourcentage de gain n'est fixé avant la référence mesurée.
+The objective concerns the air that reaches the cooling passages and
+the corresponding temperatures when the thermal loads are known.
+Measurements and calculations must resolve the gains beyond their
+uncertainties. No gain percentage is set before the measured reference.
 
-Le propriétaire a retenu trois familles pour la fabrication additive des
-versions améliorées : aluminium, magnésium et titane. Le
-[dossier matière et procédé](research/935-horizontal-cooling/ADDITIVE_MATERIALS.md)
-documente AlSi10Mg, WE43 et Ti64 comme candidats de départ. Le choix est
-propre à chaque pièce et ne découle pas de la matière historique.
+The owner has selected three families for additive manufacturing of the
+improved versions: aluminium, magnesium and titanium. The
+[material and process dossier](research/935-horizontal-cooling/ADDITIVE_MATERIALS.md)
+documents AlSi10Mg, WE43 and Ti64 as starting candidates. The choice is
+specific to each part and does not follow from the historical material.
 
-Le [rapport comparatif des alliages](../twins/fan-alloy-comparison-f0/README.md)
-présente les calculs masse, inertie et centrifuge sur le rotor paramétrique
-993, ainsi que les essais PicoGK de reconstruction volumique du scan 935.
+The [alloy comparison report](../twins/fan-alloy-comparison-f0/README.md)
+presents the mass, inertia and centrifugal calculations on the parametric 993
+rotor, as well as the PicoGK trials of volumetric reconstruction of the 935 scan.
 
-| Levier d'amélioration | Effet à étudier | Contraintes à vérifier |
+| Improvement lever | Effect to study | Constraints to verify |
 |---|---|---|
-| Sections, corde, cambrure, vrillage et extrémités de pales | Débit, pression, rendement, recirculation et bruit | Racines, épaisseurs, centrifuge, jeu et fabrication |
-| Structure des pales, moyeu et support | Masse, inertie et raideur | Déformation, modes, fatigue, températures et équilibrage |
-| Matériau et procédé actuels | Masse et propriétés réalisables | État matière, défauts, traitements, inspection et interfaces |
-| Carter, entrée et guides | Pertes et distribution sur le moteur | Encombrement, étanchéité et accès maintenance |
-| Transmission et appuis du système horizontal | Pertes, masse et couple transmis | Denture, arbres, durée de vie, lubrification et chaleur |
+| Blade sections, chord, camber, twist and tips | Flow, pressure, efficiency, recirculation and noise | Roots, thicknesses, centrifugal load, clearance and manufacturing |
+| Structure of the blades, hub and support | Mass, inertia and stiffness | Deformation, modes, fatigue, temperatures and balancing |
+| Current material and process | Mass and achievable properties | Material condition, defects, treatments, inspection and interfaces |
+| Housing, inlet and guides | Losses and distribution over the engine | Packaging, sealing and maintenance access |
+| Transmission and bearings of the horizontal system | Losses, mass and transmitted torque | Gear teeth, shafts, service life, lubrication and heat |
 
-Les variantes cherchent un compromis mesurable entre masse, air utile et
-puissance consommée, sous les contraintes mécaniques et thermiques. Retirer
-de la matière ou augmenter le régime ne démontre pas à lui seul l'amélioration
-du refroidissement.
+The variants seek a measurable compromise between mass, useful air and
+power consumed, under the mechanical and thermal constraints. Removing
+material or increasing speed does not by itself demonstrate an improvement
+in cooling.
 
-## Ordre du travail
+## Order of work
 
-1. Établir identités, unités, repères et contrats d'interfaces des deux projets.
-2. Construire leurs références éditables, dont l'assemblage horizontal complet.
-3. Caractériser ces références : géométrie, masse/inertie, entraînement,
-   aérodynamique installée, structure, vibrations et thermique disponible.
-4. Générer des variantes contrôlées et comparer les gains à conditions définies.
-5. Confronter les variantes retenues aux essais et construire deux jumeaux
-   associés aux bonnes géométries, conditions et mesures.
+1. Establish identities, units, frames and interface contracts for both projects.
+2. Build their editable references, including the complete horizontal assembly.
+3. Characterise these references: geometry, mass/inertia, drive,
+   installed aerodynamics, structure, vibrations and available thermal data.
+4. Generate controlled variants and compare the gains under defined conditions.
+5. Confront the selected variants with tests and build two twins
+   tied to the right geometries, conditions and measurements.
 
-Le [plan horizontal](research/935-horizontal-cooling/RECONSTRUCTION_PLAN.md)
-détaille la reconstruction et l'optimisation système. Le
-[plan de validation 993](../twins/993-engine-cooling-fan-system-f0/program/VALIDATION_PLAN.md)
-reste applicable aux preuves manquantes de ce programme. À cette date, les
-audits et études exploratoires ne démontrent aucun gain de performance validé.
+The [horizontal plan](research/935-horizontal-cooling/RECONSTRUCTION_PLAN.md)
+details the system reconstruction and optimisation. The
+[993 validation plan](../twins/993-engine-cooling-fan-system-f0/program/VALIDATION_PLAN.md)
+remains applicable to the missing evidence of this programme. At this date, the
+audits and exploratory studies demonstrate no validated performance gain.

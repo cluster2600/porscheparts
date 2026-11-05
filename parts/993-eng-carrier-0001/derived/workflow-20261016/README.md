@@ -1,15 +1,15 @@
-# STEP conservé du candidat à 1,262 kg
+# Retained STEP of the 1.262 kg candidate
 
-`carrier.step` est une copie identique du maître effectivement reconstruit,
-contrôlé et comparé dans `run-001`. Son empreinte est
+`carrier.step` is an identical copy of the master actually rebuilt,
+checked and compared in `run-001`. Its digest is
 `de0e55a3150dacc5428bbc301d18d2e43477f038c3f4df295d9373af8e906b63`.
-Le reçu `export.json` conserve sa révision, sa masse dense calculée et les
-empreintes de ses paramètres éditables et des résultats associés.
+The receipt `export.json` keeps its revision, its computed dense mass and the
+digests of its editable parameters and of the associated results.
 
-La source reste
+The source remains
 [`build_bounded_webs.py`](../../source/design-20261016/build_bounded_webs.py),
-avec [`bounded-webs.json`](../../source/design-20261016/bounded-webs.json).
-Les résultats et les figures sont décrits dans le
-[dossier de reprise](../../../../docs/reports/993_CARRIER_WORKFLOW_20261016.md).
-Le statut du catalogue reste `concept`, avec interfaces estimées F0/V6f et
-décisions séparées de mécanique et de préparation LPBF.
+with [`bounded-webs.json`](../../source/design-20261016/bounded-webs.json).
+The results and figures are described in the
+[resumption dossier](../../../../docs/reports/993_CARRIER_WORKFLOW_20261016.md).
+The catalogue status remains `concept`, with estimated F0/V6f interfaces and
+separate mechanical and LPBF-preparation decisions.

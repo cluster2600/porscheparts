@@ -1,30 +1,30 @@
-# Comparaison compressible du côté froid
+# Compressible comparison of the cold side
 
-Cette chaîne prépare le **compresseur conceptuel et ses hypothèses**, avec les
-surfaces fournies de sa roue et de sa volute, pour OpenCFD 2406 `rhoSimpleFoam`.
-La géométrie n'est pas remplacée par un conduit rectangulaire équivalent.
-Aucune carte mesurée de turbo ni calibration physique n'est revendiquée.
+This chain prepares the **conceptual compressor and its hypotheses**, with the
+supplied surfaces of its wheel and volute, for OpenCFD 2406 `rhoSimpleFoam`.
+The geometry is not replaced by an equivalent rectangular duct.
+No measured turbo map or physical calibration is claimed.
 
-L'unique image prise en charge est le runtime officiel OpenCFD ARM64, épinglé
-dans `prepare_case.py`. La version 2406 inclut le travail de pression MRF dans
-[l'équation énergétique officielle](https://gitlab.com/openfoam/core/openfoam/-/raw/OpenFOAM-v2406/applications/solvers/compressible/rhoSimpleFoam/EEqn.H).
-Foundation 13 ne constitue pas un profil d'exécution pris en charge ici.
+The only supported image is the official OpenCFD ARM64 runtime, pinned
+in `prepare_case.py`. Version 2406 includes the MRF pressure work in
+[the official energy equation](https://gitlab.com/openfoam/core/openfoam/-/raw/OpenFOAM-v2406/applications/solvers/compressible/rhoSimpleFoam/EEqn.H).
+Foundation 13 is not a supported run profile here.
 
-Entrée : un STL ASCII en mètres, avec exactement quatre régions `inlet`,
-`outlet`, `rotor`, `stator`, dont les arêtes réunies ferment une surface orientée
-de manière cohérente. Le générateur doit documenter les joints idéalisés et
-les voies de fuite exclues. Ce contrôle ne vérifie ni auto-intersection, ni jeu,
-ni présence du point d'amorçage dans le fluide. Vérifier indépendamment le point
-`(0.015, 0, 0.040)` avant maillage. L'entrée est un plan Z au-dessus de la zone
-tournante et la sortie un plan Y au-delà de celle-ci. Les bornes proviennent du STL.
+Input: an ASCII STL in metres, with exactly four regions `inlet`,
+`outlet`, `rotor`, `stator`, whose combined edges close a consistently
+oriented surface. The generator must document the idealised seals and
+the excluded leakage paths. This check verifies neither self-intersection, nor clearance,
+nor the presence of the seed point in the fluid. Independently verify the point
+`(0.015, 0, 0.040)` before meshing. The inlet is a Z plane above the rotating
+zone and the outlet a Y plane beyond it. The bounds come from the STL.
 
-La zone tournante a un rayon de 32 mm et s'étend de Z = -4 à +33 mm. Toutes les
-faces de la roue doivent lui appartenir ; les deux sections de mesure doivent
-rester hors de celle-ci. Les conditions initiales hypothétiques sont : pression
-totale d'entrée 101325 Pa, température totale d'entrée 298,15 K, régime de
-100000 tr/min autour de +Z et pression **statique** de sortie 121590 Pa.
-L'option de rapport de pression désigne sortie-statique/entrée-totale, pas
-le rapport total/total.
+The rotating zone has a radius of 32 mm and extends from Z = -4 to +33 mm. All
+faces of the wheel must belong to it; the two measurement sections must
+remain outside it. The hypothetical initial conditions are: inlet total
+pressure 101325 Pa, inlet total temperature 298.15 K, speed of
+100000 rpm about +Z and outlet **static** pressure 121590 Pa.
+The pressure-ratio option denotes outlet-static/inlet-total, not
+the total/total ratio.
 
 ```sh
 python twins/bionic-turbo-f1/cfd/prepare_case.py \
@@ -37,61 +37,61 @@ python twins/bionic-turbo-f1/cfd/audit_case.py \
   work/cfd-baseline-coarse work/cfd-baseline-coarse-audit.json
 ```
 
-Chaque cas, étape et rapport refuse l'écrasement. Les tentatives rejetées restent
-disponibles ; toute configuration modifiée reçoit un nouveau dossier. L'exécuteur
-utilise uniquement l'image locale, sans réseau, avec des limites explicites de
-CPU, mémoire et durée. `coarse`, `medium`, `fine` fixent les cellules de fond à
-1,6, 1,2 et 0,9 mm. Une boîte de raffinement impose le niveau 1 dans tout le
-volume fluide retenu : tailles nominales 0,8, 0,6 et 0,45 mm. Cette boîte ne crée
-aucune frontière ; les quatre patches proviennent du seul STL.
+Each case, step and report refuses overwriting. Rejected attempts remain
+available; any modified configuration receives a new directory. The runner
+uses only the local image, without network, with explicit limits on
+CPU, memory and duration. `coarse`, `medium`, `fine` set the background cells to
+1.6, 1.2 and 0.9 mm. A refinement box imposes level 1 throughout the retained
+fluid volume: nominal sizes 0.8, 0.6 and 0.45 mm. This box creates
+no boundary; the four patches come from the STL alone.
 
-L'essai ciblé `medium-gap` ajoute le raffinement des jeux du
-[tutoriel officiel OpenCFD 2406](https://gitlab.com/openfoam/core/openfoam/-/raw/OpenFOAM-v2406/tutorials/mesh/snappyHexMesh/gap_detection/system/snappyHexMeshDict) :
-`gapLevel (4 1 3)`, `gapMode mixed`, `gapSelf true`. La cible est de quatre cellules,
-avec un plafond de niveau 3 ; la détection inclut les faces du même STL. Le mode
-`mixed` examine les deux côtés des surfaces, sans supposer que les normales
-des obstacles et celles de l'enveloppe désignent le même côté matériel.
-Pour `medium`, la taille nominale minimale de 0,15 mm correspond à 3,33 cellules
-dans le jeu de 0,5 mm roue/écrou et 4,27 dans le jeu arrière d'environ 0,64 mm.
-Le plafond peut donc empêcher d'atteindre la cible de quatre cellules. Les profils
-`coarse` et `fine` plafonnent respectivement à 0,2 et 0,1125 mm ; `coarse` ne vise
-pas trois cellules dans 0,5 mm. Ces rapports sont des estimations avant snapping,
-pas des comptes mesurés ni une preuve de résolution des jeux. Les transitions
-de raffinement local réapparaissent et restent soumises aux mêmes contrôles
-de qualité. Le snapping reste contraint à la région STL d'origine.
-Le seuil natif de six millions de cellules est approximatif : une passe peut
-le dépasser ou interrompre le raffinement avant son niveau demandé. La limite
-mémoire du conteneur et le délai d'exécution restent indépendants. Il n'y a actuellement
-**aucune couche prismatique de paroi**. Ces maillages servent de pilotes
-numériques ; la résolution des couches limites reste à qualifier.
+The targeted `medium-gap` trial adds the gap refinement of the
+[official OpenCFD 2406 tutorial](https://gitlab.com/openfoam/core/openfoam/-/raw/OpenFOAM-v2406/tutorials/mesh/snappyHexMesh/gap_detection/system/snappyHexMeshDict):
+`gapLevel (4 1 3)`, `gapMode mixed`, `gapSelf true`. The target is four cells,
+with a level-3 ceiling; detection includes faces of the same STL. The
+`mixed` mode examines both sides of the surfaces, without assuming that the normals
+of the obstacles and those of the envelope designate the same material side.
+For `medium`, the minimum nominal size of 0.15 mm corresponds to 3.33 cells
+in the 0.5 mm wheel/nut gap and 4.27 in the rear gap of about 0.64 mm.
+The ceiling may therefore prevent reaching the four-cell target. The
+`coarse` and `fine` profiles cap at 0.2 and 0.1125 mm respectively; `coarse` does not aim
+for three cells in 0.5 mm. These ratios are estimates before snapping,
+not measured counts nor proof that the gaps are resolved. Local refinement
+transitions reappear and remain subject to the same quality
+checks. Snapping remains constrained to the original STL region.
+The native threshold of six million cells is approximate: a pass may
+exceed it or interrupt refinement before its requested level. The container
+memory limit and the run timeout remain independent. There is currently
+**no prismatic wall layer**. These meshes serve as numerical
+pilots; boundary-layer resolution remains to be qualified.
 
-Avant tout solveur, le contrôle étendu `checkMesh -allTopology -allGeometry`
-doit réussir. Le nombre de coquilles fermées, calculé par adjacence exacte des
-arêtes, les régions présentes sur chaque coquille et les caractéristiques
-d'Euler globale et par coquille doivent rester identiques au STL d'entrée.
-Ce contrôle détecte notamment une roue isolée raccordée par
-erreur au carter lors du maillage d'un jeu trop étroit. L'expression native
-« closed singly connected » ne remplace pas ce comptage. L'égalité de ces
-invariants ne constitue pas une démonstration de conservation de la forme et
-des dimensions de tous les passages ou jeux.
-La comparaison au STL ne valide pas non plus sa construction : des passages
-parasites introduits en amont doivent être rejetés par un contrat géométrique
-indépendant, avant toute préparation de maillage.
+Before any solver, the extended check `checkMesh -allTopology -allGeometry`
+must succeed. The number of closed shells, computed by exact edge
+adjacency, the regions present on each shell and the global and per-shell Euler
+characteristics must remain identical to the input STL.
+This check notably detects an isolated wheel wrongly connected
+to the housing when meshing a gap that is too narrow. The native expression
+"closed singly connected" does not replace this count. Equality of these
+invariants does not constitute a demonstration that the shape and
+dimensions of all passages or gaps are preserved.
+The comparison with the STL does not validate its construction either: spurious
+passages introduced upstream must be rejected by an independent geometric
+contract, before any mesh preparation.
 
-L'audit lie les historiques aux entrées préparées et au maillage inspecté. Il
-exige des historiques complets et continus, les signes attendus aux sections,
-la conservation de masse, l'imperméabilité absolue des parois, un reflux limité,
-la stabilité du débit, du couple et de l'énergie, des pressions et températures
-positives ainsi que des résidus faibles. Le flux d'enthalpie totale utilise
-`sum(phi*h) + 0.5*sum(phi*magSqr(U))`, avec la vitesse absolue et les sections hors
-MRF. Il doit correspondre à **moins** la vitesse angulaire multipliée par le
-moment du fluide sur la roue ; aucune valeur absolue ne masque un mauvais signe.
+The audit links the histories to the prepared inputs and to the inspected mesh. It
+requires complete and continuous histories, the expected signs at the sections,
+mass conservation, absolute impermeability of the walls, limited backflow,
+stability of flow, torque and energy, positive pressures and temperatures
+and low residuals. The total enthalpy flux uses
+`sum(phi*h) + 0.5*sum(phi*magSqr(U))`, with the absolute velocity and sections outside
+the MRF. It must equal **minus** the angular velocity multiplied by the
+moment of the fluid on the wheel; no absolute value masks a wrong sign.
 
-Un historique accepté ne classe pas les performances. La comparaison exige
-une roue, des hypothèses de joints, des extensions d'entrée/sortie et des
-conditions de service communes, puis une étude de sensibilité au maillage et
-au traitement de paroi. Un seul point à contre-pression imposée ne démontre
-ni débit maximal ni blocage sonique. Aucun rendement n'est déduit de
-l'approximation incompressible `p + rho*U²/2`. Les itérations stationnaires ne
-représentent pas un temps physique de montée en régime. La validation
-d'ingénierie et l'autorisation de fabrication restent fausses.
+An accepted history does not rank performance. The comparison requires
+a common wheel, seal hypotheses, inlet/outlet extensions and service
+conditions, then a sensitivity study on the mesh and
+the wall treatment. A single point at imposed back-pressure demonstrates
+neither maximum flow nor sonic choking. No efficiency is deduced from the
+incompressible approximation `p + rho*U²/2`. Steady iterations do not
+represent a physical spin-up time. Engineering validation
+and manufacturing authorisation remain false.

@@ -28,8 +28,8 @@ xychart-beta
 
 | report | file |
 |---|---|
-| Support moteur 993 Turbo — reprise avec la chaîne de contrôle, 16 octobre 2026 | [`993_CARRIER_REVALIDATION_20261016.md`](993_CARRIER_REVALIDATION_20261016.md) |
-| Support moteur 993 Turbo — géométrie renforcée et chaîne reproductible, 16 octobre 2026 | [`993_CARRIER_WORKFLOW_20261016.md`](993_CARRIER_WORKFLOW_20261016.md) |
+| 993 Turbo engine carrier — rework with the control chain, 16 October 2026 | [`993_CARRIER_REVALIDATION_20261016.md`](993_CARRIER_REVALIDATION_20261016.md) |
+| 993 Turbo engine carrier — reinforced geometry and reproducible chain, 16 October 2026 | [`993_CARRIER_WORKFLOW_20261016.md`](993_CARRIER_WORKFLOW_20261016.md) |
 
 ## October 15, 2026
 

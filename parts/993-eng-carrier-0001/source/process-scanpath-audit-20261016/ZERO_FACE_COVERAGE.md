@@ -1,26 +1,26 @@
-# Faces nulles et égalité de la surface encodée
+# Zero-area faces and equality of the encoded surface
 
-`exact_zero_face_coverage.py` ne nettoie pas un maillage. Il vérifie si une
-face d'aire **exactement nulle** n'ajoute aucun point à la surface XYZ déjà
-couverte par les triangles non nuls du **même groupe**.
+`exact_zero_face_coverage.py` does not clean a mesh. It checks whether a
+face of **exactly zero** area adds no point to the XYZ surface already
+covered by the non-zero triangles of the **same group**.
 
-Ses sommets IEEE sont interprétés en rationnels. Le segment entier entre
-les extrêmes, ou le point si tous les sommets coïncident, est intersecté avec
-les triangles candidats. La réunion des intervalles fermés doit couvrir
-entièrement `[0,1]`. Des extrémités couvertes et un milieu vide sont refusés ;
-un autre triangle nul ne peut servir de matière couvrante. Les boîtes servent
-seulement de présélection, sans tolérance.
+Its IEEE vertices are interpreted as rationals. The whole segment between
+the extremes, or the point if all vertices coincide, is intersected with
+the candidate triangles. The union of the closed intervals must cover
+`[0,1]` entirely. Covered end points with an empty middle are refused;
+another zero-area triangle cannot serve as covering material. Boxes serve
+only as a preselection, without tolerance.
 
-Le [témoin réel droit012](zero-face-coverage-result-001.json) prouve la
-couverture des 44 faces nulles repérées : 18 dans les grilles et 26 dans les
-peaux. La preuve compte 290 intersections rationnelles et garde les identités
-des 25 groupes concernés. Six tests ciblés passent.
+The [real droit012 witness](zero-face-coverage-result-001.json) proves the
+coverage of the 44 zero-area faces identified: 18 in the grids and 26 in the
+skins. The proof counts 290 rational intersections and keeps the identities
+of the 25 groups concerned. Six targeted tests pass.
 
-Cela permettrait de retirer **ces seules faces couvertes** sans changer
-l'ensemble des points de la surface XYZ encodée. Aucun retrait n'a été effectué
-par ce témoin. La preuve ne conserve pas à elle seule l'aire intrinsèque d'une
-carte 2D déjà effondrée lors du remappage ; elle n'admet ni topologie, ni
-contacts, ni trajectoires. Ces contrôles restent obligatoires ensuite.
+This would allow removing **only these covered faces** without changing
+the set of points of the encoded XYZ surface. No removal was carried out
+by this witness. The proof does not by itself preserve the intrinsic area of a
+2D chart already collapsed during remapping; it admits neither topology, nor
+contacts, nor paths. These checks remain mandatory afterwards.
 
 ```sh
 AM_PYTHON -B -m unittest discover -s tests -p test_carrier_zero_face_coverage.py -v

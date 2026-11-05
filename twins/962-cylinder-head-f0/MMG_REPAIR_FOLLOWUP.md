@@ -1,197 +1,197 @@
-# Circuit d’eau 4 L : réparation MMG et admission OpenFOAM
+# 4 L water circuit: MMG repair and OpenFOAM admission
 
-Le maillage du **volume d’eau** passe maintenant
-`checkMesh -allGeometry -allTopology` sur kali1 : **635 132 tétraèdres,
-« Mesh OK. »** Les seuils n’ont pas été abaissés. Cette admission numérique
-ne qualifie ni la culasse métallique ni un moteur de 1 000 ch.
+The mesh of the **water volume** now passes
+`checkMesh -allGeometry -allTopology` on kali1: **635,132 tetrahedra,
+« Mesh OK. »** The thresholds were not lowered. This numerical admission
+qualifies neither the metal cylinder head nor a 1,000 hp engine.
 
-Le [reçu de réparation](derived/coolant-mmg-20261025/repair-report.json)
-lie les sources, les fichiers contrôlés et les journaux. Les
-[rejets précédents](KALI_CFD_FOLLOWUP.md) restent conservés. Aucun maître
-PicoGK, fichier métallique ou contrat antérieur n’a été modifié.
-Le témoin géométrique est l’export PicoGK Ø102 inspecté de l’étude ; les
-interfaces du donneur restent à mesurer.
+The [repair receipt](derived/coolant-mmg-20261025/repair-report.json)
+links the sources, the checked files and the logs. The
+[earlier rejections](KALI_CFD_FOLLOWUP.md) remain kept. No PicoGK
+master, metal file or earlier contract was modified.
+The geometric witness is the inspected Ø102 PicoGK export of the study; the
+donor interfaces remain to be measured.
 
-![Volume d’eau effectivement sauvegardé et distribution SICN](derived/coolant-mmg-20261025/quality.png)
+![Water volume actually saved and SICN distribution](derived/coolant-mmg-20261025/quality.png)
 
-*Rendu du fichier contrôlé à l’étape maillage, avant l’obtention d’une solution
-d’écoulement. Il représente le circuit d’eau, pas l’enveloppe métallique.*
+*Render of the file checked at the meshing step, before any flow solution
+was obtained. It shows the water circuit, not the metal envelope.*
 
-## Chaîne réellement utilisée
+## Chain actually used
 
 ```mermaid
 flowchart LR
-  A[MSH conservé 542 188 cellules] --> B[MMG : optimisation, surface figée]
-  B --> C[Gmsh et relecture indépendante]
-  C --> D[SciPy : SICN, stencil et interpolation]
-  D --> E[MMG local : entités imposées]
-  E --> F[Trimesh : nouvelle paroi contre le maître]
-  F --> G[SciPy : cinq points intérieurs]
-  G --> H[Gmsh : relecture complète du MSH]
-  H --> I[OpenFOAM : contrôle complet et garde-fou]
-  I --> J[Résolution RANS séparée]
+  A[Kept MSH 542,188 cells] --> B[MMG: optimisation, frozen surface]
+  B --> C[Gmsh and independent read-back]
+  C --> D[SciPy: SICN, stencil and interpolation]
+  D --> E[Local MMG: required entities]
+  E --> F[Trimesh: new wall against the master]
+  F --> G[SciPy: five interior points]
+  G --> H[Gmsh: complete MSH read-back]
+  H --> I[OpenFOAM: complete check and guard]
+  I --> J[Separate RANS solve]
 ```
 
-MMG 5.8.0 est construit dans le dossier utilisateur de kali1, depuis
-[la révision officielle conservée](https://github.com/MmgTools/mmg/tree/4d8232c8aebfed877935d75d4d4a67e850962422).
-Le commentaire PAX de l’archive source confirme cette révision. L’archive,
-le binaire, le compilateur et les versions des outils sont liés dans le
-[reçu runtime](derived/coolant-mmg-20261025/runtime.json). Il ne s’agit pas
-d’une installation système ni d’une affirmation sur la dernière version.
-La construction utilise CMake, `-DBUILD=MMG3D -DCMAKE_BUILD_TYPE=Release`, puis
-`cmake --build build --parallel 2` ; le journal complet est dans la capsule.
+MMG 5.8.0 is built in the user directory of kali1, from
+[the kept official revision](https://github.com/MmgTools/mmg/tree/4d8232c8aebfed877935d75d4d4a67e850962422).
+The PAX comment of the source archive confirms this revision. The archive,
+the binary, the compiler and the tool versions are linked in the
+[runtime receipt](derived/coolant-mmg-20261025/runtime.json). This is not
+a system installation nor a claim about the latest version.
+The build uses CMake, `-DBUILD=MMG3D -DCMAKE_BUILD_TYPE=Release`, then
+`cmake --build build --parallel 2`; the complete log is in the capsule.
 
-La première passe `-optim -nosurf` produit 626 459 tétraèdres et conserve
-exactement la triangulation de paroi. Les neuf cellules SICN déficientes
-sont corrigées par l’optimiseur de points intérieurs déjà présent. Le
-contrôle OpenFOAM relève cependant encore 259 déterminants insuffisants
-et neuf poids d’interpolation insuffisants.
+The first `-optim -nosurf` pass produces 626,459 tetrahedra and keeps
+the wall triangulation exactly. The nine deficient SICN cells
+are corrected by the interior-point optimiser already present. The
+OpenFOAM check nevertheless still reports 259 insufficient determinants
+and nine insufficient interpolation weights.
 
-L’optimisation locale SLSQP est alors étendue aux **trois critères simultanés** :
-SICN ≥ 0,1, déterminant de stencil ≥ 0,001 et poids d’interpolation ≥ 0,05.
-La formule du déterminant reprend le calcul de Foundation 13 : tenseur des
-vecteurs d’aire des faces internes, normalisé par leur aire moyenne. Pour les
-tétraèdres, le poids d’interpolation est obtenu par le rapport des volumes
-adjacents. Les essais analytiques vérifient échelle, rang et tétraèdre régulier.
-Le contrôle natif confirme ensuite exactement les dix déterminants et trois
-poids restant dans cette première dérivée.
+The local SLSQP optimisation is then extended to **three simultaneous criteria**:
+SICN ≥ 0.1, stencil determinant ≥ 0.001 and interpolation weight ≥ 0.05.
+The determinant formula follows the Foundation 13 computation: tensor of the
+area vectors of the internal faces, normalised by their mean area. For
+tetrahedra, the interpolation weight is obtained from the ratio of the adjacent
+volumes. The analytical tests check scale, rank and the regular tetrahedron.
+The native check then confirms exactly the ten determinants and three
+weights remaining in this first derivative.
 
-Les essais de fusion ne sont pas sélectionnés. Le choix glouton de paires
-convexes laisse une cellule, l’extension en triplet est refusée, et le choix
-alternatif échoue encore au contrôle natif. `removeFaces` simplifie aussi
-des faces de paroi ; une application conservant les triangles évite cette
-modification mais ne résout pas les derniers défauts. Tous ces résultats
-restent des rejets, distincts de la chaîne finalement admise.
+The merge trials are not selected. The greedy choice of convex
+pairs leaves one cell, the triplet extension is refused, and the alternative
+choice still fails the native check. `removeFaces` also simplifies
+wall faces; an application that keeps the triangles avoids this
+modification but does not resolve the last defects. All these results
+remain rejections, distinct from the chain finally admitted.
 
-## Réparation locale de la triangulation de paroi
+## Local repair of the wall triangulation
 
-Le second traitement MMG cible **1 080 cellules** autour des derniers défauts.
-Le fichier d’entrée déclare **625 379 tétraèdres, 150 438 triangles et
-144 463 sommets comme imposés** au moyen de `RequiredTetrahedra`,
-`RequiredTriangles` et `RequiredVertices`. La sélection couvre deux couronnes
-de voisinage par sommets ; elle est testée sur des régions disjointes.
+The second MMG treatment targets **1,080 cells** around the last defects.
+The input file declares **625,379 tetrahedra, 150,438 triangles and
+144,463 vertices as required** by means of `RequiredTetrahedra`,
+`RequiredTriangles` and `RequiredVertices`. The selection covers two vertex
+neighbourhood rings; it is tested on disjoint regions.
 
-Cette passe autorise une nouvelle triangulation locale de la paroi, avec
-`-optim -hausd 0.000005`, en mètres. Le paramètre de cinq micromètres ne
-constitue pas une preuve de distance : la nouvelle surface est contrôlée
-séparément contre le volume d’eau natif d’origine. La passe termine en
-**6,231 s** sous sa limite de 300 s, avec 635 132 tétraèdres et 152 944 triangles.
+This pass allows a new local triangulation of the wall, with
+`-optim -hausd 0.000005`, in metres. The five-micrometre parameter does not
+constitute proof of distance: the new surface is checked
+separately against the original native water volume. The pass finishes in
+**6.231 s** under its 300 s limit, with 635,132 tetrahedra and 152,944 triangles.
 
-Le [contrôle indépendant de surface](derived/coolant-mmg-20261025/surface-screen.json)
-confirme fermeture, orientation, une composante et Euler conservé. L’écart
-maximal échantillonné sur les sommets et centres de triangles, dans les deux
-sens, vaut **0,0491497 mm**, sous le budget inchangé de **0,0625 mm**.
-Ce n’est pas une borne de Hausdorff continue. Le volume vaut
-137 937,311 mm³, soit −0,003838 % par rapport à l’export natif.
+The [independent surface check](derived/coolant-mmg-20261025/surface-screen.json)
+confirms closure, orientation, a single component and preserved Euler characteristic. The maximum
+sampled deviation over the vertices and triangle centres, in both
+directions, is **0.0491497 mm**, under the unchanged budget of **0.0625 mm**.
+This is not a continuous Hausdorff bound. The volume is
+137,937.311 mm³, i.e. −0.003838 % relative to the native export.
 
-Cette nouvelle paroi est liée à un nouveau reçu, sans réécrire celui de la
-paroi précédente. La première vérification OpenFOAM de cette dérivée relève
-quatre déterminants et un poids insuffisants. Une dernière optimisation de
-**cinq points intérieurs**, par le même programme SLSQP, les corrige.
+This new wall is linked to a new receipt, without rewriting that of the
+previous wall. The first OpenFOAM verification of this derivative reports
+four insufficient determinants and one insufficient weight. A final optimisation of
+**five interior points**, by the same SLSQP program, corrects them.
 
-## Fichier final et contrôle natif
+## Final file and native check
 
-La [relecture complète](derived/coolant-mmg-20261025/final-readback.json)
-recouvre tous les tétraèdres sauvegardés : volumes positifs, SICN recalculé
-indépendamment, incidence et orientation des faces internes, identité des
-triangles de frontière avec la nouvelle surface contrôlée et aucun nœud
-inutilisé. Les STL sont en mm ; les MSH et les cas OpenFOAM sont en m.
+The [complete read-back](derived/coolant-mmg-20261025/final-readback.json)
+covers all saved tetrahedra: positive volumes, SICN recomputed
+independently, incidence and orientation of the internal faces, identity of the
+boundary triangles with the new checked surface and no unused
+node. The STLs are in mm; the MSH and the OpenFOAM cases are in m.
 
-| Mesure finale | Valeur |
+| Final measure | Value |
 |---|---:|
-| Tétraèdres | 635 132 |
-| SICN minimum | 0,1012038134 |
-| Cellules sous SICN 0,1 | 0 |
-| Différence maximale de coordonnées entre frontière sauvegardée et surface liée | 0 mm |
-| Déterminant minimal OpenFOAM | 0,0010004422 |
-| Poids minimal d’interpolation OpenFOAM | 0,0505 |
-| Skewness maximal OpenFOAM | 1,71623 |
-| Non-orthogonalité maximale | 82,06699° |
+| Tetrahedra | 635,132 |
+| Minimum SICN | 0.1012038134 |
+| Cells below SICN 0.1 | 0 |
+| Maximum coordinate difference between saved boundary and linked surface | 0 mm |
+| Minimum OpenFOAM determinant | 0.0010004422 |
+| Minimum OpenFOAM interpolation weight | 0.0505 |
+| Maximum OpenFOAM skewness | 1.71623 |
+| Maximum non-orthogonality | 82.06699° |
 
-Le [journal natif final](derived/coolant-mmg-20261025/case-015-checkMesh.txt)
-et le [reçu du garde-fou](derived/coolant-mmg-20261025/openfoam-mesh.json)
-confirment l’admission. Les 617 faces au-dessus de 70° restent un avertissement
-numérique du contrôle natif ; la marge du plus petit déterminant reste faible.
-L’admission ne remplace donc pas une étude de convergence et de sensibilité.
+The [final native log](derived/coolant-mmg-20261025/case-015-checkMesh.txt)
+and the [guard receipt](derived/coolant-mmg-20261025/openfoam-mesh.json)
+confirm the admission. The 617 faces above 70° remain a numerical
+warning of the native check; the margin of the smallest determinant remains small.
+The admission therefore does not replace a convergence and sensitivity study.
 
-SHA-256 du MSH final :
+SHA-256 of the final MSH:
 `5cf9923844e8cacfffc6b7c0e427b60e8f0745602330a99aacb48082ba81e0c8`.
 
 ## Reproduction
 
-Utiliser un environnement avec Gmsh 4.15.2, NumPy 2.2.6, SciPy 1.17.1,
-trimesh 5.1.1 et Rtree 1.4.1 ; le rendu utilise Matplotlib 3.10.8. Chaque
-sortie doit être un dossier neuf. Les noms suivants décrivent les fichiers
-conservés ; une nouvelle exécution peut produire d’autres identités binaires.
+Use an environment with Gmsh 4.15.2, NumPy 2.2.6, SciPy 1.17.1,
+trimesh 5.1.1 and Rtree 1.4.1; the render uses Matplotlib 3.10.8. Each
+output must be a new directory. The following names describe the kept
+files; a new execution may produce other binary identities.
 
-1. Depuis `mesh-010/coolant.msh`, écrire un fichier MEDIT avec `gmsh.open`,
-   puis `gmsh.write("input.mesh")`, sans remaillage ni changement d’unité.
-2. Exécuter MMG : `-in input.mesh -out repaired.mesh -optim -nosurf -m 3000 -v 5`.
-3. Restaurer les références physiques avec
-   [import_mmg.py](source/coolant_flow/import_mmg.py), puis exécuter
-   [read_saved.py](source/coolant_flow/read_saved.py) contre `surface-004`.
-4. Appliquer [relocate_nodes.py](source/coolant_flow/relocate_nodes.py), relire,
-   puis [relocate_stencil.py](source/coolant_flow/relocate_stencil.py) et relire.
-5. Préparer les entités imposées avec
-   [prepare_mmg_local.py](source/coolant_flow/prepare_mmg_local.py), puis lancer
-   MMG avec `-optim -hausd 0.000005 -m 3000 -v 5` sur ce nouvel input.
-6. Exécuter [mmg_surface_exchange.py](source/coolant_flow/mmg_surface_exchange.py)
-   avec l’empreinte transférée du MEDIT, le maître natif et son empreinte.
-   Ce programme conserve l’import initial, produit une surface séparée,
-   réutilise le contrôleur de surface, puis lie et relit le volume.
-7. Réappliquer `relocate_stencil.py` au volume lié, puis `read_saved.py`
-   contre cette nouvelle surface. Préparer le cas avec
+1. From `mesh-010/coolant.msh`, write a MEDIT file with `gmsh.open`,
+   then `gmsh.write("input.mesh")`, without remeshing or change of unit.
+2. Run MMG: `-in input.mesh -out repaired.mesh -optim -nosurf -m 3000 -v 5`.
+3. Restore the physical references with
+   [import_mmg.py](source/coolant_flow/import_mmg.py), then run
+   [read_saved.py](source/coolant_flow/read_saved.py) against `surface-004`.
+4. Apply [relocate_nodes.py](source/coolant_flow/relocate_nodes.py), read back,
+   then [relocate_stencil.py](source/coolant_flow/relocate_stencil.py) and read back.
+5. Prepare the required entities with
+   [prepare_mmg_local.py](source/coolant_flow/prepare_mmg_local.py), then launch
+   MMG with `-optim -hausd 0.000005 -m 3000 -v 5` on this new input.
+6. Run [mmg_surface_exchange.py](source/coolant_flow/mmg_surface_exchange.py)
+   with the transferred digest of the MEDIT, the native master and its digest.
+   This program keeps the initial import, produces a separate surface,
+   reuses the surface checker, then links and reads back the volume.
+7. Reapply `relocate_stencil.py` to the linked volume, then `read_saved.py`
+   against this new surface. Prepare the case with
    [prepare_kali_bound_case.py](source/coolant_flow/prepare_kali_bound_case.py).
-8. Dans Foundation 13, exécuter le cas neuf avec `Allrun.sh` pour quatre
-   processus ou [run_kali_serial.sh](source/coolant_flow/run_kali_serial.sh)
-   pour un processus, sous les limites externes du travail. Les empreintes
-   des entrées et le garde-fou de maillage précèdent obligatoirement le solveur.
+8. In Foundation 13, run the new case with `Allrun.sh` for four
+   processes or [run_kali_serial.sh](source/coolant_flow/run_kali_serial.sh)
+   for one process, under the external limits of the job. The input digests
+   and the mesh guard must precede the solver.
 
-Les passes MMG sont limitées à 300 s, un cœur, 4 Gio sans swap. Le cas de
-résolution est limité à 1 800 s de solveur et 6 Gio sans swap. Le runtime
-Foundation 13 utilise les chemins standards dans Bubblewrap, sans changer
-les droits du système. Les empreintes et la liste des fichiers complets
-figurent dans le [reçu de livraison](derived/coolant-mmg-20261025/delivery.json).
-Les grandes géométries et les essais complets restent dans l’archive locale,
-hors Git ; sources, rapports, journaux normalisés et rendu sont versionnés.
+The MMG passes are limited to 300 s, one core, 4 GiB without swap. The solve
+case is limited to 1,800 s of solver time and 6 GiB without swap. The
+Foundation 13 runtime uses the standard paths in Bubblewrap, without changing
+system permissions. The digests and the list of complete files
+appear in the [delivery receipt](derived/coolant-mmg-20261025/delivery.json).
+The large geometries and the complete trials remain in the local archive,
+outside Git; sources, reports, normalised logs and render are versioned.
 
-## Résolution et vérifications logicielles
+## Solve and software checks
 
-La résolution RANS isotherme k–ω SST a démarré après l’admission du maillage,
-au débit exploratoire de **48,6236 L/min par culasse**. Les paramètres restent
-des hypothèses : 965 kg/m³ et 0,000315 Pa·s. Le
-[cas préparé](derived/coolant-mmg-20261025/prepared-case.json) lie ses 18 entrées.
-Le [premier essai borné](derived/coolant-mmg-20261025/flow-stop.json)
-s’arrête à la limite de **1 800 s de solveur**, code 124, après 929 itérations
-complètes et pendant l’itération 930. Le critère résiduel 10⁻⁵ n’est pas
-satisfait. Le dernier instant sauvegardé est l’itération 900 et ne représente
-pas l’état du dernier pas terminé. **Aucun résultat hydraulique convergé n’est
-admis.** L’[extrait du journal](derived/coolant-mmg-20261025/flow-stop-excerpt.txt)
-est lié au journal complet par son empreinte.
+The isothermal k–ω SST RANS solve started after the mesh admission,
+at the exploratory flow rate of **48.6236 L/min per cylinder head**. The parameters remain
+assumptions: 965 kg/m³ and 0.000315 Pa·s. The
+[prepared case](derived/coolant-mmg-20261025/prepared-case.json) links its 18 inputs.
+The [first bounded trial](derived/coolant-mmg-20261025/flow-stop.json)
+stops at the limit of **1,800 s of solver time**, code 124, after 929 complete
+iterations and during iteration 930. The 10⁻⁵ residual criterion is not
+satisfied. The last saved time is iteration 900 and does not represent
+the state of the last completed step. **No converged hydraulic result is
+admitted.** The [log excerpt](derived/coolant-mmg-20261025/flow-stop-excerpt.txt)
+is linked to the complete log by its digest.
 
-Les champs et journaux de cet essai sont conservés dans une
-[capsule d’arrêt distincte](derived/coolant-mmg-20261025/flow-stop-delivery.json).
-Ils ne sont pas ajoutés rétroactivement à la capsule de réparation du maillage.
-Une reprise depuis l’itération 900, avec une nouvelle recette et ses propres
-preuves de convergence, reste un travail distinct de l’admission obtenue ici.
+The fields and logs of this trial are kept in a
+[separate stop capsule](derived/coolant-mmg-20261025/flow-stop-delivery.json).
+They are not added retroactively to the mesh repair capsule.
+A restart from iteration 900, with a new recipe and its own
+convergence evidence, remains work distinct from the admission obtained here.
 
-L’échec de `mpirun --version` provenait de fichiers d’aide absents et ne
-prouvait pas une panne du lanceur. Le lancement à deux processus, puis
-la résolution native sur quatre processus, fonctionnent. Le calcul parallèle
-en double est arrêté explicitement après 92 itérations ; le calcul séquentiel,
-alors à 208 itérations, est conservé. Cet arrêt ne signifie pas convergence.
+The failure of `mpirun --version` came from missing help files and did not
+prove a launcher fault. The two-process launch, then
+the native solve on four processes, work. The duplicate parallel computation
+is stopped explicitly after 92 iterations; the sequential computation,
+then at 208 iterations, is kept. This stop does not mean convergence.
 
-Les **250 tests culasse passent**, dont cinq ignorés faute de VTK ; les neuf
-nouveaux tests passent. Le passage `make check` dans l’environnement local
-d’outillage atteint 4 213 tests, avec deux écarts de flottants sur des modules
-de ventilateur non modifiés, huit erreurs de dépendances/API et 172 ignorés.
-Il précède l’activation des dépendances de rendu et n’est pas vert. Le
-[passage avec les dépendances déclarées par la CI](derived/coolant-mmg-20261025/software-checks.json)
-atteint ensuite **4 237 tests**, avec **deux échecs de flottants et aucune
-erreur**, ainsi que 232 tests ignorés. Ces deux échecs concernent les mêmes
-modules de ventilateur non modifiés ; aucun passage global local vert n’est
-revendiqué. Les outils de géométrie et leurs contrôles effectifs restent
-vérifiés séparément de cet environnement de tests.
+The **250 cylinder-head tests pass**, of which five are skipped for lack of VTK; the nine
+new tests pass. The `make check` run in the local tooling
+environment reaches 4,213 tests, with two floating-point discrepancies in unmodified
+fan modules, eight dependency/API errors and 172 skipped.
+It precedes the activation of the render dependencies and is not green. The
+[run with the dependencies declared by the CI](derived/coolant-mmg-20261025/software-checks.json)
+then reaches **4,237 tests**, with **two floating-point failures and no
+error**, as well as 232 skipped tests. These two failures concern the same
+unmodified fan modules; no green local global run is
+claimed. The geometry tools and their effective checks remain
+verified separately from this test environment.
 
-Le métal, la CHT, la tenue mécanique, le cliquetis SP95, les interfaces du
-donneur, le procédé LPBF et la puissance moteur restent hors de cette admission.
+The metal, the CHT, the mechanical strength, SP95 knock, the donor
+interfaces, the LPBF process and the engine power remain outside this admission.

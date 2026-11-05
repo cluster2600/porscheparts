@@ -1686,7 +1686,7 @@ inférieur à `1.2e-17 rad`. Leur regroupement produit une face :
 
 - 4 930 → **4 925 faces**, un solide, une coque, validité native exacte et
   relecture réussies ; maxima de tolérances non augmentés.
-- Treize arêtes de partition disparaissent. Deux autres restent nécessaires
+- Treise arêtes de partition disparaissent. Deux autres restent nécessaires
   comme coutures périodiques : chacune est fermée sur la nouvelle face,
   utilisée deux fois en sens opposés et n’appartient à aucune autre face.
   Aucun nouveau contour 3D n’est créé ; les contours extérieurs sont conservés.

@@ -1,50 +1,47 @@
-# Feuilles continues sans opération booléenne sur leur contour
+# Continuous sheets without a Boolean operation on their outline
 
-Cette branche construit une nouvelle matière de support à partir de chaque
-intervalle libre `D`. Elle conserve tous les triangles de `D`, puis ajoute des
-quadrilatères verticaux sur les seules arêtes entièrement attestées par les
-interfaces source. La pénétration déclarée reste de 0,2 mm. Une interface à la
-plaque Z=0 ne reçoit aucune matière sous la plaque.
+This branch builds new support material from each free interval `D`. It keeps
+all the triangles of `D`, then adds vertical quadrilaterals only on the edges
+fully attested by the source interfaces. The declared penetration remains 0.2 mm.
+An interface with the Z=0 plate receives no material below the plate.
 
-Les arêtes des triangles sont subdivisées uniquement aux coordonnées IEEE déjà
-présentes sur leur même droite exacte. Leurs sous-segments orientés communs
-s’annulent. Les cycles restants doivent décrire un Polygon simple : les signes
-et intersections sont évalués avec `Fraction`, y compris entre les trous et
-entre segments adjacents. Une chaîne de triangles tous positifs égale à cette
-frontière exclut les manques et recouvrements de surface positive par son nombre
-d’enroulement. Une inclusion indépendante vérifie aussi `D ⊆ R`.
+Triangle edges are subdivided only at IEEE coordinates already present on
+their same exact line. Their common oriented sub-segments cancel out. The
+remaining cycles must describe a simple Polygon: signs and intersections are
+evaluated with `Fraction`, including between holes and between adjacent
+segments. A chain of all-positive triangles equal to this boundary excludes
+gaps and overlaps of positive area by its winding number. An independent
+inclusion also checks `D ⊆ R`.
 
-Chaque quadrilatère est essayé dans l’ordre stable des arêtes source. Il est
-écarté explicitement si son ajout empêche la formation d’une feuille simple ;
-aucun triangle de `D` n’est retiré. Une arête partiellement attestée reste sans
-extension : aucune intersection approchée n’est créée. Les exclusions, les
-interfaces utilisées et les contacts sont conservés dans le reçu. Cette
-politique augmente des interfaces continues à détacher après construction.
+Each quadrilateral is tried in the stable order of the source edges. It is
+explicitly discarded if adding it prevents a simple sheet from forming; no
+triangle of `D` is removed. A partially attested edge gets no extension: no
+approximate intersection is created. Exclusions, the interfaces used and the
+contacts are kept in the receipt. This policy increases the continuous
+interfaces to be detached after the build.
 
-Le confinement reste contrôlé contre l’union exacte des balayages verticaux des
-triangles originaux de `D`, avec le même plan de plaque. L’enveloppe issue d’une
-union GEOS et son aire de différence restent des diagnostics séparés. Les
-demi-plans entiers compilés accélèrent uniquement la recherche d’un primitif
-convexe : les choix de primitifs et les certificats rationnels restent ceux du
-contrôle précédent. Les intervalles libres distincts ne peuvent partager un
-segment de matière positif.
+Containment is still checked against the exact union of the vertical sweeps of
+the original triangles of `D`, with the same plate plane. The envelope derived
+from a GEOS union and its difference area remain separate diagnostics. The
+compiled integer half-planes only speed up the search for a convex primitive:
+the primitive choices and rational certificates remain those of the previous
+check. Distinct free intervals cannot share a positive-length material segment.
 
-`combinatorial-evidence/fixtures.json` contient trois témoins et deux intervalles
-réels des supports du concept 993, avec les empreintes de leurs résultats. Le
-rejeu vérifie les frontières produites et leurs preuves exactes. Un témoin de
-toit horizontal a également été coupé sur 170 plans réels de 60 µm ; les trois
-dernières couches intersectent effectivement le corps après la pénétration de
-0,2 mm. Ces résultats locaux ne constituent pas l’admission du support complet.
-Les graphes matière, les six admissions et l’audit de toutes les expositions
-restent nécessaires.
+`combinatorial-evidence/fixtures.json` contains three witnesses and two real
+intervals from the 993 concept supports, with the digests of their results. The
+replay checks the boundaries produced and their exact proofs. A horizontal roof
+witness was also sliced on 170 real 60 µm planes; the last three layers do
+intersect the body after the 0.2 mm penetration. These local results do not
+constitute admission of the complete support. The material graphs, the six
+admissions and the audit of all exposures remain necessary.
 
-Les sources v2, leurs exécutions et leurs refus sont conservés. Les nouveaux
-points d’entrée sont `generate_prism_region_v3.py` et
-`generate_legacy_region_v3.py`, avec les mêmes arguments positionnels que v2.
-Ils copient leurs sources avant calcul et conservent les diagnostics historiques.
-Le maillage de pièce et son cache complet de 1 034 couches restent identiques.
+The v2 sources, their runs and their refusals are kept. The new entry points
+are `generate_prism_region_v3.py` and `generate_legacy_region_v3.py`, with the
+same positional arguments as v2. They copy their sources before computing and
+keep the historical diagnostics. The part mesh and its complete cache of 1,034
+layers remain identical.
 
-Vérification native ciblée :
+Targeted native check:
 
 ```sh
 work/part-workflow/runtimes/pyslm-coverage-011/env/bin/python -B -m unittest discover -s tests -p 'test_carrier_combinatorial_*.py' -v

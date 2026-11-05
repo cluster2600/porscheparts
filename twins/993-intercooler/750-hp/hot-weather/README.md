@@ -1,207 +1,207 @@
-# Échangeur 750 ch — poursuite à 45 °C et collecteurs raidis
+# 750 hp intercooler — continuation at 45 °C and stiffened manifolds
 
-Cette étude prolonge la [comparaison des architectures](../architecture/README.md),
-sur une nouvelle branche issue de `main`. Les preuves précédentes restent intactes.
-Elle dimensionne une demande de ventilation et génère une variante de collecteurs ;
-elle ne valide ni une machine d'impression, ni une pièce montée sur la voiture.
+This study extends the [architecture comparison](../architecture/README.md),
+on a new branch taken from `main`. The previous evidence remains intact.
+It sizes a cooling-fan demand and generates a manifold variant;
+it validates neither a printing machine nor a part fitted to the car.
 
-## Hypothèses corrigées
+## Corrected assumptions
 
-À 45 °C extérieur, l'entrée du compresseur vaut maintenant **50 °C** (+5 K
-supposés). Le cas haut à rapport absolu 3,0 et rendement 65 % donne **233,3 °C**
-à l'entrée de l'échangeur. Les anciens essais à 45 °C conservaient 40 °C à
-l'entrée du compresseur ; ils étaient donc plus favorables sur ce point.
+At 45 °C ambient, the compressor inlet is now **50 °C** (+5 K
+assumed). The high case at absolute pressure ratio 3.0 and 65 % efficiency gives **233.3 °C**
+at the intercooler inlet. The old 45 °C runs kept 40 °C at
+the compressor inlet; they were therefore more favourable on this point.
 
-Les [hypothèses](assumptions.json) conservent la cible de charge à 60 °C, avec
-un dimensionnement à 59 °C, et un budget global de 15 kW à l'arbre. Aucun effet
-de vitesse du véhicule n'est crédité. Le ventilateur moteur garde son régime
-propre. Le ventilateur d'échangeur peut varier indépendamment : on compare sa
-position en amont ou en aval et des conduits de 0,15 / 0,25 / 0,35 m².
+The [assumptions](assumptions.json) keep the charge target at 60 °C, with
+sizing at 59 °C, and an overall budget of 15 kW at the shaft. No vehicle-speed
+effect is credited. The engine fan keeps its own
+speed. The intercooler fan can vary independently: its position
+upstream or downstream and ducts of 0.15 / 0.25 / 0.35 m² are compared.
 
-Le calcul inverse cherche le débit nécessaire, puis le régime relatif qui
-fournirait la pression demandée sur la **courbe hypothétique précédente**.
-La densité à l'entrée du ventilateur est celle de l'air chaud lorsqu'il est
-placé après l'échangeur. Son échauffement est alors rejeté en aval. Le mélange
-d'une fraction de cet air avec l'admission est réitéré. Le modèle de transfert
-reste la borne des fluides mélangés à UA issu du calcul historique non mélangé.
+The inverse calculation finds the required flow, then the relative speed that
+would deliver the required pressure on the **previous hypothetical curve**.
+The density at the fan inlet is that of the hot air when it is
+placed after the intercooler. Its temperature rise is then rejected downstream. The mixing
+of a fraction of this air with the intake is iterated. The transfer model
+remains the mixed-fluid bound with a UA taken from the historical unmixed calculation.
 
-## Résultat à 45 °C
+## Result at 45 °C
 
-**288 cas**, dont deux passent le filtre nominal sans réaspiration. Le minimum
-de masse parmi eux est :
+**288 cases**, of which two pass the nominal filter without recirculation. The minimum
+mass among them is:
 
-| Paramètre | Résultat de calcul |
+| Parameter | Calculation result |
 |---|---:|
-| Cœur seul | 800 × 699,6 × 150 mm |
-| Masse de cœur analytique | 33,27 kg |
-| Enveloppe avec collecteurs | 1 070 × 699,6 × 150 mm |
-| Ailettes / parois de séparation | 0,15 / 0,4 mm |
-| Pas chaud / froid, segments | 1,5 / 3 mm, segments de 10 mm |
-| Ventilateur échangeur | En aval, aspiration à travers le cœur |
-| Section de référence des conduits | 0,35 m² |
-| Débit froid | 4,88 kg/s |
-| Point demandé au ventilateur échangeur | 4,71 m³/s à 1 154 Pa |
-| Régime relatif échangeur | 1,361 fois la courbe de référence |
-| Puissance échangeur / moteur | 9,05 / 5,74 kW à l'arbre |
-| Total | 14,79 kW à l'arbre |
-| Sortie charge / rejet d'air froid | 59,0 / 69,1 °C |
-| Puissance thermique rejetée | 109,2 kW |
+| Core alone | 800 × 699.6 × 150 mm |
+| Analytical core mass | 33.27 kg |
+| Envelope with manifolds | 1,070 × 699.6 × 150 mm |
+| Fins / separating walls | 0.15 / 0.4 mm |
+| Hot / cold pitch, segments | 1.5 / 3 mm, 10 mm segments |
+| Intercooler fan | Downstream, drawing through the core |
+| Reference duct section | 0.35 m² |
+| Cold flow | 4.88 kg/s |
+| Point required from the intercooler fan | 4.71 m³/s at 1,154 Pa |
+| Intercooler relative speed | 1.361 times the reference curve |
+| Intercooler / engine power | 9.05 / 5.74 kW at the shaft |
+| Total | 14.79 kW at the shaft |
+| Charge outlet / cold-air rejection | 59.0 / 69.1 °C |
+| Heat rejected | 109.2 kW |
 
-Ce point est une **spécification hypothétique à confronter à un ventilateur
-réel**, pas une performance démontrée de l'impeller existant. Le budget ne laisse
-que 0,21 kW de marge. L'enveloppe de 700 mm ne laisse que 0,4 mm de différence
-avec la hauteur calculée ; ce n'est pas un jeu d'installation acceptable démontré.
-Tuyaux, conduits de rejet, ventilateurs et supports sont exclus de cette enveloppe.
+This point is a **hypothetical specification to be checked against a real
+fan**, not a demonstrated performance of the existing impeller. The budget leaves
+only 0.21 kW of margin. The 700 mm envelope leaves only 0.4 mm of difference
+from the calculated height; this is not a demonstrated acceptable installation clearance.
+Pipes, rejection ducts, fans and brackets are excluded from this envelope.
 
-À 35 °C, maintenir le même régime gaspille de la puissance et dépasse légèrement
-15 kW. Le calcul inverse ramène le régime relatif échangeur à **0,803** pour
-59 °C en sortie charge, avec **7,88 kW** au total. Le moteur reste refroidi par
-son circuit indépendant. À 50 °C, la cible de 59 °C n'est pas atteinte dans la
-plage cherchée de 1 à 7 kg/s ; ce n'est pas une preuve d'impossibilité universelle.
+At 35 °C, keeping the same speed wastes power and slightly exceeds
+15 kW. The inverse calculation brings the intercooler relative speed down to **0.803** for
+59 °C at the charge outlet, with **7.88 kW** in total. The engine remains cooled by
+its independent circuit. At 50 °C, the 59 °C target is not reached within the
+searched range of 1 to 7 kg/s; this is not proof of universal impossibility.
 
-| Réaspiration du rejet | Sortie charge à 45 °C, régime fixé |
+| Recirculation of rejected air | Charge outlet at 45 °C, fixed speed |
 |---|---:|
-| 0 % | 59,00 °C |
-| 5 % | 60,21 °C |
-| 10 % | 61,55 °C |
+| 0 % | 59.00 °C |
+| 5 % | 60.21 °C |
+| 10 % | 61.55 °C |
 
-La séparation physique des admissions et des rejets est donc indispensable à
-étudier. Le [JSON](results/study.json) conserve aussi les cas à 35 et 50 °C,
-la recherche de régime et les [288 lignes de comparaison](results/sweep.csv).
-Aucun champ d'acceptation physique n'est activé.
+Physical separation of the intakes and the rejected air is therefore essential to
+study. The [JSON](results/study.json) also keeps the 35 and 50 °C cases,
+the speed search and the [288 comparison rows](results/sweep.csv).
+No physical acceptance field is enabled.
 
-![Sensibilité thermique et calcul de panneau](derived/comparison.png)
+![Thermal sensitivity and panel calculation](derived/comparison.png)
 
-## Pression : ce qui change et ce qui manque
+## Pressure: what changes and what is missing
 
-Hypothèses exploratoires : pression de service **2,5 bar relatifs**, cas d'épreuve
-numérique **3,75 bar relatifs**, module chaud 50 GPa et contrainte admissible
-supposée 40 MPa. Ces valeurs ne sont ni une recette d'épreuve autorisée, ni un
-admissible AlSi10Mg certifié à 233 °C.
+Exploratory assumptions: working pressure **2.5 bar gauge**, numerical proof
+case **3.75 bar gauge**, hot modulus 50 GPa and assumed allowable stress
+40 MPa. These values are neither an authorised proof-test procedure nor a
+certified AlSi10Mg allowable at 233 °C.
 
-Le contrôle est une bande de largeur unité simplement appuyée sous pression :
-`sigma = 0,75 p (L/t)²`, `flèche = 5 p L⁴ / (32 E t³)`. Il suppose des appuis
-continus rigides. Pour la portée plane historique de 180 mm et t = 3 mm, la
-flèche sort largement du domaine des petites déformations : ses contraintes
-élastiques ne sont pas des contraintes physiques prédites après plastification.
-Cette géométrie ne peut pas être retenue sur ce modèle.
+The check is a simply supported strip of unit width under pressure:
+`sigma = 0,75 p (L/t)²`, `flèche = 5 p L⁴ / (32 E t³)` (flèche = deflection). It assumes rigid continuous
+supports. For the historical flat span of 180 mm and t = 3 mm, the
+deflection lies far outside the small-deformation range: its elastic
+stresses are not physical stresses predicted after yielding.
+This geometry cannot be retained on this model.
 
-Avec des appuis idéaux espacés de **30 mm**, la bande de 3 mm donne **28,1 MPa**
-et **0,035 mm** au cas 3,75 bar. La variante PicoGK ajoute des cloisons
-transversales ajourées, de 3 mm d'épaisseur, avec des bords de 12 mm.
-**Le calcul de bande ne vérifie pas la rigidité de ces cloisons**, leur pied,
-les ouvertures de raccord, les arrondis, la fatigue, les assemblages ni les
-contraintes thermiques. Il ne constitue pas une FEA du collecteur.
+With ideal supports spaced **30 mm** apart, the 3 mm strip gives **28.1 MPa**
+and **0.035 mm** in the 3.75 bar case. The PicoGK variant adds perforated transverse
+bulkheads, 3 mm thick, with 12 mm edges.
+**The strip calculation does not verify the stiffness of these bulkheads**, their root,
+the connection openings, the fillets, fatigue, joints or
+thermal stresses. It is not an FEA of the manifold.
 
-Chaque interface de demi-cœur doit reprendre environ **39,4 kN** au cas
-3,75 bar ; une cellule de 30 mm correspond à environ **1,69 kN** de charge
-tributaire. Les interfaces mesurées et leur chemin de charge restent requis
-avant conception fonctionnelle des fixations et jonctions.
+Each half-core interface must carry about **39.4 kN** in the
+3.75 bar case; a 30 mm cell corresponds to about **1.69 kN** of tributary
+load. Measured interfaces and their load path remain required
+before functional design of the fastenings and joints.
 
-Les raidisseurs réduisent aussi le passage : environ **49 % de section libre**
-dans une cloison d'entrée. Une estimation à prélèvement uniforme réparti, avec
-K supposé par cloison et pertes des orifices 80 / 113 mm, donne :
+The stiffeners also reduce the passage: about **49 % free area**
+in an inlet bulkhead. An estimate with uniformly distributed off-take, with
+an assumed K per bulkhead and orifice losses of 80 / 113 mm, gives:
 
-| K supposé par cloison | Perte totale côté charge |
+| Assumed K per bulkhead | Total charge-side loss |
 |---|---:|
-| 0,5 | 6,40 kPa |
-| 1 | 8,27 kPa |
-| 2 | 12,02 kPa — dépasse le budget de 10 kPa |
+| 0.5 | 6.40 kPa |
+| 1 | 8.27 kPa |
+| 2 | 12.02 kPa — exceeds the 10 kPa budget |
 
-Ces K ne sont pas calibrés. Le filtre thermique nominal ne valide pas les pertes
-réelles des cloisons : CFD et banc devront mesurer répartition, séparation et
-pertes. C'est le compromis à résoudre entre raidissement et circulation d'air.
+These K values are not calibrated. The nominal thermal filter does not validate the real losses
+of the bulkheads: CFD and bench testing will have to measure distribution, separation and
+losses. This is the trade-off to resolve between stiffening and airflow.
 
-## Géométrie et fabrication
+## Geometry and manufacturing
 
-![Coupe de revue des collecteurs raidis](derived/layout.png)
+![Review section of the stiffened manifolds](derived/layout.png)
 
-[GLB complet en mètres](derived/layout.glb), [reçu géométrique](derived/review.json),
-[source PicoGK](source/picogk/Program.cs), [entrée reproductible](layout-input.json).
-La masse calculée des collecteurs raidis vaut **8,01 kg**,
-soit environ **41,28 kg avec le cœur**, hors accessoires.
-La coupe concerne seulement l'image : les fichiers STL de revue restent des
-solides fermés. Les blocs de cœur sont des enveloppes ; les interfaces tube par
-tube restent absentes. Les fichiers ne sont pas un échangeur complet étanche.
+[Complete GLB in metres](derived/layout.glb), [geometry receipt](derived/review.json),
+[PicoGK source](source/picogk/Program.cs), [reproducible input](layout-input.json).
+The calculated mass of the stiffened manifolds is **8.01 kg**,
+or about **41.28 kg with the core**, excluding accessories.
+The section applies only to the image: the review STL files remain
+closed solids. The core blocks are envelopes; the tube-by-tube
+interfaces remain absent. The files are not a complete sealed intercooler.
 
-La [carte d'éprouvette mise à jour](coupon-input.json) reprend le pas froid de
-3 mm et peut être utilisée avec le générateur d'éprouvettes existant. Elle n'a
-pas encore donné lieu à une nouvelle génération native ou à une impression.
+The [updated coupon card](coupon-input.json) takes up the 3 mm cold
+pitch and can be used with the existing coupon generator. It has
+not yet led to a new native generation or to a print.
 
-La [fiche officielle EOS AlSi10Mg](https://www.eos.info/metal-solutions/data-sheets/all-processes-and-materials?id=eos-aluminium-alsi10mg),
-consultée le 12 octobre 2026, donne notamment une paroi minimale de **0,4 mm**
-pour M290 à couches de 30 µm. Elle ne qualifie donc pas nos ailettes de 0,15 mm.
-Les propriétés mécaniques y sont données à température ambiante ; elles ne
-fournissent pas nos admissibles de paroi chaude. Le lien PDF trouvé par recherche
-retournait 404 ; la page fabricant a été consultée directement.
+The [official EOS AlSi10Mg data sheet](https://www.eos.info/metal-solutions/data-sheets/all-processes-and-materials?id=eos-aluminium-alsi10mg),
+consulted on 12 October 2026, gives in particular a minimum wall of **0.4 mm**
+for the M290 at 30 µm layers. It therefore does not qualify our 0.15 mm fins.
+The mechanical properties there are given at room temperature; they do not
+provide our hot-wall allowables. The PDF link found by search
+returned 404; the manufacturer page was consulted directly.
 
-Le cœur haut de 699,6 mm complique aussi le procédé : l'orientation à 45° dans
-X/Z de chaque demi-cœur donne environ **389 × 700 × 389 mm**, hors supports,
-au-delà du plateau de 600 mm envisagé précédemment. Un découpage supplémentaire,
-ou une autre machine et orientation, devra être conçu avec nouveaux bilans
-thermiques, jonctions et accès de dépoudrage. Le dimensionnement thermique ne
-vaut pas approbation d'une impression monolithique.
+The 699.6 mm tall core also complicates the process: a 45° orientation in
+X/Z of each half-core gives about **389 × 700 × 389 mm**, excluding supports,
+beyond the 600 mm build plate previously considered. An additional split,
+or another machine and orientation, will have to be designed with new thermal
+budgets, joints and depowdering access. Thermal sizing does
+not constitute approval of a monolithic print.
 
-## Vérification et suite
+## Verification and next steps
 
-### ShapeKernel, LatticeLibrary et échange VDB exécutés sur Mac
+### ShapeKernel, LatticeLibrary and VDB exchange executed on the Mac
 
-Le [générateur d'éprouvettes](source/lattice/Program.cs) utilise effectivement
-`ShapeKernel.BaseBox` pour les enveloppes et passages, et
-`LatticeLibrary.BodyCentreLattice` / `CuboidCell` pour seize cellules BCC.
-Les sources installées sous `~/Developer/PicoGK` sont compilées sans modification ;
-leurs versions et empreintes figurent dans le [reçu](results/lattice-runtime.json).
-Les deux bibliothèques sont Apache-2.0 ; aucun code tiers ni runtime n'est redistribué.
+The [coupon generator](source/lattice/Program.cs) actually uses
+`ShapeKernel.BaseBox` for the envelopes and passages, and
+`LatticeLibrary.BodyCentreLattice` / `CuboidCell` for sixteen BCC cells.
+The sources installed under `~/Developer/PicoGK` are compiled without modification;
+their versions and digests are in the [receipt](results/lattice-runtime.json).
+Both libraries are Apache-2.0; no third-party code or runtime is redistributed.
 
-![Éprouvettes réellement générées, vues en coupe](lattice/comparison.png)
+![Coupons actually generated, shown in section](lattice/comparison.png)
 
-Deux variantes de **24 × 24 × 11,4 mm** sont générées : passage froid lisse
-et passage froid à treillis BCC, avec parois et diamètre de barres de **0,8 mm**,
-cellules de 6 mm. Le passage chaud de 3 mm est séparé du passage froid de 6 mm.
-Ce sont des éprouvettes comparatives, **pas les ailettes de 0,15 mm du cœur
-dimensionné** : aucun résultat thermique du grand cœur n'est transféré au treillis.
+Two variants of **24 × 24 × 11.4 mm** are generated: a smooth cold passage
+and a cold passage with a BCC lattice, with walls and bar diameter of **0.8 mm**,
+6 mm cells. The 3 mm hot passage is separated from the 6 mm cold passage.
+These are comparative coupons, **not the 0.15 mm fins of the sized
+core**: no thermal result of the large core is transferred to the lattice.
 
-À voxels de 0,1 mm, par rapport à l'éprouvette lisse :
+At 0.1 mm voxels, compared with the smooth coupon:
 
-| Mesure géométrique | Variante BCC |
+| Geometric measurement | BCC variant |
 |---|---:|
-| Surface au contact de l'air froid, bouchons numériques exclus | +89,5 % |
-| Volume libre côté froid | −8,4 % |
-| Volume de métal total | +15,7 % |
-| Variation de volume solide entre voxels de 0,2 et 0,1 mm | 1,19 % |
+| Surface in contact with cold air, numerical plugs excluded | +89.5 % |
+| Cold-side free volume | −8.4 % |
+| Total metal volume | +15.7 % |
+| Solid-volume change between 0.2 and 0.1 mm voxels | 1.19 % |
 
-Une surface supplémentaire ne prouve pas une meilleure dissipation : efficacité
-des barres, pertes de charge et répartition du débit restent inconnues. Deux
-résolutions donnent une sensibilité géométrique, pas une convergence CFD.
-Les barres inclinées, les plafonds, le dépoudrage et la tenue sous pression
-nécessitent une étude de fabrication propre à ces éprouvettes. Le passage chaud
-lisse n'a pas de renfort interne : une bande simplement appuyée de portée
-22,4 mm et d'épaisseur 0,8 mm donnerait **220,5 MPa à 3,75 bar** selon le même
-contrôle exploratoire, au-dessus des 40 MPa supposés. Cette variante est donc
-**rejetée pour une épreuve sous pression de suralimentation** sans nouvelle
-conception et validation ; elle sert ici à comparer les géométries côté froid.
+Additional surface does not prove better heat dissipation: bar
+efficiency, pressure losses and flow distribution remain unknown. Two
+resolutions give a geometric sensitivity, not CFD convergence.
+The inclined bars, the ceilings, depowdering and pressure resistance
+require a manufacturing study specific to these coupons. The smooth hot passage
+has no internal reinforcement: a simply supported strip of span
+22.4 mm and thickness 0.8 mm would give **220.5 MPa at 3.75 bar** according to the same
+exploratory check, above the assumed 40 MPa. This variant is therefore
+**rejected for a boost-pressure proof test** without new
+design and validation; here it serves to compare cold-side geometries.
 
-Chaque fichier contient **sept champs nommés** : solide, fluide chaud, fluide froid,
-deux températures initiales en K et deux vitesses initiales en m/s. Les coordonnées
-PicoGK sont en mm : une conversion explicite vers les mètres est requise côté solveur.
-Les températures initiales valent 506,47 K / 318,15 K ; les vitesses uniformes
-de 1 m/s servent uniquement à préparer l'échange de données, sans lien avec le
-débit du grand échangeur. Les trois domaines se relisent identiques, et toutes
-les valeurs actives d'origine des champs scalaires/vectoriels ont été relues et
-comparées. La présence éventuelle de valeurs actives supplémentaires dans la
-copie n'est pas vérifiée. Aucun solveur thermique ou hydraulique n'a été exécuté.
+Each file contains **seven named fields**: solid, hot fluid, cold fluid,
+two initial temperatures in K and two initial velocities in m/s. The PicoGK
+coordinates are in mm: an explicit conversion to metres is required on the solver side.
+The initial temperatures are 506.47 K / 318.15 K; the uniform velocities
+of 1 m/s serve only to prepare the data exchange, with no link to the
+flow of the large intercooler. The three domains read back identical, and all
+the original active values of the scalar/vector fields were reread and
+compared. The possible presence of additional active values in the
+copy is not verified. No thermal or hydraulic solver was executed.
 
-Fichiers VDB compressés : [BCC 0,1 mm](lattice/bcc-0.1-fields.vdb.gz),
-[BCC 0,2 mm](lattice/bcc-0.2-fields.vdb.gz), [lisse 0,1 mm](lattice/plain-0.1-fields.vdb.gz),
-[lisse 0,2 mm](lattice/plain-0.2-fields.vdb.gz). Décompresser avant lecture VDB.
-Les [STL BCC](lattice/bcc-solid.stl.gz) et [lisse](lattice/plain-solid.stl.gz)
-sont des exports complets ; seule l'image est coupée.
+Compressed VDB files: [BCC 0.1 mm](lattice/bcc-0.1-fields.vdb.gz),
+[BCC 0.2 mm](lattice/bcc-0.2-fields.vdb.gz), [smooth 0.1 mm](lattice/plain-0.1-fields.vdb.gz),
+[smooth 0.2 mm](lattice/plain-0.2-fields.vdb.gz). Decompress before reading the VDB.
+The [BCC](lattice/bcc-solid.stl.gz) and [smooth](lattice/plain-solid.stl.gz) STLs
+are complete exports; only the image is sectioned.
 
-Le [contrôle indépendant des exports](lattice/review.json) conserve les défauts
-bruts : à 0,1 mm, 1 680 faces dégénérées/dupliquées sont retirées du solide BCC
-et 2 160 du domaine froid. Les surfaces nettoyées sont fermées, à une composante,
-avec variation de volume inférieure à 10⁻⁷. **L'acceptation du maillage brut reste
-fausse** ; ce nettoyage ne qualifie ni l'étanchéité réelle ni un maillage solveur.
+The [independent check of the exports](lattice/review.json) keeps the raw
+defects: at 0.1 mm, 1,680 degenerate/duplicate faces are removed from the BCC solid
+and 2,160 from the cold domain. The cleaned surfaces are closed, single-component,
+with a volume change below 10⁻⁷. **Acceptance of the raw mesh remains
+false**; this cleaning qualifies neither real leak-tightness nor a solver mesh.
 
 ```sh
 ~/Developer/PicoGK/sdk/dotnet build twins/993-intercooler/750-hp/hot-weather/source/lattice/Coupon.csproj -c Release -o work/lattice-bin
@@ -209,20 +209,22 @@ fausse** ; ce nettoyage ne qualifie ni l'étanchéité réelle ni un maillage so
 ~/Developer/PicoGK/sdk/dotnet work/lattice-bin/Coupon.dll twins/993-intercooler/750-hp/hot-weather/results/study.json work/new-lattice 0.1 bcc
 ```
 
-### Contrôles du dossier
+(The comment in the block reads "Run under the shared PicoGK lock of parts/picogk-catalog/tools/run_part.py.")
 
-Les tests contrôlent conservation d'énergie, inversion de courbe de ventilateur,
-lois de flexion, domaine de petite déformation, rejets des entrées invalides et
-empreintes des résultats. Les maillages natifs sont inspectés avant les exports
-simplifiés ; les STL sont en mm et le GLB en mètres.
+### Dossier checks
+
+The tests check energy conservation, fan-curve inversion,
+bending laws, the small-deformation range, rejection of invalid inputs and
+result digests. The native meshes are inspected before the simplified
+exports; the STLs are in mm and the GLB in metres.
 
 ```sh
 python3 twins/993-intercooler/750-hp/hot-weather/source/study.py --output work/new-hot-weather
 python3 -m unittest discover -s tests -p test_993_intercooler_hot_weather.py -v
 ```
 
-Priorités suivantes : conduit séparant réellement admission et rejet, contrôle
-indépendant du régime, courbes de ventilateurs mesurées, FEA des cloisons et des
-interfaces avec les tubes, puis éprouvettes thermiques/hydrauliques et recette
-LPBF spécifique. Les hypothèses permettent de poursuivre le dessin ; elles ne
-remplacent pas ces validations.
+Next priorities: a duct that really separates intake and rejected air, independent
+speed control, measured fan curves, FEA of the bulkheads and of the
+interfaces with the tubes, then thermal/hydraulic coupons and a specific
+LPBF procedure. The assumptions allow the design to continue; they do not
+replace these validations.

@@ -1,13 +1,13 @@
-# Carte mécanique conservée
+# Preserved mechanical map
 
-La [page illustrée](../mechanics.html) explique les deux vues. Les trois
-fichiers `combined.*` sont copiés à l'octet depuis l'étape `fields` exécutée
-dans `work/part-workflow/run-001`. Le [reçu](provenance.json) vérifie la figure,
-le maillage, le deck, les résultats et le script de rendu ; il donne la
-commande pour régénérer les figures dans un nouveau répertoire.
+The [illustrated page](../mechanics.html) explains the two views. The three
+`combined.*` files are copied byte for byte from the `fields` step executed
+in `work/part-workflow/run-001`. The [receipt](provenance.json) verifies the
+figure, the mesh, the deck, the results and the rendering script; it gives the
+command to regenerate the figures in a new directory.
 
-Le SVG conserve les espaces en fin de ligne produits par Matplotlib : il
-n'est pas normalisé pour préserver son identité avec la sortie enregistrée.
-La figure a été examinée directement puis dans sa page HTML : toute la pièce,
-les barres de couleur, unités et amplification sont lisibles. Cette copie
-n'ajoute aucune admission mécanique ou de préparation aux résultats sources.
+The SVG keeps the trailing whitespace produced by Matplotlib: it is not
+normalised, to preserve its identity with the recorded output.
+The figure was examined directly, then in its HTML page: the whole part, the
+colour bars, units and amplification are legible. This copy adds no
+mechanical or preparation admission to the source results.

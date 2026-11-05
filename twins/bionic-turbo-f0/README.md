@@ -1,42 +1,42 @@
-# Turbo bionique — carter de compresseur F0
+# Bionic turbo — compressor housing F0
 
-Premier concept éditable PicoGK : entrée axiale, chambre ouverte à l'arrière,
-diffuseur annulaire, volute croissante, sortie tangentielle et nervures externes
-ramifiées. « Bionique » décrit ici la forme des nervures ; aucune optimisation
-de masse, de rigidité ou de rendement n'est démontrée.
+First editable PicoGK concept: axial inlet, chamber open at the rear,
+annular diffuser, growing volute, tangential outlet and branched external
+ribs. "Bionic" here describes the shape of the ribs; no optimisation
+of mass, stiffness or efficiency is demonstrated.
 
-Toutes les valeurs de [parameters.json](parameters.json) sont des hypothèses de
-dessin en millimètres. Elles ne reproduisent pas un K16. La
-[fiche K16](../../catalog/parts/993-turbocharger-k16-pair-0001.json) reste la
-référence catalogue ; elle n'est pas modifiée par cette étude.
+All values in [parameters.json](parameters.json) are drawing assumptions
+in millimetres. They do not reproduce a K16. The
+[K16 record](../../catalog/parts/993-turbocharger-k16-pair-0001.json) remains the
+catalogue reference; it is not modified by this study.
 
-![Carter bionique et coupe géométrique](media/preview.png)
+![Bionic housing and geometric section](media/preview.png)
 
-La couleur est un choix de visualisation, sans sélection de matériau.
+The colour is a visualisation choice, with no material selection.
 
-## Sources et périmètre
+## Sources and scope
 
-- Source éditable : [source/Program.cs](source/Program.cs) et paramètres JSON.
-- Géométrie : [PicoGK 2.3.0](https://github.com/leap71/PicoGK), LEAP 71,
-  licence Apache-2.0 ; dépendance NuGet épinglée, noyau natif 26.2.
-- Réemploi interne : `parts/picogk-catalog/common/Sdf.cs` et
-  `parts/picogk-catalog/rotating/RotKit.cs`, sans modifier les modèles existants.
-- Géométrie originale du concept, sans scan, photo ou CAO fournisseur importés.
-  La [licence du dépôt](../../LICENSE) s'applique au nouveau code et aux sorties.
-- Aucun rotor, palier, circuit d'huile, carter de turbine ou boulonnage fictif.
-  L'ouverture arrière représente un accès conceptuel au CHRA, sans définir
-  son ajustement, son joint ou sa retenue.
+- Editable source: [source/Program.cs](source/Program.cs) and JSON parameters.
+- Geometry: [PicoGK 2.3.0](https://github.com/leap71/PicoGK), LEAP 71,
+  Apache-2.0 licence; pinned NuGet dependency, native kernel 26.2.
+- Internal reuse: `parts/picogk-catalog/common/Sdf.cs` and
+  `parts/picogk-catalog/rotating/RotKit.cs`, without modifying the existing models.
+- Original concept geometry, with no imported scan, photo or supplier CAD.
+  The [repository licence](../../LICENSE) applies to the new code and outputs.
+- No fictitious rotor, bearing, oil circuit, turbine housing or bolting.
+  The rear opening represents conceptual access to the CHRA, without defining
+  its fit, its seal or its retention.
 
-Le [contrat d'interfaces](interface-contract.json) conserve les mesures absentes
-à `null`. Le chemin de charge à établir passe des parois sous pression et des
-embouts de durite vers la retenue du carter sur le CHRA, puis vers les supports.
-Les nervures proposées ne constituent pas une justification de ce chemin.
+The [interface contract](interface-contract.json) keeps the missing measurements
+at `null`. The load path to be established runs from the pressurised walls and
+hose spigots to the retention of the housing on the CHRA, then to the brackets.
+The proposed ribs do not constitute a justification of this path.
 
-## Reproduire
+## Reproduce
 
-Depuis la racine du dépôt, avec .NET 9 et le paquet PicoGK pour macOS ARM64 ou
-Windows x64. Le générateur s'exécute sans ouvrir le visualiseur PicoGK.
-Ne lancer qu'un processus natif PicoGK à la fois sur la machine.
+From the repository root, with .NET 9 and the PicoGK package for macOS ARM64 or
+Windows x64. The generator runs without opening the PicoGK viewer.
+Run only one native PicoGK process at a time on the machine.
 
 ```sh
 dotnet build twins/bionic-turbo-f0/source/BionicTurbo.csproj -c Release
@@ -46,72 +46,72 @@ dotnet twins/bionic-turbo-f0/source/bin/Release/net9.0/BionicTurbo.dll \
 python twins/bionic-turbo-f0/inspect_mesh.py work/bionic-turbo-075
 ```
 
-L'inspection utilise NumPy, Trimesh et PyVista, déjà employés dans le dépôt.
-Elle vérifie les maillages exacts avant de produire un aperçu ; aucun lissage
-ni aucune décimation ne sont appliqués après l'export STL. Le dossier de sortie
-du générateur doit être neuf. Les erreurs et essais rejetés sont conservés.
+The inspection uses NumPy, Trimesh and PyVista, already used in the repository.
+It checks the exact meshes before producing a preview; no smoothing
+or decimation is applied after the STL export. The generator's output
+directory must be new. Errors and rejected trials are kept.
 
-| Fichier produit | Usage |
+| Output file | Use |
 |---|---|
-| `housing.stl` | Carter conceptuel entier |
-| `flow-domain.stl` | Volume de passage abstrait, sans roue ni conditions de CFD |
-| `section.stl` | Coupe géométrique réelle du carter |
-| `report.json` | Paramètres, version du noyau et contrôles du générateur |
-| `inspection.json` | Inspection indépendante des maillages et empreintes SHA-256 |
-| `preview.png` | Vue du carter et de la coupe |
+| `housing.stl` | Complete conceptual housing |
+| `flow-domain.stl` | Abstract flow-passage volume, with no wheel or CFD conditions |
+| `section.stl` | Real geometric section of the housing |
+| `report.json` | Parameters, kernel version and generator checks |
+| `inspection.json` | Independent inspection of the meshes and SHA-256 digests |
+| `preview.png` | View of the housing and the section |
 
-Le générateur régularise le carter au niveau voxel par `Smoothen(voxel_mm)`
-avant son export et consigne cette opération. Elle peut modifier les détails
-de taille inférieure à un voxel ; elle ne démontre aucune épaisseur minimale.
-La coupe est légèrement décalée de X=0 pour éviter une coïncidence avec la
-grille, et son plan exact figure dans `report.json`.
-La longueur de sortie de 42,25 mm évite la coïncidence de sa face avec les deux
-grilles vérifiées ; ce n'est pas une cote fournisseur. Toute modification de
-paramètres ou de résolution doit repasser l'inspection, car des artefacts
-peuvent réapparaître. L'aperçu interpole les normales pour l'éclairage seulement.
+The generator regularises the housing at voxel level with `Smoothen(voxel_mm)`
+before export and records this operation. It can modify details
+smaller than one voxel; it demonstrates no minimum thickness.
+The section is slightly offset from X=0 to avoid coinciding with the
+grid, and its exact plane is given in `report.json`.
+The outlet length of 42.25 mm keeps its face from coinciding with the two
+verified grids; it is not a supplier dimension. Any change of
+parameters or resolution must go through inspection again, because artefacts
+can reappear. The preview interpolates normals for lighting only.
 
-L'ouverture arrière laisse le domaine d'air ouvert au CHRA absent : il ne peut
-donc pas être utilisé tel quel comme cas CFD de compresseur. Le C# et le JSON
-sont les maîtres éditables ; un STL n'est pas un solide STEP paramétrique.
-Le volume d'air exporté reste nominal, avant régularisation du carter : il
-n'est pas une extraction exacte du vide final pour un solveur.
+The rear opening leaves the air domain open to the absent CHRA: it therefore
+cannot be used as is as a compressor CFD case. The C# and the JSON
+are the editable masters; an STL is not a parametric STEP solid.
+The exported air volume remains nominal, before regularisation of the housing: it
+is not an exact extraction of the final void for a solver.
 
-## Vérification locale du 10 octobre 2026
+## Local verification of 10 October 2026
 
-Les [résultats et empreintes](verification.json) consignent les deux exécutions
-à 0,75 et 0,50 mm. Les trois maillages de chaque exécution ont une surface
-connectée, un volume signé positif, zéro arête ouverte ou non-manifold, zéro
-facette dégénérée et zéro doublon. Aucune facette n'a été retirée par
-l'inspecteur. Douze sondes natives contrôlent les passages et une paroi.
-La comparaison des deux résolutions est un contrôle géométrique limité, pas
-une étude de convergence physique ni une mesure des interfaces réelles.
+The [results and digests](verification.json) record the two runs
+at 0.75 and 0.50 mm. The three meshes of each run have a connected
+surface, a positive signed volume, zero open or non-manifold edges, zero
+degenerate facets and zero duplicates. No facet was removed by
+the inspector. Twelve native probes check the passages and a wall.
+The comparison of the two resolutions is a limited geometric check, not
+a physical convergence study nor a measurement of the real interfaces.
 
-La compilation .NET, l'autotest du générateur, les cinq tests de l'inspecteur,
-le rejet d'un paramètre inconnu et la protection contre l'écrasement passent.
-Les sorties locales sont conservées sous `work/bionic-turbo-delivery-075/`
-et `work/bionic-turbo-delivery-050/`. Les essais antérieurs rejetés restent
-dans des dossiers séparés ; leurs petits défauts ne sont pas masqués par
-une suppression de facettes.
+The .NET build, the generator self-test, the five inspector tests,
+the rejection of an unknown parameter and the overwrite protection pass.
+The local outputs are kept under `work/bionic-turbo-delivery-075/`
+and `work/bionic-turbo-delivery-050/`. Earlier rejected trials remain
+in separate directories; their small defects are not masked by
+removing facets.
 
-`make check` a exécuté 3 614 tests, avec 162 ignorés, deux erreurs de dépendances
-absentes (`rtree`, `networkx`) et deux échecs de comparaison flottante dans les
-tests existants de ventilateur/stator. Aucun fichier concerné n'est modifié
-par ce travail. Le contrôle global n'est donc pas déclaré réussi ; son journal
-reste dans `work/bionic-validation/make-check.log`.
+`make check` ran 3,614 tests, with 162 skipped, two errors from missing
+dependencies (`rtree`, `networkx`) and two floating-point comparison failures in the
+existing fan/stator tests. No affected file is modified
+by this work. The global check is therefore not declared passed; its log
+remains in `work/bionic-validation/make-check.log`.
 
-## Suite de l'étude
+## Next steps of the study
 
-1. Choisir le donneur et relever indépendamment axes, portées, joint, retenue,
-   interfaces de durite, roue, jeu de pointe, diffuseur et encombrement véhicule.
-2. Fixer débit, rapport de pression, régime, températures, cycles et efforts
-   des durites ; choisir matériau et procédé à partir de ces conditions.
-3. Comparer le carter de référence et le concept à conditions égales : CFD,
-   mécanique/thermique, sensibilité au maillage et corrélation expérimentale.
-4. Qualifier la fabrication, le nettoyage et l'inspection, puis les essais
-   d'étanchéité, de pression et de fatigue sous revue professionnelle.
+1. Choose the donor and independently record axes, bearing seats, seal, retention,
+   hose interfaces, wheel, tip clearance, diffuser and vehicle packaging.
+2. Set flow, pressure ratio, speed, temperatures, cycles and hose
+   loads; choose material and process from these conditions.
+3. Compare the reference housing and the concept under equal conditions: CFD,
+   mechanical/thermal, mesh sensitivity and experimental correlation.
+4. Qualify manufacturing, cleaning and inspection, then leak,
+   pressure and fatigue tests under professional review.
 
-Les contrôles logiciels ne valident ni le montage ni la tenue en service.
-Cette livraison est une maquette de revue, sans autorisation de fabrication
-fonctionnelle. Elle suit R-CAD/R-LOCAL et
-[ADR 0012](../../docs/decisions/0012-local-compute-gpu-last.md) : génération et
-inspection locales, paramètres traçables, qualification physique séparée.
+Software checks validate neither the installation nor in-service durability.
+This delivery is a review mock-up, with no authorisation for functional
+manufacture. It follows R-CAD/R-LOCAL and
+[ADR 0012](../../docs/decisions/0012-local-compute-gpu-last.md): local generation and
+inspection, traceable parameters, separate physical qualification.

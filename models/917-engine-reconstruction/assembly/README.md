@@ -1,106 +1,107 @@
-# Moteur complet de conception : quatre soupapes et turbos bioniques
+# Complete design engine: four valves and bionic turbos
 
-Cette branche réunit **119 définitions géométriques et 1 129 occurrences** :
-12 ensembles de culasse à quatre soupapes, 48 soupapes et deux turbos bioniques
-à 39 composants chacun. Elle couvre les 44 familles du programme moteur F1/F3,
-avec leurs remplacements modernes explicites, et ajoute guides, sièges,
-ressorts doubles, retenues, goujons, joints, pompes, circuits et accessoires.
-Ce périmètre de représentation est complet ; **la nomenclature de fabrication
-et la définition fonctionnelle de chaque pièce ne le sont pas**.
+This branch brings together **119 geometric definitions and 1,129 instances**:
+12 four-valve cylinder head assemblies, 48 valves and two bionic turbos
+of 39 components each. It covers the 44 families of the F1/F3 engine
+programme, with their explicit modern replacements, and adds guides, seats,
+double springs, retainers, studs, gaskets, pumps, circuits and accessories.
+This scope of representation is complete; **the manufacturing bill of
+materials and the functional definition of each part are not**.
 
-La base de cette nouvelle variante conserve l'alésage/course FIA **85 × 66 mm**.
-Ce n'est ni une réplique homologuée de la 917, ni le modèle 90 × 70,4 mm du
-programme F33, ni une preuve de sa cible de puissance. Les cotes FIA passent
-le validateur documentaire déjà utilisé dans la tranche précédente. Les
-matériaux, les interfaces modernes et les nouvelles formes restent des
-hypothèses. Le catalogue existant n'accorde aucune qualification nouvelle.
+The base of this new variant keeps the FIA bore/stroke of **85 × 66 mm**.
+It is neither a homologated replica of the 917, nor the 90 × 70.4 mm model of
+programme F33, nor evidence of its power target. The FIA dimensions pass the
+documentary validator already used in the previous slice. The materials, the
+modern interfaces and the new shapes remain hypotheses. The existing
+catalogue grants no new qualification.
 
-## Ce qui est repris
+## What is reused
 
-- La [culasse quatre soupapes air + huile](../../../docs/studies/993-air-oil-20261002/README.md),
-  son corps et ses 12 maillages de soupapes, sièges et guides, exactement
-  identifiés par le [manifeste publié](../../../docs/studies/993-air-oil-20261002/delivery-manifest.json).
-  Les nouvelles piles de ressorts suivent les axes des guides repris ; leurs
-  hauteurs installées restent des hypothèses. Aucun changement d'échelle
-  n'est appliqué. Une culasse issue du scan 935 ne démontre aucune interface 917.
-- Nos 39 composants du turbo bionique F0,
-  sans substitution par une enveloppe K16 ou Garrett. Chaque maillage conserve
-  ses coordonnées, triangles et empreinte. Cette dépendance provient d'une
-  autre branche locale, au commit `aba24fd351930ed4cee194b8cc557c3b80238894`,
-  pas encore accessible sur GitHub lors du contrôle. Fournir sa livraison
-  locale au programme de reconstruction ; ses sources éditables sont
-  conservées dans la livraison privée et ne sont pas publiées par cette PR.
-Les travaux F1 du turbo en cours ne sont pas repris.
-- Les générateurs PicoGK de cylindre, piston, bielle et axe ainsi que la
-  cinématique et le validateur FIA des tranches précédentes, laissés intacts.
-- Les fonctions de placement F1/F3 pour les accessoires conservés. Les pièces
-  historiques remplacées sont comptabilisées : allumage par bobines,
-  injection électronique, culbuteurs et wastegates internes.
+- The [four-valve air + oil cylinder head](../../../docs/studies/993-air-oil-20261002/README.md),
+  its body and its 12 meshes of valves, seats and guides, exactly identified
+  by the [published manifest](../../../docs/studies/993-air-oil-20261002/delivery-manifest.json).
+  The new spring stacks follow the axes of the reused guides; their installed
+  heights remain hypotheses. No change of scale is applied. A cylinder head
+  derived from the 935 scan demonstrates no 917 interface.
+- Our 39 components of the F0 bionic turbo,
+  with no substitution by a K16 or Garrett envelope. Each mesh keeps its
+  coordinates, triangles and digest. This dependency comes from another local
+  branch, at commit `aba24fd351930ed4cee194b8cc557c3b80238894`, not yet
+  available on GitHub at the time of the check. Provide its local delivery to
+  the reconstruction programme; its editable sources are kept in the private
+  delivery and are not published by this PR.
+The ongoing F1 turbo work is not reused.
+- The PicoGK generators for cylinder, piston, connecting rod and pin, as well
+  as the kinematics and the FIA validator of the previous slices, left intact.
+- The F1/F3 placement functions for the retained accessories. The replaced
+  historical parts are accounted for: coil ignition, electronic injection,
+  rocker arms and internal wastegates.
 
-Le maître natif F50 est documenté dans le Git, mais sa géométrie privée n'a
-pas été retrouvée dans les emplacements locaux explorés. Le modèle intégré
-ici est donc précisément la livraison air + huile du 2 octobre, pas une
-reconstitution du maître F50 ou une ancienne culasse générique F29.
+The native F50 master is documented in Git, but its private geometry was not
+found in the local locations explored. The model integrated here is therefore
+precisely the air + oil delivery of 2 October, not a reconstruction of the F50
+master or an old generic F29 cylinder head.
 
-## Ce qui est créé avec PicoGK
+## What is created with PicoGK
 
-[engine_layout.py](engine_layout.py) définit les formes, la nomenclature et les placements ;
-[design.json](design.json) expose les hypothèses du mécanisme et les routes
-matière/procédé. [Program.cs](Program.cs) utilise le noyau natif PicoGK 2.3.0
-pour construire les composants et enregistrer des **STL et VDB séparés**.
+[engine_layout.py](engine_layout.py) defines the shapes, the bill of materials
+and the placements; [design.json](design.json) exposes the mechanism
+hypotheses and the material/process routes. [Program.cs](Program.cs) uses the
+native PicoGK 2.3.0 kernel to build the components and save **separate STL
+and VDB files**.
 
-Les demi-carters possèdent des nervures ramifiées entre les stations de palier
-et l'enveloppe des cylindres. Les supports de distribution ont des branches
-rayonnantes ; les collecteurs creux réunissent six branches par banc. Ces
-règles bioniques sont un dessin paramétrique reproductible, sans optimisation
-topologique, preuve de chemin d'effort ou performance CFD/FEA.
-L'enveloppe de ces carters est elle aussi une hypothèse : elle n'est pas
-recalée ni ajustée au scan 917. Les coques issues du scan restent dans la
-première tranche ; elles ne sont pas remplacées ou déclarées compatibles par
-ce nouvel assemblage. Leur recalage reste nécessaire avant toute fidélité
-dimensionnelle ou intégration des interfaces réelles.
+The half-cases have branched ribs between the bearing stations and the
+cylinder envelope. The timing supports have radiating branches; the hollow
+manifolds join six branches per bank. These bionic rules are a reproducible
+parametric drawing, with no topology optimisation, load path evidence or
+CFD/FEA performance. The envelope of these cases is itself a hypothesis: it is
+neither registered nor fitted to the 917 scan. The shells derived from the
+scan remain in the first slice; they are not replaced or declared compatible
+by this new assembly. Their registration remains necessary before any
+dimensional fidelity or integration of the real interfaces.
 
-Le vilebrequin représente six manetons partagés, les phases déclarées et huit
-paliers. Ses joues ont une épaisseur axiale limitée. Les trois gorges proposées
-dans chaque piston sont soustraites au modèle antérieur, sans modifier ce
-générateur. Le nouveau cylindre commence à 50 mm et mesure 160 mm : il couvre
-le piston symétrique supposé de 86 mm et place le plan de culasse à 210 mm.
-Ces trois valeurs **ne proviennent pas de la FIA**. La cote FIA de 43 mm est
-la distance axe–calotte ; la jupe inférieure de 43 mm reste une hypothèse.
-Le maneton reste à 52 mm de référence FIA ; le logement de bielle passe à
-56,25 mm avec une allocation radiale supposée de 2,125 mm. L'ancien coussinet
-d'environ 1 mm ne restait pas connexe sur la grille de 1 mm. Ce choix rend
-le concept représentable ; il ne définit pas un coussinet de fonctionnement.
+The crankshaft represents six shared crankpins, the declared phasing and eight
+main bearings. Its webs have a limited axial thickness. The three grooves
+proposed in each piston are subtracted from the earlier model, without
+modifying that generator. The new cylinder starts at 50 mm and is 160 mm long:
+it covers the assumed symmetric 86 mm piston and places the cylinder head
+plane at 210 mm. These three values **do not come from the FIA**. The FIA
+dimension of 43 mm is the axis–crown distance; the lower skirt of 43 mm
+remains a hypothesis. The crankpin stays at the 52 mm FIA reference; the
+connecting rod bore goes to 56.25 mm with an assumed radial allowance of
+2.125 mm. The former bearing shell of about 1 mm did not remain connected on
+the 1 mm grid. This choice makes the concept representable; it does not define
+a working bearing shell.
 
-Un coussinet de bielle, une paire de clavettes et une enveloppe d'accessoire
-peuvent être des unités d'assemblage. Le nombre d'occurrences ne prétend pas
-compter chaque demi-coquille, filament, filet ou joint réel. Les alternateurs,
-démarreurs, capteurs, injecteurs, électronique et échangeurs sont des enveloppes
-d'achat ; les engrenages sont des ébauches sans denture ni loi de contact.
-Les internes de ces composants d'achat ne sont pas redessinés.
+A connecting rod bearing shell, a pair of collets and an accessory envelope
+may be assembly units. The instance count does not claim to count each real
+half-shell, filament, thread or gasket. Alternators, starters, sensors,
+injectors, electronics and exchangers are bought-in envelopes; the gears are
+blanks with no teeth or contact law. The internals of these bought-in
+components are not redrawn.
 
-Les rotations des turbos sont propres, sans miroir : leur axe reste longitudinal
-et leurs raccords sont tournés vers l'extérieur de chaque banc. Les extrémités
-des nouveaux conduits suivent les centres de raccord du concept F0 : entrée
-chaude locale `(43, 56,25, -99,75)` mm et sortie froide `(49, 42,25, 0)` mm.
-Ces centres repris ne définissent ni brides ni tolérances d'étanchéité.
+The turbo rotations are proper, with no mirroring: their axis remains
+longitudinal and their connections face outwards from each bank. The ends of
+the new ducts follow the connection centres of the F0 concept: local hot inlet
+`(43, 56,25, -99,75)` mm and cold outlet `(49, 42,25, 0)` mm.
+These reused centres define neither flanges nor sealing tolerances.
 
-Un contrôle indépendant sélectionne les sommets de soupape dont le Z local
-est inférieur ou égal à 4 unités, près du plan de joint. Sous l'hypothèse
-1 unité = 1 mm, leur rayon maximal dépasse le cercle d'alésage de 85 mm de
-**6,238 mm à l'admission et 6,445 mm à l'échappement**. Cela signale une
-incompatibilité d'enveloppe à traiter, sans établir à lui seul un contact
-piston–soupape. Il faut reconstruire la chambre et l'interface cylindre–culasse
-ou sélectionner une autre variante documentée ; leur compatibilité n'est
-pas acquise par le placement de ces pièces.
+An independent check selects the valve vertices whose local Z is less than or
+equal to 4 units, near the joint plane. Under the hypothesis
+1 unit = 1 mm, their maximum radius exceeds the 85 mm bore circle by
+**6.238 mm at the intake and 6.445 mm at the exhaust**. This flags an envelope
+incompatibility to be addressed, without by itself establishing piston–valve
+contact. The chamber and the cylinder–cylinder head interface must be
+reconstructed, or another documented variant selected; their compatibility is
+not established by the placement of these parts.
 
-## Reproduire et inspecter
+## Reproduce and inspect
 
-Le programme exige une livraison turbo liée aux empreintes de
-[imports.json](imports.json), .NET 9, PicoGK 2.3.0 et un environnement Python
-avec NumPy, Trimesh, SciPy, Rtree, NetworkX et Matplotlib. Il refuse les
-empreintes divergentes, les variantes FIA mélangées et l'écrasement d'un
-dossier existant. La géométrie générée reste sous le répertoire ignoré `work/`.
+The programme requires a turbo delivery bound to the digests in
+[imports.json](imports.json), .NET 9, PicoGK 2.3.0 and a Python environment
+with NumPy, Trimesh, SciPy, Rtree, NetworkX and Matplotlib. It refuses
+divergent digests, mixed FIA variants and overwriting an existing directory.
+The generated geometry stays under the ignored `work/` directory.
 
 ```sh
 python models/917-engine-reconstruction/assembly/run.py \
@@ -109,36 +110,36 @@ python models/917-engine-reconstruction/assembly/run.py \
   --output work/917-4v-biturbo-essai-001
 ```
 
-Chaque grille de 1 et 0,5 mm conserve ses STL natifs, VDB et reçus. Le témoin
-numérique indépendant déjà présent dans le dépôt produit un dérivé supprimant
-uniquement les triangles dont le produit vectoriel est exactement nul en
-float64. Aucun sommet n'est déplacé ; aucun triangle non nul n'est supprimé.
-Les maillages hérités ne subissent aucune suppression. Fermeture, orientation,
-volume positif, unicité du composant et absence de doublons sont inspectés.
-La fidélité continue au scan et les auto-intersections continues ne sont pas
-certifiées par ces contrôles.
-Ces grilles ne définissent pas les tolérances de paliers, de segments ou
-d'usinage. La route proposée combine impression des structures candidates,
-usinage, pièces forgées et composants d'achat ; elle ne prévoit pas d'imprimer
-l'ensemble du mécanisme en l'état.
+Each 1 and 0.5 mm grid keeps its native STL, VDB and receipts. The independent
+numerical witness already in the repository produces a derivative that removes
+only the triangles whose cross product is exactly zero in float64. No vertex is
+moved; no non-zero triangle is removed. The inherited meshes undergo no
+removal. Closure, orientation, positive volume, single component and absence
+of duplicates are inspected. Continuous fidelity to the scan and continuous
+self-intersections are not certified by these checks.
+These grids do not define bearing, ring or machining tolerances. The proposed
+route combines printing of the candidate structures, machining, forged parts
+and bought-in components; it does not plan to print the whole mechanism as it
+stands.
 
-L'export GLB conserve les définitions séparées et les 1 129 transformations,
-avec conversion mm → m. Sa réouverture vérifie les noms, nombres, triangles et
-l'erreur de transport. L'aperçu PNG utilise des points échantillonnés sur les
-surfaces, uniquement pour la présentation ; les STL et le GLB gardent les triangles
-des modèles contrôlés. `assembly.json` contient la nomenclature, les placements,
-les empreintes des imports et la couverture F1/F3 ; `validation.json` consigne
-les contrôles de mouvement et les conflits observés.
+The GLB export keeps the separate definitions and the 1,129 transforms, with
+mm → m conversion. Reopening it checks names, counts, triangles and the
+transport error. The PNG preview uses points sampled on the surfaces, for
+presentation only; the STL files and the GLB keep the triangles of the checked
+models. `assembly.json` contains the bill of materials, the placements, the
+import digests and the F1/F3 coverage; `validation.json` records the motion
+checks and the conflicts observed.
 
-Le complément [render_surfaces.py](render_surfaces.py) lit ce même GLB avec
-VTK 9.7.1 et produit quatre panneaux avec **surfaces opaques et ombrées** :
-assemblage complet, mécanisme avec culasses, demi-carter avec vilebrequin et
-légende. Il conserve tous les triangles, sans échantillonnage ni simplification,
-vérifie les noms et placements importés et contrôle l'empreinte du GLB avant
-et après le rendu. Les couleurs servent à la lecture ; elles ne qualifient pas
-les matériaux. Les anciens aperçus et reçus restent conservés.
-Le [reçu du rendu](surface-preview-20261011.json) lie les sources, l'image privée
-et la géométrie inchangée. Le PNG demeure dans la livraison locale ignorée.
+The add-on [render_surfaces.py](render_surfaces.py) reads the same GLB with
+VTK 9.7.1 and produces four panels with **opaque, shaded surfaces**:
+complete assembly, mechanism with cylinder heads, half-case with crankshaft
+and legend. It keeps all triangles, with no sampling or simplification,
+checks the imported names and placements and checks the GLB digest before and
+after rendering. The colours aid reading; they do not qualify the materials.
+The earlier previews and receipts remain preserved.
+The [render receipt](surface-preview-20261011.json) links the sources, the
+private image and the unchanged geometry. The PNG stays in the ignored local
+delivery.
 
 ```sh
 python models/917-engine-reconstruction/assembly/render_surfaces.py \
@@ -146,56 +147,54 @@ python models/917-engine-reconstruction/assembly/render_surfaces.py \
   --output work/917-solid-surfaces-20261011/nouveau-rendu
 ```
 
-## Matériaux et étapes de qualification
+## Materials and qualification steps
 
-Le [contrôle d'interface du 12 octobre](../clearance/README.md) confirme des
-volumes communs entre les soupapes héritées et le cylindre, puis propose une
-implantation compacte quatre soupapes à alésage 85 mm. Ses nouvelles silhouettes
-PicoGK restent séparées de cet assemblage : corps de culasse, sièges, guides,
-conduits et calage doivent être reconstruits et validés avant intégration.
+The [interface check of 12 October](../clearance/README.md) confirms common
+volumes between the inherited valves and the cylinder, then proposes a compact
+four-valve layout with an 85 mm bore. Its new PicoGK silhouettes remain
+separate from this assembly: cylinder head body, seats, guides, ports and
+timing must be reconstructed and validated before integration.
 
-Le [reçu d'exécution](execution-20261011.json) lie les sources et les résultats :
-67 définitions natives contrôlées sur les deux grilles, 52 imports contrôlés
-sans retouche et GLB de 119 définitions / 1 129 placements. L'erreur maximale
-mesurée lors de la réouverture du GLB est inférieure à `3 × 10⁻⁸ m` ; il s'agit
-d'une erreur de transport numérique, pas d'une précision physique.
-Quatre conduits ont été régénérés après les rejets ; les 63 autres définitions
-natives inchangées sont réutilisées avec contrôle de leurs empreintes.
-La correction de l'aperçu après l'export ne change que la fonction de
-présentation ; son reçu conserve cette distinction et l'empreinte du GLB.
+The [execution receipt](execution-20261011.json) links the sources and the
+results: 67 native definitions checked on both grids, 52 imports checked
+without retouching and a GLB of 119 definitions / 1,129 placements. The
+maximum error measured when reopening the GLB is below `3 × 10⁻⁸ m`; this is a
+numerical transport error, not a physical accuracy.
+Four ducts were regenerated after the rejections; the 63 other unchanged
+native definitions are reused with a check of their digests.
+The correction of the preview after the export changes only the presentation
+function; its receipt keeps this distinction and the GLB digest.
 
-Les 24 tests ciblés passent. Le contrôle global local a exécuté 3 638 tests,
-avec 153 ignorés et deux échecs préexistants de comparaison flottante dans les
-modèles 993 d'impulseur/stator inchangés. Les cibles suivantes de `make check`
-ne sont pas atteintes. Les dernières corrections des conduits, poses et de
-l'aperçu ont été suivies d'une nouvelle vérification ciblée.
+The 24 targeted tests pass. The local global check ran 3,638 tests, with 153
+skipped and two pre-existing floating-point comparison failures in the
+unchanged 993 impeller/stator models. The following `make check` targets are
+not reached. The latest corrections to the ducts, poses and preview were
+followed by a new targeted verification.
 
-| Famille | Route candidate | Qualification manquante |
+| Family | Candidate route | Missing qualification |
 |---|---|---|
-| Culasses | CP1 LPBF, traitement et usinage des interfaces | carte matière à chaud du lot imprimé, fatigue, porosité, parois, dépoudrage, étanchéité et métrologie |
-| Carters, supports, conduits froids | alliage aluminium à sélectionner, LPBF puis usinage | précharges, contraintes, rigidité, dilatation, accessibilité et joints |
-| Pistons | 2618 forgé et usiné | températures, fatigue, jupe, gorges, jeux, calotte et équilibrage |
-| Bielles | Ti-6Al-4V forgé et usiné | alliage et état exacts, boulons, fatigue, tenue des coussinets, équilibrage et isolation galvanique |
-| Vilebrequin, axes, cames | acier à sélectionner, traitement et rectification | profils, rayons, lubrification, dureté, contacts, fatigue et dynamique |
-| Collecteurs chauds | IN625 candidat, LPBF ou fabrication conventionnelle | tenue au cycle thermique, porosité, fissures, soudure, brides et inspection |
-| Soupapes, ressorts, paliers, retenues, joints, électronique | composants qualifiés à acheter ou à définir avec un fournisseur | plans, tolérances, certificats, charges et conditions de service |
-| Roues et arbres des turbos | définition fournisseur ou programme rotor spécialisé | aérodynamique, jeux à chaud, dynamique, équilibrage, confinement et survitesse |
+| Cylinder heads | CP1 LPBF, treatment and machining of the interfaces | hot material map for the printed batch, fatigue, porosity, walls, depowdering, sealing and metrology |
+| Cases, supports, cold ducts | aluminium alloy to be selected, LPBF then machining | preloads, stresses, stiffness, expansion, accessibility and gaskets |
+| Pistons | forged and machined 2618 | temperatures, fatigue, skirt, grooves, clearances, crown and balancing |
+| Connecting rods | forged and machined Ti-6Al-4V | exact alloy and temper, bolts, fatigue, bearing shell retention, balancing and galvanic isolation |
+| Crankshaft, pins, cams | steel to be selected, treatment and grinding | profiles, radii, lubrication, hardness, contacts, fatigue and dynamics |
+| Hot manifolds | IN625 candidate, LPBF or conventional manufacturing | thermal cycle resistance, porosity, cracks, welding, flanges and inspection |
+| Valves, springs, bearings, retainers, gaskets, electronics | qualified components to buy or to define with a supplier | drawings, tolerances, certificates, loads and service conditions |
+| Turbo wheels and shafts | supplier definition or specialised rotor programme | aerodynamics, hot clearances, dynamics, balancing, containment and overspeed |
 
-[EOS décrit CP1](https://www.eos.info/metal-solutions/metal-materials/aluminium)
-comme un alliage aluminium–fer–zirconium pour la fabrication additive ; cela
-ne fournit pas une carte admissible de notre culasse imprimée. Pour les
-soupapes d'échappement, [Special Metals décrit INCONEL 751](https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-751.pdf)
-pour cet usage : cette référence est une piste fournisseur et ne qualifie
-aucune soupape de cet assemblage. Aucune propriété mécanique n'est inventée
-pour produire un facteur de sécurité.
+[EOS describes CP1](https://www.eos.info/metal-solutions/metal-materials/aluminium)
+as an aluminium–iron–zirconium alloy for additive manufacturing; this does not
+provide an admissible map for our printed cylinder head. For exhaust valves,
+[Special Metals describes INCONEL 751](https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-751.pdf)
+for this use: this reference is a supplier lead and qualifies no valve in this
+assembly. No mechanical property is invented to produce a safety factor.
 
-La fabrication devra suivre le
-[contrat matière LPBF existant](../../../twins/reference-917-engine/material-lpbf-qualification-f49.json)
-et une revue professionnelle, avec alliage/lot, machine, paramètres,
-orientation, supports, traitement, surépaisseurs, usinage, inspection CT/CMM,
-épreuves de pression, corrosion/galvanisme et hypothèses de fatigue documentés.
-Ensuite viennent les contacts et jeux à chaud, le balayage piston–soupapes,
-les lois de came, les circuits réels, le calcul thermique/structural, les
-cartographies des turbos et un banc instrumenté. **Les formes fermées et
-les identités de cinématique ne constituent pas une autorisation d'impression
-métal ou de démarrage.**
+Manufacturing will have to follow the
+[existing LPBF material contract](../../../twins/reference-917-engine/material-lpbf-qualification-f49.json)
+and a professional review, with alloy/batch, machine, parameters,
+orientation, supports, treatment, machining allowances, CT/CMM inspection,
+pressure tests, corrosion/galvanic effects and fatigue assumptions documented.
+Next come hot contacts and clearances, the piston–valve sweep, cam laws, the
+real circuits, the thermal/structural calculation, turbo maps and an
+instrumented test bench. **Closed shapes and kinematic identities do not
+constitute authorisation for metal printing or engine start-up.**

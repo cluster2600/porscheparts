@@ -1,19 +1,19 @@
-# Runtime PDF du guide atelier
+# PDF runtime for the workshop guide
 
-Ce lock cible **CPython 3.12 sur macOS arm64**. Le venv neuf a été vérifié avec
-CPython **3.12.14**, ReportLab **4.4.9**, Pillow **12.3.0** et
-charset-normalizer **3.5.2**. Les trois dépendances de base sont entièrement
-épinglées ; aucun extra de ReportLab n'est activé.
+This lock targets **CPython 3.12 on macOS arm64**. The fresh venv was verified with
+CPython **3.12.14**, ReportLab **4.4.9**, Pillow **12.3.0** and
+charset-normalizer **3.5.2**. The three base dependencies are fully
+pinned; no ReportLab extra is enabled.
 
-Les noms de roues, URLs et SHA256 ont été contrôlés sur les métadonnées primaires
-PyPI de [ReportLab](https://pypi.org/project/reportlab/4.4.9/),
-[Pillow](https://pypi.org/project/pillow/12.3.0/) et
-[charset-normalizer](https://pypi.org/project/charset-normalizer/3.5.2/), puis
-sur les octets téléchargés. [wheels.json](wheels.json) conserve ces identités.
-Les roues natives sont `cp312`, Pillow étant limité à `macosx_11_0_arm64` et
-charset-normalizer fourni en `macosx_10_13_universal2`.
+The wheel names, URLs and SHA256 values were checked against the primary PyPI
+metadata of [ReportLab](https://pypi.org/project/reportlab/4.4.9/),
+[Pillow](https://pypi.org/project/pillow/12.3.0/) and
+[charset-normalizer](https://pypi.org/project/charset-normalizer/3.5.2/), then
+against the downloaded bytes. [wheels.json](wheels.json) keeps these identities.
+The native wheels are `cp312`, Pillow being limited to `macosx_11_0_arm64` and
+charset-normalizer supplied as `macosx_10_13_universal2`.
 
-Depuis la racine du dépôt, avec un Python 3.12 installé et un dossier **neuf** :
+From the repository root, with Python 3.12 installed and a **fresh** directory:
 
 ```sh
 python3.12 -c 'import platform,sys; assert sys.version_info[:2] == (3,12) and sys.platform == "darwin" and platform.machine() == "arm64"'
@@ -26,25 +26,25 @@ work/part-workflow/runtimes/pdf-base-001/bin/python -B -m unittest \
   tests.test_part_workflow_guide -v
 ```
 
-Pour une installation hors réseau, placer les trois roues exactes de
-`wheels.json` dans un dossier et remplacer `--index-url ...` par
-`--no-index --find-links /chemin/roues`. C'est ce mode qui a été exécuté après
-le téléchargement et la vérification indépendants des SHA. Aucun runtime
-existant n'a été modifié.
+For an offline installation, place the three exact wheels from
+`wheels.json` in a directory and replace `--index-url ...` with
+`--no-index --find-links /chemin/roues`. This is the mode that was run after
+the independent download and verification of the SHAs. No existing
+runtime was modified.
 
-La valeur à fournir à la recette pour `pdf_python` est
-`work/part-workflow/runtimes/pdf-base-001/bin/python`. Ce dossier contient le
-venv ; son `runtime.json` est un reçu local d'installation, pas un installateur.
-Le binaire Python n'est pas inclus dans ce lock de paquets.
+The value to supply to the recipe for `pdf_python` is
+`work/part-workflow/runtimes/pdf-base-001/bin/python`. This directory contains the
+venv; its `runtime.json` is a local installation receipt, not an installer.
+The Python binary is not included in this package lock.
 
-[results.json](results.json) conserve la vérification effectuée : `pip check`,
-les deux tests du guide et un vrai petit PDF **synthétique** avec image PNG.
-Les tests du guide simulent volontairement l'export PDF ; le témoin séparé
-exerce réellement ReportLab et Pillow. Il ne s'agit ni du dossier du carrier,
-ni d'une admission de ses supports ou de sa fabrication.
+[results.json](results.json) keeps the verification performed: `pip check`,
+the two guide tests and a real small **synthetic** PDF with a PNG image.
+The guide tests deliberately simulate the PDF export; the separate witness
+actually exercises ReportLab and Pillow. It is neither the carrier dossier,
+nor an admission of its supports or of its manufacture.
 
-Le renderer existant utilise Arial système lorsqu'il est présent et Helvetica
-sinon. Les empreintes des polices effectivement disponibles figurent dans le
-reçu local. Le lock ne distribue pas les polices système et ne garantit pas un
-PDF identique à l'octet entre machines ou dates d'export. Aucun script de guide
-gelé n'a été modifié.
+The existing renderer uses system Arial when present and Helvetica
+otherwise. The digests of the fonts actually available appear in the
+local receipt. The lock does not distribute system fonts and does not guarantee a
+byte-identical PDF across machines or export dates. No frozen guide
+script was modified.
