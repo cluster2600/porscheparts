@@ -8,7 +8,7 @@ flowchart LR
     P1["Phase 1 — Source inventory<br/>4 of 5 items checked;<br/>545 valid source records on 2026-10-15;<br/>direct measurements remain"]:::open
     P2["Phase 2 — Physical inventory<br/>and twin assembly<br/>no printing; 10 items done, 4 open;<br/>physical prototypes suspended"]:::open
     P3["Phase 3 — Titanium<br/>engineering twin<br/>no manufacturing; all items open"]:::open
-    P4["Phase 4 — Public catalog<br/>all items open"]:::open
+    P4["Phase 4 — Public catalog<br/>2 of 4 items done"]:::open
     P0 --> P1 --> P2 --> P3 --> P4
     COV["Cross-cutting: twin coverage<br/>share of curb weight, via make twin<br/>32.5% counted for the Carrera,<br/>gearbox excluded from the engine;<br/>target 100%"]:::open
     OUT["Initially out of scope<br/>selling parts, road homologation,<br/>replacing the load-bearing structure"]:::stop
@@ -272,8 +272,8 @@ verifiable measurements.
 
 ## Phase 4 — Public catalog
 
-- [ ] Publish only the parts that have cleared their quality gates
-- [ ] Generate catalog pages from the JSON records
+- [x] Publish only the parts that have cleared their quality gates ([public catalogue](catalogue/README.md), `make catalogue-pages`)
+- [x] Generate catalog pages from the JSON records
 - [ ] Add views, dimensioned drawings and manufacturing instructions
 - [ ] Track versions, tested vehicles and field feedback
 
