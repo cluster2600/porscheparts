@@ -269,3 +269,14 @@ search. All 354 samples below 2 mm lie on retained envelope skin, away from
 the new cut caps. These are diagnostic material paths, not global minimum-wall
 metrology. Process-wall and simulation-feature admission remain open; the
 existing 3MFs are unchanged and no mesh sweep or automatic thickening follows.
+
+The [exact-boundary physics preparation](../research/935-local-physics-20261105/README.md)
+then qualifies a fresh native Gmsh 4.12.1 runtime and independent tetrahedral
+inspector on the actual analytic cube. Its one bounded attempt on the complete
+delivered surface reaches the 900-second limit; no final head volume mesh is
+accepted. A separate all-face bound finds 3,269 boundary triangles that force
+incident tetrahedra below diagnostic mean ratio 0.01. Surface conditioning with
+a preservation proof must precede another interior-size sweep. Kali version
+probes confirm CalculiX 2.23 and an updated OpenFOAM 14 image, requiring fresh
+OpenFOAM case controls. These software/preparation results do not qualify head
+physics or manufacturing and do not replace the frozen 3MF files.
