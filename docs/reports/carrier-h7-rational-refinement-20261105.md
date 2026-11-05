@@ -143,3 +143,10 @@ For public regression checks:
 H6-to-h7 mechanical comparison must preserve loads, supports, material,
 original numerical limits and both complete source fields. No spatial
 stabilization or strength conclusion follows from the geometry checks above.
+
+The [lossless XZ scientific reader](../architecture/calculix-lossless-replay.md)
+has subsequently passed a complete actual h6 replay with identical field
+bytes and an actual 2.68 GB synthetic stream. Packet014 passed exact-image
+unpack of all 90 files/modes and an actual local-emulation quadratic control.
+These storage/runtime witnesses prepare the native h7 executions; they do
+not supply new h7 response values.
