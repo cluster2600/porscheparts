@@ -1,0 +1,161 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-INTERCOOLER-BRACKET-TI-F1-0001",
+  "name": "993 Turbo/GT2 intercooler bracket, titanium F1 concept (photo-informed topology)",
+  "description": "Single curved arm with a socket eye at each end and an off-centre raised two-hole pad, the topology of the genuine 993 110 110 50 as seen in a seller photograph and consistent with the PET 107-45 fastener and rubber-mount stack. Sizes are fitted to the FVD 255 x 80 x 23 mm envelope or assumed; no interface is measured. Supersedes the F0 two-rail plate, whose topology had no evidence behind it.",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_Turbo",
+      "993_GT2"
+    ],
+    "model_years": {
+      "from": 1995,
+      "to": 1998
+    },
+    "porsche_part_numbers": [
+      "99311011050",
+      "99311011052"
+    ]
+  },
+  "classification": {
+    "category": "charge_air_support",
+    "safety_class": "functional",
+    "intended_use": "CAD and DfAM study of the bracket topology; interfaces blocked until measured; no vehicle fitting authorized"
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-intercooler-bracket-ti-f1-0001/source/intercooler_bracket_f1.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "parts/993-eng-intercooler-bracket-ti-f1-0001/derived/intercooler_bracket_ti_f1.step",
+      "parts/993-eng-intercooler-bracket-ti-f1-0001/derived/intercooler_bracket_ti_f1.stl"
+    ]
+  },
+  "provenance": {
+    "record_license": "All rights reserved (see LICENSE) for the concept, the script and the calculations; no photograph, PET illustration or commercial geometry redistributed",
+    "sources": [
+      {
+        "title": "PorscheFanatics - PET transcription of the 993 Turbo groups",
+        "url": "https://porschefanatics.com/oem/993/202-16/",
+        "source_type": "community",
+        "license": "site-owner-confirmed-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "The catalogue locates the forced induction circuit and its brackets. It provides identity and context, but no dimension, tolerance or CAD surface. See SRC-PORSCHEFANATICS-993-TURBO-PET."
+      },
+      {
+        "title": "PorscheFanatics dataset - PET 107-45 charge air cooler lines (data/oem-listed.json)",
+        "url": "https://porschefanatics.com/oem/993/107-45/",
+        "source_type": "community",
+        "license": "site-dataset-reference-only",
+        "accessed_on": "2026-11-04",
+        "notes": "Position 5 bracket 993 110 110 50 / -52 listed with combination screw 900 067 207 02, nut 964 126 311 00, rubber mounting 930 113 430 00, sleeve 993 110 111 50 and washer 900 151 008 02. Identity and candidate hardware only; no quantity, dimension or assignment. See SRC-PORSCHEFANATICS-993-OEM-LISTED-PET."
+      },
+      {
+        "title": "Auto Atlanta - Support intercooler 993 Turbo, listing photograph",
+        "url": "https://www.autoatlanta.com/products/support-intercooler-993-turbo",
+        "source_type": "manufacturer",
+        "license": "vendor-site-copyright-reference-only",
+        "accessed_on": "2026-11-04",
+        "notes": "Topology only: curved arm, two end eyes, raised two-hole pad. Unscaled, not copied. See SRC-AUTOATLANTA-993-INTERCOOLER-BRACKET-OEM-PHOTO."
+      },
+      {
+        "title": "FVD - reinforced intercooler bracket FVD11011050",
+        "url": "https://www.fvd.net/de/shop/traeger-ladeluftkuehler-993-turbo-gt2-verstaerkt-fvd11011050~p265005",
+        "source_type": "manufacturer",
+        "license": "vendor-site-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "FVD declares 255 x 80 x 23 mm, 0.2 kg and a 993 Turbo/GT2 application. The envelope is kept; the rails, holes and central boss of the F0 are independent. See SRC-FVD-993-INTERCOOLER-BRACKET-DIMENSIONS."
+      },
+      {
+        "title": "EOS Titanium Ti64 Grade 5 material data sheet",
+        "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-titanium-ti64-grade-5",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "LPBF/DMLS process reference: anisotropy, machine parameters and heat treatment must be qualified. See SRC-EOS-TI64-GRADE5."
+      },
+      {
+        "title": "TIMETAL 6-4 physical properties",
+        "url": "https://www.timet.com/documents/datasheets/alpha-and-beta-alloys/timetal-6-4.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-07",
+        "notes": "Density, modulus, expansion and minimum yield of wrought sheet are used for screening only; they are not LPBF allowables. See SRC-TIMET-TI64-PHYSICAL-PROPERTIES."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "LPBF",
+      "CNC",
+      "sheet_metal"
+    ],
+    "preferred_process": "CNC",
+    "material": {
+      "family": "candidate LPBF titanium",
+      "grade": "Ti-6Al-4V Grade 5 for screening; the photographed OEM part looks cast aluminium, so titanium is a material change, not a like-for-like copy",
+      "standard": "ASTM F2924 or equivalent supplier specification to be contracted"
+    },
+    "post_processing": [
+      "support removal",
+      "heat treatment qualified for the machine, parameters and orientation",
+      "HIP to be decided after fatigue analysis",
+      "machining of eye bores and pad holes once measured",
+      "deburring and radiusing of the eye and pad junctions",
+      "passivation and galvanic isolation after dimensional inspection"
+    ],
+    "supplier_requirements": [
+      "traceable powder, machine, parameters, orientation, lot and powder recycling",
+      "witness coupons in critical orientations with representative tensile and fatigue",
+      "dimensional inspection of datums, center distances, bores and envelope",
+      "CT of nodes and bosses, then dye penetrant inspection after machining",
+      "contracted roughness, porosity, alpha case and residual stresses",
+      "instrumented static, vibration and thermal tests before any fitting"
+    ]
+  },
+  "titanium": {
+    "applicable": true,
+    "alloy": "Ti-6Al-4V Grade 5 candidate only",
+    "heat_treatment": "Indicative EOS cycle to be confirmed for the selected machine and parameters; no recipe is frozen",
+    "hip_required": "to_be_determined",
+    "machined_surfaces": [
+      "two eye bores (rubber-mount seats, unmeasured)",
+      "pad face and two pad holes (unmeasured)"
+    ],
+    "inspection": [
+      "CT of bosses and rail junctions",
+      "dimensional inspection of machined interfaces",
+      "dye penetrant inspection after machining",
+      "roughness and porosity",
+      "tensile and fatigue coupons representative of the orientation"
+    ],
+    "galvanic_isolation": "Electrically separate the titanium from the aluminum intercooler and the steel fasteners with bushings, washers, coating and sealing qualified after the actual materials are identified."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-porschefanatics-993-oem-listed-pet.json",
+      "catalog/sources/src-porsche-austria-993-107-45-pet.json",
+      "catalog/sources/src-autoatlanta-993-intercooler-bracket-oem-photo.json",
+      "catalog/sources/src-fvd-993-intercooler-bracket-dimensions.json",
+      "catalog/sources/src-eos-ti64-grade5.json",
+      "catalog/sources/src-timet-ti64-physical-properties.json",
+      "parts/993-eng-intercooler-bracket-ti-f1-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Topology (curved arm, two end eyes, off-centre two-hole pad) is read from an unscaled seller photograph; no dimension is taken from it.",
+      "Eye chord and arm sagitta are fitted to the FVD 255 x 80 x 23 mm envelope of an aftermarket reinforced bracket, not to the OEM part.",
+      "Eye bores, heights, arm section, pad position, hole diameter and pitch are assumptions.",
+      "Interfaces IF-1 to IF-3 are blocked_unmeasured: mating parts, datums, hole spacing and the assignment of the PET 107-45 fastener stack are not established.",
+      "No load case is evidenced, so F1 carries no stress or deflection result.",
+      "The OEM part looks cast aluminium; a Ti-6Al-4V copy of this shape screens at about 233 g against 141 g in aluminium, so titanium is not a mass win here.",
+      "The STEP proves only a valid BREP inside the envelope; it must be neither manufactured for fitting nor installed."
+    ]
+  }
+}
