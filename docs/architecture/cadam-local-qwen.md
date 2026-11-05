@@ -301,3 +301,15 @@ internal face pairs and the complete exact source boundary. The quality gate
 still rejects 527,342 cells below mean ratio 0.01. This supplies a verified raw
 construction and a quantified quality failure, without head solver admission,
 a new paid rental or a manufacturing release.
+
+The [feature-preserving retessellation trial](../research/935-feature-preserving-retessellation-20261105/README.md)
+then protects exact edge curves instead of complete nearby face rows. Its 49
+flips preserve all 702,636 required edges and pass complete native geometry,
+but reduce forcing faces only from 633 to 584, failing the fixed 50% target.
+The candidate is not adopted or volume-meshed. A pre-execution short-edge audit
+limits one free-vertex collapse pass to touching at most 160 forcing faces,
+below the 317 required. Another audit identifies 170 acute fixed planar sectors
+that force subthreshold fan triangles under that conditional contract. The next
+method must explicitly address geometric regularization or interpolation,
+conditioning and convergence admission for anisotropic cells. The diagnostic
+shape bin is not an engine allowable; no physics or process gate is waived.
