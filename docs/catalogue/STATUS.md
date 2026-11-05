@@ -4,7 +4,7 @@
 
 **Nothing on this page is a catalogue part.** Every record below is refused by the publication gate of the [public catalogue](README.md). None is dimensionally accurate, fitted, tested or released, and none may be printed or fitted to a vehicle. Images, where present, show concept geometry or a status card, never a manufactured part.
 
-43 records.
+44 records.
 
 | part | name | status | safety class | why it is not published |
 |---|---|---|---|---|
@@ -28,6 +28,7 @@
 | [993-ENG-INTAKE-VALVE-F1-0001](../pieces/993-eng-intake-valve-f1-0001.md) | **Not ready to print.** 993 intake valve - F1 proxy and titanium variant | `concept` | prohibited_pending_engineering | validation status `concept`, not `released`; no recorded reviewer and review date |
 | [993-ENG-INTAKE-VALVE-TI64-HOLLOW-F0-0001](../pieces/993-eng-intake-valve-ti64-hollow-f0-0001.md) | **Not ready to print.** 993 hollow Ti64 intake valve, F0 LPBF concept | `concept` | prohibited_pending_engineering | validation status `concept`, not `released`; no recorded reviewer and review date |
 | [993-ENG-INTERCOOLER-BRACKET-TI-F0-0001](../pieces/993-eng-intercooler-bracket-ti-f0-0001.md) | **Not ready to print.** 993 Turbo/GT2 intercooler bracket, titanium F0 concept | `concept` | functional | validation status `concept`, not `released`; no recorded reviewer and review date |
+| [993-ENG-INTERCOOLER-BRACKET-TI-F1-0001](../pieces/993-eng-intercooler-bracket-ti-f1-0001.md) | **Not ready to print.** 993 Turbo/GT2 intercooler bracket, titanium F1 concept (photo-informed topology) | `concept` | functional | validation status `concept`, not `released`; no recorded reviewer and review date |
 | [993-ENG-INTERCOOLER-END-TANK-ALSI10MG-F0-0001](../pieces/993-eng-intercooler-end-tank-alsi10mg-f0-0001.md) | **Not ready to print.** 993 Turbo intercooler end tank, AlSi10Mg concept F0 | `concept` | prohibited_pending_engineering | validation status `concept`, not `released`; no recorded reviewer and review date |
 | [993-ENG-K16-COMPRESSOR-WHEEL-AL2139-F1-0001](../pieces/993-eng-k16-compressor-wheel-al2139-f1-0001.md) | **Not ready to print.** K16 compressor wheel, Al2139 AM F1 iteration | `concept` | prohibited_pending_engineering | validation status `concept`, not `released`; no recorded reviewer and review date |
 | [993-ENG-K16-COMPRESSOR-WHEEL-ALSI10MG-F0-0001](../pieces/993-eng-k16-compressor-wheel-alsi10mg-f0-0001.md) | **Not ready to print.** 993 K16 compressor wheel, F0 AlSi10Mg LPBF concept | `concept` | prohibited_pending_engineering | validation status `concept`, not `released`; no recorded reviewer and review date |
@@ -37,7 +38,7 @@
 | [993-ENG-PISTON-CP1-GALLERY-F0-0001](../pieces/993-eng-piston-cp1-gallery-f0-0001.md) | **Not ready to print.** M64/60 piston with cooling gallery, CP1 F0 concept | `concept` | prohibited_pending_engineering | validation status `concept`, not `released`; no recorded reviewer and review date |
 | [993-ENG-THREE-RUNNER-INTAKE-ALSI10MG-F0-0001](../pieces/993-eng-three-runner-intake-alsi10mg-f0-0001.md) | **Not ready to print.** 993 three-runner intake manifold, AlSi10Mg F0 concept | `concept` | functional | validation status `concept`, not `released`; no recorded reviewer and review date |
 | [993-ENG-TURBO-HEAT-SHIELD-IN625-F0-0001](../pieces/993-eng-turbo-heat-shield-in625-f0-0001.md) | **Not ready to print.** 993 left turbo heat shield cover, F0 IN625 concept | `concept` | functional | validation status `concept`, not `released`; no recorded reviewer and review date |
-| [993-ENG-TURBO-OIL-RETURN-LINE-IN625-F0-0001](../pieces/993-eng-turbo-oil-return-line-in625-f0-0001.md) | **Not ready to print.** Turbo oil return line, IN625 F0 concept | `concept` | prohibited_pending_engineering | validation status `concept`, not `released`; no recorded reviewer and review date |
+| [993-ENG-TURBO-OIL-RETURN-LINE-IN625-F0-0001](../pieces/993-eng-turbo-oil-return-line-in625-f0-0001.md) | **Not ready to print.** Turbo oil line (feed or return unassigned), IN625 F0 concept | `concept` | prohibited_pending_engineering | validation status `concept`, not `released`; no recorded reviewer and review date |
 | [993-ENG-UPPER-VALVE-COVER-ALSI10MG-F0-0001](../pieces/993-eng-upper-valve-cover-alsi10mg-f0-0001.md) | **Not ready to print.** Upper valve cover with COP towers, F0 AlSi10Mg concept | `concept` | prohibited_pending_engineering | validation status `concept`, not `released`; no recorded reviewer and review date |
 | [993-EXH-CAT-CONVERTER-PAIR-PET-0001](../pieces/993-exh-cat-converter-pair-pet-0001.md) | **Not ready to print.** 993 Turbo catalytic converters (front muffler section), left and right - PET-transcribed identity | `concept` | prohibited_pending_engineering | validation status `concept`, not `released`; no recorded reviewer and review date |
 | [993-EXH-HEAT-EXCHANGER-PAIR-PET-0001](../pieces/993-exh-heat-exchanger-pair-pet-0001.md) | **Not ready to print.** 993 Turbo exhaust heat exchangers (manifolds), left and right - PET-transcribed identity | `concept` | prohibited_pending_engineering | validation status `concept`, not `released`; no recorded reviewer and review date |
