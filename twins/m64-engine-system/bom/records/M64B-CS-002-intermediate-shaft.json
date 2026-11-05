@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0.0",
+  "record_id": "M64B-CS-002-EVIDENCE-0001",
+  "bom_id_local": "M64B-CS-002",
+  "name": "Intermediate shaft (camshaft chain drive)",
+  "created_on": "2026-11-05",
+  "status": "sourced_identity_partial_dimensions_not_fitment",
+  "physical_measurement_performed": false,
+  "variant_applicability": "Every value below comes from 911 Carrera (993) documents. No local source states them for the M64/60 Turbo, so they are related comparison data, not M64/60 qualification.",
+  "name_correction": "The BOM previously called this line 'Intermediate shaft gear / balance drive'. No local source mentions a balance shaft or balance drive; the sources below describe an intermediate shaft carrying the two camshaft-drive sprockets. 'Balance drive' is dropped as unsourced.",
+  "facts": [
+    {
+      "id": "identity_camshaft_drive_sprockets",
+      "statement": "The intermediate shaft carries a drive sprocket for cylinders 1-3 and one for cylinders 4-6, aligned axially with the camshaft driven sprockets.",
+      "source": "catalog/manual/page-checked/993-workshop-manual-group15-cylinder-head.json (id sprocket_parallelism, PDF pages 176-177, status page_checked)",
+      "variant_context": "Carrera"
+    },
+    {
+      "id": "sprocket_construction_distances",
+      "value": {
+        "front_end_to_sprocket_cyl_1_3": 98.07,
+        "front_end_to_sprocket_cyl_4_6": 43.27,
+        "max_alignment_deviation": 0.25
+      },
+      "unit": "mm",
+      "source": "catalog/manual/page-checked/993-workshop-manual-group15-cylinder-head.json (PDF p.177, page_checked); catalog/reference/m64-precision-20261025/facts.csv M64-PREC-O002 (specification booklet PDF29 / printed 52-53, factory_document_verified)",
+      "limits": "Construction distances only: no shaft drawing, journal diameter, bore spacing or hole pattern. Example dimension A is setup-dependent and is not recorded as an engine dimension.",
+      "variant_context": "Carrera / RS"
+    },
+    {
+      "id": "circumferential_clearance",
+      "value": {
+        "new_min": 0.035,
+        "new_max": 0.084,
+        "wear_limit": 0.10
+      },
+      "unit": "mm",
+      "source": "docs/993/993_MANUAL_DATA_MAP.md (row 'Intermediate shaft circumferential clearance, new', PDF p.137); catalog/manual/993-workshop-manual-measurements.json measurement_occurrences PDF p.137 lines 33-37",
+      "limits": "The measurement file marks these occurrences ocr_unreviewed; the data map assigns them to the intermediate shaft. A page check is still pending.",
+      "variant_context": "Carrera"
+    }
+  ],
+  "missing": [
+    "part number",
+    "shaft length and journal diameters",
+    "crankcase bearing bores",
+    "gear and sprocket tooth data",
+    "material",
+    "M64/60-specific confirmation of every value above"
+  ],
+  "scene_use": "Envelope-unknown marker only in twins/omniverse-engine-assembly; its size is arbitrary and no datum, axis or clearance is asserted."
+}

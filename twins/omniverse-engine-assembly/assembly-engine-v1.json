@@ -1098,6 +1098,29 @@
           "note": "marker_size_arbitrary"
         },
         {
+          "id": "CS-002",
+          "prim": "IntermediateShaftMarker",
+          "bom_lines": [
+            "M64B-CS-002"
+          ],
+          "asset_kind": "envelope_unknown",
+          "fidelity": "F0_reference",
+          "envelope_status": "envelope-unknown",
+          "position_mm": [
+            0,
+            0,
+            -140
+          ],
+          "size_mm": [
+            140,
+            40,
+            40
+          ],
+          "source_citation": "twins/m64-engine-system/bom/records/M64B-CS-002-intermediate-shaft.json (identity and sprocket distances from 911 Carrera (993) manual p.176-177; no shaft envelope sourced)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary; position is a layout hypothesis, no axis or datum asserted"
+        },
+        {
           "id": "CR-001",
           "prim": "OemRodMarker",
           "bom_lines": [
@@ -1547,11 +1570,9 @@
   ],
   "bom_coverage": {
     "bom_lines_unrepresented": [
-      "M64B-CS-002",
       "M64B-CY-001"
     ],
     "unrepresentation_reasons": {
-      "M64B-CS-002": "Intermediate shaft gear / balance drive: no local evidence record (all evidence fields missing, BOM sources list empty); a zero-evidence prim would add clutter without information, so the line is declared unrepresented here instead of marked in the scene.",
       "M64B-CY-001": "Cylinder barrels are represented inside the Crankcase zone by the CrankcaseHalvesMarker volume (CC-001): bore 100 is sourced but the skirt/case interface and fin pitch are unknown (M64-ACQ-0004), so a separate marker would imply a cylinder/case datum that does not exist."
     }
   }
