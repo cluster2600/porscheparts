@@ -187,9 +187,14 @@ HAS_MATPLOTLIB := $(shell PATH="$(PATH)" python3 -c 'import matplotlib' 2>/dev/n
 help:
 	@python3 scripts/make_help.py
 
+.PHONY: check-filesystem
+#> check | Refuse WSL DrvFs and other non-native mounts before checking (see AGENTS.md)
+check-filesystem:
+	@python3 scripts/check_native_filesystem.py .
+
 .PHONY: check-setup
 #> check | Install the isolated Python 3.12 check environment (requires uv)
-check-setup:
+check-setup: check-filesystem
 	test -x .venv-check/bin/python3 || uv venv --python 3.12 .venv-check
 	uv pip install --python .venv-check/bin/python -r requirements-check.txt
 
@@ -332,7 +337,7 @@ endif
 	python3 tests/test_917_f50_cfd_recovery.py -v
 
 #> check | Validate catalogue records against their schemas
-validate:
+validate: check-filesystem
 	python3 scripts/validate_catalog.py
 	python3 scripts/validate_am_pipeline.py
 	python3 scripts/validate_sources.py
@@ -352,8 +357,8 @@ validate:
 	python3 twins/reference-917-engine/source/prepare_variant_configs_f10.py --manifest twins/reference-917-engine/variant-configurations-f10.json --project-root . --check
 
 #> check | Run the test suite alone
-test:
-	python3 -m unittest discover -s tests -v
+test: check-filesystem
+	python3 scripts/run_tests_with_skip_report.py
 
 #> catalogue | Digital twin coverage by zone
 twin:

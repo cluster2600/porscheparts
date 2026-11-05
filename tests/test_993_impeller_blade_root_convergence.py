@@ -139,7 +139,7 @@ class BladeRootConvergenceTests(unittest.TestCase):
         many = {0: 0.0, 1: 1.0, 2: -1.0}
         self.assertEqual(MODULE.root_curve_clusters(FakeGmsh(many), list(many)), [0])
 
-    @unittest.skipUnless(EVIDENCE.exists(), "ladder evidence not generated")
+    @unittest.skipUnless(EVIDENCE.exists(), "ladder evidence absent (committed; sparse checkout?); " "regenerate with the rootconv commands in docs/993/993_COOLING_IMPELLER_WE43_F1.md (blade-root section)")
     def test_the_recorded_ladder_is_a_real_measurement_of_the_published_rotor(self) -> None:
         d = json.loads(EVIDENCE.read_text())
         self.assertEqual(d["rpm"], 12000)
@@ -156,7 +156,7 @@ class BladeRootConvergenceTests(unittest.TestCase):
 
 
 class BladeRootBlendRecordTests(unittest.TestCase):
-    @unittest.skipUnless(BLEND.exists(), "blend evidence not generated")
+    @unittest.skipUnless(BLEND.exists(), "blend evidence absent (committed; sparse checkout?); " "regenerate with fe_screen_f1.py rootfillet as in docs/993/993_COOLING_IMPELLER_WE43_F1.md (blend section)")
     def setUp(self) -> None:
         self.d = json.loads(BLEND.read_text())
 

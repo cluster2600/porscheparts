@@ -101,7 +101,9 @@ class Boundaries(unittest.TestCase):
         manifest = common.load(TOOLS / "baseline.json")
         # A full checkout is required for this integration check, not invented inputs.
         if any(not (pilot.ROOT / item["path"]).exists() for item in manifest["inputs"]):
-            self.skipTest("registered carrier artifacts unavailable in sparse checkout")
+            self.skipTest("registered carrier artifacts unavailable in sparse checkout; "
+                          "they are tracked files: run a full git checkout "
+                          "(inputs listed in benchmarks/free-tools/baseline.json)")
         common.verify_inputs(manifest, pilot.ROOT)
         result = pilot.replay(TOOLS / "baseline.json", pilot.ROOT, self.root / "replay")
         self.assertEqual(result["status"], "blocked_engineering")
@@ -182,7 +184,7 @@ class Boundaries(unittest.TestCase):
         self,
     ):
         if not (pilot.ROOT / pilot.PART).is_file():
-            self.skipTest("carrier catalogue absent")
+            self.skipTest("carrier catalogue record absent (tracked file); run a full git checkout")
         root = self.root / "repository"
         for relative in [pilot.PART, pilot.CONVERGENCE]:
             destination = root / relative

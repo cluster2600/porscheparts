@@ -18,8 +18,11 @@ if not math.isfinite(scale) or scale <= 0 or output.exists():
 if hashlib.sha256(source.read_bytes()).hexdigest() != expected:
     raise ValueError('Shaft profile hash mismatch')
 for parent in output.parents:
-    if (parent/'.git').exists() and output.relative_to(parent).parts[0] != 'work':
-        raise ValueError('Scan derivatives must stay in ignored work/')
+    # The innermost repository root decides (nested worktrees).
+    if (parent/'.git').exists():
+        if output.relative_to(parent).parts[0] != 'work':
+            raise ValueError('Scan derivatives must stay in ignored work/')
+        break
 data = json.loads(source.read_text()); profiles = data.get('profiles', [])
 if (data['schema'] != '935-observed-drive-shaft-v1' or len(profiles) < 3
         or len({len(p) for p in profiles}) != 1 or len(profiles[0]) < 16
