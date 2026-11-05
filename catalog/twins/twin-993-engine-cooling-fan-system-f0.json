@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "twin_id": "TWIN-993-ENGINE-COOLING-FAN-SYSTEM-F0",
-  "name": "993 engine cooling fan housing and impeller subassembly, F0",
+  "name": "993 engine cooling fan housing and impeller subassembly, F0 (archived; superseded by the Turbo reference rebuild)",
   "vehicle": {
     "generation": "993",
     "variants": ["993_air_cooled_fitment_to_confirm"],
@@ -78,6 +78,7 @@
       "twins/993-engine-cooling-fan-system-f0/evidence/simready-conversion-summary.json"
     ],
     "known_limits": [
+      "Archived F0 study. IF_FAN_TIP_CLEARANCE keeps its historical failed result and is not being reworked on this geometry: the F0 impeller record 993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001 is archived as a design reference, and the separate Turbo rotor reconstruction is documented in twins/993-engine-cooling-fan-system-f0/REFERENCE_REBUILD.md. No F0 clearance, flow or integration result transfers to the rebuild.",
       "Both geometries and their coaxial alignment at the front plane are unmeasured F0 assumptions.",
       "The cold radial clearance is -14 mm and the BRep test detects a collision; the subassembly therefore fails integration.",
       "The flow targets, speeds and blade counts come from separate regressions and are inconsistent with one another.",
