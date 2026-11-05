@@ -23,20 +23,24 @@ the zone stays visually present without overclaiming.
 | M64-Z-OL | dry-sump lubrication | 0 | 1 | 3 | 4 | CC-002, CC-003, OL-001, OL-002 |
 | M64-Z-EX | heat exchangers, wastegates, pre-cat sections | 0 | 0 | 6 | 6 | IN-003, IN-004, TR-003 |
 | M64-Z-CA | intake tract, intercoolers, charge-air plumbing | 6 | 1 | 1 | 8 | IC-001 … IC-005, IN-001, IN-002 |
-| M64-Z-CC-ROT | crankshaft, rods, pistons | 0 | 2 | 2 | 4 | CR-001, CR-002, CS-001, PS-001 |
+| M64-Z-CC-ROT | crankshaft, intermediate shaft, rods, pistons | 0 | 2 | 3 | 5 | CR-001, CR-002, CS-001, CS-002, PS-001 |
 | M64-Z-ASM | engine carrier, brackets, mounts | 1 | 0 | 2 | 3 | MT-001, MT-002, MT-003 |
 | M64-Z-FW | flywheel, drive plate, clutch | 0 | 0 | 4 | 4 | CT-001, CT-002, FW-001, FW-002 |
 | M64-Z-SN | engine sensors, ignition, harness | 1 | 0 | 7 | 8 | AS-001, SN-001 … SN-007 |
-| **Total (12 zones)** | | **11** | **7** | **43** | **61** | **55 / 57 BOM lines** |
+| **Total (12 zones)** | | **11** | **7** | **44** | **62** | **56 / 57 BOM lines** |
 
 BOM ids abbreviated: `M64B-` prefix omitted in the line lists.
 
-## Declared unrepresented BOM lines (2)
+## Declared unrepresented BOM lines (1)
 
 | BOM line | Reason (from manifest `bom_coverage.unrepresentation_reasons`) |
 |---|---|
-| M64B-CS-002 | Intermediate shaft gear / balance drive: no local evidence record (all evidence fields missing, BOM sources list empty); declared here instead of adding a zero-evidence prim. |
 | M64B-CY-001 | Cylinder barrels represented inside the Crankcase zone by the CrankcaseHalvesMarker (CC-001): bore 100 is sourced but the skirt/case interface and fin pitch are unknown (M64-ACQ-0004), so a separate marker would imply a nonexistent datum. |
+
+M64B-CS-002 (intermediate shaft) gained a sourced evidence record on 2026-11-05,
+`twins/m64-engine-system/bom/records/M64B-CS-002-intermediate-shaft.json`
+(911 Carrera (993) manual data only), and is now an envelope-unknown marker
+(`Rotating/IntermediateShaftMarker`, arbitrary size, no datum).
 
 ## Real asset references (11 prims, 10 distinct assets)
 

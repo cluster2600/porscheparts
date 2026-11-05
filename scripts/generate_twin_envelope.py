@@ -154,6 +154,15 @@ def manifest(dimensions: dict[str, float], evidence: dict[str, dict[str, Any]], 
             }
             for name in PARAMETERS
         },
+        "variant_profiles": {
+            "USA": {"status": "built", "parameters": "see parameters"},
+            "ROW": {
+                "status": "blocked_no_machine_record",
+                "searched_pages": [19],
+                "page_reference": "Workshop manual PDF p.19 (Overall Vehicle - General) is the page the USA values come from; its machine extraction in catalog/manual/993-workshop-manual-measurements.json contains no ROW length, width, height or clearance column.",
+                "unblock_requires": "A page-checked ROW row from a manual or Porsche technical-data sheet, recorded in catalog/measurements with its page; no value is inferred from the USA profile.",
+            },
+        },
         "geometry": {
             "master_format": "OpenSCAD",
             "master_file": str(scad_path.relative_to(ROOT)),

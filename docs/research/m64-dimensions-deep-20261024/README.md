@@ -130,6 +130,12 @@ listed mass, 9.7 cm³ crown volume and 8.1 calculated compression ratio.
 It is a different exact identifier/edition from PP102-012N in the earlier
 2024 register. Missing clearance-column units remain unresolved; no conversion
 or manufacturing clearance is accepted from those unlabeled fields.
+**Disposition (2026-11-05, issue #444): excluded.** The guide prints the
+clearance columns as `0.590`, `0.0010` and `0.0018` with no unit legend
+(`catalog/reference/m64-dimensions-deep-20261024/research-gaps.json`). The
+magnitudes look like inches, but a unit read from magnitude alone is a guess,
+so the fields stay unit-less and are not used anywhere. They become usable
+only when a MAHLE legend or another document states the unit explicitly.
 
 Protomotive's own 993 K16/K24 outlet fabrication flange declares a 0.5 inch
 stock thickness, with the exact 12.7 mm unit conversion labelled as such. It

@@ -221,11 +221,13 @@ Acceptance criteria — **PROPOSED, NOT REVIEWED**:
 | ID | Criterion | Requirement | Evidence expected | Status |
 |---|---|---|---|---|
 | AC-01 | identity | delivered part made from the STEP with SHA-256 `6dc3da8a…c4f758` and the reviewed drawing revision | build-file SHA-256, drawing revision on the certificate | proposed |
-| AC-02 | material | chemistry including O, N, H within the governing specification, per powder lot and on as-built coupons | certificate of analysis, coupon chemistry report | proposed |
+| AC-00 | governing specification | the certificate names exactly one governing specification by full designation and edition, either ASTM F2924-14(2021) for the material and component class or ASTM F3302-18 for finished-part properties, plus the class and delivered condition it certifies; a different edition, an undated designation or ASTM F3001-14(2021) (Grade 23 ELI) without the written justification required by TITANIUM.md is a nonconformance | certificate of conformity, purchase order | proposed |
+| AC-02 | material | Grade 5 chemistry including O, N, H within the chemical composition requirements of ASTM F2924-14(2021), clause cited on the certificate, per powder lot and on as-built coupons; values reported, not only a pass mark | certificate of analysis, coupon chemistry report | proposed |
+| AC-02b | microstructure | microstructure examined and reported as the specification named under AC-00 requires for the declared condition | metallography report | proposed |
 | AC-03 | process | machine qualified (IQ/OQ/PQ), parameter set identified and unchanged from the one quoted | qualification record, build record | proposed |
 | AC-04 | powder | lot, reuse count and blend within the supplier's declared limits | powder records per ISO/ASTM 52928 | proposed |
-| AC-05 | tensile coupons | room-temperature results at or above the governing specification's minimums for the delivered condition, every orientation | ASTM E8/E8M report | proposed |
-| AC-06 | heat treatment and HIP | cycle as declared; HIP decision justified in writing | furnace charts, justification | proposed |
+| AC-05 | tensile coupons | room-temperature yield, ultimate strength and elongation at or above the minimums of the specification named under AC-00 for the declared class and condition, every orientation of the coupon plan, every replicate (no averaging across orientations) | ASTM E8/E8M report quoting the AC-00 clause | proposed |
+| AC-06 | heat treatment and HIP | thermal post-processing and HIP as required by the specification named under AC-00 for the declared condition, cycle as declared; any omission of HIP justified in writing | furnace charts, justification | proposed |
 | AC-07 | depowdering | no residual powder in the annular channel | CT per ISO 15708 at the agreed detectability, borescope record | proposed |
 | AC-08 | wall integrity | no through-wall indication; minimum local wall not below the supplier's declared minimum for the parameter set | CT wall-thickness map | proposed |
 | AC-09 | dimensions | outlet envelope and length within drawing tolerances | dimensional report | open — no drawing |

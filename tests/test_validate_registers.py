@@ -25,7 +25,7 @@ class RegisterValidationTests(unittest.TestCase):
 
     def classify(self, payload: dict) -> list[str]:
         return validate_classification(
-            payload, self.sources, self.manual, self.skeleton, today=date(2026, 10, 15)
+            payload, self.sources, self.manual, self.skeleton, today=date(2026, 11, 5)
         )
 
     def test_shipped_registers_are_valid(self) -> None:

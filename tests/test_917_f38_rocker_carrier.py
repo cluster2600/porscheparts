@@ -32,7 +32,9 @@ def sha256(path: Path) -> str:
 
 @unittest.skipUnless(
     CAD.is_file() and SEQUENCE.is_file() and RENDER.is_file(),
-    "artefacts locaux F38 porte-axes non générés",
+    "local F38 rocker-carrier artefacts absent from work/917-rocker-carrier-f38; "
+    "regenerate with twins/reference-917-engine/source/build_f38_rocker_carrier.py "
+    "(see twins/reference-917-engine/evidence/f38-valvetrain-package/README.md)",
 )
 class F38RockerCarrierTests(unittest.TestCase):
     @classmethod
@@ -96,7 +98,9 @@ class F38RockerCarrierTests(unittest.TestCase):
 
     def test_calculix_three_grid_report_when_present(self) -> None:
         if not FEA.is_file():
-            self.skipTest("F38 CalculiX report not generated in bounded run")
+            self.skipTest("F38 CalculiX report absent; regenerate with "
+                          "twins/reference-917-engine/source/run_f38_carrier_calculix.py "
+                          "(inputs and outputs: twins/reference-917-engine/evidence/f38-valvetrain-package/README.md)")
         report = load(FEA)
         self.assertEqual(report["phase"], "F38")
         self.assertEqual(len(report["cases"]), 3)

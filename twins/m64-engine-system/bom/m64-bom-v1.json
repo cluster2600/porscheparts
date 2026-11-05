@@ -120,15 +120,19 @@
     {
       "bom_id_local": "M64B-CS-002",
       "part_number": null,
-      "name": "Intermediate shaft gear / balance drive",
+      "name": "Intermediate shaft (camshaft chain drive)",
       "subsystem": "crankcase",
       "quantity": 1,
-      "evidence": {"identity": "missing", "dims": "missing", "interfaces": "missing", "loads": "missing"},
-      "sources": [],
+      "evidence": {"identity": "sourced", "dims": "missing", "interfaces": "missing", "loads": "missing"},
+      "sources": [
+        "twins/m64-engine-system/bom/records/M64B-CS-002-intermediate-shaft.json (evidence record; 911 Carrera (993) sources only)",
+        "catalog/manual/page-checked/993-workshop-manual-group15-cylinder-head.json (sprocket_parallelism, PDF p.176-177: sprocket construction distances 98.07 / 43.27 mm, +/-0.25 mm)",
+        "docs/993/993_MANUAL_DATA_MAP.md (PDF p.137: circumferential clearance 0.035-0.084 mm new, 0.10 mm wear limit)"
+      ],
       "fidelity": "F0",
-      "twin_reference": null,
+      "twin_reference": "twins/omniverse-engine-assembly/assembly-engine-v1.json (IntermediateShaftMarker, envelope-unknown)",
       "redesign_interest": "low",
-      "notes": "Mentioned in forum rebuild lore only; no local evidence record."
+      "notes": "Sprocket distances and clearance are Carrera data, not confirmed for M64/60, and give no shaft envelope, so dims stay missing. The former name 'balance drive' had no source and was dropped."
     },
     {
       "bom_id_local": "M64B-CR-001",

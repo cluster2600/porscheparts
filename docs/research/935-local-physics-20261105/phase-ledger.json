@@ -1,0 +1,78 @@
+{
+  "goal_status": "active",
+  "new_paid_compute_usd": 0,
+  "phases": [
+    {
+      "id": "input-admission",
+      "state": "executed_passed_for_diagnostic",
+      "inputs": "Delivered 05159cdb mesh, prior geometry and normal-chord receipts",
+      "commands_checks": "run_gmsh_diagnostic.py",
+      "outputs": "Predeclared policy",
+      "limitations": "No physics or process admission"
+    },
+    {
+      "id": "runtime",
+      "state": "executed_passed_for_cube",
+      "inputs": "Verified official arm64 Gmsh 4.12.1 wheel; existing NumPy",
+      "commands_checks": "Offline isolated install; explicit module-origin check",
+      "outputs": "runtime.json",
+      "limitations": "Existing scientific environment unchanged"
+    },
+    {
+      "id": "cube",
+      "state": "executed_passed",
+      "inputs": "Fixed analytic unit cube",
+      "commands_checks": "Native mesher and inspect_tetrahedra.py actual CLI",
+      "outputs": "41 positive cells, 76 cancelling interior faces, exact boundary and unit volume",
+      "limitations": "No head result"
+    },
+    {
+      "id": "head-diagnostic",
+      "state": "bounded_limit_reached",
+      "inputs": "Actual 8,219,310-triangle surface; no coarsening",
+      "commands_checks": "Algorithm 10, 2 mm interior target, 8 threads; 900 s / 40 GiB guard",
+      "outputs": "Terminal -15 at 900.928 s; 27,318,240 KiB observed peak RSS",
+      "limitations": "No complete head NPZ/MSH accepted; child reaped"
+    },
+    {
+      "id": "independent-head-volume",
+      "state": "not_executed",
+      "inputs": "Requires completed native head mesh",
+      "commands_checks": "inspect_tetrahedra.py",
+      "outputs": "Full cell/face/boundary/quality report",
+      "limitations": "No completed native head mesh"
+    },
+    {
+      "id": "fixed-face-bound",
+      "state": "executed_passed_as_diagnostic",
+      "inputs": "Rehashed exact source faces and construction tags",
+      "commands_checks": "audit_face_ceiling.py; analytic optimum controls",
+      "outputs": "All-face quality ceiling and private provenance",
+      "limitations": "Retaining 3269 faces forces at least 818 cells below diagnostic mean ratio .01"
+    },
+    {
+      "id": "kali-versions",
+      "state": "executed_version_witness_only",
+      "inputs": "Exact existing local image content ID; no scan mount",
+      "commands_checks": "Read-only, network-disabled Docker probes",
+      "outputs": "CalculiX 2.23 and OpenFOAM 14; old /opt/openfoam13 path absent",
+      "limitations": "No registry/source rebuild attestation or head solve"
+    },
+    {
+      "id": "surface-conditioning",
+      "state": "pending",
+      "inputs": "Frozen print mesh, fixed bad-face IDs and explicit feature protection",
+      "commands_checks": "Prepare a distinct preservation-bounded triangulation operator and independent full checks",
+      "outputs": "New candidate, deviation/topology/quality proof and explicit accept/reject",
+      "limitations": "Do not sweep interior sizing on unchanged limiting faces"
+    },
+    {
+      "id": "head-physics",
+      "state": "pending",
+      "inputs": "Independently admitted geometry/mesh; declared loads/materials; requalified actual solver versions",
+      "commands_checks": "OpenFOAM, CalculiX and Adamantine; balances, analytic controls, convergence",
+      "outputs": "Revision-specific exploratory results",
+      "limitations": "Prior envelope studies do not validate this geometry; physical/process gates open"
+    }
+  ]
+}

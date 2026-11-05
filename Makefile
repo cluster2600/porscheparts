@@ -187,9 +187,14 @@ HAS_MATPLOTLIB := $(shell PATH="$(PATH)" python3 -c 'import matplotlib' 2>/dev/n
 help:
 	@python3 scripts/make_help.py
 
+.PHONY: check-filesystem
+#> check | Refuse WSL DrvFs and other non-native mounts before checking (see AGENTS.md)
+check-filesystem:
+	@python3 scripts/check_native_filesystem.py .
+
 .PHONY: check-setup
 #> check | Install the isolated Python 3.12 check environment (requires uv)
-check-setup:
+check-setup: check-filesystem
 	test -x .venv-check/bin/python3 || uv venv --python 3.12 .venv-check
 	uv pip install --python .venv-check/bin/python -r requirements-check.txt
 
@@ -332,7 +337,7 @@ endif
 	python3 tests/test_917_f50_cfd_recovery.py -v
 
 #> check | Validate catalogue records against their schemas
-validate:
+validate: check-filesystem
 	python3 scripts/validate_catalog.py
 	python3 scripts/validate_am_pipeline.py
 	python3 scripts/validate_sources.py
@@ -352,8 +357,8 @@ validate:
 	python3 twins/reference-917-engine/source/prepare_variant_configs_f10.py --manifest twins/reference-917-engine/variant-configurations-f10.json --project-root . --check
 
 #> check | Run the test suite alone
-test:
-	python3 -m unittest discover -s tests -v
+test: check-filesystem
+	python3 scripts/run_tests_with_skip_report.py
 
 #> catalogue | Digital twin coverage by zone
 twin:
@@ -1262,6 +1267,16 @@ pet-zone-triage:
 #> 993 | Check this zone triage
 pet-zone-triage-check:
 	$(MAKE) pet-zone-triage ROUTE_CHECK=--check
+
+.PHONY: pet107-bom pet107-bom-check
+#> catalogue | Regenerate the PET107 print-buy-manufacture BOM (JSON + CSV)
+pet107-bom:
+	python3 scripts/generate_pet107_bom.py
+
+#> catalogue | Check the PET107 BOM is current and passes its self-check
+pet107-bom-check: pet107-bom
+	git diff --exit-code -- parts/m64-pet107-bom/pet107-bom-v1.json parts/m64-pet107-bom/pet107-bom-v1.csv
+	python3 parts/m64-pet107-bom/selfcheck_pet107_bom.py
 
 #> 993 | Part-by-part titanium triage, requires an out-of-repo PET listing
 pet-part-triage:

@@ -145,3 +145,21 @@ September 2, 2026. Its presence in the tests is a fixture: it guarantees neither
 its current availability nor its future price, and attests no rental. It must
 be reviewed in the current output of `wave-offers` before launching the command
 with this identifier or any other compliant identifier.
+
+## Overlay patches kept unapplied on purpose
+
+Two patches sit beside the wrappers. They are **overlays for the installed
+copies**, not pending merges: both targets are hash-pinned historical wrappers
+(`openbao-vastai` SHA-256 `42fe39eb…` is asserted by
+`tests/test_openbao_vastai_m64_fea512.py` and recorded in evidence), so
+applying a patch in place would break that provenance chain. Each overlay has
+an offline test that applies it to a temporary copy and leaves the source
+untouched. Status reviewed on 2026-11-05 (issue #422):
+
+| Patch | Target | Change | Credential scope | Status |
+|---|---|---|---|---|
+| [`github-fetch-current.patch`](github-fetch-current.patch) | `openbao-github` | Adds a `fetch-current` operation: `git fetch` of `main` and the current branch only, with the same repository, secret path and withheld diagnostics as `push-current` ([report](../../docs/reports/M64_WHOLEBODY_SUPPORT_GPU_20260927.md); test `tests/test_openbao_github_fetch_patch.py`) | **Extends what the GitHub credential is used for** (a new read operation), within the same secret path | Owner decision: adopt in a new wrapper version, or drop |
+| [`mesh-offer-refresh-scope.patch`](mesh-offer-refresh-scope.patch) | `openbao-vastai` | Stops `mesh_offer_query(offer_id)` widening the refresh query from 50 to 1,000 offers, so a just-listed offer is not rejected by a changed bundle ([note](../../docs/research/935-printability-20261029.md); test `tests/test_vast_mesh_offer_refresh_patch.py`) | None: same API key, same endpoint, narrower query | Kept as overlay until a new pinned wrapper version is cut |
+
+Merging either into its target means publishing a new wrapper version with a
+new pinned hash, which needs owner approval.

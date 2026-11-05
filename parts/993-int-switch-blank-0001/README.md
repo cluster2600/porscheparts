@@ -11,7 +11,7 @@
 </div>
 
 > [!TIP]
-> **A fit-test kit is ready to print** — [`print/`](print/README.md): 3 sizes on one plate (18.6 × 30.6, 19.0 × 31.0, 19.4 × 31.4 mm), a PrusaSlicer project and instructions. It is a measurement instrument, not the finished part ([decision 0009](../../docs/decisions/0009-first-fit-test-print-switch-blank.md)).
+> **A fit-test kit is ready to print** — [`print/`](print/README.md): 6 sizes on one plate (16.6 × 27.5, 17.0 × 27.9, 17.4 × 28.3, 18.6 × 30.6, 19.0 × 31.0, 19.4 × 31.4 mm), a 3MF plate and instructions. It is a measurement instrument, not the finished part ([decision 0009](../../docs/decisions/0009-first-fit-test-print-switch-blank.md)).
 
 > [!CAUTION]
 > **The part itself is not validated, and not a copy of the original.** The model shown here is a
@@ -32,8 +32,8 @@ The original part is documented — pictures, catalogue entries or published dat
 </td>
 <td width="50%" valign="top" align="center">
 <b>What you can print today</b><br><br>
-<a href="print/README.md"><img src="print/plate.png" alt="Fit-test kit, three sizes" width="360"></a><br>
-<sub>The fit-test kit: three sizes that bracket the declared opening. A measurement instrument — <b>not</b> the finished part, not a copy of the original.</sub>
+<a href="print/README.md"><img src="print/plate.png" alt="Fit-test kit" width="360"></a><br>
+<sub>The fit-test kit: sizes that bracket the declared openings. A measurement instrument — <b>not</b> the finished part, not a copy of the original.</sub>
 </td>
 </tr></table>
 
@@ -116,7 +116,7 @@ flowchart LR
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/switch_blank_concept_f0-picogk-gyroid.json`](derived/switch_blank_concept_f0-picogk-gyroid.json), [`derived/switch_blank_concept_f0-picogk.json`](derived/switch_blank_concept_f0-picogk.json), [`derived/switch_blank_concept_f0-picogk.stl`](derived/switch_blank_concept_f0-picogk.stl), [`derived/switch_blank_concept_f0.step`](derived/switch_blank_concept_f0.step) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/concept-f0.json`](evidence/concept-f0.json), [`evidence/measurement-plan.md`](evidence/measurement-plan.md) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/gyroid.json`](media/gyroid.json), [`media/gyroid.png`](media/gyroid.png), [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/picogk-batch-01.png`](media/picogk-batch-01.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
-| `print/` | **ready-to-print files**: 3MF project, STL and instructions | [`print/kit.json`](print/kit.json), [`print/plate.png`](print/plate.png), [`print/switch_blank_fit_1.stl`](print/switch_blank_fit_1.stl), [`print/switch_blank_fit_2.stl`](print/switch_blank_fit_2.stl), [`print/switch_blank_fit_3.stl`](print/switch_blank_fit_3.stl), [`print/switch_blank_fit_plate.3mf`](print/switch_blank_fit_plate.3mf), [`print/switch_blank_fit_plate.step`](print/switch_blank_fit_plate.step), [`print/switch_blank_fit_plate.stl`](print/switch_blank_fit_plate.stl) |
+| `print/` | **ready-to-print files**: 3MF project, STL and instructions | [`print/kit.json`](print/kit.json), [`print/plate.png`](print/plate.png), [`print/switch_blank_fit_A1.stl`](print/switch_blank_fit_A1.stl), [`print/switch_blank_fit_A2.stl`](print/switch_blank_fit_A2.stl), [`print/switch_blank_fit_A3.stl`](print/switch_blank_fit_A3.stl), [`print/switch_blank_fit_B1.stl`](print/switch_blank_fit_B1.stl), [`print/switch_blank_fit_B2.stl`](print/switch_blank_fit_B2.stl), [`print/switch_blank_fit_B3.stl`](print/switch_blank_fit_B3.stl), … (12 files) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/bionic_keepins.py`](source/bionic_keepins.py), [`source/fit_test_kit.py`](source/fit_test_kit.py), [`source/gyroid.json`](source/gyroid.json), [`source/picogk.json`](source/picogk.json), [`source/render_fit_plate.py`](source/render_fit_plate.py), [`source/switch_blank.py`](source/switch_blank.py) |
 
 ## Read more

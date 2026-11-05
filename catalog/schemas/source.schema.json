@@ -64,7 +64,21 @@
       "properties": {
         "license": { "type": "string", "minLength": 3 },
         "redistribution": { "enum": ["allowed", "attribution_required", "noncommercial_only", "prohibited", "unknown"] },
-        "attribution": { "type": "string" }
+        "attribution": { "type": "string" },
+        "archive_capture": {
+          "type": "object",
+          "description": "Licence and author read on an Internet Archive (Wayback Machine) capture of the original page, accepted as provenance evidence by owner decision of 2026-11-05. The licence string then starts with 'archive-verified-'.",
+          "additionalProperties": false,
+          "required": ["status", "capture_url", "capture_timestamp", "read_on", "license_as_read", "author"],
+          "properties": {
+            "status": { "const": "archive_verified" },
+            "capture_url": { "type": "string", "pattern": "^https://web\\.archive\\.org/web/[0-9]{14}/" },
+            "capture_timestamp": { "type": "string", "pattern": "^[0-9]{14}$" },
+            "read_on": { "type": "string", "format": "date" },
+            "license_as_read": { "type": "string", "minLength": 3 },
+            "author": { "type": "string", "minLength": 1 }
+          }
+        }
       }
     },
     "quality": {

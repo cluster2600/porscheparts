@@ -27,4 +27,8 @@ jobs:
         run: python -m pip install --disable-pip-version-check -r requirements-check.txt
 
       - name: Validate repository
+        # The test runner writes skips per reason to the job summary and fails
+        # when they exceed tests/skip-budget.json (issue #418).
+        env:
+          SKIP_BUDGET_ENFORCE: "1"
         run: make check

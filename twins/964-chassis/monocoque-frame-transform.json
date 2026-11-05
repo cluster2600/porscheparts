@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "record_id": "964-CHASSIS-MONOCOQUE-FRAME-TRANSFORM-0001",
+  "created_on": "2026-11-05",
+  "issue": "https://github.com/cluster2600/porscheparts/issues/463",
+  "frames": {
+    "chassis_twin": {
+      "definition_source": "catalog/twins/twin-964-chassis-floor-0001.json coordinate_system (ADR-0003 vehicle frame)",
+      "origin": "plane of symmetry, vertically above the front axle center, on the nominal ground plane",
+      "axes": "X forward, Y left, Z up",
+      "units": "mm"
+    },
+    "monocoque_study": {
+      "definition_source": "twins/993-carbon-safety-cell/design-space.json at commit 135dcc8ef6e71ac483e1ed3036217536562c80a1 (unmerged branch), screening_geometry_mm",
+      "origin": "front axle at X = 0 (front_axle_x 0.0, rear_axle_x 2272.0); Y = 0 on the centreline (symmetric half-widths, shift rod at Y 0)",
+      "axes": "X rearward; Z up (floor_z 180, roof_z 1240); Y sign not stated in the source",
+      "units": "mm"
+    }
+  },
+  "transform_monocoque_to_chassis_twin": {
+    "matrix_row_major_4x4": [-1, 0, 0, 0, 0, -1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+    "meaning": "x_twin = -x_mono, y_twin = -y_mono, z_twin = z_mono: a 180 degree rotation about Z, determinant +1, with no translation because both origins sit on the centreline at the front axle.",
+    "check": "Mono rear axle (2272, 0, z) maps to (-2272, 0, z): behind the front axle in the X-forward twin frame, at the documented 2272 mm wheelbase.",
+    "assumptions": [
+      "The monocoque frame is right-handed, so with X rearward and Z up its +Y points to the vehicle's right. If it is left-handed, use diag(-1, 1, 1) instead. Every monocoque value in the source is either symmetric or on Y = 0, so this choice does not move any recorded study point.",
+      "Both Z origins are the ground plane. The study states floor_z 180 and roof_z 1240 without naming the Z datum; until it does, a Z offset of 0 is an assumption, not a verified datum."
+    ]
+  },
+  "scan_status": {
+    "file": "964widebodyunderside2poin13.obj (kept locally, out of Git)",
+    "sha256": "f397909141e5af2529db961641c7699d39d40c355e05245cfb1573a2974c8dc5",
+    "open_edges": 118411,
+    "open_edges_note": "Counted by the input audit; the scan is not watertight and is used only for registration and diagnostics, not as a closed surface.",
+    "redistribution_rights": "owner_pending",
+    "redistribution_rights_note": "No licence or permission to redistribute the scan is recorded. The scan and anything derived from its raw vertices stay private until the repository owner records the rights."
+  }
+}

@@ -53,7 +53,8 @@ class LeapF16Tests(unittest.TestCase):
 
     def test_native_receipt_when_available(self):
         directory = os.environ.get("PICOGK_F16_RESULT")
-        if not directory: self.skipTest("Set PICOGK_F16_RESULT for an installed native result")
+        if not directory: self.skipTest("Set PICOGK_F16_RESULT for an installed native result; "
+                                     "regenerate per twins/vehicle-911-917/LEAP_STACK.md")
         r = f16.verify_output(Path(directory))
         self.assertEqual(len(r["checks"]), 45)
         self.assertGreater(r["solid_fraction_in_zone"], 0)
@@ -176,7 +177,8 @@ class LinuxReceiptTests(unittest.TestCase):
     def test_receipt_matches_native_run_when_available(self):
         directory = os.environ.get("PICOGK_F16_RESULT")
         if not directory or f16.sha256(Path(directory) / "report.json") != self.receipt["report_sha256"]:
-            self.skipTest("Set PICOGK_F16_RESULT to the Linux run named in the receipt")
+            self.skipTest("Set PICOGK_F16_RESULT to the Linux run named in the receipt; "
+                          "regenerate per twins/vehicle-911-917/LEAP_STACK.md")
         r = f16.verify_output(Path(directory))
         self.assertEqual([{k: p[k] for k in self.receipt["components"][0]} for p in r["components"]],
                          self.receipt["components"])

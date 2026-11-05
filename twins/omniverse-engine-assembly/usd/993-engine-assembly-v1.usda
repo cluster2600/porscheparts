@@ -13,10 +13,9 @@ def Xform "EngineAssembly" (
     custom string m64:coordinateFrame = "Engine-local frame hypothesis: origin at crankcase centre on the crankshaft axis; +X toward the flywheel/transmission face; +Y toward the right cylinder bank (cylinders along +/-Y); +Z up. Consistent with the manual Z-up convention of twins/catalogue-parts/usd/ assets."
     custom string m64:layoutStatus = "layout-hypothesis-engine-local: no common engine metrology frame exists (BOM fidelity_note), so every position is an arrangement hypothesis for loadable visual review, not a measured or fitted position."
     custom string[] m64:bomLinesUnrepresented = [
-        "M64B-CS-002",
         "M64B-CY-001"
     ]
-    custom string m64:bomCoverageUnrepresentedReasons = "{\"M64B-CS-002\": \"Intermediate shaft gear / balance drive: no local evidence record (all evidence fields missing, BOM sources list empty); a zero-evidence prim would add clutter without information, so the line is declared unrepresented here instead of marked in the scene.\", \"M64B-CY-001\": \"Cylinder barrels are represented inside the Crankcase zone by the CrankcaseHalvesMarker volume (CC-001): bore 100 is sourced but the skirt/case interface and fin pitch are unknown (M64-ACQ-0004), so a separate marker would imply a cylinder/case datum that does not exist.\"}"
+    custom string m64:bomCoverageUnrepresentedReasons = "{\"M64B-CY-001\": \"Cylinder barrels are represented inside the Crankcase zone by the CrankcaseHalvesMarker volume (CC-001): bore 100 is sourced but the skirt/case interface and fin pitch are unknown (M64-ACQ-0004), so a separate marker would imply a cylinder/case datum that does not exist.\"}"
     custom string[] m64:limitations = [
         "research layout, not fitment: positions are engine-local arrangement hypotheses, no interface, clearance or collision is asserted",
         "every real asset reference resolves to an F1 documentary proxy mesh, not measured component geometry",
@@ -1479,6 +1478,42 @@ def Xform "EngineAssembly" (
                 (260, -60, 60),
                 (260, 60, 60),
                 (-260, 60, 60)
+            ]
+        }
+    }
+
+    def Xform "IntermediateShaftMarker" (
+        custom string[] m64:bomLines = ["M64B-CS-002"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CC-ROT"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/records/M64B-CS-002-intermediate-shaft.json (identity and sprocket distances from 911 Carrera (993) manual p.176-177; no shaft envelope sourced)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary; position is a layout hypothesis, no axis or datum asserted"
+    )
+    {
+        double3 xformOp:translate = (0, 0, -140)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-70, -20, -20), (70, 20, 20)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.627, 0.627, 0.667)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-70, -20, -20),
+                (70, -20, -20),
+                (70, 20, -20),
+                (-70, 20, -20),
+                (-70, -20, 20),
+                (70, -20, 20),
+                (70, 20, 20),
+                (-70, 20, 20)
             ]
         }
     }
