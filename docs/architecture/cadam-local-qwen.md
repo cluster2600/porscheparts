@@ -378,3 +378,38 @@ node coordinate and the complete source boundary remain exact. The absolute
 shape gate still fails, so native solver export and case-specific conditioning
 admission precede any field solve. The original scan and print master are
 rehashed unchanged; this is neither a new CAD master nor an AM/physical release.
+
+The [native solver-admission study](../research/935-native-solver-admission-20261105/README.md)
+then round-trips every conditioned coordinate, tetrahedron and boundary face
+through actual binary and 17-digit ASCII Gmsh files. Native Jacobians and
+volumes are positive, while 3,130 minSICN values are nonpositive. Exact rational
+inspection proves all flagged stored-coordinate determinants positive and
+quantifies extreme conditioning; this does not establish operator accuracy.
+The actual OpenFOAM reader rejects the binary control. The ASCII precision
+fixture imports and passes checkMesh on Kali, with complete independent
+coordinate/cell/boundary readback. A single 8 GiB full-head Kali import exits
+137 before checkMesh, with complete recovery and owned staging/container
+cleanup. One guarded cloud trial repeats the control in its pinned OpenFOAM 13
+runtime, then imports the complete head in 113.69 seconds. Native checkMesh
+reaches its 240-second deadline after its first topology checks and remains
+incomplete. Its actual native arrays, terminal outcome and owned-resource
+closeout are linked in the aggregate record. Head operator admission,
+engine boundary conditions, manufacturing qualification and physical release
+remain distinct open gates; no engine field solve follows from format success.
+
+The [extended geometry and stencil diagnostic](../research/935-native-geometry-admission-20261105/README.md)
+then distinguishes the native internal-face tensor determinant from a coordinate
+Jacobian. A complete owner/neighbour audit proves at least 1,632,958 rank-deficient
+uncoupled stencils before execution. The small precision bipyramid is unsuitable
+as an extended positive control; its failed admission and a later refused Kali
+head preparation are retained. An independently inspected 27-node/eight-cell
+cube and its reflection qualify the unchanged extended checker on Kali and Vast.
+The one head geometry diagnostic completes in 60.61 seconds and reports ten
+failed checks, despite process exit zero; report content correctly rejects it.
+A separate integer-permutation audit checks every owner and neighbour face
+winding against the certified positive tetrahedra and finds no error. Thus face
+row reversal is not an indicated repair. Extreme conditioning/native geometry
+evaluation remains an admission issue; complete import, winding and a diagnostic
+run establish no engine field or manufacturing approval. Owned cloud resources
+are recovered and removed with independent absence proof, preserving the
+original cumulative budget, source scan and printing master.
