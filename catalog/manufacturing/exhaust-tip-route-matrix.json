@@ -1069,7 +1069,9 @@
     "On this geometry LPBF IN625 is heavier than stainless. If titanium is ruled out, the 'original material done properly' (decision 0008) is the lighter fallback; IN625 only adds the one-piece double wall.",
     "The 850 K gas wets the inner duct. Against it Ti-6Al-4V has -177 C of margin and Ti-6242 -27 C: the outer-surface figure alone understates the problem.",
     "The Ti-6242 evidence mass (217.57 g) uses the analytic unribbed volume, the others the CAD volume; on the CAD volume it is 218.60 g.",
-    "The temperature margins compare ceilings of different kinds: creep-limited service for titanium, an oxidation-in-air guidance value for stainless, a stability statement for Aheadd HT1 and a UL 746B continuous-use rating for PEEK. A margin is read against its own ceiling type."
+    "The temperature margins compare ceilings of different kinds: creep-limited service for titanium, an oxidation-in-air guidance value for stainless, a stability statement for Aheadd HT1 and a UL 746B continuous-use rating for PEEK. A margin is read against its own ceiling type.",
+    "2026-11-05: a targeted search found no admissible 993 or M64 tip or tailpipe temperature; the input stays blocked (see temperature_source_search).",
+    "2026-11-05: no non_critical catalogue part gains a measurable titanium benefit from fully sourceable inputs; on the switch trim ring titanium is 65.2 % heavier than the aluminium candidate (see alternatives_if_tip_blocked)."
   ],
   "go_no_go_rule": {
     "status": "project_decision_rule_pending_professional_review",
@@ -1134,5 +1136,134 @@
       "the inlet interface, insertion depth and clamp are defined from sourced data, not F0 assumptions",
       "a drawing with tolerances exists, so that the dimensional acceptance criteria of the request can be quoted"
     ]
+  },
+  "temperature_source_search": {
+    "date": "2026-11-05",
+    "goal": "A citable T_max for the 993 tip or tailpipe (or a close air-cooled 911 M64), surface or gas, to feed go_no_go_rule.",
+    "admissibility": "A lead is admissible only if it is a published or third-party measurement with recorded provenance, on a 993 or a close M64 exhaust, at or near the tip, and its exact statement can be quoted into a catalog/sources record. Forum estimates, other engines and unread documents are not admissible.",
+    "searches": [
+      "Porsche 993 exhaust tip temperature measured thermocouple tailpipe",
+      "air-cooled 911 964 993 muffler outlet exhaust gas temperature measured dyno tailpipe EGT after catalytic converter",
+      "measured tailpipe outlet surface temperature passenger car full load exhaust system surface temperatures"
+    ],
+    "leads": [
+      {
+        "lead": "Rennlist 993 forum thread on a 1994 Japan-market Carrera with two exhaust gas temperature sensors ahead of the silencers",
+        "url": "https://rennlist.com/forums/993-forum/1298662-1994-japanese-import-2-exhaust-gas-temperature-sensors.html",
+        "verdict": "not_admissible",
+        "reason": "locates sensors upstream of the silencers; gives no reading"
+      },
+      {
+        "lead": "6SpeedOnline 996 Turbo thread estimating exhaust gas temperature at 700 to 900 C",
+        "url": "https://www.6speedonline.com/forums/996-turbo-gt2/180943-exhaust-gas-temperature.html",
+        "verdict": "not_admissible",
+        "reason": "a forum estimate, not a measurement; water-cooled turbo engine; location not the tip"
+      },
+      {
+        "lead": "USDA Forest Service, Diesel Exhaust Emission System Temperature Test (pub. 0851-1816)",
+        "url": "https://www.fs.usda.gov/t-d/pubs/pdf/08511816.pdf",
+        "verdict": "not_admissible",
+        "reason": "diesel engines, not transferable to a petrol M64; the PDF returned HTTP 403 on 2026-11-05, so no statement could be read and quoted"
+      },
+      {
+        "lead": "ChallengerTalk owner thread measuring a tailpipe tip after driving",
+        "url": "https://www.challengertalk.com/threads/tailpipe-temperature-with-stock-exhaust-anyone-measure-it.40779/",
+        "verdict": "not_admissible",
+        "reason": "anecdotal, unknown instrument and duty, different engine and exhaust"
+      }
+    ],
+    "admissible_source_ids": [],
+    "contradiction": "none recorded: no two admissible sources exist to disagree",
+    "result": "No admissible source found. go_no_go_rule.input_status stays blocked and the decision stays no_go (band 'unknown'). No source record was created for an unquoted lead.",
+    "next_leads_not_yet_read": [
+      "Porsche 993 workshop manual and technical-information bulletins for an exhaust or rear-apron heat statement (proprietary manuals are not committed; a citable statement would need its own source record)",
+      "SAE technical papers on tailpipe skin or exit-gas temperatures of petrol passenger cars at full load"
+    ]
+  },
+  "alternatives_if_tip_blocked": {
+    "date": "2026-11-05",
+    "status": "proposed_not_reviewed",
+    "question": "Does another non_critical catalogue part gain a measurable titanium benefit from fully sourceable inputs?",
+    "selection": "Every catalogue record with classification.safety_class non_critical was screened (catalog/parts, 2026-11-05).",
+    "candidates": [
+      {
+        "part_id": "993-INT-SWITCH-TRIM-RING-F1-0001",
+        "basis": [
+          "repo_evidence",
+          "arithmetic",
+          "assumption"
+        ],
+        "summary": "Ti-6Al-4V on the screened ring volume is 10.11 g against 6.12 g for the AlSi10Mg screening candidate: +65.2 % mass. Titanium is heavier, so no mass benefit. The geometry is estimated (source_type estimated) and the incumbent material is unidentified, so the inputs are not fully sourceable either.",
+        "formula": "m = rho * V; delta = m_ti / m_al - 1",
+        "inputs": {
+          "V_mm3": 2291.8900155641777,
+          "rho_ti64_g_cm3": 4.41,
+          "rho_alsi10mg_g_cm3": 2.67
+        },
+        "value_g_ti64": 10.11,
+        "value_g_alsi10mg": 6.12,
+        "delta_percent": 65.2,
+        "source_ids": [
+          "SRC-EOS-TI64-M290-MATERIAL-DATA"
+        ],
+        "refs": [
+          "parts/993-int-switch-trim-ring-f1-0001/evidence/geometry-screen.json",
+          "catalog/parts/993-int-switch-trim-ring-f1-0001.json"
+        ],
+        "verdict": "no_measurable_titanium_benefit"
+      },
+      {
+        "part_id": "993-INT-SWITCH-BLANK-0001",
+        "basis": [
+          "repo_evidence",
+          "judgement"
+        ],
+        "summary": "Interior trim at cabin temperature with estimated geometry; the screen inputs establish no criterion that titanium would serve better than a polymer or aluminium.",
+        "source_ids": [],
+        "refs": [
+          "catalog/manufacturing/titanium-am-screen-inputs.json"
+        ],
+        "verdict": "no_measurable_titanium_benefit"
+      },
+      {
+        "part_id": "993-INT-SEAT-RAIL-COVER-0001",
+        "basis": [
+          "repo_evidence",
+          "judgement"
+        ],
+        "summary": "Same as the switch blank: interior trim, estimated geometry, no titanium criterion established.",
+        "source_ids": [],
+        "refs": [
+          "catalog/manufacturing/titanium-am-screen-inputs.json"
+        ],
+        "verdict": "no_measurable_titanium_benefit"
+      },
+      {
+        "part_id": "993-CA-CHARGE-PIPE-SET-PET-0001",
+        "basis": [
+          "repo_evidence"
+        ],
+        "summary": "The screen inputs score zero titanium criteria for this polymer charge-air duct set.",
+        "source_ids": [],
+        "refs": [
+          "catalog/manufacturing/titanium-am-screen-inputs.json"
+        ],
+        "verdict": "no_measurable_titanium_benefit"
+      },
+      {
+        "part_id": "993-CA-TURBO-INTAKE-MANIFOLD-PET-0001",
+        "basis": [
+          "repo_evidence"
+        ],
+        "summary": "One titanium criterion in the screen inputs, estimated geometry; a polymer intake tract with no mass or temperature case for titanium.",
+        "source_ids": [],
+        "refs": [
+          "catalog/manufacturing/titanium-am-screen-inputs.json"
+        ],
+        "verdict": "no_measurable_titanium_benefit"
+      }
+    ],
+    "not_considered": "Functional titanium candidates (chain-case lid on a magnesium case, intercooler bracket, connecting rod, valves) are not non_critical and stay outside this alternative.",
+    "finding": "No non_critical catalogue part offers a measurable titanium benefit from fully sourceable inputs. The tip remains the only candidate with a CAD-volume mass benefit, and its blocker is the temperature input, not the choice of part."
   }
 }

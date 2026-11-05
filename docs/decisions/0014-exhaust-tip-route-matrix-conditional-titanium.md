@@ -262,3 +262,28 @@ Until then the decision is no-go.
 - The generated quote requests in `twins/993-exhaust-tip-ti-f0/evidence/` keep
   boilerplate from the trim ring; they are frozen and are superseded by the
   drafted request once it is reviewed.
+
+## Addendum 2026-11-05: source search and alternative part
+
+The owner asked for more effort before closing #5. Two things were tried; the
+decision does not change.
+
+- **Temperature source search.** Targeted searches for a measured 993 or M64
+  tip, tailpipe or post-silencer temperature found no admissible source: forum
+  posts give sensor locations or estimates, and the one structured test found
+  (USDA Forest Service, diesel engines) is neither transferable nor readable
+  (HTTP 403). Every lead and its rejection reason is recorded under
+  `temperature_source_search` in the route matrix. No source record was created
+  for an unquoted lead, and no contradiction exists because no two admissible
+  sources exist. The input stays blocked; the decision stays no-go.
+- **Alternative part.** Every `non_critical` catalogue record was screened
+  under `alternatives_if_tip_blocked`. None gains a measurable titanium benefit
+  from fully sourceable inputs; on the switch trim ring titanium is 65.2 %
+  heavier than the aluminium candidate on the same volume. The tip remains the
+  only titanium candidate with a mass benefit, and its blocker is the input,
+  not the part.
+- **Request (#6).** The acceptance criteria now require one governing
+  specification by full designation and edition (AC-00), tie chemistry,
+  tensile, heat treatment and microstructure to it, and treat an unjustified
+  ASTM F3001 (Grade 23 ELI) substitution as a nonconformance. The review table
+  stays empty.
