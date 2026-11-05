@@ -1,4 +1,9 @@
-"""Offline check of the read-only extension; no credentials or network."""
+"""Released openbao-github fetch-current delta (issue #422, owner-approved 2026-11-05).
+
+The repository wrapper stays frozen; the release is the pinned delta applied to
+a disposable copy. No credentials or network.
+"""
+import hashlib
 import importlib.machinery
 import importlib.util
 from pathlib import Path
@@ -9,14 +14,23 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
+SOURCE_SHA256 = "100406b0f109a36699c9ffc99062962fb41ea02b15a28802758a3fbf0aed002e"
+PATCH_SHA256 = "ed72a944450c7144f92166635d43533d7d15c471f60a1184ee981c9bf99f82e7"
+VARIANT_SHA256 = "d94884e66b72acac8753993234727e88748d34fa20566b0a8510403b92732cc9"
+
 
 class FixedFetchTests(unittest.TestCase):
     def test_fixed_fetch_keeps_scope_and_withholds_failure_diagnostics(self):
         root = Path(__file__).resolve().parents[1]
         with tempfile.TemporaryDirectory() as directory:
             target = Path(directory) / 'openbao-github'
-            shutil.copyfile(root / 'deploy/openbao/openbao-github', target)
+            source = root / 'deploy/openbao/openbao-github'
+            delta = root / 'deploy/openbao/github-fetch-current.patch'
+            self.assertEqual(hashlib.sha256(source.read_bytes()).hexdigest(), SOURCE_SHA256)
+            self.assertEqual(hashlib.sha256(delta.read_bytes()).hexdigest(), PATCH_SHA256)
+            shutil.copyfile(source, target)
             subprocess.run(['git', 'apply', str(root / 'deploy/openbao/github-fetch-current.patch')], cwd=directory, check=True)
+            self.assertEqual(hashlib.sha256(target.read_bytes()).hexdigest(), VARIANT_SHA256)
             loader = importlib.machinery.SourceFileLoader('fixed_fetch', str(target))
             module = importlib.util.module_from_spec(importlib.util.spec_from_loader(loader.name, loader))
             loader.exec_module(module)
