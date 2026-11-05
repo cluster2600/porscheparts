@@ -1,0 +1,396 @@
+{
+  "schema": "935-four-four-critical-conditioning-1",
+  "date": "2026-11-05",
+  "status": "critical_bins_improved_all_reported_bins_nonregressing_new_cells_condition_certified_absolute_gate_still_failed",
+  "private_capsule": {
+    "directory_basename": "935-four-four-cavities-20261105-001",
+    "manifest_sha256": "70ea643568877eb271a0ec379950d8e1230fe9f6947d17c8876a4b02900a60b4",
+    "entries": 41,
+    "regular_file_bytes": 194152698,
+    "read_only_rehashed": true
+  },
+  "source_sha256": {
+    "four_four_contract.py": "a5379daacb7a099810acf678110b74d4e6d9c5f34b01ac38fff1472a4ab0228c",
+    "inspect_condition_coverage.py": "1eca77e2d35b2a4b2f907e5db4f4c5404a0478ba0d009b9c36c70d5bd7ec19d2",
+    "propose_four_four.py": "4298598e1fc5da3f28ad85fcb41cd5db427f5c5a6418f849b13c5bb07963c236",
+    "verify_four_four.py": "0bbdf0e452317c4fe85d90f9c64ebd530dce2d3cfb1495938811a225847ff0db"
+  },
+  "runtime": {
+    "python": "3.12.11",
+    "numpy": "2.5.4",
+    "platform": "arm64",
+    "source": "Existing isolated Mac scientific runtime; no environment mutation"
+  },
+  "phase_ledger_created_before_execution": true,
+  "input_mesh_sha256": "233f7bd83072772fa0b92d0287f20cec3cf44c4988546be42addf5579630299e",
+  "input_report_sha256": "2534890f0c46caaa8394320fa03a8d60057c842d97238dfa57b4cb816c20e596",
+  "independent_reference_preparation_capsules": [
+    {
+      "directory_basename": "935-four-four-control-20261105-001",
+      "manifest_sha256": "4078f2bcaf0ebc7749c34415b1224b47686491849dbc4008dcf31f22252f9922",
+      "entries": 4,
+      "regular_file_bytes": 6195,
+      "reference_preparation_only": true,
+      "historical_head_operator_not_yet_implemented_flag_preserved": true,
+      "read_only_rehashed": true
+    },
+    {
+      "directory_basename": "935-four-four-control-20261105-002",
+      "manifest_sha256": "fab939b998d3ea6951609c9f006552e09223d1b7e74f20fe4c6b5e4ec98fdb41",
+      "entries": 6,
+      "regular_file_bytes": 7680,
+      "reference_preparation_only": true,
+      "historical_head_operator_not_yet_implemented_flag_preserved": true,
+      "read_only_rehashed": true
+    }
+  ],
+  "preliminary_reference_refusal_retained": {
+    "terminal": "synthetic_admission_failed_before_any_head_operator",
+    "observed_exit_code": 1,
+    "epsilon": 9.5367431640625e-07,
+    "old_quality": [
+      0.00011534921721447028,
+      0.8000004069007637,
+      0.9524406311809196,
+      0.8000004069007637
+    ],
+    "reference_quality": [
+      0.7058826433330684,
+      0.7058826433330684,
+      0.6666669492366063,
+      0.6666669492366063
+    ],
+    "failed_requirement": "Old control must exercise the ultra-low <0.0001 bin",
+    "head_trial_started": false,
+    "thresholds_changed": false,
+    "source_preserved": true,
+    "next_fixture_epsilon": 5.960464477539063e-08,
+    "next_fixture_rationale": "Use exact Q_old^3 <= (27/16)*epsilon^2 for the thin old cell; at epsilon=2^-24 the unchanged 0.0001 criterion is guaranteed analytically"
+  },
+  "proposal": {
+    "source_sha256": "4298598e1fc5da3f28ad85fcb41cd5db427f5c5a6418f849b13c5bb07963c236",
+    "contract_sha256": "a5379daacb7a099810acf678110b74d4e6d9c5f34b01ac38fff1472a4ab0228c",
+    "mesh_sha256": "233f7bd83072772fa0b92d0287f20cec3cf44c4988546be42addf5579630299e",
+    "mesh_report_sha256": "2534890f0c46caaa8394320fa03a8d60057c842d97238dfa57b4cb816c20e596",
+    "maximum_passes": 1,
+    "target_critical_bin": 0.0001,
+    "all_new_cells_must_meet": 0.01,
+    "all_five_reported_bin_counts_must_not_increase": true,
+    "point_or_boundary_motion_permitted": false,
+    "new_edge_must_be_globally_absent": true,
+    "strict_convexity_and_chain_identity_required": true,
+    "alternative_choice": "First admissible opposite-ring diagonal in canonical order; no numerical tie selection",
+    "upstream_verdict": "Source geometry/positivity proven; current extreme conditioning fails; one critical-cell topology proposal only",
+    "field_solve_permitted": false,
+    "new_paid_compute_usd": 0,
+    "terminal": "four_four_indexed_proposals_exported_no_mesh_admitted",
+    "controls": {
+      "actual_operator_matches_frozen_literal_reference": true,
+      "reference_sha256": "90ae971f7ff2687c60e3bb9460d5241edeedae3fbaf6f07ad69be08604c36690",
+      "reference_minimum_before": 1.8166363357180012e-05,
+      "reference_minimum_after": 0.6666666843273014,
+      "critical_gain": 1,
+      "every_bin_nonregression_control": true,
+      "reversed_duplicate_nonconvex_and_existing_edge_refused": true
+    },
+    "current_bins": {
+      "0.0001": 36838,
+      "0.001": 56409,
+      "0.01": 254353,
+      "0.05": 2014409,
+      "0.1": 4427483
+    },
+    "current_critical_cells": 36838,
+    "exact_cell_sign_fallbacks": 143,
+    "critical_incident_edges": 206343,
+    "critical_source_edge_valence_histogram": {
+      "1": 32965,
+      "2": 27757,
+      "3": 45278,
+      "4": 65968,
+      "5": 21004,
+      "6": 8560,
+      "7": 3328,
+      "8": 975,
+      "9": 349,
+      "10": 116,
+      "11": 33,
+      "12": 6,
+      "13": 2,
+      "14": 2
+    },
+    "degree_four_edges": 65968,
+    "closed_four_cycle_cavities": 32036,
+    "strictly_convex_cavities": 8618,
+    "exact_hull_support_fallbacks": 3323,
+    "known_coplanar_support_rejections": 2981,
+    "admissible_quality_alternatives": 12268,
+    "globally_absent_edge_alternatives": 12268,
+    "one_diagonal_selected_per_cavity": 7208,
+    "packed_disjoint_cavities": 6754,
+    "packing_cell_conflicts": 454,
+    "packing_duplicate_new_edges": 0,
+    "predicted_removed_critical_cells": 6754,
+    "predicted_remaining_critical_cells": 30084,
+    "proposal_sha256": "5eab7cddce5454a0e5aac81d80e82ead120c718b3dd0684bb0efbd34d92515f4",
+    "input_rehashed_unchanged": true,
+    "separate_local_and_whole_volume_verification_required": true,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "seconds": 15.990774708916433
+  },
+  "separate_source_star_and_local_contract_verification": {
+    "source_sha256": "0bbdf0e452317c4fe85d90f9c64ebd530dce2d3cfb1495938811a225847ff0db",
+    "contract_sha256": "a5379daacb7a099810acf678110b74d4e6d9c5f34b01ac38fff1472a4ab0228c",
+    "input_mesh_sha256": "233f7bd83072772fa0b92d0287f20cec3cf44c4988546be42addf5579630299e",
+    "proposal_sha256": "5eab7cddce5454a0e5aac81d80e82ead120c718b3dd0684bb0efbd34d92515f4",
+    "candidate_sha256": "62717026bdfc3dc9c1a6cde682b32db12900cad8460f158a7319c41d001e2462",
+    "terminal": "full_source_star_and_local_domain_contracts_passed_candidate_pending_whole_volume",
+    "controls": {
+      "frozen_literal_reference_passed": true,
+      "full_star_count_and_absent_edge_controls": true,
+      "occupied_new_edge_detected": true,
+      "reversed_and_duplicate_cells_refused": true
+    },
+    "cavities_checked": 6754,
+    "old_and_new_cells_each": 27016,
+    "critical_cells_removed": 6754,
+    "old_stars_independently_complete": true,
+    "new_edges_globally_absent_and_unique": true,
+    "old_cell_domains_disjoint": true,
+    "strict_hull_expected_cell_sets_positive_signs_and_boundary_chains_passed": true,
+    "no_reported_quality_bin_increases_in_any_local_cavity": true,
+    "all_points_and_boundary_rows_bit_exact": true,
+    "total_cell_count_unchanged": true,
+    "shared_source_derived_contract_and_pinned_predicates": true,
+    "global_intersection_status_inherited_not_exhaustively_rechecked": true,
+    "native_solver_readback_required_for_new_connectivity": true,
+    "whole_volume_required": true,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "seconds": 23.467552582966164
+  },
+  "independent_whole_volume": {
+    "source_sha256": "b0810ac21b35654556dce18ef022f6d4ca8f30a847223c5d566188eab82f4e71",
+    "frozen_helpers_sha256": "fe8c7fa88f35d2d14094438bbae3b0860bde085a39b68f7ab941790cb4d1bec3",
+    "mesh_sha256": "62717026bdfc3dc9c1a6cde682b32db12900cad8460f158a7319c41d001e2462",
+    "surface_sha256": "5b04e72b5f7b48f340a39c14009292c52c1bf1ac422ad64cd3250c17ddf51db4",
+    "nodes": 4181299,
+    "tetrahedra": 12981388,
+    "boundary_faces": 8218458,
+    "interval_proven_positive_cells": 12981259,
+    "exact_fraction_positive_cells": 129,
+    "all_cells_positive_for_stored_binary_coordinates": true,
+    "all_nodes_used": true,
+    "all_source_vertices_exact": true,
+    "actual_complete_boundary_and_orientation_exact": true,
+    "internal_paired_faces": 21853547,
+    "all_internal_faces_oppositely_oriented": true,
+    "volume_mm3": 1094352.3436893984,
+    "relative_volume_difference": 1.5543122344752192e-15,
+    "minimum_cell_volume_mm3": 2.5543337315637495e-20,
+    "mean_ratio_quantiles": {
+      "minimum": 1.291009351665788e-11,
+      "p01": 0.004839498329231869,
+      "median": 0.14444176391414376,
+      "p99": 0.8920425183529477,
+      "maximum": 0.9992925153811529
+    },
+    "mean_ratio_below": {
+      "0.0001": 30084,
+      "0.001": 49655,
+      "0.01": 247599,
+      "0.05": 2007674,
+      "0.1": 4420773
+    },
+    "diagnostic_mean_ratio_floor": 0.01,
+    "diagnostic_quality_passed": false,
+    "interval_scope": "Outward one-ULP expansion after every binary64 operation; ambiguous signs evaluated as exact fractions of stored coordinates",
+    "controls": {
+      "exact_fraction_interval_enclosures": 203,
+      "coplanar_refused": true,
+      "thin_positive_and_negative_distinguished": true
+    },
+    "tetrahedron_pair_intersections_exhaustively_checked": false,
+    "mesh_modified": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "seconds": 54.52804179105442
+  },
+  "independent_interval_exact_conditioning_and_old_subset_mapping": {
+    "source_sha256": "1eca77e2d35b2a4b2f907e5db4f4c5404a0478ba0d009b9c36c70d5bd7ec19d2",
+    "source_mesh_sha256": "233f7bd83072772fa0b92d0287f20cec3cf44c4988546be42addf5579630299e",
+    "candidate_sha256": "62717026bdfc3dc9c1a6cde682b32db12900cad8460f158a7319c41d001e2462",
+    "new_cells_certified": 27016,
+    "all_new_exact_mean_ratios_at_least_binary64_001": true,
+    "new_cell_floor_certificate_interval_passes": 27016,
+    "new_cell_floor_certificate_exact_fallbacks": 0,
+    "guaranteed_new_cell_edge_matrix_kappa_F_upper_bound": 12000,
+    "bound": "kappa_F <= ||A||_F^3/(sqrt(3)*abs(det A)) <= 12/q^(3/2); q >= binary64(0.01) >= 1/100",
+    "all_unmodified_cells_and_nodes_exactly_preserved": true,
+    "prior_severe_metric_subset": {
+      "replaced": {
+        "cells": 506,
+        "exact_kappa_F_at_least": {
+          "1e12": 506,
+          "1e15": 39,
+          "1e16": 6,
+          "1e18": 0
+        },
+        "exact_kappa_F_times_epsilon_at_least_one": 10,
+        "spectral_lower_bound_times_epsilon_at_least_one": 0,
+        "approximate_maximum_kappa_F": 1.3093811544833166e+16
+      },
+      "retained": {
+        "cells": 2624,
+        "exact_kappa_F_at_least": {
+          "1e12": 2624,
+          "1e15": 186,
+          "1e16": 40,
+          "1e18": 0
+        },
+        "exact_kappa_F_times_epsilon_at_least_one": 54,
+        "spectral_lower_bound_times_epsilon_at_least_one": 5,
+        "approximate_maximum_kappa_F": 4.657541721488933e+16
+      }
+    },
+    "retained_exact_condition_values_still_applicable": true,
+    "native_minSICN_not_recomputed_or_inferred": true,
+    "cell_Jacobian_bound_is_not_PDE_matrix_condition_or_physics_accuracy": true,
+    "controls": {
+      "known_thin_cell_refused": true,
+      "all_literal_reference_cells_certified": true,
+      "inverted_and_coplanar_refused": true,
+      "binary64_floor_at_least_exact_one_hundredth": true
+    },
+    "private_subset_map_sha256": "d622a0b15a14172d958a49ef515acf4b828fb630736aa3b74628b157d4dde82d",
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "seconds": 2.5888630419503897
+  },
+  "quality_comparison": {
+    "before": {
+      "0.0001": 36838,
+      "0.001": 56409,
+      "0.01": 254353,
+      "0.05": 2014409,
+      "0.1": 4427483
+    },
+    "after": {
+      "0.0001": 30084,
+      "0.001": 49655,
+      "0.01": 247599,
+      "0.05": 2007674,
+      "0.1": 4420773
+    },
+    "deltas_after_minus_before": {
+      "0.0001": -6754,
+      "0.001": -6754,
+      "0.01": -6754,
+      "0.05": -6735,
+      "0.1": -6710
+    },
+    "critical_bin_reduction_fraction": 0.18334328682338888,
+    "all_reported_bins_nonregressing": true,
+    "minimum_before": 1.291009351665788e-11,
+    "minimum_after": 1.291009351665788e-11,
+    "cell_count_before": 12981388,
+    "cell_count_after": 12981388,
+    "new_points_or_boundary_deviation": 0,
+    "calculation_input_for_further_conditioning_sha256": "62717026bdfc3dc9c1a6cde682b32db12900cad8460f158a7319c41d001e2462",
+    "accepted_for_further_source_preserving_conditioning": true,
+    "accepted_for_engine_fields": false,
+    "absolute_quality_gate_passed": false,
+    "previous_severe_cells_replaced": 506,
+    "previous_severe_cells_retained": 2624,
+    "new_cell_condition_upper_bound": 12000,
+    "native_solver_readback_repeated": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "goal_complete": false
+  },
+  "execution": {
+    "control": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 1.022147582960315,
+      "sampled_peak_rss_kib": 0,
+      "log_sha256": "7a41934e3fe2b24297a3d22bc3db35cc95102e1b4a1aac6b4effc5ddd69117a0"
+    },
+    "proposals": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 16.20003354200162,
+      "sampled_peak_rss_kib": 3050880,
+      "log_sha256": "1ef542780538f1a592163152fcaa2137794950a55e30bef5806857a4a308c987"
+    },
+    "verifier-control": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 1.0179011659929529,
+      "sampled_peak_rss_kib": 0,
+      "log_sha256": "e5da28139f80be5d5bb52d857ea394176e9b12dc49c6b4ec372e47423e6125b3"
+    },
+    "local-proof": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 24.266044041956775,
+      "sampled_peak_rss_kib": 1367536,
+      "log_sha256": "6fc3f3d1c85c8bbc3296df2e1324abc742cc31f09a6075f37dd1aacd4100f297"
+    },
+    "whole-volume": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 55.64051129098516,
+      "sampled_peak_rss_kib": 3191248,
+      "log_sha256": "2ad4e678307c66b766eac1bc95010e212518644ae6a801dfa4cf2e3637374726"
+    },
+    "condition-coverage": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 3.0477882920531556,
+      "sampled_peak_rss_kib": 823056,
+      "log_sha256": "a9c39f4bddd5f2b97e5e35d09bfebeda415dc8b3670367c20e82a05d31703e17"
+    }
+  },
+  "preservation": {
+    "original_scan": {
+      "sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+      "bytes": 104598077,
+      "freshly_rehashed_unchanged": true
+    },
+    "printing_master": {
+      "sha256": "e022af4306766d09e512cd2bd49c696407d887f90cd3aa1622add8014a134465",
+      "bytes": 194091666,
+      "freshly_rehashed_unchanged": true
+    }
+  },
+  "all_workers_terminal": true,
+  "candidate_for_further_source_preserving_conditioning_sha256": "62717026bdfc3dc9c1a6cde682b32db12900cad8460f158a7319c41d001e2462",
+  "previous_two_three_candidate_is_not_this_input": true,
+  "gains_from_parallel_parent_trials_must_not_be_added": true,
+  "calculation_connectivity_changed": true,
+  "all_source_coordinate_bits_and_boundary_rows_preserved": true,
+  "geometry_and_print_master_replaced": false,
+  "native_solver_readback_repeated_for_candidate": false,
+  "native_minSICN_not_recomputed_or_inferred": true,
+  "cell_matrix_bound_not_PDE_error_or_physics_accuracy": true,
+  "exhaustive_pairwise_intersection_search_added": false,
+  "new_cloud_resource_created": false,
+  "new_paid_compute_usd": 0,
+  "previous_cumulative_reservation_ceilings_usd": 10.8,
+  "original_total_usd": 35,
+  "original_compute_allocation_usd": 30,
+  "original_transfer_closeout_reserve_usd": 5,
+  "budget_not_reset": true,
+  "provider_invoice_total_not_established": true,
+  "scan_transfer_this_increment": false,
+  "supplier_message_sent": false,
+  "head_field_solve_executed": false,
+  "physics_admitted": false,
+  "manufacturing_qualified": false,
+  "functional_release": false,
+  "goal_complete": false
+}
