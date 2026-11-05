@@ -1,0 +1,709 @@
+{
+  "schema": "935-residual-exact-convex-partition-1",
+  "date": "2026-11-05",
+  "status": "660_boundary_exact_corrections_complete_checks_pass_absolute_quality_and_native_admission_still_open",
+  "source_files": {
+    "audit_partition_conditions.py": "20ab7754abb97991cfdceee6ae6c8d5d477e50bcc7dda532a3efc532c29bfd17",
+    "control_convex_partition.py": "e6f6a75e5eff681e44d03ba3adcd9fb04a58bffa2e0c47fe16337c4b102efa5a",
+    "audit_residual_sources.py": "ae1eee889e95b31fff02eff9b08ec06f21d9678bf92dafa52a0d5c7c0bd92362",
+    "convex_partition_contract.py": "c06c37065561813a27791a4096d41c9e221f83ba48e775b2de6489f1f5a84a07",
+    "assess_extreme_flips.py": "8776585faae92a96e75a690d2077caa015eb5a340c77971c7af7258f92c5677f",
+    "verify_partition_flips.py": "beb8cde3ec10a526726c117c38e9cdc029c3eab6f325a80dfe32b61a1ea57301",
+    "propose_complete_weak_flips.py": "529b3e258bab99b33039640048c497221bf31a7dea481316a4fc96892c600565",
+    "audit_extended_stars.py": "82ec713859ad3753e8af2994ada67b664c8a3eac8a32b115e6b076e29372f568",
+    "propose_partition_flips.py": "2c4df1e1e708c24813eba5eb0e8176ce34933500f614636524a04891db912967"
+  },
+  "private_capsule": {
+    "capsule_name": "935-residual-source-admission-20261105-001",
+    "manifest_sha256": "e651636ad4a9aaa5640f69d12df304f52bb7f539bda1a65433a53fdd1bb6fb00",
+    "payload_files": 84,
+    "payload_bytes": 198970686,
+    "read_only": true,
+    "all_payload_files_rehashed_after_freeze": true
+  },
+  "execution": {
+    "audit-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 7.091211708029732,
+      "sampled_peak_rss_kib": 729776,
+      "log_sha256": "60326d7afaec52e818811beadb0e504147ef6f8faecd4697dae714015b1d744e"
+    },
+    "complete-weak-control-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 1.016867250087671,
+      "sampled_peak_rss_kib": 0,
+      "log_sha256": "e27695655d36ad014608c34c38af7e09b5d29a80bc3a920d75b3f2d45cabf201"
+    },
+    "complete-weak-proposal-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 15.163232416962273,
+      "sampled_peak_rss_kib": 3268560,
+      "log_sha256": "73ce4f200eab4c6d4ebf619f5281254d9fd7c7cf0e3938489afb2becdf84f128"
+    },
+    "extended-support-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 2.0237374999560416,
+      "sampled_peak_rss_kib": 352224,
+      "log_sha256": "c3f3db84e727cfe3a0d6fd5e4d24859e7919b238544a46c44dbc5c3847b76509"
+    },
+    "flip-assessment-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 27.26361350005027,
+      "sampled_peak_rss_kib": 373936,
+      "log_sha256": "79666efee274fe99be007165a6ae7b5e177f8f4f2f25af9870d10dfc3762e3d2"
+    },
+    "partition-control-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 1.0181291250046343,
+      "sampled_peak_rss_kib": 0,
+      "log_sha256": "b1647dbe6405ce6627b83b60f23fbe87d1f3af507d209b1acb7a653fe70fb6ab"
+    },
+    "partition-proposal-control-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 1.016424083034508,
+      "sampled_peak_rss_kib": 0,
+      "log_sha256": "8b2913fd98c2fee7c9179d49b1ab8f150aac5fdd04eefd3cf1996382d5238614"
+    },
+    "partition-proposal-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 2.0246932920999825,
+      "sampled_peak_rss_kib": 382832,
+      "log_sha256": "ba74a9a3d23ff64539726ebc1226f64d09c955efa3b76f5068507057294ebf05"
+    },
+    "partition-verification-control-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 1.0167341249762103,
+      "sampled_peak_rss_kib": 0,
+      "log_sha256": "d6c1d20c4e12468abf5a2445f1a41e4b5f6b23dee079ec975cd7cb96dcf537a3"
+    },
+    "partition-verification-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 27.293995499960147,
+      "sampled_peak_rss_kib": 1366384,
+      "log_sha256": "b5abf11b2418a9cf9e271d663e32dd013213fe799c3ad946e917a82e1966cbbe"
+    },
+    "partition-whole-condition-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 21.221496833022684,
+      "sampled_peak_rss_kib": 1689968,
+      "log_sha256": "ab02c3ca0a235d0e5aa7ee36125060f61e35b1d341eafa5f527ddf185f8d6647"
+    },
+    "partition-whole-volume-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 54.59143754199613,
+      "sampled_peak_rss_kib": 4022240,
+      "log_sha256": "facde61fc20ce357403ac9dcdaf199145b388c473b038c1b0cddd00a92d7ca07"
+    }
+  },
+  "source_preservation": [
+    {
+      "name": "original_obj",
+      "sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+      "bytes": 104598077,
+      "unchanged": true
+    },
+    {
+      "name": "original_print_study_master",
+      "sha256": "e022af4306766d09e512cd2bd49c696407d887f90cd3aa1622add8014a134465",
+      "bytes": 194091666,
+      "unchanged": true
+    },
+    {
+      "name": "identical_parent_calculation_surface_3mf",
+      "sha256": "e0f58555a676abcf26abb7312d474eaf9ac94fb5223b573a51bed4d502f0d334",
+      "bytes": 194085129,
+      "unchanged": true
+    }
+  ],
+  "complete_residual_source_audit": {
+    "source_sha256": "ae1eee889e95b31fff02eff9b08ec06f21d9678bf92dafa52a0d5c7c0bd92362",
+    "input_mesh_sha256": "a4b19f3303e55e4a13830829664e26596247d26cd41632704d4584706773538a",
+    "controls": {
+      "literal_face_to_tag_join_passed": true,
+      "tag_incidence_not_assumed_coplanarity": true,
+      "absent_faces_not_assigned": true,
+      "independent_fraction_fixture": true,
+      "exact_reference_delta_and_volume": true,
+      "actual_new_outward_face_orders": true,
+      "invalid_link_and_excess_delta_refusals": true,
+      "large_exact_edge_key_and_upward_reporting": true
+    },
+    "severe_cells_attributed": 15945,
+    "source_surface_faces_scanned": 8218458,
+    "groups_by_exact_condition_threshold": {
+      "1e12": {
+        "cells": 15945,
+        "actual_boundary_face_count_0_to_4": [
+          250,
+          1148,
+          14547,
+          0,
+          0
+        ],
+        "cap_incident_vertex_count_0_to_4": [
+          15730,
+          4,
+          204,
+          0,
+          7
+        ],
+        "interior_vertex_count_0_to_4": [
+          15942,
+          3,
+          0,
+          0,
+          0
+        ],
+        "all_four_vertices_incident_to_one_cap": 7
+      },
+      "1e15": {
+        "cells": 121,
+        "actual_boundary_face_count_0_to_4": [
+          17,
+          8,
+          96,
+          0,
+          0
+        ],
+        "cap_incident_vertex_count_0_to_4": [
+          118,
+          0,
+          3,
+          0,
+          0
+        ],
+        "interior_vertex_count_0_to_4": [
+          119,
+          2,
+          0,
+          0,
+          0
+        ],
+        "all_four_vertices_incident_to_one_cap": 0
+      },
+      "eps_inverse": {
+        "cells": 49,
+        "actual_boundary_face_count_0_to_4": [
+          5,
+          4,
+          40,
+          0,
+          0
+        ],
+        "cap_incident_vertex_count_0_to_4": [
+          49,
+          0,
+          0,
+          0,
+          0
+        ],
+        "interior_vertex_count_0_to_4": [
+          49,
+          0,
+          0,
+          0,
+          0
+        ],
+        "all_four_vertices_incident_to_one_cap": 0
+      },
+      "1e16": {
+        "cells": 29,
+        "actual_boundary_face_count_0_to_4": [
+          3,
+          3,
+          23,
+          0,
+          0
+        ],
+        "cap_incident_vertex_count_0_to_4": [
+          29,
+          0,
+          0,
+          0,
+          0
+        ],
+        "interior_vertex_count_0_to_4": [
+          29,
+          0,
+          0,
+          0,
+          0
+        ],
+        "all_four_vertices_incident_to_one_cap": 0
+      },
+      "3_eps_inverse": {
+        "cells": 6,
+        "actual_boundary_face_count_0_to_4": [
+          3,
+          2,
+          1,
+          0,
+          0
+        ],
+        "cap_incident_vertex_count_0_to_4": [
+          6,
+          0,
+          0,
+          0,
+          0
+        ],
+        "interior_vertex_count_0_to_4": [
+          6,
+          0,
+          0,
+          0,
+          0
+        ],
+        "all_four_vertices_incident_to_one_cap": 0
+      }
+    },
+    "extreme_edge_audit": {
+      "condition_threshold": 1000000000000000,
+      "cells": 121,
+      "unique_edges": 714,
+      "boundary_edges": 540,
+      "interior_edges": 174,
+      "interior_edge_valences": {
+        "3": 7,
+        "4": 128,
+        "5": 20,
+        "6": 13,
+        "7": 4,
+        "8": 2
+      }
+    },
+    "maximum_condition_cell_source_constraints": {
+      "actual_boundary_faces": 0,
+      "cap_incident_vertices": 0,
+      "interior_vertices": 0,
+      "common_cap_membership_bits": 0,
+      "reciprocal_frobenius_squared": [
+        "307459463874196065355750412196903390533533064402",
+        "666962434006962185783517021902544340058401269545673004587560368227955650722701609"
+      ]
+    },
+    "private_star_records_sha256": "b7c8985c06875dfe3886e66389cc9039ae6b99f2f6be05932544e4e4be47e0ad",
+    "private_attribution_sha256": "d10abc1b66b7891c2193ed0e708233338cc67213587f72331df65c5e41e00c11",
+    "tag_zero_does_not_establish_acquired_scan_identity": true,
+    "cap_incidence_does_not_establish_exact_coplanarity": true,
+    "geometry_modified": false,
+    "native_metrics_recomputed": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "seconds": 6.102427791920491
+  },
+  "unchanged_strict_extreme_operator_assessment": {
+    "source_sha256": "8776585faae92a96e75a690d2077caa015eb5a340c77971c7af7258f92c5677f",
+    "mesh_sha256": "a4b19f3303e55e4a13830829664e26596247d26cd41632704d4584706773538a",
+    "controls": {
+      "three_to_two": {
+        "known_convex_bipyramid_passes": true,
+        "interior_apex_concavity_refused": true,
+        "oriented_chain_and_forged_orientation_control": true,
+        "overlapping_cells_and_duplicate_new_face_refused": true
+      },
+      "four_to_four": {
+        "actual_operator_matches_frozen_literal_reference": true,
+        "reference_sha256": "90ae971f7ff2687c60e3bb9460d5241edeedae3fbaf6f07ad69be08604c36690",
+        "reference_minimum_before": 1.8166363357180012e-05,
+        "reference_minimum_after": 0.6666666843273014,
+        "critical_gain": 1,
+        "every_bin_nonregression_control": true,
+        "reversed_duplicate_nonconvex_and_existing_edge_refused": true
+      }
+    },
+    "unique_extreme_incident_interior_edges": 174,
+    "degree_three_or_four_stars_assessed": 135,
+    "reasons": {
+      "other_valence_not_tested": 39,
+      "degree_4_strict_hull_rejected": 116,
+      "degree_4_quality_or_chain_rejected_alternative": 24,
+      "degree_3_quality_or_chain_rejected_alternative": 2
+    },
+    "admissible_alternatives": 5,
+    "packed_cavities": 5,
+    "contains_global_worst": false,
+    "extreme_source_cells_replaced_if_applied": 5,
+    "all_new_cells_must_meet_mean_ratio": 0.01,
+    "all_five_quality_bins_nonregressing": true,
+    "exact_same_oriented_boundary_required": true,
+    "strict_hull_not_weakened": true,
+    "private_diagnostics_sha256": "6aacee1044749e86cbe4f09a03db6819139c644492cb42f4bc8e62e485f152b6",
+    "private_proposals_sha256": "97445dc50910c98332e9c1b4c7a5ff7619a82a180c0461b3cea1464c5d734ff9",
+    "geometry_or_connectivity_modified": false,
+    "separate_verification_required_before_export": true,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "seconds": 26.668074833927676
+  },
+  "exact_extended_source_support": {
+    "source_sha256": "82ec713859ad3753e8af2994ada67b664c8a3eac8a32b115e6b076e29372f568",
+    "mesh_sha256": "a4b19f3303e55e4a13830829664e26596247d26cd41632704d4584706773538a",
+    "controls": {
+      "literal_convex_hexagonal_bipyramid": true,
+      "nonconvex_source_refused": true,
+      "exact_coplanarity_distinguished_from_strict_support": true
+    },
+    "complete_interior_stars_examined": 174,
+    "exact_support_counts": {
+      "degree_5_nonconvex": 20,
+      "degree_4_nonconvex": 97,
+      "degree_7_nonconvex": 4,
+      "degree_4_weak_only": 19,
+      "degree_3_strict": 7,
+      "degree_6_nonconvex": 13,
+      "degree_8_nonconvex": 2,
+      "degree_4_strict": 12
+    },
+    "global_worst_incident_stars": [
+      {
+        "valence": 6,
+        "contains_global_worst": true,
+        "strict_support": false,
+        "weak_support": false,
+        "negative_inside_probes": 52,
+        "exact_coplanar_probes": 2,
+        "positive_outside_probes": 6,
+        "exact_fallbacks": 4
+      },
+      {
+        "valence": 4,
+        "contains_global_worst": true,
+        "strict_support": false,
+        "weak_support": false,
+        "negative_inside_probes": 20,
+        "exact_coplanar_probes": 2,
+        "positive_outside_probes": 2,
+        "exact_fallbacks": 4
+      },
+      {
+        "valence": 4,
+        "contains_global_worst": true,
+        "strict_support": false,
+        "weak_support": true,
+        "negative_inside_probes": 22,
+        "exact_coplanar_probes": 2,
+        "positive_outside_probes": 0,
+        "exact_fallbacks": 6
+      },
+      {
+        "valence": 6,
+        "contains_global_worst": true,
+        "strict_support": false,
+        "weak_support": false,
+        "negative_inside_probes": 48,
+        "exact_coplanar_probes": 1,
+        "positive_outside_probes": 11,
+        "exact_fallbacks": 3
+      }
+    ],
+    "strictly_supported_stars_beyond_valence_four": 0,
+    "private_support_sha256": "e439b2e80f501047b98be224d3a664f58b69dff8a79a75b5220d47a032c8b2f2",
+    "geometry_or_connectivity_modified": false,
+    "strict_support_does_not_by_itself_admit_a_replacement": true,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "seconds": 0.9723820410436019
+  },
+  "literal_coplanar_partition_control": {
+    "source_sha256": "e6f6a75e5eff681e44d03ba3adcd9fb04a58bffa2e0c47fe16337c4b102efa5a",
+    "contract_sha256": "c06c37065561813a27791a4096d41c9e221f83ba48e775b2de6489f1f5a84a07",
+    "actual_contract_accepts_literal_coplanar_reference": true,
+    "strict_proxy_refusal_reproduced": true,
+    "independent_exact_reference_total_volume": "2/3",
+    "independent_exact_each_new_volume": "1/6",
+    "source_critical_cells": 2,
+    "new_critical_cells": 0,
+    "old_minimum_mean_ratio_approx": 1.6645951704545443e-05,
+    "new_minimum_mean_ratio_approx": 0.8399473777220845,
+    "all_twelve_old_and_new_pair_separations_passed": true,
+    "inverted_duplicate_and_nonconvex_positive_source_refused": true,
+    "exact_translation_and_power_of_two_scale_controls": true,
+    "SAT_overlap_separation_and_touch_controls": true,
+    "reference_sha256": "8dbad69d7fe07762fa7c2cfda2f165ccae35b7c846cb8bb1b1efda220bedeb83",
+    "head_geometry_used": false,
+    "manufacturing_qualified": false
+  },
+  "initial_extreme_partition_proposals_not_separate_gain": {
+    "source_sha256": "2c4df1e1e708c24813eba5eb0e8176ce34933500f614636524a04891db912967",
+    "contract_sha256": "c06c37065561813a27791a4096d41c9e221f83ba48e775b2de6489f1f5a84a07",
+    "mesh_sha256": "a4b19f3303e55e4a13830829664e26596247d26cd41632704d4584706773538a",
+    "controls": {
+      "actual_proposal_path_matches_literal_coplanar_reference": true,
+      "complete_edge_absence_and_occupied_controls": true,
+      "reference_volume": "2/3"
+    },
+    "weakly_convex_source_stars_tested": 19,
+    "exact_partition_admitted_alternatives": 12,
+    "packed_cavities": 12,
+    "global_worst_replaced_if_applied": false,
+    "extreme_cells_replaced_if_applied": 12,
+    "critical_cells_removed_if_applied": 12,
+    "reasons": {
+      "positive_volume_or_fixed_quality_contract": 26
+    },
+    "all_new_cells_exact_mean_ratio_floor": 0.01,
+    "all_five_bins_exact_nonregression": true,
+    "actual_old_and_new_convex_domain_partitions_proven": true,
+    "exact_boundary_and_points_preserved": true,
+    "separate_verification_required_before_export": true,
+    "geometry_or_connectivity_modified": false,
+    "proposal_sha256": "7d3193e0bdf691c014dfde4cf1330297d66ea4a5f12850b979b26035ac1b879e",
+    "private_diagnostics_sha256": "b59d0d350f3546a71ab68a6bbca295a1b0c3cac40b9a046c91f37ba1c68cbc95",
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "seconds": 1.661824707989581
+  },
+  "complete_weak_source_coverage_and_proposals": {
+    "source_sha256": "529b3e258bab99b33039640048c497221bf31a7dea481316a4fc96892c600565",
+    "contract_sha256": "c06c37065561813a27791a4096d41c9e221f83ba48e775b2de6489f1f5a84a07",
+    "mesh_sha256": "a4b19f3303e55e4a13830829664e26596247d26cd41632704d4584706773538a",
+    "controls": {
+      "actual_complete_path_reproduces_literal_weak_reference": true,
+      "genuine_nonconvex_source_filtered_before_trial": true,
+      "exact_partition_contract_unchanged": true
+    },
+    "complete_severe_cells": 15945,
+    "unique_severe_incident_edges": 91480,
+    "degree_four_edges": 26937,
+    "closed_four_cycles": 13177,
+    "strictly_supported_stars": 1046,
+    "weakly_supported_stars_with_exact_coplanarity": 1883,
+    "exact_support_fallbacks": 3909,
+    "exact_domain_and_absent_edge_alternatives": 660,
+    "packed_cavities": 660,
+    "severe_cells_replaced_if_applied": 660,
+    "critical_cells_removed_if_applied": 660,
+    "global_worst_replaced_if_applied": false,
+    "reasons": {
+      "positive_volume_or_fixed_quality_contract": 3106
+    },
+    "quality_floor_and_all_bins_exact_contract_unchanged": true,
+    "same_exact_domain_boundary_and_coordinates_required": true,
+    "source_strictness_proxy_replaced_by_actual_convex_partition_proof": true,
+    "proposal_sha256": "64aafcaa606109a2d0673474c0d449bb4dc7771bd038894ca463d65e55ae5575",
+    "geometry_or_connectivity_modified": false,
+    "separate_source_star_and_whole_volume_verification_required": true,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "seconds": 14.471684999996796
+  },
+  "separate_source_star_fraction_and_plane_verification": {
+    "source_sha256": "beb8cde3ec10a526726c117c38e9cdc029c3eab6f325a80dfe32b61a1ea57301",
+    "controls": {
+      "literal_reference_independent_Fraction_local_checks": true,
+      "all_twelve_exact_separating_plane_witnesses": true,
+      "coincident_cell_refusal": true
+    },
+    "parent_mesh_sha256": "a4b19f3303e55e4a13830829664e26596247d26cd41632704d4584706773538a",
+    "shared_partition_contract_sha256": "c06c37065561813a27791a4096d41c9e221f83ba48e775b2de6489f1f5a84a07",
+    "shared_hull_enumeration_not_claimed_independent": true,
+    "complete_old_four_cell_stars_independently_verified": 660,
+    "new_edges_globally_absent": true,
+    "independent_Fraction_volume_quality_and_plane_checks": 660,
+    "independent_exact_separating_plane_witnesses": 7920,
+    "replaced_cells_each_old_and_new": 2640,
+    "source_and_replacement_cell_count_identical": true,
+    "all_points_and_boundary_rows_bit_exact": true,
+    "all_unchanged_cell_tuples_identical": true,
+    "exact_local_old_bin_totals": [
+      660,
+      660,
+      660,
+      660,
+      660
+    ],
+    "exact_local_new_bin_totals": [
+      0,
+      0,
+      0,
+      0,
+      3
+    ],
+    "all_new_cells_exact_mean_ratio_at_least_binary64_001": true,
+    "new_edge_Jacobian_kappa_F_upper_bound": 12000,
+    "candidate_sha256": "1bc2e8dddaf07c43ca36d35608f4fdb508f22e0694e922108a96466887f6182d",
+    "private_source_map_sha256": "f23991888d7db67b0d440ef56d2cdcfc6632df64cb2763d47eaa4d8b266beed7",
+    "private_separating_planes_sha256": "962837c98655796c19c25a0ef203fcba17cf412e82c32c145ce8715e92bdb706",
+    "whole_volume_verification_required": true,
+    "new_native_readback_and_operator_checks_required": true,
+    "global_tetrahedron_intersection_status_inherited_not_exhaustively_upgraded": true,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "seconds": 26.6161172920838
+  },
+  "independent_complete_volume": {
+    "source_sha256": "b0810ac21b35654556dce18ef022f6d4ca8f30a847223c5d566188eab82f4e71",
+    "frozen_helpers_sha256": "fe8c7fa88f35d2d14094438bbae3b0860bde085a39b68f7ab941790cb4d1bec3",
+    "mesh_sha256": "1bc2e8dddaf07c43ca36d35608f4fdb508f22e0694e922108a96466887f6182d",
+    "surface_sha256": "16553493632d689fbb78f18403d7a3734a7ed4a111f67cf89f93864cfbec57e9",
+    "nodes": 4181299,
+    "tetrahedra": 12967519,
+    "boundary_faces": 8218458,
+    "interval_proven_positive_cells": 12967474,
+    "exact_fraction_positive_cells": 45,
+    "all_cells_positive_for_stored_binary_coordinates": true,
+    "all_nodes_used": true,
+    "all_source_vertices_exact": true,
+    "actual_complete_boundary_and_orientation_exact": true,
+    "internal_paired_faces": 21825809,
+    "all_internal_faces_oppositely_oriented": true,
+    "volume_mm3": 1094352.3436893984,
+    "relative_volume_difference": 1.5543122344752192e-15,
+    "minimum_cell_volume_mm3": 2.5543337315637495e-20,
+    "mean_ratio_quantiles": {
+      "minimum": 1.291009351665788e-11,
+      "p01": 0.005507471921786897,
+      "median": 0.14462844367545885,
+      "p99": 0.8920983427368437,
+      "maximum": 0.9992925153811529
+    },
+    "mean_ratio_below": {
+      "0.0001": 15555,
+      "0.001": 35126,
+      "0.01": 233070,
+      "0.05": 1993145,
+      "0.1": 4406247
+    },
+    "diagnostic_mean_ratio_floor": 0.01,
+    "diagnostic_quality_passed": false,
+    "interval_scope": "Outward one-ULP expansion after every binary64 operation; ambiguous signs evaluated as exact fractions of stored coordinates",
+    "controls": {
+      "exact_fraction_interval_enclosures": 203,
+      "coplanar_refused": true,
+      "thin_positive_and_negative_distinguished": true
+    },
+    "tetrahedron_pair_intersections_exhaustively_checked": false,
+    "mesh_modified": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "seconds": 54.21650237508584
+  },
+  "fresh_complete_condition_and_exact_row_accounting": {
+    "source_sha256": "20ab7754abb97991cfdceee6ae6c8d5d477e50bcc7dda532a3efc532c29bfd17",
+    "input_mesh_sha256": "1bc2e8dddaf07c43ca36d35608f4fdb508f22e0694e922108a96466887f6182d",
+    "parent_mesh_sha256": "a4b19f3303e55e4a13830829664e26596247d26cd41632704d4584706773538a",
+    "controls": {
+      "analytic_identity": true,
+      "exact_uniform_scale_invariance": true,
+      "thin_positive_and_inverted_distinguished": true,
+      "singular_refused": true,
+      "independent_exact_classifications_compared": 960,
+      "dyadic_and_near_threshold_fixtures": 120,
+      "interval_and_exact_fallback_paths_exercised": true,
+      "interval_power_of_two_scale_invariance": true,
+      "inverted_and_singular_source_cells_refused": true
+    },
+    "cells_freshly_classified": 12967519,
+    "replaced_rows_independently_mapped": 2640,
+    "all_unchanged_tuples_nodes_and_boundary_exact": true,
+    "complete_condition_counts_equal_independent_old_new_row_prediction": true,
+    "complete_quality_counts_equal_independent_exact_local_prediction": true,
+    "counts_kappa_F_at_least": {
+      "1e3": 291988,
+      "1e6": 15596,
+      "1e9": 15285,
+      "1e12": 15285,
+      "1e15": 109,
+      "eps_inverse": 42,
+      "1e16": 26,
+      "3_eps_inverse": 6
+    },
+    "old_replaced_counts_kappa_F_at_least": {
+      "1e3": 660,
+      "1e6": 660,
+      "1e9": 660,
+      "1e12": 660,
+      "1e15": 12,
+      "eps_inverse": 7,
+      "1e16": 3,
+      "3_eps_inverse": 0
+    },
+    "new_replaced_counts_kappa_F_at_least": {
+      "1e3": 0,
+      "1e6": 0,
+      "1e9": 0,
+      "1e12": 0,
+      "1e15": 0,
+      "eps_inverse": 0,
+      "1e16": 0,
+      "3_eps_inverse": 0
+    },
+    "exact_threshold_fallbacks": 93,
+    "orientation_exact_fallbacks": 45,
+    "approximate_maximum_kappa_F": 4.657541721488933e+16,
+    "private_values_sha256": "e339ca30c5ebf16f68dbaa5a14fe059df9a4de09f3069f0c1a1176f75b8a1878",
+    "private_ids_sha256": "51b28c618396c0f5cc55772cd0568f69fe7c3f2592dbfe36c2728c231a3437a2",
+    "native_minSICN_not_recomputed_or_inferred": true,
+    "condition_does_not_establish_PDE_accuracy": true,
+    "absolute_quality_gate_passed": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "seconds": 20.24076783307828
+  },
+  "qualification": {
+    "accepted_for_further_calculation_domain_conditioning": true,
+    "candidate_sha256": "1bc2e8dddaf07c43ca36d35608f4fdb508f22e0694e922108a96466887f6182d",
+    "surface_nodes_and_boundary_bit_exact": true,
+    "same_source_domain_proven_for_each_local_replacement": true,
+    "new_cell_count_and_source_point_count_identical": true,
+    "all_new_cells_exact_mean_ratio_at_least_binary64_001": true,
+    "new_edge_Jacobian_condition_upper_bound": 12000,
+    "original_print_master_changed": false,
+    "native_surface_validation_reused_only_for_identical_surface": true,
+    "native_volume_readback_and_operator_checks_repeated": false,
+    "absolute_quality_gate_passed": false,
+    "faithful_editable_head_CAD_complete": false,
+    "physical_scale_interfaces_and_hidden_passages_verified": false,
+    "engine_fields_admitted": false,
+    "manufacturing_qualified": false,
+    "goal_complete": false
+  },
+  "cost": {
+    "new_paid_compute_usd": 0,
+    "prior_reservation_ceilings_usd": 10.8,
+    "total_budget_usd": 35,
+    "compute_limit_usd": 30,
+    "closeout_reserve_usd": 5,
+    "ceilings_are_provider_invoices": false,
+    "resources_created": 0,
+    "scan_transferred": false,
+    "supplier_messages_sent": false
+  },
+  "primary_method_source": {
+    "title": "Intersection of Convex Objects: The Method of Separating Axes",
+    "author": "David Eberly",
+    "url": "https://www.geometrictools.com/Documentation/MethodOfSeparatingAxes.pdf",
+    "section": "4 Separation of Convex Polyhedra in 3D",
+    "document_last_modified": "2022-06-20",
+    "accessed": "2026-11-05",
+    "scope": "Finite axis families for convex polyhedra; exact witnesses and hull-coverage proof are implemented and tested separately here."
+  },
+  "limitations": [
+    "Global worst condition and minimum quality persist; absolute gate remains failed.",
+    "Five strict three-to-two proposals are not applied, and initial12 extreme weak proposals are not a separate gain from complete660 pass.",
+    "Hull enumeration/partition contract is shared between proposal and separate verifier; independent Fraction signs, qualities, volume equality and plane witnesses are explicit.",
+    "Global tetrahedron intersections inherit source status; no exhaustive full-head pair certificate is claimed.",
+    "Identical surface proof and 3MF do not establish new native volume/operator admission.",
+    "No faithful editable head CAD, calibrated specimen geometry, machine-specific metal build, engine fields or physical qualification is claimed."
+  ]
+}
