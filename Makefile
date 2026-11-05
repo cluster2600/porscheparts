@@ -1263,6 +1263,16 @@ pet-zone-triage:
 pet-zone-triage-check:
 	$(MAKE) pet-zone-triage ROUTE_CHECK=--check
 
+.PHONY: pet107-bom pet107-bom-check
+#> catalogue | Regenerate the PET107 print-buy-manufacture BOM (JSON + CSV)
+pet107-bom:
+	python3 scripts/generate_pet107_bom.py
+
+#> catalogue | Check the PET107 BOM is current and passes its self-check
+pet107-bom-check: pet107-bom
+	git diff --exit-code -- parts/m64-pet107-bom/pet107-bom-v1.json parts/m64-pet107-bom/pet107-bom-v1.csv
+	python3 parts/m64-pet107-bom/selfcheck_pet107_bom.py
+
 #> 993 | Part-by-part titanium triage, requires an out-of-repo PET listing
 pet-part-triage:
 	@test -n "$(PET_LISTING)" || { echo "PET_LISTING=<chemin>/oem-listed.json requis ; le releve reste hors du depot"; exit 2; }
