@@ -1,5 +1,10 @@
 # 993 carrier: conditioned geometry and reproducible mechanics
 
+Current continuation: [complete-mesh mechanics and exact current-surface 3MF](../carrier-current-mechanics-20261104.md)
+records the 1.29414 kg geometry, complete export readback, native solver
+attempts and the remaining convergence work. The [software allocation review](../carrier-software-review-20261104.md)
+places the newly documented tools in that workflow.
+
 Latest preparation: [oriented export, tetrahedral diagnostics and continuous load patches](MECHANICAL-PREPARATION.md) adds a verified placement, corrects fragmented loading masks and records solver capacity limits. New-volume mechanics remain open.
 
 Latest numerical continuation: [eight certified cavity reductions and the complete coarsened assembly](MESHLIB-ASSEMBLY.md) records a 5.77-million-triangle surface, a 1.29414 kg mass bound and a fully verified 3MF. New volume meshing is in progress. The [earlier MeshLib checkpoint](MESHLIB-COARSENING.md) retains its original single-cavity evidence.

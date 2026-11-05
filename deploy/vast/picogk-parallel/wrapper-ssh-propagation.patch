@@ -1,0 +1,20 @@
+--- a/deploy/openbao/openbao-vastai
++++ b/deploy/openbao/openbao-vastai
+@@ -5252,4 +5252,5 @@
+     last_diagnostic = None
+     pinned_endpoint = None
++    authentication_failures = 0
+     while time.time() < deadline:
+         result = vast_request(api_key, f"/api/v0/instances/{instance_id}/")
+@@ -5326,4 +5327,11 @@
+              "failure_category": failure_category or "unclassified_not_ready"}, sort_keys=True),
+             file=sys.stderr, flush=True)
++        if failure_category == "authentication_denied":
++            # The provider may acknowledge key attachment before sshd sees it.
++            # Retry the same approved key and pinned endpoint at most twice.
++            authentication_failures += 1
++            if authentication_failures < 3 and time.time() + 5 < deadline:
++                time.sleep(5)
++                continue
+         if failure_category is not None:
+             raise SafeError("PicoGK SSH failed: " + failure_category + "; private streams withheld")
