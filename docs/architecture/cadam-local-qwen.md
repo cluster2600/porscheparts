@@ -326,3 +326,17 @@ positive cells and the exact full boundary. Volume shape quality still fails:
 526,110 cells remain below mean ratio 0.01, with unchanged minimum. The next
 admission work concerns interior slivers and numerical conditioning; a surface
 quality pass supplies no head-physics or manufacturing approval.
+
+The [checkpoint-optimization and native-readback study](../research/935-volume-optimization-20261105/README.md)
+then corrects Gmsh region ownership without changing any checkpoint array.
+The distorted-cube Netgen control improves minimum mean ratio from 0.00009449
+to 0.76195 with complete independent consistency checks. Head admission still
+fails. An instrumented repeat preserves native labels before export and finds
+33,688 tetrahedra referencing absent node zero; all boundary labels resolve.
+The earlier apparent zero-volume cell cannot establish physical degeneracy
+because its exporter did not validate label lookup. A separate saved-array
+audit and injected missing-label control confirm the rejection. The default
+Gmsh one-call alternative fails the unchanged cube quality gate and is not run
+on the head. Both actual head calls are terminal, all private bytes are frozen,
+and no optimized head, solver field, paid resource or manufacturing release is
+admitted. Further methods must validate references before coordinate indexing.
