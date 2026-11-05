@@ -46,6 +46,22 @@ flowchart LR
   class X stop;
 ```
 
+## ROW profile and body-shell plan (2026-11-05, issue #465)
+
+The ROW profile is recorded in `reference-envelope.json` under
+`variant_profiles.ROW` as **blocked**: the only machine record of PDF p.19
+holds the USA values and no ROW column, and no ROW value is inferred.
+
+Plan for a licensed body shell (shares the source search of issue #10):
+
+1. Identify a licensable source: official workshop manual volume V body
+   dimensions, a Celette or Car-O-Data 993 sheet, or a scan whose licence
+   permits reuse (see `docs/research/public-3d-asset-licence-audit-2026-10-15.md`).
+2. Record its licence and provenance in `catalog/sources/` before any geometry
+   enters the repository; raw scans stay out of Git.
+3. Register the shell to this cage through sourced datums (wheelbase, tracks)
+   and keep `fitment_claim: false` until measured interfaces exist.
+
 ## Logical next steps
 
 1. Add the ROW profile once its values and their reference page have been
