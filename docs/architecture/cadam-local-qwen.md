@@ -261,3 +261,11 @@ CADAM/Qwen nor PicoGK is credited with authoring or approving that output.
 Independent full geometry, all-layer readback/union and native Kali topology
 checks pass. New-geometry physics, wall/support-removal and calibrated metal
 process checks remain pending; no functional or manufacturing release follows.
+
+The [revision-specific thin-feature screen](../research/935-local-wall-screen-20261105/README.md)
+then measures 5,000 inward normal chords on the actual delivered mesh. Sixteen
+distances, including the eight shortest, agree with an independent full-triangle
+search. All 354 samples below 2 mm lie on retained envelope skin, away from
+the new cut caps. These are diagnostic material paths, not global minimum-wall
+metrology. Process-wall and simulation-feature admission remain open; the
+existing 3MFs are unchanged and no mesh sweep or automatic thickening follows.
