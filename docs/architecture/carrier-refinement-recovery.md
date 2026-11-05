@@ -14,6 +14,11 @@ and [refinement review](../reports/carrier-refinement-admissibility-20261105.md)
 
 ![Observed storage recovery and real checkpoint evidence](../media/carrier-refinement-recovery-v2-20261105.png)
 
+The subsequent [rational-edge h7 candidate](../reports/carrier-h7-rational-refinement-20261105.md)
+has now passed whole-geometry, quality and nesting checks with both original
+marking targets reached. The earlier midpoint-only trial below remains part
+of the recovery history; new h7 responses are still pending.
+
 ## Recovery process
 
 ```mermaid

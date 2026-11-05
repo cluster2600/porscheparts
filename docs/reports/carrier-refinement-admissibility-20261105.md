@@ -7,6 +7,10 @@ for combined loading**, down from 2.8261% and 4.5965%. Both exceed the unchanged
 This note distinguishes useful refinement, admitted geometry, actual complete
 responses and the byte-identical source recovery preceding a subsequent h7.
 
+The subsequent [rational-edge h7 candidate](carrier-h7-rational-refinement-20261105.md)
+has passed complete two-frame geometry, quality and nesting-map checks. Both
+50% marking targets are reached; new h7 mechanical responses remain pending.
+
 ## Why an interior-only split was rejected
 
 ![Synthetic interior split assessed and rejected for this load case](../media/carrier-interior-refinement-method-20261105.png)

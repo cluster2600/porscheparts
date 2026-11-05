@@ -19,6 +19,10 @@ complete native comparisons and byte-identical source recovery before h7.
 
 ![Actual h6 unaveraged cut-plane stresses under both study loads](../media/carrier-h6-load-fields-20261105.png)
 
+The subsequent [rational-edge h7 candidate](carrier-h7-rational-refinement-20261105.md)
+has passed complete two-frame geometry, quality and nesting-map checks. Both
+50% marking targets are reached; new h7 mechanical responses remain pending.
+
 ### Sixth-refinement results and retention
 
 Both Mac replays used 1,134,414,336 bytes for field arrays, with peak sampled
