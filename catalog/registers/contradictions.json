@@ -2,7 +2,7 @@
   "$comment": "Consolidated register of documentary contradictions. Each entry names the values in conflict, the registered source of each value and where it sits, and what would resolve it. A contradiction stays here, with status open, until it is resolved; a resolved entry keeps its values and states the resolution. Validated by scripts/validate_registers.py.",
   "schema_version": "1.0.0",
   "register_id": "REG-CONTRADICTIONS",
-  "updated_on": "2026-10-30",
+  "updated_on": "2026-11-05",
   "entries": [
     {
       "contradiction_id": "CTR-0001",
@@ -226,12 +226,14 @@
         "docs/research/993-turbo-20261002/exports/fr/audit_contradictions.csv",
         "catalog/reference/993-turbo-research-20261002/audit.json"
       ],
-      "status": "open",
-      "next_step": "Row-level findings and actions stay in the audit files, which are digest-pinned; they are not duplicated here. Rows still unresolved there include the short piston spray-jet length (bulletin 21.5 mm against PET 22.5 mm, see SRC-PORSCHE-993-PISTON-SPRAY-JETS-1-97) and the engine-mount bolt thread pitch (see SRC-PORSCHE-993-TURBO-REAR-MOUNTS-1-99).",
+      "status": "resolved",
       "flagged_in": [
         "docs/research/993-turbo-20261002/exports/fr/audit_contradictions.csv",
-        "catalog/reference/993-turbo-research-20261002/audit.json"
-      ]
+        "catalog/reference/993-turbo-research-20261002/audit.json",
+        "catalog/sources/src-porsche-993-turbo-rear-mounts-1-99.json",
+        "catalog/sources/src-porsche-993-piston-spray-jets-1-97.json"
+      ],
+      "resolution": "Row-by-row status on 2026-11-05, against the digest-pinned audit files, which are not edited. Thirteen rows are closed in the audit itself: AUDIT-001, 002, 003, 005, 009, 011 and 012 by corrected source metadata; AUDIT-004 by withdrawing the Turbo attribution of 232 kg and 12 L (no registered source gives the M64/60 engine mass or oil capacity, so neither is counted anywhere); AUDIT-006, 008 and 015 by restricting Carrera data to the Carrera (fan ratio, cooling flow, fan masses and the Engine Specifications sheet are not Turbo facts); AUDIT-007 and 010 by qualified engine facts (single ignition, read in the level-A PET; the 2618 alloy and 468 g belong to the aftermarket MAHLE kit). AUDIT-014, engine-mount bolt pitch, is resolved as M12 x 1.5 x 125: the level-A SRC-PORSCHE-PET-993 (Kat 017 PDF, 248 pages, SHA-256 b67cf3586f9a92bee5ccc8e84462515231c84ddd23c610e4a2e739fedb1166aa, page 230, illustration 401-00, position 22) designates 900 082 118 09 'Hexagon-head bolt M 12 X 1,5 X 125'; the bulletin's own body text says M12 x 1.5 x 125 and its matching nut is M12 x 1.5, so the 'M12 x 1.2 x 125' of the bulletin parts table is read as a typographical error. The PET lists that number on the front-axle plate 401-00 only: it fixes the bolt's designation, not where the Turbo mount uses it. AUDIT-013, short piston spray-jet length, is explicitly deferred to CTR-0018."
     },
     {
       "contradiction_id": "CTR-0010",
@@ -423,6 +425,30 @@
       "flagged_in": [
         "catalog/sources/src-richtsatz-mieten-993-celette.json",
         "catalog/sources/src-celette-564-307-993-complementary-set.json"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0018",
+      "generation": "993",
+      "subject": "Length of the short piston spray jet 964 101 020 00 and of its oversize 964 101 020 50 (row AUDIT-013 of the 2026-10-02 Turbo audit)",
+      "values": [
+        {
+          "value": "21.5 mm for both (diameter 6.3 mm, oversize 6.7 mm)",
+          "source_id": "SRC-PORSCHE-993-PISTON-SPRAY-JETS-1-97",
+          "location": "bulletin 1/97 parts table, pubstack PDF SHA-256 16527d24a1b0945953b459c332dbc77d818a967cb25337ded4c3bfb0eabaab4d, read on 2026-11-05"
+        },
+        {
+          "value": "22,5 MM for both",
+          "source_id": "SRC-PORSCHE-PET-993",
+          "location": "Kat 017 PDF SHA-256 b67cf3586f9a92bee5ccc8e84462515231c84ddd23c610e4a2e739fedb1166aa, page 35, illustration 101-05, position 15, read on 2026-11-05"
+        }
+      ],
+      "status": "open",
+      "next_step": "Deferred. Both are Porsche documents and neither is a drawing dimension: the PET is level A but gives a parts designation, the bulletin is level B and gives the value beside its bore-depth rule (long jet when the bore is 33 mm deep). The long jet, 33.5 mm, agrees in both. A Porsche drawing or a later bulletin or PET revision would settle it. No short-jet geometry or machining definition is accepted from either value.",
+      "flagged_in": [
+        "catalog/reference/993-turbo-research-20261002/audit.json",
+        "docs/research/993-turbo-20261002/exports/fr/audit_contradictions.csv",
+        "catalog/sources/src-porsche-993-piston-spray-jets-1-97.json"
       ]
     }
   ]
