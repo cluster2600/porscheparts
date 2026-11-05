@@ -1,5 +1,12 @@
 # Digital twin of the Porsche 911 (964) chassis
 
+**Readable-source follow-up, 5 November 2026:** the
+[new review](readable-dimensions-20261105/README.md) extracts seven interior
+entries from the official FIA B-295 form for the 964 Carrera 2 (six non-derived
+dimensions and one printed sum). Six additional 993 public previews identify
+candidate Snap-on/Autorobot sheets. These are packaging references and acquisition
+leads; no new jig XYZ, fixture contact offset or tunnel surface is admitted.
+
 **Public-preview extraction, 4 November 2026:** the
 [CarGeometry audit](preview-extraction-20261104/README.md) inventories all 23
 technical images and eight larger links, corrects two earlier image references,
