@@ -1,72 +1,72 @@
-# Support 993 Turbo — reprise géométrique du 16 octobre 2026
+# 993 Turbo carrier — geometric rework of 16 October 2026
 
-Le candidat `bounded-webs` conserve les fixations de l'étude V6f et porte la
-masse dense calculée à **1,262213 kg**, sous le plafond **1,30 kg** autorisé par
-Maxime. Il est construit depuis des paramètres et des contours avant les
-opérations booléennes, puis exporté et réimporté en STEP.
+The `bounded-webs` candidate keeps the attachments of the V6f study and brings the
+computed dense mass to **1.262213 kg**, under the **1.30 kg** ceiling authorised by
+Maxime. It is built from parameters and contours before the
+Boolean operations, then exported and re-imported as STEP.
 
-La [chaîne complète](../../../../docs/manufacturing/PART_WORKFLOW.md) relie cette
-source à la surface contrôlée, aux calculs, aux supports, aux couches et au
-guide d'atelier. La recette est
+The [complete chain](../../../../docs/manufacturing/PART_WORKFLOW.md) links this
+source to the inspected surface, the computations, the supports, the layers and the
+shop-floor guide. The recipe is
 [`manufacturing/workflows/993-carrier.json`](../../../../manufacturing/workflows/993-carrier.json).
 
-## Géométrie retenue
+## Retained geometry
 
-- [`build_bounded_webs.py`](build_bounded_webs.py) construit la pièce avec
-  [`bounded-webs.json`](bounded-webs.json) et le
-  [plan de construction](bounded-webs-plan.json).
-- La peau supérieure et la peau inférieure font nominalement 1,5 mm ; les
-  nervures de 2,8 mm et leur hauteur sont conservées.
-- Les fenêtres sont réduites avant découpe. La paroi périphérique est définie
-  par une translation de contour de 1,61 mm. La
-  [borne géométrique](bounded-webs-wall-proof.json) démontre une séparation
-  minimale de 1,59588 mm sur cette famille de courbes ; elle ne certifie pas
-  toutes les arêtes de la pièce.
-- Deux manchons locaux de rayon extérieur 4 mm entourent les perçages
-  secondaires de rayon 2 mm, en conservant leurs axes.
-- Le modèle reste dans l'enveloppe d'étude 592 × 73 × 52 mm. La platine
-  centrale de 8 mm, ses quatre axes à entraxes 100 × 40 mm et les axes des
-  extrémités distants de 560 mm sont conservés.
+- [`build_bounded_webs.py`](build_bounded_webs.py) builds the part with
+  [`bounded-webs.json`](bounded-webs.json) and the
+  [construction plan](bounded-webs-plan.json).
+- The upper skin and the lower skin are nominally 1.5 mm; the
+  2.8 mm ribs and their height are kept.
+- The windows are reduced before cutting. The peripheral wall is defined
+  by a contour offset of 1.61 mm. The
+  [geometric bound](bounded-webs-wall-proof.json) proves a minimum
+  separation of 1.59588 mm over this family of curves; it does not certify
+  every edge of the part.
+- Two local bosses of 4 mm outer radius surround the secondary
+  holes of 2 mm radius, keeping their axes.
+- The model stays within the 592 × 73 × 52 mm study envelope. The 8 mm
+  central plate, its four axes at 100 × 40 mm centres and the end
+  axes 560 mm apart are kept.
 
-Ces cotes sont les paramètres explicites de l'étude. Les révisions ne
-transforment pas les hypothèses de V6f en cotes Porsche mesurées.
+These dimensions are the explicit parameters of the study. The revisions do not
+turn the V6f assumptions into measured Porsche dimensions.
 
-## Contrôles et sélection
+## Checks and selection
 
-[`inspect_protected.py`](inspect_protected.py) compare les solides des régions
-protégées : différence symétrique nulle sur la platine et les six régions
-d'extrémité. Le contrôle indépendant V6f vérifie également les axes, les
-passages d'outils et la paire de modèles F0.
+[`inspect_protected.py`](inspect_protected.py) compares the solids of the protected
+regions: zero symmetric difference on the plate and the six end
+regions. The independent V6f check also verifies the axes, the
+tool clearances and the F0 model pair.
 
-[`compare.py`](compare.py) relance et compare les mêmes cas sur des maillages
-C3D10 de tailles nominales 9 et 7 mm. La sélection exige simultanément :
+[`compare.py`](compare.py) reruns and compares the same cases on
+C3D10 meshes of nominal sizes 9 and 7 mm. Selection requires all of:
 
-1. masse ≤ 1,30 kg et contrôles des régions protégées réussis ;
-2. déplacement et maximum de von Mises inférieurs à V6f dans les quatre
-   comparaisons charge combinée / deux maillages / appuis rigides ou ressorts ;
-3. bilan énergétique indépendant et superposition réussis aux seuils déclarés.
+1. mass ≤ 1.30 kg and passing protected-region checks;
+2. displacement and maximum von Mises below V6f in all four
+   comparisons combined load / two meshes / rigid or spring supports;
+3. independent energy balance and superposition passing at the declared thresholds.
 
-Les [critères](normal-webs-selection-criteria.json) distinguent explicitement
-cette sélection comparative d'un admissible matériau. Les cas combinés
-appliquent 4 000 N et 850 N·m. Le modèle des appuis souples utilise un total
-de 1 000 N/mm par œil et par direction, réparti entre ses nœuds.
+The [criteria](normal-webs-selection-criteria.json) explicitly distinguish
+this comparative selection from a material allowable. The combined cases
+apply 4,000 N and 850 N·m. The compliant-support model uses a total
+of 1,000 N/mm per eye and per direction, distributed among its nodes.
 
-Le candidat passe ces comparaisons. Le maximum élastique du cas souple reste
-supérieur à la limite utilisée dans le diagnostic plastique ; les calculs
-non linéaires et les renforcements locaux ont donc leurs propres révisions
-et décisions. Un passage comparatif réussi ne les remplace pas.
+The candidate passes these comparisons. The elastic maximum of the compliant case remains
+above the limit used in the plastic diagnosis; the nonlinear
+computations and local reinforcements therefore have their own revisions
+and decisions. A successful comparative pass does not replace them.
 
 ## Reproduction
 
-La [base CAD macOS ARM64 / Python 3.10](cad-base-macos-arm64-python310.lock.txt)
-épingle les 45 roues de l'installation autonome vérifiée, y compris build123d
-0.11.1, OCCT sans VTK et NumPy. La procédure décrit son installation ; elle
-évite de dépendre de l'environnement historique du checkout principal.
-L'[installateur](setup_cad_base.py) a été exécuté sur un second dossier neuf :
-installation avec empreintes, contrôle des dépendances et six contrôles natifs
-du solide percé et du réimport STEP réussissent. Le
-[reçu compact](cad-base-standalone-validation.json) conserve versions,
-empreintes et résultats du témoin.
+The [macOS ARM64 / Python 3.10 CAD base](cad-base-macos-arm64-python310.lock.txt)
+pins the 45 wheels of the verified standalone installation, including build123d
+0.11.1, OCCT without VTK, and NumPy. The procedure describes its installation; it
+avoids depending on the historical environment of the main checkout.
+The [installer](setup_cad_base.py) was run on a second, fresh directory:
+installation with digests, dependency check and six native checks
+of the drilled solid and of the STEP re-import pass. The
+[compact receipt](cad-base-standalone-validation.json) keeps the versions,
+digests and witness results.
 
 ```sh
 work/part-workflow/runtimes/design/bin/python -B \
@@ -74,11 +74,11 @@ work/part-workflow/runtimes/design/bin/python -B \
   work/NOUVEAU_CANDIDAT
 ```
 
-Pour reproduire tout le dossier, utiliser le lanceur et les runtimes de la
-[procédure](../../../../docs/manufacturing/PART_WORKFLOW.md).
+To reproduce the whole dossier, use the launcher and runtimes of the
+[procedure](../../../../docs/manufacturing/PART_WORKFLOW.md).
 
-`normal-builder/cad.py` est une copie traçable du constructeur historique,
-avec seulement les modifications nécessaires avant découpe et au calcul de
-volume. Les essais antérieurs restent présents avec leurs paramètres : peau
-épaisse, nervure amincie, pied tangent et décalages de surfaces terminées.
-Les refus de masse, de mécanique ou de réimport STEP ne sont pas effacés.
+`normal-builder/cad.py` is a traceable copy of the historical builder,
+with only the changes needed before cutting and in the volume
+computation. The earlier trials remain present with their parameters: thick
+skin, thinned rib, tangent root and offsets of finished surfaces.
+The mass, mechanical or STEP re-import rejections are not erased.

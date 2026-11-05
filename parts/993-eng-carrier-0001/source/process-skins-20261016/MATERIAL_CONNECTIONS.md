@@ -1,43 +1,43 @@
-# Connexions entre les feuilles de support
+# Connections between support sheets
 
-`material_connections.connected_material(vertices, faces, groups)` lit les
-vrais triangles float64 et les groupes de matière générés. Chaque groupe
-doit couvrir sa plage de faces sans omission ni doublon et être connexe avant
-que ses contacts puissent être regroupés avec ceux d'une autre feuille.
+`material_connections.connected_material(vertices, faces, groups)` reads the
+real float64 triangles and the generated material groups. Each group
+must cover its face range without omission or duplicate and be connected before
+its contacts can be grouped with those of another sheet.
 
-La fonction réutilise le classifieur rationnel du projet. Les boîtes et
-l'index Rtree servent seulement à trouver les candidats : les décisions
-portent sur les coordonnées IEEE exactes, sans distance de soudure.
+The function reuses the project's rational classifier. The boxes and
+the Rtree index are used only to find candidates: the decisions
+rest on the exact IEEE coordinates, with no welding distance.
 
-- Deux plans distincts sont reliés par un segment de longueur positive.
-- Deux groupes coplanaires sont reliés par une intersection d'aire positive.
-- Un point seul, ou un jeu d'un seul ULP, ne relie pas les groupes.
-- À l'intérieur d'un même groupe, les arêtes partagées exactes relient aussi
-  les triangles et les morceaux d'une carte découpée.
+- Two distinct planes are connected by a segment of positive length.
+- Two coplanar groups are connected by an intersection of positive area.
+- A single point, or a gap of a single ULP, does not connect the groups.
+- Within the same group, exact shared edges also connect
+  the triangles and the pieces of a split chart.
 
-La sortie conserve une forêt de témoins suffisante pour établir les
-connexions ; elle ne prétend pas énumérer toutes les intersections. Chaque
-composante certifiée doit hériter d'un contact supérieur et inférieur. Les
-identités des contacts proviennent des interfaces du générateur ; l'audit
-complet des expositions reste obligatoire pour les couches réellement
-construites.
+The output keeps a forest of witnesses sufficient to establish the
+connections; it does not claim to enumerate all intersections. Each
+certified component must inherit an upper and a lower contact. The
+contact identities come from the generator's interfaces; the complete
+audit of the exposures remains mandatory for the layers actually
+built.
 
-Les triangles exactement dégénérés sont refusés avant le graphe. Pour éviter
-un calcul rationnel inutile sur chaque triangle ordinaire, un filtre prouve
-seulement la non-nullité : avec M le maximum absolu des coordonnées, dans
-`[2^-400, 2^400]`, une composante du produit vectoriel flottant dépassant
-`32 * eps * M²` ne peut provenir d'une aire exacte nulle. Cette borne absolue
-conservative inclut les erreurs de soustraction et de produit ; tous les
-autres cas sont recalculés en rationnels. Les intersections elles-mêmes sont
-toujours rationnelles.
+Exactly degenerate triangles are refused before the graph. To avoid
+a needless rational computation on each ordinary triangle, a filter proves
+only non-nullity: with M the absolute maximum of the coordinates, in
+`[2^-400, 2^400]`, a component of the floating-point cross product exceeding
+`32 * eps * M²` cannot come from an exactly zero area. This conservative
+absolute bound includes subtraction and product errors; all
+other cases are recomputed in rationals. The intersections themselves are
+always rational.
 
-Neuf tests natifs couvrent les liaisons, les faux contacts, les groupes
-disjoints, les triangles nuls ou minuscules et la copie autonome des sources :
+Nine native tests cover the connections, false contacts, disjoint
+groups, zero or tiny triangles and the standalone copy of the sources:
 
 ```sh
 AM_PYTHON -B -m unittest discover -s tests -p test_carrier_material_connections.py -v
 ```
 
-Une copie plate doit inclure le fichier gelé
-`design-20261016/classify_mesh_contacts.py` à côté de ce module. Le reçu garde
-ses deux identités de source et celle des tableaux de géométrie.
+A flat copy must include the frozen file
+`design-20261016/classify_mesh_contacts.py` next to this module. The receipt keeps
+its two source identities and that of the geometry arrays.

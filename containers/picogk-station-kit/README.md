@@ -1,22 +1,22 @@
-# Éditeur Kit de la station PicoGK
+# PicoGK station Kit editor
 
-Kit Base Editor **110.2.0** vient du dépôt NVIDIA fixé au commit
-`3f4b33387f58e5c6694b5479559c945fb80bb625`. Le générateur officiel produit
-`station.editor.kit` ; notre couche ajoute la diffusion de l’éditeur complet.
-L’application utilise le rendu RTX de Kit et tourne dans le conteneur Vast,
-sans Docker imbriqué. Le navigateur reçoit une vidéo WebRTC.
+Kit Base Editor **110.2.0** comes from the NVIDIA repository pinned at commit
+`3f4b33387f58e5c6694b5479559c945fb80bb625`. The official generator produces
+`station.editor.kit`; our layer adds streaming of the full editor.
+The application uses Kit's RTX rendering and runs in the Vast container,
+without nested Docker. The browser receives a WebRTC video.
 
-## Construction et licence
+## Build and licence
 
-La construction nécessite l’acceptation explicite du
-[contrat NVIDIA](https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-software-license-agreement/)
-et des [conditions Omniverse](https://www.nvidia.com/en-us/agreements/enterprise-software/product-specific-terms-for-omniverse/).
-`install.sh` refuse de continuer sans `NVIDIA_EULA_ACCEPTED=yes` ; cet argument
-autorise la réponse « Yes » au générateur officiel. L’acceptation pour cette
-station a été donnée dans la conversation du 28 septembre 2026. Elle ne donne
-aucun droit supplémentaire de redistribution des logiciels NVIDIA.
+The build requires explicit acceptance of the
+[NVIDIA agreement](https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-software-license-agreement/)
+and of the [Omniverse terms](https://www.nvidia.com/en-us/agreements/enterprise-software/product-specific-terms-for-omniverse/).
+`install.sh` refuses to continue without `NVIDIA_EULA_ACCEPTED=yes`; this argument
+authorises the "Yes" answer to the official generator. Acceptance for this
+station was given in the conversation of 28 September 2026. It grants no
+additional right to redistribute NVIDIA software.
 
-Depuis la racine du dépôt, sur Linux x86-64 :
+From the repository root, on Linux x86-64:
 
 ```sh
 docker build -f containers/picogk-station-kit/Dockerfile \
@@ -27,136 +27,136 @@ npm test
 npm run build
 ```
 
-Le runtime autonome est placé dans `/opt/station-kit-runtime`. Les liens vers
-les caches de construction sont déréférencés. Le runtime inclut les licences
-amont et le commit du modèle. L’image finale fournit son digest et les versions
-réellement résolues des extensions.
+The standalone runtime is placed in `/opt/station-kit-runtime`. Links to the
+build caches are dereferenced. The runtime includes the upstream licences and
+the template commit. The final image provides its digest and the extension
+versions actually resolved.
 
-## Réseau et GPU
+## Network and GPU
 
-Publier uniquement **UDP 47998** pour WebRTC. Garder **TCP 49100** non publié
-sur Vast ; l’accès se fait par un tunnel SSH local. Le lanceur refuse une
-configuration qui annonce `VAST_TCP_PORT_49100`. Kit ne documente pas de réglage
-de liaison de la signalisation à loopback : l’isolation repose donc sur
-l’absence de publication de ce port dans le réseau du conteneur.
+Publish only **UDP 47998** for WebRTC. Keep **TCP 49100** unpublished on Vast;
+access is through a local SSH tunnel. The launcher refuses a configuration
+that announces `VAST_TCP_PORT_49100`. Kit documents no setting to bind
+signalling to loopback: isolation therefore relies on this port not being
+published in the container network.
 
-`station-kit` utilise `PUBLIC_IPADDR` (ou `VAST_PUBLIC_IP`) et
-`VAST_UDP_PORT_47998`. Il écrit les informations de connexion dans
-`/workspace/station-runtime/webrtc-connection.json`. Le serveur écoute sur le
-port UDP **interne 47998** ; le client utilise le port **externe mappé**.
+`station-kit` uses `PUBLIC_IPADDR` (or `VAST_PUBLIC_IP`) and
+`VAST_UDP_PORT_47998`. It writes the connection information to
+`/workspace/station-runtime/webrtc-connection.json`. The server listens on
+**internal UDP port 47998**; the client uses the **mapped external** port.
 
-`STATION_KIT_GPU=2` est l’ordinal par défaut. Avant de lancer Qwen en parallèle,
-vérifier dans le tableau `gpu.foundation` que cet ordinal désigne bien le
-troisième GPU physique réservé à Kit, en comparant l’identifiant PCI. Corriger
-l’ordinal si nécessaire. Le lanceur impose `renderer.activeGpu`, désactive le
-multi-GPU et retire `CUDA_VISIBLE_DEVICES` de son propre processus.
+`STATION_KIT_GPU=2` is the default ordinal. Before launching Qwen in parallel,
+check in the `gpu.foundation` table that this ordinal does designate the
+third physical GPU reserved for Kit, by comparing the PCI identifier. Correct
+the ordinal if necessary. The launcher enforces `renderer.activeGpu`, disables
+multi-GPU and removes `CUDA_VISIBLE_DEVICES` from its own process.
 
-`STATION_SCENE` désigne un fichier USD de travail produit par la démonstration,
-jamais une source utilisateur à préserver. Le lanceur ouvre cette scène ;
-l’éditeur natif fournit sélection, déplacement, propriétés et sauvegarde.
+`STATION_SCENE` designates a working USD file produced by the demonstration,
+never a user source to be preserved. The launcher opens this scene; the native
+editor provides selection, moving, properties and saving.
 
-## Client et preuves
+## Client and evidence
 
-Servir `deploy/vast/station-client/dist` sur `127.0.0.1:8088`, puis transférer
-les ports 8088 et 49100 vers la machine du navigateur par SSH. Ouvrir
-`http://127.0.0.1:8088`, saisir l’adresse IPv4 publique Vast et le port UDP
-externe. Le client officiel `@nvidia/ov-web-rtc` **6.7.0** et son intégrité sont
-fixés dans `package-lock.json`. Aucun CDN n’est utilisé à l’exécution.
+Serve `deploy/vast/station-client/dist` on `127.0.0.1:8088`, then forward
+ports 8088 and 49100 to the browser machine over SSH. Open
+`http://127.0.0.1:8088`, enter the Vast public IPv4 address and the external
+UDP port. The official client `@nvidia/ov-web-rtc` **6.7.0** and its integrity
+are pinned in `package-lock.json`. No CDN is used at run time.
 
-La qualification exige une image non vide, le déplacement d'une pièce
-sélectionnée, une sauvegarde du USD de travail, puis une reconnexion. Le bouton
-« Exporter le diagnostic » enregistre les événements du client et les images
-décodées. Compléter avec des captures visuelles, la preuve du transform avant /
-après et les journaux Kit. Une signalisation réussie seule ne valide pas le
-chemin média UDP. La validation GPU et WebRTC distante reste à exécuter tant
-que ces preuves ne sont pas présentes.
+Qualification requires a non-empty image, moving a selected part, saving the
+working USD, then a reconnection. The « Exporter le diagnostic » ("Export
+diagnostics") button records the client events and the decoded frames.
+Complete this with visual screenshots, evidence of the before/after transform
+and the Kit logs. Successful signalling alone does not validate the UDP media
+path. Remote GPU and WebRTC validation remains to be run as long as this
+evidence is not present.
 
-## Repli média par SSH
+## SSH media fallback
 
-La qualification du 28 septembre a constaté un mapping UDP public présent dans
-l’API Vast, mais aucun des six datagrammes de test Mac/Kali2 n’a atteint le
-serveur lié à `0.0.0.0:47998`. La sonde loopback a réussi. Le passage UDP public
-reste donc **en échec sur cette instance**. Le repli ci-dessous a fourni de vraies images Kit
-en 1920 × 1080, une sélection, un déplacement de 10 mm et une sauvegarde USD.
-Une reconnexion a réussi après une reprise du client d’environ 34 secondes.
-Un navigateur Chromium isolé exécuté sur Kali2 a ensuite reçu 132 images en
-1920 × 1080 avec les fichiers du client final. Les services sont restés actifs
-après fermeture de SSH et le relais s’est reconnecté automatiquement après
-redémarrage du seul tunnel média.
-Le fichier sauvegardé a également été rouvert par `File > Open`, après sélection
-de `My Computer /` ; le transform X = 10 mm reste visible après rechargement.
+The qualification of 28 September found a public UDP mapping present in the
+Vast API, but none of the six Mac/Kali2 test datagrams reached the server
+bound to `0.0.0.0:47998`. The loopback probe succeeded. The public UDP path
+therefore remains **failed on this instance**. The fallback below delivered
+real Kit frames at 1920 × 1080, a selection, a 10 mm move and a USD save.
+A reconnection succeeded after a client recovery of about 34 seconds.
+An isolated Chromium browser run on Kali2 then received 132 frames at
+1920 × 1080 with the final client files. The services stayed active after
+SSH was closed, and the relay reconnected automatically after only the media
+tunnel was restarted.
+The saved file was also reopened through `File > Open`, after selecting
+`My Computer /`; the transform X = 10 mm remains visible after reloading.
 
-`deploy/vast/station/media-relay.py` transporte les datagrammes opaques dans un
-flux TCP à travers SSH. Il utilise uniquement la bibliothèque standard Python,
-des cibles loopback fixes et un choix explicite de durée : `--deadline` dans les
-six heures suivantes, ou `--persistent` après autorisation de maintien actif.
-Il conserve les limites des datagrammes, gère les lectures partielles
-et EOF, borne la file mémoire, le nombre de pairs et l’inactivité des fragments.
-Il n’enregistre ni contenu média, ni SDP, ni paramètres d’authentification ICE.
+`deploy/vast/station/media-relay.py` carries the opaque datagrams in a TCP
+stream through SSH. It uses only the Python standard library, fixed loopback
+targets and an explicit choice of duration: `--deadline` within the next six
+hours, or `--persistent` after authorisation to keep it running.
+It preserves datagram boundaries, handles partial reads and EOF, and bounds
+the memory queue, the number of peers and fragment inactivity.
+It records no media content, no SDP and no ICE authentication parameters.
 
-Sur Vast, utiliser le deadline Unix du manifeste de la location courante :
+On Vast, use the Unix deadline from the manifest of the current rental:
 
 ```sh
 station-media-relay server --deadline "$STATION_DEADLINE_EPOCH"
 ```
 
-Cette commande écoute **TCP 127.0.0.1:47999** et ne peut transmettre qu’à
-**UDP 127.0.0.1:47998**. Ajouter au tunnel SSH approuvé du poste client :
+This command listens on **TCP 127.0.0.1:47999** and can only forward to
+**UDP 127.0.0.1:47998**. Add to the approved SSH tunnel of the client machine:
 
 ```sh
 -L 127.0.0.1:47999:127.0.0.1:47999
 ```
 
-Puis, sur le poste qui exécute le navigateur :
+Then, on the machine running the browser:
 
 ```sh
 python3 ~/bin/station-media-relay client --deadline "$STATION_DEADLINE_EPOCH"
 ```
 
-Ouvrir `http://127.0.0.1:8088/` et saisir **127.0.0.1**, port **47998** dans
-les champs média. La signalisation reste dans le tunnel TCP 49100. Un seul
-poste média doit être connecté à la fois ; déconnecter le navigateur précédent
-avant de changer de poste.
+Open `http://127.0.0.1:8088/` and enter **127.0.0.1**, port **47998** in the
+media fields. Signalling stays in the TCP 49100 tunnel. Only one media machine
+may be connected at a time; disconnect the previous browser before changing
+machines.
 
-Sur Kali2, les unités `picogk-station-media-tunnel.service` et
-`picogk-station-media-relay.service` sont distinctes de
-`qwen-vast-tunnel.service`. Elles utilisent `Restart=always`, une
-`ExecCondition` comparant l’horloge au deadline du manifeste et un
-`RuntimeMaxSec` borné. Ainsi, une fermeture TCP prématurée relance le client ;
-l’échéance et un arrêt manuel empêchent une boucle de relance. Le programme
-du tunnel recalcule aussi le temps restant avant chaque lancement de SSH sous
-`timeout`, pour ne pas prolonger l’échéance lors d’une reprise. Le programme
-Vast `media-relay` est ajouté seul au superviseur, sans redémarrer Kit ou Qwen.
-Les fragments exacts propres à la location sont conservés dans ses preuves ;
-aucun deadline de location n’est gravé dans l’image réutilisable.
+On Kali2, the units `picogk-station-media-tunnel.service` and
+`picogk-station-media-relay.service` are separate from
+`qwen-vast-tunnel.service`. They use `Restart=always`, an `ExecCondition`
+comparing the clock with the manifest deadline and a bounded
+`RuntimeMaxSec`. A premature TCP close thus restarts the client; the deadline
+and a manual stop prevent a restart loop. The tunnel program also recomputes
+the remaining time before each SSH launch under `timeout`, so as not to extend
+the deadline during a recovery. The Vast program `media-relay` is added alone
+to the supervisor, without restarting Kit or Qwen. The exact fragments
+specific to the rental are kept in its evidence; no rental deadline is baked
+into the reusable image.
 
-L’utilisateur a ensuite demandé de conserver la station active, sans coupure.
-Dans ce mode autorisé, les commandes deviennent `station-media-relay server
---persistent` sur Vast et `python3 ~/bin/station-media-relay client --persistent`
-sur Kali2. Les unités média conservent `Restart=always`, mais n’ont plus
-`ExecCondition`, `RuntimeMaxSec` ni enveloppe `timeout` ; le tunnel lance SSH
-directement. Le service Qwen reste indépendant. Cette option ne modifie aucune
-garde de location : le contrôleur doit enregistrer séparément l’autorisation
-de prolongation et adapter sa politique de coût.
+The user then asked to keep the station active, without interruption.
+In this authorised mode, the commands become `station-media-relay server
+--persistent` on Vast and `python3 ~/bin/station-media-relay client --persistent`
+on Kali2. The media units keep `Restart=always`, but no longer have
+`ExecCondition`, `RuntimeMaxSec` or a `timeout` wrapper; the tunnel launches
+SSH directly. The Qwen service stays independent. This option changes no
+rental guard: the controller must record the extension authorisation
+separately and adapt its cost policy.
 
 ```sh
 systemctl --user status picogk-station-media-tunnel picogk-station-media-relay
 systemctl --user stop picogk-station-media-relay picogk-station-media-tunnel
 ```
 
-Le transport TCP peut augmenter la latence et bloquer momentanément les images
-lors d’une retransmission. Il permet le travail interactif observé, mais ne
-valide pas le réseau UDP direct Vast et ne garantit pas une latence maximale.
-Lors de la réouverture USD depuis le Mac, la file a atteint sa limite de 8 MiB
-et le relais a fermé cette connexion. La reconnexion a rétabli l’image et le
-transform sauvegardé, sans redémarrer Kit ni Qwen. Un chargement volumineux peut
-donc nécessiter une reconnexion ; la limite mémoire reste active.
+TCP transport can increase latency and momentarily stall frames during a
+retransmission. It allows the interactive work observed, but does not validate
+the direct Vast UDP network and does not guarantee a maximum latency.
+When reopening the USD from the Mac, the queue reached its 8 MiB limit and the
+relay closed that connection. Reconnecting restored the frame and the saved
+transform, without restarting Kit or Qwen. A large load may therefore require
+a reconnection; the memory limit stays active.
 
-## Protocole de qualification native
+## Native qualification protocol
 
-Exécuter ces étapes après le précontrôle GPU et sous la garde de coût active.
-Le dossier `ui-witness` doit être neuf. Sur Vast, le contrôleur root prépare
-une copie de travail, en conservant le résultat original de la génération :
+Run these steps after the GPU pre-check and under the active cost guard.
+The `ui-witness` folder must be new. On Vast, the root controller prepares a
+working copy, keeping the original result of the generation:
 
 ```sh
 set -eu
@@ -167,56 +167,57 @@ cp -p /workspace/jobs/ui-witness/output/station-assembly.usda /workspace/jobs/ui
 sha256sum /workspace/jobs/ui-witness/output/station-assembly.usda /workspace/jobs/ui-witness/working.usda
 ```
 
-Avant le **premier** lancement de `station-onstart`, exporter
-`STATION_SCENE=/workspace/jobs/ui-witness/working.usda`. Si supervisord existe
-déjà, l'environnement du shell de `supervisorctl` ne lui est pas transmis :
-ajouter `STATION_SCENE="/workspace/jobs/ui-witness/working.usda"` au réglage
-`environment` du seul programme `kit`, puis appliquer `reread` et `update`
-avant `start kit`. Ce même réglage impose `STATION_KIT_GPU="2"` ; si le tableau
-Vulkan révèle un autre ordinal pour le GPU physique réservé, le corriger ici.
-Conserver Qwen arrêté durant cette vérification initiale du GPU.
+Before the **first** launch of `station-onstart`, export
+`STATION_SCENE=/workspace/jobs/ui-witness/working.usda`. If supervisord already
+exists, the shell environment of `supervisorctl` is not passed to it: add
+`STATION_SCENE="/workspace/jobs/ui-witness/working.usda"` to the `environment`
+setting of the `kit` program only, then apply `reread` and `update` before
+`start kit`. The same setting enforces `STATION_KIT_GPU="2"`; if the Vulkan
+table reveals another ordinal for the reserved physical GPU, correct it here.
+Keep Qwen stopped during this initial GPU check.
 
-1. Démarrer `kit` avec `supervisorctl -c /opt/station/supervisord.conf start kit`.
-   Conserver `/workspace/logs/kit.log` et `kit.err.log`, le tableau
-   `gpu.foundation` et `nvidia-smi --query-gpu=index,pci.bus_id,uuid --format=csv`.
-   Vérifier qu'un seul GPU est actif dans Kit et que son PCI correspond au
-   GPU physique 2 prévu. Relever le PID Kit.
-2. Depuis le poste du navigateur, ouvrir un tunnel SSH avec
+1. Start `kit` with `supervisorctl -c /opt/station/supervisord.conf start kit`.
+   Keep `/workspace/logs/kit.log` and `kit.err.log`, the `gpu.foundation`
+   table and `nvidia-smi --query-gpu=index,pci.bus_id,uuid --format=csv`.
+   Check that only one GPU is active in Kit and that its PCI matches the
+   intended physical GPU 2. Record the Kit PID.
+2. From the browser machine, open an SSH tunnel with
    `-L 127.0.0.1:8088:127.0.0.1:8088 -L 127.0.0.1:49100:127.0.0.1:49100`
-   et `-o ExitOnForwardFailure=yes`. Conserver les options d'identité et de
-   vérification de clé de la connexion approuvée. Le port UDP externe n'est
-   pas un port du tunnel SSH.
-3. Ouvrir `http://127.0.0.1:8088`, renseigner les champs à partir de
-   `/workspace/station-runtime/webrtc-connection.json`, puis connecter.
-   Une image doit montrer l'éditeur natif et l'assemblage ; capturer cet état.
-4. Dans le panneau Stage de Kit, sélectionner **`/World/bracket_witness`**,
-   son Xform parent. Capturer la sélection et son transform initial `(0,0,0)`.
-   Dans les propriétés natives, double-cliquer la valeur Translate X et saisir
-   **10 mm**, conserver Y et Z à zéro, puis quitter le champ pour valider.
-   Constater le déplacement dans la vue et capturer.
-5. Enregistrer `working.usda` depuis File → Save. Sur la station, relire le
-   fichier avec USD pour vérifier `xformOp:translate == (10,0,0)` :
+   and `-o ExitOnForwardFailure=yes`. Keep the identity and host key
+   verification options of the approved connection. The external UDP port is
+   not an SSH tunnel port.
+3. Open `http://127.0.0.1:8088`, fill in the fields from
+   `/workspace/station-runtime/webrtc-connection.json`, then connect.
+   A frame must show the native editor and the assembly; capture this state.
+4. In Kit's Stage panel, select **`/World/bracket_witness`**, its parent
+   Xform. Capture the selection and its initial transform `(0,0,0)`.
+   In the native properties, double-click the Translate X value and enter
+   **10 mm**, keep Y and Z at zero, then leave the field to confirm.
+   Observe the move in the viewport and capture it.
+5. Save `working.usda` from File → Save. On the station, read the file back
+   with USD to check `xformOp:translate == (10,0,0)`:
 
    ```sh
    /opt/geometry-qa/bin/python -c 'from pxr import Usd; s=Usd.Stage.Open("/workspace/jobs/ui-witness/working.usda"); v=s.GetPrimAtPath("/World/bracket_witness").GetAttribute("xformOp:translate").Get(); print(tuple(v)); assert tuple(v)==(10.0,0.0,0.0)'
    sha256sum /workspace/jobs/ui-witness/output/station-assembly.usda /workspace/jobs/ui-witness/working.usda
    ```
 
-6. Cliquer Déconnecter puis Connecter. Vérifier une nouvelle image décodée,
-   le même PID Kit et le transform conservé. Rouvrir `working.usda` via le
-   menu natif File → Open pour confirmer également la lecture du fichier
-   sauvegardé. Capturer l'état et exporter le diagnostic du client : au moins
-   deux connexions, des images décodées et des dimensions vidéo non nulles.
-7. Produire le rendu séparé avec
+6. Click Déconnecter (Disconnect) then Connecter (Connect). Check for a new
+   decoded frame, the same Kit PID and the preserved transform. Reopen
+   `working.usda` through the native File → Open menu to also confirm that the
+   saved file can be read. Capture the state and export the client
+   diagnostics: at least two connections, decoded frames and non-zero video
+   dimensions.
+7. Produce the separate render with
    `runuser -u station-worker -- station-render /workspace/jobs/ui-witness/working.usda /workspace/jobs/ui-witness/render-after.png`.
-   Vérifier le journal, le PNG non vide et l'activité du GPU 3. Cette commande
-   utilise `/opt/ovrtx-runtime` ; elle ne remplace pas la preuve d'interaction Kit.
+   Check the log, the non-empty PNG and the activity of GPU 3. This command
+   uses `/opt/ovrtx-runtime`; it does not replace the Kit interaction evidence.
 
-Collecter le dossier avec `station-task collect ui-witness`, les captures,
-le diagnostic WebRTC et les logs Kit. Le transform relu sur disque et les
-images réelles sont les preuves ; aucun résultat ne doit être déclaré réussi
-si une étape n'a pas pu être observée.
+Collect the folder with `station-task collect ui-witness`, the screenshots,
+the WebRTC diagnostics and the Kit logs. The transform read back from disk and
+the real frames are the evidence; no result may be declared successful if a
+step could not be observed.
 
-Sources : [diffusion Kit](https://docs.omniverse.nvidia.com/kit/docs/kit-app-template/latest/docs/streaming.html),
-[réglages des flux](https://docs.omniverse.nvidia.com/kit/docs/omni.kit.livestream.app/latest/Overview.html),
-[sélection des GPU](https://docs.omniverse.nvidia.com/kit/docs/kit-manual/107.3.0/guide/linux_troubleshooting.html).
+Sources: [Kit streaming](https://docs.omniverse.nvidia.com/kit/docs/kit-app-template/latest/docs/streaming.html),
+[stream settings](https://docs.omniverse.nvidia.com/kit/docs/omni.kit.livestream.app/latest/Overview.html),
+[GPU selection](https://docs.omniverse.nvidia.com/kit/docs/kit-manual/107.3.0/guide/linux_troubleshooting.html).

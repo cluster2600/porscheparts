@@ -1,11 +1,11 @@
-# Coupes exactes des supports en parallèle
+# Exact support sections in parallel
 
-Ce module appelle le hook rationnel `exact_support_section.py` sans le modifier.
-Quatre processus calculent des couches entières ; le parent consomme les régions
-dans leur ordre d'origine, à la hauteur exacte de chaque couche. Huit couches au
-maximum sont en attente. Les fichiers, le hook et le répartiteur sont vérifiés
-par SHA-256 avant et après le calcul. Le groupe de processus est fermé aussi
-en cas de refus.
+This module calls the rational hook `exact_support_section.py` without modifying it.
+Four processes compute whole layers; the parent consumes the regions
+in their original order, at the exact height of each layer. At most eight layers
+are pending. The files, the hook and the dispatcher are verified
+by SHA-256 before and after the computation. The process group is closed even
+on rejection.
 
 ```python
 with ParallelSupportSections(ordered_npz_paths, exact_layer_heights, workers=4) as cuts:
@@ -14,15 +14,18 @@ with ParallelSupportSections(ordered_npz_paths, exact_layer_heights, workers=4) 
 receipt = cuts.receipt()
 ```
 
-Le reçu doit indiquer toutes les couches consommées et la fermeture du groupe.
-Il ne remplace ni l'admission de la géométrie des supports, ni l'audit indépendant
-de toutes leurs trajectoires.
+(The comment in the block reads: run the frozen CORE, with the same surfaces and
+the same layer order.)
 
-`benchmark.py` conserve l'essai initial interrompu sur une coupe rationnelle non
-nulle impossible à encoder en un segment float64 non nul. `benchmark_v2.py`
-enregistre chacun des dix plans fixés à l'avance : les refus restent des refus,
-les tableaux et leur ordre doivent être identiques sur les plans encodables.
-Les anciennes feuilles utilisées pour cet essai restent rejetées.
+The receipt must report all consumed layers and the closure of the group.
+It replaces neither the admission of the support geometry nor the independent audit
+of all their trajectories.
+
+`benchmark.py` keeps the initial trial, interrupted on a non-zero rational section
+that could not be encoded as a non-zero float64 segment. `benchmark_v2.py`
+records each of the ten planes fixed in advance: rejections remain rejections,
+and the arrays and their order must be identical on the encodable planes.
+The old sheets used for this trial remain rejected.
 
 ```sh
 AM_PYTHON -B -m unittest discover -s tests -p test_carrier_parallel_supports.py -v
@@ -30,4 +33,4 @@ AM_PYTHON -B parts/993-eng-carrier-0001/source/process-support-slicing-20261016/
   work/part-workflow/run-001/process work/carrier-process-20261016/support-benchmark-new
 ```
 
-`AM_PYTHON` désigne le Python du runtime PySLM installé par le projet.
+`AM_PYTHON` denotes the Python of the PySLM runtime installed by the project.

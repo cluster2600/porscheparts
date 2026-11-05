@@ -1,101 +1,103 @@
-# Transfert PicoGK vers la culasse M64 — 11 octobre 2026
+# PicoGK transfer to the M64 cylinder head — 11 October 2026
 
-Le code commun des autres pièces est intégré et exécuté, **pas leur géométrie**.
-Le maître de culasse, sa forme extérieure, ses interfaces et les anciens reçus
-restent inchangés. Il s'agit d'un témoin de raccord de conduit avant application
-à la pièce, pas d'une nouvelle culasse ni d'une qualification physique.
+The shared code of the other parts is integrated and run, **not their geometry**.
+The cylinder head master, its external shape, its interfaces and the old receipts
+remain unchanged. This is a duct-junction witness before application
+to the part, not a new cylinder head nor a physical qualification.
 
-## Ce qui est repris
+## What is reused
 
-| Apport des autres pièces | Intégration et limite |
+| Contribution from the other parts | Integration and limit |
 |---|---|
-| Catalogue moteur : `Sdf.Box/Vox`, `Es.Cyl/SMin` | Compilation directe des [sources communes](../../../../parts/picogk-catalog/common/Sdf.cs) et [moteur](../../../../parts/picogk-catalog/engine/EngineSdf.cs), sans copie des primitives. Masque radial et mélange local réellement exécutés. |
-| Conduits courbes : `CubicPts/Tube` | Autotests numériques des extrémités, d'un point de la courbe et d'un segment répété. Aucun circuit d'huile fonctionnel n'est encore dessiné ou qualifié par ce témoin. |
-| Reconstruction 935 : comparaison multirésolution, zones observées séparées des hypothèses | Deux pas, géométrie monde fixe, reçus séparés ; les méthodes existantes de la culasse sont conservées. Pas de transfert des cotes du ventilateur. |
-| Monocoque 964 : comparaisons contrôlées de variantes | Deux méthodes de raccord comparées au même original, avec le même masque, runtime et critères. Aucune conclusion mécanique transférée du châssis. |
-| Correction ABI `bIsInside` | Déjà présente dans [picogk-cooling](../picogk-cooling/README.md). Ici lecture des tranches SDF et deux conventions de zéro, sans appel au booléen défectueux ni modification globale du runtime. |
-| BCC, gyroides, galeries du piston et allègement | Non appliqués à la culasse : connectivité, extraction de poudre, chemins de charge et CHT doivent être démontrés. Un réseau ouvert avant découpe n'est pas une preuve de dépoudrage après découpe. |
-| Générateur d'enveloppe M64 du catalogue | Ne remplace pas le maître issu du scan : ce bloc conceptuel ne démontre pas les interfaces moteur. |
+| Engine catalogue: `Sdf.Box/Vox`, `Es.Cyl/SMin` | Direct compilation of the [common](../../../../parts/picogk-catalog/common/Sdf.cs) and [engine](../../../../parts/picogk-catalog/engine/EngineSdf.cs) sources, without copying the primitives. Radial mask and local blend actually run. |
+| Curved ducts: `CubicPts/Tube` | Numerical self-tests of the ends, of a point on the curve and of a repeated segment. No functional oil circuit is yet drawn or qualified by this witness. |
+| 935 reconstruction: multi-resolution comparison, observed zones separated from assumptions | Two steps, fixed world geometry, separate receipts; the existing methods of the cylinder head are kept. No transfer of the fan dimensions. |
+| 964 monocoque: controlled comparisons of variants | Two junction methods compared with the same original, with the same mask, runtime and criteria. No mechanical conclusion transferred from the chassis. |
+| `bIsInside` ABI fix | Already present in [picogk-cooling](../picogk-cooling/README.md). Here, reading of SDF slices and two zero conventions, without calling the defective Boolean or modifying the runtime globally. |
+| BCC, gyroids, piston galleries and lightening | Not applied to the cylinder head: connectivity, powder extraction, load paths and CHT must be demonstrated. A network open before cutting is not proof of depowdering after cutting. |
+| Catalogue M64 envelope generator | Does not replace the scan-derived master: this conceptual block does not demonstrate the engine interfaces. |
 
-Références Git : catalogue partagé `cddf9750`, reconstruction 935 `06072b80`,
-comparaison des architectures 964 `38468d47`, ablation des renforts `da55ba74`.
-Base de l'intégration : `0e7958a5`. Aucun achat Vast, changement de noyau,
-nouvelle dépendance ou modification d'une recette figée.
+Git references: shared catalogue `cddf9750`, 935 reconstruction `06072b80`,
+964 architecture comparison `38468d47`, reinforcement ablation `da55ba74`.
+Integration base: `0e7958a5`. No Vast purchase, kernel change,
+new dependency or modification of a frozen recipe.
 
-## Défaut ciblé et expérience
+## Targeted defect and experiment
 
-L'[ancien témoin](../picogk-local-junction-buffered-v2/README.md) touchait
-24 points protégés au pas 0,1 : les coins de son masque rectangulaire
-atteignaient un rayon de 10,465, au-delà de la couronne de rayon 10.
+The [old witness](../picogk-local-junction-buffered-v2/README.md) touched
+24 protected points at step 0.1: the corners of its rectangular mask
+reached a radius of 10.465, beyond the ring of radius 10.
 
-Le nouveau masque intersecte cette boîte avec un cylindre de rayon **8,8**,
-constant aux deux résolutions. Cette valeur ne concerne que le témoin
-synthétique ; ce n'est pas une cote ou une marge de sécurité de la culasse.
-Les anciens points protégés et leurs critères ne sont pas supprimés.
+The new mask intersects this box with a cylinder of radius **8.8**,
+constant at both resolutions. This value concerns only the synthetic
+witness; it is not a dimension or a safety margin of the cylinder head.
+The old protected points and their criteria are not removed.
 
-Deux constructions sont conservées :
+Two constructions are kept:
 
-1. `closing` : fermeture morphologique PicoGK, paramètre 1 ;
-2. `smooth-union` : mélange polynomial `Es.SMin`, paramètre 1, limité par le
-   masque protégé. Ce paramètre **n'est pas un rayon de congé géométrique**.
+1. `closing`: PicoGK morphological closing, parameter 1;
+2. `smooth-union`: polynomial blend `Es.SMin`, parameter 1, limited by the
+   protected mask. This parameter **is not a geometric fillet radius**.
 
-Dans les deux cas, le candidat est l'union de l'original avec la proposition
-masquée. Le volume différentiel exporté est seulement un diagnostic, jamais
-l'opérande qui fabrique le candidat. La restriction analytique du diagnostic
-au support du mélange a aussi été essayée : elle ne supprime pas son défaut
-de convergence aux pas testés.
+In both cases, the candidate is the union of the original with the masked
+proposal. The exported differential volume is only a diagnostic, never
+the operand that builds the candidate. Analytically restricting the diagnostic
+to the support of the blend was also tried: it does not remove its convergence
+defect at the tested steps.
 
 ```mermaid
 flowchart LR
-    A["Primitives partagées des autres pièces"] --> B["Masque boîte ET cylindre"]
-    B --> C["Fermeture et mélange implicite"]
-    C --> D["0,2 et 0,1 : quatre calculs"]
-    D --> E["SDF protégé + VDB exact"]
-    E --> F["Audit indépendant des STL"]
-    F --> G["Volume ajouté et distances"]
-    G --> H["Échec du diagnostic : application au maître bloquée"]
+    A["Shared primitives from the other parts"] --> B["Box AND cylinder mask"]
+    B --> C["Closing and implicit blend"]
+    C --> D["0.2 and 0.1: four computations"]
+    D --> E["Protected SDF + exact VDB"]
+    E --> F["Independent STL audit"]
+    F --> G["Added volume and distances"]
+    G --> H["Diagnostic failure: application to the master blocked"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    class H stop;
 ```
 
-## Résultats réels
+## Actual results
 
-[Reçu agrégé et empreintes](../../../../docs/media/m64-picogk-transfer-20261011/result-summary.json).
-Mac ARM64, SDK .NET 9.0.317, PicoGK natif 26.2.0. Ces exécutions ne qualifient
-pas une nouvelle version Linux ou une image de station GPU.
+[Aggregated receipt and digests](../../../../docs/media/m64-picogk-transfer-20261011/result-summary.json).
+Mac ARM64, .NET SDK 9.0.317, native PicoGK 26.2.0. These runs do not qualify
+a new Linux version or a GPU station image.
 
-| Contrôle | Fermeture protégée | Mélange implicite protégé |
+| Check | Protected closing | Protected implicit blend |
 |---|---:|---:|
-| Points protégés modifiés, deux conventions et deux pas | 0 | 0 |
-| Valeurs SDF modifiées hors région / aux protections | 0 / 0 | 0 / 0 |
-| Six champs VDB relus identiques bit à bit | oui | oui |
-| Écart du volume réellement ajouté, seuil 5 % | 16,093 % : échec | 3,226 % : passe |
-| Distance bidirectionnelle échantillonnée du candidat, seuil 0,2 | 0,081927 | 0,082308 |
-| Distance du diagnostic d'ajout, seuil 0,2 | 0,365160 : échec | 0,473432 : échec |
-| Triangles exactement dégénérés du diagnostic fin | 40 | 24 |
-| Décision combinée | rejet | rejet |
+| Protected points modified, two conventions and two steps | 0 | 0 |
+| SDF values modified outside the region / at the protections | 0 / 0 | 0 / 0 |
+| Six VDB fields read back bit-for-bit identical | yes | yes |
+| Deviation of the volume actually added, threshold 5 % | 16.093 %: fail | 3.226 %: pass |
+| Sampled bidirectional distance of the candidate, threshold 0.2 | 0.081927 | 0.082308 |
+| Distance of the addition diagnostic, threshold 0.2 | 0.365160: fail | 0.473432: fail |
+| Exactly degenerate triangles of the fine diagnostic | 40 | 24 |
+| Combined decision | reject | reject |
 
-Les champs sont comparés sur 1 157 625 puis 8 615 125 nœuds. Les deux STL
-du candidat implicite sont combinatoirement fermés/orientés sans triangle
-exactement dégénéré. Cela n'efface pas les 24 triangles nuls du diagnostic fin.
-L'audit distingue fichiers bruts et suppression **en mémoire seulement** des
-faces d'aire exactement nulle. Aucun sommet ou triangle non nul n'est retouché.
+The fields are compared over 1,157,625 then 8,615,125 nodes. The two STLs
+of the implicit candidate are combinatorially closed/oriented with no exactly
+degenerate triangle. That does not erase the 24 null triangles of the fine diagnostic.
+The audit distinguishes raw files from removal, **in memory only**, of
+faces of exactly zero area. No vertex or non-zero triangle is touched.
 
-Le volume réellement ajouté est `V(après) − V(avant)`, pas le volume du
-diagnostic. Pour le mélange : **5,666643 → 5,489569 unités³**. Le résidu
-avec ce diagnostic reste **3,644585 → 1,205682 unités³**, inexpliqué ici.
-Les distances portent sur au plus 20 000 sommets/centroïdes par direction,
-pas une borne continue de Hausdorff ni une convergence asymptotique.
+The volume actually added is `V(après) − V(avant)` (after − before), not the volume of the
+diagnostic. For the blend: **5.666643 → 5.489569 units³**. The residual
+with this diagnostic remains **3.644585 → 1.205682 units³**, unexplained here.
+The distances cover at most 20,000 vertices/centroids per direction,
+not a continuous Hausdorff bound nor asymptotic convergence.
 
-![Coupe réelle du témoin avant et après](../../../../docs/media/m64-picogk-transfer-20261011/protected-junction.png)
+![Actual section of the witness before and after](../../../../docs/media/m64-picogk-transfer-20261011/protected-junction.png)
 
-Image produite par coupe VTK des STL vérifiés par SHA256, sans génération
-d'image, décimation ou lissage visuel. **Ce n'est pas la culasse réelle.**
+Image produced by a VTK section of the STLs verified by SHA256, with no image
+generation, decimation or visual smoothing. **This is not the real cylinder head.**
 
-## Reproduire
+## Reproduce
 
-Utiliser le SDK .NET 9 et le DLL PicoGK du runtime déjà qualifié ; fournir
-`PicoGKPath` au build. Les bibliothèques natives correspondantes doivent
-être accessibles au chargeur système. Garder les résultats dans un dossier
-privé neuf ; aucun ancien reçu n'est écrasé.
+Use the .NET 9 SDK and the PicoGK DLL of the already qualified runtime; supply
+`PicoGKPath` to the build. The corresponding native libraries must
+be accessible to the system loader. Keep the results in a new private
+directory; no old receipt is overwritten.
 
 ```sh
 dotnet build ProtectedJunction.csproj -c Release \
@@ -109,29 +111,29 @@ python3 audit.py --coarse /sortie/neuve/coarse --fine /sortie/neuve/fine \
 python3 render.py --directory /sortie/neuve/fine --output /sortie/neuve/section.png
 ```
 
-Répéter dans deux autres dossiers avec `closing`. Le code 3 de l'audit est
-un **rejet conservé**, pas un succès à masquer. NumPy est requis pour l'audit,
-VTK pour les distances/coupes, Matplotlib pour l'image ; aucune installation
-automatique. Les anciens scripts d'audit sont importés sans les modifier.
-Les tests `test_picogk_protected_junction.py` rejettent tout contrat incomplet,
-changement de masque, confusion de résolution ou promotion d'autorité.
+Repeat in two other directories with `closing`. Audit exit code 3 is
+a **kept rejection**, not a success to be hidden. NumPy is required for the audit,
+VTK for distances/sections, Matplotlib for the image; nothing is installed
+automatically. The old audit scripts are imported without modification.
+The tests `test_picogk_protected_junction.py` reject any incomplete contract,
+mask change, resolution mix-up or authority promotion.
 
-Vérification locale : build sans avertissement, **23 tests de raccord dont un
-ignoré** (dépendance trimesh absente), quatre calculs natifs, deux audits de
-comparaison, et refus natif d'une sortie existante, d'un pas non fini et d'une
-méthode inconnue. Aucun reçu existant n'a été écrasé. Le contrôle des liens
-documentaires ne trouve aucun lien cassé. La suite complète du dépôt et les
-essais physiques ne sont pas remplacés par ces contrôles ciblés.
+Local check: build without warnings, **23 junction tests, one of them
+skipped** (trimesh dependency absent), four native computations, two comparison
+audits, and native refusal of an existing output, a non-finite step and an
+unknown method. No existing receipt was overwritten. The documentation link
+check finds no broken link. The full repository suite and physical
+tests are not replaced by these targeted checks.
 
-## Suite et limites
+## Next steps and limits
 
-Le défaut de protection du témoin est corrigé ; le mélange améliore le critère
-de volume mais **l'ensemble du contrôle reste rejeté**. Prochaine expérience :
-localiser l'écart du diagnostic fin et définir une comparaison plus fine avec
-limites de ressources, en conservant la géométrie et les seuils.
+The witness's protection defect is corrected; the blend improves the volume
+criterion but **the check as a whole remains rejected**. Next experiment:
+locate the deviation of the fine diagnostic and define a finer comparison with
+resource limits, keeping the geometry and the thresholds.
 
-Aucun nouveau canal n'est soustrait à la culasse tant que région autorisée,
-interfaces et contrôle géométrique ne passent pas. Les **118 tétraèdres rejetés**
-du dernier calcul de culasse ne sont pas recalculés ici. Ni le 0,040 mm,
-ni la résistance, la thermique, le dépoudrage, l'impression ou les essais
-physiques ne sont validés par ce transfert logiciel.
+No new channel is subtracted from the cylinder head until the authorised region,
+interfaces and geometric check pass. The **118 rejected tetrahedra**
+of the latest cylinder head computation are not recomputed here. Neither the 0.040 mm,
+nor strength, thermal behaviour, depowdering, printing or physical
+tests are validated by this software transfer.

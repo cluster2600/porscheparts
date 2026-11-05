@@ -1,95 +1,95 @@
-# Données publiques moteur M64/60 (993 Turbo) — relevé du 2026-09-27
+# Public M64/60 engine data (993 Turbo) — survey of 2026-09-27
 
-Relevé external (agent de recherche, read-only) pour amorcer le squelette
-paramétrique du programme `M64-WHOLE-ENGINE-TWIN-0001`. Chaque valeur porte un
-niveau de preuve. **Rien ici n'est une mesure du projet** : aucune de ces
-valeurs ne promeut une géométrie au-delà de `F1_envelope` sans métrologie.
+External survey (research agent, read-only) to seed the parametric skeleton of
+the programme `M64-WHOLE-ENGINE-TWIN-0001`. Each value carries an evidence
+level. **Nothing here is a project measurement**: none of these values promotes
+a geometry beyond `F1_envelope` without metrology.
 
-Niveaux : `FACT_public` = publié par Porsche (brochure, manuel technique
-usine) · `CROSSCHECKED` = deux sources secondaires indépendantes concordantes
-· `SINGLE_SOURCE` = une seule source secondaire · `ASSUMPTION` = inférence
-d'ingénierie.
+Levels: `FACT_public` = published by Porsche (brochure, factory technical
+manual) · `CROSSCHECKED` = two independent concordant secondary sources
+· `SINGLE_SOURCE` = a single secondary source · `ASSUMPTION` = engineering
+inference.
 
-## Valeurs établies
+## Established values
 
-| Donnée | Valeur | Niveau | Source |
+| Item | Value | Level | Source |
 |---|---|---|---|
-| Architecture | Flat-six, air/huile, biturbo parallèle (1 turbo/banc), dry sump | FACT_public | Brochure Porsche UK « 993 the Turbo » (1995) ; supplément OBD 1996 |
-| Alésage × course | 100,0 × 76,4 mm | FACT_public | Brochure + Porsche 993 US Parts Guide |
-| Cylindrée | 3 600 cm³ | FACT_public | Brochure |
-| Taux de compression | 9,5:1 | FACT_public | Brochure 993 Turbo |
-| Puissance / couple | 408 PS (300 kW) / 540 Nm | FACT_public | Brochure |
-| Pression de suralimentation | 1,0 bar (350 kPa absolue) | FACT_public | Brochure 993 Turbo (notice : 0,8 bar effectif mesuré en service courant ; la brochure publie la pression de consigne max) |
-| Masse à sec | 232 kg | FACT_public | Brochure 993 Turbo |
-| Ordre d'allumage | 1-6-2-4-3-5 | FACT_public | Doc spec Carrera M64/23-24 (distributeur unique partagé) ; recoupé avec article 964 Turbo 3.6 |
-| Jeu aux soupapes | Compensation hydraulique (poussoirs auto-réglables) — pas de spécification statique | FACT_public | Parts Guide + doc spec Carrera |
-| Goujons de culasse | 12 × M8×22 par culasse | FACT_public | Parts Guide (pièces/quantités) |
-| Joint tour de cylindre | 1 O-ring 102×2 par cylindre + 6 joints de culasse + 6 disques guide-air (quantités) | FACT_public | Parts Guide |
-| Entraînement ventilateur | Courroie crantée/VP depuis vilebrequin, rapport ≈ 1:1,6 | FACT_public | Supplément OBD 1996 « Engine Specifications » |
-| Débit d'air de refroidissement | 1 010 l/s à 6 100 tr/min | FACT_public | Supplément OBD 1996 |
-| Débit d'air de refroidissement (seconde valeur, non corroborée) | 1 210 l/s à 5 750 tr/min | FACT_community | elferclassic.de (level C, declared) — rétrogradé en contre-vérification; la valeur primaire 1 010 l/s est level A (Supplément OBD 1996). NB: le manual 993 p.17 (OCR non relu) mentionne « 1010 l/sec at 6,000 rpm » — rpm à vérifier visuellement avant F2 |
-| Capacité d'huile | 12 L filtre inclus | FACT_public | Brochure |
+| Architecture | Flat-six, air/oil, parallel twin-turbo (1 turbo per bank), dry sump | FACT_public | Porsche UK brochure "993 the Turbo" (1995); 1996 OBD supplement |
+| Bore × stroke | 100.0 × 76.4 mm | FACT_public | Brochure + Porsche 993 US Parts Guide |
+| Displacement | 3,600 cm³ | FACT_public | Brochure |
+| Compression ratio | 9.5:1 | FACT_public | 993 Turbo brochure |
+| Power / torque | 408 PS (300 kW) / 540 Nm | FACT_public | Brochure |
+| Boost pressure | 1.0 bar (350 kPa absolute) | FACT_public | 993 Turbo brochure (note: 0.8 bar effective measured in normal service; the brochure publishes the maximum set-point pressure) |
+| Dry mass | 232 kg | FACT_public | 993 Turbo brochure |
+| Firing order | 1-6-2-4-3-5 | FACT_public | Carrera M64/23-24 spec document (single shared distributor); cross-checked with a 964 Turbo 3.6 article |
+| Valve clearance | Hydraulic compensation (self-adjusting lifters) — no static specification | FACT_public | Parts Guide + Carrera spec document |
+| Cylinder head studs | 12 × M8×22 per cylinder head | FACT_public | Parts Guide (parts/quantities) |
+| Cylinder seal | 1 O-ring 102×2 per cylinder + 6 cylinder head gaskets + 6 air-guide discs (quantities) | FACT_public | Parts Guide |
+| Fan drive | Toothed belt/V-belt from the crankshaft, ratio ≈ 1:1.6 | FACT_public | 1996 OBD supplement "Engine Specifications" |
+| Cooling air flow | 1,010 l/s at 6,100 rpm | FACT_public | 1996 OBD supplement |
+| Cooling air flow (second value, not corroborated) | 1,210 l/s at 5,750 rpm | FACT_community | elferclassic.de (level C, declared) — demoted to cross-check; the primary value 1,010 l/s is level A (1996 OBD supplement). NB: the 993 manual p.17 (OCR not proofread) mentions "1010 l/sec at 6,000 rpm" — rpm to be checked visually before F2 |
+| Oil capacity | 12 L including filter | FACT_public | Brochure |
 
-## Valeurs NON publiques (bloquent F2, voir contrats d'acquisition)
+## NON-public values (block F2, see acquisition contracts)
 
-- Entraxe cylindres (pitch) et hauteur de vilebrequin→plan de joint : **non publiés** → M64-ACQ-0004.
-- Nombre de pales du ventilateur et diamètres de poulies : **non publiés**
-  - Voie logicielle : scan `Fan+Drive+0.21mm.obj` (sha256 6c0b12d4…, 1,26 M sommets; provenance à inscrire au registre) analysé dans `work/obj-intake-20260927/` — harmoniques angulaires 4–7 sur le slab inférieur à ce stade, non concluantes avant l'étude complète. Diamètres géométriques extraits : pignon à denture OD≈127,6 mm (hauteur 67,9 mm), poulie r_max≈127,8 mm. Débits : valeur primaire **1 010 l/s à ≈6 100 tr/min** (level A, Supplément OBD 1996 ; écho manuel p.17 « 1010 l/sec at 6,000 rpm » OCR non relu, rpm à vérifier visuellement) ; 1 210 l/s @ 5 750 rétrogradé en contre-vérification (elferclassic, level C).
- → M64-ACQ-0005 (le débit total 1 010 l/s est publié, pas la géométrie de la roue).
-- Désignation de banc (gauche/droite) et numéros de pièce des variantes : à confirmer sur plaque.
-  - Note revue 2026-09-27 : la dérivation du motif de goujons depuis « 98,07/43,27 » est REJETÉE —
-    ce sont des cotes de pignon d'arbre à cames (« Engine, Cylinder Head, Valve Drive », OCR non
-    relu), pas le motif de vis. Acquis goujons : 12× M8×22 par culasse (level A). Motif, hauteur de
-    culasse, épaisseur de joint = métrologie physique (ACQ-0001). Bonus ACQ-0004 : entraxes
-    vilebrequin→paliers intermédiaires 133,57 et 78,77 ±0,25 mm (p.177, à relire visuellement).
-- Profil de came : non public → M64-ACQ-0002.
-- Carte compresseur K16 : non publique → M64-ACQ-0003.
+- Cylinder centre distance (pitch) and crankshaft-to-joint-plane height: **not published** → M64-ACQ-0004.
+- Fan blade count and pulley diameters: **not published**
+  - Software path: scan `Fan+Drive+0.21mm.obj` (sha256 6c0b12d4…, 1.26 M vertices; provenance to be entered in the register) analysed in `work/obj-intake-20260927/` — angular harmonics 4–7 on the lower slab at this stage, inconclusive before the complete study. Geometric diameters extracted: toothed sprocket OD≈127.6 mm (height 67.9 mm), pulley r_max≈127.8 mm. Flows: primary value **1,010 l/s at ≈6,100 rpm** (level A, 1996 OBD supplement; echoed in manual p.17 "1010 l/sec at 6,000 rpm", OCR not proofread, rpm to be checked visually); 1,210 l/s @ 5,750 demoted to cross-check (elferclassic, level C).
+ → M64-ACQ-0005 (the total flow of 1,010 l/s is published, not the wheel geometry).
+- Bank designation (left/right) and part numbers of the variants: to be confirmed on the plate.
+  - Review note 2026-09-27: deriving the stud pattern from "98.07/43.27" is REJECTED —
+    these are camshaft sprocket dimensions ("Engine, Cylinder Head, Valve Drive", OCR not
+    proofread), not the bolt pattern. Studs established: 12× M8×22 per cylinder head (level A). Pattern, cylinder
+    head height, gasket thickness = physical metrology (ACQ-0001). ACQ-0004 bonus: centre distances
+    crankshaft→intermediate bearings 133.57 and 78.77 ±0.25 mm (p.177, to be re-read visually).
+- Cam profile: not public → M64-ACQ-0002.
+- K16 compressor map: not public → M64-ACQ-0003.
 
-## Sources consultées (identifiants à enregistrer dans catalog/sources/)
+## Sources consulted (identifiers to be recorded in catalog/sources/)
 
-1. Brochure Porsche UK « 993 the Turbo », 1995, archive statique anstack (GitHub) — fiche technique.
-2. 993 Technical Specification Booklet (usine) — données Carrera/Carrera 4.
-3. Porsche 993 US Parts Guide (porscheknowledge.com) — lignes de partage, visserie, poussoirs, entraînement par courroie, turbine de ventilation.
-4. Supplément OBD 1996 « Engine Specifications » (993 Carrera M64/23-24) — architecture commune M64 : allumage, rapport ventilateur, débit, distribution hydraulique, carter sec.
+1. Porsche UK brochure "993 the Turbo", 1995, anstack static archive (GitHub) — technical data sheet.
+2. 993 Technical Specification Booklet (factory) — Carrera/Carrera 4 data.
+3. Porsche 993 US Parts Guide (porscheknowledge.com) — split lines, fasteners, lifters, belt drive, cooling fan impeller.
+4. 1996 OBD supplement "Engine Specifications" (993 Carrera M64/23-24) — common M64 architecture: ignition, fan ratio, flow, hydraulic valve train, dry sump.
 
-## Règle appliquée
+## Rule applied
 
-Aucune valeur SINGLE_SOURCE ou ASSUMPTION ne migre dans le code de géométrie
-sans promotion préalable (ADR-0004, charte projet).
+No SINGLE_SOURCE or ASSUMPTION value migrates into the geometry code without
+prior promotion (ADR-0004, project charter).
 
 ---
 
-## Exécution du scaffold PicoGK (2026-09-27, soir)
+## PicoGK scaffold run (2026-09-27, evening)
 
-- Build vérifié dans le conteneur `m64-engineering-worker` (image
-  `m64-engineering-worker:latest`) : SDK .NET 8.0.131, PicoGK 2.3.0 compilé
-  depuis `/opt/PicoGK` (cible retendue en `net8.0`, le paquet NuGet officiel
-  exige `net9.0`).
-- Le runtime natif `picogk.so` est exposé sous le nom attendu par le binding
-  (`picogk.26.2.so`) et la visionneuse tourne sous `xvfb-run` (pas d'écran).
-- Sorties exportées et copiées dans le dépôt :
-  `twins/m64-engine-system/picogk/out/m64-engine-layout.stl` (326 296
-  triangles, voxel 5 mm) et `m64-layout.log`. Le `.vdb` reste dans le worker
+- Build verified in the `m64-engineering-worker` container (image
+  `m64-engineering-worker:latest`): .NET SDK 8.0.131, PicoGK 2.3.0 compiled
+  from `/opt/PicoGK` (target retargeted to `net8.0`; the official NuGet package
+  requires `net9.0`).
+- The native runtime `picogk.so` is exposed under the name expected by the
+  binding (`picogk.26.2.so`) and the viewer runs under `xvfb-run` (no display).
+- Outputs exported and copied into the repository:
+  `twins/m64-engine-system/picogk/out/m64-engine-layout.stl` (326,296
+  triangles, 5 mm voxel) and `m64-layout.log`. The `.vdb` stays in the worker
   (`/build/picogk/out`).
-- La géométrie reste au statut `F1_envelope` : poutres et sphères englobantes,
-  les valeurs ASSUMPTION du fichier `M64EngineLayout.cs` ne deviennent
-  exploitables qu'après promotion via les contrats `M64-ACQ-*`.
+- The geometry remains at status `F1_envelope`: beams and bounding spheres;
+  the ASSUMPTION values in `M64EngineLayout.cs` only become usable after
+  promotion through the `M64-ACQ-*` contracts.
 
-## Additif K16 (lane de recherche K16, 2026-09-27 soir)
+## K16 addendum (K16 research lane, 2026-09-27 evening)
 
-Rapport final de la lane K16 (read-only, dépôt vérifié non modifié par la lane) :
+Final report of the K16 lane (read-only; repository verified as not modified by the lane):
 
-- Identité recoupée : gauche = BorgWarner/KKK **5316-988-6736** (Porsche 993 123 013 51→52),
-  droit = **5316-988-6735** (993 123 014 51→52), désignation **K16-2467GGA/8.88** des deux côtés
-  (CROSSCHECKED : pages TurboMaster 6735/6736 consultées en direct, catalogue BorgWarner, cross-ref design911).
-- Roues (SINGLE_SOURCE Invasion Auto) : turbine ⌀induit 54,96 / ⌀exduct 48,97 mm, 12 pales ;
-  compresseur ⌀induit 40,6 / ⌀exduct 60,5 mm, 6+6. A/R turbine **8,0 cm²** (CROSSCHECKED deux
-  catalogues vendeurs). Angles de volute α 307,5° / β 70°. Wastegate 5825-110-4006, ressort
-  0,50 bar / lève 4,20 mm (SINGLE_SOURCE). Carter palier gauche 5316-151-0008 ≠ droit 5316-151-0002.
-- Pression de suralimentation : 0,8 bar effectif retenu (brochure chriffrée dans Christophorus /
-  catalogues) ; la notice « 1,0 bar » du relevé initial est une pression de consigne max, la
-  lecture 350 kPa absolue est conservée mais à re-vérifier sur la brochure papier.
-- **Carte compresseur toujours absente du domaine public** → M64-ACQ-0003 reste bloquant ;
-  rendement, jeux internes, vitesse rotor maxi, journal/biels non publiés.
-- Fiches sources créées : `SRC-TURBOMASTER-993-K16-6736-LEFT-UNIT`,
-  `SRC-INVASIONAUTOPRODUCTS-993-K16-INTERNAL-DATA` (validateur sources OK, 358 enregistrements).
+- Cross-checked identity: left = BorgWarner/KKK **5316-988-6736** (Porsche 993 123 013 51→52),
+  right = **5316-988-6735** (993 123 014 51→52), designation **K16-2467GGA/8.88** on both sides
+  (CROSSCHECKED: TurboMaster 6735/6736 pages consulted live, BorgWarner catalogue, design911 cross-ref).
+- Wheels (SINGLE_SOURCE Invasion Auto): turbine ⌀inducer 54.96 / ⌀exducer 48.97 mm, 12 blades;
+  compressor ⌀inducer 40.6 / ⌀exducer 60.5 mm, 6+6. Turbine A/R **8.0 cm²** (CROSSCHECKED, two
+  vendor catalogues). Volute angles α 307.5° / β 70°. Wastegate 5825-110-4006, spring
+  0.50 bar / lift 4.20 mm (SINGLE_SOURCE). Left bearing housing 5316-151-0008 ≠ right 5316-151-0002.
+- Boost pressure: 0.8 bar effective retained (brochure figures quoted in Christophorus /
+  catalogues); the "1.0 bar" note in the initial survey is a maximum set-point pressure; the
+  350 kPa absolute reading is kept but to be re-checked against the paper brochure.
+- **Compressor map still absent from the public domain** → M64-ACQ-0003 remains blocking;
+  efficiency, internal clearances, maximum rotor speed, journal/bearings not published.
+- Source records created: `SRC-TURBOMASTER-993-K16-6736-LEFT-UNIT`,
+  `SRC-INVASIONAUTOPRODUCTS-993-K16-INTERNAL-DATA` (sources validator OK, 358 records).

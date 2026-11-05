@@ -1,25 +1,25 @@
-# Station PicoGK : commandes OpenClaw sur Kali2
+# PicoGK station: OpenClaw commands on Kali2
 
-Ajouter ce bloc au `TOOLS.md` du workspace OpenClaw ; conserver les instructions
-déjà présentes. Installer `openclaw-tools.py` sous `~/.local/bin/station-task`
-avec le mode `0755`. Le CLI utilise Python 3 et `ssh` / `rsync` de Kali2.
+Add this block to the `TOOLS.md` of the OpenClaw workspace; keep the
+instructions already there. Install `openclaw-tools.py` as `~/.local/bin/station-task`
+with mode `0755`. The CLI uses Python 3 and the `ssh` / `rsync` of Kali2.
 
-Configuration fournie par l’opérateur dans
-`~/.config/picogk-station/endpoint.json` :
+Configuration supplied by the operator in
+`~/.config/picogk-station/endpoint.json`:
 
 ```json
 {"host": "ssh.example.invalid", "port": 22222}
 ```
 
-Remplacer ces valeurs par l’endpoint SSH réellement attribué à la station.
-L’utilisateur distant est toujours `station-worker` (UID 10002). La clé dédiée
-est `~/.ssh/id_picogk_station_worker` ; sa partie publique doit être installée
-pour ce compte et l’identité de l’hôte doit être vérifiée dans `known_hosts`.
-Le CLI ne lit pas la clé : seul OpenSSH l’utilise. `StrictHostKeyChecking=yes`,
-`BatchMode=yes` et l’absence de transfert d’agent sont imposés. Un échec
-d’authentification reste bloquant ; ne pas essayer un autre compte ou secret.
+Replace these values with the SSH endpoint actually assigned to the station.
+The remote user is always `station-worker` (UID 10002). The dedicated key
+is `~/.ssh/id_picogk_station_worker`; its public part must be installed
+for that account and the host identity must be verified in `known_hosts`.
+The CLI does not read the key: only OpenSSH uses it. `StrictHostKeyChecking=yes`,
+`BatchMode=yes` and no agent forwarding are enforced. An authentication
+failure remains blocking; do not try another account or secret.
 
-## Utilisation
+## Usage
 
 ```sh
 station-task status
@@ -29,63 +29,63 @@ station-task render coupon-001
 station-task collect coupon-001
 ```
 
-- Un identifiant commence par une lettre minuscule et contient au maximum
-  48 caractères parmi `a-z`, `0-9`, `-`. Chaque démonstration exige un nouvel
-  identifiant. Les tâches existantes ne sont pas écrasées.
-- `demo` lance la chaîne existante `station-demo` : PicoGK **2.3.0**, **.NET
-  9.0.317**, contrôles géométriques métal, cartes EOS M 290 / AlSi10Mg 30 µm et
-  assemblage USD. `span-mm` est compris entre 20 et 80 ; `voxel-mm` entre 0,1
-  et 0,5. Les autres opérations CAO restent celles du dépôt ; le CLI n’accepte
-  aucun script, commande shell ou chemin arbitraire.
-- `demo` et `render` renvoient immédiatement un accusé d’acceptation. Les tâches
-  continuent après la déconnexion SSH, dans une file de calcul unique. Un
-  accusé ne prouve pas la réussite : attendre `status: complete` dans `status`.
-- `render` exige le fichier `completed.json` de la démonstration et appelle
-  `station-render` sur le GPU 3. Le résultat est `render.png`. Chaque rendu
-  exige un nom de fichier neuf ; un second rendu du même job est refusé.
-- Chaque commande de calcul est limitée à 30 minutes après sa prise en charge.
-  `failed` ou `interrupted_or_unknown` nécessite de lire le journal avant de
-  proposer une nouvelle tâche. Ne pas relancer automatiquement une boucle.
-- `collect` copie les résultats et journaux dans `~/stations/JOB/` sur Kali2,
-  sans liens symboliques, fichiers spéciaux, suppression ni accès hors du job.
+- An identifier starts with a lowercase letter and contains at most
+  48 characters from `a-z`, `0-9`, `-`. Each demonstration requires a new
+  identifier. Existing jobs are not overwritten.
+- `demo` launches the existing `station-demo` chain: PicoGK **2.3.0**, **.NET
+  9.0.317**, metal geometry checks, EOS M 290 / AlSi10Mg 30 µm maps and
+  USD assembly. `span-mm` lies between 20 and 80; `voxel-mm` between 0.1
+  and 0.5. Other CAD operations remain those of the repository; the CLI accepts
+  no script, shell command or arbitrary path.
+- `demo` and `render` return an acceptance acknowledgement immediately. Jobs
+  continue after SSH disconnection, in a single compute queue. An
+  acknowledgement does not prove success: wait for `status: complete` in `status`.
+- `render` requires the demonstration's `completed.json` file and calls
+  `station-render` on GPU 3. The result is `render.png`. Each render
+  requires a new filename; a second render of the same job is refused.
+- Each compute command is limited to 30 minutes after it is picked up.
+  `failed` or `interrupted_or_unknown` requires reading the log before
+  proposing a new job. Do not relaunch automatically in a loop.
+- `collect` copies results and logs into `~/stations/JOB/` on Kali2,
+  without symbolic links, special files, deletion or access outside the job.
 
-Les fichiers distants sont sous `/workspace/jobs/JOB/` : `demo.json`,
-`demo.log`, `render.json`, `render.log`, `render.png`, et `output/` pour les
-géométries, rapports, empreintes et `station-assembly.usda`.
+Remote files are under `/workspace/jobs/JOB/`: `demo.json`,
+`demo.log`, `render.json`, `render.log`, `render.png`, and `output/` for
+geometries, reports, digests and `station-assembly.usda`.
 
-L’impression n’est jamais autorisée par ces résultats numériques. Ne pas
-présenter la pièce comme ajustée, imprimée, testée physiquement ou homologuée.
-Le CLI ne loue, ne prolonge et ne détruit aucune instance Vast ; les limites de
-coût et la garde externe restent contrôlées séparément.
+Printing is never authorised by these numerical results. Do not
+present the part as fitted, printed, physically tested or homologated.
+The CLI does not rent, extend or destroy any Vast instance; cost limits
+and the external guard remain controlled separately.
 
-## Calcul CPU sur Kali1
+## CPU compute on Kali1
 
-Kali1 dispose d'un runtime PicoGK extrait et vérifié depuis l'image station,
-avec les sources C# conservées. Depuis Kali2, utiliser le lanceur natif :
+Kali1 has a PicoGK runtime extracted and verified from the station image,
+with the C# sources kept. From Kali2, use the native launcher:
 
 ```sh
 kali1-picogk coupon-kali1-001 --span-mm 50 --voxel-mm 0.25
 ```
 
-Le calcul bloque jusqu'à son résultat : témoin volume/offset/aller-retour STL,
-puis témoin paramétrique et deux coupons. Il utilise au maximum **deux CPU,
-2 Gio, zéro swap et 300 secondes**, avec priorité `nice 10`. Un verrou refuse
-un deuxième calcul simultané sur Kali1 ; il n'y a pas de nouvelle file.
-Chaque identifiant doit être neuf, avec les mêmes caractères autorisés que
-`station-task`. Les paramètres restent bornés à 20–80 mm et 0,1–0,5 mm.
+The computation blocks until its result: volume/offset/STL round-trip witness,
+then parametric witness and two coupons. It uses at most **two CPUs,
+2 GiB, zero swap and 300 seconds**, with priority `nice 10`. A lock refuses
+a second simultaneous computation on Kali1; there is no new queue.
+Each identifier must be new, with the same allowed characters as
+`station-task`. Parameters remain bounded to 20–80 mm and 0.1–0.5 mm.
 
-La commande utilise exclusivement SSH via `127.0.0.1:2221` sur Kali2,
-`HostKeyAlias=kali1-cpu`, une identité dédiée utilisée par OpenSSH et aucun
-transfert d'agent. Ce port est relié à Kali1 par le contrôleur Mac : le
-contrôleur et son tunnel doivent rester disponibles. La liaison IP directe
-Kali2 → Kali1 a expiré avant authentification ; ne pas désactiver la vérification
-d'hôte ou rechercher un autre secret pour contourner un échec du tunnel.
+The command uses SSH exclusively via `127.0.0.1:2221` on Kali2,
+`HostKeyAlias=kali1-cpu`, a dedicated identity used by OpenSSH and no
+agent forwarding. This port is connected to Kali1 by the Mac controller: the
+controller and its tunnel must remain available. The direct IP link
+Kali2 → Kali1 timed out before authentication; do not disable host
+verification or look for another secret to work around a tunnel failure.
 
-Après le calcul, `rsync` copie seulement le job dans
-`~/stations/kali1/JOB/` sur Kali2, sans liens, fichiers spéciaux ni suppression.
-Le lanceur vérifie les huit empreintes du reçu `execution.json`. Les sources
-et les trois premiers essais sont également conservés dans
+After the computation, `rsync` copies only the job into
+`~/stations/kali1/JOB/` on Kali2, without links, special files or deletion.
+The launcher verifies the eight digests of the `execution.json` receipt. The sources
+and the first three trials are also kept in
 `~/stations/kali1-compute-20260928-r8kj70sz/`.
-Cette voie exécute la géométrie PicoGK CPU ; les contrôles métal, la CAO et USD
-restent disponibles via la chaîne complète `station-task` sur Vast.
-Ne pas redémarrer le gateway OpenClaw pour lancer ou collecter un calcul Kali1.
+This route runs the CPU PicoGK geometry; the metal checks, CAD and USD
+remain available through the full `station-task` chain on Vast.
+Do not restart the OpenClaw gateway to launch or collect a Kali1 computation.

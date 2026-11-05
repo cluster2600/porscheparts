@@ -1,8 +1,8 @@
-# Reçu complet obligatoire
+# Mandatory complete receipt
 
-Le lanceur final utilise `audit_complete_supports.py`. Les six fichiers initiaux
-restent figés ; ce wrapper ajoute la preuve qu'aucun groupe matériel entier ne
-disparaît entre les plans de tranchage.
+The final launcher uses `audit_complete_supports.py`. The six initial files
+remain frozen; this wrapper adds proof that no entire material group
+disappears between slicing planes.
 
 ```sh
 work/part-workflow/runtimes/pyslm-coverage-011/env/bin/python \
@@ -12,24 +12,23 @@ work/part-workflow/runtimes/pyslm-coverage-011/env/bin/python \
   --part-cache work/carrier-process-20261016/part-layer-cache-001
 ```
 
-Le wrapper exécute obligatoirement l'audit complet initial dans `scanpaths/`.
-Il recherche ensuite, pour chaque groupe de faces, au moins une vraie exposition
-enregistrée égale à l'encodage correctement arrondi de sa coupe rationnelle.
-Le témoin contient l'identifiant du groupe, la face source, la couche, Z et le
-vecteur. Une feuille entièrement située entre deux plans est refusée.
+The wrapper always runs the initial complete audit in `scanpaths/`.
+It then searches, for each face group, for at least one real recorded
+exposure equal to the correctly rounded encoding of its rational section.
+The witness contains the group identifier, the source face, the layer, Z and the
+vector. A sheet lying entirely between two planes is refused.
 
-Cette seconde recherche utilise des témoins de couche après le contrôle
-obligatoire de **toutes** les couches. Elle ne peut pas remplacer cet audit
-complet. Son cache de lecture est borné à huit couches et ne recalcule aucune
-hachure de pièce.
+This second search uses layer witnesses after the mandatory check of
+**all** layers. It cannot replace that complete audit. Its read cache is
+bounded to eight layers and recomputes no part hatching.
 
-Le reçu final `assessment.json` lie par SHA le même `process/report.json`,
-`scanpaths/assessment.json` et `group-exposure-coverage.json`. Les deux sous-reçus
-doivent être acceptés. Les cinq flags initiaux sont conservés et
-`every_material_group_exposed=true` est obligatoire. Le sous-reçu de couverture
-porte aussi `layers_audited`, `complete_build_audited` et le SHA du processus ;
-la provenance du passage complet y est indiquée.
+The final receipt `assessment.json` binds by SHA the same `process/report.json`,
+`scanpaths/assessment.json` and `group-exposure-coverage.json`. Both sub-receipts
+must be accepted. The five initial flags are kept and
+`every_material_group_exposed=true` is mandatory. The coverage sub-receipt
+also carries `layers_audited`, `complete_build_audited` and the process SHA;
+the provenance of the complete pass is recorded there.
 
-Vérification ciblée : `python test_complete_supports.py` (trois témoins,
-dont la feuille située entre deux plans). L'exécution complète sur le carrier
-attend encore le processus final avec ses supports corrigés.
+Targeted check: `python test_complete_supports.py` (three witnesses,
+including the sheet lying between two planes). The complete run on the carrier
+still awaits the final process with its corrected supports.

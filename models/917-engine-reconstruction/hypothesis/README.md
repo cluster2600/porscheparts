@@ -1,116 +1,116 @@
-# Train mobile 917 : expérience sous hypothèses
+# 917 reciprocating assembly: experiment under assumptions
 
-Suite demandée le 10 octobre 2026 : « Continue avec des hypothèses ».
-[Les paramètres](assumptions.json) définissent un moteur partiel supposé,
-sans identification du spécimen ni calage métrologique sur le scan.
-Le [C# PicoGK](Program.cs) construit quatre familles ; le
-[pilote Python](run.py) exporte douze instances de chacune, soit **48 instances**,
-et contrôle la géométrie et une cinématique à manetons partagés.
-Le piston est creux, avec calotte, jupe et deux bossages d'axe. Ce n'est pas
-un moteur complet ni un assemblage accepté pour fonctionner.
+Follow-up requested on 10 October 2026: « Continue avec des hypothèses » ("Continue with assumptions").
+[The parameters](assumptions.json) define an assumed partial engine,
+without identification of the specimen or metrological registration to the scan.
+The [PicoGK C#](Program.cs) builds four families; the
+[Python driver](run.py) exports twelve instances of each, i.e. **48 instances**,
+and checks the geometry and a shared-crankpin kinematics.
+The piston is hollow, with crown, skirt and two pin bosses. This is not
+a complete engine nor an assembly accepted for operation.
 
-## Hypothèses de départ
+## Starting assumptions
 
-| Paramètre | Valeur supposée | Origine et limite |
+| Parameter | Assumed value | Origin and limit |
 |---|---:|---|
-| Alésage × course | 85 × 66 mm | amorce documentaire secondaire de la variante 4,5 L, spécimen non identifié |
-| Entraxe de bielle | 132 mm | ancienne hypothèse schématique, aucune cote Porsche mesurée |
-| Pas longitudinal / central / décalage des bancs | 118 / 173 / 37 mm | estimations extérieures arrondies du scan, sous hypothèse 1 mm par unité ; banc négatif décalé vers X positif |
-| Pied de cylindre / longueur | 70 / 122 mm | choix d'étude depuis un axe de vilebrequin arbitraire |
-| Diamètre extérieur / ailettes | 95 / 110 mm | choix d'étude, huit ailettes de 3 mm au pas de 14 mm |
-| Jeu diamétral piston | 0,2 mm | choix d'étude, non résolu par les grilles de 1 et 0,5 mm |
-| Hauteur piston / jupe / calotte | 44 / 3 / 4,5 mm | choix après rejet du piston plein ; tenue thermique et mécanique inconnue |
-| Début intérieur / diamètre des bossages | ±20 / 32 mm | choix de dégagement du pied de bielle, engagement et jeux à qualifier |
-| Phases des six paires | 0°, 120°, 240°, 60°, 180°, 300° | hypothèse d'assemblage, pas une preuve d'ordre d'allumage |
+| Bore × stroke | 85 × 66 mm | secondary documentary lead for the 4.5 L variant, specimen not identified |
+| Connecting-rod centre distance | 132 mm | old schematic assumption, no measured Porsche dimension |
+| Longitudinal / central pitch / bank offset | 118 / 173 / 37 mm | rounded external estimates from the scan, assuming 1 mm per unit; negative bank offset towards positive X |
+| Cylinder base / length | 70 / 122 mm | study choice from an arbitrary crankshaft axis |
+| Outside diameter / fins | 95 / 110 mm | study choice, eight 3 mm fins at a 14 mm pitch |
+| Piston diametral clearance | 0.2 mm | study choice, not resolved by the 1 and 0.5 mm grids |
+| Piston height / skirt / crown | 44 / 3 / 4.5 mm | choice after rejection of the solid piston; thermal and mechanical strength unknown |
+| Inner start / boss diameter | ±20 / 32 mm | choice to clear the small end, engagement and clearances to be qualified |
+| Phases of the six pairs | 0°, 120°, 240°, 60°, 180°, 300° | assembly assumption, not evidence of firing order |
 
-Le repère n'est pas enregistré sur le scan. Les axes sont nivelés par hypothèse.
-Les autres dimensions, masses volumiques, pressions et régimes sont des choix
-explicites dans le JSON. Aucun paramètre supposé ne devient une mesure.
+The reference frame is not registered to the scan. The axes are levelled by assumption.
+The other dimensions, densities, pressures and speeds are explicit
+choices in the JSON. No assumed parameter becomes a measurement.
 
-## Résultats exécutés sur le Mac
+## Results executed on the Mac
 
-Le [relevé textuel](execution-20261010.json) contient les empreintes des sources,
-exports privés, audits et scénarios. L'exécution finale `run-005` utilise PicoGK
-2.3.0, .NET 9.0.317 et les deux grilles à géométrie cible constante.
+The [text record](execution-20261010.json) contains the digests of the sources,
+private exports, audits and scenarios. The final execution `run-005` uses PicoGK
+2.3.0, .NET 9.0.317 and the two grids with constant target geometry.
 
-| Famille | Triangles dérivés, grille 1 mm | Triangles dérivés, grille 0,5 mm | Variation de volume / volume fin | Écart au volume analytique, grille fine |
+| Family | Derived triangles, 1 mm grid | Derived triangles, 0.5 mm grid | Volume change / fine volume | Deviation from analytical volume, fine grid |
 |---|---:|---:|---:|---:|
-| Cylindre à ailettes | 257 696 | 1 042 544 | 0,691 % | 0,224 % |
-| Piston creux avec bossages et trou d'axe | 88 612 | 357 896 | 0,482 % | non évalué |
-| Bielle à deux yeux | 36 420 | 147 536 | 0,887 % | non évalué |
-| Axe creux | 19 008 | 75 816 | 0,754 % | 0,253 % |
+| Finned cylinder | 257,696 | 1,042,544 | 0.691 % | 0.224 % |
+| Hollow piston with bosses and pin hole | 88,612 | 357,896 | 0.482 % | not evaluated |
+| Two-eye connecting rod | 36,420 | 147,536 | 0.887 % | not evaluated |
+| Hollow pin | 19,008 | 75,816 | 0.754 % | 0.253 % |
 
-Ces deux niveaux montrent une évolution de volume ; ils ne démontrent pas
-une convergence asymptotique ni une précision locale des interfaces.
-Les quatre familles dérivées sont fermées, orientées, à volume positif et à
-une composante, avec des sondes indépendantes dans les trous et la matière.
+These two levels show a change in volume; they do not demonstrate
+asymptotic convergence or local accuracy of the interfaces.
+The four derived families are closed, oriented, of positive volume and
+single-component, with independent probes in the holes and in the material.
 
-Les STL natifs contiennent des triangles d'aire nulle : 120/240/16 pour
-piston/bielle/axe à 1 mm, puis 1 440/316/524/56 pour les quatre familles à
-0,5 mm. Ils restent conservés et rejetés tels quels. Le témoin numérique
-[existant](../../../twins/m64-cylinder-head/source/picogk-local-junction/exact_zero_countertrial.py)
-est réutilisé pour un dérivé qui retire seulement les faces dont le produit
-vectoriel float64 est exactement nul. Aucun seuil de proximité, déplacement
-de sommet ou changement d'orientation n'est appliqué. Une empreinte des faces
-orientées et un audit indépendant vérifient le dérivé. Cela ne prouve pas une
-équivalence symbolique de surfaces continues.
-L'essai initial `run-001`, arrêté sur le piston brut, et `run-002`, antérieur
-au contrôle d'interférence, restent conservés hors Git. `run-003` conserve le
-piston plein rejeté pour interférence. `run-004`, premier piston creux, reste
-rejeté après retrait des faces nulles : 670 arêtes à incidence supérieure à
-deux, 615 composantes. Aucun remplissage de trou ni déplacement de sommet
-n'a forcé son acceptation. La hauteur et la calotte sont ensuite révisées
-pour écarter les tangences nominales ; `run-005` passe les écrans de maillage.
+The native STLs contain zero-area triangles: 120/240/16 for
+piston/connecting rod/pin at 1 mm, then 1,440/316/524/56 for the four families at
+0.5 mm. They remain kept and rejected as they are. The
+[existing](../../../twins/m64-cylinder-head/source/picogk-local-junction/exact_zero_countertrial.py)
+numerical witness is reused for a derivative that removes only the faces whose float64
+cross product is exactly zero. No proximity threshold, vertex
+displacement or orientation change is applied. A digest of the oriented
+faces and an independent audit verify the derivative. This does not prove a
+symbolic equivalence of continuous surfaces.
+The initial trial `run-001`, stopped on the raw piston, and `run-002`, prior
+to the interference check, remain kept outside Git. `run-003` keeps the
+solid piston rejected for interference. `run-004`, the first hollow piston, remains
+rejected after removal of the zero faces: 670 edges with incidence greater than
+two, 615 components. No hole filling or vertex displacement
+forced its acceptance. The height and crown were then revised
+to avoid nominal tangencies; `run-005` passes the mesh screens.
 
-La cinématique parcourt 360° par pas de 1°. Les deux bancs utilisent la même
-position transversale du maneton ; leurs axes piston suivent les deux racines
-opposées de la fermeture de bielle. La course est 66 mm et l'erreur de fermeture
-maximale est 5,69 × 10⁻¹⁴ mm. La dérivée seconde analytique est aussi contrôlée
-par différences finies dans les tests.
+The kinematics sweeps 360° in steps of 1°. The two banks use the same
+transverse crankpin position; their piston axes follow the two opposite
+roots of the connecting-rod closure. The stroke is 66 mm and the maximum closure
+error is 5.69 × 10⁻¹⁴ mm. The analytical second derivative is also checked
+by finite differences in the tests.
 
-**Rejets utiles :** les entraxes 120 et 144 mm ne gardent pas la jupe entière
-dans ce cylindre supposé : marges axiales de −5 et −7 mm. L'entraxe 132 mm
-donne +5 mm sur ce seul critère. Les seize sondes du pied de bielle
-(huit angles, deux bancs), dans la matière du piston plein de `run-003`,
-sont hors matière du piston creux final. Le défaut observé est corrigé sur
-ces sondes ; ce contrôle échantillonné ne couvre pas toutes les collisions
-possibles, ni les jeux minimaux. Un contrôle complet du volume balayé reste
-nécessaire. Les jeux d'axe, coussinet et retenue ne sont pas définis.
+**Useful rejections:** centre distances of 120 and 144 mm do not keep the whole skirt
+in this assumed cylinder: axial margins of −5 and −7 mm. The 132 mm centre distance
+gives +5 mm on this single criterion. The sixteen small-end probes
+(eight angles, two banks), inside the material of the solid piston of `run-003`,
+are outside the material of the final hollow piston. The observed defect is corrected at
+these probes; this sampled check covers neither all possible
+collisions nor the minimum clearances. A complete check of the swept volume remains
+necessary. Pin, bearing shell and retention clearances are not defined.
 
-## Matériaux candidats et première enveloppe de charge
+## Candidate materials and first load envelope
 
-| Famille | Candidat d'étude | Masse volumique supposée | Masse par prototype, grille fine |
+| Family | Study candidate | Assumed density | Mass per prototype, fine grid |
 |---|---|---:|---:|
-| Cylindre | AlSi10Mg | 2 700 kg/m³ | 0,621 kg |
-| Piston creux | aluminium forgé | 2 700 kg/m³ | 0,186 kg |
-| Bielle | Ti6Al4V, alternative acier | 4 430 / 7 800 kg/m³ | 0,193 kg pour Ti6Al4V |
-| Axe | acier | 7 800 kg/m³ | 0,084 kg |
+| Cylinder | AlSi10Mg | 2,700 kg/m³ | 0.621 kg |
+| Hollow piston | forged aluminium | 2,700 kg/m³ | 0.186 kg |
+| Connecting rod | Ti6Al4V, steel alternative | 4,430 / 7,800 kg/m³ | 0.193 kg for Ti6Al4V |
+| Pin | steel | 7,800 kg/m³ | 0.084 kg |
 
-La population partielle avec bielles titane pèse 13,00 kg sous ces hypothèses.
-Ce n'est pas la masse du moteur ; le piston reste sans segments ni retenues.
-La route forgée du piston est une piste conventionnelle, pas une matière LPBF.
-Les pistes LPBF aluminium sont documentées par
+The partial population with titanium connecting rods weighs 13.00 kg under these assumptions.
+This is not the mass of the engine; the piston remains without rings or retainers.
+The forged route for the piston is a conventional lead, not an LPBF material.
+The aluminium LPBF leads are documented by
 [EOS](https://www.eos.info/metal-solutions/metal-materials/aluminium).
-Aucune limite admissible de ce fournisseur n'est transférée à ces pièces.
+No allowable limit from this supplier is transferred to these parts.
 
-Les dix-huit scénarios croisent deux matières de bielle, 4 000/6 000/8 000 tr/min
-et 40/60/80 bar de pression maximale supposée. La masse alternative attribue
-un tiers de la masse de bielle au mouvement réciproque. La somme du pic de gaz
-et du pic absolu d'inertie constitue une enveloppe ; ces pics ne sont pas
-supposés se produire ensemble dans un cycle de combustion établi.
-À 8 000 tr/min et 80 bar : 45,40 kN de gaz, 9,67 kN d'inertie avec la bielle
-titane, somme 55,07 kN. La division par la section nominale Ø18 donne
-216,4 MPa. L'alternative acier donne 56,49 kN et 222,0 MPa. La vitesse moyenne
-du piston est 17,6 m/s. **Ces valeurs ne démontrent aucune tenue matière.**
+The eighteen scenarios cross two connecting-rod materials, 4,000/6,000/8,000 rpm
+and 40/60/80 bar of assumed peak pressure. The reciprocating mass assigns
+one third of the connecting-rod mass to reciprocating motion. The sum of the gas peak
+and the absolute inertia peak constitutes an envelope; these peaks are not
+assumed to occur together in an established combustion cycle.
+At 8,000 rpm and 80 bar: 45.40 kN of gas, 9.67 kN of inertia with the titanium
+connecting rod, sum 55.07 kN. Dividing by the nominal Ø18 section gives
+216.4 MPa. The steel alternative gives 56.49 kN and 222.0 MPa. The mean piston
+speed is 17.6 m/s. **These values demonstrate no material strength.**
 
-Il manque le chargement angulaire de combustion, température, flexion,
-flambement, contacts, coussinets, vis de chapeau, concentrations de contraintes,
-fatigue et défauts du procédé. Pour retenir une route additive, il faudra
-nuance/lot, machine et paramètres, orientation, supports, traitement thermique,
-usinage, état de surface, contrôles et éprouvettes représentatives à chaud.
-Le titane exige aussi un dossier de fatigue et d'isolation galvanique.
+Missing are the crank-angle combustion loading, temperature, bending,
+buckling, contacts, bearing shells, cap bolts, stress concentrations,
+fatigue and process defects. To adopt an additive route, it will require
+grade/lot, machine and parameters, orientation, supports, heat treatment,
+machining, surface finish, inspections and representative hot test specimens.
+Titanium also requires a fatigue and galvanic isolation dossier.
 
-## Reproduire et poursuivre
+## Reproduce and continue
 
 ```bash
 PYTHON=/chemin/vers/python-avec-numpy-scipy-trimesh-rtree-networkx
@@ -120,22 +120,22 @@ DOTNET=/chemin/vers/dotnet-9
 "$PYTHON" tests/test_917_picogk_hypotheses.py -v
 ```
 
-Les STL/VDB, l'assemblage, les transformations, `kinematics.csv`, rapports et
-visualisations restent privés dans `work/`. Les sources C# et JSON sont
-modifiables et suivies dans Git. Le dossier public contient des résultats
-textuels, sans scan ni géométrie dérivée. Aucune fiche de pièce du catalogue
-ne reçoit un statut de validation ou de fabrication.
+The STL/VDB files, the assembly, the transforms, `kinematics.csv`, reports and
+visualisations remain private in `work/`. The C# and JSON sources are
+editable and tracked in Git. The public directory contains textual
+results, with no scan or derived geometry. No catalogue part record
+receives a validation or manufacturing status.
 
-Les douze tests ciblés des deux étapes passent ; le C# compile sans
-avertissement ni erreur. `make check` a exécuté 3 626 tests, 153 ignorés,
-et s'arrête sur deux comparaisons exactes de flottants dans les dossiers
-993 impeller/stator inchangés. Les autres cibles globales ne sont donc pas
-atteintes localement. Les contrôles ciblés sont relancés après la révision
-du piston ; la CI du dernier commit reste à observer séparément.
+The twelve targeted tests of the two steps pass; the C# compiles without
+warning or error. `make check` ran 3,626 tests, 153 skipped,
+and stops on two exact floating-point comparisons in the unchanged
+993 impeller/stator directories. The other global targets are therefore not
+reached locally. The targeted checks are rerun after the piston
+revision; the CI of the latest commit remains to be observed separately.
 
-La suite consiste à affiner le piston et les interfaces axe/bielle, définir
-les chapeaux et coussinets, puis reconstruire vilebrequin, paliers et carter
-autour des [interfaces à mesurer](../README.md#interfaces-et-chemins-deffort-à-établir-avant-toute-pièce-fonctionnelle).
-Les culasses, distribution, segments, lubrification, refroidissement,
-équilibrage et essais physiques restent à réaliser. Les hypothèses permettent
-d'avancer le calcul, sans remplacer ces mesures ni la revue professionnelle.
+The next step is to refine the piston and the pin/connecting-rod interfaces, define
+the caps and bearing shells, then rebuild crankshaft, bearings and case
+around the [interfaces to be measured](../README.md#interfaces-and-load-paths-to-establish-before-any-functional-part).
+The cylinder heads, valve train, rings, lubrication, cooling,
+balancing and physical tests remain to be done. The assumptions allow
+the calculation to advance, without replacing these measurements or professional review.

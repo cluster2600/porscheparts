@@ -1,113 +1,113 @@
-# De la référence au dossier d'impression
+# From reference to print dossier
 
 [English guide](PART_WORKFLOW_EN.md) · [English results supplement](CARRIER_SUPPLEMENTS_20261017_EN.md)
 
-Cette chaîne transforme une référence de pièce en un dossier numérique que
-l'imprimeur et le mécanicien peuvent suivre. Le support moteur 993 Turbo est
-le pilote. Chaque étape conserve son entrée, ses réglages, ses logiciels, ses
-sorties et ses résultats ; un changement de géométrie crée une nouvelle révision.
+This chain turns a part reference into a digital dossier that the
+printer and the mechanic can follow. The 993 Turbo engine carrier is
+the pilot. Each step keeps its input, settings, software, outputs and
+results; a geometry change creates a new revision.
 
-Les [suppléments du 17 octobre](CARRIER_SUPPLEMENTS_20261017.md) décrivent le
-guide 7 avec le cycle mécanique à 32 états et le lanceur 3 avec ses budgets
-par étape. Les commandes v6 ci-dessous conservent leur recette enregistrée.
+The [17 October supplements](CARRIER_SUPPLEMENTS_20261017.md) describe
+guide 7 with the 32-state mechanical cycle and launcher 3 with its per-step
+budgets. The v6 commands below keep their recorded recipe.
 
-Le guide conserve une copie exacte du reçu utilisé pour relier ses figures,
-dans `delivery-assets/source-workflow.json`. Le lanceur peut ensuite terminer
-et mettre à jour son propre `workflow.json` ; l'état employé pour les images
-reste consultable et vérifiable dans le dossier remis.
+The guide keeps an exact copy of the receipt used to link its figures,
+in `delivery-assets/source-workflow.json`. The launcher can then finish
+and update its own `workflow.json`; the state used for the images
+remains readable and verifiable in the delivered dossier.
 
-![De la référence au dossier d’impression : six étapes, logiciels, fichiers et contrôles](../media/carrier-workflow-20261016/process.png)
+![From reference to print dossier: six steps, software, files and checks](../media/carrier-workflow-20261016/process.png)
 
-Le [schéma vectoriel](../media/carrier-workflow-20261016/process.svg) et son
-[PDF](../media/carrier-workflow-20261016/process.pdf) restent lisibles à
-l’impression. Ils décrivent le processus ; les reçus de chaque passage
-portent les résultats effectivement obtenus.
+The [vector diagram](../media/carrier-workflow-20261016/process.svg) and its
+[PDF](../media/carrier-workflow-20261016/process.pdf) remain legible when
+printed. They describe the process; the receipts of each run
+carry the results actually obtained.
 
-## Trois entrées, une même sortie CAO
+## Three inputs, one CAD output
 
-| Référence disponible | Travail d'entrée | Sortie commune |
+| Available reference | Input work | Common output |
 | --- | --- | --- |
-| Image ou photographie | Repérer les vues, la taille de référence et les formes visibles ; consigner les dimensions retenues et les parties reconstruites | Paramètres explicites et modèle éditable |
-| Scan 3D | Conserver l'original, déclarer l'unité et la pose, nettoyer les doublons, reconstruire les surfaces utiles et comparer la CAO au scan | STEP ou source PicoGK avec écart de reconstruction enregistré |
-| Plan de mesures | Transcrire les cotes, axes, portées et tolérances dans un fichier de paramètres ; vérifier les unités et les conventions d'axes | Source build123d/PicoGK et STEP exporté |
+| Image or photograph | Identify the views, the reference size and the visible shapes; record the dimensions adopted and the reconstructed portions | Explicit parameters and editable model |
+| 3D scan | Keep the original, declare the unit and pose, clean duplicates, reconstruct the useful surfaces and compare the CAD to the scan | STEP or PicoGK source with recorded reconstruction deviation |
+| Measurement drawing | Transcribe dimensions, axes, seats and tolerances into a parameter file; check units and axis conventions | build123d/PicoGK source and exported STEP |
 
-Une image unique peut servir à dessiner une hypothèse ; les dimensions utilisées
-restent visibles dans le dossier. Le logiciel ne transforme pas silencieusement
-un pixel en millimètre ou une face cachée en mesure.
+A single image can be used to draw a hypothesis; the dimensions used
+remain visible in the dossier. The software does not silently turn
+a pixel into a millimetre or a hidden face into a measurement.
 
-Le chemin scan réutilise la chaîne PyMesh / reconstruction / PicoGK du projet
-`qwen-picogk`. Le [contrat CAD-Recode](../../scripts/cad_recode/pipeline.py)
-existant décrit un cas 935 : son identité et ses unités OBJ doivent être
-adaptées explicitement avant de le lancer sur une autre référence.
-Le chemin par cotes réutilise les sources paramétriques du catalogue, au lieu de
-dessiner une nouvelle pièce sans lien avec ses paramètres.
+The scan route reuses the PyMesh / reconstruction / PicoGK chain of the
+`qwen-picogk` project. The existing [CAD-Recode contract](../../scripts/cad_recode/pipeline.py)
+describes a 935 case: its identity and OBJ units must be
+adapted explicitly before running it on another reference.
+The dimension route reuses the catalogue's parametric sources, instead of
+drawing a new part unconnected to its parameters.
 
-## Les six étapes à suivre
+## The six steps to follow
 
-| Étape | Logiciels et rôle | Fichiers à conserver | Contrôles numériques |
+| Step | Software and role | Files to keep | Digital checks |
 | --- | --- | --- | --- |
-| 1. Géométrie | build123d/OCCT ou PicoGK ; construction et modification de la forme | Source, paramètres, STEP, convention d'axes | Solide valide, nombre de corps, dimensions, portées et axes protégés, volume après réimport |
-| 2. Surface | PyMesh pour le nettoyage, Gmsh pour la triangulation CAD, libigl pour les intersections | STL brut et corrigé, empreintes, rapport avant/après | Fermeture, composantes, orientation, triangles effilés, intersections, distance au maître STEP |
-| 3. Mécanique | Gmsh C3D10, CalculiX, audit énergétique indépendant | Maillage, charges, matériau, jeux de calcul, champs et tableaux | Masse, déplacements, contraintes, équilibre, énergie, sensibilité et raffinement |
-| 4. Supports | PySLM ; pose à plat et génération des supports LPBF | Pose, surfaces de support, paramètres de grille et de dents | Encombrement, contacts pièce/plaque, accès et intersections conservées dans le rapport |
-| 5. Couches | PySLM et intersection de maillage ; contours, hachures et trajectoires des supports | Couches, vecteurs, réglages et vues des sections | Contours, trous préservés, segments finis, doublons, nombres de couches et identités de géométrie |
-| 6. Remise | Générateur de guide ; dossier autonome HTML/PDF | STEP/STL, supports, trajectoires, paramètres, rapports et manifeste | Empreintes de tous les fichiers remis et cohérence de révision |
+| 1. Geometry | build123d/OCCT or PicoGK; building and modifying the shape | Source, parameters, STEP, axis convention | Valid solid, number of bodies, dimensions, protected seats and axes, volume after reimport |
+| 2. Surface | PyMesh for cleaning, Gmsh for CAD triangulation, libigl for intersections | Raw and corrected STL, digests, before/after report | Closure, components, orientation, slender triangles, intersections, distance to the STEP master |
+| 3. Mechanics | Gmsh C3D10, CalculiX, independent energy audit | Mesh, loads, material, load cases, fields and tables | Mass, displacements, stresses, equilibrium, energy, sensitivity and refinement |
+| 4. Supports | PySLM; flat placement and generation of LPBF supports | Pose, support surfaces, grid and tooth parameters | Footprint, part/plate contacts, access and intersections kept in the report |
+| 5. Layers | PySLM and mesh intersection; contours, hatches and support paths | Layers, vectors, settings and section views | Contours, preserved holes, finite segments, duplicates, layer counts and geometry identities |
+| 6. Delivery | Guide generator; self-contained HTML/PDF dossier | STEP/STL, supports, paths, parameters, reports and manifest | Digests of all delivered files and revision consistency |
 
-La préparation des supports est admise séparément de leur génération. Les six
-contrôles portent sur les enveloppes, les régions couvertes, les peaux, les
-grilles, les contacts et les collisions. Le
-[générateur de remise v6](../../scripts/build_carrier_workshop_guide_v6.py)
-refuse le dossier si un contrôle manque, reste non exécuté ou désigne un reçu
-dont l'empreinte a changé. L'audit des trajectoires examine les segments entiers
-dans les sections, en conservant trous et îlots ; vérifier seulement leurs
-extrémités ne suffit pas.
+Support preparation is admitted separately from its generation. The six
+checks cover envelopes, covered regions, skins,
+grids, contacts and collisions. The
+[v6 delivery generator](../../scripts/build_carrier_workshop_guide_v6.py)
+refuses the dossier if a check is missing, remains unexecuted or points to a receipt
+whose digest has changed. The path audit examines whole segments
+in the sections, keeping holes and islands; checking only their
+end points is not enough.
 
-Le tranchage ouvert prépare les géométries et les vecteurs. Le format machine et
-le réglage laser final restent ceux du procédé choisi chez l'imprimeur ; aucun
-export générique ne se fait passer pour un travail déjà chargé sur une machine.
+Open slicing prepares the geometries and vectors. The machine format and
+the final laser settings remain those of the process chosen at the printer; no
+generic export passes itself off as a job already loaded on a machine.
 
-## Une commande pour exécuter une recette enregistrée
+## One command to run a recorded recipe
 
-Le [lanceur v2](../../scripts/run_part_workflow_v2.py) utilise des recettes lisibles
-dans `manufacturing/workflows/`. Une recette énumère les fichiers d'entrée
-avec leurs empreintes, les commandes, les délais et les sorties attendues.
-Le fichier de runtime local indique où se trouvent les interpréteurs installés.
+The [v2 launcher](../../scripts/run_part_workflow_v2.py) uses readable recipes
+in `manufacturing/workflows/`. A recipe lists the input files
+with their digests, the commands, the timeouts and the expected outputs.
+The local runtime file states where the installed interpreters are.
 
-La [recette intégrée v6](../../manufacturing/workflows/993-carrier-lpbf-v6.json)
-contient 37 étapes et 293 fichiers d’entrée épinglés. Elle conserve exactement
-les douze premières étapes de CAO, surface, mécanique et dessins de la recette
-initiale, puis sépare les sept calculs natifs et les sept générations de
-supports. Leur construction conserve le domaine utile entier et ajoute des
-bandes de contact attestées ; l’assemblage incrémental garde les mêmes contours
-et reçus exacts. Le confinement rationnel, les six admissions géométriques et
-les deux audits complets de trajectoires précèdent le guide.
-La [revue des commandes et des identités](../../parts/993-eng-carrier-0001/source/process-skins-20261016/cold-v6-recipe-evidence/assessment.json)
-a passé : les dix commandes modifiées sont parsées, 27 contrats sont repris
-après vérification de leurs identités et les 293 empreintes sont revérifiées.
-Elle reste distincte d’un rejeu complet du carrier.
+The [integrated v6 recipe](../../manufacturing/workflows/993-carrier-lpbf-v6.json)
+contains 37 steps and 293 pinned input files. It keeps exactly
+the first twelve CAD, surface, mechanics and drawing steps of the
+initial recipe, then separates the seven native computations and the seven support
+generations. Their construction keeps the whole useful domain and adds
+attested contact bands; the incremental assembly keeps the same contours
+and exact receipts. Rational containment, the six geometric admissions and
+the two complete path audits precede the guide.
+The [review of commands and identities](../../parts/993-eng-carrier-0001/source/process-skins-20261016/cold-v6-recipe-evidence/assessment.json)
+passed: the ten modified commands parse, 27 contracts are carried over
+after verification of their identities and the 293 digests are re-verified.
+It remains distinct from a complete replay of the carrier.
 
-Les neuf étapes de génération et d’assemblage des supports disposent chacune
-d’un budget de quatre heures. Le lanceur v2 conserve les contrôles, les
-journaux et l’arrêt de son groupe de processus ; seule sa borne maximale de
-durée passe d’une à quatre heures. Les anciennes recettes restent conservées.
+The nine support generation and assembly steps each have
+a four-hour budget. The v2 launcher keeps the checks, the
+logs and the stopping of its process group; only its maximum
+duration bound moves from one to four hours. The old recipes remain kept.
 
-Une bande de contact dirigée vers l’intérieur n’est omise que si son
-quadrilatère entier est déjà contenu dans le domaine source, avec preuve
-exacte. Le domaine conserve alors la même matière. Les autres cas restent
-refusés. Chaque surface intermédiaire et son reçu sont conservés ; l’admission
-recalcule les contrôles avec l’autorité réellement enregistrée dans le reçu.
+An inward-facing contact band is omitted only if its
+entire quadrilateral is already contained in the source domain, with exact
+proof. The domain then keeps the same material. Other cases remain
+refused. Each intermediate surface and its receipt are kept; the admission
+recomputes the checks with the authority actually recorded in the receipt.
 
-Les producteurs réutilisent les aires rationnelles déjà calculées, sans
-changer les contours ni les décisions. Les [admissions parallèles](../../parts/993-eng-carrier-0001/source/process-skins-20261016/README_parallel_exact_admissions.md)
-relisent les unités dans quatre processus et conservent les résultats de chaque
-unité. Le guide lie ce reçu d’exécution aux six contrôles et aux fichiers remis.
+The producers reuse the rational areas already computed, without
+changing the contours or the decisions. The [parallel admissions](../../parts/993-eng-carrier-0001/source/process-skins-20261016/README_parallel_exact_admissions.md)
+re-read the units in four processes and keep each unit's
+results. The guide links this execution receipt to the six checks and the delivered files.
 
-La page mécanique du guide conserve les dépassements du diagnostic idéal
-900 MPa sous K1000, la portée de la sensibilité publiée Grade 23 ELI et les
-verdicts distincts du cycle : bilan Piola admis, diagnostic ENER refusé sur
-l’ensemble des états. Les six références sont copiées dans le dossier. Leur
-attribution exige exactement le même maillage discret et le même jeu linéaire
-de charges et d’appuis ; elle n’assimile pas deux exports STEP distincts.
+The guide's mechanics page keeps the exceedances of the ideal
+900 MPa diagnostic under K1000, the scope of the published Grade 23 ELI sensitivity and the
+distinct verdicts of the cycle: Piola balance admitted, ENER diagnostic refused over
+all states. The six references are copied into the dossier. Their
+attribution requires exactly the same discrete mesh and the same linear set
+of loads and supports; it does not treat two distinct STEP exports as equivalent.
 
 ```sh
 python3 scripts/run_part_workflow_v2.py run manufacturing/workflows/993-carrier-lpbf-v6.json \
@@ -115,35 +115,35 @@ python3 scripts/run_part_workflow_v2.py run manufacturing/workflows/993-carrier-
   --output work/part-workflow/NOUVEAU_PASSAGE
 ```
 
-Le runtime v2 utilise l’environnement PySLM corrigé `pyslm-coverage-011`.
-Le manifeste natif séparé décrit les préfixes Linux disponibles ; sa structure,
-les installateurs et les témoins sont décrits dans la
-[procédure native par région](../../parts/993-eng-carrier-0001/source/process-skins-20261016/README-native-case.md).
-Le dossier de sortie doit être neuf. Une modification des entrées impose sa
-nouvelle révision ; la réparation native gauche est liée aux tableaux sources
-gelés et refuse toute autre géométrie.
+The v2 runtime uses the corrected PySLM environment `pyslm-coverage-011`.
+The separate native manifest describes the available Linux prefixes; its structure,
+the installers and the witnesses are described in the
+[native per-region procedure](../../parts/993-eng-carrier-0001/source/process-skins-20261016/README-native-case.md).
+The output directory must be new. A change of inputs requires a
+new revision; the native left repair is bound to the frozen source arrays
+and refuses any other geometry.
 
-Les environnements déjà prêts se trouvent sous `work/part-workflow/runtimes/` :
+The environments already prepared are under `work/part-workflow/runtimes/`:
 
-| Clé du runtime | Fonction |
+| Runtime key | Function |
 | --- | --- |
-| `cad_python` | CAO, inspection des fixations et maillage volumique |
-| `geometry_python` | Triangulation du STEP et distances exactes à ses surfaces |
-| `mesh_audit_python` | Topologie, intersections libigl et distance inverse, dans un conteneur Linux ARM64 local |
-| `am_python` | Supports, sections, contours, hachures et figures |
-| `pdf_python` | Assemblage du guide HTML/PDF avec ReportLab |
+| `cad_python` | CAD, fastening inspection and volume meshing |
+| `geometry_python` | STEP triangulation and exact distances to its surfaces |
+| `mesh_audit_python` | Topology, libigl intersections and reverse distance, in a local Linux ARM64 container |
+| `am_python` | Supports, sections, contours, hatches and figures |
+| `pdf_python` | HTML/PDF guide assembly with ReportLab |
 
-La [base PDF réinstallable](../../manufacturing/runtimes/pdf/README.md)
-possède son propre lock pour Python 3.12 sur macOS arm64 : ReportLab, Pillow et
-charset-normalizer sont épinglés par version et par empreinte de roue. Elle a
-été installée dans `work/part-workflow/runtimes/pdf-base-001`, puis vérifiée par
-`pip check`, les tests du guide et un PDF synthétique avec image. Après cette
-installation, `pdf_python` peut désigner son `bin/python`. Le guide réel garde
-ses propres contrôles de fichiers, de résultats et de présentation.
+The [reinstallable PDF base](../../manufacturing/runtimes/pdf/README.md)
+has its own lock for Python 3.12 on macOS arm64: ReportLab, Pillow and
+charset-normalizer are pinned by version and wheel digest. It was
+installed in `work/part-workflow/runtimes/pdf-base-001`, then verified by
+`pip check`, the guide tests and a synthetic PDF with an image. After this
+installation, `pdf_python` can point to its `bin/python`. The real guide keeps
+its own checks of files, results and presentation.
 
-Dans un checkout neuf sur macOS ARM64, la base CAO peut être installée sans
-emprunter l'ancien environnement du projet. Les 45 roues de la base exécutée
-sont épinglées par version et SHA-256 :
+In a fresh checkout on macOS ARM64, the CAD base can be installed without
+borrowing the project's old environment. The 45 wheels of the executed base
+are pinned by version and SHA-256:
 
 ```sh
 python3 parts/993-eng-carrier-0001/source/design-20261016/setup_cad_base.py \
@@ -151,16 +151,16 @@ python3 parts/993-eng-carrier-0001/source/design-20261016/setup_cad_base.py \
   --output work/part-workflow/runtimes/cad-base
 ```
 
-Cet installateur refuse les plateformes différentes de macOS ARM64/Python
-3.10, les versions non épinglées et les dossiers déjà présents. Il exécute un
-solide percé dont le volume est comparé à sa formule analytique, puis vérifie
-l'export et le réimport STEP ainsi que l'empreinte du noyau natif. Son reçu et
-les journaux d'installation restent dans le dossier du runtime. Le Python de
-cette base devient `CHEMIN_DU_PYTHON_CAD` ci-dessous.
+This installer refuses platforms other than macOS ARM64/Python
+3.10, unpinned versions and directories already present. It runs a
+drilled solid whose volume is compared with its analytical formula, then checks
+STEP export and reimport as well as the digest of the native kernel. Its receipt and
+the installation logs stay in the runtime directory. The Python of
+this base becomes `CHEMIN_DU_PYTHON_CAD` below.
 
-Pour installer les quatre environnements de calcul, indiquer explicitement
-ce Python CAD et un Python 3.11. Les installateurs refusent d'écraser un dossier
-inconnu ; les réglages locaux ne modifient pas la base.
+To install the four compute environments, state explicitly
+this CAD Python and a Python 3.11. The installers refuse to overwrite an unknown
+directory; local settings do not modify the base.
 
 ```sh
 python3 parts/993-eng-carrier-0001/source/design-20261016/setup_runtime.py \
@@ -176,43 +176,43 @@ CHEMIN_DU_PYTHON_311 parts/993-eng-carrier-0001/source/process-coverage-20261016
   work/part-workflow/runtimes/pyslm-corrected
 ```
 
-Chaque installateur conserve ses versions et sa provenance. Le backend libigl
-utilise la roue Linux officielle : la roue macOS a été essayée, son défaut
-d'import est conservé dans le dossier de travail. CalculiX utilise son image
-locale épinglée, une seule CPU, 6 Gio sans swap et sans réseau. Le lanceur
-supprime uniquement son propre conteneur après les calculs.
+Each installer keeps its versions and provenance. The libigl backend
+uses the official Linux wheel: the macOS wheel was tried, and its import
+defect is kept in the working directory. CalculiX uses its pinned local
+image, a single CPU, 6 GiB without swap and without network. The launcher
+removes only its own container after the computations.
 
-La réinstallation corrigée de PySLM a été exécutée dans un dossier neuf :
-37 versions épinglées, quatre fichiers corrigés conformes et 775 sources et
-binaires de tranchage identiques au cache de pièce. Le
-[reçu](../../parts/993-eng-carrier-0001/source/process-slicing-20261016/pyslm-reinstall-validation.json)
-porte uniquement sur cette installation et le tranchage de pièce ; les
-supports conservent leurs propres admissions.
+The corrected PySLM reinstallation was run in a new directory:
+37 pinned versions, four compliant corrected files and 775 slicing sources and
+binaries identical to the part cache. The
+[receipt](../../parts/993-eng-carrier-0001/source/process-slicing-20261016/pyslm-reinstall-validation.json)
+covers only this installation and the part slicing; the
+supports keep their own admissions.
 
-La construction exacte des volumes de support utilise le worker Linux
-local Kali1. PyMesh conserve les rationnels entre les booléens ; CGAL traite
-l'export en coordonnées flottantes avec une précision déclarée. Ce travail
-revient au Mac avant le calcul des grilles, des peaux et des couches.
+The exact construction of the support volumes uses the local Linux worker
+Kali1. PyMesh keeps rationals between booleans; CGAL handles
+the export in floating-point coordinates with a declared precision. This work
+returns to the Mac before the computation of grids, skins and layers.
 
 ```mermaid
 flowchart LR
-    subgraph Mac["Mac — géométrie et dossier"]
-        CAD["Maître STEP / STL contrôlé"]
-        PART["1 034 couches de pièce / cache audité"]
-        BUILD["Grilles et peaux / trajectoires"]
-        GUIDE["Guide HTML / PDF / fichiers"]
+    subgraph Mac["Mac — geometry and dossier"]
+        CAD["Checked STEP / STL master"]
+        PART["1,034 part layers / audited cache"]
+        BUILD["Grids and skins / paths"]
+        GUIDE["HTML / PDF guide / files"]
     end
-    subgraph Linux["Kali1 — noyaux exacts"]
-        CSG["PyMesh / CGAL : prismes, masque, soustraction"]
-        SNAP["CGAL : arrondi contrôlé et audits"]
+    subgraph Linux["Kali1 — exact kernels"]
+        CSG["PyMesh / CGAL: prisms, mask, subtraction"]
+        SNAP["CGAL: controlled rounding and audits"]
     end
     CAD --> CSG --> SNAP --> BUILD --> GUIDE
     CAD --> PART --> BUILD
 ```
 
-Sur Linux Debian AMD64, le bootstrap CGAL compile dans un préfixe neuf avec
-les archives épinglées et extrait l'en-tête MPFR localement. Il utilise les
-outils de développement déjà présents et un Python d'audit avec libigl 2.6.3 :
+On Linux Debian AMD64, the CGAL bootstrap compiles into a new prefix with
+the pinned archives and extracts the MPFR header locally. It uses the
+development tools already present and an audit Python with libigl 2.6.3:
 
 ```sh
 python3 parts/993-eng-carrier-0001/source/native-cgal-20261016/setup.py \
@@ -222,38 +222,38 @@ python3 parts/993-eng-carrier-0001/source/native-cgal-distance-20261016-v3/setup
   PREFIXE_DISTANCE_NEUF --cgal-runtime PREFIXE_CGAL_NEUF
 ```
 
-Il ne modifie pas les paquets système. Les exécutables, sources, bibliothèques
-et licences sont enregistrés. Les jobs ont leurs propres limites de CPU,
-mémoire et durée ; leurs espaces de travail sont isolés sans réseau. La
-réussite du noyau n'admet pas à elle seule le volume : topologie, intersections,
-fidélité géométrique et identité des données doivent aussi passer. Le second
-exécutable mesure les distances en arithmétique exacte, en conservant les
-triangles d'aire positive et en traitant explicitement les triangles
-collinéaires comme segments ou points.
-La version V3 cherche d'abord un témoin exact dans les triangles de filiation ;
-si ce témoin ne suffit pas, elle utilise l'arbre AABB exact. Elle ne remplace
-pas le contrôle par une distance flottante à une feuille très mince.
+It does not modify system packages. Executables, sources, libraries
+and licences are recorded. Jobs have their own CPU,
+memory and duration limits; their workspaces are isolated without network. The
+kernel's success does not by itself admit the volume: topology, intersections,
+geometric fidelity and data identity must also pass. The second
+executable measures distances in exact arithmetic, keeping
+triangles of positive area and treating collinear triangles explicitly
+as segments or points.
+Version V3 first looks for an exact witness in the lineage triangles;
+if that witness is not enough, it uses the exact AABB tree. It does not replace
+the check with a floating-point distance to a very thin sheet.
 
-Les réinstallations et témoins natifs sont conservés avec leurs reçus :
+The native reinstallations and witnesses are kept with their receipts:
 
-| Outil | Rôle dans la chaîne | Reçu de reproduction |
+| Tool | Role in the chain | Reproduction receipt |
 | --- | --- | --- |
-| PyMesh 0.3 / CSGTree | Booléens avec constructions exactes intermédiaires | [Installation et prismes](../../parts/993-eng-carrier-0001/source/native-pymesh-20261016/reproduction-results.json) |
-| CGAL 6.1.3 | Conversion contrôlée du résultat en coordonnées IEEE | [Installation et témoins de topologie](../../parts/993-eng-carrier-0001/source/native-cgal-20261016/reproduction-results.json) |
-| Distance exacte V3 | Contrôle de la borne de déplacement, dans les deux sens | [Installation et témoins de distance](../../parts/993-eng-carrier-0001/source/native-cgal-distance-20261016-v3/reproduction-results.json) |
-| Cutter local PyMesh | Réduction du coût par une expression booléenne équivalente | [Témoin complet avec audits](../../parts/993-eng-carrier-0001/source/native-pymesh-clip-20261016/reproduction-results.json) |
+| PyMesh 0.3 / CSGTree | Booleans with exact intermediate constructions | [Installation and prisms](../../parts/993-eng-carrier-0001/source/native-pymesh-20261016/reproduction-results.json) |
+| CGAL 6.1.3 | Controlled conversion of the result to IEEE coordinates | [Installation and topology witnesses](../../parts/993-eng-carrier-0001/source/native-cgal-20261016/reproduction-results.json) |
+| Exact distance V3 | Check of the displacement bound, in both directions | [Installation and distance witnesses](../../parts/993-eng-carrier-0001/source/native-cgal-distance-20261016-v3/reproduction-results.json) |
+| Local PyMesh cutter | Cost reduction through an equivalent boolean expression | [Complete witness with audits](../../parts/993-eng-carrier-0001/source/native-pymesh-clip-20261016/reproduction-results.json) |
 
-Ces témoins vérifient les logiciels. Les sept régions réelles de support
-gardent leurs propres reçus et leurs propres verdicts.
-Le [bootstrap Linux consolidé](../../parts/993-eng-carrier-0001/source/native-toolchain-20261016/README.md)
-compose ces installateurs avec son propre environnement d'audit. Son entrée
-PyMesh est l'archive logicielle exacte conservée hors Git ; l'option de copie
-permet de l'inclure dans un paquet autonome. Les installateurs individuels et
-le nouvel environnement d'audit ont été exécutés. Le lancement consolidé
-des cinq installateurs a ensuite été réalisé dans un préfixe neuf :
-[installation complète vérifiée](../../parts/993-eng-carrier-0001/source/native-toolchain-20261016/complete-installation-results.json),
-archive interne de 439 278 729 octets, cinq reçus et 47 fichiers sources
-revérifiés. Il ne relance aucune pièce lors de cette installation.
+These witnesses verify the software. The seven real support regions
+keep their own receipts and their own verdicts.
+The [consolidated Linux bootstrap](../../parts/993-eng-carrier-0001/source/native-toolchain-20261016/README.md)
+composes these installers with its own audit environment. Its PyMesh
+input is the exact software archive kept outside Git; the copy option
+allows it to be included in a self-contained package. The individual installers and
+the new audit environment have been run. The consolidated launch
+of the five installers was then carried out in a new prefix:
+[complete installation verified](../../parts/993-eng-carrier-0001/source/native-toolchain-20261016/complete-installation-results.json),
+internal archive of 439,278,729 bytes, five receipts and 47 source files
+re-verified. It reruns no part during this installation.
 
 ```sh
 python3 scripts/run_part_workflow.py run manufacturing/workflows/993-carrier.json \
@@ -263,35 +263,35 @@ python3 scripts/run_part_workflow.py run manufacturing/workflows/993-carrier.jso
 python3 scripts/run_part_workflow.py verify work/part-workflow/run-001
 ```
 
-Le premier passage `run-001` est conservé **refusé à la préparation LPBF** :
-une région de support omise et un défaut de correspondance des sommets ont
-été identifiés dans PySLM. Ses 526 couches calculées restent inspectables.
-Les versions corrigées sont préparées séparément ; cette commande identifie
-le témoin initial, et ne promet pas un dossier d'impression admis.
+The first run `run-001` is kept **refused at LPBF preparation**:
+an omitted support region and a vertex correspondence defect were
+identified in PySLM. Its 526 computed layers remain inspectable.
+The corrected versions are prepared separately; this command identifies
+the initial witness, and does not promise an admitted print dossier.
 
-Le dossier de sortie doit être neuf. Les étapes s'exécutent dans l'ordre,
-avec leurs journaux séparés. Un échec conserve les sorties et s'arrête à l'étape
-concernée ; la correction donne lieu à un nouveau passage. L'état `executed`
-signifie que les commandes et sorties déclarées sont présentes : les rapports
-de calcul conservent leurs propres verdicts.
+The output directory must be new. The steps run in order,
+with their separate logs. A failure keeps the outputs and stops at the step
+concerned; the correction gives rise to a new run. The state `executed`
+means that the declared commands and outputs are present: the computation
+reports keep their own verdicts.
 
-Pour le pilote 993, conserver les sorties sous `work/` : la fabrication du
-guide reprend les fichiers de ce passage et vérifie que le STEP, la surface,
-les calculs et le tranchage portent les mêmes identités. Le plafond de masse
-autorisé par Maxime le 16 octobre est **1,30 kg**. Les essais antérieurs sous
-1,20 et 1,23 kg restent conservés avec leurs propres critères et leurs refus.
+For the 993 pilot, keep the outputs under `work/`: building the
+guide reuses the files of this run and checks that the STEP, the surface,
+the computations and the slicing carry the same identities. The mass ceiling
+authorised by Maxime on 16 October is **1.30 kg**. The earlier trials under
+1.20 and 1.23 kg remain kept with their own criteria and their refusals.
 
-Les recettes exécutables appartiennent au dépôt. Une image ou un fichier de
-mesures reçu en entrée ne peut pas ajouter une commande à exécuter.
+Executable recipes belong to the repository. An image or a measurement file
+received as input cannot add a command to run.
 
-## Réutiliser les étapes déjà calculées
+## Reusing steps already computed
 
-La correction des supports ne demande pas de refaire la mécanique si le STEP
-et son STL restent exactement identiques. L'
-[assembleur du pilote](../../scripts/assemble_carrier_workflow.py) vérifie les
-douze premières étapes du passage source et copie leurs fichiers sans les
-modifier. Il les réunit avec une préparation LPBF complète, ses six contrôles
-admis et les audits de toutes les trajectoires de pièce et de supports.
+Correcting the supports does not require redoing the mechanics if the STEP
+and its STL remain exactly identical. The
+[pilot assembler](../../scripts/assemble_carrier_workflow.py) verifies the
+first twelve steps of the source run and copies their files without
+modifying them. It combines them with a complete LPBF preparation, its six admitted
+checks and the audits of all part and support paths.
 
 ```sh
 python3 scripts/assemble_carrier_workflow.py assemble \
@@ -305,55 +305,55 @@ python3 scripts/assemble_carrier_workflow.py verify \
   work/part-workflow/ASSEMBLAGE_NEUF
 ```
 
-Ces chemins désignent les sorties admises à fournir lorsque le tranchage est
-terminé ; ils ne désignent pas des résultats déjà présents. Le reçu
-`assembly.json` conserve le statut du passage initial, les étapes importées,
-les provenances et toutes les empreintes copiées. Il déclare explicitement
-la réutilisation des calculs. Le passage initial reste refusé et n'est jamais
-réécrit en exécution réussie. Les fichiers de l'assemblage restent vérifiables
-après déplacement ou archivage du dossier source.
+These paths designate the admitted outputs to supply once slicing is
+finished; they do not designate results already present. The
+`assembly.json` receipt keeps the status of the initial run, the imported steps,
+the provenances and all the copied digests. It explicitly declares
+the reuse of the computations. The initial run remains refused and is never
+rewritten as a successful execution. The assembly files remain verifiable
+after the source directory is moved or archived.
 
-Le [cache des couches de pièce](../../parts/993-eng-carrier-0001/source/process-cache-20261016/part_cache.py)
-applique la même règle pendant le travail : identité du STL, pose et tableaux
-du maillage, paramètres de tranchage, versions et empreintes des dépendances,
-ordre de tous les plans de coupe et empreintes des fichiers doivent correspondre.
-Le cache contient exclusivement les sections et trajectoires de la pièce ; les
-supports sont calculés et contrôlés à part. Un cache partiel est refusé.
+The [part layer cache](../../parts/993-eng-carrier-0001/source/process-cache-20261016/part_cache.py)
+applies the same rule during the work: STL identity, pose and mesh
+arrays, slicing parameters, dependency versions and digests,
+order of all cutting planes and file digests must match.
+The cache contains only the part's sections and paths; the
+supports are computed and checked separately. A partial cache is refused.
 
-## Le dossier du mécanicien
+## The mechanic's dossier
 
-La remise présente d'abord la pièce et sa révision, puis les dimensions de
-travail, la masse, les points de fixation et les résultats utiles. Les détails
-logiciels sont disponibles dans un second niveau de lecture.
+The delivery first presents the part and its revision, then the working
+dimensions, the mass, the attachment points and the useful results. The software
+details are available at a second level of reading.
 
-La fiche de retour de pose recueille la fixation concernée, la cote prévue et
-observée, les contacts ou jeux, les modifications demandées, les conditions de
-fonctionnement et les photos. Ces retours rejoignent la révision suivante sans
-effacer le dossier précédent.
+The fitting feedback form collects the fastening concerned, the planned and
+observed dimension, contacts or clearances, requested changes, operating
+conditions and photos. This feedback joins the next revision without
+erasing the previous dossier.
 
-## Reproduire le guide
+## Reproducing the guide
 
-Le [générateur](../../scripts/build_part_workflow_guide.py) produit le parcours
-interactif hors ligne et son PDF à partir d'une description complète. La
-dernière étape de la recette renseigne le modèle de description avec les
-résultats et fichiers admis du passage. Le modèle vide de
-`manufacturing/workflows/` n'est pas une description prête à rendre.
+The [generator](../../scripts/build_part_workflow_guide.py) produces the offline
+interactive walkthrough and its PDF from a complete description. The
+last step of the recipe fills in the description template with the
+admitted results and files of the run. The empty template in
+`manufacturing/workflows/` is not a description ready to render.
 
-Pour refaire uniquement la présentation d'un passage admis, utiliser son
-`guide-description.json` avec le Python indiqué par la clé `pdf_python` du
-runtime. Cet interpréteur doit fournir ReportLab ; il est déjà disponible
-dans les dépendances du bureau Codex pour le runtime local.
+To redo only the presentation of an admitted run, use its
+`guide-description.json` with the Python given by the runtime's `pdf_python`
+key. This interpreter must provide ReportLab; it is already available
+in the Codex desktop dependencies for the local runtime.
 
 ```sh
 CHEMIN_DU_PYTHON_PDF scripts/build_part_workflow_guide.py \
   work/PASSAGE_ADMIS/guide-description.json work/part-workflow/guide-rebuilt
 ```
 
-Le générateur copie uniquement les fichiers explicitement choisis et en
-calcule les empreintes. Les entrées privées restent dans le dossier de travail.
+The generator copies only the explicitly chosen files and computes
+their digests. Private inputs stay in the working directory.
 
-Les guides affichent les résultats réellement obtenus par la révision retenue.
-Une image de supports vient du maillage de supports ; une image de contrainte
-vient du jeu de calcul correspondant. Aucun rendu ne remplace un résultat.
+The guides show the results actually obtained by the adopted revision.
+A support image comes from the support mesh; a stress image
+comes from the corresponding load case. No render replaces a result.
 
-La [planche 24 des champs C1](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-fields-20261017/README.md) représente les deux calculs clos sur appuis rigides et K1000, avec leurs pics globaux et une déformée à ×1. Son rejeu du dessin dépend de la capsule native C1 et reproduit les trois formats à l’octet ; il ne relance pas de solveur et ne démontre pas une convergence des contraintes.
+[Plate 24 of the C1 fields](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-fields-20261017/README.md) shows the two closed computations on rigid supports and K1000, with their global peaks and a deformed shape at ×1. Its drawing replay depends on the native C1 capsule and reproduces the three formats byte for byte; it does not rerun a solver and does not demonstrate stress convergence.

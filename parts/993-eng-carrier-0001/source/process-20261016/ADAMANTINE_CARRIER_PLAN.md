@@ -1,107 +1,107 @@
-# Déformation d'impression : contrat de calcul du berceau
+# Print distortion: carrier calculation contract
 
-## Contrôle exécuté le 16 octobre 2026
+## Check executed on 16 October 2026
 
-Le binaire corrigé existant et son manifest ont été vérifiés sur Kali1 :
+The existing patched binary and its manifest were verified on Kali1:
 `e7637a1a3729f82c0b11a9a1864fd96b7fbdee9408ede0aad5b59e573699b959`
-et `642a7f8c7928a2bf8171162f4928a02c093fc0677956c3c7023d37a12a1b128f`.
-Le code `Geometry.cc` est identique à la révision
+and `642a7f8c7928a2bf8171162f4928a02c093fc0677956c3c7023d37a12a1b128f`.
+The `Geometry.cc` code is identical to revision
 `3990489a10902912889617856f6e2e097d52a412`, SHA-256
 `d58cab9a1220a61324dff91aabdc639982238cbd62642b0cb5b9e72a23101b47`.
 
-Un petit appel natif à `Geometry::is_within_stl`, lié à l'objet déjà compilé,
-a été configuré puis a échoué à la compilation en 2,75 s : cette méthode
-n'existe pas dans ce runtime. Le paquet installé est **ArborX 1.5** ; le code
-requiert `ARBORX_VERSION_MAJOR >= 2` pour le filtrage STL. L'objet compilé
-contient les lecteurs STL mais aucun symbole `is_within_stl`.
+A small native call to `Geometry::is_within_stl`, linked against the already
+compiled object, was configured and then failed to compile in 2.75 s: this method
+does not exist in this runtime. The installed package is **ArborX 1.5**; the code
+requires `ARBORX_VERSION_MAJOR >= 2` for STL filtering. The compiled object
+contains the STL readers but no `is_within_stl` symbol.
 
-Les sources du contrôle sont `adamantine_occupation.cc` et
-`occupation-CMakeLists.txt`. Les entrées, journaux et empreintes sont conservés
-dans `work/carrier-process-20261016/adamantine-occupation-001/`.
-L'entrée géométrique du contrôle est le V6f remeshing Gmsh006, SHA-256
+The sources of the check are `adamantine_occupation.cc` and
+`occupation-CMakeLists.txt`. The inputs, logs and digests are kept
+in `work/carrier-process-20261016/adamantine-occupation-001/`.
+The geometric input of the check is the V6f Gmsh006 remeshing, SHA-256
 `8fe38c5069bc20831257dced425d91770ad76cfd4109276998a21cf60b7ecfb2`,
-à plat, tourné de 45° dans le plan, avec 10 mm sous la pièce. Il s'agit du
-témoin géométrique de référence, pas de la nouvelle révision mécanique.
-**Aucune occupation ni déformation du berceau n'a été calculée par ce contrôle ;
-zéro pas thermique et zéro résolution mécanique.**
+flat, rotated 45° in plane, with 10 mm under the part. It is the
+reference geometric witness, not the new mechanical revision.
+**No carrier occupation or distortion was calculated by this check;
+zero thermal steps and zero mechanical solves.**
 
-## Limites concrètes de la voie STL
+## Concrete limits of the STL route
 
-Le [constructeur Geometry](https://github.com/adamantine-sim/adamantine/blob/3990489a10902912889617856f6e2e097d52a412/source/Geometry.cc)
-génère une boîte d'hexaèdres autour du STL. Avec ArborX 2, le prédicat refuse
-chaque cellule coupant la surface puis teste les cellules entièrement
-intérieures. C'est une approximation intérieure ; les parois minces
-rétrécissent ou disparaissent si le maillage est grossier. Avec ArborX 1.5,
-la branche de [sélection pour activation](https://github.com/adamantine-sim/adamantine/blob/3990489a10902912889617856f6e2e097d52a412/source/material_deposition.cc)
-ne filtre pas la forme STL. Lire un STL sans erreur ne prouve donc pas que la
-matière activée représente le berceau.
+The [Geometry constructor](https://github.com/adamantine-sim/adamantine/blob/3990489a10902912889617856f6e2e097d52a412/source/Geometry.cc)
+generates a box of hexahedra around the STL. With ArborX 2, the predicate rejects
+every cell cutting the surface and then tests the cells entirely
+inside. It is an inner approximation; thin walls
+shrink or disappear if the mesh is coarse. With ArborX 1.5,
+the [activation selection](https://github.com/adamantine-sim/adamantine/blob/3990489a10902912889617856f6e2e097d52a412/source/material_deposition.cc)
+branch does not filter the STL shape. Reading an STL without error therefore does not prove that the
+activated material represents the carrier.
 
-L'autre entrée est `geometry.import_mesh true`, `mesh_format gmsh`,
-`mesh_file ...`, `units.mesh millimeter`. Le moteur utilise des éléments
-`FE_Q` hexaédriques : le C3D10 tétraédrique de CalculiX n'est pas interchangeable.
-Un import HEX conforme ou un HEX dont l'occupation a déjà été auditée évite le
-filtrage STL manquant, sans résoudre à lui seul les autres limites du modèle.
+The other input is `geometry.import_mesh true`, `mesh_format gmsh`,
+`mesh_file ...`, `units.mesh millimeter`. The engine uses hexahedral `FE_Q`
+elements: CalculiX's tetrahedral C3D10 is not interchangeable.
+A conforming HEX import, or a HEX whose occupation has already been audited, avoids the
+missing STL filtering, without by itself resolving the other limits of the model.
 
-Le [raffinement natif](https://github.com/adamantine-sim/adamantine/blob/3990489a10902912889617856f6e2e097d52a412/application/adamantine.hh)
-raffine près de la trajectoire des sources jusqu'à `n_refinements` ;
-`coarsen_after_beam` et `time_steps_between_refinement` pilotent le transfert.
-Il ne garantit pas trois éléments à travers une paroi de 1,5 mm ni la
-conservation de sa géométrie. L'activation sélectionne les cellules intersectant
-une boîte de dépôt : une cellule haute peut être activée dès la première
-couche de 60 µm qui la touche.
+The [native refinement](https://github.com/adamantine-sim/adamantine/blob/3990489a10902912889617856f6e2e097d52a412/application/adamantine.hh)
+refines near the source trajectory up to `n_refinements`;
+`coarsen_after_beam` and `time_steps_between_refinement` drive the transfer.
+It guarantees neither three elements across a 1.5 mm wall nor the
+preservation of its geometry. Activation selects the cells intersecting
+a deposition box: a tall cell can be activated as soon as the first
+60 µm layer touches it.
 
-À titre de budget, pour le témoin seul de 268 852 mm³ et sa boîte
-451,134 × 451,134 × 52 mm, les nombres ci-dessous sont des **estimations**
-`volume/h³` et des comptes de boîte structurée, pas des maillages exécutés.
-Ils excluent la plaque et les supports.
+As a budget, for the witness alone of 268,852 mm³ and its
+451.134 × 451.134 × 52 mm box, the numbers below are `volume/h³`
+**estimates** and structured-box counts, not executed meshes.
+They exclude the build plate and the supports.
 
-| Taille isotrope h | Cellules de matière estimées | Cellules de boîte |
+| Isotropic size h | Estimated material cells | Box cells |
 | --- | ---: | ---: |
-| 0,5 mm | 2 150 816 | 84 802 536 |
-| 0,25 mm | 17 206 532 | 677 669 200 |
-| 0,06 mm | 1 244 685 456 | 49 016 157 987 |
+| 0.5 mm | 2,150,816 | 84,802,536 |
+| 0.25 mm | 17,206,532 | 677,669,200 |
+| 0.06 mm | 1,244,685,456 | 49,016,157,987 |
 
-## Réponse mécanique et séquence à préparer
+## Mechanical response and sequence to prepare
 
-Le profil installé limite les propriétés à des constantes, une seule matière,
-la mémoire CPU et la 3D. Le [solveur mécanique](https://github.com/adamantine-sim/adamantine/blob/3990489a10902912889617856f6e2e097d52a412/source/MechanicalPhysics.cc)
-résout le déplacement élastique par gradient conjugué, puis applique un retour
-radial J2 aux contraintes. Le [second membre](https://github.com/adamantine-sim/adamantine/blob/3990489a10902912889617856f6e2e097d52a412/source/MechanicalOperator.cc)
-contient les dilatations thermiques et les forces ; le retour plastique ne
-rééquilibre pas ce déplacement par une itération globale. Ce code ne doit donc
-pas être assimilé à une résolution globale élastoplastique convergée du
-retrait résiduel. Le contrat examiné ne fournit pas non plus une étape de
-libération de plaque/supports prête à l'emploi.
+The installed profile limits properties to constants, a single material,
+CPU memory and 3D. The [mechanical solver](https://github.com/adamantine-sim/adamantine/blob/3990489a10902912889617856f6e2e097d52a412/source/MechanicalPhysics.cc)
+solves the elastic displacement by conjugate gradient, then applies a J2 radial
+return to the stresses. The [right-hand side](https://github.com/adamantine-sim/adamantine/blob/3990489a10902912889617856f6e2e097d52a412/source/MechanicalOperator.cc)
+contains the thermal expansions and the forces; the plastic return does not
+re-equilibrate this displacement through a global iteration. This code must therefore
+not be equated with a converged global elastoplastic solution of
+residual shrinkage. Nor does the examined contract provide a ready-to-use
+plate/support release step.
 
-La voie la plus courte du pilote reste **CalculiX existant**, avec le STEP et
-le nouveau maillage, des groupes de dépôt explicitement distingués des couches
-de 60 µm, une déformation inhérente bornée et la libération des contraintes
-dans le même état de calcul. Une voie thermique puis élastoplastique réclame
-en plus les champs thermiques et la loi Ti64 en température. La publication
-[OpenAM-SimCCX](https://doi.org/10.3390/ma18214990) décrit une telle chaîne
-CalculiX ; ses données sont dans la collection auteur
+The shortest route for the pilot remains **existing CalculiX**, with the STEP and
+the new mesh, deposition groups explicitly distinguished from the 60 µm
+layers, a bounded inherent strain and the release of stresses
+in the same calculation state. A thermal then elastoplastic route additionally requires
+the thermal fields and the temperature-dependent Ti64 law. The publication
+[OpenAM-SimCCX](https://doi.org/10.3390/ma18214990) describes such a
+CalculiX chain; its data are in the author collection
 [10.6084/m9.figshare.c.8086513](https://doi.org/10.6084/m9.figshare.c.8086513).
-Elle n'est pas un nouveau runtime installé ni un résultat pour ce berceau.
+It is neither a newly installed runtime nor a result for this carrier.
 
-Avant une prédiction complète, figer puis vérifier :
+Before a complete prediction, freeze then verify:
 
-1. Géométrie de matière et de supports volumiques, plaque et interfaces. Les
-   surfaces ouvertes PySLM ne donnent pas directement leur masse ou leur
-   conductance volumique.
-2. Au moins trois éléments à travers les parois de 1,5 mm comme point de
-   départ, puis raffinement indépendant ; ce nombre seul n'est pas un critère
-   de convergence. Contrôler aussi volume, connexité, alésages et appuis.
-3. Bornes verticales de chaque élément et couche/groupe d'activation, avec
-   erreur d'activation publiée. Une comparaison de groupes sur un maillage
-   identique ne vaut pas raffinement spatial.
-4. Refroidissement, puis suppression des supports et libération de plaque en
-   conservant l'état mécanique. Mesurer les déplacements après recalage sur
-   les mêmes appuis et la même procédure que le calcul de référence.
-5. Variation spatiale et variation des groupes/du pas de temps séparées,
-   avec le seuil de convergence du protocole figé avant les calculs. Conserver
-   la règle de rejet existante à 10 % pour la sensibilité d'activation ;
-   aucune valeur issue d'un cas non convergé ne devient une déformation admise.
+1. Geometry of the material and of the volumetric supports, build plate and interfaces. The
+   open PySLM surfaces do not directly give their mass or their
+   volumetric conductance.
+2. At least three elements across the 1.5 mm walls as a starting
+   point, then independent refinement; this number alone is not a convergence
+   criterion. Also check volume, connectivity, bores and supports.
+3. Vertical bounds of each element and activation layer/group, with
+   published activation error. A comparison of groups on an identical mesh
+   is not spatial refinement.
+4. Cooling, then support removal and plate release while
+   preserving the mechanical state. Measure displacements after registration on
+   the same supports and the same procedure as the reference calculation.
+5. Spatial variation and group/time-step variation kept separate,
+   with the protocol's convergence threshold frozen before the calculations. Keep
+   the existing 10 % rejection rule for activation sensitivity;
+   no value from a non-converged case becomes an accepted distortion.
 
-Cette étude n'a lancé ni nouvelle installation lourde ni calcul global
-thermomécanique insuffisamment résolu. L'ajout d'ArborX 2 seul ne suffirait pas
-à transformer le profil actuel en prédicteur complet de retrait résiduel.
+This study launched neither a new heavy installation nor an insufficiently resolved
+global thermomechanical calculation. Adding ArborX 2 alone would not be enough
+to turn the current profile into a complete predictor of residual shrinkage.

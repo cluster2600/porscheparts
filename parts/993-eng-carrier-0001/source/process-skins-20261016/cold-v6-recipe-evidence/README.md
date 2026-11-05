@@ -1,23 +1,23 @@
-# Revue de la recette froide v6
+# Review of the cold v6 recipe
 
-Ces quatre JSON sont des copies exactes des reçus conservés dans
-`work/part-workflow/cold-v6-recipe-review-001/`. Ils décrivent les commandes,
-leurs dépendances et leurs identités ; ils ne constituent pas un rejeu complet
-de la pièce. Les références aux scripts ponctuels et journaux du dossier de
-travail restent des références à cette exécution, pas des fichiers fournis ici.
+These four JSON files are exact copies of the receipts kept in
+`work/part-workflow/cold-v6-recipe-review-001/`. They describe the commands,
+their dependencies and their identities; they are not a full replay
+of the part. References to one-off scripts and logs in the working
+directory remain references to that run, not files supplied here.
 
-- [Bilan](assessment.json) : 37 étapes, 293 empreintes et les 285 anciennes conservées.
-- [Commandes](argv-results.json) : dix commandes effectivement parsées ; 27 contrats repris après identité stricte de leurs objets, sources et runtime.
-- [Dépendances](closure-results.json) : nouvelles dépendances couvertes, snapshots des générateurs, fichiers bootstrap et absence de collision de sorties.
-- [Différence exacte](exact-delta.json) : huit sources ajoutées, douze premières étapes inchangées, neuf budgets de 14 400 s et nouveau reçu d’exécution des admissions déclaré.
+- [Assessment](assessment.json): 37 steps, 293 digests, with the 285 old ones kept.
+- [Commands](argv-results.json): ten commands actually parsed; 27 contracts reused after strict identity of their objects, sources and runtime.
+- [Dependencies](closure-results.json): new dependencies covered, generator snapshots, bootstrap files and no output collisions.
+- [Exact difference](exact-delta.json): eight sources added, first twelve steps unchanged, nine budgets of 14,400 s and a new admissions execution receipt declared.
 
-Le lanceur v2 change seulement sa borne de durée et le texte correspondant,
-de 3 600 à 14 400 s. Les contrôles de chemins, d’empreintes, de journaux et
-d’arrêt du groupe de processus restent identiques. Les nouvelles générations
-utilisent les producteurs v7, puis le préparateur et le guide v6.
+Launcher v2 changes only its duration bound and the corresponding text,
+from 3,600 to 14,400 s. The checks on paths, digests, logs and
+process-group termination remain identical. The new generations
+use the v7 producers, then the v6 preparer and guide.
 
-La campagne en cours garde ses véritables versions productrices antérieures
-et son extension de ressources distincte. Ni les checkpoints ni les anciens
-refus ne sont réétiquetés par cette recette. Les sept régions, les six
-admissions et les deux audits de trajectoires doivent être réussis sur les
-fichiers effectivement remis avant de produire le guide final.
+The ongoing campaign keeps its true earlier producer versions
+and its separate resource extension. Neither the checkpoints nor the old
+rejections are relabelled by this recipe. The seven regions, the six
+admissions and the two trajectory audits must pass on the
+files actually delivered before the final guide is produced.

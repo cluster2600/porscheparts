@@ -1,127 +1,127 @@
-# 935 — correction de la pointe de la pale 03
+# 935 — correction of the blade 03 tip
 
-La pointe auparavant prolongée à profil constant utilise maintenant ses
-propres contours acquis. Les arcs observés des sections incomplètes sont
-conservés ; seules leurs lacunes sont fermées par des cordes locales.
-**L'écart RMS scan → candidat passe de 1,174 à 0,181 unité source** sur la
-zone contrôlée. Cette correction concerne une pale, pas l'ensemble des
-interfaces historiques ni les huit autres pointes.
+The tip previously extended at constant profile now uses its own
+acquired contours. The observed arcs of the incomplete sections are
+kept; only their gaps are closed by local chords.
+**The scan → candidate RMS deviation falls from 1.174 to 0.181 source units** over the
+inspected zone. This correction concerns one blade, not the whole set of
+historical interfaces nor the other eight tips.
 
-Le [reçu numérique](tip-correction-20261013.json) contient les empreintes,
-contrôles et résultats. Géométries, coupes, cartes d'écarts, images, cas,
-champs et essais rejetés restent dans l'[archive privée](https://github.com/cluster2600/porscheparts-935-private/releases/tag/tip-correction-20261013).
-Le calcul tourne sur le Mac : PicoGK natif `osx-arm64`, Gmsh dans Docker
-local en émulation amd64, CalculiX natif Linux aarch64 dans Docker local.
-Aucune location Vast et aucune géométrie 993/917 ne sont utilisées.
+The [numerical receipt](tip-correction-20261013.json) contains the digests,
+checks and results. Geometries, sections, deviation maps, images, cases,
+fields and rejected trials stay in the [private archive](https://github.com/cluster2600/porscheparts-935-private/releases/tag/tip-correction-20261013).
+The computation runs on the Mac: native PicoGK `osx-arm64`, Gmsh in local Docker
+under amd64 emulation, native Linux aarch64 CalculiX in local Docker.
+No Vast rental and no 993/917 geometry are used.
 
-## Pourquoi corriger cette zone
+## Why correct this zone
 
-Le maximum de déplacement des trois calculs précédents se trouvait près
-de la pointe extrapolée, au-delà du dernier profil acquis à la station 122.
-L'association à la pale 03 était angulaire, sans segmentation exacte du
-champ mécanique. Ce signal justifie une inspection du scan ; il ne justifie
-pas d'épaissir une pale pour faire baisser artificiellement le déplacement.
+The displacement maximum of the three previous computations lay near
+the extrapolated tip, beyond the last acquired profile at station 122.
+Its association with blade 03 was angular, without exact segmentation of the
+mechanical field. This signal justifies an inspection of the scan; it does not justify
+thickening a blade to lower the displacement artificially.
 
-La segmentation utilise les composantes connexes du scan au-delà du rayon
-94 unités source. Neuf composantes significatives sont identifiées. Leurs
-phases sont comparées à celles des profils existants ; seule la composante
-correspondant à la pale 03 fournit les nouvelles coupes.
+The segmentation uses the connected components of the scan beyond radius
+94 source units. Nine significant components are identified. Their
+phases are compared with those of the existing profiles; only the component
+corresponding to blade 03 supplies the new sections.
 
-Deux contours fermés sont retrouvés aux stations 134 et 136. Le sommet
-observé projeté sur l'axe radial atteint 136,410. Une coupe fermée à
-136,160 laisse une garde de 0,25 unité source. **Sa fermeture terminale
-reste artificielle**, et cette garde n'est pas une tolérance d'usinage.
-Les noms des fichiers ne fixent pas les unités ; tous les résultats en mm
-supposent encore 1 mm par unité source.
+Two closed contours are recovered at stations 134 and 136. The observed
+apex projected on the radial axis reaches 136.410. A closed section at
+136.160 leaves a guard of 0.25 source unit. **Its terminal closure
+remains artificial**, and this guard is not a machining tolerance.
+File names do not fix the units; all results in mm
+still assume 1 mm per source unit.
 
-## Réparation limitée et essai rejeté
+## Limited repair and rejected trial
 
-Un premier essai interpolait les contours 122 et 134 aux stations
-124…132. Sa médiane était meilleure, mais son RMS scan → candidat montait
-à 1,978 unité et son maximum à 9,009 : cette interpolation coupait une
-zone encore observée. Le candidat, ses sources et ses trois calculs sont
-conservés comme essai rejeté ; ils ne sont pas la correction retenue.
+A first trial interpolated contours 122 and 134 at stations
+124…132. Its median was better, but its scan → candidate RMS rose
+to 1.978 units and its maximum to 9.009: this interpolation cut through a
+zone that is still observed. The candidate, its sources and its three computations are
+kept as a rejected trial; they are not the retained correction.
 
-La correction retenue conserve tous les points d'extrémité des segments
-acquis des cinq coupes ouvertes : 124, 126, 128, 130 et 132. Les sept liens
-manquants mesurent 0,171 à 8,709 unités source et restent bornés par une
-limite explicite de 9. Des points supplémentaires sur chaque corde évitent
-qu'une spline libre courbe la lacune. Le lissage conserve le paramètre
-antérieur de 0,025 et les 128 points par profil. Les coupes fermées ne
-reçoivent aucun lien ajouté. Les profils sont enregistrés cycliquement
-entre stations de cette même pale.
+The retained correction keeps all the end points of the acquired segments
+of the five open sections: 124, 126, 128, 130 and 132. The seven missing
+links measure 0.171 to 8.709 source units and remain bounded by an
+explicit limit of 9. Additional points on each chord prevent
+a free spline from curving the gap. Smoothing keeps the earlier
+parameter of 0.025 and the 128 points per profile. The closed sections
+receive no added link. The profiles are registered cyclically
+between stations of this same blade.
 
-La provenance distingue les contours fermés acquis, les arcs acquis avec
-cordes de réparation et la fermeture terminale artificielle. Une corde
-n'est pas une surface mesurée. L'interpolation entre sections reste une
-reconstruction ; le scan d'origine n'est jamais modifié.
+Provenance distinguishes acquired closed contours, acquired arcs with
+repair chords, and the artificial terminal closure. A chord
+is not a measured surface. Interpolation between sections remains a
+reconstruction; the original scan is never modified.
 
-Les huit autres pales et tous les profils antérieurs de la pale 03 jusqu'à
-122 sont conservés exactement. Un audit indépendant des STL à 0,6 compare
-les triangles dont les trois sommets se projettent avant la station 120 :
-**1 294 915 triangles ont exactement les mêmes coordonnées et orientations**.
-Cette garde locale ne constitue pas un audit global d'auto-intersections.
+The other eight blades and all earlier profiles of blade 03 up to
+122 are kept exactly. An independent audit of the 0.6 STLs compares
+the triangles whose three vertices project before station 120:
+**1,294,915 triangles have exactly the same coordinates and orientations**.
+This local guard is not a global self-intersection audit.
 
-## Géométrie et écarts
+## Geometry and deviations
 
-PicoGK construit les profils, le rotor et les champs aux résolutions
-supposées 1,2, 0,6 et 0,3 mm. Les trois STL ont une composante, sont fermés,
-orientés de façon cohérente et ne contiennent aucune face d'aire nulle.
-Entre les deux derniers : volume +0,0724 %, variation maximale des inerties
-principales 0,1185 %. Le seuil numérique de 1 % est satisfait pour ces
-grandeurs ; il ne qualifie pas l'échelle ni les dimensions historiques.
+PicoGK builds the profiles, the rotor and the fields at assumed resolutions
+1.2, 0.6 and 0.3 mm. The three STLs have one component, are closed,
+consistently oriented and contain no zero-area face.
+Between the last two: volume +0.0724 %, maximum variation of the principal
+inertias 0.1185 %. The 1 % numerical threshold is met for these
+quantities; it does not qualify the scale or the historical dimensions.
 
-La comparaison utilise 6 000 points indépendants, tirés selon l'aire des
-triangles, et la distance aux triangles du candidat. La zone observée est
-la composante de la pale 03 dont tous les sommets se projettent au-delà de
-124. Les mêmes points et graines sont utilisés avant/après.
+The comparison uses 6,000 independent points, drawn by triangle
+area, and the distance to the candidate's triangles. The observed zone is
+the blade 03 component whose vertices all project beyond
+124. The same points and seeds are used before/after.
 
-| Direction et indicateur, en unités source | Ancienne pointe | Correction |
+| Direction and indicator, in source units | Old tip | Correction |
 |---|---:|---:|
-| Scan → candidat, RMS | 1,1745 | 0,1814 |
-| Scan → candidat, médiane | 0,5117 | 0,0284 |
-| Scan → candidat, P95 | 2,8048 | 0,3696 |
-| Scan → candidat, maximum échantillonné | 5,3398 | 2,1017 |
-| Candidat → scan ouvert, RMS | 3,0160 | 0,3385 |
-| Candidat → scan ouvert, P95 | 6,4371 | 0,4417 |
-| Candidat → scan ouvert, maximum échantillonné | 8,1796 | 3,6653 |
+| Scan → candidate, RMS | 1.1745 | 0.1814 |
+| Scan → candidate, median | 0.5117 | 0.0284 |
+| Scan → candidate, P95 | 2.8048 | 0.3696 |
+| Scan → candidate, sampled maximum | 5.3398 | 2.1017 |
+| Candidate → open scan, RMS | 3.0160 | 0.3385 |
+| Candidate → open scan, P95 | 6.4371 | 0.4417 |
+| Candidate → open scan, sampled maximum | 8.1796 | 3.6653 |
 
-La seconde direction inclut les lacunes du scan : elle ne mesure pas
-l'exactitude d'une surface absente. Les extrema restent dans les fichiers
-privés ; aucune tolérance générale n'est déduite du seul RMS. Les vues du
-rotor et de sa pointe ainsi que six sections ont été inspectées visuellement.
+The second direction includes the gaps in the scan: it does not measure
+the accuracy of an absent surface. The extrema stay in the private
+files; no general tolerance is inferred from the RMS alone. Views of the
+rotor and its tip as well as six sections were inspected visually.
 
-## Comparaison mécanique
+## Mechanical comparison
 
-Trois calculs AlSi10Mg à 6 000 tr/min reprennent exactement la loi matière,
-l'encastrement supposé de l'alésage et le chargement centrifuge précédents.
-L'échelle, le procédé et les appuis réels restent non qualifiés. Chaque
-audit couvre tous les nœuds, les huit points d'intégration de chaque C3D8
-et les réactions des nœuds fixés. Les bilans de forces et de moments passent.
+Three AlSi10Mg computations at 6,000 rpm reuse exactly the previous material law,
+the assumed fixed support of the bore and the centrifugal loading.
+The scale, the process and the real supports remain unqualified. Each
+audit covers all nodes, the eight integration points of each C3D8
+and the reactions of the fixed nodes. The force and moment balances pass.
 
-| Pas supposé, mm | Éléments corrigés | Déplacement ancien, mm | Déplacement corrigé, mm | Réduction | Von Mises max. corrigé, MPa |
+| Assumed step, mm | Corrected elements | Old displacement, mm | Corrected displacement, mm | Reduction | Corrected max. von Mises, MPa |
 |---|---:|---:|---:|---:|---:|
-| 1,50 | 131 084 | 0,8156 | 0,5249 | 35,6 % | 144,38 |
-| 1,35 | 177 185 | 0,9410 | 0,6036 | 35,9 % | 188,37 |
-| 1,20 | 244 240 | 1,1604 | 0,7598 | 34,5 % | 197,46 |
+| 1.50 | 131,084 | 0.8156 | 0.5249 | 35.6 % | 144.38 |
+| 1.35 | 177,185 | 0.9410 | 0.6036 | 35.9 % | 188.37 |
+| 1.20 | 244,240 | 1.1604 | 0.7598 | 34.5 % | 197.46 |
 
-La réduction est cohérente à pas identique, mais le déplacement varie encore
-de **25,9 % entre les deux maillages fins** : la convergence mécanique est
-refusée. La contrainte maximale varie de 4,82 %, et le P95 des pics par
-élément hors r = 25 mm de 2,81 %. Ces deux indicateurs ne compensent pas
-l'échec du déplacement. Aucun régime admissible n'est déduit de ces valeurs.
-Les résultats du maillage fin sont aussi exportés comme champs VDB PicoGK
-discrets, avec leurs empreintes et un contrôle de relecture.
+The reduction is consistent at identical step, but the displacement still varies
+by **25.9 % between the two finest meshes**: mechanical convergence is
+refused. The maximum stress varies by 4.82 %, and the P95 of per-element peaks
+outside r = 25 mm by 2.81 %. These two indicators do not offset
+the displacement failure. No admissible speed is inferred from these values.
+The fine-mesh results are also exported as discrete PicoGK VDB fields,
+with their digests and a read-back check.
 
-Sur le maillage fin, le maximum est désormais associé angulairement à la
-pale 02, à la station 128,9, au sein de sa plage acquise. Cette association
-n'est pas une segmentation exacte du champ ; elle ne justifie pas de
-modifier ce profil mesuré pour faire passer le calcul.
+On the fine mesh, the maximum is now associated angularly with
+blade 02, at station 128.9, within its acquired range. This association
+is not an exact segmentation of the field; it does not justify
+modifying this measured profile to make the computation pass.
 
 ## Reproduction
 
-Le [programme de récupération](../../../twins/935-horizontal-cooling-system-f0/source/recover_tip_sections.py)
-prend un cas privé et un dossier de sortie neuf :
+The [recovery program](../../../twins/935-horizontal-cooling-system-f0/source/recover_tip_sections.py)
+takes a private case and a new output directory:
 
 ```sh
 python recover_tip_sections.py tip-local-repair-case.json work/new-tip-sections
@@ -134,21 +134,21 @@ python assess_mac_fea.py work/new-fea work/new-solve work/new-assessment
 dotnet MacStudy935.dll fea-fields fields-case.json work/new-fields
 ```
 
-Les SHA256 sont ceux des arguments immédiatement précédents ; les cas
-fixent et vérifient aussi les empreintes des dépendances. Les sources C#,
-outils de préparation et d'audit précédents restent inchangés. Les cas et
-scripts exécutés sont archivés avec les entrées privées nécessaires. Pour
-le parseur mécanique existant, `log.rotor` est une copie vérifiée de
-`ccx.log`, pas une nouvelle exécution. Les tests ciblés couvrent la
-conservation, la provenance et le rejet des profils invalides.
+Each SHA256 is that of the immediately preceding argument; the cases
+also fix and verify the digests of the dependencies. The C# sources and the
+earlier preparation and audit tools remain unchanged. The executed cases and
+scripts are archived with the necessary private inputs. For
+the existing mechanical parser, `log.rotor` is a verified copy of
+`ccx.log`, not a new run. The targeted tests cover
+preservation, provenance and the rejection of invalid profiles.
 
-## Suite de la qualification
+## Next steps in qualification
 
-La correction ne fournit ni le serrage réel du moyeu, ni les interfaces
-de l'arbre, ni les conditions thermiques et aérodynamiques de la 935.
-Les huit autres pointes extrapolées doivent être inspectées avec la même
-discipline. Le prochain lot peut ensuite remplacer l'encastrement supposé
-de l'alésage par un appui documenté et reprendre la convergence mécanique.
-Les anciennes valeurs CFD ne sont pas attribuées à cette nouvelle géométrie.
-Fabrication, tenue en fatigue, régime admissible et fonctionnement physique
-restent non validés.
+The correction provides neither the real hub clamping, nor the shaft
+interfaces, nor the thermal and aerodynamic conditions of the 935.
+The other eight extrapolated tips must be inspected with the same
+discipline. The next batch can then replace the assumed fixed support
+of the bore with a documented support and resume mechanical convergence.
+The old CFD values are not attributed to this new geometry.
+Manufacturing, fatigue strength, admissible speed and physical operation
+remain not validated.

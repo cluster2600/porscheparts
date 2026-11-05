@@ -1,45 +1,45 @@
-# Préparation LPBF ouverte avec PySLM
+# Open LPBF preparation with PySLM
 
-Cette version est conservée comme **témoin initial refusé sur le carrier**.
-Le passage `run-001` a été interrompu après 526 couches sur 1 034 : une région
-de support était omise et des erreurs natives de correspondance de sommets,
-de normalisation et de transfert de paramètres ont été identifiées. Les
-fichiers et leurs empreintes sont conservés ; ils ne constituent pas une
-préparation complète admise. La correction est développée dans la version
-séparée `source/process-coverage-20261016/`, avec contrôles par région et
-témoins supplémentaires. Le
-[dossier de reprise](../../../../docs/reports/993_CARRIER_WORKFLOW_20261016.md)
-conserve les décisions de chaque version.
+This version is kept as the **initial witness refused on the carrier**.
+Run `run-001` was interrupted after 526 layers out of 1,034: a support
+region was omitted and native errors of vertex correspondence,
+normalisation and parameter transfer were identified. The
+files and their digests are kept; they do not constitute an admitted complete
+preparation. The correction is developed in the separate version
+`source/process-coverage-20261016/`, with per-region checks and
+additional witnesses. The
+[resumption dossier](../../../../docs/reports/993_CARRIER_WORKFLOW_20261016.md)
+keeps the decisions of each version.
 
-Ce pilote produit les sections de **toutes les couches de 60 µm**, les contours
-compensés, les hachures et les surfaces de supports dentés du berceau fourni.
-L'entrée est un STL fermé dont le SHA-256 est obligatoire. Seuls les sommets
-exactement identiques sont réindexés ; aucune face ni coordonnée n'est corrigée.
-Les sections natives Trimesh doivent être fermées avant leur conversion en
-polygones et en chemins PySLM. Le remplissage implicite `fill_gaps()` de
-`Part.getTrimeshSlice` est ainsi évité ; une section ouverte interrompt le calcul.
-La pose est conservée : rotation `[0, 0, 45]`, espace de support de 10 mm et
-plaque de 500 × 500 × 20 mm. La plaque occupe `z = -20…0 mm`.
+This pilot produces the sections of **all 60 µm layers**, the compensated
+contours, the hatches and the toothed support surfaces of the supplied carrier.
+The input is a closed STL whose SHA-256 is mandatory. Only exactly
+identical vertices are reindexed; no face or coordinate is corrected.
+The native Trimesh sections must be closed before their conversion to
+PySLM polygons and paths. The implicit `fill_gaps()` filling of
+`Part.getTrimeshSlice` is thus avoided; an open section interrupts the computation.
+The pose is kept: rotation `[0, 0, 45]`, support gap of 10 mm and
+plate of 500 × 500 × 20 mm. The plate occupies `z = -20…0 mm`.
 
-## Moteur et installation
+## Engine and installation
 
-[PySLM](https://github.com/drlukeparry/pyslm) est conservé à la révision
-`8fa03f1eb98b1fbc8e617eb3119d669f356a2f0b` du 1er février 2026, sous LGPL-2.1.
-Les empreintes sont dans `upstream.json`, et la licence auteur dans
-`LICENSE.pyslm`. Le runtime exécuté est Python 3.11 sur macOS arm64. Les
-dépendances effectivement installées sont conservées dans
+[PySLM](https://github.com/drlukeparry/pyslm) is kept at revision
+`8fa03f1eb98b1fbc8e617eb3119d669f356a2f0b` of 1 February 2026, under LGPL-2.1.
+The digests are in `upstream.json`, and the author's licence in
+`LICENSE.pyslm`. The runtime executed is Python 3.11 on macOS arm64. The
+dependencies actually installed are kept in
 `requirements-macos-arm64-python311.lock.txt`.
 
-Installation durable depuis la racine du dépôt :
+Durable installation from the repository root:
 
 ```sh
 python3.11 parts/993-eng-carrier-0001/source/process-20261016/setup_pyslm.py \
   work/part-workflow/runtimes/pyslm
 ```
 
-`runtime.json` indique le chemin de l'interpréteur à fournir au workflow. Le
-script refuse un dossier existant, vérifie le correctif et le code installé,
-contrôle les versions, puis tranche réellement une boîte de section 200 mm².
+`runtime.json` gives the path of the interpreter to supply to the workflow. The
+script refuses an existing directory, verifies the patch and the installed code,
+checks the versions, then actually slices a box of 200 mm² section.
 
 ```sh
 python3.11 -m venv /path/to/pyslm-env
@@ -50,15 +50,15 @@ git -C /path/to/pyslm-source apply /absolute/path/to/pyslm-support-projection.pa
 /path/to/pyslm-env/bin/python -m pip install --no-deps /path/to/pyslm-source
 ```
 
-NumPy est limité à **1.26.4** : les conversions de tableaux en scalaires du
-générateur de dents échouent avec NumPy 2.4. Un correctif séparé réutilise
-`geometry.extrudeFace` pour conserver les correspondances de sommets lors de la
-projection des supports. Sans ce correctif, le berceau provoquait une erreur
-de taille : 1 523 hauteurs pour 1 519 sommets fusionnés en XY.
+NumPy is limited to **1.26.4**: the array-to-scalar conversions of the
+tooth generator fail with NumPy 2.4. A separate patch reuses
+`geometry.extrudeFace` to keep vertex correspondences during
+support projection. Without this patch, the carrier caused a size
+error: 1,523 heights for 1,519 vertices merged in XY.
 
-## Exécution
+## Execution
 
-Depuis la racine du dépôt, avec un nouveau dossier de sortie :
+From the repository root, with a new output directory:
 
 ```sh
 /path/to/pyslm-env/bin/python parts/993-eng-carrier-0001/source/process-20261016/build_pyslm.py \
@@ -68,66 +68,66 @@ Depuis la racine du dépôt, avec un nouveau dossier de sortie :
 /path/to/pyslm-env/bin/python -m unittest discover -s tests -p test_carrier_process_20261016.py -v
 ```
 
-Pour enchaîner directement le remeshing sans recopier son empreinte, remplacer
-`--sha256 INPUT_SHA256` par `--identity-receipt /path/to/meshing.json`.
-Ces options sont mutuellement exclusives. Le champ exact
-`candidate_STL_sha256` doit correspondre au STL d'entrée ; le reçu est figé
-dans `source/meshing.json` et recontrôlé à la fin.
+To chain the remeshing directly without copying its digest, replace
+`--sha256 INPUT_SHA256` with `--identity-receipt /path/to/meshing.json`.
+These options are mutually exclusive. The exact field
+`candidate_STL_sha256` must match the input STL; the receipt is frozen
+in `source/meshing.json` and rechecked at the end.
 
-Le rendu peut écrire dans un nouveau dossier avec `--output DOSSIER` pour
-conserver les vues précédentes. Ses légendes sont en français ; la couche
-calculée est fournie en PNG et en SVG vectoriel pour le dossier imprimé.
+The render can write to a new directory with `--output DOSSIER` to
+keep the previous views. Its captions are in French; the computed
+layer is supplied as PNG and as vector SVG for the printed dossier.
 
-Le générateur utilise la grille de 5 mm, l'intervalle de dents de 1,5 mm et
-la paroi de 1 mm de l'exemple auteur. La sélection des régions conserve les
-autres réglages auteur, consignés dans le rapport ; la simplification par
-spline est désactivée. Les hachures utilisent les valeurs par défaut PySLM :
-pas de 0,08 mm, angle de 45°, un contour externe et un interne. Ces valeurs
-sont les paramètres explicites de cette étude numérique.
+The generator uses the 5 mm grid, the 1.5 mm tooth interval and
+the 1 mm wall of the author's example. Region selection keeps the
+author's other settings, recorded in the report; spline
+simplification is disabled. The hatches use the PySLM default values:
+0.08 mm pitch, 45° angle, one external and one internal contour. These values
+are the explicit parameters of this numerical study.
 
-## Fichiers livrés
+## Files delivered
 
-- `part-build.stl`, `plate.stl`, `support-*.stl` et `build.glb` : géométrie
-  effectivement générée, dans le même repère.
-- `support-*.npz` : surfaces originales avec les identifiants d'ordre et de
-  type nécessaires à leur réinspection.
-- `layers/layer-*.npz` : altitude, contours bruts fermés, contours compensés,
-  segments de hachure et segments de support ; tableaux numériques sans pickle.
-- `layers.csv` : aire de pièce, nombres et longueurs de segments par couche.
-- `report.json` : entrée, versions, paramètres, empreintes, volume intégré
-  sur les couches et encombrement. Le code du lanceur et les versions sont
-  figés dans `source/` avant le calcul ; leurs empreintes sont recontrôlées
-  avant le reçu final.
-- `build-supports.png`, `support-teeth.png`, `layer-contours-hatches.png` : vues
-  de la géométrie générée et d'une couche réellement calculée ; `figures.json`
-  conserve leurs empreintes et les coordonnées de la vue détaillée.
+- `part-build.stl`, `plate.stl`, `support-*.stl` and `build.glb`: geometry
+  actually generated, in the same reference frame.
+- `support-*.npz`: original surfaces with the order and
+  type identifiers needed for their re-inspection.
+- `layers/layer-*.npz`: height, closed raw contours, compensated contours,
+  hatch segments and support segments; numerical arrays without pickle.
+- `layers.csv`: part area, segment counts and lengths per layer.
+- `report.json`: input, versions, parameters, digests, volume integrated
+  over the layers and build envelope. The launcher code and the versions are
+  frozen in `source/` before the computation; their digests are rechecked
+  before the final receipt.
+- `build-supports.png`, `support-teeth.png`, `layer-contours-hatches.png`: views
+  of the generated geometry and of an actually computed layer; `figures.json`
+  keeps their digests and the coordinates of the detail view.
 
-Les supports PySLM sont des **surfaces de parois et de grilles**. Le moteur ne
-fournit pas leur fusion en solide ; leur masse reste donc `null`. Les dents
-pénètrent nominalement de 0,2 mm dans la pièce ; les dents inférieures peuvent
-descendre dans la zone de plaque.
-L'algorithme auteur peut omettre une peau périphérique lorsqu'il ne sait pas
-apparier ses contours ; l'avertissement demeure dans le journal. Aucune
-épaisseur volumique ou accessibilité d'outil n'est déduite d'une coque ouverte.
+The PySLM supports are **wall and grid surfaces**. The engine does not
+provide their fusion into a solid; their mass therefore remains `null`. The teeth
+nominally penetrate 0.2 mm into the part; the lower teeth may
+descend into the plate zone.
+The author's algorithm may omit a peripheral skin when it cannot
+pair its contours; the warning remains in the log. No
+volumetric thickness or tool accessibility is deduced from an open shell.
 
-Les sections des supports utilisent `trimesh.intersections.mesh_plane`, la
-même intersection que le trancheur PySLM, directement sur les surfaces
-générées. Cela conserve les segments sans le tri quadratique du trancheur
-auteur. Les triangles éloignés de la couche sont exclus par leurs bornes en Z,
-avec la tolérance native Trimesh ; `local_faces` et `cached_dots` alimentent la
-même intersection native. L'égalité bit à bit est contrôlée sur un témoin denté,
-y compris les plans passant exactement par un sommet ou une arête.
-Les segments nuls et doublons exactement identiques sont comptés et
-retirés ; aucune grille d'arrondi ne modifie leurs coordonnées. L'ordre machine,
-la puissance, la vitesse et les stratégies propres à une machine restent à
-attribuer. Les traducteurs commerciaux `libSLM` ne sont pas installés.
+The support sections use `trimesh.intersections.mesh_plane`, the
+same intersection as the PySLM slicer, directly on the generated
+surfaces. This keeps the segments without the quadratic sort of the author's
+slicer. Triangles far from the layer are excluded by their Z bounds,
+with the native Trimesh tolerance; `local_faces` and `cached_dots` feed the
+same native intersection. Bit-for-bit equality is checked on a toothed witness,
+including planes passing exactly through a vertex or an edge.
+Zero-length segments and exactly identical duplicates are counted and
+removed; no rounding grid modifies their coordinates. Machine order,
+power, speed and machine-specific strategies remain to be
+assigned. The commercial `libSLM` translators are not installed.
 
-`support-stage.json` permet une reprise avec `--reuse-supports DOSSIER` : les
-paramètres, la pose et chaque fichier de support sont vérifiés avant copie.
-Les nouveaux résultats gardent l'empreinte du générateur ayant produit ces
-supports. Cette reprise conserve les résultats d'une préparation longue sans
-faire passer une tentative interrompue pour une exécution complète.
+`support-stage.json` allows resumption with `--reuse-supports DOSSIER`: the
+parameters, the pose and each support file are verified before copying.
+The new results keep the digest of the generator that produced these
+supports. This resumption keeps the results of a long preparation without
+passing off an interrupted attempt as a complete execution.
 
-Un témoin interrompu conserve `partial.json` et ses couches calculées ; il
-n'a pas de reçu `report.json` complet. Le rendu avec `--layer INDEX` l'affiche
-explicitement comme `PARTIAL WITNESS`.
+An interrupted witness keeps `partial.json` and its computed layers; it
+has no complete `report.json` receipt. Rendering with `--layer INDEX` shows it
+explicitly as `PARTIAL WITNESS`.

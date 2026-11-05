@@ -1,11 +1,11 @@
-# Contrôle des expositions de supports
+# Check of support exposures
 
-Ce contrôle complète `process-slicing-20261016/audit_scanpaths.py`, qui vérifie
-les trajectoires de **pièce**. Il lit tous les vrais vecteurs de **supports**,
-les NPZ de feuilles/dents et les six admissions du même processus. Un cache de
-pièce terminé n'est pas un processus de supports terminé.
+This check complements `process-slicing-20261016/audit_scanpaths.py`, which
+verifies the **part** scan paths. It reads all the real **support** vectors,
+the sheet/tooth NPZ files and the six admissions of the same process. A
+completed part cache is not a completed support process.
 
-Depuis la racine du dépôt, avec le runtime PySLM de couverture :
+From the repository root, with the coverage PySLM runtime:
 
 ```sh
 work/part-workflow/runtimes/pyslm-coverage-011/env/bin/python \
@@ -18,66 +18,64 @@ work/part-workflow/runtimes/pyslm-coverage-011/env/bin/python \
   --part-cache work/carrier-process-20261016/part-layer-cache-001
 ```
 
-Le dossier de sortie doit être nouveau. Le code de retour vaut zéro uniquement
-pour un reçu `assessment.json` accepté. Aucun mode d'échantillonnage ne peut
-produire une admission complète.
+The output directory must be new. The return code is zero only for an
+accepted `assessment.json` receipt. No sampling mode can produce a complete
+admission.
 
-Les critères restent explicites :
+The criteria remain explicit:
 
-- Chaque tableau est fini, de type float64, sans segment nul ni doublon exact,
-  et contient toutes les coupes attendues, sans segment supplémentaire.
-- Chaque triangle retenu appartient à un groupe `face_range/order/type` lié au
-  matériau WKB et à son reçu de contact. Les grilles couvrent exactement ce
-  matériau. La reproduction du remappage figé des peaux établit l'identité entre
-  leur matériau paramétrique, leurs cartes par morceaux et leurs triangles.
-- L'auditeur coupe ensuite les **vrais triangles NPZ** par une formule
-  barycentrique rationnelle indépendante du sectionneur. Une section de triangle
-  est convexe : son segment entier est ainsi certifié. Les IEEE d'entrée sont
-  interprétés exactement ; aucune distance de proximité ne soude des feuilles.
-- Les endpoints rationnels sont encodés par arrondi float64 au plus proche, pair
-  en cas d'égalité. Leur erreur exacte est bornée par une demi-ULP. Un endpoint
-  encodé peut nécessairement sortir d'une feuille sans épaisseur lorsque la
-  coordonnée rationnelle n'est pas dyadique. Ce verdict strict reste affiché ;
-  le certificat de section et d'encodage est distinct. Les collisions entre
-  deux représentations float64 identiques gardent leurs deux identités
-  rationnelles.
-- Les traces de contact sont aussi l'intersection rationnelle entière entre
-  le matériau et les interfaces brutes. Les trous sont conservés. Un simple
-  contact ponctuel n'est pas un intervalle d'ancrage. Les anciennes
-  intersections GEOS peuvent servir de diagnostics ; leurs points arrondis ne
-  doivent pas être utilisés comme preuve de confinement exact.
-- Les graphes des sections rationnelles et des vecteurs float64 effectivement
-  exposés doivent tous deux passer. Une arête intralayer est une intersection
-  exacte de trajectoires. Une liaison entre couches exige une intersection XY
-  dans deux couches **consécutives**. Chaque composante de couche doit déjà
-  rejoindre un ancrage inférieur ; une jonction apparue plus tard ne sauve pas
-  une feuille qui a commencé à flotter.
-- Chaque composante finale rejoint aussi un contact supérieur réellement exposé
-  dans la section de pièce. Le même morceau de trajectoire doit rencontrer la
-  bande de contact et une longueur positive dans la pièce. La pénétration
-  verticale de 0,2 mm est le paramètre du générateur, sans extension XY.
-  L'ancrage plaque est limité à la première couche et au vrai carré de 500 mm,
-  avec une interface inférieure à Z=0.
+- Each array is finite, of type float64, with no null segment or exact
+  duplicate, and contains all the expected slices, with no extra segment.
+- Each retained triangle belongs to a `face_range/order/type` group bound to
+  the WKB material and its contact receipt. The grids cover exactly this
+  material. Reproducing the frozen remapping of the skins establishes the
+  identity between their parametric material, their piecewise maps and their
+  triangles.
+- The auditor then cuts the **real NPZ triangles** with a rational barycentric
+  formula independent of the sectioner. A triangle section is convex: its
+  whole segment is thus certified. The input IEEE values are interpreted
+  exactly; no proximity distance welds sheets together.
+- The rational endpoints are encoded by float64 round-to-nearest, ties to
+  even. Their exact error is bounded by half a ULP. An encoded endpoint may
+  necessarily leave a zero-thickness sheet when the rational coordinate is not
+  dyadic. This strict verdict remains displayed; the section and encoding
+  certificate is distinct. Collisions between two identical float64
+  representations keep both their rational identities.
+- The contact traces are also the exact rational intersection between the
+  material and the raw interfaces. Holes are preserved. A mere point contact
+  is not an anchoring interval. The former GEOS intersections may serve as
+  diagnostics; their rounded points must not be used as evidence of exact
+  confinement.
+- The graphs of the rational sections and of the float64 vectors actually
+  exposed must both pass. An intralayer edge is an exact intersection of scan
+  paths. A link between layers requires an XY intersection in two
+  **consecutive** layers. Each layer component must already reach a lower
+  anchor; a junction that appears later does not save a sheet that has started
+  to float.
+- Each final component also reaches an upper contact actually exposed in the
+  part section. The same piece of scan path must meet the contact band and a
+  positive length in the part. The vertical penetration of 0.2 mm is the
+  generator parameter, with no XY extension. Plate anchoring is limited to the
+  first layer and the real 500 mm square, with a lower interface at Z=0.
 
-Les domaines de pièce sont comparés aux tableaux du cache complet via
-`CachedLayers`. Le STL source, la pose exacte et le magasin d'enveloppes avec
-ses audits natifs sont vérifiés. Les sources, reçus, NPZ et CSV doivent garder
-leurs SHA avant et après le passage.
+The part domains are compared with the arrays of the complete cache via
+`CachedLayers`. The source STL, the exact pose and the envelope store with its
+native audits are verified. The sources, receipts, NPZ and CSV files must keep
+their SHA before and after the run.
 
-`exact_support_section.support_section(surface,z,face_z_bounds)` est le hook de
-génération séparé du CORE4184. Il calcule les arêtes partagées en rationnels,
-arrondit correctement et n'emploie pas `tol.merge`. Le lanceur peut affecter
-`core.support_section = hook.support_section` sur son module chargé, puis figer
-le hook dans ses extensions. Le fichier CORE et le cache de pièce sont
-inchangés. `exact_contacts.round_contact_traces(material,interfaces)` fournit
-le pendant pour les métadonnées de contact.
+`exact_support_section.support_section(surface,z,face_z_bounds)` is the
+separate generation hook of CORE4184. It computes the shared edges in
+rationals, rounds correctly and does not use `tol.merge`. The launcher may
+assign `core.support_section = hook.support_section` on its loaded module,
+then freeze the hook in its extensions. The CORE file and the part cache are
+unchanged. `exact_contacts.round_contact_traces(material,interfaces)` provides
+the counterpart for the contact metadata.
 
-Le reçu accepté doit porter `complete_build_audited=true`,
-`support_scanpaths_audited=true`, `geometric_confinement_passed=true` et
-`exposure_connectivity_passed=true`, et référencer exactement le SHA de
-`PROCESS_OUTPUT/report.json`. Il porte sur les lignes d'exposition et les
-contacts entre couches. Aucun diamètre de spot ni ordre d'exposition à
-l'intérieur d'une couche n'est supposé.
+The accepted receipt must carry `complete_build_audited=true`,
+`support_scanpaths_audited=true`, `geometric_confinement_passed=true` and
+`exposure_connectivity_passed=true`, and reference exactly the SHA of
+`PROCESS_OUTPUT/report.json`. It covers the exposure lines and the contacts
+between layers. No spot diameter or exposure order within a layer is assumed.
 
-Les témoins et les profils sont référencés dans `results.json`. L'exécution
-complète sur les supports corrigés du carrier reste une étape distincte.
+The witnesses and profiles are referenced in `results.json`. The complete
+execution on the corrected carrier supports remains a separate step.

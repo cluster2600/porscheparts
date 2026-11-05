@@ -1,5 +1,5 @@
-# Reproduction des références matériau
+# Reproducing the material references
 
-`fetch_luo_sources.py` télécharge seulement les trois petits fichiers publics nommés dans `sources.json` (total environ4,25Mo), vérifie taille/SHA256 puis extrait exclusivement les quatre classeurs attendus. `extract_luo_rt.py INPUT NEW_OUTPUT` vérifie à nouveau les sources et reproduit les quatre lois de sensibilité du premier jeu de procédé publié. Les versions minimales installées pour ce contrôle sont épinglées dans `requirements.txt`.
+`fetch_luo_sources.py` downloads only the three small public files named in `sources.json` (about 4.25 MB in total), checks size/SHA256, then extracts only the four expected workbooks. `extract_luo_rt.py INPUT NEW_OUTPUT` checks the sources again and reproduces the four sensitivity laws of the first published process set. The minimum versions installed for this check are pinned in `requirements.txt`.
 
-Les résultats committables, la licence des données, les hypothèses de conversion et les limites numériques sont dans [material-luo-set1](../material-luo-set1/README.md). Les archives sources brutes restent dans `work/`.
+The committable results, the data licence, the conversion assumptions and the numerical limits are in [material-luo-set1](../material-luo-set1/README.md). The raw source archives stay in `work/`.

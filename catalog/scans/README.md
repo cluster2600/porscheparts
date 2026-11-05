@@ -1,28 +1,28 @@
-# Registre des scans bruts
+# Raw scan register
 
-Une fiche `catalog/scans/*.json` enregistre un scan 3D brut (OBJ) resté hors
-Git, identifié par chemin absolu, SHA-256, taille en octets et mtime. Le brut
-(100 Mo et plus) n'est jamais copié dans le dépôt, conformément à
+A `catalog/scans/*.json` record registers a raw 3D scan (OBJ) kept outside
+Git, identified by absolute path, SHA-256, size in bytes and mtime. The raw
+file (100 MB and more) is never copied into the repository, in accordance with
 `AGENTS.md`.
 
-Une fiche de scan n'est pas une fiche de source : la fiche
-`catalog/sources/` porte les droits et la méthode d'accès amont, la fiche de
-scan porte l'empreinte et l'état du fichier local. Quand une fiche source
-existe déjà (préfixe `SRC-`), la fiche de scan la référence via
-`linked_source_ids` sans dupliquer ses affirmations.
+A scan record is not a source record: the `catalog/sources/` record carries
+the rights and the upstream access method, the scan record carries the digest
+and the state of the local file. When a source record already exists (prefix
+`SRC-`), the scan record references it through `linked_source_ids` without
+duplicating its claims.
 
-Règles :
+Rules:
 
-- `path` est absolu sur l'hôte de calcul (`kali2`) ; le fichier peut ne pas
-  exister sur d'autres hôtes.
-- `sha256`, `bytes` et `mtime` ont été recalculés sur l'hôte le jour porté par
-  `recorded_on`. Toute divergence ultérieure invalide les dérivés.
-- `resolution` est une déclaration (souvent issue du nom de fichier), jamais
-  une précision métrologique vérifiée, tant que le pipeline
-  `containers/obj-metrology-f15` ou une mesure physique ne l'a pas établie.
-- Les OBJ ne portent aucune métadonnée d'unité ; mm est une convention
-  supposée, signalée dans `notes`.
-- `license` et la provenance sont marqués `unknown` tant qu'aucune preuve
-  n'est archivée. Ne jamais inventer.
+- `path` is absolute on the compute host (`kali2`); the file may not
+  exist on other hosts.
+- `sha256`, `bytes` and `mtime` were recomputed on the host on the day given by
+  `recorded_on`. Any later divergence invalidates the derivatives.
+- `resolution` is a declaration (often taken from the filename), never
+  a verified metrological precision, until the
+  `containers/obj-metrology-f15` pipeline or a physical measurement has established it.
+- OBJ files carry no unit metadata; mm is an assumed convention,
+  flagged in `notes`.
+- `license` and provenance are marked `unknown` as long as no evidence
+  is archived. Never invent.
 
-Valider avec `python3 scripts/validate_scans.py` (couvert par `make check`).
+Validate with `python3 scripts/validate_scans.py` (covered by `make check`).

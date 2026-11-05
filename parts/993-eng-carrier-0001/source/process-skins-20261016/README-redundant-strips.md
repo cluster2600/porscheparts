@@ -1,35 +1,35 @@
-# Bandes de contact déjà contenues dans la feuille
+# Contact strips already contained in the sheet
 
-Le chart 2 de la région gauche possède cinq contacts `upper` corrects sur son
-bord inférieur. Les faces voisines et leurs parents concordent : il s’agit
-d’une terrasse en trois dimensions, et non d’un rôle à inverser. Les cinq
-quadrilatères proposés vers `+Z`, avec la pénétration de 0,2 mm déjà déclarée,
-sont entièrement contenus dans le domaine libre de la feuille.
+Chart 2 of the left region has five correct `upper` contacts on its lower
+edge. The neighbouring faces and their parents agree: this is a terrace in
+three dimensions, not a role to invert. The five quadrilaterals proposed
+towards `+Z`, with the 0.2 mm penetration already declared, are entirely
+contained in the free domain of the sheet.
 
-`redundant_strip_interfaces.py` conserve le constructeur incrémental 814 et les
-opérations de 943. Pour une direction contraire au bord local, il prouve
-rationnellement que le quadrilatère ENTIER est inclus dans le domaine source.
-Seulement alors, il journalise `excluded_redundant_inside_source_domain` et
-n’ajoute pas ses triangles. La feuille, les traces et leurs rôles restent
-présents. L’union géométrique est identique puisque la bande est déjà dans D.
-Une bande partiellement extérieure, traversant un trou ou non prouvée conserve
-le refus. Sans ce cas, les cinq anciens témoins gardent exactement leur WKB et
-leur reçu constructeur.
+`redundant_strip_interfaces.py` keeps the incremental constructor 814 and the
+operations of 943. For a direction opposite to the local edge, it proves
+rationally that the ENTIRE quadrilateral is included in the source domain.
+Only then does it log `excluded_redundant_inside_source_domain` and not add
+its triangles. The sheet, the traces and their roles remain present. The
+geometric union is identical since the strip is already in D.
+A strip that is partly outside, crosses a hole or is not proved keeps the
+refusal. Without this case, the five former witnesses keep exactly their WKB
+and their constructor receipt.
 
-Le wrapper `continuous_redundant_interfaces.py` annonce explicitement le SHA du
-nouveau constructeur comme autorité. Les anciens checkpoints conservent leur
-autorité 943 ; ils doivent être réévalués par le chemin d’admission correspondant,
-sans modifier leurs métadonnées. Les mêmes preuves de couverture, bande,
-contacts, connexion en trois dimensions et exposition restent nécessaires.
+The wrapper `continuous_redundant_interfaces.py` explicitly declares the SHA
+of the new constructor as the authority. The former checkpoints keep their 943
+authority; they must be re-evaluated through the corresponding admission path,
+without modifying their metadata. The same evidence of coverage, strip,
+contacts, three-dimensional connection and exposure remains necessary.
 
-Les entrées v6 conservent les arguments des entrées v5. Elles enregistrent aussi
-D, les interfaces et leurs identités avant chaque appel d’infill d’une peau,
-puis le résultat ou l’erreur dans `chart-progress/`. Ces journaux n’admettent
-aucune géométrie. Ils permettent d’examiner un nouveau refus sans rejouer les
-peaux qui le précèdent.
+The v6 inputs keep the arguments of the v5 inputs. They also record D, the
+interfaces and their identities before each infill call for a skin, then the
+result or the error in `chart-progress/`. These logs admit no geometry. They
+make it possible to examine a new refusal without replaying the skins that
+precede it.
 
-Le chart réel a passé l’infill natif, la réparation complète, la couverture et
-la bande exactes, les contacts du domaine et de la composante, puis le remap.
-Ce témoin ne remplace pas la génération et l’audit de toute la région. Les
-preuves compactes et les SHA des reçus locaux sont dans
+The real chart passed the native infill, the complete repair, the exact
+coverage and strip, the domain and component contacts, then the remap.
+This witness does not replace the generation and audit of the whole region.
+The compact evidence and the SHAs of the local receipts are in
 `combinatorial-evidence/redundant-results.json`.

@@ -1,106 +1,106 @@
-# Supports moteur bioniques 993 — étude PicoGK F0
+# 993 bionic engine mounts — PicoGK F0 study
 
-Ce dossier ajoute une **console centrale** et un **boîtier de support moteur**
-paramétriques au travail déjà commencé sur la traverse Turbo. Il représente
-séparément l'enveloppe souple du support : aucun bloc métallique monolithique
-n'est présenté comme un silentbloc fonctionnel.
+This directory adds a parametric **central bracket** and **engine mount
+housing** to the work already started on the Turbo crossmember. It represents
+the compliant envelope of the mount separately: no monolithic metal block
+is presented as a functional rubber bush mount.
 
-![Vue des triangles réellement exportés ; géométries hypothétiques et pose éclatée](media/engine-mount-study.png)
+![View of the triangles actually exported; hypothetical geometries and exploded pose](media/engine-mount-study.png)
 
-## Pièces et variantes
+## Parts and variants
 
-| Référence | Rôle | Traitement |
+| Part number | Role | Treatment |
 | --- | --- | --- |
-| 993 115 021 53 | Traverse Turbo, PET 17 | R9 et ses preuves conservés hors de cette scène |
-| 993 115 103 52 | Console centrale, PET 18 | Squelette à quatre racines, deux troncs et couronne courbe |
-| 993 375 049 05, quantité 2 | Supports moteur, PET 21 | Cage ramifiée et enveloppe à six lobes distincte |
-| 993 115 021 90 | Traverse Carrera/Carrera 4/S/4S | Identité déjà relevée ; géométrie non produite ici |
-| 993 115 021 41 | Traverse RS | Identité déjà relevée ; géométrie non produite ici |
+| 993 115 021 53 | Turbo crossmember, PET 17 | R9 and its evidence kept outside this scene |
+| 993 115 103 52 | Central bracket, PET 18 | Skeleton with four roots, two trunks and a curved crown |
+| 993 375 049 05, quantity 2 | Engine mounts, PET 21 | Branched cage and separate six-lobe envelope |
+| 993 115 021 90 | Carrera/Carrera 4/S/4S crossmember | Identity already recorded; geometry not produced here |
+| 993 115 021 41 | RS crossmember | Identity already recorded; geometry not produced here |
 
-L'identité Turbo et les quantités viennent des
-[exigences PET relues](../../parts/993-eng-carrier-0001/source/pet-redo/requirements.json).
-Les deux autres traverses sont des variantes distinctes, pas des répliques
-automatiques du modèle Turbo. Aucun changement de suffixe n'est une preuve de
-compatibilité dimensionnelle.
+The Turbo identity and the quantities come from the
+[reviewed PET requirements](../../parts/993-eng-carrier-0001/source/pet-redo/requirements.json).
+The two other crossmembers are distinct variants, not automatic
+replicas of the Turbo model. No suffix change is evidence of
+dimensional compatibility.
 
-## Ce qui est intégré
+## What is integrated
 
-Le générateur réutilise le noyau PicoGK 2.3.0 et les courbes et implicites du
-dépôt. **Toutes les nouvelles formes sont bioniques** :
+The generator reuses the PicoGK 2.3.0 kernel and the curves and implicits of the
+repository. **All the new shapes are bionic**:
 
-- La console est un squelette ouvert. Quatre collerettes se ramifient en deux
-  troncs courbes et une couronne, avec des sections progressives et des jonctions
-  adoucies. Ses quatre perçages restent des positions hypothétiques.
-- Le support est une cage ouverte à six branches courbes et quatre racines
-  bifurquées depuis deux collerettes côté caisse. Les couronnes circulaires
-  délimitent un volume d'accueil hypothétique ; il n'y a pas de coupelle pleine.
-- L'enveloppe souple séparée présente une taille étranglée et six lobes.
-  Son mécanisme interne, sa matière, sa raideur et son amortissement restent inconnus.
+- The bracket is an open skeleton. Four flanges branch into two
+  curved trunks and a crown, with progressive sections and smoothed
+  junctions. Its four holes remain hypothetical positions.
+- The mount is an open cage with six curved branches and four roots
+  bifurcating from two body-side flanges. The circular crowns
+  bound a hypothetical receiving volume; there is no solid cup.
+- The separate compliant envelope has a waisted middle and six lobes.
+  Its internal mechanism, material, stiffness and damping remain unknown.
 
-« Bionique » décrit ici une morphologie inspirée des ramifications du vivant,
-**pas une optimisation topologique ou mécanique validée**. Aucun solveur n'a
-justifié la répartition de matière. Les anciennes plaques, montants, coupelle
-pleine et traverse F1 rectiligne ne figurent plus dans les exports de cette famille.
-Les surfaces locales des collerettes autour des perçages restent planes pour
-représenter des interfaces d'étude ; elles ne constituent pas une plaque porteuse.
+“Bionic” here describes a morphology inspired by branching in living organisms,
+**not a validated topological or mechanical optimisation**. No solver has
+justified the distribution of material. The old plates, uprights, solid
+cup and straight F1 crossmember no longer appear in the exports of this family.
+The local flange surfaces around the holes remain flat to
+represent study interfaces; they do not constitute a load-bearing plate.
 
-L'échangeur HelixHeatX, les gyroïdes et les modèles d'impellers ne sont pas
-incorporés au chemin de charge. Ils n'apportent pas de justification mécanique
-à ce support. Aucun code propriétaire Noyron ou dessin OEM n'est copié.
+The HelixHeatX heat exchanger, the gyroids and the impeller models are not
+incorporated into the load path. They bring no mechanical justification
+to this mount. No proprietary Noyron code or OEM drawing is copied.
 
-Les deux nouvelles pièces sont enregistrées dans les fiches catalogue
-[console](../../catalog/parts/993-eng-bracket-0001.json) et
-[support](../../catalog/parts/993-eng-mounting-0001.json), statut `concept`.
-Le maître partagé [C#](../../parts/picogk-catalog/engine/EngineMounts.cs) et les
-trois [jeux de paramètres](source/) restent éditables.
+The two new parts are recorded in the catalogue records
+[bracket](../../catalog/parts/993-eng-bracket-0001.json) and
+[mount](../../catalog/parts/993-eng-mounting-0001.json), status `concept`.
+The shared [C#](../../parts/picogk-catalog/engine/EngineMounts.cs) master and the
+three [parameter sets](source/) remain editable.
 
-## Contrôle et données manquantes
+## Check and missing data
 
-Le [contrat indépendant](interface-contract.json) conserve les centres,
-axes, diamètres, faces, datums, tolérances et preuves de mesure inconnus à
-`null`. Le nombre de fixations côté moteur de la console est également inconnu.
-Le chemin de charge est qualitatif : moteur → console → quatre fixations de
-traverse → traverse → deux supports → quatre fixations caisse.
+The [independent contract](interface-contract.json) keeps the centres,
+axes, diameters, faces, datums, tolerances and measurement evidence unknown as
+`null`. The number of engine-side fastenings of the bracket is also unknown.
+The load path is qualitative: engine → bracket → four crossmember
+fastenings → crossmember → two mounts → four body fastenings.
 
-La génération normale est bloquée ; `--shape-study` est obligatoire pour
-l'exercice incomplet. Cet indicateur n'autorise jamais la fabrication.
-Le [rapport](derived/study-report.json) lie entrées, exports natifs et exports
-retenus par SHA-256. Seules les faces d'aire **exactement nulle** sont retirées.
-Les STL natifs sont conservés sous `derived/native/`, puis un contrôle indépendant
-vérifie arêtes fermées, orientation cohérente, volume positif et composante unique.
-Ce contrôle ne détecte pas toutes les auto-intersections et ne prouve ni montage,
-ni résistance, ni tenue en fatigue.
+Normal generation is blocked; `--shape-study` is mandatory for the
+incomplete exercise. This flag never authorises manufacture.
+The [report](derived/study-report.json) links inputs, native exports and retained
+exports by SHA-256. Only faces of **exactly zero** area are removed.
+The native STLs are kept under `derived/native/`, then an independent check
+verifies closed edges, consistent orientation, positive volume and a single component.
+This check does not detect all self-intersections and proves neither fit,
+nor strength, nor fatigue resistance.
 
-La [scène OpenUSD](derived/assembly.usda) utilise des millimètres et une
-**pose éclatée illustrative**, avec cinq instances : console, deux cages et deux
-enveloppes souples. Elle ne définit pas le placement réel sur une 993. La traverse
-R9 demeure dans son dossier d'origine ; aucun modèle rectiligne archivé n'est
-substitué à cette traverse dans la scène bionique.
+The [OpenUSD scene](derived/assembly.usda) uses millimetres and an
+**illustrative exploded pose**, with five instances: bracket, two cages and two
+compliant envelopes. It does not define the real placement on a 993. The R9
+crossmember stays in its original directory; no archived straight model is
+substituted for this crossmember in the bionic scene.
 
-La densité du runner est réglée à zéro pour désactiver son estimation :
-sa sortie « masse 0 » n'est **pas** une masse physique. Aucun matériau n'est
-sélectionné ou qualifié par cette étude.
+The runner's density is set to zero to disable its estimate:
+its “mass 0” output is **not** a physical mass. No material is
+selected or qualified by this study.
 
-## Vérifications de la révision bionique
+## Checks of the bionic revision
 
-Les exports doivent passer le contrôle indépendant des trois maillages et de
-leurs empreintes. Les tests de géométrie contrôlent aussi les évidements qui
-remplacent la plaque et la paroi pleine, les perçages et l'étranglement à six
-lobes. Ce contrôle porte sur les formes produites, pas sur leurs performances.
+The exports must pass the independent check of the three meshes and of
+their digests. The geometry tests also check the recesses that
+replace the plate and the solid wall, the holes and the six-lobe
+waist. This check concerns the shapes produced, not their performance.
 
-La compilation C# et les trois générations natives passent. Les dix tests de
-cette famille et cinq cas natifs invalides rejetés sans STL ont été vérifiés ;
-la scène a été relue avec OpenUSD 26.5. La suite Python sous Linux arm64 passe
-sans échec : 3 605 tests, dont 187 ignorés pour dépendances optionnelles. Le
-`make check` global s'arrête ensuite à `917-manufacturing-f37-lpbf-audit-check`,
-car Docker est absent du conteneur de validation. Les cibles globales suivantes
-ne sont pas confirmées ; aucune validation physique ni acceptation de
-fabrication n'est acquise.
+The C# compilation and the three native generations pass. The ten tests of
+this family and five invalid native cases rejected without STL were verified;
+the scene was read back with OpenUSD 26.5. The Python suite on Linux arm64 passes
+without failure: 3,605 tests, of which 187 skipped for optional dependencies. The
+global `make check` then stops at `917-manufacturing-f37-lpbf-audit-check`,
+because Docker is absent from the validation container. The subsequent global targets
+are not confirmed; no physical validation or manufacturing
+acceptance is obtained.
 
-## Reproduire
+## Reproduce
 
-Construire le projet existant avec le checkout PicoGK épinglé par
-[sources.lock](../../containers/m64-leap71/sources.lock) :
+Build the existing project with the PicoGK checkout pinned by
+[sources.lock](../../containers/m64-leap71/sources.lock):
 
 ```sh
 dotnet build parts/picogk-catalog/engine/Engine.csproj \
@@ -112,17 +112,17 @@ python3 twins/993-engine-mount-system-f0/source/build_study.py \
 make engine-mount-study-check
 ```
 
-La sortie doit être nouvelle. Une exécution interrompue ou rejetée ne possède
-pas de `study-report.json` de complétion. La vérification des fichiers retenus
-et les tests Python ne nécessitent pas le runtime PicoGK.
+The output must be new. An interrupted or rejected execution has
+no completion `study-report.json`. The verification of the retained files
+and the Python tests do not require the PicoGK runtime.
 
-## Prochaine porte d'ingénierie
+## Next engineering gate
 
-1. Mesurer ensemble traverse, console et supports de la variante exacte ;
-   établir les interfaces côté moteur et caisse.
-2. Mesurer les caractéristiques des supports souples, puis déterminer les
-   charges, précharges, contacts et mouvements admissibles.
-3. Reprendre les formes autour de ces données et les faire inspecter
-   indépendamment avant calcul convergé, fatigue et revue professionnelle.
-4. Sélectionner un matériau et un procédé qualifiés ; définir le plan de
-   validation physique avant tout montage ou fabrication fonctionnelle.
+1. Measure together the crossmember, bracket and mounts of the exact variant;
+   establish the engine-side and body-side interfaces.
+2. Measure the characteristics of the compliant mounts, then determine the
+   allowable loads, preloads, contacts and movements.
+3. Rework the shapes around these data and have them inspected
+   independently before converged computation, fatigue and professional review.
+4. Select a qualified material and process; define the physical
+   validation plan before any fitting or functional manufacture.
