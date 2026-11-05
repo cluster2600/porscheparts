@@ -248,3 +248,16 @@ protrusions remain connected to the main surfaces. All original triangles and
 the independent partitions are retained. Removing small components cannot
 supply an accepted bare-head domain; missing interfaces and hidden surfaces
 remain separate acquisition requirements. The review images stay private.
+
+The owner then explicitly resumed work with declared hypotheses. The
+[local bare-head reconstruction](../research/935-bare-head-hypothesis-20261105/README.md)
+now produces a digitally checked closed mesh, exact-coordinate head and
+supported 3MF exports, and complete 50 micrometre neutral contours. Eleven
+provisional protrusions are cut locally while all other parent triangles,
+including fins, remain. A global cut that removed fins and an actual PicoGK
+candidate with 29 shells are retained as rejected trials. The admitted local
+construction uses exact CGAL post-processing of the frozen envelope; neither
+CADAM/Qwen nor PicoGK is credited with authoring or approving that output.
+Independent full geometry, all-layer readback/union and native Kali topology
+checks pass. New-geometry physics, wall/support-removal and calibrated metal
+process checks remain pending; no functional or manufacturing release follows.
