@@ -1,16 +1,104 @@
 {
   "part_id": "993-INT-SWITCH-BLANK-0001",
   "purpose": "fit test of a non-critical trim part; not a released part (decision 0009)",
-  "declared_opening_mm": [
-    19.0,
-    31.0
-  ],
-  "declared_opening_source": "SRC-RENNLIST-993-DASHBOARD-LIGHTING-DIMENSIONS (level C, not measured)",
+  "basis": "brackets both sourced hypotheses of the opening (decision 0013, section 7; decision 0016)",
+  "hypotheses": {
+    "A": {
+      "declared_opening_mm": [
+        17.0,
+        27.9
+      ],
+      "source": "SRC-RENNLIST-993-CONSOLE-SWITCH-HOLE-DIMENSIONS (console switch opening, 0.67 x 1.10 in); SRC-RENNLIST-993-DASHBOARD-LIGHTING-DIMENSIONS gives about 17 x 28 mm for a faceplate opening",
+      "measurement_records": [
+        "MEAS-DECLARED-993-INT-SWITCH-BLANK-0001-RL-750484",
+        "MEAS-DECLARED-993-INT-SWITCH-BLANK-0001-RL-1202129"
+      ],
+      "mark": "dimples only"
+    },
+    "B": {
+      "declared_opening_mm": [
+        19.0,
+        31.0
+      ],
+      "source": "SRC-RENNLIST-993-DASHBOARD-LIGHTING-DIMENSIONS (passage under the covering, about 19 x 31 mm)",
+      "measurement_records": [
+        "MEAS-DECLARED-993-INT-SWITCH-BLANK-0001-RL-1202129"
+      ],
+      "mark": "dimples and a groove"
+    }
+  },
+  "declared_range_mm": {
+    "width": [
+      17.0,
+      19.0
+    ],
+    "height": [
+      27.9,
+      31.0
+    ]
+  },
+  "evidence_level": "C, declared, not measured",
   "orientation": "visible face down on the build plate, clips up, no supports",
   "variants": [
     {
-      "variant": 1,
+      "variant": "A1",
+      "hypothesis": "A",
       "dimples": 1,
+      "groove": false,
+      "insert_mm": [
+        16.6,
+        27.5
+      ],
+      "delta_vs_declared_opening_mm": -0.4,
+      "bounding_box_mm": [
+        20.0,
+        30.9,
+        11.0
+      ],
+      "volume_mm3": 1636.3,
+      "file": "switch_blank_fit_A1.stl"
+    },
+    {
+      "variant": "A2",
+      "hypothesis": "A",
+      "dimples": 2,
+      "groove": false,
+      "insert_mm": [
+        17.0,
+        27.9
+      ],
+      "delta_vs_declared_opening_mm": 0.0,
+      "bounding_box_mm": [
+        20.0,
+        30.9,
+        11.0
+      ],
+      "volume_mm3": 1641.3,
+      "file": "switch_blank_fit_A2.stl"
+    },
+    {
+      "variant": "A3",
+      "hypothesis": "A",
+      "dimples": 3,
+      "groove": false,
+      "insert_mm": [
+        17.4,
+        28.3
+      ],
+      "delta_vs_declared_opening_mm": 0.4,
+      "bounding_box_mm": [
+        20.0,
+        30.9,
+        11.0
+      ],
+      "volume_mm3": 1646.3,
+      "file": "switch_blank_fit_A3.stl"
+    },
+    {
+      "variant": "B1",
+      "hypothesis": "B",
+      "dimples": 1,
+      "groove": true,
       "insert_mm": [
         18.6,
         30.6
@@ -21,12 +109,14 @@
         34.0,
         11.0
       ],
-      "volume_mm3": 1932.2,
-      "file": "switch_blank_fit_1.stl"
+      "volume_mm3": 1927.7,
+      "file": "switch_blank_fit_B1.stl"
     },
     {
-      "variant": 2,
+      "variant": "B2",
+      "hypothesis": "B",
       "dimples": 2,
+      "groove": true,
       "insert_mm": [
         19.0,
         31.0
@@ -37,12 +127,14 @@
         34.0,
         11.0
       ],
-      "volume_mm3": 1937.2,
-      "file": "switch_blank_fit_2.stl"
+      "volume_mm3": 1932.5,
+      "file": "switch_blank_fit_B2.stl"
     },
     {
-      "variant": 3,
+      "variant": "B3",
+      "hypothesis": "B",
       "dimples": 3,
+      "groove": true,
       "insert_mm": [
         19.4,
         31.4
@@ -53,8 +145,8 @@
         34.0,
         11.0
       ],
-      "volume_mm3": 1942.2,
-      "file": "switch_blank_fit_3.stl"
+      "volume_mm3": 1937.4,
+      "file": "switch_blank_fit_B3.stl"
     }
   ],
   "generator": "parts/993-int-switch-blank-0001/source/fit_test_kit.py"
