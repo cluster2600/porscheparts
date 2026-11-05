@@ -365,3 +365,16 @@ kernel alarm without exporting a final mesh; the worker is reaped, all inputs
 are rehashed unchanged and the complete capsule is frozen. Local cavity
 coverage/preservation must be audited before another topology trial. No solver,
 printing-master or physical/process approval follows the witness or timeout.
+
+The [local convex-cavity method](../research/935-local-cavity-20261105/README.md)
+then conditions only volume connectivity. A full independent edge sort
+reproduces the sparse initial cavity audit. Certified convexity, exact oriented
+boundary chains, absent new faces and monotone local quality constrain every
+3-to-2 replacement. Separate segment/triangle proofs certify unchanged local
+domains, followed by the frozen complete volume inspection after each pass.
+Two passes reduce the bad 0.01 bin from 526,110 to 254,353 (51.654%), passing
+the unchanged relative target; the third declared pass is not needed. Every
+node coordinate and the complete source boundary remain exact. The absolute
+shape gate still fails, so native solver export and case-specific conditioning
+admission precede any field solve. The original scan and print master are
+rehashed unchanged; this is neither a new CAD master nor an AM/physical release.
