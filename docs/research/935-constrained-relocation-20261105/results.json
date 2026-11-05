@@ -1,0 +1,402 @@
+{
+  "schema": "935-relocation-exclusion-and-topology-1",
+  "date": "2026-11-05",
+  "status": "interior_relocation_excluded_topology_head_attempt_terminal",
+  "source_sha256": {
+    "audit_fixed_boundary_cells.py": "7e474da7445ac5c971b95509cbe64c332fbdac4e57f4184581acb9e1f56e6220",
+    "audit_proposal_coverage.py": "7dd52f6a463f5abcaf01d8859306d819a6ccd24dc3c94a5714debb92d664bd0c",
+    "optimize_topology_volume.py": "a480166329369677873b7f6a69e362180271fbfad0a6a29ad19b008bb419083d",
+    "run_topology_optimization.py": "a91fd21d7d87f66471fcc4226623ff216c482d3364e708abfe4da1fcc2fb35aa",
+    "verify_quality_partition.py": "a046b2a4fd28101acb256b7c4ae39176dcbbe3ac68f831686d12134e4dbd31be"
+  },
+  "runtime": {
+    "python": "3.12.11",
+    "platform": "arm64",
+    "numpy": "2.5.4",
+    "gmsh_api": "4.12.1",
+    "gmsh_distribution": "4.12.1",
+    "netgen_compiled": true,
+    "gmsh_module_sha256": "fa69936fc45646eca8b29ab0fd9e32ebaf45216414cbc75c380b4c0db7b6f485"
+  },
+  "preflight_capsule": {
+    "directory_basename": "935-constrained-relocation-20261105-001",
+    "release_subdirectory": "preflight-release",
+    "manifest_sha256": "b447e77605658adee0d1348788cdcc2dea65964b11dc7b4f857f257c2e3895bf",
+    "files": 53,
+    "bytes": 67377
+  },
+  "input_preservation": {
+    "sha256": {
+      "volume/head/solid.msh": "dd06871fe45c765836d9690b5e6dd4bc00cc62cd9389b2ae16b5a4aa9831ba08",
+      "volume/head/solid.npz": "b06d28ec39019fa8f91c2e8cd0397c2eb9cd87bf84df7006c8526025aef03450",
+      "regularization-001/candidate.npz": "5b04e72b5f7b48f340a39c14009292c52c1bf1ac422ad64cd3250c17ddf51db4"
+    },
+    "all_inputs_unchanged": true,
+    "parent_directory_basename": "935-corner-provenance-20261105-001"
+  },
+  "proposal_coverage": {
+    "source_sha256": "7dd52f6a463f5abcaf01d8859306d819a6ccd24dc3c94a5714debb92d664bd0c",
+    "input_sha256": "b06d28ec39019fa8f91c2e8cd0397c2eb9cd87bf84df7006c8526025aef03450",
+    "proposal_sha256": "65b77a5b91e220a242a8e78262ff41f9190a5ee6012c790ad6c37f249beb4521",
+    "inspector_sha256": "b0810ac21b35654556dce18ef022f6d4ca8f30a847223c5d566188eab82f4e71",
+    "upstream_verdict": "Positive consistent raw input; hypothetical envelope and volume shape-quality failure retained; rejected proposal used only as displacement targets",
+    "moved_vertices": 24992,
+    "protected_vertices_moved": 0,
+    "tetrahedra": 13250576,
+    "affected_cells": 4167459,
+    "source_minimum_mean_ratio": 2.914590667083624e-12,
+    "exact_positive_fallbacks": 792,
+    "source_below": {
+      "0.0001": 149190,
+      "0.001": 180846,
+      "0.01": 526110,
+      "0.05": 2263384,
+      "0.1": 4693357
+    },
+    "optimistic_repairable_below": {
+      "0.0001": 83,
+      "0.001": 10145,
+      "0.01": 94031,
+      "0.05": 649696,
+      "0.1": 1644433
+    },
+    "required_below_0p01_repairs": 263055,
+    "optimistic_fixed_target_reachable": false,
+    "bound_ignores_feasibility_and_new_bad_cells": true,
+    "coverage_controls_passed": true,
+    "coordinates_modified": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "seconds": 8.574748291051947
+  },
+  "all_interior_relocation_bound": {
+    "source_sha256": "7e474da7445ac5c971b95509cbe64c332fbdac4e57f4184581acb9e1f56e6220",
+    "input_sha256": "b06d28ec39019fa8f91c2e8cd0397c2eb9cd87bf84df7006c8526025aef03450",
+    "surface_sha256": "5b04e72b5f7b48f340a39c14009292c52c1bf1ac422ad64cd3250c17ddf51db4",
+    "inspector_sha256": "b0810ac21b35654556dce18ef022f6d4ca8f30a847223c5d566188eab82f4e71",
+    "upstream_verdict": "Consistent positive hypothetical raw volume; diagnostic quality failure; no field or physical admission",
+    "boundary_vertices": 4106319,
+    "interior_vertices": 74980,
+    "cell_counts_by_number_of_interior_vertices": [
+      7178879,
+      5066686,
+      554763,
+      62140,
+      388108
+    ],
+    "below_bins_by_number_of_interior_vertices": {
+      "0.0001": [
+        149055,
+        135,
+        0,
+        0,
+        0
+      ],
+      "0.001": [
+        166243,
+        14568,
+        35,
+        0,
+        0
+      ],
+      "0.01": [
+        392770,
+        131683,
+        1648,
+        8,
+        1
+      ],
+      "0.05": [
+        1356167,
+        878323,
+        28743,
+        89,
+        62
+      ],
+      "0.1": [
+        2402316,
+        2209671,
+        80871,
+        253,
+        246
+      ]
+    },
+    "minimum_quality_by_number_of_interior_vertices": [
+      2.914590667083624e-12,
+      2.980111145176448e-11,
+      0.00019246276229676422,
+      0.0019002171022294188,
+      0.009974558102039961
+    ],
+    "exact_positive_fallbacks": 792,
+    "fixed_boundary_only_cells_below_0p01": 392770,
+    "maximum_repairable_below_0p01_by_any_interior_relocation": 133340,
+    "required_below_0p01_repairs": 263055,
+    "optimistic_fixed_target_reachable_by_any_interior_relocation": false,
+    "bound_requires_fixed_connectivity_and_exact_boundary": true,
+    "bound_does_not_exclude_topology_changes_or_other_admission_contracts": true,
+    "partition_control_passed": true,
+    "coordinates_modified": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "seconds": 7.3361180000938475
+  },
+  "reference_arithmetic_verification": {
+    "source_sha256": "a046b2a4fd28101acb256b7c4ae39176dcbbe3ac68f831686d12134e4dbd31be",
+    "input_sha256": "b06d28ec39019fa8f91c2e8cd0397c2eb9cd87bf84df7006c8526025aef03450",
+    "fixed_report_sha256": "f0c060d1f76345822e26ca6a851c43581c9078dfa3917323ced699a360815adc",
+    "coverage_report_sha256": "52ee64209a4278d345a0f2bb4f4dc47df41c6a960c4ba8c198470c37c6248e5e",
+    "tetrahedra_compared": 13250576,
+    "minimum_using_frozen_inspector_arithmetic": 2.9145906670836246e-12,
+    "bin_predicate_disagreements": {
+      "0.0001": 0,
+      "0.001": 0,
+      "0.01": 0,
+      "0.05": 0,
+      "0.1": 0
+    },
+    "all_partition_and_coverage_counts_reproduced": true,
+    "coordinates_modified": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false
+  },
+  "topology_plan": {
+    "source_sha256": "a91fd21d7d87f66471fcc4226623ff216c482d3364e708abfe4da1fcc2fb35aa",
+    "wrapper_sha256": "a480166329369677873b7f6a69e362180271fbfad0a6a29ad19b008bb419083d",
+    "retained_recipe_sha256": "ea6d23871879865bdd09366c2bd6b616950f299402e65521d05d8f22b0349bb9",
+    "input_arrays_sha256": "b06d28ec39019fa8f91c2e8cd0397c2eb9cd87bf84df7006c8526025aef03450",
+    "surface_sha256": "5b04e72b5f7b48f340a39c14009292c52c1bf1ac422ad64cd3250c17ddf51db4",
+    "upstream_verdict": "Relocation bound excludes 50% target; fixed-boundary topology change requires a distinct analytic witness",
+    "method": "Gmsh default",
+    "one_api_call": true,
+    "api_niter": 1,
+    "head_alarm_seconds": 900,
+    "sampled_rss_limit_gib": 40,
+    "head_bin_reduction_min_fraction": 0.5,
+    "ultra_low_bin_must_not_increase": 0.0001,
+    "minimum_quality_must_not_worsen": true,
+    "control_minimum_floor": 0.01,
+    "control_minimum_improvement_factor": 10,
+    "control_requires_known_3_to_2_flip": true,
+    "parameter_sweep": false,
+    "new_paid_compute_usd": 0,
+    "physics_admitted": false
+  },
+  "topology_control_before": {
+    "source_sha256": "b0810ac21b35654556dce18ef022f6d4ca8f30a847223c5d566188eab82f4e71",
+    "frozen_helpers_sha256": "fe8c7fa88f35d2d14094438bbae3b0860bde085a39b68f7ab941790cb4d1bec3",
+    "mesh_sha256": "2051ab4e59bddb09cc1066f90105144c6c6a0c552c92af4bfc7d5a25b94374b3",
+    "surface_sha256": "6af204f6a718f9cfac7d5bf8465b7fac7af1b171de1f53bd36d4c2e3de8e6204",
+    "nodes": 5,
+    "tetrahedra": 3,
+    "boundary_faces": 6,
+    "interval_proven_positive_cells": 3,
+    "exact_fraction_positive_cells": 0,
+    "all_cells_positive_for_stored_binary_coordinates": true,
+    "all_nodes_used": true,
+    "all_source_vertices_exact": true,
+    "actual_complete_boundary_and_orientation_exact": true,
+    "internal_paired_faces": 3,
+    "all_internal_faces_oppositely_oriented": true,
+    "volume_mm3": 0.6666673333333334,
+    "relative_volume_difference": 2.220446049250313e-16,
+    "minimum_cell_volume_mm3": 3.333333333333333e-07,
+    "mean_ratio_quantiles": {
+      "minimum": 8.571427346937117e-05,
+      "p01": 8.571427346937117e-05,
+      "median": 8.571427346937117e-05,
+      "p99": 0.9333935328427706,
+      "maximum": 0.9524406311809196
+    },
+    "mean_ratio_below": {
+      "0.0001": 2,
+      "0.001": 2,
+      "0.01": 2,
+      "0.05": 2,
+      "0.1": 2
+    },
+    "diagnostic_mean_ratio_floor": 0.01,
+    "diagnostic_quality_passed": false,
+    "interval_scope": "Outward one-ULP expansion after every binary64 operation; ambiguous signs evaluated as exact fractions of stored coordinates",
+    "controls": {
+      "exact_fraction_interval_enclosures": 203,
+      "coplanar_refused": true,
+      "thin_positive_and_negative_distinguished": true
+    },
+    "tetrahedron_pair_intersections_exhaustively_checked": false,
+    "mesh_modified": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "seconds": 0.02217141690198332
+  },
+  "topology_control_alternative": {
+    "source_sha256": "b0810ac21b35654556dce18ef022f6d4ca8f30a847223c5d566188eab82f4e71",
+    "frozen_helpers_sha256": "fe8c7fa88f35d2d14094438bbae3b0860bde085a39b68f7ab941790cb4d1bec3",
+    "mesh_sha256": "a8f2d8cbc8332af366dcca282d3385caf0076ea5533802f8da34b30b7ef8dfe5",
+    "surface_sha256": "6af204f6a718f9cfac7d5bf8465b7fac7af1b171de1f53bd36d4c2e3de8e6204",
+    "nodes": 5,
+    "tetrahedra": 2,
+    "boundary_faces": 6,
+    "interval_proven_positive_cells": 2,
+    "exact_fraction_positive_cells": 0,
+    "all_cells_positive_for_stored_binary_coordinates": true,
+    "all_nodes_used": true,
+    "all_source_vertices_exact": true,
+    "actual_complete_boundary_and_orientation_exact": true,
+    "internal_paired_faces": 1,
+    "all_internal_faces_oppositely_oriented": true,
+    "volume_mm3": 0.6666673333333333,
+    "relative_volume_difference": 0.0,
+    "minimum_cell_volume_mm3": 0.33333366666666664,
+    "mean_ratio_quantiles": {
+      "minimum": 0.8000003199996657,
+      "p01": 0.8000003199996657,
+      "median": 0.8000003199996657,
+      "p99": 0.8000003199996657,
+      "maximum": 0.8000003199996657
+    },
+    "mean_ratio_below": {
+      "0.0001": 0,
+      "0.001": 0,
+      "0.01": 0,
+      "0.05": 0,
+      "0.1": 0
+    },
+    "diagnostic_mean_ratio_floor": 0.01,
+    "diagnostic_quality_passed": true,
+    "interval_scope": "Outward one-ULP expansion after every binary64 operation; ambiguous signs evaluated as exact fractions of stored coordinates",
+    "controls": {
+      "exact_fraction_interval_enclosures": 203,
+      "coplanar_refused": true,
+      "thin_positive_and_negative_distinguished": true
+    },
+    "tetrahedron_pair_intersections_exhaustively_checked": false,
+    "mesh_modified": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "seconds": 0.021771457977592945
+  },
+  "topology_control_after": {
+    "source_sha256": "b0810ac21b35654556dce18ef022f6d4ca8f30a847223c5d566188eab82f4e71",
+    "frozen_helpers_sha256": "fe8c7fa88f35d2d14094438bbae3b0860bde085a39b68f7ab941790cb4d1bec3",
+    "mesh_sha256": "d18a5d538996eeee4773bce9db1422eb9bd12011564dfd18b789d0836dbd5004",
+    "surface_sha256": "6af204f6a718f9cfac7d5bf8465b7fac7af1b171de1f53bd36d4c2e3de8e6204",
+    "nodes": 5,
+    "tetrahedra": 2,
+    "boundary_faces": 6,
+    "interval_proven_positive_cells": 2,
+    "exact_fraction_positive_cells": 0,
+    "all_cells_positive_for_stored_binary_coordinates": true,
+    "all_nodes_used": true,
+    "all_source_vertices_exact": true,
+    "actual_complete_boundary_and_orientation_exact": true,
+    "internal_paired_faces": 1,
+    "all_internal_faces_oppositely_oriented": true,
+    "volume_mm3": 0.6666673333333333,
+    "relative_volume_difference": 0.0,
+    "minimum_cell_volume_mm3": 0.33333366666666664,
+    "mean_ratio_quantiles": {
+      "minimum": 0.8000003199996656,
+      "p01": 0.8000003199996656,
+      "median": 0.8000003199996657,
+      "p99": 0.8000003199996657,
+      "maximum": 0.8000003199996657
+    },
+    "mean_ratio_below": {
+      "0.0001": 0,
+      "0.001": 0,
+      "0.01": 0,
+      "0.05": 0,
+      "0.1": 0
+    },
+    "diagnostic_mean_ratio_floor": 0.01,
+    "diagnostic_quality_passed": true,
+    "interval_scope": "Outward one-ULP expansion after every binary64 operation; ambiguous signs evaluated as exact fractions of stored coordinates",
+    "controls": {
+      "exact_fraction_interval_enclosures": 203,
+      "coplanar_refused": true,
+      "thin_positive_and_negative_distinguished": true
+    },
+    "tetrahedron_pair_intersections_exhaustively_checked": false,
+    "mesh_modified": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "seconds": 0.021819750079885125
+  },
+  "topology_control_admission": {
+    "known_3_to_2_flip": true,
+    "minimum_before": 8.571427346937117e-05,
+    "minimum_after": 0.8000003199996656,
+    "independent_boundary_and_cells_passed": true
+  },
+  "topology_control_actual_method": {
+    "retained_requested_method": "Netgen",
+    "actual_method": "Gmsh default",
+    "native_method_argument": "",
+    "niter_argument": 1,
+    "one_native_api_call": true,
+    "physics_admitted": false
+  },
+  "head_launch_observation": {
+    "observed_at_utc": "2026-11-05T12:37:03.216088+00:00",
+    "head_worker_confirmed_live": true,
+    "result_pending": true,
+    "kernel_alarm_seconds": 900,
+    "head_run_restarted": false
+  },
+  "head_optimized_volume_admitted": false,
+  "printing_master_replaced": false,
+  "physics_admitted": false,
+  "manufacturing_qualified": false,
+  "new_paid_compute_usd": 0,
+  "goal_complete": false,
+  "limitations": [
+    "Exclusion requires fixed cell connectivity and exact boundary coordinates",
+    "It does not exclude topology changes or justify changing a physical allowable",
+    "Head launch observation is timestamped, not proof of a future live or successful job",
+    "Raw head output, if any, needs complete independent inspection before quality comparison",
+    "Hypothetical envelope and missing physical/process qualification remain unchanged"
+  ],
+  "head_terminal": {
+    "terminal": "head_native_failed_closed",
+    "execution": {
+      "exit_code": -14,
+      "controller_limit_reached": false,
+      "seconds": 900.2747910000617,
+      "sampled_peak_rss_kib": 10093904,
+      "log_sha256": "825ce209490b06801248024565a3fcb4b9665dcfb2c09cd863668ec53615d4f9"
+    },
+    "physics_admitted": false,
+    "new_paid_compute_usd": 0
+  },
+  "head_native_execution": {
+    "exit_code": -14,
+    "controller_limit_reached": false,
+    "seconds": 900.2747910000617,
+    "sampled_peak_rss_kib": 10093904,
+    "log_sha256": "825ce209490b06801248024565a3fcb4b9665dcfb2c09cd863668ec53615d4f9"
+  },
+  "head_kernel_alarm_triggered": true,
+  "head_actual_method": {
+    "retained_requested_method": "Netgen",
+    "actual_method": "Gmsh default",
+    "native_method_argument": "",
+    "niter_argument": 1,
+    "one_native_api_call": true,
+    "physics_admitted": false
+  },
+  "all_task_processes_closed": true,
+  "head_candidate_file_present": false,
+  "head_candidate_export_receipt_complete": false,
+  "head_independent_inspection_receipt_complete": false,
+  "native_stale_edge_cavity_warning_count": 145,
+  "native_warning_is_not_independent_input_reclassification": true,
+  "private_capsule": {
+    "directory_basename": "935-constrained-relocation-20261105-001",
+    "manifest_sha256": "a04010b3443b357376808b5f1943991c30cd4f22cafb06d480828505aa681859",
+    "files": 117,
+    "bytes": 161284
+  }
+}

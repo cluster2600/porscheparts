@@ -350,3 +350,18 @@ independent internal-face pairing rejects the export. The relative-quality
 comparison is not admitted. The next relocation method must preserve original
 cell orientation during each accepted move; no iteration-count sweep, head
 field solve, new printing master or manufacturing approval follows this trial.
+
+The [interior-relocation exclusion audit](../research/935-constrained-relocation-20261105/README.md)
+then proves that clipping those proposed movements cannot meet the fixed 50%
+quality-bin target: they touch only 94,031 bad cells. Even arbitrary motion of
+every interior vertex can affect at most 133,340 of the 526,110 bad cells,
+because 392,770 have all four vertices fixed on the source boundary. All
+partitions are reproduced with the frozen inspector's arithmetic. This excludes
+fixed-connectivity interior relocation under that contract, rather than
+relaxing the target. A separate analytic convex-bipyramid control qualifies a
+native default 3-to-2 topology change with an independently known result and
+the same minimum-quality gates. Its one head diagnostic reaches the 900-second
+kernel alarm without exporting a final mesh; the worker is reaped, all inputs
+are rehashed unchanged and the complete capsule is frozen. Local cavity
+coverage/preservation must be audited before another topology trial. No solver,
+printing-master or physical/process approval follows the witness or timeout.
