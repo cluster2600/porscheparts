@@ -8,6 +8,10 @@ screen. Nominal mass is 1.294 kg and the common h5 mesh contains 13,883,493
 tetrahedra. Pointwise peaks remain unresolved and visible; no strength or
 spatial-convergence claim is made.
 
+The [next-refinement admissibility review](carrier-refinement-admissibility-20261105.md)
+records a rejected interior-only refinement, its exact mechanical limitation,
+and the retained shared-edge route with positive child-order screening.
+
 ![Five complete gravity increments](../media/carrier-h5-mechanics-20261105.png)
 
 ![Actual unaveraged h5 fields under both load cases](../media/carrier-h5-load-fields-20261105.png)
