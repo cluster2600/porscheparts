@@ -35,8 +35,10 @@ class FrameDataTests(unittest.TestCase):
 
     def test_unknown_widths_and_registration_stay_unknown(self):
         result, rows = BUILD.audit(self.data)
-        for point in "BCI":
+        for point in "BC":
             self.assertTrue(all(r["half_width"] is None for r in rows if r["family"] == "Mi" and r["point"] == point))
+        motor = next(r for r in rows if r["family"] == "Mi" and r["point"] == "I")
+        self.assertEqual(motor["half_width"], 320)
         self.assertIsNone(result["donor_registration"])
         self.assertFalse(result["functional_geometry_admitted"])
         self.assertFalse(result["manufacturing_authorized"])

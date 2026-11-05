@@ -71,7 +71,7 @@ Mi Fig. 1 defines ten contacts A–J, including bolt heads, a strut stud tip and
 25 × 34 mm hole centres. Its source datum line and centreline are visible.
 Four points provide different bolt and bare-frame heights: B **167/237**, D
 **164/246**, E **173/193**, H **151/187**. The 14 rows preserve those contact
-definitions. Widths B/C/I stay unknown; C/I refer to missing back-page information.
+definitions. Widths B/C stay unknown. Fig. 1 refers to back-page width information; the supplied Fig. 2 explicitly defines E/D as centres of rear motor-mount bolts and gives E–D **640**. This matches Fig. 1 I's named contact, supplying its half-width **320** through a documented cross-figure link. C's exact inner-stud width mapping still needs review.
 F is chosen as the separate Mi X origin. No CH-to-Mi transform is assumed.
 
 Six Mi same-side/cross-body lengths also close to their printed integer values.

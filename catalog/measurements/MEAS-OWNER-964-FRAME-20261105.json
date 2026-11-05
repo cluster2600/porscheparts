@@ -928,7 +928,7 @@
         "contact": "stud_tip",
         "printed_contact_definition": "Tip of Front Inner Strut Stud",
         "width_basis": "Printed note: Dimensions from Centerline are Combined When Equal; Divide by 2 for Individual Dimensions from Centerline. This records the sheet convention, not scan symmetry or donor registration.",
-        "width_unknown_reason": "C and I have width symbols referring to back of page; that back-page width information is absent.",
+        "width_unknown_reason": "Fig1 refers to back-page width information. Supplied Fig2 and Other sheet provide a candidate strut-pattern width, but exact inner-stud endpoint mapping is not admitted.",
         "unit_basis": {
           "interpreted_unit": "mm",
           "explicit_metric_label": "2272mm (89 7/16 inch) WHEELBASE on Fig 1",
@@ -1301,10 +1301,11 @@
       "description": "Head of Rear Bolt - Motor Mount / bolt_head",
       "pdf_page": 1,
       "line": null,
-      "value_text": "x_relative_to_F=2604; half_width=None; height=542",
+      "value_text": "x_relative_to_F=2604; half_width=320; height=542",
       "unit": "mm",
       "numeric_values": [
         2604,
+        320,
         542
       ],
       "source_id": "SRC-OWNER-964-FRAME-DATA-20261105",
@@ -1314,7 +1315,7 @@
         "contact": "bolt_head",
         "printed_contact_definition": "Head of Rear Bolt - Motor Mount",
         "width_basis": "Printed note: Dimensions from Centerline are Combined When Equal; Divide by 2 for Individual Dimensions from Centerline. This records the sheet convention, not scan symmetry or donor registration.",
-        "width_unknown_reason": "C and I have width symbols referring to back of page; that back-page width information is absent.",
+        "width_unknown_reason": null,
         "unit_basis": {
           "interpreted_unit": "mm",
           "explicit_metric_label": "2272mm (89 7/16 inch) WHEELBASE on Fig 1",
@@ -1328,12 +1329,22 @@
         "source_file_sha256": "9986c8e5db0827328f4fe38ed9b2655dc6bc1f6253ce55c071c7266b7ddfab1c",
         "components": {
           "x_relative_to_F": 2604,
-          "half_width": null,
+          "half_width": 320,
           "height": 542
         },
         "uncertainty_mm": null,
         "donor_registration": null,
-        "functional_geometry_admitted": false
+        "functional_geometry_admitted": false,
+        "width_source_crossfigure": {
+          "member": "Mi/Coupe/Mi4.pdf",
+          "pdf_page": 1,
+          "figure": "Fig2 Engine Compartment",
+          "endpoint_labels": "E-D",
+          "printed_span_mm": 640,
+          "endpoint_definitions": "Both E and D are explicitly defined as centers of rear bolts for motor mounts. Fig1 I is Head of Rear Bolt - Motor Mount; its general note measures bolts to centre.",
+          "source_file_sha256": "d1faaf06e6c24c4554c127e07e23a2f868e9345359d96ee6a34f1d3ed6da7cc4",
+          "mapping_status": "documentary_feature_definition_match_not_donor_registration"
+        }
       }
     },
     {
