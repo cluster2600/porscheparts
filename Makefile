@@ -35,7 +35,7 @@ endif
 	pet-zone-triage-check pet-part-triage pet-verdict pet-verdict-check \
 	pet-explain pet-disposition \
 	route-trim-ring-check parts-table route-lever-hook route-lever-hook-check \
-	print-screens print-visuals print-screen-sections-check parts-table-check readme-gallery readme-gallery-check part-pages part-pages-check translation-status reports-index reports-index-check docs-links-check part-previews part-previews-check container-recon container-cadsim container-mesh-cfd \
+	print-screens print-visuals print-screen-sections-check parts-table-check readme-gallery readme-gallery-check part-pages part-pages-check catalogue-pages catalogue-pages-check translation-status reports-index reports-index-check docs-links-check part-previews part-previews-check container-recon container-cadsim container-mesh-cfd \
 	container-physicsml container-simready container-simready-workflow \
 	container-simready-local-ai container-ov-libraries-cpu container-smoke \
 	container-smoke-physicsml container-smoke-simready \
@@ -225,7 +225,7 @@ check: validate test 917-clean-sheet-2026-f32-check \
 	tip-routes-check pet-zone-triage-check pet-verdict-check \
 	route-lever-hook-check print-screen-sections-check parts-table-check \
 	readme-gallery-check \
-	part-pages-check reports-index-check docs-links-check part-previews-check \
+	part-pages-check catalogue-pages-check reports-index-check docs-links-check part-previews-check \
 	help-check fan-program-check engine-mount-study-check
 
 .PHONY: engine-mount-study-check
@@ -1429,6 +1429,15 @@ part-pages:
 #> catalogue | Check that these pages follow the records
 part-pages-check:
 	python3 scripts/render_part_pages.py --check
+
+#> catalogue | Generate the public catalogue (gate-passed parts only) and the study status listing
+catalogue-pages:
+	python3 scripts/render_public_catalogue.py --write
+
+#> catalogue | Check that the public catalogue follows the records and the gate
+catalogue-pages-check:
+	python3 tests/test_render_public_catalogue.py
+	python3 scripts/render_public_catalogue.py --check
 
 #> containers | Photogrammetry reconstruction image
 container-recon:
