@@ -280,3 +280,14 @@ a preservation proof must precede another interior-size sweep. Kali version
 probes confirm CalculiX 2.23 and an updated OpenFOAM 14 image, requiring fresh
 OpenFOAM case controls. These software/preparation results do not qualify head
 physics or manufacturing and do not replace the frozen 3MF files.
+
+The [bounded numerical conditioning study](../research/935-local-conditioning-20261105/README.md)
+then reduces badly shaped triangles by 89.7%, with an independently checked
+0.007067 mm complete-surface correspondence bound relative to its hypothetical
+parent. Protected cut faces and sharp features remain exact. The separate
+numerical surface passes the full native geometry audit; the printing master
+is unchanged. A real bounded Vast HXT trial passes its cube control but reaches
+the 1,800-second head limit without exporting a final volume mesh. Recovered
+logs and closeout receipts preserve that negative result. The owner now permits
+the original scan on Vast when useful; this trial transferred derived geometry
+only. Head physics, process calibration and physical qualification remain open.
