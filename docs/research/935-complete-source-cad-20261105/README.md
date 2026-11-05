@@ -7,10 +7,10 @@ without modifying their source records. The original scan remains authoritative.
 This is a faceted surface reference, not a reconstructed functional head solid,
 parametric head design, qualified fabrication file or engine release.
 
-Checkpoint status: the exhaustive chart job is running and its completed charts
-are being recovered. Whole-set FreeCAD validation has not yet completed. The
-benchmarks below are actual terminal results; the full-run outcome will be
-reported separately after final byte, coverage and saved-shape checks.
+Checkpoint status: the exhaustive source STEP job, recovery, original-ID coverage
+and seam reconciliation are complete. Whole-set FreeCAD validation is resuming
+after a shared Python executable disappeared. The benchmarks below are actual
+terminal results; complete native validation is not yet claimed.
 
 ## Source admission before construction
 
@@ -160,6 +160,35 @@ feature in 9.078 seconds. Separate OCP inspection of that actual saved feature
 finds zero original-vertex error and maximum support-plane residual
 `1.566194936575611e-11` nominal mm. This single-chart trial does not qualify
 whole-head native import capacity or functional manufacture.
+
+## Shared-runtime failure and isolated resumption
+
+The first whole-set native run stops after 35 complete document comparisons,
+at 661.132 seconds, when its Python executable path disappears. The shared alias
+subsequently resolves to CPython 3.12.13 instead of 3.12.11; its executable hash
+has changed. NumPy 2.5.4, SciPy 1.18.1 and the actual OCP core bytes remain the
+same. The failed terminal record and cancelled partial cases are retained
+read-only, with all owned children reaped. The failed run is not marked complete
+or reported as having unchanged runtime inputs.
+
+A separate private copy of CPython 3.12.13 and the existing dependencies has a
+verified private prefix and 17,387 software files, frozen and rehashed under
+manifest `d7879b23d83988901358bee60ecfbd3e3372c975051aa4ac1ef328614b4648f7`.
+The Mac OCP core remains
+`ca5449f0d8073bae9e4fadd8ad168bdb9acd1edd9fcc9e11b89a6aa5f26a2864`.
+Shared software paths are not altered and no package download or new rental is
+needed. An initial import probe times out at 30 seconds; a separate diagnostic
+passes in 13.053 seconds. Actual positive and negative native controls then
+pass on the private runtime in 21.704 seconds, before further head inspection.
+
+[The resumer](source/resume_native_chart_set.py) verifies the failed attempt's
+entire manifest, copies the 35 complete document/export bytes unchanged, creates
+only the other 48 documents, and independently inspects **all 83 actual saved
+shapes** with the isolated runtime. Prior comparison and execution records are
+retained separately. Original acquisition, source IDs, support-plane guard,
+native macros and resource bounds stay unchanged. STEP construction on Vast and
+the 35 successful native document constructions are not replayed. This is a
+runtime recovery, not a relaxation of geometric acceptance.
 
 ## Stack and release boundary
 
