@@ -1,5 +1,27 @@
 # Location of rejected cfMesh faces — 4 November 2026
 
+> **Correction, 5 November 2026:** The reverse triangle distances reported
+> below are superseded pending a scale-independent replay. On the same 4,096
+> input face centres, querying the triangulated wall in source-coordinate scale
+> gives a median of 0.00130 and a 95th percentile of 0.03865 source units,
+> rather than 0.03998 and 0.18500. A 144-point independent closest-triangle
+> comparison agrees with Warp within 0.000013 source units. One point reproduces
+> a large scale-dependent discrepancy in both the accelerated and naive
+> `trimesh` queries; its underlying implementation cause is not yet proven.
+> The three previously reported outlier positions were independently replayed
+> in source coordinates: their wall distances and scan comparisons agree with
+> the earlier values to numerical precision. This does not reinstate the
+> earlier aggregate statistics. The rejected CFD status is unchanged. The private full-centroid
+> result and reproduction scripts are in `935-cfmesh-full-centroid-warp.tar.gz`
+> on the private `935-rotor-parallel-20261104` release.
+
+The corrected [source-scale replay](../../../twins/935-horizontal-cooling-system-f0/source/cfmesh-face-location-20261104/reverse_triangle_source_scale.py)
+preserves the historical 4,096 sample indices and input hashes while scaling
+the wall before each query. A synthetic small-triangle regression is provided
+in `tests/test_935_cfmesh_source_scale.py`, using an analytical geometry fixture. The 4,096-point replay produced identical aggregate fields on
+the Mac and native Kali1 Linux x86_64. This correction does not change the
+historical script or receipt.
+
 This read-only diagnostic classifies the OpenFOAM face sets from the existing
 case 006 of the [broader facet trial](BROADER_FACET_REPAIR_20261028.md). It
 uses the serialized `boundary` face ranges, not geometric proximity. The
