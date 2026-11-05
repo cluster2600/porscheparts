@@ -1,4 +1,4 @@
-# ADR 0016 — PicoGK for new generative CAD
+# ADR 0017 — PicoGK for new generative CAD
 
 > Renumbered on 2026-11-05 (issue #431). This decision was first filed as
 > `0004-picogk-new-geometry.md`, which collided with

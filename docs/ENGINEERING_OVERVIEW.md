@@ -237,7 +237,7 @@ has not yet been meshed or solved; the previous concavity failure still needs
 a native diagnosis and correction.
 
 Read the [engineering workflow](architecture/engineering-workflow.md),
-[PicoGK decision](decisions/0016-picogk-new-geometry.md),
+[PicoGK decision](decisions/0017-picogk-new-geometry.md),
 [software inventory and dated execution evidence](SOFTWARE_STACK.md), and
 [per-part workflow](WORKFLOW.md) for the detailed contracts. Passing code,
 mesh or USD checks does not close physical qualification.
