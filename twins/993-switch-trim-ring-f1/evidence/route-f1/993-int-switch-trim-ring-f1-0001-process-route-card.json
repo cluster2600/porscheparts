@@ -20,15 +20,15 @@
     "orientation": "roll_y_45"
   },
   "derived": {
-    "screened_layer_thickness_mm": 0.05,
+    "screened_layer_thickness_mm": 0.03,
     "qualified_layer_thickness_mm": 0.03,
-    "layers_at_screened_thickness": 580,
+    "layers_at_screened_thickness": 967,
     "layers_at_qualified_thickness": 967,
     "build_height_mm": 28.991378028648445,
     "orientation": "roll_y_45",
-    "support_proxy_volume_mm3": 42.7749999999999,
-    "deposited_volume_mm3": 2334.665015564014,
-    "exposure_time_hours_at_published_rate": 0.12716040389782213,
+    "support_proxy_volume_mm3": 14.250000000000222,
+    "deposited_volume_mm3": 2306.140015564014,
+    "exposure_time_hours_at_published_rate": 0.12560675466034935,
     "exposure_time_scope": "volume divise par le debit publie : ni recouvrement, ni chauffe, ni inertage, ni changement de plateau ne sont comptes",
     "screening_mass_g": 6.119346341555917
   },
@@ -45,9 +45,8 @@
     },
     {
       "gate": "layer_thickness_consistent",
-      "pass": false,
-      "statement": "Le tranchage a 50 um est celui de la route qualifiee.",
-      "blocker": "Le tranchage a ete conduit a 50 um alors que la seule route publiee de cet alliage sur cette machine est a 30 um. Le nombre de couches, la duree et les proprietes coupon ne se transposent pas d'une epaisseur a l'autre."
+      "pass": true,
+      "statement": "Le tranchage a 30 um est celui de la route qualifiee."
     },
     {
       "gate": "screened_wall_above_process_minimum",
@@ -96,7 +95,7 @@
       "blocker": "Ni lot, ni nombre de reemplois, ni certificat matiere ne sont engages avec un fournisseur."
     }
   ],
-  "blocking_gate_count": 7,
+  "blocking_gate_count": 6,
   "metal_print_authorized": false,
   "authorization_note": "Aucune porte de fabrication n'est ouverte par ce fichier. Une route coherente sur le papier ne remplace ni coupon, ni fichier machine signe, ni revue d'ingenierie."
 }

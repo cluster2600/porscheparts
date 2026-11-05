@@ -12,7 +12,7 @@ Le fournisseur est invite a contredire ce qui suit.
 |---|---|---|
 | `switch_trim_ring_f1.step` | maitre STEP | `3b59150dc69d962d9ea5606fd23d3afc552c953c919150c307904b351bba00df` |
 | `switch_trim_ring_f1.stl` | surface d'analyse STL | `c610c7ca70c7df19f1778a848f521abca0356d88f699668fd89b3141934c4ddc` |
-| `993-int-switch-trim-ring-f1-0001-lpbf-geometry-report.json` | criblage geometrique etape 03 | `0d0cdca17a71dc19d01b499286b7c9232ac0fbc37e03da134908d2bf9523ba26` |
+| `993-int-switch-trim-ring-f1-0001-lpbf-geometry-report.json` | criblage geometrique etape 03 | `c1ac080a5056d596728b438df86065064e3498f41d5bbcf9a182236ec2fb1f2f` |
 
 Le STEP est le maitre. Le STL est une surface d'analyse derivee, a tolerance
 de corde declaree ; il ne fait pas foi sur la cote.
@@ -35,7 +35,6 @@ de corde declaree ; il ne fait pas foi sur la cote.
 
 ## 3. Ce que le dossier ne contient pas — questions au fournisseur
 
-- **layer_thickness_consistent** — Le tranchage a ete conduit a 50 um alors que la seule route publiee de cet alliage sur cette machine est a 30 um. Le nombre de couches, la duree et les proprietes coupon ne se transposent pas d'une epaisseur a l'autre.
 - **orientation_engineering_reviewed** — L'orientation vient d'une regle de criblage automatique, pas d'une revue DfAM.
 - **temperature_dependent_constitutive_card_available** — La carte procede se declare elle-meme incomplete : exact laser path, hatch, contour and exposure schedule exported for this build ; powder optical properties and temperature-dependent liquid/solid thermal card ; temperature- and orientation-dependent elastic-plastic constitutive card.
 - **heat_treatment_route_defined** — La carte procede ne publie aucun traitement thermique : detente, revenu et etat metallurgique de livraison restent a contractualiser.

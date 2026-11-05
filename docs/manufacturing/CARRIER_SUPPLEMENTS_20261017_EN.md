@@ -63,7 +63,7 @@ Earlier a42 C1 and terminal-taper stresses and H2 studies are separate histories
 and are not transferred to this master. The “Current C1” section below remains
 the **a42 C1 checkpoint**, followed by its historical evidence.
 
-[English workflow guide](PART_WORKFLOW_EN.md) · [French supplement](CARRIER_SUPPLEMENTS_20261017.md) · [Figure gallery](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html)
+[English workflow guide](PART_WORKFLOW_EN.md) · [Figure gallery](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html)
 
 This page separates the current C1 results, retained historical studies and
 unfinished support/delivery stages. File names and evidence identifiers retain

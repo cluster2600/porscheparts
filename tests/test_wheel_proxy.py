@@ -20,7 +20,7 @@ class WheelProxyTests(unittest.TestCase):
         diameter, width, bore = wheel_proxy.parameters(record)
         self.assertAlmostEqual(diameter, 457.2)
         self.assertAlmostEqual(width, 203.2)
-        self.assertAlmostEqual(bore, 71.5)
+        self.assertAlmostEqual(bore, 71.58)
 
     def test_17_inch_record_exposes_approved_bore(self) -> None:
         record = json.loads(

@@ -301,8 +301,8 @@
           "repository_path": "catalog/components/comp-fuchs-37026.013.json"
         }
       ],
-      "status": "open",
-      "next_step": "The approvals distinguish the wheel bore (71.58 mm) from the vehicle centring diameter (71.5 mm); three component records store the vehicle figure under the wheel-bore parameter. Decide which quantity CENTER_BORE carries, then align the four records, the interface proxies and tests/test_wheel_proxy.py in one dedicated change. Not changed here.",
+      "status": "resolved",
+      "resolution": "CENTER_BORE carries the wheel centre bore (Mittenlochdurchmesser) declared in each wheel's own type approval: 71.58 mm for 37024, 37026, 37027 and 37028. The 71.5 mm figure is the vehicle hub pattern and centring diameter in the application annex, not a wheel dimension; it is not stored as a wheel parameter. The four component records, their interface-proxy STEP files and tests/test_wheel_proxy.py were aligned on 2026-11-05, and COMP-FUCHS-37027.011 now cites its own approval 000087. Nominal documentary values without tolerances; no fit, spatial check or wheel release follows from this correction.",
       "flagged_in": [
         "catalog/components/comp-fuchs-37026.013.json",
         "catalog/components/comp-fuchs-37027.011.json",

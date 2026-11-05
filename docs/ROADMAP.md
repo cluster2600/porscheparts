@@ -159,11 +159,19 @@ refuses to build until the seven dimensions it requires are measured.
 
 ## Phase 3 — Titanium engineering twin, no manufacturing
 
-Candidate under study: **engine carrier `993-ENG-CARRIER-0001`** (993 115 021 53).
-Presumed critical in the sense of `SAFETY.md`. The benefit of titanium is not a
-given: at identical geometry, the part would be roughly twice as flexible as in
-steel. Load cases and process comparison to be filled in
-`parts/993-eng-carrier-0001/evidence/load-cases.md` before any geometry.
+Candidate under study: **oval exhaust tip `993-EXH-OVAL-TIP-TI-F1-0001`**,
+retained by [decision 0007](decisions/0007-premier-titane-embout-echappement.md)
+and kept by [decision 0014](decisions/0014-exhaust-tip-route-matrix-conditional-titanium.md)
+behind a conditional go/no-go that is closed today. The record is `functional`,
+not `non_critical`; accepting it as the first titanium part and sourcing the
+deciding temperature remain owner decisions (see 0014).
+
+The engine carrier `993-ENG-CARRIER-0001` (993 115 021 53) is no longer the
+Phase 3 candidate. It stays a safety-critical study: at identical geometry it
+would be roughly twice as flexible in titanium as in steel, and
+[`TITANIUM.md`](TITANIUM.md) uses it as the example of a part with nothing to
+gain from being printed. Its load cases stay in
+`parts/993-eng-carrier-0001/evidence/load-cases.md`.
 
 - [ ] Choose a part where Ti-6Al-4V brings a real benefit
 - [ ] Compare LPBF, CNC, sheet metal and casting
