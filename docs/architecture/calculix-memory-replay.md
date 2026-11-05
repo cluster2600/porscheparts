@@ -80,8 +80,9 @@ and both complete references before integrating the complete current fields.
 ## Storage profile and evidence
 
 The new profile allows 2 GiB for field arrays, a 12 GiB process-group RSS cap,
-600 seconds per replay, an 8 GiB free-disk reserve and at most 64 MiB of new
-case data. The decoded geometry, raw current DAT and actual reference DAT/NPZ
+600 seconds per replay and an 8 GiB free-disk reserve. Postflight measurement
+verified that new unshared case files remained below 64 MiB per case; no
+continuous case-output-size guard is claimed. The decoded geometry, raw current DAT and actual reference DAT/NPZ
 objects use verified existing bytes on the same filesystem. Large field arrays
 stay in RAM; only the numerical reports, field hashes and cut-plane samples
 are written. Raw current fields can be reproduced from the retained DAT.
@@ -100,6 +101,7 @@ Private receipts remain outside Git:
 | Cached geometry and altered bindings | `work/carrier-h6-memory-replay-001/cache-controls.json` |
 | Read-only maps and RAM fields composed | `work/carrier-h6-memory-replay-001/routing-controls.json` |
 | Full two-case replay and native comparisons | `work/carrier-h6-memory-replay-001/complete.json` |
+| Actual new case-file footprint | `work/carrier-h6-memory-replay-001/disk-postflight.json` |
 | Public adapter bytes and reader-function equivalence | `work/carrier-h6-memory-replay-001/public-source-qualification.json` |
 | Actual unaveraged h6 cut fields and source hashes | `work/carrier-h6-field-figure-001/figure.json` |
 
