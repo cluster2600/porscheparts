@@ -378,3 +378,21 @@ node coordinate and the complete source boundary remain exact. The absolute
 shape gate still fails, so native solver export and case-specific conditioning
 admission precede any field solve. The original scan and print master are
 rehashed unchanged; this is neither a new CAD master nor an AM/physical release.
+
+The [native solver-admission study](../research/935-native-solver-admission-20261105/README.md)
+then round-trips every conditioned coordinate, tetrahedron and boundary face
+through actual binary and 17-digit ASCII Gmsh files. Native Jacobians and
+volumes are positive, while 3,130 minSICN values are nonpositive. Exact rational
+inspection proves all flagged stored-coordinate determinants positive and
+quantifies extreme conditioning; this does not establish operator accuracy.
+The actual OpenFOAM reader rejects the binary control. The ASCII precision
+fixture imports and passes checkMesh on Kali, with complete independent
+coordinate/cell/boundary readback. A single 8 GiB full-head Kali import exits
+137 before checkMesh, with complete recovery and owned staging/container
+cleanup. One guarded cloud trial repeats the control in its pinned OpenFOAM 13
+runtime, then imports the complete head in 113.69 seconds. Native checkMesh
+reaches its 240-second deadline after its first topology checks and remains
+incomplete. Its actual native arrays, terminal outcome and owned-resource
+closeout are linked in the aggregate record. Head operator admission,
+engine boundary conditions, manufacturing qualification and physical release
+remain distinct open gates; no engine field solve follows from format success.
