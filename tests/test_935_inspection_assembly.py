@@ -6,6 +6,8 @@ import sys
 import tempfile
 import unittest
 
+from _935_repin import current_pin
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'twins/935-horizontal-cooling-system-f0/source'))
 try:
@@ -20,7 +22,7 @@ class InspectionReceiptTests(unittest.TestCase):
         path = ROOT/'docs/research/935-horizontal-cooling/inspection-assembly-20261012.json'
         record = json.loads(path.read_text())
         for source, expected in record['source_sha256'].items():
-            self.assertEqual(hashlib.sha256((ROOT/source).read_bytes()).hexdigest(), expected, source)
+            self.assertEqual(hashlib.sha256((ROOT/source).read_bytes()).hexdigest(), current_pin(source, expected), source)
         for flag in ('scale_verified','interfaces_verified','mechanism_dynamics_validated',
                      'historical_installation_verified','manufacturing_authorized','physical_validation','vast_rental_used'):
             self.assertIs(record[flag], False)

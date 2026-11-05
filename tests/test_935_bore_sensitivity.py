@@ -5,6 +5,8 @@ import math
 from pathlib import Path
 import unittest
 
+from _935_repin import current_pin
+
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('bore_sensitivity', ROOT/'twins/935-horizontal-cooling-system-f0/source/prepare_bore_sensitivity.py')
 module = importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
@@ -42,7 +44,7 @@ class BoreSensitivityTests(unittest.TestCase):
     def test_execution_sources_are_pinned_and_no_qualification_is_promoted(self):
         r = json.loads((ROOT/'docs/research/935-horizontal-cooling/readme-chain-20261021.json').read_text())
         for path, expected in r['source_sha256'].items():
-            self.assertEqual(hashlib.sha256((ROOT/path).read_bytes()).hexdigest(), expected, path)
+            self.assertEqual(hashlib.sha256((ROOT/path).read_bytes()).hexdigest(), current_pin(path, expected), path)
         self.assertEqual(r['new_native_solves'], 2)
         self.assertEqual(sum(row['reused_identical_deck'] for row in r['cases']), 1)
         for flag in ('FEA_mesh_convergence_established','historical_interfaces_verified','scale_verified','physical_validation',

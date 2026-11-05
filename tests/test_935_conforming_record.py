@@ -3,6 +3,8 @@ import json
 from pathlib import Path
 import unittest
 
+from _935_repin import current_pin
+
 ROOT=Path(__file__).resolve().parents[1]
 
 
@@ -17,14 +19,14 @@ class ConformingRecordTests(unittest.TestCase):
         self.assertTrue(witness['numerical_reference_criteria_passed']);self.assertTrue(witness['canonical_metrics_identical'])
         self.assertFalse(witness['Porsche_case_executed']);self.assertFalse(witness['exact_original_Docker_confinement_reproduced'])
         for name,expected in witness['source_sha256'].items():
-            self.assertEqual(hashlib.sha256((ROOT/name).read_bytes()).hexdigest(),expected,name)
+            self.assertEqual(hashlib.sha256((ROOT/name).read_bytes()).hexdigest(),current_pin(name,expected),name)
         for ci in record['ci']:
             self.assertEqual(ci['headSha'],record['parent_commit']);self.assertEqual(ci['conclusion'],'success')
 
     def test_source_pins_and_study_boundaries(self):
         record=json.loads((ROOT/'docs/research/935-horizontal-cooling/conforming-rotor-20261022.json').read_text())
         for name,expected in record['source_sha256'].items():
-            self.assertEqual(hashlib.sha256((ROOT/name).read_bytes()).hexdigest(),expected,name)
+            self.assertEqual(hashlib.sha256((ROOT/name).read_bytes()).hexdigest(),current_pin(name,expected),name)
         for name,value in record['scope'].items():self.assertIs(value,False,name)
         volume=record['volume']
         self.assertTrue(volume['exact_boundary_coordinate_triangle_bijection'])

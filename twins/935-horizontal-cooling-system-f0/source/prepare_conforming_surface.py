@@ -57,8 +57,10 @@ def prepare(case_path,output):
         raise ValueError('Explicit unchanged-boundary, uncalibrated study required')
     if output.exists() or not output.parent.is_dir():raise ValueError('Fresh private output required')
     for parent in output.resolve().parents:
-        if (parent/'.git').exists() and output.resolve().relative_to(parent).parts[0]!='work':
-            raise ValueError('Scan derivatives must stay in ignored work/')
+        if (parent/'.git').exists():  # innermost repository decides (#416)
+            if output.resolve().relative_to(parent).parts[0]!='work':
+                raise ValueError('Scan derivatives must stay in ignored work/')
+            break
     v,f=load_surface(c['bundle_path'],c['bundle_sha256'],c['stl_path'],c['geometry_sha256'])
     volume=0.
     for i in range(0,len(f),100000):
