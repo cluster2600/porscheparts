@@ -20,6 +20,9 @@ REFERENCE = ROOT / "catalog" / "reference"
 SOURCES = ROOT / "catalog" / "sources"
 
 CONFIDENCE = {"declared", "inferred", "weighed_by_third_party"}
+# Variants an entry can belong to. "unspecified" means the source names no
+# variant; scripts/twin_coverage.py then counts the entry for every variant.
+VARIANTS = {"Carrera", "Carrera 4", "Carrera S", "Carrera 4S", "Carrera RS", "Turbo", "Turbo S", "GT2", "unspecified"}
 UNITS_MM = re.compile(r"^\d+(\.\d+)?$")
 
 REQUIRED = {"entry_id", "name", "generation", "confidence", "source_id", "notes"}
@@ -30,6 +33,7 @@ OPTIONAL = {
     "additional_declared_dimensions",
     "material",
     "variant",
+    "variants",
     "caveat",
     "quantity_per_car",
 }
@@ -173,6 +177,22 @@ def validate_entry(entry: Any, label: str, sources: set[str]) -> list[str]:
     quantity = entry.get("quantity_per_car")
     if quantity is not None and (not isinstance(quantity, int) or isinstance(quantity, bool) or quantity < 1):
         errors.append(f"{label}.quantity_per_car: expected a positive integer")
+
+    variants = entry.get("variants")
+    if variants is not None:
+        if (
+            not isinstance(variants, list)
+            or not variants
+            or len(set(variants)) != len(variants)
+            or not all(isinstance(item, str) and item in VARIANTS for item in variants)
+        ):
+            errors.append(f"{label}.variants: expected distinct values from {sorted(VARIANTS)}")
+        elif "unspecified" in variants and len(variants) > 1:
+            errors.append(f"{label}.variants: unspecified cannot be combined with a named variant")
+    # The twin coverage counts an entry with a mass and a quantity per car: it must
+    # say which variants it belongs to, or Turbo-only mass is counted for the Carrera.
+    if mass is not None and quantity is not None and variants is None:
+        errors.append(f"{label}.variants: required when mass_kg and quantity_per_car are both set")
 
     if not isinstance(entry.get("notes"), str):
         errors.append(f"{label}.notes: expected a string")

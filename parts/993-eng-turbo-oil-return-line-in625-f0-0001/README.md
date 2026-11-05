@@ -2,7 +2,7 @@
 
 <div align="center">
 
-# Turbo oil return line, IN625 F0 concept
+# Turbo oil line (feed or return unassigned), IN625 F0 concept
 
 **`993-ENG-TURBO-OIL-RETURN-LINE-IN625-F0-0001`** · Porsche 993 · 1996–1997
 
@@ -29,7 +29,7 @@ The original part is documented — pictures, catalogue entries or published dat
 </td>
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
-<img src="media/preview.png" alt="Concept CAD block for Turbo oil return line, IN625 F0 concept" width="340"><br>
+<img src="media/preview.png" alt="Concept CAD block for Turbo oil line (feed or return unassigned), IN625 F0 concept" width="340"><br>
 <sub>Concept CAD block, 143.4 × 60.0 × 94.9 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
@@ -39,7 +39,7 @@ The original part is documented — pictures, catalogue entries or published dat
 
 ## What it is
 
-Clean-sheet concept of a left line with an open internal passage and two integrated flanges. PorscheFanatics and Patrick Motorsports confirm the 993 Turbo functional need, but no dimension or material; the entire F0 route remains synthetic.
+Clean-sheet concept of a left turbocharger oil line with an open internal passage and two integrated flanges. No registered source assigns any of the four plate 202-16 oil-pipe references to feed or return, so the line is named neutrally; the part_id keeps its historical word 'return' as a stable identifier only. PorscheFanatics and Patrick Motorsports confirm the 993 Turbo functional need, but no dimension or material; the entire F0 route remains synthetic.
 
 ## What it does on the car
 

@@ -38,6 +38,20 @@ class ReferenceValidationTests(unittest.TestCase):
 
         self.assertTrue(any("neither mass, dimensions nor material" in error for error in errors))
 
+    def test_counted_entry_must_name_its_variants(self) -> None:
+        payload = deepcopy(self.payload)
+        payload["entries"][0].pop("variants")
+        self.assertTrue(any("variants: required" in error for error in validate_file(payload, self.sources)))
+        payload["entries"][0]["variants"] = ["Turbo", "unspecified"]
+        self.assertTrue(any("cannot be combined" in error for error in validate_file(payload, self.sources)))
+        payload["entries"][0]["variants"] = ["Turbo-ish"]
+        self.assertTrue(any("expected distinct values" in error for error in validate_file(payload, self.sources)))
+
+    def test_turbo_only_entries_are_tagged_turbo(self) -> None:
+        for entry in self.payload["entries"]:
+            if "TURBO" in entry["entry_id"] and "variants" in entry:
+                self.assertEqual(entry["variants"], ["Turbo"], entry["entry_id"])
+
     def test_negative_mass_is_rejected(self) -> None:
         payload = deepcopy(self.payload)
         payload["entries"][0]["mass_kg"] = -1

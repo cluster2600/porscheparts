@@ -57,6 +57,17 @@ Les deux écarts sont du même ordre de grandeur qu'une **boîte de vitesses de
 désignent un **ensemble moteur et boîte**, alors que les pesées portent sur le
 moteur seul.
 
+> **Update 2026-11-05 (English): the gearbox hypothesis is rejected for the
+> atmospheric engine.** The Porsche 993 technical specification booklet
+> (`SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK`, read visually, printed p. 18) gives
+> "Engine Weight (Tiptronic) kg/lbs 232 (224)" for the 911 Carrera, the same
+> figures as the workshop manual's p. 15 sheet, and lists "Transmission Weight
+> with Oil" separately on pp. 22-23 (66 kg G50/21, 105 kg Tiptronic). So 232 kg
+> is an engine figure without gearbox. The 45.1 kg gap to the weighing stays
+> open: dry versus wet, and which ancillaries are included, are stated by
+> neither document. The 268 kg Turbo figure has no registered source and is not
+> settled by this booklet, which does not cover the Turbo.
+
 Elle reste une hypothèse. Trois autres explications tiennent debout : un moteur
 Turbo de route avec climatisation, échangeurs et échappement de série, là où le
 GT2 Race s'en passe ; des pleins comptés ou non ; ou simplement un chiffre repris

@@ -20,12 +20,25 @@ configuration, the Carrera with manual transmission. No registered source gives
 a Tiptronic or a Turbo curb weight, so those runs require --kerb-weight and stop
 otherwise rather than reuse the Carrera figure.
 
+Each counted part entry names the variants it belongs to (field "variants" in
+catalog/reference). An entry is counted for the requested variant when it names
+it, or when it is "unspecified" because its source names no variant. Entries
+of other variants are listed as excluded, never silently added.
+
 The engine is counted as one assembly mass read from the workshop manual's
 measurement record. The manual has no Turbo volume and no registered source
 gives a Turbo engine mass, so the Turbo variant counts no engine at all. For the
 Carrera, the scope of the counted figure is an open question, stated in every
 run:
 
+- What is settled (2026-11-05): the figure excludes the gearbox. The Porsche
+  993 technical specification booklet (SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK,
+  read visually, printed p. 18) prints "Engine Weight (Tiptronic) kg/lbs
+  232 (224)" for the 911 Carrera, the same values as the manual sheet, and lists
+  "Transmission Weight with Oil" separately on p. 22-23 (66 kg G50/21, 105 kg
+  Tiptronic). The hypothesis that 232 kg is engine plus gearbox is therefore
+  rejected. What stays open is the engine's own scope: neither document says
+  dry or wet, nor which ancillaries (exhaust, flywheel, air conditioning).
 - MEAS-MANUAL-993-ALL transcribes the PDF p. 15 technical-data sheet with only
   the labels "Manual transmission: 232 (511)" and "Tiptronic: 224 (494)", in kg
   (lbs). "Dry, ready to install" is the sheet heading as recorded in
@@ -40,7 +53,7 @@ run:
 - An unregistered community weighing with a named weigher and a declared method
   gives 186.9 kg for a complete 1995 Carrera engine, ready to run, without
   gearbox. parts/993-eng-carrier-0001/evidence/load-cases.md records the 45.1 kg
-  gap as an open contradiction (232 kg might be engine plus gearbox), and
+  gap; it is not a gearbox, which is weighed separately, and stays unexplained.
   twins/m64-engine-system/bom/m64-bom-v1.json keeps the dry engine mass
   unresolved. The weighing is printed for comparison only and never counted.
 """
@@ -76,6 +89,17 @@ CARRERA_CURB_WEIGHT = "MNL-TECH-0037"
 # and is never counted.
 COMMUNITY_WEIGHING_KG = 186.9
 COMMUNITY_WEIGHING_RECORD = "parts/993-eng-carrier-0001/evidence/load-cases.md"
+# Second Porsche document giving the same engine figures and the gearbox separately.
+SCOPE_CROSS_CHECK = "SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK"
+UNSPECIFIED = "unspecified"
+
+
+def applies_to(entry: dict, variant: str) -> bool:
+    """Count an entry for a variant it names, or for every variant when unspecified."""
+    variants = entry.get("variants")
+    if not isinstance(variants, list) or not variants:
+        raise ValueError(f"{entry.get('entry_id')}: counted entry carries no variants")
+    return variant in variants or UNSPECIFIED in variants
 
 
 def manual_value(value_id: str) -> dict:
@@ -126,7 +150,9 @@ def engine_scope_note(variant: str, transmission: str, engine: float, kerb_weigh
     value = manual_value(entry[0])
     gap = engine - COMMUNITY_WEIGHING_KG
     text = (
-        f"Engine scope is open. The p. 15 sheet labels this value only "
+        f"Gearbox excluded: {SCOPE_CROSS_CHECK} (printed p. 18) gives the same figure as "
+        f"\"Engine Weight\" and the transmission weight separately (p. 22-23). "
+        f"The rest of the engine scope is open. The p. 15 sheet labels this value only "
         f"\"{value.get('description')}\" (kg, lbs); \"dry, ready to install\" is the "
         f"sheet heading as recorded in docs/993/993_MANUAL_DATA_MAP.md, not in the "
         f"transcription, which is {value.get('extraction_status')}, not manually checked. "
@@ -134,7 +160,7 @@ def engine_scope_note(variant: str, transmission: str, engine: float, kerb_weigh
         f"An unregistered community weighing with a declared method gives "
         f"{COMMUNITY_WEIGHING_KG:.1f} kg for a complete 1995 Carrera engine without gearbox, "
         f"{gap:.1f} kg ({gap / kerb_weight * 100:.1f} points of coverage) below the counted "
-        f"figure; the contradiction is open in {COMMUNITY_WEIGHING_RECORD}."
+        f"figure; the gap is not the gearbox and stays open in {COMMUNITY_WEIGHING_RECORD}."
     )
     return textwrap.wrap(text, width=80)
 
@@ -166,12 +192,16 @@ def main(argv: list[str] | None = None) -> int:
 
     entries = load_entries()
     counted: list[tuple[str, float, int, float, bool]] = []
+    excluded: list[tuple[str, float, list[str]]] = []
     for entry in entries:
         mass = entry.get("mass_kg")
         quantity = entry.get("quantity_per_car")
         if mass is None or quantity is None:
             continue
         if entry.get("generation") not in {"993", "generic"}:
+            continue
+        if not applies_to(entry, args.variant):
+            excluded.append((entry["name"], mass * quantity, entry["variants"]))
             continue
         counted.append((entry["name"], mass, quantity, mass * quantity, "caveat" in entry))
 
@@ -194,15 +224,20 @@ def main(argv: list[str] | None = None) -> int:
         print(line)
     print()
     share = documented / args.kerb_weight * 100
+    if excluded:
+        print(f"Excluded, other variants: {sum(row[1] for row in excluded):.2f} kg")
+        for name, total, variants in sorted(excluded, key=lambda r: -r[1]):
+            print(f"  {name[:38]:38s} {total:8.2f}  ({', '.join(variants)})")
+        print()
     print(f"Coverage: {documented:.1f} kg of {args.kerb_weight:.0f} kg, i.e. {share:.1f} %")
     print(f"Left to document: {args.kerb_weight - documented:.1f} kg")
     print()
     print("Lines marked ! carry a caveat: the matching lightweight version is not an")
     print("equivalent replacement. The original mass itself remains valid.")
     print()
-    print("Known limits: the part entries carry no variant, so Turbo-only parts are counted")
-    print("for the Carrera too. catalog/components are not added: they are aftermarket")
-    print("fitments (wheels) or parts already inside the engine mass (connecting rods).")
+    print("Known limits: entries whose source names no variant are counted for every")
+    print("variant. catalog/components are not added: they are aftermarket fitments")
+    print("(wheels) or parts already inside the engine mass (connecting rods).")
     print()
     print("What this coverage does not say: where the material is. A mass without a")
     print("position gives no center of gravity, no distribution and no inertia.")

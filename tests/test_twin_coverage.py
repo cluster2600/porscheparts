@@ -17,14 +17,16 @@ def _run(*argv: str) -> str:
     return output.getvalue()
 
 
-def _documented_parts_kg() -> float:
-    """Sum the counted part entries straight from catalog/reference."""
+def _documented_parts_kg(variant: str = "Carrera") -> float:
+    """Sum the counted part entries of one variant straight from catalog/reference."""
     total = 0.0
     for path in sorted((twin_coverage.ROOT / "catalog" / "reference").glob("*.json")):
         for entry in json.loads(path.read_text(encoding="utf-8")).get("entries", []):
             if entry.get("mass_kg") is None or entry.get("quantity_per_car") is None:
                 continue
-            if entry.get("generation") in {"993", "generic"}:
+            if entry.get("generation") not in {"993", "generic"}:
+                continue
+            if variant in entry["variants"] or "unspecified" in entry["variants"]:
                 total += entry["mass_kg"] * entry["quantity_per_car"]
     return total
 
@@ -57,7 +59,8 @@ class TwinCoverageTests(unittest.TestCase):
     def test_output_states_the_open_engine_scope_and_the_weighing(self) -> None:
         output = " ".join(_run().split())
         self.assertIn(f'"{_manual_value("MNL-TECH-0020")["description"]}"', output)
-        self.assertIn("Engine scope is open", output)
+        self.assertIn("engine scope is open", output)
+        self.assertIn("Gearbox excluded", output)
         self.assertIn("186.9 kg", output)
         self.assertIn("unregistered community weighing", output)
         self.assertIn(twin_coverage.COMMUNITY_WEIGHING_RECORD, output)
@@ -88,7 +91,7 @@ class TwinCoverageTests(unittest.TestCase):
         self.assertEqual(mass, 0.0)
         self.assertIn("not counted", reason)
         self.assertIn("not admissible", reason)
-        self.assertNotIn("Engine scope is open", output)
+        self.assertNotIn("engine scope is open", output)
         self.assertIn(f"Coverage: {_documented_parts_kg():.1f} kg", output)
 
     def test_turbo_and_tiptronic_require_a_curb_weight(self) -> None:
@@ -102,8 +105,22 @@ class TwinCoverageTests(unittest.TestCase):
     def test_turbo_with_an_explicit_curb_weight_counts_no_engine(self) -> None:
         output = _run("--variant", "Turbo", "--kerb-weight", "1000")
         self.assertIn("Engine: not counted, no registered source gives the Turbo engine mass", output)
-        self.assertIn(f"Coverage: {_documented_parts_kg():.1f} kg of 1000 kg", output)
-        self.assertNotIn("Engine scope is open", output)
+        self.assertIn(f"Coverage: {_documented_parts_kg('Turbo'):.1f} kg of 1000 kg", output)
+        self.assertNotIn("engine scope is open", output)
+
+    def test_turbo_only_parts_are_not_counted_for_the_carrera(self) -> None:
+        carrera = _run()
+        turbo = _run("--variant", "Turbo", "--kerb-weight", "1000")
+        for name in ("Turbocompresseur K16 gauche complet", "Berceau moteur, Turbo"):
+            self.assertIn(f"  {name}", carrera.split("Excluded, other variants")[1])
+            self.assertNotIn(f"\n{name}", carrera)
+            self.assertIn(f"\n{name}", turbo)
+
+    def test_counted_entry_without_variants_fails_closed(self) -> None:
+        with self.assertRaisesRegex(ValueError, "carries no variants"):
+            twin_coverage.applies_to({"entry_id": "X"}, "Carrera")
+        self.assertTrue(twin_coverage.applies_to({"variants": ["unspecified"]}, "Turbo"))
+        self.assertFalse(twin_coverage.applies_to({"variants": ["Turbo"]}, "Carrera"))
 
 
 if __name__ == "__main__":
