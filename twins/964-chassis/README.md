@@ -1,5 +1,15 @@
 # Digital twin of the Porsche 911 (964) chassis
 
+**Contact/runtime review, 6 November 2026:** the
+[registration diagnostic](contact-registration-20261106/README.md) preserves
+all 1,521 original boundary component ID sets and rejects the fixed 23-contour
+subset as a complete Mi F/G network: zero compatible assignments out of
+212,520, independently checked. No physical contact or transform is admitted.
+Real Linux CPU USD validators now execute in Mac Docker; their findings concern
+the historical rejected scene, not a validated carbon cell. The
+[goal ledger](contact-registration-20261106/goal-ledger.json) retains the full
+geometry, structural, manufacturing/mould and native Omniverse requirements.
+
 **Owner frame-data acquisition, 5 November 2026:** the
 [supplied archive review](owner-frame-data-20261105/README.md) adds 15 readable
 files / 19 pages. It records 23 CH source-local coordinate rows across two
