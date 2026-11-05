@@ -202,6 +202,9 @@ digests, counts and states. The [technical record for this step](../../../twins/
 describes the executable sources and the evidence still to be established. The
 prepared geometries, transformations and detailed reports remain private.
 
+The [engine-context evidence note](ENGINE_CONTEXT_EVIDENCE_20261105.en.md)
+documents the crankcase proxy interference and the evidence needed to replace it.
+
 ## Concrete next steps
 
 The interface contract is now defined; its dimensions remain unknown.
