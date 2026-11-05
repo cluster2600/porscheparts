@@ -1,27 +1,22 @@
 # 993 Turbo carrier: complete-mesh mechanical continuation
 
-The sixth complete nested refinement has passed native equilibrium/energy
-assessment under both study loads. The full h5-to-h6 energy-norm increments
-are **1.2243% for gravity** and **2.5340% for combined loading**, down from
-2.8261% and 4.5965%. Both remain above the unchanged 1% stabilization screen.
-Nominal mass remains **1.2941382 kg**, below 1.30 kg; h6 contains
-**14,439,856 tetrahedra**. Pointwise peaks remain unresolved. Independent Mac
-field replay is now complete through h6 under both loads using bounded RAM
-field storage and the unchanged equations and limits.
+The latest complete H7 native responses and full H6-to-H7 comparisons are
+[recorded here](carrier-h7-native-results-20261105.md). Both loads pass the
+original equilibrium and energy limits. Complete-field energy increments are
+**2.65382807% for gravity** and **3.25723437% for combined loading**; the
+unchanged stabilization criterion is not reached. H7 has **18,670,283
+tetrahedra**, with the original outer surface and **1.2941382 kg** nominal mass
+retained. An independent CUDA FP64 cross-check passed every cell under both
+loads. Both complete scientific DAT streams are retained losslessly, both local
+comparisons passed, and the owned Vast instance was destroyed with provider
+absence verified.
 
-The [refinement admissibility and h6 results](carrier-refinement-admissibility-20261105.md)
-record the rejected interior-only operator, accepted shared-edge refinement,
-complete native comparisons and byte-identical source recovery before h7.
+![Latest complete-field energy increments](../media/carrier-h7-energy-results-20261105.png)
 
-![Complete h5 and h6 energy-norm increments against the unchanged screen](../media/carrier-h6-mechanics-mac-20261105.png)
-
-![Complete h5 and h6 stress statistics, retaining unresolved global peaks](../media/carrier-h6-stress-trend-20261105.png)
-
-![Actual h6 unaveraged cut-plane stresses under both study loads](../media/carrier-h6-load-fields-20261105.png)
-
-The subsequent [rational-edge h7 candidate](carrier-h7-rational-refinement-20261105.md)
-has passed complete two-frame geometry, quality and nesting-map checks. Both
-50% marking targets are reached; new h7 mechanical responses remain pending.
+The [exact rational H7 geometry report](carrier-h7-rational-refinement-20261105.md)
+and [earlier H6 admissibility report](carrier-refinement-admissibility-20261105.md)
+retain the geometry and preceding numerical history. The sections below record
+the earlier H6 and prior results; they do not supersede the latest H7 report.
 
 ### Sixth-refinement results and retention
 

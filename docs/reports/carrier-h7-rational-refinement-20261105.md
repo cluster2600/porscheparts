@@ -4,8 +4,9 @@ The complete h7 candidate now passes two-frame geometry, new-child quality
 and complete parent/child nesting checks. It has **4,788,172 nodes and
 18,670,283 tetrahedra**, with the original outer surface and nominal
 **1.2941382 kg** mass retained. Both source-indicator marking targets exceed
-50%. **New mechanical responses remain pending**; h6 is still the latest
-admitted mechanical reference.
+50%. [Both complete native H7 responses and full comparisons](carrier-h7-native-results-20261105.md)
+now pass their execution checks; energy increments of 2.654% and 3.257%
+remain above the unchanged stabilization screen.
 
 ![Actual h7 marking and complete geometry checks](../media/carrier-h7-rational-geometry-20261105.png)
 
@@ -130,8 +131,9 @@ Full geometry assembly took 181.0 seconds with sampled peak group RSS
 8.47 GB; complete new-child classification took 56.3 seconds with peak
 5.42 GB. Each phase exited zero and its child was reaped. The unchanged
 8 GiB storage reserve was retained. These stages used local compute, with no
-new paid instance. The fraction-aware response comparator is prepared but
-still requires an actual complete native h7 execution before acceptance.
+new paid instance. The subsequent [native H7 report](carrier-h7-native-results-20261105.md)
+records both actual solves, complete lossless recovery, full comparisons and
+the independent CUDA field cross-check.
 
 For public regression checks:
 
