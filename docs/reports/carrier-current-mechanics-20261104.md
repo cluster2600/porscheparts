@@ -66,6 +66,16 @@ when free disk space fell below its 8 GiB reserve. Its last logged coverage was
 targets; it produced no admitted proposal, geometry or response. Both owned Vast instances were subsequently destroyed,
 and their absence was verified through the provider.
 
+The [storage and checkpoint recovery](../architecture/carrier-refinement-recovery.md)
+then preserved 50 data objects and all 92 paths through verified transparent
+compression, recovering observed capacity from approximately 5.4 to 19.1 GiB.
+The fresh h7 selection now has periodic source-bound checkpoints. A real
+controlled stop saved 43,339 edge stars and 222,660 source cells; the checkpoint
+repacked to the identical SHA-256 and the resumed process continued from that
+state under the same original deadline. Recorded post-restart counts/coverage
+match 36 earlier uninterrupted progress points. This is selection-recovery
+evidence; h7 still needs complete geometry admission and new response fields.
+
 The remaining sections preserve the earlier execution and software history.
 The following field images show the **previous h5 baseline**, not h6 fields:
 

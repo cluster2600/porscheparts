@@ -146,6 +146,14 @@ The subsequent local h7 preparation stopped at its resource guard after
 child was reaped; its last logged coverage was 46.0336% for gravity and
 45.8089% for combined loading. Neither separate 50% target was attained. No
 proposal was admitted, and assembly, new solves and paid workers did not start.
+A separately qualified [checkpointed retry](../architecture/carrier-refinement-recovery.md)
+subsequently recovered sufficient local capacity with all original scientific
+paths and SHA-256 hashes preserved. The real carrier checkpoint at 43,339
+selected stars/222,660 source cells survived a controlled stop, reopened and
+repacked byte for byte, and was actually resumed under the original deadline.
+Both 50% targets and all geometry/conditioning criteria remain unchanged.
+No h7 whole-mesh or response admission follows from a saved selection.
+
 The diagram below records how the h5 evidence drove h6; its intermediate
 checks are historical completed stages, rather than a claim that h7 is ready.
 
@@ -195,6 +203,8 @@ receipts identify the executable checks and retained inputs:
 | Recovered original h6 admission, population and boundaries | `work/carrier-h6-source-admission-recovery-001/complete.json` |
 | Bounded local h7 proposal source admission | `work/carrier-adaptive-h7-edge-order-001/source-admission.json` |
 | Actual stopped h7 preparation | `work/carrier-adaptive-h7-edge-order-001/terminal.json` |
+| Real carrier checkpoint readback and restart | `work/carrier-adaptive-h7-checkpointed-002/real-checkpoint-qualification.json` |
+| Recorded actual resumed progress parity | `work/carrier-adaptive-h7-checkpointed-002/actual-resume-trace.json` |
 | Both complete h6 Mac replays and native comparison | `work/carrier-h6-memory-replay-001/complete.json` |
 | Actual h6 unaveraged field image | `work/carrier-h6-field-figure-001/figure.json` |
 
