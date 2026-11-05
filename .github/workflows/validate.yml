@@ -26,5 +26,12 @@ jobs:
       - name: Install numerical test dependencies
         run: python -m pip install --disable-pip-version-check -r requirements-check.txt
 
+      - name: Install pinned native geometry oracle
+        run: >-
+          python -m pip --isolated install --disable-pip-version-check
+          --index-url https://pypi.org/simple --no-deps --only-binary=:all:
+          --require-hashes --keyring-provider disabled
+          -r requirements-check-oracle.txt
+
       - name: Validate repository
         run: make check
