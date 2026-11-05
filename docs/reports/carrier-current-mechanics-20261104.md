@@ -1,15 +1,16 @@
 # 993 Turbo carrier: complete-mesh mechanical continuation
 
-Four complete nested gravity refinements have passed native and independent
-Mac equilibrium/energy checks. The latest energy-norm increment is **4.73%**,
-down from 6.23%; the separately verified combined-force/torque increment is
-**6.15%**. Both remain above the unchanged 1% stabilization screen. Nominal mass
-is 1.294 kg and the h4 mesh contains 12,501,252 tetrahedra. Pointwise peaks remain
-unresolved and visible; no strength or spatial-convergence claim is made.
+Five complete nested gravity refinements have passed native and independent
+Mac equilibrium/energy checks. The latest energy-norm increment is **2.83%**,
+down from 4.73%; the separately verified combined-force/torque increment is
+**4.60%**, down from 6.15%. Both remain above the unchanged 1% stabilization
+screen. Nominal mass is 1.294 kg and the common h5 mesh contains 13,883,493
+tetrahedra. Pointwise peaks remain unresolved and visible; no strength or
+spatial-convergence claim is made.
 
-![Four complete gravity increments](../media/carrier-h4-mechanics-20261105.png)
+![Five complete gravity increments](../media/carrier-h5-mechanics-20261105.png)
 
-![Actual unaveraged h4 fields under both load cases](../media/carrier-h4-load-fields-v2-20261105.png)
+![Actual unaveraged h5 fields under both load cases](../media/carrier-h5-load-fields-20261105.png)
 
 ![Actual admitted gravity fields, retaining the audited global stress peak](../media/carrier-current-gravity-20261104.png)
 
@@ -927,8 +928,10 @@ numerical and connectivity values. Nine focused tests cover the energy identity,
 parent/child topology and altered case/load/support refusals. Qualification is
 recorded in `work/carrier-public-comparison-qualification-001/qualification.json`.
 
+Run from the repository root using the environment installed by `make check-setup`.
+
 ```sh
-python3 scripts/calculix_compare_nested_p1.py \
+.venv-check/bin/python3 scripts/calculix_compare_nested_p1.py \
   --load-case combined \
   --source work/carrier-h3-combined-local-replay-001/result \
   --refined work/carrier-h4-combined-local-replay-002/result \
@@ -999,14 +1002,131 @@ closed-star, dual-frame midpoint and child-quality checks were unchanged.
 The new full preparation uses that gain-aware choice and retains the same 50%
 target in each case. Five controls exercise its actual production gain
 expressions, including invariance under uniform load scaling and zero pressure
-from a case already at target. Its complete geometry checks and both mechanical
-responses remain pending. Source-kernel inspection of the 808 cells also measured
+from a case already at target. Its complete geometry checks and both mechanical responses subsequently
+passed the native and independent Mac assessments described below. Source-kernel inspection of the 808 cells also measured
 11.04% and 11.87% of the total gravity/combined indicators in individually
 unmarkable inspected cells; untested cells are conservatively considered
 markable, so this does not prove that the 50% targets are unattainable. Private
 receipts are in `work/carrier-h5-gain-pilot-001/`,
 `work/carrier-h5-edge-feasibility-001/` and
 `work/carrier-adaptive-h5-joint-003/gain-controls.json`.
+
+### Fifth common geometry: complete admission under both indicators
+
+![All actual new h5 interior nodes](../media/carrier-h5-refinement-20261105.png)
+
+The gain-aware proposal attained both unchanged marking targets. The complete
+assembly then passed exact positive-volume, boundary/orientation, connectedness,
+unused-node and independent native-text readback checks in both coordinate
+frames. No original node, boundary trace, applied load or support was changed.
+
+| Fifth geometry check | Result |
+|---|---:|
+| Nodes / tetrahedra | 3,825,196 / 13,883,493 |
+| Added interior nodes / split source parents | 271,278 / 1,382,241 |
+| Actual gravity-indicator coverage | 50.1649757% |
+| Actual combined-indicator coverage | 50.0000043% |
+| New children classified in each coordinate frame | 2,764,482 |
+| Maximum new-child normalized condition | 999,228.821 |
+| Minimum new-child mean ratio | 8.558800e-6 |
+| New cells at or above 1e6 / inherited exact-energy cells | 0 / 135 |
+| Nominal mass | Unchanged: 1.2941382 kg |
+
+Complete volume SHA-256:
+`0ee0f96e662c361c29000988740f3d3733731d8edde57695ca549e1100b32b1f`.
+Native mesh SHA-256:
+`ba34637fc3083adf14b492d381a47229b5bf10cf88495dd1e50fffe45b0d4e19`.
+All actual native node fields fit the unchanged 20-character reader and the
+complete lossless text roundtrip passed. Packet012 contains 90 regular files,
+585,204,699 compressed bytes, SHA-256
+`bfb726e6dc227d8b54bda727450115858de16b62449c41230a6032a219bc747a`.
+Every member was safely unpacked and hash-verified in the unchanged pinned
+Linux image; the witness returned zero in 83.118 seconds and container absence
+was verified.
+
+Before a new paid solve, the public nesting checker independently bound all
+1,382,241 actual parent/child pairs and all 271,278 midpoint edges to both
+independently admitted h4 case geometries. Every unchanged cell and original
+coordinate bit matched. The same map will be checked again with each new full
+response; no h5 energy increment follows from geometry admission alone.
+
+The two new receiver paths also passed actual decode, terminal-hash binding and
+receipt checks, with wrong size/hash and trailing-stream refusals. Their shared
+large-file encoder function is structurally identical between cases. A private
+local APFS evidence directory passed write/fsync/atomic-rename/full-SHA256
+readback and altered-volume/ownership/path refusals. New raw scientific outputs
+use that directory, with mount identity and a 32 GiB free-space reserve checked
+before rental and reception. Existing artifacts were not moved.
+
+Private geometry receipts: `work/carrier-adaptive-h5-joint-003/`,
+`work/carrier-high-memory-input-012/` and
+`work/carrier-nested-comparison-h5-001/map-provenance.json`.
+
+### Fifth complete native responses and independent comparisons
+
+The h5 gravity case completed in 231.729 seconds, actual return code zero,
+process reaped, with every input unchanged. The qualified host first executed
+three analytical controls and two complete retained quadratic-reference solves.
+The combined case then completed in 234.191 seconds on that same host, using
+all 89 declared packet members plus the manifest without another model upload.
+Its five source control executions were inherited by exact terminal/deck/mesh/
+DAT/ABI hashes, then recomputed comparisons and reference-energy assessments.
+They were not five new native solves. The combined dispatch receipt correctly
+records this inheritance.
+
+A separate-host attempt failed SSH authentication before any private model
+transfer. The launch wrapper destroyed that exact host and its guard verified
+provider absence. The admitted original host was used for the combined case;
+its original deadline was not extended. The failed-host receipts remain
+retained alongside the successful work.
+
+Each complete current DAT contains **1,980,568,282 bytes**. Both were recovered
+and fully SHA-256 verified. Fresh reference DATs and arrays were also recovered;
+identical output bytes were reused only after matching each actual current
+terminal/assessment hash. Both complete Mac assessments then passed every
+original equilibrium/energy limit. All eight reported gravity quantities match
+the native values exactly; the combined external-work difference is one ULP
+(3.638e-12 N mm), with the original criteria unchanged.
+
+| h4-to-h5 quantity | Vertical | Combined |
+|---|---:|---:|
+| Energy-norm increment | 2.826103% | 4.596462% |
+| External-work change | +0.079949% | +0.211728% |
+| Maximum-displacement change | +0.074955% | +0.189933% |
+| Volume-weighted stress-p95 change | +0.053024% | +0.171308% |
+| Relative Galerkin identity defect | 1.609800e-7 | 6.245277e-8 |
+| Monotonic external work | Yes | Yes |
+
+Both comparisons again checked all parent/child mappings, unchanged cells,
+original vertex bits, actual load/support hashes and identical material. The
+pointwise gravity peak still rose to 20,756.602 MPa; the combined peak is
+170,408.885 MPa. These unresolved values remain visible and excluded from
+strength acceptance. Smaller changes in displacement or stress p95 do not
+replace the energy-norm stabilization screen.
+
+All new scientific files and both Mac replay workspaces live on the qualified
+private evidence volume. A fresh complete packet restoration verified every
+member SHA-256. Cross-volume bindings use verified atomic copies; same-volume
+bindings use exact-byte hard links. No older artifact was moved. The complete
+compressed output estimate, including both cases, fresh reference files,
+public probe and protocol reserve, was **1,622,041,980 bytes**, below the
+original 2,000,000,000-byte lease envelope.
+
+After both Mac replays passed, every scientific and reference file was rehashed
+again and the successful host was destroyed, with provider absence verified.
+The refused auxiliary host's absence was independently reverified too. No paid
+host for this continuation remains active. Current numerical receipts are in
+`work/carrier-h5-local-replay-001/`,
+`work/carrier-h5-combined-local-replay-001/`,
+`work/carrier-h5-combined-followup-001/`,
+`work/carrier-nested-comparison-h5-001/` and
+`work/carrier-h5-lease-close-001/`.
+
+The new field image shows the actual unaveraged stresses on the undeformed
+z = 0 mm cut, with a shared logarithmic colour scale and separately reported
+global peaks. The complete current fields now supply fresh per-case interior
+traction-jump rankings for the next common refinement. That ranking remains
+an adaptive indicator, not a certified error bound.
 
 For this same-host continuation, a separate operator can copy the five actual
 h2 control executions after binding their terminal, deck, mesh, DAT, binary,
@@ -1025,35 +1145,33 @@ lease deadline and independent deletion guard remain unchanged.
 
 ```mermaid
 flowchart TB
-    GEOM["Data: unchanged study surface<br/>Nominal mass 1.294 kg"]
-    H4["Data: admitted h4 mesh<br/>12,501,252 tetrahedra"]
-    G["Process: gravity solve<br/>2,000 N downward"]
-    C["Process: combined solve<br/>4,000 N + 850,000 N mm"]
-    RG["Verification: complete native fields<br/>Independent Mac replay passed"]
-    RC["Verification: complete native fields<br/>Independent Mac replay passed"]
-    EG["Result: h3-to-h4 energy increment<br/>4.73% under gravity"]
-    EC["Result: h3-to-h4 energy increment<br/>6.15% under combined loading"]
-    JOINT["Process: common h5 marking<br/>At least 50% of each actual indicator"]
-    NEXT["Pending: complete geometry checks<br/>Then two new mechanical cases"]
-    GEOM -->|"boundary trace"| H4
-    H4 -->|"same mesh"| G
-    H4 -->|"same mesh"| C
-    G -->|"full DAT + identities"| RG
-    C -->|"full DAT + identities"| RC
-    RG -->|"nested same-load comparison"| EG
-    RC -->|"nested same-load comparison"| EC
-    EG -->|"current jump field"| JOINT
-    EC -->|"current jump field"| JOINT
-    JOINT -->|"unchanged limits; no stabilization yet"| NEXT
+    M["Data: matched h4 and h5 meshes<br/>Same boundary, loads, supports and 1.294 kg mass"]
+    G["Process: gravity case<br/>2,000 N downward"]
+    C["Process: combined case<br/>4,000 N + 850,000 N mm"]
+    VG["Verification: complete native and Mac fields<br/>Original equilibrium/energy checks passed"]
+    VC["Verification: complete native and Mac fields<br/>Original equilibrium/energy checks passed"]
+    EG["Result: actual h4-to-h5 increment<br/>2.83%; above the 1% screen"]
+    EC["Result: actual h4-to-h5 increment<br/>4.60%; above the 1% screen"]
+    J["Process: fresh actual h5 jump fields<br/>Normalize each case by its external work"]
+    NEXT["Next: common interior refinement<br/>Then two new same-load comparisons"]
+    M -->|"same admitted h5 geometry"| G
+    M -->|"same admitted h5 geometry"| C
+    G -->|"complete DAT + fresh references"| VG
+    C -->|"complete DAT + exact inherited controls"| VC
+    VG -->|"full nested comparison"| EG
+    VC -->|"full nested comparison"| EC
+    EG -->|"actual current field"| J
+    EC -->|"actual current field"| J
+    J -->|"unchanged targets and geometry checks"| NEXT
     classDef data fill:#edf2f7,stroke:#38566f,color:#142d46
     classDef verified fill:#e6f3f3,stroke:#087f8c,color:#142d46
     classDef pending fill:#fff4df,stroke:#b57812,color:#4a3410
-    class GEOM,H4 data
-    class G,C,RG,RC,EG,EC verified
-    class JOINT,NEXT pending
+    class M data
+    class G,C,VG,VC,J verified
+    class EG,EC,NEXT pending
 ```
 
-![Current two-case refinement workflow](../media/carrier-h4-refinement-20261105.png)
+![Current two-case refinement workflow](../media/carrier-h5-workflow-v2-20261105.png)
 
 A carried-over descriptive summary in packet006 still named the earlier h1
 proposal's element count and geometry hashes. Its separate derived geometry
@@ -1331,6 +1449,6 @@ Geometry and raw solver outputs remain private. Local reproducibility pointers:
 - `work/carrier-lease-coordination-001/controls-003.json`: bounded launch-mutex controls.
 
 This continuation adds a separately identified local mesh correction, with no
-catalogue selection change. The h4 responses and both h3-to-h4 comparisons are complete. Further mechanical
+catalogue selection change. The h5 responses and both h4-to-h5 comparisons are complete. Further mechanical
 stabilization and subsequent cellular lightening remain open. See the [new-software allocation review](carrier-software-review-20261104.md)
 for how CADAM, surface inspection and optimization fit the next stages.
