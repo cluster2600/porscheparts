@@ -388,6 +388,28 @@ def screen(
     # difference des diametres avant de toucher.
     available_play_mm = (clearance_hole_mm - bolt_diameter_mm) / 2.0
 
+    # Issue #471: the 9.7 Nm manual torque places the fasteners at M6, and the
+    # original case is cast magnesium, not aluminium. Publish the margin for
+    # both case alloys and both datums so no single assumption hides the worst
+    # case. Hole spacing and hole size stay unmeasured hypotheses.
+    margin_matrix = []
+    for case in (ALUMINIUM, MAGNESIUM):
+        for case_datum in (DATUM_CENTROID, DATUM_DOWEL):
+            radius = bolt_span_mm if case_datum == DATUM_DOWEL else bolt_span_mm / 2.0
+            shift = radius * (case["expansion_per_k"] - TITANIUM["expansion_per_k"]) * delta_t_k
+            margin_matrix.append(
+                {
+                    "case_material": case["name"],
+                    "case_expansion_per_k": case["expansion_per_k"],
+                    "datum": case_datum,
+                    "worst_radius_mm": radius,
+                    "relative_shift_mm": shift,
+                    "available_play_mm": available_play_mm,
+                    "margin_mm": available_play_mm - shift,
+                    "play_covers_shift": available_play_mm >= shift,
+                }
+            )
+
     return {
         "schema_version": "1.0.0",
         "part_id": PART_ID,
@@ -432,6 +454,8 @@ def screen(
                 relative_shift_mm / available_play_mm if available_play_mm else None
             ),
             "clearance_holes_m6_mm": CLEARANCE_HOLES_M6_MM,
+            "m6_margin_matrix": margin_matrix,
+            "worst_m6_margin_mm": min(item["margin_mm"] for item in margin_matrix),
             "equations": {
                 "relative_shift": "delta = r * (alpha_al - alpha_ti) * delta_T",
                 "worst_radius_without_dowel": "r = span / 2",
