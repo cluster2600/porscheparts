@@ -237,7 +237,7 @@ has not yet been meshed or solved; the previous concavity failure still needs
 a native diagnosis and correction.
 
 Read the [engineering workflow](architecture/engineering-workflow.md),
-[PicoGK decision](decisions/0004-picogk-new-geometry.md),
+[PicoGK decision](decisions/0016-picogk-new-geometry.md),
 [software inventory and dated execution evidence](SOFTWARE_STACK.md), and
 [per-part workflow](WORKFLOW.md) for the detailed contracts. Passing code,
 mesh or USD checks does not close physical qualification.
@@ -673,7 +673,7 @@ reference.
   [coverage](../twins/m64-engine-system/bom/coverage.md)) and a dated series of
   cylinder-head, valvetrain and meshing reports in
   [docs/reports/](reports/README.md).
-- **Four-valve cylinder head**: [air + oil study](studies/993-air-oil-20261002/README.md).
+- **Four-valve cylinder head**: [air + oil study](studies/993-air-oil-20261002.en.md) ([French original](studies/993-air-oil-20261002/README.md)).
 - **K16 and hybrid turbos**: [2 October research](research/993-turbo-20261002/README.md),
   [Mezger variants and materials](research/mezger-turbo-materials-20261003/README.md),
   [German-source supplement](research/mezger-german-sources-20261003/README.md).

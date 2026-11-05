@@ -207,6 +207,10 @@ links to the original part.
   print files for non-critical trim tests, such as a trim ring and a fit-test
   kit, are described with their limits in the
   [technical overview](docs/ENGINEERING_OVERVIEW.md#2-993-parts-for-additive-manufacturing).
+- **The first titanium candidate is a study, not a part.** The oval exhaust
+  tip is the Phase 3 candidate
+  ([decisions 0007 and 0014](docs/decisions/0014-exhaust-tip-route-matrix-conditional-titanium.md));
+  its go/no-go is closed today and nothing is printed.
 - **Safety-critical parts are blocked.** Most engine, turbocharger and
   structural parts are marked as prohibited until a documented professional
   engineering review lifts that status. The counts at the top of the gallery

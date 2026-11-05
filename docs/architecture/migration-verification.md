@@ -24,7 +24,7 @@ user work by implementing on a clean branch from current upstream main.
 | R-PROVENANCE: never invent fit or material evidence | B-DESIGN, B-QUALIFY | ADR 0012 + catalogue policy | Catalogue checks; model evidence-gate holdouts |
 | R-LOCAL: prepare before renting | T-MAC, T-K1, T-K2 | ADR 0012 | Host receipts; solver checks; no rental code in AI runner |
 | R-GPU-LAST: GPU only for final review | T-VAST, A-RTX | ADR 0012 | I5 gate, approved budget and existing deadline guard |
-| R-CAD: new geometry uses PicoGK | A-CAD | ADR 0004 + ADR 0012 | Existing station witness; later duct resolution study |
+| R-CAD: new geometry uses PicoGK | A-CAD | ADR 0016 + ADR 0012 | Existing station witness; later duct resolution study |
 | R-CAE: reproducible CPU analysis | A-CAE | ADR 0012 | Executed Poiseuille, traction and conduction, then mesh convergence |
 | R-USD: portable composition | A-USD | ADR 0012 | Relocated strict and semantic USD validation |
 | R-AI: measured local adaptation | A-AI | ADR 0012 | Dataset checks, actual QLoRA logs, base/adapter evaluation |
