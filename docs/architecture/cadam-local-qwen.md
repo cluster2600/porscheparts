@@ -340,3 +340,13 @@ Gmsh one-call alternative fails the unchanged cube quality gate and is not run
 on the head. Both actual head calls are terminal, all private bytes are frozen,
 and no optimized head, solver field, paid resource or manufacturing release is
 admitted. Further methods must validate references before coordinate indexing.
+
+The [native interior-relocation study](../research/935-native-relocation-20261105/README.md)
+then passes the same cube gate with `Relocate3D` and performs one bounded head
+call. Native labels resolve completely and boundary coordinates remain exact,
+but 24,992 interior-node movements invert 264 cells while retaining every input
+connectivity row. Positive local reordering cannot repair that embedding:
+independent internal-face pairing rejects the export. The relative-quality
+comparison is not admitted. The next relocation method must preserve original
+cell orientation during each accepted move; no iteration-count sweep, head
+field solve, new printing master or manufacturing approval follows this trial.
