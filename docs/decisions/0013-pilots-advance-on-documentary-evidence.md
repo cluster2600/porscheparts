@@ -2,6 +2,10 @@
 
 Date: 2026-10-15
 
+Amended by [decision 0016](0016-organic-pilot-swap-and-switch-kit-bracket.md)
+(2026-11-05): a sourced `non_critical` candidate for pilot 2, a fit kit that
+brackets both declared openings, and the scan-vs-reference trial.
+
 Status: proposed for issues #3 and #4. It records a selection made on
 2026-08-28 and a constraint stated by the project owner on 2026-09-14. One
 choice, pilot 2 below, is left open for the owner.
