@@ -1,0 +1,801 @@
+{
+  "schema": "935-exact-kernel-cavity-trial-1",
+  "date": "2026-11-05",
+  "status": "all26_source_extreme_cells_removed_complete_census_verified_native996_cell_shape_gate_and_absolute_quality_still_fail",
+  "architecture": {
+    "requirement": "Preserve the calculation boundary/source coordinates and qualify a different numerical interior point where centroids fail.",
+    "application_service": "A-CAE numerical verification within the unchanged Qwen/CADAM/PicoGK/Gmsh/OpenFOAM/CalculiX/Adamantine chain",
+    "deployment": [
+      "T-MAC exact proofs and complete checks",
+      "T-K1 source-only synthetic control"
+    ],
+    "fixed_lp_profile": "highs-ds; free x/y/z/r; maximum normalized L-infinity radius; 10 seconds; 10000 iterations; defaults otherwise",
+    "floating_solver_success_not_an_admission": true,
+    "same_parent_as_centroid_batch_not_cumulative_gains": true
+  },
+  "source_files": {
+    "control_kernel_point.py": "407553451e38aecbb907ea37944a16d5963232f12fc06d3f32692ec16cec8baf",
+    "kernel_point.py": "fdadd4986fd630843a07edfe280884beed9076a2f869ddca8ca50d010f254933",
+    "run_kernel_cases.py": "4cff680be2ac2eec62af5963b27ce1b706a799e08697dea419b72bd57bde1e68",
+    "verify_kernel_batch.py": "1b33dcb2dea6af9d1d04a8056af2153512a52231ee891bc7be59696f0e7f6d17",
+    "verify_kernel_batch_v2.py": "2014761618e6f4664e4f0d1f278a92a0d4775e6d8435a19e3d0a2f1bdd0ec250",
+    "verify_kernel_witness.py": "527bef925a4b871d4c854020ab47ff79cba7dd06c26fab23e4ad2e3b2e122499"
+  },
+  "private_capsule": {
+    "capsule_name": "935-kernel-cavity-20261105-001",
+    "manifest_sha256": "0ee20b26d7096e24d8451160f52672eb590782576a46ece1d58c4803bc0d8454",
+    "payload_files": 242,
+    "payload_bytes": 1114108349,
+    "read_only": true,
+    "all_payload_files_rehashed_after_freeze": true
+  },
+  "literal_control": {
+    "source_sha256": "407553451e38aecbb907ea37944a16d5963232f12fc06d3f32692ec16cec8baf",
+    "kernel_source_sha256": "fdadd4986fd630843a07edfe280884beed9076a2f869ddca8ca50d010f254933",
+    "literal_exact_volume": "3/4",
+    "literal_exact_centroid_y": "103/144 + 2^-26",
+    "centroid_outside_strict_kernel_refused": true,
+    "literal_independent_reference_point": [
+      0,
+      "61/64",
+      0
+    ],
+    "literal_reference_and_proposed_cone_exact_volume_domain_and_quality_passed": true,
+    "independent_Fraction_plane_witnesses_per_candidate": [
+      81,
+      81
+    ],
+    "negative_and_zero_width_exact_dual_bounds_passed": true,
+    "forged_dual_refused": true,
+    "reference_sha256": "27dde093e6fedc8ccc474725e121877d9a183ac83c57900d68a1aadbcbc873e7",
+    "literal_new_minimum_quality_approx": 0.162664517216896,
+    "proposed_new_minimum_quality_approx": 0.16266451147346805,
+    "proposal": {
+      "coordinates": [
+        -0.0,
+        0.03906247143944105,
+        -0.5000000000000001
+      ],
+      "proposed_normalized_radius": 0.020833333333333336,
+      "solver_status": 0,
+      "iterations": 5,
+      "exact_dual": {
+        "support": [
+          3,
+          6,
+          7,
+          9
+        ],
+        "weights": [
+          [
+            "18874367",
+            "100663248"
+          ],
+          [
+            "31457281",
+            "100663296"
+          ],
+          [
+            "31457281",
+            "100663296"
+          ],
+          [
+            "6597063125675",
+            "35184355311616"
+          ]
+        ],
+        "normalized_margin_upper_bound": [
+          "1",
+          "48"
+        ],
+        "no_strict_kernel_proved": false
+      },
+      "floating_lp_success_is_not_an_admission": true,
+      "point_hex": [
+        "0x0.0p+0",
+        "0x1.e800001555555p-1",
+        "-0x1.0000000000000p-52"
+      ],
+      "exact_stored_normalized_margin": [
+        "5902958291237038194687",
+        "283341997979377967562752"
+      ],
+      "strict_kernel_for_stored_point": true,
+      "exact_affine_frame": {
+        "origin": [
+          0,
+          14680065,
+          16777216
+        ],
+        "span": 33554432,
+        "denominator": 16777216
+      }
+    },
+    "head_opened": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false
+  },
+  "kali_literal_control": {
+    "source_sha256": "407553451e38aecbb907ea37944a16d5963232f12fc06d3f32692ec16cec8baf",
+    "kernel_source_sha256": "fdadd4986fd630843a07edfe280884beed9076a2f869ddca8ca50d010f254933",
+    "literal_exact_volume": "3/4",
+    "literal_exact_centroid_y": "103/144 + 2^-26",
+    "centroid_outside_strict_kernel_refused": true,
+    "literal_independent_reference_point": [
+      0,
+      "61/64",
+      0
+    ],
+    "literal_reference_and_proposed_cone_exact_volume_domain_and_quality_passed": true,
+    "independent_Fraction_plane_witnesses_per_candidate": [
+      81,
+      81
+    ],
+    "negative_and_zero_width_exact_dual_bounds_passed": true,
+    "forged_dual_refused": true,
+    "reference_sha256": "27dde093e6fedc8ccc474725e121877d9a183ac83c57900d68a1aadbcbc873e7",
+    "literal_new_minimum_quality_approx": 0.162664517216896,
+    "proposed_new_minimum_quality_approx": 0.16266451147346805,
+    "proposal": {
+      "coordinates": [
+        -0.0,
+        0.03906247143944105,
+        -0.5000000000000001
+      ],
+      "proposed_normalized_radius": 0.020833333333333336,
+      "solver_status": 0,
+      "iterations": 5,
+      "exact_dual": {
+        "support": [
+          3,
+          6,
+          7,
+          9
+        ],
+        "weights": [
+          [
+            "18874367",
+            "100663248"
+          ],
+          [
+            "31457281",
+            "100663296"
+          ],
+          [
+            "31457281",
+            "100663296"
+          ],
+          [
+            "6597063125675",
+            "35184355311616"
+          ]
+        ],
+        "normalized_margin_upper_bound": [
+          "1",
+          "48"
+        ],
+        "no_strict_kernel_proved": false
+      },
+      "floating_lp_success_is_not_an_admission": true,
+      "point_hex": [
+        "0x0.0p+0",
+        "0x1.e800001555555p-1",
+        "-0x1.0000000000000p-52"
+      ],
+      "exact_stored_normalized_margin": [
+        "5902958291237038194687",
+        "283341997979377967562752"
+      ],
+      "strict_kernel_for_stored_point": true,
+      "exact_affine_frame": {
+        "origin": [
+          0,
+          14680065,
+          16777216
+        ],
+        "span": 33554432,
+        "denominator": 16777216
+      }
+    },
+    "head_opened": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false
+  },
+  "cross_host_controls": {
+    "literal_reference_all_arrays_bit_identical": true,
+    "all_analytic_control_contract_fields_match": true,
+    "proposal_point_hex_equal": true,
+    "proposal_point_identity_not_required_for_conservative_domain_proof": true,
+    "kali_source_only_no_scan_transfer": true,
+    "mac_python": "3.12.11",
+    "mac_numpy": "2.5.4",
+    "mac_scipy": "1.18.1",
+    "kali_runtime": {
+      "python": "3.14.7",
+      "machine": "x86_64",
+      "numpy": "2.3.5",
+      "scipy": "1.16.3"
+    },
+    "package_hashes_observed_after_execution_not_a_preexecution_lock": {
+      "scipy.optimize._linprog_highs": {
+        "sha256": "32999bba42521a001d08bd9a1a02ca663b8b7eb93b6f799f37438e062484c89a"
+      },
+      "scipy.optimize._highspy._core": {
+        "sha256": "83964acedc1180ffb9cdab9b45bf5c2dba9dcf388cfbaf83bb325b0a9dc82fb0"
+      }
+    }
+  },
+  "case_execution": {
+    "source_sha256": "4cff680be2ac2eec62af5963b27ce1b706a799e08697dea419b72bd57bde1e68",
+    "kernel_source_sha256": "fdadd4986fd630843a07edfe280884beed9076a2f869ddca8ca50d010f254933",
+    "job_sha256": "07f74999d6bd8232a25ddf36ab873ee28a176fb1fb0a7afda0557a6709030a53",
+    "complete": true,
+    "case_filter": null,
+    "cases_completed": 131,
+    "cases_executed_new": 7,
+    "cases_reused_without_execution": 124,
+    "new_admitted_cases": 5,
+    "cases_admitted": 50,
+    "exact_dual_no_strict_kernel_certificates": 2,
+    "new_refusal_counts": {
+      "Exact nonpositive dual bound excludes every strict single-point cavity kernel": 2
+    },
+    "all_owned_workers_joined": true,
+    "workers": 1,
+    "source_inputs_rehashed_unchanged": true,
+    "mixed_centroid_and_kernel_proposals_share_parent_not_cumulative": true,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "seconds": 0.6176138330483809
+  },
+  "independent_verification": {
+    "source_sha256": "2014761618e6f4664e4f0d1f278a92a0d4775e6d8435a19e3d0a2f1bdd0ec250",
+    "parent_mesh_sha256": "1bc2e8dddaf07c43ca36d35608f4fdb508f22e0694e922108a96466887f6182d",
+    "candidate_sha256": "d618763474f2eeb7bf680ce18f6f2efce22795e538263b7dfc639ffb68be62c5",
+    "remote_job_sha256": "07f74999d6bd8232a25ddf36ab873ee28a176fb1fb0a7afda0557a6709030a53",
+    "proposal_cases_available": 131,
+    "proposal_admitted_cases": 50,
+    "new_proposal_cases_executed": 7,
+    "prior_proposal_cases_reused": 124,
+    "independently_checked_kernel_proposals": 7,
+    "independent_exact_duals_checked": 6,
+    "independent_no_strict_kernel_certificates": 2,
+    "selected_kernel_cavities": 2,
+    "selected_disjoint_cavities": 24,
+    "target_source_cells": 26,
+    "target_source_cells_replaced": 26,
+    "old_cells_replaced": 242,
+    "new_cells": 392,
+    "new_numerical_interior_points": 24,
+    "nodes_before": 4181299,
+    "nodes_after": 4181323,
+    "tetrahedra_before": 12967519,
+    "tetrahedra_after": 12967669,
+    "all_original_coordinates_bit_identical": true,
+    "all_complete_boundary_rows_bit_identical": true,
+    "all_unmodified_cell_tuples_identical": true,
+    "independent_Fraction_point_construction_volume_and_thresholds_passed": true,
+    "independent_complete_oriented_triangle_chain_equal": true,
+    "independent_exact_separating_plane_witnesses": 4427,
+    "independent_Fraction_condition_counts_match_remote": true,
+    "shared_source_admission_and_domain_contract_explicit": true,
+    "old_local_bins": [
+      34,
+      34,
+      34,
+      34,
+      35
+    ],
+    "new_local_bins": [
+      0,
+      0,
+      0,
+      2,
+      14
+    ],
+    "old_local_condition_counts": [
+      34,
+      34,
+      34,
+      34,
+      27,
+      27,
+      26,
+      6
+    ],
+    "new_local_condition_counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "private_source_map_sha256": "049757b76461dbeb4f95b65cacea9efc00828e5411cbd688a8fd3c4413bd26bc",
+    "private_selection_sha256": "13c032bf7ed0e0e20b99f4575967433edf8ce61c4eb591ad642c6573e64a3a25",
+    "global_intersection_status_inherited_not_exhaustively_upgraded": true,
+    "whole_volume_and_fresh_complete_condition_census_required": true,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "seconds": 28.627645250060596
+  },
+  "whole_volume": {
+    "source_sha256": "b0810ac21b35654556dce18ef022f6d4ca8f30a847223c5d566188eab82f4e71",
+    "frozen_helpers_sha256": "fe8c7fa88f35d2d14094438bbae3b0860bde085a39b68f7ab941790cb4d1bec3",
+    "mesh_sha256": "d618763474f2eeb7bf680ce18f6f2efce22795e538263b7dfc639ffb68be62c5",
+    "surface_sha256": "16553493632d689fbb78f18403d7a3734a7ed4a111f67cf89f93864cfbec57e9",
+    "nodes": 4181323,
+    "tetrahedra": 12967669,
+    "boundary_faces": 8218458,
+    "interval_proven_positive_cells": 12967651,
+    "exact_fraction_positive_cells": 18,
+    "all_cells_positive_for_stored_binary_coordinates": true,
+    "all_nodes_used": true,
+    "all_source_vertices_exact": true,
+    "actual_complete_boundary_and_orientation_exact": true,
+    "internal_paired_faces": 21826109,
+    "all_internal_faces_oppositely_oriented": true,
+    "volume_mm3": 1094352.3436893986,
+    "relative_volume_difference": 1.7763568394002505e-15,
+    "minimum_cell_volume_mm3": 2.5543337315637495e-20,
+    "mean_ratio_quantiles": {
+      "minimum": 1.291009351665788e-11,
+      "p01": 0.0055088724893348345,
+      "median": 0.14463033336707845,
+      "p99": 0.8920980704375766,
+      "maximum": 0.9992925153811529
+    },
+    "mean_ratio_below": {
+      "0.0001": 15521,
+      "0.001": 35092,
+      "0.01": 233036,
+      "0.05": 1993113,
+      "0.1": 4406226
+    },
+    "diagnostic_mean_ratio_floor": 0.01,
+    "diagnostic_quality_passed": false,
+    "interval_scope": "Outward one-ULP expansion after every binary64 operation; ambiguous signs evaluated as exact fractions of stored coordinates",
+    "controls": {
+      "exact_fraction_interval_enclosures": 203,
+      "coplanar_refused": true,
+      "thin_positive_and_negative_distinguished": true
+    },
+    "tetrahedron_pair_intersections_exhaustively_checked": false,
+    "mesh_modified": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "seconds": 54.69457216700539
+  },
+  "whole_condition": {
+    "source_sha256": "95479a2cbc341e5eab0b16ddda2374b037c202d9abd553f6ced9e56a4f191052",
+    "input_mesh_sha256": "d618763474f2eeb7bf680ce18f6f2efce22795e538263b7dfc639ffb68be62c5",
+    "parent_mesh_sha256": "1bc2e8dddaf07c43ca36d35608f4fdb508f22e0694e922108a96466887f6182d",
+    "controls": {
+      "analytic_identity": true,
+      "exact_uniform_scale_invariance": true,
+      "thin_positive_and_inverted_distinguished": true,
+      "singular_refused": true,
+      "independent_exact_classifications_compared": 960,
+      "dyadic_and_near_threshold_fixtures": 120,
+      "interval_and_exact_fallback_paths_exercised": true,
+      "interval_power_of_two_scale_invariance": true,
+      "inverted_and_singular_source_cells_refused": true
+    },
+    "cells_freshly_classified": 12967669,
+    "old_cells_replaced": 242,
+    "new_cells": 392,
+    "all_old_coordinates_and_complete_boundary_exact": true,
+    "all_retained_cell_tuples_exactly_mapped": true,
+    "every_retained_severe_exact_condition_value_matches_fresh_census": true,
+    "complete_condition_and_quality_counts_match_exact_source_row_prediction": true,
+    "global_worst_source_cell_removed": true,
+    "exact_global_max_condition_strictly_decreased": true,
+    "approximate_global_max_condition_before": 4.657541721488933e+16,
+    "approximate_global_max_condition_after": 8452019008434419.0,
+    "counts_kappa_F_at_least": {
+      "1e3": 291954,
+      "1e6": 15562,
+      "1e9": 15251,
+      "1e12": 15251,
+      "1e15": 82,
+      "eps_inverse": 15,
+      "1e16": 0,
+      "3_eps_inverse": 0
+    },
+    "old_replaced_counts_kappa_F_at_least": {
+      "1e3": 34,
+      "1e6": 34,
+      "1e9": 34,
+      "1e12": 34,
+      "1e15": 27,
+      "eps_inverse": 27,
+      "1e16": 26,
+      "3_eps_inverse": 6
+    },
+    "new_replaced_counts_kappa_F_at_least": {
+      "1e3": 0,
+      "1e6": 0,
+      "1e9": 0,
+      "1e12": 0,
+      "1e15": 0,
+      "eps_inverse": 0,
+      "1e16": 0,
+      "3_eps_inverse": 0
+    },
+    "new_cell_condition_upper_bound_from_exact_quality": 12000,
+    "bound_derivation": "q>=binary64(0.01)>1/100 and kappa_F^2<=144/q^3 imply kappa_F<12000",
+    "exact_threshold_fallbacks": 66,
+    "orientation_exact_fallbacks": 18,
+    "private_values_sha256": "77c735e1a9f533acba44d34fae50f98e6cbb3ec9891fb86d683a04eea5723646",
+    "private_ids_sha256": "8dc724e4fdea851c7e51991fbb481c77146c249e034a24a58464102656a23978",
+    "native_minSICN_not_recomputed_or_inferred": true,
+    "cell_condition_not_PDE_condition_or_accuracy": true,
+    "absolute_quality_gate_passed": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "seconds": 20.277681292034686
+  },
+  "native_readback": {
+    "source_sha256": "e9a4b8cb0805ddaa779f307ba7c0b89c17a679a3915028487a28879a73ecf484",
+    "input_sha256": "d618763474f2eeb7bf680ce18f6f2efce22795e538263b7dfc639ffb68be62c5",
+    "input_report_sha256": "a9e56e06d274bc3d123c905be013d8af20600b300a2c53dd266da89862bb3f5d",
+    "gmsh_api": "4.12.1",
+    "gmsh_module_sha256": "fa69936fc45646eca8b29ab0fd9e32ebaf45216414cbc75c380b4c0db7b6f485",
+    "gmsh_binary_sha256": "0ad15c280dc81268f4d9b9612a210a6fb9121b09b83b3354cf58489743991603",
+    "format": "MSH 4.1 binary",
+    "optimization_requested": false,
+    "unit_scope": "Coordinates inherited unchanged from hypothetical parent; no specimen calibration",
+    "boundary_classification": "One unclassified source boundary, no physical port or attachment assignment",
+    "kernel_alarm_seconds": 600,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "controls": [
+      {
+        "inverted": false,
+        "minDetJac": 1.0,
+        "minSICN": 0.8164965809277259,
+        "volume": 0.16666666666666666
+      },
+      {
+        "inverted": true,
+        "minDetJac": -1.0,
+        "minSICN": -0.8164965809277259,
+        "volume": -0.16666666666666666
+      }
+    ],
+    "native_import_all_arrays_exact": true,
+    "native_readback_all_arrays_exact": true,
+    "complete_node_label_mapping_verified": true,
+    "tetrahedra": 12967669,
+    "native_metrics": {
+      "minDetJac": {
+        "minimum": 1.5317399711011945e-19,
+        "maximum": 83.74388035448389,
+        "nonpositive_or_nonfinite_cells": 0,
+        "nonfinite_cells": 0,
+        "private_indices_sha256": "a8da70c43385448cb26d759127b4824e201bfd34259c984336aba26481355b61"
+      },
+      "minSICN": {
+        "minimum": -2.0245344338430406e-13,
+        "maximum": 0.9992901108475222,
+        "nonpositive_or_nonfinite_cells": 996,
+        "nonfinite_cells": 0,
+        "private_indices_sha256": "06db04e617a2203b3e5ec25328494b7f4f74a1adf1345a037e76a8dee3ee3ffa"
+      },
+      "volume": {
+        "minimum": 2.5528999518353243e-20,
+        "maximum": 13.957313392413981,
+        "nonpositive_or_nonfinite_cells": 0,
+        "nonfinite_cells": 0,
+        "private_indices_sha256": "a8da70c43385448cb26d759127b4824e201bfd34259c984336aba26481355b61"
+      }
+    },
+    "native_positive_metric_witness_passed": false,
+    "msh_sha256": "717fced5ace7fad76d366aa42ffc91c2fe483d96611860d1b753e4633c738462",
+    "msh_bytes": 915500277,
+    "field_solve_executed": false,
+    "openfoam_or_calculix_import_not_yet_tested": true,
+    "seconds": 21.988109291065484
+  },
+  "execution": {
+    "complete-checks-before-execution.json": {
+      "source_sha256": {
+        "inspect_interval_volume.py": "b0810ac21b35654556dce18ef022f6d4ca8f30a847223c5d566188eab82f4e71",
+        "inspect_tetrahedra.py": "fe8c7fa88f35d2d14094438bbae3b0860bde085a39b68f7ab941790cb4d1bec3",
+        "audit_extreme_batch.py": "95479a2cbc341e5eab0b16ddda2374b037c202d9abd553f6ced9e56a4f191052",
+        "export_native_mesh.py": "e9a4b8cb0805ddaa779f307ba7c0b89c17a679a3915028487a28879a73ecf484"
+      },
+      "stages": [
+        {
+          "stage": "whole-volume",
+          "command": [
+            "/Users/maxime/Developer/PorschePartsArtifacts/935-local-head-physics-20261105-001/runtime/bin/python",
+            "-B",
+            "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993/docs/research/935-unoptimized-volume-20261105/source/inspect_interval_volume.py",
+            "--mesh",
+            "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/verification-v2/candidate.npz",
+            "--surface",
+            "/Users/maxime/Developer/PorschePartsArtifacts/935-condition-directed-20261105-001/peel-proof/candidate-surface.npz",
+            "--surface-report",
+            "/Users/maxime/Developer/PorschePartsArtifacts/935-condition-directed-20261105-001/peeled-native-surface/report.json",
+            "--frozen-inspector",
+            "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993/docs/research/935-local-physics-20261105/source/inspect_tetrahedra.py",
+            "--output",
+            "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/whole-volume"
+          ],
+          "seconds": 600
+        },
+        {
+          "stage": "whole-condition",
+          "command": [
+            "/Users/maxime/Developer/PorschePartsArtifacts/935-local-head-physics-20261105-001/runtime/bin/python",
+            "-B",
+            "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993/docs/research/935-centroid-extreme-batch-20261105/source/audit_extreme_batch.py",
+            "--repository",
+            "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993",
+            "--parent",
+            "/Users/maxime/Developer/PorschePartsArtifacts/935-residual-source-admission-20261105-001",
+            "--verified",
+            "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/verification-v2",
+            "--volume",
+            "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/whole-volume/report.json",
+            "--output",
+            "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/whole-condition"
+          ],
+          "seconds": 600
+        },
+        {
+          "stage": "native-readback",
+          "command": [
+            "/Users/maxime/Developer/PorschePartsArtifacts/935-local-head-physics-20261105-001/runtime/bin/python",
+            "-B",
+            "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993/docs/research/935-native-solver-admission-20261105/source/export_native_mesh.py",
+            "--mesh",
+            "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/verification-v2/candidate.npz",
+            "--input-report",
+            "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/whole-volume/report.json",
+            "--surface",
+            "/Users/maxime/Developer/PorschePartsArtifacts/935-condition-directed-20261105-001/peel-proof/candidate-surface.npz",
+            "--output",
+            "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/native-readback"
+          ],
+          "seconds": 600
+        }
+      ],
+      "upstream_verdict": "All24 selected source-disjoint cavities passed separate Fraction domain and quality/condition proofs; full source boundary/coordinates unchanged. Full diagnostics only, no engine field solve or physical release.",
+      "maximum_sampled_child_rss_gib": 40,
+      "free_disk_floor_gib": 4,
+      "physics_admitted": false,
+      "manufacturing_qualified": false,
+      "new_paid_compute_usd": 0
+    },
+    "head-trial-before-execution.json": {
+      "source_sha256": "4cff680be2ac2eec62af5963b27ce1b706a799e08697dea419b72bd57bde1e68",
+      "command": [
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-local-head-physics-20261105-001/runtime/bin/python",
+        "-B",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/source-at-execution/run_kernel_cases.py",
+        "--repository",
+        "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993",
+        "--parent",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-residual-source-admission-20261105-001",
+        "--previous",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-centroid-extreme-batch-20261105-001",
+        "--control",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/literal-control",
+        "--output",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/proposals"
+      ],
+      "control_passed": true,
+      "new_case_count": 7,
+      "other_124_results_reused_not_executed": true,
+      "new_paid_compute_usd": 0
+    },
+    "head-trial-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 1.0249413750134408,
+      "sampled_peak_rss_kib": 0,
+      "log_sha256": "79a3e45685af814a457c14e873bb546ca63167b76616bed1838ca0c37eb72120"
+    },
+    "independent-verification-execution.json": {
+      "exit_code": 1,
+      "controller_limit_reached": false,
+      "seconds": 2.015943165984936,
+      "sampled_peak_rss_kib": 489456,
+      "log_sha256": "e82e9f97d1a85e41c0d7df76eb5b0258822dba072e0f71bcfa66944063743144"
+    },
+    "independent-verification-v2-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 29.32775983400643,
+      "sampled_peak_rss_kib": 1323712,
+      "log_sha256": "e890d744a11dfa7ed93324775553128ba51f05c4bf61cd53130b92e6224ecb14"
+    },
+    "kali-before-execution.json": {
+      "ssh_argv": [
+        "ssh",
+        "-6",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "ForwardAgent=no",
+        "-o",
+        "UseKeychain=no",
+        "-o",
+        "ConnectTimeout=8",
+        "-o",
+        "HostKeyAlias=192.168.2.3",
+        "lolman@fe80::dd31:2c06:9845:fecb%bridge0"
+      ],
+      "remote_directory": "/dev/shm/935-kernel-control-20261105-001",
+      "command": "python3 -B /dev/shm/935-kernel-control-20261105-001/docs/research/935-kernel-cavity-20261105/source/control_kernel_point.py --repository /dev/shm/935-kernel-control-20261105-001 --output /dev/shm/935-kernel-control-20261105-001/control",
+      "only_source_controls_no_head_data": true,
+      "input_archive_sha256": "a0d3d9f757745a705a23e733a072bd016392e13dfe25fdc74a6cb69554be9d66",
+      "kernel_deadline_seconds": 60
+    },
+    "kali-execution.json": {
+      "exit_code": 0,
+      "seconds": 0.9779129028320312
+    },
+    "literal-control-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 1.014617707929574,
+      "sampled_peak_rss_kib": 0,
+      "log_sha256": "b2268711efd3357ea38a590346ce31ab27bfff3712594929d90778b358d41c7a"
+    },
+    "native-readback-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 22.275190874934196,
+      "sampled_peak_rss_kib": 5640448,
+      "log_sha256": "1db4e0cc2ded997223b856c78817a8fdd06bd2aaf7888429336b6a8e1ee4ce7c"
+    },
+    "phase-ledger-before-execution.json": {
+      "upstream_verdict": "Existing exact source-admitted cavities in the immutable 131-case bundle; same parent as the previous bulk trial. Only a new numerical interior point construction is tested; every source boundary/coordinate and quality threshold remains fixed. Controls must pass before opening head cases.",
+      "source_mesh_sha256": "1bc2e8dddaf07c43ca36d35608f4fdb508f22e0694e922108a96466887f6182d",
+      "input_capsule_manifest_sha256": "699cc762a0448f31e44099d34274dcfa7af938c33e1012b0669eaa896ec7b082",
+      "new_trials_predeclared": "Only source-admitted cases containing either of the two targets left uncovered by centroid packing. Reuse all other frozen case results; do not rerun all131.",
+      "lp_method": "highs-ds",
+      "lp_max_seconds": 10,
+      "lp_max_iterations": 10000,
+      "floating_solver_success_never_admission": true,
+      "scipy": "1.18.1",
+      "numpy": "2.5.4",
+      "sources": {
+        "control_kernel_point.py": "407553451e38aecbb907ea37944a16d5963232f12fc06d3f32692ec16cec8baf",
+        "kernel_point.py": "fdadd4986fd630843a07edfe280884beed9076a2f869ddca8ca50d010f254933"
+      },
+      "controls": [
+        "literal concave domain volume3/4; centroid outside kernel; independently specified dyadic valid reference point",
+        "independent Fraction domain/volume/quality and pair-plane checks",
+        "negative and zero-width halfspace exact dual certificates and forged dual rejection"
+      ],
+      "physics_admitted": false,
+      "manufacturing_qualified": false,
+      "new_paid_compute_usd": 0
+    },
+    "verification-before-execution.json": {
+      "command": [
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-local-head-physics-20261105-001/runtime/bin/python",
+        "-B",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/source-at-execution/verify_kernel_batch.py",
+        "--repository",
+        "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993",
+        "--parent",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-residual-source-admission-20261105-001",
+        "--prepared",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-centroid-extreme-batch-20261105-001/prepared",
+        "--recovered",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/proposals",
+        "--reference",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/literal-control/literal-kernel-reference.npz",
+        "--output",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/verification"
+      ],
+      "sources": {
+        "verify_kernel_witness.py": "527bef925a4b871d4c854020ab47ff79cba7dd06c26fab23e4ad2e3b2e122499",
+        "verify_kernel_batch.py": "1b33dcb2dea6af9d1d04a8056af2153512a52231ee891bc7be59696f0e7f6d17"
+      },
+      "independent_checks": [
+        "literal concave reference and reversed/duplicate refusal",
+        "separate Fraction facet normals, stored-point strict margins and exact dual weighted sums, including refused cases",
+        "source-coordinate and cell join, disjoint source-row packing",
+        "separate Fraction cone signs, volume, quality, oriented boundary and all pair-plane witnesses",
+        "independent Fraction condition counts; full global checks required afterward"
+      ],
+      "new_paid_compute_usd": 0
+    },
+    "verification-v2-before-execution.json": {
+      "command": [
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-local-head-physics-20261105-001/runtime/bin/python",
+        "-B",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/source-at-execution/verify_kernel_batch_v2.py",
+        "--repository",
+        "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993",
+        "--parent",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-residual-source-admission-20261105-001",
+        "--prepared",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-centroid-extreme-batch-20261105-001/prepared",
+        "--recovered",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/proposals",
+        "--reference",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/literal-control/literal-kernel-reference.npz",
+        "--output",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/verification-v2"
+      ],
+      "source_sha256": "2014761618e6f4664e4f0d1f278a92a0d4775e6d8435a19e3d0a2f1bdd0ec250",
+      "failed_v1_retained_unchanged": true,
+      "correction": "Separate verifier module name from output witness-file path; no geometric or quality contract changed.",
+      "new_paid_compute_usd": 0
+    },
+    "whole-condition-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 21.233203166979365,
+      "sampled_peak_rss_kib": 1553360,
+      "log_sha256": "7b36b4f432403bb1a147bcf3c22f2cf8d9526b6e59e5b2c7078294761c195cec"
+    },
+    "whole-volume-execution.json": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 55.66037916694768,
+      "sampled_peak_rss_kib": 4314832,
+      "log_sha256": "736807810a4914781746b54b8da275527503194792bf11b7c56c33bd74a6f882"
+    }
+  },
+  "failed_verifier_v1_retained_no_candidate_emitted": true,
+  "source_rechecks": {
+    "original_obj": {
+      "sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+      "rehashed_unchanged": true
+    },
+    "printing_study_master": {
+      "sha256": "e022af4306766d09e512cd2bd49c696407d887f90cd3aa1622add8014a134465",
+      "rehashed_unchanged": true
+    },
+    "unchanged_calculation_3mf": {
+      "sha256": "e0f58555a676abcf26abb7312d474eaf9ac94fb5223b573a51bed4d502f0d334",
+      "rehashed_unchanged": true
+    }
+  },
+  "budget": {
+    "new_paid_compute_usd": 0,
+    "new_vast_resources": 0,
+    "prior_conservative_allocation_usd": 13.842688367141704,
+    "allocations_are_not_invoices": true,
+    "original_total_budget_usd": 35,
+    "original_compute_ceiling_usd": 30,
+    "original_reserve_usd": 5,
+    "no_budget_reset_or_recharge": true
+  },
+  "remaining": {
+    "exact_condition_cells_at_least_1e16": 0,
+    "exact_condition_cells_at_least_1e12": 15251,
+    "native_nonpositive_minSICN_cells": 996,
+    "global_minimum_quality_unchanged": true,
+    "absolute_quality_gate_passed": false,
+    "native_shape_metric_gate_passed": false,
+    "engine_operator_and_field_admission": false,
+    "exhaustive_global_tetrahedron_intersection_status_not_upgraded": true,
+    "faithful_editable_head_CAD_complete": false,
+    "specimen_metrology_and_interfaces_complete": false,
+    "hidden_geometry_complete": false,
+    "qualified_material_machine_and_process": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "machine_specific_metal_build_file_released": false,
+    "physical_inspection_complete": false,
+    "engine_validation_complete": false
+  },
+  "legacy_remote_keys_refer_to_reused_Vast_bundle_not_new_remote_kernel_execution": true,
+  "supplier_messages_sent": 0,
+  "full_goal_still_active": true
+}
