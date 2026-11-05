@@ -36,7 +36,7 @@ class Complete917EngineTest(unittest.TestCase):
     def test_local_parts_report_when_present(self):
         path = ROOT / "work" / "917-complete-engine" / "parts" / "complete-engine-parts-report.json"
         if not path.exists():
-            self.skipTest("local generated report intentionally absent")
+            self.skipTest("local generated report absent; regenerate with: make 917-complete-parts")
         report = json.loads(path.read_text(encoding="utf-8"))
         actual = Counter(item["family"] for item in report["placements"])
         self.assertEqual(report["prototype_count"], len(self.counts))

@@ -283,6 +283,34 @@ class ExhaustTipRouteMatrixTests(unittest.TestCase):
         self.assertEqual(review_state_errors(partial), ["a review row names reviewer, role, date and decision"])
         self.assertEqual(review_state_errors(request.replace(DRAFT_MARKER, "")), ["the request has no status line"])
 
+    def test_the_source_search_admits_nothing_unquoted(self) -> None:
+        search = self.matrix["temperature_source_search"]
+        self.assertEqual(search["admissible_source_ids"], [])
+        self.assertEqual(self.matrix["go_no_go_rule"]["input_status"], "blocked")
+        for lead in search["leads"]:
+            with self.subTest(lead=lead["lead"]):
+                self.assertIn(lead["verdict"], {"admissible", "not_admissible"})
+                self.assertTrue(lead["reason"].strip() and lead["url"].startswith("https://"))
+        self.assertTrue(all(l["verdict"] == "not_admissible" for l in search["leads"]))
+
+    def test_the_alternative_masses_follow_from_the_screen(self) -> None:
+        alt = self.matrix["alternatives_if_tip_blocked"]
+        self.assertEqual(alt["status"], "proposed_not_reviewed")
+        ring = next(c for c in alt["candidates"] if c["part_id"] == "993-INT-SWITCH-TRIM-RING-F1-0001")
+        screen = load(ROOT / "parts/993-int-switch-trim-ring-f1-0001/evidence/geometry-screen.json")
+        volume = screen["results"]["analytic_volume_mm3"]
+        self.assertAlmostEqual(ring["inputs"]["V_mm3"], volume, places=6)
+        self.assertAlmostEqual(ring["value_g_ti64"], volume * ring["inputs"]["rho_ti64_g_cm3"] / 1000, delta=0.006)
+        self.assertAlmostEqual(ring["value_g_alsi10mg"], screen["results"]["screening_mass_g"], delta=0.006)
+        for candidate in alt["candidates"]:
+            record = load(ROOT / "catalog/parts" / f"{candidate['part_id'].lower()}.json")
+            self.assertEqual(record["classification"]["safety_class"], "non_critical")
+
+    def test_the_request_names_one_governing_specification(self) -> None:
+        request = REQUEST.read_text(encoding="utf-8")
+        self.assertIn("| AC-00 | governing specification |", request)
+        for designation in ("ASTM F2924-14(2021)", "ASTM F3302-18", "ASTM F3001-14(2021)"):
+            self.assertIn(designation, request)
 
 if __name__ == "__main__":
     unittest.main()

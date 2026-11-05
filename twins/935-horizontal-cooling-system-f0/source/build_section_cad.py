@@ -18,8 +18,11 @@ if hashlib.sha256(source.read_bytes()).hexdigest() != expected:
 if not 0 < scale < float('inf') or output.exists():
     raise ValueError('Finite positive scale and new output required')
 for parent in output.parents:
-    if (parent / '.git').exists() and output.relative_to(parent).parts[0] != 'work':
-        raise ValueError('Scan derivatives must stay in ignored work/')
+    # The innermost repository root decides (nested worktrees).
+    if (parent / '.git').exists():
+        if output.relative_to(parent).parts[0] != 'work':
+            raise ValueError('Scan derivatives must stay in ignored work/')
+        break
 os.umask(0o077)
 data = json.loads(source.read_text())
 if data['schema'] != '935-observed-section-loft-v1' or not data['blades']:

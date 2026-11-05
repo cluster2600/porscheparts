@@ -2,14 +2,23 @@
 # Push wave-2 lane worktree branches to origin periodically so GitHub stays current
 # while lane agents work. Pushes only refs that are descendants of their remote tip
 # (or brand-new refs). Never force. Runs for ~4h then exits.
+#
+# Not wired into the Makefile: it is a one-off operator helper from the
+# 2026-09-29 wave-2 lane run (branches wave1/*, wave2/*, feat/fan-cfd-deck).
+# Candidate for deletion once the owner confirms no lane run needs it.
+#
+# Usage: REPO=<checkout> WORKTREES='<glob>' scripts/push-lanes.sh
+#   REPO       checkout used to push (default: this script's repository)
+#   WORKTREES  glob of lane worktrees (default: sibling directories wt-*)
 set -u
-REPO=/home/lolman/repos/porscheparts
+REPO=${REPO:-$(cd "$(dirname "$0")/.." && pwd)}
+WORKTREES=${WORKTREES:-"$(dirname "$REPO")/wt-*"}
 INTERVAL=${INTERVAL:-120}
 DEADLINE=$(( $(date +%s) + ${MAX_SECONDS:-14400} ))
 LOG=/tmp/push-lanes.log
 : > "$LOG"
 while [ "$(date +%s)" -lt "$DEADLINE" ]; do
-  for wt in /home/lolman/repos/wt-*; do
+  for wt in $WORKTREES; do
     [ -d "$wt/.git" ] || [ -f "$wt/.git" ] || continue
     br=$(git -C "$wt" branch --show-current 2>/dev/null) || continue
     case "$br" in wave2/*|wave1/*) ;; *) continue ;; esac

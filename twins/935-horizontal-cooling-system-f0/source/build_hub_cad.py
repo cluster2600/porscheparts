@@ -17,8 +17,12 @@ if not 0 < scale < float('inf') or destination.exists():
 if hashlib.sha256(source.read_bytes()).hexdigest() != expected:
     raise ValueError('Hub surface hash mismatch')
 for parent in destination.resolve().parents:
-    if (parent / '.git').exists() and destination.resolve().relative_to(parent).parts[0] != 'work':
-        raise ValueError('Scan derivatives must stay in ignored work/')
+    # The innermost repository root decides; a nested worktree's outer
+    # checkout must not reclassify the worktree's own work/ directory.
+    if (parent / '.git').exists():
+        if destination.resolve().relative_to(parent).parts[0] != 'work':
+            raise ValueError('Scan derivatives must stay in ignored work/')
+        break
 os.umask(0o077); destination.mkdir(parents=True, mode=0o700)
 data = json.loads(source.read_text())
 support = data['schema'] in ('935-observed-support-plane-v1', '935-observed-support-surfaces-v1')

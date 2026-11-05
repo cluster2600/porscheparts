@@ -12,12 +12,29 @@ How to read this page:
   template or a plan, and the linked document stays authoritative.
 - A rule marked **Proposal** is a project proposal. It is not a requirement
   until the maintainer accepts it in a decision.
+- Each proposal now carries an **exercise status** (table below): what was
+  actually run, on what, and what changed as a result.
 
 **Working frame.** The repository buys no part and measures none (project
-owner, 2026-09-14; [PROJECT_CHARTER.md](PROJECT_CHARTER.md)). Sections 2 to 7
+owner, 2026-09-14; [PROJECT_CHARTER.md](PROJECT_CHARTER.md)). Sections 2 to 6
 are a handover to an external contributor and have never been exercised.
-Section 8, documentary intake, is what runs today; it was desk-tested on the
-first pilot ([decision 0013](decisions/0013-pilots-advance-on-documentary-evidence.md)).
+Section 7, scan against reference, was run end to end on 2026-11-05 on an
+admitted scan with thresholds committed first
+([trial](research/capture-protocol-scan-trial-20261105/README.md)). Section 8,
+documentary intake, runs today; it was desk-tested on the first pilot
+([decision 0013](decisions/0013-pilots-advance-on-documentary-evidence.md)).
+
+### What was exercised, proposal by proposal
+
+| Proposal | Status on 2026-11-05 | Exercised on | Result |
+|---|---|---|---|
+| P1 accuracy targets per method | not exercised | — | needs an instrument reading; none exists under the owner's constraint |
+| P2 stating the uncertainty | not exercised | — | needs repeated readings |
+| P3 two scale references | not exercised; **inapplicable to found scans** | 935 scan trial | a found or purchased scan carries no scale bar; the trial used the owner's declared unit instead and recorded it |
+| P4 dimensions before matting | not exercised | — | no capture |
+| P5 scan against reference | **exercised end to end** | `SCAN-935-XTREME-CYLINDER-HEAD` against the Xtreme catalogue ranges; thresholds committed in `2e09eac7` before the run | 1 pass; 1 pass or fail depending on port identification; 2 not observable; rule changes P5a–P5c below |
+| P6 pilot thresholds | not exercised on a pilot | — | no pilot has a scan; the trial used P6's 0.5 mm `T` on its own checks |
+| P7 level mapping B to C, D to E | **exercised** | switch-blank declared records (2026-10-15) | applied without conflict; the four Printables shape sources of 2026-11-05 are source records at level D, not measurement records, so P7 did not apply to them |
 
 ```mermaid
 flowchart LR
@@ -166,6 +183,23 @@ leaves its threshold "to define before acquisition".
    Never rescale, re-register or drop a check dimension after seeing results. A
    failure is recorded as a contradiction.
 
+Changes learned from the first run
+([trial, 2026-11-05](research/capture-protocol-scan-trial-20261105/README.md)),
+**Proposals** until accepted:
+
+- **P5a — stations defined by features.** Name the measurement station by a
+  feature ("the narrowest closed section within 20 mm of the face"), not by a
+  plane: "at the flange plane" landed on a 4.5 mm deep counterbore.
+- **P5b — identification before results.** Commit which feature is which, with
+  its reasoning, before the run. If it cannot be established, judge every
+  assignment and report all of them; never pick the one that passes.
+- **P5c — three outcomes.** `pass`, `fail` and `not_observable`. An open scan
+  that holds no closed section of a feature gives `not_observable`, which is a
+  result and not a pass.
+- **Registration stand-in.** A found or purchased scan rarely has a
+  registration dimension. A declared unit may stand in for step 3 only if the
+  contract records it as a departure.
+
 **Proposal P6 — thresholds for the pilots**, to accept or change before any
 acquisition.
 
@@ -231,7 +265,17 @@ opening (thread 750484) both give about 17 × 28 mm.
 The measured-input gate stayed closed, and
 `tests/test_switch_blank_measurement_gate.py` keeps it closed.
 
-Sections 2 to 7 are untested: no contributor, part or instrument exists yet.
+Sections 2 to 6 are untested: no contributor, part or instrument exists yet.
+
+## 9b. Scan-against-reference trial
+
+Run on 2026-11-05 on `SCAN-935-XTREME-CYLINDER-HEAD` (licence recorded, raw
+OBJ outside the repository, digest checked) against the Xtreme catalogue
+ranges, with thresholds committed before the run. Spark-plug bore: pass
+(11.20–11.34 mm against 10.647–14.0 mm, `T` 0.5 mm). Valve guides: not
+observable. Ports: 45.07 mm at the low-B face, a pass as an intake and a fail
+as an exhaust; the scan does not say which it is. Details and reproduction:
+[trial README](research/capture-protocol-scan-trial-20261105/README.md).
 
 ## 10. Reviewer checklist
 
@@ -240,7 +284,8 @@ Sections 2 to 7 are untested: no contributor, part or instrument exists yet.
 - [ ] The datum is defined before the first reading and visible in a photo.
 - [ ] Three readings per critical dimension; uncertainty and basis stated.
 - [ ] Each photoset declares its scale reference and has a manifest.
-- [ ] Scan thresholds were committed before the results.
+- [ ] Scan thresholds, stations and feature identification were committed before the results.
+- [ ] Every check reports `pass`, `fail` or `not_observable`, for every assignment.
 - [ ] Contradictions are listed in the record and in the part's `known_limits`.
 - [ ] No status moves above `concept` on declared values.
 - [ ] `make check` passes.

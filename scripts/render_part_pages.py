@@ -539,7 +539,7 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
         tailles = ", ".join(f"{v['insert_mm'][0]} × {v['insert_mm'][1]}" for v in kit["variants"])
         out += ["> [!TIP]",
                 "> **A fit-test kit is ready to print** — [`print/`](print/README.md): "
-                f"{len(kit['variants'])} sizes on one plate ({tailles} mm), a PrusaSlicer project and "
+                f"{len(kit['variants'])} sizes on one plate ({tailles} mm), a 3MF plate and "
                 "instructions. It is a measurement instrument, not the finished part "
                 f"([decision 0009]({lien(ROOT / 'docs' / 'decisions' / '0009-first-fit-test-print-switch-blank.md', page)})).",
                 ""]
@@ -570,8 +570,8 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
     plaque = dossier / "print" / "plate.png"
     if kit and plaque.exists():
         droite = ["<b>What you can print today</b><br><br>",
-                  f'<a href="print/README.md"><img src="print/plate.png" alt="Fit-test kit, three sizes" width="360"></a><br>',
-                  "<sub>The fit-test kit: three sizes that bracket the declared opening. A measurement "
+                  f'<a href="print/README.md"><img src="print/plate.png" alt="Fit-test kit" width="360"></a><br>',
+                  "<sub>The fit-test kit: sizes that bracket the declared openings. A measurement "
                   "instrument — <b>not</b> the finished part, not a copy of the original.</sub>"]
     elif maquette and (dossier / "print" / "mockup.png").exists():
         droite = ["<b>What you can print: a display mock-up</b><br><br>",

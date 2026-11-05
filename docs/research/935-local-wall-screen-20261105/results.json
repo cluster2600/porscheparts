@@ -1,0 +1,146 @@
+{
+  "revision": "935-local-head-wall-screen-20261105-001",
+  "parent_manifest_sha256": "ac1468ffedab8ad1a8e12f856e5aea68791b8706175832c22ebcd421eadc1ba0",
+  "upstream_verdict": "Sampled short material paths need feature/process admission; no wall qualification, mesh sweep or geometry change",
+  "normal_chords": {
+    "mesh_sha256": "05159cdbf903729da5b8556d2ff2c2d29680a45c2b4bd42b34e031a122205594",
+    "source_sha256": "cf61dcf5f4705c05313ecc24ad2d045dbfdb7f804f72a0a10ec5f6fff2ee3945",
+    "binary_sha256": "de229f226159cb6de1da4f01440230fc449d89b0576d5bbaad9de5785551883e",
+    "geometry_report_sha256": "79d6d7eba698dff174ec4221e73b2801ef506cff61aeee79ae435d7c67ff42e4",
+    "vertices_binary_sha256": "4501270b04f1391784b69630b06fb045dfa4eb0712d505a95706398e41204ef5",
+    "faces_binary_sha256": "1e5d3c10b1aab742f718324d3e9f45ae88d3d2420910e71079f4ccc7b7eaecd2",
+    "seed": 935055,
+    "samples": 5000,
+    "sampling": "Area-weighted surface points; inward flat-face normals; source face skipped; no anatomical exclusions",
+    "missed": 0,
+    "nonpoint": 0,
+    "ambiguous_hits": 0,
+    "all_point_hits_statistics_mm": {
+      "minimum": 0.03196313309286914,
+      "p01": 0.31601643747073266,
+      "p05": 1.5512844429076742,
+      "median": 22.887206808017563,
+      "p95": 85.72560002312555,
+      "maximum": 211.4462009556066
+    },
+    "point_hits_below_mm": {
+      "0.1": 5,
+      "0.25": 26,
+      "0.5": 160,
+      "1": 218,
+      "2": 354
+    },
+    "independent_full_triangle_search_rays": 16,
+    "independent_max_distance_difference_mm": 2.2737367544323206e-13,
+    "controls": {
+      "unit_cube": true,
+      "oblique_cube": true,
+      "miss": true,
+      "segment_ambiguity": true,
+      "thin_box": true,
+      "existing_output_refused": true,
+      "independent_moller_trumbore_cube": true
+    },
+    "normal_chords_are_not_global_minimum_wall_or_metrology": true,
+    "no_process_wall_threshold_selected": true,
+    "physical_wall_acceptance": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "seconds": 16.630701665999368
+  },
+  "provenance_attribution": {
+    "source_sha256": "255a747e1e8f97e1f47541b2d215dd093871a01d6026fb597da7ce3cf5a97718",
+    "samples_sha256": "f18e67c909105481abc2877c18494e158812663fcd4eee2373eeef378d31d762",
+    "tags_sha256": "877cf9c6638eb388755a378775428c7a5067409f166b3ea38d03b1837f2fae2f",
+    "scan_arrays_sha256": "dd94c37117a1f1277a4f2b7f0bf0023e0d1858991b943f766cf447db319a101a",
+    "frame_sha256": "fadd49707617c6339360009c2a279fe469bec0567f7b3dbe0191172bc9088766",
+    "parent_manifest_sha256": "ac1468ffedab8ad1a8e12f856e5aea68791b8706175832c22ebcd421eadc1ba0",
+    "source_build_frame_roundtrip_max_mm": 8.163514517232825e-14,
+    "source_frame_restored_before_scan_distance_query": true,
+    "groups": [
+      {
+        "threshold_mm": 0.1,
+        "samples": 5,
+        "both_endpoints_on_retained_parent_skin": 5,
+        "one_or_more_endpoints_on_assumed_cut_caps": 0
+      },
+      {
+        "threshold_mm": 0.25,
+        "samples": 26,
+        "both_endpoints_on_retained_parent_skin": 26,
+        "one_or_more_endpoints_on_assumed_cut_caps": 0
+      },
+      {
+        "threshold_mm": 0.5,
+        "samples": 160,
+        "both_endpoints_on_retained_parent_skin": 160,
+        "one_or_more_endpoints_on_assumed_cut_caps": 0
+      },
+      {
+        "threshold_mm": 1,
+        "samples": 218,
+        "both_endpoints_on_retained_parent_skin": 218,
+        "one_or_more_endpoints_on_assumed_cut_caps": 0
+      },
+      {
+        "threshold_mm": 2,
+        "samples": 354,
+        "both_endpoints_on_retained_parent_skin": 354,
+        "one_or_more_endpoints_on_assumed_cut_caps": 0
+      }
+    ],
+    "shorter_than_0p5mm_endpoint_distance_to_original_scan_mm": {
+      "minimum": 5.09896165988272e-07,
+      "median": 0.003510025333373663,
+      "p95": 0.08367950288891852,
+      "maximum": 0.4286096647418715
+    },
+    "both_endpoints_within_0p01mm_of_original_scan": 94,
+    "envelope_skin_is_not_original_scan_or_physical_metrology": true,
+    "proximity_does_not_identify_a_wall_or_validate_inherited_closures": true,
+    "physical_acceptance": false,
+    "manufacturing_qualified": false
+  },
+  "compile": {
+    "argv": [
+      "clang++",
+      "-std=c++17",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-I/opt/homebrew/include",
+      "source/normal_chords.cpp",
+      "-L/opt/homebrew/lib",
+      "-lgmp",
+      "-lmpfr",
+      "-o",
+      "PRIVATE_CAPSULE/normal-chords"
+    ],
+    "return_code": 0,
+    "seconds": 3.9646113340277225,
+    "source_sha256": "6a2bc16cea1d4cd18efc7a42a65cd3ded265d95634ce0bdc0d3b049677acf8a3"
+  },
+  "source_files": [
+    {
+      "path": "source/classify_probes.py",
+      "sha256": "255a747e1e8f97e1f47541b2d215dd093871a01d6026fb597da7ce3cf5a97718"
+    },
+    {
+      "path": "source/normal_chords.cpp",
+      "sha256": "6a2bc16cea1d4cd18efc7a42a65cd3ded265d95634ce0bdc0d3b049677acf8a3"
+    },
+    {
+      "path": "source/screen_normal_chords.py",
+      "sha256": "cf61dcf5f4705c05313ecc24ad2d045dbfdb7f804f72a0a10ec5f6fff2ee3945"
+    }
+  ],
+  "goal_status": "active",
+  "geometry_and_delivered_three_mf_unchanged": true,
+  "new_paid_compute_usd": 0,
+  "manufacturing_qualified": false,
+  "private_manifest": {
+    "sha256": "c29a9df46aa9ffdde5e9f16dd09ffdad75f1ada8cf05f7a18fabaad0a0007bba",
+    "files": 46,
+    "bytes": 1738147
+  }
+}

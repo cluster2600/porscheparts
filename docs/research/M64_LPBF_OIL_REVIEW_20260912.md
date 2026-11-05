@@ -101,6 +101,14 @@ Reproduction checks expose unresolved input consistency:
   differing reported mass reductions. Placement/intersections need recovery.
 - No mesh-convergence study or experimental correlation is established here.
 
+**Disposition (2026-11-05, issue #444): excluded.** Both inconsistencies were
+recomputed: π/4 × 5.0² × 7.0 cm = 137.44 cm³, and 96 × 40 mm² × 2.5 mm ×
+2.70 g/cm³ = 25.92 g. Neither can be reconciled without the authors' geometry,
+so no value from this paper (bore, stroke, displacement, mass change,
+convection coefficient, material data) enters any M64 input, boundary
+condition or acceptance criterion. Only the qualitative hypothesis below is
+kept.
+
 This is a useful hypothesis source, not an M64 validation or an LPBF alloy
 qualification. Its dimensions, convection coefficient and material properties
 are not imported into the head's physical boundary conditions.
