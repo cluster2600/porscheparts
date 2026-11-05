@@ -9,6 +9,11 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'twins/935-horizontal-cooling-system-f0/source'
 sys.path.insert(0, str(SOURCE))
+# assess_mac_fea.py and run_reconstruction.py are hash-pinned by research
+# records, so their guard still checks every enclosing repository (issue #416).
+# Inside a nested agent worktree only the outermost checkout's work/ satisfies
+# it; in a plain checkout this is ROOT / 'work' as before.
+PRIVATE_WORK = [p for p in (ROOT, *ROOT.parents) if (p / '.git').exists()][-1] / 'work'
 try:
     from assess_mac_fea import assess
 except ImportError:
@@ -22,6 +27,10 @@ class MacFeaAuditTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory(dir=ROOT / 'work')
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
+        PRIVATE_WORK.mkdir(exist_ok=True)
+        out_parent = tempfile.TemporaryDirectory(dir=PRIVATE_WORK)
+        self.addCleanup(out_parent.cleanup)
+        self.out = Path(out_parent.name) / 'out'
         self.prepared, self.solved = self.root / 'prepared', self.root / 'solved'
         self.prepared.mkdir(); self.solved.mkdir()
         self.grid = self.root / 'grid.json'
@@ -54,7 +63,7 @@ class MacFeaAuditTests(unittest.TestCase):
 
     def test_complete_cube_force_and_moment_closure_and_sparse_units(self):
         # Synthetic fully restrained cube: reaction = -rho*volume*omega^2*centroid.
-        result = assess(self.prepared, self.solved, self.root / 'out')
+        result = assess(self.prepared, self.solved, self.out)
         self.assertTrue(result['reaction_balance_pass'])
         self.assertAlmostEqual(result['relative_force_balance_error'], 0)
         self.assertAlmostEqual(result['relative_moment_balance_error'], 0)
@@ -66,26 +75,26 @@ class MacFeaAuditTests(unittest.TestCase):
     def test_missing_integration_point_is_rejected(self):
         path = self.solved / 'rotor.dat'; path.write_text(path.read_text().replace('1 8 10 0 0 0 0 0\n', ''))
         with self.assertRaisesRegex(ValueError, 'eight-point'):
-            assess(self.prepared, self.solved, self.root / 'out')
+            assess(self.prepared, self.solved, self.out)
 
     def test_changed_grid_and_log_alias_are_rejected(self):
         self.grid.write_text('{}')
         with self.assertRaisesRegex(ValueError, 'Grid changed'):
-            assess(self.prepared, self.solved, self.root / 'out')
+            assess(self.prepared, self.solved, self.out)
         (self.solved / 'log.rotor').write_text('Other log')
         with self.assertRaisesRegex(ValueError, 'alias differs'):
-            assess(self.prepared, self.solved, self.root / 'out')
+            assess(self.prepared, self.solved, self.out)
 
     def test_nonfinite_stress_is_rejected(self):
         path = self.solved / 'rotor.dat'; path.write_text(path.read_text().replace('10 0 0 0 0 0', 'nan 0 0 0 0 0'))
         with self.assertRaisesRegex(ValueError, 'finite'):
-            assess(self.prepared, self.solved, self.root / 'out')
+            assess(self.prepared, self.solved, self.out)
 
     def test_wrong_reaction_cannot_pass_equilibrium(self):
         path = self.solved / 'rotor.dat'
         text = path.read_text().splitlines(); text[1] = '1 1 0 0'
         path.write_text('\n'.join(text) + '\n')
-        result = assess(self.prepared, self.solved, self.root / 'out')
+        result = assess(self.prepared, self.solved, self.out)
         self.assertFalse(result['reaction_balance_pass'])
 
 

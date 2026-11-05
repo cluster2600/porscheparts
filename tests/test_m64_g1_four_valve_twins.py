@@ -230,7 +230,7 @@ class BoreSweepTests(unittest.TestCase):
     def test_recorded_sweep_is_consistent(self):
         path = EVIDENCE / 'bore-sweep.json'
         if not path.exists():
-            self.skipTest('balayage non généré')
+            self.skipTest('bore sweep evidence absent; regenerate with: python3 twins/m64-cylinder-head/source/fourvalve/bore_sweep.py twins/m64-cylinder-head/evidence/g1-four-valve-20260914/bore-sweep.json')
         import bore_sweep
         r = json.loads(path.read_text())
         self.assertIs(r['manufacturing_authorized'], False)
@@ -261,7 +261,7 @@ class BoreSweepTests(unittest.TestCase):
             bore_sweep.sweep(SPEC, pv.load_design_space(), bores=[107.0], budget_override=small)
 
 
-@unittest.skipUnless((EVIDENCE / 'manifest.json').exists(), 'évidence non générée')
+@unittest.skipUnless((EVIDENCE / 'manifest.json').exists(), 'G1 evidence absent; regenerate with: python3 twins/m64-cylinder-head/source/fourvalve/run.py twins/m64-cylinder-head/evidence/g1-four-valve-20260914')
 class EvidenceTests(unittest.TestCase):
     def test_manifest_is_consistent_with_inputs(self):
         m = json.loads((EVIDENCE / 'manifest.json').read_text())
