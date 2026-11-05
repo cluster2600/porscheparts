@@ -1,22 +1,66 @@
 # 993 Turbo carrier: complete-mesh mechanical continuation
 
-Five complete nested gravity refinements have passed native and independent
-Mac equilibrium/energy checks. The latest energy-norm increment is **2.83%**,
-down from 4.73%; the separately verified combined-force/torque increment is
-**4.60%**, down from 6.15%. Both remain above the unchanged 1% stabilization
-screen. Nominal mass is 1.294 kg and the common h5 mesh contains 13,883,493
-tetrahedra. Pointwise peaks remain unresolved and visible; no strength or
-spatial-convergence claim is made.
+The sixth complete nested refinement has passed native equilibrium/energy
+assessment under both study loads. The full h5-to-h6 energy-norm increments
+are **1.2243% for gravity** and **2.5340% for combined loading**, down from
+2.8261% and 4.5965%. Both remain above the unchanged 1% stabilization screen.
+Nominal mass remains **1.2941382 kg**, below 1.30 kg; h6 contains
+**14,439,856 tetrahedra**. Pointwise peaks remain unresolved. Independent Mac
+field replay is complete through h5; no h6 Mac replay is claimed.
 
-The [next-refinement admissibility review](carrier-refinement-admissibility-20261105.md)
-records a rejected interior-only refinement, its exact mechanical limitation,
-and the retained shared-edge route with positive child-order screening.
+The [refinement admissibility and h6 results](carrier-refinement-admissibility-20261105.md)
+record the rejected interior-only operator, accepted shared-edge refinement,
+complete native comparisons and byte-identical source recovery before h7.
 
-![Five complete gravity increments](../media/carrier-h5-mechanics-20261105.png)
+![Complete h5 and h6 energy-norm increments against the unchanged screen](../media/carrier-h6-mechanics-20261105.png)
 
-![Actual unaveraged h5 fields under both load cases](../media/carrier-h5-load-fields-20261105.png)
+![Complete h5 and h6 stress statistics, retaining unresolved global peaks](../media/carrier-h6-stress-trend-20261105.png)
 
-![Actual admitted gravity fields, retaining the audited global stress peak](../media/carrier-current-gravity-20261104.png)
+### Sixth-refinement results and retention
+
+| Complete field metric | Gravity | Combined force and torque |
+|---|---:|---:|
+| h5-to-h6 energy-norm increment | 1.22429898% | 2.53402093% |
+| Maximum displacement, mm | 0.81506535 | 2.35926953 |
+| Volume-weighted stress p95, MPa | 45.43666 | 171.55794 |
+| Unresolved pointwise stress peak, MPa | 21,388.81 | 174,923.45 |
+| Relative Galerkin identity defect | 6.30e-8 | 7.90e-9 |
+
+The comparison consumes complete displacement and stress fields, the checked
+parent/child map and unchanged loads, material and supports. It covers all
+14,439,856 fine cells, rather than comparing selected statistics alone.
+Both native workers passed their analytic and complete reference controls.
+Fresh h5 solves on each same host reproduced the previously admitted raw DAT
+hashes exactly before comparison. The numerical thresholds were unchanged.
+
+Both complete h6 raw DATs have been retained locally and SHA-256 verified.
+The fresh combined h5 repeat is also retained as a lossless archive with its
+complete decompressed byte stream verified. The additional fresh gravity h5
+archive remains incomplete by 1,386,600 bytes after its endpoint refused the
+final transfer; its earlier native comparison and metadata were retained.
+This is a retention gap for that repeated h5 copy, not a new h6 solver result.
+The external evidence volume stopped responding, and the internal disk did
+not satisfy the original 32 GiB bulk-replay reserve. No full h6 Mac replay or
+complete duplicate gravity-h5 archive recovery is inferred from metadata.
+
+The complete h6 traction-jump indicators for both loads were independently
+parsed, retained and normalized by their respective external work for joint
+marking. Their ranking is a marking aid, not a certified global error bound.
+Local recovery with the original NumPy 2.2.6 runtime independently decoded
+every solver-mesh coordinate and cell, then reproduced both admitted h6 source
+archive hashes exactly. Earlier native-runtime repack attempts did not match
+and remain recorded as refused recovery attempts. A bounded local h7 proposal is running; no h7 geometry or response
+has yet been admitted. Both owned Vast instances were subsequently destroyed,
+and their absence was verified through the provider.
+
+The remaining sections preserve the earlier execution and software history.
+The following field images show the **previous h5 baseline**, not h6 fields:
+
+![Previous complete h5 gravity increments](../media/carrier-h5-mechanics-20261105.png)
+
+![Previous unaveraged h5 fields under both load cases](../media/carrier-h5-load-fields-20261105.png)
+
+![Earlier admitted gravity fields, retaining the audited global stress peak](../media/carrier-current-gravity-20261104.png)
 
 ## Original geometry and solver intake
 
