@@ -1,0 +1,89 @@
+{
+  "schema": "935-centroid-native-readback-1",
+  "date": "2026-11-05",
+  "status": "native_export_readback_exact_positive_det_and_volume_997_nonpositive_SICN_cells_no_field_admission",
+  "upstream_private_manifest_sha256": "699cc762a0448f31e44099d34274dcfa7af938c33e1012b0669eaa896ec7b082",
+  "unchanged_published_exporter": "../935-native-solver-admission-20261105/source/export_native_mesh.py",
+  "private_capsule": {
+    "capsule_name": "935-centroid-native-readback-20261105-001",
+    "manifest_sha256": "9a7a958d1133fb689cf9e43ef3d731d8e47afd45bbca0254e33ad8b7af68a1ae",
+    "payload_files": 12,
+    "payload_bytes": 915528324,
+    "read_only": true,
+    "all_payload_files_rehashed_after_freeze": true
+  },
+  "execution": {
+    "exit_code": 0,
+    "controller_limit_reached": false,
+    "seconds": 22.289711583056487,
+    "sampled_peak_rss_kib": 5642912,
+    "log_sha256": "d4b3e6d6ebe34c5094c5a78ce54dbef60c68742119dee31607be82bbbbe7c91e"
+  },
+  "native_report": {
+    "source_sha256": "e9a4b8cb0805ddaa779f307ba7c0b89c17a679a3915028487a28879a73ecf484",
+    "input_sha256": "7e4f514b548c5d215a78735c506bca5933d3d69a617a9bcd9c5d70322cfff156",
+    "input_report_sha256": "05b9e9633a30cfd581e4e300eb77d78d13530b2b0b6aa844c980e7b9e3249f6a",
+    "gmsh_api": "4.12.1",
+    "gmsh_module_sha256": "fa69936fc45646eca8b29ab0fd9e32ebaf45216414cbc75c380b4c0db7b6f485",
+    "gmsh_binary_sha256": "0ad15c280dc81268f4d9b9612a210a6fb9121b09b83b3354cf58489743991603",
+    "format": "MSH 4.1 binary",
+    "optimization_requested": false,
+    "unit_scope": "Coordinates inherited unchanged from hypothetical parent; no specimen calibration",
+    "boundary_classification": "One unclassified source boundary, no physical port or attachment assignment",
+    "kernel_alarm_seconds": 600,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "controls": [
+      {
+        "inverted": false,
+        "minDetJac": 1.0,
+        "minSICN": 0.8164965809277259,
+        "volume": 0.16666666666666666
+      },
+      {
+        "inverted": true,
+        "minDetJac": -1.0,
+        "minSICN": -0.8164965809277259,
+        "volume": -0.16666666666666666
+      }
+    ],
+    "native_import_all_arrays_exact": true,
+    "native_readback_all_arrays_exact": true,
+    "complete_node_label_mapping_verified": true,
+    "tetrahedra": 12967657,
+    "native_metrics": {
+      "minDetJac": {
+        "minimum": 1.5317399711011945e-19,
+        "maximum": 83.74388035448389,
+        "nonpositive_or_nonfinite_cells": 0,
+        "nonfinite_cells": 0,
+        "private_indices_sha256": "a8da70c43385448cb26d759127b4824e201bfd34259c984336aba26481355b61"
+      },
+      "minSICN": {
+        "minimum": -2.0245344338430406e-13,
+        "maximum": 0.9992901108475222,
+        "nonpositive_or_nonfinite_cells": 997,
+        "nonfinite_cells": 0,
+        "private_indices_sha256": "b4524f2754f20fcad42dab303fa76f50f2f0387ff0ecbdac35af4d48fe83fb9a"
+      },
+      "volume": {
+        "minimum": 2.5528999518353243e-20,
+        "maximum": 13.957313392413981,
+        "nonpositive_or_nonfinite_cells": 0,
+        "nonfinite_cells": 0,
+        "private_indices_sha256": "a8da70c43385448cb26d759127b4824e201bfd34259c984336aba26481355b61"
+      }
+    },
+    "native_positive_metric_witness_passed": false,
+    "msh_sha256": "7677a060020d63a39d7555d9ef927f3bd63f315088b7ac7a603e9172aeba4724",
+    "msh_bytes": 915499733,
+    "field_solve_executed": false,
+    "openfoam_or_calculix_import_not_yet_tested": true,
+    "seconds": 21.429979374981485
+  },
+  "full_goal_still_active": true,
+  "physical_and_manufacturing_gates_false": true,
+  "supplier_messages_sent": 0,
+  "new_paid_compute_usd": 0
+}

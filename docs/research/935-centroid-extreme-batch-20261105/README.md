@@ -174,3 +174,8 @@ qualification, machining/supports/build strategy, physical inspection and engine
 validation remain open. Existing printing-study exports are not machine-ready
 metal files. All functional/manufacturing release gates stay false, no supplier
 message is sent, and the full engineering goal remains active.
+
+The subsequent [native volume readback](../935-centroid-native-readback-20261105/README.md)
+now confirms exact Gmsh export/re-import on this candidate. Positive determinant
+and volume metrics pass, but `minSICN` remains nonpositive on 997 cells, so the
+native positive shape-metric gate and engine field admission remain failed.
