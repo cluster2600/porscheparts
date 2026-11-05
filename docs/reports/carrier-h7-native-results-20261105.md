@@ -82,9 +82,9 @@ material and DAT bytes. Both coarse replays match all six previously admitted
 field arrays byte for byte. The source-bound JSON below publishes numerical
 results and identities; private inputs remain necessary for a full rerun.
 
-The subsequent [complete gravity correction localization](carrier-h7-correction-localization-20261105.md)
-shows that protected cells contribute only 2.32145e-10 of the correction energy.
-The combined localization remains pending.
+The subsequent [complete two-case correction localization](carrier-h7-correction-localization-20261105.md)
+shows that protected cells contribute only 2.32145e-10 and 2.59677e-9 of the
+correction energy under gravity and combined loading, respectively.
 
 ## Next mechanical step
 
