@@ -502,99 +502,6 @@
     "seconds": 21.988109291065484
   },
   "execution": {
-    "complete-checks-before-execution.json": {
-      "source_sha256": {
-        "inspect_interval_volume.py": "b0810ac21b35654556dce18ef022f6d4ca8f30a847223c5d566188eab82f4e71",
-        "inspect_tetrahedra.py": "fe8c7fa88f35d2d14094438bbae3b0860bde085a39b68f7ab941790cb4d1bec3",
-        "audit_extreme_batch.py": "95479a2cbc341e5eab0b16ddda2374b037c202d9abd553f6ced9e56a4f191052",
-        "export_native_mesh.py": "e9a4b8cb0805ddaa779f307ba7c0b89c17a679a3915028487a28879a73ecf484"
-      },
-      "stages": [
-        {
-          "stage": "whole-volume",
-          "command": [
-            "/Users/maxime/Developer/PorschePartsArtifacts/935-local-head-physics-20261105-001/runtime/bin/python",
-            "-B",
-            "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993/docs/research/935-unoptimized-volume-20261105/source/inspect_interval_volume.py",
-            "--mesh",
-            "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/verification-v2/candidate.npz",
-            "--surface",
-            "/Users/maxime/Developer/PorschePartsArtifacts/935-condition-directed-20261105-001/peel-proof/candidate-surface.npz",
-            "--surface-report",
-            "/Users/maxime/Developer/PorschePartsArtifacts/935-condition-directed-20261105-001/peeled-native-surface/report.json",
-            "--frozen-inspector",
-            "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993/docs/research/935-local-physics-20261105/source/inspect_tetrahedra.py",
-            "--output",
-            "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/whole-volume"
-          ],
-          "seconds": 600
-        },
-        {
-          "stage": "whole-condition",
-          "command": [
-            "/Users/maxime/Developer/PorschePartsArtifacts/935-local-head-physics-20261105-001/runtime/bin/python",
-            "-B",
-            "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993/docs/research/935-centroid-extreme-batch-20261105/source/audit_extreme_batch.py",
-            "--repository",
-            "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993",
-            "--parent",
-            "/Users/maxime/Developer/PorschePartsArtifacts/935-residual-source-admission-20261105-001",
-            "--verified",
-            "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/verification-v2",
-            "--volume",
-            "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/whole-volume/report.json",
-            "--output",
-            "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/whole-condition"
-          ],
-          "seconds": 600
-        },
-        {
-          "stage": "native-readback",
-          "command": [
-            "/Users/maxime/Developer/PorschePartsArtifacts/935-local-head-physics-20261105-001/runtime/bin/python",
-            "-B",
-            "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993/docs/research/935-native-solver-admission-20261105/source/export_native_mesh.py",
-            "--mesh",
-            "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/verification-v2/candidate.npz",
-            "--input-report",
-            "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/whole-volume/report.json",
-            "--surface",
-            "/Users/maxime/Developer/PorschePartsArtifacts/935-condition-directed-20261105-001/peel-proof/candidate-surface.npz",
-            "--output",
-            "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/native-readback"
-          ],
-          "seconds": 600
-        }
-      ],
-      "upstream_verdict": "All24 selected source-disjoint cavities passed separate Fraction domain and quality/condition proofs; full source boundary/coordinates unchanged. Full diagnostics only, no engine field solve or physical release.",
-      "maximum_sampled_child_rss_gib": 40,
-      "free_disk_floor_gib": 4,
-      "physics_admitted": false,
-      "manufacturing_qualified": false,
-      "new_paid_compute_usd": 0
-    },
-    "head-trial-before-execution.json": {
-      "source_sha256": "4cff680be2ac2eec62af5963b27ce1b706a799e08697dea419b72bd57bde1e68",
-      "command": [
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-local-head-physics-20261105-001/runtime/bin/python",
-        "-B",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/source-at-execution/run_kernel_cases.py",
-        "--repository",
-        "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993",
-        "--parent",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-residual-source-admission-20261105-001",
-        "--previous",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-centroid-extreme-batch-20261105-001",
-        "--control",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/literal-control",
-        "--output",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/proposals"
-      ],
-      "control_passed": true,
-      "new_case_count": 7,
-      "other_124_results_reused_not_executed": true,
-      "new_paid_compute_usd": 0
-    },
     "head-trial-execution.json": {
       "exit_code": 0,
       "controller_limit_reached": false,
@@ -616,30 +523,6 @@
       "sampled_peak_rss_kib": 1323712,
       "log_sha256": "e890d744a11dfa7ed93324775553128ba51f05c4bf61cd53130b92e6224ecb14"
     },
-    "kali-before-execution.json": {
-      "ssh_argv": [
-        "ssh",
-        "-6",
-        "-o",
-        "BatchMode=yes",
-        "-o",
-        "StrictHostKeyChecking=yes",
-        "-o",
-        "ForwardAgent=no",
-        "-o",
-        "UseKeychain=no",
-        "-o",
-        "ConnectTimeout=8",
-        "-o",
-        "HostKeyAlias=192.168.2.3",
-        "lolman@fe80::dd31:2c06:9845:fecb%bridge0"
-      ],
-      "remote_directory": "/dev/shm/935-kernel-control-20261105-001",
-      "command": "python3 -B /dev/shm/935-kernel-control-20261105-001/docs/research/935-kernel-cavity-20261105/source/control_kernel_point.py --repository /dev/shm/935-kernel-control-20261105-001 --output /dev/shm/935-kernel-control-20261105-001/control",
-      "only_source_controls_no_head_data": true,
-      "input_archive_sha256": "a0d3d9f757745a705a23e733a072bd016392e13dfe25fdc74a6cb69554be9d66",
-      "kernel_deadline_seconds": 60
-    },
     "kali-execution.json": {
       "exit_code": 0,
       "seconds": 0.9779129028320312
@@ -657,84 +540,6 @@
       "seconds": 22.275190874934196,
       "sampled_peak_rss_kib": 5640448,
       "log_sha256": "1db4e0cc2ded997223b856c78817a8fdd06bd2aaf7888429336b6a8e1ee4ce7c"
-    },
-    "phase-ledger-before-execution.json": {
-      "upstream_verdict": "Existing exact source-admitted cavities in the immutable 131-case bundle; same parent as the previous bulk trial. Only a new numerical interior point construction is tested; every source boundary/coordinate and quality threshold remains fixed. Controls must pass before opening head cases.",
-      "source_mesh_sha256": "1bc2e8dddaf07c43ca36d35608f4fdb508f22e0694e922108a96466887f6182d",
-      "input_capsule_manifest_sha256": "699cc762a0448f31e44099d34274dcfa7af938c33e1012b0669eaa896ec7b082",
-      "new_trials_predeclared": "Only source-admitted cases containing either of the two targets left uncovered by centroid packing. Reuse all other frozen case results; do not rerun all131.",
-      "lp_method": "highs-ds",
-      "lp_max_seconds": 10,
-      "lp_max_iterations": 10000,
-      "floating_solver_success_never_admission": true,
-      "scipy": "1.18.1",
-      "numpy": "2.5.4",
-      "sources": {
-        "control_kernel_point.py": "407553451e38aecbb907ea37944a16d5963232f12fc06d3f32692ec16cec8baf",
-        "kernel_point.py": "fdadd4986fd630843a07edfe280884beed9076a2f869ddca8ca50d010f254933"
-      },
-      "controls": [
-        "literal concave domain volume3/4; centroid outside kernel; independently specified dyadic valid reference point",
-        "independent Fraction domain/volume/quality and pair-plane checks",
-        "negative and zero-width halfspace exact dual certificates and forged dual rejection"
-      ],
-      "physics_admitted": false,
-      "manufacturing_qualified": false,
-      "new_paid_compute_usd": 0
-    },
-    "verification-before-execution.json": {
-      "command": [
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-local-head-physics-20261105-001/runtime/bin/python",
-        "-B",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/source-at-execution/verify_kernel_batch.py",
-        "--repository",
-        "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993",
-        "--parent",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-residual-source-admission-20261105-001",
-        "--prepared",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-centroid-extreme-batch-20261105-001/prepared",
-        "--recovered",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/proposals",
-        "--reference",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/literal-control/literal-kernel-reference.npz",
-        "--output",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/verification"
-      ],
-      "sources": {
-        "verify_kernel_witness.py": "527bef925a4b871d4c854020ab47ff79cba7dd06c26fab23e4ad2e3b2e122499",
-        "verify_kernel_batch.py": "1b33dcb2dea6af9d1d04a8056af2153512a52231ee891bc7be59696f0e7f6d17"
-      },
-      "independent_checks": [
-        "literal concave reference and reversed/duplicate refusal",
-        "separate Fraction facet normals, stored-point strict margins and exact dual weighted sums, including refused cases",
-        "source-coordinate and cell join, disjoint source-row packing",
-        "separate Fraction cone signs, volume, quality, oriented boundary and all pair-plane witnesses",
-        "independent Fraction condition counts; full global checks required afterward"
-      ],
-      "new_paid_compute_usd": 0
-    },
-    "verification-v2-before-execution.json": {
-      "command": [
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-local-head-physics-20261105-001/runtime/bin/python",
-        "-B",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/source-at-execution/verify_kernel_batch_v2.py",
-        "--repository",
-        "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993",
-        "--parent",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-residual-source-admission-20261105-001",
-        "--prepared",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-centroid-extreme-batch-20261105-001/prepared",
-        "--recovered",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/proposals",
-        "--reference",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/literal-control/literal-kernel-reference.npz",
-        "--output",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-kernel-cavity-20261105-001/verification-v2"
-      ],
-      "source_sha256": "2014761618e6f4664e4f0d1f278a92a0d4775e6d8435a19e3d0a2f1bdd0ec250",
-      "failed_v1_retained_unchanged": true,
-      "correction": "Separate verifier module name from output witness-file path; no geometric or quality contract changed.",
-      "new_paid_compute_usd": 0
     },
     "whole-condition-execution.json": {
       "exit_code": 0,
@@ -797,5 +602,6 @@
   },
   "legacy_remote_keys_refer_to_reused_Vast_bundle_not_new_remote_kernel_execution": true,
   "supplier_messages_sent": 0,
-  "full_goal_still_active": true
+  "full_goal_still_active": true,
+  "public_execution_metadata_scope": "Terminal status/timing/resource/log hashes only; complete command and connection receipts remain in the immutable private capsule."
 }

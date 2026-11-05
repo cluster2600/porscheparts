@@ -306,49 +306,8 @@
       "log_sha256": "4969b47089201516e57e4aa72fb3f94c4592a523321c2d75e2754eea4a26a637"
     },
     "kali-benchmark-execution.json": {
-      "ssh_command": [
-        "ssh",
-        "-6",
-        "-o",
-        "BatchMode=yes",
-        "-o",
-        "StrictHostKeyChecking=yes",
-        "-o",
-        "ForwardAgent=no",
-        "-o",
-        "UseKeychain=no",
-        "-o",
-        "ConnectTimeout=8",
-        "-o",
-        "HostKeyAlias=192.168.2.3",
-        "lolman@fe80::dd31:2c06:9845:fecb%bridge0"
-      ],
-      "remote_directory": "/dev/shm/935-centroid-extreme-20261105-001",
-      "command": "cd /dev/shm/935-centroid-extreme-20261105-001 && python3 -B exact_cavity_worker.py --job job.json --output benchmark --workers 1 --case case-0110",
       "exit_code": 0,
-      "seconds": 0.43996286392211914,
-      "archive_bytes": 77097,
-      "archive_sha256": "5fa3b305c31ff70302661e37095e42a4c346aee8325062a62e62474c6809347f"
-    },
-    "mac-benchmark-before-execution.json": {
-      "upstream_verdict": "All input cavities pass exact source boundary topology/fixed-face/old-point retention and native intersection admission; compact payload only, no full scan/volume needed remotely. Benchmark the exact portable standard-library path before Kali and any paid launch.",
-      "command": [
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-local-head-physics-20261105-001/runtime/bin/python",
-        "-B",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-centroid-extreme-batch-20261105-001/prepared/exact_cavity_worker.py",
-        "--job",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-centroid-extreme-batch-20261105-001/prepared/job.json",
-        "--output",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-centroid-extreme-batch-20261105-001/mac-benchmark",
-        "--workers",
-        "1",
-        "--case",
-        "case-0110"
-      ],
-      "job_sha256": "07f74999d6bd8232a25ddf36ab873ee28a176fb1fb0a7afda0557a6709030a53",
-      "worker_sha256": "c1647d26211fee6445361fb140cea503a4ef7414cea2410a620aabbadf5ec922",
-      "expected_benchmark_case": "case-0110",
-      "new_paid_compute_usd": 0
+      "seconds": 0.43996286392211914
     },
     "mac-benchmark-execution.json": {
       "exit_code": 0,
@@ -357,82 +316,12 @@
       "sampled_peak_rss_kib": 0,
       "log_sha256": "761858dfe7e6d148dcfac293fe1512a8e3c591e49786b78cef2c526d81ab30e2"
     },
-    "phase-ledger-before-execution.json": {
-      "upstream_verdict": "Single-cell benchmark fully verified but next maximum almost equal. Prepare compact source-admitted cavities for all26 original source cases above1e16, using the same parent1bc (not adding benchmark gains). No cloud or field solve before local and Kali actual-path controls.",
-      "input_parent_manifest_sha256": "e651636ad4a9aaa5640f69d12df304f52bb7f539bda1a65433a53fdd1bb6fb00",
-      "single_case_benchmark_manifest_sha256": "4a9c29a825f7125e6b810d16e7fa2383993c4499086bcfc6d87500ce7521af04",
-      "command": [
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-local-head-physics-20261105-001/runtime/bin/python",
-        "-B",
-        "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993/docs/research/935-centroid-extreme-batch-20261105/source/prepare_extreme_cases.py",
-        "--repository",
-        "/Users/maxime/.codex/worktrees/935-faithful-publication/3dprinting993",
-        "--parent",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-residual-source-admission-20261105-001",
-        "--benchmark",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-signed-partition-20261105-001",
-        "--output",
-        "/Users/maxime/Developer/PorschePartsArtifacts/935-centroid-extreme-batch-20261105-001/prepared"
-      ],
-      "source_sha256": {
-        "exact_cavity_worker.py": "c1647d26211fee6445361fb140cea503a4ef7414cea2410a620aabbadf5ec922",
-        "prepare_extreme_cases.py": "0940e54e9062fab5bb6cae7d9f9c639012ad48be81b2ca01362a7756b6bc1997"
-      },
-      "source_profiles": {
-        "targets": 26,
-        "minimum_exact_kappa_F": 10000000000000000,
-        "all_target_boundary_vertices": true,
-        "face_neighbor_levels": [
-          0,
-          1
-        ],
-        "max_old_cells_each": 96,
-        "max_boundary_faces_each": 196
-      },
-      "preparation_checks": [
-        "Complete source vertex and face incidence",
-        "Exact source topology/fixed-face/point-retention admission",
-        "Native per-cavity intersection control before remote trial",
-        "Source binary64 and cell-byte digests",
-        "Exact-source benchmark case and analytic reference included"
-      ],
-      "remote_worker_checks": [
-        "Standard library only",
-        "Unchanged exact centroid/domain/quality gates",
-        "All8 exact condition counts locally nonregressing",
-        "Literal and independently verified head benchmark before queue",
-        "At most8 processes and600s wall,4GiB disk floor"
-      ],
-      "paid_compute_not_started": true,
-      "new_paid_compute_usd": 0
-    },
     "preparation-execution.json": {
       "exit_code": 0,
       "controller_limit_reached": false,
       "seconds": 16.187861541984603,
       "sampled_peak_rss_kib": 805840,
       "log_sha256": "cf1fd3075a29d006f3eceefb9af318bb31d2df70ce9d793b89884a7fb2ddf706"
-    },
-    "verification-ledger-before-execution.json": {
-      "selection_policy": "Exact worst target first; cover most remaining target rows, then fewer source rows, then lexical case ID; no shared old cell rows. Independent Fraction checks on each selected proposal precede global mesh assembly.",
-      "benchmark_and_batch_share_parent_not_cumulative": true,
-      "source_mesh_sha256": "1bc2e8dddaf07c43ca36d35608f4fdb508f22e0694e922108a96466887f6182d",
-      "sources": {
-        "audit_extreme_batch.py": "95479a2cbc341e5eab0b16ddda2374b037c202d9abd553f6ced9e56a4f191052",
-        "exact_cavity_worker.py": "c1647d26211fee6445361fb140cea503a4ef7414cea2410a620aabbadf5ec922",
-        "prepare_extreme_cases.py": "0940e54e9062fab5bb6cae7d9f9c639012ad48be81b2ca01362a7756b6bc1997",
-        "verify_extreme_batch.py": "6ec017082382ba6f2aed713068676a36b59890d9741ab4ee78f0f3447867c838"
-      },
-      "independent_checks": [
-        "analytic concave control and forged-cell rejection",
-        "all source coordinates and cell tuples",
-        "separate Fraction centroid, signs, volume, thresholds and SAT plane witnesses",
-        "fresh complete volume and condition census"
-      ],
-      "max_stage_seconds": 600,
-      "geometry_authority": "Existing Qwen/CADAM/PicoGK chain unchanged; numerical mesh only. No hidden engine geometry inferred.",
-      "physics_admitted": false,
-      "manufacturing_qualified": false
     },
     "whole-condition-execution.json": {
       "exit_code": 0,
@@ -558,5 +447,6 @@
   },
   "single_case_benchmark_and_bulk_share_parent_not_cumulative": true,
   "supplier_messages_sent": 0,
-  "full_goal_still_active": true
+  "full_goal_still_active": true,
+  "public_execution_metadata_scope": "Terminal status/timing/resource/log hashes only; complete command and connection receipts remain in the immutable private capsule."
 }
