@@ -53,18 +53,36 @@ def main() -> int:
 
     all_hashes_match = all(item["sha256_matches_screen"] for item in audits)
     all_meshes_watertight = all(item["watertight"] for item in audits)
+    gate_passed = all_hashes_match and all_meshes_watertight and all(
+        item["nonmanifold_edge_count"] == 0
+        and item["boundary_edge_count"] == 0
+        and item["winding_consistent"]
+        and item["body_count"] == 1
+        for item in audits
+    )
+    output_stage = screen.get("runtime", {}).get(
+        "output_stage", "raw PicoGK voxel-to-mesh output"
+    )
     report = {
         "schema_version": "1.0.0",
-        "status": "failed_output_mesh_integrity",
+        "status": "passed_output_mesh_integrity" if gate_passed else "failed_output_mesh_integrity",
         "source_screen_sha256": sha256(args.screen),
         "method": "trimesh process=True followed by undirected edge multiplicity audit",
+        "output_stage": output_stage,
         "all_hashes_match": all_hashes_match,
         "all_meshes_watertight": all_meshes_watertight,
         "variants": audits,
         "decision": {
-            "picogk_geometry_gate_passed": False,
-            "reason": "All raw meshes retain non-manifold edges after vertex processing; none may be promoted to CAD, LPBF slicing or SimReady.",
-            "repair_attempted": False,
+            "picogk_geometry_gate_passed": gate_passed,
+            "reason": (
+                "Every mesh is a single closed, consistently wound, edge-manifold body. "
+                "This is mesh topology only: it does not select a design or authorize "
+                "CAD promotion, LPBF slicing or manufacture."
+                if gate_passed
+                else "At least one mesh is not a single closed edge-manifold body; "
+                "none may be promoted to CAD, LPBF slicing or SimReady."
+            ),
+            "repair_attempted": output_stage != "raw PicoGK voxel-to-mesh output",
             "manufacturing_authorized": False,
         },
     }
@@ -74,10 +92,10 @@ def main() -> int:
         encoding="utf-8",
     )
     print(
-        "PICOGK_OUTPUT_AUDIT_FAIL"
-        f" hashes_match={all_hashes_match} watertight={all_meshes_watertight}"
+        ("PICOGK_OUTPUT_AUDIT_PASS" if gate_passed else "PICOGK_OUTPUT_AUDIT_FAIL")
+        + f" hashes_match={all_hashes_match} watertight={all_meshes_watertight}"
     )
-    return 1
+    return 0 if gate_passed else 1
 
 
 if __name__ == "__main__":

@@ -14,7 +14,14 @@ const float Poisson = 0.33f;
 const float TargetAmbientYieldRatio = 1.50f;
 const string NativeImageId = "sha256:f38695f9ecc99ceef65c5e1fe02adf5dbfa95ee1ae925f95fd47bdba9ebb6178";
 
-if (args.Length != 3)
+// Optional 4th argument "--manifold-output" drops triangles whose vertices
+// coincide after an exact weld. Those zero-area faces are the only defect the
+// raw PicoGK meshes carry; the default keeps the frozen F0 output unchanged.
+bool manifoldOutput = args.Length == 4 && args[3] == "--manifold-output";
+string executionEnvironment = Environment.GetEnvironmentVariable("PICOGK_EXECUTION_ENVIRONMENT")
+    ?? "Kali linux/amd64 Docker with network disabled";
+string nativeImageId = Environment.GetEnvironmentVariable("PICOGK_NATIVE_IMAGE_ID") ?? NativeImageId;
+if (args.Length != 3 && !manifoldOutput)
 {
     Console.Error.WriteLine("Usage: PistonPicogkScreen INPUT_BINARY_STL OUTPUT_DIRECTORY REPORT_JSON");
     return 2;
@@ -74,7 +81,15 @@ try
         }
 
         candidate.CalculateProperties(out float volumeMm3, out _);
-        using Mesh candidateMesh = new(candidate);
+        using Mesh rawMesh = new(candidate);
+        int removedDegenerateTriangles = 0;
+        using Mesh candidateMesh = manifoldOutput
+            ? DropCoincidentVertexTriangles(library, rawMesh, out removedDegenerateTriangles)
+            : new Mesh(library);
+        if (!manifoldOutput)
+        {
+            candidateMesh.Append(rawMesh);
+        }
         string outputPath = Path.Combine(outputDirectory, variant.Id + ".stl");
         candidateMesh.SaveToStlFile(outputPath, Mesh.EStlUnit.MM);
 
@@ -113,6 +128,8 @@ try
                 mass_change_from_brep_percent =
                     100.0f * (massG - 681.32f) / 681.32f,
                 triangle_count = candidateMesh.nTriangleCount(),
+                raw_triangle_count = rawMesh.nTriangleCount(),
+                removed_coincident_vertex_triangles = removedDegenerateTriangles,
                 outside_pocket_ligament_mm = outsidePocketLigamentMm,
                 output_stl = Path.GetFileName(outputPath),
                 output_sha256 = Sha256(outputPath),
@@ -150,8 +167,11 @@ try
         {
             picogk_version = "2.3.0",
             native_runtime_abi = "picogk.26.2",
-            native_image_id = NativeImageId,
-            execution_environment = "Kali linux/amd64 Docker with network disabled",
+            native_image_id = nativeImageId,
+            execution_environment = executionEnvironment,
+            output_stage = manifoldOutput
+                ? "drop triangles with coincident vertices (exact weld at 1e-6 mm); no vertex moved"
+                : "raw PicoGK voxel-to-mesh output",
             voxel_size_mm = voxelSizeMm,
             source_mesh_sha256 = Sha256(inputPath),
             source_mesh_triangle_count = sourceMesh.nTriangleCount(),
@@ -277,6 +297,28 @@ static Lattice BuildPinToCrownRibs(Library library, float radiusMm)
         lattice.AddBeam(negativeBoss, radiusMm, negativeCrown, radiusMm, true);
     }
     return lattice;
+}
+
+static Mesh DropCoincidentVertexTriangles(Library library, Mesh source, out int removed)
+{
+    static (long, long, long) Key(Vector3 v) =>
+        ((long)MathF.Round(v.X * 1e6f), (long)MathF.Round(v.Y * 1e6f), (long)MathF.Round(v.Z * 1e6f));
+    Mesh cleaned = new(library);
+    removed = 0;
+    for (int i = 0; i < source.nTriangleCount(); i++)
+    {
+        source.GetTriangle(i, out Vector3 a, out Vector3 b, out Vector3 c);
+        var ka = Key(a);
+        var kb = Key(b);
+        var kc = Key(c);
+        if (ka == kb || kb == kc || ka == kc)
+        {
+            removed++;
+            continue;
+        }
+        cleaned.nAddTriangle(a, b, c);
+    }
+    return cleaned;
 }
 
 static string Sha256(string path)
