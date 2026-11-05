@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 import tempfile
 import unittest
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'parts/993-eng-carrier-0001/source/remesh-20261016'
@@ -135,9 +136,14 @@ class NativeAuditMathTests(unittest.TestCase):
         import numpy as np
         sys.path.insert(0, str(SOURCE))
         try:
+            audit_spec = importlib.util.spec_from_file_location('carrier_native_audit', SOURCE / 'audit.py')
+            native_audit = importlib.util.module_from_spec(audit_spec)
+            audit_spec.loader.exec_module(native_audit)
             spec = importlib.util.spec_from_file_location('cad_mesh_checker', SOURCE / 'cad_mesh_audit.py')
             checker = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(checker)
+            # Other catalogue tests also import modules named audit.
+            with mock.patch.dict(sys.modules, {'audit': native_audit}):
+                spec.loader.exec_module(checker)
         finally:
             sys.path.pop(0)
         with tempfile.TemporaryDirectory() as folder:
