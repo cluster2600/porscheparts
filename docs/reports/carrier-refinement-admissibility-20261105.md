@@ -91,7 +91,7 @@ load-case geometries. All original nodes, support and load functionals,
 outer surface and nominal mass are retained. The pinned-image witness and
 native host controls subsequently passed before the complete responses below.
 
-![Actual complete nested increments under both unchanged loads](../media/carrier-h6-mechanics-20261105.png)
+![Actual complete nested increments under both unchanged loads](../media/carrier-h6-mechanics-mac-20261105.png)
 
 | Full-field result | Gravity | Combined loading |
 |---|---:|---:|
@@ -125,9 +125,11 @@ The retained comparison JSON hashes are:
 The screen remains two successive energy-norm increments below 1%, together
 with the existing 0.5% scalar checks. These h6 increments do not pass it.
 The stress peaks remain unresolved and are not strength allowables.
-Independent Mac replay is complete only through h5. Both full h6 raw DATs
-are now locally retained with verified hashes; storage reserve and external
-volume failures still prevent claiming the full h6 Mac replay. The fresh
+Both full h6 raw DATs are locally retained with verified hashes. Both complete
+Mac replays subsequently passed using the separately qualified
+[bounded RAM storage profile](../architecture/calculix-memory-replay.md),
+retaining all original numerical checks. The original bulk storage gate remains
+failed; this new profile changes field storage, not equations or thresholds. The fresh
 combined h5 repeat is fully retained losslessly; the extra fresh gravity h5
 archive is short by 1,386,600 bytes after its endpoint refused the final
 transfer. Its native comparison and metadata were already retained.
@@ -139,8 +141,11 @@ every mesh coordinate and connectivity entry independently and reproduced
 **both admitted h6 archive hashes exactly**. The earlier repack attempts failed
 the hash check and remain recorded. No h7 geometry or solve is admitted yet.
 Both owned Vast instances were destroyed with provider absence verified.
-A bounded local h7 edge-star proposal has started from these recovered inputs;
-its complete geometry and new mechanical responses remain pending.
+The subsequent local h7 preparation stopped at its resource guard after
+2,287 seconds: free disk space fell below the unchanged 8 GiB reserve. The
+child was reaped; its last logged coverage was 46.0336% for gravity and
+45.8089% for combined loading. Neither separate 50% target was attained. No
+proposal was admitted, and assembly, new solves and paid workers did not start.
 The diagram below records how the h5 evidence drove h6; its intermediate
 checks are historical completed stages, rather than a claim that h7 is ready.
 
@@ -189,6 +194,9 @@ receipts identify the executable checks and retained inputs:
 | Complete joint h6 marking vector | `work/carrier-h6-joint-marking-001/ranking.json` |
 | Recovered original h6 admission, population and boundaries | `work/carrier-h6-source-admission-recovery-001/complete.json` |
 | Bounded local h7 proposal source admission | `work/carrier-adaptive-h7-edge-order-001/source-admission.json` |
+| Actual stopped h7 preparation | `work/carrier-adaptive-h7-edge-order-001/terminal.json` |
+| Both complete h6 Mac replays and native comparison | `work/carrier-h6-memory-replay-001/complete.json` |
+| Actual h6 unaveraged field image | `work/carrier-h6-field-figure-001/figure.json` |
 
 The generalized comparator reproduced every actual numerical value of both
 previous complete h4-to-h5 comparisons exactly. This is compatibility evidence;

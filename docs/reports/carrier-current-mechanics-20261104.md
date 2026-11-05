@@ -6,17 +6,24 @@ are **1.2243% for gravity** and **2.5340% for combined loading**, down from
 2.8261% and 4.5965%. Both remain above the unchanged 1% stabilization screen.
 Nominal mass remains **1.2941382 kg**, below 1.30 kg; h6 contains
 **14,439,856 tetrahedra**. Pointwise peaks remain unresolved. Independent Mac
-field replay is complete through h5; no h6 Mac replay is claimed.
+field replay is now complete through h6 under both loads using bounded RAM
+field storage and the unchanged equations and limits.
 
 The [refinement admissibility and h6 results](carrier-refinement-admissibility-20261105.md)
 record the rejected interior-only operator, accepted shared-edge refinement,
 complete native comparisons and byte-identical source recovery before h7.
 
-![Complete h5 and h6 energy-norm increments against the unchanged screen](../media/carrier-h6-mechanics-20261105.png)
+![Complete h5 and h6 energy-norm increments against the unchanged screen](../media/carrier-h6-mechanics-mac-20261105.png)
 
 ![Complete h5 and h6 stress statistics, retaining unresolved global peaks](../media/carrier-h6-stress-trend-20261105.png)
 
+![Actual h6 unaveraged cut-plane stresses under both study loads](../media/carrier-h6-load-fields-20261105.png)
+
 ### Sixth-refinement results and retention
+
+Both Mac replays used 1,134,414,336 bytes for field arrays, with peak sampled
+RSS below 2.22 GB. All reported displacement and stress metrics match native
+results; the combined external-work difference is -3.64e-12 N mm.
 
 | Complete field metric | Gravity | Combined force and torque |
 |---|---:|---:|
@@ -40,8 +47,12 @@ archive remains incomplete by 1,386,600 bytes after its endpoint refused the
 final transfer; its earlier native comparison and metadata were retained.
 This is a retention gap for that repeated h5 copy, not a new h6 solver result.
 The external evidence volume stopped responding, and the internal disk did
-not satisfy the original 32 GiB bulk-replay reserve. No full h6 Mac replay or
-complete duplicate gravity-h5 archive recovery is inferred from metadata.
+not satisfy the original 32 GiB bulk-replay reserve. A separately qualified
+[bounded RAM replay profile](../architecture/calculix-memory-replay.md) then
+completed both full h6 Mac assessments: every row was consumed, all original
+reference comparisons and energy/equilibrium limits passed, and both processes
+were reaped. The raw DAT files remain retained; full field arrays stayed in RAM.
+This does not repair the incomplete duplicate gravity-h5 archive.
 
 The complete h6 traction-jump indicators for both loads were independently
 parsed, retained and normalized by their respective external work for joint
@@ -49,8 +60,10 @@ marking. Their ranking is a marking aid, not a certified global error bound.
 Local recovery with the original NumPy 2.2.6 runtime independently decoded
 every solver-mesh coordinate and cell, then reproduced both admitted h6 source
 archive hashes exactly. Earlier native-runtime repack attempts did not match
-and remain recorded as refused recovery attempts. A bounded local h7 proposal is running; no h7 geometry or response
-has yet been admitted. Both owned Vast instances were subsequently destroyed,
+and remain recorded as refused recovery attempts. The bounded local h7 preparation was stopped and reaped after 2,287 seconds
+when free disk space fell below its 8 GiB reserve. Its last logged coverage was
+46.0336% for gravity and 45.8089% for combined loading, below the separate 50%
+targets; it produced no admitted proposal, geometry or response. Both owned Vast instances were subsequently destroyed,
 and their absence was verified through the provider.
 
 The remaining sections preserve the earlier execution and software history.
