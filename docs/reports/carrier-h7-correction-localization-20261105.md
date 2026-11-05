@@ -93,11 +93,10 @@ RAM-backed face storage additionally matches the unchanged disk-based complete
 face-pairing algorithm byte for byte on four synthetic populations through
 4,096 tetrahedra. Three-owner faces, repeated vertices and allocation above the
 cap are rejected. This qualifies the storage substitution on those controls;
-the actual complete two-case H7 traction-jump job has now started with full
-lossless field replay and RAM face storage. Its numerical result remains
-pending. It must retain both full case vectors and their normalized joint
-vector so that subsequent selection can check both coverage targets
-independently. An H8 geometry has not been produced.
+the subsequent [complete H7 marking recovery and H8 intake](carrier-h8-local-operator-feasibility-20261105.md#complete-h7-intake-for-h8)
+now retain both full case vectors and their normalized joint vector after full
+lossless replay and RAM face pairing. This permits independent coverage checks
+for the two load cases. An H8 geometry has not been produced.
 
 The immediate sequence is: finish and bind both complete H7
 traction-jump fields; admit a targeted H8 geometry; run both independent cases
@@ -141,3 +140,7 @@ Locally, 5,191 principal tests passed with 405 skips. The full local make stoppe
 when Docker was off; after starting it, the affected container target passed
 all 15 tests. This is not a claim that the entire local make completed. Docker
 was subsequently stopped after confirming there were no running containers.
+
+The subsequent [bounded H8 operator feasibility test](carrier-h8-local-operator-feasibility-20261105.md)
+checks exact rational subdivision on 157 actual source edge stars and records
+the marking-storage recovery. It does not admit a complete H8 geometry.
