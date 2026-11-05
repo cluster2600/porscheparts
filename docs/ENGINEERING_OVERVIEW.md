@@ -510,7 +510,7 @@ engineering** stays so until an engineering review lifts it.
 <td align="center" width="16%"><a href="../parts/993-eng-turbo-heat-shield-in625-f0-0001/"><img src="../parts/993-eng-turbo-heat-shield-in625-f0-0001/media/preview.png" alt="993 left turbo heat shield cover" width="130"><br><sub>993 left turbo heat shield cover</sub></a></td>
 </tr>
 <tr>
-<td align="center" width="16%"><a href="../parts/993-eng-turbo-oil-return-line-in625-f0-0001/"><img src="../parts/993-eng-turbo-oil-return-line-in625-f0-0001/media/preview.png" alt="Turbo oil return line" width="130"><br><sub>Turbo oil return line</sub></a></td>
+<td align="center" width="16%"><a href="../parts/993-eng-turbo-oil-return-line-in625-f0-0001/"><img src="../parts/993-eng-turbo-oil-return-line-in625-f0-0001/media/preview.png" alt="Turbo oil line (feed or return un…" width="130"><br><sub>Turbo oil line (feed or return un…</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/"><img src="../parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/media/preview.png" alt="Upper valve cover with COP towers" width="130"><br><sub>Upper valve cover with COP towers</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-exh-cat-converter-pair-pet-0001/"><img src="../parts/993-exh-cat-converter-pair-pet-0001/media/preview.png" alt="993 Turbo catalytic converters (f…" width="130"><br><sub>993 Turbo catalytic converters (f…</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-exh-heat-exchanger-pair-pet-0001/"><img src="../parts/993-exh-heat-exchanger-pair-pet-0001/media/preview.png" alt="993 Turbo exhaust heat exchangers…" width="130"><br><sub>993 Turbo exhaust heat exchangers…</sub></a></td>
@@ -591,7 +591,7 @@ flowchart LR
 | [M64/60 piston with cooling gallery](pieces/993-eng-piston-cp1-gallery-f0-0001.md) | Constellium Aheadd CP1, Velo3D Sapphire… | LPBF | **prohibited pending engineering** |
 | [993 three-runner intake manifold](pieces/993-eng-three-runner-intake-alsi10mg-f0-0001.md) | generic AlSi10Mg for screening | undecided | functional |
 | [993 left turbo heat shield cover](pieces/993-eng-turbo-heat-shield-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625, scr… | undecided | functional |
-| [Turbo oil return line](pieces/993-eng-turbo-oil-return-line-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | **prohibited pending engineering** |
+| [Turbo oil line (feed or return unassigned)](pieces/993-eng-turbo-oil-return-line-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | **prohibited pending engineering** |
 | [Upper valve cover with COP towers](pieces/993-eng-upper-valve-cover-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6, for comparis… | undecided | **prohibited pending engineering** |
 
 **Charge air**
