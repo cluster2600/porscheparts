@@ -153,3 +153,7 @@ comparison additionally covers 2,900 synthetic score tables with unchanged
 qualification labels. Documentation links and file-size gates are checked
 separately after rendering. This verifies the implemented changes and recorded
 software paths; it does not turn the pending H8 geometry into a completed solve.
+
+The subsequent [complete H8 geometry and nesting admission](carrier-h8-global-geometry-20261106.md)
+records the executed global selection, both complete geometry frames and the
+new input packet. It supersedes the pending-geometry status above.

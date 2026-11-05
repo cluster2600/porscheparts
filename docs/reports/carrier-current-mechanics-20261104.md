@@ -1,5 +1,11 @@
 # 993 Turbo carrier: complete-mesh mechanical continuation
 
+The subsequent [H8 global geometry and nesting checks](carrier-h8-global-geometry-20261106.md)
+now pass with 4,793,222 nodes and 18,698,908 tetrahedra. Both source-marking
+coverage targets exceed 50%, the original surface/mass are retained, and the
+new native packet passes its pinned-image ELF witness. **H8 mechanical
+responses remain pending**; the latest solved fields below are H7.
+
 The latest complete H7 native responses and full H6-to-H7 comparisons are
 [recorded here](carrier-h7-native-results-20261105.md). Both loads pass the
 original equilibrium and energy limits. Complete-field energy increments are
