@@ -1,0 +1,72 @@
+{
+  "schema": "935-source-repin-v1",
+  "date": "2026-11-05",
+  "issue": 416,
+  "owner_decision": "2026-11-05: fix the private-output guard loop in the hash-pinned 935 sources and re-pin; do not rewrite the historical records.",
+  "reason": "The private-output guard tested every enclosing repository. In an agent worktree nested under <checkout>/.claude/worktrees/<id> the outer checkout reclassified the worktree's own ignored work/ directory as tracked. The guard now stops at the innermost repository root, as build_hub_cad.py, build_section_cad.py and build_drive_cad.py already do (PR #494).",
+  "change_scope": "Only the private-output guard changed. Replacing each guard_replacement.current text with its guard_replacement.historical text in the current file reproduces historical_sha256 exactly; tests/test_935_private_output_guard.py checks this.",
+  "historical_records_unchanged": [
+    "docs/research/935-horizontal-cooling/conforming-rotor-20261022.json",
+    "docs/research/935-horizontal-cooling/inspection-assembly-20261012.json",
+    "docs/research/935-horizontal-cooling/interior-star-20261022.json",
+    "docs/research/935-horizontal-cooling/readme-chain-20261021.json"
+  ],
+  "unchanged_sources": {
+    "twins/935-horizontal-cooling-system-f0/source/assess_mac_fea.py": {
+      "sha256": "203a7275751dcf5c8bc4091ee739f24a57a69403438e58a49c933f2b6bc1737c",
+      "note": "Has no guard loop of its own; it calls run_reconstruction.fresh, so it is fixed through run_reconstruction.py and keeps its pin."
+    }
+  },
+  "results_recomputed": false,
+  "note": "Historical numerical results were produced by the historical sources and are not re-run; the guard only decides where output may be written and does not enter any computed value. Future runs will record the new source hashes in their own receipts.",
+  "sources": {
+    "twins/935-horizontal-cooling-system-f0/source/assess_conforming_fea.py": {
+      "historical_sha256": "423d6b77eb97b0d0faf1d9bccb5c6c7c8b91c302df0aef002663b6c53032376b",
+      "current_sha256": "a4a3e489fe250003a34f25d98a580695ebba8a569f56f3d81b973f67b04eb79e",
+      "guard_replacement": {
+        "historical": "        if (parent/'.git').exists() and output.resolve().relative_to(parent).parts[0]!='work':raise ValueError('Private work/ output required')\n",
+        "current": "        if (parent/'.git').exists():  # innermost repository decides (#416)\n            if output.resolve().relative_to(parent).parts[0]!='work':raise ValueError('Private work/ output required')\n            break\n"
+      }
+    },
+    "twins/935-horizontal-cooling-system-f0/source/audit_interior_relocation.py": {
+      "historical_sha256": "5ba024e43fd0c04e07fd334c9c798d2c9ca451ed10efe28ca7153aa63e5687dc",
+      "current_sha256": "4cadc3a7ee7f19fbfee442b9863fedede7bb0849aa42f61455a2cb9480d4b408",
+      "guard_replacement": {
+        "historical": "        if (folder / '.git').exists() and output.resolve().relative_to(folder).parts[0] != 'work':\n            raise ValueError('Private work/ output required')\n",
+        "current": "        if (folder / '.git').exists():  # innermost repository decides (#416)\n            if output.resolve().relative_to(folder).parts[0] != 'work':\n                raise ValueError('Private work/ output required')\n            break\n"
+      }
+    },
+    "twins/935-horizontal-cooling-system-f0/source/prepare_bore_sensitivity.py": {
+      "historical_sha256": "61c92c7035d04dcebb2c5daac6ab43b554a3405264be2475e678aebbcb3f6005",
+      "current_sha256": "862cd0301423c77b20fa96db70473fef054ee85292610a3a7c2a3dc2e72f4306",
+      "guard_replacement": {
+        "historical": "    if out.exists() or not any((p/'.git').exists() and out.relative_to(p).parts[0] == 'work' for p in out.parents):\n",
+        "current": "    repo = next((p for p in out.parents if (p/'.git').exists()), None)  # innermost repository decides (#416)\n    if out.exists() or repo is None or out.relative_to(repo).parts[0] != 'work':\n"
+      }
+    },
+    "twins/935-horizontal-cooling-system-f0/source/run_reconstruction.py": {
+      "historical_sha256": "5ec7084e79c5949aeecdcf248a2a6d64372c795cb2bedaa489ae6732083b3f6a",
+      "current_sha256": "6c8ae21326f86ddc81d568e07c65122286d9c8e25191336b56536360c825d1d3",
+      "guard_replacement": {
+        "historical": "        if (parent / '.git').exists() and path.relative_to(parent).parts[0] != 'work':\n            raise ValueError('Scan derivatives must stay in ignored work/')\n",
+        "current": "        if (parent / '.git').exists():  # innermost repository decides (#416)\n            if path.relative_to(parent).parts[0] != 'work':\n                raise ValueError('Scan derivatives must stay in ignored work/')\n            break\n"
+      }
+    },
+    "twins/935-horizontal-cooling-system-f0/source/run_conforming_study.py": {
+      "historical_sha256": "ad3e25e288ec5ea1de501ddb032502bea7e642868e623ed63a2652ca67c2e0e8",
+      "current_sha256": "44c7c3088f0c8655c1f1eb35e40a077859105127f67f064a3b4d2a90c236291d",
+      "guard_replacement": {
+        "historical": "        if (parent/'.git').exists() and output.relative_to(parent).parts[0]!='work':raise ValueError('Private work/ output required')\n",
+        "current": "        if (parent/'.git').exists():  # innermost repository decides (#416)\n            if output.relative_to(parent).parts[0]!='work':raise ValueError('Private work/ output required')\n            break\n"
+      }
+    },
+    "twins/935-horizontal-cooling-system-f0/source/prepare_conforming_surface.py": {
+      "historical_sha256": "5fc588757578115c675dd6946ef20b7e17765d99ae11d60e636713c397ac4964",
+      "current_sha256": "e36f62ab44672d9ea5ed4af2d047b6c063427fc9f593c0db5bf00d0225f243c4",
+      "guard_replacement": {
+        "historical": "        if (parent/'.git').exists() and output.resolve().relative_to(parent).parts[0]!='work':\n            raise ValueError('Scan derivatives must stay in ignored work/')\n",
+        "current": "        if (parent/'.git').exists():  # innermost repository decides (#416)\n            if output.resolve().relative_to(parent).parts[0]!='work':\n                raise ValueError('Scan derivatives must stay in ignored work/')\n            break\n"
+      }
+    }
+  }
+}

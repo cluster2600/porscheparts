@@ -99,7 +99,9 @@ def assess(prepared,solved,execution,output):
     if 'Job finished' not in log or '*ERROR' in log:raise ValueError('Solver completion missing')
     if output.exists() or not output.parent.is_dir():raise ValueError('Fresh private output required')
     for parent in output.resolve().parents:
-        if (parent/'.git').exists() and output.resolve().relative_to(parent).parts[0]!='work':raise ValueError('Private work/ output required')
+        if (parent/'.git').exists():  # innermost repository decides (#416)
+            if output.resolve().relative_to(parent).parts[0]!='work':raise ValueError('Private work/ output required')
+            break
     with np.load(prepared/'geometry.npz',allow_pickle=False) as data:vertices=data['vertices'];cells=data['tetrahedra']
     if len(vertices)!=proof['nodes'] or len(cells)!=proof['elements']:raise ValueError('Prepared dimensions differ')
     fixed=abs(np.linalg.norm(vertices[:,:2],axis=1)-proof['bore_radius_assumed_mm'])<proof['bore_band_assumed_mm']

@@ -31,8 +31,10 @@ def audit(parent, optimized, output):
     if output.exists() or not output.parent.is_dir():
         raise ValueError('Fresh private output required')
     for folder in output.resolve().parents:
-        if (folder / '.git').exists() and output.resolve().relative_to(folder).parts[0] != 'work':
-            raise ValueError('Private work/ output required')
+        if (folder / '.git').exists():  # innermost repository decides (#416)
+            if output.resolve().relative_to(folder).parts[0] != 'work':
+                raise ValueError('Private work/ output required')
+            break
     start = time.monotonic()
     baseline = json.loads((parent / 'assessment.json').read_text())
     proposal = json.loads((optimized / 'assessment.json').read_text())

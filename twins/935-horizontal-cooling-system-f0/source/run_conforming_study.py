@@ -37,7 +37,9 @@ def run(prepared,output,max_gib,seconds):
     journal=output.with_name(output.name+'.execution.json')
     if journal.exists() or not output.parent.is_dir():raise ValueError('Fresh execution journal required')
     for parent in output.parents:
-        if (parent/'.git').exists() and output.relative_to(parent).parts[0]!='work':raise ValueError('Private work/ output required')
+        if (parent/'.git').exists():  # innermost repository decides (#416)
+            if output.relative_to(parent).parts[0]!='work':raise ValueError('Private work/ output required')
+            break
     started=time.monotonic();stop=None;peak=0
     record=dict(schema='935-bounded-native-solve-v1',pid=None,process_group=None,
                 binary_sha256=sha(exe),worker_sha256=sha(worker),source_sha256=sha(__file__),

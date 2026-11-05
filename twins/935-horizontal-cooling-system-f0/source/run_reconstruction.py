@@ -32,8 +32,10 @@ def fresh(path):
     if path.exists():
         raise ValueError('Use a new private output directory')
     for parent in path.parents:
-        if (parent / '.git').exists() and path.relative_to(parent).parts[0] != 'work':
-            raise ValueError('Scan derivatives must stay in ignored work/')
+        if (parent / '.git').exists():  # innermost repository decides (#416)
+            if path.relative_to(parent).parts[0] != 'work':
+                raise ValueError('Scan derivatives must stay in ignored work/')
+            break
     path.mkdir(parents=True, mode=0o700)
     return path
 

@@ -4,6 +4,8 @@ import json
 from pathlib import Path
 import unittest
 
+from _935_repin import current_pin
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -11,7 +13,7 @@ class InteriorStarRecordTests(unittest.TestCase):
     def test_exact_mesh_admission_and_mechanical_limits_remain_separate(self):
         r = json.loads((ROOT / 'docs/research/935-horizontal-cooling/interior-star-20261022.json').read_text())
         for path, expected in r['source_sha256'].items():
-            self.assertEqual(hashlib.sha256((ROOT / path).read_bytes()).hexdigest(), expected)
+            self.assertEqual(hashlib.sha256((ROOT / path).read_bytes()).hexdigest(), current_pin(path, expected))
         for flag, value in r['scope'].items():
             self.assertIs(value, False, flag)
         accepted, refused = r['accepted_interior_correction'], r['rejected_gmsh_relocation']
