@@ -131,6 +131,33 @@ connects the existing emitter, transport, mapper and 499-cell validator at
 source level. It remains unrun, with no accepted word proposal or head repair.
 All 24 poor head cells remain.
 
+Status of the older controller HOLDs, as of 2026-11-05 (ledger reconciliation
+only; no capsule, review or evidence byte was changed and nothing was rerun):
+
+- **C01/C02 (owner003):** superseded. Owner004 implements both source policies,
+  accepted by the [root source review](derived/engineering/native005-fake31-and-owner004-core13/head-star-current24-qfnra-five-toy-owner-root-source-review-004/review.json)
+  (`ACCEPT_C01_C02_SOURCE_POLICY_ONLY_OPERATIONAL_HOLD_REMAINS`) and exercised by
+  the core13 fakes. The real five Z3 sessions then ran once under owner005, an
+  eleven-literal rebind of owner004, and the
+  [root result review](derived/engineering/current24-parser003-and-five-toy-second-attempt/README.md)
+  accepts the five software protocol results only. **Still open:** the external
+  full 60-second startup-through-census closure is unverified, and the first
+  attempt's TERM/KILL `EPERM` errors are unresolved. Both need a further run on
+  the macOS kqueue host that the owner runs; they cannot be run on Linux/WSL.
+- **Native003:** never issued, and it will not be issued. Its three P1 ownership
+  and lifetime findings were carried into the native004 ownership-control source,
+  which retains the leader unreaped, uses no detached session and has one
+  certified group authority. Native005 then corrected B01–B04 and passed the
+  fake31 guards. It completed one
+  [operational capture](derived/engineering/native005-operational-capture/README.md)
+  with exits 0/0/0 and passed saved-result review. Native005 replaces the native003
+  launch. That capture qualifies operations and metadata only. It does not
+  qualify fields or physical behaviour.
+
+Affected phases: `material_strength` (five-toy QF_NRA solver route) and
+`lpbf_build`/`lpbf_release` (native coupon capture). Every other phase is
+unchanged. The 24 poor head cells and 12 aggregate mechanical failures remain.
+
 The [full five-toy owner003 checkpoint](derived/engineering/full-five-toy-owner003-prefix-and-core-hold/README.md)
 accepts only the four-line admission-prefix repair. Operation remains on HOLD
 for C01 continuation-intent and C02 process-handle lifetime source gaps.
