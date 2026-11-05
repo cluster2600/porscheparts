@@ -313,3 +313,16 @@ that force subthreshold fan triangles under that conditional contract. The next
 method must explicitly address geometric regularization or interpolation,
 conditioning and convergence admission for anisotropic cells. The diagnostic
 shape bin is not an engine allowable; no physics or process gate is waived.
+
+The [corner-provenance and bounded-regularization study](../research/935-corner-provenance-20261105/README.md)
+traces all 170 sectors to the inherited reconstructed envelope, with exact
+indexed acquired-triangle correspondence unestablished. Its new numerical
+contract permits curve-graph contractions under a complete surface/curve image
+bound, while preserving cap-plane memberships. The 426 contractions reduce
+forcing faces from 633 to 60; independent correspondence and native geometry
+pass at a cumulative bound of 0.009643216 mm. This replaces no printing master.
+A comparable raw-volume trial exports and independently checks 13,250,576
+positive cells and the exact full boundary. Volume shape quality still fails:
+526,110 cells remain below mean ratio 0.01, with unchanged minimum. The next
+admission work concerns interior slivers and numerical conditioning; a surface
+quality pass supplies no head-physics or manufacturing approval.
