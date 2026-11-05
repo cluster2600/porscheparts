@@ -121,6 +121,61 @@ analytic squared distances `[1, 0, 1]`. These checks exercise the dependency and
 rejection path; they do not qualify a carrier geometry or a GPU runtime. Hosted
 Linux execution is checked separately in the PR's catalogue workflow.
 
+The first hosted run with libigl executed 5,327 tests and reduced skips to 412,
+below the unchanged 415 budget, but exposed one missing `trimesh` import in a
+test fixture. That fixture now writes its four known triangles as explicit
+binary STL using the standard library. The independent libigl readback and
+all original CAD-distance/topology assertions remain exercised. All ten
+`test_carrier_remesh.py` tests pass locally with libigl and without trimesh.
+This fixes the fixture's undeclared dependency; the failed hosted run is
+retained as [run 42092342833](https://github.com/cluster2600/porscheparts/actions/runs/42092342833).
+
+## Exact edge points beyond midpoints
+
+An immutable snapshot at **731,200 selected edge stars** provided a bounded
+diagnostic input while the unchanged h7 producer continued separately. The
+32 highest-indicator unblocked, unprotected source cells from each case
+formed 47 distinct cells and 184 distinct edges. The probe tested 96 unique
+interior fractions with denominators up to 17, including 1/2, using exact
+rational arithmetic on both original and serialized binary64 coordinates.
+
+Of these edges, 132 have an exact midpoint; four additional edges have a
+representable alternative point. Six full-source connectivity passes found
+three of those four alternatives to have a complete closed edge star,
+disjoint from the snapshot selections and all 135 protected cells. All three
+then passed exact per-parent partition, oriented cavity-boundary preservation,
+solver coordinate formatting, and both-frame raw/normalized conditioning
+checks under the unchanged 1e6 caps.
+
+![Bounded exact edge-point feasibility and actual cavity conditions](../media/carrier-rational-edge-feasibility-20261105.png)
+
+| Diagnostic cavity | Source parents | Best checked fraction | Maximum raw/normalized condition across both frames |
+|---|---:|---:|---:|
+| A: edge 1314372–2940861 | 8 | 1/3 | 29.1781 |
+| B: edge 1572033–3146395 | 4 | 2/3 | 40,931.4089 |
+| C: edge 1572036–1680476 | 6 | 2/3 | 37,740.4959 |
+
+The new [exact edge subdivision module](../../scripts/calculix_exact_edge_subdivision.py)
+is byte-identical to the executed local prototype
+(`49b1247888ad7eb5269e833ba2027145a23d40076e2ea19ced23beda1f6bef4a`).
+It uses `p = a + t(b-a)` and refuses any coordinate whose binary64 value
+differs from that exact rational point. The two child volumes must equal
+`t` and `1-t` times **each** original parent volume exactly. Seven private
+fixture controls, old-kernel default midpoint byte parity and six public
+regression tests passed. Public checks can be repeated with:
+
+```sh
+.venv-check/bin/python -m unittest discover -s tests \
+  -p test_calculix_exact_edge_subdivision.py -v
+```
+
+This is evidence that some midpoint refusals can be recovered without a
+coordinate tolerance. It does not establish global coverage, a new h7 mesh,
+mechanical convergence or reduced mass. The active producer and its frozen
+midpoint comparator were not modified. A rational-point production route
+still needs fraction-aware checkpoint/map handling, complete geometry
+admission and new native mechanical comparisons.
+
 ## Reproduction trail
 
 | Private receipt | Purpose |
@@ -134,6 +189,10 @@ Linux execution is checked separately in the PR's catalogue workflow.
 | `work/carrier-adaptive-h7-checkpointed-002/real-checkpoint-qualification.json` | Actual carrier checkpoint round-trip |
 | `work/carrier-adaptive-h7-checkpointed-002/actual-resume-trace.json` | Recorded post-restart progress parity |
 | `work/carrier-adaptive-h7-checkpointed-002/resume-001-intent.json` | Same-deadline resumed execution |
+| `work/carrier-rational-edge-feasibility-001/result.json` | Fixed snapshot, sampled seeds, 184-edge exact coordinate probe |
+| `work/carrier-rational-edge-feasibility-001/incidence.json` | Complete-source incidence for every sampled edge |
+| `work/carrier-rational-edge-feasibility-001/cavities.json` | Three actual two-frame cavity/condition checks |
+| `work/carrier-rational-edge-kernel-001/controls.json` | Exact rational fixtures and default midpoint byte parity |
 
 Raw meshes, snapshots and numerical fields remain private. The
 [software allocation review](../reports/carrier-software-review-20261104.md)

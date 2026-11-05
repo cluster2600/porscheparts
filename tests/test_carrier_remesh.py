@@ -133,7 +133,6 @@ class NativeAuditMathTests(unittest.TestCase):
 
     def test_CAD_samples_identity_and_closed_tetrahedron(self):
         import numpy as np
-        import trimesh
         sys.path.insert(0, str(SOURCE))
         try:
             spec = importlib.util.spec_from_file_location('cad_mesh_checker', SOURCE / 'cad_mesh_audit.py')
@@ -144,8 +143,13 @@ class NativeAuditMathTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             folder = Path(folder)
             vertices = np.array([[0., 0., 0.], [1., 0., 0.], [0., 1., 0.], [0., 0., 1.]])
-            mesh = trimesh.Trimesh(vertices, [[0, 2, 1], [0, 1, 3], [0, 3, 2], [1, 2, 3]], process=False)
-            stl = folder / 'tetra.stl'; mesh.export(stl)
+            faces = [[0, 2, 1], [0, 1, 3], [0, 3, 2], [1, 2, 3]]
+            # Independent binary STL fixture; this test requires NumPy/libigl only.
+            facets = b''.join(struct.pack('<12fH', 0., 0., 0.,
+                                          *vertices[face].ravel(), 0) for face in faces)
+            stl = folder / 'tetra.stl'
+            stl.write_bytes(b'Closed tetrahedron fixture'.ljust(80, b'\0')
+                            + struct.pack('<I', len(faces)) + facets)
             samples = folder / 'samples.npz'; np.savez(samples, points_mm=vertices)
             receipt = {'results': {'candidate_STL': {'sha256': checker.sha(stl)}},
                        'exact_CAD_surface_samples_sha256': checker.sha(samples), 'exact_CAD_surface_samples': 4,
