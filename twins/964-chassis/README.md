@@ -1,5 +1,13 @@
 # Digital twin of the Porsche 911 (964) chassis
 
+**Owner frame-data acquisition, 5 November 2026:** the
+[supplied archive review](owner-frame-data-20261105/README.md) adds 15 readable
+files / 19 pages. It records 23 CH source-local coordinate rows across two
+assembly states, 14 Mi contact rows and 20 Coupe opening spans. Eighteen printed
+spatial redundancies close at integer rounding. Source datums/units and unknown
+contacts remain explicit; donor scan registration and tunnel surfaces are open.
+The separately supplied manual repeats the same 260 technical scan images.
+
 **Readable-source follow-up, 5 November 2026:** the
 [new review](readable-dimensions-20261105/README.md) extracts seven interior
 entries from the official FIA B-295 form for the 964 Carrera 2 (six non-derived
