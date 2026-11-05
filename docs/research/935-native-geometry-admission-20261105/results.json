@@ -1,0 +1,622 @@
+{
+  "schema": "935-native-geometry-stencil-and-winding-1",
+  "date": "2026-11-05",
+  "status": "selected_native_geometry_diagnostic_completed_rejected_combinatorial_winding_passed",
+  "private_capsule": {
+    "directory_basename": "935-native-geometry-admission-20261105-001",
+    "manifest_sha256": "c58ce27aa0aef9479c3835603034333037dd14f8a75d6aaba8f22f161a625a6a",
+    "entries": 306,
+    "regular_file_bytes": 6540091456,
+    "all_bytes_rehashed_after_freeze": true,
+    "read_only": true
+  },
+  "source_sha256": {
+    "inspect_native_winding.py": "fc0fbbf076292c51c3a8309ab253e2a4e3504f20b8e38eef32864f6f2c7f396a",
+    "probe_native_geometry.py": "d9d58ed8f4a55ec8a445588148ac2527896bb551d80c08338daeb4cf7b2b96ff",
+    "probe_structured_geometry.py": "542c5ded63f7df2bb9a868160483113b1aaf89416507c1b1007a13ba356b01c1",
+    "run_native_geometry.py": "5970289aba4e51a816a1a44668d8c78d0ed3c95c9d3ee97ac2e856e677418fca",
+    "structured_control.py": "cf9a2aff75790a5b359703daa5baf8c943e2885a8151fe29cde01a03cf700689"
+  },
+  "parent_native_readback_capsule_manifest_sha256": "91fbc0ecc6dfdeb2b95949676698f0ea9a1a8605d783efdfa61e2fe3722ed64d",
+  "source_volume_sha256": "233f7bd83072772fa0b92d0287f20cec3cf44c4988546be42addf5579630299e",
+  "upstream_verdict": "Complete native coordinate/cell/boundary readback passed; absolute conditioning failed; uncoupled stencil rejection known before the run; diagnostic only",
+  "primary_source_v14": {
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/OpenFOAM/OpenFOAM-14/a4867fc914c10ee10c2f6f83c294c3d3160dd573/src/meshCheck/primitiveMeshCheck/primitiveMeshCheck.C",
+        "source_revision": "a4867fc914c10ee10c2f6f83c294c3d3160dd573",
+        "bytes": 46743,
+        "sha256": "5f44416c2832ce64d02b58203e00fbe0f118fb77ff40f961a525056cf9d07daf",
+        "acquired_epoch": 1793892117.2737432
+      },
+      {
+        "url": "https://raw.githubusercontent.com/OpenFOAM/OpenFOAM-14/a4867fc914c10ee10c2f6f83c294c3d3160dd573/src/meshCheck/polyMeshCheck/polyMeshCheck.C",
+        "source_revision": "a4867fc914c10ee10c2f6f83c294c3d3160dd573",
+        "bytes": 22005,
+        "sha256": "c8e7baa1e64f87eda8c983a5c157e2219477dbeb7261a7f6b1f591ffd47cee1f",
+        "acquired_epoch": 1793892118.569849
+      }
+    ],
+    "interpretation": "The extended cell determinant uses internal/coupled face-area outer products, not the coordinate Jacobian. Rank below three forces zero in 3D."
+  },
+  "primary_source_v13": {
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/OpenFOAM/OpenFOAM-13/18870c24d21c6b982e2cdec27b2f59738cca5f90/src/meshCheck/primitiveMeshCheck/primitiveMeshCheck.C",
+        "source_revision": "18870c24d21c6b982e2cdec27b2f59738cca5f90",
+        "bytes": 46752,
+        "sha256": "9eba362ef25708e417afedba2e84fc31bf436fb758bd82150655ddd16c361c72",
+        "acquired_epoch": 1793893903.699362
+      },
+      {
+        "url": "https://raw.githubusercontent.com/OpenFOAM/OpenFOAM-13/18870c24d21c6b982e2cdec27b2f59738cca5f90/src/meshCheck/polyMeshCheck/polyMeshCheck.C",
+        "source_revision": "18870c24d21c6b982e2cdec27b2f59738cca5f90",
+        "bytes": 22030,
+        "sha256": "d42c5c95ad6184d0726cf1e1d670ddbd2174c8fcb605e69e257932a2fef4c3d4",
+        "acquired_epoch": 1793893904.993956
+      }
+    ],
+    "cellDeterminant_function_text_identical_to_acquired_v14": true,
+    "function_sha256": "f4fa75887d0dde32b3bba87c64445514fc7f6447bb9fc800fd614e342ad0b249"
+  },
+  "native_help": {
+    "openfoam": "14-a4867fc914c1",
+    "actual_noTopology_and_allGeometry_selectors_verified": true,
+    "source_image_content_id": "sha256:1ae1a454429ed155bfecae63a25f90889aabb7981705ef688c46328ba2acad36",
+    "registry_source_build_attestation": false
+  },
+  "first_bipyramid_control_admission": {
+    "source_sha256": "d9d58ed8f4a55ec8a445588148ac2527896bb551d80c08338daeb4cf7b2b96ff",
+    "parent_manifest_sha256": "91fbc0ecc6dfdeb2b95949676698f0ea9a1a8605d783efdfa61e2fe3722ed64d",
+    "upstream_verdict": "Exact independent topology/readback passed; absolute conditioning failed; geometry diagnostic only",
+    "source_head_coordinates_cells_boundary_exact": true,
+    "image_id": "sha256:1ae1a454429ed155bfecae63a25f90889aabb7981705ef688c46328ba2acad36",
+    "capacity": {
+      "available_memory": 11118510080,
+      "home_free": 18382983168
+    },
+    "container_memory_gib": 8,
+    "extra_swap_gib": 0,
+    "cpus": 2,
+    "control_timeout_seconds_each": 60,
+    "head_timeout_seconds": 300,
+    "outer_timeout_seconds": 540,
+    "head_arguments": [
+      "-noTopology",
+      "-allGeometry"
+    ],
+    "thresholds": "Unmodified native defaults; no relaxed acceptance criteria",
+    "field_solve_permitted": false,
+    "new_paid_compute_usd": 0,
+    "native_exit": {
+      "default_control_exit": 0,
+      "geometry_control_exit": 0,
+      "inverted_control_exit": 0,
+      "head_exit": -1
+    },
+    "controls_passed": false,
+    "native_head_geometry_selected_checks_passed": false,
+    "native_complete_topology_check_not_completed_by_this_selector": true,
+    "all_original_case_files_rehashed_unchanged": true,
+    "original_case_files_verified": 24,
+    "generated_files_recovered_and_verified": 7,
+    "archive_sha256": "cd96598bb884279613e65fe37a27edf1c34d3cf9bee53215396ea26ef1cb6bdf",
+    "owned_container_absent": true,
+    "owned_staging_cleaned_after_verified_recovery": true,
+    "native_head_log_sha256": null,
+    "case_specific_operator_admission": false,
+    "field_solve_executed": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "seconds": 27.01086254196707
+  },
+  "first_positive_extended_control_rejected_for_neighbour_metric_not_coordinate_jacobian": true,
+  "structured_head_preparation": {
+    "source_sha256": "542c5ded63f7df2bb9a868160483113b1aaf89416507c1b1007a13ba356b01c1",
+    "execution": {
+      "exit_code": 1,
+      "controller_limit_reached": false,
+      "seconds": 18.22172016708646,
+      "sampled_peak_rss_kib": 1507680,
+      "log_sha256": "6cd124a4e191c3971430cce785a0122be94324268531b58064af48f195aeb845"
+    },
+    "actual_capacity": {
+      "available_memory": 7454150656,
+      "home_free": 18036596736
+    },
+    "required_available_memory_bytes": 10737418240,
+    "declared_container_memory_bytes": 8589934592,
+    "head_not_staged_or_executed_on_Kali": true,
+    "reason": "Capacity floor refused; floor not reduced"
+  },
+  "complete_head_stencil_audit": {
+    "frozen_reader_sha256": "fbcd4fc8dddb319aeff88131c678e26ccba6ae97decb988fcc185872c67644ae",
+    "native_points_cells_boundary_independently_exact": true,
+    "uncoupled_boundary_patch_count": 1,
+    "cells_by_internal_face_count_0_to_4": [
+      0,
+      325,
+      1632633,
+      4952217,
+      6396213
+    ],
+    "minimum_exact_zero_internal_area_tensor_determinants": 1632958,
+    "reason": "Rank of a sum of fewer than three outer products is below three; this is a neighbour-stencil metric, not a coordinate Jacobian",
+    "native_extended_stencil_gate_known_to_fail": true,
+    "admission": "One unchanged geometry diagnostic only; no threshold tuning or field solve"
+  },
+  "local_structured_control": {
+    "recovery": {
+      "controller_sha256": "d776d5fe8943bb0f4fffe191177037c6c739e93d3c738b8d2e384a4017ddbf8b",
+      "terminal": {
+        "terminal": "bounded_native_geometry_diagnostic_finished",
+        "controls_passed": true,
+        "head_started": false,
+        "native_head_selected_checks_passed": false,
+        "all_original_inputs_rehashed_unchanged": true,
+        "native_full_topology_not_completed_by_this_selector": true,
+        "case_specific_operator_admission": false,
+        "field_solve_executed": false,
+        "physics_admitted": false,
+        "manufacturing_qualified": false
+      },
+      "all_recovered_files_verified": true,
+      "owned_container_absent": true,
+      "owned_staging_cleaned_after_verified_recovery": true,
+      "synthetic_only": true,
+      "head_geometry_transferred": false,
+      "new_paid_compute_usd": 0,
+      "archive_sha256": "d828dd049bb5b9d31bd06fc9c5ce1cb32b4518d1eeec303a2e00b2738c99d36b"
+    },
+    "analytic_contract": {
+      "synthetic_only": true,
+      "points": 27,
+      "cells": 8,
+      "faces": 36,
+      "internal_faces": 12,
+      "boundary_faces": 24,
+      "complete_analytic_coordinate_cell_face_boundary_comparison_passed": true,
+      "internal_faces_per_cell": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "exact_normalized_internal_area_tensor_determinant": "1",
+      "exact_each_positive_cell_volume": "1/8",
+      "reflection": "R=diag(-1,1,1), det(R)=-1; connectivity and face orientations unchanged",
+      "exact_each_reflected_cell_signed_volume": "-1/8",
+      "expected_negative_volume_cells": 8,
+      "no_head_geometry_modified": true
+    },
+    "admission": {
+      "passed": true,
+      "content_required_even_when_process_exit_zero": true,
+      "analytic_contract_sha256": "ae02ed991cf67d5b76e6b379c7e42794c7455592515001b57653d683ac9e760c"
+    },
+    "positive_default_execution": {
+      "argv": [
+        "checkMesh",
+        "-case",
+        "control"
+      ],
+      "exit_code": 0,
+      "timeout": false,
+      "seconds": 0.16553784301504493,
+      "address_space_gib": 1,
+      "log_sha256": "a77d985fdc8b030736129670cdae4b0dfa733d71699885954fdb4de986168a3b"
+    },
+    "positive_extended_execution": {
+      "argv": [
+        "checkMesh",
+        "-noTopology",
+        "-allGeometry",
+        "-case",
+        "control"
+      ],
+      "exit_code": 0,
+      "timeout": false,
+      "seconds": 0.1655336432158947,
+      "address_space_gib": 1,
+      "log_sha256": "6aa379c23bc5bb3ddb446b75b45434114a1c792ba37f1f517732d60f93e63d22"
+    },
+    "reflected_negative_execution": {
+      "argv": [
+        "checkMesh",
+        "-noTopology",
+        "-allGeometry",
+        "-case",
+        "inverted-control"
+      ],
+      "exit_code": 0,
+      "timeout": false,
+      "seconds": 0.1655021528713405,
+      "address_space_gib": 1,
+      "log_sha256": "fdda392388488ef7682e7ca4f892b429aab688b5683e4af11fb85b662605a736"
+    },
+    "negative_volume_cells": 8,
+    "negative_native_failed_checks": 6,
+    "container_memory_mib": 512
+  },
+  "cloud": {
+    "instance_id": 59285271,
+    "image": "ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f",
+    "offered_effective_cpus": 16,
+    "offered_ram_mb": 128986,
+    "host_capacity_or_affinity_not_dedicated_allocation": true,
+    "runtime": {
+      "python": "3.12.3",
+      "worker_source_sha256": "5970289aba4e51a816a1a44668d8c78d0ed3c95c9d3ee97ac2e856e677418fca",
+      "foam_setup": "/opt/openfoam13/etc/bashrc",
+      "foam_setup_sha256": "dd62f167ea8928a76cf76af72627b50bd62788df10bf13d8d4e4c4f9d0ee9541",
+      "host_affinity_count": 128,
+      "head_address_space_gib": 48,
+      "field_solve_permitted": false
+    },
+    "openfoam_build": "13-18870c24d21c",
+    "control_contract": {
+      "synthetic_only": true,
+      "points": 27,
+      "cells": 8,
+      "faces": 36,
+      "internal_faces": 12,
+      "boundary_faces": 24,
+      "complete_analytic_coordinate_cell_face_boundary_comparison_passed": true,
+      "internal_faces_per_cell": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "exact_normalized_internal_area_tensor_determinant": "1",
+      "exact_each_positive_cell_volume": "1/8",
+      "reflection": "R=diag(-1,1,1), det(R)=-1; connectivity and face orientations unchanged",
+      "exact_each_reflected_cell_signed_volume": "-1/8",
+      "expected_negative_volume_cells": 8,
+      "no_head_geometry_modified": true
+    },
+    "control_admission": {
+      "passed": true,
+      "content_required_even_when_process_exit_zero": true,
+      "analytic_contract_sha256": "ae02ed991cf67d5b76e6b379c7e42794c7455592515001b57653d683ac9e760c"
+    },
+    "positive_extended_execution": {
+      "argv": [
+        "checkMesh",
+        "-noTopology",
+        "-allGeometry",
+        "-case",
+        "control"
+      ],
+      "exit_code": 0,
+      "timeout": false,
+      "seconds": 0.3685105449985713,
+      "address_space_gib": 1,
+      "log_sha256": "97d98a253cef6b8a36331ec1d4a59708fd1a0b963b756bcb7cac7592848efccb"
+    },
+    "reflected_negative_execution": {
+      "argv": [
+        "checkMesh",
+        "-noTopology",
+        "-allGeometry",
+        "-case",
+        "inverted-control"
+      ],
+      "exit_code": 0,
+      "timeout": false,
+      "seconds": 0.36790369311347604,
+      "address_space_gib": 1,
+      "log_sha256": "1936c69eca9c49ea994e4115b540e961b46e2f1e92b88f536b7220747f9d1d42"
+    },
+    "head_execution": {
+      "argv": [
+        "checkMesh",
+        "-noTopology",
+        "-allGeometry",
+        "-case",
+        "head"
+      ],
+      "exit_code": 0,
+      "timeout": false,
+      "seconds": 60.609008852858096,
+      "address_space_gib": 48,
+      "log_sha256": "d5ab3f164c6bd4d82e1dc2bec94d86640050e0a18abb996dc8ebd93a0156ad49"
+    },
+    "terminal_stage_receipt": {
+      "terminal": "bounded_native_geometry_diagnostic_finished",
+      "controls_passed": true,
+      "head_started": true,
+      "native_head_selected_checks_passed": false,
+      "all_original_inputs_rehashed_unchanged": true,
+      "native_full_topology_not_completed_by_this_selector": true,
+      "case_specific_operator_admission": false,
+      "field_solve_executed": false,
+      "physics_admitted": false,
+      "manufacturing_qualified": false
+    },
+    "native_diagnostic": {
+      "diagnostic_complete": true,
+      "native_head_check_passed": false,
+      "native_exit_zero_is_not_acceptance": true,
+      "values": {
+        "high_aspect_cells": [
+          1.0505536196303592e+102,
+          39913
+        ],
+        "negative_volumes": [
+          -1.562181735243843e-15,
+          4070
+        ],
+        "nonorthogonality": [
+          90.00000000022447,
+          48.431008024506816
+        ],
+        "severe_nonorthogonal_faces": [
+          3953359
+        ],
+        "nonorthogonality_errors": [
+          1009
+        ],
+        "face_pyramids": [
+          6851
+        ],
+        "skewness": [
+          1112.964604421563,
+          63762
+        ],
+        "face_tets": [
+          288815
+        ],
+        "small_edges_warning": [
+          1.192092901342628e-06,
+          15.850717694748498,
+          224
+        ],
+        "cell_determinant": [
+          0.0,
+          0.0956923606638536
+        ],
+        "small_determinants": [
+          0.001,
+          4319287
+        ],
+        "concavity_report": [
+          36752
+        ],
+        "interpolation_weight": [
+          0.0,
+          0.25987021497519774
+        ],
+        "small_interpolation_weights": [
+          0.05,
+          4151434
+        ],
+        "volume_ratio": [
+          -380.53179190751445,
+          0.4317738056361552
+        ],
+        "small_volume_ratios": [
+          0.01,
+          2022190
+        ],
+        "failed_categories": [
+          10
+        ]
+      },
+      "value_scope": "Native numerical reports in hypothetical source coordinates; not physical metrology"
+    },
+    "pre_rental_phase_ledger": {
+      "state": "prepared_before_rental",
+      "phases": [
+        {
+          "id": "G01",
+          "inputs": "Frozen parent manifest91fbc0e and complete native readback",
+          "runtime_commands": "Already complete coordinate/cell/boundary inspection",
+          "outputs_checks": "Stored domain exact; condition and physical gates failed",
+          "state": "passed_for_diagnostic"
+        },
+        {
+          "id": "G02",
+          "inputs": "All native owner/neighbour rows; one uncoupled boundary patch",
+          "runtime_commands": "Frozen list reader and exact rank bound",
+          "outputs_checks": "1,632,958 cells with fewer than3 internal faces; extended stencil rejection expected",
+          "state": "completed"
+        },
+        {
+          "id": "G03",
+          "inputs": "Bipyramid controls; unchanged native runtime14",
+          "runtime_commands": "Actual standard and extended checks; exact one-cell inversion",
+          "outputs_checks": "Extended positive fails stencil criterion; no head started; inputs recovered/unchanged",
+          "state": "completed_negative_control_admission"
+        },
+        {
+          "id": "G04",
+          "inputs": "Analytic2x2x2cube;27nodes/8cells; native blockMesh",
+          "runtime_commands": "Independent full native grid/face/cell comparison; default/extended checks; affine reflection",
+          "outputs_checks": "Positive passes;8 negative volumes detected; native zero exit never sufficient",
+          "state": "passed_on_Kali"
+        },
+        {
+          "id": "G05",
+          "inputs": "Kali head capacity minimum10GiB; actual7,454,150,656bytes available",
+          "runtime_commands": "Fresh capacity checked before owned head staging",
+          "outputs_checks": "Head not executed under insufficient local capacity; controls only use512MiB",
+          "state": "local_capacity_refused"
+        },
+        {
+          "id": "G06",
+          "inputs": "Fresh account/inventory/offers;7.8 prior reservation ceilings",
+          "runtime_commands": "Approved scoped wrapper; exact-ID guard armed before launch-mesh",
+          "outputs_checks": "New1.5USD cap; cumulative9.3USD;35/30/5 budget retained; pre-existing IDs excluded",
+          "state": "prepared"
+        },
+        {
+          "id": "G07",
+          "inputs": "Pinned mesh-CFD OCI digest; hash-bound native head plus source worker/helper",
+          "runtime_commands": "Existing native SSH identity; first-use endpoint pin then strict; runtime/space/RAM preflight",
+          "outputs_checks": "OpenFOAM13 must qualify same structured controls anew; every input checksum",
+          "state": "prepared"
+        },
+        {
+          "id": "G08",
+          "inputs": "Actual native head, unchanged thresholds; stencil gate known to fail",
+          "runtime_commands": "run_native_geometry.py; structured controls then checkMesh -noTopology -allGeometry;48GiB/600seconds",
+          "outputs_checks": "One diagnostic records geometry/stencil metrics; no threshold sweep or field solve",
+          "state": "prepared"
+        },
+        {
+          "id": "G09",
+          "inputs": "Terminal worker/result-manifest; post-input hashes",
+          "runtime_commands": "Strict SSH recovery; every recovered file and omitted source copy verified",
+          "outputs_checks": "Raw sets/logs private; no live writer while archiving; recover before deletion",
+          "state": "prepared"
+        },
+        {
+          "id": "G10",
+          "inputs": "Only exact launch receipt ID; fresh rates and absence observations",
+          "runtime_commands": "Scoped destroy owned ID; controller and guard observe absence; guard exits",
+          "outputs_checks": "Compute/storage/network estimates separated from invoices; foreign resources untouched",
+          "state": "prepared"
+        },
+        {
+          "id": "G11",
+          "inputs": "Current original scan, printing master and exact source domain",
+          "runtime_commands": "Rehash unchanged originals; freeze private capsule; English source/aggregate publication plus Linux make check",
+          "outputs_checks": "Diagnostic result does not replace analytic CAD, engine fields or AM/physical qualification",
+          "state": "prepared"
+        },
+        {
+          "id": "G12",
+          "inputs": "Specimen interfaces/scale/material, operating conditions, process calibration",
+          "runtime_commands": "Documented Qwen/CADAM/PicoGK/Gmsh/OpenFOAM/CalculiX/Adamantine chain; hypotheses explicit",
+          "outputs_checks": "Engine field correlation, process qualification, finished inspection and engine validation remain pending",
+          "state": "not_admitted"
+        }
+      ]
+    },
+    "recovery": {
+      "archive_sha256": "d79eedbf95c90889d52fe8eee86dad9c307a3b396ed0f967118b6ea9b1ec1379",
+      "source_sha256": "dd7f711d3539980733c9294c73fdc85ddae5d88c042de3f52f0b5939cb6aa336",
+      "worker_terminal": {
+        "terminal": "bounded_native_geometry_diagnostic_finished",
+        "controls_passed": true,
+        "head_started": true,
+        "native_head_selected_checks_passed": false,
+        "all_original_inputs_rehashed_unchanged": true,
+        "native_full_topology_not_completed_by_this_selector": true,
+        "case_specific_operator_admission": false,
+        "field_solve_executed": false,
+        "physics_admitted": false,
+        "manufacturing_qualified": false
+      },
+      "worker_confirmed_terminal_before_recovery": true,
+      "recovered_files_verified": 33,
+      "omitted_input_copies_verified": 14,
+      "all_original_input_copies_verified_on_owner": true,
+      "all_recovered_bytes_match": true,
+      "physics_admitted": false,
+      "manufacturing_qualified": false
+    },
+    "closeout": {
+      "instance_id": 59285271,
+      "recovered_and_verified": true,
+      "controller_observed_absence": true,
+      "guard_observed_absence": true,
+      "guard_process_absent": true,
+      "destroy_exit_code": 0,
+      "creation_intent_epoch": 1793892575.693032,
+      "latest_independent_absence_epoch": 1793893707.9105742,
+      "conservative_elapsed_hours": 0.3145048728254106,
+      "observed_hourly_usd_including_120gb_storage": 0.11288888888888889,
+      "observed_rate_times_conservative_elapsed_usd": 0.03550410564340191,
+      "network_total_planning_allowance_gb": 20,
+      "maximum_direction_network_rate_usd_per_gb": 0.005333333333333333,
+      "network_planning_upper_estimate_usd": 0.10666666666666666,
+      "provider_invoice_available": false,
+      "account_change_not_task_invoice": true,
+      "project_total_usd": 35,
+      "compute_allocation_usd": 30,
+      "transfer_closeout_reserve_usd": 5,
+      "previous_reservation_ceilings_usd": 7.8,
+      "attempt_cap_usd": 1.5,
+      "combined_reservation_ceiling_usd": 9.3,
+      "automatic_recharge_requested": false,
+      "only_task_created_instance_destroyed": true
+    }
+  },
+  "complete_combinatorial_native_winding": {
+    "source_sha256": "fc0fbbf076292c51c3a8309ab253e2a4e3504f20b8e38eef32864f6f2c7f396a",
+    "reference_sha256": "233f7bd83072772fa0b92d0287f20cec3cf44c4988546be42addf5579630299e",
+    "positive_report_sha256": "2534890f0c46caaa8394320fa03a8d60057c842d97238dfa57b4cb816c20e596",
+    "native_file_sha256": {
+      "points": "19a955aa7ff335da8adffa0e892cc236c356b61c1cdabfe8ea7dbe30280a0c84",
+      "faces": "e04f5f989721017b4fd6b86d7a7b3a60114f37831c3e3f56c4c04b5a38a3fbc7",
+      "owner": "a7ad64bb1ef46223c05b853e8c414bfa7e7dc5945f38b586db147cc300c90166",
+      "neighbour": "b7ae5a72f4262d6bf7a3f8bbad41521fc14b9c1dc25ef59bce03d03e9c99c00e"
+    },
+    "native_cells": 12981388,
+    "all_native_cell_sets_mapped_bijectively_to_unique_source_cells": true,
+    "native_cell_order_matches_source": true,
+    "owner_face_windings_checked": 30072005,
+    "neighbour_face_windings_checked": 21853547,
+    "owner_winding_errors": 0,
+    "neighbour_winding_errors": 0,
+    "boundary_winding_errors": 0,
+    "internal_owner_neighbour_error_sets_identical": true,
+    "complete_combinatorial_winding_passed": true,
+    "control_positive_passed": true,
+    "single_reversed_control_face_rejected_for_both_incident_cells": true,
+    "predicate": "Integer permutation parity relative to certified positive source tetrahedra; no floating face areas or cell centres",
+    "native_geometry_formula_accuracy_not_established": true,
+    "private_error_indices_sha256": "53f9d03aec50a8d8c300947e1c35076f2dcd5f597d1297c984bd22d49df929c0",
+    "geometry_or_connectivity_modified": false,
+    "field_solve_executed": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "seconds": 38.46355529199354
+  },
+  "winding_execution": {
+    "exit_code": 0,
+    "controller_limit_reached": false,
+    "seconds": 39.44529691711068,
+    "sampled_peak_rss_kib": 8550464,
+    "log_sha256": "8a658691cde223c4e229d9cd7fb1150cc247ee776e9e9c868571ecab9f046d86"
+  },
+  "interpretation": {
+    "native_exit_zero_is_not_acceptance": true,
+    "native_selected_diagnostic_completed_without_timeout": true,
+    "native_selected_checks_passed": false,
+    "source_stored_coordinate_tetrahedra_all_certified_positive": true,
+    "native_coordinate_cell_boundary_identity_previously_verified_and_preserved": true,
+    "every_native_face_winding_matches_positive_reference": true,
+    "incorrect_face_row_winding_excluded_as_explanation": true,
+    "precise_native_arithmetic_or_geometry_evaluation_cause_not_isolated": true,
+    "raw_native_numerical_warnings_are_not_physical_metrology": true,
+    "do_not_flip_already_correct_windings": true,
+    "source_relative_conditioning_audit_required_before_more_trials": true
+  },
+  "historical_stage_receipts_and_preparation_states_do_not_override_later_aggregate": true,
+  "original_scan_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "printing_master_3mf_sha256": "e022af4306766d09e512cd2bd49c696407d887f90cd3aa1622add8014a134465",
+  "original_scan_transfer_authorized": true,
+  "original_scan_transferred": false,
+  "derived_geometry_transferred": true,
+  "source_volume_original_scan_and_print_master_freshly_rehashed_unchanged": true,
+  "geometry_or_print_master_replaced": false,
+  "native_full_topology_check_complete": false,
+  "case_specific_operator_admission": false,
+  "head_field_solve_executed": false,
+  "physics_admitted": false,
+  "manufacturing_qualified": false,
+  "functional_release": false,
+  "goal_complete": false
+}

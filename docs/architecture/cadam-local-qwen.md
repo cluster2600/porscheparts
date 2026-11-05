@@ -396,3 +396,20 @@ incomplete. Its actual native arrays, terminal outcome and owned-resource
 closeout are linked in the aggregate record. Head operator admission,
 engine boundary conditions, manufacturing qualification and physical release
 remain distinct open gates; no engine field solve follows from format success.
+
+The [extended geometry and stencil diagnostic](../research/935-native-geometry-admission-20261105/README.md)
+then distinguishes the native internal-face tensor determinant from a coordinate
+Jacobian. A complete owner/neighbour audit proves at least 1,632,958 rank-deficient
+uncoupled stencils before execution. The small precision bipyramid is unsuitable
+as an extended positive control; its failed admission and a later refused Kali
+head preparation are retained. An independently inspected 27-node/eight-cell
+cube and its reflection qualify the unchanged extended checker on Kali and Vast.
+The one head geometry diagnostic completes in 60.61 seconds and reports ten
+failed checks, despite process exit zero; report content correctly rejects it.
+A separate integer-permutation audit checks every owner and neighbour face
+winding against the certified positive tetrahedra and finds no error. Thus face
+row reversal is not an indicated repair. Extreme conditioning/native geometry
+evaluation remains an admission issue; complete import, winding and a diagnostic
+run establish no engine field or manufacturing approval. Owned cloud resources
+are recovered and removed with independent absence proof, preserving the
+original cumulative budget, source scan and printing master.
