@@ -109,8 +109,10 @@ solution and invents no boundary condition.
 
 ## Provisional interfaces
 
-The following values are expressed in OBJ units; millimeters are not yet
-established:
+The following values are expressed in OBJ units. The owner confirmed 1 OBJ
+unit = 1 mm, so they read as millimeters; physical metrology of the specimen
+remains unverified. Open questions on this scan are consolidated in
+[open-questions.json](open-questions.json):
 
 - visible outer register: diameter 113.53;
 - chamber shoulder at the chosen section: diameter 90.81;

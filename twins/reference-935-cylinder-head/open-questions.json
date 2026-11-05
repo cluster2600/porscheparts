@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0.0",
+  "register_id": "935-HEAD-OPEN-QUESTIONS-0001",
+  "created_on": "2026-11-05",
+  "issue": "https://github.com/cluster2600/porscheparts/issues/442",
+  "scope": "Open questions about the Wolfe Classics 935 cylinder-head scan, consolidated from the documents listed under each item. This register answers nothing by measurement: the owner constraint is no physical measurement and no part purchase.",
+  "status_values": {
+    "answered": "settled by a cited project input",
+    "blocked": "cannot be settled from local data; the named owner holds the next step"
+  },
+  "items": [
+    {
+      "id": "Q1-obj-units",
+      "question": "What length unit do the OBJ coordinates use?",
+      "status": "answered",
+      "answer": "1 OBJ unit = 1 mm, explicitly confirmed by the owner and recorded as the accepted project input for OBJ SHA-256 4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486.",
+      "sources": [
+        "docs/research/935-scan-engineering-20261029.md (Inputs and supplied specifications)",
+        "docs/research/935-printability-20261029.md (line 14)",
+        "docs/research/935-local-gap-review-20261029.md (line 22)"
+      ],
+      "scale_check_before_cfd": {
+        "conversion": "identity (factor 1.0); the provisional interface values in twins/reference-935-cylinder-head/README.md are therefore in mm",
+        "plausibility_check": "At factor 1.0 the fitted chamber shoulder (90.81) and outer register (113.53) bracket the 930/78-930/79 customer-document bores of 95 and 97 mm (docs/research/m64-dimensions-deep-20261024/README.md). Factors of 10 or 25.4 would give 9.1 mm or 2306 mm shoulders, which are not cylinder-head features. This rules out a gross unit error only.",
+        "limits": "Not a metrological scale validation: no physical reference dimension of the specimen exists in the repository, and fit residuals are not a full uncertainty. CFD stays blocked by Q4 and by the incomplete fluid regions (docs/research/935-scan-engineering-20261029.md, Remaining evidence gates), not by the unit."
+      },
+      "owner": null
+    },
+    {
+      "id": "Q2-fourth-passage",
+      "question": "Where is the fourth stud/through passage, and what are its axis and diameter?",
+      "status": "blocked",
+      "answer": "Three passage candidates are retained at two section stations; the fourth is not resolved in the scan and is deliberately not completed by symmetry.",
+      "sources": [
+        "docs/research/935-scan-engineering-20261029.md (Executed stages: Passage candidates)",
+        "twins/reference-935-cylinder-head/README.md (Provisional interfaces: four-passage pattern about 86.74 x 85.92, fitted on the visible mesh)"
+      ],
+      "unblock_requires": "Existing drawings, CT or measurements of the specimen from the supplier, or a rescan covering the occluded passage.",
+      "owner": "repository owner (specimen-data request to the supplier, prepared and unsent per docs/research/935-readiness-20261104/README.md)"
+    },
+    {
+      "id": "Q3-shank-axis-anatomy",
+      "question": "What anatomical features do the two extracted external shank axes belong to?",
+      "status": "blocked",
+      "answer": "Two external shank-axis candidates are retained; their anatomy is unresolved.",
+      "sources": ["docs/research/935-scan-engineering-20261029.md (Executed stages: Shank-axis extraction)"],
+      "unblock_requires": "Supplier drawing or annotated photographs identifying the features.",
+      "owner": "repository owner (supplier question)"
+    },
+    {
+      "id": "Q4-specimen-material-process",
+      "question": "Which specimen was scanned, what is its head-body alloy, and how was it made and machined?",
+      "status": "blocked",
+      "answer": "The private correspondence supports a cast/machined origin but supplies no alloy, interface, internal-geometry or process data. Valve and seat materials in the supplier screenshot do not identify the head-body alloy. No alloy, machine or supplier is accepted.",
+      "sources": [
+        "docs/research/935-readiness-20261104/README.md (Data acquisition and process preparation)",
+        "docs/research/935-scan-engineering-20261029.md (Inputs; Remaining evidence gates)",
+        "docs/research/935-printability-20261029.md (line 131)",
+        "docs/research/935-mesh-admission-20261104/CONSTRAINTS.md (line 88)"
+      ],
+      "unblock_requires": "Answer to the pending question about specimen access or existing drawings/CT/measurements; process data from Falcontech/Farsoon (requests unsent).",
+      "owner": "repository owner (send or approve the prepared requests)"
+    },
+    {
+      "id": "Q5-993-bore-ocr",
+      "question": "Is the 993 bore of 100 mm verified?",
+      "status": "blocked",
+      "answer": "Not page-checked. catalog/manual/993-workshop-manual-measurements.json gives 'Bore 100 (3.94)' from PDF p.15 with extraction_status structured_derived and a garbled unit 'mnrvin.'. It is consistent with stroke 76.4 mm and 3.6 L (pi/4 x 10.0^2 x 7.64 x 6 = 3600.6 cm3), which is a consistency check, not a page check. Either way it is a different feature from the 113.53 register and the 90.81 shoulder, so no compatibility follows.",
+      "sources": [
+        "catalog/manual/993-workshop-manual-measurements.json (technical_data, PDF p.15)",
+        "twins/reference-935-cylinder-head/README.md (993 comparison)"
+      ],
+      "unblock_requires": "A page check of PDF p.15 by someone holding the manual, recorded under catalog/manual/page-checked/.",
+      "owner": "repository owner (holds the private manual)"
+    },
+    {
+      "id": "Q6-993-stud-geometry",
+      "question": "What is the 993 head-stud pattern and stud geometry to compare with the 935 passages?",
+      "status": "blocked",
+      "answer": "No local source gives the 993 cylinder/head stud pattern. The only page-checked stud entry is the exhaust-side M8 x 22 stud protrusion (PDF p.148), which is not the head-to-case stud pattern.",
+      "sources": [
+        "catalog/manual/page-checked/993-workshop-manual-group15-cylinder-head.json (head_studs_M8x22)",
+        "twins/reference-935-cylinder-head/README.md (993 comparison)"
+      ],
+      "unblock_requires": "A cited drawing or manual page with the 993 stud pitch circle/pattern and stud diameter.",
+      "owner": "repository owner (source acquisition)"
+    }
+  ]
+}
