@@ -50,6 +50,46 @@ class SourceValidationTests(unittest.TestCase):
 
         self.assertIn("rights.attribution: required when attribution is required", errors)
 
+    def _archive_verified(self) -> dict:
+        record = deepcopy(self.template)
+        record["rights"] = {
+            "license": "archive-verified-CC-BY-SA-3.0",
+            "redistribution": "attribution_required",
+            "attribution": "stagsimon",
+            "archive_capture": {
+                "status": "archive_verified",
+                "capture_url": "https://web.archive.org/web/20170424143508/http://www.thingiverse.com:80/thing:2006970",
+                "capture_timestamp": "20170424143508",
+                "read_on": "2026-11-05",
+                "license_as_read": "Creative Commons - Attribution - Share Alike",
+                "author": "stagsimon",
+            },
+        }
+        return record
+
+    def test_archive_verified_record_is_valid(self) -> None:
+        self.assertEqual(validate_source(self._archive_verified()), [])
+
+    def test_archive_verified_licence_requires_a_capture(self) -> None:
+        record = self._archive_verified()
+        del record["rights"]["archive_capture"]
+        self.assertIn("rights.archive_capture: required when the licence is archive-verified", validate_source(record))
+
+    def test_capture_requires_archive_verified_licence(self) -> None:
+        record = self._archive_verified()
+        record["rights"]["license"] = "CC-BY-SA-3.0"
+        self.assertIn("rights.license: an archive capture requires an 'archive-verified-' licence", validate_source(record))
+
+    def test_capture_timestamp_must_match_url(self) -> None:
+        record = self._archive_verified()
+        record["rights"]["archive_capture"]["capture_timestamp"] = "20170424143509"
+        self.assertIn("rights.archive_capture.capture_timestamp: must match the capture URL", validate_source(record))
+
+    def test_capture_must_be_a_wayback_url(self) -> None:
+        record = self._archive_verified()
+        record["rights"]["archive_capture"]["capture_url"] = "https://www.thingiverse.com/thing:2006970"
+        self.assertTrue(any(e.startswith("rights.archive_capture.capture_url") for e in validate_source(record)))
+
     def test_template_file_loads_and_validates(self) -> None:
         self.assertEqual(load_and_validate(self.path), [])
 
