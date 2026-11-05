@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-INTERCOOLER-BRACKET-TI-F1-0001",
+  "status": "f1_photo_informed_topology_envelope_fitted_sizes",
+  "supersedes": "993-ENG-INTERCOOLER-BRACKET-TI-F0-0001 (two-rail plate topology not supported by any evidence)",
+  "geometry_authority": {
+    "published": [
+      "FVD11011050 envelope 255 x 80 x 23 mm",
+      "FVD11011050 mass 200 g"
+    ],
+    "identity": [
+      "PET 107-45 pos 5 bracket 993 110 110 50 / -52",
+      "PET 107-45 pos 6, 7, 9, 10, 11 candidate fastener and isolation stack"
+    ],
+    "topology_from_photograph": [
+      "single curved arm",
+      "one socket eye at each end",
+      "one raised pad with two through holes, off-centre on the arm",
+      "cast aluminium-coloured part with cast-in markings"
+    ],
+    "envelope_fitted": [
+      "eye chord",
+      "arm sagitta"
+    ],
+    "assumptions": [
+      "eye outer radius, bore and height",
+      "arm width and height",
+      "pad position, size, hole diameter and pitch"
+    ],
+    "not_claimed": "No measured OEM or FVD coordinate; not fit-ready."
+  },
+  "interfaces": [
+    {
+      "id": "IF-1",
+      "feature": "left end eye (socket boss with through bore)",
+      "topology_evidence": "photograph: thick cylindrical eye at each end of the arm",
+      "candidate_hardware": "rubber mounting 930 113 430 00, sleeve 993 110 111 50, washer 900 151 008 02 (PET 107-45 pos 9-11)",
+      "hardware_assignment": "candidate only: the PET text lists the parts but the illustration that assigns them was not read",
+      "position": "assumed (eye centre at the published envelope end)",
+      "bore": "assumed",
+      "mating_part": "unknown",
+      "status": "blocked_unmeasured"
+    },
+    {
+      "id": "IF-2",
+      "feature": "right end eye (socket boss with through bore)",
+      "topology_evidence": "photograph",
+      "candidate_hardware": "same stack as IF-1",
+      "hardware_assignment": "candidate only",
+      "position": "assumed",
+      "bore": "assumed",
+      "mating_part": "unknown",
+      "status": "blocked_unmeasured"
+    },
+    {
+      "id": "IF-3",
+      "feature": "raised pad with two through holes, off-centre on the arm",
+      "topology_evidence": "photograph: one raised pad, two holes, roughly 60 % along the arm",
+      "candidate_hardware": "combination screws 900 067 207 02 and/or nuts 964 126 311 00 (PET 107-45 pos 6-7)",
+      "hardware_assignment": "candidate only",
+      "position": "assumed (PAD_ARC_FRACTION)",
+      "hole_pitch": "assumed",
+      "mating_part": "unknown",
+      "status": "blocked_unmeasured"
+    }
+  ],
+  "arc": {
+    "radius_mm": 147.50793750598805,
+    "half_angle_rad": 0.8886628181904453,
+    "centre_x_mm": 127.5,
+    "centre_y_mm": -79.99646029430623,
+    "arc_length_mm": 262.1696388990629,
+    "sagitta_mm": 54.51147721168182
+  },
+  "pad_pose": {
+    "x_mm": 158.72238728623253,
+    "y_mm": 64.16925740383094,
+    "tangent_deg": -12.219990934203395
+  },
+  "section": {
+    "arm_area_mm2": 108.0,
+    "arm_second_moment_vertical_bending_mm4": 729.0,
+    "arm_second_moment_lateral_bending_mm4": 1296.0
+  },
+  "load_case": null,
+  "load_case_note": "No vehicle load, mass, vibration spectrum or temperature field is evidenced; F1 deliberately carries no stress result.",
+  "release_authorized": false,
+  "mass": {
+    "volume_mm3": 52635.12667177174,
+    "ti64_mass_g": 232.64725988923107,
+    "cast_aluminium_equivalent_mass_g": 141.06213948034826,
+    "published_fvd_mass_g": 200.0,
+    "note": "The aluminium-equivalent mass is the useful plausibility check: the photographed OEM part looks cast aluminium. A titanium copy of the same shape is heavier, not lighter."
+  },
+  "step_check": {
+    "valid_brep": true,
+    "solid_count": 1,
+    "envelope_mm": [
+      255.0,
+      80.0,
+      23.0
+    ]
+  }
+}
