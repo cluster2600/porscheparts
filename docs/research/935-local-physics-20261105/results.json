@@ -1,0 +1,181 @@
+{
+  "revision": "935-local-head-physics-20261105-001",
+  "source_files": [
+    {
+      "path": "source/audit_face_ceiling.py",
+      "sha256": "cc502457281377aa9b6391fa0f4b8f66cc6e608b70146506e7287d050b7a52d7"
+    },
+    {
+      "path": "source/inspect_tetrahedra.py",
+      "sha256": "fe8c7fa88f35d2d14094438bbae3b0860bde085a39b68f7ab941790cb4d1bec3"
+    },
+    {
+      "path": "source/run_gmsh_diagnostic.py",
+      "sha256": "68434ef7053ccb2623d200ece0f5f31cec7227a74c5becce390eccddbb2c7741"
+    }
+  ],
+  "predeclared_policy": {
+    "scope": "One diagnostic conforming tetrahedralization of the actual delivered mesh; no geometry coarsening",
+    "mesh_sha256": "05159cdbf903729da5b8556d2ff2c2d29680a45c2b4bd42b34e031a122205594",
+    "geometry_report_sha256": "79d6d7eba698dff174ec4221e73b2801ef506cff61aeee79ae435d7c67ff42e4",
+    "wall_report_sha256": "cf88d8b10c25c2150e5ef6a5cdd34588a05ddcbece04a94c3af96bd1b13230af",
+    "source_sha256": "68434ef7053ccb2623d200ece0f5f31cec7227a74c5becce390eccddbb2c7741",
+    "mesher_source_sha256": "3cf167772ab4e4d90674693cb47e986e08c43e872db0b43c7529a533dc07dae6",
+    "upstream_verdict": "Closed manifold geometry admitted for diagnostic meshing only. Sampled short material paths and sharp features remain unresolved for process/physics admission.",
+    "interior_size_mm": 2.0,
+    "algorithm": 10,
+    "threads": 8,
+    "wall_limit_seconds": 900,
+    "rss_limit_gib": 40,
+    "minimum_remaining_disk_gib": 4,
+    "parameter_sweep": false,
+    "physics_admitted": false,
+    "new_paid_compute_usd": 0
+  },
+  "execution": {
+    "terminal": "bounded_limit_reached",
+    "exit_code": -15,
+    "seconds": 900.9284937500488,
+    "peak_rss_kib": 27318240,
+    "log_sha256": "a6733557e62214a69a96352f2e6617a9e1387896bd8b282caf4ed9e3be67f68c",
+    "input_mesh_sha256": "05159cdbf903729da5b8556d2ff2c2d29680a45c2b4bd42b34e031a122205594",
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0
+  },
+  "independent_native_cube": {
+    "nodes": 16,
+    "tetrahedra": 41,
+    "boundary_faces": 12,
+    "internal_paired_faces": 76,
+    "all_cells_positive": true,
+    "all_nodes_used": true,
+    "all_internal_faces_pair_with_opposite_orientation": true,
+    "every_source_node_unchanged": true,
+    "exact_source_triangle_boundary_and_orientation": true,
+    "volume_mm3": 1.0000000000000002,
+    "minimum_cell_volume_mm3": 0.004180846647681711,
+    "mean_ratio_quantiles": {
+      "minimum": 0.12119649254218294,
+      "p01": 0.19055345228959145,
+      "median": 0.5547658398486436,
+      "p99": 0.8400218971071381,
+      "maximum": 0.8713139569474264
+    },
+    "mean_ratio_below": {
+      "0.0001": 0,
+      "0.001": 0,
+      "0.01": 0,
+      "0.05": 0,
+      "0.1": 0
+    },
+    "tetrahedron_pair_intersections_exhaustively_checked": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "source_sha256": "fe8c7fa88f35d2d14094438bbae3b0860bde085a39b68f7ab941790cb4d1bec3",
+    "mesh_sha256": "90fe050c2decbf6cd48a5c897508c1e0b609f6a4e759ebf71febb82ff516459a",
+    "source_mesh_sha256": "931a470cb7cdb3f068969d44dc5ba5d818c124aa5ad323604eb017816c003955",
+    "source_report_sha256": "643314c48204893eecd29c5ad6e7c62e0687eae1210ee8e47ade6f5f1fd0e6c7",
+    "relative_volume_difference": 2.220446049250313e-16,
+    "diagnostic_geometry_consistency_passed": true,
+    "controls": {
+      "analytic_tetrahedron": true,
+      "inverted_cell_refused": true,
+      "missing_boundary_refused": true
+    },
+    "seconds": 0.008914583013392985
+  },
+  "fixed_face_audit": {
+    "source_sha256": "cc502457281377aa9b6391fa0f4b8f66cc6e608b70146506e7287d050b7a52d7",
+    "mesh_sha256": "05159cdbf903729da5b8556d2ff2c2d29680a45c2b4bd42b34e031a122205594",
+    "tags_sha256": "877cf9c6638eb388755a378775428c7a5067409f166b3ea38d03b1837f2fae2f",
+    "triangles": 8219310,
+    "minimum_triangle_shape_quality": 6.610639549568414e-07,
+    "minimum_incident_tet_mean_ratio_ceiling": 7.58861147793132e-05,
+    "bins": [
+      {
+        "mean_ratio_threshold": 0.0001,
+        "fixed_faces_below_ceiling": 2,
+        "retained_parent_skin": 2,
+        "assumed_caps": 0,
+        "any_tetrahedralization_forces_at_least_this_many_below_threshold_cells": 1
+      },
+      {
+        "mean_ratio_threshold": 0.001,
+        "fixed_faces_below_ceiling": 74,
+        "retained_parent_skin": 74,
+        "assumed_caps": 0,
+        "any_tetrahedralization_forces_at_least_this_many_below_threshold_cells": 19
+      },
+      {
+        "mean_ratio_threshold": 0.01,
+        "fixed_faces_below_ceiling": 3269,
+        "retained_parent_skin": 3238,
+        "assumed_caps": 31,
+        "any_tetrahedralization_forces_at_least_this_many_below_threshold_cells": 818
+      },
+      {
+        "mean_ratio_threshold": 0.05,
+        "fixed_faces_below_ceiling": 37666,
+        "retained_parent_skin": 37347,
+        "assumed_caps": 319,
+        "any_tetrahedralization_forces_at_least_this_many_below_threshold_cells": 9417
+      },
+      {
+        "mean_ratio_threshold": 0.1,
+        "fixed_faces_below_ceiling": 106215,
+        "retained_parent_skin": 105377,
+        "assumed_caps": 838,
+        "any_tetrahedralization_forces_at_least_this_many_below_threshold_cells": 26554
+      }
+    ],
+    "analytic_optimum_controls_passed": true,
+    "bound": "For fixed triangular base quality q_f, any incident tetrahedron has mean ratio at most q_f^(2/3)",
+    "verdict": "Interior sizing or node relocation cannot eliminate these bins while these exact boundary triangles remain",
+    "bins_are_diagnostics_not_engineering_allowables": true,
+    "physical_acceptance": false,
+    "manufacturing_qualified": false
+  },
+  "gmsh_wheel": {
+    "name": "gmsh-4.12.1-py2.py3-none-macosx_12_0_arm64.whl",
+    "sha256": "eaf48bbed0f09c6f731e47ed0dbd184fef0dd8cf3b9b534222229a2b910d4c6a",
+    "url": "https://files.pythonhosted.org/packages/9c/2d/3b8142ff1eb792972e6b5c9a759546b06c1db9347f18d5381b7114fd5dcb/gmsh-4.12.1-py2.py3-none-macosx_12_0_arm64.whl",
+    "metadata_url": "https://pypi.org/pypi/gmsh/4.12.1/json",
+    "no_scan_sent": true
+  },
+  "runtime": {
+    "gmsh": "4.12.1",
+    "numpy": "2.5.4",
+    "python": "3.12.11",
+    "machine": "arm64"
+  },
+  "kali_version_witness": {
+    "image_id": "sha256:1ae1a454429ed155bfecae63a25f90889aabb7981705ef688c46328ba2acad36",
+    "calculix": "2.23",
+    "openfoam": "14",
+    "old_openfoam13_path_absent": true,
+    "network": "none",
+    "read_only_image": true,
+    "image_source_revision_and_registry_digest_unknown": true,
+    "head_solve_executed": false
+  },
+  "openbao_vast_wrapper_health": {
+    "check_passed": true,
+    "auth_check_passed": true,
+    "no_credential_values_returned_or_displayed": true,
+    "scope_note": "The approved wrapper uses its existing identity internally; only success statuses return to the assistant. This clarifies the subject of the private draft reporting field."
+  },
+  "head_volume_inspector_executed": false,
+  "completed_head_volume_mesh_accepted": false,
+  "geometry_and_delivered_three_mf_unchanged": true,
+  "goal_status": "active",
+  "new_paid_compute_usd": 0,
+  "new_vast_resources": [],
+  "physics_admitted": false,
+  "manufacturing_qualified": false,
+  "private_manifest": {
+    "sha256": "cae8cd958375fd7c8510badb796ee729044974f23f7e67ad52a774a0ad3c7aaa",
+    "entries": 460,
+    "symlinks_recorded_explicitly": true
+  }
+}

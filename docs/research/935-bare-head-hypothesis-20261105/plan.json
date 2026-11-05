@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "scope": "Continue reconstruction to a digitally printable metal-head candidate under explicitly authorised hypotheses; no physical release claim",
+  "authorisation": "Owner request on 2026-11-05 to continue with hypotheses and document remaining validation",
+  "original_obj_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "input": "Frozen fine closed study envelope in original source coordinates; all inherited closure and monolithic-material assumptions remain explicit",
+  "construction": "Exact closed-volume halfspace clipping at three source-fitted mounting-face candidates, retaining 0.75 mm of provisional external machining stock",
+  "stock_mm": 0.75,
+  "planes": ["back_face_candidate", "low_B_flange_candidate", "high_B_flange_candidate"],
+  "plane_source": "Frozen engineering geometry/planes.json; numerical fits only, not accepted physical datums",
+  "hypotheses": [
+    "External material beyond these three stock-offset planes is treated as removable hardware/protrusion in this revision",
+    "New cut-plane closures represent assumed material beneath installed hardware; they do not establish hidden threads, guide fits or galleries",
+    "The parent inferred envelope remains a study interpretation rather than identical physical geometry",
+    "Metal material, operating loads and process properties remain explicitly provisional; no supplier equivalence inferred"
+  ],
+  "checks": [
+    "Preserve original, parent envelope and plane inputs by hash",
+    "Cube controls distinguish closed-volume clipping, orientation, outside rejection and existing-output refusal",
+    "Independently check closed oriented vertex-manifold output, positive volume, degenerate faces and self-intersections",
+    "Identify newly assumed planar cap faces separately from retained parent surface",
+    "Check parent-surface preservation outside cuts and bidirectional scan deviations with cut regions reported separately",
+    "Full 3MF coordinate/index/units round trip; quantify binary STL float32 rounding",
+    "Recompute provisional support/slicing inputs for the new revision rather than reuse old head validation"
+  ],
+  "execution": "Mac native geometry first, Kali1 for prepared checks and PicoGK witness; preserve rejected attempts; no new Vast rental in this stage",
+  "budget_usd": {"total": 35, "compute_limit": 30, "transfer_closeout_reserve": 5, "reset": false},
+  "physical_acceptance": false,
+  "manufacturing_release_authorized": false
+}

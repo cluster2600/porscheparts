@@ -1,0 +1,234 @@
+{
+  "schema": "935-bounded-numerical-conditioning-1",
+  "date": "2026-11-05",
+  "status": "surface_conditioning_passed_head_volume_timeout",
+  "private_capsule": {
+    "directory_basename": "935-local-conditioning-20261105-001",
+    "manifest_sha256": "8efc92c65dc1c4e98e89f021226cedb57c7f883eb7e670f5f925ae27b0d78302",
+    "entries": 202,
+    "regular_file_bytes": 1088852474
+  },
+  "source_sha256": {
+    "check_scan_distances.py": "46e845ade2a427e7365191e2002256a2565a74b5710452bfaa0b482ecd519550",
+    "collect_cloud_results.py": "1931aab3608c5eef0963f9c6a8290101e53f31b1bf96311e50cd5e9cd1b5434e",
+    "condition_surface.py": "5ba8347c496223fdb7eabebc436ec1dc6d328d40936a26c6d21dd52fd23d0062",
+    "guard_conditioned_rental.py": "ecdb196e2c89b090abd65bd847ba1ddcd7033dabd37e57e80d3c4e10efabaf39",
+    "run_conditioned_cloud_mesh.py": "9ee18b194b8a113a547502464c1624104a439e851d1158b2a64d9321745499ca",
+    "verify_cloud_recovery.py": "e3c8d34c5fa56b6191a7d4fe6beeaaf5611f8818dcd2944384f657c89465c7c7",
+    "verify_conditioning.py": "e5306c70377274b8283538ec0d0fa5f2d696ac2b029ed8df7b2a8b5bf05ccf7e"
+  },
+  "original_obj_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "parent_sha256": "05159cdbf903729da5b8556d2ff2c2d29680a45c2b4bd42b34e031a122205594",
+  "candidate_sha256": "7adc8f931feac78eb6298e1415c8d49b7a92bced5dde5dbcc6bc3afd2e9e947f",
+  "preservation": {
+    "source_sha256": "e5306c70377274b8283538ec0d0fa5f2d696ac2b029ed8df7b2a8b5bf05ccf7e",
+    "helper_sha256": "dda5508ecc09146264ec8bf6e0dd935ec4cd41d0ea563243e63004ec9786d6aa",
+    "plan_sha256": "d7e63f062fd2e5c8248136ca0b0df564ce41965bec222c3a703f5dfa936714b6",
+    "parent_sha256": "05159cdbf903729da5b8556d2ff2c2d29680a45c2b4bd42b34e031a122205594",
+    "candidate_sha256": "7adc8f931feac78eb6298e1415c8d49b7a92bced5dde5dbcc6bc3afd2e9e947f",
+    "all_changed_face_pairs_independently_verified": true,
+    "nonoverlapping_changed_patches": 6391,
+    "exact_postflip_coordinate_preservation": true,
+    "exact_postrelocation_connectivity_preservation": true,
+    "protected_faces": 1106232,
+    "protected_vertices": 948924,
+    "all_original_protected_rows_and_vertices_unchanged": true,
+    "independent_quad_correspondence_bound_mm": 0.002166104251651104,
+    "all_vertex_displacements_max_mm": 0.004900000000015306,
+    "composed_complete_surface_correspondence_bound_mm": 0.00706610425166641,
+    "bound_scope": "Both directions through common projected quad subdivisions, then unchanged-face barycentric vertex correspondence; double precision, not interval arithmetic or metrology",
+    "bad_faces_before": 33721,
+    "bad_faces_after": 3469,
+    "bad_face_reduction_fraction": 0.8971264197384419,
+    "quality_reduction_gate_passed": true,
+    "forced_face_ceiling_below_0p01_before": 3269,
+    "forced_face_ceiling_below_0p01_after": 633,
+    "minimum_face_quality_before": 6.610639549568414e-07,
+    "minimum_face_quality_after": 6.610639549568414e-07,
+    "source_volume_mm3": 1094352.3435549787,
+    "candidate_volume_mm3": 1094352.343654618,
+    "relative_volume_change": 9.104850207108939e-11,
+    "preservation_checks_passed": true,
+    "native_geometry_check_pending": true,
+    "accepted_for_meshing": false,
+    "controls": {
+      "known_twisted_quad": true,
+      "forged_bound_refused": true,
+      "overlapping_patches_refused": true
+    },
+    "physical_acceptance": false,
+    "manufacturing_qualified": false,
+    "seconds": 7.352117292000912
+  },
+  "geometry": {
+    "input_sha256": "7adc8f931feac78eb6298e1415c8d49b7a92bced5dde5dbcc6bc3afd2e9e947f",
+    "vertices": 4106745,
+    "triangles": 8219310,
+    "zero_area_triangles": 0,
+    "open_edges": 0,
+    "nonmanifold_edges": 0,
+    "connected_components": 1,
+    "component_face_counts_descending": [
+      8219310
+    ],
+    "signed_volume_mm3": 1094352.3436546323,
+    "bounds_mm": [
+      [
+        10.0,
+        10.0,
+        10.0
+      ],
+      [
+        129.72215957510565,
+        234.16099141318654,
+        103.64405974187721
+      ]
+    ],
+    "manufacturing_qualified": false,
+    "engine_qualified": false,
+    "inconsistently_oriented_edges": 0,
+    "edge_orientation_controls_passed": true,
+    "shell_classification_controls_passed": true,
+    "vertex_manifold": true,
+    "intersection_pairs": 0,
+    "intersection_controls_passed": true,
+    "solid_shell_classification": {
+      "positive_shells": 1,
+      "negative_cavity_shells": 0,
+      "cavity_winding_inside_outer_shell": [],
+      "one_material_body": true,
+      "signed_shell_volumes_mm3": [
+        1094352.3436546128
+      ]
+    },
+    "geometry_export_gate_passed": true,
+    "three_mf_sha256": "77034f2159558271c479d39af0cf88168151ed6fa4d6d71b599f9b78e19141c2",
+    "three_mf_all_coordinates_and_indices_roundtrip_exact": true,
+    "elapsed_seconds": 74.74960149999242
+  },
+  "scan_distance": {
+    "source_sha256": "46e845ade2a427e7365191e2002256a2565a74b5710452bfaa0b482ecd519550",
+    "before_sha256": "05159cdbf903729da5b8556d2ff2c2d29680a45c2b4bd42b34e031a122205594",
+    "after_sha256": "7adc8f931feac78eb6298e1415c8d49b7a92bced5dde5dbcc6bc3afd2e9e947f",
+    "scan_arrays_sha256": "dd94c37117a1f1277a4f2b7f0bf0023e0d1858991b943f766cf447db319a101a",
+    "frame_sha256": "fadd49707617c6339360009c2a279fe469bec0567f7b3dbe0191172bc9088766",
+    "preservation_report_sha256": "c18e722097798c5b9cdcbdac9270383f6d1ff49384392cbe0d39c19a92e48efe",
+    "source_frame_roundtrip_max_mm": 1.0915564626925243e-13,
+    "samples_per_direction": 100000,
+    "sample_seed_scan": 935051,
+    "sample_seed_candidate": 935052,
+    "scan_to_before_all": {
+      "p50_mm": 0.0036812250224570325,
+      "p95_mm": 0.09786035616980159,
+      "p99_mm": 28.184237996586827,
+      "maximum_mm": 49.755819036774206
+    },
+    "scan_to_after_all": {
+      "p50_mm": 0.003681409505679873,
+      "p95_mm": 0.09786035616980159,
+      "p99_mm": 28.184237996586827,
+      "maximum_mm": 49.755819036774206
+    },
+    "before_to_scan_all": {
+      "p50_mm": 0.004468046698136324,
+      "p95_mm": 1.5234483283154097,
+      "p99_mm": 4.329602040212727,
+      "maximum_mm": 10.898026089430168
+    },
+    "after_to_scan_all": {
+      "p50_mm": 0.004462126550496588,
+      "p95_mm": 1.5342875368880444,
+      "p99_mm": 4.359549109878476,
+      "maximum_mm": 10.898026089430168
+    },
+    "maximum_change_at_same_original_scan_samples_mm": 0.000845955398548072,
+    "all_sampled_forward_changes_within_independent_correspondence_bound": true,
+    "no_anatomical_exclusions": true,
+    "sampling_is_not_global_distance_bound_or_metrology": true,
+    "physical_acceptance": false,
+    "manufacturing_qualified": false,
+    "seconds": 22.426357457996346
+  },
+  "cloud": {
+    "instance_id": 59238812,
+    "image": "ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f",
+    "runtime": {
+      "python": "3.12.3",
+      "numpy": "2.5.2",
+      "gmsh": "4.12.1",
+      "gmsh_module_sha256": "275cd3fa7141a723e22c717ebd70a8760683e3a2692598f780874ce3386b9cb6",
+      "cpu_affinity_count": 96,
+      "source_sha256": "9ee18b194b8a113a547502464c1624104a439e851d1158b2a64d9321745499ca",
+      "mesh_sha256": "7adc8f931feac78eb6298e1415c8d49b7a92bced5dde5dbcc6bc3afd2e9e947f",
+      "child_address_space_gib": 48
+    },
+    "cube": {
+      "unit_volume_positive_cells": true,
+      "volume_mm3": 1.0000000000000002
+    },
+    "head_execution": {
+      "exit_code": null,
+      "timeout": true,
+      "seconds": 1801.2414792178897,
+      "log_sha256": "da856798a234d9ee8b89d39f82da56187e096d1ab884c8b11b7ecf1ab74e616d"
+    },
+    "terminal": {
+      "terminal": "worker_failed_closed",
+      "exception_type": "RuntimeError",
+      "error": "Bounded worker step failed: head",
+      "physics_admitted": false,
+      "manufacturing_qualified": false
+    },
+    "recovery": {
+      "archive_sha256": "1cbb7d7ace819c51d7b9bf6a5ff2d80aeacbdf68d97a60bbc7560340af9d1f05",
+      "source_sha256": "e3c8d34c5fa56b6191a7d4fe6beeaaf5611f8818dcd2944384f657c89465c7c7",
+      "worker_manifest_entries_verified": 20,
+      "recovered_files_verified": 20,
+      "all_recovered_bytes_match": true,
+      "all_original_input_hashes_match": true,
+      "omitted_inputs_verified_on_mac": 2,
+      "head_mesh_recovered": false,
+      "worker_terminal": "worker_failed_closed",
+      "physics_admitted": false,
+      "manufacturing_qualified": false
+    },
+    "closeout": {
+      "instance_id": 59238812,
+      "recovered_and_verified": true,
+      "head_mesh_recovered": false,
+      "destroy_exit_code": 0,
+      "controller_observed_absence": true,
+      "guard_observed_absence": true,
+      "guard_process_absent": true,
+      "creation_intent_epoch": 1793869930.67011,
+      "latest_independent_absence_epoch": 1793872704.745627,
+      "conservative_elapsed_hours": 0.7705765324831009,
+      "instance_hourly_usd_including_disk": 0.32666666666666666,
+      "rate_times_conservative_elapsed_usd": 0.2517216672778129,
+      "network_usd_per_gb_in_each_direction": 0.005859375,
+      "total_network_planning_allowance_gb": 20,
+      "network_planning_upper_estimate_usd": 0.1171875,
+      "provider_invoice_available": false,
+      "account_available_before_usd": 26.77456613425835,
+      "account_available_after_usd": 25.94699813425848,
+      "account_decrease_is_not_task_invoice": true,
+      "project_budget_usd": 35,
+      "compute_allocation_usd": 30,
+      "closeout_reserve_usd": 5,
+      "previous_reservation_ceilings_usd": 4.8,
+      "current_attempt_cap_usd": 1.5,
+      "combined_reservation_ceiling_usd": 6.3,
+      "automatic_recharge_requested": false,
+      "only_task_created_instance_destroyed": true
+    }
+  },
+  "original_scan_transfer_authorized": true,
+  "original_scan_transferred": false,
+  "derived_geometry_transferred": true,
+  "print_master_replaced": false,
+  "head_physics_admitted": false,
+  "manufacturing_qualified": false,
+  "functional_release": false,
+  "goal_complete": false,
+  "preservation_witness_stage_note": "Preserved pre-native-audit witness; later geometry and study admission supply diagnostic eligibility only."
+}
