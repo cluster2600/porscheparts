@@ -146,20 +146,34 @@ its current availability nor its future price, and attests no rental. It must
 be reviewed in the current output of `wave-offers` before launching the command
 with this identifier or any other compliant identifier.
 
-## Overlay patches kept unapplied on purpose
+## Released wrapper deltas
 
-Two patches sit beside the wrappers. They are **overlays for the installed
-copies**, not pending merges: both targets are hash-pinned historical wrappers
+Two deltas sit beside the wrappers. Both targets are frozen historical wrappers
 (`openbao-vastai` SHA-256 `42fe39eb…` is asserted by
-`tests/test_openbao_vastai_m64_fea512.py` and recorded in evidence), so
-applying a patch in place would break that provenance chain. Each overlay has
-an offline test that applies it to a temporary copy and leaves the source
-untouched. Status reviewed on 2026-11-05 (issue #422):
+`tests/test_openbao_vastai_m64_fea512.py` and recorded in evidence;
+`openbao-github` `100406b0…` is the frozen repository copy), so the repository
+sources are never patched in place. Following the convention of
+[`wrapper-fea512.patch`](../vast/m64-fea512/README.md), a new wrapper version is
+released as a delta whose own SHA-256 and resulting variant SHA-256 are pinned
+by an offline test that applies it to a disposable copy.
 
-| Patch | Target | Change | Credential scope | Status |
+The owner adopted both deltas on 2026-11-05 (issue #422):
+
+| Delta (SHA-256) | Target | Change | Credential scope | Released variant SHA-256 |
 |---|---|---|---|---|
-| [`github-fetch-current.patch`](github-fetch-current.patch) | `openbao-github` | Adds a `fetch-current` operation: `git fetch` of `main` and the current branch only, with the same repository, secret path and withheld diagnostics as `push-current` ([report](../../docs/reports/M64_WHOLEBODY_SUPPORT_GPU_20260927.md); test `tests/test_openbao_github_fetch_patch.py`) | **Extends what the GitHub credential is used for** (a new read operation), within the same secret path | Owner decision: adopt in a new wrapper version, or drop |
-| [`mesh-offer-refresh-scope.patch`](mesh-offer-refresh-scope.patch) | `openbao-vastai` | Stops `mesh_offer_query(offer_id)` widening the refresh query from 50 to 1,000 offers, so a just-listed offer is not rejected by a changed bundle ([note](../../docs/research/935-printability-20261029.md); test `tests/test_vast_mesh_offer_refresh_patch.py`) | None: same API key, same endpoint, narrower query | Kept as overlay until a new pinned wrapper version is cut |
+| [`github-fetch-current.patch`](github-fetch-current.patch) (`ed72a944…`) | `openbao-github` | Adds a `fetch-current` operation: `git fetch` of `main` and the current branch only, with the same repository, secret path and withheld diagnostics as `push-current` ([report](../../docs/reports/M64_WHOLEBODY_SUPPORT_GPU_20260927.md); test `tests/test_openbao_github_fetch_patch.py`) | Extends what the GitHub credential is used for (a new read operation), within the same secret path; owner-approved | `d94884e6…` |
+| [`mesh-offer-refresh-scope.patch`](mesh-offer-refresh-scope.patch) (`079a005b…`) | `openbao-vastai` | Stops `mesh_offer_query(offer_id)` widening the refresh query from 50 to 1,000 offers, so a just-listed offer is not rejected by a changed bundle ([note](../../docs/research/935-printability-20261029.md); test `tests/test_vast_mesh_offer_refresh_patch.py`) | None: same API key, same endpoint, narrower query | `f4a0e09f…` on the pinned source; `d25f7cee…` stacked after `wrapper-fea512.patch` |
 
-Merging either into its target means publishing a new wrapper version with a
-new pinned hash, which needs owner approval.
+Deploying is an owner step; nothing here was installed. The installed copies
+differ from the repository sources (CAD-VM helpers, request-logs fix), so do
+not overwrite them wholesale:
+
+1. Back up the installed wrapper, then dry-run the delta against it
+   (`patch --dry-run --batch ~/.local/bin/openbao-vastai deploy/openbao/mesh-offer-refresh-scope.patch`,
+   likewise for `openbao-github`) and apply only if it is clean.
+2. Run `openbao-vastai --check` and `openbao-github --check`.
+3. `openbao-github` is also pinned by the OpenClaw dispatcher
+   (`AUTH_SHA256` in [`openclaw-github.py`](openclaw-github.py) and
+   [`OPENCLAW-GITHUB.md`](OPENCLAW-GITHUB.md), `d71cf774…`). After patching the
+   installed wrapper, record its new SHA-256 there in a reviewed change, or the
+   dispatcher will refuse it.

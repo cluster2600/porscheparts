@@ -326,3 +326,55 @@ positive cells and the exact full boundary. Volume shape quality still fails:
 526,110 cells remain below mean ratio 0.01, with unchanged minimum. The next
 admission work concerns interior slivers and numerical conditioning; a surface
 quality pass supplies no head-physics or manufacturing approval.
+
+The [checkpoint-optimization and native-readback study](../research/935-volume-optimization-20261105/README.md)
+then corrects Gmsh region ownership without changing any checkpoint array.
+The distorted-cube Netgen control improves minimum mean ratio from 0.00009449
+to 0.76195 with complete independent consistency checks. Head admission still
+fails. An instrumented repeat preserves native labels before export and finds
+33,688 tetrahedra referencing absent node zero; all boundary labels resolve.
+The earlier apparent zero-volume cell cannot establish physical degeneracy
+because its exporter did not validate label lookup. A separate saved-array
+audit and injected missing-label control confirm the rejection. The default
+Gmsh one-call alternative fails the unchanged cube quality gate and is not run
+on the head. Both actual head calls are terminal, all private bytes are frozen,
+and no optimized head, solver field, paid resource or manufacturing release is
+admitted. Further methods must validate references before coordinate indexing.
+
+The [native interior-relocation study](../research/935-native-relocation-20261105/README.md)
+then passes the same cube gate with `Relocate3D` and performs one bounded head
+call. Native labels resolve completely and boundary coordinates remain exact,
+but 24,992 interior-node movements invert 264 cells while retaining every input
+connectivity row. Positive local reordering cannot repair that embedding:
+independent internal-face pairing rejects the export. The relative-quality
+comparison is not admitted. The next relocation method must preserve original
+cell orientation during each accepted move; no iteration-count sweep, head
+field solve, new printing master or manufacturing approval follows this trial.
+
+The [interior-relocation exclusion audit](../research/935-constrained-relocation-20261105/README.md)
+then proves that clipping those proposed movements cannot meet the fixed 50%
+quality-bin target: they touch only 94,031 bad cells. Even arbitrary motion of
+every interior vertex can affect at most 133,340 of the 526,110 bad cells,
+because 392,770 have all four vertices fixed on the source boundary. All
+partitions are reproduced with the frozen inspector's arithmetic. This excludes
+fixed-connectivity interior relocation under that contract, rather than
+relaxing the target. A separate analytic convex-bipyramid control qualifies a
+native default 3-to-2 topology change with an independently known result and
+the same minimum-quality gates. Its one head diagnostic reaches the 900-second
+kernel alarm without exporting a final mesh; the worker is reaped, all inputs
+are rehashed unchanged and the complete capsule is frozen. Local cavity
+coverage/preservation must be audited before another topology trial. No solver,
+printing-master or physical/process approval follows the witness or timeout.
+
+The [local convex-cavity method](../research/935-local-cavity-20261105/README.md)
+then conditions only volume connectivity. A full independent edge sort
+reproduces the sparse initial cavity audit. Certified convexity, exact oriented
+boundary chains, absent new faces and monotone local quality constrain every
+3-to-2 replacement. Separate segment/triangle proofs certify unchanged local
+domains, followed by the frozen complete volume inspection after each pass.
+Two passes reduce the bad 0.01 bin from 526,110 to 254,353 (51.654%), passing
+the unchanged relative target; the third declared pass is not needed. Every
+node coordinate and the complete source boundary remain exact. The absolute
+shape gate still fails, so native solver export and case-specific conditioning
+admission precede any field solve. The original scan and print master are
+rehashed unchanged; this is neither a new CAD master nor an AM/physical release.
