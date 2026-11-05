@@ -114,6 +114,8 @@ tool/uncertainty. The rotor and the drive are not scaled by
 visual fitting. The housing/guide scans and a view of the mounted
 assembly complete the work package when they are accessible. The catalogue or a
 disassembled inspection must resolve the hidden interfaces and internal parts.
+The [conditional scale check](SCAN_CALIBRATION_CHECK.en.md) compares two
+traceable dimensions per scan without approving calibration or assembly.
 
 **Deliverables:** component register, assembly matrix, interface
 contract, coverage map and acquisition list. **Gate:**
