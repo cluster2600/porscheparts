@@ -291,3 +291,13 @@ the 1,800-second head limit without exporting a final volume mesh. Recovered
 logs and closeout receipts preserve that negative result. The owner now permits
 the original scan on Vast when useful; this trial transferred derived geometry
 only. Head physics, process calibration and physical qualification remain open.
+
+The [separate raw-volume construction](../research/935-unoptimized-volume-20261105/README.md)
+then disables optimization explicitly in a bounded local run, leaving the
+printing master and conditioned boundary unchanged. It exports 13,252,408
+material tetrahedra. An initial floating-sign rejection is preserved; a new
+outward-interval/exact-fraction inspector verifies every positive cell, all
+internal face pairs and the complete exact source boundary. The quality gate
+still rejects 527,342 cells below mean ratio 0.01. This supplies a verified raw
+construction and a quantified quality failure, without head solver admission,
+a new paid rental or a manufacturing release.
