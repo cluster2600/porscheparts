@@ -1,0 +1,271 @@
+{
+  "classification": "independent_source_to_scan_correspondence_requirements_not_registered_geometry",
+  "review_date": "2026-11-06",
+  "source_data_file": "twins/964-chassis/owner-frame-data-20261105/source-data.json",
+  "source_data_sha256": "562b27859d7e717179b4d60f5dd501fd7641107f4180b50fdd17647596045a15",
+  "source_members": {
+    "Mi/Coupe/Mi3.pdf": {
+      "sha256": "9986c8e5db0827328f4fe38ed9b2655dc6bc1f6253ce55c071c7266b7ddfab1c"
+    },
+    "Mi/Coupe/Mi4.pdf": {
+      "sha256": "d1faaf06e6c24c4554c127e07e23a2f868e9345359d96ee6a34f1d3ed6da7cc4"
+    },
+    "CH/xCH Coupe.pdf": {
+      "sha256": "c7518054b2c93858d2acd7317a092cb26cd2cb7ef73c0a82d61d8c63f0d0c3bd"
+    },
+    "Other/page1.jpg": {
+      "sha256": "cf370cfb14221fa586bf2e2a31624bd9c033083c7840fb1ee478ddd691bdd564"
+    }
+  },
+  "input_admission": {
+    "source_local_nominal_arithmetic": true,
+    "source_units": "Mi has explicit 2272 mm wheelbase; body-value unit millimetres follows sheet context. CH units are interpreted from scale/context.",
+    "source_uncertainty_mm": null,
+    "source_acceptance_tolerance_mm": null,
+    "scan_observed_correspondences": 0,
+    "scan_registration_admitted": false,
+    "geometry_or_interface_admission": false
+  },
+  "preferred_contact_set": {
+    "family": "Mi",
+    "figure": "Fig1 Complete Underbody",
+    "source_member": "Mi/Coupe/Mi3.pdf",
+    "source_page": 1,
+    "members": {
+      "F_plus": [
+        0,
+        665,
+        152
+      ],
+      "F_minus": [
+        0,
+        -665,
+        152
+      ],
+      "G_plus": [
+        1245,
+        618,
+        156
+      ],
+      "G_minus": [
+        1245,
+        -618,
+        156
+      ]
+    },
+    "side_sign": "plus/minus are mathematical side placeholders only, not established donor left/right or driver/passenger. Label actual physical side from vehicle context; do not infer steering side.",
+    "contact": "Centre of each of four 25 x 34 mm apertures F/G. Source drawing provides a centreline and datum line.",
+    "x_basis": "F chosen as 0; G lies 1245 rearward along projected chain.",
+    "y_basis": "Half of combined equal-sided spans 1330 at F and 1236 at G; no measured donor symmetry assumed.",
+    "z_basis": "F 152 / G 156 above printed source datum line; physical setup and which aperture-mouth plane was contacted are unresolved.",
+    "source_points_are_visible_in_drawing": true,
+    "source_points_observed_in_scan": false,
+    "why_preferred": [
+      "Explicit named aperture centres with nominal size, unlike generic body silhouettes or gap loops.",
+      "Two longitudinal stations and two lateral sides span roughly 1.25 m by 1.3 m.",
+      "Does not depend on C strut stud or B width; no bracket selection needed.",
+      "Holes are fixed body features rather than tyre, suspension or removable cover surfaces."
+    ],
+    "geometry_qualification": "Source F/G are fixed-body candidates by depicted underbody context; exact donor body feature identity must be observed."
+  },
+  "source_only_invariants": [
+    {
+      "a": "F_plus",
+      "b": "F_minus",
+      "distance": 1330.0,
+      "unit": "interpreted_mm",
+      "kind": "nominal_source_only_derived_distance",
+      "uncertainty": null,
+      "donor_observation": null
+    },
+    {
+      "a": "G_plus",
+      "b": "G_minus",
+      "distance": 1236.0,
+      "unit": "interpreted_mm",
+      "kind": "nominal_source_only_derived_distance",
+      "uncertainty": null,
+      "donor_observation": null
+    },
+    {
+      "a": "F_plus",
+      "b": "G_plus",
+      "distance": 1245.8932538544384,
+      "unit": "interpreted_mm",
+      "kind": "nominal_source_only_derived_distance",
+      "uncertainty": null,
+      "donor_observation": null
+    },
+    {
+      "a": "F_minus",
+      "b": "G_minus",
+      "distance": 1245.8932538544384,
+      "unit": "interpreted_mm",
+      "kind": "nominal_source_only_derived_distance",
+      "uncertainty": null,
+      "donor_observation": null
+    },
+    {
+      "a": "F_plus",
+      "b": "G_minus",
+      "distance": 1787.7723568732122,
+      "unit": "interpreted_mm",
+      "kind": "nominal_source_only_derived_distance",
+      "uncertainty": null,
+      "donor_observation": null
+    },
+    {
+      "a": "F_minus",
+      "b": "G_plus",
+      "distance": 1787.7723568732122,
+      "unit": "interpreted_mm",
+      "kind": "nominal_source_only_derived_distance",
+      "uncertainty": null,
+      "donor_observation": null
+    }
+  ],
+  "rigid_transform_constraints": {
+    "transform_kind": "6 DOF proper rigid transform only after unit/scale status is admitted; no scale, shear, mirroring or warp optimisation.",
+    "minimum_exact_configuration": "Three correctly labelled non-collinear complete 3D contacts determine one proper rigid transform once handedness/physical-side orientation is fixed.",
+    "recommended_fit": "All four independently observed F/G centres, with full six-distance pre-fit check, uncertainty weighting once supported and redundant residuals.",
+    "missing_contact_rule": "With fewer than three non-collinear complete 3D contacts, no full 3D transform. Three contacts can produce a numerical study only; acquire redundant contacts and independent checks before registration admission.",
+    "source_quartet_rank": 2,
+    "source_plane": "z=152+(4/1245)*x",
+    "source_plane_tilt_to_xy_deg": 0.1840821923557103,
+    "midpoint_baseline": 1245.0064256862292,
+    "coordinate_spread_singular_values": [
+      1283.860584331492,
+      1245.006425686229,
+      3.3276136170268584e-27
+    ],
+    "coplanarity_consequence": "F/G establish an in-plane pattern but cannot independently validate off-plane geometry. Fix front/rear, physical side and underside/upward-normal context before fitting to reject symmetric alternative correspondences.",
+    "holdout_requirement": "At least one separately identified off-plane named contact and a further unused body-contact or distance check. Prefer independent observations spanning front/rear. Never count fit residuals or closure identities as held-out measurements.",
+    "candidate_holdouts": [
+      {
+        "source": "Mi A lower front bumper bolt head",
+        "nominal": [
+          -1179,
+          394,
+          387
+        ],
+        "status": "candidate if exact lower bolt head visible and assembled state established; rear point A/J 5 mm source conflicts remain external comparison, not error tolerance"
+      },
+      {
+        "source": "Mi J lower rear bumper bolt head",
+        "nominal": [
+          2605,
+          497,
+          371
+        ],
+        "status": "candidate if exact bolt head visible; not absorber-tube centre"
+      },
+      {
+        "source": "Mi D/E/H bolt heads or corresponding bare-frame contacts",
+        "status": "lower-height independent checks available; choose exactly matching assembly state, never mix bolt and frame heights"
+      },
+      {
+        "source": "Mi I rear motor-mount bolt head",
+        "nominal": [
+          2604,
+          320,
+          542
+        ],
+        "status": "good off-plane geometry if source-named rear bolt physically visible; half-width 320 from Mi4 E/D cross-figure span 640; underneath visibility unproved"
+      },
+      {
+        "source": "Mi C front inner strut stud tip",
+        "status": "not a complete 3D control: width unresolved and typically above underside acquisition"
+      }
+    ],
+    "acceptance_limits": {
+      "nominal_source_residual_mm": null,
+      "scan_localisation_uncertainty_mm": null,
+      "target_registration_uncertainty_mm": null,
+      "maximum_holdout_error_mm": null,
+      "reason": "Define justified interface-specific limits before approving registration; source rounded closure residuals and old tyre-frame scatter do not supply tolerances."
+    },
+    "source_transform_to_vehicle_frame": null,
+    "donor_transform": null
+  },
+  "observation_contract": {
+    "required_per_candidate": [
+      "Unchanged original scan hash plus exact source triangle and vertex IDs for its local patch.",
+      "Annotated overall underside view showing front/rear and physical left/right; local oblique and normal-to-aperture views.",
+      "Visible full rim or sufficient opposing rim evidence; original-open versus selection-cut boundary classification; no completed or interpolated rim.",
+      "Surrounding fixed-body context, folds/rail/jacking reinforcement and seams supporting physical correspondence independently of target coordinates.",
+      "Aperture size/directions observed from scan with justified localisation/scale uncertainty; assess 25 x 34 nominal likeness after identifying the feature.",
+      "Defined measured point: centre construction, supporting observed rim entities, selected mouth/rim plane, ambiguity in contact depth and propagation. Hole axis and hidden opposite face remain separate unknowns.",
+      "Assembly state: present bolt heads, removed components, plugs, sealant and detachable cover cannot be exchanged with bare body features.",
+      "All plausible candidates in the region, reasons for exclusions and independent reviewer acceptance; never choose only the nearest nominal residual."
+    ],
+    "reject_or_defer_if": [
+      "The region is an empty point cloud, view-dependent silhouette, trimming boundary or mesh repair.",
+      "The open loop is merely a source gap/occlusion or part identity cannot be shown.",
+      "Only one side is observed and the other is fabricated by symmetry.",
+      "The visible object is a cover, rubber plug, jack pad, arm, gearbox or other assembly rather than the named body aperture.",
+      "The point is a stud tip, bolt head or seating face different from the source contact.",
+      "A source bracket, date family or contact state is selected only because it yields the smallest fit error."
+    ]
+  },
+  "cross_source_reconciliation": {
+    "Mi_to_Other": {
+      "status": "candidate comparison only",
+      "findings": [
+        "Fourteen matched heights admit the numerical candidate z_Mi = z_Other + 50 mm; this does not establish physical datum setup.",
+        "Mi I maps candidate Other J and Mi J maps Other I; letters cannot be copied.",
+        "Front/rear bumper X differ 5 mm; G width differs 1 mm per side even after choosing bracketed Other value.",
+        "Other F/G bracket shifts could be centre/edge-related, but legend remains absent. Do not select brackets to fit scan."
+      ],
+      "admitted_transform": null
+    },
+    "Mi_to_CH": {
+      "status": "no common transform or contact equivalence established",
+      "candidate_only_pairs": [
+        {
+          "Mi": "B outer control-arm mount",
+          "CH": "6 front mount by drawing",
+          "comparisons": "CH X 514 from 5; Mi B-A 527. Y CH 305 versus Mi B unknown. Heights 151/209 versus Mi 167/237 do not share one offset across states."
+        },
+        {
+          "Mi": "D outer crossmember mount",
+          "CH": "9 by drawing",
+          "comparisons": "Both half-width 385; heights 147/219 versus Mi 164/246 give different 17/27 offsets. X 873 from CH 5 versus 884 from Mi A."
+        },
+        {
+          "Mi": "H outer transmission crossmember",
+          "CH": "11 by drawing",
+          "comparisons": "Half-width 217 versus 218; heights 127/149 versus Mi 151/187 give 24/38 offsets. No exact physical identity proved."
+        }
+      ],
+      "required_next": "Use CH independently only after exact graphical tool/contact and assembly state observed; keep parts-on and parts-removed networks separate. CH point numbers are not Porsche manual IDs or Mi letters.",
+      "admitted_transform": null
+    }
+  },
+  "scan_scope_constraints": {
+    "authoritative_references": [
+      "twins/964-chassis/model-year-review-20261029/README.md",
+      "twins/964-chassis/monocoque/scan-coverage-20261029/README.md",
+      "twins/964-chassis/monocoque/component-review-20261029/README.md",
+      "twins/964-chassis/monocoque/observed-boundaries-20261029/README.md",
+      "twins/964-chassis/interface-measurement-plan.md"
+    ],
+    "known_from_records": [
+      "Original underside scan has 4684929 triangles and 118411 open edges; assembled body/mechanical components overlap.",
+      "Existing tyre-derived vehicle frame is provisional.",
+      "The largest floor/central-cover observations share a 3765948-face component; mesh connectedness does not identify a vehicle part.",
+      "An original open edge may be an acquisition gap, occlusion or physical rim; selection cut boundaries are artificial.",
+      "Prior rear upper/P14 review did not identify defensible body-mount centres; no source-sheet match supplies that missing observation.",
+      "Interior tunnel, upper cell, hidden surfaces, thickness and functional axes remain unobserved."
+    ],
+    "changed_by_this_review": false
+  },
+  "open_questions_resolvable_from_current_sheets": [
+    "Mi I source-local half-width 320 is supported by matching rear motor-mount bolt names in Mi3 and Mi4 E/D span 640.",
+    "Mi B/C widths remain absent/unadmitted; Other supplies candidates 612/858 but source contact reconciliation is insufficient for automatic import.",
+    "Mi F/G aperture dimensions and combined-width convention are already explicit; their correspondence to manual P17/P18 remains a physical-feature question rather than a missing scalar."
+  ],
+  "publication": {
+    "raw_scan_or_document_bytes_committed": false,
+    "status": "reviewed_source_requirements_not_registered_geometry"
+  }
+}

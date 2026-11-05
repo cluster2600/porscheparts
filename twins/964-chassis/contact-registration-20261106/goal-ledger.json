@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0.0",
+  "reviewed_on": "2026-11-06",
+  "objective": "Complete the carbon self-supporting 964/993 monocoque digital twin through native Omniverse review, with English documentation and genuine captures, images and videos.",
+  "goal_complete": false,
+  "previous_goal_turn": "progress: readable owner frame data acquired, numerically checked and merged in PR519",
+  "programme_reference": "docs/MONOCOQUE_964_993_PROGRAMME.md",
+  "scope_preserved": {
+    "central_load_bearing_carbon_cell": true,
+    "964_and_993_compatibility_require_separate_evidence": true,
+    "vehicle_mass_programme_input_kg": 1200,
+    "structural_and_manufacturing_simulation": true,
+    "mould_design": true,
+    "route_track_TUV_validation_basis": true,
+    "manufacturing_or_road_release_authorized": false
+  },
+  "completion_policy": "No phase is complete from a render, placeholder, model output, green software test or missing counterevidence. Preserve measured-interface and professional-review gates.",
+  "phases": [
+    {
+      "id": "M0",
+      "title": "Identity, applicability and road/track approval route",
+      "state": "open",
+      "required_exit_evidence": "Source-specific donor/body/year/transmission identification and an applicable professional approval/validation plan.",
+      "current_observation": "C2 is owner-reported; year and gearbox unknown. 993 and C4 need their own interfaces.",
+      "evidence_reference": "catalog/twins/twin-964-chassis-floor-0001.json"
+    },
+    {
+      "id": "M1",
+      "title": "Acquire and register measured interfaces",
+      "state": "open",
+      "required_exit_evidence": "Positively identified contact observations, admissible scale/uncertainty, proper common-frame transform, independent off-plane checks, axes/mating faces/holes/tolerances reviewed.",
+      "current_observation": "57 documentary entries acquired; 18 source-only spatial checks pass. The screened 23 contours supply no compatible F/G quartet; no donor transform.",
+      "evidence_reference": "twins/964-chassis/contact-registration-20261106/observed-result.json"
+    },
+    {
+      "id": "M2",
+      "title": "Reference body torsion/bending denominator",
+      "state": "missing",
+      "required_exit_evidence": "Another accessible reference body or licensed experimental dataset, test fixture/load/angle definitions, calibrated instruments, uncertainty and repeatability.",
+      "current_observation": "Original donor inaccessible; no accepted physical reference-body test.",
+      "evidence_reference": "twins/964-chassis/alternative-measurement-sources-20261104/README.md"
+    },
+    {
+      "id": "M3",
+      "title": "Validated geometry and model calibration",
+      "state": "missing",
+      "required_exit_evidence": "Traceable central-cell surfaces and interfaces, original-versus-inferred coverage, converged analysis representation and correlation against M2.",
+      "current_observation": "Assembled underside observations exist. Interior tunnel/upper-cell surfaces and functional interfaces remain incomplete. The old whole-body envelope is rejected.",
+      "evidence_reference": "twins/964-chassis/monocoque/shape-review-20261029/README.md"
+    },
+    {
+      "id": "M4",
+      "title": "Target and load specification",
+      "state": "open",
+      "required_exit_evidence": "Filled requirements for mass, torsion/bending, interface loads, dynamic/braking/kerb/restraint cases, fatigue, buckling, thermal/environmental limits and review acceptance.",
+      "current_observation": "1200 kg is a vehicle target, not a complete load specification or shell mass. Target/load/allowable gaps remain.",
+      "evidence_reference": "docs/MONOCOQUE_964_993_PROGRAMME.md"
+    },
+    {
+      "id": "M5",
+      "title": "Central-cell architecture, laminate and structural simulation",
+      "state": "missing",
+      "required_exit_evidence": "Admitted cell geometry; measured/material-source laminate/core/adhesive/insert properties; load paths; torsion, bending, local joint, buckling/fatigue and agreed crash/restraint analyses with convergence and review.",
+      "current_observation": "No accepted replacement-cell geometry or composite qualification. Historical isotropic/exploratory results do not transfer.",
+      "evidence_reference": "twins/964-chassis/interface-exploitation-20261030/contract.json"
+    },
+    {
+      "id": "M6",
+      "title": "Mould and manufacturing-process simulation",
+      "state": "missing",
+      "required_exit_evidence": "Reviewed tooling splits/demoulding/access, layup/drape, cure/resin/thermal inputs, defects/porosity assumptions, shrinkage/residual-stress studies, machining/inspection and coupon process evidence.",
+      "current_observation": "Material/process inputs and admitted part/mould geometry are not supplied; no completed manufacturing simulation.",
+      "evidence_reference": "docs/MONOCOQUE_964_993_PROGRAMME.md"
+    },
+    {
+      "id": "M7",
+      "title": "Independent engineering review and physical validation plan",
+      "state": "missing",
+      "required_exit_evidence": "Documented professional review of geometry, loads, composite joints/material/process and a correlation/qualification plan before functional release.",
+      "current_observation": "Software evidence cannot grant structural/road/circuit approval.",
+      "evidence_reference": "SAFETY.md"
+    },
+    {
+      "id": "O1",
+      "title": "Traceable final OpenUSD package",
+      "state": "open",
+      "required_exit_evidence": "Exact geometry-to-USD correspondence, units/axes, resolved dependencies, component/variant identity, linked admitted physics/material/results and validators on the final revision.",
+      "current_observation": "Observed-underbody workspace exists; historical product scene remains rejected. Linux CPU preflight and synthetic metadata witness pass. Historical stage has 8 AssetValidator failures/6 warnings and 8 generic SimReady requirement failures; final cell and acceptance profile remain open. A later host-cache/default-Foundation loss was observed; fresh private Foundation recovery at its exact revision and Docker witness/profile replay succeeded. The separate host Python remains unavailable.",
+      "evidence_reference": "twins/964-chassis/contact-registration-20261106/runtime-receipt.json"
+    },
+    {
+      "id": "O2",
+      "title": "Native Omniverse application verification",
+      "state": "missing",
+      "required_exit_evidence": "NVIDIA runtime execution of the admitted package; complete framing/interior inspection, component selection, save/reopen, reconnect, source-hash preservation and native logs.",
+      "current_observation": "Linux CPU validation executes in Mac Docker. Mac renderer lacks ovrtx; cached Linux Kit cannot execute on arm64; Kali1 has Intel GPU. Existing Vast inventory does not establish an assigned 964 review host. No new native render or Kit run.",
+      "evidence_reference": "twins/964-chassis/monocoque/omniverse/kit-review.md"
+    },
+    {
+      "id": "O3",
+      "title": "English dossier and genuine capture/media delivery",
+      "state": "open",
+      "required_exit_evidence": "English requirements/evidence/gaps; current native screenshots and render stills/video with camera/frame/runtime metadata and visual inspection. Actual photographs need an actual photographed source/part and rights.",
+      "current_observation": "English source work and current diagnostic plots exist. Historical rejected-envelope renders do not fulfil final-cell media; no fabricated photographs.",
+      "evidence_reference": "twins/964-chassis/contact-registration-20261106/README.md"
+    }
+  ],
+  "current_actions": [
+    "Reject only the incompatible fixed 23-contour subset; preserve all 1521 original boundary component ID sets and observed topology.",
+    "Inspect complete original underbody context for independently identifiable contacts; do not use crop boundaries, width-only matching or mirrored observations.",
+    "Resolve source contact planes, hidden tunnel/upper-cell coverage and uncertainty through available reference data; keep provider responses pending and Autorobot draft unsent.",
+    "Keep the tested Linux CPU validator lane for the eventual admitted USD package; rerun validators and native RTX/Kit review on that revision with a justified automotive profile."
+  ],
+  "current_goal_turn": "progress: fixed candidate subset rejected reproducibly; real Linux CPU validators executed; full engineering objective remains open",
+  "provider_status": {
+    "TetraVision": "Approved enquiry previously sent; no reply observed in the narrowly checked thread and sender search.",
+    "Autorobot": "Owner declined sending on 2026-11-06; retain autorobot-request.md as an unsent draft."
+  }
+}
