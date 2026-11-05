@@ -1,0 +1,81 @@
+{
+  "schema": "capture-protocol-scan-trial-thresholds-v1",
+  "trial_id": "CPT-SCAN-935-XTREME-20261105",
+  "protocol": "docs/CAPTURE_PROTOCOL.md section 7, proposals P5 and P6",
+  "committed_before_results": true,
+  "note": "This file is committed alone, before the measurement script is run on the scan. Only the scan's envelope, already published in docs/research/wolfe-classics-935-billet-cylinder-head-scan.md, was known when it was written. The private geometry-bearing diagnostics of the 2026-10-29 studies were not consulted.",
+  "scan": {
+    "scan_id": "SCAN-935-XTREME-CYLINDER-HEAD",
+    "source_id": "SRC-WOLFE-CLASSICS-935-BILLET-CYLINDER-HEAD-SCAN",
+    "sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+    "bytes": 104598077,
+    "rights": "open-reuse-user-confirmed (catalog/scans/scan-935-xtreme-cylinder-head.json); the raw OBJ stays outside Git",
+    "unit": "1 OBJ unit = 1 mm, owner-confirmed project input (docs/research/935-scan-engineering-20261029.md); not physically calibrated"
+  },
+  "reference": {
+    "kind": "documented_specification",
+    "source": "Xtreme Cylinder Heads catalogue pages, transcribed in docs/research/935-faithful-replica-20261028/README.md, table 'Manufacturer catalogue data'",
+    "evidence": "manufacturer catalogue ranges for four head families; the scanned specimen's family is not identified, so the union of the four families is the reference",
+    "not_used": [
+      "Retro Sport head 930 104 048 01, height 84.20-84.21 mm: a different head, cannot calibrate this scan",
+      "993 bore 100 mm: a different engine"
+    ]
+  },
+  "registration": {
+    "dimensions": [],
+    "reason": "no documented dimension of this specimen exists to register on; the scale is the owner's declared 1 unit = 1 mm and is not adjusted. This departs from P5 step 3 and is recorded as such."
+  },
+  "checks": [
+    {
+      "id": "C1",
+      "feature": "intake port opening at its flange face",
+      "measurand": "equivalent diameter sqrt(4A/pi) of the opening's closed section in the flange plane, A from the section polygon; a least-squares circle diameter is reported beside it",
+      "reference_range_mm": [35.0, 47.0],
+      "reference_basis": "published intake-port size, union of the four families (35-42, 35-44, 40-47, 40-47)",
+      "threshold_T_mm": 0.5,
+      "pass_rule": "35.0 - T <= value <= 47.0 + T for every intake port found",
+      "failure_means": "the scan, its declared unit or the family attribution contradicts the catalogue; recorded as a contradiction, not corrected"
+    },
+    {
+      "id": "C2",
+      "feature": "exhaust port opening at its flange face",
+      "measurand": "as C1",
+      "reference_range_mm": [35.0, 41.5],
+      "reference_basis": "published exhaust-port size, union of the four families (35-39, 35-41, 36-41.5, 36-41.5)",
+      "threshold_T_mm": 0.5,
+      "pass_rule": "35.0 - T <= value <= 41.5 + T for every exhaust port found",
+      "failure_means": "as C1"
+    },
+    {
+      "id": "C3",
+      "feature": "spark-plug bore",
+      "measurand": "least-squares circle diameter of the bore in a section normal to its axis, at least 3 mm below its opening",
+      "reference_range_mm": [10.647, 14.0],
+      "reference_basis": "published spark-plug size 12 or 14 mm, read as M12x1.25 or M14x1.25 threads: a scanned threaded bore lies between the minor diameter of M12x1.25 (10.647 mm) and the major diameter of M14x1.25 (14.0 mm); the thread pitch is the repository's reading, not the catalogue's",
+      "threshold_T_mm": 0.5,
+      "pass_rule": "10.647 - T <= value <= 14.0 + T",
+      "failure_means": "as C1"
+    },
+    {
+      "id": "C4",
+      "feature": "valve-guide bore",
+      "measurand": "least-squares circle diameter in a section normal to the guide axis",
+      "reference_range_mm": [8.0, 8.0],
+      "reference_basis": "published 8 mm intake and exhaust stems; a guide bore is at least the stem diameter, the running clearance is not published",
+      "threshold_T_mm": 0.5,
+      "pass_rule": "8.0 - T <= value <= 8.0 + T",
+      "failure_means": "as C1"
+    }
+  ],
+  "outcomes": {
+    "pass": "every instance of the feature found meets the pass rule",
+    "fail": "at least one instance found violates the pass rule",
+    "not_observable": "the scan holds no closed section of the feature that the stated method can identify; this is a result, not a pass"
+  },
+  "fixed_rules": [
+    "No rescaling, re-registration or dropped check after results are seen.",
+    "Every instance found is reported, with its section plane.",
+    "Feature identification (which opening is intake, exhaust, plug or guide) is done by geometry and written down with its reasoning; it may use views of the scan made after this commit, and that is stated in the results.",
+    "A pass shows the scan agrees with a manufacturer range at T; it is not a calibration, an accuracy statement or a measurement of the specimen."
+  ]
+}
