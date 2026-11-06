@@ -1,0 +1,350 @@
+{
+  "schema_version": "1.0.0",
+  "reviewed_on": "2026-11-06",
+  "classification": "source_context_and_topological_incidence_not_body_registration",
+  "previous_goal_turn": "progress: PR520 merged, fixed candidate subset rejected and CPU USD validators exercised",
+  "source_diagram": {
+    "member": "Mi/Coupe/Mi3.pdf",
+    "member_sha256": "9986c8e5db0827328f4fe38ed9b2655dc6bc1f6253ce55c071c7266b7ddfab1c",
+    "page": 1,
+    "figure": "Fig 1 Complete Underbody",
+    "legend_explicitly_names_jacking_receptacle": false,
+    "graphical_constraints": [
+      {
+        "point": "F",
+        "observed": "The F projection/diagonal endpoints converge on the open-circle contact at the outboard front corner of the broad cabin/floor region, where the narrower front structure joins the side outline. The combined 1330 span terminates at that pair.",
+        "distinct_nearby_feature": "A small rectangular box with dark centre is drawn just inboard and rearward of each F corner. It is not the endpoint selected by the F open-circle mark.",
+        "meaning_limit": "This locates the nominal point within a schematic; it does not prove a particular photographed front jacking receptacle is F or establish the exact sheet layer/mouth plane."
+      },
+      {
+        "point": "G",
+        "observed": "The G projection/diagonal endpoints converge on the open-circle contact at the outboard rear corner of the broad cabin/floor region, at the forward end of the narrowing rear structure. The 1236 pair span terminates at these corner contacts.",
+        "distinct_nearby_feature": "A visibly larger elongated oval is drawn within the adjacent rear rail/pod, inboard and rearward from the G mark. It is graphically separate from G.",
+        "meaning_limit": "Do not interpret artist-drawn symbol size as metrology. This excludes conflating those two drawn symbols, not a specific physical hole in a photograph."
+      }
+    ],
+    "F_or_G_to_axle_station": null,
+    "contact_mouth_plane": null,
+    "raw_crops_committed": false
+  },
+  "reference_photos": [
+    {
+      "url": "https://www.pff.de/thread/2817956-porsche-964-wagenheberaufnahme-vorne/?postID=155922679#post155922679",
+      "date_and_post": "post 1, 5 May 2023",
+      "variant_evidence": "Thread is explicitly Porsche 964. Owner calls this the front left jacking receptacle. Year and C2/C4 not supplied by this poster.",
+      "photo_sha256": "99991fa65f053927901a1e7270ad0f33319b68103371641ce25950258992423f",
+      "publication_rights": "No explicit reuse permission observed; private reference only."
+    },
+    {
+      "url": "https://forums.pelicanparts.com/porsche-964-993-technical-forum/983241-964-revival-after-15-years-storage-5.html",
+      "date_and_post": "post 95, 28 August 2018",
+      "variant_evidence": "Author signature states 1993 964 C2; user-reported, not independently authenticated.",
+      "photo_sha256": "db965e55d563a1ed2a14544d1e9f230cf15c967ac5ea85b5b8a482d66a7c646b",
+      "publication_rights": "No explicit reuse permission observed; private reference only."
+    }
+  ],
+  "private_source_review_sha256": "7706025cf6bbdabf071c3f852769053b866d74ec4c9a09f7a5027c281b987db7",
+  "support_review_sha256": "a05666ff015503503665b312674fa2cf2be6536cee5b45c64a3efb85c4a07f47",
+  "support_inference": {
+    "observed": "Four protruding arm-like regions and layered disc/stem-like surfaces near broad sill windows.",
+    "inferred": "Consistent with external workshop lift/support hardware; no acquisition record identifies it conclusively.",
+    "unobserved": "Upper contact interfaces and any hidden body rims.",
+    "specific_FG_aperture_occlusion_confirmed": false,
+    "historical_circle_fit_labels_are_not_authentication": true
+  },
+  "topology_audit": {
+    "classification": "original_boundary_surface_incidence_recomputation",
+    "inputs": {
+      "vertices": {
+        "sha256": "201787314680bcd60fb5f9b8910e28b0025d60c380dc77fa458a41bb17942bc9"
+      },
+      "faces": {
+        "sha256": "271c4f04717be91babfebeb809de485c940dc909ec981acd857693969563b484"
+      },
+      "face_components": {
+        "sha256": "c1e1447a3a539ab22dbb8b538c4c2c04181e64d6fec708b52969ef2ad070508b"
+      },
+      "source_open_edges": {
+        "sha256": "22fa12246c7bce2f092d370d77208f317761a74af4b525eeb75afcf11d4618c2"
+      },
+      "boundary_components": {
+        "sha256": "4803252b5e4580c6e320e2f61231c53aa18a2750415f96a9305d7db5728d859a"
+      }
+    },
+    "surface_components": {
+      "3": {
+        "source_vertices": 2990,
+        "source_faces": 5744,
+        "source_unique_edges": 8733,
+        "source_boundary_edges": 234,
+        "source_nonmanifold_edges": 0,
+        "euler_characteristic_V_minus_E_plus_F": 1,
+        "original_boundary_cycles": [
+          {
+            "boundary_component_id": 1223,
+            "source_vertices": 234,
+            "source_open_edges": 234
+          }
+        ],
+        "observation": "sole observed boundary of a disconnected source surface component",
+        "physical_rim_vs_acquisition_gap": "unresolved",
+        "inner_aperture_in_surrounding_plate_identified": false
+      },
+      "70": {
+        "source_vertices": 1367,
+        "source_faces": 2574,
+        "source_unique_edges": 3941,
+        "source_boundary_edges": 160,
+        "source_nonmanifold_edges": 0,
+        "euler_characteristic_V_minus_E_plus_F": 0,
+        "original_boundary_cycles": [
+          {
+            "boundary_component_id": 1414,
+            "source_vertices": 138,
+            "source_open_edges": 138
+          },
+          {
+            "boundary_component_id": 1415,
+            "source_vertices": 22,
+            "source_open_edges": 22
+          }
+        ],
+        "observation": "multiple observed boundaries of one source surface component",
+        "physical_rim_vs_acquisition_gap": "unresolved",
+        "inner_aperture_in_surrounding_plate_identified": false
+      },
+      "14": {
+        "source_vertices": 7665,
+        "source_faces": 14881,
+        "source_unique_edges": 22546,
+        "source_boundary_edges": 449,
+        "source_nonmanifold_edges": 0,
+        "euler_characteristic_V_minus_E_plus_F": 0,
+        "original_boundary_cycles": [
+          {
+            "boundary_component_id": 1334,
+            "source_vertices": 32,
+            "source_open_edges": 32
+          },
+          {
+            "boundary_component_id": 1335,
+            "source_vertices": 417,
+            "source_open_edges": 417
+          }
+        ],
+        "observation": "multiple observed boundaries of one source surface component",
+        "physical_rim_vs_acquisition_gap": "unresolved",
+        "inner_aperture_in_surrounding_plate_identified": false
+      },
+      "85": {
+        "source_vertices": 2290,
+        "source_faces": 4376,
+        "source_unique_edges": 6665,
+        "source_boundary_edges": 202,
+        "source_nonmanifold_edges": 0,
+        "euler_characteristic_V_minus_E_plus_F": 1,
+        "original_boundary_cycles": [
+          {
+            "boundary_component_id": 1431,
+            "source_vertices": 202,
+            "source_open_edges": 202
+          }
+        ],
+        "observation": "sole observed boundary of a disconnected source surface component",
+        "physical_rim_vs_acquisition_gap": "unresolved",
+        "inner_aperture_in_surrounding_plate_identified": false
+      },
+      "13": {
+        "source_vertices": 22315,
+        "source_faces": 43527,
+        "source_unique_edges": 65844,
+        "source_boundary_edges": 1107,
+        "source_nonmanifold_edges": 0,
+        "euler_characteristic_V_minus_E_plus_F": -2,
+        "original_boundary_cycles": [
+          {
+            "boundary_component_id": 1330,
+            "source_vertices": 86,
+            "source_open_edges": 86
+          },
+          {
+            "boundary_component_id": 1331,
+            "source_vertices": 964,
+            "source_open_edges": 964
+          },
+          {
+            "boundary_component_id": 1332,
+            "source_vertices": 8,
+            "source_open_edges": 8
+          },
+          {
+            "boundary_component_id": 1333,
+            "source_vertices": 49,
+            "source_open_edges": 49
+          }
+        ],
+        "observation": "multiple observed boundaries of one source surface component",
+        "physical_rim_vs_acquisition_gap": "unresolved",
+        "inner_aperture_in_surrounding_plate_identified": false
+      },
+      "30": {
+        "source_vertices": 4171,
+        "source_faces": 8061,
+        "source_unique_edges": 12233,
+        "source_boundary_edges": 283,
+        "source_nonmanifold_edges": 0,
+        "euler_characteristic_V_minus_E_plus_F": -1,
+        "original_boundary_cycles": [
+          {
+            "boundary_component_id": 1358,
+            "source_vertices": 95,
+            "source_open_edges": 95
+          },
+          {
+            "boundary_component_id": 1359,
+            "source_vertices": 180,
+            "source_open_edges": 180
+          },
+          {
+            "boundary_component_id": 1360,
+            "source_vertices": 8,
+            "source_open_edges": 8
+          }
+        ],
+        "observation": "multiple observed boundaries of one source surface component",
+        "physical_rim_vs_acquisition_gap": "unresolved",
+        "inner_aperture_in_surrounding_plate_identified": false
+      },
+      "10": {
+        "source_vertices": 20436,
+        "source_faces": 40038,
+        "source_unique_edges": 60482,
+        "source_boundary_edges": 850,
+        "source_nonmanifold_edges": 0,
+        "euler_characteristic_V_minus_E_plus_F": -8,
+        "original_boundary_cycles": [
+          {
+            "boundary_component_id": 1318,
+            "source_vertices": 723,
+            "source_open_edges": 723
+          },
+          {
+            "boundary_component_id": 1319,
+            "source_vertices": 7,
+            "source_open_edges": 7
+          },
+          {
+            "boundary_component_id": 1320,
+            "source_vertices": 15,
+            "source_open_edges": 15
+          },
+          {
+            "boundary_component_id": 1321,
+            "source_vertices": 34,
+            "source_open_edges": 34
+          },
+          {
+            "boundary_component_id": 1322,
+            "source_vertices": 11,
+            "source_open_edges": 11
+          },
+          {
+            "boundary_component_id": 1323,
+            "source_vertices": 12,
+            "source_open_edges": 12
+          },
+          {
+            "boundary_component_id": 1324,
+            "source_vertices": 6,
+            "source_open_edges": 6
+          },
+          {
+            "boundary_component_id": 1325,
+            "source_vertices": 17,
+            "source_open_edges": 17
+          },
+          {
+            "boundary_component_id": 1326,
+            "source_vertices": 13,
+            "source_open_edges": 13
+          },
+          {
+            "boundary_component_id": 1327,
+            "source_vertices": 12,
+            "source_open_edges": 12
+          }
+        ],
+        "observation": "multiple observed boundaries of one source surface component",
+        "physical_rim_vs_acquisition_gap": "unresolved",
+        "inner_aperture_in_surrounding_plate_identified": false
+      },
+      "61": {
+        "source_vertices": 275,
+        "source_faces": 497,
+        "source_unique_edges": 772,
+        "source_boundary_edges": 53,
+        "source_nonmanifold_edges": 0,
+        "euler_characteristic_V_minus_E_plus_F": 0,
+        "original_boundary_cycles": [
+          {
+            "boundary_component_id": 1400,
+            "source_vertices": 47,
+            "source_open_edges": 47
+          },
+          {
+            "boundary_component_id": 1401,
+            "source_vertices": 6,
+            "source_open_edges": 6
+          }
+        ],
+        "observation": "multiple observed boundaries of one source surface component",
+        "physical_rim_vs_acquisition_gap": "unresolved",
+        "inner_aperture_in_surrounding_plate_identified": false
+      }
+    },
+    "vertex_links_checked": false,
+    "orientability_checked": false,
+    "genus_or_disk_classification_admitted": false,
+    "physical_identity_established": false,
+    "geometry_modified": false,
+    "new_correspondences": 0,
+    "artifact_sha256": {
+      "component_13.npz": "f58c7201158a71abfed0b8df53bd7731433114262c4b5685fcd01b998765e58f",
+      "component_10.npz": "ee8ba303d60c20a46401ff9a9797dc73663c045eb317bb694cc05f55200f6ccd",
+      "component_14.npz": "f99d97c65bf73e34a8780a27a9f3e576f36aa980fb8ecc1df30dfe91fe254eb3",
+      "component_70.npz": "05d43e7abba87751c639c8a1b1545e405ea3d566dcb81dfba5ef2140c86a19d0",
+      "component_3.npz": "e58474fd7da56732b7752a248fe66e7500e00f315aa83ac4258e246f41de12ec",
+      "component_61.npz": "bc7a9434d2d028d0193db1f2e1ff1350e1337a15a1e6f7ebb7dc0c56c013d8bd",
+      "component_85.npz": "e62750c5faa69aa88f39e0e9f446d570930c736aa85b577aa0184043e9bc26b3",
+      "component_30.npz": "1be18fe749838d1996f82b0d8fb4a03a6fef417c4948dc92f4f882e76fa95a02"
+    },
+    "author_sha256": "39ed1a9a184cec294c8a8b49c4d7ef8773bddec3269b615ac8406485bc01941e",
+    "inputs_unchanged_after_run": true
+  },
+  "private_audit_sha256": "0457d06d3fac89e04b2e6072dbedc5e47056d7321445c58063edf8171889e12c",
+  "admission": {
+    "new_dimensions": 0,
+    "new_physical_contacts": 0,
+    "donor_transform": null,
+    "geometry_modified": false,
+    "native_omniverse_run": false,
+    "digital_twin_validated": false,
+    "manufacturing_authorized": false
+  },
+  "next_required_evidence": "Independently labelled point detail/probe/photo and original visible rim/contact plane with configuration, layers and uncertainty. No hidden-surface reconstruction from support geometry.",
+  "independent_topology_verification": {
+    "method": "Python Counter of sorted original triangle-edge pairs; no import or call of author implementation",
+    "script_sha256": "1daf10aa557b287b87252fed957d90583d5f189c73048699054bd3fb3dfc8cb0",
+    "reviewed_author_sha256": "39ed1a9a184cec294c8a8b49c4d7ef8773bddec3269b615ac8406485bc01941e",
+    "source_report_sha256": "6d8dbe71315c3bfa650dcff95d413e74b1310a5f59990db95dc411e3cc2c3ea9",
+    "source_components_verified": 8,
+    "passed": true,
+    "inputs_and_artifacts_unchanged_after_run": true,
+    "scope_limits": [
+      "Source labels are a pinned upstream edge-component partition, not recomputed by this verifier.",
+      "Source coordinates are hash-checked but not used for any physical classification.",
+      "No vertex-link, orientability, genus, disk or physical-part classification is made.",
+      "No donor contact, hidden rim or registration is admitted."
+    ]
+  }
+}
