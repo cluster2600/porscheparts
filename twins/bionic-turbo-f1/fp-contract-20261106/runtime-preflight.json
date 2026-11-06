@@ -1,0 +1,155 @@
+{
+  "schema": "turbo-fp-runtime-preflight/v1",
+  "status": "runtime_identified_arithmetic_qualification_blocked",
+  "image": "docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+  "help_readback": {
+    "version": "OpenFOAM-2406 (2406)",
+    "build": "_be01ca78-20240625",
+    "arch": "LSB;label=32;scalar=64",
+    "exit": 0
+  },
+  "configured_not_proven_build_options": {
+    "WM_PRECISION_OPTION": "DP",
+    "WM_COMPILER": "Gcc",
+    "WM_COMPILE_OPTION": "Opt",
+    "WM_OPTIONS": "linuxARM64GccDPInt32Opt"
+  },
+  "packages": {
+    "openfoam2406:arm64": "2406.0-1",
+    "libc6:arm64": "2.39-0ubuntu8.2",
+    "libstdc++6:arm64": "14-20240412-0ubuntu1"
+  },
+  "resolved_library_sha256": [
+    {
+      "path": "/usr/lib/openfoam/openfoam2406/platforms/linuxARM64GccDPInt32Opt/lib/libfiniteVolume.so",
+      "sha256": "9c6898f1ad6495a16f3be975856933ac742aa07ca14b5b3b0d131cd5c59079a2"
+    },
+    {
+      "path": "/usr/lib/openfoam/openfoam2406/platforms/linuxARM64GccDPInt32Opt/lib/libfileFormats.so",
+      "sha256": "31000aedb3356626279a2b411054e304933f3e765fb96e61aa523a4fe1c33583"
+    },
+    {
+      "path": "/usr/lib/openfoam/openfoam2406/platforms/linuxARM64GccDPInt32Opt/lib/libsurfMesh.so",
+      "sha256": "180accfb9834d04611f6edcdebeddeeb9a7ba41468822cf778403023f9c13138"
+    },
+    {
+      "path": "/usr/lib/openfoam/openfoam2406/platforms/linuxARM64GccDPInt32Opt/lib/libmeshTools.so",
+      "sha256": "34da7ef5f1f67f342b0e6dadf8566f13457cea44aa9963e4d0b33891066c34b5"
+    },
+    {
+      "path": "/usr/lib/openfoam/openfoam2406/platforms/linuxARM64GccDPInt32Opt/lib/libdynamicMesh.so",
+      "sha256": "136db5999fc7a752d97a9f53cf3ae3b09a552fcf114a3b00b3bbbbaf58a89d51"
+    },
+    {
+      "path": "/usr/lib/openfoam/openfoam2406/platforms/linuxARM64GccDPInt32Opt/lib/libOpenFOAM.so",
+      "sha256": "ea0573d6ddc52e09a969905bb697fd9f7f128c84ac51b2e8f6d390d559c9e234"
+    },
+    {
+      "path": "/lib/aarch64-linux-gnu/libstdc++.so.6",
+      "sha256": "859f91df8be46cdf236694ea740ff20cf194b2e7f186a3c130b56684f14c8cad"
+    },
+    {
+      "path": "/lib/aarch64-linux-gnu/libm.so.6",
+      "sha256": "c4743c983ae3862ab534dc34eb470d0e9b7ea2d727046a3270de30156e67da86"
+    },
+    {
+      "path": "/lib/aarch64-linux-gnu/libgcc_s.so.1",
+      "sha256": "2a417ca4e1da148b874d510c5356c2652eb934dd761a138454aefbeb61539fa2"
+    },
+    {
+      "path": "/lib/aarch64-linux-gnu/libc.so.6",
+      "sha256": "b4a89e2f8fcca8e944040f6388ab764cc70e4852392a21db3646b1c8a124416a"
+    },
+    {
+      "path": "/usr/lib/openfoam/openfoam2406/platforms/linuxARM64GccDPInt32Opt/lib/sys-openmpi/libPstream.so",
+      "sha256": "28e1116ee095a9858cf6cb11faad24cdfc0cd860386316d322e7e4b01ba103f2"
+    },
+    {
+      "path": "/usr/lib/openfoam/openfoam2406/platforms/linuxARM64GccDPInt32Opt/lib/libextrudeModel.so",
+      "sha256": "5237c527d669ac4d567dfbd61345c00eb42e356b76b9083a7e014f94e6db6eff"
+    },
+    {
+      "path": "/lib/aarch64-linux-gnu/libz.so.1",
+      "sha256": "cbcccb63e15b5028e939b41550fb954d0e0bb55f27d3620e5b28296acdc510a0"
+    },
+    {
+      "path": "/lib/aarch64-linux-gnu/libmpi.so.40",
+      "sha256": "981c4526cd9184063cb3e8b246f6893dbbe79e4cd8326f06227d1055493de292"
+    },
+    {
+      "path": "/usr/lib/openfoam/openfoam2406/platforms/linuxARM64GccDPInt32Opt/lib/libblockMesh.so",
+      "sha256": "b03ec4b4f95b3146077e875c160f5a06390f87fac73f61bb4d0ab69924279b1e"
+    },
+    {
+      "path": "/lib/aarch64-linux-gnu/libopen-rte.so.40",
+      "sha256": "56b095bad147da72cb51b305d5cdf25857142ea098940ee99976d5425f380a83"
+    },
+    {
+      "path": "/lib/aarch64-linux-gnu/libopen-pal.so.40",
+      "sha256": "0d73f5bcf55d61092c4403b7e2a39f2ca34396086178605029300dd041f7c591"
+    },
+    {
+      "path": "/lib/aarch64-linux-gnu/libhwloc.so.15",
+      "sha256": "43db4b0fdcb5052559c3c478ac6435e402679f2c54c77eb9080da5f458726450"
+    },
+    {
+      "path": "/lib/aarch64-linux-gnu/libevent_core-2.1.so.7",
+      "sha256": "757cef95d970d54880091993f2e2ca80692a3cb817fa886dd526ca8b2903b5a1"
+    },
+    {
+      "path": "/lib/aarch64-linux-gnu/libevent_pthreads-2.1.so.7",
+      "sha256": "29c582df069719194f683297877e42ef1d3607f5d5f1a809978ccb5ad47c66b0"
+    },
+    {
+      "path": "/lib/aarch64-linux-gnu/libudev.so.1",
+      "sha256": "580e79a1eb941ef8a96f2ddd67aab329d2f129782d5306a5cc0b142dfed7bb4e"
+    },
+    {
+      "path": "/lib/aarch64-linux-gnu/libcap.so.2",
+      "sha256": "edd12e59f18be423a6628fabd78072ff8ab9241d5fa965cf9d873c184a661d68"
+    }
+  ],
+  "library_coverage": "Resolved shared objects from ldd; loader and vDSO not included in this list",
+  "compiler_executable_available": false,
+  "readelf_available": false,
+  "python_available": false,
+  "scalar_header_available": false,
+  "actual_compiler_flags": null,
+  "rounding_mode_observed": null,
+  "libm_error_bounds": null,
+  "attempts": [
+    {
+      "status": "docker_refused_invalid_digest_length",
+      "workload_started": false
+    },
+    {
+      "status": "help_failed_missing_libPstream_with_incomplete_manual_library_path",
+      "help_usable": false
+    },
+    {
+      "status": "help_passed_after_standard_image_bashrc",
+      "case_loaded": false
+    }
+  ],
+  "logs": [
+    {
+      "name": "turbo-fp-runtime-inspection.log",
+      "sha256": "f783bb91184801656a7f0910717edd6c063c82236630543764d1bdce5348faa6"
+    },
+    {
+      "name": "turbo-fp-runtime-help.log",
+      "sha256": "a879bcc256d9b41f44966e5c0d8e57a0658fd8aaaa39fd49052c5cf904dc0b88"
+    },
+    {
+      "name": "turbo-fp-runtime-help-v2.log",
+      "sha256": "bd9b1f82a004d1f25eb54f00048260be96c19cc411084bcf63cd94e98e4138e0"
+    },
+    {
+      "name": "turbo-fp-runtime-library-pins.log",
+      "sha256": "abd35e9c195073c1ff0596452b80f9891a7027d63a5b7733bcdd5a4e42bdb515"
+    }
+  ],
+  "geometry_or_solver_executed": false,
+  "engineering_gate_passed": false,
+  "manufacturing_authorized": false
+}
