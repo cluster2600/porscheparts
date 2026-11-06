@@ -85,9 +85,13 @@ class DashboardIntakeTests(unittest.TestCase):
         packet["capture_campaign_id"] = "SESSION-993-DASH-TEST"
         packet["target_scenario"]["model_year_observed"] = 1996
         packet["target_scenario"]["physical_vehicle_confirmed"] = True
-        packet["identity_evidence"]["E1_option_code_observed"] = "M564"
+        packet["identity_evidence"]["E1_identifiers_visible"] = False
+        packet["identity_evidence"]["E1_m_codes_observed"] = ["M564"]
+        packet["identity_evidence"]["E2_region_shown"] = True
         packet["identity_evidence"]["E2_passenger_module_present"] = False
+        packet["identity_evidence"]["E2_tear_line_present"] = False
         packet["identity_evidence"]["E2_passenger_flap_present"] = False
+        packet["identity_evidence"]["E5_personal_data_removed"] = True
         packet["contract"]["sha256"] = "0" * 64
         packet["contract"]["status"] = "frozen_for_intake"
         packet["review"]["verdict"] = "submitted_unreviewed"
@@ -151,6 +155,94 @@ class DashboardIntakeTests(unittest.TestCase):
         problems = intake.check_packet(path, intake.ROOT)
         self.assertTrue(any("fitted.jpg is not from host capture state" in problem for problem in problems), problems)
 
+    def test_vehicle_frame_requires_all_four_host_datums(self) -> None:
+        packet = self._submission()
+        self._add_asset(packet, "A-HOSTSCAN", "host.jpg", "host", redacted=True)
+        record = json.loads((intake.ROOT / "catalog/templates/measurement-record.json").read_text())
+        record["measurement_id"] = "MEAS-HOST-0001"
+        record["readings"] = []
+        for number in range(1, 5):
+            reading = copy.deepcopy(json.loads((intake.ROOT / "catalog/templates/measurement-record.json").read_text())["readings"][0])
+            reading["dimension_id"] = f"VF_H{number:02}"
+            record["readings"].append(reading)
+        record["evidence"]["files"] = ["host.jpg"]
+        raw = json.dumps(record).encode("utf-8")
+        (self.root / "frame-measurement.json").write_bytes(raw)
+        packet["measurement_records"].append({
+            "record_id": "MEAS-HOST-0001", "specimen_id": packet["specimen_id"],
+            "capture_state": "host", "relative_path": "frame-measurement.json",
+            "sha256": hashlib.sha256(raw).hexdigest(), "bytes": len(raw),
+            "dimension_ids": [], "interface_measurand_ids": [f"VF_H{number:02}" for number in range(1, 5)],
+            "calibration_asset_ids": [],
+        })
+        packet["vehicle_frame_reading_ids"] = [f"MEAS-HOST-0001:VF_H{number:02}" for number in range(1, 4)]
+        path = self.root / "private-packet.json"
+        path.write_text(json.dumps(packet), encoding="utf-8")
+        problems = intake.check_packet(path, intake.ROOT)
+        self.assertTrue(any("vehicle_frame_reading_ids: contract datum coverage differs" in problem and "VF_H04" in problem for problem in problems), problems)
+        packet["vehicle_frame_reading_ids"].append("MEAS-HOST-0001:VF_H04")
+        path.write_text(json.dumps(packet), encoding="utf-8")
+        problems = intake.check_packet(path, intake.ROOT)
+        self.assertFalse(any("vehicle_frame_reading_ids: contract datum coverage differs" in problem for problem in problems), problems)
+
+    def test_vehicle_frame_rejects_part_state_reading(self) -> None:
+        packet = self._submission()
+        self._add_asset(packet, "A-FITTED", "fitted.jpg", "fitted", redacted=True)
+        record = json.loads((intake.ROOT / "catalog/templates/measurement-record.json").read_text())
+        record["measurement_id"] = "MEAS-FITTED-0001"
+        record["readings"][0]["dimension_id"] = "VF_H01"
+        record["evidence"]["files"] = ["fitted.jpg"]
+        raw = json.dumps(record).encode("utf-8")
+        (self.root / "fitted-measurement.json").write_bytes(raw)
+        packet["measurement_records"].append({
+            "record_id": "MEAS-FITTED-0001", "specimen_id": packet["specimen_id"],
+            "capture_state": "fitted", "relative_path": "fitted-measurement.json",
+            "sha256": hashlib.sha256(raw).hexdigest(), "bytes": len(raw),
+            "dimension_ids": [], "interface_measurand_ids": ["VF_H01"],
+            "calibration_asset_ids": [],
+        })
+        packet["vehicle_frame_reading_ids"] = ["MEAS-FITTED-0001:VF_H01"]
+        path = self.root / "private-packet.json"
+        path.write_text(json.dumps(packet), encoding="utf-8")
+        problems = intake.check_packet(path, intake.ROOT)
+        self.assertTrue(any("vehicle_frame_reading_ids: missing or wrong-state host reading" in problem for problem in problems), problems)
+
+    def test_pet_preflight_refuses_hidden_tear_line_and_missing_region(self) -> None:
+        packet = self._submission()
+        packet["identity_evidence"]["E2_tear_line_present"] = True
+        packet["identity_evidence"]["E2_region_shown"] = False
+        path = self.root / "private-packet.json"
+        path.write_text(json.dumps(packet), encoding="utf-8")
+        problems = intake.check_packet(path, intake.ROOT)
+        self.assertTrue(any("PET E1–E5 preflight refused: E2: tear_line" in problem for problem in problems), problems)
+        self.assertTrue(any("PET E1–E5 preflight refused: E2: photographs do not show" in problem for problem in problems), problems)
+
+    def test_pet_preflight_requires_two_fitted_removed_marks_and_rights(self) -> None:
+        packet = self._submission()
+        packet["identity_evidence"]["E5_personal_data_removed"] = False
+        path = self.root / "private-packet.json"
+        path.write_text(json.dumps(packet), encoding="utf-8")
+        problems = intake.check_packet(path, intake.ROOT)
+        self.assertTrue(any("E4_linking_marks: at least two" in problem for problem in problems), problems)
+        self.assertTrue(any("PET E1–E5 preflight refused: E4: fewer than two marks" in problem for problem in problems), problems)
+        self.assertTrue(any("PET E1–E5 preflight refused: E5:" in problem for problem in problems), problems)
+
+    def test_linking_marks_need_distinct_ids_and_both_capture_states(self) -> None:
+        packet = self._submission()
+        self._add_asset(packet, "A-FITTED1", "fitted-one.jpg", "fitted", redacted=True)
+        self._add_asset(packet, "A-REMOVED1", "removed-one.jpg", "removed", redacted=True)
+        self._add_asset(packet, "A-FITTED2", "fitted-two.jpg", "fitted", redacted=True)
+        packet["identity_evidence"]["E4_linking_marks"] = [
+            {"mark_id": "MARK-ONE", "fitted_asset_id": "A-FITTED1", "removed_asset_id": "A-REMOVED1"},
+            {"mark_id": "MARK-ONE", "fitted_asset_id": "A-FITTED2", "removed_asset_id": "A-FITTED2"},
+        ]
+        path = self.root / "private-packet.json"
+        path.write_text(json.dumps(packet), encoding="utf-8")
+        problems = intake.check_packet(path, intake.ROOT)
+        self.assertTrue(any("mark_id: invalid or duplicate" in problem for problem in problems), problems)
+        self.assertTrue(any("removed_asset_id: must reference a removed capture" in problem for problem in problems), problems)
+        self.assertTrue(any("PET E1–E5 preflight refused: E4: fewer than two marks" in problem for problem in problems), problems)
+
     def test_contract_datum_mapping_is_reversible_and_complete(self) -> None:
         contract = json.loads((intake.ROOT / intake.CONTRACT).read_text())
         all_datums = [datum["id"] for interface in contract["interfaces"] for side in ("part_datums", "host_datums") for datum in interface[side]]
@@ -174,13 +266,14 @@ class DashboardIntakeTests(unittest.TestCase):
 
     def test_submission_rejects_variant_conflict_and_release_claim(self) -> None:
         packet = self._submission()
-        packet["identity_evidence"]["E1_option_code_observed"] = "M562"
+        packet["identity_evidence"]["E1_m_codes_observed"] = ["M564", "M562"]
         packet["identity_evidence"]["E2_passenger_module_present"] = True
         packet["claims"]["occupant_safety"] = True
         path = self.root / "private-packet.json"
         path.write_text(json.dumps(packet), encoding="utf-8")
         problems = intake.check_packet(path, self.root)
-        self.assertTrue(any("expected observed M564" in problem for problem in problems), problems)
+        self.assertTrue(any("M562 passenger airbag is out of scope" in problem for problem in problems), problems)
+        self.assertTrue(any("PET E1–E5 preflight refused: E1: M562" in problem for problem in problems), problems)
         self.assertTrue(any("passenger restraint configuration" in problem for problem in problems), problems)
         self.assertTrue(any("all claims must remain false" in problem for problem in problems), problems)
         self.assertTrue(any("not independently frozen" in problem or "cannot read JSON" in problem for problem in problems), problems)

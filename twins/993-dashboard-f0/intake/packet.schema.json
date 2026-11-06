@@ -5,7 +5,7 @@
   "description": "Structure only. Validation of this schema never grants specimen, interface, fit, safety or manufacturing approval.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "packet_kind", "status", "target_scenario", "specimen_id", "capture_campaign_id", "identity_evidence", "contract", "required_capture_states", "required_dimension_ids", "assets", "measurement_records", "interface_evidence", "review", "claims"],
+  "required": ["schema_version", "packet_kind", "status", "target_scenario", "specimen_id", "capture_campaign_id", "identity_evidence", "contract", "required_capture_states", "required_dimension_ids", "assets", "measurement_records", "vehicle_frame_reading_ids", "interface_evidence", "review", "claims"],
   "properties": {
     "$comment": {"type": "string"},
     "schema_version": {"const": "1.0.0"},
@@ -27,17 +27,22 @@
     "capture_campaign_id": {"type": ["string", "null"], "pattern": "^SESSION-993-DASH-[A-Z0-9]{4,16}$"},
     "identity_evidence": {
       "type": "object", "additionalProperties": false,
-      "required": ["E1_option_label_asset_id", "E1_option_code_observed", "E2_passenger_reverse_asset_id", "E2_passenger_module_present", "E2_passenger_flap_present", "E3_trim_label_asset_id", "E3_trim_part_number_observed", "E4_continuity_manifest_asset_id", "E5_rights_manifest_asset_id"],
+      "required": ["E1_option_label_asset_id", "E1_identifiers_visible", "E1_m_codes_observed", "E2_passenger_reverse_asset_id", "E2_region_shown", "E2_passenger_module_present", "E2_tear_line_present", "E2_passenger_flap_present", "E3_trim_label_asset_id", "E3_trim_part_number_observed", "E4_continuity_manifest_asset_id", "E4_linking_marks", "E5_rights_manifest_asset_id", "E5_personal_data_removed"],
       "properties": {
         "E1_option_label_asset_id": {"type": ["string", "null"]},
-        "E1_option_code_observed": {"type": ["string", "null"]},
+        "E1_identifiers_visible": {"type": ["boolean", "null"]},
+        "E1_m_codes_observed": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^M[0-9]{3}$"}},
         "E2_passenger_reverse_asset_id": {"type": ["string", "null"]},
+        "E2_region_shown": {"type": ["boolean", "null"]},
         "E2_passenger_module_present": {"type": ["boolean", "null"]},
+        "E2_tear_line_present": {"type": ["boolean", "null"]},
         "E2_passenger_flap_present": {"type": ["boolean", "null"]},
         "E3_trim_label_asset_id": {"type": ["string", "null"]},
         "E3_trim_part_number_observed": {"type": ["string", "null"]},
         "E4_continuity_manifest_asset_id": {"type": ["string", "null"]},
-        "E5_rights_manifest_asset_id": {"type": ["string", "null"]}
+        "E4_linking_marks": {"type": "array", "minItems": 0, "items": {"$ref": "#/$defs/linking_mark"}},
+        "E5_rights_manifest_asset_id": {"type": ["string", "null"]},
+        "E5_personal_data_removed": {"type": ["boolean", "null"]}
       }
     },
     "contract": {
@@ -53,6 +58,7 @@
     "required_dimension_ids": {"const": ["D01", "D02", "D03", "D04", "D05", "D06", "D07", "D08", "D09", "D10", "D11", "D12", "D13", "D14"]},
     "assets": {"type": "array", "items": {"$ref": "#/$defs/asset"}},
     "measurement_records": {"type": "array", "items": {"$ref": "#/$defs/measurement_record"}},
+    "vehicle_frame_reading_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^MEAS-[A-Z0-9._-]+:VF_H[0-9]{2}$"}},
     "interface_evidence": {"type": "array", "minItems": 13, "maxItems": 13, "items": {"$ref": "#/$defs/interface_evidence"}},
     "review": {
       "type": "object", "additionalProperties": false,
@@ -76,6 +82,15 @@
     }
   },
   "$defs": {
+    "linking_mark": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mark_id", "fitted_asset_id", "removed_asset_id"],
+      "properties": {
+        "mark_id": {"type": "string", "pattern": "^MARK-[A-Z0-9._-]{3,32}$"},
+        "fitted_asset_id": {"type": "string", "pattern": "^A-[A-Z0-9._-]{3,64}$"},
+        "removed_asset_id": {"type": "string", "pattern": "^A-[A-Z0-9._-]{3,64}$"}
+      }
+    },
     "asset": {
       "type": "object", "additionalProperties": false,
       "required": ["asset_id", "specimen_id", "kind", "capture_state", "relative_path", "sha256", "bytes", "creator_role", "licence", "inspection_permission", "publication_permission", "rights_proof_asset_id", "redacted"],
@@ -132,9 +147,17 @@
           "capture_campaign_id": {"const": null},
           "assets": {"maxItems": 0},
           "measurement_records": {"maxItems": 0},
+          "vehicle_frame_reading_ids": {"maxItems": 0},
+          "identity_evidence": {"properties": {"E1_m_codes_observed": {"maxItems": 0}, "E4_linking_marks": {"maxItems": 0}}},
           "target_scenario": {"properties": {"model_year_observed": {"const": null}, "physical_vehicle_confirmed": {"const": false}}},
           "contract": {"properties": {"sha256": {"const": null}, "status": {"const": "awaiting_frozen_independent_review"}}},
           "review": {"properties": {"verdict": {"const": "blocked_missing_external_evidence"}}}
+        }
+      },
+      "else": {
+        "properties": {
+          "vehicle_frame_reading_ids": {"minItems": 4},
+          "identity_evidence": {"properties": {"E1_m_codes_observed": {"minItems": 1}, "E4_linking_marks": {"minItems": 2}}}
         }
       }
     }
