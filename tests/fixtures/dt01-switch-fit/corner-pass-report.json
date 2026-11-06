@@ -1,0 +1,153 @@
+{
+  "schema_version": "1.1.0",
+  "twin_id": "TWIN-993-CABIN-DASH-SWITCH-0001",
+  "contract_id": "CONTRACT-993-DASH-SWITCH-FIT-0001",
+  "method": "worst_case_static_geometry",
+  "inputs": {
+    "measurement_id": "MEAS-SYNTHETIC-DT01-CORNER-PASS",
+    "measurement_sha256": "aad346fa8c768cf76853f2b809691748f546d4572923bcf6b8513ae506ef2213",
+    "evidence_level": "unrated"
+  },
+  "metrics": {
+    "horizontal_clearance": {
+      "rule": "linear_difference",
+      "basis": "total_across_both_sides",
+      "positive_dimension": "H01",
+      "negative_dimension": "D08",
+      "nominal_margin_mm": 1.0,
+      "combined_uncertainty_mm": 0.04,
+      "worst_case_margin_mm": 0.96,
+      "passed": true,
+      "limitations": [
+        "Total difference across both sides; the lateral position of the part is not modelled.",
+        "Uncertainties are treated as bounding half-widths and summed.",
+        "Straight sides only; corners are evaluated by corner_insertion_clearance."
+      ]
+    },
+    "vertical_clearance": {
+      "rule": "linear_difference",
+      "basis": "total_across_both_sides",
+      "positive_dimension": "H02",
+      "negative_dimension": "D09",
+      "nominal_margin_mm": 1.0,
+      "combined_uncertainty_mm": 0.04,
+      "worst_case_margin_mm": 0.96,
+      "passed": true,
+      "limitations": [
+        "Total difference across both sides; the lateral position of the part is not modelled.",
+        "Uncertainties are treated as bounding half-widths and summed.",
+        "Straight sides only; corners are evaluated by corner_insertion_clearance."
+      ]
+    },
+    "horizontal_overlap": {
+      "rule": "linear_difference",
+      "basis": "total_across_both_sides",
+      "positive_dimension": "D01",
+      "negative_dimension": "H01",
+      "nominal_margin_mm": 4.0,
+      "combined_uncertainty_mm": 0.04,
+      "worst_case_margin_mm": 3.96,
+      "passed": true,
+      "limitations": [
+        "Total difference across both sides; the lateral position of the part is not modelled.",
+        "Uncertainties are treated as bounding half-widths and summed.",
+        "Whether the face covers the opening corners is not evaluated."
+      ]
+    },
+    "vertical_overlap": {
+      "rule": "linear_difference",
+      "basis": "total_across_both_sides",
+      "positive_dimension": "D02",
+      "negative_dimension": "H02",
+      "nominal_margin_mm": 4.0,
+      "combined_uncertainty_mm": 0.04,
+      "worst_case_margin_mm": 3.96,
+      "passed": true,
+      "limitations": [
+        "Total difference across both sides; the lateral position of the part is not modelled.",
+        "Uncertainties are treated as bounding half-widths and summed.",
+        "Whether the face covers the opening corners is not evaluated."
+      ]
+    },
+    "clip_reach": {
+      "rule": "linear_difference",
+      "basis": "total_across_both_sides",
+      "positive_dimension": "D05",
+      "negative_dimension": "H03",
+      "nominal_margin_mm": 7.5,
+      "combined_uncertainty_mm": 0.04,
+      "worst_case_margin_mm": 7.46,
+      "passed": true,
+      "limitations": [
+        "Total difference across both sides; the lateral position of the part is not modelled.",
+        "Uncertainties are treated as bounding half-widths and summed.",
+        "Static length only: tab deflection, engagement and force are not evaluated."
+      ]
+    },
+    "rear_clearance": {
+      "rule": "linear_difference",
+      "basis": "total_across_both_sides",
+      "positive_dimension": "H05",
+      "negative_dimension": "D05",
+      "nominal_margin_mm": 10.0,
+      "combined_uncertainty_mm": 0.04,
+      "worst_case_margin_mm": 9.96,
+      "passed": true,
+      "limitations": [
+        "Total difference across both sides; the lateral position of the part is not modelled.",
+        "Uncertainties are treated as bounding half-widths and summed.",
+        "Static length only: wiring and parts behind the panel are not modelled."
+      ]
+    },
+    "corner_insertion_clearance": {
+      "rule": "rounded_rectangle_containment",
+      "basis": "per_side_centred",
+      "container": {
+        "width": "H01",
+        "height": "H02",
+        "corner_radius": "H04"
+      },
+      "contained": {
+        "width": "D08",
+        "height": "D09",
+        "corner_radius": "D10"
+      },
+      "nominal_margin_mm": 0.292893,
+      "nominal_governed_by": "corner",
+      "worst_case_inputs_mm": {
+        "D08": 39.02,
+        "D09": 23.02,
+        "D10": 1.75,
+        "H01": 39.98,
+        "H02": 23.98,
+        "H04": 3.25
+      },
+      "bounds_applied": [],
+      "uncertainty_effect_mm": 0.235391,
+      "worst_case_margin_mm": 0.057502,
+      "worst_case_governed_by": "corner",
+      "passed": true,
+      "limitations": [
+        "Per-side gap with the body centred, the best placement; a positive value does not guarantee the placement the clips impose.",
+        "Assumes circular-arc corners tangent to straight sides, H04 the largest opening corner and D10 the smallest body corner; the record cannot prove this, the photographs must.",
+        "Assumes H01, H02 and H04 share one section, D08, D09 and D10 share one section, and insertion along Z without tilt."
+      ]
+    }
+  },
+  "passed": true,
+  "passed_scope": "static geometric margins listed in metrics only",
+  "physical_fit_status": "not_established",
+  "not_evaluated": {
+    "clip_insertion_force": "No measured force-displacement data of the tabs and no elastic tab model; static margins do not predict it.",
+    "clip_retention_force": "No measured retention or extraction force.",
+    "face_corner_coverage": "The face overlap metrics are linear only.",
+    "insertion_path": "Tilted insertion, tab deflection and contact sequence are not modelled.",
+    "flush_with_neighbouring_trim": "Not measured in the plan.",
+    "physical_fit": "Only a fit in the real opening, compared with this report, can establish it."
+  },
+  "limitations": [
+    "A passed report is a digital check of static geometry, not a fit.",
+    "Clip insertion and retention force are outside the pass and need measured data and a separate model.",
+    "A physical fit test is still required."
+  ]
+}

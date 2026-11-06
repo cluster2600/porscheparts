@@ -1,0 +1,87 @@
+{
+  "$comment": "Independent interface contract of DT-01 (issue #505). It is written from the twin measurement plan, the part measurement plan and the twin record, not from the checker: tests/test_twin_fit.py checks source/check_fit.py against it. The frozen measurement plan in evidence/ is not edited; measurement-plan-addendum.md adds the part-side input D10 and makes H04 precise. No value in this file is a dimension of the part or of the car.",
+  "schema_version": "1.0.0",
+  "contract_id": "CONTRACT-993-DASH-SWITCH-FIT-0001",
+  "twin_id": "TWIN-993-CABIN-DASH-SWITCH-0001",
+  "candidate_part_id": "993-INT-SWITCH-BLANK-0001",
+  "revision": "2026-11-06",
+  "frame": "Twin local frame: origin at the centre of the visible face of the blank, X width, Y height, Z toward the interior, millimetres.",
+  "input_record": {
+    "record_kind": "physical_measurement",
+    "subject_part_id": "993-INT-SWITCH-BLANK-0001",
+    "must_pass": "scripts/validate_measurements.py",
+    "min_samples": 3,
+    "host_methods_forbidden": ["derived"],
+    "host_rule": "Every Hxx reading is taken on the empty opening. A host dimension deduced from the removed part is refused."
+  },
+  "dimensions": {
+    "D01": {"side": "part", "kind": "length", "methods": ["direct"], "description": "Overall width of the visible face", "source": "parts/993-int-switch-blank-0001/evidence/measurement-plan.md"},
+    "D02": {"side": "part", "kind": "length", "methods": ["direct"], "description": "Overall height of the visible face", "source": "parts/993-int-switch-blank-0001/evidence/measurement-plan.md"},
+    "D05": {"side": "part", "kind": "length", "methods": ["direct"], "description": "Clip tab length", "source": "parts/993-int-switch-blank-0001/evidence/measurement-plan.md"},
+    "D08": {"side": "part", "kind": "length", "methods": ["direct"], "description": "Width of the body that passes through the opening, clips excluded", "source": "twins/993-cabin-dashboard-switch-0001/evidence/measurement-plan.md"},
+    "D09": {"side": "part", "kind": "length", "methods": ["direct"], "description": "Height of the body that passes through the opening, clips excluded", "source": "twins/993-cabin-dashboard-switch-0001/evidence/measurement-plan.md"},
+    "D10": {"side": "part", "kind": "radius", "methods": ["gauge"], "bounded_by": ["D08", "D09"], "description": "Smallest outer corner radius, in plan view, of the four corners of the insertion body, in the section measured by D08 and D09", "source": "twins/993-cabin-dashboard-switch-0001/measurement-plan-addendum.md"},
+    "H01": {"side": "host", "kind": "length", "methods": ["direct"], "description": "Minimum opening width", "source": "twins/993-cabin-dashboard-switch-0001/evidence/measurement-plan.md"},
+    "H02": {"side": "host", "kind": "length", "methods": ["direct"], "description": "Minimum opening height", "source": "twins/993-cabin-dashboard-switch-0001/evidence/measurement-plan.md"},
+    "H03": {"side": "host", "kind": "length", "methods": ["direct"], "description": "Panel thickness at the clips", "source": "twins/993-cabin-dashboard-switch-0001/evidence/measurement-plan.md"},
+    "H04": {"side": "host", "kind": "radius", "methods": ["gauge"], "bounded_by": ["H01", "H02"], "description": "Largest inner corner radius, in plan view, of the four corners of the opening, in the section measured by H01 and H02", "source": "twins/993-cabin-dashboard-switch-0001/evidence/measurement-plan.md, made precise by measurement-plan-addendum.md"},
+    "H05": {"side": "host", "kind": "length", "methods": ["direct", "gauge"], "description": "Minimum free depth behind the panel", "source": "twins/993-cabin-dashboard-switch-0001/evidence/measurement-plan.md"}
+  },
+  "metrics": {
+    "horizontal_clearance": {"rule": "linear_difference", "positive": "H01", "negative": "D08", "interface_id": "IF_INSERTION"},
+    "vertical_clearance": {"rule": "linear_difference", "positive": "H02", "negative": "D09", "interface_id": "IF_INSERTION"},
+    "horizontal_overlap": {"rule": "linear_difference", "positive": "D01", "negative": "H01", "interface_id": "IF_FACE_OVERLAP"},
+    "vertical_overlap": {"rule": "linear_difference", "positive": "D02", "negative": "H02", "interface_id": "IF_FACE_OVERLAP"},
+    "clip_reach": {"rule": "linear_difference", "positive": "D05", "negative": "H03", "interface_id": "IF_CLIP_DEPTH"},
+    "rear_clearance": {"rule": "linear_difference", "positive": "H05", "negative": "D05", "interface_id": "IF_CLIP_DEPTH"},
+    "corner_insertion_clearance": {
+      "rule": "rounded_rectangle_containment",
+      "container": {"width": "H01", "height": "H02", "corner_radius": "H04"},
+      "contained": {"width": "D08", "height": "D09", "corner_radius": "D10"},
+      "interface_id": "IF_CORNER_INSERTION",
+      "definition": "Smallest gap, anywhere around its periphery, between the insertion body section and the opening section, with the body centred in the opening. Positive means the body section lies inside the opening section with that gap all round.",
+      "formula": "c_x = (H01 - D08) / 2; c_y = (H02 - D09) / 2; delta = H04 - D10; alpha = c_x - delta; beta = c_y - delta; margin = delta - hypot(alpha, beta) if alpha < 0 and beta < 0, else min(c_x, c_y)",
+      "derivation": "Both sections are rounded rectangles, a rectangle dilated by a disc. For convex sets, the largest uniform offset of the contained set that stays inside the container is the minimum over directions of the difference of their support functions. In the first quadrant that difference is alpha cos(t) + beta sin(t) + delta; its minimum over t in [0, pi/2] lies inside the interval only when alpha and beta are both negative. The centred position is the best placement, because the set of admissible translations is convex and symmetric about the centre: a negative centred margin means no lateral position avoids interference.",
+      "worst_case": "The margin does not decrease when H01, H02 or D10 grows, and does not increase when D08, D09 or H04 grows, for every direction. The worst case is therefore the corner of the uncertainty box H01 - u, H02 - u, D08 + u, D09 + u, H04 + u, D10 - u, with H04 capped at half the smaller worst-case opening side and D10 floored at zero. These are physical bounds, so the result stays an exact interval bound under the model.",
+      "acceptance": "worst_case_margin_mm > 0",
+      "basis": "per_side_centred",
+      "preconditions": [
+        "Every corner of the opening and of the insertion body is a circular arc tangent to both adjacent straight sides; a chamfered, notched or non-tangent corner is outside this rule.",
+        "The four opening corners were inspected and H04 records the largest; the four body corners were inspected and D10 records the smallest.",
+        "H01, H02 and H04 belong to the same, narrowest section through the panel; D08, D09 and D10 belong to the same section of the body that passes through it.",
+        "The body enters along Z without tilt; the sides of body and opening are parallel."
+      ]
+    }
+  },
+  "uncertainty": "Each reading's uncertainty is used as a bounding half-width, not a standard deviation. Linear metrics subtract the sum of both uncertainties; the corner metric uses the exact corner of the uncertainty box.",
+  "fail_closed": [
+    "absent required reading",
+    "duplicate dimension identifier",
+    "record that is not a physical_measurement, or whose subject is another part",
+    "record that fails scripts/validate_measurements.py",
+    "unit other than mm",
+    "value or uncertainty that is not a finite number, including NaN and infinity",
+    "uncertainty not greater than zero",
+    "fewer than three samples",
+    "method outside the dimension's supported methods, and any derived host reading",
+    "length whose lower bound, value minus uncertainty, is not positive",
+    "negative corner radius, or a corner radius greater than half the smaller side of its own feature"
+  ],
+  "not_evaluated": {
+    "clip_insertion_force": "Needs a measured force-displacement curve of the tab during insertion and a separate elastic model of the tab; no such data or model exists. A positive static margin says nothing about it.",
+    "clip_retention_force": "Needs a measured extraction or retention force; no such data exists.",
+    "face_corner_coverage": "Whether the visible face covers the opening corners is not evaluated; the overlap metrics are linear.",
+    "insertion_path": "Tilted insertion, tab deflection and contact sequence are not modelled.",
+    "flush_with_neighbouring_trim": "Not measured in the plan.",
+    "physical_fit": "Only a fit of a part in the real opening, compared with these predictions, can establish it."
+  },
+  "physical_evidence_gate": [
+    "A physical_measurement record for 993-INT-SWITCH-BLANK-0001 and its opening in catalog/measurements, passing scripts/validate_measurements.py, with D01, D02, D05, D08, D09, D10, H01, H02, H03, H04 and H05 in mm, three samples each, every instrument declared.",
+    "Host readings H01 to H05 taken on the empty opening, not deduced from the removed part.",
+    "The photographs listed by the twin measurement plan, plus one per corner of the opening and of the insertion body showing the radius gauge in contact, establishing the corner preconditions above.",
+    "The vehicle variant, model year and exact location of the opening, without the chassis number.",
+    "A versioned fit report produced by source/check_fit.py from that record; only then may an interface status leave missing_data.",
+    "For physically_correlated: a recorded fit of a part in the real opening compared with the report.",
+    "For any clip claim: measured insertion and retention forces and a separate model, outside this checker."
+  ]
+}
