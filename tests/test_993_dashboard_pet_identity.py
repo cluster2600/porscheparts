@@ -22,7 +22,7 @@ def row(identity, row_id):
 
 
 def complete_submission():
-    files = [{"path": "e1.jpg", "specimen_id": "SPEC-993-DASH-0001", "sha256": "0" * 64}]
+    files = [{"path": "e1.jpg", "specimen_id": "SPEC-993-DASH-0001", "sha256": "a" * 64}]
     return {
         "specimen_id": "SPEC-993-DASH-0001",
         "E1-option-label": {"identifiers_visible": False, "m_codes": ["M564"]},
@@ -122,8 +122,18 @@ class RefusedRecords(unittest.TestCase):
 
 
 class SpecimenAdmission(unittest.TestCase):
-    def test_complete_m564_submission_is_admitted(self):
-        self.assertEqual(checker.admit_specimen(complete_submission()), ("admitted", []))
+    def test_declarative_m564_submission_is_held_pending_independent_review(self):
+        verdict, reasons = checker.admit_specimen(complete_submission())
+        self.assertEqual(verdict, "held")
+        self.assertIn("E1-E5: independent file, continuity and rights verification pending", reasons)
+
+    def test_zero_or_malformed_digest_is_refused(self):
+        for digest in ("0" * 64, "not-a-sha256", "A" * 64):
+            submission = complete_submission()
+            submission["E4-continuity"]["files"][0]["sha256"] = digest
+            verdict, reasons = checker.admit_specimen(submission)
+            self.assertEqual(verdict, "refused")
+            self.assertTrue(any(reason.startswith("E4:") for reason in reasons))
 
     def test_each_missing_evidence_is_refused(self):
         for key in checker.EVIDENCE_IDS:

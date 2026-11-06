@@ -154,8 +154,10 @@ def check_record(record: dict, identity: dict) -> list[str]:
 def admit_specimen(evidence: dict) -> tuple[str, list[str]]:
     """Apply the E1-E5 rules to one specimen submission.
 
-    Returns ``("admitted" | "held" | "refused", reasons)``. ``evidence`` uses
-    the keys of the protocol; a missing key is a missing submission.
+    This documentary preflight refuses explicit exclusions and holds otherwise
+    complete submissions. It cannot independently verify off-repository photos,
+    file hashes, specimen continuity or the contributor's publication rights.
+    A missing key is a missing submission.
     """
     reasons: list[str] = []
     held: list[str] = []
@@ -198,8 +200,15 @@ def admit_specimen(evidence: dict) -> tuple[str, list[str]]:
         reasons.append("E4: continuity manifest missing")
     else:
         files = continuity.get("files") or []
-        if not files or any(f.get("specimen_id") != specimen or not f.get("sha256") for f in files):
-            reasons.append("E4: every file needs this specimen ID and a hash")
+        if not files or any(
+            not isinstance(f, dict)
+            or f.get("specimen_id") != specimen
+            or not isinstance(f.get("sha256"), str)
+            or re.fullmatch(r"[0-9a-f]{64}", f["sha256"]) is None
+            or f["sha256"] == "0" * 64
+            for f in files
+        ):
+            reasons.append("E4: every file needs this specimen ID and a non-zero SHA-256")
         if (continuity.get("linking_marks") or 0) < 2:
             reasons.append("E4: fewer than two marks link installed and removed states")
 
@@ -209,9 +218,8 @@ def admit_specimen(evidence: dict) -> tuple[str, list[str]]:
 
     if reasons:
         return "refused", reasons + held
-    if held:
-        return "held", held
-    return "admitted", []
+    held.append("E1-E5: independent file, continuity and rights verification pending")
+    return "held", held
 
 
 def main() -> int:
