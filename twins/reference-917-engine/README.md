@@ -20,7 +20,10 @@ Two families of output are planned:
   model.
 
 The project owner confirms that the file is under an open, reusable licence, but
-the standardised identifier of that licence is not yet archived. Independently
+the standardised identifier of that licence is not yet archived. The 2026-11-06
+[scan licence audit](../../docs/research/scan-licence-audit-2026-11-06.md) found
+no licence text on the vendor page: the licence is unresolved until the purchase
+grant is archived. Independently
 of that right, the owner's instruction is to keep the scan and all its geometric
 derivatives outside Git. Neither the exact identification nor the scale in
 millimetres is confirmed. No artifact may be presented as a functional engine
