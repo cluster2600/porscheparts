@@ -61,6 +61,11 @@ class Refused(unittest.TestCase):
         bad["interfaces"] = [i for i in bad["interfaces"] if i["interface_id"] != "IF_COLUMN_CLEARANCE"]
         self.assertRefused(bad, "missing ['IF_COLUMN_CLEARANCE']")
 
+    def test_duplicate_interface_cannot_be_hidden_by_dictionary_lookup(self):
+        bad = copy.deepcopy(CONTRACT)
+        bad["interfaces"].append(copy.deepcopy(interface(bad, "IF_COLUMN_CLEARANCE")))
+        self.assertRefused(bad, "duplicate interface_id")
+
     def test_value_without_admitted_reading(self):
         bad = copy.deepcopy(CONTRACT)
         interface(bad, "IF_TRIM_TO_BODY_PANEL")["part_datums"][0]["value"] = [12.0, 4.0, 0.0]
@@ -72,6 +77,69 @@ class Refused(unittest.TestCase):
         item.update(value=[0.0, 0.0, 0.0], uncertainty=0.5,
                     evidence="twins/993-dashboard-f0/dashboard-trim-f0-visual.stl")
         self.assertRefused(bad, "evidence cites a model or the F0 concept")
+
+    def test_arbitrary_existing_file_cannot_admit_a_numeric_host_datum(self):
+        bad = copy.deepcopy(CONTRACT)
+        bad["evidence_layers"]["admitted_physical_evidence"] = ["README.md"]
+        bad["vehicle_frame"]["host_datum_features"][0].update(
+            value=[1.0, 2.0, 3.0], uncertainty=0.1, evidence="README.md"
+        )
+        self.assertRefused(bad, "F0 must remain empty")
+        self.assertRefused(bad, "F0 datum value, uncertainty and evidence must remain null")
+
+    def test_frame_and_attachment_geometry_remain_unset(self):
+        bad = copy.deepcopy(CONTRACT)
+        bad["vehicle_frame"]["origin"] = [0.0, 0.0, 0.0]
+        interface(bad, "IF_BODY_PANEL_TO_SHELL")["attachments"]["hole_pattern"] = [[0.0, 0.0]]
+        self.assertRefused(bad, "F0 origin and axes must remain null")
+        self.assertRefused(bad, "F0 physical attachment fields must remain null")
+        bad = copy.deepcopy(CONTRACT)
+        interface(bad, "IF_TRIM_TO_BODY_PANEL")["attachments"]["fastener_identity"] = "M6 bolt"
+        self.assertRefused(bad, "F0 fastener assignment must remain unknown")
+
+    def test_status_and_tolerance_cannot_be_promoted_in_f0(self):
+        bad = copy.deepcopy(CONTRACT)
+        bad["status"] = "accepted"
+        item = interface(bad, "IF_TRIM_TO_BODY_PANEL")
+        item["status"] = "accepted"
+        item["tolerances"]["value"] = 1.5
+        bad["reviewer_roles"][2]["assigned_to"] = "Reviewer A"
+        self.assertRefused(bad, "F0 contract must remain proposed")
+        self.assertRefused(bad, "F0 interface status must remain missing_data")
+        self.assertRefused(bad, "F0 tolerance value must remain null")
+
+    def test_m564_target_cannot_be_removed(self):
+        bad = copy.deepcopy(CONTRACT)
+        bad["candidate_variants"] = [v for v in bad["candidate_variants"] if v["row_id"] != "M564-LHD"]
+        for item in bad["interfaces"]:
+            item["catalogue_identity"].pop("M564-LHD")
+        self.assertRefused(bad, "F0 target and documented alternatives")
+
+    def test_unmapped_dashboard_identity_cannot_gain_an_invented_part_number(self):
+        bad = copy.deepcopy(CONTRACT)
+        interface(bad, "IF_TRIM_TO_BODY_PANEL")["catalogue_identity"]["M564-LHD"]["items"] = [{
+            "part_number": "999 999 999 99", "source_id": "SRC-PORSCHE-PET-993",
+            "plate": "809-02", "pdf_page": 511, "position": "1",
+        }]
+        self.assertRefused(bad, "unmapped dashboard target cannot gain part numbers")
+        interface(bad, "IF_TRIM_TO_BODY_PANEL")["catalogue_identity"]["M564-LHD"]["status"] = "plate_heading"
+        self.assertRefused(bad, "F0 status must remain unmapped_in_kat017")
+
+    def test_steering_inventory_cannot_be_relabelled_as_a_dashboard_identity(self):
+        bad = copy.deepcopy(CONTRACT)
+        items = interface(bad, "IF_COLUMN_CLEARANCE")["catalogue_identity"]["M564-LHD"]["items"]
+        items[0]["part_number"] = "999 999 999 99"
+        self.assertRefused(bad, "steering items must match the reviewed PET inventory")
+
+    def test_source_pointers_must_match_the_checked_contract_inputs(self):
+        bad = copy.deepcopy(CONTRACT)
+        bad["assembly"] = "twins/993-dashboard-f0/dashboard-trim-f0-visual.stl"
+        self.assertRefused(bad, "must cite the checked F0 assembly")
+
+    def test_repetition_requirement_cannot_be_lowered(self):
+        bad = copy.deepcopy(CONTRACT)
+        bad["vehicle_frame"]["host_datum_features"][0]["repetitions_min"] = 1
+        self.assertRefused(bad, "at least three independent repetitions required")
 
     def test_host_reading_derived_from_the_part(self):
         bad = copy.deepcopy(CONTRACT)
