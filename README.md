@@ -9,6 +9,8 @@ It is withdrawn as the current reconstruction baseline.
 
 [Rear datum correspondence review](twins/964-chassis/rear-datum-readiness-20261106/README.md) · [Carbon elastic reference calculation](twins/964-chassis/material-reference-20261106/README.md)
 
+[Additional rear-layer inspection](twins/964-chassis/rear-bracket-depth-20261107/README.md) · [DDK coverage and 993 configuration constraints](twins/964-chassis/ddk-source-coverage-20261107/README.md)
+
 ![Layer-by-layer metal 3D printing preview of the 993 cooling-fan impeller, with hypothetical support regions](parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif)
 
 <sub><i>A layer-by-layer preview of how the 993 cooling-fan impeller would build up in a metal (LPBF) printer, with guessed support regions. It shows geometry only: it models no process physics, and it is neither a build file nor a release to print.</i></sub>
