@@ -28,6 +28,9 @@ Omniverse audit keeps the NVIDIA topology warning as a blocker.
 **What it can be used for**: replaying the calculations, reusing the test cases,
 reading what was attempted. **What it cannot be used for**: a part.
 
+Items the archived dossiers left open are dispositioned in
+[ARCHIVE_917_PENDING_LEDGER.md](ARCHIVE_917_PENDING_LEDGER.md) (issue #426).
+
 ## Why these directories were not moved
 
 The question came up on 2026-09-09, and the answer is measured, not aesthetic.
