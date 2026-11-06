@@ -1,0 +1,747 @@
+{
+  "schema_version": 1,
+  "kind": "962_phase_ledger_summary",
+  "issue": "#540",
+  "prepared_on": "2026-11-06",
+  "repository_commit": "cedec73485074a092f75fdd2a176b213d726ff34",
+  "contract_sha256": "1d80c6faa37de73fccd5a7ed27220a0c2c311b6b6b74c03908bb7cce4987974d",
+  "private_plan": {
+    "sha256": "969f62c7ddbb7ba7f354adac909f5e33970c1ddc7fbc0d8e59a21d0a97f5f14b",
+    "location": "private, outside Git",
+    "materialized_sha256": "47cd6d25ff08db3e080051afcbdbc5d5781d88209c1024971fef9d6fbe4c0f3a"
+  },
+  "provenance_runtime_receipt_sha256": "ad5ffaefa7ea290f3d8158d654d945e8c6e23b81bd7b51086ee3d1aa48976dc9",
+  "source_hashes": {
+    "AGENTS.md": "e0c7b0a44b9510fbfadb35e0e841e29b02a142627d4629162fb56a318d96c1cf",
+    "benchmarks/lpbf-adamantine-export/README.md": "3280b2eacc9d4141394f18d30ff542fade16f9a5cda7efdc5b3f9e725ad4b727",
+    "benchmarks/lpbf-adamantine-export/upstream.json": "11fa3758b0b6c28f612066b7c210a3f9286496bc98953cd9d08a93c3d719a331",
+    "containers/picogk-station-kit/README.md": "cc4b604f65bc2244b9cfdb3954f627c70db8a1d5cf32474b73049c0dc5db4db9",
+    "deploy/vast/simready/M64_DEADLINE_GUARD.md": "04a5017479a6e93a1791e612ad1279dd62ca26d3b296344b653637894736e006",
+    "docs/AI_DIGITAL_TWIN_STACK.md": "5b4a1cfbafd13126a6ecef08b2ee26a95d988f72e1a36808507e678c7b745416",
+    "docs/COMPUTE_ENVIRONMENT.md": "acfe107364ce4a34f24c6b24a07bc3ab53d451ec74008782fbab397dd19d5bb5",
+    "docs/TOOLCHAIN.md": "f41f37a6e030babb7af8f6ff6d8fc772489965af4a9c1dc508bfa2715346fe8a",
+    "twins/962-cylinder-head-f0/AGENTS.md": "b83725c2d0eda6bea83f8967af3451dead895588e42399b16cd65715da8d3aa2",
+    "twins/962-cylinder-head-f0/ANALYSIS_ENVELOPE_ENGINEERING.md": "a60a0564557a608a92166898c06b234f928bb61048b7a56418d0e5bcca55f7fd",
+    "twins/962-cylinder-head-f0/ANALYSIS_SURFACE_ENGINEERING.md": "e2d93cf8b46c571380c591c137acaff03d3045d823252464103516b3af91ad40",
+    "twins/962-cylinder-head-f0/BIONIC_FIELDS.md": "98dcb46b0cbcbfff868d0ec9e95f318027bb7cea93442d44fcf451d85bb7900c",
+    "twins/962-cylinder-head-f0/DONOR_METROLOGY.md": "e17a9b6dc40c837ced2657261a88a02f2f2c6531e4c92949c6c3e013e2ce7bff",
+    "twins/962-cylinder-head-f0/ENGINEERING_MATERIALS.md": "20f79be539e84d2ee5c0180df95a801d6e6a536c469d0ed90fe4bf5f355a08da",
+    "twins/962-cylinder-head-f0/ENGINEERING_PROGRAM.md": "e7ccb42d664bbf2951e1a9df0e94977066bfd38276478f098aa847167fc2d7bc",
+    "twins/962-cylinder-head-f0/FLOW4L_STUDY.md": "805295b48770d5bd2b1cfe0dfc677a73369f9cf12134714649d93ec02594ca0b",
+    "twins/962-cylinder-head-f0/FLOW_RESTART_FOLLOWUP.md": "837781836c57a59ccd0b954dc5710a6cbb0f80160434e93d9cf1ff12ad6e996d",
+    "twins/962-cylinder-head-f0/GALLERY.md": "d0ab0c1d12a79d1d806efe9dda38c802b53741c8458154a6af0772768da4dd4a",
+    "twins/962-cylinder-head-f0/MATERIAL_HOT_DATA_REFRESH.md": "8034546a40e980106dc764876e2fd0d1d31dc8b36f7796db6ce8fdcdbc58a45e",
+    "twins/962-cylinder-head-f0/MESHING_ENGINEERING.md": "7d397a6853d7e94f91780ed45782cac732ce8aa8c18529c30de1168781dc7d80",
+    "twins/962-cylinder-head-f0/MEZGER_4L_SP95_EN.md": "e669c02bd6e36dd7bcf7b7badb9225e181566885b103c5b82f093f7b618ca28b",
+    "twins/962-cylinder-head-f0/MMG_REPAIR_FOLLOWUP.md": "1904b07b5374c2c2984dd2ffce154894433dc0f53e93e1b5e0c1e6939ed64647",
+    "twins/962-cylinder-head-f0/ORIGINAL_ARCHITECTURE.md": "bff3fea036267a3436044384b2dc125e9aa04b9f1e2d44e0c04d5cfb0781a4da",
+    "twins/962-cylinder-head-f0/USD_NORMALS_ENGINEERING.md": "4d071dbadfddad6ff4173c27671e988cb9ef65ec65a96bb26893996e41ec2a86",
+    "twins/962-cylinder-head-f0/VAST_CAMPAIGN_20261028.md": "4c31dfc161d01bf5924e9ca090bc9bc0384faec4b26e3194be0d574cf708fc5c",
+    "twins/962-cylinder-head-f0/WORKFLOW.md": "dcf916cbf5655737b50d786351ee6192d397fb7f6190845eb5cb5044bc8af973",
+    "twins/962-cylinder-head-f0/source/compare_materials.py": "f258397246a86fe1d8bac02e7ee948a500621aabd0e36629bc616407362d72f8",
+    "twins/962-cylinder-head-f0/source/coolant_flow/analyze_restart.py": "4f34954ca69047fcc30711288325f8f2b31c5005538f98e187c49ec03aaff065",
+    "twins/962-cylinder-head-f0/source/coolant_flow/mesh_discrete.py": "b9b05697194b8fbfb60e2f9facf5211198a9106680aa87e60b9c2fe643c3b135",
+    "twins/962-cylinder-head-f0/source/coolant_flow/prepare_cloud_restart.py": "b8bcbe1f4fd37ebee1599cae3ba0a404617d43885521075ef181dfd2031ffce6",
+    "twins/962-cylinder-head-f0/source/coolant_flow/run_cloud_restart.sh": "22942968b81c4b8f552de1efd413b1a6de7edb8c9cdb9edc04573aec052054fd",
+    "twins/962-cylinder-head-f0/source/flow4l/Engine.csproj": "2889ffd787645ff16bd00f4392f3eb39cab02d2d7370de871e07ac261fcde486",
+    "twins/962-cylinder-head-f0/source/flow4l/Fields.csproj": "ba0d61700c9bd7d39426abd5e6af6a2373f1f450d3c603e11c913a1de23fda15",
+    "twins/962-cylinder-head-f0/source/flow4l/FlowFieldsRunner.cs": "f0fd207a76e07f5920b84cb9ad88e7dc90cb19315720b7c48d2589d510736839",
+    "twins/962-cylinder-head-f0/source/flow4l/HeadFlow4LStudy.cs": "a0d162466638d754ffe4294f95d37d2ce6a16352c26893f2673c0e3d0723cac3",
+    "twins/962-cylinder-head-f0/source/flow4l/HeadFlowRunner.cs": "8a707f4d262a4b1c5d949fe3cc36bf2098a57da14de7d1bd1bcb75a4219771df",
+    "twins/962-cylinder-head-f0/source/flow4l/design.json": "e25f71d74af5d9d5eb29cf32fb52f34b866d8dd2d115fd873bc7c0ebc459641b",
+    "twins/962-cylinder-head-f0/source/flow4l/inspect_and_render.py": "035d13dd54111a4fd48e003c92c545c2e042f57d11afc3c5dc9bafbf69e396ce",
+    "twins/962-cylinder-head-f0/source/flow4l/run_study.py": "805956f1a1d496535ff91fae165f33125f59520698dfbdea65fba16c338203a9",
+    "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+    "twins/962-cylinder-head-f0/source/physics_witness/mechanical_birth/README.md": "2a254d2a3df039095ad5f7cfbc6f63bc317539390e6833ec6f22a885417d947d",
+    "twins/962-cylinder-head-f0/source/physics_witness/mechanical_birth/run_local.py": "52acb7813434df8c4acbd47dd63c5959e6e4545a3b47db4f8aab729739a9cbac",
+    "twins/962-cylinder-head-f0/source/physics_witness/thermal_birth/run_local.py": "b89900043e2b1b7ef871edbf054656fde4b17d94e9e37d069216b40350c5ca62",
+    "twins/962-cylinder-head-f0/source/workflow_plan.py": "e8789f7bfc91c0fc1228dd3c12cbc52aa4bb1c55a2a7999159630f2ce035ee21",
+    "twins/m64-cylinder-head/source/additivefoam/README.md": "1a7423a0a52dd7cea32c2724b2918b7cb233cdf7bd932c90896a2d3e8d147f1f",
+    "twins/m64-cylinder-head/source/additivefoam/audit_amb2018_thermal.py": "923eb480bf1ed1b2bd008db0e57694a6a383e60ced37f21740a3a76b50dc2d75"
+  },
+  "manufacturing_authorized": false,
+  "physical_qualification_granted": false,
+  "independent_review": null,
+  "variants": {
+    "family": "Porsche 962 C water-cooled, 4 valves and 2 spark plugs per cylinder; 3.0 L reference (bore 95 mm published, stroke 70.4 mm) and assumed bionic study bores 98/100/102 mm for scenarios through 4.0 L (BIONIC_FAMILY.md). No donor specimen identified (#450).",
+    "metal_mesh": "bore-95 study solid, plane0 assembled boundary (871,731 vertices); current24 saved TET4 mesh sha256 2b994eea7c06bf81412ac93cf73ead2a22b2dd062b2550b19f9d960492f2ba35, 235,798,094 B, 1,097,268 nodes, 3,622,025 cells; body private, identity only",
+    "water_mesh": "bore-102 (4 L scenario) single-cylinder study water domain; MMG-repaired MSH sha256 5cf9923844e8cacfffc6b7c0e427b60e8f0745602330a99aacb48082ba81e0c8, 635,132 tetrahedra; surface sha256 feeaddaf029a8635a7e580f1a6916c5c85b44ada9db947e6602203f8d3c6156f",
+    "mismatch": "The admitted water mesh (bore 102) and the current metal mesh (bore 95) are different study variants; no conformal metal/water pair for one variant exists."
+  },
+  "phases": [
+    {
+      "phase": "provenance",
+      "state": "prepared",
+      "reason": "Inputs and argv bound; stdlib runtime qualified. Not executed; no result claimed. Execution and a separate independent assessment are both still required.",
+      "blockers": {
+        "execution": "Not run in this ledger revision.",
+        "acceptance": "Independent assessment of the outputs and of ledger completeness (#540) is required; the preparer cannot supply it.",
+        "downstream": [
+          "#449",
+          "#450"
+        ]
+      },
+      "next_permitted_action": "Run --require-ready provenance, then execute the two bound commands in this private ledger, record an execution companion with outputs, and obtain an independent assessment. Acceptance would be scope software, never physical.",
+      "commands_are_templates": false,
+      "bound_inputs": [
+        "measured_vs_assumed_interfaces",
+        "sources_and_rights",
+        "variant_and_scope"
+      ],
+      "unbound_inputs": [],
+      "phase_attempt_receipts": [],
+      "software_witnesses_not_phase_results": [
+        {
+          "path": "twins/962-cylinder-head-f0/derived/qwen-assistance/review.json",
+          "sha256": "d4a29a8bf08b2265906100299bf396a1a4af485f92391538dd27d30ef6fee05c",
+          "role": "Qwen r3/base responses: two invalid methods rejected unexecuted, one analytic expression retained after independent check (geometry assistance, not provenance data)"
+        }
+      ]
+    },
+    {
+      "phase": "reconstruction",
+      "state": "blocked",
+      "reason": "No licensed same-part capture set or same-part scale datums exist; the digital-only charter (#437) and external donor identification (#450) block capture. Not marked not_applicable: whether a lawful donor dataset arrives as captures is undecided, so omission would be a silent scope change.",
+      "blockers": {
+        "issues": [
+          "#450"
+        ],
+        "external": "#437 digital-only charter"
+      },
+      "next_permitted_action": "Owner/third party: decide the #450 intake format. If it is a capture set, bind licence, scale datums and capture configuration; if it is direct metrology, record a reviewed not_applicable justification.",
+      "commands_are_templates": true,
+      "bound_inputs": [],
+      "unbound_inputs": [
+        "capture_configuration",
+        "licensed_capture_set",
+        "same_part_scale_datums"
+      ],
+      "phase_attempt_receipts": [],
+      "software_witnesses_not_phase_results": []
+    },
+    {
+      "phase": "picogk",
+      "state": "blocked",
+      "reason": "Upstream provenance is prepared, not accepted. The provided PicoGK driver is Mac-specific and no qualified bounded Linux native wrapper receipt exists. donor_interface_contract is all-null, which blocks functional Fasteners. Existing study geometry is historical evidence, not a ledger execution.",
+      "blockers": {
+        "issues": [
+          "#450"
+        ],
+        "upstream": [
+          "provenance"
+        ],
+        "unowned": "Linux PicoGK native-wrapper qualification has no owning issue"
+      },
+      "next_permitted_action": "Qualify a bounded Linux PicoGK wrapper (or bind the Mac host) with library revisions; keep Fasteners non-functional until #450 supplies measured interfaces.",
+      "commands_are_templates": true,
+      "bound_inputs": [
+        "geometry_parameters"
+      ],
+      "unbound_inputs": [
+        "donor_interface_contract",
+        "library_revisions",
+        "native_runtime"
+      ],
+      "phase_attempt_receipts": [
+        {
+          "path": "twins/962-cylinder-head-f0/derived/family/delivery-report.json",
+          "sha256": "90e5b91d4682b0a2a99a6c2966e2916c0302952d8ef42712dfa95d6cd771c904",
+          "role": "four-bore study geometry delivery (pre-ledger)"
+        },
+        {
+          "path": "twins/962-cylinder-head-f0/derived/family/bore-95-report.json",
+          "sha256": "5dc2c44ec6978cee9ea9bbd80c392227b68c3e13c0915e7f20e562cb489c7efb",
+          "role": "bore-95 inspection report"
+        },
+        {
+          "path": "twins/962-cylinder-head-f0/derived/family/bore-102-report.json",
+          "sha256": "efd36a0cf8a47c271d40a024cfc955a3d7cae539dfca8fbccf2d81ce8f4d1347",
+          "role": "bore-102 inspection report"
+        }
+      ],
+      "software_witnesses_not_phase_results": [
+        {
+          "path": "twins/962-cylinder-head-f0/derived/qwen-assistance/review.json",
+          "sha256": "d4a29a8bf08b2265906100299bf396a1a4af485f92391538dd27d30ef6fee05c",
+          "role": "Qwen assistance review"
+        }
+      ]
+    },
+    {
+      "phase": "surface",
+      "state": "blocked",
+      "reason": "Upstream picogk not accepted. Existing bore-95 surface audits are scoped (0.0625 mm analysis scope) and the stronger 414-cell Mesh_2 surface-quality criterion remains failed. Water surface feeaddaf... is a bore-102 export without measured interfaces.",
+      "blockers": {
+        "issues": [
+          "#445",
+          "#448"
+        ],
+        "upstream": [
+          "picogk"
+        ]
+      },
+      "next_permitted_action": "After picogk acceptance, bind domain meshes and reference hashes and rerun the independent topology/intersection/deviation audit without hidden repair.",
+      "commands_are_templates": true,
+      "bound_inputs": [
+        "reference_geometry_hashes"
+      ],
+      "unbound_inputs": [
+        "deviation_and_feature_contract",
+        "domain_meshes"
+      ],
+      "phase_attempt_receipts": [
+        {
+          "path": "twins/962-cylinder-head-f0/derived/engineering/analysis-quality-candidate/receipt.json",
+          "sha256": "8222f8eb58b6b4960a2f65b2e45499a7bc86e3f88da99719c33bde32a714778e",
+          "role": "bore-95 local quality pass with independent topology/intersection checks (scoped)"
+        },
+        {
+          "path": "twins/962-cylinder-head-f0/derived/coolant-flow/surface-004.json",
+          "sha256": "d1d4e196bedffc3ba3898c7ce0e43b1a7bc1dd4ee92af069766996718834493d",
+          "role": "bore-102 water surface derivative check"
+        }
+      ],
+      "software_witnesses_not_phase_results": []
+    },
+    {
+      "phase": "volume",
+      "state": "failed",
+      "reason": "Latest metal admission executed and failed: current24 saved head returns RC2 with 24 cells below SICN 0.1, minimum 0.039074265058645995 against the unchanged 0.1 gate. The bore-102 water mesh passes checkMesh separately, but water acceptance never admits metal and the two meshes belong to different variants. Upstream surface is also unaccepted.",
+      "blockers": {
+        "issues": [
+          "#445",
+          "#448",
+          "#447",
+          "#544"
+        ],
+        "upstream": [
+          "surface"
+        ]
+      },
+      "next_permitted_action": "Resolve the 24 poor metal cells under the unchanged gate (#445) or regenerate a matched-variant metal/water pair with conformal interfaces; preserve RC2.",
+      "commands_are_templates": true,
+      "bound_inputs": [
+        "mesh_quality_contract",
+        "metal_surface",
+        "water_surface"
+      ],
+      "unbound_inputs": [
+        "boundary_groups"
+      ],
+      "phase_attempt_receipts": [
+        {
+          "path": "twins/962-cylinder-head-f0/derived/engineering/current24-partial-application/receipt.json",
+          "sha256": "8f19b660e9afbe813afe18d96d4eecca89065ac552553e6c0864c1d368cf18b2",
+          "role": "metal: 110 -> 24 poor cells, RC2 rejection (failed gate)"
+        },
+        {
+          "path": "twins/962-cylinder-head-f0/derived/engineering/current24-partial-application/evidence/work/962-engineering/head-star-current110-pass62-application-root-execution-001/result-peer-acceptance.json",
+          "sha256": "559f0760eb1fd142ecd7a1dabe3f7b58efd9e73a887996cd0ee643b1d0da21f0",
+          "role": "metal: root acceptance of the partial result and of the strict whole-head rejection"
+        },
+        {
+          "path": "twins/962-cylinder-head-f0/derived/coolant-mmg-20261025/repair-report.json",
+          "sha256": "16cd55a9023203f291748a0f92235cbbabd00fc382e10c413f9130bc050b6b9e",
+          "role": "water: MMG repair, checkMesh Mesh OK (bore 102)"
+        },
+        {
+          "path": "twins/962-cylinder-head-f0/derived/kali-cfd-20261025/execution-report.json",
+          "sha256": "d0b1336c651c93c0e46eaee00ce8507e4d3435fd76a71c3d8f4d5246f140cea0",
+          "role": "water: earlier tetrahedral/polyhedral rejections retained"
+        }
+      ],
+      "software_witnesses_not_phase_results": [
+        {
+          "path": "twins/962-cylinder-head-f0/derived/engineering/current24-parser003-and-five-toy-second-attempt/README.md",
+          "sha256": "b1c0730f65d853b2ecd529ad3b6cba15e42126ab339d596e769fd47a4f51017e",
+          "role": "five Z3 toy sessions: software protocol only; external 60 s closure unverified (#447)"
+        }
+      ]
+    },
+    {
+      "phase": "coolant_cfd",
+      "state": "failed",
+      "reason": "Seven bounded Foundation 13 steady RANS restarts (case-017..025) on the bore-102 water mesh executed; none passes the numerical flow screen. First global residuals are about 7e-4 to 9e-4 against the unchanged 1e-5 target; timeouts are not convergence. Volume is not accepted for the head.",
+      "blockers": {
+        "issues": [
+          "#448"
+        ],
+        "upstream": [
+          "volume"
+        ],
+        "compute": "Vast campaign: spending ceiling null, OpenBao wrapper HTTP 403, no instance"
+      },
+      "next_permitted_action": "Owner: approve spending ceiling and fix OpenBao 403 before any rental; otherwise continue bounded local diagnosis on kali1 with the unchanged gates (#448).",
+      "commands_are_templates": true,
+      "bound_inputs": [
+        "admitted_water_mesh",
+        "audited_checkpoint"
+      ],
+      "unbound_inputs": [
+        "absolute_deadline_and_cost_guard",
+        "solver_controls"
+      ],
+      "phase_attempt_receipts": [
+        {
+          "path": "twins/962-cylinder-head-f0/derived/coolant-restart-20261027/execution-report.json",
+          "sha256": "9c984b62d5f2be7776d7e9848bc59605068c20435fef992acc7615fd7a5d6b20",
+          "role": "bounded_RANS_diagnostics_no_converged_head_flow"
+        },
+        {
+          "path": "twins/962-cylinder-head-f0/derived/coolant-restart-20261027/delivery.json",
+          "sha256": "070bfb02eef2ae2cd8a26c4ec5955c5c7691593068f29a17023b4f688ebe4109",
+          "role": "review archive delivery receipt"
+        },
+        {
+          "path": "twins/962-cylinder-head-f0/derived/vast-preparation-20261028/preparation.json",
+          "sha256": "75d27abed2b282cb1bc1b6193b76b328733bed6860ccc73e8285dfbe7b288666",
+          "role": "4/8/16/32-rank pilots prepared locally; no rental, ceiling null"
+        }
+      ],
+      "software_witnesses_not_phase_results": []
+    },
+    {
+      "phase": "cht",
+      "state": "blocked",
+      "reason": "No conformal multiregion head case: metal (bore 95) is not admitted and the admitted water mesh is bore 102. No sourced heat loads, no temperature-dependent properties, coolant CFD not accepted. The flow pilot is not a CHT case.",
+      "blockers": {
+        "issues": [
+          "#541",
+          "#445",
+          "#448",
+          "#449"
+        ],
+        "upstream": [
+          "coolant_cfd",
+          "volume"
+        ]
+      },
+      "next_permitted_action": "None until #445/#448/#449 gates pass on one matched variant; then prepare a Foundation 13 multiregion case per #541.",
+      "commands_are_templates": true,
+      "bound_inputs": [],
+      "unbound_inputs": [
+        "conformal_regions",
+        "coupling_controls",
+        "heat_loads",
+        "temperature_dependent_properties"
+      ],
+      "phase_attempt_receipts": [],
+      "software_witnesses_not_phase_results": []
+    },
+    {
+      "phase": "material_strength",
+      "state": "blocked",
+      "reason": "No admitted metal mesh, no accepted CHT fields, no process-specific material laws or allowables, no measured attachments/load paths or preload. Conditional assumed cards are study inputs only; no head solve has run.",
+      "blockers": {
+        "issues": [
+          "#542",
+          "#445",
+          "#449",
+          "#450",
+          "#447"
+        ],
+        "upstream": [
+          "cht"
+        ]
+      },
+      "next_permitted_action": "Owner decision #449 (material/process card and loads) and donor interfaces #450 first; no deck before --require-ready material_strength.",
+      "commands_are_templates": true,
+      "bound_inputs": [],
+      "unbound_inputs": [
+        "admitted_metal_mesh",
+        "allowables",
+        "loads_contacts_preload",
+        "material_laws"
+      ],
+      "phase_attempt_receipts": [],
+      "software_witnesses_not_phase_results": [
+        {
+          "path": "twins/962-cylinder-head-f0/derived/engineering/moose-local-grouped-scaling-cube/receipt.json",
+          "sha256": "ef22d2873999bafca0e8f202092e980a39ebbfffcd2801aa89c8bed2f8a6d47b",
+          "role": "MOOSE grouped-scaling elastic cube: software benchmark only"
+        },
+        {
+          "path": "twins/962-cylinder-head-f0/engineering/cp1-isothermal-assumed-card.json",
+          "sha256": "5bfd9b40fffd047931ab7409a02b6edb5b92af917d5e2d8e4ba47948f7a86ca7",
+          "role": "assumed isothermal card (research hypothesis)"
+        }
+      ]
+    },
+    {
+      "phase": "lpbf_melt_pool",
+      "state": "blocked",
+      "reason": "No selected alloy/powder, machine/laser profile, scan path, layer thickness or calibration coupons; no 962-bound AdditiveFOAM 2.0.0 / Foundation 14 runtime receipt or tutorial replay.",
+      "blockers": {
+        "issues": [
+          "#543",
+          "#449"
+        ],
+        "upstream": [
+          "provenance"
+        ]
+      },
+      "next_permitted_action": "Owner #449 process card; then qualify the Foundation 14 AdditiveFOAM runtime separately from Foundation 13 and replay the pinned tutorial (#543).",
+      "commands_are_templates": true,
+      "bound_inputs": [],
+      "unbound_inputs": [
+        "alloy_powder_machine",
+        "calibration_coupons",
+        "laser_profile_scan_path",
+        "layer_thickness",
+        "qualified_runtime"
+      ],
+      "phase_attempt_receipts": [],
+      "software_witnesses_not_phase_results": []
+    },
+    {
+      "phase": "lpbf_build",
+      "state": "blocked",
+      "reason": "No accepted melt pool, no admitted metal mesh, no orientation/plate/support/scan plan, no calibrated laws; the qualified process solver is not bound. Synthetic CP1 coupons are software witnesses: END181 still fails 12 of 36 aggregate equilibrium checks.",
+      "blockers": {
+        "issues": [
+          "#544",
+          "#446",
+          "#449",
+          "#447",
+          "#445"
+        ],
+        "upstream": [
+          "lpbf_melt_pool",
+          "volume"
+        ]
+      },
+      "next_permitted_action": "Diagnose the 12 END181 failures (#446) on the unchanged limits; head build waits on #543/#445/#449.",
+      "commands_are_templates": true,
+      "bound_inputs": [],
+      "unbound_inputs": [
+        "alloy_laws",
+        "build_orientation",
+        "layer_scan_strategy",
+        "plate_supports",
+        "qualified_process_solver",
+        "thermal_calibration"
+      ],
+      "phase_attempt_receipts": [],
+      "software_witnesses_not_phase_results": [
+        {
+          "path": "twins/962-cylinder-head-f0/derived/engineering/cp1-assumed-thermal-birth-linear/receipt.json",
+          "sha256": "360299a916c8f754b349aad44b470a86bc5db24905b65b6268a7e4db701897d3",
+          "role": "LINEAR thermal-birth coupon passes its synthetic energy gates"
+        },
+        {
+          "path": "twins/962-cylinder-head-f0/derived/engineering/native005-operational-capture/README.md",
+          "sha256": "d7377f7d0e2dd3d6930e53ed025d582158b5e20e451418ce63cd99c45c5fb95c",
+          "role": "native005 coupon operational capture, exits 0/0/0 (operations only)"
+        },
+        {
+          "path": "twins/962-cylinder-head-f0/derived/engineering/rich3-coupon-and-head499-held/README.md",
+          "sha256": "a987111e0979244544c14c82f9f1e8682364e1fe228d9447983d7cee8fa38c9a",
+          "role": "rich3 three-update trial: same 12/36 aggregate failures; HEAD499 adapter unrun"
+        }
+      ]
+    },
+    {
+      "phase": "lpbf_release",
+      "state": "blocked",
+      "reason": "No accepted build history, cooling/heat-treatment, removal sequence, machining allowances or calibration. The listed mechanical-birth runner is a synthetic witness; coupon release attempts were refused on force balance.",
+      "blockers": {
+        "issues": [
+          "#545",
+          "#446",
+          "#449"
+        ],
+        "upstream": [
+          "lpbf_build"
+        ]
+      },
+      "next_permitted_action": "None for the head until #544 is accepted; coupon diagnosis continues under #446.",
+      "commands_are_templates": true,
+      "bound_inputs": [],
+      "unbound_inputs": [
+        "accepted_build_history",
+        "cooling_heat_treatment",
+        "machining_allowances",
+        "process_calibration",
+        "removal_sequence"
+      ],
+      "phase_attempt_receipts": [],
+      "software_witnesses_not_phase_results": [
+        {
+          "path": "twins/962-cylinder-head-f0/derived/engineering/cp1-oneway-cooling-release-linear-refusal/receipt.json",
+          "sha256": "44e2546c915e6bf9cab717538e0d963cb5b157626357fd70f8b043c6ae8fc592",
+          "role": "LINEAR cooling/release: force balance 1.965e-6 N > 1e-7 N, refused"
+        },
+        {
+          "path": "twins/962-cylinder-head-f0/derived/engineering/cp1-oneway-cooling-release-richardson2-refusal/receipt.json",
+          "sha256": "25030ac440444713e9c1ac5f04e4378eed22c71d96f9b1f39c0e508e6dc66e26",
+          "role": "RICH2: 2.2985e-6 N > 1e-7 N, refused"
+        },
+        {
+          "path": "twins/962-cylinder-head-f0/derived/engineering/cp1-oneway-cooling-release-failed/receipt.json",
+          "sha256": "1e588e138773373ccbd2440ccdb9fdb40abb296dba713f49376b29eafab759ed",
+          "role": "final hold stopped at step 182 by 100 s limit"
+        }
+      ]
+    },
+    {
+      "phase": "omni_preflight",
+      "state": "blocked",
+      "reason": "Validation-only preflight is ready (OpenUSD, Asset Validator, locked SimReady runtime), but no declared property-assignment intent, no Content Agents/OVRTX service readiness and no approved endpoint access (OpenBao 403) exist.",
+      "blockers": {
+        "issues": [
+          "#451"
+        ],
+        "upstream": [
+          "provenance"
+        ]
+      },
+      "next_permitted_action": "Declare intent and obtain approved access/local endpoints; rerun preflight with Content Agents/OVRTX readiness (#451).",
+      "commands_are_templates": true,
+      "bound_inputs": [],
+      "unbound_inputs": [
+        "approved_access_or_local_endpoints",
+        "installed_skill_revision",
+        "qualified_gpu_runtime",
+        "source_asset_intent"
+      ],
+      "phase_attempt_receipts": [
+        {
+          "path": "twins/962-cylinder-head-f0/derived/engineering/usd-full-validation-bore95/receipt.json",
+          "sha256": "3771f3298286a6874815f71fc0b23e46bc014c46972ee80fd41fadb30076e618",
+          "role": "genuine validation preflight ready; service readiness absent"
+        }
+      ],
+      "software_witnesses_not_phase_results": []
+    },
+    {
+      "phase": "omni_conversion",
+      "state": "failed",
+      "reason": "One geometry-only bore-95 conversion through the installed convert-to-usd reference (converter 0.2.0) executed and fails the frozen source-parity check: 1,804,452 vs 1,804,706 triangles (254 fewer). Minimum USD reference passed eight checks; parity failure retained. Preflight/picogk upstream not accepted.",
+      "blockers": {
+        "issues": [
+          "#451"
+        ],
+        "upstream": [
+          "omni_preflight",
+          "picogk"
+        ]
+      },
+      "next_permitted_action": "Diagnose the 254 omitted/changed triangles before any assignment; do not substitute custom USDA authoring (#451).",
+      "commands_are_templates": true,
+      "bound_inputs": [],
+      "unbound_inputs": [
+        "preflight_manifest",
+        "source_asset",
+        "units_frame"
+      ],
+      "phase_attempt_receipts": [
+        {
+          "path": "twins/962-cylinder-head-f0/derived/engineering/usd-bore95-conversion/receipt.json",
+          "sha256": "40ce23b43ef30e30b4f3298dfcd2440f7dba78336ed026dde92c8727cf867b5e",
+          "role": "conversion receipt; strict parity rejected"
+        },
+        {
+          "path": "twins/962-cylinder-head-f0/derived/engineering/usd-bore95-conversion/frozen-contract.json",
+          "sha256": "ca02240c2b21551d087b093daf9f7c2cf2052e232b0e5beec7e289919ea75520",
+          "role": "pre-run parity contract"
+        }
+      ],
+      "software_witnesses_not_phase_results": []
+    },
+    {
+      "phase": "omni_assignment",
+      "state": "blocked",
+      "reason": "No minimum-valid parity-preserving USD, no sourced material/physics context, no healthy Content Agents endpoints.",
+      "blockers": {
+        "issues": [
+          "#451",
+          "#449"
+        ],
+        "upstream": [
+          "omni_conversion"
+        ]
+      },
+      "next_permitted_action": "None until omni_conversion is accepted and #449 supplies sourced material context.",
+      "commands_are_templates": true,
+      "bound_inputs": [],
+      "unbound_inputs": [
+        "healthy_endpoints",
+        "minimum_valid_usd",
+        "sourced_material_context",
+        "sourced_physics_context"
+      ],
+      "phase_attempt_receipts": [],
+      "software_witnesses_not_phase_results": []
+    },
+    {
+      "phase": "omni_conformance",
+      "state": "blocked",
+      "reason": "Required assignment has not occurred. The pre-assignment static validation retains VG.027 and six Prop-Robotics-Neutral profile findings (NP.006, UN.007, RB.001 x2, GSP.001, VM.MAT.001); these must stay visible and are not repaired before assignment.",
+      "blockers": {
+        "issues": [
+          "#451"
+        ],
+        "upstream": [
+          "omni_assignment"
+        ]
+      },
+      "next_permitted_action": "None until omni_assignment is accepted.",
+      "commands_are_templates": true,
+      "bound_inputs": [],
+      "unbound_inputs": [
+        "assignment_reports",
+        "profile",
+        "service_authored_usd"
+      ],
+      "phase_attempt_receipts": [],
+      "software_witnesses_not_phase_results": [
+        {
+          "path": "twins/962-cylinder-head-f0/derived/engineering/usd-full-validation-bore95/receipt.json",
+          "sha256": "3771f3298286a6874815f71fc0b23e46bc014c46972ee80fd41fadb30076e618",
+          "role": "pre-assignment diagnostic validation (failed findings retained)"
+        }
+      ]
+    },
+    {
+      "phase": "field_exchange",
+      "state": "blocked",
+      "reason": "No accepted native solver fields exist (coolant CFD unconverged; CHT, strength and LPBF release unrun or refused). Geometric distance/gradient grids are not velocity, temperature or stress. The Fields runner CLI is not verified.",
+      "blockers": {
+        "issues": [
+          "#451",
+          "#448",
+          "#541",
+          "#542",
+          "#545"
+        ],
+        "upstream": [
+          "coolant_cfd",
+          "cht",
+          "material_strength",
+          "lpbf_release",
+          "omni_conformance"
+        ]
+      },
+      "next_permitted_action": "None until upstream physical fields are accepted.",
+      "commands_are_templates": true,
+      "bound_inputs": [],
+      "unbound_inputs": [
+        "accepted_solver_fields",
+        "domain_mesh_ids",
+        "mapping_tolerances",
+        "units_frame_time"
+      ],
+      "phase_attempt_receipts": [],
+      "software_witnesses_not_phase_results": [
+        {
+          "path": "twins/962-cylinder-head-f0/BIONIC_FIELDS.md",
+          "sha256": "98dcb46b0cbcbfff868d0ec9e95f318027bb7cea93442d44fcf451d85bb7900c",
+          "role": "geometric fields only"
+        }
+      ]
+    },
+    {
+      "phase": "omni_render",
+      "state": "blocked",
+      "reason": "No validated USD; existing gallery views are visual-only study renders and do not replace an RTX render of conformed USD.",
+      "blockers": {
+        "issues": [
+          "#451"
+        ],
+        "upstream": [
+          "omni_conformance"
+        ]
+      },
+      "next_permitted_action": "A labelled visual-only assembly may be prepared earlier; physical scope waits on omni_conformance and field_exchange.",
+      "commands_are_templates": true,
+      "bound_inputs": [],
+      "unbound_inputs": [
+        "camera_layers",
+        "renderer_endpoint",
+        "validated_usd"
+      ],
+      "phase_attempt_receipts": [],
+      "software_witnesses_not_phase_results": [
+        {
+          "path": "twins/962-cylinder-head-f0/GALLERY.md",
+          "sha256": "d0ab0c1d12a79d1d806efe9dda38c802b53741c8458154a6af0772768da4dd4a",
+          "role": "visual-only study gallery"
+        }
+      ]
+    },
+    {
+      "phase": "physicsnemo",
+      "state": "blocked",
+      "reason": "No accepted dataset or labels, no disjoint whole-family evaluation split, no bound training script/config. Planning only.",
+      "blockers": {
+        "issues": [
+          "#451"
+        ],
+        "upstream": [
+          "field_exchange"
+        ]
+      },
+      "next_permitted_action": "None until field_exchange is accepted.",
+      "commands_are_templates": true,
+      "bound_inputs": [],
+      "unbound_inputs": [
+        "accepted_dataset",
+        "disjoint_evaluation_families",
+        "error_limits_domain",
+        "model_config"
+      ],
+      "phase_attempt_receipts": [],
+      "software_witnesses_not_phase_results": [
+        {
+          "path": "twins/962-cylinder-head-f0/derived/engineering/physicsnemo-planning/README.md",
+          "sha256": "8907448df7fce776e5a2bdfafd132e485cbc6c50f7b8accb6bacc6090d071e26",
+          "role": "planning handoff at a pinned NVIDIA revision"
+        }
+      ]
+    },
+    {
+      "phase": "delivery",
+      "state": "blocked",
+      "reason": "Every other phase is blocked, failed or only prepared; no bound results, no approved budget or rental identity (none created), no professional validation plan.",
+      "blockers": {
+        "issues": [
+          "#547",
+          "#546",
+          "#540"
+        ],
+        "upstream": [
+          "provenance",
+          "reconstruction",
+          "picogk",
+          "surface",
+          "volume",
+          "coolant_cfd",
+          "cht",
+          "material_strength",
+          "lpbf_melt_pool",
+          "lpbf_build",
+          "lpbf_release",
+          "omni_preflight",
+          "omni_conversion",
+          "omni_assignment",
+          "omni_conformance",
+          "field_exchange",
+          "omni_render",
+          "physicsnemo"
+        ]
+      },
+      "next_permitted_action": "Deliver a gap dossier only (#547); physical validation plan requires #546 and professional review.",
+      "commands_are_templates": true,
+      "bound_inputs": [
+        "phase_ledger"
+      ],
+      "unbound_inputs": [
+        "approved_budget_rental_identity",
+        "bound_sources_results",
+        "professional_validation_plan"
+      ],
+      "phase_attempt_receipts": [],
+      "software_witnesses_not_phase_results": []
+    }
+  ]
+}
