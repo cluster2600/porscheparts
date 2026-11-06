@@ -1,0 +1,126 @@
+{
+  "schema": "962-owner005-held-source-rebind/v1",
+  "status": "HELD_UNRUN_NO_ACTUAL_NO_ADMISSION",
+  "generator_sha256": "4a0d4d0ed154d880523632fa7b40ac9fbc7841f2802290821bc902ca1419e4b1",
+  "future_preparation_directory": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-rebind-20261107",
+  "future_output_directory": "/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-root-execution-20261107",
+  "sources": {
+    "run_owner_once.py": {
+      "path": "twins/962-cylinder-head-f0/derived/engineering/current24-parser003-and-five-toy-second-attempt/originals/head-star-current24-qfnra-five-toy-owner-prep-005/run_owner_once.py",
+      "sha256": "a78c546e2fd343a46f712e84e47132774abf046736177f7cb8eeea2958375fa8"
+    },
+    "run_fixed_adapter.py": {
+      "path": "twins/962-cylinder-head-f0/derived/engineering/current24-parser003-and-five-toy-second-attempt/originals/head-star-current24-qfnra-five-toy-owner-prep-005/run_fixed_adapter.py",
+      "sha256": "587110ffc30b47a6e367f050b7c3316a32169ad67cc2602ddf527c7a9d3a2e5f"
+    },
+    "stopped_exec_wrapper.py": {
+      "path": "twins/962-cylinder-head-f0/derived/engineering/current24-parser003-and-five-toy-second-attempt/originals/head-star-current24-qfnra-five-toy-owner-prep-005/stopped_exec_wrapper.py",
+      "sha256": "62294417b7a293b85eaa142a6743b7ba8c3ffb14a70555644e4137f4c6a627bc"
+    },
+    "check_toy_sessions.py": {
+      "path": "twins/962-cylinder-head-f0/derived/engineering/current24-toy-model-parser003-held/originals/head-star-current24-qfnra-toy-transport-prep-003/check_toy_sessions.py",
+      "sha256": "3619b5316cf23398ed479ebf724a1159bb816ce3bafb85ad93c40b67b7df4990"
+    }
+  },
+  "outputs": {
+    "check_toy_sessions.py": {
+      "sha256": "8749d5a7f195ed3aa386ba2853849e5d5aad9bdd101d3cea7f9458d8a38842af",
+      "bytes": 22344
+    },
+    "source-choice.json": {
+      "sha256": "03a573306789d2dea766fa9babb753e8446adabd9034708deb824fa770021670",
+      "bytes": 806
+    },
+    "run_owner_once.py": {
+      "sha256": "ffb1c23de5de558c8a96c5a632ecdd3683669cbca08cb9c5ba824d47e6826643",
+      "bytes": 33680
+    },
+    "run_fixed_adapter.py": {
+      "sha256": "344dfd5700ebf05e59b7dd6d8a391d72f51ce888fb77f472ae3c79d53a1c6365",
+      "bytes": 7405
+    },
+    "stopped_exec_wrapper.py": {
+      "sha256": "2b93f04ba07f0232aef2ca77fdc59e64426bec7411c1b22dd3e99eb56978bd82",
+      "bytes": 1231
+    }
+  },
+  "literal_replacements": {
+    "check_toy_sessions.py": [
+      [
+        "ARGV = ['/opt/homebrew/bin/z3','-in','-smt2']",
+        "ARGV = ['/Users/maxime/Developer/PorschePartsArtifacts/962-z3-recovery-20261106/z3','-in','-smt2']"
+      ]
+    ],
+    "run_owner_once.py": [
+      [
+        "P=E/'head-star-current24-qfnra-five-toy-owner-prep-005'",
+        "P=E/'head-star-current24-qfnra-five-toy-owner-rebind-20261107'"
+      ],
+      [
+        "D=E/'head-star-current24-qfnra-five-toy-root-execution-002'",
+        "D=E/'head-star-current24-qfnra-five-toy-root-execution-20261107'"
+      ],
+      [
+        "CHOICE_SHA='e515e203bf928a57efbe44ebfb2c20da2e127dbfae5b690897175c0b86db0322'",
+        "CHOICE_SHA='03a573306789d2dea766fa9babb753e8446adabd9034708deb824fa770021670'"
+      ],
+      [
+        "actual['transport']['sha256']=='3619b5316cf23398ed479ebf724a1159bb816ce3bafb85ad93c40b67b7df4990'",
+        "actual['transport']['sha256']=='8749d5a7f195ed3aa386ba2853849e5d5aad9bdd101d3cea7f9458d8a38842af'"
+      ],
+      [
+        "actual['transport']['bytes']==22291",
+        "actual['transport']['bytes']==22344"
+      ],
+      [
+        "actual['Z3_body']['path']=='/opt/homebrew/Cellar/z3/5.1.0/bin/z3'",
+        "actual['Z3_body']['path']=='/Users/maxime/Developer/PorschePartsArtifacts/962-z3-recovery-20261106/z3'"
+      ],
+      [
+        "need('/opt/homebrew/bin/z3' in actual['expected_aliases']",
+        "need('/Users/maxime/Developer/PorschePartsArtifacts/962-z3-recovery-20261106/z3' in actual['expected_aliases']"
+      ],
+      [
+        "actual['expected_aliases']['/opt/homebrew/bin/z3']['resolved']",
+        "actual['expected_aliases']['/Users/maxime/Developer/PorschePartsArtifacts/962-z3-recovery-20261106/z3']['resolved']"
+      ]
+    ],
+    "run_fixed_adapter.py": [
+      [
+        "P=E/'head-star-current24-qfnra-five-toy-owner-prep-005'",
+        "P=E/'head-star-current24-qfnra-five-toy-owner-rebind-20261107'"
+      ],
+      [
+        "D=E/'head-star-current24-qfnra-five-toy-root-execution-002'",
+        "D=E/'head-star-current24-qfnra-five-toy-root-execution-20261107'"
+      ],
+      [
+        "TRANSPORT=E/'head-star-current24-qfnra-toy-transport-prep-003/check_toy_sessions.py'",
+        "TRANSPORT=E/'head-star-current24-qfnra-five-toy-owner-rebind-20261107/check_toy_sessions.py'"
+      ],
+      [
+        "TRANSPORT_SHA='3619b5316cf23398ed479ebf724a1159bb816ce3bafb85ad93c40b67b7df4990'",
+        "TRANSPORT_SHA='8749d5a7f195ed3aa386ba2853849e5d5aad9bdd101d3cea7f9458d8a38842af'"
+      ],
+      [
+        "before['transport']['bytes']==22291",
+        "before['transport']['bytes']==22344"
+      ],
+      [
+        "module.ARGV==['/opt/homebrew/bin/z3','-in','-smt2']",
+        "module.ARGV==['/Users/maxime/Developer/PorschePartsArtifacts/962-z3-recovery-20261106/z3','-in','-smt2']"
+      ]
+    ],
+    "stopped_exec_wrapper.py": [
+      [
+        "ADAPTER='/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-prep-005/run_fixed_adapter.py'",
+        "ADAPTER='/Users/maxime/.codex/worktrees/962-faithful-displacements/3dprinting993/work/962-engineering/head-star-current24-qfnra-five-toy-owner-rebind-20261107/run_fixed_adapter.py'"
+      ]
+    ]
+  },
+  "exact_inverse_bytes_verified": true,
+  "independent_source_review_complete": false,
+  "runtime_execution_authorized": false,
+  "engineering_phase_accepted": false,
+  "manufacturing_authorized": false
+}
