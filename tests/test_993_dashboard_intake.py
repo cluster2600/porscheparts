@@ -114,7 +114,7 @@ class DashboardIntakeTests(unittest.TestCase):
         file.write_bytes(b"synthetic test bytes")
         digest = hashlib.sha256(file.read_bytes()).hexdigest()
         problems: list[str] = []
-        self.assertEqual(intake._safe_file(base, "capture.bin", digest, file.stat().st_size, problems, "asset"), file)
+        self.assertEqual(intake._safe_file(base, "capture.bin", digest, file.stat().st_size, problems, "asset"), file.resolve())
         self.assertEqual(problems, [])
         intake._safe_file(base, "capture.bin", "0" * 64, file.stat().st_size, problems, "asset")
         self.assertTrue(any("does not match file bytes" in problem for problem in problems), problems)
