@@ -37,6 +37,35 @@ class DashboardIntakeTests(unittest.TestCase):
     def test_empty_public_template_is_closed(self) -> None:
         self.assertEqual(intake.check_template(self.root), [])
 
+    def test_non_object_public_template_and_schema_fail_closed(self) -> None:
+        schema_path = self.root / intake.INTAKE / "packet.schema.json"
+        original_schema = schema_path.read_text(encoding="utf-8")
+        for value in (None, [], "text"):
+            with self.subTest(value=value):
+                self.template_path.write_text(json.dumps(value), encoding="utf-8")
+                self.assertTrue(any("packet-template.json: expected object" in error
+                                    for error in intake.check_template(self.root)))
+        self.template_path.write_text((intake.ROOT / intake.INTAKE / "packet-template.json").read_text(encoding="utf-8"), encoding="utf-8")
+        for value in (None, [], "text"):
+            with self.subTest(schema=value):
+                schema_path.write_text(json.dumps(value), encoding="utf-8")
+                self.assertTrue(any("packet.schema.json: expected object" in error
+                                    for error in intake.check_template(self.root)))
+        schema_path.write_text(original_schema, encoding="utf-8")
+
+    def test_non_object_private_packet_exits_nonzero(self) -> None:
+        packet_path = self.root / "private-packet.json"
+        for value in (None, [], "text"):
+            with self.subTest(value=value):
+                packet_path.write_text(json.dumps(value), encoding="utf-8")
+                self.assertTrue(any("expected packet object" in error
+                                    for error in intake.check_packet(packet_path, intake.ROOT)))
+                output = io.StringIO()
+                with contextlib.redirect_stdout(output):
+                    result = intake.main(["--packet", str(packet_path)])
+                self.assertNotEqual(result, 0)
+                self.assertIn("expected packet object", output.getvalue())
+
     def test_template_rejects_prefilled_specimen_and_reading(self) -> None:
         data = self._template()
         data["specimen_id"] = "SPEC-993-DASH-0001"

@@ -231,7 +231,9 @@ def _common(packet: Any, root: Path, errors: list[str]) -> set[str]:
 def check_template(root: Path = ROOT) -> list[str]:
     errors: list[str] = []
     schema = _read_json(root / INTAKE / "packet.schema.json", errors, "packet.schema.json")
-    if isinstance(schema, dict):
+    if not isinstance(schema, dict):
+        errors.append("packet.schema.json: expected object")
+    else:
         allowed = schema.get("properties", {}).get("claims", {}).get("properties", {})
         if any(allowed.get(key, {}).get("const") is not False for key in ("dimensional_fit", "occupant_safety", "manufacturing_release")):
             errors.append("packet.schema.json: claims must be fixed false")
@@ -240,6 +242,7 @@ def check_template(root: Path = ROOT) -> list[str]:
             errors.append("packet.schema.json: admission status is forbidden")
     packet = _read_json(root / INTAKE / "packet-template.json", errors, "packet-template.json")
     if not isinstance(packet, dict):
+        errors.append("packet-template.json: expected object")
         return errors
     _common(packet, root, errors)
     if packet.get("packet_kind") != "template" or packet.get("status") != "blocked_missing_external_evidence":
@@ -274,6 +277,7 @@ def check_packet(packet_path: Path, root: Path = ROOT, hold_reasons: list[str] |
     errors: list[str] = []
     packet = _read_json(packet_path, errors, str(packet_path))
     if not isinstance(packet, dict):
+        errors.append(f"{packet_path}: expected packet object")
         return errors
     interface_ids = _common(packet, root, errors)
     if not interface_ids:
