@@ -1,4 +1,4 @@
-"""Tests des phases natives Vast/SimReady, sans accès réseau ni secret."""
+"""Tests of the native Vast/SimReady phases, with no network access or secret."""
 
 from __future__ import annotations
 

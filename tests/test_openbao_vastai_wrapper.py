@@ -1,4 +1,4 @@
-"""Tests hors ligne du wrapper Vast.ai borné au projet."""
+"""Offline tests of the project-bounded Vast.ai wrapper."""
 
 from __future__ import annotations
 
@@ -18,8 +18,8 @@ from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 WRAPPER_PATH = ROOT / "deploy/openbao/openbao-vastai"
-# Offre communiquee par l'utilisateur le 2026-09-02. Cette fixture ne prouve
-# ni sa disponibilite actuelle, ni une location.
+# Offer communicated by the user on 2026-09-02. This fixture proves neither
+# its current availability nor a rental.
 USER_PROVIDED_WAVE_CANDIDATE_ID = 49655039
 USER_PROVIDED_COMPONENT_FACTORY_F41_CANDIDATE_ID = 49655039
 

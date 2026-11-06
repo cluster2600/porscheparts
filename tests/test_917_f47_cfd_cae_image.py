@@ -1,4 +1,4 @@
-"""Gardes hors ligne de la recette F47; aucune API, aucun secret, aucun Vast."""
+"""Offline guards of the F47 recipe; no API, no secret, no Vast."""
 
 from __future__ import annotations
 

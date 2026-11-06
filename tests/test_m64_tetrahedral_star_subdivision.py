@@ -13,7 +13,7 @@ trial=importlib.util.module_from_spec(spec);spec.loader.exec_module(trial)
 
 
 def fixture(neighbors=0,crlf=False):
-    """Un tétraèdre central et jusqu'à quatre voisins, sans liste de défauts."""
+    """One central tetrahedron and up to four neighbors, without a defect list."""
     coordinates={1:(0,0,0),2:(1,0,0),3:(0,1,0),4:(0,0,1),
         5:(1,1,1),6:(-1,0,0),7:(0,-1,0),8:(0,0,-1)}
     cells=[(1,2,3,4)]

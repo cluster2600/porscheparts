@@ -29,7 +29,7 @@ class Vehicle911917MidEngineLayoutF1Tests(unittest.TestCase):
         scan = ROOT / "raw-scans" / "917-engine" / "original" / "917-engine-case-with-cylinders.obj"
         report = WORK / "packaging-report-f1.json"
         if not scan.exists() or not report.exists():
-            self.skipTest("scan brut et sorties locales volontairement absents de Git")
+            self.skipTest("raw scan and local outputs deliberately absent from Git")
 
         completed = subprocess.run(
             [

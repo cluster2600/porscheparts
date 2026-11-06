@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
-"""Que dit le criblage d'une reference precise du catalogue d'usine ?
+"""What does the screening say about one specific factory-catalogue reference?
 
-Les criblages publient ce qu'ils retiennent. Ils ne savent pas repondre a la
-question qu'on leur pose le plus souvent : « et cette piece-la ? ». Une
-designation ecartee disparait silencieusement du classement, et son motif de
-rejet n'est ecrit nulle part.
+Screenings publish what they retain. They cannot answer the question most often
+asked of them: "and what about this part?". A discarded designation disappears
+silently from the ranking, and its rejection reason is written nowhere.
 
-Ce script repond reference par reference. Il lit le releve **hors depot**, via
-`--listing`, et rejoue sur la seule designation demandee les regles du triage et
-du jugement. Il n'ecrit rien : c'est un outil de lecture.
+This script answers reference by reference. It reads the listing **outside the
+repository**, via `--listing`, and replays the triage and judgement rules on the
+single requested designation. It writes nothing: it is a reading tool.
 """
 
 from __future__ import annotations
@@ -50,7 +49,7 @@ def main() -> int:
         and row.get("generationId") == args.generation
     ]
     if not sightings:
-        raise SystemExit(f"reference absente du releve {args.generation}: {wanted}")
+        raise SystemExit(f"reference missing from the {args.generation} listing: {wanted}")
 
     description = (sightings[0].get("description") or "").strip().lower()
     plates = sorted({row.get("petIllustration") or "" for row in sightings})
@@ -59,20 +58,20 @@ def main() -> int:
 
     print(f"reference   {wanted}")
     print(f"designation {description}")
-    print(f"planches    {', '.join(p for p in plates if p)}")
-    print(f"groupes     {', '.join(g for g in groups if g)}")
+    print(f"plates      {', '.join(p for p in plates if p)}")
+    print(f"groups      {', '.join(g for g in groups if g)}")
     print(f"positions   {', '.join(str(p) for p in positions)}")
-    print(f"occurrences {len(sightings)} dans le releve")
+    print(f"occurrences {len(sightings)} in the listing")
 
-    # Rejouer le triage lexical sur cette seule designation.
+    # Replay the lexical triage on this single designation.
     aggregate = triage.aggregate(args.listing, args.generation)
     entry = aggregate.get(description)
     if entry is None:
-        raise SystemExit("designation introuvable dans l'agregat du triage")
+        raise SystemExit("designation not found in the triage aggregate")
     scored = triage.score_reference(entry)
 
     print()
-    print(f"--- triage lexical : {'retenu' if scored['retained'] else 'ecarte'}, score {scored['score']}")
+    print(f"--- lexical triage: {'retained' if scored['retained'] else 'discarded'}, score {scored['score']}")
     for label, key in (
         ("chaud", "hot_terms"),
         ("passage interne", "passage_terms"),
@@ -93,20 +92,20 @@ def main() -> int:
 
     print()
     if judgement is None:
-        print("--- jugement : aucun")
-        print("    Cette designation n'a pas ete retenue par le triage, donc")
-        print("    jamais instruite. L'absence de jugement n'est pas un verdict :")
-        print("    c'est l'aveu que personne ne l'a regardee.")
+        print("--- judgement: none")
+        print("    This designation was not retained by the triage, so it was")
+        print("    never examined. The absence of a judgement is not a verdict:")
+        print("    it is the admission that nobody has looked at it.")
         return 0
 
     verdict, blockers = verdicts.derive(judgement)
-    print(f"--- jugement : {verdict}")
-    print(f"    matiere d'origine presumee  {judgement['incumbent_material']}")
-    print(f"    le titane l'ameliore        {judgement['titanium_improves_on_it']}")
-    print(f"    classe presumee             {judgement['presumed_safety_class']}")
-    print(f"    familles additives          {', '.join(judgement['additive_families']) or 'aucune'}")
+    print(f"--- judgement: {verdict}")
+    print(f"    presumed original material  {judgement['incumbent_material']}")
+    print(f"    titanium improves on it     {judgement['titanium_improves_on_it']}")
+    print(f"    presumed class              {judgement['presumed_safety_class']}")
+    print(f"    additive families           {', '.join(judgement['additive_families']) or 'none'}")
     for blocker in blockers:
-        print(f"    BLOQUE  {blocker}")
+        print(f"    BLOCKED {blocker}")
     print(f"    {judgement['reason']}")
     return 0
 

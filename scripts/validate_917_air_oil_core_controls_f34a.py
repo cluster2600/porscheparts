@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Valide le contrat de décision F34a air/huile et contrôles 2026."""
+"""Validate the F34a air/oil and 2026 controls decision contract."""
 
 from __future__ import annotations
 

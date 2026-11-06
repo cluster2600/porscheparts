@@ -67,7 +67,7 @@ class ProvenanceTests(unittest.TestCase):
             skeleton.resolve_parameters(self.spec, self.contract)
 
 
-@unittest.skipUnless(HAVE_CQ, 'cadquery indisponible')
+@unittest.skipUnless(HAVE_CQ, 'cadquery unavailable')
 class GenerationTests(unittest.TestCase):
     def test_generation_is_valid_and_not_master(self):
         with tempfile.TemporaryDirectory() as tmp:

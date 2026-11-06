@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Contrat de la preuve de qualification runtime Vast F41 C59."""
+"""Contract of the F41 C59 Vast runtime qualification evidence."""
 
 from __future__ import annotations
 

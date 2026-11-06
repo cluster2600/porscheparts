@@ -1,9 +1,9 @@
-"""Simulation d'impression LPBF de chaque piece 993 dotee d'un maitre STEP.
+"""LPBF print simulation of every 993 part that has a STEP master.
 
-Le test ne dit pas qu'une piece est imprimable. Il verifie que chaque rapport
-publie est lie a son maitre et a sa surface par empreinte, que le tranchage a
-bien couvert toute la hauteur, qu'une image accompagne le rapport, que la fiche
-de la piece montre cette image, et qu'aucune porte d'impression n'est ouverte.
+The test does not say that a part is printable. It checks that each published
+report is linked to its master and surface by digest, that slicing covered the
+full height, that an image accompanies the report, that the part record shows
+that image, and that no print gate is open.
 """
 from __future__ import annotations
 

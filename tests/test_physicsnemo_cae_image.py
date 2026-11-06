@@ -57,12 +57,12 @@ def _fake_modules(*, cuda_available: bool | None) -> dict[str, ModuleType]:
         @staticmethod
         def is_available() -> bool:
             if cuda_available is None:
-                raise AssertionError("CUDA ne doit pas être interrogé sans --require-gpu")
+                raise AssertionError("CUDA must not be queried without --require-gpu")
             return cuda_available
 
         @staticmethod
         def device_count() -> int:
-            raise AssertionError("device_count ne doit pas être appelé sans GPU")
+            raise AssertionError("device_count must not be called without a GPU")
 
     torch = ModuleType("torch")
     torch.__version__ = "2.10.0+cu128"

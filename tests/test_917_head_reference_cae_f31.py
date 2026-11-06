@@ -1,4 +1,4 @@
-"""Tests des preuves EF de référence F31 pour la culasse 917."""
+"""Tests of the F31 reference FE evidence for the 917 cylinder head."""
 
 from __future__ import annotations
 

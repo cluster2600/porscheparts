@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tests autonomes du paquet F49; aucune geometrie privee n'est requise."""
+"""Standalone tests of the F49 package; no private geometry is required."""
 
 from __future__ import annotations
 

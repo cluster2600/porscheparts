@@ -95,7 +95,7 @@ class Vehicle911917930TailF3Tests(unittest.TestCase):
                 asset = contract[field]
                 path = ROOT / asset["path"]
                 if not path.exists():
-                    self.skipTest("rendus locaux volontairement absents de Git")
+                    self.skipTest("local renders deliberately absent from Git")
                 self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), asset["sha256"])
 
 

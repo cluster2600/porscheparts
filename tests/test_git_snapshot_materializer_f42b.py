@@ -1,4 +1,4 @@
-"""Tests adversariaux du matérialisateur de snapshot Git F42b."""
+"""Adversarial tests of the F42b Git snapshot materializer."""
 
 from __future__ import annotations
 

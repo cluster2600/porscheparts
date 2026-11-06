@@ -48,7 +48,7 @@ class FeaParserTests(unittest.TestCase):
         self.assertAlmostEqual(fea.tet_volume(points, [1, 2, 3, 4]), 1 / 6)
 
     def test_ground_springs_stay_far_below_elastic_threshold(self):
-        # Seuil de tri a au moins 10 fois la frequence des ressorts de sol.
+        # Screening threshold at least 10 times the ground-spring frequency.
         self.assertGreaterEqual(fea.MIN_ELASTIC_HZ, 10 * fea.GROUND_SPRING_HZ)
 
     def test_materials_declare_their_source_type(self):

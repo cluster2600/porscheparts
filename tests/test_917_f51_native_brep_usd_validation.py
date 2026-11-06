@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tests fail-closed de la conversion privée B-Rep vers USD F51."""
+"""Fail-closed tests of the private F51 B-Rep to USD conversion."""
 
 from __future__ import annotations
 

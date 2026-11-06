@@ -16,7 +16,7 @@ PROJECT = TWIN / "picogk" / "Vehicle911917Packaging.csproj"
 def load_module():
     spec = importlib.util.spec_from_file_location("prepare_picogk_f10", PREPARE)
     if spec is None or spec.loader is None:
-        raise RuntimeError("module F10 impossible à charger")
+        raise RuntimeError("cannot load module F10")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module

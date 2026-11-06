@@ -1,4 +1,4 @@
-"""Tests du verrou de publication de l'image CPU F26."""
+"""Tests of the publication lock of the F26 CPU image."""
 
 from __future__ import annotations
 

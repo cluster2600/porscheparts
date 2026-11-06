@@ -1,12 +1,12 @@
-"""Disposition de tout le catalogue d'usine : plus une seule perte silencieuse.
+"""Disposition of the whole factory catalogue: not one silent loss left.
 
-Les criblages publiaient ce qu'ils retenaient, et 956 designations sur 1 026
-tombaient sans motif. C'est ainsi que `oil pipe` puis `pulley` se sont perdus,
-et c'est ce que ces tests interdisent desormais.
+The screenings published what they kept, and 956 of 1,026 designations dropped
+without a reason. That is how `oil pipe` and then `pulley` were lost, and it is
+what these tests now forbid.
 
-Le dernier test garde l'aveu qui compte : une designation generique nomme une
-forme, pas une fonction, et ne peut pas etre jugee a ce niveau. Le rapport doit
-continuer a le dire et a compter ce qu'il laisse ouvert.
+The last test guards the admission that matters: a generic designation names a
+shape, not a function, and cannot be judged at that level. The report must keep
+saying so and keep counting what it leaves open.
 """
 from __future__ import annotations
 
@@ -54,7 +54,7 @@ class PetFullDispositionTests(unittest.TestCase):
                 self.assertIn(row["category"], self.report["categories"])
 
     def test_the_generic_gap_is_measured_and_declared(self) -> None:
-        """Ce que le depot ne sait pas faire doit rester compte, pas masque."""
+        """What the repository cannot do must stay counted, not hidden."""
         generic = self.report["counts"].get("generic_designation")
         self.assertIsNotNone(generic)
         self.assertGreater(generic["designations"], 0)
@@ -64,8 +64,8 @@ class PetFullDispositionTests(unittest.TestCase):
         )
 
     def test_the_verdict_reaches_designations_the_vocabulary_had_missed(self) -> None:
-        """`muffler` n'etait pas dans les 70 du triage lexical. Une fois juge a
-        la main, il doit remonter dans le gisement."""
+        """`muffler` was not among the 70 of the lexical triage. Once judged by
+        hand, it must surface in the pool."""
         backlog = {row["description"] for row in load(VERDICT)["backlog"]}
         self.assertIn("muffler", backlog)
         self.assertIn("tail pipe", backlog)

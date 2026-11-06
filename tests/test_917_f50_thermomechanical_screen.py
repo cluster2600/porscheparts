@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tests fail-closed du criblage thermo-mécanique F50."""
+"""Fail-closed tests of the F50 thermomechanical screening."""
 
 from __future__ import annotations
 

@@ -139,5 +139,22 @@ flow, a hierarchy, a sequence of gates, a timeline, a comparison.
 | 1 | README, top-level documents, generators (parts table, part pages, `make help`), catalogue part names and descriptions, core `docs/*.md`, README figures | done |
 | 2 | remaining `docs/*.md`, `docs/993/` (with the generated print-screen sections), `docs/research/`, `docs/decisions/`, `docs/media/`, catalogue READMEs and templates, CHANGELOG | done |
 | 3 | `docs/reports/`, twin, container, deploy and simulation READMEs outside `evidence/`, catalogue twin records; diagrams and images across the docs | done |
-| 4 | code comments, docstrings and command-line messages in `scripts/` and `tests/` | open |
+| 4 | code comments, docstrings and command-line messages in `scripts/` and `tests/` | done (exceptions below) |
 | 5 | file and directory renames, with redirects | open |
+
+Phase 4 exceptions (2026-11-06, issue #429). These stay French on purpose:
+
+- **Lock-pinned sources.** `scripts/export_917_air_oil_seeds_f34b.py`,
+  `scripts/run_917_doe_f34.py`, `tests/test_917_air_oil_seeds_f34b.py` and
+  `tests/test_air_oil_cycle_f34b_image.py` are recipe inputs of
+  `containers/air-oil-cycle-f34b.lock.json` or are pinned elsewhere by
+  digest. Editing them breaks the lock.
+- **Generated document content.** The French text that generators write into
+  deliverables (`build_turning_route_card.py`, `build_process_route_card.py`,
+  `build_carrier_workshop_guide*.py`, `build_part_workflow_guide.py`,
+  `render_carrier_*.py`) is page content, not a command-line message. Per the
+  generated-pages rule above, it is translated in the generator together with
+  a regeneration of its outputs, as a separate change.
+- **Data strings.** Strings in `tests/` that must equal French values written in
+  records, evidence or script output (for example
+  `tests/test_vast_simready_native.py`) change only when their source does.

@@ -1,17 +1,17 @@
-"""Criblage d'impression LPBF de toutes les pieces 993 qui ont un maitre STEP.
+"""LPBF print screening of every 993 part that has a STEP master.
 
-Pour chaque piece : le STEP est tessele en STL d'analyse (build123d, meme
-tolerance que le levier de porte), puis `run_metal_am_geometry_screen.py`
-tranche la piece sur toute sa hauteur a l'epaisseur de couche de la route
-EOS M 290 de sa matiere. Les pieces passent **une par une**, dans le conteneur
-cadsim, avec un plafond memoire et CPU : WSL ne doit pas tomber.
+For each part: the STEP is tessellated into an analysis STL (build123d, same
+tolerance as the door lever), then `run_metal_am_geometry_screen.py` slices the
+part over its full height at the layer thickness of the EOS M 290 route for its
+material. Parts run **one at a time**, in the cadsim container, with a memory
+and CPU cap: WSL must not go down.
 
-L'enveloppe attendue est la boite englobante du B-rep, lue avant tesselation.
-Le controle compare donc le maitre a sa surface derivee ; il ne dit rien de la
-conformite a une piece d'origine.
+The expected envelope is the B-rep bounding box, read before tessellation. The
+check therefore compares the master with its derived surface; it says nothing
+about conformity to an original part.
 
-Un echec est ecrit tel quel dans `print-screen-status.json` ; il n'est jamais
-maquille en reussite.
+A failure is written as is into `print-screen-status.json`; it is never dressed
+up as a success.
 """
 from __future__ import annotations
 
@@ -28,7 +28,7 @@ ROOT = Path(__file__).resolve().parents[1]
 IMAGE = "3dprinting993-cadsim:dev"
 MACHINE = "catalog/manufacturing/machines/eos-m290.json"
 
-# epaisseur de couche publiee par EOS pour chaque matiere sur M 290
+# layer thickness published by EOS for each material on the M 290
 LAYER_MM = {
     "AlSi10Mg": (0.03, "EOS Aluminium AlSi10Mg / M290 30 um"),
     "IN625": (0.04, "EOS NickelAlloy IN625 / M290 40 um"),
@@ -60,7 +60,7 @@ PARTS = {
     "993-eng-turbo-oil-return-line-in625-f0-0001": "IN625",
     "993-eng-upper-valve-cover-alsi10mg-f0-0001": "AlSi10Mg",
     "993-whl-center-cap-alsi10mg-f0-0001": "AlSi10Mg",
-    # criblees au 03 sans STL publie : on derive la surface pour l'etape 04
+    # screened at step 03 without a published STL: derive the surface for step 04
     "993-elec-headlamp-spring-hook-f0-0001": "AlSi10Mg",
     "993-exh-oval-tip-in625-f0-0001": "IN625",
 }
@@ -127,7 +127,7 @@ def screen(slug: str, material: str, memory: str, cpus: str, pitch: float) -> di
 def main() -> int:
     global PYLIB
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--pylib", type=Path, required=True, help="shapely+rtree installes pour le conteneur")
+    parser.add_argument("--pylib", type=Path, required=True, help="shapely+rtree installed for the container")
     parser.add_argument("--only", nargs="*")
     parser.add_argument("--memory", default="6g")
     parser.add_argument("--cpus", default="4")

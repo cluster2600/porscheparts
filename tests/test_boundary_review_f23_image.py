@@ -1,4 +1,4 @@
-"""Tests statiques de l'image CPU F23 du workpack de revue humaine."""
+"""Static tests of the F23 CPU image of the human review workpack."""
 
 from __future__ import annotations
 

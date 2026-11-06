@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tests autonomes du paquet public F43, sans ouvrir la géométrie privée."""
+"""Standalone tests of the public F43 package, without opening private geometry."""
 
 from __future__ import annotations
 
