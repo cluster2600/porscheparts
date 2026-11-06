@@ -109,7 +109,7 @@ each run. Some carrier runtimes are native environments, not those images.
 
 | ID | Tool / recorded profile | Status and actual evidence | Next use or acceptance condition |
 |---|---|---|---|
-| 37 | PySLM `8fa03f1…` + recorded patches; Shapely 2.2.0 / pyclipr 0.1.8 | **E, partial/historical.** Pose, seven regions, support operations and a 1,034-layer calendar; interrupted cache retained 440 contiguous layers. [W], [pause receipt](carrier-pause-20261018/README.md#interrupted-layer-cache) | Rebind to the selected current geometry; complete all support/contact/envelope checks, every layer and whole-vector audit. Old layers cannot be silently reused. |
+| 37 | PySLM `8fa03f1…` + recorded patches; Shapely 2.2.0 / pyclipr 0.1.8 | **E, partial/current.** Fresh float64 H8 exterior import and pose checks; actual layer 517 has 13,813 hatch vectors and 70,340 contour segments, all audited. Independent triangle area agrees; all 1,034 fixed planes inspected. [Current execution and image](carrier-current-am-intake-20261106.md). Historical supports and interrupted 440-layer cache remain separate [W], [pause receipt](carrier-pause-20261018/README.md#interrupted-layer-cache). | Qualify the identified near-vertex plane, then a bounded representative batch and all current layers. Complete current support/contact/envelope checks and the whole-vector audit; old layers cannot be reused silently. |
 | 38 | PrusaSlicer / OrcaSlicer | **N.** Polymer prototype tools in [T]; not a Ti64 LPBF machine job. | Optional polymer geometry trial with its own material/printer profile. |
 | 39 | UVtools | **N.** Optional resin-job inspection in [T]. | No resin process selected for this carrier. |
 | 40 | Adamantine | **S.** Retained thermal/exporter/coupon software controls, including a Q1 conduction control; no carrier build-distortion prediction. [Historical controls](carrier-adamantine-historical-links-20261018/README.md), [W] | Define the build material, activation/heat history and verified field exchange before a bounded thermomechanical study. |
@@ -171,10 +171,12 @@ Concrete integration gaps, in order:
    remains above it. Compute new traction-jump vectors from both complete H8
    fields, verify all loads/supports and their source geometry, then admit the
    next exact refinement before new solves. Keep the unchanged convergence rule.
-2. **Close the current geometry's additive preparation.** Reuse PySLM and its
-   installed patches, but bind a fresh pose/support/layer package to the chosen
-   geometry. Check support contacts, access, complete build envelope and every
-   segment. The historical 440-layer cache is not the current answer.
+2. **Close the current geometry's additive preparation.** PySLM's current-source
+   import, pose and first actual layer have passed independent checks. The
+   all-plane preflight identified one near-vertex case to qualify before a
+   representative batch and all 1,034 layers. Check current support contacts,
+   access, complete build envelope and every segment. The historical 440-layer
+   cache is not the current answer.
 3. **Turn thermal controls into a bounded process calculation.** GO-MELT's
    convection/material unit questions now have executed controls. Supply the
    remaining alloy and exposure inputs, then test activation, energy balance,
