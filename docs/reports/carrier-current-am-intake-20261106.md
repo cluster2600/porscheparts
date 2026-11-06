@@ -1,5 +1,9 @@
 # 993 carrier: current-surface additive intake and one audited layer
 
+Follow-up: the [7 November nine-layer batch](carrier-current-am-batch-20261107.md)
+has now passed, including the near-vertex plane and strict independent vector
+checks. This page retains the first-layer checkpoint and its image.
+
 This is a new current-source execution, completed on 2026-11-06. It does not
 resume the interrupted historical current24af cache. H9 is required to preserve
 the current H8 exterior. This additive intake does not depend on completing that

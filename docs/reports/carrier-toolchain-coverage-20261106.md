@@ -109,12 +109,12 @@ each run. Some carrier runtimes are native environments, not those images.
 
 | ID | Tool / recorded profile | Status and actual evidence | Next use or acceptance condition |
 |---|---|---|---|
-| 37 | PySLM `8fa03f1…` + recorded patches; Shapely 2.2.0 / pyclipr 0.1.8 | **E, partial/current.** Fresh float64 H8 exterior import and pose checks; actual layer 517 has 13,813 hatch vectors and 70,340 contour segments, all audited. Independent triangle area agrees; all 1,034 fixed planes inspected. [Current execution and image](carrier-current-am-intake-20261106.md). Historical supports and interrupted 440-layer cache remain separate [W], [pause receipt](carrier-pause-20261018/README.md#interrupted-layer-cache). | Qualify the identified near-vertex plane, then a bounded representative batch and all current layers. Complete current support/contact/envelope checks and the whole-vector audit; old layers cannot be reused silently. |
+| 37 | PySLM `8fa03f1…` + recorded patches; Shapely 2.2.0 / pyclipr 0.1.8 | **E, partial/current.** Current float64 exterior and pose checked; all 1,034 planes inspected. [Nine-layer batch](carrier-current-am-batch-20261107.md) passed 311,059 segment checks against native and independent domains, including the near-vertex plane. [First-layer image](carrier-current-am-intake-20261106.md). Historical supports and interrupted 440-layer cache remain separate [W], [pause receipt](carrier-pause-20261018/README.md#interrupted-layer-cache). | Execute and audit all 1,034 current layers; complete current support/contact/envelope checks and the machine job. The nine-layer batch is partial; old layers cannot be reused silently. |
 | 38 | PrusaSlicer / OrcaSlicer | **N.** Polymer prototype tools in [T]; not a Ti64 LPBF machine job. | Optional polymer geometry trial with its own material/printer profile. |
 | 39 | UVtools | **N.** Optional resin-job inspection in [T]. | No resin process selected for this carrier. |
 | 40 | Adamantine | **S.** Retained thermal/exporter/coupon software controls, including a Q1 conduction control; no carrier build-distortion prediction. [Historical controls](carrier-adamantine-historical-links-20261018/README.md), [W] | Define the build material, activation/heat history and verified field exchange before a bounded thermomechanical study. |
 | 41 | ORNL AdditiveFOAM 2.0.0 / OpenFOAM 14 | **A.** Documented local melt-pool route [T]; no carrier process result credited. | Use only for an explicit local exposure/material case; not required to rerun static H8. |
-| 42 | GO-MELT `7dafdd8593711cf8ac6ccb18a1f475744610ea3d`; JAX 0.4.16 CPU/x64 | **S.** Kernel controls plus fresh actual property/convection/radiation function tests on synthetic elements. [6 November unit report](carrier-go-melt-units-20261106.md), [L] | Units are now checked; supply the complete thermal card, activation/toolpath, absorbed-power balance, mesh/time study and conservative temperature transfer. No carrier scan or CUDA run yet. |
+| 42 | GO-MELT `7dafdd8593711cf8ac6ccb18a1f475744610ea3d`; JAX 0.4.16 CPU/x64 | **S.** Actual property/convection/radiation controls and a moving-source solid coupon with variable TIMET reference properties. A fresh 4,224-step audit corrects earlier sampled maxima; the finest energy defect is 0.011477%. [Unit report](carrier-go-melt-units-20261106.md), [all-step refinement](carrier-go-melt-allsteps-20261107.md), [L] | Preserve the bounded solid-reference range; supply the complete thermal card, activation/toolpath and checked temperature transfer before a carrier study. Coupon space/time checks do not validate multilevel transfer, a carrier scan or CUDA execution. |
 | 43 | LPBF-CUDA `b81c9a0d8abae302c9a4eeacf384502d2220d360` | **S.** CPU rebuild and small thermal/deposition-program controls. [L] | Modern CUDA build, CPU/GPU agreement and reviewed local particle/wall/material case first; not a carrier powder-evacuation solver. |
 | 44 | Supplier LPBF preparation / machine software (EPHatch reference) | **P.** Published build-envelope comparison only; no complete current support envelope or machine job. [Process references](../manufacturing/CARRIER_LPBF_REFERENCES_20261018_EN.md) | Select the actual production profile and hand over the checked geometry/support/process package; retain the returned job identity. |
 
@@ -172,10 +172,10 @@ Concrete integration gaps, in order:
    fields, verify all loads/supports and their source geometry, then admit the
    next exact refinement before new solves. Keep the unchanged convergence rule.
 2. **Close the current geometry's additive preparation.** PySLM's current-source
-   import, pose and first actual layer have passed independent checks. The
-   all-plane preflight identified one near-vertex case to qualify before a
-   representative batch and all 1,034 layers. Check current support contacts,
-   access, complete build envelope and every segment. The historical 440-layer
+   import, pose and nine-layer batch passed independent checks, including the
+   qualified near-vertex case and every segment. Execute all 1,034 part layers
+   with source-bound restart and complete audits, then check current support
+   contacts, access and the complete build envelope. The historical 440-layer
    cache is not the current answer.
 3. **Turn thermal controls into a bounded process calculation.** GO-MELT's
    convection/material unit questions now have executed controls. Supply the

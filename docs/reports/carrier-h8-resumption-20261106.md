@@ -12,8 +12,9 @@ carrier work, synthetic controls, refused trials and optional routes.
 
 The [current additive intake](carrier-current-am-intake-20261106.md) now records
 a complete current-surface import, an audited real PySLM layer with its image,
-and inspection of all 1,034 fixed planes. Full layers, supports and the final
-machine job remain open.
+and inspection of all 1,034 fixed planes. The subsequent
+[nine-layer batch](carrier-current-am-batch-20261107.md) passed strict checks
+on 311,059 segments. Full layers, supports and the final machine job remain open.
 
 The [current free-tools manifest](../../benchmarks/free-tools/baseline-20261106.json)
 now binds this catalogue amendment. Its four other input hashes and all
