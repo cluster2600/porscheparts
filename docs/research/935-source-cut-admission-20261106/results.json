@@ -1,0 +1,913 @@
+{
+  "schema": "935-source-cut-admission-public-1",
+  "status": "five_source_supported_provisional_regions_independently_checked",
+  "original_obj_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "decoded_source_sha256": "dd94c37117a1f1277a4f2b7f0bf0023e0d1858991b943f766cf447db319a101a",
+  "source_admission_plan_sha256": "f26389c910ded839b94de910f495c0110a0fd103fc860af2b4a07e25139d5026",
+  "study_planes_sha256": "e46898d629e5c5438e782c4d86a8a0d3d6e4b5ea1074525efe363d804e0f2851",
+  "assumptions": {
+    "owner_nominal_mm_per_source_unit": 1,
+    "physical_metrology_verified": false,
+    "stock_nominal_mm": 0.75,
+    "section_area_interval_nominal_mm2": [
+      10,
+      150
+    ],
+    "minimum_circularity": 0.7,
+    "minimum_outward_extension_nominal_mm": 5,
+    "arithmetic_ambiguity_band": 1e-08,
+    "threshold_sweep": false
+  },
+  "source_partition": {
+    "all_acquired_faces_accounted": 2466040,
+    "retained_source_faces": 2401378,
+    "transition_faces_retained": 726,
+    "proposed_removed_source_faces": 64458,
+    "quarantined_faces_retained_in_original": 204,
+    "retained_geometry_exact_original_triangles": true,
+    "source_points_or_triangles_clipped_or_capped": false,
+    "retained_surface_sha256": "bde45bbddda50c9e60a7574527203cd0391801eca39e2a932dae49857abae037"
+  },
+  "source_planes": [
+    {
+      "plane": 0,
+      "active_source_faces": 117018,
+      "positive_surface_components": 11,
+      "section_source_faces": 1105,
+      "section_nodes": 1113,
+      "selected_provisional_regions": 3,
+      "reason_counts": {
+        "provisional_geometric_region": 3,
+        "non_closed_or_branched_source_section": 8
+      },
+      "whole_component_partition_bijection": true,
+      "maximum_independent_metric_difference": 3.552713678800501e-14,
+      "exact_source_edge_intersections": 1113,
+      "fraction_fallbacks": 0
+    },
+    {
+      "plane": 1,
+      "active_source_faces": 126591,
+      "positive_surface_components": 3,
+      "section_source_faces": 2221,
+      "section_nodes": 2236,
+      "selected_provisional_regions": 1,
+      "reason_counts": {
+        "non_closed_or_branched_source_section": 2,
+        "provisional_geometric_region": 1
+      },
+      "whole_component_partition_bijection": true,
+      "maximum_independent_metric_difference": 1.4210854715202004e-14,
+      "exact_source_edge_intersections": 2236,
+      "fraction_fallbacks": 0
+    },
+    {
+      "plane": 2,
+      "active_source_faces": 21091,
+      "positive_surface_components": 13,
+      "section_source_faces": 406,
+      "section_nodes": 408,
+      "selected_provisional_regions": 1,
+      "reason_counts": {
+        "provisional_geometric_region": 1,
+        "non_closed_or_branched_source_section": 2,
+        "fixed_classifier_not_passed": 10
+      },
+      "whole_component_partition_bijection": true,
+      "maximum_independent_metric_difference": 7.16093850883226e-14,
+      "exact_source_edge_intersections": 408,
+      "fraction_fallbacks": 0
+    }
+  ],
+  "regions": [
+    {
+      "region": 1,
+      "plane": 0,
+      "component": 0,
+      "source_faces": 25980,
+      "fully_outward_faces": 25809,
+      "transition_faces": 171,
+      "section_nodes": 171,
+      "private_region_sha256": "b345e86bd19bfd899513acfaa56a1c0ba4e9326f7029e4b293d9a46c2edae50d",
+      "anatomical_identity_accepted": false,
+      "first_native_export": {
+        "region": 1,
+        "source_faces": 25809,
+        "source_native_comparison": {
+          "source_vertices": 13566,
+          "native_vertices": 13567,
+          "edges": 39379,
+          "faces": 25809,
+          "shells": 2,
+          "source_boundary_edges": 1331,
+          "vertex_roundtrip_maximum_mm": 0.0,
+          "normal_roundtrip_maximum_error": 4.440892098500626e-16,
+          "checks": {
+            "every_original_triangle_once": true,
+            "original_orientation": true,
+            "straight_source_edges": true,
+            "exact_source_edge_adjacency": true,
+            "exact_source_vertex_fans": true,
+            "exact_source_shell_components": true,
+            "valid_reopened_native_shape": true,
+            "zero_solids": true
+          },
+          "original_vertex_point_contacts_separated": true
+        },
+        "section_native_comparison": {
+          "vertices": 171,
+          "edges": 171,
+          "wires": 1,
+          "closed_degree_two_loop": true,
+          "straight_edges": true,
+          "maximum_constructed_endpoint_roundtrip_nominal_mm": 5.148984103943978e-13,
+          "valid": true,
+          "zero_faces_and_solids": true
+        },
+        "ideal_to_rounded_endpoint_maximum_nominal_mm": 2.845027849927959e-14,
+        "step_sha256": "8f9f05a021316324285465abb4bd66394a790f99e2056a21056a783024911826",
+        "brep_sha256": "52515ac346b2f8f0e3d143ce142b431cb5bc3b5bfedbfc856448240337e67875",
+        "source_coordinates_and_edge_intersection_origin_verified": true
+      },
+      "actual_saved_FreeCAD_export": {
+        "region": 1,
+        "source_faces": 25809,
+        "source_native_comparison": {
+          "source_vertices": 13566,
+          "native_vertices": 13567,
+          "edges": 39379,
+          "faces": 25809,
+          "shells": 2,
+          "source_boundary_edges": 1331,
+          "vertex_roundtrip_maximum_mm": 0.0,
+          "normal_roundtrip_maximum_error": 4.440892098500626e-16,
+          "checks": {
+            "every_original_triangle_once": true,
+            "original_orientation": true,
+            "straight_source_edges": true,
+            "exact_source_edge_adjacency": true,
+            "exact_source_vertex_fans": true,
+            "exact_source_shell_components": true,
+            "valid_reopened_native_shape": true,
+            "zero_solids": true
+          },
+          "original_vertex_point_contacts_separated": true
+        },
+        "section_native_comparison": {
+          "vertices": 171,
+          "edges": 171,
+          "wires": 1,
+          "closed_degree_two_loop": true,
+          "straight_edges": true,
+          "maximum_constructed_endpoint_roundtrip_nominal_mm": 5.148984103943978e-13,
+          "valid": true,
+          "zero_faces_and_solids": true
+        },
+        "ideal_to_rounded_endpoint_maximum_nominal_mm": 2.845027849927959e-14,
+        "step_sha256": "9c0c19a33a17d83485d703cc0072f45a1d73cf8f1848b38a83c6ec0471aa32f0",
+        "brep_sha256": "185f0a18e19c379519d0c68a4c40084ddfd37cde3748b0a8db38e2b20749b621",
+        "source_coordinates_and_edge_intersection_origin_verified": true
+      }
+    },
+    {
+      "region": 2,
+      "plane": 0,
+      "component": 4,
+      "source_faces": 10917,
+      "fully_outward_faces": 10778,
+      "transition_faces": 139,
+      "section_nodes": 139,
+      "private_region_sha256": "2f6bbdf3a02f75435ebc40af7407015083f93026eefa14d5f1d4e0d3353d0617",
+      "anatomical_identity_accepted": false,
+      "first_native_export": {
+        "region": 2,
+        "source_faces": 10778,
+        "source_native_comparison": {
+          "source_vertices": 5469,
+          "native_vertices": 5469,
+          "edges": 16247,
+          "faces": 10778,
+          "shells": 1,
+          "source_boundary_edges": 160,
+          "vertex_roundtrip_maximum_mm": 0.0,
+          "normal_roundtrip_maximum_error": 4.440892098500626e-16,
+          "checks": {
+            "every_original_triangle_once": true,
+            "original_orientation": true,
+            "straight_source_edges": true,
+            "exact_source_edge_adjacency": true,
+            "exact_source_vertex_fans": true,
+            "exact_source_shell_components": true,
+            "valid_reopened_native_shape": true,
+            "zero_solids": true
+          },
+          "original_vertex_point_contacts_separated": false
+        },
+        "section_native_comparison": {
+          "vertices": 139,
+          "edges": 139,
+          "wires": 1,
+          "closed_degree_two_loop": true,
+          "straight_edges": true,
+          "maximum_constructed_endpoint_roundtrip_nominal_mm": 5.154374172525247e-13,
+          "valid": true,
+          "zero_faces_and_solids": true
+        },
+        "ideal_to_rounded_endpoint_maximum_nominal_mm": 2.8298201329667748e-14,
+        "step_sha256": "0dfa05cde4119bdd6f7a88e0ab6efbfd4f1e5cd2fe5db1d46d960952c11da089",
+        "brep_sha256": "d961343c08f79fa24b44be7e9434851a5dc57d923443a5a1596a32bf9223a978",
+        "source_coordinates_and_edge_intersection_origin_verified": true
+      },
+      "actual_saved_FreeCAD_export": {
+        "region": 2,
+        "source_faces": 10778,
+        "source_native_comparison": {
+          "source_vertices": 5469,
+          "native_vertices": 5469,
+          "edges": 16247,
+          "faces": 10778,
+          "shells": 1,
+          "source_boundary_edges": 160,
+          "vertex_roundtrip_maximum_mm": 0.0,
+          "normal_roundtrip_maximum_error": 4.440892098500626e-16,
+          "checks": {
+            "every_original_triangle_once": true,
+            "original_orientation": true,
+            "straight_source_edges": true,
+            "exact_source_edge_adjacency": true,
+            "exact_source_vertex_fans": true,
+            "exact_source_shell_components": true,
+            "valid_reopened_native_shape": true,
+            "zero_solids": true
+          },
+          "original_vertex_point_contacts_separated": false
+        },
+        "section_native_comparison": {
+          "vertices": 139,
+          "edges": 139,
+          "wires": 1,
+          "closed_degree_two_loop": true,
+          "straight_edges": true,
+          "maximum_constructed_endpoint_roundtrip_nominal_mm": 5.154374172525247e-13,
+          "valid": true,
+          "zero_faces_and_solids": true
+        },
+        "ideal_to_rounded_endpoint_maximum_nominal_mm": 2.8298201329667748e-14,
+        "step_sha256": "06cd680105240539fdd762ba4c6011f35475f9c69b2579d3c43ec6d20dc6ecbf",
+        "brep_sha256": "2eee783f74d6d50d0ff8b4c725a6605092440d1396fc9ee4404780f13f9e0efb",
+        "source_coordinates_and_edge_intersection_origin_verified": true
+      }
+    },
+    {
+      "region": 3,
+      "plane": 0,
+      "component": 6,
+      "source_faces": 8312,
+      "fully_outward_faces": 8169,
+      "transition_faces": 143,
+      "section_nodes": 143,
+      "private_region_sha256": "88640dd97bf1b9669638bac66fa6f06c71659d2e87cf23d90a01d83b06bd0d61",
+      "anatomical_identity_accepted": false,
+      "first_native_export": {
+        "region": 3,
+        "source_faces": 8169,
+        "source_native_comparison": {
+          "source_vertices": 4246,
+          "native_vertices": 4246,
+          "edges": 12417,
+          "faces": 8169,
+          "shells": 1,
+          "source_boundary_edges": 327,
+          "vertex_roundtrip_maximum_mm": 0.0,
+          "normal_roundtrip_maximum_error": 4.440892098500626e-16,
+          "checks": {
+            "every_original_triangle_once": true,
+            "original_orientation": true,
+            "straight_source_edges": true,
+            "exact_source_edge_adjacency": true,
+            "exact_source_vertex_fans": true,
+            "exact_source_shell_components": true,
+            "valid_reopened_native_shape": true,
+            "zero_solids": true
+          },
+          "original_vertex_point_contacts_separated": false
+        },
+        "section_native_comparison": {
+          "vertices": 143,
+          "edges": 143,
+          "wires": 1,
+          "closed_degree_two_loop": true,
+          "straight_edges": true,
+          "maximum_constructed_endpoint_roundtrip_nominal_mm": 5.154374172525247e-13,
+          "valid": true,
+          "zero_faces_and_solids": true
+        },
+        "ideal_to_rounded_endpoint_maximum_nominal_mm": 2.8262208629380317e-14,
+        "step_sha256": "abe0e3fb7227d78f0593465638de460d38ff64fbe4ac6112745dede71f7da603",
+        "brep_sha256": "e4fd24fdf1e24497b7b8ea17f9968655528044e6a82b58dbc03e36086b4ce4fb",
+        "source_coordinates_and_edge_intersection_origin_verified": true
+      },
+      "actual_saved_FreeCAD_export": {
+        "region": 3,
+        "source_faces": 8169,
+        "source_native_comparison": {
+          "source_vertices": 4246,
+          "native_vertices": 4246,
+          "edges": 12417,
+          "faces": 8169,
+          "shells": 1,
+          "source_boundary_edges": 327,
+          "vertex_roundtrip_maximum_mm": 0.0,
+          "normal_roundtrip_maximum_error": 4.440892098500626e-16,
+          "checks": {
+            "every_original_triangle_once": true,
+            "original_orientation": true,
+            "straight_source_edges": true,
+            "exact_source_edge_adjacency": true,
+            "exact_source_vertex_fans": true,
+            "exact_source_shell_components": true,
+            "valid_reopened_native_shape": true,
+            "zero_solids": true
+          },
+          "original_vertex_point_contacts_separated": false
+        },
+        "section_native_comparison": {
+          "vertices": 143,
+          "edges": 143,
+          "wires": 1,
+          "closed_degree_two_loop": true,
+          "straight_edges": true,
+          "maximum_constructed_endpoint_roundtrip_nominal_mm": 5.154374172525247e-13,
+          "valid": true,
+          "zero_faces_and_solids": true
+        },
+        "ideal_to_rounded_endpoint_maximum_nominal_mm": 2.8262208629380317e-14,
+        "step_sha256": "ead83f7912cba9cc7718f91b1a372f4ef04ff2fc782019827fdbdbdba187ff92",
+        "brep_sha256": "391e66ac733e364abb951fb4b967fe9d1d8482196a2bd52bcc265c9b1a44fc3a",
+        "source_coordinates_and_edge_intersection_origin_verified": true
+      }
+    },
+    {
+      "region": 4,
+      "plane": 1,
+      "component": 1,
+      "source_faces": 10419,
+      "fully_outward_faces": 10286,
+      "transition_faces": 133,
+      "section_nodes": 133,
+      "private_region_sha256": "9b419d43b824a2c6d984e3d46d1543a791576541fa888bd62268bea8e11d3a03",
+      "anatomical_identity_accepted": false,
+      "first_native_export": {
+        "region": 4,
+        "source_faces": 10286,
+        "source_native_comparison": {
+          "source_vertices": 5175,
+          "native_vertices": 5175,
+          "edges": 15460,
+          "faces": 10286,
+          "shells": 1,
+          "source_boundary_edges": 62,
+          "vertex_roundtrip_maximum_mm": 0.0,
+          "normal_roundtrip_maximum_error": 4.440892098500626e-16,
+          "checks": {
+            "every_original_triangle_once": true,
+            "original_orientation": true,
+            "straight_source_edges": true,
+            "exact_source_edge_adjacency": true,
+            "exact_source_vertex_fans": true,
+            "exact_source_shell_components": true,
+            "valid_reopened_native_shape": true,
+            "zero_solids": true
+          },
+          "original_vertex_point_contacts_separated": false
+        },
+        "section_native_comparison": {
+          "vertices": 133,
+          "edges": 133,
+          "wires": 1,
+          "closed_degree_two_loop": true,
+          "straight_edges": true,
+          "maximum_constructed_endpoint_roundtrip_nominal_mm": 5.141502161656474e-13,
+          "valid": true,
+          "zero_faces_and_solids": true
+        },
+        "ideal_to_rounded_endpoint_maximum_nominal_mm": 2.89780573984756e-14,
+        "step_sha256": "be43932ac388998f40886f3d49a11b009f676ff8c28ee96cd6d34dc84c422253",
+        "brep_sha256": "302faea720b5f023d82dd4983435f9905464c55161a72591a4c0a730f06c6ce3",
+        "source_coordinates_and_edge_intersection_origin_verified": true
+      },
+      "actual_saved_FreeCAD_export": {
+        "region": 4,
+        "source_faces": 10286,
+        "source_native_comparison": {
+          "source_vertices": 5175,
+          "native_vertices": 5175,
+          "edges": 15460,
+          "faces": 10286,
+          "shells": 1,
+          "source_boundary_edges": 62,
+          "vertex_roundtrip_maximum_mm": 0.0,
+          "normal_roundtrip_maximum_error": 4.440892098500626e-16,
+          "checks": {
+            "every_original_triangle_once": true,
+            "original_orientation": true,
+            "straight_source_edges": true,
+            "exact_source_edge_adjacency": true,
+            "exact_source_vertex_fans": true,
+            "exact_source_shell_components": true,
+            "valid_reopened_native_shape": true,
+            "zero_solids": true
+          },
+          "original_vertex_point_contacts_separated": false
+        },
+        "section_native_comparison": {
+          "vertices": 133,
+          "edges": 133,
+          "wires": 1,
+          "closed_degree_two_loop": true,
+          "straight_edges": true,
+          "maximum_constructed_endpoint_roundtrip_nominal_mm": 5.141502161656474e-13,
+          "valid": true,
+          "zero_faces_and_solids": true
+        },
+        "ideal_to_rounded_endpoint_maximum_nominal_mm": 2.89780573984756e-14,
+        "step_sha256": "7525584030f7b7446e1c3a9b50f1e600cf1d7c91f1a1d550eea02c3bacc28f37",
+        "brep_sha256": "5f1dee1beab59239f76485e282d13a4ffba30a11e6d9f51a3197928880323086",
+        "source_coordinates_and_edge_intersection_origin_verified": true
+      }
+    },
+    {
+      "region": 5,
+      "plane": 2,
+      "component": 0,
+      "source_faces": 9556,
+      "fully_outward_faces": 9416,
+      "transition_faces": 140,
+      "section_nodes": 140,
+      "private_region_sha256": "a8e80d2e1f51f0cb8b22192ac77cd2e9b713bfbcc2eba749f2d01666b179b5e6",
+      "anatomical_identity_accepted": false,
+      "first_native_export": {
+        "region": 5,
+        "source_faces": 9416,
+        "source_native_comparison": {
+          "source_vertices": 4933,
+          "native_vertices": 4933,
+          "edges": 14364,
+          "faces": 9416,
+          "shells": 1,
+          "source_boundary_edges": 480,
+          "vertex_roundtrip_maximum_mm": 0.0,
+          "normal_roundtrip_maximum_error": 4.440892098500626e-16,
+          "checks": {
+            "every_original_triangle_once": true,
+            "original_orientation": true,
+            "straight_source_edges": true,
+            "exact_source_edge_adjacency": true,
+            "exact_source_vertex_fans": true,
+            "exact_source_shell_components": true,
+            "valid_reopened_native_shape": true,
+            "zero_solids": true
+          },
+          "original_vertex_point_contacts_separated": false
+        },
+        "section_native_comparison": {
+          "vertices": 140,
+          "edges": 140,
+          "wires": 1,
+          "closed_degree_two_loop": true,
+          "straight_edges": true,
+          "maximum_constructed_endpoint_roundtrip_nominal_mm": 5.122441505163664e-13,
+          "valid": true,
+          "zero_faces_and_solids": true
+        },
+        "ideal_to_rounded_endpoint_maximum_nominal_mm": 1.3848168969457742e-14,
+        "step_sha256": "29692f7f684dbe85a364df1fe88a16aca2c05d6ac2da590904ec0864de8521fd",
+        "brep_sha256": "c7bce092813976ac06b46a5f0847eee26519040fba52e96130b8b9a54afa5733",
+        "source_coordinates_and_edge_intersection_origin_verified": true
+      },
+      "actual_saved_FreeCAD_export": {
+        "region": 5,
+        "source_faces": 9416,
+        "source_native_comparison": {
+          "source_vertices": 4933,
+          "native_vertices": 4933,
+          "edges": 14364,
+          "faces": 9416,
+          "shells": 1,
+          "source_boundary_edges": 480,
+          "vertex_roundtrip_maximum_mm": 0.0,
+          "normal_roundtrip_maximum_error": 4.440892098500626e-16,
+          "checks": {
+            "every_original_triangle_once": true,
+            "original_orientation": true,
+            "straight_source_edges": true,
+            "exact_source_edge_adjacency": true,
+            "exact_source_vertex_fans": true,
+            "exact_source_shell_components": true,
+            "valid_reopened_native_shape": true,
+            "zero_solids": true
+          },
+          "original_vertex_point_contacts_separated": false
+        },
+        "section_native_comparison": {
+          "vertices": 140,
+          "edges": 140,
+          "wires": 1,
+          "closed_degree_two_loop": true,
+          "straight_edges": true,
+          "maximum_constructed_endpoint_roundtrip_nominal_mm": 5.122441505163664e-13,
+          "valid": true,
+          "zero_faces_and_solids": true
+        },
+        "ideal_to_rounded_endpoint_maximum_nominal_mm": 1.3848168969457742e-14,
+        "step_sha256": "fb2dc4f6a9803db5ae7a51df7b363ab5935c4b08d3ba394265779adfca67d052",
+        "brep_sha256": "37e741eb1e4e03e26470359fc2d812625eb9f2443f4e5619eb48fe6edb253354",
+        "source_coordinates_and_edge_intersection_origin_verified": true
+      }
+    }
+  ],
+  "retained_OBJ_reference": {
+    "source_sha256": "bc467b00c2d19480be93e8aa6c54552e4395a91a448ae38e2df4836f0ce9a275",
+    "job_sha256": "33ecc2c9674a4acfb51039049dbab6f6fe46c7bcbbc9b17715cd578f6bbd2061",
+    "output_sha256": "1fd07f774f633a98179047ec8951c22edc242e3667f2781db1a84128100123df",
+    "output_bytes": 123231364,
+    "vertices": 1248562,
+    "original_faces": 2401378,
+    "original_coordinates_and_ordered_triangles_exact": true,
+    "original_index_mapping_in_bound_retained_NPZ": true,
+    "source_points_or_triangles_clipped_or_capped": false,
+    "open_unclassified_source_reference": true,
+    "full_bare_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "seconds": 14.447846417082474
+  },
+  "native_review_document": {
+    "document_sha256": "a169160452e8079dbae72314ce35d9c0c34ce25591e64098d81c42c799bf6334",
+    "document_bytes": 15864005,
+    "freecad_version": [
+      "1",
+      "1",
+      "4"
+    ],
+    "objects": [
+      {
+        "name": "SourceRegion1",
+        "counts": [
+          13567,
+          39379,
+          25809,
+          2,
+          0,
+          25809
+        ],
+        "valid": true,
+        "identity_placement": true,
+        "physical_flags_false": true
+      },
+      {
+        "name": "SectionRegion1",
+        "counts": [
+          171,
+          171,
+          0,
+          0,
+          0,
+          1
+        ],
+        "valid": true,
+        "identity_placement": true,
+        "physical_flags_false": true
+      },
+      {
+        "name": "SourceRegion2",
+        "counts": [
+          5469,
+          16247,
+          10778,
+          1,
+          0,
+          10778
+        ],
+        "valid": true,
+        "identity_placement": true,
+        "physical_flags_false": true
+      },
+      {
+        "name": "SectionRegion2",
+        "counts": [
+          139,
+          139,
+          0,
+          0,
+          0,
+          1
+        ],
+        "valid": true,
+        "identity_placement": true,
+        "physical_flags_false": true
+      },
+      {
+        "name": "SourceRegion3",
+        "counts": [
+          4246,
+          12417,
+          8169,
+          1,
+          0,
+          8169
+        ],
+        "valid": true,
+        "identity_placement": true,
+        "physical_flags_false": true
+      },
+      {
+        "name": "SectionRegion3",
+        "counts": [
+          143,
+          143,
+          0,
+          0,
+          0,
+          1
+        ],
+        "valid": true,
+        "identity_placement": true,
+        "physical_flags_false": true
+      },
+      {
+        "name": "SourceRegion4",
+        "counts": [
+          5175,
+          15460,
+          10286,
+          1,
+          0,
+          10286
+        ],
+        "valid": true,
+        "identity_placement": true,
+        "physical_flags_false": true
+      },
+      {
+        "name": "SectionRegion4",
+        "counts": [
+          133,
+          133,
+          0,
+          0,
+          0,
+          1
+        ],
+        "valid": true,
+        "identity_placement": true,
+        "physical_flags_false": true
+      },
+      {
+        "name": "SourceRegion5",
+        "counts": [
+          4933,
+          14364,
+          9416,
+          1,
+          0,
+          9416
+        ],
+        "valid": true,
+        "identity_placement": true,
+        "physical_flags_false": true
+      },
+      {
+        "name": "SectionRegion5",
+        "counts": [
+          140,
+          140,
+          0,
+          0,
+          0,
+          1
+        ],
+        "valid": true,
+        "identity_placement": true,
+        "physical_flags_false": true
+      }
+    ],
+    "original_inputs_unchanged": true,
+    "full_bare_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "seconds": 100.9283354160143,
+    "saved_document_readback_sha256": "bd956b449209747372333826fec904215bd3b4a9582ba09174c461eff3c4983f"
+  },
+  "executions": {
+    "source_audit": {
+      "complete": true,
+      "source_sha256": "2940a84d059677c82bc302ce5fa0f502f4c56cd1066ab718a9048ff5cd974e05",
+      "job_sha256": "e6dd7458a98db43d614d1e4a7a41a2d964ab3b06f38b963e3639f68ff428a5cf",
+      "stages": [
+        {
+          "stage": "controls",
+          "exit_code": 0,
+          "controller_limit_reached": false,
+          "seconds": 0.516116000013426,
+          "sampled_peak_rss_kib": 0,
+          "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "exact_owned_child_reaped": true
+        },
+        {
+          "stage": "source",
+          "exit_code": 0,
+          "controller_limit_reached": false,
+          "seconds": 2.558654375025071,
+          "sampled_peak_rss_kib": 446176,
+          "log_sha256": "da4c96c006500a33de96e3d65ca90c990cbf09d95e0acd7ecfec36b3cf255602",
+          "exact_owned_child_reaped": true
+        }
+      ],
+      "seconds": 3.1302105409558862,
+      "all_owned_children_reaped": true,
+      "physical_acceptance": false,
+      "manufacturing_authorized": false
+    },
+    "independent_source_check": {
+      "exit_code": 0,
+      "controller_limit_reached": false,
+      "seconds": 15.366957999998704,
+      "sampled_peak_rss_kib": 684624,
+      "exact_owned_child_reaped": true,
+      "log_sha256": "1651793eec2e6c9f847ed7c72d31bf83450d9a515b902bc94501ce5004ddbedc"
+    },
+    "native_controls_and_regions": {
+      "source_sha256": "a4e5528e52e1905d080b28581d92bcd809dc315c23a27eee5015a38db591f703",
+      "job_sha256": "98c1c986baefb30ef58fdc7dfd56a24448bf3f73fece8336f61c97a2bf0cee64",
+      "phases": [
+        {
+          "phase": "build-controls",
+          "exit_code": 0,
+          "seconds": 1.2737081670202315,
+          "maximum_sampled_child_RSS_KiB": 285824,
+          "owned_child_reaped": true,
+          "stop_reason": null
+        },
+        {
+          "phase": "check-controls",
+          "exit_code": 0,
+          "seconds": 1.0688051249599084,
+          "maximum_sampled_child_RSS_KiB": 293088,
+          "owned_child_reaped": true,
+          "stop_reason": null
+        },
+        {
+          "phase": "build-regions",
+          "exit_code": 0,
+          "seconds": 23.528778750100173,
+          "maximum_sampled_child_RSS_KiB": 1221280,
+          "owned_child_reaped": true,
+          "stop_reason": null
+        },
+        {
+          "phase": "check-regions",
+          "exit_code": 0,
+          "seconds": 22.22227937495336,
+          "maximum_sampled_child_RSS_KiB": 1271344,
+          "owned_child_reaped": true,
+          "stop_reason": null
+        }
+      ],
+      "seconds": 48.14765520906076,
+      "all_owned_children_reaped": true,
+      "complete": true
+    },
+    "local_delivery": {
+      "source_sha256": "cef4c7662ae9808c1ec8dc6ad813835eab01e0358a4d8f3e327c70a668390dd0",
+      "plan_sha256": "9d125ac03bc10d6c7c6c72e19824f09aa62cf4723363a52cc96625e7088e82f4",
+      "phases": [
+        {
+          "phase": "retained-obj",
+          "exit_code": 0,
+          "seconds": 14.605220541008748,
+          "maximum_sampled_child_RSS_KiB": 391088,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "document-build",
+          "exit_code": 0,
+          "seconds": 102.0562033749884,
+          "maximum_sampled_child_RSS_KiB": 2410800,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "document-export",
+          "exit_code": 0,
+          "seconds": 13.956011833972298,
+          "maximum_sampled_child_RSS_KiB": 2308192,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ],
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 130.62877529207617
+    },
+    "actual_saved_shape_reinspection": {
+      "source_sha256": "cef4c7662ae9808c1ec8dc6ad813835eab01e0358a4d8f3e327c70a668390dd0",
+      "plan_sha256": "c6f15d736023c5cc640e589d1781d9beec9cbf79e205dd475d2a2c352f36629d",
+      "phases": [
+        {
+          "phase": "actual-saved-source-reinspection",
+          "exit_code": 0,
+          "seconds": 19.64023433404509,
+          "maximum_sampled_child_RSS_KiB": 1077696,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ],
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 19.68842333299108
+    }
+  },
+  "initial_control_history": {
+    "unowned_initial_launcher_terminal_status_not_claimed": true,
+    "proper_owned_control_repeat_succeeded": true,
+    "zero_sampled_RSS_for_tiny_initial_bounded_control_means_unsampled_not_zero_memory": true
+  },
+  "runtime": {
+    "isolated_software_manifest_sha256": "d7879b23d83988901358bee60ecfbd3e3372c975051aa4ac1ef328614b4648f7",
+    "python_version": "3.12.13",
+    "OCP_version": "7.9.3.1",
+    "python_executable_sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2",
+    "OCP_core_sha256": "ca5449f0d8073bae9e4fadd8ad168bdb9acd1edd9fcc9e11b89a6aa5f26a2864",
+    "freecad_version": [
+      "1",
+      "1",
+      "4"
+    ],
+    "new_paid_resource_created": false,
+    "billing_or_credit_remeasured": false
+  },
+  "executed_sources": [
+    {
+      "name": "audit_source_cuts.py",
+      "sha256": "9e1486727234d0faaae92204c04d55937801a169a2ba6cb31f5bc99689256891"
+    },
+    {
+      "name": "check_source_cuts.py",
+      "sha256": "5a657fb1095d0c87231c890b92bc40bd5bf2e85e8e51cab2cbca4fccf832f54f"
+    },
+    {
+      "name": "create_region_document.py",
+      "sha256": "aa8f7851bbf1786a2ea9d5a11355ff92ed1dd84d50c76a465c43ac3d2acd38ad"
+    },
+    {
+      "name": "export_retained_source.py",
+      "sha256": "bc467b00c2d19480be93e8aa6c54552e4395a91a448ae38e2df4836f0ce9a275"
+    },
+    {
+      "name": "native_source_regions.py",
+      "sha256": "1951da30faf0c0c06b200ceadf54d38069ef6e5bf794b169d34f966abdea42a9"
+    },
+    {
+      "name": "run_local_delivery.py",
+      "sha256": "cef4c7662ae9808c1ec8dc6ad813835eab01e0358a4d8f3e327c70a668390dd0"
+    },
+    {
+      "name": "run_native_regions.py",
+      "sha256": "a4e5528e52e1905d080b28581d92bcd809dc315c23a27eee5015a38db591f703"
+    },
+    {
+      "name": "run_source_cut_audit.py",
+      "sha256": "2940a84d059677c82bc302ce5fa0f502f4c56cd1066ab718a9048ff5cd974e05"
+    }
+  ],
+  "private_capsule": {
+    "name": "935-source-cut-admission-20261106-001",
+    "manifest_sha256": "b55cff6e6300c5b664835a3d9b925fa4eb806b69534546a2d33669a6ececce76",
+    "payload_files": 99,
+    "payload_bytes": 407483480,
+    "all_payload_rehashed_after_freeze": true,
+    "geometry_outside_Git": true
+  },
+  "release": {
+    "original_obj_freshly_rehashed_unchanged": true,
+    "complete_bare_head_created": false,
+    "anatomical_identity_accepted": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "print_ready": false,
+    "all_G0_to_G5": false,
+    "full_goal_active": true,
+    "supplier_message_sent": false,
+    "existing_hypothetical_Gmsh_nonpositive_minSICN_cells": 996
+  }
+}
