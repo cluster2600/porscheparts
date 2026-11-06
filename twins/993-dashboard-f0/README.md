@@ -39,6 +39,8 @@ The target is **M564, left-hand drive**, pending a redacted vehicle option label
 
 The machine-readable [PET identity matrix](../../parts/993-int-dashboard-trim-0001/evidence/pet-identity.md) (#566) records the plate, page and position for every candidate variant and registers the conflict as CTR-0019. Its E1–E5 same-specimen protocol must pass, and independent reviewers must record the admission, before any reading is entered.
 
+The [external same-specimen intake package](intake/README.md) provides an empty, blocked template for a lawful outside contributor covering this complete dashboard; it contains no vehicle data or measurements.
+
 ## Interface contracts
 
 [interface-contracts.json](interface-contracts.json) (#567) holds the independent measurement contract for each of the 13 interfaces, covering all four load paths. See [INTERFACE_CONTRACTS.md](INTERFACE_CONTRACTS.md) for a readable summary. Every value is `null`.

@@ -23,7 +23,7 @@
         "physical_vehicle_confirmed": {"type": "boolean"}
       }
     },
-    "specimen_id": {"type": ["string", "null"], "pattern": "^SPEC-993-DASH-[A-Z0-9]{4,16}$"},
+    "specimen_id": {"type": ["string", "null"], "pattern": "^SPEC-993-DASH-[0-9]{4}$"},
     "capture_campaign_id": {"type": ["string", "null"], "pattern": "^SESSION-993-DASH-[A-Z0-9]{4,16}$"},
     "identity_evidence": {
       "type": "object", "additionalProperties": false,
@@ -81,7 +81,7 @@
       "required": ["asset_id", "specimen_id", "kind", "capture_state", "relative_path", "sha256", "bytes", "creator_role", "licence", "inspection_permission", "publication_permission", "rights_proof_asset_id", "redacted"],
       "properties": {
         "asset_id": {"type": "string", "pattern": "^A-[A-Z0-9._-]{3,64}$"},
-        "specimen_id": {"type": "string", "pattern": "^SPEC-993-DASH-[A-Z0-9]{4,16}$"},
+        "specimen_id": {"type": "string", "pattern": "^SPEC-993-DASH-[0-9]{4}$"},
         "kind": {"enum": ["option_label_redacted", "passenger_reverse", "trim_label", "continuity_manifest", "rights_grant", "fitted_scan", "removed_scan", "reverse_support_scan", "host_scan", "scale_calibration", "instrument_calibration", "interface_photo", "other"]},
         "capture_state": {"enum": ["fitted", "removed", "host", "not_applicable"]},
         "relative_path": {"type": "string", "minLength": 1},
@@ -100,13 +100,13 @@
       "required": ["record_id", "specimen_id", "capture_state", "relative_path", "sha256", "bytes", "dimension_ids", "interface_measurand_ids", "calibration_asset_ids"],
       "properties": {
         "record_id": {"type": "string", "pattern": "^MEAS-[A-Z0-9._-]{3,64}$"},
-        "specimen_id": {"type": "string", "pattern": "^SPEC-993-DASH-[A-Z0-9]{4,16}$"},
+        "specimen_id": {"type": "string", "pattern": "^SPEC-993-DASH-[0-9]{4}$"},
         "capture_state": {"enum": ["fitted", "removed", "host"]},
         "relative_path": {"type": "string", "minLength": 1},
         "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
         "bytes": {"type": "integer", "minimum": 1},
         "dimension_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^D(0[1-9]|1[0-4])$"}},
-        "interface_measurand_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]{1,15}$"}},
+        "interface_measurand_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[A-Z]{2,4}_[PH][0-9]{2}$"}},
         "calibration_asset_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}
       }
     },
@@ -115,8 +115,8 @@
       "required": ["interface_id", "part_reading_ids", "host_reading_ids", "asset_ids", "status"],
       "properties": {
         "interface_id": {"type": "string", "pattern": "^IF_[A-Z0-9_]+$"},
-        "part_reading_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^MEAS-[A-Z0-9._-]+:[A-Z][A-Z0-9_]{1,15}$"}},
-        "host_reading_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^MEAS-[A-Z0-9._-]+:[A-Z][A-Z0-9_]{1,15}$"}},
+        "part_reading_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^MEAS-[A-Z0-9._-]+:[A-Z]{2,4}_[PH][0-9]{2}$"}},
+        "host_reading_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^MEAS-[A-Z0-9._-]+:[A-Z]{2,4}_[PH][0-9]{2}$"}},
         "asset_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
         "status": {"enum": ["missing_data", "submitted_unreviewed", "blocked_contradiction"]}
       }

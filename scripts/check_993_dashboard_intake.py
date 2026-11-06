@@ -26,10 +26,12 @@ ASSEMBLY = Path("twins/993-dashboard-f0/assembly.json")
 CONTRACT = Path("twins/993-dashboard-f0/interface-contracts.json")
 DIMENSIONS = [f"D{number:02}" for number in range(1, 15)]
 CAPTURE_STATES = ["fitted", "removed", "host"]
-SPECIMEN = re.compile(r"^SPEC-993-DASH-[A-Z0-9]{4,16}$")
+SPECIMEN = re.compile(r"^SPEC-993-DASH-[0-9]{4}$")
 CAMPAIGN = re.compile(r"^SESSION-993-DASH-[A-Z0-9]{4,16}$")
 ASSET_ID = re.compile(r"^A-[A-Z0-9._-]{3,64}$")
 MEAS_ID = re.compile(r"^MEAS-[A-Z0-9._-]{3,64}$")
+CONTRACT_DATUM = re.compile(r"^[A-Z]{2,4}-[PH][0-9]{2}$")
+MEASURAND = re.compile(r"^[A-Z]{2,4}_[PH][0-9]{2}$")
 DIGEST = re.compile(r"^[0-9a-f]{64}$")
 REQUIRED_KINDS = {
     "fitted_scan": "fitted",
@@ -55,6 +57,20 @@ MEAS_KEYS = {
     "bytes", "dimension_ids", "interface_measurand_ids", "calibration_asset_ids",
 }
 INTERFACE_KEYS = {"interface_id", "part_reading_ids", "host_reading_ids", "asset_ids", "status"}
+
+
+def contract_datum_to_measurand(datum_id: str) -> str:
+    """Map the frozen contract's hyphen ID to a MEAS-compatible ID."""
+    if not CONTRACT_DATUM.fullmatch(datum_id):
+        raise ValueError(f"unsupported contract datum ID: {datum_id!r}")
+    return datum_id.replace("-", "_", 1)
+
+
+def measurand_to_contract_datum(measurand_id: str) -> str:
+    """Invert the mapping without accepting arbitrary or lossy aliases."""
+    if not MEASURAND.fullmatch(measurand_id):
+        raise ValueError(f"unsupported MEAS interface ID: {measurand_id!r}")
+    return measurand_id.replace("_", "-", 1)
 
 
 def _read_json(path: Path, errors: list[str], label: str) -> Any:
@@ -129,6 +145,38 @@ def _safe_file(base: Path, relative: Any, digest: Any, size: Any, errors: list[s
     if actual_digest != digest:
         errors.append(f"{label}.sha256: does not match file bytes")
     return target
+
+
+def _check_contract_coverage(row: dict, contract_row: dict, errors: list[str], label: str) -> None:
+    """Require every contract datum on the corresponding part/host side."""
+    for field, contract_field in (("part_reading_ids", "part_datums"), ("host_reading_ids", "host_datums")):
+        datums = contract_row.get(contract_field)
+        if not isinstance(datums, list):
+            errors.append(f"{label}: contract {contract_field} is malformed")
+            continue
+        expected: set[str] = set()
+        for datum in datums:
+            datum_id = datum.get("id") if isinstance(datum, dict) else None
+            try:
+                expected.add(contract_datum_to_measurand(datum_id))
+            except (TypeError, ValueError):
+                errors.append(f"{label}: unsupported contract datum {datum_id!r}")
+        observed: set[str] = set()
+        references = row.get(field)
+        if not isinstance(references, list):
+            errors.append(f"{label}.{field}: expected reading references")
+            continue
+        for reference in references:
+            measurand_id = reference.rsplit(":", 1)[-1] if isinstance(reference, str) and ":" in reference else None
+            try:
+                measurand_to_contract_datum(measurand_id)
+                observed.add(measurand_id)
+            except (TypeError, ValueError):
+                errors.append(f"{label}.{field}: invalid MEAS interface reference {reference!r}")
+        missing = expected - observed
+        extra = observed - expected
+        if missing or extra:
+            errors.append(f"{label}.{field}: contract datum coverage differs; missing={sorted(missing)}, extra={sorted(extra)}")
 
 
 def _common(packet: Any, root: Path, errors: list[str]) -> set[str]:
@@ -253,6 +301,17 @@ def check_packet(packet_path: Path, root: Path = ROOT) -> list[str]:
         contract_ids = {row.get("interface_id") for row in contract_rows if isinstance(row, dict) and isinstance(row.get("interface_id"), str)}
         if contract_ids != interface_ids:
             errors.append("contract: interface IDs differ from assembly")
+    contract_measurands: set[str] = set()
+    if isinstance(contract, dict) and isinstance(contract.get("interfaces"), list):
+        for interface in contract["interfaces"]:
+            if not isinstance(interface, dict):
+                continue
+            for side in ("part_datums", "host_datums"):
+                for datum in interface.get(side, []) if isinstance(interface.get(side), list) else []:
+                    try:
+                        contract_measurands.add(contract_datum_to_measurand(datum.get("id")))
+                    except (AttributeError, TypeError, ValueError):
+                        errors.append(f"contract: unsupported {side} datum ID")
     base = packet_path.parent
     assets: dict[str, dict] = {}
     paths: set[str] = set()
@@ -315,8 +374,10 @@ def check_packet(packet_path: Path, root: Path = ROOT) -> list[str]:
     for kind, state in REQUIRED_KINDS.items():
         if not any(asset.get("kind") == kind and (state is None or asset.get("capture_state") == state) for asset in assets.values()):
             errors.append(f"assets: missing {kind} capture")
-    if not any(asset.get("kind") == "option_label_redacted" and asset.get("redacted") is True for asset in assets.values()):
-        errors.append("assets: option label must be redacted")
+    selected_e1 = identity.get("E1_option_label_asset_id")
+    selected_e1_asset = assets.get(selected_e1) if isinstance(selected_e1, str) else None
+    if selected_e1_asset is None or selected_e1_asset.get("redacted") is not True:
+        errors.append("identity_evidence.E1_option_label_asset_id: selected option label must be redacted")
     continuity_id = identity.get("E4_continuity_manifest_asset_id")
     continuity = assets.get(continuity_id) if isinstance(continuity_id, str) else None
     if isinstance(continuity, dict):
@@ -382,6 +443,8 @@ def check_packet(packet_path: Path, root: Path = ROOT) -> list[str]:
                 or any(not isinstance(value, str) or not re.fullmatch(r"[A-Z][A-Z0-9_]{1,15}", value) or value in DIMENSIONS for value in interface_measurands)):
             errors.append(f"{label}: invalid D01–D14 or interface measurand list")
             continue
+        if not set(interface_measurands).issubset(contract_measurands):
+            errors.append(f"{label}: interface measurand is not in the frozen contract")
         record_readings = record.get("readings") if isinstance(record.get("readings"), list) else []
         actual = {reading.get("dimension_id") for reading in record_readings if isinstance(reading, dict) and isinstance(reading.get("dimension_id"), str)}
         if actual != set(declared) | set(interface_measurands) or len(declared) != len(set(declared)) or len(interface_measurands) != len(set(interface_measurands)):
@@ -394,10 +457,12 @@ def check_packet(packet_path: Path, root: Path = ROOT) -> list[str]:
             errors.append(f"{label}: repeated calibrated level-A readings and evidence files required")
         files = evidence.get("files")
         if isinstance(files, list):
-            asset_paths = {asset.get("relative_path") for asset in assets.values() if isinstance(asset.get("relative_path"), str)}
+            asset_paths = {asset.get("relative_path"): asset for asset in assets.values() if isinstance(asset.get("relative_path"), str)}
             for evidence_file in files:
                 if not isinstance(evidence_file, str) or evidence_file not in asset_paths:
                     errors.append(f"{label}: evidence file is not bound to an asset: {evidence_file}")
+                elif asset_paths[evidence_file].get("capture_state") != state:
+                    errors.append(f"{label}: evidence file {evidence_file} is not from {state} capture state")
         for reading in record_readings:
             if not isinstance(reading, dict):
                 continue
@@ -420,6 +485,7 @@ def check_packet(packet_path: Path, root: Path = ROOT) -> list[str]:
     for state in ("fitted", "removed"):
         if not set(DIMENSIONS[:4]).issubset(dimensions[state]):
             errors.append(f"measurement_records: D01–D04 {state} comparison missing")
+    used_interface_readings: set[str] = set()
     for row in packet.get("interface_evidence", []):
         if not isinstance(row, dict) or row.get("interface_id") not in interface_ids:
             continue
@@ -433,6 +499,8 @@ def check_packet(packet_path: Path, root: Path = ROOT) -> list[str]:
             for reference in refs:
                 if not isinstance(reference, str) or readings.get(reference) not in side:
                     errors.append(f"{label}.{field}: missing or wrong-state reading {reference}")
+                elif reference.rsplit(":", 1)[-1] in contract_measurands:
+                    used_interface_readings.add(reference)
         asset_refs = row.get("asset_ids")
         for asset_id in asset_refs if isinstance(asset_refs, list) else []:
             if not isinstance(asset_id, str) or asset_id not in assets:
@@ -440,12 +508,12 @@ def check_packet(packet_path: Path, root: Path = ROOT) -> list[str]:
         contract_rows = contract.get("interfaces") if isinstance(contract, dict) and isinstance(contract.get("interfaces"), list) else []
         contract_row = next((entry for entry in contract_rows if isinstance(entry, dict) and entry.get("interface_id") == row["interface_id"]), None)
         if isinstance(contract_row, dict):
-            if contract_row.get("part_datums") and not row.get("part_reading_ids"):
-                errors.append(f"{label}: part-side readings missing")
-            if contract_row.get("host_datums") and not row.get("host_reading_ids"):
-                errors.append(f"{label}: independent host-side readings missing")
+            _check_contract_coverage(row, contract_row, errors, label)
         if not row.get("asset_ids"):
             errors.append(f"{label}: interface images/captures missing")
+    unused = {reference for reference in readings if reference.rsplit(":", 1)[-1] in contract_measurands} - used_interface_readings
+    if unused:
+        errors.append(f"interface_evidence: interface readings are unbound: {sorted(unused)}")
     review = packet.get("review", {})
     if not _keys(review, {"independent_measurement_reviewer", "independent_interface_reviewer", "rights_privacy_reviewer", "professional_engineering_reviewer", "verdict"}, errors, "review") or not isinstance(review, dict) or review.get("verdict") not in ("submitted_unreviewed", "held_for_independent_review"):
         errors.append("review: an intake checker cannot record admission or release")

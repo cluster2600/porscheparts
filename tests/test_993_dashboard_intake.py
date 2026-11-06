@@ -36,7 +36,7 @@ class DashboardIntakeTests(unittest.TestCase):
 
     def test_template_rejects_prefilled_specimen_and_reading(self) -> None:
         data = self._template()
-        data["specimen_id"] = "SPEC-993-DASH-TEST"
+        data["specimen_id"] = "SPEC-993-DASH-0001"
         data["capture_campaign_id"] = "SESSION-993-DASH-TEST"
         data["interface_evidence"][0]["part_reading_ids"] = ["MEAS-TEST:BP_H01"]
         self._write_template(data)
@@ -81,7 +81,7 @@ class DashboardIntakeTests(unittest.TestCase):
         packet = copy.deepcopy(self._template())
         packet["packet_kind"] = "external_submission"
         packet["status"] = "submitted_unreviewed"
-        packet["specimen_id"] = "SPEC-993-DASH-TEST"
+        packet["specimen_id"] = "SPEC-993-DASH-0001"
         packet["capture_campaign_id"] = "SESSION-993-DASH-TEST"
         packet["target_scenario"]["model_year_observed"] = 1996
         packet["target_scenario"]["physical_vehicle_confirmed"] = True
@@ -94,6 +94,83 @@ class DashboardIntakeTests(unittest.TestCase):
         for interface in packet["interface_evidence"]:
             interface["status"] = "submitted_unreviewed"
         return packet
+
+    def _add_asset(self, packet: dict, asset_id: str, path: str, state: str, *, redacted: bool) -> None:
+        raw = f"synthetic {asset_id}".encode("ascii")
+        (self.root / path).write_bytes(raw)
+        packet["assets"].append({
+            "asset_id": asset_id, "specimen_id": packet["specimen_id"],
+            "kind": "option_label_redacted" if state == "fitted" else "interface_photo",
+            "capture_state": state, "relative_path": path,
+            "sha256": hashlib.sha256(raw).hexdigest(), "bytes": len(raw),
+            "creator_role": "test_contributor", "licence": "synthetic test only",
+            "inspection_permission": True, "publication_permission": False,
+            "rights_proof_asset_id": "A-RIGHTS", "redacted": redacted,
+        })
+
+    def test_specimen_id_matches_existing_pet_gate_and_schema(self) -> None:
+        self.assertIsNotNone(intake.SPECIMEN.fullmatch("SPEC-993-DASH-0001"))
+        self.assertIsNone(intake.SPECIMEN.fullmatch("SPEC-993-DASH-TEST"))
+        self.assertIsNone(intake.SPECIMEN.fullmatch("SPEC-993-DASH-00001"))
+        schema = json.loads((self.root / intake.INTAKE / "packet.schema.json").read_text())
+        patterns = [
+            schema["properties"]["specimen_id"]["pattern"],
+            schema["$defs"]["asset"]["properties"]["specimen_id"]["pattern"],
+            schema["$defs"]["measurement_record"]["properties"]["specimen_id"]["pattern"],
+        ]
+        self.assertEqual(patterns, [intake.SPECIMEN.pattern] * 3)
+
+    def test_selected_e1_asset_must_be_redacted_even_if_spare_is_redacted(self) -> None:
+        packet = self._submission()
+        self._add_asset(packet, "A-SELECTED", "selected.jpg", "fitted", redacted=False)
+        self._add_asset(packet, "A-SPARE", "spare.jpg", "fitted", redacted=True)
+        packet["identity_evidence"]["E1_option_label_asset_id"] = "A-SELECTED"
+        path = self.root / "private-packet.json"
+        path.write_text(json.dumps(packet), encoding="utf-8")
+        problems = intake.check_packet(path, intake.ROOT)
+        self.assertTrue(any("selected option label must be redacted" in problem for problem in problems), problems)
+
+    def test_host_measurement_cannot_cite_fitted_asset(self) -> None:
+        packet = self._submission()
+        self._add_asset(packet, "A-FITTED", "fitted.jpg", "fitted", redacted=True)
+        record = json.loads((intake.ROOT / "catalog/templates/measurement-record.json").read_text())
+        record["measurement_id"] = "MEAS-HOST-0001"
+        record["readings"][0]["dimension_id"] = "BP_H01"
+        record["evidence"]["files"] = ["fitted.jpg"]
+        raw = json.dumps(record).encode("utf-8")
+        (self.root / "host-measurement.json").write_bytes(raw)
+        packet["measurement_records"].append({
+            "record_id": "MEAS-HOST-0001", "specimen_id": packet["specimen_id"],
+            "capture_state": "host", "relative_path": "host-measurement.json",
+            "sha256": hashlib.sha256(raw).hexdigest(), "bytes": len(raw),
+            "dimension_ids": [], "interface_measurand_ids": ["BP_H01"],
+            "calibration_asset_ids": [],
+        })
+        path = self.root / "private-packet.json"
+        path.write_text(json.dumps(packet), encoding="utf-8")
+        problems = intake.check_packet(path, intake.ROOT)
+        self.assertTrue(any("fitted.jpg is not from host capture state" in problem for problem in problems), problems)
+
+    def test_contract_datum_mapping_is_reversible_and_complete(self) -> None:
+        contract = json.loads((intake.ROOT / intake.CONTRACT).read_text())
+        all_datums = [datum["id"] for interface in contract["interfaces"] for side in ("part_datums", "host_datums") for datum in interface[side]]
+        self.assertEqual(len(all_datums), 56)
+        self.assertEqual(len(set(all_datums)), 56)
+        for datum_id in all_datums:
+            mapped = intake.contract_datum_to_measurand(datum_id)
+            self.assertEqual(intake.measurand_to_contract_datum(mapped), datum_id)
+        for interface in contract["interfaces"]:
+            row = {
+                "part_reading_ids": [f"MEAS-PART-0001:{intake.contract_datum_to_measurand(d['id'])}" for d in interface["part_datums"]],
+                "host_reading_ids": [f"MEAS-HOST-0001:{intake.contract_datum_to_measurand(d['id'])}" for d in interface["host_datums"]],
+            }
+            problems: list[str] = []
+            intake._check_contract_coverage(row, interface, problems, interface["interface_id"])
+            self.assertEqual(problems, [])
+            if row["host_reading_ids"]:
+                row["host_reading_ids"].pop()
+                intake._check_contract_coverage(row, interface, problems, interface["interface_id"])
+                self.assertTrue(any("coverage differs" in problem for problem in problems), problems)
 
     def test_submission_rejects_variant_conflict_and_release_claim(self) -> None:
         packet = self._submission()
@@ -111,7 +188,7 @@ class DashboardIntakeTests(unittest.TestCase):
     def test_submission_rejects_mixed_specimen_and_unverified_rights(self) -> None:
         packet = self._submission()
         packet["assets"].append({
-            "asset_id": "A-TEST", "specimen_id": "SPEC-993-DASH-OTHER", "kind": "option_label_redacted",
+            "asset_id": "A-TEST", "specimen_id": "SPEC-993-DASH-0002", "kind": "option_label_redacted",
             "capture_state": "fitted", "relative_path": "../escape.bin", "sha256": "0" * 64,
             "bytes": 12, "creator_role": "contributor", "licence": "private inspection only",
             "inspection_permission": False, "publication_permission": False,
