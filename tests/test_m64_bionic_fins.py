@@ -8,11 +8,20 @@ SOURCE = Path(__file__).resolve().parents[1]/'twins/m64-cylinder-head/source/bio
 SPEC = importlib.util.spec_from_file_location('bionic_fin_study', SOURCE)
 study = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(study)
-sys.path.insert(0, str(SOURCE.parent))
+# countercheck imports "study" by name; bind it only while loading this fixture.
+COUNTERCHECK = importlib.util.spec_from_file_location('bionic_fin_countercheck', SOURCE.with_name('countercheck.py'))
+previous_study = sys.modules.get('study')
+sys.modules['study'] = study
 try:
-    import countercheck
+    countercheck = importlib.util.module_from_spec(COUNTERCHECK)
+    COUNTERCHECK.loader.exec_module(countercheck)
 except ImportError:
     countercheck = None
+finally:
+    if previous_study is None:
+        sys.modules.pop('study', None)
+    else:
+        sys.modules['study'] = previous_study
 
 
 class FinStudyTests(unittest.TestCase):
@@ -63,6 +72,10 @@ class FinStudyTests(unittest.TestCase):
 
 @unittest.skipIf(countercheck is None, 'Working NumPy/SciPy required for finite volumes')
 class FinCountercheckTests(unittest.TestCase):
+    def test_countercheck_keeps_its_study_without_claiming_the_shared_name(self):
+        self.assertIs(countercheck.study, study)
+        self.assertIsNot(sys.modules.get('study'), study)
+
     def test_fused_area_excludes_overlap_then_normalizes(self):
         d = next(d for d in study.designs() if d['id'] == 'leaf-0.7-2.0-2.2-0.75')
         self.assertLess(countercheck.union_area(d)*d['depth_mm'], study.nominal_volume(d))
