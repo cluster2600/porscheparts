@@ -1,0 +1,16 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "observation_set",
+  "description": "A VIN-shaped token in free text breaks the privacy boundary.",
+  "expected_codes": [
+    "PRIVACY_VEHICLE_IDENTIFIER"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/operating_case/log_source",
+      "value": "synthetic log for AAAAAAAAA00000000"
+    }
+  ]
+}

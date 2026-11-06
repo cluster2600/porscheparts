@@ -1,0 +1,35 @@
+{
+  "document_kind": "model_card",
+  "schema_version": "1.0.0",
+  "model_id": "MDL-993T-FAN-QS0D",
+  "model_revision": "1.0.0",
+  "contract_id": "OPS-993T-FAN-QS-0001",
+  "kind": "quasi_steady_0d",
+  "inputs": [
+    {"channel_id": "N_CRANK", "unit": "rad/s"},
+    {"channel_id": "T_IN", "unit": "K"},
+    {"channel_id": "P_AMB", "unit": "Pa"}
+  ],
+  "outputs": [
+    {"output_id": "N_FAN", "unit": "rad/s", "equation": "E_OMEGA_FAN"},
+    {"output_id": "DP_FAN", "unit": "Pa", "equation": "E_DP_FAN"},
+    {"output_id": "T_OUT", "unit": "K", "equation": "E_T_OUT"}
+  ],
+  "parameters_required": ["i_drive", "s_belt", "omega_ref", "dp_ref", "rho_ref", "eta_fan", "cp_air", "r_air"],
+  "equations": [
+    {"equation_id": "E_OMEGA_FAN", "text": "omega_fan = i_drive * (1 - s_belt) * omega_crank"},
+    {"equation_id": "E_RHO", "text": "rho = p_amb / (r_air * T_in)"},
+    {"equation_id": "E_DP_FAN", "text": "dp_fan = dp_ref * (omega_fan / omega_ref)^2 * (rho / rho_ref)"},
+    {"equation_id": "E_T_OUT", "text": "T_out = T_in + dp_fan / (rho * cp_air * eta_fan), which equals T_in + dp_ref * (omega_fan / omega_ref)^2 / (rho_ref * cp_air * eta_fan) because rho cancels"}
+  ],
+  "uncertainty_method": "First-order propagation with analytic relative sensitivities. Inputs and parameters are treated as independent; each frame uses the standard uncertainty of its selected input samples; parameter uncertainty is systematic across frames. u(T_out)^2 = u(T_in)^2 + u(T_out - T_in)^2.",
+  "assumptions": [
+    "Quasi-steady: fan speed, pressure rise and air temperature respond instantly to crankshaft speed inside declared steady windows.",
+    "Fan affinity laws on one fixed system curve: pressure rise scales with the square of fan speed and with density.",
+    "All fan shaft work is dissipated into the air between the inlet and outlet stations; the housing is adiabatic.",
+    "Constant belt slip within one parameter set; no belt dynamics.",
+    "Probe thermal lag and recovery factor are neglected."
+  ],
+  "validity": "Declared steady windows of operating case OC-STATIONARY-HOLDS, inside the contract operating envelope. Transients and frames outside the envelope are no-claim states.",
+  "implementation": "Executed only by the deterministic offline replay of issue #511; this card defines the equations, inputs, outputs and parameters that replay must bind by hash."
+}

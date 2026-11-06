@@ -1,0 +1,16 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "observation_set",
+  "description": "One channel recorded on another clock.",
+  "expected_codes": [
+    "TIMEBASE_MISMATCH"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/channels/3/timebase_id",
+      "value": "TB-SYN-DAQ-0002"
+    }
+  ]
+}

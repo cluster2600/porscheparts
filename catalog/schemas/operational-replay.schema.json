@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/cluster2600/porscheparts/schemas/operational-replay.schema.json",
+  "title": "porscheparts operational twin offline replay: run binding and report",
+  "description": "Version 1.0.0. A replay_run binds one offline replay to exact input documents by canonical-JSON sha256, to a specimen, a timebase, an operating case and a frame definition. A replay_report is the deterministic output of scripts/replay_operational_twin.py; its frames are twin_state_frame records of operational-twin.schema.json. Neither document can carry a physical-correlation or live-twin claim.",
+  "x-schema-version": "1.0.0",
+  "oneOf": [
+    {"$ref": "#/$defs/replay_run"},
+    {"$ref": "#/$defs/replay_report"}
+  ],
+  "$defs": {
+    "text": {"type": "string", "minLength": 1},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "repo_path": {"type": "string", "pattern": "^[A-Za-z0-9_][A-Za-z0-9_./-]*$"},
+    "upper_id": {"type": "string", "pattern": "^[A-Z][A-Z0-9_.-]{1,63}$"},
+    "nullable_number": {"type": ["number", "null"]},
+    "bound_input": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256", "id", "revision"],
+      "properties": {
+        "path": {"$ref": "#/$defs/repo_path"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "id": {"$ref": "#/$defs/upper_id"},
+        "revision": {"oneOf": [{"type": "null"}, {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"}]}
+      }
+    },
+    "replay_run": {
+      "type": "object", "additionalProperties": false,
+      "required": ["document_kind", "schema_version", "run_id", "synchronisation_mode", "specimen_id",
+                   "timebase_id", "operating_case_id", "inputs", "geometry", "report"],
+      "properties": {
+        "document_kind": {"const": "replay_run"},
+        "schema_version": {"const": "1.0.0"},
+        "run_id": {"$ref": "#/$defs/upper_id"},
+        "synchronisation_mode": {"const": "offline_replay"},
+        "specimen_id": {"type": "string", "pattern": "^SPEC-[A-Z0-9]+(-[A-Z0-9]+)*$"},
+        "timebase_id": {"$ref": "#/$defs/upper_id"},
+        "operating_case_id": {"$ref": "#/$defs/upper_id"},
+        "inputs": {
+          "type": "object", "additionalProperties": false,
+          "required": ["slice_contract", "model_card", "parameter_set", "calibration_register", "observation_set"],
+          "properties": {
+            "slice_contract": {"$ref": "#/$defs/bound_input"},
+            "model_card": {"$ref": "#/$defs/bound_input"},
+            "parameter_set": {"$ref": "#/$defs/bound_input"},
+            "calibration_register": {"$ref": "#/$defs/bound_input"},
+            "observation_set": {"$ref": "#/$defs/bound_input"}
+          }
+        },
+        "geometry": {
+          "type": "object", "additionalProperties": false,
+          "required": ["twin_record", "frames_sha256", "note"],
+          "properties": {
+            "twin_record": {"$ref": "#/$defs/repo_path"},
+            "frames_sha256": {"$ref": "#/$defs/sha256"},
+            "note": {"$ref": "#/$defs/text"}
+          }
+        },
+        "report": {"$ref": "#/$defs/repo_path"}
+      }
+    },
+    "channel_ingest": {
+      "type": "object", "additionalProperties": false,
+      "required": ["unit", "canonical_unit", "scale", "offset", "frame_sign", "received", "exact_duplicates_dropped",
+                   "out_of_order_arrivals", "late_excluded", "flagged"],
+      "properties": {
+        "unit": {"type": "string"},
+        "canonical_unit": {"type": "string"},
+        "scale": {"type": "number"},
+        "offset": {"type": "number"},
+        "frame_sign": {"type": "number", "enum": [-1, 1]},
+        "received": {"type": "integer", "minimum": 0},
+        "exact_duplicates_dropped": {"type": "integer", "minimum": 0},
+        "out_of_order_arrivals": {"type": "integer", "minimum": 0},
+        "late_excluded": {"type": "integer", "minimum": 0},
+        "flagged": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}}
+      }
+    },
+    "window_summary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["window", "interval_s", "evaluated", "consistent", "indeterminate", "discrepant",
+                   "no_claim", "mean_residual", "mean_z"],
+      "properties": {
+        "window": {"type": "integer", "minimum": 0},
+        "interval_s": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+        "evaluated": {"type": "integer", "minimum": 0},
+        "consistent": {"type": "integer", "minimum": 0},
+        "indeterminate": {"type": "integer", "minimum": 0},
+        "discrepant": {"type": "integer", "minimum": 0},
+        "no_claim": {"type": "integer", "minimum": 0},
+        "mean_residual": {"$ref": "#/$defs/nullable_number"},
+        "mean_z": {"$ref": "#/$defs/nullable_number"}
+      }
+    },
+    "output_summary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["unit", "frames", "evaluated", "consistent", "indeterminate", "discrepant", "no_claim",
+                   "no_claim_reasons", "max_abs_z", "verdict", "windows"],
+      "properties": {
+        "unit": {"type": "string"},
+        "frames": {"type": "integer", "minimum": 0},
+        "evaluated": {"type": "integer", "minimum": 0},
+        "consistent": {"type": "integer", "minimum": 0},
+        "indeterminate": {"type": "integer", "minimum": 0},
+        "discrepant": {"type": "integer", "minimum": 0},
+        "no_claim": {"type": "integer", "minimum": 0},
+        "no_claim_reasons": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "max_abs_z": {"$ref": "#/$defs/nullable_number"},
+        "verdict": {"type": "string", "enum": ["consistent", "indeterminate", "model_rejected", "no_claim"]},
+        "windows": {"type": "array", "items": {"$ref": "#/$defs/window_summary"}}
+      }
+    },
+    "replay_report": {
+      "type": "object", "additionalProperties": false,
+      "required": ["document_kind", "schema_version", "run_id", "status", "physical_correlation", "live_twin",
+                   "synchronisation_mode", "data_class", "label", "binding", "ingest", "rules",
+                   "frames", "summary", "limitations"],
+      "properties": {
+        "document_kind": {"const": "replay_report"},
+        "schema_version": {"const": "1.0.0"},
+        "run_id": {"$ref": "#/$defs/upper_id"},
+        "status": {"const": "digitally_checked"},
+        "physical_correlation": {"const": "not_claimed"},
+        "live_twin": {"const": "not_claimed"},
+        "synchronisation_mode": {"const": "offline_replay"},
+        "data_class": {"type": "string", "enum": ["synthetic", "measured"]},
+        "label": {"$ref": "#/$defs/text"},
+        "binding": {
+          "type": "object", "additionalProperties": false,
+          "required": ["run_sha256", "specimen_id", "timebase_id", "operating_case_id", "inputs", "geometry",
+                       "implementation"],
+          "properties": {
+            "run_sha256": {"$ref": "#/$defs/sha256"},
+            "specimen_id": {"type": "string"},
+            "timebase_id": {"$ref": "#/$defs/upper_id"},
+            "operating_case_id": {"$ref": "#/$defs/upper_id"},
+            "inputs": {"type": "object", "additionalProperties": {"$ref": "#/$defs/bound_input"}},
+            "geometry": {"type": "object"},
+            "implementation": {
+              "type": "object", "additionalProperties": false, "required": ["files", "hash_method"],
+              "properties": {
+                "files": {"type": "object", "additionalProperties": {"$ref": "#/$defs/sha256"}},
+                "hash_method": {"$ref": "#/$defs/text"}
+              }
+            }
+          }
+        },
+        "ingest": {"type": "object", "additionalProperties": {"$ref": "#/$defs/channel_ingest"}},
+        "rules": {"type": "object"},
+        "frames": {"type": "array", "items": {"$ref": "operational-twin.schema.json#/$defs/twin_state_frame"}},
+        "summary": {"type": "object", "additionalProperties": {"$ref": "#/$defs/output_summary"}},
+        "limitations": {"type": "array", "items": {"$ref": "#/$defs/text"}, "minItems": 1}
+      }
+    }
+  }
+}

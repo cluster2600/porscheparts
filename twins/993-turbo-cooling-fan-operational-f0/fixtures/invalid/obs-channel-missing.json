@@ -1,0 +1,15 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "observation_set",
+  "description": "The outlet temperature channel is absent.",
+  "expected_codes": [
+    "CHANNEL_SET"
+  ],
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/channels/5"
+    }
+  ]
+}

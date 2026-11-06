@@ -100,3 +100,20 @@ reconstruction of the whole car.
 Physical correlation remains a future level. For a critical part, a numerical
 success will replace neither the engineering review nor the material and fatigue
 tests if manufacturing is ever decided.
+
+## Operational observations — 993 Turbo cooling fan, synthetic only
+
+The levels above describe static geometry and fit. The first operational slice,
+[`twins/993-turbo-cooling-fan-operational-f0`](../twins/993-turbo-cooling-fan-operational-f0/README.md),
+adds a versioned contract for specimen-linked, timestamped observations of one
+993 Turbo cooling fan: anonymous specimen, component frame and stations, units,
+timebase, calibration, uncertainty, cadence, sample flags, predeclared residual
+rules and no-claim states
+([schema](../catalog/schemas/operational-twin.schema.json)). A single
+deterministic offline replay binds each run to the specimen, timebase,
+calibration register, model and parameter hashes and reports predictions,
+residuals and uncertainty per frame
+([replay](../scripts/replay_operational_twin.py)); live synchronisation is not
+implemented. Its observation set is
+synthetic, so the slice proves software behaviour only: it stays at
+`digitally_checked` at most and claims no physical correlation.

@@ -1,0 +1,16 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "observation_set",
+  "description": "Units outside the closed vocabulary are refused by the schema.",
+  "expected_codes": [
+    "SCHEMA"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/channels/1/unit",
+      "value": "degF"
+    }
+  ]
+}

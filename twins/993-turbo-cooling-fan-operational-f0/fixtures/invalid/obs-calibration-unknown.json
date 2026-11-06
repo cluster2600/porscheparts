@@ -1,0 +1,16 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "observation_set",
+  "description": "A channel cites a calibration record the register does not hold.",
+  "expected_codes": [
+    "CALIBRATION_UNKNOWN"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/channels/0/calibration_id",
+      "value": "CALREC-SYN-TACH-01-R2"
+    }
+  ]
+}

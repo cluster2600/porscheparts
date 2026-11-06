@@ -1,0 +1,17 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "observation_set",
+  "description": "An identifying field name is refused even where the schema would also refuse it.",
+  "expected_codes": [
+    "PRIVACY_FORBIDDEN_KEY",
+    "SCHEMA"
+  ],
+  "patch": [
+    {
+      "op": "add",
+      "path": "/provenance/source_rights/owner_name",
+      "value": "redacted"
+    }
+  ]
+}

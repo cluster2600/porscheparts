@@ -1,0 +1,17 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "observation_set",
+  "description": "A temperature channel declared in pascals.",
+  "expected_codes": [
+    "CALIBRATION_UNIT_MISMATCH",
+    "UNIT_NOT_ACCEPTED"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/channels/1/unit",
+      "value": "Pa"
+    }
+  ]
+}
