@@ -1,0 +1,243 @@
+{
+  "$comment": "SYNTHETIC TEST FIXTURE, not part or vehicle data. Round numbers chosen to exercise check_fit.py; they are deliberately unlike the declared 993 opening sizes and must never enter catalog/measurements.",
+  "schema_version": "1.0.0",
+  "measurement_id": "MEAS-SYNTHETIC-DT01-CORNER-INTERFERENCE",
+  "record_kind": "physical_measurement",
+  "subject": {
+    "part_id": "993-INT-SWITCH-BLANK-0001",
+    "part_reference": "synthetic fixture, no part",
+    "variant": "synthetic_test_fixture_not_a_vehicle",
+    "description": "Synthetic fixture: the six linear margins are positive but the body corner interferes with the rounded opening corner."
+  },
+  "session": {
+    "performed_on": "2026-11-06",
+    "operator_role": "test fixture",
+    "ambient_temperature_c": null
+  },
+  "datum": {
+    "origin": "Twin local frame, synthetic",
+    "axes": "X width, Y height, Z toward the interior, synthetic",
+    "reference_image": null
+  },
+  "instruments": [
+    {
+      "instrument_id": "SYN-CAL",
+      "type": "caliper",
+      "model": "synthetic fixture instrument, not a real device",
+      "resolution_mm": 0.01,
+      "interface": "manual",
+      "calibration": {
+        "status": "unknown",
+        "reference": "",
+        "checked_on": null
+      }
+    },
+    {
+      "instrument_id": "SYN-RG",
+      "type": "other",
+      "model": "synthetic radius gauge set in 0.25 mm steps, not a real device",
+      "resolution_mm": 0.25,
+      "interface": "manual",
+      "calibration": {
+        "status": "unknown",
+        "reference": "",
+        "checked_on": null
+      }
+    }
+  ],
+  "readings": [
+    {
+      "dimension_id": "D01",
+      "description": "Synthetic: overall width of the visible face",
+      "instrument_id": "SYN-CAL",
+      "method": "direct",
+      "unit": "mm",
+      "samples": [
+        44.0,
+        44.01,
+        43.99
+      ],
+      "value": 44.0,
+      "uncertainty": 0.02,
+      "uncertainty_basis": "combined",
+      "capture_mode": "manual_entry",
+      "captured_at": null
+    },
+    {
+      "dimension_id": "D02",
+      "description": "Synthetic: overall height of the visible face",
+      "instrument_id": "SYN-CAL",
+      "method": "direct",
+      "unit": "mm",
+      "samples": [
+        28.0,
+        28.0,
+        28.0
+      ],
+      "value": 28.0,
+      "uncertainty": 0.02,
+      "uncertainty_basis": "combined",
+      "capture_mode": "manual_entry",
+      "captured_at": null
+    },
+    {
+      "dimension_id": "D05",
+      "description": "Synthetic: clip tab length",
+      "instrument_id": "SYN-CAL",
+      "method": "direct",
+      "unit": "mm",
+      "samples": [
+        10.0,
+        10.01,
+        9.99
+      ],
+      "value": 10.0,
+      "uncertainty": 0.02,
+      "uncertainty_basis": "combined",
+      "capture_mode": "manual_entry",
+      "captured_at": null
+    },
+    {
+      "dimension_id": "D08",
+      "description": "Synthetic: width of the insertion body, clips excluded",
+      "instrument_id": "SYN-CAL",
+      "method": "direct",
+      "unit": "mm",
+      "samples": [
+        39.0,
+        39.0,
+        39.0
+      ],
+      "value": 39.0,
+      "uncertainty": 0.02,
+      "uncertainty_basis": "combined",
+      "capture_mode": "manual_entry",
+      "captured_at": null
+    },
+    {
+      "dimension_id": "D09",
+      "description": "Synthetic: height of the insertion body, clips excluded",
+      "instrument_id": "SYN-CAL",
+      "method": "direct",
+      "unit": "mm",
+      "samples": [
+        23.0,
+        23.01,
+        22.99
+      ],
+      "value": 23.0,
+      "uncertainty": 0.02,
+      "uncertainty_basis": "combined",
+      "capture_mode": "manual_entry",
+      "captured_at": null
+    },
+    {
+      "dimension_id": "D10",
+      "description": "Synthetic: smallest outer corner radius of the insertion body",
+      "instrument_id": "SYN-RG",
+      "method": "gauge",
+      "unit": "mm",
+      "samples": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "value": 0.5,
+      "uncertainty": 0.25,
+      "uncertainty_basis": "instrument_resolution",
+      "capture_mode": "manual_entry",
+      "captured_at": null
+    },
+    {
+      "dimension_id": "H01",
+      "description": "Synthetic: minimum opening width",
+      "instrument_id": "SYN-CAL",
+      "method": "direct",
+      "unit": "mm",
+      "samples": [
+        40.0,
+        40.01,
+        39.99
+      ],
+      "value": 40.0,
+      "uncertainty": 0.02,
+      "uncertainty_basis": "combined",
+      "capture_mode": "manual_entry",
+      "captured_at": null
+    },
+    {
+      "dimension_id": "H02",
+      "description": "Synthetic: minimum opening height",
+      "instrument_id": "SYN-CAL",
+      "method": "direct",
+      "unit": "mm",
+      "samples": [
+        24.0,
+        24.0,
+        24.0
+      ],
+      "value": 24.0,
+      "uncertainty": 0.02,
+      "uncertainty_basis": "combined",
+      "capture_mode": "manual_entry",
+      "captured_at": null
+    },
+    {
+      "dimension_id": "H03",
+      "description": "Synthetic: panel thickness at the clips",
+      "instrument_id": "SYN-CAL",
+      "method": "direct",
+      "unit": "mm",
+      "samples": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "value": 2.5,
+      "uncertainty": 0.02,
+      "uncertainty_basis": "combined",
+      "capture_mode": "manual_entry",
+      "captured_at": null
+    },
+    {
+      "dimension_id": "H04",
+      "description": "Synthetic: largest inner corner radius of the opening",
+      "instrument_id": "SYN-RG",
+      "method": "gauge",
+      "unit": "mm",
+      "samples": [
+        3.0,
+        3.0,
+        3.0
+      ],
+      "value": 3.0,
+      "uncertainty": 0.25,
+      "uncertainty_basis": "instrument_resolution",
+      "capture_mode": "manual_entry",
+      "captured_at": null
+    },
+    {
+      "dimension_id": "H05",
+      "description": "Synthetic: minimum free depth behind the panel",
+      "instrument_id": "SYN-CAL",
+      "method": "direct",
+      "unit": "mm",
+      "samples": [
+        20.0,
+        20.01,
+        19.99
+      ],
+      "value": 20.0,
+      "uncertainty": 0.02,
+      "uncertainty_basis": "combined",
+      "capture_mode": "manual_entry",
+      "captured_at": null
+    }
+  ],
+  "evidence": {
+    "level": "unrated",
+    "files": [],
+    "contradictions": []
+  },
+  "notes": "Synthetic fixture for tests/test_twin_fit.py. It carries no evidence about any part or car."
+}
