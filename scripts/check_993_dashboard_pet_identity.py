@@ -104,8 +104,19 @@ def check_identity(identity: dict) -> list[str]:
             source_plate = plates.get(item.get("plate", row.get("plate")))
             if source_plate is None:
                 errors.append(f"{where}: plate not declared")
-            elif item.get("pdf_page") not in source_plate.get("pdf_pages", []):
-                errors.append(f"{where}: page {item.get('pdf_page')} is not a page of plate {source_plate['illustration']}")
+            else:
+                if item.get("pdf_page") not in source_plate.get("pdf_pages", []):
+                    errors.append(f"{where}: page {item.get('pdf_page')} is not a page of plate {source_plate['illustration']}")
+                if source_plate.get("airbag_state_by_title") not in allowed:
+                    errors.append(
+                        f"{where}: plate {source_plate['illustration']} is titled "
+                        f"{source_plate.get('airbag_state_by_title')}, row says {row.get('passenger_airbag')}"
+                    )
+                item_codes = source_plate.get("option_code_on_lines")
+                if status == "mapped_by_option_code" and (not item_codes or row.get("option_code") not in item_codes):
+                    errors.append(f"{where}: plate {source_plate['illustration']} carries no line-level {row.get('option_code')}")
+                if status == "title_match_only" and item_codes:
+                    errors.append(f"{where}: plate {source_plate['illustration']} has option codes; title_match_only is not allowed")
 
     target = identity.get("f0_target", {})
     target_row = f"{target.get('variant')}-{target.get('handedness')}"
@@ -190,8 +201,8 @@ def admit_specimen(evidence: dict) -> tuple[str, list[str]]:
     trim_label = evidence.get("E3-trim-label")
     if not trim_label:
         reasons.append("E3: trim-label transcription or 'none found' statement missing")
-    elif trim_label.get("part_number") and trim_label.get("matches_matrix_row") is False:
-        held.append("E3: trim label disagrees with the matrix; open a contradiction")
+    elif trim_label.get("part_number") and trim_label.get("matches_matrix_row") is not True:
+        held.append("E3: trim label is not confirmed against the matrix; open a contradiction")
 
     continuity = evidence.get("E4-continuity")
     if not continuity:
