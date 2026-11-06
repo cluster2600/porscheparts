@@ -84,6 +84,11 @@ Conclusion to hold to: OpenRadioss makes it possible to **design** the
 energy-absorption zones and compare architectures. It allows **no one**, neither
 us nor a commercial vendor, to claim crashworthiness without physical tests.
 
+The crash state is recorded as `unvalidated` in
+[ADR 0018](decisions/0018-composite-crash-no-claim.md), and the questions a
+physical validation plan must answer are in
+[the crash plan stub](MONOCOQUE_CRASH_VALIDATION_PLAN_STUB.md) (issue #441).
+
 ## 3. PhysicsNeMo: where it really helps, and why not yet
 
 PhysicsNeMo **is not a structural solver**. It is a physics-ML framework: it
