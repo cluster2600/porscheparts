@@ -149,12 +149,23 @@ Phase 4 exceptions (2026-11-06, issue #429). These stay French on purpose:
   `tests/test_air_oil_cycle_f34b_image.py` are recipe inputs of
   `containers/air-oil-cycle-f34b.lock.json` or are pinned elsewhere by
   digest. Editing them breaks the lock.
-- **Generated document content.** The French text that generators write into
-  deliverables (`build_turning_route_card.py`, `build_process_route_card.py`,
-  `build_carrier_workshop_guide*.py`, `build_part_workflow_guide.py`,
-  `render_carrier_*.py`) is page content, not a command-line message. Per the
-  generated-pages rule above, it is translated in the generator together with
-  a regeneration of its outputs, as a separate change.
+- **Generated document content (audited 2026-11-06, issue #580).** The French
+  page content these generators write stays French, because translating it
+  would change frozen outputs:
+  - `build_turning_route_card.py` and `build_process_route_card.py` write their
+    route cards and quotation requests into `evidence/` directories
+    (`twins/*/evidence/route-*`, `turning-f1`), and `make check` regenerates
+    them with `--check` against those frozen files.
+  - `build_carrier_workshop_guide.py` to `_v6.py`, `build_part_workflow_guide.py`
+    and `render_carrier_{fields,progress,region,workshop_drawing}.py` are
+    themselves pinned by SHA-256, in `manufacturing/workflows/993-carrier-lpbf-v*.json`,
+    `manufacturing/runtimes/pdf/results.json` and the carrier figure receipts.
+  - `build_carrier_workshop_guide_v7.py` is unpinned, but it builds on the pinned v6
+    and writes only into private run directories.
+
+  English versions are possible only as **new** evidence revisions, for example
+  an English quotation request for a supplier, written beside the frozen French
+  ones. That is a deliverable choice for the owner, not a translation fix.
 - **Data strings.** Strings in `tests/` that must equal French values written in
   records, evidence or script output (for example
   `tests/test_vast_simready_native.py`) change only when their source does.
