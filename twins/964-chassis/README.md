@@ -1,5 +1,15 @@
 # Digital twin of the Porsche 911 (964) chassis
 
+**Body-contact context, 6 November 2026:** the
+[source/topology review](contact-context-20261106/README.md) distinguishes the
+Mi F/G marks from neighbouring schematic features, compares two original
+reference photographs and inspects original scan triangles near four sill
+regions. Arm/pad-like observations are consistent with external lift hardware;
+their upper contacts remain unseen. Two conspicuous loops are sole boundaries
+of disconnected observed surfaces, not identified body apertures. No donor
+registration is admitted. A [preliminary road/track basis](contact-context-20261106/approval-basis.md)
+records current German and Swiss primary sources separately from engineering acceptance.
+
 **Contact/runtime review, 6 November 2026:** the
 [registration diagnostic](contact-registration-20261106/README.md) preserves
 all 1,521 original boundary component ID sets and rejects the fixed 23-contour
