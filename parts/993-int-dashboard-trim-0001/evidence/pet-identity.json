@@ -1,0 +1,332 @@
+{
+  "schema_version": "1.0.0",
+  "record_id": "IDENT-993-DASHBOARD-TRIM-PET-0001",
+  "part_id": "993-INT-DASHBOARD-TRIM-0001",
+  "issue": "https://github.com/cluster2600/porscheparts/issues/566",
+  "prepared_on": "2026-11-06",
+  "prepared_by": "Claude Code agent (documentary audit; not an engineering or safety review)",
+  "review": {
+    "status": "awaiting_independent_review",
+    "reviewer": null,
+    "reviewed_on": null,
+    "note": "An independent reviewer re-reads every cited PET page and position in their own copy and records agreement or disagreement here. The preparer of this record cannot review it."
+  },
+  "scope": "Documentary identity gate for the 993 dashboard trim: which PET Kat 017 plate and position assigns which trim and knee-protection-strip part number to which option code and handedness. It establishes no geometry, fit, safety or manufacturing property and authorises no acquisition.",
+  "source": {
+    "source_id": "SRC-PORSCHE-PET-993",
+    "copy": "Porsche Classic download kat017-e-911-98-katalog.pdf, 674 pages, header date 24.07.2017, Kat 017",
+    "sha256": "b67cf3586f9a92bee5ccc8e84462515231c84ddd23c610e4a2e739fedb1166aa",
+    "retrieved_on": "2026-11-06",
+    "same_bytes_as": [
+      {
+        "source_id": "SRC-PET-993-KAT17-PDF",
+        "note": "The owner's local copy of the third-party-hosted file has the same SHA-256, so page numbers below hold for both records."
+      }
+    ],
+    "rights": "Porsche AG, all rights reserved, reference only, redistribution prohibited. This record transcribes part numbers, position numbers, plate titles and remark codes only: identification facts. No illustration, page image or excerpt is copied.",
+    "legend": {
+      "pdf_page": 14,
+      "codes": {
+        "/LL": "left-hand drive",
+        "/RL": "right-hand drive",
+        "/L": "left, in the direction of travel",
+        "/R": "right, in the direction of travel"
+      }
+    },
+    "option_codes": {
+      "pdf_pages": [16, 19],
+      "codes": {
+        "M002": "911 Carrera RS road version",
+        "M003": "911 Carrera RS Clubsport",
+        "M561": "Airbag, driver's side",
+        "M562": "Airbag, driver's side and front passenger's side",
+        "M564": "Without airbag"
+      },
+      "note": "M002 and M003 are on page 16, M561, M562 and M564 on page 19 of the same option list; the five codes are transcribed as written."
+    }
+  },
+  "plates": [
+    {
+      "illustration": "809-00",
+      "pdf_pages": [500, 501, 502, 503],
+      "title_as_written": "Dashboard / for cars with / Airbag / Passenger's side",
+      "model_column": null,
+      "option_code_on_lines": null,
+      "airbag_state_by_title": "passenger_airbag_present",
+      "note": "The only non-RS dashboard plate in Kat 017. No line carries an option code. Position 11 is 'Airbag unit, Passenger's side, see group 4/03/06'."
+    },
+    {
+      "illustration": "809-01",
+      "pdf_pages": [504, 505, 506, 507, 508, 509],
+      "title_as_written": "Knee protection strip / for cars with / Airbag / Passenger's side",
+      "model_column": null,
+      "option_code_on_lines": null,
+      "airbag_state_by_title": "passenger_airbag_present",
+      "note": "Knee protection strips for the same airbag-equipped cars as 809-00."
+    },
+    {
+      "illustration": "809-02",
+      "pdf_pages": [510, 511, 512, 513],
+      "title_as_written": "Dashboard / Knee protection strip / for cars without / Airbag / Passenger's side",
+      "model_column": "CARRERA RS",
+      "option_code_on_lines": ["M002", "M003"],
+      "airbag_state_by_title": "passenger_airbag_absent",
+      "note": "Carrera RS only. The trim and knee-strip lines carry M002 or M003 in the model column."
+    },
+    {
+      "illustration": "403-06",
+      "pdf_pages": [262, 263, 264],
+      "title_as_written": "Airbag",
+      "model_column": null,
+      "option_code_on_lines": null,
+      "airbag_state_by_title": "not_applicable",
+      "note": "Position 2 lists the passenger airbag unit 993 803 071 00 /LL and 993 803 072 00 /RL as parts separate from the dashboard trim."
+    }
+  ],
+  "matrix": [
+    {
+      "row_id": "M564-LHD",
+      "option_code": "M564",
+      "body_scope": "non-RS cars",
+      "handedness": "LHD",
+      "passenger_airbag": "absent_by_option_code",
+      "plate": null,
+      "dashboard_trim": null,
+      "knee_protection_strip": null,
+      "model_years": null,
+      "supersession": null,
+      "mapping_status": "unmapped_in_kat017",
+      "basis": "No Kat 017 dashboard or knee-strip plate is qualified for a non-RS car without passenger airbag. 809-00 is titled for cars with passenger airbag; 809-02 is restricted to CARRERA RS M002/M003. Outside the option list, M564 appears in Kat 017 only on illustration 403-07 (steering, pages 265-266). This is the F0 target variant and its trim number stays null."
+    },
+    {
+      "row_id": "M564-RHD",
+      "option_code": "M564",
+      "body_scope": "non-RS cars",
+      "handedness": "RHD",
+      "passenger_airbag": "absent_by_option_code",
+      "plate": null,
+      "dashboard_trim": null,
+      "knee_protection_strip": null,
+      "model_years": null,
+      "supersession": null,
+      "mapping_status": "unmapped_in_kat017",
+      "basis": "Same as M564-LHD."
+    },
+    {
+      "row_id": "M561-LHD",
+      "option_code": "M561",
+      "body_scope": "non-RS cars",
+      "handedness": "LHD",
+      "passenger_airbag": "absent_by_option_code",
+      "plate": null,
+      "dashboard_trim": null,
+      "knee_protection_strip": null,
+      "model_years": null,
+      "supersession": null,
+      "mapping_status": "unmapped_in_kat017",
+      "basis": "M561 is a driver-only airbag. No dashboard plate is qualified for it: 809-00 names a passenger-side airbag. A driver-only car is not mapped to the 809-00 trim by inference."
+    },
+    {
+      "row_id": "M561-RHD",
+      "option_code": "M561",
+      "body_scope": "non-RS cars",
+      "handedness": "RHD",
+      "passenger_airbag": "absent_by_option_code",
+      "plate": null,
+      "dashboard_trim": null,
+      "knee_protection_strip": null,
+      "model_years": null,
+      "supersession": null,
+      "mapping_status": "unmapped_in_kat017",
+      "basis": "Same as M561-LHD."
+    },
+    {
+      "row_id": "M562-LHD",
+      "option_code": "M562",
+      "body_scope": "non-RS cars",
+      "handedness": "LHD",
+      "passenger_airbag": "present_by_plate_title",
+      "plate": "809-00",
+      "dashboard_trim": [
+        {"part_number": "993 552 055 00", "position": "1", "remark": "/LL", "covering": "Leatherette", "pdf_page": 501},
+        {"part_number": "993 552 055 01", "position": "1", "remark": "/LL", "covering": "Leather", "pdf_page": 501}
+      ],
+      "knee_protection_strip": [
+        {"part_number": "964 552 053 00", "position": "(1)", "remark": "/LL", "description": "Complete", "plate": "809-01", "pdf_page": 505},
+        {"part_number": "964 552 073 06", "position": "1", "remark": "/LL", "description": "Metal, leatherette", "plate": "809-01", "pdf_page": 505},
+        {"part_number": "964 552 053 01", "position": "(1)", "remark": "/LL -96", "description": "Complete", "plate": "809-01", "pdf_page": 505},
+        {"part_number": "964 552 073 07", "position": "1", "remark": "/LL", "description": "Metal, leather", "plate": "809-01", "pdf_page": 505}
+      ],
+      "passenger_airbag_unit": {"part_number": "993 803 071 00", "position": "2", "remark": "/LL", "plate": "403-06", "pdf_page": 263},
+      "model_years": null,
+      "supersession": null,
+      "mapping_status": "title_match_only",
+      "basis": "809-00 and 809-01 carry no option code; they are matched to M562 only because their titles name a passenger-side airbag, which is M562's definition. Out of this part's scope: the occupant-restraint exclusion applies."
+    },
+    {
+      "row_id": "M562-RHD",
+      "option_code": "M562",
+      "body_scope": "non-RS cars",
+      "handedness": "RHD",
+      "passenger_airbag": "present_by_plate_title",
+      "plate": "809-00",
+      "dashboard_trim": [
+        {"part_number": "993 552 056 00", "position": "(1)", "remark": "/RL", "covering": "Leatherette", "pdf_page": 501},
+        {"part_number": "993 552 056 01", "position": "(1)", "remark": "/RL", "covering": "Leather", "pdf_page": 501}
+      ],
+      "knee_protection_strip": [
+        {"part_number": "993 552 054 00", "position": "(1)", "remark": "/RL", "description": "Complete", "plate": "809-01", "pdf_page": 505},
+        {"part_number": "993 552 074 00", "position": "(1)", "remark": "/RL", "description": "Leatherette", "plate": "809-01", "pdf_page": 505},
+        {"part_number": "993 552 054 01", "position": "(1)", "remark": "/RL -96", "description": "Complete", "plate": "809-01", "pdf_page": 505},
+        {"part_number": "993 552 074 01", "position": "(1)", "remark": "/RL", "description": "Leather", "plate": "809-01", "pdf_page": 505}
+      ],
+      "passenger_airbag_unit": {"part_number": "993 803 072 00", "position": "2", "remark": "/RL", "plate": "403-06", "pdf_page": 263},
+      "model_years": null,
+      "supersession": null,
+      "mapping_status": "title_match_only",
+      "basis": "Same as M562-LHD."
+    },
+    {
+      "row_id": "M002-LHD",
+      "option_code": "M002",
+      "body_scope": "Carrera RS road version",
+      "handedness": "LHD",
+      "passenger_airbag": "absent_by_plate_title",
+      "plate": "809-02",
+      "dashboard_trim": [
+        {"part_number": "993 552 055 00", "position": "1", "remark": "/LL", "covering": "Leatherette", "pdf_page": 511}
+      ],
+      "knee_protection_strip": [
+        {"part_number": "911 552 069 00", "position": "30", "remark": "/LL /L", "description": "Leatherette", "plate": "809-02", "pdf_page": 512},
+        {"part_number": "911 552 070 00", "position": "37", "remark": "/LL /R", "description": "Leatherette", "plate": "809-02", "pdf_page": 513}
+      ],
+      "model_years": null,
+      "supersession": null,
+      "mapping_status": "mapped_by_option_code",
+      "basis": "Line-level M002 in the model column of a plate titled for cars without passenger airbag."
+    },
+    {
+      "row_id": "M002-RHD",
+      "option_code": "M002",
+      "body_scope": "Carrera RS road version",
+      "handedness": "RHD",
+      "passenger_airbag": "absent_by_plate_title",
+      "plate": "809-02",
+      "dashboard_trim": [
+        {"part_number": "993 552 056 00", "position": "(1)", "remark": "/RL", "covering": "Leatherette", "pdf_page": 511}
+      ],
+      "knee_protection_strip": [
+        {"part_number": "911 552 069 01", "position": "(30)", "remark": "/RL /L", "description": "Leatherette", "plate": "809-02", "pdf_page": 512},
+        {"part_number": "911 552 070 01", "position": "(37)", "remark": "/RL /R", "description": "Leatherette", "plate": "809-02", "pdf_page": 513}
+      ],
+      "model_years": null,
+      "supersession": null,
+      "mapping_status": "mapped_by_option_code",
+      "basis": "Same as M002-LHD."
+    },
+    {
+      "row_id": "M003-LHD",
+      "option_code": "M003",
+      "body_scope": "Carrera RS Clubsport",
+      "handedness": "LHD",
+      "passenger_airbag": "absent_by_plate_title",
+      "plate": "809-02",
+      "dashboard_trim": [
+        {"part_number": "993 552 055 70", "position": "(1)", "remark": "/LL", "covering": "Leatherette", "pdf_page": 511}
+      ],
+      "knee_protection_strip": [
+        {"part_number": "964 552 077 70", "position": "(30)", "remark": "/LL /L", "description": "Leatherette", "plate": "809-02", "pdf_page": 512},
+        {"part_number": "964 552 078 70", "position": "(37)", "remark": "/LL /R", "description": "Leatherette", "plate": "809-02", "pdf_page": 513}
+      ],
+      "model_years": null,
+      "supersession": null,
+      "mapping_status": "mapped_by_option_code",
+      "basis": "Line-level M003 in the model column of a plate titled for cars without passenger airbag."
+    },
+    {
+      "row_id": "M003-RHD",
+      "option_code": "M003",
+      "body_scope": "Carrera RS Clubsport",
+      "handedness": "RHD",
+      "passenger_airbag": "absent_by_plate_title",
+      "plate": "809-02",
+      "dashboard_trim": [
+        {"part_number": "993 552 056 70", "position": "(1)", "remark": "/RL", "covering": "Leatherette", "pdf_page": 511}
+      ],
+      "knee_protection_strip": [
+        {"part_number": "964 552 077 71", "position": "(30)", "remark": "/RL /L", "description": "Leatherette", "plate": "809-02", "pdf_page": 512},
+        {"part_number": "964 552 078 71", "position": "(37)", "remark": "/RL /R", "description": "Leatherette", "plate": "809-02", "pdf_page": 513}
+      ],
+      "model_years": null,
+      "supersession": null,
+      "mapping_status": "mapped_by_option_code",
+      "basis": "Same as M003-LHD."
+    }
+  ],
+  "model_year_note": "Every cited page carries the catalogue header 'Model life 1994>>1998'. No trim or knee-strip line carries a model-year remark except the /LL -96 and /RL -96 'Complete' knee strips on 809-01 and per-colour remarks on leather variants. Row model_years therefore stay null: the catalogue header is not a per-variant year statement.",
+  "supersession_note": "Kat 017 states no supersession for any trim number in this matrix. Null means 'not stated in Kat 017', not 'never superseded'.",
+  "conflicts": [
+    {
+      "conflict_id": "CTR-0019",
+      "subject": "993 552 055 00 /LL and 993 552 056 00 /RL appear on both a passenger-airbag plate (809-00, page 501) and the Carrera RS no-airbag plate (809-02, page 511, M002).",
+      "hypotheses_not_adopted": [
+        "H1: the trim is common to both installations and carries no deployment flap; on airbag cars the opening is closed by the separate 809-00 parts 'Lid, Upper part' 993 552 088 00 (position 13, page 502) and 'Lid, Lower part' 993 552 090 00 (position 14, page 502), which 809-02 does not list. Supported only by part-number identity across plates and by the lids being absent from 809-02.",
+        "H2: the trim number is shared in the catalogue but the physical parts differ by production period or market, or one plate is in error."
+      ],
+      "decision": "Neither hypothesis is adopted. H1 would relax an occupant-restraint exclusion on catalogue text alone, which the repository forbids. The passenger-side reverse inspection required below is what can discriminate H1 from H2 on a real specimen.",
+      "status": "open"
+    },
+    {
+      "conflict_id": "record-knee-strip-mapping",
+      "subject": "Until this audit the part record called 964 552 053 00 /LL and 993 552 054 00 /RL the 'series production' knee strips and gave 964 552 077 70 and 964 552 078 70 for RS M003. In Kat 017 the first pair is on 809-01, a passenger-airbag plate; 964 552 077 70 and 078 70 are the M003 LHD left and right strips, with 077 71 and 078 71 for RHD; and M002 uses 911 552 069 00/01 and 911 552 070 00/01.",
+      "decision": "Record corrected to the plate-level mapping by #592 (docs/reports/993-dashboard-variant-audit-20261106.md); no knee-strip number is assigned to M564.",
+      "status": "corrected_in_record"
+    }
+  ],
+  "f0_target": {
+    "variant": "M564",
+    "handedness": "LHD",
+    "dashboard_trim_part_number": null,
+    "knee_protection_strip_part_numbers": null,
+    "specimen_id": null,
+    "note": "The complete-dashboard F0 target stays M564 LHD with every part number null. Kat 017 cannot supply one. A future M564 trim number needs a plate- and position-level source that names M564 or 'without airbag' for a non-RS car; a part label read on an admitted specimen is evidence of that specimen only."
+  },
+  "specimen_protocol": {
+    "specimen_id_format": "SPEC-993-DASH-NNNN",
+    "specimen_id_rule": "Assigned sequentially by the repository when evidence is first submitted. Never derived from a VIN, chassis number, registration, owner name, location or seller listing, and never reused for another physical trim.",
+    "required_evidence": [
+      {
+        "evidence_id": "E1-option-label",
+        "what": "Photograph of the vehicle option (data) label with the VIN, chassis number and any owner or dealer data masked before the file leaves the contributor, plus a transcription of every M-code read.",
+        "admission_rule": "Refused if any identifier is visible. Refused if the transcription lists M562. Held for review if it lists M561 or none of M561/M562/M564/M002/M003."
+      },
+      {
+        "evidence_id": "E2-passenger-reverse",
+        "what": "Photographs, with a scale in frame, of the passenger-side underside of the trim and the space above the glovebox: presence or absence of an airbag module, a moulded tear line, a deployment flap, and the 809-00 lids 993 552 088 00 / 090 00.",
+        "admission_rule": "Refused if any of module, tear line or flap is observed, whatever E1 says. Refused if the photographs do not show the region."
+      },
+      {
+        "evidence_id": "E3-trim-label",
+        "what": "Transcription and photograph of any part number moulded, stamped or labelled on the removed trim, or an explicit statement that none was found after inspecting the back face.",
+        "admission_rule": "A label that disagrees with the matrix row selected by E1 opens a contradiction; it does not overwrite the matrix."
+      },
+      {
+        "evidence_id": "E4-continuity",
+        "what": "One hash manifest listing every image and measurement file of the specimen under its specimen ID, and photographs of at least two distinguishing marks (crack, repair, wear) visible both installed and removed.",
+        "admission_rule": "Refused if any file lacks the specimen ID or a hash, or if installed and removed states cannot be linked through the marks."
+      },
+      {
+        "evidence_id": "E5-rights",
+        "what": "The contributor's written permission to keep and publish the images in this repository under a stated licence, with confirmation that no personal data remains.",
+        "admission_rule": "Refused without it."
+      }
+    ],
+    "admission": "Measurements of a specimen are admitted only when E1-E5 all pass. The software preflight refuses explicit exclusions and at best holds a complete submission: the independent measurement and rights/privacy reviewers then verify the photographs, hashes, continuity and permission, and record the admission. Admission establishes the identity and airbag state of that specimen; it is not a fit, safety or manufacturing verdict.",
+    "checker": "scripts/check_993_dashboard_pet_identity.py"
+  },
+  "unchanged_gates": [
+    "validation.status stays concept",
+    "safety_class stays functional and the passenger-airbag exclusion stays in force",
+    "no geometry, fit, assembly transform or manufacturing claim is made or implied"
+  ]
+}
