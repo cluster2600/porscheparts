@@ -97,10 +97,10 @@ class TurboOilReturnLineIN625F0Tests(unittest.TestCase):
         self.assertEqual(record["classification"]["safety_class"], "prohibited_pending_engineering")
         self.assertEqual(record["manufacturing"]["preferred_process"], "undecided")
         self.assertEqual(record["validation"]["status"], "concept")
-        # L'identite etait vide ; la planche d'usine 202-16 l'a etablie le
-        # 11 septembre 2026. La garde change de sens sans disparaitre : les
-        # quatre references sont desormais attendues, et l'attribution
-        # alimentation/retour doit rester declaree non etablie.
+        # The identity was empty; factory plate 202-16 established it on
+        # 11 September 2026. The guard changes direction without disappearing:
+        # the four part numbers are now expected, and the feed/return
+        # attribution must stay declared as not established.
         self.assertEqual(
             record["vehicle"]["porsche_part_numbers"],
             ["993 107 125 53", "993 107 126 53", "993 107 338 53", "993 107 339 53"],

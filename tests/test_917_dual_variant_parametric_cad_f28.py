@@ -14,8 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "twins/reference-917-engine/source/build_dual_variant_parametric_cad_contract_f28.py"
 CONTRACT = ROOT / "twins/reference-917-engine/dual-variant-parametric-cad-contract-f28.json"
 
-# Litteraux de test independants des constantes du generateur. Ils rendent une
-# rebasis silencieuse visible dans la revue de code.
+# Test literals independent of the generator constants. They make a silent
+# rebase visible in code review.
 EXPECTED_UPSTREAM_SHA256 = {
     "classical_solver_facts_f13": "1ec8a0c49e95f8f2c8185d4c0f4074d1ed4b36477996ba590cc9f92eccf42a97",
     "kinematic_interfaces_f16": "ec5e56cdd750071462e00dcec978182916ee4c266435bfea0720dea2fda2f2e2",

@@ -1,13 +1,13 @@
-"""Carter de chaine : bon candidat additif, mauvais candidat titane.
+"""Chain case: good additive candidate, poor titanium candidate.
 
-Ces tests gardent les deux moitiés du verdict. La consolidation est reconnue,
-pour qu'on ne perde pas le fait que la piece merite l'additif. Et le refus du
-titane est verrouille sur ses trois motifs de grille, pour qu'une relecture
-distraite ne le rouvre pas.
+These tests guard both halves of the verdict. The consolidation is recognized,
+so that the fact that the part deserves additive manufacturing is not lost. And
+the titanium refusal is locked on its three grid reasons, so that a careless
+review does not reopen it.
 
-Le dernier test est le plus important : il verifie que les cinq
-contre-indications de TITANIUM.md sont bien traitees comme des refus, et non
-comme des malus. C'est l'infidelite que cette piece a fait apparaitre.
+The last test matters most: it checks that the five contraindications of
+TITANIUM.md are treated as refusals, not as penalties. That is the infidelity
+this part brought to light.
 """
 from __future__ import annotations
 
@@ -25,9 +25,9 @@ INPUTS = ROOT / "catalog/manufacturing/titanium-am-screen-inputs.json"
 SCREEN = ROOT / "twins/993-exhaust-tip-ti-f0/evidence/selection/titanium-candidate-screen.json"
 GRID = ROOT / "docs/TITANIUM.md"
 
-# Conditions a lever, pas refus absolus : la grille dit « contact glissant
-# **non traite** » et « couple galvanique **non maitrise** », et SAFETY.md
-# inscrit leur prevention parmi les exigences minimales du metal.
+# Conditions to lift, not absolute refusals: the grid says "sliding contact
+# **not treated**" and "galvanic couple **not controlled**", and SAFETY.md
+# lists their prevention among the minimum requirements for metal.
 MITIGABLE = (
     "galling_or_repeated_threads",
     "uncontrolled_galvanic_couple",
@@ -54,11 +54,11 @@ class ChainCaseTests(unittest.TestCase):
         self.assertIn("passages_internes", judgement["additive_families"])
 
     def test_titanium_is_refused_on_the_two_reasons_that_survive(self) -> None:
-        """Le grippage et le couple galvanique ont des parades declarees, donc
-        ils ne refusent plus : ils sont portes comme exigences. Restent les deux
-        motifs qu'aucune parade ne leve — la dilatation differentielle contre un
-        carter aluminium, et le fait que le titane n'ameliore pas la fonte
-        d'aluminium d'origine."""
+        """Galling and the galvanic couple have declared countermeasures, so
+        they no longer refuse: they are carried as requirements. Two reasons
+        remain that no countermeasure lifts — differential expansion against
+        an aluminum case, and the fact that titanium does not improve on the
+        original cast aluminum."""
         entry = next(
             item for item in load(SCREEN)["ranking"] if item["part_id"] == PART_ID
         )
@@ -102,7 +102,7 @@ class ChainCaseTests(unittest.TestCase):
         carried = {item["condition"] for item in entry["carried_requirements"]}
         self.assertIn("galling_or_repeated_threads", carried)
         self.assertIn("uncontrolled_galvanic_couple", carried)
-        # La dilatation, elle, reste sans parade : c'est ce qui bloque.
+        # Expansion, however, has no countermeasure: that is what blocks.
         self.assertNotIn("differential_expansion_with_alloy_mate", carried)
 
     def test_the_screen_states_that_it_does_not_cover_the_car(self) -> None:

@@ -1,4 +1,4 @@
-"""Tests statiques de l'image CPU F26 et de sa chaîne GHCR."""
+"""Static tests of the F26 CPU image and its GHCR chain."""
 
 from __future__ import annotations
 

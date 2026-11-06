@@ -1,4 +1,4 @@
-"""Tests des preuves integrees virtuelles F33 de la culasse 917."""
+"""Tests of the integrated F33 virtual evidence for the 917 cylinder head."""
 
 from __future__ import annotations
 

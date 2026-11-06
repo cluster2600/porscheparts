@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Contrôles fail-closed de l'audit LPBF/structure scan-only F39."""
+"""Fail-closed checks of the F39 scan-only LPBF/structural audit."""
 
 from __future__ import annotations
 

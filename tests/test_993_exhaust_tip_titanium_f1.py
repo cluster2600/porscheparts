@@ -1,11 +1,11 @@
-"""Premiere piece titane du depot : selection, geometrie et deux routes.
+"""First titanium part of the repository: selection, geometry and two routes.
 
-Le test ne dit pas que l'embout est imprimable. Il verifie que la selection est
-le produit de la grille ecrite appliquee a tout le catalogue et non d'un choix
-d'humeur, que le criblage refuse de tourner si une fiche n'est pas jugee, et que
-les deux routes titane restent exclusives : le Ti-6Al-4V bloque sur la
-temperature, le Ti-6242 bloque sur tout le reste. Une carte qui ouvrirait les
-deux a la fois serait un faux.
+The test does not say that the tip is printable. It checks that the selection
+is the product of the written grid applied to the whole catalogue and not a
+choice of mood, that the screening refuses to run if a record is not judged,
+and that the two titanium routes stay exclusive: Ti-6Al-4V blocks on
+temperature, Ti-6242 blocks on everything else. A card that opened both at
+once would be a forgery.
 """
 from __future__ import annotations
 
@@ -90,7 +90,7 @@ class ExhaustTipTitaniumF1Tests(unittest.TestCase):
                 text=True,
             )
         self.assertNotEqual(result.returncode, 0)
-        self.assertIn("ne couvre pas le catalogue", result.stderr)
+        self.assertIn("does not cover the catalogue", result.stderr)
 
     def test_the_hot_candidates_are_disqualified_by_temperature_not_by_taste(self) -> None:
         ranking = {entry["part_id"]: entry for entry in load(SELECTION)["ranking"]}
@@ -125,12 +125,12 @@ class ExhaustTipTitaniumF1Tests(unittest.TestCase):
         ti64 = gates(load(ROUTE_TI64))
         ti6242 = gates(load(ROUTE_TI6242))
         ceiling = "alloy_ceiling_above_declared_service_temperature"
-        # Ti-6Al-4V : route reelle, bloquee par la temperature seule.
+        # Ti-6Al-4V: real route, blocked by temperature alone.
         self.assertFalse(ti64[ceiling]["pass"])
         self.assertTrue(ti64["layer_thickness_consistent"]["pass"])
         self.assertTrue(ti64["screened_wall_above_process_minimum"]["pass"])
         self.assertTrue(ti64["heat_treatment_route_defined"]["pass"])
-        # Ti-6242 : passe la temperature, perd la route.
+        # Ti-6242: passes temperature, loses the route.
         self.assertTrue(ti6242[ceiling]["pass"])
         self.assertFalse(ti6242["layer_thickness_consistent"]["pass"])
         self.assertFalse(ti6242["route_available_from_a_service_supplier"]["pass"])

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tests fail-closed des preuves AdditiveFOAM F42.2 executees."""
+"""Fail-closed tests of the executed F42.2 AdditiveFOAM evidence."""
 
 from __future__ import annotations
 

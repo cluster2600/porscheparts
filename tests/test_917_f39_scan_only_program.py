@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Vérifie que F39 avance sans transformer le scan en métrologie OEM."""
+"""Check that F39 advances without turning the scan into OEM metrology."""
 
 from __future__ import annotations
 

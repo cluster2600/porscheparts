@@ -1,12 +1,12 @@
-"""Triage titane du catalogue d'usine : couverture et honnetete du perimetre.
+"""Titanium triage of the factory catalogue: coverage and honesty of scope.
 
-Le criblage des fiches porte sur une trentaine de pieces, le catalogue d'usine
-en compte pres de six mille. Ces tests existent pour que le depot ne puisse plus
-laisser croire qu'il a regarde « tout le catalogue ».
+The record screening covers about thirty parts; the factory catalogue has
+nearly six thousand. These tests exist so that the repository can no longer
+let anyone believe it looked at "the whole catalogue".
 
-Le triage de zones tourne sur les seules donnees du depot et est donc verifie
-ici. Le triage piece a piece demande un releve de designations tenu hors du
-depot : seule sa sortie publiee est controlee, et seulement si elle existe.
+The zone triage runs on repository data alone and is therefore checked here.
+The part-by-part triage needs a designation transcription kept outside the
+repository: only its published output is checked, and only if it exists.
 """
 from __future__ import annotations
 
@@ -59,17 +59,17 @@ class PetTitaniumTriageTests(unittest.TestCase):
 
     def test_the_part_triage_when_published_keeps_the_catalogue_outside(self) -> None:
         if not PARTS.exists():
-            self.skipTest("triage piece a piece non publie : releve PET hors depot")
+            self.skipTest("part-by-part triage not published: PET transcription kept outside the repository")
         report = load(PARTS)
         self.assertIn("not_a_part_selection", report["authority"])
         self.assertIn("hors du depot", report["listing_source"])
-        # Seule une liste courte est publiee, jamais le releve entier.
+        # Only a short list is published, never the whole transcription.
         self.assertLess(len(report["shortlist"]), report["distinct_descriptions"] / 4)
         self.assertTrue(report["limits"])
 
     def test_the_part_triage_reconfirms_the_selected_part(self) -> None:
         if not PARTS.exists():
-            self.skipTest("triage piece a piece non publie : releve PET hors depot")
+            self.skipTest("part-by-part triage not published: PET transcription kept outside the repository")
         report = load(PARTS)
         top = [item["description"] for item in report["shortlist"][:6]]
         self.assertIn("tail pipe", top)

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tests autonomes des preuves publiques F47; aucun STEP prive n'est requis."""
+"""Standalone tests of the public F47 evidence; no private STEP is required."""
 
 from __future__ import annotations
 

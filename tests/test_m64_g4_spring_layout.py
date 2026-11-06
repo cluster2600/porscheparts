@@ -1,4 +1,4 @@
-"""Le fond incliné d'un logement de ressort doit rester entièrement sous la face."""
+"""The inclined floor of a spring pocket must stay entirely below the face."""
 import json
 import math
 import sys
@@ -54,7 +54,7 @@ class SpringFloorTests(unittest.TestCase):
     def test_pocket_tool_exits_the_face_and_spring_does_not_penetrate_head(self):
         import components as comp
         p = parameters()
-        # Configuration issue de la recherche bornée G4, sans bouger le gabarit ni les goujons.
+        # Configuration from the bounded G4 search, without moving the template or the studs.
         fixed = {k: p[k] for k in layout.DERIVED if k not in
                  ('roof_ridge_height', 'intake_spring_seat_axial', 'exhaust_spring_seat_axial')}
         fixed.update(intake_axis_angle=29.3758, exhaust_axis_angle=27.5536,

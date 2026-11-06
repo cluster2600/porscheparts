@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Contrôles fail-closed des preuves géométriques et LPBF F38."""
+"""Fail-closed checks of the F38 geometric and LPBF evidence."""
 
 from __future__ import annotations
 

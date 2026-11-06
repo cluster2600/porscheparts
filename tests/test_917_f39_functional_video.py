@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Vérifie la vidéo F39 sans la transformer en preuve physique."""
+"""Check the F39 video without turning it into physical evidence."""
 
 from __future__ import annotations
 

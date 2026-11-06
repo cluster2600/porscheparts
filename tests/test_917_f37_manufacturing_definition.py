@@ -1,4 +1,4 @@
-"""Vérification indépendante et fail-closed de la définition fonctionnelle F37."""
+"""Independent, fail-closed verification of the F37 functional definition."""
 
 from __future__ import annotations
 
@@ -330,7 +330,7 @@ class ManufacturingDefinitionF37EvidenceTests(unittest.TestCase):
         report_path = cls.evidence / "f37-cad-report.json"
         if not report_path.is_file():
             raise unittest.SkipTest(
-                "preuve CAO F37 absente; definir F37_EVIDENCE_DIR pour la verifier"
+                "F37 CAD evidence absent; set F37_EVIDENCE_DIR to verify it"
             )
         cls.report = json.loads(report_path.read_text(encoding="utf-8"))
         cls.contract = json.loads(CONTRACT.read_text(encoding="utf-8"))
@@ -429,7 +429,7 @@ class ManufacturingDefinitionF37EvidenceTests(unittest.TestCase):
             / "f37-rocker-kinematic-report.json"
         )
         if not kinematic_path.is_file():
-            self.skipTest("rapport cinématique F37 non fourni avec la preuve CAO")
+            self.skipTest("F37 kinematic report not supplied with the CAD evidence")
         kinematics = json.loads(kinematic_path.read_text(encoding="utf-8"))
         self.assertEqual(
             kinematics["inputs"]["cad_report_sha256"],
@@ -449,7 +449,7 @@ class ManufacturingDefinitionF37EvidenceTests(unittest.TestCase):
     def test_oil_report_is_bound_to_the_current_contract_when_supplied(self):
         oil_path = self.evidence.parent / "oil" / "f37-oil-hydraulic-report.json"
         if not oil_path.is_file():
-            self.skipTest("rapport hydraulique F37 non fourni avec la preuve CAO")
+            self.skipTest("F37 hydraulic report not supplied with the CAD evidence")
         oil = json.loads(oil_path.read_text(encoding="utf-8"))
         self.assertEqual(oil["inputs"]["contract_sha256"], sha256(CONTRACT))
         self.assertTrue(oil["gates"]["two_methods_agree_within_1e_9"])
@@ -466,7 +466,7 @@ class ManufacturingDefinitionF37EvidenceTests(unittest.TestCase):
             / "f37-rocker-kinematic-report.json"
         )
         if not strength_path.is_file() or not kinematic_path.is_file():
-            self.skipTest("rapports résistance/cinématique F37 incomplets")
+            self.skipTest("F37 strength/kinematic reports incomplete")
         strength = json.loads(strength_path.read_text(encoding="utf-8"))
         self.assertEqual(strength["inputs"]["contract_sha256"], sha256(CONTRACT))
         self.assertEqual(strength["inputs"]["kinematics_sha256"], sha256(kinematic_path))
@@ -497,7 +497,7 @@ class ManufacturingDefinitionF37EvidenceTests(unittest.TestCase):
     def test_lpbf_report_is_bound_to_final_f37_but_keeps_failed_gates(self):
         lpbf_path = self.evidence.parent / "lpbf" / "f37-lpbf-manufacturing-report.json"
         if not lpbf_path.is_file():
-            self.skipTest("rapport LPBF F37 non fourni avec la preuve CAO")
+            self.skipTest("F37 LPBF report not supplied with the CAD evidence")
         lpbf = json.loads(lpbf_path.read_text(encoding="utf-8"))
         inputs = lpbf["inputs"]
         self.assertEqual(inputs["f37_contract"]["sha256"], sha256(CONTRACT))
@@ -531,7 +531,7 @@ class ManufacturingDefinitionF37EvidenceTests(unittest.TestCase):
             / "f37-carrier-calculix-report.json"
         )
         if not calculix_path.is_file():
-            self.skipTest("rapport CalculiX convergé F37 non fourni")
+            self.skipTest("converged F37 CalculiX report not supplied")
         calculix = json.loads(calculix_path.read_text(encoding="utf-8"))
         inputs = calculix["inputs"]
         self.assertEqual(inputs["contract_sha256"], sha256(CONTRACT))

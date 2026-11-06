@@ -1,20 +1,18 @@
 #!/usr/bin/env python3
-"""Triage des zones du squelette d'usine pour un candidat titane.
+"""Triage of factory-skeleton zones for a titanium candidate.
 
-Le criblage titane des fiches porte sur 32 pieces. Le squelette d'usine en
-denombre 12 864. Le rapport est de 0,25 % : dire qu'aucune autre piece ne
-convient serait donc faux, et le dire serait une faute.
+The titanium record screening covers 32 parts. The factory skeleton counts
+12,864. The ratio is 0.25 %: saying no other part fits would therefore be false,
+and saying it would be a fault.
 
-Ce script ne corrige pas entierement le probleme, parce qu'il ne le peut pas.
-Le depot ne detient **pas** les 12 864 designations : il n'en garde que des
-denombrements et des libelles de groupe, pour ne pas recopier un catalogue
-sous droits. La granularite disponible est donc l'illustration — 239 groupes,
-499 libelles — et non la piece.
+This script does not fully fix the problem, because it cannot. The repository
+does **not** hold the 12,864 designations: it keeps only counts and group
+labels, so as not to copy a copyrighted catalogue. The available granularity is
+therefore the illustration — 239 groups, 499 labels — not the part.
 
-Ce qui suit est donc un **triage de zones par mots-cles**, de faible autorite,
-destine a diriger le regard. Une zone retenue ne devient une piece candidate
-qu'en ouvrant la ligne PET correspondante, ce que ce depot ne fera pas a la
-place de son utilisateur.
+What follows is therefore a **keyword zone triage**, of low authority, meant to
+direct attention. A retained zone becomes a candidate part only by opening the
+matching PET line, which this repository will not do in place of its user.
 """
 
 from __future__ import annotations
@@ -27,7 +25,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 
-# Familles ou l'additif gagne, transposees en vocabulaire de catalogue.
+# Families where additive wins, transposed into catalogue vocabulary.
 INTERNAL_PASSAGE = (
     "pipe", "line", "duct", "hose", "manifold", "distributor", "cooler",
     "air guide", "air-guide", "intake", "canister", "tank", "pump",
@@ -35,7 +33,7 @@ INTERNAL_PASSAGE = (
 HOT_GAS = ("exhaust", "turbocharger", "turbocharging", "heat protection", "air injection")
 CONSOLIDATION = ("bracket", "support", "carrier", "housing", "cowl", "console")
 
-# Exclusions dures : presomption de criticite au sens de SAFETY.md.
+# Hard exclusions: presumed safety-critical in the SAFETY.md sense.
 SAFETY_EXCLUDED = (
     "brake", "steering", "airbag", "wheel", "hub", "suspension", "wishbone",
     "stabiliser", "shock absorber", "coil spring", "drive shaft", "axle",
@@ -44,7 +42,7 @@ SAFETY_EXCLUDED = (
     "cylinder head", "crankcase", "tiptronic", "hydraulic",
 )
 
-# Exclusions de nature : rien a imprimer en titane dans ces groupes.
+# Exclusions by nature: nothing to print in titanium in these groups.
 TRIVIAL_EXCLUDED = (
     "sticker", "grease", "mounting paste", "securing liquid", "tool", "paint",
     "maintenance set", "gasket set", "repair kit", "wiring", "harness", "radio",
@@ -147,18 +145,18 @@ def main() -> int:
             raise SystemExit(f"absent:{args.output}")
         if args.output.read_text(encoding="utf-8") != text:
             raise SystemExit(f"perime:{args.output}")
-        print(f"triage de zones a jour: {report['zones_retained']} zones retenues")
+        print(f"zone triage up to date: {report['zones_retained']} zones retained")
         return 0
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(text, encoding="utf-8")
     print(
-        f"{report['zones_screened']} zones triees, {report['zones_retained']} retenues, "
-        f"couvrant {report['references_under_retained_zones']} references "
+        f"{report['zones_screened']} zones triaged, {report['zones_retained']} retained, "
+        f"covering {report['references_under_retained_zones']} references "
         f"({report['references_under_retained_zones_percent']} %)"
     )
     print(
-        f"fiches deja criblees: {screened} sur "
+        f"records already screened: {screened} of "
         f"{report['catalogue_reference_count']} references "
         f"({report['part_record_coverage_percent']} %)"
     )
