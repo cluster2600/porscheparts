@@ -104,7 +104,11 @@ registration, owner, place or listing.
 | E4 continuity | Hash manifest of every file under the specimen ID; at least two marks (crack, repair, wear) photographed both installed and removed | Refused if a file lacks the ID or a hash, or if the two states cannot be linked |
 | E5 rights | Contributor's written licence to keep and publish the images; confirmation that no personal data remains | Refused without it |
 
-`admit_specimen()` in the checker applies these rules. An admitted specimen
+`admit_specimen()` in the checker is a preflight. It refuses explicit
+exclusions, and at best returns `held` for a complete submission, because it
+cannot verify off-repository photographs, hashes, continuity or rights. The
+independent measurement and rights/privacy reviewers verify those and record
+the admission. An admitted specimen
 establishes the identity and airbag state of that specimen only. A trim label
 read on it is not a catalogue mapping for M564.
 

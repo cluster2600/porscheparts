@@ -55,13 +55,6 @@ Visible trim of the dashboard cross member on a vehicle without a passenger airb
 | validation status | `concept` |
 | geometry | estimated, master build123d |
 
-**Identity gate.** The numbers in the existing measurement plan belong to the
-Carrera RS plate; PET Kat 017 does not map a trim number to the non-RS M564
-target. Use the [E1–E5 same-specimen protocol](evidence/pet-identity.md)
-before measurement. The software preflight holds even a complete submission
-until the photos, hashes, continuity and publication rights are independently
-verified.
-
 ## Where it stands
 
 ```mermaid

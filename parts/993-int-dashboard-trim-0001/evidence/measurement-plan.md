@@ -1,5 +1,12 @@
 # Plan de mesure — 993-INT-DASHBOARD-TRIM-0001
 
+> **Identity gate, 2026-11-06.** The part numbers under "Objet" below belong
+> to the Carrera RS plate 809-02; PET Kat 017 maps no trim number to the non-RS
+> M564 target. Before measurement, use the E1–E5 same-specimen protocol of
+> [pet-identity.md](pet-identity.md), which supersedes the label check below.
+> The software preflight holds even a complete submission until the photos,
+> hashes, continuity and publication rights are independently verified.
+
 Catégorie phase 2 : surface libre de grande dimension, photogrammétrie ou scan,
 recalée sur des cotes mesurées séparément.
 
