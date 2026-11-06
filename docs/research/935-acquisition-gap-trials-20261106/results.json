@@ -1,0 +1,757 @@
+{
+  "schema": "935-acquisition-gap-public-receipt-1",
+  "source_OBJ_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "input_conservative_parent_sha256": "6af905c2781eaa7811ab60ffbb10f740899474076b538f6f7e59520f31bcabb1",
+  "job_sha256": "fd83ae13c5b5ce877c2bb478c8306918889f01de1edccaa7b5006e792d090963",
+  "executed_sources": [
+    {
+      "name": "assemble_acquisition_candidate.py",
+      "sha256": "dd515cdeeb7cefa07bedca05dc969f14ed169be47ab0eed2b4a90e1d2468384d"
+    },
+    {
+      "name": "audit_acquisition_topology.py",
+      "sha256": "6b7999f7a6fc481759a1dc94e44057ab24bee22df75bea607be8cf3b6e85175e"
+    },
+    {
+      "name": "inspect_acquisition_candidate.py",
+      "sha256": "cacc942d299db26562e08484860104b73da977155c6972e1cd805fdf5e8987e0"
+    },
+    {
+      "name": "inspect_acquisition_patches.py",
+      "sha256": "301c2474971407b2221e7f8e26d969b4de59f9f2e6957d93df97c7722e800316"
+    },
+    {
+      "name": "measure_acquisition_deviations.py",
+      "sha256": "69513ff3759259fb995cc08cb3213e1703842c0bbbbffa78a4dc0ca52a0a68cd"
+    },
+    {
+      "name": "prepare_acquisition_trials.py",
+      "sha256": "11ffdce128a171224f1787d338ba2b09fc1c41d970fd970e4b3f042224c029a7"
+    },
+    {
+      "name": "run_acquisition_cgal.py",
+      "sha256": "65d58655416a0230693f551cde15373ad23f9d127bbd3ed537c7061d4675e0bf"
+    }
+  ],
+  "reused_helpers": [
+    {
+      "path": "docs/research/935-source-shells-20261104/source/build_source_shells.py",
+      "sha256": "fca5259ef3b3412a72e441fea39816e14fea4e375095e1c83def2e4117f6ae8e"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/inspect_intersections.py",
+      "sha256": "3e0b239ca4993388f32563092c78d97065cc1fb0753c68a2def3d631feda7976"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/inspect_vertex_fans.py",
+      "sha256": "1b9792699e0d3f42cae84184562e64d7bb1a6786b054e89d4e988cc0481883f5"
+    },
+    {
+      "path": "docs/research/935-retained-boundaries-20261106/source/audit_retained_boundaries.py",
+      "sha256": "5b1fcf5815ceca941f6af7a07683bc17b4f4b3e7f43fb6da316d598d91848ee0"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/measure_patch_deviations.py",
+      "sha256": "8e4f401c4c76ca4cafa28979a0b2bdaf80c77049acbac2dc2a610b490720e570"
+    }
+  ],
+  "version_ancestry": [
+    {
+      "new_source": "run_acquisition_cgal.py",
+      "parent_path": "docs/research/935-quarantine-patches-20261106/source/run_cgal_trials.py",
+      "parent_sha256": "454cb975a7ed0844d8894aee445f0316b0a92a7a33f247654877e5bbc074d3a3"
+    },
+    {
+      "new_source": "inspect_acquisition_patches.py",
+      "parent_path": "docs/research/935-quarantine-patches-20261106/source/check_cgal_patches.py",
+      "parent_sha256": "2b5835ea1e4d53e5dfb4b8c499b0b02e858f3d495667c038b9203c2f1fb2d945"
+    },
+    {
+      "new_source": "inspect_acquisition_candidate.py",
+      "parent_path": "docs/research/935-quarantine-patches-20261106/source/inspect_patch_candidate.py",
+      "parent_sha256": "fa5fdc658be413d69743942178dbcb5d017998e6272f0b4263c82c6eb932817e"
+    }
+  ],
+  "native_constructor": {
+    "binary_sha256": "6989c900f74b61a4ecb86261e9dbf7118bd30b08ed44f99b43f62507062ab5e0",
+    "unchanged_reference_source_path": "docs/research/935-quarantine-patches-20261106/source/cgal_batch_reference.cpp",
+    "unchanged_reference_source_sha256": "d3c32dd4e07aca9bb392a3a142a63e2fd7534b341552de8d75c4c902644ac892",
+    "rebuilt_this_increment": false,
+    "dynamic_library_sha256": []
+  },
+  "native_controls": {
+    "native_controls_independently_verified": true,
+    "known_selected_hole_filled_completely": true,
+    "second_unselected_hole_preserved": true,
+    "nonboundary_edge_request_refused": true,
+    "full_control_intersections": 0,
+    "predicate_excluded_faces": 0
+  },
+  "trial_counts": {
+    "current_parent_walks": 932,
+    "acquisition_only_walks": 898,
+    "admitted_prepared_cases": 286,
+    "native_trials": 286,
+    "native_exit_zero": 286,
+    "locally_accepted": 277,
+    "locally_rejected": 9,
+    "initial_global_rejected": 0,
+    "initial_topology_rejected": 0,
+    "support_distance_rejected": 195,
+    "retained_patches": 82,
+    "added_inferred_cap_faces": 613
+  },
+  "local_rejection_reasons": {
+    "Folded, reversed or zero projected patch triangle": 7,
+    "Local patch intersects source halo or has excluded faces": 2
+  },
+  "final_geometry": {
+    "local_proof_sha256": "3b285ee613cbe6ad25e26a7b987e01dabf7b3923c9c0948546c823b0772ed591",
+    "mode": "build",
+    "base_vertices": 1248924,
+    "base_faces": 2401752,
+    "added_inferred_cap_faces": 613,
+    "total_faces": 2402365,
+    "candidate_NPZ_sha256": "c5ca736f33cdbb4af257353c13cfe02b6150057c555151cfdea80bb35313272f",
+    "candidate_OBJ_sha256": "4cfee2b17b06784c670a420b92c0ecfa921f9afc61636ef2ee2dcf3a6074f93e",
+    "all_parent_coordinates_faces_and_provenance_unchanged": true,
+    "omission_ancestry_preserved": true,
+    "new_caps_marked_inferred": true,
+    "full_bare_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "initial_global_inspection": {
+    "mesh_sha256": "b6c1c87a6c0d453588f3d66a84451b2e3612631bfdbaeec5a35da139b347136b",
+    "intersection_proof_sha256": "4870ca7fc09a3f1912a516a5533a1fe8099ffbc3a4ee4f345a8fb8398d74471d",
+    "full_candidate_intersection_pairs": 0,
+    "predicate_excluded_faces": 0,
+    "global_edge_conflicts": 0,
+    "duplicate_face_groups": 0,
+    "open_boundary_edges": 94686,
+    "rejection_categories": [],
+    "all_conflicts_attributed_to_inferred_faces": true,
+    "base_geometry_unchanged": true,
+    "source_preserving_surface_checks_passed": true,
+    "closed_volume": false,
+    "full_bare_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "initial_support_screen": {
+    "mesh_sha256": "b6c1c87a6c0d453588f3d66a84451b2e3612631bfdbaeec5a35da139b347136b",
+    "previous_witness_sha256": "fb4c7a03feabff0bc77b8ac59ada0204e7fce65fd01ebef392f8bad71246cefc",
+    "literal_distance_controls_passed": true,
+    "source_random_to_candidate": {
+      "points": 100000,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 7.105427357601002e-15,
+      "p90_nominal_mm": 3.014577520672848e-14,
+      "p95_nominal_mm": 5.783398860650275e-14,
+      "p99_nominal_mm": 13.169351760346363,
+      "sampled_maximum_nominal_mm": 49.69269092922887,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.98073,
+        "0.1": 0.98075,
+        "0.25": 0.98084,
+        "0.5": 0.98106
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "original_source_boundary_vertices_to_candidate": {
+      "points": 99876,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.0,
+      "p90_nominal_mm": 0.0,
+      "p95_nominal_mm": 0.0,
+      "p99_nominal_mm": 19.267318422621052,
+      "sampled_maximum_nominal_mm": 49.77368564908966,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.9799651567944251,
+        "0.1": 0.9799751692098202,
+        "0.25": 0.9800052064560054,
+        "0.5": 0.9801553926869317
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "original_quarantine_source_probes_to_candidate": {
+      "points": 19600,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.01441849211767214,
+      "p90_nominal_mm": 0.07489910147249511,
+      "p95_nominal_mm": 0.10598839245171353,
+      "p99_nominal_mm": 0.16775822390664333,
+      "sampled_maximum_nominal_mm": 0.2043097669434487,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.810765306122449,
+        "0.1": 0.9425510204081633,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "all_previous_omitted_facet_probes_to_candidate": {
+      "points": 46184,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.027920550299107443,
+      "p90_nominal_mm": 0.10429425275895343,
+      "p95_nominal_mm": 0.12286186473276978,
+      "p99_nominal_mm": 0.16136119836530988,
+      "sampled_maximum_nominal_mm": 0.20428437664372018,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.67339338298978,
+        "0.1": 0.8851550320457301,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "candidate_random_to_raw_source": {
+      "points": 100000,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 7.105427357601002e-15,
+      "p90_nominal_mm": 2.929642751054232e-14,
+      "p95_nominal_mm": 3.6230712748823524e-14,
+      "p99_nominal_mm": 6.07087979554246e-14,
+      "sampled_maximum_nominal_mm": 0.5317059149189456,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.99902,
+        "0.1": 0.99923,
+        "0.25": 0.99971,
+        "0.5": 0.99998
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "all_parent_boundary_vertices_to_raw_source": {
+      "points": 98720,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.0,
+      "p90_nominal_mm": 0.0,
+      "p95_nominal_mm": 0.0,
+      "p99_nominal_mm": 0.0,
+      "sampled_maximum_nominal_mm": 1.5888218580782548e-14,
+      "coverage_at_nominal_mm": {
+        "0.05": 1.0,
+        "0.1": 1.0,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "all_new_cap_probes_to_raw_source": {
+      "points": 284514,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.09055457916027665,
+      "p90_nominal_mm": 0.2581103307876941,
+      "p95_nominal_mm": 0.31480465930331425,
+      "p99_nominal_mm": 0.4207166351089378,
+      "sampled_maximum_nominal_mm": 0.67476913322036,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.3139529162009602,
+        "0.1": 0.537600961639849,
+        "0.25": 0.8904412436646352,
+        "0.5": 0.997936832633895
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "unchanged_previous_inferred_probes_to_raw_source": {
+      "points": 52208,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.005290392543628926,
+      "p90_nominal_mm": 0.03003591128389931,
+      "p95_nominal_mm": 0.03860585753440735,
+      "p99_nominal_mm": 0.05624500791866272,
+      "sampled_maximum_nominal_mm": 0.08557607796717222,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.9815737051792829,
+        "0.1": 1.0,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "experimental_added_cap_support_distance_limit_nominal_mm": 0.25,
+    "source_and_omission_distances_do_not_increase_pointwise": true,
+    "no_added_patch_exceeds_sampled_study_bound": false,
+    "missing_cap_surfaces_have_no_measured_ground_truth": true,
+    "sampled_errors_are_not_Hausdorff_or_physical_tolerances": true,
+    "full_bare_head_created": false,
+    "manufacturing_authorized": false
+  },
+  "final_global_inspection": {
+    "mesh_sha256": "c5ca736f33cdbb4af257353c13cfe02b6150057c555151cfdea80bb35313272f",
+    "intersection_proof_sha256": "b3a13c6629aade1eef7860133fd7a20cc4a716e25955a8e18253470a28bf5390",
+    "full_candidate_intersection_pairs": 0,
+    "predicate_excluded_faces": 0,
+    "global_edge_conflicts": 0,
+    "duplicate_face_groups": 0,
+    "open_boundary_edges": 97943,
+    "rejection_categories": [],
+    "all_conflicts_attributed_to_inferred_faces": true,
+    "base_geometry_unchanged": true,
+    "source_preserving_surface_checks_passed": true,
+    "closed_volume": false,
+    "full_bare_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "final_topology": {
+    "mesh_sha256": "c5ca736f33cdbb4af257353c13cfe02b6150057c555151cfdea80bb35313272f",
+    "geometry_evaluation_deferred_for_global_conflicts": false,
+    "full_bare_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "all_used_vertex_fan_counts_unchanged": true,
+    "candidate_nonmanifold_used_vertices": 0,
+    "candidate_unreferenced_vertices": 18,
+    "full_used_vertex_manifold": true,
+    "exactly_selected_acquisition_walks_closed": 82,
+    "remaining_boundary_walks": 850,
+    "remaining_boundary_edges": 97943,
+    "all_unselected_boundary_edges_owners_origins_and_omission_ancestry_unchanged": true,
+    "remaining_edge_origin_counts": {
+      "1": 97086,
+      "2": 100,
+      "3": 726,
+      "4": 6,
+      "5": 25
+    },
+    "remaining_walk_origin_combinations": {
+      "1": 816,
+      "1+2": 1,
+      "1+4": 2,
+      "5": 4,
+      "2+4+5": 1,
+      "2+5": 9,
+      "2": 11,
+      "2+4": 1,
+      "3": 5
+    },
+    "connected_surface_components": 10,
+    "largest_component_facets": 2395060,
+    "single_facet_components": 5,
+    "component_selection_or_anatomy_accepted": false,
+    "closed_volume": false
+  },
+  "final_deviations": {
+    "mesh_sha256": "c5ca736f33cdbb4af257353c13cfe02b6150057c555151cfdea80bb35313272f",
+    "previous_witness_sha256": "fb4c7a03feabff0bc77b8ac59ada0204e7fce65fd01ebef392f8bad71246cefc",
+    "literal_distance_controls_passed": true,
+    "source_random_to_candidate": {
+      "points": 100000,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 7.105427357601002e-15,
+      "p90_nominal_mm": 3.014577520672848e-14,
+      "p95_nominal_mm": 5.783398860650275e-14,
+      "p99_nominal_mm": 13.169351760346363,
+      "sampled_maximum_nominal_mm": 49.69269092922887,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.98073,
+        "0.1": 0.98075,
+        "0.25": 0.98084,
+        "0.5": 0.98106
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "original_source_boundary_vertices_to_candidate": {
+      "points": 99876,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.0,
+      "p90_nominal_mm": 0.0,
+      "p95_nominal_mm": 0.0,
+      "p99_nominal_mm": 19.267318422621052,
+      "sampled_maximum_nominal_mm": 49.77368564908966,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.9799651567944251,
+        "0.1": 0.9799751692098202,
+        "0.25": 0.9800052064560054,
+        "0.5": 0.9801553926869317
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "original_quarantine_source_probes_to_candidate": {
+      "points": 19600,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.01441849211767214,
+      "p90_nominal_mm": 0.07489910147249511,
+      "p95_nominal_mm": 0.10598839245171353,
+      "p99_nominal_mm": 0.16775822390664333,
+      "sampled_maximum_nominal_mm": 0.2043097669434487,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.810765306122449,
+        "0.1": 0.9425510204081633,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "all_previous_omitted_facet_probes_to_candidate": {
+      "points": 46184,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.027920550299107443,
+      "p90_nominal_mm": 0.10429425275895343,
+      "p95_nominal_mm": 0.12286186473276978,
+      "p99_nominal_mm": 0.16136119836530988,
+      "sampled_maximum_nominal_mm": 0.20428437664372018,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.67339338298978,
+        "0.1": 0.8851550320457301,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "candidate_random_to_raw_source": {
+      "points": 100000,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 7.105427357601002e-15,
+      "p90_nominal_mm": 2.929642751054232e-14,
+      "p95_nominal_mm": 3.557151798805476e-14,
+      "p99_nominal_mm": 6.029155041345696e-14,
+      "sampled_maximum_nominal_mm": 0.18964968793822504,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.99991,
+        "0.1": 0.99998,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "all_parent_boundary_vertices_to_raw_source": {
+      "points": 98720,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.0,
+      "p90_nominal_mm": 0.0,
+      "p95_nominal_mm": 0.0,
+      "p99_nominal_mm": 0.0,
+      "sampled_maximum_nominal_mm": 1.5888218580782548e-14,
+      "coverage_at_nominal_mm": {
+        "0.05": 1.0,
+        "0.1": 1.0,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "all_new_cap_probes_to_raw_source": {
+      "points": 83390,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.05296675789035914,
+      "p90_nominal_mm": 0.13548365748615418,
+      "p95_nominal_mm": 0.15742853407603,
+      "p99_nominal_mm": 0.19479981403965263,
+      "sampled_maximum_nominal_mm": 0.2491358647828231,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.47867849862093775,
+        "0.1": 0.769804532917616,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "unchanged_previous_inferred_probes_to_raw_source": {
+      "points": 52208,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.005290392543628926,
+      "p90_nominal_mm": 0.03003591128389931,
+      "p95_nominal_mm": 0.03860585753440735,
+      "p99_nominal_mm": 0.05624500791866272,
+      "sampled_maximum_nominal_mm": 0.08557607796717222,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.9815737051792829,
+        "0.1": 1.0,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "experimental_added_cap_support_distance_limit_nominal_mm": 0.25,
+    "source_and_omission_distances_do_not_increase_pointwise": true,
+    "no_added_patch_exceeds_sampled_study_bound": true,
+    "missing_cap_surfaces_have_no_measured_ground_truth": true,
+    "sampled_errors_are_not_Hausdorff_or_physical_tolerances": true,
+    "full_bare_head_created": false,
+    "manufacturing_authorized": false
+  },
+  "independent_report_sha256": {
+    "prepared-001": "5614ea3aac250dd0d5642323a204ab6a8397400361e69fc7f9b84e27112f4356",
+    "controls-001": "d0676dbe8cebcb8fb58bbc3cb481b906f0e83950aa0bb0964659a29a16d82e40",
+    "independent-controls-001": "93524c877d5a47c09ec7770953f8ee99a03a43db4071fb23f09ff4cd0a34e222",
+    "raw-trials-001": "6886d8601cb357f5ea2a656fcd75ff1cdd3e80bd9f2a9038668cc1eb8e18e9f1",
+    "local-checks-001": "3b285ee613cbe6ad25e26a7b987e01dabf7b3923c9c0948546c823b0772ed591",
+    "all-local-build-001": "be2e4718b0744d7d886bccd399582eb00b21fb95a12c2fc9e0515973816f7f6a",
+    "all-local-readback-001": "651b05dc704284f66ebe9da0d17edfb2618e69ccc213166392b3d9886eee06c5",
+    "all-local-intersections-001": "4870ca7fc09a3f1912a516a5533a1fe8099ffbc3a4ee4f345a8fb8398d74471d",
+    "all-local-global-check-001": "82309789dd946bcac24d77b8b9da5238ce30ca9b6c199322d0111c29e9245836",
+    "all-local-topology-001": "09209794a038367c2bc4413cfd61f8597ad6eef659c1f0569aeabb6563c0b803",
+    "all-local-deviations-001": "c179f3f6e021896da3105a81d24012378197a7ab400ac62dc38b78beefa23a5f",
+    "filtered-build-001": "d5de5c0d5ef7b05903043334e91120fa95c584adb87c627f3fe5d22c11101adf",
+    "filtered-readback-001": "4e82dbc7e210e77d2eb62c9245179f52bdbc0a395baf18b88c0243d70ddbe319",
+    "filtered-intersections-001": "b3a13c6629aade1eef7860133fd7a20cc4a716e25955a8e18253470a28bf5390",
+    "filtered-global-check-001": "5765f270e2aa9c8d76cf4e3c7cde65359e63708eff84716c4b633aac8f644bcd",
+    "filtered-topology-001": "2607c1f23c9c7200f31a79ed2d5c214715a220056dce2c425ce976856bd5e508",
+    "filtered-deviations-001": "a809698a2741b37e1406417adb2ddbba050cc2b4a502c3c58c45728ecfcf493d"
+  },
+  "runtime": {
+    "python": "3.12.13",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "OCP": "7.9.3.1",
+    "libigl": "2.6.3",
+    "inherited_frozen_runtime_unchanged": true,
+    "all_addon_files_rehashed": true,
+    "private_addon_manifest_sha256": "3cf3f669266b1981fd1c6042e1923e878719f8ab2ee35398270680a6f45df02a"
+  },
+  "execution": [
+    {
+      "name": "assembly-execution-001",
+      "sha256": "002b6c61997da477905128159408fcec96845aa13cbb380a8e695250f631f55e",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "phases": [
+        {
+          "phase": "all-local-acquisition-patches-full-candidate-assembly",
+          "exit_code": 0,
+          "seconds": 12.927079665940255,
+          "maximum_sampled_child_RSS_KiB": 500608,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "all-local-complete-saved-OBJ-NPZ-and-ancestry-readback",
+          "exit_code": 0,
+          "seconds": 5.712657624972053,
+          "maximum_sampled_child_RSS_KiB": 2022912,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ]
+    },
+    {
+      "name": "filtered-assembly-execution-001",
+      "sha256": "4e002fb0ba7a75d6d7cf3d0b7ad8a0e1e269516c48b07c50c96a807f17bd1211",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "phases": [
+        {
+          "phase": "filtered-all-local-acquisition-patches-full-candidate-assembly",
+          "exit_code": 0,
+          "seconds": 12.913276333012618,
+          "maximum_sampled_child_RSS_KiB": 499648,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "filtered-all-local-complete-saved-OBJ-NPZ-and-ancestry-readback",
+          "exit_code": 0,
+          "seconds": 5.721073499997146,
+          "maximum_sampled_child_RSS_KiB": 2007776,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ]
+    },
+    {
+      "name": "filtered-verification-execution-001",
+      "sha256": "36336b10f628809089f85d4f2f2cf402807aff9e646a57590f4643fd0066bef5",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "phases": [
+        {
+          "phase": "filtered-all-local-full-model-independent-intersection-predicates",
+          "exit_code": 0,
+          "seconds": 4.059414874995127,
+          "maximum_sampled_child_RSS_KiB": 1089552,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "filtered-all-local-complete-edge-and-duplicate-face-conflict-attribution",
+          "exit_code": 0,
+          "seconds": 2.322629624977708,
+          "maximum_sampled_child_RSS_KiB": 1136144,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "filtered-all-local-entire-used-vertex-graph-and-exact-remaining-boundaries",
+          "exit_code": 0,
+          "seconds": 9.876075709005818,
+          "maximum_sampled_child_RSS_KiB": 2115536,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "filtered-all-local-every-cap-source-support-and-both-source-directions",
+          "exit_code": 0,
+          "seconds": 11.852141749928705,
+          "maximum_sampled_child_RSS_KiB": 1936480,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ]
+    },
+    {
+      "name": "global-execution-001",
+      "sha256": "a26c8b81c1f51b4683fc6b6832965eb59bc704328a59ec3de002739b6ab06044",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "phases": [
+        {
+          "phase": "all-local-full-model-independent-intersection-predicates",
+          "exit_code": 0,
+          "seconds": 4.085249791038223,
+          "maximum_sampled_child_RSS_KiB": 1083968,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "all-local-complete-edge-and-duplicate-face-conflict-attribution",
+          "exit_code": 0,
+          "seconds": 2.3228222919860855,
+          "maximum_sampled_child_RSS_KiB": 1138416,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ]
+    },
+    {
+      "name": "native-trials-execution-001",
+      "sha256": "2d7bb4266d24521cf438ca34b01d7a6dcf56b5e3f12010fbcb8a50454c5dc86b",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "phases": [
+        {
+          "phase": "all-286-bounded-native-explicit-edge-trials",
+          "exit_code": 0,
+          "seconds": 19.99287383304909,
+          "maximum_sampled_child_RSS_KiB": 34688,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "all-286-independent-source-mask-projection-and-predicate-inspections",
+          "exit_code": 0,
+          "seconds": 2.328526166966185,
+          "maximum_sampled_child_RSS_KiB": 276896,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ]
+    },
+    {
+      "name": "preparation-controls-execution-001",
+      "sha256": "56aad9b5c20cd1eb48c2dd319568973904e8472f7f30f65f3c851be033f244a4",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "phases": [
+        {
+          "phase": "prepare-all-286-exact-acquisition-source-halos",
+          "exit_code": 0,
+          "seconds": 2.55118587508332,
+          "maximum_sampled_child_RSS_KiB": 498000,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "new-job-native-positive-and-negative-controls",
+          "exit_code": 0,
+          "seconds": 0.4787423749221489,
+          "maximum_sampled_child_RSS_KiB": 33696,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "new-job-independent-selected-and-unselected-control-inspection",
+          "exit_code": 0,
+          "seconds": 0.4291449589654803,
+          "maximum_sampled_child_RSS_KiB": 47600,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ]
+    },
+    {
+      "name": "topology-distance-execution-001",
+      "sha256": "cc6580dccc4a71aee4638cc0cb410d9c7d7160068ad48ce536bc3d1db50e9049",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "phases": [
+        {
+          "phase": "all-local-entire-used-vertex-graph-and-exact-remaining-boundaries",
+          "exit_code": 0,
+          "seconds": 9.301489750039764,
+          "maximum_sampled_child_RSS_KiB": 2105312,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "all-local-every-cap-source-support-and-both-source-directions",
+          "exit_code": 0,
+          "seconds": 12.06285291700624,
+          "maximum_sampled_child_RSS_KiB": 1930624,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ]
+    }
+  ],
+  "spending": {
+    "new_paid_compute": false,
+    "new_Vast_resources_created": 0,
+    "scan_transfer_to_Vast_authorized": true
+  },
+  "release": {
+    "conservative_open_study_checks_passed": true,
+    "physical_opening_roles_unreviewed": true,
+    "source_support_distance_does_not_prove_cap_validity": true,
+    "print_ready": false,
+    "closed_volume": false,
+    "full_bare_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "full_goal_active": true
+  },
+  "private_capsule": {
+    "name": "935-acquisition-gap-trials-20261106-001",
+    "manifest_sha256": "3d875c66ccc6d7e5091e28e6ef351624a497870ab7f20be688f46934ba27a6ad",
+    "payload_files": 2366,
+    "payload_bytes": 443242679,
+    "immutable": true,
+    "raw_geometry_in_git": false
+  }
+}

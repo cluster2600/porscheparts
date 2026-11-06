@@ -1,0 +1,372 @@
+{
+  "schema": "935-opposed-wall-trials-study-1",
+  "requirement": "Continue original-scan reconstruction with traceable exploratory assumptions before faithful CAD, physics and machine-specific fabrication admission",
+  "parent_reference_commit": "e5246daf450e771802751ff7a2605e9bd9324448",
+  "original_scan_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "original_scan_bytes": 104598077,
+  "parent_mesh_sha256": "27e4f9a858067dbd56868c6a7bff99b738a069ab2f2946938176fc7c3010fe8e",
+  "upstream_census_sha256": "136cc592e629a954168bf322be90046ea8943e7495de25436337bb6da208037d",
+  "upstream_census_selected_pairs": 217,
+  "upstream_census_previous_attempted_pair_identities": 1488,
+  "current_readonly_census_alone_grants_construction_admission": false,
+  "explicit_assumption": "Original acquired owner windings are provisionally outward to test a material-side wall hypothesis. Physical orientation and anatomy remain unverified.",
+  "fixed_limits": {
+    "midpoint_radius_nominal_mm": 0.5,
+    "crossed_endpoint_max_nominal_mm": 0.5,
+    "tangent_dot_max": -0.8,
+    "acquired_owner_normal_dot_max": -0.8,
+    "material_side_gap_dot_max": -0.8,
+    "outward_edge_binormal_dot_min": 0.8,
+    "forward_wall_normal_dot_min": 0.8,
+    "score_tie_tolerance": 1e-12,
+    "sampled_raw_support_max_nominal_mm": 0.25,
+    "old_cohort_pointwise_guard": 1e-08
+  },
+  "input_admission": {
+    "source_sha256": "0661db7be928260c8fab9f39915a8b14070faa1a3f45479528c455702147a3fa",
+    "job_sha256": "aa75ba2b4be268f22750bdc042511f2bd966757fe6c490a80825f06240a06088",
+    "mesh_sha256": "27e4f9a858067dbd56868c6a7bff99b738a069ab2f2946938176fc7c3010fe8e",
+    "census_sha256": "136cc592e629a954168bf322be90046ea8943e7495de25436337bb6da208037d",
+    "admission_sha256": "19bc8dccf0f626ac315f8c635837f6bd338ef4f4e98c1bc2f28137cedb64d648",
+    "proposed_pairs": 217,
+    "raw_acquired_edges_recovered": 434,
+    "complete_incident_masks": 217,
+    "incident_mask_face_rows": 2039,
+    "admission_pending_independent_verification": true,
+    "assumption": "Raw acquired owner windings are provisionally outward; exploratory construction only",
+    "geometry_modified": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "seconds": 1.7379920840030536
+  },
+  "independent_admission": {
+    "source_sha256": "c34d6c5dd69d5ce9cce429dd828d8504afc0df787ae053e991ce74b7820ddfe6",
+    "job_sha256": "6484e7dea05b0dedbbec66183378de496f3bae21b67767fdcef7896437b8937c",
+    "mesh_sha256": "27e4f9a858067dbd56868c6a7bff99b738a069ab2f2946938176fc7c3010fe8e",
+    "census_sha256": "136cc592e629a954168bf322be90046ea8943e7495de25436337bb6da208037d",
+    "admission_sha256": "19bc8dccf0f626ac315f8c635837f6bd338ef4f4e98c1bc2f28137cedb64d648",
+    "selected_pairs": 217,
+    "raw_acquired_edge_owners_verified": 434,
+    "complete_masks_independently_verified": 217,
+    "native_mask_and_incidence_controls_passed": 9,
+    "opposed_geometry_controls_passed": 8,
+    "raw_identity_controls_passed": 5,
+    "producer_imported": false,
+    "construction_inputs_independently_verified": true,
+    "construction_admission_only_for_declared_exploratory_hypothesis": true,
+    "physical_orientation_or_anatomy_certified": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "seconds": 7.4228068749653175
+  },
+  "construction": {
+    "source_sha256": "aa60e2fad65986df3723116a4990fe923764bd15c2d2df7a2525c27a3a580e28",
+    "job_sha256": "9b564828241bb827e41c7f1eb0d4eb5fa7690552d5b5ee200bda8688837a6b62",
+    "mesh_sha256": "abe6a3bb873ba000ce8a0e803b8d05d05fb192a3387cfcf45feec37d9fe87588",
+    "obj_sha256": "031481d8a0a37909c96b97fd9bee022dc08618c880274adb79ff274208f9b369",
+    "parent_mesh_sha256": "27e4f9a858067dbd56868c6a7bff99b738a069ab2f2946938176fc7c3010fe8e",
+    "proposed_pairs": 217,
+    "diagonal_trials": 434,
+    "local_passing_pairs": 217,
+    "accepted_pairs": 216,
+    "added_triangles": 432,
+    "local_rejection_counts": {},
+    "source_faces_deleted": 0,
+    "point_coordinates_changed": 0,
+    "whole_candidate_checks_pending": true,
+    "construction_admission_sha256": "19bc8dccf0f626ac315f8c635837f6bd338ef4f4e98c1bc2f28137cedb64d648",
+    "assumption": "unverified outward acquired windings; exploratory wall construction only",
+    "physical_classifications_accepted": 0,
+    "manufacturing_authorized": false,
+    "seconds": 19.170646541984752,
+    "edge_budget_refused_pairs": 1
+  },
+  "initial_provenance_stop": {
+    "schema": "935-wall-provenance-correction-1",
+    "first_constructor_sha256": "8a56a74e3b7c1391f71548f4d161488addf31c9fe45240f187d809be7e091ab3",
+    "corrected_constructor_sha256": "aa60e2fad65986df3723116a4990fe923764bd15c2d2df7a2525c27a3a580e28",
+    "exact_single_source_change": "new inferred_surface_kind assignment 6 -> 7",
+    "first_output_preserved": true,
+    "first_output_physically_or_geometrically_admitted": false,
+    "first_native_intersection_pairs": 0,
+    "first_audit_stop": "new face inferred kind expected7, actual6",
+    "thresholds_changed": false,
+    "input_geometry_changed": false
+  },
+  "version2_geometry_comparison": {
+    "all_points_faces_and_obj_bytes_identical": true,
+    "all_old_provenance_exact": true,
+    "only_new_surface_kind_changed_from6_to7": true,
+    "new_faces": 432,
+    "physical_acceptance": false
+  },
+  "final_audit": {
+    "source_sha256": "14467f89adc6bb169b8cc1a5feaae5c472a18a57389396f9e2891d72725b7192",
+    "job_sha256": "9b564828241bb827e41c7f1eb0d4eb5fa7690552d5b5ee200bda8688837a6b62",
+    "mesh_sha256": "abe6a3bb873ba000ce8a0e803b8d05d05fb192a3387cfcf45feec37d9fe87588",
+    "obj_sha256": "031481d8a0a37909c96b97fd9bee022dc08618c880274adb79ff274208f9b369",
+    "npz_and_obj_exact_readback": true,
+    "parent_vertices_faces_and_all_provenance_preserved": true,
+    "whole_mesh_intersection_pairs": 0,
+    "zero_area_faces": 0,
+    "edge_incidence_or_winding_conflicts": 0,
+    "duplicate_indexed_face_groups": 0,
+    "nonmanifold_used_vertices": 0,
+    "unused_vertices": 18,
+    "added_strip_pairs": 216,
+    "added_triangles": 432,
+    "closed_acquired_parent_boundary_edges": 442,
+    "remaining_boundary_edges": 95949,
+    "remaining_boundary_walks": 1463,
+    "remaining_edge_origin_counts": {
+      "7": 231,
+      "1": 93189,
+      "6": 1360,
+      "8": 312,
+      "5": 25,
+      "2": 100,
+      "4": 6,
+      "3": 726
+    },
+    "connected_surface_components": 10,
+    "largest_component_facets": 2398351,
+    "single_facet_components": 5,
+    "added_probe_count": 66096,
+    "added_sampled_maximum_nominal_mm": 0.22288868353449096,
+    "support_refused_pair_count": 0,
+    "source_probe_count": 219476,
+    "omission_probe_count": 46184,
+    "previous_source_and_omission_distances_nonincreasing_pointwise": true,
+    "random_candidate_to_raw": {
+      "points": 100000,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 7.105427357601002e-15,
+      "p90_nominal_mm": 2.929642751054232e-14,
+      "p95_nominal_mm": 3.6404482152219934e-14,
+      "p99_nominal_mm": 6.052660608233687e-14,
+      "sampled_maximum_nominal_mm": 0.2004010347381916,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.99961,
+        "0.1": 0.99981,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "rejected_opposed_wall_pair_ids": [],
+    "surface_study_checks_passed": true,
+    "inferred_missing_surfaces_have_no_measured_ground_truth": true,
+    "sampled_distances_are_not_Hausdorff_or_physical_tolerances": true,
+    "closed_volume": false,
+    "full_bare_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "seconds": 28.09936354192905
+  },
+  "distance_cohorts": {
+    "source_distances": {
+      "count": 219476,
+      "maximum_nominal_mm": 49.77368564908966
+    },
+    "omitted_distances": {
+      "count": 46184,
+      "maximum_nominal_mm": 0.20428437664372018
+    },
+    "added_distances": {
+      "count": 66096,
+      "maximum_nominal_mm": 0.22288868353449096
+    }
+  },
+  "kali_replay": {
+    "source_sha256": "3ae75b1a8a47c65405aae2111c89343eeec3aa0d3f7a8c32ac3b0be65648fae1",
+    "parent_sha256": "27e4f9a858067dbd56868c6a7bff99b738a069ab2f2946938176fc7c3010fe8e",
+    "candidate_sha256": "abe6a3bb873ba000ce8a0e803b8d05d05fb192a3387cfcf45feec37d9fe87588",
+    "host": "kali1",
+    "system": "Linux",
+    "python": "3.14.7",
+    "numpy": "2.3.5",
+    "vertices": 1248924,
+    "triangles": 2405669,
+    "parent_prefix_faces": 2405237,
+    "added_triangles": 432,
+    "source_prefix_and_provenance_exact": true,
+    "whole_edge_incidence_and_winding_passed": true,
+    "no_duplicate_or_zero_area_faces": true,
+    "open_boundary_edges": 95949,
+    "unused_vertices": 18,
+    "affinity_cpus": 2,
+    "address_space_limit_bytes": 4294967296,
+    "transferred_bytes": 126841410,
+    "persistent_payload_files_written": 0,
+    "intersection_and_vertex_fan_replay_performed": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "maximum_RSS_KiB": 1640944,
+    "seconds": 6.994179558940232
+  },
+  "provenance_namespace": {
+    "new_surface_kind": 7,
+    "new_boundary_origin": 8,
+    "new_pair_label_field": "source_opposed_wall_pair_ids",
+    "new_walk_field": "source_opposed_wall_parent_curve_ids",
+    "new_immediate_parent_field": "opposed_wall_immediate_parent_face_rows",
+    "legacy_patch_label_base": 60000000,
+    "all_earlier_channels_preserved": true
+  },
+  "net_boundary_edge_reduction": 130,
+  "acquired_boundary_edges_consumed": 442,
+  "new_open_cross_edges": 312,
+  "boundary_walk_count_increase": 151,
+  "support_filter_required": false,
+  "support_filter_helper_only_exercised_on_synthetic_tests": true,
+  "bounded_execution": {
+    "scientific_groups_including_kali": 7,
+    "completed_groups": 6,
+    "preserved_failed_groups": 1,
+    "all_owned_scientific_and_ssh_children_reaped": true,
+    "group_wall_seconds_max": 600,
+    "child_RSS_GiB_max": 4,
+    "disk_floor_GiB": 4,
+    "kali_remote_deadline_seconds": 110,
+    "kali_local_deadline_seconds": 120
+  },
+  "private_capsule": {
+    "manifest_sha256": "530ca269207b7174bf9b1fa1eba2df885bf0161868afc5f212b297801473e2ad",
+    "payload_files": 71,
+    "payload_bytes": 393572083,
+    "all_payloads_frozen_and_rehashed": true,
+    "raw_and_derived_geometry_not_committed": true
+  },
+  "executed_sources": [
+    {
+      "name": "admit_opposed_walls.py",
+      "sha256": "0661db7be928260c8fab9f39915a8b14070faa1a3f45479528c455702147a3fa",
+      "execution_role": "scientific-execution"
+    },
+    {
+      "name": "build_opposed_walls.py",
+      "sha256": "8a56a74e3b7c1391f71548f4d161488addf31c9fe45240f187d809be7e091ab3",
+      "execution_role": "scientific-execution"
+    },
+    {
+      "name": "build_opposed_walls_v2.py",
+      "sha256": "aa60e2fad65986df3723116a4990fe923764bd15c2d2df7a2525c27a3a580e28",
+      "execution_role": "scientific-execution"
+    },
+    {
+      "name": "filter_opposed_walls.py",
+      "sha256": "dfde5927e1eda88fda0366bfec12374cc43cdfb449dbf1dc653969d51e1a64cc",
+      "execution_role": "synthetic-filter-tests-only"
+    },
+    {
+      "name": "inspect_opposed_walls.py",
+      "sha256": "14467f89adc6bb169b8cc1a5feaae5c472a18a57389396f9e2891d72725b7192",
+      "execution_role": "scientific-execution"
+    },
+    {
+      "name": "run_streamed_replay.py",
+      "sha256": "e12edcd4d9524a90f0a251b9f701481fa6bb2e6bb84fd91e26bbad2480d949a1",
+      "execution_role": "scientific-execution"
+    },
+    {
+      "name": "verify_wall_inputs.py",
+      "sha256": "c34d6c5dd69d5ce9cce429dd828d8504afc0df787ae053e991ce74b7820ddfe6",
+      "execution_role": "scientific-execution"
+    }
+  ],
+  "reused_helpers": [
+    {
+      "path": "docs/research/935-untried-acquired-pairs-20261106/source/verify_untried_pairs.py",
+      "sha256": "21457c97051d711768b697951c8b2c1a82ed8beeccf411de58e0f0e9ad3bcf1f"
+    },
+    {
+      "path": "docs/research/935-untried-acquired-pairs-20261106/source/verify_opposed_skins_v2.py",
+      "sha256": "76888183e2b4ab5ccbb99cc771288b00524ce61bffeddd48582b58c7ebb79f98"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/inspect_intersections.py",
+      "sha256": "3e0b239ca4993388f32563092c78d97065cc1fb0753c68a2def3d631feda7976"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/inspect_vertex_fans.py",
+      "sha256": "1b9792699e0d3f42cae84184562e64d7bb1a6786b054e89d4e988cc0481883f5"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/check_cgal_patches.py",
+      "sha256": "2b5835ea1e4d53e5dfb4b8c499b0b02e858f3d495667c038b9203c2f1fb2d945"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/measure_patch_deviations.py",
+      "sha256": "8e4f401c4c76ca4cafa28979a0b2bdaf80c77049acbac2dc2a610b490720e570"
+    },
+    {
+      "path": "docs/research/935-retained-boundaries-20261106/source/audit_retained_boundaries.py",
+      "sha256": "5b1fcf5815ceca941f6af7a07683bc17b4f4b3e7f43fb6da316d598d91848ee0"
+    },
+    {
+      "path": "docs/research/935-source-cut-admission-20261106/source/run_local_delivery.py",
+      "sha256": "cef4c7662ae9808c1ec8dc6ad813835eab01e0358a4d8f3e327c70a668390dd0"
+    },
+    {
+      "path": "docs/research/935-frontier-pairing-20261106/source/verify_streamed_source.py",
+      "sha256": "3ae75b1a8a47c65405aae2111c89343eeec3aa0d3f7a8c32ac3b0be65648fae1"
+    }
+  ],
+  "derivative_source_ancestry": [
+    {
+      "child": "build_opposed_walls.py",
+      "parent_path": "docs/research/935-untried-acquired-pairs-20261106/source/build_untried_strips.py",
+      "parent_sha256": "c8b00ff6a480ff8960fb2d40ddd4dbd5281144a0f328ea1e3cfd7960e50ae1ca",
+      "frozen_parent_unchanged": true
+    },
+    {
+      "child": "inspect_opposed_walls.py",
+      "parent_path": "docs/research/935-untried-acquired-pairs-20261106/source/inspect_untried_strips.py",
+      "parent_sha256": "6c9bc13f76165031305a411d6d2654a3c021c1eaabde4bff634125f3a23f2bd5",
+      "frozen_parent_unchanged": true
+    },
+    {
+      "child": "filter_opposed_walls.py",
+      "parent_path": "docs/research/935-untried-acquired-pairs-20261106/source/filter_untried_strips.py",
+      "parent_sha256": "2953f94883f0c3a429fee661d838d52cd7dc33e638faf5b4b3ce2d9d4b3ef629",
+      "frozen_parent_unchanged": true
+    }
+  ],
+  "runtime": {
+    "python": "3.12.13",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "OCP": "7.9.3.1",
+    "libigl": "2.6.3",
+    "isolated_runtime_manifest_sha256": "d7879b23d83988901358bee60ecfbd3e3372c975051aa4ac1ef328614b4648f7",
+    "libigl_addon_manifest_sha256": "3cf3f669266b1981fd1c6042e1923e878719f8ab2ee35398270680a6f45df02a",
+    "packages_changed": false
+  },
+  "software_chain": {
+    "Qwen_CADAM": "Prescribed local auxiliary proposal path; no new inference in this increment",
+    "PicoGK_STEP": "Prescribed editable geometry authority; complete source-facet reconstruction is still an open study, not an accepted solid",
+    "Gmsh_OpenFOAM_CalculiX": "No new head domain or physics accepted; inherited hypothetical domain still has 996 failing minSICN cells",
+    "Adamantine": "No qualified machine/material/powder/support/toolpath build file produced"
+  },
+  "new_vast_resources": 0,
+  "new_vast_spend_usd": 0,
+  "scan_transfer_to_vast_authorized": true,
+  "original_budget_usd": {
+    "total": 35,
+    "compute": 30,
+    "reserve": 5
+  },
+  "scan_sent_to_external_AI": false,
+  "supplier_outreach_performed": false,
+  "gates_G0_G5": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "goal_complete": false,
+  "physical_acceptance": false,
+  "manufacturing_authorized": false
+}
