@@ -22,8 +22,10 @@
 <td width="50%" valign="top">
 <b>Original part</b><br><br>
 The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
-↗ <a href="https://a.storyblok.com/f/332100/f97ce31af4/kat017-e-911-98-katalog.pdf">Porsche Classic Genuine Parts Catalogue - 911 (993) 1994-1998, Kat 017</a><br>
+↗ <a href="https://rsworkshop.ch/downloaded/pet-porsche/993_1994-98_KATALOG.pdf">Porsche PET - 911 1994-1998 Type 993, parts catalogue revision Kat 017</a><br>
 ↗ <a href="http://www.federleichte-elfer.de/dp93/innen.html">Federleichte Elfer - mass table, 993 interior</a><br>
+↗ <a href="https://files.porsche.com/f/332100/cfbfd366e3/kat017-e-911-98-katalog.pdf">Porsche PET KAT 017, English, 911 1994-1998</a><br>
+↗ <a href="https://porschefanatics.com/projects/parts/993-int-dashboard-trim-0001/">PorscheFanatics dashboard-trim case study</a><br>
 </td>
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
@@ -37,18 +39,18 @@ The original part is documented — pictures, catalogue entries or published dat
 
 ## What it is
 
-993 dashboard trim reproduced in composite, **for vehicles without a passenger airbag only**. The part is not the dashboard itself: that one, 993 502 027 02, is a body shell panel. This is the trim that covers it, fitted on clip nuts and self-tapping screws. Selected because no manufacturer offers it in carbon, unlike body panels.
+Composite study of the 993 dashboard trim, intended only for a vehicle independently verified to have no passenger airbag. The trim is distinct from body-shell panel 993 502 027 02 and from the original knee protection. A carbon/Kevlar racing dashboard is marketed, but equivalence to the exact M564 trim, attachments and occupant protection has not been established.
 
 ## What it does on the car
 
-Visible trim of the dashboard cross member on a vehicle without a passenger airbag, carrying the air vents and the instrument hood, and receiving the knee protection strip, which stays original
+Concept study of visible dashboard trim for an independently verified M564 left-hand-drive non-RS vehicle. The original knee protection remains in place; its exact identity, anchors and relationship to the trim are unverified.
 
 ## At a glance
 
 | | |
 |---|---|
-| Porsche part numbers | 993 552 055 00, 993 552 056 00, 993 552 055 70, 993 552 056 70 |
-| variants | M564 without airbag (trim number unmapped in PET Kat 017), Carrera RS M002, Carrera RS Clubsport M003 |
+| Porsche part numbers | not recorded |
+| variants | M564, left-hand drive, non-RS (proposed target; trim identity unresolved) |
 | candidate material | fiber and resin to be determined |
 | candidate process | undecided |
 | safety class | `functional` |

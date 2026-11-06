@@ -4,7 +4,7 @@
 
 **Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
-993 dashboard trim reproduced in composite, **for vehicles without a passenger airbag only**. The part is not the dashboard itself: that one, 993 502 027 02, is a body shell panel. This is the trim that covers it, fitted on clip nuts and self-tapping screws. Selected because no manufacturer offers it in carbon, unlike body panels.
+Composite study of the 993 dashboard trim, intended only for a vehicle independently verified to have no passenger airbag. The trim is distinct from body-shell panel 993 502 027 02 and from the original knee protection. A carbon/Kevlar racing dashboard is marketed, but equivalence to the exact M564 trim, attachments and occupant protection has not been established.
 
 ```mermaid
 flowchart LR
@@ -37,12 +37,12 @@ Catalogue record: [`catalog/parts/993-int-dashboard-trim-0001.json`](../../catal
 |---|---|
 | identifier | 993-INT-DASHBOARD-TRIM-0001 |
 | generation | 993 |
-| variants | M564 without airbag (trim number unmapped in PET Kat 017), Carrera RS M002, Carrera RS Clubsport M003 |
+| variants | M564, left-hand drive, non-RS (proposed target; trim identity unresolved) |
 | model years | 1994 to 1998 |
-| Porsche part numbers | 993 552 055 00, 993 552 056 00, 993 552 055 70, 993 552 056 70 |
+| Porsche part numbers | not recorded |
 | category | interior_trim |
 | safety class | functional |
-| intended use | Visible trim of the dashboard cross member on a vehicle without a passenger airbag, carrying the air vents and the instrument hood, and receiving the knee protection strip, which stays original |
+| intended use | Concept study of visible dashboard trim for an independently verified M564 left-hand-drive non-RS vehicle. The original knee protection remains in place; its exact identity, anchors and relationship to the trim are unverified. |
 
 ## Material and manufacturing
 
@@ -91,12 +91,15 @@ Catalogue record: [`catalog/parts/993-int-dashboard-trim-0001.json`](../../catal
 
 | field | value |
 |---|---|
-| record license | All rights reserved (see LICENSE) for the record, geometry not yet produced |
+| record license | All rights reserved (see LICENSE); existing geometry is an estimated concept only |
 
 **Sources**
 
-- [Porsche Classic Genuine Parts Catalogue - 911 (993) 1994-1998, Kat 017](https://a.storyblok.com/f/332100/f97ce31af4/kat017-e-911-98-katalog.pdf)
+- [Porsche PET - 911 1994-1998 Type 993, parts catalogue revision Kat 017](https://rsworkshop.ch/downloaded/pet-porsche/993_1994-98_KATALOG.pdf)
 - [Federleichte Elfer - mass table, 993 interior](http://www.federleichte-elfer.de/dp93/innen.html)
+- [Porsche PET KAT 017, English, 911 1994-1998](https://files.porsche.com/f/332100/cfbfd366e3/kat017-e-911-98-katalog.pdf)
+- [PorscheFanatics dashboard-trim case study](https://porschefanatics.com/projects/parts/993-int-dashboard-trim-0001/)
+- [FVD Brombacher carbon/Kevlar race dashboard FVD55522005](https://www.fvd.net/en-us/shop/race-dashboard-964-993-carbon-fiber-kevlar-left-hand-drive-without-a-c-vent-fvd55522005~p238149)
 
 ## Validation
 
@@ -105,7 +108,7 @@ Catalogue record: [`catalog/parts/993-int-dashboard-trim-0001.json`](../../catal
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | SCOPE, AND THIS IS AN EXCLUSION, NOT A PRECAUTION. This part applies only to an M564 vehicle, or a Carrera RS whose catalogue illustration reads "for cars without Airbag, Passenger's side". On an M561 or M562 vehicle the trim carries the passenger airbag deployment flap, whose tear line is an occupant restraint part: fitting this part there would be a replacement of a safety component, and that is prohibited here. The option code is read from the vehicle label, before any measurement.<br>IDENTITY, AUDITED 2026-11-06 (evidence/pet-identity.md). PET Kat 017 assigns no dashboard trim number to a non-RS M564 car: the only non-RS plate, 809-00, is titled for cars with passenger airbag, and the no-airbag plate 809-02 is restricted to the Carrera RS. The four part numbers above are the RS numbers of 809-02; 993 552 055 00 and 056 00 also appear on 809-00, a conflict registered as CTR-0019 and left open. The M564 target therefore has no part number, and no specimen's measurements are admitted until its option label, passenger-side reverse face, trim label, continuity manifest and publication rights pass the same-specimen protocol.<br>Ruling out the airbag does not make the part harmless. An original dashboard is a soft surface in the occupant impact zone; a carbon laminate is rigid there and breaks into sharp shards where a foam crushes. That is why the selected class is functional and not non_critical. The interior fittings regulations, ECE R21 in Europe and FMVSS 201 in the United States, deal precisely with projections and energy absorption in this zone: their applicability to a modified classic vehicle has not been studied and must be before any fitting.<br>The knee protection strip is a SEPARATE PART and it stays original. Kat 017 lists it per plate: on the passenger-airbag plate 809-01, 964 552 053 00 or 964 552 073 06/07 /LL and 993 552 054 00 or 993 552 074 00/01 /RL; on the Carrera RS plate 809-02, left and right strips 911 552 069 00 and 911 552 070 00 /LL, 911 552 069 01 and 911 552 070 01 /RL for M002, and 964 552 077 70 and 964 552 078 70 /LL, 964 552 077 71 and 964 552 078 71 /RL for M003. No strip is assigned to M564. The composite trim must keep the strip's attachment points identical: a reproduction that removed or moved these points would remove a protection.<br>This is not a mass project. The stated gain is 1.15 kg, versus 9.9 kg for a front lid. The reason to make this part is that it does not exist in tuners' catalogues.<br>No geometry. A dashboard is a freeform surface with multiple interfaces: air vents, instrument hood, steering column, glovebox, console junction, pillars and windshield base. It cannot be measured with calipers; it needs a scan or scaled photogrammetry. The two CAD leads already qualified by the repository are ruled out: SRC-CGTRADER-993-DASHBOARD-SCALE-MODEL is a 1/8 scale model, SRC-FSH-993-DASHBOARD-TRIM-DIMENSIONS describes an aftermarket trim.<br>The aging of the original distorts the mold, and so does its removal. A thirty-year-old dashboard is cracked and warped by heat; it is also constrained by its fasteners, so it can relax when it comes out of the vehicle. The shape must be captured fitted AND removed, and the difference between the two states recorded.<br>Temperature and UV resistance not evaluated: this is the interior surface most exposed to the sun.<br>Reflection. A clear-coated carbon surface under the windshield sends light back into the driver's field of view, which a grained leatherette does not. To be treated as a requirement, not as a finish. |
+| limitations | Scope requires an independently confirmed no-passenger-airbag vehicle and exact variant. PET KAT 017 defines M564 as no airbag, M561 as driver airbag only and M562 as driver and passenger airbags. Position 1 on the passenger-airbag 809-00 plate and the RS no-passenger-airbag 809-02 plate both list 993 552 055/056 00, so that number alone does not classify the restraint configuration. No non-RS M564 or M561 position-1 mapping has been established; the full-dashboard target keeps its trim number null. M562 and any passenger-airbag assembly are excluded. Whether a deployment flap is integral to position-1 trim is not established by the PET. Check the redacted option label and passenger-side reverse in the same vehicle before any measurement or design decision.<br>Ruling out a passenger airbag does not settle occupant impact risk. A rigid composite substitute could change the impact response and fragment behavior of the original occupant-facing assembly. The selected class remains functional, not non_critical. Applicability of ECE R21 and FMVSS 201 to a modified classic vehicle, including projections and energy absorption, has not been studied; an independent professional review is required before fitting.<br>The knee protection is separate and stays original. PET 809-01 lists complete 964 552 053 00 /LL and 993 552 054 00 /RL strips in the passenger-airbag assembly; they are not proven M564 identities. PET 809-02 lists separate left/right strips for RS M002 (911 552 069/070 00 /LL) and RS M003 (964 552 077/078 70 /LL), with distinct right-hand-drive suffixes. The exact non-RS M564 strip identities and all anchor geometry remain unknown. Moving an original anchor would affect occupant protection.<br>This is not a substantiated mass-saving project. The 1.15 kg gain is a third-party estimate, not a measurement of this target. A carbon/Kevlar racing dashboard is marketed, but exact M564 trim equivalence, attachments and occupant protection remain unverified.<br>No measured geometry. The complete dashboard has freeform surfaces and multiple interfaces: air vents, instrument contour, steering column, glovebox, console junction, pillars and windshield base. A physical reference needs fitted and removed scans or scaled photogrammetry plus independent interface measurements. The existing F0 CAD is an estimated visual concept. SRC-CGTRADER-993-DASHBOARD-SCALE-MODEL is a 1/8-scale model and SRC-FSH-993-DASHBOARD-TRIM-DIMENSIONS describes an aftermarket trim; neither supplies OEM attachment geometry.<br>The aging of the original distorts the mold, and so does its removal. A thirty-year-old dashboard is cracked and warped by heat; it is also constrained by its fasteners, so it can relax when it comes out of the vehicle. The shape must be captured fitted AND removed, and the difference between the two states recorded.<br>Temperature and UV resistance not evaluated: this is the interior surface most exposed to the sun.<br>Reflection. A clear-coated carbon surface under the windshield sends light back into the driver's field of view, which a grained leatherette does not. To be treated as a requirement, not as a finish. |
 
 **Evidence**
 

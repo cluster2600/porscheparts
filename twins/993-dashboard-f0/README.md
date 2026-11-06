@@ -1,12 +1,14 @@
 # Porsche 993 complete dashboard — F0 scope
 
-This is an evidence inventory for the **complete dashboard zone** of a left-hand-drive Porsche 993 targeting option M564. It is not an assembled CAD model. The intended vehicle, its option label, and the absence of airbags have not been checked. All component transforms and assembly geometry are `null` in [assembly.json](assembly.json).
+This workstream contains a **schematic visual scene of the complete dashboard** and an evidence inventory for a left-hand-drive Porsche 993 targeting option M564. The scene is a PicoGK F0 concept in an invented display frame. Its component sizes and positions are artistic assumptions, not vehicle measurements or assembly transforms. The intended vehicle, its option label, and its restraint configuration have not been checked. All component transforms and assembly geometry remain `null` in [assembly.json](assembly.json).
 
-![Isolated PicoGK F0 dashboard-trim concept; dimensions assumed](preview.png)
+![Complete 993 dashboard PicoGK F0 scene, front view; assumed layout and no scan](dashboard-front.png)
 
-The image shows the isolated full-width trim, not the complete dashboard assembly. The raw PicoGK STL has 28 degenerate faces; an in-memory cleanup yields one watertight body, but no cleaned mesh has been published. Neither result supports fit or manufacturing.
+The [front](dashboard-front.png) and [three-quarter](dashboard-three-quarter.png) views show twelve separately generated display layers: the dashboard trim, instrument hood, generic five-gauge cluster and gauge marks, centre and side vents, defrost marks, glovebox, centre console, HVAC/radio face, switch marks, and a reserved knee-strip zone. The [scene specification](source/scene.json), [PicoGK source](source/Program.cs), [scene report](scene-report.json), [renderer](source/render_scene.py), and [render provenance](render-report.json) make the illustration reproducible. No steering component, airbag, attachment, mating face or load-bearing knee protection is modelled. The image is not a fitted or printable dashboard assembly.
 
-The only linked PicoGK geometry is the repository's [dashboard trim generator](../../parts/picogk-catalog/body/DashboardTrim.cs), rebuilt with the [F0 concept builder](../../parts/993-int-dashboard-trim-0001/source/build_picogk_concept.py) and [concept parameters](../../parts/993-int-dashboard-trim-0001/source/picogk.json). It can be viewed as an isolated [18,000-triangle visual mesh](dashboard-trim-f0-visual.stl), with its [QA and provenance](dashboard-trim-f0-visual.json). Its size, vents, instrument opening, and ribs are estimated; it has no measured vehicle transform and establishes no fit. The full-resolution PicoGK STL is a local, ignored `work/` output; the tracked visual STL is not an assembly component or a release mesh.
+The earlier [isolated trim preview](preview.png) is a component study. The raw PicoGK trim STL has 28 degenerate faces; an in-memory cleanup yields one watertight body, but no cleaned mesh has been published. The private scene STL for the side vents has 40 zero-area triangles omitted from the render, as recorded in the [render report](render-report.json). Neither result supports fit or manufacturing.
+
+The trim layer reuses the repository's [dashboard trim generator](../../parts/picogk-catalog/body/DashboardTrim.cs), rebuilt with the [F0 concept builder](../../parts/993-int-dashboard-trim-0001/source/build_picogk_concept.py) and [concept parameters](../../parts/993-int-dashboard-trim-0001/source/picogk.json). Its isolated [18,000-triangle visual mesh](dashboard-trim-f0-visual.stl) has separate [QA and provenance](dashboard-trim-f0-visual.json). Its size, vents, instrument opening, and ribs are estimated; it has no measured vehicle transform and establishes no fit. Full-resolution and multilayer PicoGK STLs are local, ignored `work/` outputs; the tracked visual STL is not an assembly component or a release mesh.
 
 ## Included zones
 
@@ -25,7 +27,9 @@ The PET [assembly skeleton](../../catalog/reference/993-assembly-skeleton.json) 
 
 ## Variant gate
 
-The target is **M564, left-hand drive**, pending a redacted vehicle option label and direct inspection. The passenger side must show no deployment flap or module. The trim part number is **unmapped**. The [PET identity audit](../../parts/993-int-dashboard-trim-0001/evidence/pet-identity.md) (#566) found that Kat 017 has no dashboard plate for a non-RS M564 car. `993 552 055 00` appears on the passenger-airbag plate 809-00, and on the Carrera RS no-airbag plate 809-02 under M002 (CTR-0019). Do not assign that number to M564 from this inventory. M561, M562, and Carrera RS variants need separate decisions and assemblies. No specimen is admitted until it passes the audit's E1–E5 same-specimen protocol.
+The target is **M564, left-hand drive**, pending a redacted vehicle option label and direct inspection. The passenger side must show no deployment flap or module. The trim part number remains **unresolved** in the [catalogue record](../../catalog/parts/993-int-dashboard-trim-0001.json). The [PET variant audit](../../docs/reports/993-dashboard-variant-audit-20261106.md) finds `993 552 055 00` on both a passenger-airbag plate and an RS no-passenger-airbag plate; neither proves the non-RS M564 identity. M561, M562, and Carrera RS variants need separate decisions and assemblies.
+
+The machine-readable [PET identity matrix](../../parts/993-int-dashboard-trim-0001/evidence/pet-identity.md) (#566) records the plate, page and position for every candidate variant and registers the conflict as CTR-0019. Its E1–E5 same-specimen protocol must pass, and independent reviewers must record the admission, before any reading is entered.
 
 ## Interface contracts
 
