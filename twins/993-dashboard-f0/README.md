@@ -1,6 +1,14 @@
 # Porsche 993 complete dashboard — F0 scope
 
-This workstream contains a **schematic visual scene of the complete dashboard** and an evidence inventory for a left-hand-drive Porsche 993 targeting option M564. The scene is a PicoGK F0 concept in an invented display frame. Its component sizes and positions are artistic assumptions, not vehicle measurements or assembly transforms. The intended vehicle, its option label, and its restraint configuration have not been checked. All component transforms and assembly geometry remain `null` in [assembly.json](assembly.json).
+This workstream contains **schematic PicoGK visual scenes of the complete dashboard** and an evidence inventory for a left-hand-drive Porsche 993 targeting option M564. Both F0 scenes use an invented display frame. Component sizes and positions are artistic assumptions, not vehicle measurements or assembly transforms. The intended vehicle, its option label, and its restraint configuration have not been checked. All component transforms and assembly geometry remain `null` in [assembly.json](assembly.json).
+
+## Photo-guided F0 iteration
+
+![Complete 993 dashboard photo-guided PicoGK F0 scene, front view; assumed layout and no scan](photo-study-v1/dashboard-front.png)
+
+The [photo study](photo-study-v1/README.md) revises the visible brow, five gauge faces, and centre and side vents using linked public photographs and replacement-part listings. Its [reference register](photo-study-v1/references.json) records provenance, licence, published size leads, and why none supplies installed geometry. The [photo-guided scene](source/scene-photo-v1.json), [scene receipt](photo-study-v1/scene-report.json), [renderer](source/render_photo_scene.py), and [render receipt](photo-study-v1/render-report.json) make this F0 appearance study reproducible. The [front](photo-study-v1/dashboard-front.png) and [three-quarter](photo-study-v1/dashboard-three-quarter.png) views do not establish fit, safety, or manufacturing readiness.
+
+## Original schematic F0 iteration
 
 ![Complete 993 dashboard PicoGK F0 scene, front view; assumed layout and no scan](dashboard-front.png)
 
