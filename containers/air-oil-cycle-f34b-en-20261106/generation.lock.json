@@ -1,0 +1,47 @@
+{
+  "canonical_doe_cases_executed": 0,
+  "generation": "air-oil-cycle-f34b-en-20261106",
+  "generation_sources_sha256": {
+    ".github/workflows/air-oil-cycle-f34b-english.yml": "23d52d37a9c582d52f6edcc8f7d3f0533c5a5d346b7dd1d792ae5c8eb692a527",
+    "containers/air-oil-cycle-f34b-en-20261106/prepare_context.py": "0608e4caade74c979c61069ec6cbb71c3b56bad4e253d2b809585587cab58d58",
+    "tests/test_air_oil_f34b_english_generation.py": "6ce04f6d67278b8f5d548a9133ed8f9f2599e39197df4d27972e4dcd9214ee7a"
+  },
+  "image": {
+    "host": "macOS arm64 with Docker Desktop amd64 emulation",
+    "local_image_id": "sha256:896af7ece14add035cdefdaf2971552394f3da2e0684ca07306c3e925c436859",
+    "local_tag": "porscheparts-air-oil-cycle-f34b-en:20261106",
+    "native_amd64_qualification": false,
+    "platform": "linux/amd64",
+    "published": false,
+    "registry_digest": null,
+    "user": "9133:9133"
+  },
+  "inputs_lock_sha256": "d8514e7aa34d7895529c4e6bed1e7e9352c6e9dbb0de180cb7f2157fffe74656",
+  "numerical_inputs_and_authority_unchanged": true,
+  "outputs": {
+    "twins/reference-917-engine/evidence/f34/air-oil-forward-seeds-f34b.json": {
+      "sha256": "f8d9307fa1b627ebf85a650cb6eb88d44444bdc78382075c01e3ce14523ba9df",
+      "size_bytes": 14840
+    },
+    "twins/reference-917-engine/evidence/f34/doe-case-manifest.json": {
+      "sha256": "16d5e43d71b867f7cc4937f9329de084ee05c358d3abb6d48f826cb847d8a625",
+      "size_bytes": 3003440
+    }
+  },
+  "physical_qualification": false,
+  "schema_version": 1,
+  "smoke": {
+    "network": "none",
+    "path": "smoke.json",
+    "read_only": true,
+    "sha256": "0145e2ed5cee8bd07106d4fe90ba56080aa6b0ed8a2ff65801b0efe3c73736c6",
+    "status": "passed_embedded_f34b_preflight_and_generic_cantera_fixture_only",
+    "stderr_bytes": 0
+  },
+  "verification": {
+    "canonical_doe_solver_executed": false,
+    "generation_tests": 5,
+    "translated_context_skips": 1,
+    "translated_context_tests": 46
+  }
+}
