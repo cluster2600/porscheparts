@@ -8,7 +8,7 @@ applies to new parts and geometry updates, not just the current batch.
 `parts/<lowercase-part-id>/media/preview.png` and `preview.json`; CAD renders also
 have `views.png`. These paths match PorscheFanatics's pinned Git importer.
 
-The current catalogue has 43 records: 41 geometry renders and 2 status cards.
+The current catalogue has 45 records: 43 geometry renders and 2 status cards (re-counted 6 November 2026).
 Status cards do not close part-image gaps; see [the image gap register](PART_IMAGE_GAPS.md).
 The cylinder-head card identifies the absence of geometry linked to that record.
 The other preserves the withdrawal of the synthetic Carrera F0 impeller views, which could be mistaken
