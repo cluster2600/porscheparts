@@ -11,6 +11,9 @@ with explicit assumptions for unavailable dimensions.
 
 The [engineering execution programme](ENGINEERING_PROGRAM.md) continues through
 material/strength assessment, LPBF simulation, an Omniverse twin and PhysicsNeMo.
+The [19-phase execution ledger of 6 November 2026](derived/phase-ledger-20261106/README.md)
+records every phase state: provenance prepared, three failed, fifteen blocked,
+none accepted.
 
 The programme's [current phase handoffs](ENGINEERING_PROGRAM.md#next-milestone-and-phase-handoffs--21-october-2026)
 set the next work and acceptance criteria. The [assumed material reference proposal](derived/engineering/material-assumed-reference-proposal/README.md)
