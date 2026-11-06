@@ -75,6 +75,11 @@ Four attempts, four measurements:
 
 Only the last one could move, because no hashed file names it.
 
+*Correction (2026-11-06, #425):* `outils/benchmarks/` passed the tests, but it
+is still named by two lock-pinned image recipes (`COPY` paths and
+`planned_inputs` of `containers/openfoam-engine-f35.lock.json`). So it stays in
+place and frozen; see [outils/README.md](../outils/README.md).
+
 **The `deploy/` case is worth reading**, because it nearly went unnoticed. The
 tests were compliant after the move — but `make check` then stopped at the
 `test` target and never reached the 37 targets after it. It was when the suite
