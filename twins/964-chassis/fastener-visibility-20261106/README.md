@@ -27,8 +27,15 @@ inboard round-recessed head support conditional D/E candidates. They are
 distinct from the adjacent bracket's two heads. The covered member does not
 itself exclude them. What remains unseen is whether their shoulders seat on
 the crossmember outer boss/inner foot or clamp a cover/adjacent attachment.
-Their functional seating and exact source face IDs remain unconfirmed;
-no complete bilateral D/E network or metric contact is admitted.
+Their functional seating remains unconfirmed; no complete bilateral D/E network
+or metric contact is admitted.
+
+Two existing seed selections are now linked to those conditional observations
+without a new pick or render. Original face 574508 witnesses the arch-exposed
+head feature, but its precise facet may belong to a transition/shoulder: it must
+not seed a cap-interior or normal-reference study. Face 537229 is a conditional
+lower-head-face seed in the round recess, available for a separately reviewed
+bounded study. These bindings identify acquired triangles, not D/E contacts.
 
 | View identity | Original seed face ID | Four-round neighborhood | Frontier edges / original-open edges |
 |---|---:|---:|---:|
@@ -95,8 +102,16 @@ Two separate German front-crossmember context queries added no contact identity
 or coordinate. A misleading suspension result was explicitly about a Boxster
 986 and was excluded. These two queries are separate from the eight above.
 
-Next, bind the conditional front access-head observations to original source
-IDs and inspect their actual seating context. Establish complete observed outline evidence and a reproducible contact
+Four further exact-phrase/footer queries did not locate an attributable copy of
+the measuring-explanation article referenced by Mi3. The publisher remains
+unconfirmed. [Official Mitchell guidance](https://www.mitchell.com/solutions/collision-repairers/estimating/repair-procedures)
+describes generic hole-centre/edge choices, centreline widths and datum lengths;
+it does not establish Mi3's bolt-head contact height, centre construction,
+bare-frame contact, fixture setup or uncertainty. No generic convention or
+unrelated chart was transferred to the candidate H observations.
+
+Next, resolve the conditional front heads' seating and establish an observed
+cap-interior seed for the outer feature. Establish complete observed outline evidence and a reproducible contact
 definition with uncertainty before using these candidates metrically. An H pair
 alone cannot register the donor: independently identified non-collinear contacts
 and unused checks remain necessary. Source drawings,
