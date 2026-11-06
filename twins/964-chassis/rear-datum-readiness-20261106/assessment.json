@@ -1,0 +1,411 @@
+{
+  "id": "964-REAR-DATUM-READINESS-20261106",
+  "classification": "source_and_finite_rear_visibility_followup_not_qualified_twin",
+  "prior_public_correspondence": {
+    "path": "twins/964-chassis/dimensional-correction-20261106/correspondence/ledger.json",
+    "sha256": "41ffa4ec25f337c303824b17fcd171bf6d8b39656006a29e2927880af18e1ffa"
+  },
+  "source_registers": [
+    {
+      "path": "twins/964-chassis/owner-frame-data-20261105/source-data.json",
+      "sha256": "562b27859d7e717179b4d60f5dd501fd7641107f4180b50fdd17647596045a15"
+    },
+    {
+      "path": "twins/964-chassis/body-contact-alternatives-20261106/mi-b-width-correction.json",
+      "sha256": "0e31ae106af5a321e14975f9e834a2b80d86b8db1ff99947d6144afc0e18f604"
+    }
+  ],
+  "scope": "Alternative source/contact-definition review, four new rear-pivot images and four new lower rear-bumper images. Eight rendered images of existing acquired triangles, not eight independent acquisitions. No H-centre retries, new body geometry or material card.",
+  "source_inputs": {
+    "CH_pdf_sha256": "c7518054b2c93858d2acd7317a092cb26cd2cb7ef73c0a82d61d8c63f0d0c3bd",
+    "Mi3_pdf_sha256": "9986c8e5db0827328f4fe38ed9b2655dc6bc1f6253ce55c071c7266b7ddfab1c",
+    "PET_pdf_sha256": "a9afc3bde88a6d51ab757ccb58f9a6136540055f09b0f233c347be11f588f4a3",
+    "source_rights": "Copyrighted/reference-only source pages and scan images remain private. No raw redistribution licence is asserted.",
+    "Ed_Coupe_leaf_sha256": {
+      "1": "55afe3649d69865672992d555e17f506866152fecd050ed4715c8b68eeebc88d",
+      "2": "ca11bc1e1731d6b23190fc6a60af28be4314e558ec5ad34a226e824d14772ed9",
+      "3": "4c407ff2bd8c2ed166e6b9815c8dc11889a42b626970e9691d5856fbfdd72ef8"
+    },
+    "Ar_Coupe_pdf_sha256": "1d7caee45035744e9a8431162b8a9096ef2eeb9cf9b57a5ca42aab8b218303db",
+    "Other_leaf_sha256": "cf370cfb14221fa586bf2e2a31624bd9c033083c7840fb1ee478ddd691bdd564"
+  },
+  "source_definition_findings": {
+    "CH": {
+      "literal_vehicle": "1992 PORSCHE 911 CARRERA 2, 964 330 COUPE",
+      "sheet": "PO10E",
+      "revision": "9/97",
+      "publisher": null,
+      "unit": "Millimetres interpreted from scale/wheelbase; no explicit unit label on supplied leaves.",
+      "parts_state": "Point12/13 bolt pictograms and heights264/262 persist on both PARTS ON and PARTS REMOVED leaves. They are not thereby bare-body holes or removed-seat observations.",
+      "hypotheses": [
+        {
+          "point": 12,
+          "proposed_anatomy": "PET501-00 outer strut/plate7 body bushing with cylindrical-head bolt6",
+          "source_to_PET_link": "Graphical hypothesis only, no printed cross-ID."
+        },
+        {
+          "point": 13,
+          "proposed_anatomy": "PET501-00 inner arm1 body bushing with external-hex bolt5",
+          "source_to_PET_link": "Graphical hypothesis only, no printed cross-ID."
+        }
+      ],
+      "generic_probe_construction_adopted": false,
+      "datum_or_tolerance_authenticated": false
+    },
+    "Ed": {
+      "literal_publisher_mark": "Copyright2004 Snap-on Incorporated",
+      "source_variant_header": null,
+      "exact_export_system_link_verified": false,
+      "readable_alternatives": [
+        "Point7 slot crosshair25x30",
+        "Point8 hole crosshair24"
+      ],
+      "other_leader_limits": "Point12 is engine-opening mount-adjacent fixing context;13/14 are rear bumper support/end context. They are not identified as rear-arm pivots.",
+      "geometry_crosswalk_to_CH_Mi_or_scan": null
+    },
+    "Ar": {
+      "publisher": null,
+      "unknowns": [
+        "Middle setup/tool integer-row meanings",
+        "Surface/probe offsets for the symbols",
+        "Physical datum and explicit unit label"
+      ],
+      "folder_abbreviation_is_authorship_proof": false
+    },
+    "Other": {
+      "publisher": null,
+      "sheet": "92-40",
+      "vehicle_heading": "PORSCHE 911 1989-94",
+      "literal_legend": "J is a wrench glyph with no printed17. H/E carry17; B/D19; A/I8. Circle/square, wrench/triangle and bracket conventions remain unqualified.",
+      "letter_crosswalk_limit": "I has rear bumper-end context and J engine-mount context; same Mi I/J letters do not identify the same feature.",
+      "constant_height_offset_is_transform": false
+    },
+    "Snap_on_primary_guide": {
+      "url": "https://www.snaponequipment.com/Common/UserManuals/ZEECR610A.pdf",
+      "title": "Blackhawk Quik Chek Operating Instructions ZEECR610A",
+      "private_pdf_sha256": "a63abcf10b760979e65bb5fd9e0caae318358a7d823b11c3f86c987e3cbed54e",
+      "printed_date": "2004-08-25",
+      "actual_pages_reviewed": "Bolt/stud/head versus hole-side construction instructions and PDF25/printed23 Measurement Point Reference Guide.",
+      "finding": "Exposed head/stud-tip centres are distinct from clamped body seats; hole/slot probing uses two/three sides, with different rim and head forms illustrated.",
+      "applicability_limit": "Ed has a Snap-on copyright mark, but exact historical export and donor variant are unverified. This guide does not authenticate CH/Ar/Other contact constructions or provide Porsche tolerances.",
+      "raw_source_page_published": false
+    },
+    "Chief_Vector_indexed_text": {
+      "url": "https://www.vsg-asia.com/uploads/5779f8bf/VectorUsers4-03.pdf",
+      "direct_pdf_bytes_obtained": false,
+      "figures_actually_viewed": false,
+      "indexed_text": "Printed28 describes datum-length placement and boxed width values identifying Body Zero.",
+      "CH_visual_comparison": "PARTS ON point8 half-width322 is boxed and the bottom chain says Datum Length Measurements; this is consistent with that format. PARTS REMOVED omits point8 and box.",
+      "association_status": "Conditional format association only; CH1997 publisher and equivalence to later manual conventions are not authenticated.",
+      "CH_filtered_metadata": {
+        "Title": "",
+        "Creator": null,
+        "Producer": "Snagit by TechSmith"
+      },
+      "metadata_proves": "Screen-capture exporter only.",
+      "domain_ownership_independently_confirmed": false,
+      "generic_tolerance_imported": false,
+      "private_review": {
+        "path": "work/964-correspondence-20261106/source-definition-001/chief-vector-review.json",
+        "sha256": "71024579a63a5f6254869f11bb5d10957217da4e674aaa5e997190d8efe61315"
+      }
+    }
+  },
+  "OEM_attachment_discriminants": {
+    "PET501_00": "Distinguish broad flat outer strut/plate7 and bodybolt6, inner arm1/bodybolt5, wheel-end eccentric hardware and PET502-00 anti-roll bar/link hardware. No literal CH-to-PET cross-ID.",
+    "PET802_05": "Item9 external-hex M8x30 and washer8 form body-side pair contacts (four total); item2 cylindrical-head M12x110 and washer3 are separate vertical carrier fixings (two total). Trim attachments and absorber tube axes are not substitutes.",
+    "MiJ": "Native Mi3 names the head of the lower rear bumper-mount bolt. Mapping this to the lower body-flange pair member requires actual assembly/head/seating observation; no such contact is admitted here.",
+    "CH14_16": "No equivalence of these point IDs to MiJ or a particular PET bolt is admitted."
+  },
+  "original_scan": {
+    "original_obj_sha256": "f397909141e5af2529db961641c7699d39d40c355e05245cfb1573a2974c8dc5",
+    "vehicle_vertices_sha256": "201787314680bcd60fb5f9b8910e28b0025d60c380dc77fa458a41bb17942bc9",
+    "oriented_faces_sha256": "271c4f04717be91babfebeb809de485c940dc909ec981acd857693969563b484",
+    "rear_original_ID_archive_sha256": "bc8fb11f93920a57c610ac82e8507b9f4c7898b74afcec6379c4e5541e6066a2",
+    "frame": "Provisional tyre/symmetry frame only, +X forward/+Y left/+Z up; no structural datum registration or calibrated scan scale."
+  },
+  "actual_inspection_sets": [
+    {
+      "id": "rear-pivot-context-001",
+      "plan": {
+        "path": "work/964-contact-correspondence-20261106/rear-pivot-context-001/plan.json",
+        "sha256": "8d8cdbb1915269c5e0afe7e6c93d97e888a48c5db8ac88eacfcfea680bc871e0"
+      },
+      "result": {
+        "path": "work/964-contact-correspondence-20261106/rear-pivot-context-001/result.json",
+        "sha256": "315553372bc72f9737f257956770c96bbc64db36ea64499fddde0113fe16a9f8"
+      },
+      "executed_program": {
+        "path": "work/964-contact-correspondence-20261106/rear-pivot-context-001/render.py",
+        "sha256": "84b2836ef050a95f35211f77a329c7f7465809ac559cc2c7da73e9c7694db2d9"
+      },
+      "framing": {
+        "path": "work/964-contact-correspondence-20261106/rear-pivot-context-001/framing.json",
+        "sha256": "a6fa878ebc5204018b8d019175d68033971e37eda8a26b4725944a2e68e04363"
+      },
+      "framing_only_original_face_ids": [
+        2107828,
+        2157130
+      ],
+      "original_face_count": 2807208,
+      "original_vertex_count": 1444472,
+      "rendered_images": [
+        {
+          "view": "BilateralUnderbody",
+          "private_image": {
+            "path": "work/964-contact-correspondence-20261106/rear-pivot-context-001/media/BilateralUnderbody.png",
+            "sha256": "2f36cc1872eab8b9acfd184714c43ad68a575e6b2cdc0c8d571257c3ef3fc9da"
+          }
+        },
+        {
+          "view": "NegativeYForwardUnderbody",
+          "private_image": {
+            "path": "work/964-contact-correspondence-20261106/rear-pivot-context-001/media/NegativeYForwardUnderbody.png",
+            "sha256": "41bfbb0af68ccffd46e34886f664a9889db277044aae055def4a6f0315fe9299"
+          }
+        },
+        {
+          "view": "PositiveYForwardUnderbody",
+          "private_image": {
+            "path": "work/964-contact-correspondence-20261106/rear-pivot-context-001/media/PositiveYForwardUnderbody.png",
+            "sha256": "ba91d7eed59579d6aea513b639fb9ed274c1fae729e4bc3b66184b8ff4a389d9"
+          }
+        },
+        {
+          "view": "BilateralForwardUpper",
+          "private_image": {
+            "path": "work/964-contact-correspondence-20261106/rear-pivot-context-001/media/BilateralForwardUpper.png",
+            "sha256": "e2a1d2851fe9c7a9279561a066c97293de631c790b8bea06bec78e25690fde69"
+          }
+        }
+      ],
+      "acquisition_scope": "Whole original triangles with at least one vertex X<=-1500, full acquired Y/Z; original points/oriented faces unchanged, opaque.",
+      "new_acquisition": false,
+      "nominal_source_targeting": false,
+      "new_metric_contact_seed": null
+    },
+    {
+      "id": "rear-bumper-context-001",
+      "plan": {
+        "path": "work/964-contact-correspondence-20261106/rear-bumper-context-001/plan.json",
+        "sha256": "d8a6d807ba13ff402a0e3edce198c1182a99f8e92c8a514d5154547e850e780a"
+      },
+      "result": {
+        "path": "work/964-contact-correspondence-20261106/rear-bumper-context-001/result.json",
+        "sha256": "65ca076fde9b7ca9822c661f89a06fe87a1543242e2f794d23326a5950576bd7"
+      },
+      "executed_program": {
+        "path": "work/964-contact-correspondence-20261106/rear-bumper-context-001/render.py",
+        "sha256": "55644a43766260ea1ecd28eeee5464e4bb76cc99c007e2ecfd4be594ab56bbdb"
+      },
+      "framing": {
+        "path": "work/964-contact-correspondence-20261106/rear-bumper-context-001/framing.json",
+        "sha256": "514ca3892be65b9fe4cc0dd907045637463103a5d86afa1437539febc79418ae"
+      },
+      "framing_only_original_face_ids": [
+        3462370,
+        2602461
+      ],
+      "original_face_count": 2807208,
+      "original_vertex_count": 1444472,
+      "rendered_images": [
+        {
+          "view": "PositiveYRearOutboardLower",
+          "private_image": {
+            "path": "work/964-contact-correspondence-20261106/rear-bumper-context-001/media/PositiveYRearOutboardLower.png",
+            "sha256": "c71f4dc823a5d46d3c0f7b16d1d07afebc8a06b5f9b439a3481bfc0793e72734"
+          }
+        },
+        {
+          "view": "PositiveYRearInboardLower",
+          "private_image": {
+            "path": "work/964-contact-correspondence-20261106/rear-bumper-context-001/media/PositiveYRearInboardLower.png",
+            "sha256": "f29e80497c35ecd6a4a07c7ddcd042f6aa2a69826efaa143c429cf18033cf62f"
+          }
+        },
+        {
+          "view": "NegativeYRearOutboardLower",
+          "private_image": {
+            "path": "work/964-contact-correspondence-20261106/rear-bumper-context-001/media/NegativeYRearOutboardLower.png",
+            "sha256": "5e115e46c1d7c1bc09c4dc1d4f4c309e564c63d1216b2db9c7081551a3162d9c"
+          }
+        },
+        {
+          "view": "NegativeYRearInboardLower",
+          "private_image": {
+            "path": "work/964-contact-correspondence-20261106/rear-bumper-context-001/media/NegativeYRearInboardLower.png",
+            "sha256": "82995677d14b8cd5cf418df345cd6779c10cfb2dcd488362543f56c1d6a9136a"
+          }
+        }
+      ],
+      "acquisition_scope": "Whole original triangles with at least one vertex X<=-1500, full acquired Y/Z; original points/oriented faces unchanged, opaque.",
+      "new_acquisition": false,
+      "nominal_source_targeting": false,
+      "new_metric_contact_seed": null
+    }
+  ],
+  "observed_alternative_witnesses": [
+    {
+      "id": "rear-pivot-context-001",
+      "private_witness_receipt": {
+        "path": "work/964-contact-correspondence-20261106/rear-pivot-context-001/alternative-witnesses.json",
+        "sha256": "287b0a2e6151a0089ff316a6e580fa503fb8fe1c063a18728b2464b997d74e20"
+      },
+      "executed_witness_program": {
+        "path": "work/964-contact-correspondence-20261106/rear-pivot-context-001/bind_alternatives.py",
+        "sha256": "8a38e0169435f81e3ff263de585a46d5452f8600c611d6c92cdd9b60ec57918e"
+      },
+      "records": [
+        {
+          "view": "NegativeYForwardUnderbody",
+          "observed_alternative": "exposed hex-like end on short cylinder; fastener/bush construction unresolved",
+          "first_visible_original_face_id": 1907599,
+          "original_vertex_ids": [
+            999465,
+            998251,
+            998252
+          ],
+          "is_head_centre_or_source_contact": false
+        },
+        {
+          "view": "NegativeYForwardUnderbody",
+          "observed_alternative": "adjacent thin round member path; not a flat plate identity",
+          "first_visible_original_face_id": 2139449,
+          "original_vertex_ids": [
+            1123188,
+            1122081,
+            1122082
+          ],
+          "is_head_centre_or_source_contact": false
+        },
+        {
+          "view": "BilateralUnderbody",
+          "observed_alternative": "transverse round bar context; not a body contact",
+          "first_visible_original_face_id": 1901926,
+          "original_vertex_ids": [
+            996453,
+            995240,
+            996454
+          ],
+          "is_head_centre_or_source_contact": false
+        }
+      ],
+      "identity_scope": "Exact original surface witnesses for visible alternatives; not complete physical feature boundaries, metric centres, or exact PET part identities."
+    },
+    {
+      "id": "rear-bumper-context-001",
+      "private_witness_receipt": {
+        "path": "work/964-contact-correspondence-20261106/rear-bumper-context-001/alternative-witnesses.json",
+        "sha256": "5824143cc5abcf66dc76192321c8e0c64bede27874c658b0d284609d31c9fe58"
+      },
+      "executed_witness_program": {
+        "path": "work/964-contact-correspondence-20261106/rear-bumper-context-001/bind_alternatives.py",
+        "sha256": "c5e700a01a90db63c179003ca9ded5187f7bba72c4add72f79a64c4b50d50e5a"
+      },
+      "records": [
+        {
+          "view": "PositiveYRearOutboardLower",
+          "observed_alternative": "facet of exposed fastening-like end on upright bracket; not a centre or admitted body head",
+          "first_visible_original_face_id": 3355000,
+          "original_vertex_ids": [
+            1762057,
+            1760938,
+            1760939
+          ],
+          "is_head_centre_or_source_contact": false
+        },
+        {
+          "view": "PositiveYRearOutboardLower",
+          "observed_alternative": "upper round feature on/behind bracket; construction and companion role unresolved",
+          "first_visible_original_face_id": 3456510,
+          "original_vertex_ids": [
+            1816694,
+            1815738,
+            1816695
+          ],
+          "is_head_centre_or_source_contact": false
+        },
+        {
+          "view": "PositiveYRearOutboardLower",
+          "observed_alternative": "cylinder-like continuation behind bracket; fixed-body connection untraced",
+          "first_visible_original_face_id": 3370117,
+          "original_vertex_ids": [
+            1770059,
+            1768909,
+            1770060
+          ],
+          "is_head_centre_or_source_contact": false
+        }
+      ],
+      "identity_scope": "Exact original surface witnesses for visible alternatives; not complete physical feature boundaries, metric centres, or exact PET part identities."
+    }
+  ],
+  "independent_visibility_findings": {
+    "rear_pivots": "Cast arms/hubs and bush/bracket regions are acquired. The exposed-end1907599, thin-round-member2139449 and transverse-bar-context1901926 support a PET502 anti-roll/link-family alternative, unlike the broad flat PET501 plate7. Withdraw only that tentative CH12 interpretation, not the source point or every other candidate. Neither exact CH12 nor CH13 body bracket/bushing/head stack is qualified by these four views.",
+    "rear_bumper": "Positive-Y outboard acquires an upright bracket, fastening-like end, upper round feature and cylinder-like continuation. Their continuous absorber-tube/body-flange connection, correct companion pair and complete retained head/washer seating remain unauthenticated. Other views retain incomplete sheets/exhaust/trim context. No MiJ/CH/PET identity or metric head centre is assigned.",
+    "global_absence_or_unmeasurability_proven": false,
+    "independent_actual_image_count": 8,
+    "renderings_are_new_acquisition": false
+  },
+  "private_source_and_review_receipts": [
+    {
+      "path": "work/964-contact-correspondence-20261106/ch-source-features-001/assessment.json",
+      "sha256": "d40548958781a0372e0c11cab8ab8ad6a569203dc06512d8836191d62c4c1189"
+    },
+    {
+      "path": "work/964-contact-correspondence-20261106/ed-other-source-review-001/assessment.json",
+      "sha256": "0cdd893fd8220c1eeaa49e2d90d79d03b7fc2fae39fa0ef481bf2d95e524912d"
+    },
+    {
+      "path": "work/964-correspondence-20261106/source-definition-001/review.json",
+      "sha256": "017203b2c1100feb3db841dace24c0b7da4a6af071b17f96a30a996dddd01a5b"
+    },
+    {
+      "path": "work/964-correspondence-20261106/source-definition-001/rear-pivot-independent-review.json",
+      "sha256": "f4155c658557b68e8ce414dd4541bdc1ba1c4dd5c3a98e8cda17fa7d6c873d8a"
+    },
+    {
+      "path": "work/964-correspondence-20261106/source-definition-001/rear-pivot-independent-supplement.json",
+      "sha256": "244377ca9f94826566d8c3be5b8d0d7114e1b5de44febe518f1c0ddd489f0b76"
+    },
+    {
+      "path": "work/964-contact-correspondence-20261106/rear-pivot-independent-001/review.json",
+      "sha256": "edf01a87351b3e8601d936dba32c9c26959521f3e8d5696d841167794526d145"
+    },
+    {
+      "path": "work/964-contact-correspondence-20261106/rear-pivot-independent-001/alternative-addendum.json",
+      "sha256": "b31a32e5a8b6447cb17be31f0192b323c5927c17d2ba1dd306dfecc3ed0b28a5"
+    },
+    {
+      "path": "work/964-contact-correspondence-20261106/rear-bumper-scope-001/assessment.json",
+      "sha256": "4f4f8e94ff575b1c61e5f0963b643cb84370f77af57a88d52b170d95209cb1d5"
+    },
+    {
+      "path": "work/964-contact-correspondence-20261106/rear-bumper-context-001/visual-review.json",
+      "sha256": "b9833dc89874776d4d0f42526b128b590c7940e10a7727367096c8a71db298ec"
+    },
+    {
+      "path": "work/964-correspondence-20261106/source-definition-001/rear-bumper-independent-review.json",
+      "sha256": "fed3e5fca9be85cf63fc3ff8879813cb3539fefb9e925057bc5ee5aaf5b34f41"
+    }
+  ],
+  "admission": {
+    "qualified_new_contacts": 0,
+    "CH12_13_physical_identity": false,
+    "MiJ_physical_identity": false,
+    "metric_centres": null,
+    "bolt_axes": null,
+    "source_to_scan_transform": null,
+    "scan_calibration_uncertainty_mm": null,
+    "source_probe_uncertainty_mm": null,
+    "engineering_acceptance_limits_mm": null,
+    "registered_floor_or_body": false,
+    "geometry_modified": false,
+    "functional_CAD_or_mold": false,
+    "structural_qualification": false,
+    "material_card_added": false,
+    "native_Omniverse_validation": false,
+    "new_outreach_or_purchase": false
+  },
+  "publication_limits": "Public content is prose, source roles, original index IDs, aggregate counts and hashes only. No raw scans, source pages, proprietary images, full coordinates, pixel-ray dumps or solver bytes."
+}
