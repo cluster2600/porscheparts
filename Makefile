@@ -351,6 +351,7 @@ validate: check-filesystem
 	python3 scripts/validate_twin.py
 	python3 scripts/validate_specifications.py
 	python3 scripts/validate_twins.py
+	python3 scripts/validate_twins_index.py
 	python3 scripts/validate_components.py
 	python3 scripts/validate_engine_sim_contracts.py
 	python3 twins/reference-917-engine/source/validate_interfaces_f8.py --project-root .
