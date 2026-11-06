@@ -103,10 +103,11 @@ Three non-critical parts selected, records created at status `concept`:
 - [x] Select three non-critical parts
 - [x] Write a measurement plan per part
 - [x] Write the measurement-driven master geometry (part 1)
-- [ ] Resume only after an explicit decision to leave digital-only mode
+- [x] Resume only after an explicit decision to leave digital-only mode: [decision 0019](decisions/0019-accept-contributed-measurements.md) (2026-11-06) accepts contributed measurements; nothing is bought or measured in-house
 
-The existing plans are kept as a backlog; they no longer drive the active phase
-and no manufacturing file is generated.
+Since decision 0019 the existing plans are the public request to outside
+contributors; no manufacturing file is generated until contributed data is
+admitted.
 
 Execution plan and handover dossier:
 [docs/MEASUREMENT_CAMPAIGN.md](MEASUREMENT_CAMPAIGN.md).

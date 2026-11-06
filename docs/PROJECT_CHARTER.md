@@ -70,18 +70,27 @@ tested in-house.
 On 2026-09-14 the project owner made this explicit: no part will be bought and
 none measured, by the owner either. Every dimension starts from existing scans,
 workshop manuals, the PET parts catalogue and published data sheets; a dimension
-none of them gives is recorded as unsourced or candidate, never estimated and
-never assigned to someone to measure
+none of them gives is recorded as unsourced or candidate, never estimated
 ([decision 0013](decisions/0013-pilots-advance-on-documentary-evidence.md)).
+
+On 2026-11-06 the owner amended this
+([decision 0019](decisions/0019-accept-contributed-measurements.md)). The
+project still buys and measures nothing itself, but it may **request and accept
+measurements, photos, scans and fit reports from outside contributors**. A
+contribution is admitted only when it arrives through the
+[capture protocol](CAPTURE_PROTOCOL.md) with its instrument and uncertainty,
+carries an explicit licence grant, keeps personal data and vehicle identifiers
+out of Git, and passes a review independent of its contributor.
 
 This is not a gap to fill; it is the working frame. It has three consequences,
 which act as rules:
 
-1. **A record produced here caps at status `concept`.**
-   `dimensionally_reviewed` requires measurements and `prototype_fitted` a fit:
-   neither is reachable without an outside contributor.
+1. **A record produced here alone caps at status `concept`.**
+   `dimensionally_reviewed` requires admitted contributed measurements, and
+   `prototype_fitted` a contributor's fit report naming its specimen.
 2. **The exit criteria of phases 2 and 3 depend on a third party.** They are not
-   abandoned; they are conditional. The repository prepares everything that can
+   abandoned; they are conditional, and since decision 0019 the repository may
+   ask for them. The repository prepares everything that can
    be prepared — measurement plans, record formats, capture and validation
    tools — so that a contribution is usable as soon as it arrives.
 3. **The capture tools exist to validate what others send in.**
@@ -105,7 +114,7 @@ flowchart LR
     end
     subgraph outScope["Outside the working frame"]
         O1["Weighing, measuring, printing,<br/>fitting or testing in-house"]:::stop
-        O2["A record produced here<br/>above status concept"]:::stop
+        O2["A record above concept<br/>without admitted contributed data"]:::stop
         O3["released read as road type approval<br/>or a universal guarantee"]:::stop
         O4["Every part printed in titanium"]:::stop
     end
