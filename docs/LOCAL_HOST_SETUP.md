@@ -27,6 +27,7 @@ make check-setup   # installs the CI dependency versions into .venv-check/ (need
 make check
 ```
 
+- Setup also installs the same hash-pinned native geometry oracle as CI.
 - The system `python3` usually lacks NumPy. Use `.venv-check/bin/python` to run
   a check script or a single test module directly:
   `.venv-check/bin/python -m unittest discover -s tests -p 'test_<name>.py'`.
