@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "study_id": "964-CENTRAL-CELL-SCULPTED-F2",
+  "classification": "native_boundary_surface_checks_not_material_or_structural_qualification",
+  "binding": {
+    "canonical_model_sha256": "06623d1e5a15d43933db39d4809ffde3bc9c0505f5ed1966ae08970a828be555",
+    "parameters_sha256": "dd783c660380b921e7627cd157c8811c647fc39739c63e11d7918a81cfccd323",
+    "geometry_sampler_sha256": "2c7c73b7ec61b91b0b22a6cb5043d1d5c6ee5d45e657f48dd56bd12decb91f66",
+    "raw_native_STL_sha256": "7dbcf9924c2aa58507bbd25e1b701fb60fae88e15bd25ca2258c35a10ef72954",
+    "raw_VDB_sha256": "46db7321f1a5d14e0234e6623914d2cb11d1b8a2873acf961e4223d7a936a019",
+    "vertices_f32_sha256": "ca52ffab434c995707f76db1927e6534a5e5bc1e5f5309bb581a57003d122a59",
+    "triangles_i32_sha256": "8235ceb6d22453b8adfc503b5e15b2e5956b7ac8d9c25b957582c61feab35d39",
+    "indexed_export_report_sha256": "41823ce529b98075ac9a24c7da5573e2821f184906197df5aec569142bf7e0e3",
+    "native_producer_program_source_sha256": "436305800c7adc4ef092f2e8e30e75d8e515cbc485e989e01ce34efb7e4c4793",
+    "native_producer_program_binary_sha256": "4f132eeeecaf70152cec3026be38594a5c968a18c116004e9dda0a3ff58a57b8",
+    "indexed_export_program_source_sha256": "81799fa77b53f89d0a4c311159cacbda272df9244a3a7ccaf3aa9c1f037cd9d9",
+    "boundary_analysis_source_sha256": "9e25e6f20bd69de43cdf83f86b104d5f6a0ffdb0a1fa61cd7585b0aacf6cbbab",
+    "boundary_analysis_binary_sha256": "5b1c86c85aea420ac56f4dbb543290d925d6f9ef3f4fe12f57c96e53a9b8f9ab",
+    "boundary_analysis_runner_sha256": "e57146062cf91f12e71a3f90d8bd473aeb8b1ce4577f233360fcbe939f892dee",
+    "boundary_analysis_report_sha256": "b2bdc221539d51b2bf9166b0dc85d5c944b90d46798f5a3f4450b7d4ea95e604",
+    "boundary_analysis_execution_sha256": "997f01b61aa3a41089e908ec1c7b4de73cb074f5e6995ef73f3711f04d33ddfb",
+    "boundary_analysis_project_sha256": "b21bfaf62333b03e9d75b1c27ae3c0ad63eb2967bc755e2116dc1d8ed22a0cdc",
+    "runtime_native_sha256": "5c1cd3fc12766a85bc5c1441a95f065fb274338d1333c3ae2d3396b59d0e18e7",
+    "runtime_managed_sha256": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a"
+  },
+  "exact_native_arrays": {
+    "vertex_count": 16824432,
+    "triangle_count": 33648368,
+    "indexing": "Original native indices; no quantization, merging, simplification or revoxelization",
+    "reextracted_STL_byte_identical": true,
+    "original_arrays_and_VDB_hashes_unchanged": true
+  },
+  "independent_boundary_component_analysis": {
+    "index_graph_components": 171,
+    "largest_component_vertices": 12068642,
+    "signed_triangle_integral_signs": {
+      "positive": 1,
+      "negative": 170
+    },
+    "classification_counts": {
+      "enclosing_material_boundary_candidate": 1,
+      "enclosing_void_boundary_candidate": 84,
+      "unresolved_surface_component": 86
+    },
+    "method": "Native index union-find; double translated scalar triple products about component bounds centre with Kahan accumulation; representative existing faces plus/minus0.45mm sourceVDB occupancy",
+    "translation_origin": "Each index-component bounds centre; double scalar triple products with Kahan sums",
+    "floating_arithmetic_bound_scope": "Arithmetic estimate only; no geometric, metrology or closure uncertainty bound",
+    "unresolved_components": {
+      "count": 86,
+      "vertices_each": 8,
+      "triangles_each": 12,
+      "maximum_bounds_extent_mm": 0.464599609375,
+      "source_voxel_mm": 1.5,
+      "all_integral_signs": "negative",
+      "probe_result": "All recorded plus/minus0.45mm samples are void; side separation unresolved",
+      "not_relabeled_as_cavities_or_material_islands": true
+    },
+    "zero_or_tiny_cross_norm_triangles": 40,
+    "tiny_cross_norm_threshold_mm2": 1e-08,
+    "classification_scope": "Candidates inferred from signed triangle integrals and finite local occupancy; not171 material bodies or a proof of material connectedness"
+  },
+  "separate_combinatorial_edge_check": {
+    "method": "vtkFeatureEdges on exact native indexed vertices/triangles",
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "evidence_sha256": "49cc43e3e672e50d14ed4f0e7622ce877331c5359d379c09dafb5c8d11f33a32",
+    "stdout_sha256": "2408f62bebf52c4e5eed5bd4ffe85b3268710f894e7b3bda69a76e644bfbe876",
+    "code_sha256": "961a890a73127d33bcd766ba553d08cf3018129a871b8da67aad513ae0bc06a0",
+    "enclosing_execution_status": "timeout_resource_condition_not_source_invalidity",
+    "enclosing_execution_timeout_seconds": 360,
+    "display_output_promoted": false,
+    "scope": "Edge-incidence check only; no vertex-link manifoldness, self-intersection, material-connectivity or load-path proof"
+  },
+  "preserved_finite_occupancy_results": {
+    "total_indexed_observations": 111,
+    "canonical_material": {
+      "passed": 31,
+      "tested": 32,
+      "failed": 1
+    },
+    "corridor_void": {
+      "passed": 15,
+      "tested": 15
+    },
+    "neighbor_observations_without_pass_criterion": 64,
+    "failed_original_observations": [
+      {
+        "label": "sill_left_start_closure_material",
+        "probe_class": "canonical_wall_material",
+        "point_mm": [
+          0,
+          399.4,
+          316.10666
+        ],
+        "expected_inside": true,
+        "observed_inside": false
+      }
+    ],
+    "nearby_observations_do_not_replace_failed_probe": true,
+    "continuous_clearance_verified": false
+  },
+  "runtime": {
+    "selected_build_sdk": "9.0.319",
+    "global_json_sha256": "a2fc42903f6116e827b05c71b1944329e1c9d40bbbce5a9c9b611934a5f64789",
+    "target_framework": "net9.0",
+    "elapsed_seconds": 5.601770084002055,
+    "timeout_seconds": 240,
+    "first_build_sdk_selection_corrected_from": "10.0.402",
+    "all171_component_records_identical_on_SDK9_replay": true,
+    "SDK_replay_comparison_sha256": "ca95caecd3cdeb8593e41eb1cc74edcaf6f86df76003d94e13d5d6a27ffd2570",
+    "dependencies_installed": false
+  },
+  "limits": [
+    "Boundary index-components are not material components",
+    "The171 signed integrals are not admitted as material volume or mass",
+    "Finite side probes do not establish all-surface orientation, wall convergence or continuous passage",
+    "Zero boundary/nonmanifold edges do not prove full manifoldness or structural coupling",
+    "The failed canonical wall probe remains a raw failure",
+    "No FE stiffness, strength, fatigue, crash, fitment or manufacturing qualification"
+  ],
+  "material_connectivity_verified": false,
+  "mass_verified": false,
+  "structural_load_paths_verified": false,
+  "physical_validation": false,
+  "manufacturing_authorized": false,
+  "raw_fields_private": true
+}

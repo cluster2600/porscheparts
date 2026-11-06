@@ -1,0 +1,170 @@
+{
+  "schema_version": 2,
+  "study_id": "964-CENTRAL-CELL-SCULPTED-F2",
+  "classification": "native_boundary_surface_diagnostics_not_material_or_structural_qualification",
+  "record_status": "current_015_016_native_triangle_quality_rejected",
+  "binding": {
+    "canonical_model_sha256": "1d323e7441c31ef8e5e5b26b895a2a0629bbf97402a274ccd416bc82a95444a2",
+    "parameters_sha256": "8da2540a3ee9099ab747dfe042ebb84c67bc994808f0bc0e35fb1a084af754d4",
+    "geometry_sampler_sha256": "5b288a82364639f1451d1315a117e656748029e532a4940bc0146b5f104621a9",
+    "raw_native_STL_sha256": "179325eca8dc518c7abba927c5351e31743efaf5f596fdd6e52fb64f34f81392",
+    "raw_VDB_sha256": "e03553cddea585eae33563e2779a7bfb00212128d7dd3286bda6d9868fc50b0d",
+    "vertices_f32_sha256": "37abe879270b8e8cfd396be4a7761e64bfe5af1ed16ead9a1ed60aaf86bfdd61",
+    "triangles_i32_sha256": "45766ea111ae65fe09ef30972cda21bacb38602b81037eb3be6f156b0b104b4b",
+    "native_producer_report_sha256": "c4c6b9188ad02b4fad51fbfc72ddbebb9ced44ef43bf860126df33f2c9deac66",
+    "indexed_export_report_sha256": "b532eec0b8080030656b7b0392a2f94d3aa10e36570ebc95126d4ca2409cd737",
+    "native_producer_program_source_sha256": "85afb078a0ab61e881e1de4e3fcb95ce6fb47019a1fb81c5327e917684ba2e34",
+    "native_producer_program_binary_sha256": "049eebb59e568a97c3d8b1133170a1b0f9990223e503c58df0c7a1724b253407",
+    "indexed_export_program_source_sha256": "876cbf7623587806dd5e86a2d8afc23f0c84e386b2372bd294909e4628b66eff",
+    "indexed_export_program_binary_sha256": "a4e353460539356e00dc0080892bbed0d2d08d4f34ffc20729cb102f70afd6fa",
+    "boundary_analysis_source_sha256": "9e25e6f20bd69de43cdf83f86b104d5f6a0ffdb0a1fa61cd7585b0aacf6cbbab",
+    "boundary_analysis_binary_sha256": "5b1c86c85aea420ac56f4dbb543290d925d6f9ef3f4fe12f57c96e53a9b8f9ab",
+    "boundary_analysis_runner_sha256": "2ce7691476c99aa6fb51c08ae408f447248970f0b61e8b64ef534e53ec392ea0",
+    "boundary_analysis_report_sha256": "bd1f17c83d3103a1964abc06b63b85801bb525d866e3524ae99a7fdbffbbb497",
+    "boundary_analysis_execution_sha256": "5db31d144ab34feb62d0452a460ca743c788f219273f87be91bd01df0c58bf8f",
+    "runtime_native_sha256": "5c1cd3fc12766a85bc5c1441a95f065fb274338d1333c3ae2d3396b59d0e18e7",
+    "runtime_managed_sha256": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a",
+    "native_quality_rejection_sha256": "542cc6de7499549a188ac3e6e716d9ee2b0f817cb5091bfb6cee5b3bec92d8c1"
+  },
+  "exact_native_arrays": {
+    "vertex_count": 15991380,
+    "triangle_count": 31982356,
+    "indexing": "Original native indices and float32 points; no quantization, geometric deduplication, simplification, repair or revoxelization",
+    "reextracted_STL_byte_identical": true,
+    "original_arrays_and_VDB_hashes_unchanged": true
+  },
+  "mandatory_native_quality_rejection": {
+    "receipt": "native-quality-rejection.json",
+    "receipt_sha256": "542cc6de7499549a188ac3e6e716d9ee2b0f817cb5091bfb6cee5b3bec92d8c1",
+    "zero_area_triangles": 36,
+    "distinct_indices_with_coincident_coordinate_pair": 36,
+    "geometry_admitted": false,
+    "quality_admitted": false,
+    "strict_USD_export_status": "failed_before_stage_authoring",
+    "raw_software_transport_cannot_override_rejection": true
+  },
+  "independent_boundary_component_analysis": {
+    "index_graph_components": 155,
+    "largest_component_vertices": 11453082,
+    "signed_triangle_integral_signs": {
+      "positive": 1,
+      "negative": 154
+    },
+    "classification_counts": {
+      "enclosing_material_boundary_candidate": 1,
+      "enclosing_void_boundary_candidate": 70,
+      "unresolved_surface_component": 84
+    },
+    "method": "Native index union-find; double translated scalar triple products about component bounds centre with Kahan accumulation; representative existing faces plus/minus0.45mm sourceVDB occupancy",
+    "translation_origin": "Each index-component bounds centre; double scalar triple products with Kahan sums",
+    "floating_arithmetic_bound_scope": "Arithmetic estimate only; no geometric, metrology or closure uncertainty bound",
+    "unresolved_components": {
+      "count": 84,
+      "vertices_per_component": 8,
+      "triangles_per_component": 12,
+      "maximum_axis_aligned_extent_mm": 0.471435546875,
+      "source_voxel_mm": 1.5,
+      "scope": "Local occupancy does not separate these small boundary surfaces. They are not relabeled as cavities or material islands."
+    },
+    "zero_or_tiny_cross_norm_triangles": 38,
+    "tiny_cross_norm_threshold_mm2": 1e-08,
+    "classification_scope": "The 155 boundary index-components are not 155 material bodies. Candidate boundary classification is conditional on coherent closure; known zero-area defects remain rejected."
+  },
+  "separate_combinatorial_edge_check": {
+    "status": "executed_on_current_native_source",
+    "report_sha256": "62f12545e097001ded1cbe3d9ebe29b6a2fcd6ef321f28856cf032e5e6f25742",
+    "code_sha256": "e33b8dc65574f0e035de777e6bd661d8e44f3d64b5a6722cb2c93c6932fe3f95",
+    "native_STL_sha256": "179325eca8dc518c7abba927c5351e31743efaf5f596fdd6e52fb64f34f81392",
+    "native_VDB_sha256": "e03553cddea585eae33563e2779a7bfb00212128d7dd3286bda6d9868fc50b0d",
+    "exact_transport_sha256": "4c5892749917b39524a5010b89f13535eff9bb37cf38a135ebce030588e464ef",
+    "exact_transport_receipt_sha256": "26440a4ecd1a73c6a1f322f41ae566070163690a070cc887c35e68b771827225",
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "old_zero_counts_reused": false,
+    "scope": "Full current native surface edge-incidence observations only. They do not establish coordinate embedding, vertex-link manifoldness, material connectivity or structural coupling;36zero-area faces remain rejected."
+  },
+  "preserved_finite_occupancy_results": {
+    "total_indexed_observations": 111,
+    "canonical_material": {
+      "passed": 30,
+      "tested": 32,
+      "failed": 2
+    },
+    "corridor_void": {
+      "passed": 15,
+      "tested": 15
+    },
+    "neighbor_observations_without_pass_criterion": 64,
+    "failed_original_observations": [
+      {
+        "label": "sill_right_start_closure_material",
+        "probe_class": "canonical_wall_material",
+        "point_mm": [
+          0,
+          -420.13333,
+          39.853333
+        ],
+        "expected_inside": true,
+        "observed_inside": false
+      },
+      {
+        "label": "sill_left_end_closure_material",
+        "probe_class": "canonical_wall_material",
+        "point_mm": [
+          2100,
+          420.13333,
+          298.30667
+        ],
+        "expected_inside": true,
+        "observed_inside": false
+      }
+    ],
+    "nearby_observations_do_not_replace_failed_probes": true,
+    "continuous_clearance_verified": false
+  },
+  "runtime": {
+    "selected_build_sdk": "9.0.319",
+    "global_json_sha256": "a2fc42903f6116e827b05c71b1944329e1c9d40bbbce5a9c9b611934a5f64789",
+    "target_framework": "net9.0",
+    "elapsed_seconds": 5.073927499935962,
+    "timeout_seconds": 240,
+    "unchanged_program_and_SDK9_binary_reused": true,
+    "dependencies_installed": false
+  },
+  "limits": [
+    "Boundary index-components are not material components",
+    "Signed integrals are not admitted as material volume or mass",
+    "Finite side probes do not establish all-surface orientation, wall convergence or continuous passage",
+    "Zero edge-incidence defects, if independently observed, would not prove full manifoldness or structural coupling",
+    "All 36 exactly zero-area native triangles and both failed canonical material probes remain rejected raw observations",
+    "No full-cell FE stiffness, strength, fatigue, crash, fitment or manufacturing qualification"
+  ],
+  "geometry_admitted": false,
+  "material_connectivity_verified": false,
+  "mass_verified": false,
+  "structural_load_paths_verified": false,
+  "physical_validation": false,
+  "manufacturing_authorized": false,
+  "raw_fields_private": true,
+  "historical_reviews": [
+    {
+      "path": "reviews/historical-006/native-surface-checks.json",
+      "sha256": "c6acc1cf7430ed1eeda7ec6b337171b33b765b97708a2fcea6641cd691edcb08"
+    },
+    {
+      "path": "reviews/package-013/native-surface-checks.json",
+      "sha256": "8264ab956b8ba837adca59a35d2f982cbcfb9abcf92d994d206c6347577c9355"
+    }
+  ],
+  "sanitizer_source_sha256": "054b1db076d6a8780d22eddf80f6090be16089af983947dfe2b9e0e49ce4e529",
+  "original_STL_normal_diagnostic": {
+    "independent_report_sha256": "9a017b19a36a1100753bf89c73a56a0ec05b9941e933f7828cc29eaf9048f968",
+    "diagnostic_source_sha256": "b4902f1626ff1f3d6ba11a8488f23946c575c3b03af590ef621f21b0f21e7c49",
+    "native_STL_sha256": "179325eca8dc518c7abba927c5351e31743efaf5f596fdd6e52fb64f34f81392",
+    "complete_STL_normal_scan": true,
+    "nonfinite_stored_facet_normals": 21,
+    "all36_indexed_coordinates_equal_original_STL": true,
+    "cause_limit": "Coincidence is already in the native indexed API and original native float32 STL. Pre-round native coordinates are not exposed, so this does not distinguish exact isosurface/lattice ties from loss on conversion to float32. No USD/VTP conversion defect or source-kernel patch is proven.",
+    "USD_attribute_scope": "Any lossless diagnostic USD transport concerns original indexed points and triangle indices only. Original STL facet normals are deliberately not authored or transported; no normals are fabricated."
+  }
+}
