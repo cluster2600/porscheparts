@@ -25,7 +25,11 @@ The PET [assembly skeleton](../../catalog/reference/993-assembly-skeleton.json) 
 
 ## Variant gate
 
-The target is **M564, left-hand drive**, pending a redacted vehicle option label and direct inspection. The passenger side must show no deployment flap or module. The trim part number remains **unresolved**: the [catalogue record](../../catalog/parts/993-int-dashboard-trim-0001.json) includes `993 552 055 00`, while its PET note attributes that number to an illustration for cars *with* a passenger airbag. Do not assign that number to M564 from this inventory. M561, M562, and Carrera RS variants need separate decisions and assemblies.
+The target is **M564, left-hand drive**, pending a redacted vehicle option label and direct inspection. The passenger side must show no deployment flap or module. The trim part number is **unmapped**. The [PET identity audit](../../parts/993-int-dashboard-trim-0001/evidence/pet-identity.md) (#566) found that Kat 017 has no dashboard plate for a non-RS M564 car. `993 552 055 00` appears on the passenger-airbag plate 809-00, and on the Carrera RS no-airbag plate 809-02 under M002 (CTR-0019). Do not assign that number to M564 from this inventory. M561, M562, and Carrera RS variants need separate decisions and assemblies. No specimen is admitted until it passes the audit's E1–E5 same-specimen protocol.
+
+## Interface contracts
+
+[interface-contracts.json](interface-contracts.json) (#567) holds the independent measurement contract for each of the 13 interfaces, covering all four load paths. See [INTERFACE_CONTRACTS.md](INTERFACE_CONTRACTS.md) for a readable summary. Every value is `null`.
 
 ## Required interface and load-path evidence
 
