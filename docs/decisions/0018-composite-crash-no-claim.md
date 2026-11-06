@@ -12,7 +12,7 @@ today.
 
 The 964/993 carbon monocoque programme has stiffness and buckling models
 (CalculiX shells, field-lattice studies, renders). The computation-chain note
-[MONOCOQUE_964_993_CHAINE_CALCUL.md](../MONOCOQUE_964_993_CHAINE_CALCUL.md)
+[MONOCOQUE_964_993_COMPUTATION_CHAIN.md](../MONOCOQUE_964_993_COMPUTATION_CHAIN.md)
 leaves the crash question open. It names OpenRadioss as the explicit solver for
 designing energy-absorption zones, and it states that composite crash
 behaviour (progressive crushing, delamination, fibre failure) cannot be predicted

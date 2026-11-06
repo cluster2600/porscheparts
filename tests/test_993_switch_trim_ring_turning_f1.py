@@ -23,7 +23,7 @@ EVIDENCE = ROOT / "twins/993-switch-trim-ring-f1/evidence/turning-f1"
 CARD = EVIDENCE / "993-int-switch-trim-ring-f1-0001-turning-route-card.json"
 RFQ = EVIDENCE / "993-int-switch-trim-ring-f1-0001-turning-rfq.md"
 PROCESS = ROOT / "catalog/manufacturing/processes/cnc-turning-6063-t6-bright-anodised.json"
-DECISION = ROOT / "docs/decisions/0005-alsi10mg-nest-pas-un-choix.md"
+DECISION = ROOT / "docs/decisions/0005-alsi10mg-is-not-a-choice.md"
 
 STILL_OPEN_QUESTIONS = {
     "thin_wall_workholding_reviewed",
