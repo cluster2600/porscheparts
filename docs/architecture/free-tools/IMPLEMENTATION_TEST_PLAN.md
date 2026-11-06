@@ -13,11 +13,16 @@
 | FT-OPTIMIZATION: independently replayed optimum | A-OPT | P6 | External beam worker, closed-form comparison and independent replay | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
 | FT-GATES: no automatic carrier promotion | A-GATE, B-REVIEW | P0–P6 | Missing interfaces and convergence keep optimisation disabled | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
 
-The [source manifest](../../../benchmarks/free-tools/baseline.json) freezes
-the catalogue record, independent assembly contract, R2 study parameters,
-auxiliary surface and convergence report at the recorded source revision.
-Its public inputs are already published study data. Existing private archives
-are not migrated. A different baseline requires a separate reviewed change.
+The [historical source manifest](../../../benchmarks/free-tools/baseline.json)
+freezes the original catalogue record, independent assembly contract, R2 study
+parameters, auxiliary surface and convergence report. The separately reviewed
+[current manifest](../../../benchmarks/free-tools/baseline-20261106.json) binds
+the 6 November catalogue amendment withdrawing the mass ceiling; its other four
+input identities and all admission conditions are unchanged. Current commands
+use this manifest. Historical manifests, receipts and private archives remain
+unchanged, and explicit replay of the original registered inputs is retained.
+Public inputs are already published study data; a further baseline change
+requires its own reviewed manifest.
 
 ## Environment and commands
 
@@ -33,7 +38,7 @@ Set a **new**, private artifact root outside every Git checkout:
 ```sh
 FREE_TOOLS_STORE="$HOME/Developer/PorschePartsArtifacts/free-tools-new"
 work/free-tools-env/bin/python benchmarks/free-tools/storage.py archive \
-  --manifest benchmarks/free-tools/baseline.json --root "$PWD" \
+  --manifest benchmarks/free-tools/baseline-20261106.json --root "$PWD" \
   --workspace "$FREE_TOOLS_STORE/source" --store "$FREE_TOOLS_STORE/store-mac"
 work/free-tools-env/bin/python benchmarks/free-tools/storage.py restore \
   --metadata "$FREE_TOOLS_STORE/source" \

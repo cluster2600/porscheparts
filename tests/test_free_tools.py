@@ -98,14 +98,24 @@ class Boundaries(unittest.TestCase):
             common.sha256(self.root / "missing")
 
     def test_carrier_registered_inputs_keep_optimization_blocked(self):
-        manifest = common.load(TOOLS / "baseline.json")
+        manifest = common.load(common.CARRIER_BASELINE)
         # A full checkout is required for this integration check, not invented inputs.
         if any(not (pilot.ROOT / item["path"]).exists() for item in manifest["inputs"]):
             self.skipTest("registered carrier artifacts unavailable in sparse checkout; "
                           "they are tracked files: run a full git checkout "
                           "(inputs listed in benchmarks/free-tools/baseline.json)")
         common.verify_inputs(manifest, pilot.ROOT)
-        result = pilot.replay(TOOLS / "baseline.json", pilot.ROOT, self.root / "replay")
+        historical = common.load(TOOLS / "baseline.json")
+        self.assertEqual(len(historical["inputs"]), len(manifest["inputs"]))
+        self.assertEqual(
+            common.sha256(TOOLS / "baseline.json"),
+            "6a82f90e74d38ecfc6ce76a2a7f52ec4474e84a67aa325d5a5a371cedb8c3c4a",
+        )
+        self.assertEqual(
+            [new["path"] for old, new in zip(historical["inputs"], manifest["inputs"]) if old != new],
+            [common.CARRIER_RECORD],
+        )
+        result = pilot.replay(common.CARRIER_BASELINE, pilot.ROOT, self.root / "replay")
         self.assertEqual(result["status"], "blocked_engineering")
         self.assertIs(result["checks"]["optimization_enabled"], False)
         self.assertIn(
@@ -120,11 +130,23 @@ class Boundaries(unittest.TestCase):
         )
 
     def test_caller_cannot_authorize_modified_interface(self):
-        manifest = common.load(TOOLS / "baseline.json")
-        manifest["inputs"] = []
+        manifest = common.load(common.CARRIER_BASELINE)
+        if any(not (pilot.ROOT / item["path"]).exists() for item in manifest["inputs"]):
+            self.skipTest("registered carrier artifacts unavailable in sparse checkout")
+        for item in manifest["inputs"]:
+            target = self.root / item["path"]
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(pilot.ROOT / item["path"], target)
+        target = self.root / pilot.INTERFACES
+        contract = common.load(target)
+        contract["status"] = "measured_interfaces_verified"
+        target.write_text(json.dumps(contract))
+        next(item for item in manifest["inputs"] if item["path"] == pilot.INTERFACES)["sha256"] = common.sha256(target)
+        common.verify_inputs(manifest, self.root)
         common.write(self.root / "manifest.json", manifest)
-        with self.assertRaises(ValueError):
+        with self.assertRaisesRegex(ValueError, "baseline differs from registered hashes"):
             pilot.replay(self.root / "manifest.json", self.root, self.root / "result")
+        self.assertFalse((self.root / "result").exists())
 
     def test_documentary_cases_and_index_staleness(self):
         database = knowledge.build(TOOLS / "corpus.json", self.root / "index")

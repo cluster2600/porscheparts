@@ -1,0 +1,53 @@
+{
+  "status": "passed_actual_upstream_boundary_and_material_unit_controls",
+  "source_commit": "7dafdd8593711cf8ac6ccb18a1f475744610ea3d",
+  "kernel_sha256": "cf1889dfb41e11591e4245a9199262e66ae972e3a75e2c00baddd30f32851176",
+  "script_sha256": "a046f654328364a5f7c0f53af980fd191e302bce1b7abcb5f109f36ef88ae51a",
+  "versions": {
+    "jax": "0.4.16",
+    "jaxlib": "0.4.16",
+    "numpy": "1.24.1",
+    "scipy": "1.9.0",
+    "ml-dtypes": "0.2.0",
+    "pyevtk": "1.6.0",
+    "dill": "0.3.7",
+    "opt-einsum": "3.4.0"
+  },
+  "backend": "cpu",
+  "boundary_controls": [
+    {
+      "kind": "convection_only",
+      "area_mm2": 1.0,
+      "actual_W": -0.001473,
+      "expected_W": -0.001473
+    },
+    {
+      "kind": "radiation_only",
+      "area_mm2": 1.0,
+      "actual_W": -0.0005953499999999999,
+      "expected_W": -0.0005953499999999999
+    },
+    {
+      "kind": "convection_only",
+      "area_mm2": 6.0,
+      "actual_W": -0.008837999999999999,
+      "expected_W": -0.008837999999999999
+    },
+    {
+      "kind": "radiation_only",
+      "area_mm2": 6.0,
+      "actual_W": -0.003572099999999999,
+      "expected_W": -0.0035720999999999995
+    }
+  ],
+  "material_control": {
+    "synthetic_constant_cp_J_kg_K": 500.0,
+    "synthetic_constant_k_W_m_K": 10.0,
+    "density_kg_mm3": 4.42e-06,
+    "actual_k_W_mm_K": 0.01,
+    "actual_rhocp_J_mm3_K": 0.00221
+  },
+  "carrier_thermal_laws_qualified": false,
+  "multilevel_scan_executed": false,
+  "cuda_executed": false
+}
