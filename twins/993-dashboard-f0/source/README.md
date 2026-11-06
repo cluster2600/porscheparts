@@ -8,7 +8,23 @@ Run from a native Linux checkout of the repository with the local PicoGK runtime
 cd /home/maxime/porscheparts
 source /home/maxime/picogk/env.sh
 dotnet build twins/993-dashboard-f0/source/DashboardVisualScene.csproj -c Release -p:PicoGKAssembly=/home/maxime/picogk/smoke/bin/PicoGK.dll -v:q
-flock /tmp/picogk-catalog.lock /home/maxime/picogk/run-capped.sh -m 8G dotnet twins/993-dashboard-f0/source/bin/Release/net9.0/DashboardVisualScene.dll twins/993-dashboard-f0/source/scene.json work/993-dashboard-full-f0-local-01
+python3 - <<'PY'
+from runpy import run_path
+import subprocess
+
+# Share the catalogue's exclusive-create lock and release it after the run.
+catalogue = run_path('parts/picogk-catalog/tools/run_part.py')
+catalogue['acquire']()
+try:
+    subprocess.run([
+        '/home/maxime/picogk/run-capped.sh', '-m', '8G', 'dotnet',
+        'twins/993-dashboard-f0/source/bin/Release/net9.0/DashboardVisualScene.dll',
+        'twins/993-dashboard-f0/source/scene.json',
+        'work/993-dashboard-full-f0-local-01',
+    ], check=True)
+finally:
+    catalogue['LOCK'].unlink(missing_ok=True)
+PY
 python3 twins/993-dashboard-f0/source/render_scene.py --report work/993-dashboard-full-f0-local-01/scene-report.json
 ```
 
