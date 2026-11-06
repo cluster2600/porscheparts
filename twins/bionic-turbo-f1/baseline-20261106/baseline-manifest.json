@@ -1,0 +1,348 @@
+{
+  "schema": "bionic-turbo-baseline-manifest/v1",
+  "baseline": "bionic-turbo-f1-baseline-20261106",
+  "version": 1,
+  "created": "2026-11-06",
+  "issue": "https://github.com/cluster2600/porscheparts/issues/394",
+  "roadmap": "https://github.com/cluster2600/porscheparts/issues/393",
+  "scope": "Bionic turbo of twins/bionic-turbo-f1 only. Read-only inventory: no turbo case, mesher, solver, container or paid compute was run to build this baseline.",
+  "files": {
+    "runtime_matrix": "runtime-matrix.json",
+    "gate_ledger": "gate-ledger.json",
+    "evidence_inventory": "evidence-inventory.json",
+    "host_observations": "host-observations-20261106.json",
+    "validator": "baseline.py"
+  },
+  "git": {
+    "issue_snapshot_commit": "fcfdf5d199648a43edd7c72c20ff0d2d514a9253",
+    "baseline_commit": "483c62bbe12d7542da1c6ce8c3367207e1131101",
+    "drift_since_snapshot": {
+      "claim": "Between the issue snapshot and the baseline commit only prose changed (British spelling); twins/bionic-turbo-f1/evidence is unchanged.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+          "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+        }
+      ]
+    }
+  },
+  "pull_requests": {
+    "pr254": {
+      "merge_commit": "050b28b932aee9eaafe4b07e43fad17a6f6ee157",
+      "merged_at": "2026-10-13T20:05:10Z",
+      "package": "airflow-native-face-tets-audit-20261013",
+      "claim": "checkFaceTets native expressions bounded on the 153 inherited closed boxes; 141608 tetrahedral records without numerical bounds and 9392 envelope indecisions are retained; no native admission.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-native-face-tets-audit-20261013/README.md",
+          "sha256": "382e064b2e8b8bed896066629506bc10936210e830d535c79a12ca86c63f0cf2"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-native-face-tets-audit-20261013/validation.md",
+          "sha256": "376520750d49ee8a41c0f62884ef911b5def7e2b0c8152e0158ffa41d64d837e"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-native-face-tets-audit-20261013/archive-receipt.json",
+          "sha256": "1aba710a22e2cc6ce1b6e0b276d5717dbe23ef8d35c1fa99493134baa2b7daa2"
+        }
+      ]
+    },
+    "pr256": {
+      "merge_commit": "1e471b5f8b9cfa24ff3647c036ea261b7ed04a20",
+      "merged_at": "2026-10-14T15:12:24Z",
+      "packages": [
+        "airflow-internal-contact-obligations-20261013",
+        "airflow-internal-contact-obligations-20261014"
+      ],
+      "claim": "Internal contacts of every dimension classified in the PR241 representation only: 82560 cell pairs with a common subcomplex out of 18871296; no native admission, CFD, flow, power or calibration.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-internal-contact-obligations-20261014/README.md",
+          "sha256": "28615621d84854997de682310b274439962a9d13212747ce0e4785428ba5e383"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-internal-contact-obligations-20261014/validation.md",
+          "sha256": "4d4cdd7b69abccdaee92b5a1c45d3f1f773d6ff1582c41ea683c408bd84906f5"
+        }
+      ]
+    },
+    "later_turbo_pull_requests": {
+      "claim": "No open pull request touches twins/bionic-turbo-f1; the only later turbo commit is the British spelling pass (#495) on three READMEs.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+          "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+        }
+      ]
+    }
+  },
+  "current_reference_package": {
+    "package": "airflow-internal-contact-obligations-20261014",
+    "release": "bionic-turbo-internal-contact-obligations-2026-10-14",
+    "archive_sha256": "b56403656de66eb7f73bf11f379d95144555be8e35f372bde41e78d50a540d32",
+    "manifest_sha256": "f241ecbe7a41158fbe9444e843b9fae52bf44f287620b269ac8eda95de9b550a",
+    "anchor_commit": "050b28b932aee9eaafe4b07e43fad17a6f6ee157",
+    "claim": "English package superseding the French 2026-10-13 package for current reference; four programs byte-identical, re-run on the 19 pinned parent archives (520 payloads), same counts.",
+    "receipts": [
+      {
+        "path": "twins/bionic-turbo-f1/evidence/airflow-internal-contact-obligations-20261014/archive-receipt.json",
+        "sha256": "46207332821ec3ccb8f4011658a8136662f93f5e94041c906c01e1aec4f481b5"
+      },
+      {
+        "path": "twins/bionic-turbo-f1/evidence/airflow-internal-contact-obligations-20261014/remote-verification.json",
+        "sha256": "263c9318d58cf142d88fbccd1aeaf2a30f163370da6cd0986a161d63fa6ebebf"
+      },
+      {
+        "path": "twins/bionic-turbo-f1/evidence/airflow-internal-contact-obligations-20261014/next-scope.md",
+        "sha256": "8fcedd059dab6964daaed2578389e328cc18dcfdf091a118c6de2290564fa285"
+      }
+    ]
+  },
+  "superseded_packages": [
+    {
+      "package": "airflow-internal-contact-obligations-20261013",
+      "release": "bionic-turbo-internal-contact-obligations-2026-10-13",
+      "claim": "French historical record, unchanged; superseded for current reference only.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-internal-contact-obligations-20261013/archive-receipt.json",
+          "sha256": "d3b9d5065ddd372315950a9cde80d921b4a946c89480f80ff0f1f236fa973590"
+        }
+      ]
+    }
+  ],
+  "immutable_evidence": {
+    "claim": "All tracked files under twins/bionic-turbo-f1/evidence are frozen by the inventory aggregate digest; 63 packages carry archive receipts whose file-manifest digests match live release assets.",
+    "receipts": [
+      {
+        "path": "twins/bionic-turbo-f1/baseline-20261106/evidence-inventory.json",
+        "sha256": "0fe39004f5528e63dd595cf270aab3638ff816a7d8391147b8b963ea07b45323"
+      }
+    ],
+    "rule": "Never edit evidence/**. A changed evidence file makes baseline.py check fail."
+  },
+  "unresolved": [
+    {
+      "claim": "153 closed boxes remain non-excluded on the u=q_m source restriction; 151 satisfy the 3840 variable determinants and two (leaves 1929 and 1930) keep 256 undecided determinants each.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-remaining-cell-bounds-20261013/README.md",
+          "sha256": "d504be33f070c205ec3bb0b02359ebe76c241d18822eaba7e786800543c28cda"
+        }
+      ]
+    },
+    {
+      "claim": "writePrecision 16 conversions, floating-point accumulations, configuration and binary remain open.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-internal-contact-obligations-20261014/next-scope.md",
+          "sha256": "8fcedd059dab6964daaed2578389e328cc18dcfdf091a118c6de2290564fa285"
+        }
+      ]
+    },
+    {
+      "claim": "Native quality, layers, global rest, convergence, stability, mesh and time independence, CFD and calibration remain distinct and open.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-native-admission-dossier-20261013/next-scope.md",
+          "sha256": "f532d513f0946015eca3c01883ab87ea9c077ff27d351b3ac97acdd3e5216206"
+        }
+      ]
+    },
+    {
+      "claim": "No flow rate, shaft power or calibration is validated; the physical mesh medium-gap-002 is refused.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/evidence/cfd/summary-medium-gap-002.json",
+          "sha256": "3e63d16901fb3e5998d109cb27ee1553924fdb4bfcf5751c3318b35b647c9eae"
+        }
+      ]
+    }
+  ],
+  "running_jobs": {
+    "wsl_host_2026-11-06": {
+      "claim": "no OpenFOAM or turbo process, no running container, no turbo timer or crontab",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+          "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+        }
+      ]
+    },
+    "mac_host_2026-11-06": {
+      "claim": "running jobs and recurring automation state",
+      "unknown": {
+        "reason": "unknown — host not reachable from the WSL host on 2026-11-06"
+      }
+    },
+    "kali_host_2026-11-06": {
+      "claim": "running jobs and Docker permission state",
+      "unknown": {
+        "reason": "unknown — host not reachable from the WSL host on 2026-11-06"
+      }
+    }
+  },
+  "prohibitions": [
+    {
+      "id": "never-execute-pr229-blockmeshdict",
+      "pull_request": 229,
+      "package": "airflow-buffered-transition-20261013",
+      "archive_sha256": "73a2c942056e73bb3ae3350f89d33988a028f9cc77e7b939a0ecddb0d2d31a5e",
+      "archive_member": {
+        "path": "bionic-buffered-transition-20261013/blockMeshDict",
+        "sha256": "009c352ce641dcb9199ab626069453868dbc25f29f356d9a6e058c582cc758c2"
+      },
+      "claim": "The archived candidate dictionary belongs to a refused transition and must never be executed.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-buffered-transition-20261013/README.md",
+          "sha256": "f3075676f5d154318dca74d0089186fd96e54f87e23adabe592ee0e1214575c4"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-buffered-transition-20261013/file-manifest.json",
+          "sha256": "b443c220682f7d8834baf76bdfe628406c615b07e9c5c43750835ee944c14ce4"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-buffered-transition-20261013/archive-receipt.json",
+          "sha256": "59f6d2afd828786711a0fed07e458e7ec1a1d2b69b7f6fa86dc1ad1298060575"
+        }
+      ]
+    },
+    {
+      "id": "never-touch-case-084",
+      "pull_request": 220,
+      "package": "airflow-coupled-equilibrium-20261013",
+      "archive_sha256": "593b91fcbe3d465ecf3023218b7e9603102a1473b80eaa318e789d4bd817d438",
+      "claim": "Case 084 stopped at its budget and is preserved; never rerun, extend, shorten or tune it.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-coupled-equilibrium-20261013/README.md",
+          "sha256": "becf37ec2c8aa5b28d41295110ae373f656e423edb8a7f8cd26ea5977cb4abd4"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-coupled-equilibrium-20261013/archive-receipt.json",
+          "sha256": "da22732f4c88d841440099fd2c1f39fc63f162ea7c07dfa80c254f6fd4400023"
+        }
+      ]
+    },
+    {
+      "id": "do-not-replay-pr238-256-traversals",
+      "pull_requests": [
+        238,
+        239,
+        240,
+        241,
+        243,
+        244,
+        245,
+        247,
+        248,
+        250,
+        252,
+        254,
+        256
+      ],
+      "claim": "The completed traversals of PR238-256 are reused through their pinned receipts, never replayed. The PR-to-package map is derived from the merge commits.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/baseline-20261106/evidence-inventory.json",
+          "sha256": "0fe39004f5528e63dd595cf270aab3638ff816a7d8391147b8b963ea07b45323"
+        }
+      ]
+    },
+    {
+      "id": "keep-recurring-automation-paused",
+      "claim": "No recurring turbo automation exists on the WSL host; this baseline does not reactivate any.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+          "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+        }
+      ]
+    },
+    {
+      "id": "no-paid-compute",
+      "claim": "No paid or rented compute was used; every downstream gate stays local until an approved final review.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+          "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+        }
+      ]
+    },
+    {
+      "id": "no-deletion",
+      "claim": "Nothing was deleted: containers, images, volumes, archives, failed attempts and source data are preserved.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+          "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+        }
+      ]
+    },
+    {
+      "id": "preserve-153-boxes-and-two-undecided-determinants",
+      "claim": "All 153 closed boxes, their endpoints and the two undecided determinant leaves are kept; no subdivision, grid, point ratio, free centre, global rotation or relaxed threshold.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-remaining-cell-bounds-20261013/README.md",
+          "sha256": "d504be33f070c205ec3bb0b02359ebe76c241d18822eaba7e786800543c28cda"
+        }
+      ]
+    },
+    {
+      "id": "retain-writeprecision-16",
+      "claim": "writePrecision 16 is retained; it alone does not prove identity between rational coordinates, written text and binary64 values read back.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-native-admission-dossier-20261013/README.md",
+          "sha256": "2411695650330d29a61ae8eeaad6ff6690e42b646563cb60edabdbd96d3bb99c"
+        }
+      ]
+    },
+    {
+      "id": "preserve-bionic-native-source-20261012",
+      "claim": "The Docker volume bionic-native-source-20261012 was created on the Mac host and is absent from the WSL host; it must be preserved and never silently recreated.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-native-binary-20261012/volume-init.json",
+          "sha256": "9be9ecf20756ec149bc4eb7c8dccf98621796a274d4fb01fb62c79c0ddcc53b5"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+          "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+        }
+      ]
+    },
+    {
+      "id": "no-silent-openfoam-substitution",
+      "claim": "OpenCFD v2406 is the historical turbo runtime; the Foundation 13/14 images of the general toolchain are prohibited substitutes.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/baseline-20261106/runtime-matrix.json",
+          "sha256": "f65173ba377e85bc71bd232257c4640712f2940bfc6d8a49198e6992987098d1"
+        }
+      ]
+    },
+    {
+      "id": "representations-not-interchangeable",
+      "claim": "The PR241 representation, native centres, other triangulations and the complete physical turbo are not interchangeable.",
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/evidence/airflow-internal-contact-obligations-20261014/README.md",
+          "sha256": "28615621d84854997de682310b274439962a9d13212747ce0e4785428ba5e383"
+        }
+      ]
+    }
+  ],
+  "next_permitted_action": "Read-only readback on the Mac host by its owner or an authorised session: docker image inspect of docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532 and of bionic-openfoam2406-diagnostic-build:20261012, docker volume inspect bionic-native-source-20261012, docker ps, the paused state of the recurring turbo automation, and sha256sum of rhoSimpleFoam, blockMesh, snappyHexMesh and checkMesh inside the pinned image without running a case. Record the result as a new receipt and a new baseline revision; only then may G01 be reconsidered and issue 395 start.",
+  "context": [
+    "twins/bionic-turbo-f1/README.md",
+    "twins/bionic-turbo-f1/cfd/README.md",
+    "docs/TOOLCHAIN.md",
+    "docs/architecture/free-tools/README.md",
+    "docs/architecture/free-tools/KALI_NATIVE_20261028.md",
+    "docs/architecture/engineering-workflow.md",
+    "docs/architecture/usd-brep-lpbf.md"
+  ]
+}

@@ -193,6 +193,15 @@ from missing dependencies (`rtree`, `networkx`) and two exact floating-point
 comparison failures affect earlier fan studies. These files
 remain unchanged. The global validation of the repository is therefore not green.
 
+## Baseline of 6 November 2026
+
+The [baseline of 2026-11-06](baseline-20261106/README.md) freezes the evidence
+inventory, the turbo runtime matrix and the gate ledger for the
+[evidence-gated roadmap](https://github.com/cluster2600/porscheparts/issues/393).
+OpenCFD v2406 remains the only runtime with turbo evidence; the Foundation 13 and
+14 images are prohibited substitutes. No gate is passed, and its validator refuses
+any stale or mismatched binary or configuration hash.
+
 ## Next step: digital twin
 
 1. Resolve the observed mesh defects while preserving the passages and
