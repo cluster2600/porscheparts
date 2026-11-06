@@ -284,7 +284,7 @@ evidence files cite these paths, so folders are not moved
 | [`models/`](models/) | larger reconstruction models (917 engine, horizontal fan) |
 | [`manufacturing/`](manufacturing/) | manufacturing runtimes and process workflows |
 | [`benchmarks/`](benchmarks/) | solver and process benchmarks (LPBF, GPU geometry, free tools) |
-| [`outils/`](outils/) | OpenFOAM verification benchmark copied into the CFD images |
+| [`outils/`](outils/README.md) | frozen: the F25 OpenFOAM verification benchmark, whose path is pinned by two CFD image recipes; new benchmarks go in `benchmarks/` |
 | [`containers/`](containers/) | reproducible, digest-locked images for heavy compute |
 | [`deploy/`](deploy/) | host and cloud deployment (Intel hosts, OpenBao secrets, Vast) |
 | [`training/`](training/) | local model training runs and their recorded evaluation |
