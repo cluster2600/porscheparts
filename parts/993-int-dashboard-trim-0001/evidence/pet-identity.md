@@ -26,17 +26,17 @@ and `/L` and `/R` as left and right in the direction of travel.
 
 ## Finding
 
-| Option code | Hand | Plate | Dashboard trim | Knee protection strips (left, right) | Mapping |
+| Option code | Hand | Dashboard plate/page | Dashboard trim | Knee protection strips (left, right) | Mapping |
 |---|---|---|---|---|---|
 | M564, non-RS | LHD | none | **null** | **null** | unmapped in Kat 017 |
 | M564, non-RS | RHD | none | **null** | **null** | unmapped in Kat 017 |
 | M561 | LHD / RHD | none | null | null | unmapped in Kat 017 |
 | M562 | LHD | 809-00, p. 501 | 993 552 055 00, 055 01 | 809-01, p. 505 | title match only, out of scope |
 | M562 | RHD | 809-00, p. 501 | 993 552 056 00, 056 01 | 809-01, p. 505 | title match only, out of scope |
-| M002 | LHD | 809-02, p. 511 | 993 552 055 00 | 911 552 069 00, 911 552 070 00 | option code on the line |
-| M002 | RHD | 809-02, p. 511 | 993 552 056 00 | 911 552 069 01, 911 552 070 01 | option code on the line |
-| M003 | LHD | 809-02, p. 511 | 993 552 055 70 | 964 552 077 70, 964 552 078 70 | option code on the line |
-| M003 | RHD | 809-02, p. 511 | 993 552 056 70 | 964 552 077 71, 964 552 078 71 | option code on the line |
+| M002 | LHD | 809-02, p. 511 | 993 552 055 00 | 911 552 069 00 (p. 512), 911 552 070 00 (p. 513) | option code on the line |
+| M002 | RHD | 809-02, p. 511 | 993 552 056 00 | 911 552 069 01 (p. 512), 911 552 070 01 (p. 513) | option code on the line |
+| M003 | LHD | 809-02, p. 511 | 993 552 055 70 | 964 552 077 70 (p. 512), 964 552 078 70 (p. 513) | option code on the line |
+| M003 | RHD | 809-02, p. 511 | 993 552 056 70 | 964 552 077 71 (p. 512), 964 552 078 71 (p. 513) | option code on the line |
 
 Three facts drive the table.
 
@@ -49,8 +49,10 @@ Three facts drive the table.
    reads "Dashboard, Knee protection strip, for cars without Airbag,
    Passenger's side", has CARRERA RS in the model column, and puts M002 or
    M003 on every trim and knee-strip line.
-3. **No plate names a non-RS M564 car.** Apart from the option list, M564
-   appears in Kat 017 only on illustration 403-07, for the steering shaft.
+3. **No dashboard plate maps a non-RS M564 car.** Apart from the option list,
+   M564 appears on illustration 403-07 for the steering shaft and on 903-10
+   (page 635, positions 9/10) for a Carrera RS steering-column switch. Neither
+   occurrence identifies a dashboard trim for the F0 target.
 
 So the M564 left-hand-drive F0 target has **no part number from Kat 017**. It
 stays null. The part number is not borrowed from the RS plate, and it is not
@@ -74,20 +76,20 @@ catalogue text alone. A real specimen can separate them through the
 passenger-side reverse inspection (E2 below), and so can a Porsche technical
 document that states the trim's airbag provisions.
 
-## The part record
+## What changed in the part record
 
-The [variant identity audit](../../../docs/reports/993-dashboard-variant-audit-20261106.md)
-(#592) corrected the catalogue record from the same plates. The record now
-names only the M564 left-hand-drive non-RS target, with its trim identity
-unresolved. It lists no Porsche part number, and its knee-strip limit follows
-the plate-level mapping. This record adds the machine-readable matrix, the
-CTR-0019 register entry and the same-specimen protocol.
-`scripts/check_993_dashboard_pet_identity.py --check` refuses a part record
-that lists a trim number the matrix does not hold, or that names an unmapped
-variant without saying so.
+- The variant label now reads "M564 without airbag (trim number unmapped in
+  PET Kat 017)".
+- The PET source now points at the official copy, with its hash, and states
+  what both plates list.
+- The knee-strip limit used to call the 809-01 airbag-plate strips "series
+  production". It also gave only the left-hand-drive M003 pair and missed the
+  M002 strips. It now gives the plate-level mapping.
+- A new limit states the identity verdict and the admission rule.
 
-`validation.status` stays `concept`, `safety_class` stays `functional`, and the
-passenger-airbag exclusion stays in force.
+Nothing else changed. `validation.status` stays `concept`,
+`safety_class` stays `functional`, and the passenger-airbag exclusion stays in
+force.
 
 ## Same-specimen protocol
 

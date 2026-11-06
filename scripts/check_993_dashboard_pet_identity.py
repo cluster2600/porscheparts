@@ -143,18 +143,28 @@ def check_record(record: dict, identity: dict) -> list[str]:
     trims = matrix_numbers(identity, "dashboard_trim")
     knees = matrix_numbers(identity, "knee_protection_strip")
     vehicle = record.get("vehicle", {})
-    variant_codes = {
-        code for variant in vehicle.get("variants", [])
-        for code in re.findall(r"\bM\d{3}\b", variant)
-    }
-    applicable_trims = {
-        item["part_number"]
-        for row in identity.get("matrix", [])
-        if row.get("option_code") in variant_codes
-        and row.get("mapping_status") in MAPPED
-        and row.get("passenger_airbag") in {"absent_by_option_code", "absent_by_plate_title"}
-        for key, item in _entries(row) if key == "dashboard_trim"
-    }
+    per_variant_trims = []
+    for variant in vehicle.get("variants", []):
+        codes = set(re.findall(r"\bM\d{3}\b", variant))
+        hands = {
+            hand for hand, pattern in (
+                ("LHD", r"\b(?:LHD|left-hand drive)\b"),
+                ("RHD", r"\b(?:RHD|right-hand drive)\b"),
+            ) if re.search(pattern, variant, re.I)
+        }
+        if len(codes) != 1 or len(hands) != 1:
+            per_variant_trims.append(set())
+            continue
+        per_variant_trims.append({
+            item["part_number"]
+            for row in identity.get("matrix", [])
+            if row.get("option_code") in codes
+            and row.get("handedness") in hands
+            and row.get("mapping_status") in MAPPED
+            and row.get("passenger_airbag") in {"absent_by_option_code", "absent_by_plate_title"}
+            for key, item in _entries(row) if key == "dashboard_trim"
+        })
+    applicable_trims = set.intersection(*per_variant_trims) if per_variant_trims else set()
     unmapped_codes = {
         row["option_code"] for row in identity.get("matrix", []) if row.get("mapping_status") in UNMAPPED
     }
