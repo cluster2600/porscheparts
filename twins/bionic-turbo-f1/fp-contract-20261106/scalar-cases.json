@@ -1,0 +1,57 @@
+[
+  {
+    "id": "zero",
+    "input": "0.0",
+    "criterion": "zero"
+  },
+  {
+    "id": "negative-zero",
+    "input": "-0.0",
+    "criterion": "positive_zero"
+  },
+  {
+    "id": "subnormal",
+    "input": "4.9406564584124654e-324",
+    "criterion": "zero"
+  },
+  {
+    "id": "tiny-normal",
+    "input": "1e-308",
+    "criterion": "zero"
+  },
+  {
+    "id": "below-small",
+    "input": "9.99999999999999e-301",
+    "criterion": "zero"
+  },
+  {
+    "id": "decimal-small",
+    "input": "1e-300",
+    "criterion": "boundary_observation"
+  },
+  {
+    "id": "above-small",
+    "input": "1.000000000000001e-300",
+    "criterion": "positive"
+  },
+  {
+    "id": "negative-tiny",
+    "input": "-1e-308",
+    "criterion": "zero"
+  },
+  {
+    "id": "ordinary",
+    "input": "1.2345678901234567",
+    "criterion": "bounded_error"
+  },
+  {
+    "id": "integer-over-label",
+    "input": "9007199254740993",
+    "criterion": "bounded_error"
+  },
+  {
+    "id": "range-overflow",
+    "input": "1e301",
+    "criterion": "reject"
+  }
+]

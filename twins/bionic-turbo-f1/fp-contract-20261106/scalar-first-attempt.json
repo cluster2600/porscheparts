@@ -1,0 +1,95 @@
+{
+  "schema": "turbo-native-scalar-controls/v1",
+  "image": "docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+  "utility_sha256": "4e85c1852c5f0a41232e322aa33fcee25558a63750981ef06e75a006295bbe0c",
+  "utility_path": "/usr/lib/openfoam/openfoam2406/platforms/linuxARM64GccDPInt32Opt/bin/foamDictionary",
+  "cases_sha256": "1fd04ab0bb5585e813ac420d9fe50a27418a6b64735bcadaf310facf68c0f0df",
+  "plan_sha256": "ebcdfe86fb0efa5d358cbc2752b0a7cdf57e8bc7a5f5a56ed93b68e4185088b5",
+  "source_bindings_sha256": "e906f8c72e4e650d4273e5a838f0e2a48cb4a2409c436400d66a04e101e87848",
+  "locale": "C",
+  "precision": 16,
+  "function_entries_enabled": false,
+  "runs": [
+    {
+      "id": "zero",
+      "input_sha256": "1dc291f05486d1cc0c0e7b5707bdf936c389627c3164602d8f07f493e4d2d5f2",
+      "exit_code": 0,
+      "stdout": "0\n",
+      "stderr": "/controls/zero.dict: line 1: value: command not found\nNot expanding variables or dictionary directives\n"
+    },
+    {
+      "id": "negative-zero",
+      "input_sha256": "6af08c3da8be3d0b60d5dcf8c7b475842645b4ebfb5f8feee6493ec4799e6a01",
+      "exit_code": 0,
+      "stdout": "0\n",
+      "stderr": "/controls/negative-zero.dict: line 1: value: command not found\nNot expanding variables or dictionary directives\n"
+    },
+    {
+      "id": "subnormal",
+      "input_sha256": "d47b5630e1eb4cc56d15e99f7eb032774801f0773e3d7df15d2611b42c068dda",
+      "exit_code": 0,
+      "stdout": "0\n",
+      "stderr": "/controls/subnormal.dict: line 1: value: command not found\nNot expanding variables or dictionary directives\n"
+    },
+    {
+      "id": "tiny-normal",
+      "input_sha256": "4c62e543a2aeb92ceb893c8a4a27ae867b05ead02abd47fe27698c8b4e50cdb0",
+      "exit_code": 0,
+      "stdout": "0\n",
+      "stderr": "/controls/tiny-normal.dict: line 1: value: command not found\nNot expanding variables or dictionary directives\n"
+    },
+    {
+      "id": "below-small",
+      "input_sha256": "005b14c2914fa212e5e9c541a8f529c950c902322eac05bb6e65dac730641711",
+      "exit_code": 0,
+      "stdout": "0\n",
+      "stderr": "/controls/below-small.dict: line 1: value: command not found\nNot expanding variables or dictionary directives\n"
+    },
+    {
+      "id": "decimal-small",
+      "input_sha256": "02bf5014dcc85a605a5558bd0e03dc56321b9b115c1bc5284aad4cf88e422da0",
+      "exit_code": 0,
+      "stdout": "0\n",
+      "stderr": "/controls/decimal-small.dict: line 1: value: command not found\nNot expanding variables or dictionary directives\n"
+    },
+    {
+      "id": "above-small",
+      "input_sha256": "bf012de08d16b15025a63adf2185aad3d29cfc6c006034599163e923629d3686",
+      "exit_code": 0,
+      "stdout": "1.000000000000001e-300\n",
+      "stderr": "/controls/above-small.dict: line 1: value: command not found\nNot expanding variables or dictionary directives\n"
+    },
+    {
+      "id": "negative-tiny",
+      "input_sha256": "ee592393ccf8d7bae9e43b5dd5880ee980231ede5af02920ae634e16e89101bb",
+      "exit_code": 0,
+      "stdout": "0\n",
+      "stderr": "/controls/negative-tiny.dict: line 1: value: command not found\nNot expanding variables or dictionary directives\n"
+    },
+    {
+      "id": "ordinary",
+      "input_sha256": "af0a8d4050ee9716bc569ef48096a1ff0b7e95356a7ea746e871760f539db6b3",
+      "exit_code": 0,
+      "stdout": "1.234567890123457\n",
+      "stderr": "/controls/ordinary.dict: line 1: value: command not found\nNot expanding variables or dictionary directives\n"
+    },
+    {
+      "id": "integer-over-label",
+      "input_sha256": "c556e00fb43e562bd2d2cc632559d57043f8f792aaf0ae50046c554a77bffd19",
+      "exit_code": 0,
+      "stdout": "9007199254740992\n",
+      "stderr": "/controls/integer-over-label.dict: line 1: value: command not found\nNot expanding variables or dictionary directives\n"
+    },
+    {
+      "id": "range-overflow",
+      "input_sha256": "47a3078545c6c9d100dc1eb41a68a79e060338a462cc1332e522335a202e7fff",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "/controls/range-overflow.dict: line 1: value: command not found\nNot expanding variables or dictionary directives\n\n\n--> FOAM FATAL IO ERROR: (openfoam-2406)\nill defined primitiveEntry starting at keyword 'value' on line 1 and ending at line 1\n\nfile: /controls/range-overflow.dict at line 1.\n\n    From void Foam::primitiveEntry::readEntry(const Foam::dictionary&, Foam::Istream&)\n    in file db/dictionary/primitiveEntry/primitiveEntryIO.C at line 243.\n\nFOAM exiting\n\n"
+    }
+  ],
+  "seconds": 3.034415625035763,
+  "geometry_or_solver_executed": false,
+  "engineering_gate_passed": false,
+  "status": "rejected_unexpected_setup_sourced_data_argument"
+}
