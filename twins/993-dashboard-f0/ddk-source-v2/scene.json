@@ -1,0 +1,6789 @@
+{
+  "schema_version": "2.0",
+  "scene_id": "993-dashboard-complete-f0-ddk-study-v2",
+  "status": "visual_concept_only",
+  "coordinate_frame": "visual_stage_not_vehicle",
+  "frame_axes": {
+    "x": "lateral",
+    "y": "toward_windscreen",
+    "z": "up"
+  },
+  "unit": "mm_render_scale_only",
+  "voxel_mm": 1.8,
+  "target_scenario": {
+    "model": "Porsche 993",
+    "option_code": "M564",
+    "drive": "LHD",
+    "passenger_airbag": "not represented",
+    "part_number": null,
+    "verification": "unresolved"
+  },
+  "scope": "Original parametric display surfaces for a complete visible dashboard concept. DDK photographs guide component hierarchy and qualitative shape only. All positions, section stations, angles and radii are artistic assumptions, never vehicle coordinates or measured interfaces.",
+  "visual_reference_register": "twins/993-dashboard-f0/ddk-study-v2/references.json",
+  "photo_observation_limits": "RHD DDK car and LHD GT2 comparator do not establish the exact M564 target. No third-party pixels, traced contours or calibrated photogrammetry are used.",
+  "ancestry": "Replaces photo-study-v1 visual geometry with newly authored display surfaces; prior tracked trim STL is not reused or overwritten.",
+  "design_decisions": [
+    "Upper pad and variable-height instrument brow overlap into one visual silhouette instead of a detached capsule.",
+    "Side vent faces move into the lower fascia and use vertical blades as observed in the completed DDK interior; centre vent retains horizontal blades.",
+    "Passenger glovebox becomes shallow above a continuous rounded lower band.",
+    "Radio/HVAC remain in the fascia below centre vent; lower tunnel console is a separately sloped display surface.",
+    "Gauge diameter ratios follow existing 80:100:115:100:80 product-size leads as visual proportions only; face marks are symbolic."
+  ],
+  "layers": [
+    {
+      "family_id": "DASHBOARD_TRIM",
+      "colour": "#292d32",
+      "elements": [
+        {
+          "id": "upper_padded_surface",
+          "kind": "loft_x",
+          "centre": [
+            -2.5,
+            62.0,
+            211.5
+          ],
+          "half": [
+            652.5,
+            132.0,
+            28.5
+          ],
+          "radius": 0,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "sections": [
+            [
+              -655,
+              -28,
+              120,
+              193,
+              217,
+              9
+            ],
+            [
+              -630,
+              -64,
+              153,
+              186,
+              228,
+              18
+            ],
+            [
+              -530,
+              -69,
+              183,
+              186,
+              234,
+              20
+            ],
+            [
+              -320,
+              -70,
+              194,
+              184,
+              240,
+              23
+            ],
+            [
+              -100,
+              -70,
+              192,
+              183,
+              238,
+              23
+            ],
+            [
+              100,
+              -70,
+              185,
+              185,
+              231,
+              20
+            ],
+            [
+              350,
+              -68,
+              174,
+              185,
+              229,
+              19
+            ],
+            [
+              570,
+              -61,
+              145,
+              187,
+              225,
+              17
+            ],
+            [
+              650,
+              -27,
+              108,
+              195,
+              215,
+              8
+            ]
+          ]
+        },
+        {
+          "id": "lower_fascia_backbone",
+          "kind": "round_box",
+          "centre": [
+            0,
+            -54,
+            107
+          ],
+          "half": [
+            638,
+            27,
+            80
+          ],
+          "radius": 21,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "left_end_contour",
+          "kind": "round_box",
+          "centre": [
+            -622,
+            -45,
+            123
+          ],
+          "half": [
+            30,
+            42,
+            91
+          ],
+          "radius": 25,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "right_end_contour",
+          "kind": "round_box",
+          "centre": [
+            622,
+            -45,
+            123
+          ],
+          "half": [
+            30,
+            42,
+            91
+          ],
+          "radius": 25,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_vent_recess",
+          "kind": "round_box",
+          "centre": [
+            145,
+            -82,
+            178
+          ],
+          "half": [
+            118,
+            12,
+            30
+          ],
+          "radius": 10,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "left_side_vent_recess",
+          "kind": "round_panel_y",
+          "centre": [
+            -594,
+            -87,
+            103
+          ],
+          "half": [
+            44,
+            7,
+            29
+          ],
+          "radius": 7,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "right_side_vent_recess",
+          "kind": "round_panel_y",
+          "centre": [
+            592,
+            -87,
+            103
+          ],
+          "half": [
+            44,
+            7,
+            29
+          ],
+          "radius": 7,
+          "border": 0,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "INSTRUMENT_HOOD",
+      "colour": "#25292e",
+      "elements": [
+        {
+          "id": "integrated_instrument_brow",
+          "kind": "loft_x",
+          "centre": [
+            -284.0,
+            2.0,
+            205.5
+          ],
+          "half": [
+            289.0,
+            118.0,
+            81.5
+          ],
+          "radius": 0,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "sections": [
+            [
+              -573,
+              -92,
+              83,
+              137,
+              214,
+              18
+            ],
+            [
+              -554,
+              -108,
+              95,
+              126,
+              244,
+              27
+            ],
+            [
+              -506,
+              -113,
+              108,
+              124,
+              265,
+              31
+            ],
+            [
+              -405,
+              -115,
+              119,
+              124,
+              280,
+              33
+            ],
+            [
+              -290,
+              -116,
+              120,
+              124,
+              287,
+              35
+            ],
+            [
+              -173,
+              -114,
+              116,
+              124,
+              278,
+              34
+            ],
+            [
+              -65,
+              -110,
+              105,
+              125,
+              262,
+              31
+            ],
+            [
+              -14,
+              -99,
+              94,
+              135,
+              236,
+              24
+            ],
+            [
+              5,
+              -82,
+              83,
+              145,
+              216,
+              19
+            ]
+          ]
+        },
+        {
+          "id": "dial_bezel_1",
+          "kind": "annulus_y",
+          "centre": [
+            -500,
+            -120,
+            184
+          ],
+          "half": [
+            43.27,
+            2.37,
+            43.27
+          ],
+          "radius": 43.27,
+          "border": 2.3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_bezel_2",
+          "kind": "annulus_y",
+          "centre": [
+            -405,
+            -120,
+            191
+          ],
+          "half": [
+            53.27,
+            2.37,
+            53.27
+          ],
+          "radius": 53.27,
+          "border": 2.3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_bezel_3",
+          "kind": "annulus_y",
+          "centre": [
+            -294,
+            -120,
+            196
+          ],
+          "half": [
+            60.77,
+            2.37,
+            60.77
+          ],
+          "radius": 60.77,
+          "border": 2.3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_bezel_4",
+          "kind": "annulus_y",
+          "centre": [
+            -183,
+            -120,
+            191
+          ],
+          "half": [
+            53.27,
+            2.37,
+            53.27
+          ],
+          "radius": 53.27,
+          "border": 2.3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_bezel_5",
+          "kind": "annulus_y",
+          "centre": [
+            -88,
+            -120,
+            184
+          ],
+          "half": [
+            43.27,
+            2.37,
+            43.27
+          ],
+          "radius": 43.27,
+          "border": 2.3,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "INSTRUMENT_CLUSTER",
+      "colour": "#0d151a",
+      "elements": [
+        {
+          "id": "dial_1",
+          "kind": "disk_y",
+          "centre": [
+            -500,
+            -117,
+            184
+          ],
+          "half": [
+            40,
+            3.1,
+            40
+          ],
+          "radius": 40,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_2",
+          "kind": "disk_y",
+          "centre": [
+            -405,
+            -117,
+            191
+          ],
+          "half": [
+            50,
+            3.1,
+            50
+          ],
+          "radius": 50,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_3",
+          "kind": "disk_y",
+          "centre": [
+            -294,
+            -117,
+            196
+          ],
+          "half": [
+            57.5,
+            3.1,
+            57.5
+          ],
+          "radius": 57.5,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_4",
+          "kind": "disk_y",
+          "centre": [
+            -183,
+            -117,
+            191
+          ],
+          "half": [
+            50,
+            3.1,
+            50
+          ],
+          "radius": 50,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_5",
+          "kind": "disk_y",
+          "centre": [
+            -88,
+            -117,
+            184
+          ],
+          "half": [
+            40,
+            3.1,
+            40
+          ],
+          "radius": 40,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "hvac_dark_face",
+          "kind": "round_panel_y",
+          "centre": [
+            144,
+            -85,
+            114
+          ],
+          "half": [
+            104,
+            4,
+            22
+          ],
+          "radius": 4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "radio_dark_face",
+          "kind": "round_panel_y",
+          "centre": [
+            144,
+            -85,
+            68
+          ],
+          "half": [
+            104,
+            4,
+            20
+          ],
+          "radius": 4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "INSTRUMENT_GAUGE_MARKS",
+      "colour": "#c7c9c3",
+      "elements": [
+        {
+          "id": "dial_edge_1",
+          "kind": "annulus_y",
+          "centre": [
+            -500,
+            -123,
+            184
+          ],
+          "half": [
+            38.2,
+            1.5,
+            38.2
+          ],
+          "radius": 38.2,
+          "border": 1.3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_1_tick_01",
+          "kind": "segment",
+          "centre": [
+            -525.4326755115501,
+            -125.3,
+            162.6594513584069
+          ],
+          "half": [
+            3.2949244407331206,
+            1.15,
+            2.9498053071223125
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -523.287751070817,
+            -125.3,
+            164.4592566655292
+          ],
+          "b": [
+            -527.5775999522832,
+            -125.3,
+            160.85964605128459
+          ]
+        },
+        {
+          "id": "dial_1_tick_02",
+          "kind": "segment",
+          "centre": [
+            -530.212919115118,
+            -125.3,
+            167.13763010299743
+          ],
+          "half": [
+            2.3724880566810724,
+            1.15,
+            1.832292423578147
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -528.9904310584369,
+            -125.3,
+            167.81992252657557
+          ],
+          "b": [
+            -531.435407171799,
+            -125.3,
+            166.45533767941927
+          ]
+        },
+        {
+          "id": "dial_1_tick_03",
+          "kind": "segment",
+          "centre": [
+            -532.8437954676269,
+            -125.3,
+            173.11675143715416
+          ],
+          "half": [
+            2.478939701002241,
+            1.15,
+            1.5903626586122583
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -531.5148557666247,
+            -125.3,
+            173.55711409576642
+          ],
+          "b": [
+            -534.1727351686292,
+            -125.3,
+            172.6763887785419
+          ]
+        },
+        {
+          "id": "dial_1_tick_04",
+          "kind": "segment",
+          "centre": [
+            -532.9159693976105,
+            -125.3,
+            179.66653041829431
+          ],
+          "half": [
+            3.9260456118467117,
+            1.15,
+            1.515473338216148
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -530.1399237857638,
+            -125.3,
+            180.03200375651045
+          ],
+          "b": [
+            -535.6920150094572,
+            -125.3,
+            179.30105708007815
+          ]
+        },
+        {
+          "id": "dial_1_tick_05",
+          "kind": "segment",
+          "centre": [
+            -534.5414622761859,
+            -125.3,
+            186.0118110803025
+          ],
+          "half": [
+            2.547631421579774,
+            1.15,
+            1.2314027604746598
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -533.1438308546061,
+            -125.3,
+            185.93040831982782
+          ],
+          "b": [
+            -535.9390936977657,
+            -125.3,
+            186.09321384077714
+          ]
+        },
+        {
+          "id": "dial_1_tick_06",
+          "kind": "segment",
+          "centre": [
+            -533.5477413357828,
+            -125.3,
+            192.4681197008196
+          ],
+          "half": [
+            2.5074230598293297,
+            1.15,
+            1.4926406815360536
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -532.1903182759535,
+            -125.3,
+            192.12547901928355
+          ],
+          "b": [
+            -534.9051643956121,
+            -125.3,
+            192.81076038235565
+          ]
+        },
+        {
+          "id": "dial_1_tick_07",
+          "kind": "segment",
+          "centre": [
+            -530.0894185296168,
+            -125.3,
+            198.03092628979124
+          ],
+          "half": [
+            3.687661803702633,
+            1.15,
+            2.3333311328739597
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -527.5517567259142,
+            -125.3,
+            196.84759515691727
+          ],
+          "b": [
+            -532.6270803333194,
+            -125.3,
+            199.21425742266518
+          ]
+        },
+        {
+          "id": "dial_1_tick_08",
+          "kind": "segment",
+          "centre": [
+            -528.0510285040893,
+            -125.3,
+            204.25585840843993
+          ],
+          "half": [
+            2.285012714038339,
+            1.15,
+            1.9696012072779125
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -526.916015790051,
+            -125.3,
+            203.43625720116202
+          ],
+          "b": [
+            -529.1860412181277,
+            -125.3,
+            205.07545961571785
+          ]
+        },
+        {
+          "id": "dial_1_tick_09",
+          "kind": "segment",
+          "centre": [
+            -523.7439606702582,
+            -125.3,
+            209.16712799842747
+          ],
+          "half": [
+            2.11073829301622,
+            1.15,
+            2.168323098202259
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -522.7832223772419,
+            -125.3,
+            208.14880490022523
+          ],
+          "b": [
+            -524.7046989632744,
+            -125.3,
+            210.18545109662975
+          ]
+        },
+        {
+          "id": "dial_1_tick_10",
+          "kind": "segment",
+          "centre": [
+            -517.8383469971145,
+            -125.3,
+            212.0005960009878
+          ],
+          "half": [
+            2.654438903371067,
+            1.15,
+            3.5114960482760806
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -516.3339080937435,
+            -125.3,
+            209.63909995271172
+          ],
+          "b": [
+            -519.3427859004856,
+            -125.3,
+            214.36209204926388
+          ]
+        },
+        {
+          "id": "dial_1_tick_11",
+          "kind": "segment",
+          "centre": [
+            -512.7745326970189,
+            -125.3,
+            216.15542433824805
+          ],
+          "half": [
+            1.666888606237785,
+            1.15,
+            2.451086533917555
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -512.2576440907811,
+            -125.3,
+            214.8543378043305
+          ],
+          "b": [
+            -513.2914213032567,
+            -125.3,
+            217.4565108721656
+          ]
+        },
+        {
+          "id": "dial_1_tick_12",
+          "kind": "segment",
+          "centre": [
+            -506.5031653022439,
+            -125.3,
+            217.9833612382838
+          ],
+          "half": [
+            1.4131338561601523,
+            1.15,
+            2.5250492986588795
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -506.2400314460837,
+            -125.3,
+            216.60831193962494
+          ],
+          "b": [
+            -506.766299158404,
+            -125.3,
+            219.3584105369427
+          ]
+        },
+        {
+          "id": "dial_1_tick_13",
+          "kind": "segment",
+          "centre": [
+            -500.0,
+            -125.3,
+            217.2
+          ],
+          "half": [
+            1.15,
+            1.15,
+            3.949999999999997
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -500.0,
+            -125.3,
+            214.4
+          ],
+          "b": [
+            -500.0,
+            -125.3,
+            220.0
+          ]
+        },
+        {
+          "id": "dial_1_tick_14",
+          "kind": "segment",
+          "centre": [
+            -493.4968346977561,
+            -125.3,
+            217.9833612382838
+          ],
+          "half": [
+            1.4131338561601523,
+            1.15,
+            2.5250492986588795
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -493.7599685539163,
+            -125.3,
+            216.60831193962494
+          ],
+          "b": [
+            -493.233700841596,
+            -125.3,
+            219.3584105369427
+          ]
+        },
+        {
+          "id": "dial_1_tick_15",
+          "kind": "segment",
+          "centre": [
+            -487.2254673029811,
+            -125.3,
+            216.15542433824805
+          ],
+          "half": [
+            1.6668886062377566,
+            1.15,
+            2.451086533917555
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -487.7423559092189,
+            -125.3,
+            214.8543378043305
+          ],
+          "b": [
+            -486.70857869674336,
+            -125.3,
+            217.4565108721656
+          ]
+        },
+        {
+          "id": "dial_1_tick_16",
+          "kind": "segment",
+          "centre": [
+            -482.1616530028855,
+            -125.3,
+            212.0005960009878
+          ],
+          "half": [
+            2.6544389033710956,
+            1.15,
+            3.5114960482760806
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -483.66609190625655,
+            -125.3,
+            209.63909995271172
+          ],
+          "b": [
+            -480.65721409951436,
+            -125.3,
+            214.36209204926388
+          ]
+        },
+        {
+          "id": "dial_1_tick_17",
+          "kind": "segment",
+          "centre": [
+            -476.25603932974184,
+            -125.3,
+            209.16712799842747
+          ],
+          "half": [
+            2.1107382930162486,
+            1.15,
+            2.1683230982022734
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -477.21677762275806,
+            -125.3,
+            208.1488049002252
+          ],
+          "b": [
+            -475.29530103672556,
+            -125.3,
+            210.18545109662975
+          ]
+        },
+        {
+          "id": "dial_1_tick_18",
+          "kind": "segment",
+          "centre": [
+            -471.94897149591065,
+            -125.3,
+            204.25585840843996
+          ],
+          "half": [
+            2.2850127140382823,
+            1.15,
+            1.9696012072779268
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -473.08398420994894,
+            -125.3,
+            203.43625720116202
+          ],
+          "b": [
+            -470.8139587818724,
+            -125.3,
+            205.07545961571788
+          ]
+        },
+        {
+          "id": "dial_1_tick_19",
+          "kind": "segment",
+          "centre": [
+            -469.91058147038325,
+            -125.3,
+            198.03092628979124
+          ],
+          "half": [
+            3.6876618037026048,
+            1.15,
+            2.3333311328739597
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -472.4482432740858,
+            -125.3,
+            196.84759515691727
+          ],
+          "b": [
+            -467.3729196666806,
+            -125.3,
+            199.21425742266518
+          ]
+        },
+        {
+          "id": "dial_1_tick_20",
+          "kind": "segment",
+          "centre": [
+            -466.4522586642172,
+            -125.3,
+            192.4681197008196
+          ],
+          "half": [
+            2.507423059829358,
+            1.15,
+            1.4926406815360536
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -467.8096817240465,
+            -125.3,
+            192.12547901928355
+          ],
+          "b": [
+            -465.0948356043878,
+            -125.3,
+            192.81076038235565
+          ]
+        },
+        {
+          "id": "dial_1_tick_21",
+          "kind": "segment",
+          "centre": [
+            -465.4585377238141,
+            -125.3,
+            186.01181108030246
+          ],
+          "half": [
+            2.547631421579774,
+            1.15,
+            1.231402760474674
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -466.8561691453939,
+            -125.3,
+            185.9304083198278
+          ],
+          "b": [
+            -464.06090630223434,
+            -125.3,
+            186.09321384077714
+          ]
+        },
+        {
+          "id": "dial_1_tick_22",
+          "kind": "segment",
+          "centre": [
+            -467.0840306023895,
+            -125.3,
+            179.6665304182943
+          ],
+          "half": [
+            3.9260456118466833,
+            1.15,
+            1.5154733382161338
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -469.8600762142362,
+            -125.3,
+            180.03200375651042
+          ],
+          "b": [
+            -464.3079849905428,
+            -125.3,
+            179.30105708007815
+          ]
+        },
+        {
+          "id": "dial_1_tick_23",
+          "kind": "segment",
+          "centre": [
+            -467.15620453237307,
+            -125.3,
+            173.11675143715416
+          ],
+          "half": [
+            2.4789397010022696,
+            1.15,
+            1.5903626586122583
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -468.4851442333753,
+            -125.3,
+            173.55711409576642
+          ],
+          "b": [
+            -465.82726483137077,
+            -125.3,
+            172.6763887785419
+          ]
+        },
+        {
+          "id": "dial_1_tick_24",
+          "kind": "segment",
+          "centre": [
+            -469.787080884882,
+            -125.3,
+            167.13763010299743
+          ],
+          "half": [
+            2.3724880566810724,
+            1.15,
+            1.832292423578147
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -471.0095689415631,
+            -125.3,
+            167.81992252657557
+          ],
+          "b": [
+            -468.56459282820094,
+            -125.3,
+            166.45533767941927
+          ]
+        },
+        {
+          "id": "dial_1_tick_25",
+          "kind": "segment",
+          "centre": [
+            -474.5673244884499,
+            -125.3,
+            162.6594513584069
+          ],
+          "half": [
+            3.294924440733149,
+            1.15,
+            2.9498053071223125
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -476.7122489291831,
+            -125.3,
+            164.4592566655292
+          ],
+          "b": [
+            -472.4224000477168,
+            -125.3,
+            160.85964605128459
+          ]
+        },
+        {
+          "id": "dial_1_needle",
+          "kind": "segment",
+          "centre": [
+            -508.4264888743087,
+            -128.0,
+            191.07066370655195
+          ],
+          "half": [
+            13.603502201279838,
+            1.5,
+            11.656044233047325
+          ],
+          "radius": 1.5,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -496.3229866730289,
+            -128,
+            180.91461947350462
+          ],
+          "b": [
+            -520.5299910755886,
+            -128,
+            201.22670793959927
+          ]
+        },
+        {
+          "id": "dial_1_hub",
+          "kind": "disk_y",
+          "centre": [
+            -500,
+            -129,
+            184
+          ],
+          "half": [
+            2.4,
+            1.5,
+            2.4
+          ],
+          "radius": 2.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_edge_2",
+          "kind": "annulus_y",
+          "centre": [
+            -405,
+            -123,
+            191
+          ],
+          "half": [
+            48.2,
+            1.5,
+            48.2
+          ],
+          "radius": 48.2,
+          "border": 1.3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_2_tick_01",
+          "kind": "segment",
+          "centre": [
+            -436.79084438943755,
+            -125.3,
+            164.3243141980086
+          ],
+          "half": [
+            3.8311555509164292,
+            1.15,
+            3.3997566339028906
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -434.10968883852115,
+            -125.3,
+            166.5740708319115
+          ],
+          "b": [
+            -439.471999940354,
+            -125.3,
+            162.07455756410573
+          ]
+        },
+        {
+          "id": "dial_2_tick_02",
+          "kind": "segment",
+          "centre": [
+            -442.7661488938975,
+            -125.3,
+            169.92203762874678
+          ],
+          "half": [
+            2.6781100708513406,
+            1.15,
+            2.002865529472666
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -441.2380388230461,
+            -125.3,
+            170.77490315821944
+          ],
+          "b": [
+            -444.2942589647488,
+            -125.3,
+            169.0691720992741
+          ]
+        },
+        {
+          "id": "dial_2_tick_03",
+          "kind": "segment",
+          "centre": [
+            -446.05474433453367,
+            -125.3,
+            177.3959392964427
+          ],
+          "half": [
+            2.8111746262528015,
+            1.15,
+            1.70045332326533
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -444.3935697082809,
+            -125.3,
+            177.94639261970804
+          ],
+          "b": [
+            -447.7159189607865,
+            -125.3,
+            176.84548597317738
+          ]
+        },
+        {
+          "id": "dial_2_tick_04",
+          "kind": "segment",
+          "centre": [
+            -446.14496174701316,
+            -125.3,
+            185.5831630228679
+          ],
+          "half": [
+            4.620057014808333,
+            1.15,
+            1.6068416727701815
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -442.6749047322048,
+            -125.3,
+            186.04000469563806
+          ],
+          "b": [
+            -449.6150187618215,
+            -125.3,
+            185.1263213500977
+          ]
+        },
+        {
+          "id": "dial_2_tick_05",
+          "kind": "segment",
+          "centre": [
+            -448.1768278452323,
+            -125.3,
+            193.51476385037807
+          ],
+          "half": [
+            2.897039276974732,
+            1.15,
+            1.2517534505933354
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -446.4297885682576,
+            -125.3,
+            193.41301039978475
+          ],
+          "b": [
+            -449.92386712220707,
+            -125.3,
+            193.61651730097142
+          ]
+        },
+        {
+          "id": "dial_2_tick_06",
+          "kind": "segment",
+          "centre": [
+            -446.9346766697285,
+            -125.3,
+            201.5851496260245
+          ],
+          "half": [
+            2.8467788247866905,
+            1.15,
+            1.5783008519200563
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -445.2378978449418,
+            -125.3,
+            201.15684877410445
+          ],
+          "b": [
+            -448.6314554945152,
+            -125.3,
+            202.01345047794456
+          ]
+        },
+        {
+          "id": "dial_2_tick_07",
+          "kind": "segment",
+          "centre": [
+            -442.611773162021,
+            -125.3,
+            208.538657862239
+          ],
+          "half": [
+            4.322077254628249,
+            1.15,
+            2.629163916092446
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -439.4396959073927,
+            -125.3,
+            207.05949394614657
+          ],
+          "b": [
+            -445.7838504166492,
+            -125.3,
+            210.01782177833147
+          ]
+        },
+        {
+          "id": "dial_2_tick_08",
+          "kind": "segment",
+          "centre": [
+            -440.0637856301117,
+            -125.3,
+            216.3198230105499
+          ],
+          "half": [
+            2.568765892547867,
+            1.15,
+            2.1745015090973907
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -438.6450197375638,
+            -125.3,
+            215.29532150145252
+          ],
+          "b": [
+            -441.48255152265955,
+            -125.3,
+            217.3443245196473
+          ]
+        },
+        {
+          "id": "dial_2_tick_09",
+          "kind": "segment",
+          "centre": [
+            -434.67995083782273,
+            -125.3,
+            222.45890999803436
+          ],
+          "half": [
+            2.3509228662702752,
+            1.15,
+            2.4229038727528347
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -433.47902797155245,
+            -125.3,
+            221.18600612528152
+          ],
+          "b": [
+            -435.880873704093,
+            -125.3,
+            223.7318138707872
+          ]
+        },
+        {
+          "id": "dial_2_tick_10",
+          "kind": "segment",
+          "centre": [
+            -427.2979337463932,
+            -125.3,
+            226.00074500123475
+          ],
+          "half": [
+            3.0305486292138766,
+            1.15,
+            4.101870060345101
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -425.4173851171793,
+            -125.3,
+            223.04887494088965
+          ],
+          "b": [
+            -429.1784823756071,
+            -125.3,
+            228.95261506157985
+          ]
+        },
+        {
+          "id": "dial_2_tick_11",
+          "kind": "segment",
+          "centre": [
+            -420.9681658712736,
+            -125.3,
+            231.19428042281007
+          ],
+          "half": [
+            1.7961107577972029,
+            1.15,
+            2.776358167396944
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -420.3220551134764,
+            -125.3,
+            229.56792225541312
+          ],
+          "b": [
+            -421.6142766290708,
+            -125.3,
+            232.820638590207
+          ]
+        },
+        {
+          "id": "dial_2_tick_12",
+          "kind": "segment",
+          "centre": [
+            -413.1289566278048,
+            -125.3,
+            233.47920154785479
+          ],
+          "half": [
+            1.4789173202002188,
+            1.15,
+            2.868811623323603
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -412.8000393076046,
+            -125.3,
+            231.76038992453118
+          ],
+          "b": [
+            -413.45787394800504,
+            -125.3,
+            235.1980131711784
+          ]
+        },
+        {
+          "id": "dial_2_tick_13",
+          "kind": "segment",
+          "centre": [
+            -405.0,
+            -125.3,
+            232.5
+          ],
+          "half": [
+            1.15,
+            1.15,
+            4.65
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -405.0,
+            -125.3,
+            229.0
+          ],
+          "b": [
+            -405.0,
+            -125.3,
+            236.0
+          ]
+        },
+        {
+          "id": "dial_2_tick_14",
+          "kind": "segment",
+          "centre": [
+            -396.8710433721951,
+            -125.3,
+            233.47920154785479
+          ],
+          "half": [
+            1.4789173202001904,
+            1.15,
+            2.868811623323603
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -397.19996069239534,
+            -125.3,
+            231.76038992453118
+          ],
+          "b": [
+            -396.54212605199496,
+            -125.3,
+            235.1980131711784
+          ]
+        },
+        {
+          "id": "dial_2_tick_15",
+          "kind": "segment",
+          "centre": [
+            -389.0318341287264,
+            -125.3,
+            231.19428042281007
+          ],
+          "half": [
+            1.7961107577972029,
+            1.15,
+            2.776358167396944
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -389.6779448865236,
+            -125.3,
+            229.56792225541312
+          ],
+          "b": [
+            -388.3857233709292,
+            -125.3,
+            232.820638590207
+          ]
+        },
+        {
+          "id": "dial_2_tick_16",
+          "kind": "segment",
+          "centre": [
+            -382.7020662536068,
+            -125.3,
+            226.00074500123475
+          ],
+          "half": [
+            3.0305486292138766,
+            1.15,
+            4.101870060345101
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -384.5826148828207,
+            -125.3,
+            223.04887494088965
+          ],
+          "b": [
+            -380.8215176243929,
+            -125.3,
+            228.95261506157985
+          ]
+        },
+        {
+          "id": "dial_2_tick_17",
+          "kind": "segment",
+          "centre": [
+            -375.32004916217727,
+            -125.3,
+            222.45890999803436
+          ],
+          "half": [
+            2.3509228662702752,
+            1.15,
+            2.4229038727528347
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -376.52097202844755,
+            -125.3,
+            221.18600612528152
+          ],
+          "b": [
+            -374.119126295907,
+            -125.3,
+            223.7318138707872
+          ]
+        },
+        {
+          "id": "dial_2_tick_18",
+          "kind": "segment",
+          "centre": [
+            -369.9362143698883,
+            -125.3,
+            216.31982301054992
+          ],
+          "half": [
+            2.568765892547867,
+            1.15,
+            2.174501509097405
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -371.3549802624362,
+            -125.3,
+            215.29532150145252
+          ],
+          "b": [
+            -368.51744847734045,
+            -125.3,
+            217.34432451964733
+          ]
+        },
+        {
+          "id": "dial_2_tick_19",
+          "kind": "segment",
+          "centre": [
+            -367.388226837979,
+            -125.3,
+            208.538657862239
+          ],
+          "half": [
+            4.322077254628249,
+            1.15,
+            2.629163916092446
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -370.5603040926073,
+            -125.3,
+            207.05949394614657
+          ],
+          "b": [
+            -364.2161495833508,
+            -125.3,
+            210.01782177833147
+          ]
+        },
+        {
+          "id": "dial_2_tick_20",
+          "kind": "segment",
+          "centre": [
+            -363.0653233302715,
+            -125.3,
+            201.58514962602447
+          ],
+          "half": [
+            2.8467788247866905,
+            1.15,
+            1.5783008519200705
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -364.7621021550582,
+            -125.3,
+            201.15684877410442
+          ],
+          "b": [
+            -361.3685445054848,
+            -125.3,
+            202.01345047794456
+          ]
+        },
+        {
+          "id": "dial_2_tick_21",
+          "kind": "segment",
+          "centre": [
+            -361.8231721547677,
+            -125.3,
+            193.51476385037807
+          ],
+          "half": [
+            2.897039276974732,
+            1.15,
+            1.2517534505933354
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -363.5702114317424,
+            -125.3,
+            193.41301039978475
+          ],
+          "b": [
+            -360.07613287779293,
+            -125.3,
+            193.61651730097142
+          ]
+        },
+        {
+          "id": "dial_2_tick_22",
+          "kind": "segment",
+          "centre": [
+            -363.85503825298684,
+            -125.3,
+            185.58316302286784
+          ],
+          "half": [
+            4.620057014808333,
+            1.15,
+            1.6068416727701815
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -367.3250952677952,
+            -125.3,
+            186.04000469563803
+          ],
+          "b": [
+            -360.3849812381785,
+            -125.3,
+            185.12632135009767
+          ]
+        },
+        {
+          "id": "dial_2_tick_23",
+          "kind": "segment",
+          "centre": [
+            -363.9452556654663,
+            -125.3,
+            177.3959392964427
+          ],
+          "half": [
+            2.81117462625283,
+            1.15,
+            1.70045332326533
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -365.6064302917191,
+            -125.3,
+            177.94639261970804
+          ],
+          "b": [
+            -362.28408103921345,
+            -125.3,
+            176.84548597317738
+          ]
+        },
+        {
+          "id": "dial_2_tick_24",
+          "kind": "segment",
+          "centre": [
+            -367.2338511061025,
+            -125.3,
+            169.92203762874678
+          ],
+          "half": [
+            2.6781100708513406,
+            1.15,
+            2.002865529472666
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -368.7619611769539,
+            -125.3,
+            170.77490315821944
+          ],
+          "b": [
+            -365.7057410352512,
+            -125.3,
+            169.0691720992741
+          ]
+        },
+        {
+          "id": "dial_2_tick_25",
+          "kind": "segment",
+          "centre": [
+            -373.20915561056245,
+            -125.3,
+            164.3243141980086
+          ],
+          "half": [
+            3.8311555509164292,
+            1.15,
+            3.3997566339028906
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -375.89031116147885,
+            -125.3,
+            166.5740708319115
+          ],
+          "b": [
+            -370.528000059646,
+            -125.3,
+            162.07455756410573
+          ]
+        },
+        {
+          "id": "dial_2_needle",
+          "kind": "segment",
+          "centre": [
+            -416.907849302036,
+            -128.0,
+            184.125
+          ],
+          "half": [
+            18.60400172474266,
+            1.5,
+            11.375
+          ],
+          "radius": 1.5,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -399.80384757729337,
+            -128,
+            194.0
+          ],
+          "b": [
+            -434.0118510267787,
+            -128,
+            174.25
+          ]
+        },
+        {
+          "id": "dial_2_hub",
+          "kind": "disk_y",
+          "centre": [
+            -405,
+            -129,
+            191
+          ],
+          "half": [
+            2.4,
+            1.5,
+            2.4
+          ],
+          "radius": 2.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_edge_3",
+          "kind": "annulus_y",
+          "centre": [
+            -294,
+            -123,
+            196
+          ],
+          "half": [
+            55.7,
+            1.5,
+            55.7
+          ],
+          "radius": 55.7,
+          "border": 1.3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_3_tick_01",
+          "kind": "segment",
+          "centre": [
+            -330.5594710478532,
+            -125.3,
+            165.32296132770992
+          ],
+          "half": [
+            4.23332888355389,
+            1.15,
+            3.7372201289883207
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -327.47614216429935,
+            -125.3,
+            167.91018145669824
+          ],
+          "b": [
+            -333.6427999314071,
+            -125.3,
+            162.7357411987216
+          ]
+        },
+        {
+          "id": "dial_3_tick_02",
+          "kind": "segment",
+          "centre": [
+            -337.4310712279821,
+            -125.3,
+            171.7603432730588
+          ],
+          "half": [
+            2.9073265814790488,
+            1.15,
+            2.130795358893573
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -335.67374464650305,
+            -125.3,
+            172.74113863195237
+          ],
+          "b": [
+            -339.18839780946115,
+            -125.3,
+            170.77954791416522
+          ]
+        },
+        {
+          "id": "dial_3_tick_03",
+          "kind": "segment",
+          "centre": [
+            -341.21295598471374,
+            -125.3,
+            180.35533019090911
+          ],
+          "half": [
+            3.060350820190729,
+            1.15,
+            1.7830213217551232
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -339.302605164523,
+            -125.3,
+            180.98835151266422
+          ],
+          "b": [
+            -343.1233068049045,
+            -125.3,
+            179.72230886915398
+          ]
+        },
+        {
+          "id": "dial_3_tick_04",
+          "kind": "segment",
+          "centre": [
+            -341.3167060090651,
+            -125.3,
+            189.77063747629805
+          ],
+          "half": [
+            5.140565567029592,
+            1.15,
+            1.6753679236857066
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -337.3261404420355,
+            -125.3,
+            190.29600539998376
+          ],
+          "b": [
+            -345.3072715760947,
+            -125.3,
+            189.24526955261234
+          ]
+        },
+        {
+          "id": "dial_3_tick_05",
+          "kind": "segment",
+          "centre": [
+            -343.6533520220172,
+            -125.3,
+            198.89197842793482
+          ],
+          "half": [
+            3.1590951685209574,
+            1.15,
+            1.267016468182328
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -341.64425685349624,
+            -125.3,
+            198.7749619597525
+          ],
+          "b": [
+            -345.66244719053816,
+            -125.3,
+            199.00899489611714
+          ]
+        },
+        {
+          "id": "dial_3_tick_06",
+          "kind": "segment",
+          "centre": [
+            -342.2248781701878,
+            -125.3,
+            208.17292206992818
+          ],
+          "half": [
+            3.1012956485047254,
+            1.15,
+            1.642545979708069
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -340.27358252168307,
+            -125.3,
+            207.6803760902201
+          ],
+          "b": [
+            -344.1761738186925,
+            -125.3,
+            208.66546804963625
+          ]
+        },
+        {
+          "id": "dial_3_tick_07",
+          "kind": "segment",
+          "centre": [
+            -337.2535391363241,
+            -125.3,
+            216.1694565415749
+          ],
+          "half": [
+            4.797888842822539,
+            1.15,
+            2.851038503506325
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -333.6056502935016,
+            -125.3,
+            214.46841803806856
+          ],
+          "b": [
+            -340.90142797914666,
+            -125.3,
+            217.8704950450812
+          ]
+        },
+        {
+          "id": "dial_3_tick_08",
+          "kind": "segment",
+          "centre": [
+            -334.32335347462845,
+            -125.3,
+            225.1177964621324
+          ],
+          "half": [
+            2.7815807764300415,
+            1.15,
+            2.328176735462003
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -332.6917726981984,
+            -125.3,
+            223.9396197266704
+          ],
+          "b": [
+            -335.9549342510585,
+            -125.3,
+            226.2959731975944
+          ]
+        },
+        {
+          "id": "dial_3_tick_09",
+          "kind": "segment",
+          "centre": [
+            -328.1319434634961,
+            -125.3,
+            232.17774649773952
+          ],
+          "half": [
+            2.531061296210845,
+            1.15,
+            2.6138394536657557
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -326.7508821672853,
+            -125.3,
+            230.71390704407375
+          ],
+          "b": [
+            -329.513004759707,
+            -125.3,
+            233.64158595140526
+          ]
+        },
+        {
+          "id": "dial_3_tick_10",
+          "kind": "segment",
+          "centre": [
+            -319.64262380835214,
+            -125.3,
+            236.25085675141997
+          ],
+          "half": [
+            3.3126309235959694,
+            1.15,
+            4.544650569396859
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -317.4799928847562,
+            -125.3,
+            232.8562061820231
+          ],
+          "b": [
+            -321.80525473194814,
+            -125.3,
+            239.64550732081682
+          ]
+        },
+        {
+          "id": "dial_3_tick_11",
+          "kind": "segment",
+          "centre": [
+            -312.36339075196463,
+            -125.3,
+            242.22342248623158
+          ],
+          "half": [
+            1.8930273714667805,
+            1.15,
+            3.0203118925064927
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -311.62036338049785,
+            -125.3,
+            240.3531105937251
+          ],
+          "b": [
+            -313.1064181234314,
+            -125.3,
+            244.09373437873808
+          ]
+        },
+        {
+          "id": "dial_3_tick_12",
+          "kind": "segment",
+          "centre": [
+            -303.3483001219755,
+            -125.3,
+            244.85108178003298
+          ],
+          "half": [
+            1.528254918230226,
+            1.15,
+            3.126633366822156
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -302.9700452037453,
+            -125.3,
+            242.87444841321084
+          ],
+          "b": [
+            -303.72655504020577,
+            -125.3,
+            246.82771514685516
+          ]
+        },
+        {
+          "id": "dial_3_tick_13",
+          "kind": "segment",
+          "centre": [
+            -294.0,
+            -125.3,
+            243.725
+          ],
+          "half": [
+            1.15,
+            1.15,
+            5.175000000000006
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -294.0,
+            -125.3,
+            239.7
+          ],
+          "b": [
+            -294.0,
+            -125.3,
+            247.75
+          ]
+        },
+        {
+          "id": "dial_3_tick_14",
+          "kind": "segment",
+          "centre": [
+            -284.65169987802443,
+            -125.3,
+            244.85108178003298
+          ],
+          "half": [
+            1.5282549182301977,
+            1.15,
+            3.126633366822142
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -285.02995479625463,
+            -125.3,
+            242.87444841321084
+          ],
+          "b": [
+            -284.27344495979423,
+            -125.3,
+            246.82771514685513
+          ]
+        },
+        {
+          "id": "dial_3_tick_15",
+          "kind": "segment",
+          "centre": [
+            -275.63660924803537,
+            -125.3,
+            242.22342248623158
+          ],
+          "half": [
+            1.8930273714667805,
+            1.15,
+            3.0203118925064927
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -276.37963661950215,
+            -125.3,
+            240.3531105937251
+          ],
+          "b": [
+            -274.8935818765686,
+            -125.3,
+            244.09373437873808
+          ]
+        },
+        {
+          "id": "dial_3_tick_16",
+          "kind": "segment",
+          "centre": [
+            -268.35737619164786,
+            -125.3,
+            236.25085675141997
+          ],
+          "half": [
+            3.3126309235959694,
+            1.15,
+            4.544650569396859
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -270.5200071152438,
+            -125.3,
+            232.8562061820231
+          ],
+          "b": [
+            -266.19474526805186,
+            -125.3,
+            239.64550732081682
+          ]
+        },
+        {
+          "id": "dial_3_tick_17",
+          "kind": "segment",
+          "centre": [
+            -259.86805653650384,
+            -125.3,
+            232.17774649773952
+          ],
+          "half": [
+            2.5310612962108165,
+            1.15,
+            2.6138394536657557
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -261.24911783271466,
+            -125.3,
+            230.71390704407375
+          ],
+          "b": [
+            -258.486995240293,
+            -125.3,
+            233.64158595140526
+          ]
+        },
+        {
+          "id": "dial_3_tick_18",
+          "kind": "segment",
+          "centre": [
+            -253.67664652537155,
+            -125.3,
+            225.11779646213242
+          ],
+          "half": [
+            2.7815807764300557,
+            1.15,
+            2.328176735462017
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -255.30822730180162,
+            -125.3,
+            223.9396197266704
+          ],
+          "b": [
+            -252.0450657489415,
+            -125.3,
+            226.29597319759444
+          ]
+        },
+        {
+          "id": "dial_3_tick_19",
+          "kind": "segment",
+          "centre": [
+            -250.74646086367588,
+            -125.3,
+            216.16945654157487
+          ],
+          "half": [
+            4.797888842822511,
+            1.15,
+            2.851038503506311
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -254.3943497064984,
+            -125.3,
+            214.46841803806856
+          ],
+          "b": [
+            -247.09857202085337,
+            -125.3,
+            217.87049504508119
+          ]
+        },
+        {
+          "id": "dial_3_tick_20",
+          "kind": "segment",
+          "centre": [
+            -245.77512182981218,
+            -125.3,
+            208.17292206992818
+          ],
+          "half": [
+            3.101295648504711,
+            1.15,
+            1.6425459797080832
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -247.7264174783169,
+            -125.3,
+            207.68037609022008
+          ],
+          "b": [
+            -243.82382618130748,
+            -125.3,
+            208.66546804963625
+          ]
+        },
+        {
+          "id": "dial_3_tick_21",
+          "kind": "segment",
+          "centre": [
+            -244.3466479779828,
+            -125.3,
+            198.89197842793482
+          ],
+          "half": [
+            3.159095168520929,
+            1.15,
+            1.2670164681823421
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -246.35574314650373,
+            -125.3,
+            198.77496195975246
+          ],
+          "b": [
+            -242.33755280946187,
+            -125.3,
+            199.00899489611714
+          ]
+        },
+        {
+          "id": "dial_3_tick_22",
+          "kind": "segment",
+          "centre": [
+            -246.68329399093489,
+            -125.3,
+            189.77063747629805
+          ],
+          "half": [
+            5.140565567029578,
+            1.15,
+            1.6753679236857066
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -250.67385955796448,
+            -125.3,
+            190.29600539998376
+          ],
+          "b": [
+            -242.69272842390532,
+            -125.3,
+            189.24526955261234
+          ]
+        },
+        {
+          "id": "dial_3_tick_23",
+          "kind": "segment",
+          "centre": [
+            -246.78704401528623,
+            -125.3,
+            180.35533019090911
+          ],
+          "half": [
+            3.060350820190729,
+            1.15,
+            1.7830213217551232
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -248.69739483547696,
+            -125.3,
+            180.98835151266422
+          ],
+          "b": [
+            -244.8766931950955,
+            -125.3,
+            179.72230886915398
+          ]
+        },
+        {
+          "id": "dial_3_tick_24",
+          "kind": "segment",
+          "centre": [
+            -250.5689287720179,
+            -125.3,
+            171.7603432730588
+          ],
+          "half": [
+            2.9073265814790488,
+            1.15,
+            2.130795358893573
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -252.32625535349695,
+            -125.3,
+            172.74113863195237
+          ],
+          "b": [
+            -248.81160219053885,
+            -125.3,
+            170.77954791416522
+          ]
+        },
+        {
+          "id": "dial_3_tick_25",
+          "kind": "segment",
+          "centre": [
+            -257.4405289521468,
+            -125.3,
+            165.32296132770992
+          ],
+          "half": [
+            4.23332888355389,
+            1.15,
+            3.7372201289883207
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -260.52385783570065,
+            -125.3,
+            167.91018145669824
+          ],
+          "b": [
+            -254.35720006859287,
+            -125.3,
+            162.7357411987216
+          ]
+        },
+        {
+          "id": "dial_3_needle",
+          "kind": "segment",
+          "centre": [
+            -305.1811259775123,
+            -128.0,
+            184.8188740224877
+          ],
+          "half": [
+            17.560162767699467,
+            1.5,
+            17.560162767699453
+          ],
+          "radius": 1.5,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -289.1209632098128,
+            -128,
+            200.87903679018717
+          ],
+          "b": [
+            -321.24128874521176,
+            -128,
+            168.75871125478827
+          ]
+        },
+        {
+          "id": "dial_3_hub",
+          "kind": "disk_y",
+          "centre": [
+            -294,
+            -129,
+            196
+          ],
+          "half": [
+            2.4,
+            1.5,
+            2.4
+          ],
+          "radius": 2.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_3_counter",
+          "kind": "frame_y",
+          "centre": [
+            -294,
+            -125,
+            175.3
+          ],
+          "half": [
+            18.400000000000002,
+            1.4,
+            4.4
+          ],
+          "radius": 2.4,
+          "border": 1.3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_3_counter_mark_0",
+          "kind": "segment",
+          "centre": [
+            -306.075,
+            -126.0,
+            175.3
+          ],
+          "half": [
+            1,
+            1,
+            2.35
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -306.075,
+            -126,
+            173.8
+          ],
+          "b": [
+            -306.075,
+            -126,
+            176.8
+          ]
+        },
+        {
+          "id": "dial_3_counter_mark_1",
+          "kind": "segment",
+          "centre": [
+            -300.0375,
+            -126.0,
+            175.3
+          ],
+          "half": [
+            1,
+            1,
+            2.35
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -300.0375,
+            -126,
+            173.8
+          ],
+          "b": [
+            -300.0375,
+            -126,
+            176.8
+          ]
+        },
+        {
+          "id": "dial_3_counter_mark_2",
+          "kind": "segment",
+          "centre": [
+            -294.0,
+            -126.0,
+            175.3
+          ],
+          "half": [
+            1,
+            1,
+            2.35
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -294.0,
+            -126,
+            173.8
+          ],
+          "b": [
+            -294.0,
+            -126,
+            176.8
+          ]
+        },
+        {
+          "id": "dial_3_counter_mark_3",
+          "kind": "segment",
+          "centre": [
+            -287.9625,
+            -126.0,
+            175.3
+          ],
+          "half": [
+            1,
+            1,
+            2.35
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -287.9625,
+            -126,
+            173.8
+          ],
+          "b": [
+            -287.9625,
+            -126,
+            176.8
+          ]
+        },
+        {
+          "id": "dial_3_counter_mark_4",
+          "kind": "segment",
+          "centre": [
+            -281.925,
+            -126.0,
+            175.3
+          ],
+          "half": [
+            1,
+            1,
+            2.35
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -281.925,
+            -126,
+            173.8
+          ],
+          "b": [
+            -281.925,
+            -126,
+            176.8
+          ]
+        },
+        {
+          "id": "dial_edge_4",
+          "kind": "annulus_y",
+          "centre": [
+            -183,
+            -123,
+            191
+          ],
+          "half": [
+            48.2,
+            1.5,
+            48.2
+          ],
+          "radius": 48.2,
+          "border": 1.3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_4_tick_01",
+          "kind": "segment",
+          "centre": [
+            -214.79084438943758,
+            -125.3,
+            164.3243141980086
+          ],
+          "half": [
+            3.8311555509164292,
+            1.15,
+            3.3997566339028906
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -212.10968883852115,
+            -125.3,
+            166.5740708319115
+          ],
+          "b": [
+            -217.471999940354,
+            -125.3,
+            162.07455756410573
+          ]
+        },
+        {
+          "id": "dial_4_tick_02",
+          "kind": "segment",
+          "centre": [
+            -220.76614889389748,
+            -125.3,
+            169.92203762874678
+          ],
+          "half": [
+            2.6781100708513548,
+            1.15,
+            2.002865529472666
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -219.2380388230461,
+            -125.3,
+            170.77490315821944
+          ],
+          "b": [
+            -222.29425896474882,
+            -125.3,
+            169.0691720992741
+          ]
+        },
+        {
+          "id": "dial_4_tick_03",
+          "kind": "segment",
+          "centre": [
+            -224.05474433453372,
+            -125.3,
+            177.3959392964427
+          ],
+          "half": [
+            2.8111746262528157,
+            1.15,
+            1.70045332326533
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -222.3935697082809,
+            -125.3,
+            177.94639261970804
+          ],
+          "b": [
+            -225.71591896078652,
+            -125.3,
+            176.84548597317738
+          ]
+        },
+        {
+          "id": "dial_4_tick_04",
+          "kind": "segment",
+          "centre": [
+            -224.14496174701316,
+            -125.3,
+            185.5831630228679
+          ],
+          "half": [
+            4.6200570148083475,
+            1.15,
+            1.6068416727701815
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -220.6749047322048,
+            -125.3,
+            186.04000469563806
+          ],
+          "b": [
+            -227.6150187618215,
+            -125.3,
+            185.1263213500977
+          ]
+        },
+        {
+          "id": "dial_4_tick_05",
+          "kind": "segment",
+          "centre": [
+            -226.17682784523237,
+            -125.3,
+            193.51476385037807
+          ],
+          "half": [
+            2.8970392769747177,
+            1.15,
+            1.2517534505933354
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -224.42978856825764,
+            -125.3,
+            193.41301039978475
+          ],
+          "b": [
+            -227.92386712220707,
+            -125.3,
+            193.61651730097142
+          ]
+        },
+        {
+          "id": "dial_4_tick_06",
+          "kind": "segment",
+          "centre": [
+            -224.9346766697285,
+            -125.3,
+            201.5851496260245
+          ],
+          "half": [
+            2.8467788247867047,
+            1.15,
+            1.5783008519200563
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -223.2378978449418,
+            -125.3,
+            201.15684877410445
+          ],
+          "b": [
+            -226.63145549451522,
+            -125.3,
+            202.01345047794456
+          ]
+        },
+        {
+          "id": "dial_4_tick_07",
+          "kind": "segment",
+          "centre": [
+            -220.61177316202097,
+            -125.3,
+            208.538657862239
+          ],
+          "half": [
+            4.322077254628278,
+            1.15,
+            2.629163916092446
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -217.4396959073927,
+            -125.3,
+            207.05949394614657
+          ],
+          "b": [
+            -223.78385041664924,
+            -125.3,
+            210.01782177833147
+          ]
+        },
+        {
+          "id": "dial_4_tick_08",
+          "kind": "segment",
+          "centre": [
+            -218.06378563011168,
+            -125.3,
+            216.3198230105499
+          ],
+          "half": [
+            2.568765892547867,
+            1.15,
+            2.1745015090973907
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -216.6450197375638,
+            -125.3,
+            215.29532150145252
+          ],
+          "b": [
+            -219.48255152265955,
+            -125.3,
+            217.3443245196473
+          ]
+        },
+        {
+          "id": "dial_4_tick_09",
+          "kind": "segment",
+          "centre": [
+            -212.67995083782273,
+            -125.3,
+            222.45890999803436
+          ],
+          "half": [
+            2.3509228662702752,
+            1.15,
+            2.4229038727528347
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -211.47902797155245,
+            -125.3,
+            221.18600612528152
+          ],
+          "b": [
+            -213.880873704093,
+            -125.3,
+            223.7318138707872
+          ]
+        },
+        {
+          "id": "dial_4_tick_10",
+          "kind": "segment",
+          "centre": [
+            -205.2979337463932,
+            -125.3,
+            226.00074500123475
+          ],
+          "half": [
+            3.0305486292138766,
+            1.15,
+            4.101870060345101
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -203.41738511717932,
+            -125.3,
+            223.04887494088965
+          ],
+          "b": [
+            -207.17848237560708,
+            -125.3,
+            228.95261506157985
+          ]
+        },
+        {
+          "id": "dial_4_tick_11",
+          "kind": "segment",
+          "centre": [
+            -198.9681658712736,
+            -125.3,
+            231.19428042281007
+          ],
+          "half": [
+            1.7961107577972029,
+            1.15,
+            2.776358167396944
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -198.3220551134764,
+            -125.3,
+            229.56792225541312
+          ],
+          "b": [
+            -199.61427662907082,
+            -125.3,
+            232.820638590207
+          ]
+        },
+        {
+          "id": "dial_4_tick_12",
+          "kind": "segment",
+          "centre": [
+            -191.12895662780483,
+            -125.3,
+            233.47920154785479
+          ],
+          "half": [
+            1.4789173202001904,
+            1.15,
+            2.868811623323603
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -190.80003930760464,
+            -125.3,
+            231.76038992453118
+          ],
+          "b": [
+            -191.45787394800502,
+            -125.3,
+            235.1980131711784
+          ]
+        },
+        {
+          "id": "dial_4_tick_13",
+          "kind": "segment",
+          "centre": [
+            -183.0,
+            -125.3,
+            232.5
+          ],
+          "half": [
+            1.15,
+            1.15,
+            4.65
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -183.0,
+            -125.3,
+            229.0
+          ],
+          "b": [
+            -183.0,
+            -125.3,
+            236.0
+          ]
+        },
+        {
+          "id": "dial_4_tick_14",
+          "kind": "segment",
+          "centre": [
+            -174.87104337219517,
+            -125.3,
+            233.47920154785479
+          ],
+          "half": [
+            1.4789173202002046,
+            1.15,
+            2.868811623323603
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -175.19996069239536,
+            -125.3,
+            231.76038992453118
+          ],
+          "b": [
+            -174.54212605199496,
+            -125.3,
+            235.1980131711784
+          ]
+        },
+        {
+          "id": "dial_4_tick_15",
+          "kind": "segment",
+          "centre": [
+            -167.03183412872642,
+            -125.3,
+            231.19428042281007
+          ],
+          "half": [
+            1.7961107577971887,
+            1.15,
+            2.776358167396944
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -167.6779448865236,
+            -125.3,
+            229.56792225541312
+          ],
+          "b": [
+            -166.3857233709292,
+            -125.3,
+            232.820638590207
+          ]
+        },
+        {
+          "id": "dial_4_tick_16",
+          "kind": "segment",
+          "centre": [
+            -160.7020662536068,
+            -125.3,
+            226.00074500123475
+          ],
+          "half": [
+            3.0305486292138766,
+            1.15,
+            4.101870060345101
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -162.58261488282068,
+            -125.3,
+            223.04887494088965
+          ],
+          "b": [
+            -158.82151762439292,
+            -125.3,
+            228.95261506157985
+          ]
+        },
+        {
+          "id": "dial_4_tick_17",
+          "kind": "segment",
+          "centre": [
+            -153.32004916217727,
+            -125.3,
+            222.45890999803436
+          ],
+          "half": [
+            2.3509228662702752,
+            1.15,
+            2.4229038727528347
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -154.52097202844755,
+            -125.3,
+            221.18600612528152
+          ],
+          "b": [
+            -152.119126295907,
+            -125.3,
+            223.7318138707872
+          ]
+        },
+        {
+          "id": "dial_4_tick_18",
+          "kind": "segment",
+          "centre": [
+            -147.93621436988832,
+            -125.3,
+            216.31982301054992
+          ],
+          "half": [
+            2.568765892547867,
+            1.15,
+            2.174501509097405
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -149.3549802624362,
+            -125.3,
+            215.29532150145252
+          ],
+          "b": [
+            -146.51744847734045,
+            -125.3,
+            217.34432451964733
+          ]
+        },
+        {
+          "id": "dial_4_tick_19",
+          "kind": "segment",
+          "centre": [
+            -145.38822683797903,
+            -125.3,
+            208.538657862239
+          ],
+          "half": [
+            4.322077254628278,
+            1.15,
+            2.629163916092446
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -148.5603040926073,
+            -125.3,
+            207.05949394614657
+          ],
+          "b": [
+            -142.21614958335076,
+            -125.3,
+            210.01782177833147
+          ]
+        },
+        {
+          "id": "dial_4_tick_20",
+          "kind": "segment",
+          "centre": [
+            -141.0653233302715,
+            -125.3,
+            201.58514962602447
+          ],
+          "half": [
+            2.8467788247867047,
+            1.15,
+            1.5783008519200705
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -142.7621021550582,
+            -125.3,
+            201.15684877410442
+          ],
+          "b": [
+            -139.36854450548478,
+            -125.3,
+            202.01345047794456
+          ]
+        },
+        {
+          "id": "dial_4_tick_21",
+          "kind": "segment",
+          "centre": [
+            -139.82317215476763,
+            -125.3,
+            193.51476385037807
+          ],
+          "half": [
+            2.8970392769747177,
+            1.15,
+            1.2517534505933354
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -141.57021143174236,
+            -125.3,
+            193.41301039978475
+          ],
+          "b": [
+            -138.07613287779293,
+            -125.3,
+            193.61651730097142
+          ]
+        },
+        {
+          "id": "dial_4_tick_22",
+          "kind": "segment",
+          "centre": [
+            -141.85503825298687,
+            -125.3,
+            185.58316302286784
+          ],
+          "half": [
+            4.620057014808333,
+            1.15,
+            1.6068416727701815
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -145.3250952677952,
+            -125.3,
+            186.04000469563803
+          ],
+          "b": [
+            -138.38498123817854,
+            -125.3,
+            185.12632135009767
+          ]
+        },
+        {
+          "id": "dial_4_tick_23",
+          "kind": "segment",
+          "centre": [
+            -141.94525566546628,
+            -125.3,
+            177.3959392964427
+          ],
+          "half": [
+            2.8111746262528157,
+            1.15,
+            1.70045332326533
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -143.6064302917191,
+            -125.3,
+            177.94639261970804
+          ],
+          "b": [
+            -140.28408103921348,
+            -125.3,
+            176.84548597317738
+          ]
+        },
+        {
+          "id": "dial_4_tick_24",
+          "kind": "segment",
+          "centre": [
+            -145.23385110610252,
+            -125.3,
+            169.92203762874678
+          ],
+          "half": [
+            2.6781100708513548,
+            1.15,
+            2.002865529472666
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -146.7619611769539,
+            -125.3,
+            170.77490315821944
+          ],
+          "b": [
+            -143.70574103525118,
+            -125.3,
+            169.0691720992741
+          ]
+        },
+        {
+          "id": "dial_4_tick_25",
+          "kind": "segment",
+          "centre": [
+            -151.20915561056242,
+            -125.3,
+            164.3243141980086
+          ],
+          "half": [
+            3.8311555509164292,
+            1.15,
+            3.3997566339028906
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -153.89031116147885,
+            -125.3,
+            166.5740708319115
+          ],
+          "b": [
+            -148.528000059646,
+            -125.3,
+            162.07455756410573
+          ]
+        },
+        {
+          "id": "dial_4_needle",
+          "kind": "segment",
+          "centre": [
+            -193.53311109288597,
+            -128.0,
+            182.16167036681009
+          ],
+          "half": [
+            16.62937775159982,
+            1.5,
+            14.19505529130916
+          ],
+          "radius": 1.5,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -178.40373334128614,
+            -128,
+            194.85672565811925
+          ],
+          "b": [
+            -208.66248884448578,
+            -128,
+            169.46661507550093
+          ]
+        },
+        {
+          "id": "dial_4_hub",
+          "kind": "disk_y",
+          "centre": [
+            -183,
+            -129,
+            191
+          ],
+          "half": [
+            2.4,
+            1.5,
+            2.4
+          ],
+          "radius": 2.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_4_counter",
+          "kind": "frame_y",
+          "centre": [
+            -183,
+            -125,
+            173.0
+          ],
+          "half": [
+            16.0,
+            1.4,
+            4.4
+          ],
+          "radius": 2.4,
+          "border": 1.3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_4_counter_mark_0",
+          "kind": "segment",
+          "centre": [
+            -193.5,
+            -126.0,
+            173.0
+          ],
+          "half": [
+            1,
+            1,
+            2.35
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -193.5,
+            -126,
+            171.5
+          ],
+          "b": [
+            -193.5,
+            -126,
+            174.5
+          ]
+        },
+        {
+          "id": "dial_4_counter_mark_1",
+          "kind": "segment",
+          "centre": [
+            -188.25,
+            -126.0,
+            173.0
+          ],
+          "half": [
+            1,
+            1,
+            2.35
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -188.25,
+            -126,
+            171.5
+          ],
+          "b": [
+            -188.25,
+            -126,
+            174.5
+          ]
+        },
+        {
+          "id": "dial_4_counter_mark_2",
+          "kind": "segment",
+          "centre": [
+            -183.0,
+            -126.0,
+            173.0
+          ],
+          "half": [
+            1,
+            1,
+            2.35
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -183.0,
+            -126,
+            171.5
+          ],
+          "b": [
+            -183.0,
+            -126,
+            174.5
+          ]
+        },
+        {
+          "id": "dial_4_counter_mark_3",
+          "kind": "segment",
+          "centre": [
+            -177.75,
+            -126.0,
+            173.0
+          ],
+          "half": [
+            1,
+            1,
+            2.35
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -177.75,
+            -126,
+            171.5
+          ],
+          "b": [
+            -177.75,
+            -126,
+            174.5
+          ]
+        },
+        {
+          "id": "dial_4_counter_mark_4",
+          "kind": "segment",
+          "centre": [
+            -172.5,
+            -126.0,
+            173.0
+          ],
+          "half": [
+            1,
+            1,
+            2.35
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -172.5,
+            -126,
+            171.5
+          ],
+          "b": [
+            -172.5,
+            -126,
+            174.5
+          ]
+        },
+        {
+          "id": "dial_edge_5",
+          "kind": "annulus_y",
+          "centre": [
+            -88,
+            -123,
+            184
+          ],
+          "half": [
+            38.2,
+            1.5,
+            38.2
+          ],
+          "radius": 38.2,
+          "border": 1.3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "dial_5_tick_01",
+          "kind": "segment",
+          "centre": [
+            -113.43267551155007,
+            -125.3,
+            162.6594513584069
+          ],
+          "half": [
+            3.294924440733135,
+            1.15,
+            2.9498053071223125
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -111.28775107081694,
+            -125.3,
+            164.4592566655292
+          ],
+          "b": [
+            -115.57759995228321,
+            -125.3,
+            160.85964605128459
+          ]
+        },
+        {
+          "id": "dial_5_tick_02",
+          "kind": "segment",
+          "centre": [
+            -118.21291911511798,
+            -125.3,
+            167.13763010299743
+          ],
+          "half": [
+            2.3724880566810795,
+            1.15,
+            1.832292423578147
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -116.9904310584369,
+            -125.3,
+            167.81992252657557
+          ],
+          "b": [
+            -119.43540717179906,
+            -125.3,
+            166.45533767941927
+          ]
+        },
+        {
+          "id": "dial_5_tick_03",
+          "kind": "segment",
+          "centre": [
+            -120.84379546762696,
+            -125.3,
+            173.11675143715416
+          ],
+          "half": [
+            2.4789397010022483,
+            1.15,
+            1.5903626586122583
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -119.51485576662472,
+            -125.3,
+            173.55711409576642
+          ],
+          "b": [
+            -122.17273516862922,
+            -125.3,
+            172.6763887785419
+          ]
+        },
+        {
+          "id": "dial_5_tick_04",
+          "kind": "segment",
+          "centre": [
+            -120.91596939761051,
+            -125.3,
+            179.66653041829431
+          ],
+          "half": [
+            3.926045611846669,
+            1.15,
+            1.515473338216148
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -118.13992378576384,
+            -125.3,
+            180.03200375651045
+          ],
+          "b": [
+            -123.69201500945718,
+            -125.3,
+            179.30105708007815
+          ]
+        },
+        {
+          "id": "dial_5_tick_05",
+          "kind": "segment",
+          "centre": [
+            -122.54146227618588,
+            -125.3,
+            186.0118110803025
+          ],
+          "half": [
+            2.547631421579774,
+            1.15,
+            1.2314027604746598
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -121.14383085460611,
+            -125.3,
+            185.93040831982782
+          ],
+          "b": [
+            -123.93909369776566,
+            -125.3,
+            186.09321384077714
+          ]
+        },
+        {
+          "id": "dial_5_tick_06",
+          "kind": "segment",
+          "centre": [
+            -121.5477413357828,
+            -125.3,
+            192.4681197008196
+          ],
+          "half": [
+            2.507423059829365,
+            1.15,
+            1.4926406815360536
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -120.19031827595344,
+            -125.3,
+            192.12547901928355
+          ],
+          "b": [
+            -122.90516439561218,
+            -125.3,
+            192.81076038235565
+          ]
+        },
+        {
+          "id": "dial_5_tick_07",
+          "kind": "segment",
+          "centre": [
+            -118.08941852961678,
+            -125.3,
+            198.03092628979124
+          ],
+          "half": [
+            3.687661803702619,
+            1.15,
+            2.3333311328739597
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -115.55175672591416,
+            -125.3,
+            196.84759515691727
+          ],
+          "b": [
+            -120.6270803333194,
+            -125.3,
+            199.21425742266518
+          ]
+        },
+        {
+          "id": "dial_5_tick_08",
+          "kind": "segment",
+          "centre": [
+            -116.05102850408935,
+            -125.3,
+            204.25585840843993
+          ],
+          "half": [
+            2.2850127140383036,
+            1.15,
+            1.9696012072779125
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -114.91601579005105,
+            -125.3,
+            203.43625720116202
+          ],
+          "b": [
+            -117.18604121812766,
+            -125.3,
+            205.07545961571785
+          ]
+        },
+        {
+          "id": "dial_5_tick_09",
+          "kind": "segment",
+          "centre": [
+            -111.74396067025818,
+            -125.3,
+            209.16712799842747
+          ],
+          "half": [
+            2.1107382930162344,
+            1.15,
+            2.168323098202259
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -110.78322237724194,
+            -125.3,
+            208.14880490022523
+          ],
+          "b": [
+            -112.70469896327441,
+            -125.3,
+            210.18545109662975
+          ]
+        },
+        {
+          "id": "dial_5_tick_10",
+          "kind": "segment",
+          "centre": [
+            -105.83834699711456,
+            -125.3,
+            212.0005960009878
+          ],
+          "half": [
+            2.6544389033711098,
+            1.15,
+            3.5114960482760806
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -104.33390809374345,
+            -125.3,
+            209.63909995271172
+          ],
+          "b": [
+            -107.34278590048567,
+            -125.3,
+            214.36209204926388
+          ]
+        },
+        {
+          "id": "dial_5_tick_11",
+          "kind": "segment",
+          "centre": [
+            -100.77453269701888,
+            -125.3,
+            216.15542433824805
+          ],
+          "half": [
+            1.6668886062377566,
+            1.15,
+            2.451086533917555
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -100.25764409078113,
+            -125.3,
+            214.8543378043305
+          ],
+          "b": [
+            -101.29142130325664,
+            -125.3,
+            217.4565108721656
+          ]
+        },
+        {
+          "id": "dial_5_tick_12",
+          "kind": "segment",
+          "centre": [
+            -94.50316530224387,
+            -125.3,
+            217.9833612382838
+          ],
+          "half": [
+            1.4131338561601594,
+            1.15,
+            2.5250492986588795
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -94.2400314460837,
+            -125.3,
+            216.60831193962494
+          ],
+          "b": [
+            -94.76629915840402,
+            -125.3,
+            219.3584105369427
+          ]
+        },
+        {
+          "id": "dial_5_tick_13",
+          "kind": "segment",
+          "centre": [
+            -88.0,
+            -125.3,
+            217.2
+          ],
+          "half": [
+            1.15,
+            1.15,
+            3.949999999999997
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -88.0,
+            -125.3,
+            214.4
+          ],
+          "b": [
+            -88.0,
+            -125.3,
+            220.0
+          ]
+        },
+        {
+          "id": "dial_5_tick_14",
+          "kind": "segment",
+          "centre": [
+            -81.49683469775613,
+            -125.3,
+            217.9833612382838
+          ],
+          "half": [
+            1.4131338561601594,
+            1.15,
+            2.5250492986588795
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -81.75996855391628,
+            -125.3,
+            216.60831193962494
+          ],
+          "b": [
+            -81.23370084159596,
+            -125.3,
+            219.3584105369427
+          ]
+        },
+        {
+          "id": "dial_5_tick_15",
+          "kind": "segment",
+          "centre": [
+            -75.22546730298112,
+            -125.3,
+            216.15542433824805
+          ],
+          "half": [
+            1.6668886062377637,
+            1.15,
+            2.451086533917555
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -75.74235590921889,
+            -125.3,
+            214.8543378043305
+          ],
+          "b": [
+            -74.70857869674336,
+            -125.3,
+            217.4565108721656
+          ]
+        },
+        {
+          "id": "dial_5_tick_16",
+          "kind": "segment",
+          "centre": [
+            -70.16165300288544,
+            -125.3,
+            212.0005960009878
+          ],
+          "half": [
+            2.6544389033711098,
+            1.15,
+            3.5114960482760806
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -71.66609190625655,
+            -125.3,
+            209.63909995271172
+          ],
+          "b": [
+            -68.65721409951433,
+            -125.3,
+            214.36209204926388
+          ]
+        },
+        {
+          "id": "dial_5_tick_17",
+          "kind": "segment",
+          "centre": [
+            -64.25603932974181,
+            -125.3,
+            209.16712799842747
+          ],
+          "half": [
+            2.1107382930162273,
+            1.15,
+            2.1683230982022734
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -65.21677762275804,
+            -125.3,
+            208.1488049002252
+          ],
+          "b": [
+            -63.29530103672559,
+            -125.3,
+            210.18545109662975
+          ]
+        },
+        {
+          "id": "dial_5_tick_18",
+          "kind": "segment",
+          "centre": [
+            -59.948971495910655,
+            -125.3,
+            204.25585840843996
+          ],
+          "half": [
+            2.2850127140383,
+            1.15,
+            1.9696012072779268
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -61.08398420994896,
+            -125.3,
+            203.43625720116202
+          ],
+          "b": [
+            -58.81395878187236,
+            -125.3,
+            205.07545961571788
+          ]
+        },
+        {
+          "id": "dial_5_tick_19",
+          "kind": "segment",
+          "centre": [
+            -57.91058147038322,
+            -125.3,
+            198.03092628979124
+          ],
+          "half": [
+            3.687661803702619,
+            1.15,
+            2.3333311328739597
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -60.44824327408584,
+            -125.3,
+            196.84759515691727
+          ],
+          "b": [
+            -55.3729196666806,
+            -125.3,
+            199.21425742266518
+          ]
+        },
+        {
+          "id": "dial_5_tick_20",
+          "kind": "segment",
+          "centre": [
+            -54.45225866421718,
+            -125.3,
+            192.4681197008196
+          ],
+          "half": [
+            2.507423059829365,
+            1.15,
+            1.4926406815360536
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -55.80968172404655,
+            -125.3,
+            192.12547901928355
+          ],
+          "b": [
+            -53.09483560438782,
+            -125.3,
+            192.81076038235565
+          ]
+        },
+        {
+          "id": "dial_5_tick_21",
+          "kind": "segment",
+          "centre": [
+            -53.45853772381412,
+            -125.3,
+            186.01181108030246
+          ],
+          "half": [
+            2.5476314215797777,
+            1.15,
+            1.231402760474674
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -54.8561691453939,
+            -125.3,
+            185.9304083198278
+          ],
+          "b": [
+            -52.06090630223434,
+            -125.3,
+            186.09321384077714
+          ]
+        },
+        {
+          "id": "dial_5_tick_22",
+          "kind": "segment",
+          "centre": [
+            -55.0840306023895,
+            -125.3,
+            179.6665304182943
+          ],
+          "half": [
+            3.926045611846669,
+            1.15,
+            1.5154733382161338
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -57.860076214236166,
+            -125.3,
+            180.03200375651042
+          ],
+          "b": [
+            -52.30798499054283,
+            -125.3,
+            179.30105708007815
+          ]
+        },
+        {
+          "id": "dial_5_tick_23",
+          "kind": "segment",
+          "centre": [
+            -55.15620453237303,
+            -125.3,
+            173.11675143715416
+          ],
+          "half": [
+            2.4789397010022483,
+            1.15,
+            1.5903626586122583
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -56.48514423337528,
+            -125.3,
+            173.55711409576642
+          ],
+          "b": [
+            -53.82726483137078,
+            -125.3,
+            172.6763887785419
+          ]
+        },
+        {
+          "id": "dial_5_tick_24",
+          "kind": "segment",
+          "centre": [
+            -57.78708088488203,
+            -125.3,
+            167.13763010299743
+          ],
+          "half": [
+            2.372488056681076,
+            1.15,
+            1.832292423578147
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -59.0095689415631,
+            -125.3,
+            167.81992252657557
+          ],
+          "b": [
+            -56.56459282820095,
+            -125.3,
+            166.45533767941927
+          ]
+        },
+        {
+          "id": "dial_5_tick_25",
+          "kind": "segment",
+          "centre": [
+            -62.56732448844993,
+            -125.3,
+            162.6594513584069
+          ],
+          "half": [
+            3.294924440733135,
+            1.15,
+            2.9498053071223125
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -64.71224892918306,
+            -125.3,
+            164.4592566655292
+          ],
+          "b": [
+            -60.42240004771679,
+            -125.3,
+            160.85964605128459
+          ]
+        },
+        {
+          "id": "dial_5_needle",
+          "kind": "segment",
+          "centre": [
+            -88.0,
+            -128.0,
+            195.0
+          ],
+          "half": [
+            1.5,
+            1.5,
+            17.30000000000001
+          ],
+          "radius": 1.5,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -88.0,
+            -128,
+            179.2
+          ],
+          "b": [
+            -88.0,
+            -128,
+            210.8
+          ]
+        },
+        {
+          "id": "dial_5_hub",
+          "kind": "disk_y",
+          "centre": [
+            -88,
+            -129,
+            184
+          ],
+          "half": [
+            2.4,
+            1.5,
+            2.4
+          ],
+          "radius": 2.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "hvac_left_pointer",
+          "kind": "segment",
+          "centre": [
+            65.0,
+            -99.0,
+            121.0
+          ],
+          "half": [
+            1.2,
+            1.2,
+            4.2
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            65,
+            -99,
+            118
+          ],
+          "b": [
+            65,
+            -99,
+            124
+          ]
+        },
+        {
+          "id": "hvac_right_pointer",
+          "kind": "segment",
+          "centre": [
+            223.0,
+            -99.0,
+            121.0
+          ],
+          "half": [
+            1.2,
+            1.2,
+            4.2
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            223,
+            -99,
+            118
+          ],
+          "b": [
+            223,
+            -99,
+            124
+          ]
+        }
+      ]
+    },
+    {
+      "family_id": "CENTER_AIR_VENTS",
+      "colour": "#4c5358",
+      "elements": [
+        {
+          "id": "centre_vent_rim",
+          "kind": "frame_y",
+          "centre": [
+            145,
+            -97,
+            178
+          ],
+          "half": [
+            115,
+            5,
+            27
+          ],
+          "radius": 9,
+          "border": 3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_left_louver_0",
+          "kind": "round_box",
+          "centre": [
+            89,
+            -96,
+            162
+          ],
+          "half": [
+            49,
+            3.4,
+            1.8
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_left_louver_1",
+          "kind": "round_box",
+          "centre": [
+            89,
+            -96,
+            170
+          ],
+          "half": [
+            49,
+            3.4,
+            1.8
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_left_louver_2",
+          "kind": "round_box",
+          "centre": [
+            89,
+            -96,
+            178
+          ],
+          "half": [
+            49,
+            3.4,
+            1.8
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_left_louver_3",
+          "kind": "round_box",
+          "centre": [
+            89,
+            -96,
+            186
+          ],
+          "half": [
+            49,
+            3.4,
+            1.8
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_left_louver_4",
+          "kind": "round_box",
+          "centre": [
+            89,
+            -96,
+            194
+          ],
+          "half": [
+            49,
+            3.4,
+            1.8
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_left_tab",
+          "kind": "round_box",
+          "centre": [
+            89,
+            -103,
+            177
+          ],
+          "half": [
+            9,
+            3,
+            3
+          ],
+          "radius": 2,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_right_louver_0",
+          "kind": "round_box",
+          "centre": [
+            201,
+            -96,
+            162
+          ],
+          "half": [
+            49,
+            3.4,
+            1.8
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_right_louver_1",
+          "kind": "round_box",
+          "centre": [
+            201,
+            -96,
+            170
+          ],
+          "half": [
+            49,
+            3.4,
+            1.8
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_right_louver_2",
+          "kind": "round_box",
+          "centre": [
+            201,
+            -96,
+            178
+          ],
+          "half": [
+            49,
+            3.4,
+            1.8
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_right_louver_3",
+          "kind": "round_box",
+          "centre": [
+            201,
+            -96,
+            186
+          ],
+          "half": [
+            49,
+            3.4,
+            1.8
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_right_louver_4",
+          "kind": "round_box",
+          "centre": [
+            201,
+            -96,
+            194
+          ],
+          "half": [
+            49,
+            3.4,
+            1.8
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_right_tab",
+          "kind": "round_box",
+          "centre": [
+            201,
+            -103,
+            177
+          ],
+          "half": [
+            9,
+            3,
+            3
+          ],
+          "radius": 2,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_vent_divider",
+          "kind": "round_box",
+          "centre": [
+            145,
+            -99,
+            177
+          ],
+          "half": [
+            2.1,
+            4.1,
+            20
+          ],
+          "radius": 1.8,
+          "border": 0,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "SIDE_AIR_VENTS",
+      "colour": "#4b5256",
+      "elements": [
+        {
+          "id": "left_side_vent_rim",
+          "kind": "frame_y",
+          "centre": [
+            -594,
+            -97,
+            103
+          ],
+          "half": [
+            43,
+            4,
+            28
+          ],
+          "radius": 6,
+          "border": 2.5,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "left_side_blade_0",
+          "kind": "round_box",
+          "centre": [
+            -622,
+            -95,
+            103
+          ],
+          "half": [
+            1.8,
+            5,
+            21
+          ],
+          "radius": 1.5,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "left_side_blade_1",
+          "kind": "round_box",
+          "centre": [
+            -608,
+            -95,
+            103
+          ],
+          "half": [
+            1.8,
+            5,
+            21
+          ],
+          "radius": 1.5,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "left_side_blade_2",
+          "kind": "round_box",
+          "centre": [
+            -594,
+            -95,
+            103
+          ],
+          "half": [
+            1.8,
+            5,
+            21
+          ],
+          "radius": 1.5,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "left_side_blade_3",
+          "kind": "round_box",
+          "centre": [
+            -580,
+            -95,
+            103
+          ],
+          "half": [
+            1.8,
+            5,
+            21
+          ],
+          "radius": 1.5,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "left_side_blade_4",
+          "kind": "round_box",
+          "centre": [
+            -566,
+            -95,
+            103
+          ],
+          "half": [
+            1.8,
+            5,
+            21
+          ],
+          "radius": 1.5,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "right_side_vent_rim",
+          "kind": "frame_y",
+          "centre": [
+            592,
+            -97,
+            103
+          ],
+          "half": [
+            43,
+            4,
+            28
+          ],
+          "radius": 6,
+          "border": 2.5,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "right_side_blade_0",
+          "kind": "round_box",
+          "centre": [
+            564,
+            -95,
+            103
+          ],
+          "half": [
+            1.8,
+            5,
+            21
+          ],
+          "radius": 1.5,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "right_side_blade_1",
+          "kind": "round_box",
+          "centre": [
+            578,
+            -95,
+            103
+          ],
+          "half": [
+            1.8,
+            5,
+            21
+          ],
+          "radius": 1.5,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "right_side_blade_2",
+          "kind": "round_box",
+          "centre": [
+            592,
+            -95,
+            103
+          ],
+          "half": [
+            1.8,
+            5,
+            21
+          ],
+          "radius": 1.5,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "right_side_blade_3",
+          "kind": "round_box",
+          "centre": [
+            606,
+            -95,
+            103
+          ],
+          "half": [
+            1.8,
+            5,
+            21
+          ],
+          "radius": 1.5,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "right_side_blade_4",
+          "kind": "round_box",
+          "centre": [
+            620,
+            -95,
+            103
+          ],
+          "half": [
+            1.8,
+            5,
+            21
+          ],
+          "radius": 1.5,
+          "border": 0,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "DEFROST_OUTLETS_AND_DUCTS",
+      "colour": "#161d21",
+      "elements": [
+        {
+          "id": "left_defrost_row_0_slot_0",
+          "kind": "segment",
+          "centre": [
+            -504.75,
+            100.0,
+            235.327408483422
+          ],
+          "half": [
+            18.85,
+            1.6,
+            2.302864444945263
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -522.0,
+            100,
+            234.62454403847673
+          ],
+          "b": [
+            -487.5,
+            100,
+            236.03027292836725
+          ]
+        },
+        {
+          "id": "left_defrost_row_0_slot_1",
+          "kind": "segment",
+          "centre": [
+            -464.25,
+            100.0,
+            236.9343936116618
+          ],
+          "half": [
+            18.85,
+            1.6,
+            2.2631026965818735
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -481.5,
+            100,
+            236.2712909150799
+          ],
+          "b": [
+            -447.0,
+            100,
+            237.59749630824365
+          ]
+        },
+        {
+          "id": "left_defrost_row_0_slot_2",
+          "kind": "segment",
+          "centre": [
+            -423.75,
+            100.0,
+            238.3723880282864
+          ],
+          "half": [
+            18.85,
+            1.6,
+            2.1589093943101205
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -441.0,
+            100,
+            237.81347863397627
+          ],
+          "b": [
+            -406.5,
+            100,
+            238.93129742259651
+          ]
+        },
+        {
+          "id": "left_defrost_row_0_slot_3",
+          "kind": "segment",
+          "centre": [
+            -383.25,
+            100.0,
+            239.49011765020654
+          ],
+          "half": [
+            18.85,
+            1.6,
+            1.9902845381299188
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -400.5,
+            100,
+            239.09983311207662
+          ],
+          "b": [
+            -366.0,
+            100,
+            239.88040218833646
+          ]
+        },
+        {
+          "id": "left_defrost_row_0_slot_4",
+          "kind": "segment",
+          "centre": [
+            -342.75,
+            100.0,
+            240.1363083943329
+          ],
+          "half": [
+            18.85,
+            1.6,
+            1.757228128041325
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -360.0,
+            100,
+            239.97908026629156
+          ],
+          "b": [
+            -325.5,
+            100,
+            240.2935365223742
+          ]
+        },
+        {
+          "id": "left_defrost_row_0_slot_5",
+          "kind": "segment",
+          "centre": [
+            -302.25,
+            100.0,
+            240.26622437647248
+          ],
+          "half": [
+            18.85,
+            1.6,
+            1.633761196668479
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -319.5,
+            100,
+            240.29998557314096
+          ],
+          "b": [
+            -285.0,
+            100,
+            240.232463179804
+          ]
+        },
+        {
+          "id": "left_defrost_row_0_slot_6",
+          "kind": "segment",
+          "centre": [
+            -261.75,
+            100.0,
+            240.10552111107796
+          ],
+          "half": [
+            18.85,
+            1.6,
+            1.702554726481671
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -279.0,
+            100,
+            240.20807583755965
+          ],
+          "b": [
+            -244.5,
+            100,
+            240.0029663845963
+          ]
+        },
+        {
+          "id": "left_defrost_row_0_slot_7",
+          "kind": "segment",
+          "centre": [
+            -221.25,
+            100.0,
+            239.79817912634664
+          ],
+          "half": [
+            18.85,
+            1.6,
+            1.7586756612887258
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -238.5,
+            100,
+            239.95685478763536
+          ],
+          "b": [
+            -204.0,
+            100,
+            239.6395034650579
+          ]
+        },
+        {
+          "id": "left_defrost_row_0_slot_8",
+          "kind": "segment",
+          "centre": [
+            -180.75,
+            100.0,
+            239.37395147142334
+          ],
+          "half": [
+            18.85,
+            1.6,
+            1.8021240010896293
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -198.0,
+            100,
+            239.57607547251297
+          ],
+          "b": [
+            -163.5,
+            100,
+            239.1718274703337
+          ]
+        },
+        {
+          "id": "left_defrost_row_0_slot_9",
+          "kind": "segment",
+          "centre": [
+            -140.25,
+            100.0,
+            238.86259119545286
+          ],
+          "half": [
+            18.85,
+            1.6,
+            1.8328997458844385
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -157.5,
+            100,
+            239.09549094133732
+          ],
+          "b": [
+            -123.0,
+            100,
+            238.62969144956844
+          ]
+        },
+        {
+          "id": "left_defrost_row_1_slot_0",
+          "kind": "segment",
+          "centre": [
+            -504.75,
+            110.0,
+            235.327408483422
+          ],
+          "half": [
+            18.85,
+            1.6,
+            2.302864444945263
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -522.0,
+            110,
+            234.62454403847673
+          ],
+          "b": [
+            -487.5,
+            110,
+            236.03027292836725
+          ]
+        },
+        {
+          "id": "left_defrost_row_1_slot_1",
+          "kind": "segment",
+          "centre": [
+            -464.25,
+            110.0,
+            236.9343936116618
+          ],
+          "half": [
+            18.85,
+            1.6,
+            2.2631026965818735
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -481.5,
+            110,
+            236.2712909150799
+          ],
+          "b": [
+            -447.0,
+            110,
+            237.59749630824365
+          ]
+        },
+        {
+          "id": "left_defrost_row_1_slot_2",
+          "kind": "segment",
+          "centre": [
+            -423.75,
+            110.0,
+            238.3723880282864
+          ],
+          "half": [
+            18.85,
+            1.6,
+            2.1589093943101205
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -441.0,
+            110,
+            237.81347863397627
+          ],
+          "b": [
+            -406.5,
+            110,
+            238.93129742259651
+          ]
+        },
+        {
+          "id": "left_defrost_row_1_slot_3",
+          "kind": "segment",
+          "centre": [
+            -383.25,
+            110.0,
+            239.49011765020654
+          ],
+          "half": [
+            18.85,
+            1.6,
+            1.9902845381299188
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -400.5,
+            110,
+            239.09983311207662
+          ],
+          "b": [
+            -366.0,
+            110,
+            239.88040218833646
+          ]
+        },
+        {
+          "id": "left_defrost_row_1_slot_4",
+          "kind": "segment",
+          "centre": [
+            -342.75,
+            110.0,
+            240.1363083943329
+          ],
+          "half": [
+            18.85,
+            1.6,
+            1.757228128041325
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -360.0,
+            110,
+            239.97908026629156
+          ],
+          "b": [
+            -325.5,
+            110,
+            240.2935365223742
+          ]
+        },
+        {
+          "id": "left_defrost_row_1_slot_5",
+          "kind": "segment",
+          "centre": [
+            -302.25,
+            110.0,
+            240.26622437647248
+          ],
+          "half": [
+            18.85,
+            1.6,
+            1.633761196668479
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -319.5,
+            110,
+            240.29998557314096
+          ],
+          "b": [
+            -285.0,
+            110,
+            240.232463179804
+          ]
+        },
+        {
+          "id": "left_defrost_row_1_slot_6",
+          "kind": "segment",
+          "centre": [
+            -261.75,
+            110.0,
+            240.10552111107796
+          ],
+          "half": [
+            18.85,
+            1.6,
+            1.702554726481671
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -279.0,
+            110,
+            240.20807583755965
+          ],
+          "b": [
+            -244.5,
+            110,
+            240.0029663845963
+          ]
+        },
+        {
+          "id": "left_defrost_row_1_slot_7",
+          "kind": "segment",
+          "centre": [
+            -221.25,
+            110.0,
+            239.79817912634664
+          ],
+          "half": [
+            18.85,
+            1.6,
+            1.7586756612887258
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -238.5,
+            110,
+            239.95685478763536
+          ],
+          "b": [
+            -204.0,
+            110,
+            239.6395034650579
+          ]
+        },
+        {
+          "id": "left_defrost_row_1_slot_8",
+          "kind": "segment",
+          "centre": [
+            -180.75,
+            110.0,
+            239.37395147142334
+          ],
+          "half": [
+            18.85,
+            1.6,
+            1.8021240010896293
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -198.0,
+            110,
+            239.57607547251297
+          ],
+          "b": [
+            -163.5,
+            110,
+            239.1718274703337
+          ]
+        },
+        {
+          "id": "left_defrost_row_1_slot_9",
+          "kind": "segment",
+          "centre": [
+            -140.25,
+            110.0,
+            238.86259119545286
+          ],
+          "half": [
+            18.85,
+            1.6,
+            1.8328997458844385
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            -157.5,
+            110,
+            239.09549094133732
+          ],
+          "b": [
+            -123.0,
+            110,
+            238.62969144956844
+          ]
+        },
+        {
+          "id": "right_defrost_row_0_slot_0",
+          "kind": "segment",
+          "centre": [
+            154.5,
+            100.0,
+            230.72504155390067
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.7409124705029542
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            138.0,
+            100,
+            230.86595402440364
+          ],
+          "b": [
+            171.0,
+            100,
+            230.58412908339773
+          ]
+        },
+        {
+          "id": "right_defrost_row_0_slot_1",
+          "kind": "segment",
+          "centre": [
+            193.5,
+            100.0,
+            230.4313916659388
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.7085341562050247
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            177.0,
+            100,
+            230.53992582214383
+          ],
+          "b": [
+            210.0,
+            100,
+            230.32285750973378
+          ]
+        },
+        {
+          "id": "right_defrost_row_0_slot_2",
+          "kind": "segment",
+          "centre": [
+            232.5,
+            100.0,
+            230.18996441681367
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.696724083794996
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            216.0,
+            100,
+            230.28668850060868
+          ],
+          "b": [
+            249.0,
+            100,
+            230.09324033301868
+          ]
+        },
+        {
+          "id": "right_defrost_row_0_slot_3",
+          "kind": "segment",
+          "centre": [
+            271.5,
+            100.0,
+            229.9521439620628
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.7054822532729532
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            255.0,
+            100,
+            230.05762621533574
+          ],
+          "b": [
+            288.0,
+            100,
+            229.84666170878984
+          ]
+        },
+        {
+          "id": "right_defrost_row_0_slot_4",
+          "kind": "segment",
+          "centre": [
+            310.5,
+            100.0,
+            229.66931445722372
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.7348086646388396
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            294.0,
+            100,
+            229.80412312186255
+          ],
+          "b": [
+            327.0,
+            100,
+            229.53450579258487
+          ]
+        },
+        {
+          "id": "right_defrost_row_0_slot_5",
+          "kind": "segment",
+          "centre": [
+            349.5,
+            100.0,
+            229.30089306479044
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.7766703109361885
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            333.0,
+            100,
+            229.47756337572665
+          ],
+          "b": [
+            366.0,
+            100,
+            229.12422275385427
+          ]
+        },
+        {
+          "id": "right_defrost_row_0_slot_6",
+          "kind": "segment",
+          "centre": [
+            388.5,
+            100.0,
+            228.8791002533134
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.7803571176494644
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            372.0,
+            100,
+            229.05945737096286
+          ],
+          "b": [
+            405.0,
+            100,
+            228.69874313566393
+          ]
+        },
+        {
+          "id": "right_defrost_row_0_slot_7",
+          "kind": "segment",
+          "centre": [
+            427.5,
+            100.0,
+            228.42197568416276
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.8080243633445776
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            411.0,
+            100,
+            228.63000004750734
+          ],
+          "b": [
+            444.0,
+            100,
+            228.21395132081818
+          ]
+        },
+        {
+          "id": "right_defrost_row_0_slot_8",
+          "kind": "segment",
+          "centre": [
+            466.5,
+            100.0,
+            227.85991558322246
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.869148721471538
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            450.0,
+            100,
+            228.129064304694
+          ],
+          "b": [
+            483.0,
+            100,
+            227.59076686175092
+          ]
+        },
+        {
+          "id": "right_defrost_row_0_slot_9",
+          "kind": "segment",
+          "centre": [
+            505.5,
+            100.0,
+            227.11383950292628
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.9637301920303316
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            489.0,
+            100,
+            227.4775696949566
+          ],
+          "b": [
+            522.0,
+            100,
+            226.75010931089594
+          ]
+        },
+        {
+          "id": "right_defrost_row_1_slot_0",
+          "kind": "segment",
+          "centre": [
+            154.5,
+            110.0,
+            230.72504155390067
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.7409124705029542
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            138.0,
+            110,
+            230.86595402440364
+          ],
+          "b": [
+            171.0,
+            110,
+            230.58412908339773
+          ]
+        },
+        {
+          "id": "right_defrost_row_1_slot_1",
+          "kind": "segment",
+          "centre": [
+            193.5,
+            110.0,
+            230.4313916659388
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.7085341562050247
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            177.0,
+            110,
+            230.53992582214383
+          ],
+          "b": [
+            210.0,
+            110,
+            230.32285750973378
+          ]
+        },
+        {
+          "id": "right_defrost_row_1_slot_2",
+          "kind": "segment",
+          "centre": [
+            232.5,
+            110.0,
+            230.18996441681367
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.696724083794996
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            216.0,
+            110,
+            230.28668850060868
+          ],
+          "b": [
+            249.0,
+            110,
+            230.09324033301868
+          ]
+        },
+        {
+          "id": "right_defrost_row_1_slot_3",
+          "kind": "segment",
+          "centre": [
+            271.5,
+            110.0,
+            229.9521439620628
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.7054822532729532
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            255.0,
+            110,
+            230.05762621533574
+          ],
+          "b": [
+            288.0,
+            110,
+            229.84666170878984
+          ]
+        },
+        {
+          "id": "right_defrost_row_1_slot_4",
+          "kind": "segment",
+          "centre": [
+            310.5,
+            110.0,
+            229.66931445722372
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.7348086646388396
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            294.0,
+            110,
+            229.80412312186255
+          ],
+          "b": [
+            327.0,
+            110,
+            229.53450579258487
+          ]
+        },
+        {
+          "id": "right_defrost_row_1_slot_5",
+          "kind": "segment",
+          "centre": [
+            349.5,
+            110.0,
+            229.30089306479044
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.7766703109361885
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            333.0,
+            110,
+            229.47756337572665
+          ],
+          "b": [
+            366.0,
+            110,
+            229.12422275385427
+          ]
+        },
+        {
+          "id": "right_defrost_row_1_slot_6",
+          "kind": "segment",
+          "centre": [
+            388.5,
+            110.0,
+            228.8791002533134
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.7803571176494644
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            372.0,
+            110,
+            229.05945737096286
+          ],
+          "b": [
+            405.0,
+            110,
+            228.69874313566393
+          ]
+        },
+        {
+          "id": "right_defrost_row_1_slot_7",
+          "kind": "segment",
+          "centre": [
+            427.5,
+            110.0,
+            228.42197568416276
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.8080243633445776
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            411.0,
+            110,
+            228.63000004750734
+          ],
+          "b": [
+            444.0,
+            110,
+            228.21395132081818
+          ]
+        },
+        {
+          "id": "right_defrost_row_1_slot_8",
+          "kind": "segment",
+          "centre": [
+            466.5,
+            110.0,
+            227.85991558322246
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.869148721471538
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            450.0,
+            110,
+            228.129064304694
+          ],
+          "b": [
+            483.0,
+            110,
+            227.59076686175092
+          ]
+        },
+        {
+          "id": "right_defrost_row_1_slot_9",
+          "kind": "segment",
+          "centre": [
+            505.5,
+            110.0,
+            227.11383950292628
+          ],
+          "half": [
+            18.1,
+            1.6,
+            1.9637301920303316
+          ],
+          "radius": 1.63,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "a": [
+            489.0,
+            110,
+            227.4775696949566
+          ],
+          "b": [
+            522.0,
+            110,
+            226.75010931089594
+          ]
+        }
+      ]
+    },
+    {
+      "family_id": "GLOVEBOX",
+      "colour": "#363a3e",
+      "elements": [
+        {
+          "id": "glovebox_perimeter",
+          "kind": "frame_y",
+          "centre": [
+            410,
+            -84,
+            116
+          ],
+          "half": [
+            136,
+            4,
+            41
+          ],
+          "radius": 8,
+          "border": 2.4,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "glovebox_latch",
+          "kind": "round_box",
+          "centre": [
+            410,
+            -91,
+            144
+          ],
+          "half": [
+            18,
+            5,
+            5
+          ],
+          "radius": 3,
+          "border": 0,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "CENTER_CONSOLE",
+      "colour": "#282d32",
+      "elements": [
+        {
+          "id": "sloped_tunnel_surface",
+          "kind": "round_box",
+          "centre": [
+            132,
+            -129,
+            -69
+          ],
+          "half": [
+            98,
+            24,
+            91
+          ],
+          "radius": 19,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "tilt_x_degrees": -27
+        },
+        {
+          "id": "tunnel_switch_plinth",
+          "kind": "round_box",
+          "centre": [
+            132,
+            -162,
+            -57
+          ],
+          "half": [
+            78,
+            5,
+            35
+          ],
+          "radius": 4,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "tilt_x_degrees": -27
+        }
+      ]
+    },
+    {
+      "family_id": "HVAC_RADIO_CONTROLS",
+      "colour": "#707773",
+      "elements": [
+        {
+          "id": "hvac_outline",
+          "kind": "frame_y",
+          "centre": [
+            144,
+            -91,
+            114
+          ],
+          "half": [
+            104,
+            2,
+            22
+          ],
+          "radius": 4,
+          "border": 1.5,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "hvac_left_dial",
+          "kind": "disk_y",
+          "centre": [
+            65,
+            -94,
+            114
+          ],
+          "half": [
+            13,
+            4,
+            13
+          ],
+          "radius": 13,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "hvac_right_dial",
+          "kind": "disk_y",
+          "centre": [
+            223,
+            -94,
+            114
+          ],
+          "half": [
+            13,
+            4,
+            13
+          ],
+          "radius": 13,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "hvac_slider_0",
+          "kind": "round_box",
+          "centre": [
+            143,
+            -92,
+            104
+          ],
+          "half": [
+            44,
+            2.1,
+            1.7
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "hvac_slider_1",
+          "kind": "round_box",
+          "centre": [
+            143,
+            -92,
+            114
+          ],
+          "half": [
+            44,
+            2.1,
+            1.7
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "hvac_slider_2",
+          "kind": "round_box",
+          "centre": [
+            143,
+            -92,
+            124
+          ],
+          "half": [
+            44,
+            2.1,
+            1.7
+          ],
+          "radius": 1.4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "hvac_tab_0",
+          "kind": "round_box",
+          "centre": [
+            125,
+            -96,
+            104
+          ],
+          "half": [
+            4,
+            2.1,
+            3.3
+          ],
+          "radius": 1.8,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "hvac_tab_1",
+          "kind": "round_box",
+          "centre": [
+            141,
+            -96,
+            114
+          ],
+          "half": [
+            4,
+            2.1,
+            3.3
+          ],
+          "radius": 1.8,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "hvac_tab_2",
+          "kind": "round_box",
+          "centre": [
+            157,
+            -96,
+            124
+          ],
+          "half": [
+            4,
+            2.1,
+            3.3
+          ],
+          "radius": 1.8,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "radio_outline",
+          "kind": "frame_y",
+          "centre": [
+            144,
+            -91,
+            68
+          ],
+          "half": [
+            104,
+            2,
+            20
+          ],
+          "radius": 4,
+          "border": 1.5,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "radio_display",
+          "kind": "frame_y",
+          "centre": [
+            140,
+            -94,
+            73
+          ],
+          "half": [
+            54,
+            1.8,
+            7
+          ],
+          "radius": 3.1,
+          "border": 1.5,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "radio_volume",
+          "kind": "disk_y",
+          "centre": [
+            63,
+            -96,
+            68
+          ],
+          "half": [
+            8,
+            3,
+            8
+          ],
+          "radius": 8,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "radio_preset_0",
+          "kind": "round_box",
+          "centre": [
+            100,
+            -95,
+            57
+          ],
+          "half": [
+            4.7,
+            1.8,
+            2.2
+          ],
+          "radius": 1.6,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "radio_preset_1",
+          "kind": "round_box",
+          "centre": [
+            116,
+            -95,
+            57
+          ],
+          "half": [
+            4.7,
+            1.8,
+            2.2
+          ],
+          "radius": 1.6,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "radio_preset_2",
+          "kind": "round_box",
+          "centre": [
+            132,
+            -95,
+            57
+          ],
+          "half": [
+            4.7,
+            1.8,
+            2.2
+          ],
+          "radius": 1.6,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "radio_preset_3",
+          "kind": "round_box",
+          "centre": [
+            148,
+            -95,
+            57
+          ],
+          "half": [
+            4.7,
+            1.8,
+            2.2
+          ],
+          "radius": 1.6,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "radio_preset_4",
+          "kind": "round_box",
+          "centre": [
+            164,
+            -95,
+            57
+          ],
+          "half": [
+            4.7,
+            1.8,
+            2.2
+          ],
+          "radius": 1.6,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "radio_preset_5",
+          "kind": "round_box",
+          "centre": [
+            180,
+            -95,
+            57
+          ],
+          "half": [
+            4.7,
+            1.8,
+            2.2
+          ],
+          "radius": 1.6,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "left_lower_accessory_edge_0",
+          "kind": "annulus_y",
+          "centre": [
+            -493,
+            -93,
+            82
+          ],
+          "half": [
+            7.6,
+            1.5,
+            7.6
+          ],
+          "radius": 7.6,
+          "border": 1.3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "left_lower_accessory_edge_1",
+          "kind": "annulus_y",
+          "centre": [
+            -450,
+            -93,
+            82
+          ],
+          "half": [
+            7.6,
+            1.5,
+            7.6
+          ],
+          "radius": 7.6,
+          "border": 1.3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "left_lower_accessory_edge_2",
+          "kind": "annulus_y",
+          "centre": [
+            -407,
+            -93,
+            82
+          ],
+          "half": [
+            7.6,
+            1.5,
+            7.6
+          ],
+          "radius": 7.6,
+          "border": 1.3,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "SWITCHES_AND_BLANKS",
+      "colour": "#535a5e",
+      "elements": [
+        {
+          "id": "centre_accessory_switch_0",
+          "kind": "disk_y",
+          "centre": [
+            70,
+            -94,
+            139
+          ],
+          "half": [
+            6.6,
+            3.8,
+            6.6
+          ],
+          "radius": 6.6,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_accessory_switch_1",
+          "kind": "disk_y",
+          "centre": [
+            118,
+            -94,
+            139
+          ],
+          "half": [
+            6.6,
+            3.8,
+            6.6
+          ],
+          "radius": 6.6,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_accessory_switch_2",
+          "kind": "disk_y",
+          "centre": [
+            166,
+            -94,
+            139
+          ],
+          "half": [
+            6.6,
+            3.8,
+            6.6
+          ],
+          "radius": 6.6,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_accessory_switch_3",
+          "kind": "disk_y",
+          "centre": [
+            214,
+            -94,
+            139
+          ],
+          "half": [
+            6.6,
+            3.8,
+            6.6
+          ],
+          "radius": 6.6,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "left_lower_accessory_0",
+          "kind": "disk_y",
+          "centre": [
+            -493,
+            -88,
+            82
+          ],
+          "half": [
+            10,
+            4,
+            10
+          ],
+          "radius": 10,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "left_lower_accessory_1",
+          "kind": "disk_y",
+          "centre": [
+            -450,
+            -88,
+            82
+          ],
+          "half": [
+            10,
+            4,
+            10
+          ],
+          "radius": 10,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "left_lower_accessory_2",
+          "kind": "disk_y",
+          "centre": [
+            -407,
+            -88,
+            82
+          ],
+          "half": [
+            10,
+            4,
+            10
+          ],
+          "radius": 10,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "tunnel_switch_0",
+          "kind": "round_box",
+          "centre": [
+            81,
+            -171,
+            -56
+          ],
+          "half": [
+            11,
+            3,
+            13
+          ],
+          "radius": 2.3,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "tilt_x_degrees": -27
+        },
+        {
+          "id": "tunnel_switch_1",
+          "kind": "round_box",
+          "centre": [
+            115,
+            -171,
+            -56
+          ],
+          "half": [
+            11,
+            3,
+            13
+          ],
+          "radius": 2.3,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "tilt_x_degrees": -27
+        },
+        {
+          "id": "tunnel_switch_2",
+          "kind": "round_box",
+          "centre": [
+            149,
+            -171,
+            -56
+          ],
+          "half": [
+            11,
+            3,
+            13
+          ],
+          "radius": 2.3,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "tilt_x_degrees": -27
+        },
+        {
+          "id": "tunnel_switch_3",
+          "kind": "round_box",
+          "centre": [
+            183,
+            -171,
+            -56
+          ],
+          "half": [
+            11,
+            3,
+            13
+          ],
+          "radius": 2.3,
+          "border": 0,
+          "basis": "artistic_assumption",
+          "tilt_x_degrees": -27
+        }
+      ]
+    },
+    {
+      "family_id": "KNEE_STRIP_RESERVED",
+      "colour": "#282b2e",
+      "elements": [
+        {
+          "id": "continuous_lower_padded_band",
+          "kind": "round_box",
+          "centre": [
+            0,
+            -72,
+            20
+          ],
+          "half": [
+            640,
+            32,
+            22
+          ],
+          "radius": 20,
+          "border": 0,
+          "basis": "artistic_assumption"
+        }
+      ]
+    }
+  ]
+}

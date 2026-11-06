@@ -1,0 +1,221 @@
+{
+  "schema": "993-dashboard-f0-ddk-render.v2",
+  "image_kind": "CAD technical illustration",
+  "publication_terms": {
+    "origin": "original project render",
+    "geometry": "project-generated PicoGK F0 visual scene",
+    "external_photo_scan_or_model": false
+  },
+  "scene_id": "993-dashboard-complete-f0-ddk-study-v2",
+  "status": "visual_concept_only",
+  "coordinate_frame": "visual_stage_not_vehicle",
+  "source_report": "scene-report.json",
+  "source_report_sha256": "e713da2671875e0a41c79ffbf6b220b6b920c11087a1d7df2c90940f0b8af19c",
+  "visual_reference_register": {
+    "file": "twins/993-dashboard-f0/ddk-study-v2/references.json",
+    "sha256": "1c6ba526e0f0264bfb115f7e55101e1719e2c19f3e7b4dc7337a55e2ed3e89a4",
+    "role": "visual observations only; no photo pixels or vehicle interface dimensions reused"
+  },
+  "source_files": [
+    {
+      "file": "twins/993-dashboard-f0/ddk-source-v2/scene.json",
+      "sha256": "56bead914da5c8b4bf2a18f0db31de935cfee3db0abdcfedadf11941e578fb84"
+    },
+    {
+      "file": "twins/993-dashboard-f0/ddk-source-v2/Program.cs",
+      "sha256": "70bde21ac13310ea9eda047c8228a56f0a0aada6e037aa90567d9a86cff583f7"
+    },
+    {
+      "file": "twins/993-dashboard-f0/ddk-source-v2/DashboardDdkStudy.csproj",
+      "sha256": "1dc657ad2896133c4f04f852366cac9ad220b9525dfa54835cbea87fde17d214"
+    },
+    {
+      "file": "twins/993-dashboard-f0/ddk-source-v2/render_scene.py",
+      "sha256": "249720dc27e983e790f73f06af0a1ec65dc0c402f97a5dd2c51c8f6aaaa0fab8"
+    },
+    {
+      "file": "twins/993-dashboard-f0/ddk-study-v2/references.json",
+      "sha256": "1c6ba526e0f0264bfb115f7e55101e1719e2c19f3e7b4dc7337a55e2ed3e89a4"
+    }
+  ],
+  "renderer": {
+    "pyvista": "0.49.1",
+    "vtk": "9.7.1",
+    "pillow": "13.0.0"
+  },
+  "views": [
+    {
+      "view": "front",
+      "file": "dashboard-front.png",
+      "sha256": "ace779eae745581b35cfdb8d45480a1a2523a78c157cfaf82d79c66dd8e485f4",
+      "camera_vector": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "projection": "parallel",
+      "resolution_px": [
+        2120,
+        1130
+      ]
+    },
+    {
+      "view": "three-quarter",
+      "file": "dashboard-three-quarter.png",
+      "sha256": "ea77f01b588d814234e9f5ada09bc3e8184aac51b4103fcf8b96bf42af0b173a",
+      "camera_vector": [
+        0.72,
+        -1.55,
+        0.72
+      ],
+      "projection": "parallel",
+      "resolution_px": [
+        2120,
+        1130
+      ]
+    }
+  ],
+  "render_qa": {
+    "raw_stl_unchanged": true,
+    "note": "Raw and loaded triangle counts are recorded without modifying source meshes. Render QA does not establish manufacturability."
+  },
+  "layers": [
+    {
+      "family_id": "DASHBOARD_TRIM",
+      "label": "Dashboard trim",
+      "file": "DASHBOARD_TRIM.stl",
+      "sha256": "ccbab349158870898de8dd732d5d27a14eb52d2f870eb248200a7d03e99f0159",
+      "colour": "#292d32",
+      "triangles_reported": 946832,
+      "triangles_loaded": 946832,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "INSTRUMENT_HOOD",
+      "label": "Instrument hood",
+      "file": "INSTRUMENT_HOOD.stl",
+      "sha256": "3dd67edab62406b318bfabec4528343fdbbdf70225a0cc63e9d5b04d401fea82",
+      "colour": "#25292e",
+      "triangles_reported": 323712,
+      "triangles_loaded": 323712,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "INSTRUMENT_CLUSTER",
+      "label": "Instrument cluster",
+      "file": "INSTRUMENT_CLUSTER.stl",
+      "sha256": "b43bf3be0fda799e69005e125958a890eb2bee761d69406801e7f3e5dd21f2d0",
+      "colour": "#0d151a",
+      "triangles_reported": 76456,
+      "triangles_loaded": 76456,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "INSTRUMENT_GAUGE_MARKS",
+      "label": "Gauge rings and marks",
+      "file": "INSTRUMENT_GAUGE_MARKS.stl",
+      "sha256": "657473e14b8c8db7e2b80c7c609c40f02814e9f39289c6cc29c978012bb9d445",
+      "colour": "#c7c9c3",
+      "triangles_reported": 19428,
+      "triangles_loaded": 19428,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "CENTER_AIR_VENTS",
+      "label": "Centre air vents",
+      "file": "CENTER_AIR_VENTS.stl",
+      "sha256": "01cb02e940ee03753b122695286ed36e15a33bf5b206d46d012515b85f60541d",
+      "colour": "#4c5358",
+      "triangles_reported": 22096,
+      "triangles_loaded": 22096,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "SIDE_AIR_VENTS",
+      "label": "Side air vents",
+      "file": "SIDE_AIR_VENTS.stl",
+      "sha256": "1e48a203a5f48d69b96f1bd961f0433ecc09454a8fbceb806ce3dd7962e17184",
+      "colour": "#4b5256",
+      "triangles_reported": 14532,
+      "triangles_loaded": 14532,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "DEFROST_OUTLETS_AND_DUCTS",
+      "label": "Defrost outlet marks",
+      "file": "DEFROST_OUTLETS_AND_DUCTS.stl",
+      "sha256": "fc0b99e8434dc61b35b0f3b1c604bed7d54fbc6086662a98a9ff2716a349cdd5",
+      "colour": "#161d21",
+      "triangles_reported": 11292,
+      "triangles_loaded": 11292,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "GLOVEBOX",
+      "label": "Glovebox outline",
+      "file": "GLOVEBOX.stl",
+      "sha256": "b1ed702fc3e09d65f7760cd7cdcdc8588fbe72c6df8197b765004416238293b4",
+      "colour": "#363a3e",
+      "triangles_reported": 9340,
+      "triangles_loaded": 9340,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "CENTER_CONSOLE",
+      "label": "Centre console",
+      "file": "CENTER_CONSOLE.stl",
+      "sha256": "d73fb8c0ba1ec219017c89a3c89b37b3192d21458ae1d497fc2da47d32b971de",
+      "colour": "#282d32",
+      "triangles_reported": 98528,
+      "triangles_loaded": 98528,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "HVAC_RADIO_CONTROLS",
+      "label": "HVAC and radio controls",
+      "file": "HVAC_RADIO_CONTROLS.stl",
+      "sha256": "5df0231e939950d23687021755f7c733ce4af62142a5d940f4063450260bfce3",
+      "colour": "#707773",
+      "triangles_reported": 12888,
+      "triangles_loaded": 12888,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "SWITCHES_AND_BLANKS",
+      "label": "Switches and blanks",
+      "file": "SWITCHES_AND_BLANKS.stl",
+      "sha256": "1d7e9fa321145e141e007130db77fbee1ce1bb34ee7b64d0080f754b72d3a950",
+      "colour": "#535a5e",
+      "triangles_reported": 9036,
+      "triangles_loaded": 9036,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "KNEE_STRIP_RESERVED",
+      "label": "Assumed lower padded band",
+      "file": "KNEE_STRIP_RESERVED.stl",
+      "sha256": "d88f6759f4fd1d383de5fc28f359a2e9723951dbaaa1b48dbc8ce4ef52d5cadf",
+      "colour": "#282b2e",
+      "triangles_reported": 172916,
+      "triangles_loaded": 172916,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    }
+  ],
+  "limitations": [
+    "Synthetic F0 display in a visual frame; dimensions and poses are assumed.",
+    "No measured vehicle transform or physical assembly is represented.",
+    "Images do not establish fit, safety, OEM identity, or manufacturing readiness."
+  ]
+}
