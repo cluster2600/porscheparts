@@ -1,0 +1,79 @@
+{
+  "schema": "935-cad-twin-hypotheses/1",
+  "register_id": "935-CAD-TWIN-HYPOTHESES-0001",
+  "created_on": "2026-11-06",
+  "owner_decision": "On 2026-11-06 the owner accepted declared hypotheses for unobserved geometry, provided each one is tagged, shown in a distinct colour and never claimed as measured.",
+  "rule": "Nothing in this register is a measurement. A hypothesis is retired only by the evidence named in 'retire_with'. The scorecard's twin->scan 'inferred' area is the geometric footprint of these entries.",
+  "display_colours": {
+    "observed": [0.72, 0.72, 0.74],
+    "inferred_closure": [0.95, 0.55, 0.15],
+    "analytic_hypothesis": [0.85, 0.2, 0.75],
+    "hardware": [0.25, 0.45, 0.85]
+  },
+  "items": [
+    {
+      "id": "H01-fin-root-closure",
+      "region": "fin roots and the deep floor of every fin gap",
+      "status": "modelled_as_inferred_closure",
+      "how": "winding-number 0.5 iso-surface of the open scan; the scanner never saw these surfaces (the 87 boundary loops of 20 mm or more hold 67% of open edges, mostly here)",
+      "colour": "inferred_closure",
+      "retire_with": "CT of the specimen, a rescan with fin-gap coverage, or a supplier drawing of the fin roots"
+    },
+    {
+      "id": "H02-stud-passages",
+      "region": "four head-stud through passages parallel to the bore axis",
+      "status": "modelled_as_inferred_closure",
+      "how": "interior walls are mostly unobserved; v0 keeps the winding-number closure; v1 replaces it with straight analytic bores fitted on the observed deck notches and cam-side openings",
+      "colour": "analytic_hypothesis",
+      "retire_with": "measured passage diameter and axis at both ends on the specimen or a drawing"
+    },
+    {
+      "id": "H03-stud-tapped-holes",
+      "region": "threaded holes under the 10 removed studs (6 cam-side, 2 per flange)",
+      "status": "not_modelled_in_v0",
+      "how": "studs are hardware and are removed; their seats are capped by the closure. A tapped hole (thread class, depth) is not observable from the surface",
+      "colour": "analytic_hypothesis",
+      "retire_with": "stud specification and tapped-hole depth from a drawing or measurement"
+    },
+    {
+      "id": "H04-port-interiors",
+      "region": "intake and exhaust port walls beyond the depth the scanner reached, valve-guide bosses inside the ports",
+      "status": "modelled_as_inferred_closure",
+      "how": "winding-number closure; v1 lofts the ports through observed cross-sections only and marks the interpolated span",
+      "colour": "inferred_closure",
+      "retire_with": "port moulds, CT, or a borescope survey with registered sections"
+    },
+    {
+      "id": "H05-valve-seats-guides",
+      "region": "valve seat inserts, guide bores and their interference fits",
+      "status": "not_modelled_in_v0",
+      "how": "the twin is the head body only; seat/guide geometry, materials and fits are unknown",
+      "colour": "analytic_hypothesis",
+      "retire_with": "supplier valvetrain specification for this head variant"
+    },
+    {
+      "id": "H06-spark-plug-threads",
+      "region": "spark-plug bores",
+      "status": "not_modelled_in_v0",
+      "how": "observed bore openings are kept as scanned; thread form and depth are not modelled",
+      "colour": "analytic_hypothesis",
+      "retire_with": "plug thread specification and reach"
+    },
+    {
+      "id": "H07-internal-galleries",
+      "region": "any oil or breather passage not open to the scanned surface",
+      "status": "not_modelled",
+      "how": "none is invented; the twin contains no internal gallery",
+      "colour": "analytic_hypothesis",
+      "retire_with": "CT or drawing"
+    },
+    {
+      "id": "H08-unclassified-cam-side-protrusion",
+      "region": "4 mm inclined rod-like protrusion on the cam side (about x=-19, y=-88)",
+      "status": "kept_as_body_unclassified",
+      "how": "it does not pass the stud test (axis inclined 36 degrees to the bore axis, protrudes 10 mm), so it is kept as head body and flagged",
+      "colour": "hardware",
+      "retire_with": "photograph or drawing identifying the feature"
+    }
+  ]
+}

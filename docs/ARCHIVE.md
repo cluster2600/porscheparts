@@ -28,6 +28,12 @@ Omniverse audit keeps the NVIDIA topology warning as a blocker.
 **What it can be used for**: replaying the calculations, reusing the test cases,
 reading what was attempted. **What it cannot be used for**: a part.
 
+**935 update, 2026-11-06.** The bottom-up scan-repair line for the 935 head
+(`docs/research/935-*`) is frozen by owner decision and kept as a record. The
+head twin is rebuilt top-down as a study in
+[`twins/935-cylinder-head-cad-twin/`](../twins/935-cylinder-head-cad-twin/README.md);
+the scan directory itself stays archived.
+
 Items the archived dossiers left open are dispositioned in
 [ARCHIVE_917_PENDING_LEDGER.md](ARCHIVE_917_PENDING_LEDGER.md) (issue #426).
 

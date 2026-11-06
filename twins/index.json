@@ -25,6 +25,28 @@
   "fidelity_rule": "fidelity is copied from the linked twin record; a directory without a twin record has fidelity none_declared, whatever its directory suffix. Suffixes such as -f0, -f1 or F15 are iteration labels, not levels of the fidelity ladder.",
   "directories": [
     {
+      "directory": "935-cylinder-head-cad-twin",
+      "kind": "numerical_study",
+      "status": "study",
+      "scope": "Top-down CAD twin of the Wolfe Classics 935 Xtreme head scan: fitted datums, bare-head occupancy, B-rep band stack, scorecard, thermal screen and OpenUSD stage",
+      "fidelity": "none_declared",
+      "physical_correlation": "none",
+      "records": [],
+      "part_ids": [],
+      "no_record_reason": "Study reconstruction of a scanned specimen; unobserved geometry is declared hypothesis and no part is proposed.",
+      "independent_evidence": "independent Warp scan-to-twin scorecard against the acquired surface only; no physical measurement",
+      "blockers": [
+        "no physical calibration or same-specimen measurement",
+        "unobserved fin roots, passages and port interiors are hypotheses (hypotheses.json)"
+      ],
+      "owner_artefact": "twins/935-cylinder-head-cad-twin/README.md",
+      "evidence": [
+        "twins/935-cylinder-head-cad-twin/params/frame.json",
+        "twins/935-cylinder-head-cad-twin/params/scorecard-t1.json"
+      ],
+      "issues": []
+    },
+    {
       "directory": "935-horizontal-cooling-system",
       "kind": "research_register",
       "status": "active",
