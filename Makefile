@@ -1233,9 +1233,9 @@ titanium-screen:
 	python3 scripts/screen_titanium_candidates.py \
 	  --output twins/993-exhaust-tip-ti-f0/evidence/selection/titanium-candidate-screen.json $(ROUTE_CHECK)
 
-#> 993 | Check this screening
+#> 993 | Replay the historical titanium screen's retained judgement inventory
 titanium-screen-check:
-	$(MAKE) titanium-screen ROUTE_CHECK=--check
+	python3 scripts/check_titanium_screen_snapshot.py --mode selection
 
 #> 993 | What the screening says about one reference: REF=... PET_LISTING=...
 pet-explain:
@@ -1264,9 +1264,9 @@ pet-zone-triage:
 	python3 scripts/screen_pet_zones_for_titanium.py \
 	  --output twins/993-exhaust-tip-ti-f0/evidence/selection/pet-zone-titanium-triage.json $(ROUTE_CHECK)
 
-#> 993 | Check this zone triage
+#> 993 | Replay zone triage against the historical part inventory
 pet-zone-triage-check:
-	$(MAKE) pet-zone-triage ROUTE_CHECK=--check
+	python3 scripts/check_titanium_screen_snapshot.py --mode pet-zone-triage
 
 .PHONY: pet107-bom pet107-bom-check
 #> catalogue | Regenerate the PET107 print-buy-manufacture BOM (JSON + CSV)
