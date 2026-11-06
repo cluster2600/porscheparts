@@ -9,7 +9,9 @@ At equal quality, the tool chosen is the one that runs without a graphical
 interface: see [decisions/0002-scriptable-toolchain.md](decisions/0002-scriptable-toolchain.md).
 The tables below therefore give the command or API used, not just the software
 name. The corresponding container images are described in
-[COMPUTE_ENVIRONMENT.md](COMPUTE_ENVIRONMENT.md).
+[COMPUTE_ENVIRONMENT.md](COMPUTE_ENVIRONMENT.md) and listed in full in
+[CONTAINER_INDEX.md](CONTAINER_INDEX.md); workstation setup is in
+[LOCAL_HOST_SETUP.md](LOCAL_HOST_SETUP.md).
 
 ## Acquisition and reconstruction
 

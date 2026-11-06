@@ -79,6 +79,8 @@ The [local Qwen pilot](../training/m64-qwen/README.md) implements the first AI i
 | [QWEN_TRAINING.md](QWEN_TRAINING.md) | how Qwen was trained, the actual datasets and results, and the next experiments for the 993 project |
 | [TOOLCHAIN.md](TOOLCHAIN.md) | the local CAD and analysis toolchain |
 | [COMPUTE_ENVIRONMENT.md](COMPUTE_ENVIRONMENT.md) | compute environment and images |
+| [CONTAINER_INDEX.md](CONTAINER_INDEX.md) | generated index of every container recipe, lock and workflow |
+| [LOCAL_HOST_SETUP.md](LOCAL_HOST_SETUP.md) | workstation setup: native file system, CI-equivalent checks, skip budgets, heavy jobs on WSL, native PicoGK |
 | [GITHUB_OPENBAO_WRAPPER.md](GITHUB_OPENBAO_WRAPPER.md) | the GitHub wrapper bounded by OpenBao |
 
 ## 993 Turbo and forced induction

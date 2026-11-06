@@ -3,6 +3,10 @@
 Reproducible images for the work that does not fit on an ordinary
 workstation. They are not needed to contribute to the catalogue.
 
+This page describes the main images by hand. The generated
+[container index](../docs/CONTAINER_INDEX.md) lists **every** recipe in this
+directory with its lock, image and workflows.
+
 | File | Image | Requirement |
 |---|---|---|
 | `usd-brep.Dockerfile` | `3dprinting993-usd-brep:1.0.1` | Linux CPU, Python 3.12, isolated BRep/OpenUSD runtime; ARM64 tested locally |
