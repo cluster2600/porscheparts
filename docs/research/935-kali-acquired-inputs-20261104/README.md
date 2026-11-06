@@ -57,7 +57,7 @@ that exact allowlist. Its **197,437,440 bytes** and SHA-256 are verified again b
 the receiver over the existing strict-host-key native SSH connection. All members
 must be regular files and exactly match the checksum-bound contract; absolute,
 escaping, duplicate or nonregular members are refused. An existing input
-directory is refused. No user data is replaced or initialized.
+directory is refused. No user data is replaced or initialised.
 
 The new Kali directory is mode 0700; all 20 listed input files are mode 0600.
 The receiver also writes the contract with private archive permissions. The local

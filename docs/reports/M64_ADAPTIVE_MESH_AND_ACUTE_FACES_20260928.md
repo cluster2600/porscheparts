@@ -34,7 +34,7 @@ documentation figure is the only geometric illustration published here.
 The [adaptive runner](../../twins/m64-cylinder-head/source/wholebody/trial_adaptive_native_mesh.py)
 reuses the frozen native mesh helper, its face-binding check and every
 existing volume/quality gate. Surface meshing is MeshAdapt; volume meshing
-is Delaunay followed by Netgen optimization. Each process is limited to
+is Delaunay followed by Netgen optimisation. Each process is limited to
 600 seconds, with parent cleanup at 610 seconds and a 1.5-million-tetrahedron
 audit ceiling. Source and input hashes must remain unchanged.
 
@@ -77,7 +77,7 @@ That failure is retained; no colliding mesh is accepted. More tetrahedra alone
 are not a reliable improvement: the 47-defect case has 2.49 times the reference
 element count and a worse minimum quality.
 
-## 2. Why interior optimization alone cannot close the gate
+## 2. Why interior optimisation alone cannot close the gate
 
 The [fixed-face audit](../../twins/m64-cylinder-head/source/wholebody/audit_fixed_face_quality.py)
 checks the saved reference surface triangulation. The SICN metric uses the
@@ -95,7 +95,7 @@ q3 = 3 / sqrt((A + c²) * (A/(a²b²) + 1/c²)).
 ```
 
 Tangential shear increases both factors in this product. Its optimum is zero.
-Minimizing the remaining product gives `c² = ab`, hence
+Minimising the remaining product gives `c² = ab`, hence
 
 ```text
 q3 <= 3ab/(A + ab) = 3*q2/(2 + q2).
@@ -114,7 +114,7 @@ floating point, not certified interval arithmetic.
 
 **Scope matters:** the bound applies to these fixed linear triangles. Surface
 remeshing can remove that restriction. It is not proof that every future mesh
-of the CAD body, or every solver discretization, must fail.
+of the CAD body, or every solver discretisation, must fail.
 
 ## 3. Native acute corners and repair trials
 
@@ -137,7 +137,7 @@ long curves, so the short-native-edge sizing rule does not remove its cause.
 The [bounded repair runner](../../twins/m64-cylinder-head/source/wholebody/trial_acute_cylinder_blend.py)
 tests separate copies. Fillets and chamfers may affect only the selected edge
 and its endpoint-incident faces, at most eight. Contour propagation, increased
-maximum native tolerances, changed protected serializations, invalid geometry,
+maximum native tolerances, changed protected serialisations, invalid geometry,
 multiple solids or input mutation reject the result. A locally admitted body
 is still pending BOP, deviation, independent volume checks and remeshing.
 
@@ -149,7 +149,7 @@ is still pending BOP, deviation, independent volume checks and remeshing.
 | Fillet 1647/1648 at 0.050 | Native build fails (`ChFiDS_StartsolFailure`) |
 | Chamfer 1647/1648 at 0.005 and 0.020 | Invalid native body and increased tolerances; rejected |
 | Chamfer 1647/1648 at 0.050 | Native build does not complete |
-| Remove face 1648 and extend neighbors | Valid body, but locality/protected-data checks fail; retained only as a rejected diagnostic |
+| Remove face 1648 and extend neighbours | Valid body, but locality/protected-data checks fail; retained only as a rejected diagnostic |
 
 The four good fillets pass the full selected BOP modes: self-intersection,
 small edges, rebuild-face, continuity and curve-on-surface, with no reported
@@ -161,16 +161,16 @@ the same recipe as the reference. Neither replaces the original. The two
 ### Rejected face-removal diagnostic
 
 The [OCCT defeaturing API](https://occt3d.com/dev/doc/refman/html/class_b_rep_algo_a_p_i___defeaturing.html)
-is designed to remove selected features and rebuild neighboring geometry.
+is designed to remove selected features and rebuild neighbouring geometry.
 The current web reference is OCCT 8.0.1; execution uses the installed OCP
 7.9.3.1 binding and its available methods. The latter does not expose the
 defeaturing error/warning accessors. This limitation is explicitly recorded,
 and the independent BOP audit remains mandatory.
 
-The selected six-face neighborhood expands to **21 changed face identities**.
+The selected six-face neighbourhood expands to **21 changed face identities**.
 The result is one valid solid, without increased maximum stored tolerances,
 and its saved-file BOP audit passes. The in-memory input and protected-face
-serializations change, however; the on-disk original remains hash-identical.
+serialisations change, however; the on-disk original remains hash-identical.
 The result therefore remains **rejected**, under a private filename
 `rejected-native.brep`, not a nominated master.
 

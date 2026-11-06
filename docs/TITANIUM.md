@@ -30,7 +30,7 @@ candidate (see below). [ROADMAP.md](ROADMAP.md) Phase 3 names the same part.
 - Significant need for thermal conductivity
 - Part whose bending must stay identical to that of a steel part
 - Untreated sliding contact or repeated threading exposed to galling
-- Environment creating an uncontrolled galvanic couple with aluminum or magnesium
+- Environment creating an uncontrolled galvanic couple with aluminium or magnesium
 
 The two lists and the release gate below, as one decision:
 
@@ -139,7 +139,7 @@ compatible lubricant or a suitable material pairing.
 ### Galvanic corrosion
 
 Document insulating washers, coating, sealant or drainage when titanium is
-assembled with aluminum or magnesium.
+assembled with aluminium or magnesium.
 
 ## Release gate
 

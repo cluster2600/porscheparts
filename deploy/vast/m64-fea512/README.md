@@ -1,6 +1,6 @@
 # Bounded M64 FEA512 rental
 
-`m64-fea512-v1` is one separately authorized additional paid attempt, capped at
+`m64-fea512-v1` is one separately authorised additional paid attempt, capped at
 USD 5 including USD 1 cleanup reserve, transfers and up to three hours. It does
 not change the older PicoGK, research, engine-twin or CAD-VM policies. A new
 manifest must not be created to bypass an already-consumed paid-attempt journal.

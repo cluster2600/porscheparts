@@ -42,7 +42,7 @@ walls; it provides no attachment to the engine or the test bench.
 
 The mesh is independent of the STL, built on the analytical section:
 0.8 mm walls, 3 mm high hot passage, 0.8 mm thick ribs,
-centers at Y = ±3 and ±9 mm for the four-rib variant. The cross-sections and
+centres at Y = ±3 and ±9 mm for the four-rib variant. The cross-sections and
 pressure resultants are checked independently by the tests.
 The slice omits the cold lattice, the fittings, the seals, the device
 closing the ends, thermal stresses, fatigue and finite-length
@@ -101,9 +101,9 @@ These figures are neither CFD nor a measurement and do not carry over to the
 ShapeKernel builds the shells and channels; LatticeLibrary keeps the
 sixteen BCC cells on the cold side. The four-rib variant was generated at
 **0.2 and 0.1 mm** voxels. The seven named VDB fields keep the three
-domains and four initialization fields; their round trip is checked
+domains and four initialisation fields; their round trip is checked
 as in the earlier study. The five hot channels are distinct in the
-coupon; the headers that will join them are not modeled.
+coupon; the headers that will join them are not modelled.
 
 The independent check rejected a first export: two channels measured
 1.8375 mm instead of 1.8 mm. The cause was an interpolation at the coincident
@@ -372,4 +372,4 @@ and support conditions.
 The passages will also have to be compared by CHT (the CFD above is hydraulic
 only) or on a bench, then orientation, overhangs, depowdering, hot material and
 sealing qualified.
-**No authorization to print or to pressure-test is given.**
+**No authorisation to print or to pressure-test is given.**

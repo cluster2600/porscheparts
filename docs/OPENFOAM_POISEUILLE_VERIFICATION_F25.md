@@ -6,7 +6,7 @@ F25 only verifies that the OpenFOAM tool in the pinned CFD image can
 mesh, solve and post-process a synthetic analytical problem. This milestone
 is independent of the 917 F13 solver cases and of the PhysicsNeMo F14 dataset.
 It is neither an engine simulation, nor a design validation, nor a
-manufacturing authorization.
+manufacturing authorisation.
 
 The redacted contract is
 `outils/benchmarks/openfoam-poiseuille-f25/benchmark-contract-f25.json`. It
@@ -88,8 +88,8 @@ Each repeat produces, for the three meshes:
 - maximum transverse velocity;
 - observed order between 8→16 then 16→32 cells.
 
-For the `N` uniform cell centers, with
-`e_i = Ux_i - u_analytique(y_i)`, the analyzer uses:
+For the `N` uniform cell centres, with
+`e_i = Ux_i - u_analytique(y_i)`, the analyser uses:
 
 ```text
 L2_abs  = sqrt(sum(e_i²) / N)
@@ -100,7 +100,7 @@ ordre    = log(erreur_h / erreur_h/2) / log(2)
 ```
 
 (`u_analytique` is the analytical velocity, `ordre` the observed order and
-`erreur` the error; the symbol names are kept as used by the analyzer.)
+`erreur` the error; the symbol names are kept as used by the analyser.)
 
 This discrete `L2` norm is equivalent to a volume weighting here,
 because all cells of a mesh have the same volume.
@@ -183,7 +183,7 @@ work/openfoam-poiseuille-f25/
 
 The OpenFOAM time directories, `U`, `p`, `C` fields, `polyMesh` meshes,
 logs and post-processing are therefore under `work/`, a directory ignored by
-Git. The repository only tracks the contract, the generator, the analyzer, the
+Git. The repository only tracks the contract, the generator, the analyser, the
 input decks, the runner, this documentation and the tests.
 
 The historical `mesh-cfd` image remains a broad image, built and used by

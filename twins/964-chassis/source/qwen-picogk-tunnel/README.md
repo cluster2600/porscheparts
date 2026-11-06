@@ -101,7 +101,7 @@ use of the library.
 The unit tests cover the coordinates, radii, ends, segment counts and collision
 formulas. The two native runs cover the requested geometry; the sections come
 from the meshes, not from a generated image. This separation follows the test
-strategy and visualization skills.
+strategy and visualisation skills.
 The four vehicle variants are **not** validated by these two packages.
 The concept's frame is X rearward, Y left, Z up; no overlay with the 964 scan,
 whose X points forward, is performed without a transformation.

@@ -20,7 +20,7 @@ flowchart LR
   G --> C["OpenFOAM RANS<br/>11.17 % between meshes:<br/>diagnostic only"]
   G --> P["LPBF slicing<br/>3,702 layers, roll_y_25"]
   G --> U["SimReady asset<br/>isolated inspection only"]
-  A --> V["Eleven steps: 02 and 08 pass,<br/>the rest screening or blocked<br/>not authorized for manufacturing<br/>or installation"]
+  A --> V["Eleven steps: 02 and 08 pass,<br/>the rest screening or blocked<br/>not authorised for manufacturing<br/>or installation"]
   C --> V
   P --> V
   U --> V
@@ -143,7 +143,7 @@ complete process, installation or endurance.
 6. Test the complete assembly in Omniverse, then correlate metrology, CT,
    leak, vibration, acoustics and thermal cycles before any vehicle.
 
-The F0 STEP is authorized neither for manufacturing nor for installation.
+The F0 STEP is authorised neither for manufacturing nor for installation.
 
 <!-- print-screen:begin -->
 

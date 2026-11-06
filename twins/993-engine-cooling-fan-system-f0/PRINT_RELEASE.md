@@ -1,8 +1,8 @@
 # Turbo fan — metal prototype print release dossier
 
-Date: 28 September 2026. **Release status: HOLD — no print authorization.**
+Date: 28 September 2026. **Release status: HOLD — no print authorisation.**
 Scope: a first metal prototype of the 993 Turbo M64.60 rotor, targeting the
-PMB / Classic Retrofit 240 A alternator. An authorization to manufacture a
+PMB / Classic Retrofit 240 A alternator. An authorisation to manufacture a
 controlled test article is separate from permission to spin it or install it.
 
 This dossier replaces the old generic rotor as the design baseline. It does
@@ -65,7 +65,7 @@ linked sources do not provide these complete interfaces and tolerances.
 | Prototype inspection plan | Datum-based CMM/scan, qualified defect detection, surface and balance requirements, traceability and rejection rules | OPEN |
 | Professional release | Named engineer approves this revision, remaining risks and test article restrictions; supplier approves build pack | OPEN |
 
-Airflow alone is not the optimization objective: compare volume flow against
+Airflow alone is not the optimisation objective: compare volume flow against
 pressure rise and absorbed shaft power, while maintaining alternator cooling,
 clearance, fatigue margin and balance. PhysicsNeMo can support a surrogate
 only after suitable training/validation data exist. Omniverse visualisation
@@ -127,7 +127,7 @@ supports, post-processing traveller, coupon layout, dimensional/defect
 acceptance criteria, responsible engineer and manufacturer, date, serial/lot
 traceability and disposition of nonconformities. Mark the article as a test
 prototype. Contained spin tests and engine installation require their own
-approved procedures; a printing authorization alone permits neither.
+approved procedures; a printing authorisation alone permits neither.
 
 ## Reproduce the geometric screening
 

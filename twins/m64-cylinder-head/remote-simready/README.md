@@ -1,7 +1,7 @@
 # M64 run in Omniverse: separate, traceable steps
 
 This directory prepares the **conversion and inspection of the 4V V2
-sub-assembly**, not an engine simulation or a manufacturing authorization. The
+sub-assembly**, not an engine simulation or a manufacturing authorisation. The
 [STEP and its geometric checks](../../../docs/reports/M64_FOUR_VALVE_DISTRIBUTION_MODULE_20260907.md)
 do not yet contain the cylinder head body, the piston, the springs or the
 camshafts. No private scan is transferred by this bundle.
@@ -10,7 +10,7 @@ camshafts. No private scan is transferred by this bundle.
 
 *The V2 sub-assembly this bundle converts, as local CAD views (labels in
 French). It shows the 12 solids and their sections; it is not an Omniverse
-execution, and it proves no contact, thermal, strength or engine behavior.*
+execution, and it proves no contact, thermal, strength or engine behaviour.*
 
 ## State verified on September 7, 2026
 
@@ -25,7 +25,7 @@ execution, and it proves no contact, thermal, strength or engine behavior.*
   finished successfully at 13:01 UTC: `linux/amd64`, layer limits, anonymous
   download and the M64 smoke pass. The first build workflow was stopped during
   its cache export, after publication; it is not cited as a successful CI. The
-  SSH test in this qualification checks the concurrent initialization of
+  SSH test in this qualification checks the concurrent initialisation of
   `sshd`, **not client authentication**, nor key injection by Vast. The
   [qualification receipt](../evidence/runtime-image-qualification-20260907.json)
   keeps that distinction and the build and check commits.
@@ -42,7 +42,7 @@ execution, and it proves no contact, thermal, strength or engine behavior.*
   synthetic key, refusal of a wrong identity, of dangerous permissions and of a
   wrong host key. The image identity and the isolation were inspected outside
   the container; the test container was deleted.
-  **This does not prove Vast's real initialization order.**
+  **This does not prove Vast's real initialisation order.**
 - `make check` passes on the local batch after regenerating the F46 preparation
   digest. That regeneration changes no simulation result.
 - The final attempt has now produced real evidence of GPU services and of
@@ -72,11 +72,11 @@ global unicast IP and port; a malformed mapping is refused, not silently
 replaced by the proxy. The historical profile is unchanged. The same choice
 applies to preflight, transfer and collection. Multiple Docker bindings are
 examined per IPv4/IPv6 family, and must then lead to a single distinct port;
-identical normalized duplicates are admitted. A missing `HostIp` is admitted only
+identical normalised duplicates are admitted. A missing `HostIp` is admitted only
 for a single binding after deduplication. A published `22/tcp` field that is
 `null` or empty waits for the already-fixed delay, without connection or proxy
 fallback. Errors produce a redacted `OPENBAO_VASTAI_M64_ENDPOINT_DIAGNOSTIC`
-diagnostic with types, count, normalized ports, families and index provenance,
+diagnostic with types, count, normalised ports, families and index provenance,
 never the provider's raw dictionary. The launch receipt identifies the endpoint
 actually verified after `READY`, without claiming to verify the host key through
 an independent channel.
@@ -92,7 +92,7 @@ The [last remote attempt](../evidence/vast-m64-gpu-attempt-20260907.json),
 instance `50167152`, is **closed after a Material Agent failure**, with deletion
 confirmed and an empty independent inventory. The SSH transfer and the NVIDIA
 phases `preflight`, `context`, `convert`, `minimum` succeeded. The preflight
-reports OVRTX initialized on GPU and a successful PNG render smoke. This real
+reports OVRTX initialised on GPU and a successful PNG render smoke. This real
 evidence stays distinct from the **launcher's complete `READY` contract, not
 confirmed**; no success of that contract is inferred from the phases.
 
@@ -143,7 +143,7 @@ only the independent converted USD is published separately.
 The conservative allocation was **4 USD and 30 minutes**, on September 7, 2026
 from 14:23:45 UTC to 14:53:45 UTC, with a recovery reserve. The previous reserved
 allocations were 16 USD, i.e. the cumulative cap of 20 USD; **these reservations
-are not a final invoice**. No new relaunch is authorized by this closing note.
+are not a final invoice**. No new relaunch is authorised by this closing note.
 
 Remaining limits of the selector, observed on local fixtures only:
 
@@ -156,7 +156,7 @@ Remaining limits of the selector, observed on local fixtures only:
   waits.
 - A pathologically large numeric JSON port can raise `OverflowError` before the
   redacted diagnostic. The launcher still catches that exception for its
-  cleanup; it authorizes no connection. This case was not observed in the real
+  cleanup; it authorises no connection. This case was not observed in the real
   attempts and does not justify inventing its cause.
 
 The historical runtime did not match the versions required by the installed
@@ -197,7 +197,7 @@ global Vast invoice. For this first attempt, reserve at most **8 USD**, of which
 up to 5 USD of compute and 2.25 USD of import (45 GB at 0.05 USD/GB), then the
 recovery. If the API does not provide the creation time, `created_epoch` is
 captured **before** the rental call: it is a conservative operator bound, not a
-creation date declared by Vast. Image loading and initialization therefore
+creation date declared by Vast. Image loading and initialisation therefore
 consume the delay, without pushing it back.
 
 ## Approved transport
@@ -246,7 +246,7 @@ This image **is not the final render of a conformant USD** and does not replace
 any validation. The profile findings remain unchanged; a conformance block
 remains blocking for the steps that require its success. If a later conformance
 produces another USD, its final render must be a distinct step, reviewed and
-authorized by the code manifest, without reusing this image as evidence of the
+authorised by the code manifest, without reusing this image as evidence of the
 new state.
 
 ## Failures and collection
@@ -258,7 +258,7 @@ new state.
 - USD references stay unflattened; external, missing and symbolic-link
   dependencies, and unsupported USDZ, are refused.
 - A failed validation stays failed; the following diagnostic validations may
-  continue. An asset-creation failure is not an authorization to move to the
+  continue. An asset-creation failure is not an authorisation to move to the
   next authoring step.
 - Collect reports and logs even on failure. Collection remains permitted after
   the deadline; the files are private and their SHA256 verified.
@@ -271,6 +271,6 @@ new state.
 The inspection image of this chain comes from the OVRTX service on the USD that
 Physics Agent actually produced, not on a hypothetical final conformant USD.
 The module's local CAD images are useful but do not constitute an Omniverse
-execution. Visual material colors provide neither a selected alloy nor a
+execution. Visual material colours provide neither a selected alloy nor a
 hot-strength curve. CFD/CHT, fatigue, hot interference and LPBF require their
 own geometries, data, solvers and evidence.

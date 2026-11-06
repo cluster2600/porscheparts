@@ -1,16 +1,16 @@
 # Corrective Qwen experiments
 
 The first CPU pilot exposed missing citations, unsupported qualifications,
-contradictory generalizations and poor French terminology. Its eight inspected
+contradictory generalisations and poor French terminology. Its eight inspected
 questions are now **development only**, including the four originally marked
-as test. Their answers cannot establish a fresh generalization result.
+as test. Their answers cannot establish a fresh generalisation result.
 
 `corrective-v4/` is a new, immutable release derived from the licensed v3 source
 passages. It retains 53 original training examples across seven languages and
 adds 138 French/English examples with verbatim evidence windows. Added tasks
 include quoting evidence, distinguishing a study from qualification of a new
 component and declining a certified fatigue life absent from the excerpt.
-Repeated targets teach behavior; they are not independent experimental evidence.
+Repeated targets teach behaviour; they are not independent experimental evidence.
 No validation/test-source text or target enters training. Translation and
 scientific review remain assistant drafts pending independent expert review.
 
@@ -84,7 +84,7 @@ answers and evidence; independent reviewer and score fields stay blank.
 For data reproduction, run `prepare_corrective.py --output /fresh/path
 --tokenizer /pinned/snapshot`. Source authors, DOI, URL and CC BY 4.0 attribution
 are retained in [grounded-v3/sources.json](grounded-v3/sources.json), its linked
-license evidence and frozen parent manifest. Model license is
+licence evidence and frozen parent manifest. Model licence is
 [Apache 2.0](MODEL-LICENSE.txt). New text answers remain evidence-conditioned
 explanations, not validated numerical surrogates or manufacturing qualification.
 

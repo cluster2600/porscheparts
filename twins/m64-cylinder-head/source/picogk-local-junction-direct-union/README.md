@@ -37,7 +37,7 @@ repair when searching for components (`repair=False`). These components are not
 interpreted as cavities. No edge of incidence one allows concluding here that
 there are physical holes. The residual between the difference of the global
 triangle volumes and the volume of the diagnostic addition is
-**3.618739229847031 unit³**, unexplained. The three isosurfaces are discretized
+**3.618739229847031 unit³**, unexplained. The three isosurfaces are discretised
 separately; this residual stays visible and is not used as proof of
 conservation.
 
@@ -78,7 +78,7 @@ corrections to be verified.
 Six native fields are recorded in `native-fields.vdb`: `original_A`,
 `closing_C`, `ROI_R`, `C_intersect_R`, `direct_candidate`, `diagnostic_added`.
 The rereading verifies the names, the count, the metadata scale and access to
-non-empty fields. **The identity of the values before/after serialization was
+non-empty fields. **The identity of the values before/after serialisation was
 not checked.**
 
 `Program.cs` is frozen in its executed version to ensure provenance; its old

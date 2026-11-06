@@ -39,7 +39,7 @@ establish the original nominal geometry.
 5. [Budget](budget.md), [editable costs](budget.csv), [Swissness register](swissness.csv).
 6. [Suppliers](suppliers.md), [unsent quote requests](rfqs.md).
 7. [Compliance and origin](compliance.md), [validation](validation.md).
-8. [Commercialization](commercial.md), [local mockup](product-preview.html).
+8. [Commercialisation](commercial.md), [local mockup](product-preview.html).
 9. [Sources and research limits](sources.md), [check results](verification.md).
 
 ## Run locally

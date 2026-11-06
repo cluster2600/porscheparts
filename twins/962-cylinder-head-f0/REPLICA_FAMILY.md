@@ -28,7 +28,7 @@ sessions (page 8), the 2,994 cm³ types 935/79, /82 and /83, and the
 3,164 cm³ types /79 and /86 (page 18). This identifies a family; the type,
 year and physical reference to copy remain to be identified.
 
-Pages 19–20 describe aluminum cylinder/head assemblies welded by electron
+Pages 19–20 describe aluminium cylinder/head assemblies welded by electron
 beam, Nikasil bores, two gear-driven camshafts per bank, shimmed tappets
 and two independent coolant circuits with one pump per bank.
 Confirm the precise construction on the selected specimen before designing
@@ -82,7 +82,7 @@ shape, piston/head and piston/valve clearances, valvetrain kinematics, loads
 and cooling. It therefore does not guarantee head reuse.
 
 A **bore change** requires revisiting the chamber, cylinder/head seat or
-connection, seats and valve clearance, thicknesses, center distances and load
+connection, seats and valve clearance, thicknesses, centre distances and load
 paths. Water, oil and valvetrain must then be checked on every assembly.
 We cannot yet promise one head body for the entire range or claim that a
 102 mm bore fits in the crankcase.

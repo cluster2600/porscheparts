@@ -24,13 +24,13 @@ screen come from the F39 reports.
 - `assets/f39-exterior.png` — render of the F39 analytical B-Rep.
 - `assets/f39-section.png` — cutaway view of the reconstructed volume.
 - `assets/f39-cutaway-*.png` — analytical kinematic screens reused from F38.
-- `assets/f39-cooling.png` — F39 thermal optimization.
+- `assets/f39-cooling.png` — F39 thermal optimisation.
 - `assets/f39-lpbf.png` — manufacturability audit of the F39 scan.
 
-## Customizations
+## Customisations
 
 - Visual cycle intake → closed/thermal load → exhaust.
-- Synchronized motion of the two intake valves, then the two exhaust valves.
+- Synchronised motion of the two intake valves, then the two exhaust valves.
 - Forced air animated in blue, local oil transfer in green and thermal load in orange.
 
 ## Notes
@@ -38,4 +38,4 @@ screen come from the F39 reports.
 - Deliberate silence for a technical review.
 - The lift shown is a 12 mm geometric screen; the real cam profile is not measured.
 - The F39 methods are pre-screening models, not a full CHT nor a bench correlation.
-- The video grants no authorization for metal printing or engine start.
+- The video grants no authorisation for metal printing or engine start.

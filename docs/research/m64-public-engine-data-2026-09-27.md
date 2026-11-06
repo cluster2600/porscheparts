@@ -34,14 +34,14 @@ inference.
 
 - Cylinder pitch and crankshaft-to-joint-plane height: **not published** → M64-ACQ-0004.
 - Fan blade count and pulley diameters: **not published**
-  - Software route: scan `Fan+Drive+0.21mm.obj` (sha256 6c0b12d4…, 1.26 M vertices; provenance to be entered in the register) analyzed in `work/obj-intake-20260927/` — angular harmonics 4–7 on the lower slab at this stage, not conclusive before the complete study. Extracted geometric diameters: toothed sprocket OD≈127.6 mm (height 67.9 mm), pulley r_max≈127.8 mm. Airflows: primary value **1,010 l/s at ≈6,100 rpm** (level A, 1996 OBD supplement; echoed in the manual p.17 "1010 l/sec at 6,000 rpm", OCR not proofread, rpm to be checked visually); 1,210 l/s @ 5,750 demoted to a cross-check (elferclassic, level C).
+  - Software route: scan `Fan+Drive+0.21mm.obj` (sha256 6c0b12d4…, 1.26 M vertices; provenance to be entered in the register) analysed in `work/obj-intake-20260927/` — angular harmonics 4–7 on the lower slab at this stage, not conclusive before the complete study. Extracted geometric diameters: toothed sprocket OD≈127.6 mm (height 67.9 mm), pulley r_max≈127.8 mm. Airflows: primary value **1,010 l/s at ≈6,100 rpm** (level A, 1996 OBD supplement; echoed in the manual p.17 "1010 l/sec at 6,000 rpm", OCR not proofread, rpm to be checked visually); 1,210 l/s @ 5,750 demoted to a cross-check (elferclassic, level C).
  → M64-ACQ-0005 (the total airflow of 1,010 l/s is published, not the wheel geometry).
 - Bank designation (left/right) and variant part numbers: to be confirmed on the plate.
   - Review note 2026-09-27: deriving the stud pattern from "98.07/43.27" is REJECTED —
     these are camshaft sprocket dimensions ("Engine, Cylinder Head, Valve Drive", OCR not
     proofread), not the bolt pattern. Studs acquired: 12× M8×22 per cylinder head (level A). Pattern,
     cylinder-head height, gasket thickness = physical metrology (ACQ-0001). ACQ-0004 bonus:
-    crankshaft-to-intermediate-bearing center distances 133.57 and 78.77 ±0.25 mm (p.177, to be re-read visually).
+    crankshaft-to-intermediate-bearing centre distances 133.57 and 78.77 ±0.25 mm (p.177, to be re-read visually).
 - Cam profile: not public → M64-ACQ-0002.
 - K16 compressor map: not public → M64-ACQ-0003.
 

@@ -6,14 +6,14 @@ Date: 2026-09-11
 
 Retain as the best route for `964 105 107 01` a **modern magnesium cover** —
 high-purity alloy, machined, PEO-treated — and not a titanium cover, nor the
-aftermarket billet aluminum cover.
+aftermarket billet aluminium cover.
 
 The initial request was for titanium. It is set aside on numbers, not on a
 preference.
 
 ## The reversal, in two steps
 
-**First step: the original part is not aluminum, it is magnesium.** Every mass
+**First step: the original part is not aluminium, it is magnesium.** Every mass
 comparison made before this discovery set titanium against the *aftermarket
 replacement*, not against the original part.
 
@@ -31,7 +31,7 @@ The decisive line is the last one. Magnesium corrosion is driven by three
 impurities — iron, nickel, copper — that form **internal** cathodic sites. The
 ASTM limits for AZ91D cap them at 0.004%, 0.001% and 0.015%, and high-purity
 alloys are reported to be **up to a hundred times** more resistant than standard
-alloys in salt spray, more resistant even than cast 380 aluminum or cold-rolled
+alloys in salt spray, more resistant even than cast 380 aluminium or cold-rolled
 steel.
 
 The 1995 cover does not rot because it is magnesium. It rots because it is
@@ -42,7 +42,7 @@ magnesium **from 1995**.
 | route | density | stiffness `E^⅓/ρ` | strength `σ^½/ρ` | couple with the Mg case |
 |---|---:|---:|---:|---|
 | **modern magnesium** | **1.81** | **1.965** | **6.988** | **none — same metal** |
-| billet aluminum (the market) | 2.70 | 1.526 | 4.969 | mild |
+| billet aluminium (the market) | 2.70 | 1.526 | 4.969 | mild |
 | Ti-6Al-4V | 4.43 | 1.095 | 6.503 | **the worst in the grid** |
 
 Magnesium wins **both** indices, by a wide margin. It removes the galvanic
@@ -60,7 +60,7 @@ Three times in this project, the right answer has been **the original material,
 done properly**, and not a nobler material:
 
 - the switch trim ring: turned 6063, not sintered AlSi10Mg;
-- the chain case and the camshaft housing: aluminum, not titanium;
+- the chain case and the camshaft housing: aluminium, not titanium;
 - this cover: magnesium, not titanium.
 
 The lesson deserves to be written down. An old part that fails does not always

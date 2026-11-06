@@ -33,7 +33,7 @@ checks, one greedy pass examines all 345 multi-boundary source cells and selects
 29 pairs. It also records 595 nonconvex candidate refusals, 29 quality refusals,
 seven reserved neighbourhoods and six reserved source cells. These counts refer
 to attempted neighbours or sources, as named; they are not all counts of unique
-source cells. This pass is neither global optimization nor exhaustion of all
+source cells. This pass is neither global optimisation nor exhaustion of all
 possible agglomerations. Both the pilot and full case start from the same
 qualified tetrahedral parent; their selected pairs are not cumulative.
 
@@ -92,7 +92,7 @@ as failed attempts; corrected, separately versioned checks pass.
 | five-pair pilot | 890,773 | 5 | 442 | 865 | 26 | 4 | 4 |
 | full greedy pass | 890,749 | 29 | 419 | 862 | 25 | 4 | 4 |
 
-Independent calculations from the complete serialized mesh and native geometry
+Independent calculations from the complete serialised mesh and native geometry
 fields reproduce all four extended quality counts. The native error-face union
 falls from 1,077 to 1,064; full quality still rejects the mesh. A successful native
 read, exact volume or lower defect count does not qualify airflow performance.

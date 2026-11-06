@@ -10,7 +10,7 @@ This is the full technical overview that used to be the README. The plain-langua
 *Sourced data, falsifiable calculations, no part manufactured.*
 
 [![Validate catalogue](https://github.com/cluster2600/porscheparts/actions/workflows/validate.yml/badge.svg)](https://github.com/cluster2600/porscheparts/actions/workflows/validate.yml)
-[![License: all rights reserved](https://img.shields.io/badge/license-all%20rights%20reserved-lightgrey)](../LICENSE)
+[![Licence: all rights reserved](https://img.shields.io/badge/license-all%20rights%20reserved-lightgrey)](../LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
 [![Active phase](https://img.shields.io/badge/active%20phase-manufactures%20nothing-critical)](SAFETY.md)
 [![Docs](https://img.shields.io/badge/docs-English-brightgreen)](TRANSLATION.md)
@@ -97,7 +97,7 @@ flowchart TB
 | **Codex** | Assist with authoring, repository changes and review. | Throughout development, alongside the local Qwen project. |
 | **C# / PicoGK** | Generate new M64 geometry from reviewed rules; ShapeKernel and LatticeLibrary provide geometric building blocks. OpenVDB stores volumes and fields. | Before geometric inspection and simulation, then again when the design changes. Existing CAD masters remain authoritative for their own zones. |
 | **[NVIDIA Warp](WARP_GEOMETRY_VAST_PILOT.md)** | Batched geometric queries after PicoGK. The synthetic pilot has an analytic oracle; the [935 continuation](research/935-horizontal-cooling/NATIVE_GPU_CONTINUATION_20261022.md) checks the complete private rotor on CUDA. | Optional geometry screening; numerical query agreement does not establish application speedup or physical performance. |
-| **[Our cluster_compilot](WARP_GEOMETRY_VAST_PILOT.md#where-cluster_compilot-can-help)** | Optimize regular C/OpenMP CPU loops through model proposals, dependence checks and numerical verification. | Optional, after profiling identifies a costly CPU loop; a separate environment and experiment from Warp. |
+| **[Our cluster_compilot](WARP_GEOMETRY_VAST_PILOT.md#where-cluster_compilot-can-help)** | Optimise regular C/OpenMP CPU loops through model proposals, dependence checks and numerical verification. | Optional, after profiling identifies a costly CPU loop; a separate environment and experiment from Warp. |
 | **Gmsh / OpenFOAM / CalculiX** | Prepare calculation meshes and solve fluid, thermal or structural cases; ParaView/PyVista inspect results. | After geometry, materials, loads and boundary conditions are sufficient for the declared study. |
 | **Adamantine / AdditiveFOAM** | Study additive manufacturing: global thermomechanics or the local melt pool. | With a defined process case, including material, orientation and heat-source history. These are research tools, not a qualified machine job. |
 | **OpenUSD / Omniverse** | Compose and inspect the assembly, contacts, motion and visual results. | A branch from checked geometry; rendering is not required to run CFD/FEA or prepare fabrication. |
@@ -201,7 +201,7 @@ fall to 419, while four full quality checks still block CFD admission.
 
 The [reference-wall correction](research/935-horizontal-cooling/REFERENCE_FLUID_WALL_20261022.md)
 then replaces the snapped rotor wall with every analysis-reference triangle.
-Complete serialized and native readback preserves that surface in 3,685,053
+Complete serialised and native readback preserves that surface in 3,685,053
 positive fluid cells. Six native quality checks still reject this faithful
 baseline; protected poor surface facets and near-wall meshing remain to repair.
 
@@ -363,7 +363,7 @@ the body shell, which pays off more? Where does the load go in torsion?
 - **closing a ring does not just add stiffness, it changes the mechanism that
   carries it**: bending on the bare floor pan, shear on the closed cell;
 - from bare floor pan to closed cell, **K × 3.77 for mass × 2.3**;
-- roof and windshield frame together are worth **1.63 times** the sum of their
+- roof and windscreen frame together are worth **1.63 times** the sum of their
   separate contributions: the roof only works once the ring is closed;
 - at equal mass, closing the body shell is worth more than switching to carbon.
 
@@ -450,7 +450,7 @@ supports and orientation remain unqualified.
 *The F1 cooling impeller: the geometric report has 6,286 slices at 30 µm.
 This animation uses coarse 0.5 mm slices and shows hypothetical support
 regions in orange. No process physics or qualified support design; printing
-is not authorized.*
+is not authorised.*
 
 </div>
 
@@ -713,11 +713,11 @@ transcriptions and 2 records of declared community values. Everything is validat
 
 A record keeps technical access, reading method and reuse rights separate. An
 accessible page is not redistributable; a page read in a browser is neither an
-authorized download nor a validation of accuracy.
+authorised download nor a validation of accuracy.
 
 ```mermaid
 flowchart TB
-    subgraph catalog["catalog/ — source of truth, JSON-schema validated"]
+    subgraph catalog["catalogue/ — source of truth, JSON-schema validated"]
       direction LR
       src["sources/<br/>545 records"] --- prt["parts/<br/>43 records"]
       prt --- tw["twins/<br/>10 records"]
@@ -754,7 +754,7 @@ This is the most useful part of its history, and it is public.
 |---|---|
 | "the structure works in membrane shear" | a test decoupling `E` and `G`: the bare floor pan works in almost pure bending |
 | "stiffness follows thickness exactly linearly" | the exponent is 1.00 with linear elements and **1.10** with quadratic ones: the exactness belonged to the element |
-| "the windshield frame has the best return per kilogram" | in quadratic shells, it is the center tunnel |
+| "the windscreen frame has the best return per kilogram" | in quadratic shells, it is the centre tunnel |
 | a cross member counted in the model's mass | a connectivity check: it was attached to nothing |
 | eleven lost analysis cases, read as a near-singular system | a defect in the solver's partitioner, whose message went to `stderr` |
 | the datum network's front cross-member mount P5 | plate 50-02 draws dimension P as longitudinal, not as a diagonal: P5 was 230 mm out, and the monocoque's governing span with it |
@@ -780,7 +780,7 @@ calculation's data.
   workshop manuals and two of values declared in forum posts, not instrumented
   measurements.
 - **No fan gain over the Porsche part.** Its performance is not published.
-- **A rendering or a simulation is not evidence of physical behavior**:
+- **A rendering or a simulation is not evidence of physical behaviour**:
   neither Omniverse, nor an image, nor a print simulation.
 
 ## What is archived
@@ -855,7 +855,7 @@ containers/ deploy/ reproducible compute images and deployment
 | 1 — source inventory | 🟡 past its quantitative threshold; cross-qualification and direct measurements still open |
 | 2 — physical inventory and twin assembly | 🟡 run in digital mode; physical prototypes suspended, except non-critical printable files (decisions 0009, 0010, 0011) |
 | 3 — titanium engineering twin, no manufacturing | ⬜ open: candidate `993-ENG-CARRIER-0001` under study |
-| 4 — public catalog | ⬜ open: only parts that clear their quality gates will be published |
+| 4 — public catalogue | ⬜ open: only parts that clear their quality gates will be published |
 
 Details and exit criteria: [ROADMAP.md](ROADMAP.md) ·
 [docs/PROJECT_CHARTER.md](PROJECT_CHARTER.md) ·
@@ -878,11 +878,11 @@ installs the part. Read [SAFETY.md](SAFETY.md) before any manufacturing.
 Porsche and 911 are trademarks of their respective owners. This project is
 independent and not affiliated with Porsche AG.
 
-## License
+## Licence
 
 **© 2026 Maxime Grenu. All rights reserved.** The repository is under a custom
-[proprietary license](../LICENSE): you may view it, but copying, modifying,
+[proprietary licence](../LICENSE): you may view it, but copying, modifying,
 printing or manufacturing parts, redistributing, commercial use and AI training
 all need prior written permission; ask by opening an issue. Third-party
-sources and models keep their own license; see [LICENSES.md](LICENSES.md).
+sources and models keep their own licence; see [LICENSES.md](LICENSES.md).
 Revisions published before 2026-09-25 were under the MIT License.

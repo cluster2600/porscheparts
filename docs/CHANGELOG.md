@@ -11,7 +11,7 @@ Decision 0008, modern magnesium beats titanium, September 11, 2026:
 - what has changed — magnesium corrosion is driven by three internal
   impurities, iron, nickel and copper; the ASTM limits for AZ91D cap them at
   0.004 / 0.001 / 0.015 %, and high purity is given as **up to 100×** more
-  resistant to salt spray, more than cast 380 aluminum or cold-rolled steel;
+  resistant to salt spray, more than cast 380 aluminium or cold-rolled steel;
   PEO replaces chromate conversion, without hexavalent chromium;
 - final comparison: modern magnesium wins **both** plate-bending indices
   (1.965 and 6.988), removes the galvanic couple since it is the same material
@@ -26,12 +26,12 @@ Decision 0008, modern magnesium beats titanium, September 11, 2026:
   of 5 to 40 µm on a sealing face, and availability as AZ31B plate rather than
   cast AZ91E.
 
-The original part is magnesium, not aluminum, September 11, 2026:
+The original part is magnesium, not aluminium, September 11, 2026:
 
 - major correction: the factory-fitted 964/993 chain housing covers are **cast
   magnesium**, and their failure mode is corrosion of the sealing faces — that
   is the reason the billet cover market exists;
-- every mass comparison run so far set titanium against aluminum, hence
+- every mass comparison run so far set titanium against aluminium, hence
   **against the aftermarket product and not the original part**;
 - redone against magnesium at 1.81 g/cm³: titanium is 2.45× denser and loses
   **both** plate-bending indices, strength included, 6.503 versus 6.988 —
@@ -39,7 +39,7 @@ The original part is magnesium, not aluminum, September 11, 2026:
 - on the other hand, the corrosion criterion of `TITANIUM.md` now applies in
   full, and it is a stronger argument than mass;
 - new, unresolved obstacle: the mating case is also magnesium, and the
-  titanium/magnesium couple is the least favorable in the grid — a titanium
+  titanium/magnesium couple is the least favourable in the grid — a titanium
   cover could shift corrosion onto the part that cannot be replaced;
 - bug fixed in the screening: a mitigation whose text admitted it was
   "unresolved" counted as a mitigation; the script now raises an error.
@@ -47,7 +47,7 @@ The original part is magnesium, not aluminum, September 11, 2026:
 Plate-bending performance indices, September 11, 2026:
 
 - the mass trade-off is restated with Ashby indices: at imposed stiffness
-  `E^⅓/ρ` gives 1.526 for aluminum versus 1.095 for titanium, aluminum wins;
+  `E^⅓/ρ` gives 1.526 for aluminium versus 1.095 for titanium, aluminium wins;
   at imposed strength `σ_y^½/ρ` gives 4.969 versus 6.503, titanium wins by
   31 %;
 - "titanium is stronger, therefore thinner, therefore lighter" is thus
@@ -73,7 +73,7 @@ Cover expansion margin redone, September 11, 2026:
   pass, the tightest — dowel location and close-fit hole — using 72 %;
 - `--datum dowel` option added: plate 103-05 shows a locating dowel
   `993 105 175 00`, and if it holds the cover the unfavorable radius doubles;
-- installation assumption declared: bolts centered in their holes when cold,
+- installation assumption declared: bolts centred in their holes when cold,
   otherwise half the margin is an assembly tolerance and not a reserve;
 - mass threshold made decidable: titanium machined to the strictly necessary
   stiffness beats the casting as soon as the casting carries **39 % more
@@ -89,11 +89,11 @@ Acquiring dimensions without access to parts, September 11, 2026:
 
 - online search for the dimensions of cover `964 105 107 01`: **none are
   published**, but the search establishes something else — two independent
-  reproducers, LN Engineering in 6061 aluminum and Auto-Service Schefter in
+  reproducers, LN Engineering in 6061 aluminium and Auto-Service Schefter in
   CNC, confirm that the part number is the **left** cover, that it is paired
   with gasket `964 105 181 01`, and that the part is made **by machining from
   solid**, which until now was only reasoning;
-- both reproducers use aluminum: titanium is a deliberate departure;
+- both reproducers use aluminium: titanium is a deliberate departure;
 - the workshop manual gives "Chain housing cover : 9,7 Nm" (9.7 Nm), which
   puts the fasteners at **M6** and not M8 — the expansion margin computed on an
   M8 assumption must be redone;
@@ -102,7 +102,7 @@ Acquiring dimensions without access to parts, September 11, 2026:
   outline and bolt spacings, a used cover gives everything, and neither
   requires access to a car.
 
-The whole factory catalog dispositioned, September 11, 2026:
+The whole factory catalogue dispositioned, September 11, 2026:
 
 - `scripts/dispose_pet_catalogue.py` gives a category and a reason to the
   **1,026 designations**: not a single silent loss anymore, where 956 used to
@@ -113,7 +113,7 @@ The whole factory catalog dispositioned, September 11, 2026:
   missed it because its name contained no vocabulary term, and together with
   the tip it is the best titanium candidate on the car; `y-piece` joins it;
 - the verdict now covers everything judged and not only the 70 designations
-  the vocabulary recognized — the pool grows from 7 to 9;
+  the vocabulary recognised — the pool grows from 7 to 9;
 - limitation counted rather than hidden: **50 generic designations, 751 part
   numbers**, where the word does not name a function — `support` covers 142 of
   them — and which require part-number-by-part-number work, not done.
@@ -131,7 +131,7 @@ Chain housing cover 964 105 107 01 in Ti-6Al-4V, September 11, 2026:
   is dictated by the foundry — minimum wall, draft, filling — and a machined
   part has none of these constraints, so it can be thinner while staying stiff
   enough; `D03` and the eye will decide, not the calculation;
-- parametric screening: differential expansion against the aluminum case is
+- parametric screening: differential expansion against the aluminium case is
   0.144 mm over a 100 mm bolt spacing at 100 K, and fits within the 0.200 mm
   clearance of a Ø8.4 hole for M8 bolts, margin +0.056 mm;
 - that is what separates the cover from the whole case, rejected on these
@@ -166,7 +166,7 @@ The 70 factory-catalog designations investigated, September 11, 2026:
   them new; they form a single family, the hot-air and secondary-air circuit
   around the exhaust heat exchangers;
 - this pool passes because it is hot without being at gas temperature, made
-  of sheet steel and not aluminum, thin and consolidatable, and benign in
+  of sheet steel and not aluminium, thin and consolidatable, and benign in
   failure;
 - the 63 rejections are mechanically justified: titanium does not improve on
   the original material, presumed-critical domain, no additive family, or
@@ -180,15 +180,15 @@ SAFETY.md rewritten and chain housing investigated, September 11, 2026:
 - `SAFETY.md` rewritten: classes, presumed-critical domains, downgrade rule
   and reporting kept identical, with the addition of what the project has
   learned — failure mode outranks domain and fire is its forgotten case, a
-  screening authorizes nothing, service temperature is checked against the
+  screening authorises nothing, service temperature is checked against the
   alloy's ceiling, disassembly is part of the part's life, process and
   material are two separate judgments, and raising a class requires six named
   pieces of evidence while lowering it requires none;
 - chain housing of plate 103-05 investigated: eight part numbers established,
   including three bridges, two of which are also designated oil galleries;
 - verdict: a genuine case for additive consolidation, but titanium rejected
-  three times — differential expansion with the aluminum case, galling on
-  re-cut threads, galvanic couple; the answer is aluminum;
+  three times — differential expansion with the aluminium case, galling on
+  re-cut threads, galvanic couple; the answer is aluminium;
 - two corrections to the screening, the first of which was wrong: making the
   five contraindications disqualifying removed the words "not addressed" and
   "not controlled" that the grid contains;
@@ -200,7 +200,7 @@ SAFETY.md rewritten and chain housing investigated, September 11, 2026:
 - missing criterion added, and it was the deciding one: **does titanium
   improve on the original material?** The grid already asked it — "corrosion
   problematic with the original material" — and without it the screening
-  ranked a lukewarm aluminum intake manifold first;
+  ranked a lukewarm aluminium intake manifold first;
 - the report now carries its own denominator: 33 records, not 6,259 part
   numbers, and says so in `scope_warning`.
 
@@ -218,10 +218,10 @@ Turbo oil circuit investigated and ruled out, September 11, 2026:
 - conclusion: the best additive candidate in the triage is not a titanium
   candidate; the two questions are not the same.
 
-Titanium triages of the factory catalog, September 11, 2026:
+Titanium triages of the factory catalogue, September 11, 2026:
 
 - finding that the titanium screening covered 32 records, i.e. 0.51 % of the
-  6,259 distinct part numbers in the 993 catalog: "applied to the catalog" was
+  6,259 distinct part numbers in the 993 catalogue: "applied to the catalogue" was
   an overstatement of scope, corrected in an addendum to decision 0007;
 - `screen_pet_zones_for_titanium.py` triages the 239 illustrations of the
   skeleton using only repository data, 23 zones kept out of 1,538 part
@@ -241,7 +241,7 @@ Decision 0007, first titanium part selected by grid, September 11, 2026:
   is not judged; only five parts are eligible;
 - `993-EXH-OVAL-TIP-TI-F1-0001` chosen at +6, the exhaust manifold being ruled
   out despite its +7 because 900 °C is a nickel case;
-- tip generator parameterized by `--material`, one geometry and three material
+- tip generator parameterised by `--material`, one geometry and three material
   cards, with STL export and temperature verdict;
 - step 02 `passed`, step 03 `completed_screening` at 4,936 layers of 30 µm;
 - two mutually exclusive titanium route cards: Ti-6Al-4V is available
@@ -267,9 +267,9 @@ Decision 0006, the ring will be turned in 6063 T6, September 11, 2026:
 Decision 0005, the ring's material was never chosen, September 11, 2026:
 
 - finding that AlSi10Mg is inherited from the repository's only process card,
-  and that the ring is the only `non_critical` LPBF candidate in the catalog;
-- two sources on anodizing: AlSi10Mg anodizes gray-brown because of its 9 to
-  11 % silicon, while 6063 T6 is excellent for bright anodizing;
+  and that the ring is the only `non_critical` LPBF candidate in the catalogue;
+- two sources on anodising: AlSi10Mg anodises gray-brown because of its 9 to
+  11 % silicon, while 6063 T6 is excellent for bright anodising;
 - consequence recorded: for this part the material question and the process
   question are one and the same, and the likely answer is turned 6xxx bar.
 
@@ -277,7 +277,7 @@ First LPBF sourcing pass in China, September 10, 2026:
 
 - four source records qualified for Unionfab, JLC3DP and Eplus3D;
 - Unionfab kept as the only candidate, JLC3DP ruled out for lack of AlSi10Mg
-  in its metal catalog;
+  in its metal catalogue;
 - three contradictions recorded and not smoothed over: three layer
   thicknesses for the same subject, two of them from the same supplier, a
   provider material card far below the EOS coupons, and a minimum-wall rule
@@ -331,7 +331,7 @@ Material-machine-process card for the switch trim ring, step 04, September 10,
   for scale, hot material properties, convergence, fatigue/TMF and the absence
   of physical correlation.
 
-Phase 1, batch 1 — official catalogs, accessible manuals and measurements:
+Phase 1, batch 1 — official catalogues, accessible manuals and measurements:
 
 - thirteen new source records verified one by one on August 28, 2026;
 - actual access statuses recorded, including refusals, paywalls and dead URLs;
@@ -343,11 +343,11 @@ August 30, 2026:
 - register brought to 225 valid source records, with manufacturers, forums,
   declared measurements and CAD/CT/LiDAR leads assessed separately;
 - no calibrated, freely reusable 993 scan added, and no third-party file
-  copied without an established license;
+  copied without an established licence;
 - two distinct German leads added: 964/993 bumper brackets with declared
   commercial dimensions, and an amateur repair of the sunroof deflector with a
   part number;
-- prioritized measurement campaign for the three polymer pilots, with handoff
+- prioritised measurement campaign for the three polymer pilots, with handoff
   procedure, confidentiality rules and an optional CT brief.
 
 Compute environment:
@@ -363,7 +363,7 @@ Phase 1, batch 7 — Porsche Fanatics manual and data, August 30, 2026:
 - French mapping of the manual's pages and values, with separation of the
   ROW/USA, Carrera/Carrera 4/Carrera 4S and Carrera RS variants;
 - Printables lead added for the 964/993 console switch bracket, without
-  copying the file and with the license not yet verified;
+  copying the file and with the licence not yet verified;
 - exhaustive quantitative register added: 111 technical data entries, 195
   torques and 2,190 OCR occurrences with page, short context and review
   status.

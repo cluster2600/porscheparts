@@ -40,15 +40,15 @@ section-based reconstruction of the scan-derived stock, with earlier repairs.
 The result identifies the stage at which the defect exists, not its physical
 cause on an original Porsche cylinder head.
 
-## Localization and correction attempt
+## Localisation and correction attempt
 
 `localize_wall_repair_patches.py` produces a private folder for the four
 pairs: face indices tied to the exact STEP, intersection coordinates,
-areas, boxes, neighborhood and proposed CAD operation. No index is
+areas, boxes, neighbourhood and proposed CAD operation. No index is
 reused after a modification without redoing the matching.
 
 A second program, `trial_local_transition_fillet.py`, examines the weakest pair
-and the two edges that connect it to their common neighbor. The
+and the two edges that connect it to their common neighbour. The
 principle is to add a fillet **only on a concave junction**, which
 can locally thicken the wall on the air-passage side, without a global offset.
 The trial is bounded to two CPUs, 4 GiB of address space and 300 seconds.
@@ -110,5 +110,5 @@ reused between probes to avoid reloading the solid for each test.
 This geometry is a **scan-derived 935 research reference**, not an
 M64 cylinder head with validated interfaces. Absolute scale not certified, thickness
 check not exhaustive, thermal/strength and full LPBF not validated.
-No manufacturing, installation or start-up is authorized. No
+No manufacturing, installation or start-up is authorised. No
 scan, STEP, STL or private coordinates are added to the repository.

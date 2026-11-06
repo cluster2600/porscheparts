@@ -24,7 +24,7 @@ for manufacturing.
 | Lane | Report and limits | Complete data | Delivered coverage |
 |---|---|---|---|
 | OEM / history | [Report](corpus/oem/research_report.md) | [Records](corpus/oem/oem_research.json), [sources](corpus/oem/sources.json), [parameter CSV](corpus/oem/oem_parameters.csv) | 32 sources, 114 records; PET, variants, historical conditions |
-| Aftermarket / manufacturers | [Report](corpus/aftermarket/aftermarket_fan_supplier_review.md), [queries and limits](corpus/aftermarket/aftermarket_search_log.json) | [Catalog](corpus/aftermarket/aftermarket_catalog.json), [85 quantitative claims CSV](corpus/aftermarket/aftermarket_parameters.csv), [source CSV](corpus/aftermarket/aftermarket_source_manifest.csv), [product CSV](corpus/aftermarket/aftermarket_products.csv) | 44 sources, 28 products; impeller, hub, fan housing and complete assembly distinguished |
+| Aftermarket / manufacturers | [Report](corpus/aftermarket/aftermarket_fan_supplier_review.md), [queries and limits](corpus/aftermarket/aftermarket_search_log.json) | [Catalogue](corpus/aftermarket/aftermarket_catalog.json), [85 quantitative claims CSV](corpus/aftermarket/aftermarket_parameters.csv), [source CSV](corpus/aftermarket/aftermarket_source_manifest.csv), [product CSV](corpus/aftermarket/aftermarket_products.csv) | 44 sources, 28 products; impeller, hub, fan housing and complete assembly distinguished |
 | Multilingual forums | [Report](corpus/forums/multilingual_forum_research.md), [coverage and gaps](corpus/forums/coverage_and_gaps.md) | [Corpus](corpus/forums/forum_corpus.json), [source CSV](corpus/forums/forum_sources.csv), [claim CSV](corpus/forums/forum_claims.csv), [9 reported bench points](corpus/forums/reported_bench_series.csv) | 36 sources, 45 claims; copy lineage and sometimes unknown speed axes |
 | Geometry / performance | [Notes](corpus/geometry/engineering-notes.md), [measurement checklist](corpus/geometry/measurement-checklist.md) | [Evidence](corpus/geometry/evidence.json), [104-parameter contract](corpus/geometry/parameter-contract.json) | 28 sources, 22 claims; nine computed quantities and seven acceptance gates |
 
@@ -40,9 +40,9 @@ the digest of every original text.
 The [common index](source-index.json) retains every original source ID, lane,
 file and JSON pointer or CSV row position. Added IDs `AF-P###` and `OEM-R###`
 identify original rows without IDs; they do not replace their content.
-Normalization groups identical URLs and page anchors in the same PDF without
+Normalisation groups identical URLs and page anchors in the same PDF without
 merging editions, variants, conditions or conclusions. The lineage recorded
-within each lane is still needed to recognize other copies.
+within each lane is still needed to recognise other copies.
 
 PorscheFanatics and project pages are marked as non-independent. Other links
 may be independent of the project without being primary measurements or
@@ -55,7 +55,7 @@ slice of eight sources and its historical assumptions. Its
 view has its own identity and does not claim the source file's digest.
 **This preliminary slice is not the complete corpus.** The complete index and
 four lanes are the research references. `catalog/parts/*.json` remains the part
-catalog's source of truth. Documentary parameters are not automatically
+catalogue's source of truth. Documentary parameters are not automatically
 promoted into geometry, meshes, boundary conditions or material properties.
 
 ## Reproducible checks

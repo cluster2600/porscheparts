@@ -16,7 +16,7 @@ flowchart LR
 
 ## Authority and budget
 
-The user reports **20 USD remaining** and authorizes continuing. This amount
+The user reports **20 USD remaining** and authorises continuing. This amount
 is the working ceiling, not a balance verified through the API. No top-up.
 A single paid instance created during this attempt.
 

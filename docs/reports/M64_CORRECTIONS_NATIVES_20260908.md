@@ -57,7 +57,7 @@ A second program compares the native representations, without reusing
 the generator. The degrees, poles, weights, knots and multiplicities of the four
 B-splines are identical to those of four copies of the original curve
 segmented at the same bounds. The 117 existing vertices keep their
-coordinates and tolerances; three shared vertices materialize the cuts.
+coordinates and tolerances; three shared vertices materialise the cuts.
 
 The audit examines the surfaces of the 88 faces, 388 parametric curves and the
 191 other edges. No incompatibility is detected. A few
@@ -77,7 +77,7 @@ The [next remeshing pass](M64_REMAILLAGE_NATIF_20260908.md)
 has now been run on this candidate: new volume of 469,985
 tetrahedra, boundary counter-audits and OpenFOAM check. Volume
 integrity passes, but six quality families remain rejected; no
-CFD authorization follows from it.
+CFD authorisation follows from it.
 
 The candidate can now serve as the basis for a **new diagnostic meshing
 attempt**, with its own boundary and quality checks. This does not
@@ -89,7 +89,7 @@ in the [previous batch](M64_VOLUME_REEL_CONTROLES_20260908.md). They are
 neither erased nor automatically resolved by the new CAD checks.
 
 The [Netgen/OpenFOAM counter-check](M64_NETGEN_CONTRECONTROLE_20260908.md)
-separately measures an optimization of this historical mesh: generation
+separately measures an optimisation of this historical mesh: generation
 recovered with integrity preserved, but six quality families still
 rejected. No result from this old domain is attributed to the C0 candidate.
 
@@ -141,4 +141,4 @@ The original files are unchanged. These failures rule out presenting
 a software `true` return as an effective repair; the degradation of the
 representation during the STEP exchange remains to be explained.
 
-**The cylinder head is not yet authorized to be printed for engine use.**
+**The cylinder head is not yet authorised to be printed for engine use.**

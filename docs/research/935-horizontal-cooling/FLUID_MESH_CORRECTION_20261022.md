@@ -118,7 +118,7 @@ release. The archive is read and checked member by member on both machines;
 its uploaded server digest must match before delivery is called preserved.
 
 The next mesh change must improve the full unchanged quality check: investigate
-boundary-layer/volume meshing or constrained local optimization rather than
+boundary-layer/volume meshing or constrained local optimisation rather than
 repeating the rejected decimation, TetGen flags or centroid subdivision. Then
 address the previous pilot's outlet reversal, domain dependence and possible
 compressibility before running three-grid fan curves.

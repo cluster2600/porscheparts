@@ -93,5 +93,5 @@ particular, the following are missing:
 
 PhysicsNeMo remains reserved for a surrogate model built after validation of a
 reference solver and correlation on physical tests held out from calibration.
-F9 therefore never proves a power of 1,600 hp or 1,600 PS and authorizes no
+F9 therefore never proves a power of 1,600 hp or 1,600 PS and authorises no
 manufacturing or loading of an engine.

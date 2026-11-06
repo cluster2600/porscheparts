@@ -6,7 +6,7 @@ Concept: a nighttime German design review where the cylinder head itself stays t
 
 - Format: 1920 × 1080, 24 seconds, no voice or music.
 - Background: graphite `#0b1116` with a very faint technical grid.
-- Part: warm aluminum `#c79b45`, edges `#f2d28a`, scan envelope `#65717a`.
+- Part: warm aluminium `#c79b45`, edges `#f2d28a`, scan envelope `#65717a`.
 - Fluids: air `#59c7ff`, oil `#41e0c2`, temperature `#ff7a45`.
 - States: numerical evidence `#64d98b`, conditional `#f0b44d`, physical gate closed `#ff6b6b`.
 - Title: League Gothic or a condensed equivalent; data and captions: IBM Plex Mono.
@@ -25,5 +25,5 @@ Concept: a nighttime German design review where the cylinder head itself stays t
 - Critical details stay more than 96 px from the edges.
 - The part fills 55 to 70% of the frame; no panel covers it.
 - Flows follow curves attached to the real fins or galleries.
-- Charts use a single accent color per result family.
+- Charts use a single accent colour per result family.
 - Every scene ends on a sharp, readable image for review in Studio.

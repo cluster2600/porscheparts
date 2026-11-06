@@ -1,9 +1,9 @@
-# Cache des trajectoires de la pièce
+# Part scan-path cache
 
-Ce passage calcule les 1 034 couches de la pièce seule sur le STL admis, avec la
-pose historique : rotation Z de 45°, garde de 10 mm, couche de 0,06 mm et mêmes
-paramètres de contours/hachures. `ParallelLayers` conserve quatre processus et
-huit tâches en attente au maximum. Aucun support n’est généré ou réutilisé.
+This run computes the 1,034 layers of the part alone on the admitted STL, with the
+historical pose: 45° Z rotation, 10 mm clearance, 0.06 mm layer and the same
+contour/hatch parameters. `ParallelLayers` keeps four processes and
+at most eight pending tasks. No support is generated or reused.
 
 ```sh
 PY parts/993-eng-carrier-0001/source/process-cache-20261016/test_cache.py
@@ -14,12 +14,12 @@ PY parts/993-eng-carrier-0001/source/process-slicing-20261016/audit_scanpaths.py
   WORK_CACHE WORK_AUDIT
 ```
 
-`PY` désigne le runtime PySLM enregistré dans `work/part-workflow/runtime.json`.
-Le constructeur fige ses sources, les dépendances pertinentes et les binaires
-natifs avant de démarrer. Le statut final est `part_layers_completed` ; il ne
-signifie pas que la préparation LPBF complète est terminée.
+`PY` designates the PySLM runtime recorded in `work/part-workflow/runtime.json`.
+The builder freezes its sources, the relevant dependencies and the native
+binaries before starting. The final status is `part_layers_completed`; it does not
+mean that the complete LPBF preparation is finished.
 
-Le lecteur s’intègre sans modifier le constructeur de supports :
+The reader integrates without modifying the support builder:
 
 ```python
 from part_cache import CachedLayers
@@ -27,11 +27,11 @@ layers = CachedLayers(cache_directory, source_stl, core.PARAMETERS)
 report = build_pyslm_skins.build(..., layer_generator=layers)
 ```
 
-L’objet s’appelle comme `layers(part, z)` et restitue `(raw, contours, vectors,
-area)` dans l’ordre natif exact. Il exige un cache complet, les empreintes de
-chaque fichier, les mêmes paramètres de pièce, les mêmes versions et sources
-pertinentes, ainsi que la pose et les tableaux vertices/faces exacts. Chaque
-lecture contrôle à nouveau l’empreinte du NPZ et l’identité de la pièce. Une
-modification des supports n’invalide pas ce cache de pièce, mais le passage
-final devra calculer ses nouveaux vecteurs de supports et publier son propre
+The object is called like `layers(part, z)` and returns `(raw, contours, vectors,
+area)` in the exact native order. It requires a complete cache, the digests of
+each file, the same part parameters, the same relevant versions and sources,
+as well as the exact pose and vertices/faces arrays. Each
+read checks again the digest of the NPZ and the identity of the part. A
+change to the supports does not invalidate this part cache, but the final
+run will have to compute its new support vectors and publish its own
 audit.

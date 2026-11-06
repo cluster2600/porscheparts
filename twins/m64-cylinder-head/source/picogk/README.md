@@ -12,7 +12,7 @@ engine interfaces do not become measured M64 dimensions.
    triangulate with a declared absolute deflection; keep the derived files and
    reports in the private directory, outside Git/Docker.
 2. `/opt/m64/HeadVoxels.dll INPUT_STL NOUVEAU_REPERTOIRE RESOLUTION_MM`:
-   import without transformation, voxelize, then export the mesh. Launch three
+   import without transformation, voxelise, then export the mesh. Launch three
    independent processes at 0.6 / 0.3 / 0.15 mm and limit each duration.
 3. `compare_meshes.py`: compare these three outputs to the same triangulated
    master, checking topology, volume, boxes and sampled distances in both
@@ -27,7 +27,7 @@ flowchart TD
     C --> D["audit_roundtrip_shells.py<br/>all shells kept, signed volumes"]
     D --> E["audit_shell_against_step.py<br/>chosen shell vs STEP in OCCT"]
     E --> F["Receipts: SHA256, times, memory<br/>no repair"]:::ok
-    F --> G["Manufacturing authorization<br/>stays false"]:::stop
+    F --> G["Manufacturing authorisation<br/>stays false"]:::stop
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
     classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
     classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
@@ -74,7 +74,7 @@ inconsistent parity branch. They do not qualify the part.
 ## Oriented shells and counter-test against the STEP
 
 `audit_roundtrip_shells.py` rereads a candidate bound explicitly to its SHA, to
-the master and to the voxelization receipt. It keeps all shells, counts their
+the master and to the voxelisation receipt. It keeps all shells, counts their
 triangles and integrates their signed volumes; the sum is compared to the volume
 of the whole mesh. A small negative shell is neither deleted according to its
 size nor interpreted automatically as physical porosity.
@@ -92,7 +92,7 @@ keeps the complete audit, the defects and the counter-test of the micro-shell at
 0.3. The 0.15 shells are not equated with this result. The
 [void propagation](../picogk-connectivity/README.md) is a distinct check:
 surface connectedness and volume connectivity are not equivalent. None of these
-commands repairs or authorizes manufacturing.
+commands repairs or authorises manufacturing.
 
 ## Distinct morphological diagnostic
 
@@ -106,13 +106,13 @@ material. The diagnostic stays separate from the round-trip mesh.
 The sampled normal chords of the Python counter-check do not give a continuous
 minimum-thickness bound either. The results guide the later local
 reconstruction; no global smoothing, new envelope, oil gallery or functional
-surface is imposed without an authorized zone.
+surface is imposed without an authorised zone.
 
 ## Delivery and limits
 
 The receipt of each run binds the input and outputs by SHA256, states the
 resolution, the process times and memory, and keeps the manufacturing
-authorizations false. A failure writes `FAILED.json`; an old output directory is
+authorisations false. A failure writes `FAILED.json`; an old output directory is
 never overwritten. A successful run constitutes neither CFD/CHT, nor a strength
 calculation, nor a print simulation of this cylinder head.
 

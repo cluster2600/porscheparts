@@ -2,7 +2,7 @@
 
 ## Current result
 
-Follow-up: [localization of the rejections, HXT trial and targeted native merge](M64_LOCALISATION_ET_HXT_20260908.md).
+Follow-up: [localisation of the rejections, HXT trial and targeted native merge](M64_LOCALISATION_ET_HXT_20260908.md).
 This new correction does not retroactively change the results of the mesh
 described here and does not constitute a physical validation.
 
@@ -26,8 +26,8 @@ face 38 and of the segmented vertices/edges of the first surface are complete
 within their bounded scope, described below.
 The crossing, face 38 and segmented-vertex checks were repeated on the
 surface of the volume pass. Conservation of its boundary before/after 3D is
-independently confirmed. The review authorized only conversion and
-`checkMesh`; it did not authorize a solver, and the quality result is now
+independently confirmed. The review authorised only conversion and
+`checkMesh`; it did not authorise a solver, and the quality result is now
 rejected.
 
 The [aggregate receipt](../../twins/m64-cylinder-head/evidence/segmented-native-remesh-20260908.json)
@@ -59,7 +59,7 @@ The communication of the annular guide extensions is evidence **explicitly
 inherited** from their intersection with the original intake negative,
 preserved by the equivalence of surfaces and contours. It is not a new
 intersection computed on the final gas. The two `fixture_stem_seals`
-closures remain idealized bench seals, with no qualification of leakage or of
+closures remain idealised bench seals, with no qualification of leakage or of
 a real seal.
 
 The [earlier Netgen cross-check](M64_NETGEN_CONTRECONTROLE_20260908.md)
@@ -110,7 +110,7 @@ flowchart TD
     H --> I["Volume: 469,985 tetrahedra, new surface to cross-check"]
     I --> J["Counter-audits tied to this new surface"]
     J --> K["OpenFOAM: six families rejected, no solver"]
-    K --> L["Localize the defects, then fix the mesh without relaxing thresholds"]
+    K --> L["Localise the defects, then fix the mesh without relaxing thresholds"]
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
     classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
     class K stop;
@@ -156,7 +156,7 @@ distinct anchors, matched uniquely with a measured distance of zero. Four
 chains of 12, 2, 2 and 2 segments exactly partition the 18 edges shared by
 the two adjacent native faces, with no omission or double count. The order of
 the native parameters is preserved. These faces are distinct from face 38
-analyzed above.
+analysed above.
 This incidence check finishes in 0.990 s; it demonstrates neither the native
 1D classification of the Gmsh elements nor the continuous fidelity of each
 chord to the CAD curve. It is not a CFD validation.
@@ -168,9 +168,9 @@ domain. No tetrahedron with negative or zero direct volume, no non-positive
 Gmsh Jacobian, and no missing or extra boundary triangle is detected. The
 connectivity, tags and element counts are preserved after MSH 2.2 read-back.
 
-Its discretized volume shows a relative deviation of about **0.1012%** from
+Its discretised volume shows a relative deviation of about **0.1012%** from
 the adaptive integration of the CAD, within the pre-existing coarse 1% guard.
-This discretization guard must not be confused with the CAD import tolerance
+This discretisation guard must not be confused with the CAD import tolerance
 of 10⁻⁶. The minimum SICN after read-back is 2.5073×10⁻⁷: the five elements
 below 10⁻⁶ remain on record. The eleven passed guards are integrity guards,
 not a CFD acceptance.
@@ -190,8 +190,8 @@ identifiers of 191,472 triangles were reassigned and 484 are kept: this
 permutation is not a modification of the coordinates or of the geometric
 connectivity. The bijection also compares the ASCII values, without rounding
 the coordinates.
-The review tied to volume `7774e94e…` authorizes only conversion and
-`checkMesh`. It explicitly refuses any CFD solver authorization.
+The review tied to volume `7774e94e…` authorises only conversion and
+`checkMesh`. It explicitly refuses any CFD solver authorisation.
 
 The OpenFOAM check of the same volume file is complete. The four commands
 `gmshToFoam`, `transformPoints`, `createPatch` and `checkMesh` each return
@@ -236,17 +236,17 @@ checked by the compute operator. No account balance is published.
 The defects were then exported on an isolated copy of the case: ten VTK files
 and ten native label sets, in 18 s. The six rejection lines remain identical
 and the geometry files of the original and of the copy are unchanged. The VTK
-files serve visual localization in `float` precision; the native labels, not
+files serve visual localisation in `float` precision; the native labels, not
 these views, are authoritative for identifying the cells and faces. No solver
 is run.
 
 The next action is to **relate these defects to the functional surfaces**,
 then modify the local or volume mesh according to that analysis.
 Each new artifact will have to keep its own boundary checks and pass the
-OpenFOAM criteria again. This authorizes neither an arbitrary modification of
+OpenFOAM criteria again. This authorises neither an arbitrary modification of
 the part's envelope nor a relaxation of the thresholds.
 
 **The volume exists; no CFD computation, thermal/mechanical validation or
 LPBF qualification is established by this pass.**
 STEP was not tested for this native candidate. Engine fit, interfaces and
-manufacturing authorization remain not validated.
+manufacturing authorisation remain not validated.

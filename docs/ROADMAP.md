@@ -8,7 +8,7 @@ flowchart LR
     P1["Phase 1 — Source inventory<br/>4 of 5 items checked;<br/>545 valid source records on 2026-10-15;<br/>direct measurements remain"]:::open
     P2["Phase 2 — Physical inventory<br/>and twin assembly<br/>no printing; 10 items done, 4 open;<br/>physical prototypes suspended"]:::open
     P3["Phase 3 — Titanium<br/>engineering twin<br/>no manufacturing; all items open"]:::open
-    P4["Phase 4 — Public catalog<br/>2 of 4 items done"]:::open
+    P4["Phase 4 — Public catalogue<br/>2 of 4 items done"]:::open
     P0 --> P1 --> P2 --> P3 --> P4
     COV["Cross-cutting: twin coverage<br/>share of curb weight, via make twin<br/>32.5% counted for the Carrera,<br/>gearbox excluded from the engine;<br/>target 100%"]:::open
     OUT["Initially out of scope<br/>selling parts, road homologation,<br/>replacing the load-bearing structure"]:::stop
@@ -27,7 +27,7 @@ Goal: make the project open to contributions before adding a part.
 - [x] Free and open toolchain
 - [x] Part record schema
 - [x] Measurement and titanium manufacturing templates
-- [x] Automatic catalog validation
+- [x] Automatic catalogue validation
 - [x] GitHub contribution templates
 
 Exit criterion: `make check` passes on a clean repository.
@@ -38,17 +38,17 @@ Detailed log: [docs/PHASE1_SOURCE_INVENTORY.md](PHASE1_SOURCE_INVENTORY.md).
 
 Additional research: [German-language batch of twenty candidates](research/phase-1-recherche-allemande.md).
 
-- [x] Survey official catalogs, legally accessible manuals and measurements
-- [x] Survey 3D models with a verifiable license
+- [x] Survey official catalogues, legally accessible manuals and measurements
+- [x] Survey 3D models with a verifiable licence
 - [ ] Classify references by variant, year and availability — partial: every
   assembly-skeleton family has at least one official or manufacturer source
   rated A or B (a classification by type and level, not a check of the copy or
   the pages), and model years and dated availability are recorded only where
   stated, in [catalog/registers/](../catalog/registers/README.md)
 - [x] Identify missing or hard-to-obtain parts
-- [x] Assess each source: provenance, license, accuracy, reuse
+- [x] Assess each source: provenance, licence, accuracy, reuse
 
-Exit criterion: twenty documented candidates, without importing unauthorized
+Exit criterion: twenty documented candidates, without importing unauthorised
 content. Progress: 545 valid source records in `catalog/sources/` on 2026-10-15;
 acquiring direct measurements remains to be done.
 
@@ -67,13 +67,13 @@ recorded separately from spatial transforms.
 - [x] Logically assemble the documented front and rear pairs
 - [x] Add the 18-inch Fuchs wheels and their 5x130 / 71.5 mm interface
 - [x] Complete the 17-inch Fuchs wheel interface from the KBA type approvals
-- [x] Document the block on Michelin PS2 N3 tires for lack of consistent manufacturer material and mass
+- [x] Document the block on Michelin PS2 N3 tyres for lack of consistent manufacturer material and mass
 - [x] Qualify the Carrera Brembo/ATE discs and document their block for lack of net mass and full grade
-- [x] Research community CAD/3D work and qualify the windshield templates, the seat ring and a full scan
+- [x] Research community CAD/3D work and qualify the windscreen templates, the seat ring and a full scan
 - [ ] Extend the inventory by subassembly family
 - [ ] Complete the interfaces needed for spatial positioning
 - [ ] Generate STEP/FreeCAD assemblies once the transforms are known
-- [ ] Compute mass and center of gravity of positioned assemblies
+- [ ] Compute mass and centre of gravity of positioned assemblies
 
 Exit criterion: a first multi-component subassembly positioned in the vehicle
 reference frame, with sourced mass, material, interfaces, uncertainties and
@@ -126,13 +126,13 @@ in [docs/PROJECT_CHARTER.md](PROJECT_CHARTER.md).
 because it combines four advantages: a **bolted-on** panel, with no structural
 function or anti-intrusion beam; a **single, gently curved surface**, hence the
 simplest mold on the car; an **original steel panel**, hence a real gain, with a
-benchmark already set by Porsche Motorsport at 8 kg in aluminum; and an
+benchmark already set by Porsche Motorsport at 8 kg in aluminium; and an
 **inexpensive used donor panel** to take the mold from, unlike rare mechanical
 parts.
 
 Original masses established by a German comparison table
 (`SRC-FEDERLEICHTE-ELFER-993-WEIGHTS`), which finally makes it possible to put
-numbers on the program instead of estimating it:
+numbers on the programme instead of estimating it:
 
 | Part | Original | Carbon | Gain |
 |---|---:|---:|---:|
@@ -180,7 +180,7 @@ gain from being printed. Its load cases stay in
 - [ ] Integrate geometry, loads and results at the `F3_engineering` level
 - [ ] Correlate at least one calculation case with a physical test
 - [ ] Build the virtual titanium component with documented material and process
-- [ ] Numerically compare the steel, aluminum and Ti-6Al-4V variants
+- [ ] Numerically compare the steel, aluminium and Ti-6Al-4V variants
 
 Exit criterion: a digital material, mass, stiffness, fatigue and
 manufacturability report available. All manufacturing remains outside the active
@@ -206,7 +206,7 @@ How to read the 32.5%:
 - **The engine figure excludes the gearbox; the rest of its scope is open.**
   The workshop manual's p. 15 technical-data sheet gives 232 kg under the label
   "Manual transmission" and 224 kg under "Tiptronic"; that transcription is
-  `structured_derived` and has not been checked against an authorized copy of
+  `structured_derived` and has not been checked against an authorised copy of
   the manual. On November 5, 2026 the same two figures were read visually in a
   second Porsche document, the 993 technical specification booklet
   (`SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK`, printed p. 18): "Engine Weight
@@ -237,7 +237,7 @@ How to read the 32.5%:
 
 ### Assembly skeleton — done
 
-The factory parts catalog provided the framework: ten systems, 239 illustrations,
+The factory parts catalogue provided the framework: ten systems, 239 illustrations,
 12,864 located references (`catalog/reference/993-assembly-skeleton.json`).
 
 | System | References | Illustrations |
@@ -260,7 +260,7 @@ The twin fills up by mass before it fills up by count.
 
 ### Position — started with a reference envelope
 
-A mass without a position gives no center of gravity, no distribution and no
+A mass without a position gives no centre of gravity, no distribution and no
 inertia. A first 3D envelope and datum cage, based on seven dimensions from the
 Porsche manual, is available in
 [`twins/993-reference-envelope/`](../twins/993-reference-envelope/). It serves as a visual datum for the US profile, but does
@@ -270,10 +270,10 @@ The next step is to replace this cage with a licensed body-shell geometry or
 with a scaled survey, then tie the anchor points and subassemblies to
 verifiable measurements.
 
-## Phase 4 — Public catalog
+## Phase 4 — Public catalogue
 
 - [x] Publish only the parts that have cleared their quality gates ([public catalogue](catalogue/README.md), `make catalogue-pages`)
-- [x] Generate catalog pages from the JSON records
+- [x] Generate catalogue pages from the JSON records
 - [ ] Add views, dimensioned drawings and manufacturing instructions
 - [ ] Track versions, tested vehicles and field feedback
 
@@ -298,7 +298,7 @@ Opened by the owner on 2026-10-08, **as a study and digital twin only**
   (`SRC-ZESAD-CARBON-MONOCOQUE-964-993`), from €129,990 to €219,990, but its
   product page publishes no mass, no torsional stiffness, no crash test and no
   homologation. A safety structure with no published structural data is exactly
-  what `docs/QUALITY_GATES.md` prohibits entering in the catalog; the study
+  what `docs/QUALITY_GATES.md` prohibits entering in the catalogue; the study
   track exists to produce such data, not to bypass that gate.
 
   Body panels remain a legitimate goal in their own right: see

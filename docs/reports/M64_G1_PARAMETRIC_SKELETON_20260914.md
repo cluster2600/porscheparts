@@ -4,7 +4,7 @@ September 14, 2026. Code: [`m64_head_skeleton.py`](../../twins/m64-cylinder-head
 parameters: [`parameters.json`](../../twins/m64-cylinder-head/source/parametric/parameters.json),
 evidence: [`evidence/g1-parametric-20260914/`](../../twins/m64-cylinder-head/evidence/g1-parametric-20260914/manifest.json).
 
-**This is neither a master geometry nor a manufacturing authorization**
+**This is neither a master geometry nor a manufacturing authorisation**
 (`master_geometry: false`, `manufacturing_authorized: false`).
 
 ![XZ section of the G1 parametric cylinder head skeleton at y = valve_y_offset](../../twins/m64-cylinder-head/evidence/g1-parametric-20260914/m64-head-skeleton-section-xz.svg)

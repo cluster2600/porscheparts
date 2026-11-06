@@ -6,7 +6,7 @@
 > The geometric results below remain historical; the evidence files of September 16
 > are kept unmodified.
 
-**Status: design twin, not reviewed. Manufacturing and engine start-up not authorized.**
+**Status: design twin, not reviewed. Manufacturing and engine start-up not authorised.**
 No dimension on this page is measured on an M64 cylinder head: the shapes added here are
 design assumptions, declared `unsourced` in `params-g2/head_features.json`.
 
@@ -41,9 +41,9 @@ identical to G1, whose evidence remains byte-for-byte reproducible.
 
 | Item | Shape | Checks |
 |---|---|---|
-| Ports | Cubic Bézier from the throat (tangent to the valve axis) to the flange (perpendicular), in segments shared between numpy and CAD; the two ports on one side join at the center of the flange | port/stud, port/spark-plug well, port/spring pocket walls |
+| Ports | Cubic Bézier from the throat (tangent to the valve axis) to the flange (perpendicular), in segments shared between numpy and CAD; the two ports on one side join at the centre of the flange | port/stud, port/spark-plug well, port/spring pocket walls |
 | Oil gallery | through drilling along y, below the cam-carrier face | walls toward pockets, guides, spark plugs, studs, ports; distance to the cam-carrier face |
-| Fins | horizontal plates on the ±y faces, between the flanges | height below the cam-carrier face; interference with the neighboring cylinder head **not computable** (cylinder spacing unsourced) |
+| Fins | horizontal plates on the ±y faces, between the flanges | height below the cam-carrier face; interference with the neighbouring cylinder head **not computable** (cylinder spacing unsourced) |
 | Compression ratio | BRep dead volume at firing TDC: bore cylinder minus cylinder head, seats, closed valves and piston | target range as an assumption, **blocking** for acceptance; calibrated numpy proxy non-blocking, used as a search filter |
 
 ![Section through the G2 cylinder head at the port plane](../../twins/m64-cylinder-head/evidence/g2-head-features-20260916/head-section-xy-ports.svg)
@@ -64,7 +64,7 @@ Measured in BRep on the accepted G1 configuration (bore 100, stroke 76.4):
 
 A turbo engine usually sits around 8:1; no M64 value is sourced in the repository, so the
 8 to 9 range adopted here is an assumption. The cause is clear: **the G1 iteration had no
-combustion criterion** and maximized clearances, which pushes the angles toward the top of their bound.
+combustion criterion** and maximised clearances, which pushes the angles toward the top of their bound.
 
 ## Two dead-volume computations, one judge
 
@@ -112,7 +112,7 @@ The fins alone and the gallery alone remain valid and a single solid.
 ## Tuning the angles: three trials, three distinct causes
 
 **Trial 1 — sweep of the two angles only: 0 candidates.** The fifteen other G1 variables
-(spark plugs, piston pockets, timing, valve length) had been optimized *for* the G1
+(spark plugs, piston pockets, timing, valve length) had been optimised *for* the G1
 angles; moving the angles alone breaks the bridges toward the spark-plug wells. The combustion criterion was therefore
 moved into the search itself (`iterate.compression_record`), which repositions all
 variables together.
@@ -127,7 +127,7 @@ failed checks and a margin of −4.11 mm. The criterion now only breaks ties bet
 accepted, and the start keeps the whole G1 configuration.
 
 **Trial 3 — corrected full search: accepted, but stuck at 6.17 on the proxy side.** Starting from G1
-(4.5), coordinate descent raises the ratio and then finds no better neighbor: moving
+(4.5), coordinate descent raises the ratio and then finds no better neighbour: moving
 toward the range first costs geometric margin before giving any back. Hence the method adopted, a
 **continuation**: the two angles are frozen at each step, the fifteen other variables
 reposition freely, and each step warm-starts from the previous one — exactly what
@@ -159,7 +159,7 @@ Consequence: within the bounds of step 1 — M64 bore sourced at 100, Swindon he
 40 and 33 — **the 8:1 ratio is not achievable**. The best accepted BRep ratio is **5.51**
 (dead volume 133.07 cm³), against 4.49 for G1: +23 %, and still outside the range. The only remaining
 levers leave step 1 and touch sourced values: reduce the head diameters
-(step 3, penalized), enlarge the bore (step 2), or revise unsourced assumptions that are
+(step 3, penalised), enlarge the bore (step 2), or revise unsourced assumptions that are
 not variables — deck clearance (1.0 mm), valve–piston clearances (1.5 / 2.0 mm).
 This choice calls for a decision, not a computation: it is not made here.
 
@@ -197,7 +197,7 @@ non-regression `tests/test_m64_g1_four_valve_twins.py`.
 
 ## What G2 does not do
 
-- **Missing contract interfaces** (centering, oil passage) and **cylinder spacing**:
+- **Missing contract interfaces** (centring, oil passage) and **cylinder spacing**:
   no M64 data in the repository, hence neither a bridge between cylinders nor fin interference.
 - **Flow**: the port shape is not validated by a flow bench; no section and no
   throat ratio is justified by a flow computation.

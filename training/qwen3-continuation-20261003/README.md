@@ -38,7 +38,7 @@ candidate passes development and its selection is frozen.
 
 [mlx_run.py](mlx_run.py) uses the exact local public Qwen3 revision with the
 existing official [MLX dependency versions](requirements-mlx.txt). It never
-installs or downloads. Source weights stay BF16 and tied, with no quantization
+installs or downloads. Source weights stay BF16 and tied, with no quantisation
 or separate output head. The original 144 FP32 PEFT LoRA matrices are transposed
 exactly into 36 layers of q/v adapters: rank 8, scale 2, dropout 0.05. Native MLX
 rounds the LoRA delta before addition; PEFT rounds after addition. No parity with
@@ -56,20 +56,20 @@ python training/qwen3-continuation-20261003/mlx_run.py train \
   --output work/qwen3-candidate-new
 ```
 
-D is one epoch of twenty rows and ten updates, using a new AdamW optimizer from
+D is one epoch of twenty rows and ten updates, using a new AdamW optimiser from
 the original historical adapter. Every loss and all 144 gradients must be
-materialized and finite before updates; saved arrays reload exactly. All 398
+materialised and finite before updates; saved arrays reload exactly. All 398
 frozen base tensors are hashed before and after. Checkpoints are retained at
 steps 4, 8 and 10, without checkpoint selection. A supervisor rejects GPU errors
 even with exit zero and stops only its own child on resource/deadline failure.
 The bounds are 30 minutes, 24 GiB worker RSS, 20 GiB MLX active allocation,
 512 MiB cache, at least 16 GiB system availability and at most 256 MiB swap growth.
 `nice=10` and two-thread environment variables are CPU targets; receipts record
-actual CPU utilization, including authorized transient startup peaks.
+actual CPU utilisation, including authorised transient startup peaks.
 
 These commands describe reproducibility, not permission to repeat or retune the
 registered experiment. Further training requires a separate pre-output
-registration and authorization. Native weights are `adapter/adapters.safetensors`
+registration and authorisation. Native weights are `adapter/adapters.safetensors`
 and `adapter/adapter_config.json`; they are not PEFT adapter files.
 
 ## Comparison and admission
@@ -91,7 +91,7 @@ python training/qwen3-continuation-20261003/mlx_run.py evaluate \
 Reserved generation needs both `--selection` and `--reservation-amendment`,
 binding D's protocol/runner/weights to the unchanged original reservation. Gold
 answers remain with the custodian. Two independent assistant reviewers grade
-anonymized outputs; disagreements fail conservatively. Scientific qualification,
+anonymised outputs; disagreements fail conservatively. Scientific qualification,
 quantitative fidelity, causal support and useful answers are separate checks.
 The reserved pilot gate requires at least 22/24 acceptable answers, net gain at
 least two, all ten critical items correct and no critical regression, unsupported
@@ -106,9 +106,9 @@ A stopped for a non-finite metric; B stopped before update five for non-finite
 gradients. C's separate frozen FP32 output projection passed its complete
 zero-update gate but training emitted a Metal command-buffer error and stalled.
 C is quarantined; origin and impact remain unknown. A/B's initial two-trial
-ceiling, C's separate numerical-recovery authorization and D's separate native
-MLX authorization remain explicit. Their configurations, logs and receipts are
-preserved; no rejected checkpoint initializes D.
+ceiling, C's separate numerical-recovery authorisation and D's separate native
+MLX authorisation remain explicit. Their configurations, logs and receipts are
+preserved; no rejected checkpoint initialises D.
 
 No model score certifies a part, supplies missing measured interfaces or validates
 a material process. Familiar source families, unknown base-pretraining exposure,

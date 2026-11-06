@@ -6,10 +6,10 @@ pockets](M64_EXHAUST_MATERIAL_CONTROLS_20260908.md) has since run the
 nor the guide contacts, nor the two C0 edges.
 
 The body with intake and exhaust was exported, but **remains rejected**:
-the bit-for-bit check of tolerances after serialization fails and an independent
+the bit-for-bit check of tolerances after serialisation fails and an independent
 BOP audit reports two `BOPAlgo_GeomAbs_C0`, since **located but
 not corrected** by a later check limited to continuity.
-No waiver, functional qualification or manufacturing authorization
+No waiver, functional qualification or manufacturing authorisation
 is granted. The [evidence capsule](../../twins/m64-cylinder-head/evidence/exhaust-native-audit-20260908.json)
 links the three initial steps and this supplement to the private receipts, without
 publishing the geometry.
@@ -21,7 +21,7 @@ publishing the geometry.
 | Trial 01 | API call `HasErrors` unavailable on the `BRepAlgoAPI_Cut` object; stop before export | Program error, not evidence that the part is invalid |
 | Trial 02 | Native export `21c9c40b…`, one solid, one shell, 4,900 faces; exact BRepCheck valid before/after reread | Rejection `rejected_native_tolerance_integrity` |
 | Independent audit | Reread of the same export, five BOP modes enabled together; two C0 reports | Rejection maintained, impact not qualified |
-| Later localization | Continuity only; the two edges and three internal knots are identified | Located, not corrected; no rejection lifted |
+| Later localisation | Continuity only; the two edges and three internal knots are identified | Located, not corrected; no rejection lifted |
 
 Trial 01 ends with worker code 1 and container code 2, in
 7.514 s supervised wall time. Trial 02 ends with code 2 in 12.569 s.
@@ -35,7 +35,7 @@ relating to guide retention is not erased by this new cut.
 The reference still comes from the 935 scan; `1 unit = 1 mm` remains an assumption,
 not a certified scale nor a certified M64 interface compatibility.
 
-## What the serialization diagnosis demonstrates — and does not demonstrate
+## What the serialisation diagnosis demonstrates — and does not demonstrate
 
 The recorded lists show 89 differences among 5,176 vertex
 tolerances. The maximum absolute deviation is `4.235164736271502e−21` scan unit.
@@ -47,7 +47,7 @@ of geometric identity.
 On these ordered lists, `float(format(before, '.15g')) == reread`
 reproduces exactly the 5,176 values, including the 89 that differ. The controls
 at 16 and 17 digits reproduce none of the 89 differences. This arithmetic
-receipt alone did not verify the serialization code and establishes
+receipt alone did not verify the serialisation code and establishes
 **no independent geometric correspondence of all vertices**.
 
 The later primary reading of OCCT 7.9.3 shows that
@@ -76,7 +76,7 @@ cracks**. In this snapshot, their entities are not
 located and their functional impact is not qualified. This receipt remains
 unchanged; the supplement below turns no rejection into a success.
 
-## Supplement: native localization, without correction
+## Supplement: native localisation, without correction
 
 Receipt `18dba811…` concerns exactly the same candidate `21c9c40b…`. Only
 `ContinuityMode` is enabled; the other eight modes are explicitly
@@ -102,7 +102,7 @@ nor continuity of derivatives, nor mechanical integrity. The complete supports
 of the two curves have no identical representation found in the
 inputs; an absence of correspondence does not demonstrate new geometry.
 
-The localization ends with code 0 in **1.043 s** for the reader and
+The localisation ends with code 0 in **1.043 s** for the reader and
 **1.477 s** for the wrapper, cleanup included. Local and remote inputs,
 sources and digests of the native tolerances remain unchanged. Fifteen tests
 without OCP pass, including rejection of a different alert count, an empty
@@ -117,7 +117,7 @@ flowchart TD
     C --> D["Separate audit:<br/>two C0 not located"]
     D --> E["Continuity-only supplement:<br/>two edges located"]
     E --> F["Bounded correction to prepare<br/>and cross-check"]
-    F --> G["Functional checks, CFD and manufacturing<br/>still not authorized"]
+    F --> G["Functional checks, CFD and manufacturing<br/>still not authorised"]
     class C,G stop
     class F open
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
@@ -127,7 +127,7 @@ flowchart TD
 ## What is still missing
 
 The `Common` of the material actually removed and the producer's final BOP
-were not run: they sit after the serialization guard.
+were not run: they sit after the serialisation guard.
 The separate audit replaces neither this `Common` nor functional checks 6–12:
 continuity of the complete four-valve gas path, retention of seats/guides,
 walls after both ports and protected interface bands.
@@ -140,7 +140,7 @@ A **private** image is actually rendered from the exported body alone:
 It shows an opaque external view and an uncapped display half-section,
 without additional transformation, smoothing, decimation or AI generation.
 No old twelve-component assembly and no old functional
-color assignment is reused. The gray is not a material
+colour assignment is reused. The grey is not a material
 choice. Image, derived mesh and coordinates remain private.
 
 ## Resources and scope
@@ -153,7 +153,7 @@ missed this already finished container. For the independent audit, the limits
 were also observed on the live container. The containers are
 removed, absence verified; no OOM or timeout is reported.
 
-The later localization uses the same image and OCP 7.9.3.1, but a
+The later localisation uses the same image and OCP 7.9.3.1, but a
 separate bound of **30 s CPU and wall time, two CPUs and 2 GiB memory+swap in
 total**. Its limits are bound to the frozen wrapper command; no live HostConfig
 capture of this short pass is claimed. The exact container
@@ -161,6 +161,6 @@ is removed and its absence is independently rechecked. No OOM or
 timeout is observed.
 
 The local render takes 3.834 s of extraction then 5.220 s of rendering, without timeout.
-No new rental and no Vast spend for this batch. The authorized ceiling of
+No new rental and no Vast spend for this batch. The authorised ceiling of
 44 USD is a budget, not a measurement of the account balance. This documentation
-is neither validation of the complete cylinder head nor manufacturing authorization.
+is neither validation of the complete cylinder head nor manufacturing authorisation.

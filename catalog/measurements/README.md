@@ -29,7 +29,7 @@ A value typed by hand stays recorded as such: `manual_entry`, never
 The documentary register drawn from the Porsche 993 manual is
 [`MEAS-MANUAL-993-ALL.json`](MEAS-MANUAL-993-ALL.json). It carries 2,496 values
 with page and provenance. The `ocr_unreviewed` values must be verified in the
-authorized copy before they are used for CAD or manufacturing.
+authorised copy before they are used for CAD or manufacturing.
 
 Values declared by a forum post, a retailer or a data sheet follow the
 documentary intake of [`docs/CAPTURE_PROTOCOL.md`](../../docs/CAPTURE_PROTOCOL.md):

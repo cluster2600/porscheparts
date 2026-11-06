@@ -152,8 +152,8 @@ has **three connected components** after exact zero-area removal. It is rejected
 for both mass and connectivity; no accepted export or mechanics is claimed for it.
 
 The selected geometry remains the STEP master. Its native voxel representation
-weighs 1.193065 kg, while its explicitly normalized native STL weighs 1.190925 kg;
-these discretized representations do not replace the 1.188331 kg BRep value.
+weighs 1.193065 kg, while its explicitly normalised native STL weighs 1.190925 kg;
+these discretised representations do not replace the 1.188331 kg BRep value.
 Exactly **four zero-area faces** were removed from that baseline extraction.
 No positive-area face was removed; signed volume is unchanged and the readback
 is one closed, consistently oriented component. Raw exports are retained.

@@ -74,7 +74,7 @@ as a digital study screen, not a physical manufacturing tolerance.
 The [verifier](source/verify_charts.py) imports no producer code. It re-reads
 original arrays and pinned parent selections, reproduces all UV coordinates
 exactly, rebuilds topology using a separate edge dictionary, and enumerates
-candidate pairs with a sweep rather than the producer's vectorized pair loop.
+candidate pairs with a sweep rather than the producer's vectorised pair loop.
 All pair predicates are independently evaluated with Python Fraction rationals.
 Positive-area pairs would also require rational polygon-clipping area above
 zero; there are **zero actual positive pairs**, so actual clipping is vacuous.

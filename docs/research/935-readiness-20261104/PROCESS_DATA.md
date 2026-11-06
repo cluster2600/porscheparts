@@ -21,7 +21,7 @@ the scanned casting or establish equivalence to catalogue RR350.
 
 ## Draft A — Falcontech qualification/data availability
 
-Status: prepared locally only; no scan attached; no purchase authorization.
+Status: prepared locally only; no scan attached; no purchase authorisation.
 Proposed role recipient: `info@falcontech.com.cn`, as published on the official
 AM service page above.
 
@@ -31,7 +31,7 @@ Hello Falcontech engineering team,
 
 We are evaluating a qualification route for an additively manufactured replica
 of a scanned Xtreme air-cooled cylinder head. This is a data-availability enquiry,
-not an order. The scan is not attached or authorized for transfer. Its digital
+not an order. The scan is not attached or authorised for transfer. Its digital
 units are owner-confirmed millimetres; exact specimen revision, alloy and some
 internal geometry remain unresolved. Please do not infer them from a catalogue.
 
@@ -64,12 +64,12 @@ would remain subject to engineering acceptance and specimen-data closure.
    unmanufacturable regions before a build offer.
 
 Please distinguish existing public data, shareable customer data, unavailable
-data and new paid tests. No redesign, build or scan disclosure is authorized by
+data and new paid tests. No redesign, build or scan disclosure is authorised by
 this enquiry. Thank you.
 
 ## Draft B — BLT comparison enquiry
 
-Status: prepared locally only; no scan attached; no purchase authorization.
+Status: prepared locally only; no scan attached; no purchase authorisation.
 Proposed role recipient: `sales.global@xa-blt.com`, as published on the official
 homepage above.
 
@@ -79,7 +79,7 @@ Hello BLT engineering team,
 
 We are comparing qualification routes for a faithful replica of a scanned Xtreme
 air-cooled cylinder head. Could your engineering team identify a candidate route
-and itemize the data it can provide in these six categories?
+and itemise the data it can provide in these six categories?
 
 1. Exact machine/configuration/software/profile, alloy, powder lot/chemistry/
    size/reuse, substrate, atmosphere, preheat and qualified process window.
@@ -99,10 +99,10 @@ and itemize the data it can provide in these six categories?
    powder evacuation, cleanliness, leaks/pressure and final metrology; identify
    inaccessible or unmanufacturable geometry before proposing a build.
 
-No alloy or machine is selected, the scan is not attached or authorized for
+No alloy or machine is selected, the scan is not attached or authorised for
 transfer, and millimetre units do not establish the missing specimen metrology
-or internal geometry. Please identify a candidate route and itemize public,
+or internal geometry. Please identify a candidate route and itemise public,
 shareable, restricted, unavailable and chargeable data. Please quote before any
-paid work. This enquiry would not authorize a build, redesign or order.
+paid work. This enquiry would not authorise a build, redesign or order.
 Please include the licence/NDA, cost and delivery terms for any data package.
 Thank you. Both drafts remain local and unsent.

@@ -1,13 +1,13 @@
 # Full rear panel — PicoGK concept model
 
-**October 10, 2026 — visual concept model with provisional dimensions, authorized
+**October 10, 2026 — visual concept model with provisional dimensions, authorised
 as such. Original concept geometry, with no transcription of a Porsche part. No
 mounting, material, functional assembly or manufacturing process validated.**
 
 ![Assembled and exploded concept model](preview/preview.png)
 
 Open the [GLB 3D model](preview/rear-panel-concept.glb) in a glTF viewer or
-Blender. The four objects stay separate. The colors are for review; the lens is
+Blender. The four objects stay separate. The colours are for review; the lens is
 opaque in this preview, with no simulation of its optical transmission.
 
 ## Content and parameters
@@ -26,7 +26,7 @@ All the values below are **visual choices**, not 993 dimensions:
 |---|---:|---|
 | Width × height | 800 × 90 mm | Outer rectangle, corners rounded to a 10 mm radius |
 | Body depth | 45 mm | Local offset along Y, excluding the clearance/rear cover and the curvature |
-| Bow | 35 mm | Parabolic curve between center and ends, with no vertical curvature |
+| Bow | 35 mm | Parabolic curve between centre and ends, with no vertical curvature |
 | Lens / wall / cover | 3.6 / 3.6 / 3.6 mm | Concept thicknesses; no manufacturing tolerance |
 | Assembly clearance | 1.5 mm | Visual separation, not a seal definition |
 | Display allowance | 776 × 66 × 4 mm | 12 mm margin; 8 mm gap behind the lens |
@@ -111,4 +111,4 @@ C# API `Library`, `IImplicit`, `Voxels` and `Mesh` checked in the XML
 documentation of the installed package. The NuGet lock keeps the versions and
 digests. PicoGK is licensed under Apache-2.0; no dependency binary is copied
 into the repository. No scan, third-party model, manual or Porsche logo used.
-The geometry and its original sources follow the [repository license](../../../../LICENSE).
+The geometry and its original sources follow the [repository licence](../../../../LICENSE).

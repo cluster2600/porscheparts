@@ -28,7 +28,7 @@ The owner sets scope and spending limits. The engineering reviewer accepts
 physical assumptions and qualification plans. The compute operator runs jobs
 and collects evidence. Qwen assists these roles but cannot approve their gates.
 
-## Method and modeling conventions
+## Method and modelling conventions
 
 Apply a tailored TOGAF ADM cycle: requirements and principles; baseline and
 target business, information-system and technology views; gap assessment;
@@ -39,11 +39,11 @@ This is a project practice, not a certification claim.
 Use ArchiMate concepts to express capabilities, processes, services, data and
 infrastructure. Mermaid is the textual rendering format, not an ArchiMate
 exchange model. Every box has a stable ID and an explicit element type. Edges
-name their relationship; a flow edge is not interchangeable with realization
+name their relationship; a flow edge is not interchangeable with realisation
 or assignment. Business/application/technology grouping is a project viewpoint,
 not a claim to implement the complete ArchiMate metamodel.
 
-Use UML-style class, sequence and state views for contracts and behavior.
+Use UML-style class, sequence and state views for contracts and behaviour.
 Mermaid's subset does not provide full UML conformance or code generation.
 Maintain the Markdown Mermaid blocks as the diagram source of truth; validate
 rendering before review. Do not maintain a second manually edited drawing.

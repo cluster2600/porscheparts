@@ -138,7 +138,7 @@ phase runs on Mac/Kali1 without another paid instance.
 
 Next construct a graded, near-wall-resolved fluid mesh from a bounded surface;
 local remeshing of the remaining poor patches may be needed first. Do not repeat
-the same unconstrained tetrahedralization or the refused global dual and infer
+the same unconstrained tetrahedralisation or the refused global dual and infer
 convergence from a lower individual defect count. All seventeen mechanical
 interfaces, physical calibration, hidden transmission, historical mounting and
 housing, structural spatial convergence, fatigue, accepted fan curves and bench

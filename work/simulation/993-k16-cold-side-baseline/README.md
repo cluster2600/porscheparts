@@ -51,5 +51,5 @@ of the chain; it is neither evidence of physical convergence nor a validation of
 the K16.
 
 Solver results must stay in a working directory ignored by Git. The case is not
-a part validation, a manufacturing authorization or evidence of compatibility
+a part validation, a manufacturing authorisation or evidence of compatibility
 with the vehicle.

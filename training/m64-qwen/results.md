@@ -41,11 +41,11 @@ material or general coding performance.
 ## Diagnostics and reproducibility
 
 Run 001 exposed a checkpoint integration issue: model config declared end-of-text
-151643, while the chat tokenizer uses 151645. Responses continued beyond chat
+151643, while the chat tokeniser uses 151645. Responses continued beyond chat
 boundaries. The inference helper now adds `<|im_end|>` to the stopping set for
 both models; an offline regression check covers that setup.
 
-Run 002 used the corrected stopping behavior. Inspection showed that strict
+Run 002 used the corrected stopping behaviour. Inspection showed that strict
 format improvement hid content regressions. Promotion was therefore tightened
 to require no content regressions and all safety cases passing. Run 003 reran the
 complete pipeline with unchanged examples and training hyperparameters; the

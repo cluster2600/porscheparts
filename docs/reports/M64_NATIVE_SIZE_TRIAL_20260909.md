@@ -87,7 +87,7 @@ The next step is a diagnosis of the **complete hybrid domain**:
    conversion, hypothetical scale 0.001 m/unit applied only once,
    patches, then `checkMesh -allTopology -allGeometry`.
    Its receipt must attest this exact mesh and its boundaries, without inventing
-   a CFD authorization. The supervisor must limit the total time.
+   a CFD authorisation. The supervisor must limit the total time.
 
 These three steps are not run by this batch. A possible
 `Mesh OK.` would remain a numerical diagnosis, not a validation of the

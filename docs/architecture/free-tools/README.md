@@ -16,13 +16,13 @@ auxiliary FEA surface are unadopted comparison studies.
 
 | Tool | Implemented interface | Authority and current boundary |
 |---|---|---|
-| SQLite FTS5 | Build a local authorized snapshot index; retrieve five referenced excerpts | Documentary retrieval, never a measured interface or engineering decision |
+| SQLite FTS5 | Build a local authorised snapshot index; retrieve five referenced excerpts | Documentary retrieval, never a measured interface or engineering decision |
 | Our Qwen | Optional offline MLX documentary draft from the retrieved context | Unqualified draft requiring review; existing synthetic recipe planner remains separate |
 | DVC | Archive, replicate and restore private artifacts, verifying SHA-256 after restoration | Transfer/versioning only; a push is not a verified backup |
 | CloudCompare | CPU CLI point-to-surface diagnostics, explicit mm and rigid transform, numerical output and SVG | Sampled diagnostics cannot replace the existing whole-surface certificate |
 | SALOME/SMESH | NETGEN volume meshing with exact input-boundary and CalculiX-format checks | Separate mesher comparison; missing carrier boundary groups block the mechanical route |
 | OpenTURNS | Fixed-seed analytical sensitivity control; failed samples reject the calculation | No carrier probability distribution is invented |
-| OpenMDAO | External analytical solver, constrained beam optimization and carrier admission replay | Carrier optimization remains disabled by the frozen independent contract |
+| OpenMDAO | External analytical solver, constrained beam optimisation and carrier admission replay | Carrier optimisation remains disabled by the frozen independent contract |
 
 ## Implementation order and status
 
@@ -61,7 +61,7 @@ not a completed FEM replay. Always use new output names.
 The supplied benchmark corpus consists of owner-authored source summaries and explicitly
 synthetic conflict/injection fixtures. It is **not a live PorscheFanatics
 export**. [PorscheFanatics.com](https://porschefanatics.com/) remains our Porsche
-information catalogue. An authorized, reviewed export can replace this snapshot
+information catalogue. An authorised, reviewed export can replace this snapshot
 through the documented metadata exporter/importer contract; there is no crawler or automatic
 publication. Do not put restricted manuals or private scans in the corpus.
 

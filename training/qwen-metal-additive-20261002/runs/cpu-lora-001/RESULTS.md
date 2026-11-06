@@ -23,13 +23,13 @@ These results do not evaluate free-standing knowledge or multilingual competence
 ## Execution evidence
 
 The fixed run used 53 training examples, 16 validation examples, one epoch,
-seven optimizer steps, seed 42 and 1,089,536 trainable LoRA parameters. No test
+seven optimiser steps, seed 42 and 1,089,536 trainable LoRA parameters. No test
 examples entered training; no hyperparameters were changed after inspecting
 predictions. See [run-receipt.json](run-receipt.json),
 [training-metrics.json](training-metrics.json) and
 [trainer-history.json](trainer-history.json).
 
-The unquantized BF16 CPU run used four threads. Training plus its scheduled
+The unquantised BF16 CPU run used four threads. Training plus its scheduled
 validation and saving took 717.20 seconds; the complete run, including initial
 download and before/after prediction, took 1,700.21 seconds. Peak process RSS
 was 5.67 GiB. This does not measure the prepared GPU NF4 QLoRA profile.
@@ -76,5 +76,5 @@ use a fresh untouched test set for future model selection. Separately compare a
 retrieval baseline on registered questions before recommending deployment.
 
 For reproduction and portable adapter loading, see [CPU_PILOT.md](../../CPU_PILOT.md).
-License: [Apache 2.0](MODEL-LICENSE.txt); data attribution remains in
+Licence: [Apache 2.0](MODEL-LICENSE.txt); data attribution remains in
 [grounded-v3/sources.json](../../grounded-v3/sources.json).

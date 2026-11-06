@@ -34,8 +34,8 @@ frame alone left a void.
 
 The metal volume is about **2,086.73 cm³**, against 352.98 cm³ for
 the refined frame. It is a **solid starting body**, to be lightened based on
-loads and thermal behavior; it is not a validated bionic
-optimization. Valvetrain, seats, studs, joints and lubrication
+loads and thermal behaviour; it is not a validated bionic
+optimisation. Valvetrain, seats, studs, joints and lubrication
 are not completed by this envelope. The
 [interface contract](interface-contract.json) remains unknown and unqualified.
 
@@ -78,4 +78,4 @@ The [inspection/render script](source/enclosed/render_enclosed.py) checks
 that the solid and the virtual cut are closed. The cut uses
 [VTK ClipClosedSurface](https://vtk.org/doc/nightly/html/classvtkClipClosedSurface.html).
 The STL files and binaries stay local; the sources and renders are
-shareable. No manufacturing or engine performance is authorized.
+shareable. No manufacturing or engine performance is authorised.

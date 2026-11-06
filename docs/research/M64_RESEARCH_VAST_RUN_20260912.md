@@ -2,7 +2,7 @@
 
 ## Scope
 
-At the user's request, the reading work is organized into **24 independent
+At the user's request, the reading work is organised into **24 independent
 missions, four concurrent on a single Vast LLM server**. The categories are
 CAD/scan, CFD/thermal, material/oil/LPBF and verification/mathematics/AI.
 GitHub is the public synthesis folder; the corpora and raw answers stay
@@ -124,7 +124,7 @@ validation. A review of the pilot shows in particular:
 These limits confirm the use as a **document triage aid**. The decisions remain
 those of the [sourced scientific dossier](../reports/M64_RESEARCH_EXECUTION_20260912.md),
 with explicit tests and unknowns. No LLM report automatically modified the
-CAD, the material cards, the loads or the manufacturing authorizations.
+CAD, the material cards, the loads or the manufacturing authorisations.
 
 The 27 requests consumed **85,907 input tokens + 19,400 output = 105,307 tokens
 on the Vast model**. The times of the three batches total 211.742 seconds,

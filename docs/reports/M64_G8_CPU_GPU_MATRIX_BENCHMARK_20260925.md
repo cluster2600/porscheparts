@@ -107,7 +107,7 @@ alone does **not** stop provider billing.
 
 Only same-host CPU/CUDA trials are used for any speed ratio. The Mac figure
 is contextual, not a substitute CPU baseline. CPU CG is single-threaded;
-this is not a comparison against an optimized multithreaded direct solver.
+this is not a comparison against an optimised multithreaded direct solver.
 Solver timing excludes file parsing, stiffness assembly, postprocessing,
 network transfer and bootstrap. Cold CUDA setup and cached-kernel trials
 must be distinguished; no full-CAD/FEA-pipeline speedup is inferred.
@@ -122,7 +122,7 @@ All six [trial receipts](../../twins/m64-cylinder-head/evidence/g8-matrix-benchm
 use the exact same matrix, DOF map, RHS derivation, FP64 precision, Jacobi
 preconditioner, relative tolerance 1e-10 and 20,000-iteration cap. The CPU
 is an AMD Ryzen 9 7945HX, with BLAS limited to one thread. GPU activity was
-observed, not inferred from GPU availability: sampled utilization reached
+observed, not inferred from GPU availability: sampled utilisation reached
 90%, device memory 578 MiB and board power 252 W.
 
 | Same-host trial | CPU solve, s | CUDA solve, s | CUDA setup + solve, s |
@@ -140,13 +140,13 @@ historical DAT. No new stress/reaction field is recovered by CG.
 
 [Lifecycle evidence](../../twins/m64-cylinder-head/evidence/g8-matrix-benchmark-20260925/execution.json):
 one successful rental, approved OpenBao wrapper, independent destroy guard
-armed before creation, USD 3 internal cap within USD 5 authorized, 90-minute
+armed before creation, USD 3 internal cap within USD 5 authorised, 90-minute
 maximum lifetime, 0.573 USD/h, planned ceiling including cleanup reserve
 **USD 1.88**. An earlier offer was unavailable and rejected before a paid
 creation. Input and collected result archive hashes match across hosts.
 The instance was **destroyed**, provider and independent guard verified its
 absence, and the inventory is empty. Outputs were collected before deletion.
-The observed credit decrease is **USD 0.0513**, not a finalized itemized invoice.
+The observed credit decrease is **USD 0.0513**, not a finalised itemised invoice.
 
 The image's Python environment was isolated in a new venv. Pinned CUDA wheels
 are from the 12.8 family, but the process reports CUDA runtime **12.9** with
@@ -156,7 +156,7 @@ file transfer and parsing are not included in the solver speed ratios.
 ## Next engineering action
 
 Use this tested GPU path for **linear-system acceleration experiments**.
-Before refining the carrier or optimizing its dimensions, regenerate the G8
+Before refining the carrier or optimising its dimensions, regenerate the G8
 reference campaign in fresh directories and apply matrix residual checks,
 cross-solver displacement comparison and existing force/moment gates. Preserve
 the quarantined outputs and investigate their generation chain. Do not silently

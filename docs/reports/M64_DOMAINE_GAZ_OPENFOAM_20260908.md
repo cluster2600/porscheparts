@@ -59,7 +59,7 @@ exhaust seat contacts and the guide/stem clearances. Each intake guide annulus
 has a radial clearance of 0.015 unit over 35 units. Only part of it is
 included in the raw port: truncating this passage where it leaves the port
 would create a fictitious wall. The full extension is therefore kept. Its top
-closure will be an **idealized bench condition**, identified in the
+closure will be an **idealised bench condition**, identified in the
 boundaries, not a new part nor a qualified physical seal.
 
 Version `gas-domain-04` is rejected: the volume before subtraction is a valid
@@ -92,7 +92,7 @@ The STEP adds 31 `InvalidCurveOnSurface` anomalies to the BOP check, although
 its B-Rep topology passes. **This STEP is not qualified for computation.** Any
 meshing attempt will use the exact native B-Rep, with an explicit C0 review,
 and will not turn the earlier false checks into passed checks. The independent
-review `advisory-audit-02`, completed in 8.07 s, authorizes only this
+review `advisory-audit-02`, completed in 8.07 s, authorises only this
 diagnostic attempt: continuous positions, fully covering seats and opposite
 normals. Its private receipt carries the digest
 `936846c6a1d5f3b0765eb30b75e6cf1003fa6052cb5717487292dde7c3fec8cd`.
@@ -115,7 +115,7 @@ flowchart TD
 ## Import preflight: comparing the same integrators
 
 The first real preflight `pilot-01` stopped **before generating a single
-element**. The 88 faces, their areas and their centers were preserved, but
+element**. The 88 faces, their areas and their centres were preserved, but
 the check compared two different volume integrators:
 
 | Call on the same native B-Rep | Numerical volume, units³ |

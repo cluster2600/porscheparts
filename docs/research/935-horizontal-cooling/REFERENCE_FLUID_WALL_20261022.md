@@ -28,7 +28,7 @@ the unverified assumption of 0.001 metres per source unit.
 
 The new construction copies the entire reference triangle set instead of
 resnapping it. A separate OBJ parser independently verifies all coordinates and
-triangles in the bundle, serialized OBJ and TetGen SMESH. The complete rotor
+triangles in the bundle, serialised OBJ and TetGen SMESH. The complete rotor
 surface sets are therefore identical: their geometric distance is exactly zero
 at this link. This is not a zero-error claim against the raw scan, PicoGK master
 or physical hardware. The previous bounded analysis-to-master certificate
@@ -57,7 +57,7 @@ distance. It is not accepted as an exact surface subdivision.
 
 The repair removes its 12 incident tetrahedra, restores the two original wall
 facets, and cones the resulting closed 14-face cavity to a strictly interior
-point. The existing normalized linear-programming kernel proposes that point;
+point. The existing normalised linear-programming kernel proposes that point;
 exact orientation checks accept all 14 children. Only the added Steiner point
 is moved. Every original input coordinate, physical wall triangle and marker
 is retained. The unit-tetrahedron control sums to exactly 1/6; translated small
@@ -116,9 +116,9 @@ separately after the scientific checkpoint.
 Next repair or remesh the protected poor surface patches with a complete
 bidirectional bound to this retained reference. Recheck topology and intersections
 before constructing a graded fluid mesh with appropriate near-wall resolution.
-Boundary-layer/finite-volume construction and any internal optimization must
+Boundary-layer/finite-volume construction and any internal optimisation must
 pass the unchanged full native quality gate. A lower defect count alone is not
-acceptance; repeating the same unconstrained tetrahedralization is not the next
+acceptance; repeating the same unconstrained tetrahedralisation is not the next
 action. Physical scale, all 17 interfaces, hidden transmission, historical engine
 mounting, actual shroud, structural spatial convergence, fatigue, accepted fan
 curves and bench validation remain open. PhysicsNeMo still has no accepted fan

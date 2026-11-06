@@ -4,7 +4,7 @@
 ones, preserved. The initial 34 summary is kept below and the extension is
 documented at the end of the page. The mesh remains refused on five quality
 families. The declared geometric conservation passes; neither the thermal
-behavior, nor the strength, nor the manufacturing of the cylinder head is
+behaviour, nor the strength, nor the manufacturing of the cylinder head is
 validated.**
 
 Single source: the primal from the
@@ -13,7 +13,7 @@ report `3aaf796baaa41664b9926322d7098976cd88ca5876230708dda2c7cf9cc3e8e7`.
 The [rejected dual](M64_GLOBAL_DUAL_REJECTION_20260909.md) is not reused.
 No new scale is applied, no CAD contour is modified.
 
-## Localization actually run
+## Localisation actually run
 
 Independent reading of the six mesh files and the nine OpenFOAM sets, with a
 check of their digests before/after. The sets are those of the previous native
@@ -22,7 +22,7 @@ transformation.
 
 | Native defect | Attribution on the preserved primal |
 |---|---|
-| 1,961 cells with low determinant | All tetrahedral; 396 direct neighbors of hexes or pyramids |
+| 1,961 cells with low determinant | All tetrahedral; 396 direct neighbours of hexes or pyramids |
 | 9 cells with high aspect ratio | All tetrahedral |
 | 1,229 faces with low weight | 1,228 tet/tet interfaces, one hex/pyramid |
 | 135 faces with low volume ratio | All tet/tet |
@@ -30,13 +30,13 @@ transformation.
 | 18 highly skewed faces | All on `walls`, with a tet as owner cell |
 
 The 2 cells with a single internal face and the 208 with two internal faces
-are tets with no direct hex/pyramid neighbor. The `shortEdges` set contains
+are tets with no direct hex/pyramid neighbour. The `shortEdges` set contains
 **four point identifiers**, not four edges.
 
 The domain contains 785,472 cells: 717,579 tets, 67,200 hexes, 384 pyramids and
 309 other polyhedra. The private list comprises 5,914 cells affected by or
-parents of the defects, including 1,428 mixed neighborhoods. This list does
-not authorize any merge by itself.
+parents of the defects, including 1,428 mixed neighbourhoods. This list does
+not authorise any merge by itself.
 
 Classification run: 8.690 s duration, 8.658 s CPU and peak memory
 1,161,347,072 bytes; six targeted tests pass. No solver launched.
@@ -53,12 +53,12 @@ internal to a union and the merged cells.
 
 Two representations are explicitly separated:
 
-- The quality prediction uses OpenFOAM-style centers and volumes: face centers
-  weighted by projected areas and cell centers computed by pyramids.
+- The quality prediction uses OpenFOAM-style centres and volumes: face centres
+  weighted by projected areas and cell centres computed by pyramids.
 - The geometric cross-check uses a triangle fan fixed on the first vertex of
   each source face, with binary coordinates converted to exact rationals. It
   checks the volume conservation of this representation and the convexity of
-  each union. A serialization rotation must not silently change the diagonal
+  each union. A serialisation rotation must not silently change the diagonal
   of a quad.
 
 The volume conservation of this fan is not declared identical to the native
@@ -69,7 +69,7 @@ The quality criteria are not lowered: determinant ≥ 0.001, aspect ratio
 ≤ 1,000, weight ≥ 0.05, volume ratio ≥ 0.01, skewness ≤ 4.
 Non-orthogonality beyond 70° must not get worse. The native concavity test
 remains applicable, including to kept coplanar faces.
-The neighboring faces are recomputed after the joint choice of groups.
+The neighbouring faces are recomputed after the joint choice of groups.
 
 ```mermaid
 flowchart TD
@@ -80,7 +80,7 @@ flowchart TD
     E --> F["Counter-audit of maps, surfaces and PL volume"]
     F --> G["Full checkMesh and comparison of defects"]
     G -->|"Insufficient quality"| H["Keep the refusal, continue the correction"]
-    G -->|"All criteria met"| I["Prepare the physical cases, not a manufacturing authorization"]
+    G -->|"All criteria met"| I["Prepare the physical cases, not a manufacturing authorisation"]
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
     class H stop;
 ```
@@ -89,7 +89,7 @@ flowchart TD
 
 The official sources, rechecked, confirm the roles, not an automatic coupling:
 [Elmer](https://github.com/ElmerCSC/elmerfem) can compute thermal and
-mechanical behavior; [PhysicsNeMo](https://developer.nvidia.com/physicsnemo)
+mechanical behaviour; [PhysicsNeMo](https://developer.nvidia.com/physicsnemo)
 makes it possible to build and evaluate physical AI models.
 [Ditto](https://eclipse.dev/ditto/intro-overview.html) represents the state of
 a piece of equipment and [Mosquitto](https://mosquitto.org/) carries MQTT
@@ -242,7 +242,7 @@ repaired**. The worst extrema remain insufficient, and the mean volume ratio
 drops slightly. This non-regression of the sets therefore does not claim an
 improvement of every scalar.
 The five families remain failing: neither CFD, nor thermal/strength, nor
-manufacturing is authorized by this batch. No Vast spending for these trials.
+manufacturing is authorised by this batch. No Vast spending for these trials.
 
 Identities of the private evidence, without coordinates or geometric identifiers:
 

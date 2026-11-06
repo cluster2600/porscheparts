@@ -1,23 +1,23 @@
-# Revue de la recette v5
+# Review of the v5 recipe
 
-Ces trois reçus sont copiés sans modification depuis
-`work/part-workflow/cold-v5-recipe-review-001/`. Le propriétaire de la chaîne
-a revérifié les 285 empreintes, dont les 278 entrées v4 inchangées.
+These three receipts are copied unmodified from
+`work/part-workflow/cold-v5-recipe-review-001/`. The chain owner re-verified
+the 285 digests, including the 278 unchanged v4 entries.
 
-- `assessment.json` relie la recette aux deux autres reçus et à leur portée.
-- `argv-results.json` vérifie 37 contrats : les dix commandes modifiées sont
-  réellement parsées ; les 27 autres preuves sont reprises après égalité des
-  étapes, arguments, sources et manifeste de runtime.
-- `closure-results.json` vérifie les dépendances consommées et les sorties.
+- `assessment.json` links the recipe to the two other receipts and to their scope.
+- `argv-results.json` verifies 37 contracts: the ten modified commands are
+  actually parsed; the 27 other proofs are carried over after equality of
+  steps, arguments, sources and runtime manifest.
+- `closure-results.json` verifies the consumed dependencies and the outputs.
 
-Les générateurs v6 conservent les domaines et les paramètres de supports.
-Une bande dirigée vers l'intérieur n'est omise que si son quadrilatère entier
-est déjà contenu dans le domaine source, par preuve exacte. Les autres cas
-restent refusés. Chaque appel de construction conserve désormais ses entrées
-et son résultat complet. Le préparateur v5 choisit la construction d'après
-l'autorité réellement enregistrée ; il ne réétiquette aucun ancien reçu.
+The v6 generators keep the domains and the support parameters.
+An inward-facing band is omitted only if its entire quadrilateral is already
+contained in the source domain, by exact proof. Other cases remain refused.
+Each construction call now keeps its inputs and its complete result. The v5
+preparer chooses the construction from the authority actually recorded; it
+relabels no old receipt.
 
-Le guide v5 conserve les références constitutives et les contrôles du guide
-v4 ; sa commande de reproduction désigne cette nouvelle recette. Cette revue
-ne relance aucun calcul complet, tranchage ou solveur et ne produit pas de
-guide final. Les sorties réelles gardent leurs admissions propres.
+The v5 guide keeps the constituent references and checks of the v4 guide; its
+reproduction command points to this new recipe. This review reruns no
+complete computation, slicing or solver and produces no final guide. The real
+outputs keep their own admissions.

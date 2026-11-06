@@ -3,15 +3,15 @@
 TA Technix publishes, for its 993 Turbo aftermarket intercooler, two cores of
 `260 × 260 × 100 mm`, outer connections of `66 mm`, an inner connection of
 `68 mm`, a maximum width of `860 mm`, a height of `240 mm` and a mounting
-center distance of `690 mm`. Albert Motorsport cross-checks the two cores and
-declares a welded aluminum assembly. These listings give no end-tank drawing,
-no orientation of the three dimensions and no aluminum grade.
+centre distance of `690 mm`. Albert Motorsport cross-checks the two cores and
+declares a welded aluminium assembly. These listings give no end-tank drawing,
+no orientation of the three dimensions and no aluminium grade.
 
 PorscheFanatics places the air-to-air charge cooling of the 993 Turbo and its
 charge coolers, but provides no dimension. The F0 therefore interprets
 `260 × 100 mm` as a core face and `66 mm` as the outer diameter of a
 connection. The central `68 mm` connection, the second core, the fasteners
-and the left/right geometry are not modeled.
+and the left/right geometry are not modelled.
 
 ```mermaid
 flowchart LR
@@ -19,7 +19,7 @@ flowchart LR
   H --> G["F0 BREP valid<br/>605.92 g, three open guides"]
   G --> F["Flow and pressure screens<br/>not CFD, real core absent"]
   G --> P["LPBF print screen<br/>build_y, 30 µm"]
-  F --> V["Not authorized for manufacturing,<br/>installation or engine start-up"]
+  F --> V["Not authorised for manufacturing,<br/>installation or engine start-up"]
   P --> V
   class S ok
   class H,F,P open
@@ -35,7 +35,7 @@ flowchart LR
 
 LPBF allows a continuous round-to-rectangle transition, three integrated flow
 guides and a flange in a single open, depowderable part. It must still be
-shown that this benefit beats a TIG-welded aluminum sheet end tank or a cast
+shown that this benefit beats a TIG-welded aluminium sheet end tank or a cast
 part on flow, uniformity, mass, cost, inspection, repairability and fatigue.
 
 The F0 has a synthetic `120 mm` transition, a `2.2 mm` wall, three open
@@ -61,7 +61,7 @@ sudden-expansion screen gives `487 Pa` and `39.9 W` lost, with an ideal kinetic
 recovery of `696 Pa`. This is not a CFD and the real core is absent.
 
 At `0.8 bar`, the force on the face is `2.08 kN`, the connection membrane
-`1.2 MPa` and the idealized guided panel `3.18 MPa`. The free expansion of the
+`1.2 MPa` and the idealised guided panel `3.18 MPa`. The free expansion of the
 flange is `0.575 mm`. The fully constrained bound reaches `147 MPa`, i.e. a
 ratio of `1.67` against the room-temperature comparison value of `245 MPa`.
 The `51.75 million` pulsations calculated over `100 h` give no life for lack
@@ -94,7 +94,7 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
 
 PhysicsNeMo awaits a correlated CFD/CHT/structure dataset with train, holdout
 and out-of-distribution sets. SimReady awaits the measured assembly. This F0
-STEP is authorized neither for manufacturing, nor for installation, nor for
+STEP is authorised neither for manufacturing, nor for installation, nor for
 engine start-up.
 
 <!-- print-screen:begin -->

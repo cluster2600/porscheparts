@@ -4,12 +4,12 @@ Observation at 06:55 UTC, concerning only instance **50130746**.
 Launch performed by the approved wrapper
 `/Users/maxime/.local/bin/openbao-vastai`, command
 `launch-simready-heavy 49094462`, with a unique attempt identifier.
-No new top-up authorized; user cap kept: 20 USD.
+No new top-up authorised; user cap kept: 20 USD.
 
 ```mermaid
 flowchart LR
     A["launch-simready-heavy<br/>49094462"] --> B["startup code 80<br/>host-key marker rejected"]
-    B --> C["original initializer<br/>called explicitly"]
+    B --> C["original initialiser<br/>called explicitly"]
     C --> D["services ready<br/>PhysicsNeMo GPU test passed"]
     D --> E["direct SSH refused<br/>by access control"]
     E --> F["stop 50130746<br/>state exited, stopped not confirmed"]
@@ -40,23 +40,23 @@ storage: **1.85185185185 USD/h**, excluding transfer. This is not an invoice.
 A separate guard targets deletion of this exact attempt at
 **08:28:46 UTC**; API delays may overrun that deadline.
 
-## Cause of the last blockage: initialization, not authentication
+## Cause of the last blockage: initialisation, not authentication
 
 SSH authentication was already working. Application startup failed
 with code **80** and `simready runtime host-key marker rejected`.
 In this container, `/usr/sbin/sshd` was an ordinary binary, not the expected
-link to our initializer. The `sshd -T` call therefore did not create the
+link to our initialiser. The `sshd -T` call therefore did not create the
 required application marker. Who made this replacement is not established.
 
-The original initializer `/usr/local/bin/simready-sshd-runtime-wrapper -T`
+The original initialiser `/usr/local/bin/simready-sshd-runtime-wrapper -T`
 was called explicitly, then the original onstart script was rerun.
 The fingerprints of the existing public host keys stayed identical;
 no new public key and no listener restart were needed. The services then
 reached the ready state.
 
-The source fix replaces the indirect call with a call to the initializer.
+The source fix replaces the indirect call with a call to the initialiser.
 A functional test reproduces code 80 with the old path, then checks that the
-new path succeeds and that no reinitialization happens if the marker
+new path succeeds and that no reinitialisation happens if the marker
 exists. **7 `test_simready_local_ai.py` tests pass.**
 
 ## Traceability and limits
@@ -68,7 +68,7 @@ ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e26
 ```
 
 The fix is not included in this digest: the runtime was unblocked by the
-initializer already shipped in the image. The PhysicsNeMo test proves the
+initialiser already shipped in the image. The PhysicsNeMo test proves the
 imports and a GPU tensor computation, not the training of a physics model nor
 a cylinder-head computation. The receipt keeps `simulation_validated=false` and
 `manufacturing_authorized=false`. No thermal, strength, fatigue, printing or

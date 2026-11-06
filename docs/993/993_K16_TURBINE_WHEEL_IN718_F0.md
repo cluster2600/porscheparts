@@ -8,7 +8,7 @@ nickel wheel remains the industrial reference to beat.
 
 The F0 result is a **rejection**, which is useful: the model passes the
 centrifugal disc check but fails at the blade root, at the thermal gradient and
-at the selected temperature envelope. Nothing in this dossier authorizes
+at the selected temperature envelope. Nothing in this dossier authorises
 manufacturing or rotation.
 
 ```mermaid
@@ -70,7 +70,7 @@ The STEP re-read in the locked image contains a valid BREP solid of
 `54.96 × 54.96 × 20.00 mm`, twelve blades and a shaft interface marker of
 `8.42 mm`. The volume is `17,076.46 mm³` and the theoretical IN718 mass
 `139.17 g`. An envelope cylinder would weigh `386.70 g`, i.e. a stock-to-part
-ratio of `2.779`. The complete shaft is not modeled.
+ratio of `2.779`. The complete shaft is not modelled.
 
 ## Rotation and overspeed
 

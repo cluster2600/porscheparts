@@ -108,7 +108,7 @@ admitted by this audit.
 
 Use new private directories. `SCAN` points to the original OBJ, and `ARRAYS` to
 the retained registered arrays. Processing uses the NumPy/SciPy environment;
-visualization uses the native OpenUSD/PyVista environment, `usdchecker`, FFmpeg
+visualisation uses the native OpenUSD/PyVista environment, `usdchecker`, FFmpeg
 and FFprobe.
 
 ```sh

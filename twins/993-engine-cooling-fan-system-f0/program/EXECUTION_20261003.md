@@ -64,7 +64,7 @@ No new CFD field rendering is fabricated from these mean values.
 
 ### Final field backup
 
-Backup of both complete case directories to the Mac was authorized. Another
+Backup of both complete case directories to the Mac was authorised. Another
 task deleted the worker before the transfer finished. The original interrupted
 compressed stream is preserved locally; it is not a complete archive.
 Recoverable files were checked individually against the worker's SHA-256
@@ -119,10 +119,10 @@ The [ZRapid iSLM420DN / AlSi10Mg card](../zrapid-print-process.json),
 [2 mm](../results/organic/e/thermal-2/thermal-summary.json) /
 [1.5 mm](../results/organic/e/thermal-15/thermal-summary.json) are retained and
 linked from the entry page. They belong to their own organic models.
-Homogenized energy and sensitivities do not constitute a qualified industrial
+Homogenised energy and sensitivities do not constitute a qualified industrial
 stress/distortion simulation. None uses the private scan. No physical printing.
 
-## Organized OpenUSD asset
+## Organised OpenUSD asset
 
 [fan-program.usda](fan-program.usda) references the existing Turbo reconstruction
 package. Its hierarchy separates reference, candidate material and results;
@@ -144,7 +144,7 @@ physically validated digital twin. Earlier renders and their conditions remain
 in the [Omniverse record](../OMNIVERSE_DIGITAL_TWIN.md). Initial Mac Docker access
 was blocked by confinement; a check outside confinement found **Docker 29.8.1**.
 The historical F33 CAE image was absent locally. The initial result therefore
-was not evidence that the daemon was absent. Kali1 has no authorized Docker
+was not evidence that the daemon was absent. Kali1 has no authorised Docker
 access; Kali2 does. Neither Kali host has an NVIDIA GPU. No new rental or
 access/security change is made.
 

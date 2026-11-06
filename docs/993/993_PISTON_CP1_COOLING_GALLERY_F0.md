@@ -7,7 +7,7 @@ family and the Porsche additive precedent, without providing a 993 piston
 drawing.
 
 Porsche, MAHLE and TRUMPF produced a laser-fused piston for a modern 911 GT2 RS,
-announced as `10 %` lighter than the forged part, optimized for the loads and
+announced as `10 %` lighter than the forged part, optimised for the loads and
 fitted with a closed gallery under the crown that the conventional methods
 considered could not produce. Porsche also announces `200 h` of engine testing.
 This is a precedent of method, not a validation transferable to the 993.
@@ -26,7 +26,7 @@ flowchart LR
   G --> C["CalculiX hot p95<br/>297 / 323.46 = 0.918:<br/>F0 rejected in this case"]
   G --> K["PicoGK sweep<br/>no variant reaches 1.50,<br/>no design selected"]
   G --> P["LPBF slicing and<br/>SimReady prop"]
-  C --> V["Five interfaces missing_data<br/>not authorized for manufacturing,<br/>installation or engine start-up"]
+  C --> V["Five interfaces missing_data<br/>not authorised for manufacturing,<br/>installation or engine start-up"]
   K --> V
   P --> V
   class S ok
@@ -68,7 +68,7 @@ the gallery, `+200 K` and `100 h` at `6,720 rpm`.
 
 With the CAD mass, the equations give `94.25 kN` of gas force, `20.21 kN` of
 inertia and a pin load bound of `114.46 kN`. The clamped circular plate model
-gives `277.57 MPa` and `0.486 mm` at the center for an analytical ligament of
+gives `277.57 MPa` and `0.486 mm` at the centre for an analytical ligament of
 `5.5 mm`. The ratio between the room-temperature CP1 minimum and this stress is
 only `1.07`: the F0 has no demonstrated margin when hot.
 
@@ -125,9 +125,9 @@ curve.
 The report, the hashes of the raw outputs and its independent verifier are in
 [`evidence/calculix-f0`](../../twins/993-m64-60-piston-gallery-f0/evidence/calculix-f0/).
 
-## PicoGK optimization screening run
+## PicoGK optimisation screening run
 
-The requested objective is now formalized as follows: minimize mass and crown
+The requested objective is now formalised as follows: minimise mass and crown
 temperature, under constraints of hot static strength, fatigue, stiffness,
 expansion, oil flow, depowdering and machining. "Very strong" is an
 eliminating constraint; a lighter variant does not win if it weakens it.
@@ -148,7 +148,7 @@ mesh generator; it ran neither a structural nor a thermal calculation.
 
 | Variant | CP1 voxel mass | Deviation from BREP mass | Relative wetted area | Relative laminar loss | Room-temperature plate margin |
 |---|---:|---:|---:|---:|---:|
-| P0 voxelized reference | 687.37 g | +0.89 % | 1.000 | 1.000 | 1.070 |
+| P0 voxelised reference | 687.37 g | +0.89 % | 1.000 | 1.000 | 1.070 |
 | P1 six pockets | 683.37 g | +0.30 % | 1.000 | 1.000 | 1.070 |
 | P2 eight pockets | 680.96 g | -0.05 % | 1.000 | 1.000 | 1.070 |
 | P3 8 mm gallery + lattice | 683.39 g | +0.30 % | 1.143 | 0.586 | 0.884 |
@@ -163,7 +163,7 @@ edges. These raw outputs therefore stay in quarantine: none is rebuilt as
 BREP, sent to LPBF slicing or promoted into Omniverse.
 
 The result is a **PicoGK screening run with no design selected**, not a
-validated optimization. The best raw lightening observed, `1.60 %`, is a
+validated optimisation. The best raw lightening observed, `1.60 %`, is a
 research candidate that fails the mechanical criterion and the mesh integrity
 gate. See [`evidence/picogk-f0`](../../twins/993-m64-60-piston-gallery-f0/evidence/picogk-f0/).
 
@@ -232,7 +232,7 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
    capture, drainage, blow-by, knock, overspeed and duty cycle.
 4. Rebuild the surfaces and tolerances, then size crown, bosses, grooves,
    skirt, gallery and ports with machining keep-outs.
-5. Rerun PicoGK only within the authorized design domain, rebuild each
+5. Rerun PicoGK only within the authorised design domain, rebuild each
    retained candidate as BREP and require a converged manifold mesh.
 6. Replace the acquired sequential linear screening with a nonlinear 3D FEA
    with contacts and transient fields, then correlate multibody,
@@ -246,5 +246,5 @@ PhysicsNeMo awaits a correlated dataset with train, holdout and
 out-of-distribution cases. The SimReady asset level is achieved, but the
 Omniverse functional test still awaits the measured
 piston–rings–pin–connecting rod–cylinder–valves interfaces. This F0 STEP is
-authorized neither for manufacturing, nor for installation, nor for engine
+authorised neither for manufacturing, nor for installation, nor for engine
 start-up.

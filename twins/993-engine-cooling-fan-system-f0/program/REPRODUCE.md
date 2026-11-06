@@ -42,7 +42,7 @@ python3 twins/993-engine-cooling-fan-system-f0/source/prepare_private_scan.py \
   --expected-sha256 244d4caeb2c4ac4a692b650ec9d766bee2a8124335a0236a55a1d30c1b2b98ba
 ```
 
-This command only normalizes global pose and removes exactly zero-area faces.
+This command only normalises global pose and removes exactly zero-area faces.
 It preserves holes and any relative alignment error; it rejects input that
 does not match the intake digest.
 
@@ -105,7 +105,7 @@ Geometric, thermal and sensitivity commands are in
 [ORGANIC_BLADE_STUDY](../ORGANIC_BLADE_STUDY.md). Supply
 [zrapid-print-process.json](../zrapid-print-process.json); identify material,
 machine, orientation, exact source and assumptions. These calculations are
-not a machine program, do not predict qualified distortion and authorize no
+not a machine program, do not predict qualified distortion and authorise no
 manufacturing.
 
 Open `program/fan-program.usda` in an OpenUSD-compatible application. With the
@@ -121,4 +121,4 @@ python3 twins/993-engine-cooling-fan-system-f0/source/build_program_asset.py \
 Solver outputs stay in their own directories with conditions/digests.
 Opening the asset does not simulate mechanics or fluid flow. Kit-CAE and RTX
 rendering are separate stages to verify in a compatible runtime when an
-authorized GPU resource is available.
+authorised GPU resource is available.

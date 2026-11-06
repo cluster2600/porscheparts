@@ -93,7 +93,7 @@ counts, identity placements, source-STEP hashes and manufacturing flags. It expo
 the **actual saved feature**, which is independently reloaded and subjected to the
 same full source comparison. All checks pass again, with 0.0 mm vertex error and
 the same topology/normal/plane results. The original FreeCAD file hash is unchanged.
-This checks serialization geometry as well as counts; shell exit alone is not
+This checks serialisation geometry as well as counts; shell exit alone is not
 the acceptance evidence. The creation and verification completion markers and
 their reports are retained.
 

@@ -2,7 +2,7 @@
 
 The unchanged target is **0.040 mm force-weighted journal displacement** for
 the isolated, generic cold-load screen. It is not a dimensional tolerance or
-an authorization to print, assemble or start an engine.
+an authorisation to print, assemble or start an engine.
 
 Current checkpoint: the central upper-cap support reaches **0.03837624 mm at
 1.5 mm**, and the outer intake-web support reaches **0.03762782 mm at 2 mm**.
@@ -161,7 +161,7 @@ are views of the same candidate, not a new design or simulated deformation.
 The [verified native CPU result](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/central68-coarse.json)
 uses 128,926 nodes and 84,755 quadratic tetrahedra at 2 mm. Both load cases pass
 force/moment equilibrium and the independent FP64 CPU-CG equation check.
-Both solvers use the same discretized elasticity problem; this is an algebraic
+Both solvers use the same discretised elasticity problem; this is an algebraic
 cross-check, not an independent physical model or experimental correlation.
 The maximum force-weighted journal motion is **0.0439716 mm** under +x;
 under −z it is 0.0209578 mm. Thus the unchanged **0.040 mm target fails**.
@@ -244,7 +244,7 @@ the [extended haunch](../../twins/m64-cylinder-head/evidence/g14-targeted-suppor
 and **95.939031 N·mm** for [root2](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/outer-root2-minus-z-energy-v1.json).
 For each affine C3D10, the four-point stress energy uses the unchanged isotropic
 material and actual element volume. Agreement with `0.5 F·U` is 7.02e-10 and
-4.79e-9 relative, below the predeclared 1e-4 limit; no renormalization is used.
+4.79e-9 relative, below the predeclared 1e-4 limit; no renormalisation is used.
 Three analytic/parser checks and an independent source review pass.
 
 Root2 reduces total energy by 6.66%, almost entirely in the frame. The local
@@ -352,7 +352,7 @@ The observed group peak was 16.91 GiB, below its 28 GiB guard, and minimum free
 disk was 32.67 GiB. Neither the 1,800 s direct limit nor the resource guard
 caused this termination. All 13 retained artifact fingerprints were checked.
 
-A [separate sanitized OS diagnostic](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/central-caps-medium-crash-diagnostic.json)
+A [separate sanitised OS diagnostic](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/central-caps-medium-crash-diagnostic.json)
 records `SIGSEGV` in `I2Ohash_insert`, inside SPOOLES factor post-processing.
 The original wrapper omitted the native return code, which remains unknown;
 worker/controller exit 2 must not be substituted for it. The raw OS report is
@@ -457,7 +457,7 @@ G14 overall target stiffness and 1.5→1 mm convergence are not established;
 the central upper-cap candidate passes the 2 and 1.5 mm cold isolated screens,
 and the outer intake-web candidate passes the 2 mm screen. Earlier failed
 outer candidates remain rejected; no final fine-mesh acceptance is claimed.
-The fixed-land model remains idealized; generic E=70 GPa and nu=0.33 are not a
+The fixed-land model remains idealised; generic E=70 GPa and nu=0.33 are not a
 qualified hot material card. Thermal response, fatigue, contact/preload,
 machining allowances, printing qualification and engine correlation remain
 separate requirements.

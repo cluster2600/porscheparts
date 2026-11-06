@@ -11,7 +11,7 @@ not a replacement of its evidence or a change to its limits.
 The [plan](plan.json) is fixed before execution. Decompose all eight original
 masks using original shared triangle edges. Rank each mask's components by total
 acquired triangle area, breaking exact ties by minimum original face ID. Select
-exactly the first component from each region. A more favorable fit cannot choose
+exactly the first component from each region. A more favourable fit cannot choose
 another component. All eight selections and their full parent ledgers are
 written before any model is fitted. Controls explicitly test area ranking over
 face-count ranking and the face-ID tie rule.

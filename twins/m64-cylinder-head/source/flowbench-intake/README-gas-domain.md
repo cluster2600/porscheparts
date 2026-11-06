@@ -9,7 +9,7 @@ The receiver is neither a piston nor a compression measurement.
 
 The intake stem-guide clearances are represented over their real length in the
 module, from 20 to 55. Only their two upper annular faces can receive the
-`fixture_stem_seals` role: these are idealized bench seals authorized for this
+`fixture_stem_seals` role: these are idealised bench seals authorised for this
 pilot, not designed or qualified mechanical seals. The lower faces of these
 annuli are internal connections, never walls or artificial outlets.
 
@@ -17,7 +17,7 @@ annuli are internal connections, never walls or artificial outlets.
 
 The sequential passes 02/03 and the simultaneous subtraction 04 ended with a
 BRep rejection, kept in their private receipts. The merged volume before
-subtraction is connected and BRep-valid; this **does not authorize meshing it**
+subtraction is connected and BRep-valid; this **does not authorise meshing it**
 as gas, since it still contains the volumes of the moving parts and guides.
 The separate diagnostic of 28 constituent/seat intersections, run before any
 merge, returns 0 solids and volume 0 for each pair. The very small intersection
@@ -41,15 +41,15 @@ numerical position jump, but **real tangent breaks** (about 0.62°, 6.96° and
 16.76°). This is neither a gap nor simply an angle between two faces. The
 geometry and tolerances are not modified.
 
-The independent review authorizes **one diagnostic meshing attempt** of the
+The independent review authorises **one diagnostic meshing attempt** of the
 exact native BRep, on condition that these knots are kept and that the boundary
 conformity, the topology and the quality of the resulting elements are checked.
 `bop_no_faults` remains **false**; this bounded exception is not a
-"fault-free BOP", nor an accepted mesh, nor a solver authorization. The STEP
+"fault-free BOP", nor an accepted mesh, nor a solver authorisation. The STEP
 additionally has 31 `InvalidCurveOnSurface` warnings: **STEP not qualified for
 meshing**, despite its BRep validity. The digest of the independent report and
 the exact conditions of this attempt are bound in the public receipt. The
-detailed, sanitized independent evidence is kept in
+detailed, sanitised independent evidence is kept in
 [native-gas-domain-independent-diagnostics-20260908.json](../../evidence/native-gas-domain-independent-diagnostics-20260908.json).
 
 ```mermaid
@@ -58,7 +58,7 @@ flowchart TD
     B["Pass 05: same 12 tools<br/>per constituent before merge"] --> C["BRep-valid solid<br/>after native and STEP reread"]:::ok
     C --> D["bop_no_faults = false<br/>31 InvalidCurveOnSurface"]:::stop
     C --> E["One diagnostic meshing attempt<br/>of the exact native BRep"]:::open
-    E -. "is not" .-> F["an accepted mesh or<br/>a solver authorization"]:::stop
+    E -. "is not" .-> F["an accepted mesh or<br/>a solver authorisation"]:::stop
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
     classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
     classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
@@ -81,7 +81,7 @@ candidate. A BOP check is distinct from a BRep check.
 
 The cylinder head master is not modified by this batch, the ports are not yet
 subtracted from the body, and no CFD calculation, flow rate, Cd, thermal test,
-engine qualification or manufacturing authorization is established here. The
+engine qualification or manufacturing authorisation is established here. The
 BReps/STEPs, coordinates and detailed reports remain private; only the code, the
 tests and aggregates with digests are publishable.
 

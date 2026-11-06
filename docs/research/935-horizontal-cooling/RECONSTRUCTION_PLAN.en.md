@@ -39,7 +39,7 @@ full quadratic attempt hits its memory guard; convergence remains unestablished.
 The [October 22 complete-system continuation](COMPLETE_SYSTEM_20261022.md)
 records corrected-rotor PicoGK assembly, full-mesh Warp
 CPU checks, native formulation experiments and complete-surface pair checks.
-Its completion audit covers the entire original objective. The authorized Vast
+Its completion audit covers the entire original objective. The authorised Vast
 first attempt was destroyed by its guard before workload execution. The newer
 native GPU continuation supplies CUDA/RTX evidence without establishing physical
 twin validation. Earlier dated no-rental statements below describe their
@@ -47,7 +47,7 @@ historical work packages.
 
 Qualified Linux/Python/.NET environment → surfaces from the scans with
 SciPy/PicoGK → assembly and BRep/FreeCAD interfaces → OpenFOAM →
-Gmsh/CalculiX → SciPy optimization then OpenMDAO coordination → PhysicsNeMo
+Gmsh/CalculiX → SciPy optimisation then OpenMDAO coordination → PhysicsNeMo
 model on accepted calculations → USD/Omniverse assembly and results.
 The historical reference comes before the improved variant. The first work package covers
 numerical validation and the [bench protocol](BENCH_PROTOCOL.md);
@@ -84,11 +84,11 @@ calculations and no new Vast rental is used.
 
 The expected result is an editable source geometry for all
 specific parts, a bill of materials of the standard components, an assembly with
-documented interfaces, calculations characterizing the system and a twin
+documented interfaces, calculations characterising the system and a twin
 tested against measurements for the 935 replica, then for the 993 adaptation and the
 improved versions. The supplied specimen serves as the starting
 reference; an exact reproduction and a redesign of a non-observable zone
-have distinct statuses. The work packages below characterize the reference and
+have distinct statuses. The work packages below characterise the reference and
 the improved variants with the same evidence requirements.
 
 ## Work package 1 — Reference frames, segmentation and interfaces
@@ -100,7 +100,7 @@ the back regions of the rotor and the hub/shaft stack of the Fan Drive.
 
 Establish an engine reference frame and part reference frames: vertical output axis,
 input axis, mounting faces and angular reference. The private PCA poses
-are used only for inspection. Measure orthogonality, center distances and
+are used only for inspection. Measure orthogonality, centre distances and
 transformations before asserting a common assembly.
 
 For each interface in the bill of materials: source side and receiving side,
@@ -149,7 +149,7 @@ completeness of the interfaces compatible with the calculation concerned.
 ## Work package 3 — Kinematics and transmission
 
 Establish dimensions, blade count, volume and section distributions.
-With documented density and material: mass, center of gravity and inertia
+With documented density and material: mass, centre of gravity and inertia
 tensor. For each rotor speed, calculate tip speed, Mach,
 Reynolds and blade-passing frequency; leave the unknown physical inputs
 explicit and produce separate scenarios if necessary.
@@ -224,7 +224,7 @@ gyroscopic effects according to the solver's capabilities, engine orders, blade
 passing and gear mesh frequency. Add transients, fatigue and a usage
 spectrum when material, process, surface and fatigue data are
 qualified. Plan balancing with
-[ISO 21940-11](https://www.iso.org/standard/54074.html) if rigid behavior
+[ISO 21940-11](https://www.iso.org/standard/54074.html) if rigid behaviour
 is applicable; do not arbitrarily impose a balance quality grade.
 
 Define the process for each part: machining, gear cutting/treatment,
@@ -237,7 +237,7 @@ and to the qualified design.
 manufacturing/inspection dossier. **Gate:** technical review and corresponding
 test plan; rotating tests remain under human responsibility.
 
-## Optimization after characterization of the reference
+## Optimisation after characterisation of the reference
 
 Define controlled variants on the sections, twist, camber,
 blade roots and tips, then the hub, the support and the air

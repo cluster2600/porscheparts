@@ -33,7 +33,7 @@ gradients are projected into the original area-weighted tangent plane. Candidate
 steps are the fixed 0.0099 mm bound and half that bound. A move must preserve
 orientation against every original incident-face normal, worsen no currently
 bad face, create no newly bad face and decrease the local squared quality
-deficit. Selection first minimizes bad-face count, then deficit. There is no
+deficit. Selection first minimises bad-face count, then deficit. There is no
 parameter sweep, edge split/collapse, diagonal flip or hidden-surface inference.
 
 Seven software controls verify analytic triangle quality, the quality gradient
@@ -114,7 +114,7 @@ agreement. The retained independent quality metric and its analytic controls
 are reused; mean ratio is distinct from Gmsh minSICN. Neither metric alone grants
 physics admission. This verifier has passed its analytic controls and real cube
 checks; it has not validated a nonexistent head mesh from the timed-out trial.
-No new physics solver case is authorized by this surface result.
+No new physics solver case is authorised by this surface result.
 
 After this verified CPU-bound timeout, a separate paid retry uses the unchanged
 mesh-CFD image from the historical study, the same admitted surface and mesher,

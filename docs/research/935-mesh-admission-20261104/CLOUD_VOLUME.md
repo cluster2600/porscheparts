@@ -67,13 +67,13 @@ check rather than physical dimensional accuracy.
 
 The verifier uses four analytic metric controls and six face-incidence controls.
 The actual cloud cube also passes positive/unit-volume, interior-cancellation and
-oriented-boundary checks. Success accepts the geometry of this discretized study
+oriented-boundary checks. Success accepts the geometry of this discretised study
 mesh only. Its inferred domain, source fidelity and physical interfaces remain
 unaccepted for head engineering.
 
 ## Quality remains unresolved
 
-The normalized tetrahedron mean ratio below is independently computed. It is
+The normalised tetrahedron mean ratio below is independently computed. It is
 distinct from Gmsh minSICN. The 0.01 and 0.1 bins are diagnostic categories,
 not material allowables or an approved solver-quality specification.
 
@@ -97,7 +97,7 @@ mesh, and no physical result is inferred from its positive volumes.
 ## A fixed-face bound changes the next action
 
 For one fixed triangular face, let S be the sum of its three squared edge
-lengths and A₂ twice its area. Its normalized shape quality is
+lengths and A₂ twice its area. Its normalised shape quality is
 q_f = 2√3 A₂/S. Let the tetrahedron apex have normal height h and projected
 distance r from the base centroid. Its six-edge squared-length sum is
 4S/3 + 3r² + 3h², so its mean ratio is
@@ -126,7 +126,7 @@ It completes locally in 2.19 s under a 600-second controller.
 The current distinct-cell counts are not universal lower bounds after changing
 volume connectivity. A tetrahedron can have at most four boundary faces, so
 retaining all 213 counted faces forces at least `ceil(213/4) = 54` subthreshold
-cells in any such tetrahedralization; retaining just the 75 directly protected
+cells in any such tetrahedralisation; retaining just the 75 directly protected
 counted faces forces at least `ceil(75/4) = 19`. This loose combinatorial bound
 does not assume that future cells keep their present identities.
 
@@ -145,7 +145,7 @@ From prelaunch intent through verified absence, 1,116.54 s elapsed. The
 continuous rate-time estimate is **USD 0.08340**, excluding network. At the quoted
 USD 0.00390625/GB in each direction, the conservative 13 GB network planning
 allowance adds USD 0.05078; their planning total is USD 0.13418. These estimates
-are not a finalized invoice or actual measured network charges. The separate
+are not a finalised invoice or actual measured network charges. The separate
 account-wide credit movement is also not attributed as an instance invoice.
 
 The attempt allowance remains USD 1.50 inside the unchanged USD 35 program,

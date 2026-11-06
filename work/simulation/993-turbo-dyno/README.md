@@ -36,7 +36,7 @@ flowchart LR
   classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
 ```
 
-This output is a 0D normalizer and a set of comparison anchors. It is not a
+This output is a 0D normaliser and a set of comparison anchors. It is not a
 compressor/turbine map, does not identify shaft speed and does not yet calibrate
 the CFD. The missing dyno conditions must be obtained before any physical
 regression.

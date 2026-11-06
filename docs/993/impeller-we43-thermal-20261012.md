@@ -18,11 +18,11 @@ The flat `build_z` orientation, with the cup open upwards, is now the preferred
 **next study candidate**. It reduces part height from 188.56 to 56 mm and physical
 part layers from 6,286 to 1,867. At the assumed 8 s recoating time, the reduction
 is 9.82 h. This is a geometric/timing result, not a supplier production quote.
-The original 45° selection minimized downward projected surface area only; it
-was not a thermal or manufacturing optimization.
+The original 45° selection minimised downward projected surface area only; it
+was not a thermal or manufacturing optimisation.
 
 The flat calculation uses the same metal, laser recipe, absorption, plate,
-6 mm standoff and homogenized support assumptions. Its 2 mm / eight-substep
+6 mm standoff and homogenised support assumptions. Its 2 mm / eight-substep
 case estimates 23.69 h total and 65.76 cm³ of support metal. These support
 columns have not been designed for manufacture or removal. The entire part
 still spans 243.0 × 244.8 mm in XY; no machine clearance is qualified.
@@ -37,7 +37,7 @@ remain identical. The underlying thermal solver is unchanged.
 Metal supports can provide heat transfer and mechanical restraint, rather than
 only holding geometric overhangs; [EOS describes these roles](https://www.eos.info/content/blog/know-how/support-free).
 That general explanation does not qualify a WE43 machine recipe or this support
-layout. The lower build is a reason to prioritize flat trials, not permission
+layout. The lower build is a reason to prioritise flat trials, not permission
 to omit every support.
 
 ## Inclined polymer mockup retained
@@ -49,7 +49,7 @@ rotated and translated into positive slicer coordinates. The STL contains no
 supports. Its bounding box is 188.56 × 244.82 × 188.56 mm; printer clearance,
 supports, adhesion and slicing settings remain to be selected for the actual
 printer and polymer. “Carbon” here means filled thermoplastic, with no continuous
-fiber process qualification. No suitability for rotation or engine use is implied.
+fibre process qualification. No suitability for rotation or engine use is implied.
 
 The [export card](../../parts/993-eng-cooling-impeller-we43-f1-0001/source/polymer-mockup.json)
 records the parent/output hashes and exact transformation. To reproduce the
@@ -122,7 +122,7 @@ No computed temperature is reused as evidence for the polymer mockup.
   `f9c8462c634dc92aa23de09535e372b5ae14d7665616e3249c4d54251eed1f88`.
   This remains estimated concept geometry, with no measured fitment claim.
 
-## Equations and discretization
+## Equations and discretisation
 
 [The calculation](../../parts/993-eng-cooling-impeller-we43-f1-0001/source/simulate_lpbf_thermal.py)
 reuses the repository's backward-Euler sparse conjugate-gradient thermal step.
@@ -149,11 +149,11 @@ XY position and use an effective solid fraction of 0.15 for capacity,
 conductance and scan energy. This is an assumed thermal connection, not a
 manufacturable support layout. Plate attachment is perfect contact to an
 isothermal reservoir. All other exposed faces exchange heat with ambient gas by
-convection and linearized radiation; surrounding powder conduction is omitted.
+convection and linearised radiation; surrounding powder conduction is omitted.
 
 Each macro layer alternates heating and recoating substeps. The deposited laser
 energy is integrated from the physical slice areas using `P / (v h t)` and the
-assumed absorption; support energy uses the homogenized support solid volume.
+assumed absorption; support energy uses the homogenised support solid volume.
 Heating is distributed over the current macro layer. Individual tracks, contours,
 jumps and the moving laser spot are unresolved. All cells of a macro layer are
 activated together; time refinement does not eliminate this spatial lumping.
@@ -173,7 +173,7 @@ publication; field and history hashes are included in the summary.
 | 1 mm | +0.247% | admitted, aggregated into 2 and 3 mm thermal cells |
 
 Volume agreement is an admission check, not evidence of spatial convergence or
-accurate blade temperatures. Thin features and heat paths remain voxelized.
+accurate blade temperatures. Thin features and heat paths remain voxelised.
 A spatially converged prediction has not been established. The binary 1 mm
 thermal runs were stopped for computational cost before completion, with no
 final result retained. Partial-volume thermal cells reduce the number of

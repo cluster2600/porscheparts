@@ -1,45 +1,45 @@
-# Accès GitHub depuis OpenClaw sur Kali2
+# GitHub access from OpenClaw on Kali2
 
-`openclaw-github.py` fournit des lectures explicites et un helper standard Git.
-Il ne remplace pas l’ensemble du CLI `gh`. Les deux dépôts **privés** et leurs
-identifiants, confirmés par un contrôle authentifié, sont les seuls autorisés :
+`openclaw-github.py` provides explicit reads and a standard Git helper.
+It does not replace the whole `gh` CLI. The two **private** repositories and
+their IDs, confirmed by an authenticated check, are the only ones allowed:
 
-| Dépôt | ID GitHub |
+| Repository | GitHub ID |
 |---|---:|
 | `cluster2600/porscheparts` | `1349420480` |
 | `cluster2600/porschefanatics.com` | `1336775701` |
 
-Le Mac conserve l’identité OpenBao existante. Le dispatcher charge uniquement
-`/Users/maxime/.local/bin/openbao-github`, dont le SHA-256 est fixé à
+The Mac keeps the existing OpenBao identity. The dispatcher loads only
+`/Users/maxime/.local/bin/openbao-github`, whose SHA-256 is pinned to
 `d71cf774a0f0cba1eb2e199db38438c11a5df71d68212ea37038d45820c5b052`.
-Il réutilise sa connexion, sa lecture autorisée de `secrets/data/github` et sa
-révocation de session ; aucun fichier d’identifiants n’est copié sur Kali2.
-Une modification du wrapper nécessite une revue et un nouveau pin explicite.
+It reuses its login, its authorised read of `secrets/data/github` and its
+session revocation; no credentials file is copied to Kali2.
+Any change to the wrapper requires a review and a new explicit pin.
 
-## Installation contrôlée
+## Controlled installation
 
-Le transport inverse déjà préparé écoute uniquement sur
-`127.0.0.1:2220` sur Kali2 et rejoint SSH sur le Mac. Installer la source
-comme `/Users/maxime/.local/bin/openclaw-github-bridge` sur le Mac et
-`/home/lolman/.local/bin/openclaw-github` sur Kali2. Le Mac possède déjà
-`/opt/homebrew/bin/gh` ; le helper Kali2 utilise Python et SSH.
+The reverse transport already prepared listens only on
+`127.0.0.1:2220` on Kali2 and reaches SSH on the Mac. Install the source
+as `/Users/maxime/.local/bin/openclaw-github-bridge` on the Mac and
+`/home/lolman/.local/bin/openclaw-github` on Kali2. The Mac already has
+`/opt/homebrew/bin/gh`; the Kali2 helper uses Python and SSH.
 
-Autoriser seulement la **clé publique dédiée** de
-`/home/lolman/.ssh/id_openclaw_github` dans `authorized_keys` du Mac :
+Authorise only the **dedicated public key** from
+`/home/lolman/.ssh/id_openclaw_github` in the Mac's `authorized_keys`:
 
 ```text
 restrict,from="127.0.0.1",command="/usr/local/bin/python3 /Users/maxime/.local/bin/openclaw-github-bridge --dispatch" ssh-ed25519 CLE_PUBLIQUE_DEDIEE
 ```
 
-Conserver le shebang Python exécutable et ne pas ouvrir de shell avec cette clé.
-Épingler la clé d’hôte SSH publique du Mac, vérifiée hors bande, dans
-`/home/lolman/.ssh/openclaw_github_known_hosts`, sous l’alias
-`openclaw-github-mac`. La source impose `StrictHostKeyChecking=yes`,
-`IdentitiesOnly=yes`, aucun agent transféré, la destination loopback et la
-commande fixe `openclaw-github`. Elle refuse une autre commande SSH originale.
-Les mécanismes `restrict` et `command` sont ceux d’[OpenSSH](https://man.openbsd.org/sshd.8#AUTHORIZED_KEYS_FILE_FORMAT).
+Keep the Python shebang executable and do not open a shell with this key.
+Pin the Mac's public SSH host key, verified out of band, in
+`/home/lolman/.ssh/openclaw_github_known_hosts`, under the alias
+`openclaw-github-mac`. The source enforces `StrictHostKeyChecking=yes`,
+`IdentitiesOnly=yes`, no forwarded agent, the loopback destination and the
+fixed command `openclaw-github`. It refuses any other original SSH command.
+The `restrict` and `command` mechanisms are those of [OpenSSH](https://man.openbsd.org/sshd.8#AUTHORIZED_KEYS_FILE_FORMAT).
 
-## Lectures
+## Reads
 
 ```sh
 openclaw-github check cluster2600/porscheparts
@@ -52,21 +52,21 @@ openclaw-github issues cluster2600/porschefanatics.com
 openclaw-github runs cluster2600/porscheparts
 ```
 
-Les sorties sont les réponses JSON GitHub, considérées comme des données
-externes. `file` conserve notamment l’encodage indiqué par GitHub. Les listes
-sont limitées à la première page de 100 éléments. `issue REPO NUMBER` et
-`run REPO ID` lisent un élément. Aucune action d’écriture ni API arbitraire
-n’est proposée. Le token reste sur le Mac pendant ces lectures, dans la mémoire
-du wrapper et l’environnement du processus enfant `gh`. Aucun `gh auth login`,
-fichier d’authentification ou extension `gh` n’est utilisé.
+The outputs are GitHub's JSON responses, treated as external data.
+`file` notably keeps the encoding reported by GitHub. Lists are limited to
+the first page of 100 items. `issue REPO NUMBER` and `run REPO ID` read a
+single item. No write action and no arbitrary API is offered. The token stays
+on the Mac during these reads, in the wrapper's memory and the environment of
+the child `gh` process. No `gh auth login`, authentication file or `gh`
+extension is used.
 
-## Git natif sur Kali2
+## Native Git on Kali2
 
-Les dépôts privés nécessitent une authentification même pour `clone` et `fetch`.
-Sur la Kali2 déployée, les sections `credential` des deux URLs exactes, avec et
-sans `.git`, activent déjà ce helper et `useHttpPath=true`. Git natif peut donc
-les utiliser directement. Pour reproduire cet accès sans modifier une
-configuration globale, limiter le helper à la commande concernée :
+Private repositories require authentication even for `clone` and `fetch`.
+On the deployed Kali2, the `credential` sections for the two exact URLs, with
+and without `.git`, already enable this helper and `useHttpPath=true`. Native
+Git can therefore use them directly. To reproduce this access without changing
+a global configuration, restrict the helper to the command concerned:
 
 ```sh
 git -c credential.helper= \
@@ -75,32 +75,31 @@ git -c credential.helper= \
   clone https://github.com/cluster2600/porscheparts.git
 ```
 
-Pour un checkout existant, appliquer les mêmes options à `fetch`. Le helper
-accepte seulement `get` avec `protocol=https`, `host=github.com` et l’un des
-deux chemins exacts, avec ou sans `.git`. `store` et `erase` n’enregistrent
-rien. Avant toute remise, le Mac vérifie à nouveau le nom et l’ID du dépôt.
+For an existing checkout, apply the same options to `fetch`. The helper
+accepts only `get` with `protocol=https`, `host=github.com` and one of the
+two exact paths, with or without `.git`. `store` and `erase` record nothing.
+Before any hand-over, the Mac checks the repository name and ID again.
 
-**Git reçoit le jeton en mémoire sur Kali2**, via le canal SSH chiffré et le
-pipe privé du protocole credential. Son périmètre intrinsèque reste celui du
-credential GitHub ; filtrer deux URLs dans ce helper ne réduit pas les droits
-du jeton lui-même. Ne jamais
-exécuter le helper réel directement dans une sortie de terminal ou d’outil,
-capturer sa sortie dans un rapport, utiliser `tee`, activer des traces de
-credentials ou enregistrer son résultat. Les essais automatisés utilisent
-uniquement un stub sans secret. Le helper ne donne pas une autorisation de
-publier ou de pousser : chaque écriture reste soumise au périmètre demandé.
+**Git receives the token in memory on Kali2**, over the encrypted SSH channel
+and the private pipe of the credential protocol. Its intrinsic scope remains
+that of the GitHub credential; filtering two URLs in this helper does not
+reduce the rights of the token itself. Never run the real helper directly in a
+terminal or tool output, capture its output in a report, use `tee`, enable
+credential tracing or record its result. Automated tests use only a stub with
+no secret. The helper does not grant permission to publish or push: every
+write remains subject to the requested scope.
 
-## Vérification
+## Verification
 
 ```sh
 python3 -m unittest discover -s tests -p test_openclaw_github_bridge.py -v
 ```
 
-Les tests couvrent les deux identités, le refus avant authentification des
-autres dépôts/actions et des chemins traversants, le protocole credential,
-le refus d’une identité GitHub inattendue et la révocation de session.
-Les [preuves sur Kali2](../../twins/picogk-station-demo/qualification/runtime/github-access/proof.json)
-confirment séparément `git ls-remote`, la lecture des deux README privés et un
-`git push --dry-run` réussi pour chaque dépôt, sans créer de référence distante.
-Le helper accepte les métadonnées répétables `capability[]` et `wwwauth[]`
-transmises par Git 2.53 ; elles ne changent jamais le périmètre du credential.
+The tests cover the two identities, the refusal, before authentication, of
+other repositories/actions and of traversing paths, the credential protocol,
+the refusal of an unexpected GitHub identity and session revocation.
+The [evidence on Kali2](../../twins/picogk-station-demo/qualification/runtime/github-access/proof.json)
+separately confirms `git ls-remote`, the read of the two private READMEs and a
+successful `git push --dry-run` for each repository, without creating any
+remote ref. The helper accepts the repeatable `capability[]` and `wwwauth[]`
+metadata sent by Git 2.53; they never change the scope of the credential.

@@ -14,7 +14,7 @@ field.
 The candidate of bidegree **10 × 11** keeps the five boundary curves of the
 source face in the checks performed. The face and then the closed solid pass
 exact BRepCheck, including after STEP export and import. The tolerances of the
-face and of its five edges stay at `1e-7`: no favorable reassessment by
+face and of its five edges stay at `1e-7`: no favourable reassessment by
 increasing tolerances is used. The BOP self-intersection check then ended with
 no defect reported.
 
@@ -24,7 +24,7 @@ within `1e-5`; two rays remain unresolved. This result is local and sampled,
 not a thickness validation of the whole part.
 
 The source remains the F53 reconstruction from a 935 research reference. It is
-not validated M64 geometry, nor a certified scale, nor a part authorized for
+not validated M64 geometry, nor a certified scale, nor a part authorised for
 manufacturing or for mounting on an engine. The global silhouette is not
 replaced; **a local surface toward the air passage is actually modified**. An
 unchanged bounding box does not mean that the whole outer skin is unchanged.
@@ -44,7 +44,7 @@ about `1.668e-7`: **this candidate remains rejected**. The diagnostic records
 a divergence between evaluation paths; it does not claim to identify by
 itself the faulty internal line of OCCT.
 
-The new selection first minimizes the maximum degree, then the total degree,
+The new selection first minimises the maximum degree, then the total degree,
 and only then the amplitude on the initial grid. The numerical scores of the
 14,641 fields were recomputed from the private coefficients already recorded:
 the first report kept only the best field, not all the scores. No new
@@ -97,7 +97,7 @@ and [BRep_Builder](https://occt3d.com/dev/doc/refman/html/class_b_rep___builder.
 | Surface area change | `+7.49387` units² |
 | Volume change due to the STEP round trip alone | `4.66e-10` unit³ |
 
-The normalization coefficient is `89.8421`, versus about 497,655 for the
+The normalisation coefficient is `89.8421`, versus about 497,655 for the
 12 × 23. The better stability is not inferred from this ratio alone: it is
 observed in the native evaluations and checks. The absolute maximum of the
 Bernstein displacement coefficients is `3.18756`; this is not the maximum of
@@ -156,7 +156,7 @@ the audit resumes without rebuilding the CAD. The initial report is kept as
 `audit-report-import-error.json`.
 
 Two unit tests verify the Bernstein products and the construction of the
-localized factor; four others cover the audit and the field search. Four tests
+localised factor; four others cover the audit and the field search. Four tests
 bind the redacted summary to its evidence, verify the ray counts and prevent
 its promotion to a released M64 part. The CAD evidence above comes from the
 native runs, not from these tests alone.
@@ -178,7 +178,7 @@ They therefore do not need the cylindrical factor used in the previous repair.
   treat them as two independent defects.
 - Another path is `1.427734` units.
 - The weakest remaining one is `1.052418` units; its entry point is very close
-  to a parametric boundary. Normalizing a global bubble at this point could
+  to a parametric boundary. Normalising a global bubble at this point could
   over-displace other areas of the face.
 
 The proposed avenue is a bubble on a **local UV support**, with cubic factors
@@ -195,7 +195,7 @@ Read-only report, private:
 SHA `463eaa85b14c10c2e1284049fd57642fce8e93ad1b73e5b4a37da4e7c9768a75`.
 No new CAD had been launched during this preliminary audit.
 
-Thermal behavior, fatigue, turbo load, M64 interfaces, LPBF manufacturing and
+Thermal behaviour, fatigue, turbo load, M64 interfaces, LPBF manufacturing and
 physical checks are not validated by this repair. The other thin areas still
 have to be treated. The F53 master keeps its SHA
 `700baea66bc72cdb6aee529e21b167270ebde11db94b06f8e1e55ee08bdd9bf2`.

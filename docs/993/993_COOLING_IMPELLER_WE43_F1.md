@@ -438,7 +438,7 @@ below.
    a supplier build file, coating, balance, contained overspeed and a flow rig.
 
 The F1 stays `prohibited_pending_engineering` and `concept`: no manufacture,
-rotation, installation or start-up is authorized.
+rotation, installation or start-up is authorised.
 
 ## Metal LPBF geometry preview — hypothetical supports
 
@@ -459,7 +459,7 @@ stacked slices, not a laser scan or a thermal calculation.
 ![Six layer cross-sections](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/layers.png)
 
 *Geometry preview only. No melt-pool, thermal, residual-stress, distortion
-or recoater simulation; no qualified support design. Printing is not authorized.*
+or recoater simulation; no qualified support design. Printing is not authorised.*
 
 <!-- print-screen:begin -->
 

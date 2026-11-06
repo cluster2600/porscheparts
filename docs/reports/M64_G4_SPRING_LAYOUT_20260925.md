@@ -7,17 +7,17 @@ G5 keeps the G4 observations and optionally replaces the simplified axial actuat
 September 25, 2026, commit `522cf32224bcca8f98d32112dc5332a3eb897744`.
 G4 corrects two geometric defects and retains a new candidate internal layout.
 **The body is still the synthetic G2 model, not a faithful reconstruction of the M64 scan.
-No authorization to print or to run.**
+No authorisation to print or to run.**
 
 ```mermaid
 flowchart LR
-    A["G3: pocket-floor center only"] --> B["Full tilted disk"]
+    A["G3: pocket-floor centre only"] --> B["Full tilted disk"]
     B --> C["467 trials,<br/>fixed interfaces"]
     C --> D["CAD check of the springs"]
     D --> E["Extend the drilling tools"]
     E --> F["Four seats, eight positions,<br/>no penetration"]
     F --> G["Functional cam carrier and rockers,<br/>then thermomechanical loads"]
-    F --> H["Ratio below 8;<br/>no print or run authorization"]
+    F --> H["Ratio below 8;<br/>no print or run authorisation"]
     classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
     classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
@@ -28,11 +28,11 @@ flowchart LR
 
 ## Two defects corrected at the source
 
-1. The pocket-floor check compared only its **center** with the cam-carrier face.
+1. The pocket-floor check compared only its **centre** with the cam-carrier face.
    Yet the tilted edge protruded past that face by 2.194 mm on the intake and 3.088 mm on
    the exhaust in G3. The shared check now accounts for the whole disk:
    `z_max = z_centre + rayon × sin(angle)`. The CAD of the disk confirms this formula.
-2. The cylindrical drilling tool stopped with its center 5 mm above the face.
+2. The cylindrical drilling tool stopped with its centre 5 mm above the face.
    At the angles considered, its lower edge stayed inside the material, leaving an obstacle
    within the spring envelope. The tool is extended so that **its entire end disk**
    clears the face by 5 mm. Geometry and checks use the same corrected tool.

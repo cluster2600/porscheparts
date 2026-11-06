@@ -9,7 +9,7 @@ PicoGK closing uses 0.2 mm voxels and R1 mm, followed by MeshLib's 0.04 mm
 estimated-error request. The pad restoration maps a declared neighbourhood to
 nominal Z = ±4 mm. It changes no face indices. Its complete two-way edit
 bound is 0.041844 mm relative to the preceding simplified mesh; it does not
-certify the preceding voxelization or its distance to native CAD.
+certify the preceding voxelisation or its distance to native CAD.
 
 The complete surface audit passes. Six nominal shank gauges pass. The original
 closed-set tool-column test remains refused because of planar contact at Z=4.

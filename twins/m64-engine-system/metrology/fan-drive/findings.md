@@ -88,5 +88,5 @@ BENCH-06.
 Nothing here declares any part dimensionally correct, fitted, tested, safe,
 released, or manufacturing-ready. Max-radius estimators are upward-biased by
 tessellation spikes (p999/coverage-gated variants provided). Scan provenance
-and licence remain unknown (see catalog record); do not publish or
+and licence remain unknown (see catalogue record); do not publish or
 redistribute.

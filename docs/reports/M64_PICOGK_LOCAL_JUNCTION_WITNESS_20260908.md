@@ -3,7 +3,7 @@
 ## Latest state: inner mask tested at 0.2 then 0.1, follow-up rejected
 
 The work is no longer limited to the first witness below. A direct union with
-an inner mask passed the normalized guards at step **0.2**, then failed at
+an inner mask passed the normalised guards at step **0.2**, then failed at
 step **0.1** on **24 protected points**. The volume actually added varies by
 **16.01%**, beyond the preregistered threshold of 5%. **None of these synthetic
 trials was applied to the private cylinder head.** The master remains
@@ -17,7 +17,7 @@ the chamber and the components needed for the gas domain.
 ```mermaid
 flowchart TD
     A["Direct union 0.2: surfaces outside ROI"] --> B["Inner mask, world setback 0.6"]
-    B --> C["0.2 witness: normalized guards passed"]
+    B --> C["0.2 witness: normalised guards passed"]
     C --> D["0.1 witness: same world mask"]
     D --> E["24 protected points modified and volume gap 16.01 percent"]
     E --> F["Rejection kept: no processing of the cylinder head"]
@@ -29,7 +29,7 @@ flowchart TD
 ### Two steps compared, without relaxing the guards
 
 The [inner-mask module](../../twins/m64-cylinder-head/source/picogk-local-junction-buffered/README.md)
-keeps the authorized zone and sets the construction mask back by 0.6 unit.
+keeps the authorised zone and sets the construction mask back by 0.6 unit.
 The [separate fine version](../../twins/m64-cylinder-head/source/picogk-local-junction-buffered-v2/README.md)
 keeps this setback **fixed in world coordinates**, i.e. 3h at 0.2 and 6h at
 0.1. A setback of 3h at 0.1 would have changed the geometry; this variant was
@@ -56,7 +56,7 @@ At the fine step, the raw before/after surfaces pass the combinatorial screen;
 the raw diagnostic addition remains rejected. After removing, **in memory, only
 the exactly null faces**, the three surfaces pass the combinatorial topology at
 both steps. No vertex moved, no non-null triangle removed, no filling or
-retriangulation. All modified triangles are contained in the authorized ROI,
+retriangulation. All modified triangles are contained in the authorised ROI,
 but this property **does not protect the interfaces that lie inside this ROI**.
 
 The 24 failing points all lie in the inner mask **and** in the protected band
@@ -65,7 +65,7 @@ around the R10/Y0 ring. The XZ corner of the mask reaches a radius of
 from zero to strictly negative, maximum **0.00177247 unit**.
 The `<0` guard fails even if the `<=0` guard stays at zero; no epsilon is
 introduced to make it pass. The exact algorithmic cause of the SDF variation
-is not established by this localization alone.
+is not established by this localisation alone.
 
 The relative volume difference is **16.0065% > 5%**. The maximum sampled
 bidirectional distances are 0.09240 before, 0.10106 after and **0.36516 for
@@ -117,11 +117,11 @@ flowchart TD
 
 The [contract](../../twins/m64-cylinder-head/source/picogk-local-junction/criteria.json)
 is frozen before execution: exploratory radius 1 unit, resolution 0.2, no
-occupancy modification outside the authorized region or at the protected
+occupancy modification outside the authorised region or at the protected
 interfaces, no loss of the initial gas, no addition touching the mask edge.
 Each guard is evaluated with `< 0` and `<= 0`. After this initial failure, no
 0.1 pass or application to the real port was launched automatically.
-The fine witness described at the top belongs to a separate authorization and
+The fine witness described at the top belongs to a separate authorisation and
 policy, later than the mask correction.
 
 The witness uses no Porsche dimension: it assembles two stepped coaxial
@@ -206,7 +206,7 @@ no exact volume conservation is claimed.
 ## History: minimal correction proposed, then tested below
 
 Let `A` be the initial gas, `C` its morphological closing and `R` the
-authorized region. The following set identity is exact:
+authorised region. The following set identity is exact:
 
 `A ∪ ((C \ A) ∩ R) = A ∪ (C ∩ R)`.
 
@@ -232,11 +232,11 @@ The raw candidate has 90,028 triangles, of which **16 are exactly null**, and
 16 edges with incidence greater than two. This is fewer than the first
 witness, but it remains rejected. The six fields were saved as VDB this time;
 their re-read checks names, count, scale metadata and accessibility, **not the
-identity of the values before/after serialization**.
+identity of the values before/after serialisation**.
 
 A separate in-memory counter-audit removes only the exactly null faces,
 demonstrated by integer arithmetic on the stored dyadic coordinates. It moves
-no vertex and writes no derived STL. The three normalized surfaces then pass
+no vertex and writes no derived STL. The three normalised surfaces then pass
 the closed/oriented combinatorial screen, including the vertex links. The
 candidate keeps 90,012 faces.
 Geometric intersections, nesting of the shells and invariance of the continuous
@@ -245,7 +245,7 @@ field remain untested: this is not a physical qualification.
 The additional spatial check **fails**: after comparing the multisets of
 oriented triangles, 120 removed faces and 120 added unpaired faces are not
 entirely contained in the ROI. Their vertices extend down to
-`Y = −3.2999999523`, while the authorized limit is `−3`.
+`Y = −3.2999999523`, while the authorised limit is `−3`.
 This is not in itself a measurement of continuous shape deviation, but it
 prevents establishing the invariance of the mesh outside the ROI by this exact
 proof. The volume residual is also kept: 3.618739229847031 unit³.
@@ -262,8 +262,8 @@ flowchart LR
 ```
 
 The next correction proposed at this stage distinguished an **inner
-computation mask** from a **zone authorized to change**, with a controlled
-extraction margin. Widening the authorized zone after the fact to make this
+computation mask** from a **zone authorised to change**, with a controlled
+extraction margin. Widening the authorised zone after the fact to make this
 trial pass is not a correction. A new preregistered witness is needed, then the
 same topological and spatial checks before any application to the cylinder
 head port. Resolution 0.1 had not been launched in this direct-union sub-batch.
@@ -289,5 +289,5 @@ The compact receipts and digests are in
 The [direct union evidence](../../twins/m64-cylinder-head/evidence/picogk-direct-union-witness-20260908.json)
 keeps its results and interpretation corrections separately.
 The private STLs and CAD files are not published. The result remains a
-reconstruction experiment, **with no authorization for manufacturing or
+reconstruction experiment, **with no authorisation for manufacturing or
 startup**.

@@ -21,8 +21,8 @@ hung MCU. None of these physical tests has been performed yet.
 | V07 / G4 | Real firmware and radio | specialist; OS/model/version matrix + logs | MITM/replay/non-owner rejected; max stream, MTU 23, cutoffs at every offset; watchdog and black screen verified electrically |
 | V08 / G4 | Secure DFU | specialist; signed/invalid images, power cut at each step | signature/anti-rollback enforced, no partial image booted, local recovery and protected keys |
 | V09 / G5 | Climate/UV/water/vibration | laboratory; protocol and optical/fit before/after | T range, number of cycles, UV dose, vibration and IP level agreed; no leak, corrosion, yellowing/clearance out of tolerance. No IP claim before a complete test |
-| V10 / G5 | EMC/ESD/RF | competent laboratory; reports tied to the exact revision | chosen limits/standards met; immunity with safe behavior and BLE reception verified when fitted |
-| V11 / G5 | Photometry/reflection/installation | laboratory + authority | each required function and visibility compliant; documents and markings legally authorized, not merely a software shutdown |
+| V10 / G5 | EMC/ESD/RF | competent laboratory; reports tied to the exact revision | chosen limits/standards met; immunity with safe behaviour and BLE reception verified when fitted |
+| V11 / G5 | Photometry/reflection/installation | laboratory + authority | each required function and visibility compliant; documents and markings legally authorised, not merely a software shutdown |
 | V12 / G6 | Pre-series of 10 parts | owner + EMS; time, yield, FAI/AOI, 100% test | acceptance criteria before manufacturing; zero units shipped without a test record, rework documented |
 | V13 / G6 | Repairability | owner; documented disassembly/reassembly | front face/PCB/seal replaced without destroying the rest; sealing and optics retested |
 | V14 / G6 | Packaged shipping | supplier + owner; drop/vibration/compression according to an agreed method | no scratch, crack or fastening damage; electrical check before/after; height/loads according to the final mass and the logistics chain |
@@ -39,7 +39,7 @@ hardware fault, not only with `STOP` in the app.
 ## Traceability and acceptance
 
 Private measurements/reports stored with identifiers and access rights; publish
-a sanitized summary and its hash if authorized. Any change to the optics,
+a sanitised summary and its hash if authorised. Any change to the optics,
 driver, power supply, firmware or supplier triggers an analysis of the tests to
 repeat. The Python tests in this dossier verify a host contract; they close no
 mechanical, electrical, radio, road safety or manufacturing qualification gate.

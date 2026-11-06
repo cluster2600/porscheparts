@@ -28,7 +28,7 @@ exhaustive wall-tightness check.
 
 ## Coolant/metal probing: anomaly retained
 
-From the centers of the coolant triangles, move a probe along the
+From the centres of the coolant triangles, move a probe along the
 outward normal of the face. Classify independently its signed distance
 to the two surfaces, coolant and metal. Four offsets are examined; a zero
 sign is classified as outside. Probes may land in another branch
@@ -41,9 +41,9 @@ of the same circuit: these cases do not become material validations.
 | 0.75 mm | 130,062 | 10 | 0 | 4 |
 | 1.50 mm | 130,040 | 36 | 0 | 0 |
 
-Each row covers **130,076 probes**. The **1,480 face centers**
+Each row covers **130,076 probes**. The **1,480 face centres**
 within the 1.5 mm guard near the X terminations are excluded: the wall around
-the fittings is therefore not inspected by this probing. The centers, normals
+the fittings is therefore not inspected by this probing. The centres, normals
 and probe positions are those of the mesh, with no photographic registration.
 
 ![Projection of the unassigned probes](derived/boundary-probes.png)
@@ -68,7 +68,7 @@ identified inlet, outlet and walls. Do not move the surfaces artificially
 to pass the check, nor hide the unassigned points.
 
 CFD still requires flow rate or pump curve, coolant composition,
-inlet temperature/pressure, roughness and junction behavior.
+inlet temperature/pressure, roughness and junction behaviour.
 CHT adds heat flux/chamber, material laws and external conditions.
 Pressures, flow rate and heat load remain unknown in the
 [F0 contract](interface-contract.json). No pressure loss, boiling,

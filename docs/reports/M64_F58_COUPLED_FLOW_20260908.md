@@ -19,7 +19,7 @@ the cap. [Capsule and digests](../../twins/m64-cylinder-head/evidence/f58-couple
 flowchart TD
     A["Native Marangoni BC:<br/>control case passed"] --> C["Coarse copy:<br/>one outer corrector"]
     B["Native sensors:<br/>sensitivity and ordering verified"] --> C
-    C --> D["Authorization tied to<br/>digests and Mesh OK"]
+    C --> D["Authorisation tied to<br/>digests and Mesh OK"]
     D --> E["Coupon rejected in adjustPhi<br/>at step 474"]
     E --> F["473 balances and 474 instants<br/>re-read on a common window"]
     F --> G["Physical qualification and<br/>manufacturing: not achieved"]
@@ -34,7 +34,7 @@ flowchart TD
 In the copy of the coarse 25 ns coupon, `nOuterCorrectors` goes from `0` to
 `1`. `momentumPredictor no`, the pressure corrections, the material, the
 Kelly/SuperGaussian source, the boundary conditions and the limiter are
-unchanged. No coefficient is tuned to obtain a favorable verdict.
+unchanged. No coefficient is tuned to obtain a favourable verdict.
 
 The [ORNL solver controls](https://ornl.github.io/AdditiveFOAM/docs/solver-controls/)
 identify `nOuterCorrectors=0` as thermal-only mode. The
@@ -79,7 +79,7 @@ preparation. It uses `CourantNo`, `div(phi)`, `volFieldValue/maxMag` and
 `surfaceFieldValue/sumMag` on the three patches `top/bottom/sides`.
 
 A second C++ executable imposes `U=s·(1000x,2000y,3000z)` and the flux of that
-velocity at the face centers. It uses the native `Time::run` loop, with
+velocity at the face centres. It uses the native `Time::run` loop, with
 three successive states `s=1,2,−1`, without solving any PDE. The initial zero
 state and **each of the three completed steps**, the last one included, are
 compared with a separate algebraic oracle.
@@ -131,7 +131,7 @@ does not turn this operator into a validated enthalpy model.
 
 The integrity contract is fixed **before** the run: all pre-existing files
 must remain identical. Only `0/f58_Co` and `0/f58_divPhi`
-are admitted as new initial fields produced by the sensors, a behavior
+are admitted as new initial fields produced by the sensors, a behaviour
 demonstrated by the native control case. Historical F58 rejections are not rewritten.
 
 ## Actual result: coupling rejected, partial reading only
@@ -205,7 +205,7 @@ ranges; their presence does not establish their validity at 3,300 K.
 
 The activation tested adds melt-pool flow to the existing model.
 It creates neither a free surface/keyhole, nor evaporation, nor mass loss:
-the limiting term is not a latent heat of vaporization.
+the limiting term is not a latent heat of vaporisation.
 A defensible physical recipe still requires the missing properties and
 reference measurements. See the [material/process campaign](M64_700CH_MATERIAL_COOLING_LPBF.md).
 
@@ -220,4 +220,4 @@ fatal step without a balance and rejection of offset/duplicated time grids.
 These results do not replace `make check` for the publication checkpoint.
 The Mermaid is provided as source; no executed rendering is claimed here.
 No Vast rental in this sub-batch, no private CAD geometry published,
-no authorization to print or to start an engine.
+no authorisation to print or to start an engine.

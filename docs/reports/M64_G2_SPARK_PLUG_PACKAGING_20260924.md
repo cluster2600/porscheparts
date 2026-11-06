@@ -2,7 +2,7 @@
 
 **Two spark plug envelopes and their stepped wells are added as an option to the G2.**
 The external shape, the valve positions and the interfaces of the G2 do not change.
-This model remains synthetic: **neither a fitted M64 cylinder head, nor a part authorized for printing**.
+This model remains synthetic: **neither a fitted M64 cylinder head, nor a part authorised for printing**.
 No Vast rental was needed.
 
 ## Results

@@ -3,7 +3,7 @@
 This separate increment prepares authored English CPT passages and synthetic,
 supplied-record SFT conversations from the reviewed
 [measurement register](../../catalog/reference/m64-world-measurements-20261025/facts.json).
-It prepares data only. No model training, tokenization, context-fit evaluation or
+It prepares data only. No model training, tokenisation, context-fit evaluation or
 weights are produced.
 
 | Dataset | Train | Validation | Test |
@@ -90,7 +90,7 @@ reserved IDs, counts, reconstructed connected components, all five prior
 partition constraints, exact trainer registrations, native message roles,
 stable citations, exact authored answers and full measurement metadata. Each
 accepted record appears once in each dataset; refreshed hashes and inflated
-counts cannot legitimize duplicated targets.
+counts cannot legitimise duplicated targets.
 
 All 28 focused tests pass. They cover deterministic isolated rebuilds, frozen
 fourth/fifth-pack dependency coverage, accepted/excluded ID reservation,

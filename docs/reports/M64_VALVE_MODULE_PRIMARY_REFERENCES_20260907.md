@@ -2,7 +2,7 @@
 
 ## Concrete contribution
 
-The [MAHLE manufacturer catalog, Valve Train Components 2025, v002](https://www.mahle-aftermarket.com/media/homepage/facelift/media-center/product-catalogs/mahle_valve_train_components_catalog_2025_screen_v002.pdf)
+The [MAHLE manufacturer catalogue, Valve Train Components 2025, v002](https://www.mahle-aftermarket.com/media/homepage/facelift/media-center/product-catalogs/mahle_valve_train_components_catalog_2025_screen_v002.pdf)
 gives two real references for **M64.01–03 Carrera / Carrera 4, two
 valves per cylinder**, PDF p.825 / printed page 823, line 14:
 
@@ -13,7 +13,7 @@ valves per cylinder**, PDF p.825 / printed page 823, line 14:
 
 The columns and header drawings were checked visually following the
 PDF skill. **45° refers to the valve seat face, not to the inclination of its axis.**
-This line is neither Turbo nor four-valve. The catalog values do not
+This line is neither Turbo nor four-valve. The catalogue values do not
 include manufacturing tolerances.
 
 The same document distinguishes two fits:
@@ -22,8 +22,8 @@ The same document distinguishes two fits:
 | --- | --- | --- |
 | Stem-to-guide, 6–7 mm stem | Intake 10–40 µm; exhaust 25–55 µm | PDF p.27 / printed 25 |
 | Stem-to-guide, 8–9 mm stem | Intake 20–50 µm; exhaust 35–65 µm | Same table |
-| Seat insert OD 30–40 mm in aluminum cylinder head | Interference 0.050–0.090 mm | PDF p.30 / printed 28 |
-| Seat insert OD 40–50 mm in aluminum cylinder head | Interference 0.060–0.100 mm | Same table |
+| Seat insert OD 30–40 mm in aluminium cylinder head | Interference 0.050–0.090 mm | PDF p.30 / printed 28 |
+| Seat insert OD 40–50 mm in aluminium cylinder head | Interference 0.060–0.100 mm | Same table |
 
 The stem-to-guide table does not literally state "radial/diametral" nor a
 measurement temperature. The seat table does not settle which range applies to
@@ -52,7 +52,7 @@ without modifying the interface contract.
 
 ## Traceability and verification
 
-The link was followed from the [official MAHLE catalogs page](https://www.mahle-aftermarket.com/eu/en/media-center/product-catalogs/).
+The link was followed from the [official MAHLE catalogues page](https://www.mahle-aftermarket.com/eu/en/media-center/product-catalogs/).
 The privately downloaded file has 1,161 pages and 15,373,822 bytes; SHA-256
 `d9be89be7a5bb369f7bcf7d20477661f4e93355fc24c362734403c91b346e2c9`.
 The old link `mahle_valves_catalog_2025_screen.pdf` returns 404; the file
@@ -62,4 +62,4 @@ remains 2025. PDF pages 27, 29, 30 and 825 checked visually.
 
 The [structured facts](../../twins/m64-cylinder-head/valve-module-documentary-references-20260907.json)
 keep the variants, locators and limits. No manufacturer PDF or figure
-is added to the repository. **No manufacturing authorization.**
+is added to the repository. **No manufacturing authorisation.**

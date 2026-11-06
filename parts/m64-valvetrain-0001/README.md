@@ -24,7 +24,7 @@ The 4-valve M64 head module itself is owned by the separate `wt-head` lane
 - `source/picogk/build-in-station.sh` — compile/run inside the qualified
   `picogk-station` image.
 - `provenance.json` — per-field provenance (sourced / declared / assumption /
-  optimization), every non-sourced value labelled.
+  optimisation), every non-sourced value labelled.
 - `printability.md` — honest LPBF assessment against `SAFETY.md`.
 - `validation/` — compile/run report from the picogk-station container
   (`run-report.json` + a `COMPILE_VERDICT.md` summary). Absence of a report
@@ -46,5 +46,5 @@ code; the station container is the qualified build path for this lane.
 
 Nothing here is measured, fitted, tested, safe or manufacturing-ready.
 Engine-critical parts are `prohibited_pending_engineering` per
-[SAFETY.md](../../docs/SAFETY.md): a calculation never authorizes manufacturing.
+[SAFETY.md](../../docs/SAFETY.md): a calculation never authorises manufacturing.
 The camshaft is a layout hypothesis, not a claimed M64 cam profile.

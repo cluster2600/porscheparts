@@ -41,7 +41,7 @@ the same manufacturer family, not an independent physical inspection.
 Records M64-MEAS-B001 through B012 preserve the supplier's dimensions and
 definitions. Remaining B records distinguish component-SKU data and an explicitly
 derived 964/993 width comparison. These catalogue limits are not Porsche wear
-limits, a machining authorization or load-capacity evidence for a modified engine.
+limits, a machining authorisation or load-capacity evidence for a modified engine.
 
 ## Pistons, pins, rings and seals
 
@@ -139,7 +139,7 @@ documents in this environment. The exhaust-angle OCR and 18 image-only or
 ambiguous comparison rows remain excluded with null values. Their source hashes
 identify reader text or availability receipts, not original PDF bytes. Excluded
 rows create no training targets. The excluded-lead register is useful for a
-future authorized document inspection, not numerical reuse.
+future authorised document inspection, not numerical reuse.
 
 ## Repository and training hand-off
 

@@ -6,7 +6,7 @@ thermal solver nor a new printable part.
 
 ## Operations actually run
 
-1. Reading of the STL in explicit millimeters, without displacement, scaling or
+1. Reading of the STL in explicit millimetres, without displacement, scaling or
    smoothing. The assumption `1 scan unit = 1 mm` remains non-certified.
 2. Construction of an analytical signed-distance box enclosing the mesh, with an
    exploratory margin of **20 mm on each side**.
@@ -156,7 +156,7 @@ The output directory must be new. The input STL can be mounted read-only. The
 exit codes are: `0` for geometry generated and volumetric checks passed, `3` for
 a volumetric partition warning, `1` for an error and `2` for refused arguments.
 A sampled occupancy anomaly also produces code `3`. None of these states means
-a physical validation or a manufacturing authorization.
+a physical validation or a manufacturing authorisation.
 
 Sources: [pinned PicoGK](https://github.com/leap71/PicoGK/tree/0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3),
 [pinned PicoGKRuntime](https://github.com/leap71/PicoGKRuntime/tree/0f26321c18ed878a7820ef769c38fd5d49d39242).

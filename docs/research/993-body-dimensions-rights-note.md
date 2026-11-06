@@ -22,12 +22,12 @@ what it has checked and what only the owner can decide.
 
 ## The copies already used
 
-Both workshop-manual records state that the digitized copy consulted was read
+Both workshop-manual records state that the digitised copy consulted was read
 locally, was not added to the repository, and has **undocumented provenance**.
 Every manual value in the catalogue — `MEAS-MANUAL-993-ALL` (2,496 values) and
 `MEAS-MANUAL-964-BODY-CONTROL` (50 values) — therefore rests on copies whose
 origin is not documented. Accepting those copies as the project's reference, or
-replacing them with an authorized copy, is an **owner decision**; until it is
+replacing them with an authorised copy, is an **owner decision**; until it is
 taken, these values are transcriptions from an undocumented copy, not checked
 references.
 
@@ -82,7 +82,7 @@ anything.*
 ## Owner decisions
 
 1. Accept the locally consulted 964 and 993 manual copies as the project's
-   reference, or replace them with an authorized copy.
+   reference, or replace them with an authorised copy.
 2. Whether to buy the WKD 483 121 set, or to ask a Porsche Centre whether
    volume V is sold on its own. No purchase has been made.
 3. Whether to write to Celette (564.307 against 564.330, and the reuse terms of

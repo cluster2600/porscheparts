@@ -40,15 +40,15 @@ enclosures with properties built to vary the coupling. Their monolithic solver
 is numerically interesting; its performance does not prove compatibility with
 compressible combustion, oil, or seat/guide contacts.[^5]
 
-CFDverify makes it easier to estimate discretization errors and even reveals
+CFDverify makes it easier to estimate discretisation errors and even reveals
 copying/rounding errors in published examples. Its scope is **solution
 verification**, without comparison to the physical system. The precision of
 exported data must be preserved and the Richardson/GCI assumptions examined;
 three arbitrary meshes do not make every extrapolation valid.[^6]
 
 GINO and DoMINO mainly learn aerodynamic CFD results on automotive
-families.[^7][^8] Their value is to amortize a repetitive campaign over a known
-domain. Convergence of a learned operator with respect to discretization is not
+families.[^7][^8] Their value is to amortise a repetitive campaign over a known
+domain. Convergence of a learned operator with respect to discretisation is not
 evidence of convergence to the real physics. A model trained on OpenFOAM also
 reproduces its biases. It is neither an independent second solver nor an
 experimental validation.
@@ -77,7 +77,7 @@ code.
    [multiphysics checkpoint](../reports/M64_MULTIPHYSICS_EXECUTION.md), then build
    separate gas, solid, air and possibly oil domains. Fix normals, units,
    contacts and exchange surfaces. The documented mesh rejection remains a
-   blocker before CFD labeling; research does not lift it.
+   blocker before CFD labelling; research does not lift it.
 2. **Quasi-steady intake.** At imposed lifts and defined flow-bench boundaries,
    compare 2V/4V by flow rate, discharge coefficient, total pressure loss and
    swirl/tumble structures. Use compressibility if the pressure/Mach ratios
@@ -124,7 +124,7 @@ code.
 | Level | Criteria to fix before the campaign |
 | --- | --- |
 | Conservation | Mass and species; gas/solid/air/oil energy; flux continuity at interfaces; FEA force and moment balance |
-| Discretization | Three consistent levels in space and time, observed order/error interval if applicable; converged statistics for LES |
+| Discretisation | Three consistent levels in space and time, observed order/error interval if applicable; converged statistics for LES |
 | Physical reality | Bench flow rate/pressure, phased cylinder pressure, thermocouples at the bridges/seats and inlets/outlets, oil and air flow rates; sensor uncertainty |
 | Learned model | Local and maximum absolute error, weighted L2, KPI error, ranking errors, coverage of calibrated intervals, out-of-domain detection |
 | Cost | Measured time and memory, CPU/GPU-hours, data + training + recomputations, tokens and repairs per accepted case |
@@ -190,7 +190,7 @@ use. No result later than September 12, 2026 is used.
     *OpenFOAM Journal* 5, 38–58; March 7, 2025.
     Peer-reviewed article, PDF consulted, §2–4 and conclusions.
     [Code and cases](https://github.com/tandise/ConjugateHeatTransfer-OpenFOAM)
-    on foam-extend-4.0; reuse license of the repository not established here.
+    on foam-extend-4.0; reuse licence of the repository not established here.
     Enclosure benchmarks, not forced-convection engine fins, nor oil.
 
 [^6]: Justin Weinmeister, Devina P. Sanjaya.
@@ -206,11 +206,11 @@ use. No result later than September 12, 2026 is used.
     *NeurIPS 2023*, preprint of September 1, 2023; peer-reviewed conference
     paper, proceedings PDF consulted, §1–4.
     [Maintained implementation](https://github.com/neuraloperator/neuraloperator/blob/main/neuralop/models/gino.py).
-    Ahmed/ShapeNet, surface pressure; versions, weights and licenses of each
+    Ahmed/ShapeNet, surface pressure; versions, weights and licences of each
     dataset to be locked separately before reproduction.
 
 [^8]: Rishikesh Ranade et al.
-    [DoMINO: A Decomposable Multi-scale Iterative Neural Operator for Modeling Large Scale Engineering Simulations](https://arxiv.org/html/2501.13350v1).
+    [DoMINO: A Decomposable Multi-scale Iterative Neural Operator for Modelling Large Scale Engineering Simulations](https://arxiv.org/html/2501.13350v1).
     arXiv preprint v1, January 23, 2025; text consulted, §2–4.
     [PhysicsNeMo code](https://github.com/NVIDIA/physicsnemo/tree/main/examples/cfd/external_aerodynamics/domino).
     DrivAerML: 500 variants, 10 % held out for test, about 150 million volume

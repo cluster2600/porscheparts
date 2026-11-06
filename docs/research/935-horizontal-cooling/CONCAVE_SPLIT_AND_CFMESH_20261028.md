@@ -88,7 +88,7 @@ The private case, full logs, build patch, and run scripts are saved in
 SHA-256 `01e15c547ba0b9361ca1ba26726d2baa9956c031e1ad82f7d0a30721a6080819`.
 The GitHub release asset digest matched this archive after upload.
 
-The `checkMesh -writeSurfaces` VTK points localize all six skew-face surfaces,
+The `checkMesh -writeSurfaces` VTK points localise all six skew-face surfaces,
 all 74 low-quality face-tet surfaces, and all 51 non-orthogonality error
 surfaces within the provisional rotor-neighbourhood screen
 `hypot(x,y) < 0.145 m` and `abs(z) < 0.05 m`. The same screen includes all
@@ -180,7 +180,7 @@ Both release asset digests matched after upload.
 
 ## Bounded next geometry step
 
-The unchanged rotor contains 24 faces below normalized quality 0.01 and 113
+The unchanged rotor contains 24 faces below normalised quality 0.01 and 113
 below 0.05. A conservative edge-flip proposal requiring nearly coplanar
 adjacent faces and no vertex movement found only one eligible disjoint pair.
 That proposal reduced the count below 0.05 from 113 to 111, but left all 24

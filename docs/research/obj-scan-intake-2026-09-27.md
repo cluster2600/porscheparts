@@ -60,7 +60,7 @@ Segmentation by z/y clustering + radial section profiles
   confirmed**. The void edges per slice (void r≈21–29, rmax
   43–62 above the tooth plane) suggest a conical hub rather than a clean
   cylindrical bore.
-- Upper pulley (center derived per slice, ≈ (−84; 55)): axial height
+- Upper pulley (centre derived per slice, ≈ (−84; 55)): axial height
   202.2; OD varies by slice ⌀219–256 (conical flanks / multiple
   flanges); hole ⌀ ≈ 17.3 at z∈[346,354] (1st percentile, lower bound).
 - **Tooth count: NOT resolved.** The angular coverage of the tooth bands is

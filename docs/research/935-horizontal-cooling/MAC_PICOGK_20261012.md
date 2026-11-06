@@ -1,191 +1,191 @@
-# 935 — bibliothèques PicoGK et calculs sur le Mac
+# 935 — PicoGK libraries and calculations on the Mac
 
-La chaîne utilise maintenant les bibliothèques LEAP71 sur le Mac pour étudier
-les pieds du rotor, sonder les épaisseurs et échanger géométrie et champs de
-simulation en VDB. **Cinq calculs centrifuges et un point CFD concernent le
-nouveau rotor à neuf pales individuelles.** Leurs contrôles révèlent encore
-une convergence insuffisante ; ils ne valident pas un montage fabricable.
+The chain now uses the LEAP71 libraries on the Mac to study
+the rotor roots, probe thicknesses and exchange geometry and simulation
+fields as VDB. **Five centrifugal calculations and one CFD point concern the
+new rotor with nine individual blades.** Their checks still reveal
+insufficient convergence; they do not validate a manufacturable assembly.
 
-Le [reçu d'exécution](mac-picogk-20261012.json) donne les empreintes, versions,
-résultats et rejets. Les scans, géométries, champs, cas et fichiers solveur
-restent dans l'[archive privée](https://github.com/cluster2600/porscheparts-935-private/releases/tag/mac-picogk-20261012).
-Le programme reste celui de la 935 historique, avec son moteur six cylindres
-et ses interfaces encore à mesurer. Aucune machine Vast n'est utilisée.
+The [run receipt](mac-picogk-20261012.json) gives the digests, versions,
+results and rejections. The scans, geometries, fields, cases and solver files
+remain in the [private archive](https://github.com/cluster2600/porscheparts-935-private/releases/tag/mac-picogk-20261012).
+The programme remains that of the historical 935, with its six-cylinder engine
+and its interfaces still to be measured. No Vast machine is used.
 
-## Bibliothèques qualifiées
+## Qualified libraries
 
-PicoGK 2.3/Core 26.2.0 et .NET 9.0.318 tournent nativement en `osx-arm64`.
-Les quatre dépôts suivants sont figés dans le
-[verrou des bibliothèques](../../../twins/935-horizontal-cooling-system-f0/source/picogk-mac-study/libraries.lock.json).
-Leurs sources sont compilées avec le noyau déjà installé, sans modifier les
-anciens programmes ni leurs preuves. Compilation : zéro erreur et 98
-avertissements d'API obsolètes dans les bibliothèques amont.
+PicoGK 2.3/Core 26.2.0 and .NET 9.0.318 run natively on `osx-arm64`.
+The following four repositories are frozen in the
+[library lock](../../../twins/935-horizontal-cooling-system-f0/source/picogk-mac-study/libraries.lock.json).
+Their sources are compiled with the already installed kernel, without modifying the
+old programs or their evidence. Compilation: zero errors and 98
+obsolete-API warnings in the upstream libraries.
 
-| Bibliothèque | Utilisation effective | Vérification |
+| Library | Actual use | Verification |
 |---|---|---|
-| [ShapeKernel](https://github.com/leap71/LEAP71_ShapeKernel) | Repères, cylindres, tubes, masque annulaire des pieds et domaine fluide | Volume d'un tube analytique : erreur 0,049 % ; rayons donnant 9,6 mm pour une paroi de 10 mm sur une grille de 0,6 mm |
-| [LatticeLibrary](https://github.com/leap71/LEAP71_LatticeLibrary) | Témoin de treillis BCC borné à un tube | Volume positif inférieur au solide enveloppe ; aucune insertion dans la réplique historique |
-| [QuasiCrystals](https://github.com/leap71/LEAP71_QuasiCrystals) | Sources compilées avec les autres bibliothèques | Compilation seulement ; aucune géométrie 935 ne justifie son usage actuellement |
-| [SimulationExample](https://github.com/leap71/PicoGK_SimulationExample) | Lecteur officiel du protocole fluide à cinq champs VDB | Lecture réelle et contrôle des champs par nom ; géométrie, densité, viscosité et vitesse initiale |
+| [ShapeKernel](https://github.com/leap71/LEAP71_ShapeKernel) | Frames, cylinders, tubes, annular root mask and fluid domain | Volume of an analytical tube: error 0.049 %; radii giving 9.6 mm for a 10 mm wall on a 0.6 mm grid |
+| [LatticeLibrary](https://github.com/leap71/LEAP71_LatticeLibrary) | BCC lattice witness bounded to a tube | Positive volume below the envelope solid; no insertion into the historical replica |
+| [QuasiCrystals](https://github.com/leap71/LEAP71_QuasiCrystals) | Sources compiled with the other libraries | Compilation only; no 935 geometry currently justifies its use |
+| [SimulationExample](https://github.com/leap71/PicoGK_SimulationExample) | Official reader for the five-field VDB fluid protocol | Real read and check of the fields by name; geometry, density, viscosity and initial velocity |
 
-ShapeKernel, LatticeLibrary et QuasiCrystals sont sous Apache-2.0. Le fichier
-`src/SimpleFluidSimulationInput.cs` porte SPDX CC0-1.0 ; aucune licence globale
-n'est supposée pour les autres fichiers du dépôt SimulationExample.
-Les nouveaux types contractuels PicoGK.Geometry demandent .NET 10/C# 14 et ne
-sont pas nécessaires à cette chaîne .NET 9. Les exemples HeatX/RoverWheel ne
-définissent pas une 935. Les vis génériques du projet tiers PicoGK-Fasteners
-ne remplacent pas la mesure des fixations du spécimen.
+ShapeKernel, LatticeLibrary and QuasiCrystals are under Apache-2.0. The file
+`src/SimpleFluidSimulationInput.cs` carries SPDX CC0-1.0; no global licence
+is assumed for the other files of the SimulationExample repository.
+The new PicoGK.Geometry contract types require .NET 10/C# 14 and are
+not needed for this .NET 9 chain. The HeatX/RoverWheel examples do not
+define a 935. The generic screws of the third-party PicoGK-Fasteners project
+do not replace measurement of the specimen's fasteners.
 
-## Géométrie conservée et raccords proposés
+## Retained geometry and proposed blends
 
-Le [programme C#](../../../twins/935-horizontal-cooling-system-f0/source/picogk-mac-study/Program.cs)
-charge le rotor natif de la campagne précédente et le revoxelise à 0,6 mm
-supposé. Ce passage constitue une nouvelle référence numérique ; il ne
-garantit pas l'égalité avec les triangles d'origine ou le scan.
+The [C# program](../../../twins/935-horizontal-cooling-system-f0/source/picogk-mac-study/Program.cs)
+loads the native rotor from the previous campaign and revoxelises it at an assumed
+0.6 mm. This pass constitutes a new numerical reference; it does not
+guarantee equality with the original triangles or the scan.
 
-Trois fermetures morphologiques sont examinées : 0, 0,6 et 1,2 mm. Le programme
-retient uniquement leurs **ajouts** dans l'anneau r = 25…95 mm, z = −30…40 mm.
-Les premières sections acquises se trouvent à une station de 98 unités source
-ou plus, mesurée sur l'axe radial de chaque pale. La garde ne repose pas sur
-une PCA. Le programme vérifie une provenance acquise pour chacune des neuf
-pales, l'absence de suppression de matière, l'absence d'ajout dans l'alésage
-et l'absence de changement hors du masque.
+Three morphological closings are examined: 0, 0.6 and 1.2 mm. The program
+retains only their **additions** in the ring r = 25…95 mm, z = −30…40 mm.
+The first acquired sections lie at a station of 98 source units
+or more, measured on the radial axis of each blade. The guard does not rely on
+a PCA. The program verifies an acquired provenance for each of the nine
+blades, the absence of material removal, the absence of additions in the bore
+and the absence of change outside the mask.
 
-Un contrôle indépendant compare exactement les triangles à r ≥ 98 mm entre
-chaque variante et la référence revoxelisée : ils sont identiques. Les trois
-maillages ont chacun une composante, sont fermés, orientés de façon cohérente
-et possèdent uniquement des faces d'aire positive. Cela ne constitue pas une
-preuve générale d'absence d'auto-intersections.
-Ces ajouts restent des hypothèses de réparation des pieds absents ; aucun
-rayon de congé historique ou d'usinage n'est déclaré mesuré. La référence
-historique n'est pas remplacée par la variante de 1,2 mm.
+An independent check compares exactly the triangles at r ≥ 98 mm between
+each variant and the revoxelised reference: they are identical. The three
+meshes each have one component, are closed, consistently oriented
+and have only faces of positive area. This does not constitute a
+general proof of the absence of self-intersections.
+These additions remain repair hypotheses for the missing roots; no
+historical or machining fillet radius is declared measured. The historical
+reference is not replaced by the 1.2 mm variant.
 
-L'inspection visuelle superpose les points du scan au rotor et montre les
-variantes ainsi que les contraintes discrètes. Elle conserve l'asymétrie des
-pales. Le moyeu, le dos et les raccords hypothétiques restent visibles comme
-tels ; la superposition du scan entier ne qualifie pas le dos mal aligné.
+The visual inspection overlays the scan points on the rotor and shows the
+variants as well as the discrete stresses. It preserves the asymmetry of the
+blades. The hub, the back and the hypothetical blends remain visible as
+such; overlaying the whole scan does not qualify the misaligned back.
 
-## Épaisseurs et champs VDB
+## Thicknesses and VDB fields
 
-Les rayons sondent trois sections réellement acquises de chaque pale, avec
-une garde aux extrémités de l'intervalle disponible, à 16 positions du contour.
-Sur **432 sondes**, 426 produisent une longueur et six restent non résolues.
-Les longueurs normales mesurées sur cette grille vont de 0,6 à 18,49 mm, avec
-une médiane de 5,40 mm. Le minimum atteint la résolution du voxel : **ce n'est
-pas une épaisseur minimale globale ni une cote de fabrication**. Un rayon
-normal n'est pas une mesure exhaustive de la distance entre faces opposées.
-Toutes les sondes et tous les échecs sont conservés dans le VDB et son reçu.
+The rays probe three genuinely acquired sections of each blade, with
+a guard at the ends of the available interval, at 16 positions of the contour.
+Of **432 probes**, 426 produce a length and six remain unresolved.
+The normal lengths measured on this grid range from 0.6 to 18.49 mm, with
+a median of 5.40 mm. The minimum reaches the voxel resolution: **it is not
+a global minimum thickness nor a manufacturing dimension**. A normal ray
+is not an exhaustive measurement of the distance between opposite faces.
+All probes and all failures are kept in the VDB and its receipt.
 
-Trois types de VDB sont produits avec `PicoGK.OpenVdbFile` :
+Three types of VDB are produced with `PicoGK.OpenVdbFile`:
 
-- inspection : rotor et longueurs normales échantillonnées ;
-- entrée fluide : domaines solide/air, densité, viscosité cinématique et vitesse
-  axiale initiale ; le lecteur officiel accepte les cinq champs par nom ;
-- résultat mécanique : rotor, maxima des huit points de Gauss de chaque C3D8
-  aux centres des éléments et déplacements aux nœuds.
+- inspection: rotor and sampled normal lengths;
+- fluid input: solid/air domains, density, kinematic viscosity and initial axial
+  velocity; the official reader accepts the five fields by name;
+- mechanical result: rotor, maxima of the eight Gauss points of each C3D8
+  at the element centres, and nodal displacements.
 
-Le domaine d'entrée fluide est un cylindre d'essai de rayon 180 mm, haut de
-240 mm, rasterisé à 2 mm supposés. Il reste distinct du conduit carré du
-pilote OpenFOAM. Il n'exporte pas encore la condition de paroi tournante.
-L'export VDB est un protocole de données, pas un solveur CFD ni une validation
-SimReady complète. Les coordonnées géométriques restent en mm supposés ;
-densité, viscosité et vitesse portent explicitement leurs unités SI. Une
-conversion géométrique vers le mètre est nécessaire avant un calcul SI.
-Les résultats mécaniques restent **ponctuels et non interpolés** : un voxel
-sans valeur n'est pas une zone à contrainte nulle.
+The fluid input domain is a trial cylinder of radius 180 mm, 240 mm
+high, rasterised at an assumed 2 mm. It remains distinct from the square duct of the
+OpenFOAM pilot. It does not yet export the rotating-wall condition.
+The VDB export is a data protocol, not a CFD solver nor a complete SimReady
+validation. The geometric coordinates remain in assumed mm;
+density, viscosity and velocity explicitly carry their SI units. A
+geometric conversion to metres is necessary before an SI calculation.
+The mechanical results remain **pointwise and not interpolated**: a voxel
+without a value is not a zero-stress zone.
 
-## Calcul mécanique sur les neuf pales
+## Mechanical calculation on the nine blades
 
-PicoGK fournit les grilles de cellules dont le centre est dans le solide.
-Gmsh 4.12.1 prépare les C3D8 dans le conteneur local amd64 existant ; CalculiX
-2.21 résout nativement en Linux ARM64 dans Docker sur le Mac. Les solveurs
-physiques complètent le noyau géométrique PicoGK.
+PicoGK supplies the cell grids whose centre lies in the solid.
+Gmsh 4.12.1 prepares the C3D8 in the existing local amd64 container; CalculiX
+2.21 solves natively on Linux ARM64 in Docker on the Mac. The physical
+solvers complement the PicoGK geometric kernel.
 
-Hypothèses communes : 1 mm/unité source, 6 000 tr/min, matériau homogène,
-élasticité linéaire, coefficient de Poisson 0,33 et alésage immobilisé en
-translation. La largeur de sélection des nœuds de l'alésage suit le pas de la
-grille. Cette discrétisation de l'appui évolue donc avec le maillage ; son
-effet n'est pas séparé de celui des cellules. Ni pression d'air, ni température,
-ni contacts d'arbre, ni précontrainte réelle de serrage ne sont appliqués.
+Common assumptions: 1 mm/source unit, 6,000 rpm, homogeneous material,
+linear elasticity, Poisson's ratio 0.33 and bore fixed in
+translation. The selection width of the bore nodes follows the grid
+pitch. This discretisation of the support therefore changes with the mesh; its
+effect is not separated from that of the cells. No air pressure, no temperature,
+no shaft contacts and no real clamping preload are applied.
 
-| Matériau, grille 1,5 mm | Masse conditionnelle de la CAO revoxelisée | Pic de von Mises | Déplacement maximal |
+| Material, 1.5 mm grid | Conditional mass of the revoxelised CAD | Von Mises peak | Maximum displacement |
 |---|---:|---:|---:|
-| AlSi10Mg | 1,158 kg | 176,9 MPa | 0,816 mm |
-| WE43 | 0,794 kg | 121,2 MPa | 0,887 mm |
-| Ti‑6Al‑4V | 1,909 kg | 291,5 MPa | 0,855 mm |
+| AlSi10Mg | 1.158 kg | 176.9 MPa | 0.816 mm |
+| WE43 | 0.794 kg | 121.2 MPa | 0.887 mm |
+| Ti‑6Al‑4V | 1.909 kg | 291.5 MPa | 0.855 mm |
 
-Les masses de CAO utilisent l'intégration indépendante des triangles et les
-densités des cartes existantes. La grille FEA de 1,5 mm représente un volume
-2,69 % supérieur à cette géométrie et possède donc une masse distincte dans
-son reçu. Les cartes ne qualifient ni le procédé d'impression ni les limites
-de fatigue du spécimen. Les pics peuvent inclure des concentrations liées
-aux appuis et aux marches des voxels. Ces trois lignes ne déterminent pas
-un matériau vainqueur ou une vitesse admissible.
+The CAD masses use independent integration of the triangles and the
+densities from the existing cards. The 1.5 mm FEA grid represents a volume
+2.69 % larger than this geometry and therefore has a distinct mass in
+its receipt. The cards qualify neither the printing process nor the fatigue
+limits of the specimen. The peaks may include concentrations linked
+to the supports and to the voxel steps. These three rows do not determine
+a winning material or an admissible speed.
 
-Pour l'aluminium, les grilles 1,5 → 1,35 → 1,2 mm donnent respectivement
-**0,816 → 0,941 → 1,160 mm** de déplacement maximal et
-**176,9 → 202,5 → 199,7 MPa** de contrainte maximale. Entre les deux grilles
-fines, le percentile 95 des maxima par élément hors r < 25 mm change de
-3,55 %, mais le déplacement change encore de **23,31 %**. La convergence
-mécanique exigée n'est donc pas acquise.
+For aluminium, the grids 1.5 → 1.35 → 1.2 mm give respectively
+**0.816 → 0.941 → 1.160 mm** maximum displacement and
+**176.9 → 202.5 → 199.7 MPa** maximum stress. Between the two fine
+grids, the 95th percentile of the per-element maxima outside r < 25 mm changes by
+3.55 %, but the displacement still changes by **23.31 %**. The required mechanical
+convergence is therefore not achieved.
 
-Les grilles de 3 et 2 mm sont rejetées pour fragments déconnectés :
-respectivement 17 et quatre cellules hors de la composante principale.
-Aucune n'est éliminée pour faire passer un calcul. La grille de 1,8 mm est
-connexe mais échoue au contrôle de volume de 6 %. Les trois grilles retenues
-pour le raffinement sont intégralement connexes.
+The 3 and 2 mm grids are rejected for disconnected fragments:
+17 and four cells outside the main component respectively.
+None is removed to make a calculation pass. The 1.8 mm grid is
+connected but fails the 6 % volume check. The three grids retained
+for refinement are fully connected.
 
-L'[analyseur](../../../twins/935-horizontal-cooling-system-f0/source/assess_mac_fea.py)
-vérifie les empreintes, tous les nœuds, les huit points de Gauss de chaque
-élément et toutes les réactions de l'alésage. Les forces et moments ferment
-avec des erreurs relatives inférieures à 2 × 10⁻⁹ pour les trois matériaux
-de la grille 1,5 mm, normalisées par les sommes des charges centrifuges en
-valeur absolue. Une vérification indépendante retrouve les rapports de
-contrainte proportionnels à la densité et de déplacement proportionnels
-à densité/module d'Young, sous les hypothèses communes.
+The [analyser](../../../twins/935-horizontal-cooling-system-f0/source/assess_mac_fea.py)
+checks the digests, every node, the eight Gauss points of each
+element and every bore reaction. Forces and moments close
+with relative errors below 2 × 10⁻⁹ for the three materials
+of the 1.5 mm grid, normalised by the sums of the centrifugal loads in
+absolute value. An independent check recovers stress ratios
+proportional to density and displacement ratios proportional
+to density/Young's modulus, under the common assumptions.
 
-Le centre de masse de cette reconstruction se trouve à **2,53 mm supposés**
-de l'axe. À 6 000 tr/min, le modèle rigide donne une force de balourd
-conditionnelle d'environ **1,16 kN en aluminium**. Ce résultat peut provenir
-des formes reconstruites, des fermetures ou du recalage ; il ne mesure pas le
-balourd du ventilateur réel. Il faut résoudre son origine et prévoir un
-équilibrage mesuré avant dimensionnement des appuis ou fabrication.
+The centre of mass of this reconstruction lies **2.53 assumed mm**
+from the axis. At 6,000 rpm, the rigid model gives a conditional unbalance
+force of about **1.16 kN in aluminium**. This result may come
+from the reconstructed shapes, the closings or the registration; it does not measure the
+unbalance of the real fan. Its origin must be resolved and a measured
+balancing planned before sizing the supports or manufacturing.
 
-## Point CFD et suite des calculs
+## CFD point and next calculations
 
-Le nouveau rotor fermé est placé dans le conduit carré hypothétique déjà
-défini : 0,6 m³/s imposé, +6 000 tr/min, air à 1,15 kg/m³ et viscosité
-cinématique 1,55 × 10⁻⁵ m²/s. OpenCFD v2406 ARM64 exécute MRF/k‑ω SST sur le
-Mac. Le maillage passe `checkMesh` avec `Mesh OK.` et 500 itérations se terminent.
+The new closed rotor is placed in the hypothetical square duct already
+defined: 0.6 m³/s imposed, +6,000 rpm, air at 1.15 kg/m³ and kinematic
+viscosity 1.55 × 10⁻⁵ m²/s. OpenCFD v2406 ARM64 runs MRF/k‑ω SST on the
+Mac. The mesh passes `checkMesh` with `Mesh OK.` and 500 iterations complete.
 
-Sur les 100 dernières itérations, le déséquilibre massique maximal est
-2,03 × 10⁻⁸ relatif. La pression totale moyenne vaut 155,5 Pa et le couple
-résistant moyen 2,505 N·m, mais leurs variations crête à crête atteignent
-**6,04 % et 1,74 %**. La dérive entre fenêtres de 100 itérations atteint
-3,74 % et 1,01 %. Le seuil de stationnarité de 1 % est dépassé : **point rejeté**.
-Ces valeurs décrivent une itération de calcul ; elles ne sont ni une courbe
-935 acceptée ni des données d'apprentissage PhysicsNeMo.
+Over the last 100 iterations, the maximum mass imbalance is
+2.03 × 10⁻⁸ relative. The mean total pressure is 155.5 Pa and the mean resisting
+torque 2.505 N·m, but their peak-to-peak variations reach
+**6.04 % and 1.74 %**. The drift between 100-iteration windows reaches
+3.74 % and 1.01 %. The 1 % stationarity threshold is exceeded: **point rejected**.
+These values describe one calculation iteration; they are neither an accepted 935
+curve nor PhysicsNeMo training data.
 
-La prochaine correction doit traiter la définition des surfaces et des appuis
-du moyeu, la représentation mécanique des pales et les conditions du vrai
-carter. Le raffinement CFD à trois maillages reste à effectuer après acceptation
-du pilote ; un calcul transitoire devient pertinent si la configuration ne
-permet pas un état stationnaire représentatif. Les variantes de pales ne
-doivent pas être classées par un débit non convergé. Les engrenages, roulements,
-retenues, joints et fixations du mécanisme restent soumis aux 17 interfaces
-documentées et aux mesures manquantes.
+The next correction must address the definition of the hub surfaces and supports,
+the mechanical representation of the blades and the conditions of the real
+housing. Three-mesh CFD refinement remains to be done after acceptance
+of the pilot; a transient calculation becomes relevant if the configuration does not
+allow a representative steady state. The blade variants must not
+be ranked by an unconverged flow rate. The gears, bearings,
+retainers, seals and fasteners of the mechanism remain subject to the 17 documented
+interfaces and to the missing measurements.
 
 ## Reproduction
 
-Conserver les anciens résultats et créer un nouveau dossier sous `work/`.
-Les arguments de cas sont privés ; chaque cas donne les chemins et SHA-256 du
-rotor et des sections, `purpose: hypothesis_screen`, `scale_verified: false`
-et `scale_mm_per_source_unit: 1`. Les paramètres fluide figurent dans le cas
-archivé. Le mode `fea-fields` demande aussi l'analyse FEA, les deux CSV, leurs
-empreintes et leurs comptes de lignes ; il refuse une analyse déséquilibrée.
+Keep the old results and create a new directory under `work/`.
+The case arguments are private; each case gives the paths and SHA-256 of the
+rotor and of the sections, `purpose: hypothesis_screen`, `scale_verified: false`
+and `scale_mm_per_source_unit: 1`. The fluid parameters appear in the archived
+case. The `fea-fields` mode also requires the FEA analysis, the two CSVs, their
+digests and their row counts; it refuses an unbalanced analysis.
 
-Avec Git, récupérer chacun des quatre dépôts dans un nouveau répertoire et
-vérifier les révisions avant compilation :
+With Git, fetch each of the four repositories into a new directory and
+verify the revisions before compilation:
 
 ```sh
 python3 - <<'PY'
@@ -203,21 +203,21 @@ for item in pins['libraries']:
 PY
 dotnet build twins/935-horizontal-cooling-system-f0/source/picogk-mac-study/MacStudy935.csproj \
   -c Release -p:PicoGKAssembly=/PRIVATE/PicoGK.dll -p:UpstreamRoot="$PWD/work/PRIVATE/upstream"
-# Utiliser la bibliothèque native osx-arm64 déjà qualifiée.
+# Use the already qualified native osx-arm64 library.
 DYLD_LIBRARY_PATH=/PRIVATE/PicoGK/native/osx-arm64 dotnet \
   twins/935-horizontal-cooling-system-f0/source/picogk-mac-study/bin/Release/net9.0/MacStudy935.dll \
   witness work/PRIVATE/new-witness
-# Répéter la même commande pour les modes roots, thickness, simulation et fea-fields,
-# avec le cas privé avant le nouveau dossier de sortie.
+# Repeat the same command for the roots, thickness, simulation and fea-fields modes,
+# with the private case before the new output directory.
 python twins/935-horizontal-cooling-system-f0/source/assess_mac_fea.py \
   work/PRIVATE/prepared work/PRIVATE/solved work/PRIVATE/new-assessment
 python -m unittest discover -s tests -p test_935_mac_picogk.py -v
 make check
 ```
 
-Les scripts existants `prepare_candidate_fea.py`, `run_candidate_fea.sh`,
-`prepare_candidate_cfd.py`, `run_candidate_cfd.sh` et `assess_candidate_cfd.py`
-restent réutilisés, sans changement. Les journaux et reçus privés gardent les
-commandes et entrées exactes. Le logiciel et les essais sur hypothèses avancent ;
-la compatibilité historique, la calibration, la qualification matière/procédé
-et les essais physiques restent ouverts.
+The existing scripts `prepare_candidate_fea.py`, `run_candidate_fea.sh`,
+`prepare_candidate_cfd.py`, `run_candidate_cfd.sh` and `assess_candidate_cfd.py`
+remain reused, unchanged. The private logs and receipts keep the exact
+commands and inputs. The software and the trials on hypotheses are advancing;
+historical compatibility, calibration, material/process qualification
+and physical tests remain open.

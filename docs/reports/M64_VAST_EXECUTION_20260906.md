@@ -36,7 +36,7 @@ presented as a billed amount.
 
 ## Next steps before any new spending
 
-1. Check the balance and cumulative spending within the authorized limit.
+1. Check the balance and cumulative spending within the authorised limit.
 2. Handle the API rate limiting (check cadence/backoff) without blindly
    relaunching creations or weakening the deletion checks.
 3. Qualify the NVIDIA runtime; require service logs and a real CUDA

@@ -1,14 +1,14 @@
-# Région droite corrigée — image des données réelles
+# Corrected right-hand region — image of the real data
 
-La [page illustrée](../right-supports.html) montre la région source 008 du
-passage `real-support-source-008-full-004`. Son graphe matériel passe :
-112 898 faces, 897 groupes et 20 composantes avec contacts supérieur et
-inférieur. Les admissions globales et l'audit des couches restent séparés.
+The [illustrated page](../right-supports.html) shows source region 008 of the
+`real-support-source-008-full-004` pass. Its material graph passes:
+112,898 faces, 897 groups and 20 components with upper and lower contacts.
+The global admissions and the layer audit remain separate.
 
-Le rendu charge le checkpoint avec `PreparedRegion`, qui contrôle les
-identités des entrées, sources, runtime, surfaces, métadonnées et graphe.
-La grille détaillée est le groupe `grid-1-49-3` ; ses triangles sont projetés
-dans leur plan réel Y = 92,445 mm. L'assertion du plan passe, sans déplacement.
+The render loads the checkpoint with `PreparedRegion`, which checks the
+identities of the inputs, sources, runtime, surfaces, metadata and graph.
+The detailed grid is group `grid-1-49-3`; its triangles are projected
+into their real plane Y = 92.445 mm. The plane assertion passes, with no offset.
 
 ```sh
 work/part-workflow/runtimes/pyslm-coverage-011/env/bin/python -B \
@@ -17,7 +17,7 @@ work/part-workflow/runtimes/pyslm-coverage-011/env/bin/python -B \
   work/part-workflow/region-images-new
 ```
 
-Le premier rendu, dont la vue de dessus était illisible pour des feuilles
-verticales, reste conservé et refusé éditorialement dans
-`work/part-workflow/region-images-001`. Le présent rendu et sa page ont été
-examinés ; leurs empreintes sont enregistrées dans `visual-qa.json`.
+The first render, whose top view was unreadable for vertical sheets, remains
+kept and editorially refused in `work/part-workflow/region-images-001`. The
+present render and its page have been reviewed; their digests are recorded in
+`visual-qa.json`.

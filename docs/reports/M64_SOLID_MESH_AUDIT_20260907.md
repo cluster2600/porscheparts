@@ -3,7 +3,7 @@
 ## Verdict
 
 Two tetrahedral volumes of the actual reference geometry exist, but
-**neither is qualified to validate the thermal behavior or the strength of the
+**neither is qualified to validate the thermal behaviour or the strength of the
 cylinder head**. No volume found among the F53/F54 candidates inspected comes
 directly from the exact F53 STEP `700baea…`. A volume mesh is therefore not
 missing in the computing sense; it is its quality, its demonstrated link to
@@ -11,7 +11,7 @@ the selected CAD and its physical boundaries that remain insufficient.
 
 ```mermaid
 flowchart LR
-    A["F50 native BREP<br/>10ff1a…"] --> B["F53 optimized MSH<br/>4f3dff…"]
+    A["F50 native BREP<br/>10ff1a…"] --> B["F53 optimised MSH<br/>4f3dff…"]
     C["F53 STEP<br/>700baea…"] --> D["F54 STEP<br/>825169…"]
     D --> E["F54 MSH<br/>b68dc3…"]
     B --> F["1,048 tets minSICN < 0.1<br/>0 physical groups"]
@@ -41,7 +41,7 @@ timeout 300 seconds, geometry mounted read-only. No remeshing,
 CAD change, physics solver or Vast spending. Both audits ended
 with the **expected code 2: failure of the project quality threshold**.
 
-| Check | F53 optimized | F54 merge of coplanar/co-surface faces |
+| Check | F53 optimised | F54 merge of coplanar/co-surface faces |
 |---|---:|---:|
 | Linear tetrahedra | 1,906,364 | 1,894,579 |
 | Nodes | 369,536 | 367,329 |
@@ -58,7 +58,7 @@ with the **expected code 2: failure of the project quality threshold**.
 `minSICN` is the signed inverse condition number quality described by
 [Gmsh](https://gmsh.info/doc/texinfo/gmsh.html#index-gmsh_002fmodel_002fmesh_002fgetElementQualities).
 The **0.1 threshold is the project's existing threshold**, not a general standard nor a
-proof of convergence. The absence of inversion does not neutralize very bad
+proof of convergence. The absence of inversion does not neutralise very bad
 elements. The exact agreement of triangles concerns the **discrete connectivity**,
 not the distance to the CAD surface, the absence of geometric overlap of the
 cells or the resolution of physical gradients.
@@ -75,7 +75,7 @@ on Kali. The observed chain is:
 
 | Candidate | Geometry actually passed to the mesher | Evidence chain |
 |---|---|---|
-| F53 optimized `4f3dff…` | F50 native BREP `10ff1a…` | BREP → F50 MSH `d1e8dc…` → F53 interior optimization; its report states the boundary nodes unchanged at each step |
+| F53 optimised `4f3dff…` | F50 native BREP `10ff1a…` | BREP → F50 MSH `d1e8dc…` → F53 interior optimisation; its report states the boundary nodes unchanged at each step |
 | F54 `b68dc3…` | F54 STEP `825169…` | F53 STEP `700baea…` → merge of the same domains, 4,929 → 4,454 faces → F54 MSH |
 
 The old field `native_BREP_sha256` in the F54 mesh report actually carries
@@ -109,7 +109,7 @@ cooling. The face provenance proposals established in
 [the thermal audit](M64_THERMAL_FACE_PROPOSALS.md) are neither validated BCs nor
 labels transferable by simple entity number.
 
-The best **diagnostic** candidate is F53 optimized: a less bad quality minimum,
+The best **diagnostic** candidate is F53 optimised: a less bad quality minimum,
 fewer elements below the threshold and no additional face merge.
 It is not promoted to an accepted computation mesh.
 

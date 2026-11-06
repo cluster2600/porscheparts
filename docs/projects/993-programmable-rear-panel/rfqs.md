@@ -43,7 +43,7 @@ this choice and this schematic, complete footprints/routing/ERC/DRC, and quote E
 separately from the future E1 automotive protection. No file is released for
 manufacturing.
 Please quote separately the review, schematic/BOM, coupon PCB, any firmware,
-industrialization, pre-tests and correction; provide editable native format,
+industrialisation, pre-tests and correction; provide editable native format,
 rights, schedule, acceptance criteria and site of operations. Present the main
 risks, your automotive competence references and a breakdown of imported inputs /
 Swiss added value. The future target is about 250 CHF/unit, to be validated by
@@ -63,7 +63,7 @@ bare PCB, components, placement, programming, AOI/inspection, electrical test,
 NRE, scrap, packaging, transport and taxes. State sites/countries,
 subcontractors, component alternatives, traceability, lead times from a complete
 BOM, defect rework and availability.
-No production is authorized by this request.
+No production is authorised by this request.
 
 ## RFQ-04 — optical part / INCO 3D and Protolabs
 
@@ -79,7 +79,7 @@ dimension. Quote coupons, prototype and 10/100/1,000 front faces, separating raw
 part, finishing, inspection, tooling, scrap and packaging. Compare SLA/PolyJet
 with casting or thermoforming/injection if relevant. State the actual factory,
 subcontracting, MOQ, lead times and repair/replacement terms. No Porsche
-trademark license is requested or acquired.
+trademark licence is requested or acquired.
 
 ## RFQ-05 — packaging / Bourquin
 
@@ -93,14 +93,14 @@ CAD; ask for the missing data before a firm quote. Please separate prototypes,
 cutting die, prices at 10/100/1,000, printing, MOQ, flat delivery,
 site/country, documented recyclability and transport tests. The mockup will carry
 neither Swiss origin nor a road approval or manufacturer affiliation that has not
-been demonstrated. No launch or printing is authorized by this consultation.
+been demonstrated. No launch or printing is authorised by this consultation.
 
 ## RFQ-06 — regulatory admissibility / DTC and TÜV Rheinland lighting
 
 Subject: Preliminary opinion — replacement of a Porsche 993 panel with a display
 
 Hello,
-Before detailed design, we would like to know whether an authorization route
+Before detailed design, we would like to know whether an authorisation route
 exists in Switzerland and in Germany/EU for the replacement of
 [reference/variant], with display of messages and animations. We do not assert
 that a screen switched off while moving is acceptable. Which original functions
@@ -119,7 +119,7 @@ expected dossier and the need for a separate radio body.
 Subject: Origin calculation method for electronic equipment assembled in Switzerland
 
 Hello,
-Please confirm the method applicable to the itemized costs of the attached model,
+Please confirm the method applicable to the itemised costs of the attached model,
 which is still hypothetical: foreign components, potentially Swiss PCBA/optics,
 CAD/R&D, assembly, inspection, scrap, packaging, transport and after-sales
 service. Which allocation of R&D, certification and inspection is eligible, over

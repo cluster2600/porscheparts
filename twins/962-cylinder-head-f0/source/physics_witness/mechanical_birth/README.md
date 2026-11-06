@@ -27,7 +27,7 @@ The reference first applies the uniaxial J2 return, then equal-section force
 equilibrium and total serial extension. At release A's axial strain is 0.0016
 and B's physical axial strain is 0.0021. B's incremental strain is relative to
 its birth field, rather than its total gradient relative to the original mesh.
-A retains its plastic tensor; B remains unplasticized. Quasistatic release
+A retains its plastic tensor; B remains unplasticised. Quasistatic release
 does not verify a transient dynamic energy balance.
 
 All geometry, seven states, complete nodal and tensor reference tables,
@@ -93,4 +93,4 @@ resolution; it is not original process attestation. The
 keeps this boundary separate from the immutable numerical evidence.
 
 Whole-head meshing, coupled build history, physical calibration, annealing,
-supports/contact/process validation and manufacturing authorization remain open.
+supports/contact/process validation and manufacturing authorisation remain open.

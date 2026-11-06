@@ -24,11 +24,11 @@ measured**. Both values are kept, not averaged.
 Stiffness ratio 1.251 for a thickness ratio of 1.250. **Stiffness follows
 thickness linearly, not cubically.** The structure works in membrane shear, like
 a closed box section, and not in plate bending. The gap between 0.8 and 1.0 is
-therefore worth 25 % of stiffness and 25 % of stress: it is not a modeling
+therefore worth 25 % of stiffness and 25 % of stress: it is not a modelling
 detail.
 
 The 0.2 mm gap needs an explanation before it is used. The 964 body shell is
-hot-dip galvanized; zinc, primer, paint and cavity wax add to the sheet. A
+hot-dip galvanised; zinc, primer, paint and cavity wax add to the sheet. A
 caliper measurement on a panel in place measures the stack, not the steel.
 **For the computation, it is the steel thickness that carries load**, so 0.8 mm
 until the measurement is redone on stripped sheet or with an ultrasonic gauge.
@@ -72,7 +72,7 @@ x ≈ -1703 is the rear cross member that was later found to carry nothing (see
 
 **2442 N.m/deg is not the stiffness of a 964.** This model contains only the
 floor pan, two side rails and two cross members: no front bulkhead, no rear
-bulkhead, no tunnel, no wheel arches, no roof, no B-pillars, no windshield frame,
+bulkhead, no tunnel, no wheel arches, no roof, no B-pillars, no windscreen frame,
 which carry most of the torsion of a complete body shell. The following sections
 add them one by one — and show that together they are worth a factor of 3.7 —
 but none of these variants is a 964 stiffness either.
@@ -153,7 +153,7 @@ documentation:
 - `COMPOSITE` accepts **only S6 or S8R quadratic shells**. Hence the optional
   mesh order of `build_body.py`;
 - the 4th field of a layer is an **orientation name**, not an angle. A 45-degree
-  ply is materialized by an `*ORIENTATION` rotated 45 degrees about the panel
+  ply is materialised by an `*ORIENTATION` rotated 45 degrees about the panel
   normal;
 - `OUTPUT=2D` is ignored: the `.frd` carries the expanded 3D model and not the
   original nodes. The measurement nodes are therefore taken back **by their
@@ -203,14 +203,14 @@ in `docs/research/964-chassis-carbone-kevlar.md`.
 ## Architecture versus material
 
 `build_body.py` extends the shell model to the members that **close** the box —
-front bulkhead, rear bulkhead, center tunnel — and `architecture_study.py`
+front bulkhead, rear bulkhead, centre tunnel — and `architecture_study.py`
 replays the test on three architectures and two materials at equal mass. Case
 `f`, floor pan alone, gives back the mesh and the value of `build_shell.py`.
 
 At equal mass, closing the body shell is worth **x 1.51** in specific stiffness,
 moving to carbon **x 1.25**, and the two multiply (1.86 measured for 1.89
 expected): the levers are separable and do not substitute for each other. The
-center tunnel alone adds +71 %, more than the two bulkheads. Sections and
+centre tunnel alone adds +71 %, more than the two bulkheads. Sections and
 bulkhead heights are `ASSUMED`; only the ratios are usable.
 
     pycad architecture_study.py
@@ -219,7 +219,7 @@ bulkhead heights are `ASSUMED`; only the ratios are usable.
 
 A connectivity check added to `build_body.py` showed that the model had **two
 components**, not one. The rear cross member of the datum network, `trans` at
-x = -1703, falls behind the rear edge of the modeled floor pan, x = -1500: it
+x = -1703, falls behind the rear edge of the modelled floor pan, x = -1500: it
 was attached to nothing. It therefore always counted in area and in mass —
 0.264 m2 and 1.66 kg, i.e. **5.7 % of the model's mass** — without carrying the
 slightest load.
@@ -286,20 +286,20 @@ compared under the same loading.
 |---|---|---|---|---|---|
 | floor pan, side rails, cross members | 27.7 kg | 2442 | 88 | — | — |
 | + front bulkhead and rear bulkhead | 35.2 kg | 3147 | 89 | +705 | +94 |
-| + center tunnel | 40.2 kg | 5371 | 134 | +2224 | +444 |
+| + centre tunnel | 40.2 kg | 5371 | 134 | +2224 | +444 |
 | + wheel arches | 45.0 kg | 6866 | 153 | +1495 | +315 |
 | + B-pillars and roof rails | 52.4 kg | 6859 | 131 | **0** (-7) | **0** |
 | + roof | 63.0 kg | 6925 | 110 | +66 | +6 |
-| + windshield frame | 64.1 kg | 9093 | 142 | +2167 | **+1961** |
+| + windscreen frame | 64.1 kg | 9093 | 142 | +2167 | **+1961** |
 
 From the bare floor pan to the closed cell: **K x 3.7 for mass x 2.3**.
 
     pycad body_study.py
 
-![The full 964 cell model rotating, colored by von Mises stress under the torsion load](../../../docs/media/diagrams/964-hero.gif)
+![The full 964 cell model rotating, coloured by von Mises stress under the torsion load](../../../docs/media/diagrams/964-hero.gif)
 
 *The closed cell of the last row, rendered from a mesh and result snapshot. It
-shows the modeled geometry and its stress field; it is not a 964 and its values
+shows the modelled geometry and its stress field; it is not a 964 and its values
 are not a 964 stiffness.*
 
 ## What this ranking says, and what it does not say
@@ -314,28 +314,28 @@ order of one percent, about 70 N.m/deg here. It is not a model defect: alone,
 these members form a frame **open at the front**, a cantilever clamped on the
 rear bulkhead. They add 7.5 kg and no closed load path.
 
-**The windshield frame brings the largest increment of the ladder for 1.1 kg**,
+**The windscreen frame brings the largest increment of the ladder for 1.1 kg**,
 the best per-kilogram yield of the whole dossier. It is also the only member that
 closes a ring: front bulkhead, A-pillars, upper cross member, roof rails,
 B-pillars, rear pillar.
 
 That sentence is false, and the section "Element order" below says why: in
-quadratic shells, the best per-kilogram yield is that of the center tunnel, not
-that of the windshield frame. What remains true in the paragraph is the rest:
+quadratic shells, the best per-kilogram yield is that of the centre tunnel, not
+that of the windscreen frame. What remains true in the paragraph is the rest:
 the ring closes, and the roof alone does not pay.
 
 This reading is a topological hypothesis, so it can be refuted. `ring_study.py`
-adds the roof and the windshield frame **separately** to the same open cage, at
+adds the roof and the windscreen frame **separately** to the same open cage, at
 three mesh densities:
 
-| density | cage | + roof | + windshield | roof /kg | windshield /kg | ratio |
+| density | cage | + roof | + windscreen | roof /kg | windscreen /kg | ratio |
 |---|---|---|---|---|---|---|
 | 1.0 | 6859 | 6925 | 8180 | +6 | +1195 | 191x |
 | 0.7 | 6333 | 6382 | 7220 | +5 | +803 | 172x |
 | 0.5 | 6086 | 6123 | 6823 | +3 | +667 | 191x |
 
 The ratio stays at **two orders of magnitude** at all three densities, while the
-absolute stiffness drifts by 11 %: it is a topology result, not a discretization
+absolute stiffness drifts by 11 %: it is a topology result, not a discretisation
 one. And the two members together return **1.6 times** the sum of their separate
 contributions — the roof only works once the ring is closed.
 
@@ -364,11 +364,11 @@ post-processing can at last be run in both orders.
 |---|---|---|---|---|
 | floor pan, side rails, cross members | 27.7 kg | 2442 | **1436** | -41 % |
 | + front bulkhead and rear bulkhead | 35.2 kg | 3147 | 1550 | -51 % |
-| + center tunnel | 40.2 kg | 5371 | 3857 | -28 % |
+| + centre tunnel | 40.2 kg | 5371 | 3857 | -28 % |
 | + wheel arches | 45.0 kg | 6866 | 5227 | -24 % |
 | + B-pillars and roof rails | 52.4 kg | 6859 | 5240 | -24 % |
 | + roof | 63.0 kg | 6925 | 5264 | -24 % |
-| + windshield frame | 64.1 kg | 9093 | 5415 | -40 % |
+| + windscreen frame | 64.1 kg | 9093 | 5415 | -40 % |
 
 S3 elements are too stiff, and **unevenly so**. Where bending dominates — the
 bare floor pan — they overestimate by 70 %. Where shear dominates, the gap
@@ -401,9 +401,9 @@ share of stiffness that belongs to bending**, precisely on the open
 architectures.
 
 What falls, then, in addition to the sentence corrected above: the
-**per-kilogram yield of the windshield frame**. In S6, the cumulative ladder
+**per-kilogram yield of the windscreen frame**. In S6, the cumulative ladder
 gives +151 N.m/deg for 1.11 kg, i.e. +136 per kg, against +2307 for 5.01 kg at
-the center tunnel, i.e. **+460 per kg**. The best per-kilogram yield of the
+the centre tunnel, i.e. **+460 per kg**. The best per-kilogram yield of the
 dossier is that of the tunnel, in both orders as far as the absolute is
 concerned, and in S6 also per kilogram.
 
@@ -440,11 +440,11 @@ The three topology conclusions hold, and one of them to the digit.
 | result | S3 | S6 |
 |---|---|---|
 | roof alone added to the open cage | +66 (+6/kg) | +24 (**+2/kg**) |
-| windshield frame alone added to the same cage | +1321 (+1190/kg) | +83 (**+75/kg**) |
+| windscreen frame alone added to the same cage | +1321 (+1190/kg) | +83 (**+75/kg**) |
 | ratio of per-kilogram yields | 191x | **33x** |
 | both together / sum of the two alone | 1.6x | **1.63x** |
 
-The roof alone does not pay, the windshield frame pays much more, and the two
+The roof alone does not pay, the windscreen frame pays much more, and the two
 together are worth more than their sum because the roof only works once the ring
 is closed. The synergy of 1.6 is found again to the third decimal in an element
 order where everything else moved by 25 to 50 %: it is indeed a topology result.
@@ -458,7 +458,7 @@ flowchart LR
   C --> T1["roof alone does not pay<br/>+2/kg in S6"]
   C --> T2["ring synergy<br/>1.6x → 1.63x"]
   C --> T3["floor pan → cell<br/>x 3.7 → x 3.77"]
-  C --> F1["windshield frame as<br/>best per-kg yield"]
+  C --> F1["windscreen frame as<br/>best per-kg yield"]
   C --> F2["thickness exponent<br/>exactly 1.00"]
   C --> F3["absolute stiffness<br/>values"]
   classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;

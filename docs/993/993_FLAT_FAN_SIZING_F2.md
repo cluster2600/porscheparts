@@ -95,4 +95,4 @@ How to read it:
    400 mm they no longer fit the EOS M 400 plate, which points to casting,
    machining, or a split build.
 
-Nothing here is authorized for manufacture, installation or start-up.
+Nothing here is authorised for manufacture, installation or start-up.

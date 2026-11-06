@@ -8,7 +8,7 @@ Concept: a nighttime mechanical design review. The geometry fills the frame; flu
 - Panels: `#111b22`
 - Text: `#eef4f6`
 - Secondary text: `#a8b6bd`
-- Aluminum: `#c79b45`
+- Aluminium: `#c79b45`
 - Edges: `#f2d28a`
 - Air/intake: `#59c7ff`
 - Oil: `#41e0c2`
@@ -32,4 +32,4 @@ Concept: a nighttime mechanical design review. The geometry fills the frame; flu
 
 ## Safety rule
 
-The bottom banner stays visible in every scene: explanatory animation, engine manufacturing not authorized.
+The bottom banner stays visible in every scene: explanatory animation, engine manufacturing not authorised.

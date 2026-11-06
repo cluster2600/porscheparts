@@ -85,8 +85,8 @@ Trial 05 used a ruled trunk, only C0 between sections. The new
 [C1 generator](../../twins/m64-cylinder-head/source/build_bounded_c1_trunk.py)
 keeps all circular sections, without a global loft or fitting of a resampled
 point cloud. The slopes of a local cubic Hermite interpolation are limited
-jointly on the centers, radii and `center ± radius` limits.
-The Bernstein control points remain within the bounds of the neighboring
+jointly on the centres, radii and `center ± radius` limits.
+The Bernstein control points remain within the bounds of the neighbouring
 stations. The exact rational calculation verifies this property, then
 separately checks the floating-point poles actually passed to the CAD kernel.
 
@@ -161,7 +161,7 @@ descriptor-based check is not exhaustive proof of equivalence.
 
 A real mesh is generated, exported then re-read: **261,564 tetrahedra, 63,530
 nodes and 88,312 boundary triangles**, one connected region and a complete
-boundary. The discretized volume exceeds the native volume by 0.282%.
+boundary. The discretised volume exceeds the native volume by 0.282%.
 But 4,902 tets have a minSICN quality index below the project threshold of
 0.1, including seven quasi-degenerate ones below 10⁻⁶. The minimum is about
 7.52 × 10⁻¹⁷. The Jacobians were positive in memory. A later check of the
@@ -170,17 +170,17 @@ the [local correction and post-export check](M64_LOCAL_MESH_AND_JUNCTION_FOLLOWU
 **This mesh is rejected before any thermal or mechanical computation.**
 
 The first counter-trial keeps the geometry, sizes 1 to 6 units and the
-generation, then adds a Netgen tetrahedral optimization. The initial mesh is
-reproduced, but the optimizer ends with code 139, without exceeding memory.
-No optimized mesh is accepted. The software crash does not prove that the
+generation, then adds a Netgen tetrahedral optimisation. The initial mesh is
+reproduced, but the optimiser ends with code 139, without exceeding memory.
+No optimised mesh is accepted. The software crash does not prove that the
 B-Rep is invalid. Both trials are limited to two CPUs, 4 GiB and 295 s,
 network disabled; the containers were deleted after collection.
 No Vast rental was needed.
 
 A separate diagnosis re-reads the same MSH: 869 surface triangles are also
 below 0.1. The seven quasi-flat tets all have their four nodes on the same CAD
-face. The problem is therefore not only interior: the boundary discretization
-must also be examined before rerunning a volume optimization. The coordinates
+face. The problem is therefore not only interior: the boundary discretisation
+must also be examined before rerunning a volume optimisation. The coordinates
 and identifiers remain private.
 The [receipts of the two trials and of the diagnosis](../../twins/m64-cylinder-head/evidence/native-mesh-trial05-counterchecks-20260907.json)
 distinguish them from the new C1 body of trial 06, to which they are not
@@ -192,7 +192,7 @@ differences in both directions, and no common area with the two gas negatives.
 They are therefore inherited from the preserved skin, according to these
 operations at native tolerances. **Inference for the next step:** modifying
 only the port trunks should not resolve these bad elements; a local
-discretization correction of this skin must be tested.
+discretisation correction of this skin must be tested.
 This [local counter-trial was then run](M64_LOCAL_MESH_AND_JUNCTION_FOLLOWUP_20260907.md):
 it removes the seven quasi-flat tets without modifying the CAD, but does not
 yet satisfy the global quality threshold.

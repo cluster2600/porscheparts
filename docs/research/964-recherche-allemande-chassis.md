@@ -12,9 +12,9 @@ numerical data at all.
 
 ## What is established
 
-**The body shell is made of sheet steel hot-dip galvanized on both sides.**
+**The body shell is made of sheet steel hot-dip galvanised on both sides.**
 Primary Porsche source: the 911 is the first production car to receive a body
-shell feuerverzinkt (hot-dip galvanized) on both sides, load-bearing parts from
+shell feuerverzinkt (hot-dip galvanised) on both sides, load-bearing parts from
 model year 1976, the entire body-in-white from model year 1981. Auto Zeitung
 confirms it for the 964. The anti-corrosion warranty goes 6 years (1976), 7
 years (MY1981), 10 years (MY1986): the ten-year term is the one that runs across
@@ -62,7 +62,7 @@ bracket number and point, not a coordinate table.
 ## Weak points: corrosion yes, structure no
 
 The German buying guides converge on the same hot spots: front and rear
-windshield frames, rocker panels **at the jacking points**, door bottoms, wheel
+windscreen frames, rocker panels **at the jacking points**, door bottoms, wheel
 arches, battery trays.
 
 Two caveats. These sources establish a **corrosion** hot spot, not a structural
@@ -77,7 +77,7 @@ and the TÜV/DEKRA reports have not been combed through.
 One defensible observation remains, about the consequence and not the
 frequency: the computation places the torsional load path in the side rail,
 plate 50-013 puts high-strength steel there, and the jacking point is a
-recognized corrosion hot spot. **For equal corrosion, an attack at that spot
+recognised corrosion hot spot. **For equal corrosion, an attack at that spot
 therefore weighs more structurally than elsewhere on the floor pan.**
 
 ## Variants

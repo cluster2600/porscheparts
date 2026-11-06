@@ -22,7 +22,7 @@ function (`src/Parts.cs`). Every parameter carries its **basis**:
 | # | Part | Porsche no. | Material candidate | PicoGK enhancement | Published / assumed | Mass est. |
 |---|---|---|---|---|---|---|
 | 01 | Oval exhaust tip, C2/C4 | — | Ti-6Al-4V LPBF | ventilated double wall + radial ribs, gap open at inlet (cooling + depowdering) | 2 / 10 | 286 g |
-| 02 | Wheel center cap | 993 361 303 07 | AlSi10Mg LPBF | skin + open-cell lattice sandwich face, barbed clip tabs, drains | 3 / 11 | 58 g |
+| 02 | Wheel centre cap | 993 361 303 07 | AlSi10Mg LPBF | skin + open-cell lattice sandwich face, barbed clip tabs, drains | 3 / 11 | 58 g |
 | 03 | Left turbo heat shield | 993 123 113 51 | IN625 LPBF | two skins + lattice insulating core, open at the rim | 3 / 10 | 763 g |
 | 04 | Intercooler bracket | 993 110 110 50/52 | Ti-6Al-4V LPBF | lattice-cored rails, solid bolt pads, drains | 3 / 11 | 383 g |
 | 05 | Intercooler air duct | 993 110 340 54 | PA12 MJF/SLS | wide-to-narrow transition with 4 internal guide vanes, one piece | 3 / 4 | 857 g |
@@ -48,7 +48,7 @@ Each image: shaded model (left) and half section through the plane that cuts the
 
 ![PGK993-01-OVAL-EXHAUST-TIP](media/PGK993-01-OVAL-EXHAUST-TIP.png)
 
-### 02 · Wheel center cap — lattice-sandwich face
+### 02 · Wheel centre cap — lattice-sandwich face
 
 ![PGK993-02-WHEEL-CENTER-CAP](media/PGK993-02-WHEEL-CENTER-CAP.png)
 
@@ -133,7 +133,7 @@ The QA step reads only the STL and the parameter file. It does not trust the gen
 - `catalog/reference/993-declared-part-data.json` for the air duct envelope.
 
 **New from web research:**
-- **Center cap:** partworks values confirmed. FVD gives 76 / 60 mm for cap 996 361 303 09 and calls it a "press fit … two small holes" for removal. Its product block also says 1.9 cm height, which conflicts with the 46 mm and is flagged in the params.
+- **Centre cap:** partworks values confirmed. FVD gives 76 / 60 mm for cap 996 361 303 09 and calls it a "press fit … two small holes" for removal. Its product block also says 1.9 cm height, which conflicts with the 46 mm and is flagged in the params.
 - **Shift knob:** Design911 lists the OEM numbers. Rennline publishes aftermarket values: ⌀1.875 in, fits rods under 15.25 mm, two 10-24 set screws. The 993 lever top is rectangular (community).
 - **Console switch blank:** opening 0.67 × 1.1 in and blank 0.637 × 1.077 in, measured on a 1997 car (Rennlist, community).
 - **Headlamp hook:** Porsche repair kit 000 043 204 28 (bulletin 10/7/99, transcribed on Rennlist). Roadster-Fashion offers an M3 screw fixing. No dimension is published anywhere.
@@ -145,7 +145,7 @@ The QA step reads only the STL and the parameter file. It does not trust the gen
 | Part | Measure |
 |---|---|
 | 01 tip | muffler outlet OD, slip depth, clamp, tip angle on the car |
-| 02 cap | wheel center bore and groove on 993 Cup/Turbo wheels; OEM retention |
+| 02 cap | wheel centre bore and groove on 993 Cup/Turbo wheels; OEM retention |
 | 03 heat shield | fixing points and screw size; shape around the turbo housing |
 | 04 bracket | hole count, diameter and spacing; mating faces |
 | 05 duct | inlet and outlet openings; mounting tabs and seal flange |

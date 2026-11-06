@@ -17,7 +17,7 @@ flowchart LR
   H --> G["F0 BREP valid<br/>55.45 g, hollow -23.38 %"]
   G --> M["Mathematical screens<br/>first mode 190.8 Hz:<br/>not an acceptable separation"]
   G --> P["LPBF print screen<br/>roll_y_45, 30 µm"]
-  M --> V["Not authorized for manufacture,<br/>fitting or an engine"]
+  M --> V["Not authorised for manufacture,<br/>fitting or an engine"]
   P --> V
   class S ok
   class H,P open
@@ -60,7 +60,7 @@ the inertia is `371 N` and the axial screening force, spring and pressure
 included, `1.75 kN`.
 
 The annular stem section gives `57.1 MPa` in nominal tension/compression and
-Euler `20.5 kN`. The idealized circular head plate gives `6.23 MPa` and
+Euler `20.5 kN`. The idealised circular head plate gives `6.23 MPa` and
 `0.0037 mm`. These room-temperature margins cover neither the seat, nor the
 guide, nor the keepers, nor impact, nor LPBF defects.
 
@@ -102,7 +102,7 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
 
 PhysicsNeMo waits for correlated multibody-thermal-structure series with
 training, holdout and out-of-distribution splits. SimReady waits for the
-measured assembly. This F0 STEP is authorized neither for manufacture, nor for
+measured assembly. This F0 STEP is authorised neither for manufacture, nor for
 fitting, nor for an engine.
 
 <!-- print-screen:begin -->

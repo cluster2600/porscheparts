@@ -44,12 +44,12 @@ obtaining permission.
 
 - **A human reading in a browser.** `robots.txt` governs robots, not a person.
   Reuse of the data remains subject to the terms, which are still to be read.
-- **Written authorization from the seller**, or a data extract supplied by
+- **Written authorisation from the seller**, or a data extract supplied by
   them, which would also settle the reuse question.
 
 ## Associated correction
 
 The record `SRC-ROSEPASSION-993-PARTS` and `catalog/reference/README.md` stated
 that this reseller "responds to automated retrieval". That confused "the server
-returns a page" with "the operator authorizes automated access". Both texts are
+returns a page" with "the operator authorises automated access". Both texts are
 corrected.

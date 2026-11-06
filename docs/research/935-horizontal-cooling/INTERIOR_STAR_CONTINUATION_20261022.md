@@ -66,7 +66,7 @@ all-boundary cells remain, and mechanical mesh-quality admission stays false.
 
 The [executed recipe](../../../twins/935-horizontal-cooling-system-f0/source/interior-star-study-20261022/)
 reproduces the bounded control, worker and provenance receipts from the private
-parent archive. The new audit accepts only its declared supported optimizer
+parent archive. The new audit accepts only its declared supported optimiser
 sources and matching parent/output hashes.
 
 ## Structural comparison
@@ -123,4 +123,4 @@ spatial series needs fixed physical comparison locations and documented
 singularity exclusions; an element-count percentile alone is insufficient. The
 17-interface definition, hidden transmission, material/process data, assembly
 loads, balancing and bench validation still govern the complete system. The
-993 adaptation remains a separate programme; manufacturing is not authorized.
+993 adaptation remains a separate programme; manufacturing is not authorised.

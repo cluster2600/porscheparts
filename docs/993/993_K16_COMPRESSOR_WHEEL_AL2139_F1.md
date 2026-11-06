@@ -16,7 +16,7 @@ flowchart LR
   C --> G["F1 BREP valid<br/>38.49 g"]
   G --> M["Three room-temperature equations<br/>pass: 1.986, 2.516, 1.905"]
   G --> P["LPBF print screen<br/>roll_y_45, 60 µm"]
-  M --> V["No hot HCF, no K16 map<br/>not authorized for manufacturing,<br/>rotation, turbo or engine"]
+  M --> V["No hot HCF, no K16 map<br/>not authorised for manufacturing,<br/>rotation, turbo or engine"]
   P --> V
   class F0,V stop
   class S ok
@@ -112,7 +112,7 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
 6. Pass contained spin proof, overspeed and burst tests before any turbo bench.
 
 PhysicsNeMo awaits correlated CFD-structure-rotordynamics series with train,
-holdout and out-of-distribution sets. The F1 is authorized neither for
+holdout and out-of-distribution sets. The F1 is authorised neither for
 manufacturing, nor for rotation, nor for turbo or engine use.
 
 <!-- print-screen:begin -->

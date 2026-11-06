@@ -5,7 +5,7 @@
 Coding-007 tests whether explicit three-object USD examples address the
 composition failures seen in the rejected [retention trials](retention-results.md).
 The earlier USD training corpus teaches one or two objects; its validation
-includes three. This experiment adds 288 independently parameterized synthetic
+includes three. This experiment adds 288 independently parameterised synthetic
 training examples across the same six API recipes, plus 24 fresh final-test
 instances. The source is the repository's authored OpenUSD generator. All new
 reference programs must pass the existing bounded Pixar checks before training.
@@ -16,7 +16,7 @@ The run starts from the 16-layer coding-004 step-800 adapter, whose previous
 validation was USD 17/30 and PicoGK 40/40. It uses the pinned 4-bit
 Qwen2.5-Coder-1.5B-Instruct base, MLX-LM 0.31.3, rank 8, MLX scale 20,
 batch 1, 1,024 tokens, prompt masking, seed 42, learning rate 1e-5 and
-**600 additional steps**. Only the final checkpoint is eligible. Optimizer
+**600 additional steps**. Only the final checkpoint is eligible. Optimiser
 state restarts. All USD training rows repeat twice; PicoGK rows appear once.
 The corpus therefore has 624 USD / 704 PicoGK unique training rows and
 1,248 / 704 effective training rows. This is an adaptive validation-driven
@@ -76,7 +76,7 @@ rank 8, scale 20, seed 42, batch 1, learning rate 1e-5, 1,024-token limit and
 USD replay weight 2. Keep the 288 three-object examples. There are 720 USD / 704
 PicoGK unique training rows, 1,440 / 704 effective rows, 30 / 40 validation cases,
 and 68 / 56 final tests. Only the final checkpoint is eligible, compared against
-coding-003 under the same strict per-case retention rule. Optimizer state restarts.
+coding-003 under the same strict per-case retention rule. Optimiser state restarts.
 This is another adaptive validation-driven attempt; scores are not independent
 replications. If it fails, retain coding-003 and stop this experiment family.
 

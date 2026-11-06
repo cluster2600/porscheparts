@@ -5,7 +5,7 @@ horizontal rotor. It starts from the 0.005 CGAL facet-repair surface,
 SHA-256
 `8360724ad4d6542329f156f813a41403070b57d8a92be3a7f830be44f13fe292`.
 The [wall-face diagnostic](ORIGINAL_BOUND_WALL_DIAGNOSTIC_20261028.md)
-localized many rejected fluid cells near radius 84–86 mm in a **conditional**
+localised many rejected fluid cells near radius 84–86 mm in a **conditional**
 1 source unit = 1 mm scale. The radius and mounting dimensions are not
 historically calibrated.
 
@@ -64,7 +64,7 @@ cell counts. The best volume still has 878 cells below 0.01, so it is **not
 admitted for CFD**. No flow, pressure, torque or cooling conclusion follows.
 The outer duct remains conditional; actual 935 engine passages, physical
 scale and mounting datums remain unresolved. No physical fitment or metal
-manufacturing is authorized.
+manufacturing is authorised.
 
 ## Two-pass comparison and rejection
 

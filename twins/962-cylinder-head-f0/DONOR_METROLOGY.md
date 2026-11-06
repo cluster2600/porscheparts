@@ -51,7 +51,7 @@ A blank cell remains unknown, never zero.
 |---|---|---|
 | Studs and mounting | CMM on matched case, cylinder and head | Every axis and position in the frame, thread/engagement, bearing faces; stud part number |
 | Register and combustion deck | Bore gauge/CMM, depth and profile | Diameters, depth, seat, groove/seal, form and surface finish |
-| Camshaft carrier/valvetrain | CMM and assembly measurements | Axes, center distances, bearings, planes, chain/gear entry, oil path and envelope |
+| Camshaft carrier/valvetrain | CMM and assembly measurements | Axes, centre distances, bearings, planes, chain/gear entry, oil path and envelope |
 | Oil | External measurements, then CT if the interior is inaccessible | Supply/return positions, sections and connections; no flow inferred from a diameter |
 | Intake/exhaust | CMM, seals and referenced scan | Axes, faces, fasteners, envelopes and port sections |
 | Seats/guides/spark plugs | Reference metrology, then supplier drawing | Axes and interference fits of the 2V part; new 4V/twin-ignition axes to design separately |
@@ -78,7 +78,7 @@ Record artifacts, unresolved surfaces and installed orientation.
 CT of a 2V head documents its original interfaces and passages, not the
 feasibility of a new 4V chamber and its coolant circuit.
 
-Keep raw scans and reports in an authorized private location. Publish only
+Keep raw scans and reports in an authorised private location. Publish only
 shareable results, locators, digests and decisions.
 The [existing measurement-record template](../../catalog/templates/measurement-record.json)
 can serve scalar dimensions after replacing **all** its examples.
@@ -105,7 +105,7 @@ G1 requires donor identity, reviewed interfaces with sources and tolerances,
 a common frame, explicit incompatibilities and a bottom-end retention decision.
 Combustion loads, temperatures, preload and service life must be supplied
 for mechanical review; 1,000 metric horsepower does not define them.
-Completing a sheet or passing the documentary validator authorizes neither
+Completing a sheet or passing the documentary validator authorises neither
 manufacturing nor engine testing. [Material qualification](MATERIAL_QUALIFICATION.md)
 and the subsequent [program](KIT_962_PROGRAMME.md) gates remain open.
 

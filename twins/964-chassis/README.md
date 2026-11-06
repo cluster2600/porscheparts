@@ -165,8 +165,8 @@ evidence and tunnel context, not validated XYZ anchors.
 
 **The scale of the scan is verified.** The four tires were isolated as connected
 components, then fitted with a robust circle in the YZ plane, which gives the
-axle centers. The measured wheelbase is **2278.1 mm** against **2272 mm** from
-the factory, i.e. **+0.27 %**. The mesh is therefore in millimeters at 1:1
+axle centres. The measured wheelbase is **2278.1 mm** against **2272 mm** from
+the factory, i.e. **+0.27 %**. The mesh is therefore in millimetres at 1:1
 scale.
 
 This result was put to the test. The wheel components are covered over 360
@@ -176,15 +176,15 @@ degrees, not over a partial arc, and when the radius is forced to values from
 estimate, which is itself unstable from one tire to the next.
 
 **The vehicle frame is established.** The symmetry plane was fitted on 250,000
-underbody points by mirroring and nearest neighbor, with a loss trimmed at 85 %
+underbody points by mirroring and nearest neighbour, with a loss trimmed at 85 %
 to absorb the asymmetric coverage of the scan. It yields a **yaw of
--2.236 deg**, a **roll of -0.451 deg** and a center axis at **X_scan +112.0 mm**.
+-2.236 deg**, a **roll of -0.451 deg** and a centre axis at **X_scan +112.0 mm**.
 
 This result checks itself: the wheels do not enter the fit, yet after
 correction their left/right offset drops from **66.7 to 12.7 mm** at the front
 and from **51.1 to 5.3 mm** at the rear.
 
-![Underside of the 964 scan in the vehicle frame, colored by height above ground, with the front and rear axle lines](evidence/plan_aligned.png)
+![Underside of the 964 scan in the vehicle frame, coloured by height above ground, with the front and rear axle lines](evidence/plan_aligned.png)
 
 *The scan after symmetry correction, in the vehicle frame (X = 0 front axle,
 Z = 0 ground). It shows the frame and the wide body; it does not locate any
@@ -376,7 +376,7 @@ replaced.
 
 Volume V **publishes neither grade nor thickness**. The model therefore carries
 a working thickness of 1.0 mm declared `ASSUMED`, and the mass of 36.8 kg holds
-only for the modeled solids: it is not a 964 body-shell mass.
+only for the modelled solids: it is not a 964 body-shell mass.
 
 ## Reproduce
 
@@ -471,7 +471,7 @@ stays `prohibited_pending_engineering`.
 ## What the body shell adds to the floor pan
 
 The shell model was extended from the floor pan alone to a closed cell — wheel
-arches, B-pillars, roof rails, roof, windshield frame. It was the only lead in
+arches, B-pillars, roof rails, roof, windscreen frame. It was the only lead in
 the dossier that depended on no external data: it only needs more `ASSUMED`
 sections.
 
@@ -480,7 +480,7 @@ assumed sections.
 
 **The ranking of members does not follow their mass.** From the bare floor pan
 to the closed cell, torsional stiffness is multiplied by 3.7 for a mass
-multiplied by 2.3. But the roof, 10.5 kg, adds only +1%; the windshield frame,
+multiplied by 2.3. But the roof, 10.5 kg, adds only +1%; the windscreen frame,
 1.1 kg, adds the largest increment of the whole ladder. The per-kilogram yield
 ratio between the two is **two orders of magnitude**, and it holds at three mesh
 densities while the absolute stiffness drifts by 11 %. What counts in the upper
@@ -490,12 +490,12 @@ added alone, with nothing to close at the front, bring exactly zero for 7.5 kg.
 > [!WARNING]
 > **Withdrawn for quadratic shells.** The windshield-frame ranking above was
 > computed with linear S3 elements. In quadratic S6 shells the best return per
-> kilogram is the **center tunnel** — see [fea/README.md](fea/README.md) and the
+> kilogram is the **centre tunnel** — see [fea/README.md](fea/README.md) and the
 > withdrawn-claims table of the [engineering overview](../../docs/ENGINEERING_OVERVIEW.md#what-the-repository-withdrew-from-its-own-results).
 
 **A cross member of the model carried nothing.** A connectivity check added to
 the builder showed that the rear cross member, placed at x = -1703 by the datum
-chain, fell behind the edge of the modeled floor pan: it counted for 5.7 % of
+chain, fell behind the edge of the modelled floor pan: it counted for 5.7 % of
 the mass and for nothing in stiffness. The stiffness values already published
 were right — removing this cross member gives back exactly the published
 2442 N.m/deg — but the masses, hence the specific stiffnesses, were understated.
@@ -530,7 +530,7 @@ main since 2026-09-07, as
 The [receipt](derived/kali-compute-20261002.json) also keeps the initial
 failures. The shared library stays untouched. On that date the global check was
 still blocked by the F46 digest drift described under 2026-09-25 below; no
-historical evidence, manufacturing authorization or qualification is modified.
+historical evidence, manufacturing authorisation or qualification is modified.
 
 ### Rerun with Qwen on the Mac and PicoGK — 2026-10-02
 
@@ -665,7 +665,7 @@ hidden surfaces.
 **The former conclusion "no tunnel, no longitudinal shaft" is withdrawn.**
 These bands show only the visible skin. They say nothing about what runs above,
 behind a fairing, or about which clearances remain available. The diagnostic
-does not recognize C2/C4. The
+does not recognise C2/C4. The
 [German Porsche source](../../catalog/sources/src-porsche-964-993-all-wheel-drive-history.json)
 confirms the C4 driveline architecture, but gives no dimension for it.
 
@@ -674,7 +674,7 @@ confirms the C4 driveline architecture, but gives no dimension for it.
 | C2/C4 shift linkage | axes, joints, brackets, swept envelope over all gears |
 | C4 forward tube/shaft | XYZ axis, outer diameter, flanges, mounts and powertrain motion |
 | Gearbox / front differential interfaces | anchor planes and points, real volumes, tolerances |
-| Shell tunnel and servicing | both wall faces, thicknesses, neighboring passages, removal volumes |
+| Shell tunnel and servicing | both wall faces, thicknesses, neighbouring passages, removal volumes |
 
 In particular, a survey of the interior/tunnel and of the underbody with the
 components and fairings identified is needed. A void in the point cloud is never
@@ -722,7 +722,7 @@ stay local. It corrects the early P13 transcription to 1200 +/- 1 mm, common
 to both plates. The P14 difference remains documentary: the scan review did
 not identify a defensible pair of mount centres or establish the donor year.
 
-Ten pairs are projected as **XY hypotheses**, not as recognized anchors: eight
+Ten pairs are projected as **XY hypotheses**, not as recognised anchors: eight
 with an X determined from published dimensions, P13 and P14 with an X scaled off
 plate 50-05a. Heights remain unknown (`null`, not zero); the graphic plane and
 the dotted lines are not part geometry. P6 (no X), P15 (no published span) and

@@ -162,8 +162,8 @@ The computation comprises 20 one-factor points and 128 combinations of extremes
 over seven axes. The latter give 0.492–0.687 kg/s of total air and
 PR 1.956–5.734. **This wide interval is neither a usable range nor a
 statistical interval**: some corners will be eliminated by the turbo
-maps, knock or thermal behavior. It exposes the cost of unfrozen
-assumptions, rather than hiding these cases behind a single favorable result.
+maps, knock or thermal behaviour. It exposes the cost of unfrozen
+assumptions, rather than hiding these cases behind a single favourable result.
 
 ## Turbos: compare the maps before renting more
 

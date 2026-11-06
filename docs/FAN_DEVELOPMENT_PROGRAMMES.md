@@ -1,4 +1,4 @@
-# Two improved cooling programs (retired French page)
+# Two improved cooling programmes (retired French page)
 
 This page was retired on 2026-11-05 (issue #428). The canonical, maintained
 version is the English page [FAN_DEVELOPMENT_PROGRAMMES.en.md](FAN_DEVELOPMENT_PROGRAMMES.en.md).

@@ -36,7 +36,7 @@ and unnecessary distribution extensions removed. Final STL files are in
 The [runtime register](derived/runtime-provenance.json) retains digests of
 binaries actually used. The local PicoGK archive has no Git metadata:
 its relationship to the commit declared in `sources.lock` was not
-independently rechecked during this delivery. The Apache-2.0 license was read.
+independently rechecked during this delivery. The Apache-2.0 licence was read.
 
 <a id="vérifications-du-dépôt"></a>
 
@@ -57,7 +57,7 @@ and the remote branch checked. GitHub validation of commit
 [run 664](https://github.com/cluster2600/porscheparts/actions/runs/38283253271).
 This evidence belongs to that commit, not the later product additions.
 
-The PR remains a research and geometry draft. These local checks authorize
+The PR remains a research and geometry draft. These local checks authorise
 no merge or deployment.
 
 <a id="extension-au-programme-kit-1-000-ch"></a>
@@ -68,7 +68,7 @@ The [product program](KIT_962_PROGRAMME.md) and its [register](kit-program.json)
 add the commercial target and per-variant qualification. They modify neither
 the C# generator, geometry parameters nor sources and contracts with recorded
 digests. Two additional tests check scoping-calculation units and separation
-between power target, compatibility and manufacturing authorization.
+between power target, compatibility and manufacturing authorisation.
 The six targeted tests pass with VTK; in system Python, five pass and the
 VTK witness remains skipped. Markdown links and the diff are checked.
 The global Mac validation above belongs to the previous geometry dossier;
@@ -96,7 +96,7 @@ Reference cooling independent of the TECs remains required.
 
 The owner confirms 1,000 metric horsepower at the crankshaft and qualification
 on the bench then on the track. The register and its test distinguish this
-decision from unknown requirements and authorizations retained at `false`.
+decision from unknown requirements and authorisations retained at `false`.
 The twelve targeted tests pass with VTK; Markdown links and the diff are
 checked. No new geometry calculation or physical test is performed.
 The global Mac `make check` is not rerun for this clarification.
@@ -179,7 +179,7 @@ These are envelope assumptions, with no measured engine interfaces.
 The separate project builds against the verified PicoGK binary libraries,
 because the old local source path is no longer available. Build
 succeeded with no warning; native export at 0.5 mm actually executed under
-the shared lock in 89.8 s. The solid body is not optimized under load.
+the shared lock in 89.8 s. The solid body is not optimised under load.
 
 The [report](derived/enclosed-report.json) keeps binaries and sources,
 closure/orientation/connectivity of the solid, seven material probes and six
@@ -191,7 +191,7 @@ The coolant/metal interface and all physical qualifications remain open.
 
 ## Photographic architecture, Qwen, LatticeLibrary and VDB
 
-The 962 C restoration views were inspected; their license and their
+The 962 C restoration views were inspected; their licence and their
 lack of scale are recorded, without publishing their pixels. The
 [gallery](GALLERY.md) uses the actual STL files of a new ShapeKernel
 architecture, with four inclined guides and two candidate ignition wells.
@@ -268,6 +268,6 @@ No 962 donor scan/CT, metrology, CFD/CHT, mechanical analysis, qualified materia
 depowdering inspection, pressure proof test, seat/guide retention, thermal
 fatigue or engine test has been performed.
 The [interface-contract.json](interface-contract.json) retains these unknown
-inputs and authorizations at `false`. Any manufacturing requires the
+inputs and authorisations at `false`. Any manufacturing requires the
 professional review and validation plan described in the
 [dossier](README.md#feuille-de-route-vers-un-jumeau-exploitable).

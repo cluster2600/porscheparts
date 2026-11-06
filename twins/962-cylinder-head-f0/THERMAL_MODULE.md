@@ -112,6 +112,6 @@ Active control is retained only after observing a useful benefit within
 budgets and without degrading reference operation.
 
 Unknown requirements are retained in [thermal-module.json](thermal-module.json).
-This study performs no purchase, pressurized prototype, supplier contact or
+This study performs no purchase, pressurised prototype, supplier contact or
 copying of GemaTEG geometry or firmware. The [kit program](KIT_962_PROGRAMME.md)
 remains the commercial target; its qualification does not follow from this calculation.

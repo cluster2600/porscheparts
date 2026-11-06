@@ -5,7 +5,7 @@ the air/oil-cooled 3.6-litre M64/60 of the Porsche 993 Turbo. The owner's target
 is **more than 550 metric horsepower at the crankshaft, with power as the
 priority**, using the original K16 turbochargers as hybrid donors.
 
-The [normalized catalog](../../../catalog/reference/993-turbo-research-20261002/)
+The [normalised catalogue](../../../catalog/reference/993-turbo-research-20261002/)
 keeps factory specifications, aftermarket declarations, secondary reports,
 calculated examples and missing evidence distinct. The
 [training package](../../../training/993-turbo-20261002/README.md) provides
@@ -47,7 +47,7 @@ that every conceivable K16 development has the same limit. Hot-housing labels
   automatically a certified rotor limit.
 - [Turbomap's database](https://www.turbomap.ch/Home/TCDatabase) offers measured
   numerical compressor and turbine SAE datasets for a Porsche 996 K16-2467G,
-  M96/70, 309 kW. The catalog was read; the quoted datasets were not acquired.
+  M96/70, 309 kW. The catalogue was read; the quoted datasets were not acquired.
   This is a different engine/application, with exact turbo identity still to
   obtain before comparing it with the 993.
 - [Garrett G25-550](https://www.garrettmotion.com/racing-and-performance/performance-catalog/turbo/g-series-g25-550/),
@@ -73,7 +73,7 @@ change the matching problem and do not supply stock K16 evidence.
 The original French research reports are retained as session deliverables.
 They have been regenerated for public export to remove the private project
 source link and the duplicated raw Carrera OCR appendix. New documentation
-and normalized record prose are in English. The current catalog and training
+and normalised record prose are in English. The current catalogue and training
 manifests govern machine consumption; the reports describe the research stage.
 
 | Export | Contents |
@@ -102,7 +102,7 @@ Source links and original factual summaries are published. Raw supplier pages,
 commercial map images, proprietary manuals, raw scans, private source data,
 vehicle identifiers and consultation scratch paths are omitted. Third-party
 sources retain their own rights; accessible content is not automatically
-redistributable. The repository's license applies to original authored reports
+redistributable. The repository's licence applies to original authored reports
 and training examples, not to an upstream manual or map.
 
 OEM alloy grades, exact K16 operating speeds and the absolute Turbo fan ratio

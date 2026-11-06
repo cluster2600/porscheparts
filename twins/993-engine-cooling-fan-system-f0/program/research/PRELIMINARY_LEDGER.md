@@ -16,7 +16,7 @@ Archived source SHA-256: `fd6c2fb2c70d4f0696e082615f8ad20e733a02c865099ffb73980c
 | Stable source ID | English description / locator | Preliminary access status | Independent of project |
 |---|---|---|---|
 | `oem-originale-05` | Porsche ORIGINALE 05, PDF 7 / printed page 83 | `reviewed_in_existing_mission` | Yes |
-| `oem-pet-993-de` | German Porsche PET 993, 1998 catalog edition; plate 105-00, PDF 77–79 | `reported_pending_targeted_verification` | Yes |
+| `oem-pet-993-de` | German Porsche PET 993, 1998 catalogue edition; plate 105-00, PDF 77–79 | `reported_pending_targeted_verification` | Yes |
 | `oem-training-964-mirror` | Porsche P10-L 964 training, Club911 copy; printed 22 / PDF 26 and printed 28 / PDF 32 | `reported_pending_targeted_verification` | Yes |
 | `sae-920789` | Cooling System Layout for High Performance Cars, Hochkönig/Michael, 1992; abstract, full curve not consulted | `reported_pending_targeted_verification` | Yes |
 | `supplier-carpoint-sheet` | Carpoint impeller/alternator dimension sheet; single page, application and datums unclear | `reported_pending_targeted_verification` | Yes |
@@ -29,7 +29,7 @@ source and the complete index. External publications are independent of the
 project, but independence between publications must be checked separately.
 Project outputs and related pages do not independently corroborate the project.
 All eight records permit reference only: no document or geometry redistribution;
-geometry licenses are unknown.
+geometry licences are unknown.
 
 ## Five preliminary claims
 
@@ -39,7 +39,7 @@ geometry licenses are unknown.
 | `c-oem-rs-distinct` | German PET report lists Carrera .31, RS M64.20 .40, Turbo M64.60 .21/.22 and Turbo fan housing 99310666750. Application and edition notes belong in the full OEM corpus. | `oem-pet-993-de`; `reported_pending_verification` |
 | `c-964-ratios-separate` | Training report separates impeller ratio 1.6 from Tiptronic alternator ratios 2.23 → 2.68. PDF 26 does not automatically transfer to 993 Turbo. | `oem-training-964-mirror`; `reported_pending_verification` |
 | `c-935-family-unresolved` | “935” covers horizontal flat-fan and vertical 935/78 arrangements; scan identity is unresolved. This was a preliminary question awaiting detailed references. | No source in this slice; `research_question` |
-| `c-no-scan-rescale` | The 245 mm working diameter does not authorize rescaling the private scan. It is a model parameter without scan calibration. | `project-reference-params`; `project_boundary` |
+| `c-no-scan-rescale` | The 245 mm working diameter does not authorise rescaling the private scan. It is a model parameter without scan calibration. | `project-reference-params`; `project_boundary` |
 
 Every claim retains `engineering_validation=false`.
 

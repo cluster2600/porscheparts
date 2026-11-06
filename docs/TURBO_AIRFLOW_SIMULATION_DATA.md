@@ -22,7 +22,7 @@ pressure-loss measurement were found.
 | --- | --- | --- | --- |
 | A | [Porsche Christophorus](https://newsroom.porsche.com/christophorus/fr/2020/394/turbo-engines.html) | Parallel twin-turbo architecture, 3,600 cm3, 0.8 bar, 408 PS, 540 Nm | K16 map, CAD, materials, losses |
 | A | [Porsche Austria PET, plate 107-45](https://www.porsche.at/media/Kwc_Basic_DownloadTag_Component/4740-45397-124814-downloadTag/default/f5000535/1729608718/kat017-d-911-98-katalog.pdf) | Part numbers, quantities, seals, clamps and interfaces to look for | Flow dimensions, tolerances, thicknesses, CAD |
-| B | [BorgWarner Performance Catalog](https://www.borgwarner.com/docs/default-source/iam/boosting-technologies/bw_turbo-performance-catalog.pdf) | K16-6735 + K16-6736 pairing, catalogue power and commercial limits | Allowable limit of an additive part, aero map |
+| B | [BorgWarner Performance Catalogue](https://www.borgwarner.com/docs/default-source/iam/boosting-technologies/bw_turbo-performance-catalog.pdf) | K16-6735 + K16-6736 pairing, catalogue power and commercial limits | Allowable limit of an additive part, aero map |
 | C | [FVD](https://www.fvd.net/de/shop/turbolader-k16-rechts-993-serie-99312301452-993123014dx~p239094), [Invasion Auto Products](https://www.invasionautoproducts.com/94pocark16tu.html), [TurboMaster](https://www.turbomaster.com/eng/turbo/borgwarner/5316-988-6735/) | Part numbers, dimensions and diameters declared by vendors | Independent measurement, wheel profile, tolerance |
 | C | [elferclassic](https://www.elferclassic.de/technik/techdaten/993-turbo-95-98-techdat.php) | Engine operating points and reference speed | Actual intake mass flow and boost curve |
 | derived | Calculations in this document | Mass-flow envelopes with explicit assumptions | Measured Porsche data |
@@ -118,7 +118,7 @@ charge circuit:
 
 The PET is the best bill-of-materials evidence, but it does not give the inside
 diameter, the bend radius, the thickness, the core section or the complete
-center distances. The dimensions below therefore remain product envelopes and
+centre distances. The dimensions below therefore remain product envelopes and
 packaging bounds.
 
 ## Available dimensions and masses
@@ -133,7 +133,7 @@ packaging bounds.
 | FVD air duct `993 110 340 54` | `600 x 280 x 50 mm`, `0.9 kg` | FVD development, not OEM geometry |
 | FVD reinforced bracket | `255 x 80 x 23 mm`, `0.2 kg` | Aftermarket upgrade, not structural qualification |
 | AKS DASIS core `177020T` for `993 110 330 53` | core `260 x 270 x 60 mm`, `7.06 kg` | Aftermarket core, not complete assembly |
-| TA Technix module `05PO002` | two core modules `260 x 260 x 100 mm`; stated fittings 66 mm outside / 68 mm inside; max width 860 mm, max height 240 mm, center distance 690 mm | Aftermarket, heterogeneous data not to be combined without a drawing |
+| TA Technix module `05PO002` | two core modules `260 x 260 x 100 mm`; stated fittings 66 mm outside / 68 mm inside; max width 860 mm, max height 240 mm, centre distance 690 mm | Aftermarket, heterogeneous data not to be combined without a drawing |
 | FVD Motorsport intercooler `FVD110330` | `870 x 410 x 190 mm`, `10.1 kg` | Upgrade with installation modifications |
 | FVD left heat shield | `160 x 110 x 105 mm`, `0.23 kg` | Product envelope, fasteners unknown |
 | FVD sensor `993 606 114 00` | `75 x 35 x 20 mm`, `0.02 kg` | Product envelope, electrical curve absent |
@@ -147,7 +147,7 @@ The forums were searched separately from manufacturer sources. They are useful
 for finding configurations, recurring failures and data to request from an
 owner, but their posts are not metrological measurements by default.
 
-| Forum | Useful information | Modeling decision |
+| Forum | Useful information | Modelling decision |
 | --- | --- | --- |
 | [PFF, 408/430/450 PS](https://www.pff.de/thread/2651537-993-biturbo-408-430-450-ps-unterschiede/) | Reports indicating K16 on 408/430 and K24 on 450/WLS II, with ECU/cooling modifications | Variant cross-check only; does not replace the turbo plate or the VIN |
 | [Carpassion, displayed pressure](https://www.carpassion.com/forum/thema/26748-ladedruckanzeige/) | The instrument cluster reportedly caps at 0.8 bar; modified cars are reported at 1.3-1.4 bar; hoses and clamps can cause problems | The cap is treated as a display limit; modified pressures are excluded from the stock case |
@@ -171,7 +171,7 @@ requested.
 | [FVD](https://www.fvd.net/fr/shop/turbocompr-sport-k16-24-g-pour-993-fvd123013~p262679) | K16/24 hybrid | Stated compressor inducer 47.5 mm, CNC housing, modified backing plate, reinforced turbine and bearing, balancing, oil/DME adapters | 555 hp is a kit target; no map or complete profile |
 | [Cargraphic](https://www.cargraphic.de/en/your-vehicle/for-porsche/for-911/for-993/for-turbo-turbo-s-36l/engine-upgrade-kits-porsche-993-turbo-s-36l/power-kit-2-for-porsche-993-turbo-36l/lkp93t300s2/) | Special K16/24 + ECU + exhaust + oil | 475 PS / 632 Nm stated, tests claimed on an RS-Tuning dyno | Dyno sheet, boost, IAT and mass flow absent |
 | [TTP](https://t-t-p.de/motortuning-porsche/) | K16 450 PS, modified K16 500 PS, K24 550 PS | Integrated water-to-air intercooler, oil cooling, programmable ECU, levels 450/580, 500/620 and 550/640 | Tuning figures, with no map or dyno protocol |
-| [Elferwelt](https://www.elferwelt.de/leistungen/porsche-993-turbo-gt2/) | K16/8055011W, 520-540 PS kit | Lightened rotating assembly, clearance optimization, static/dynamic balancing, matched injectors, DME CC460/OTP | The mention `80er CNC Druckseite` is not a defined dimension |
+| [Elferwelt](https://www.elferwelt.de/leistungen/porsche-993-turbo-gt2/) | K16/8055011W, 520-540 PS kit | Lightened rotating assembly, clearance optimisation, static/dynamic balancing, matched injectors, DME CC460/OTP | The mention `80er CNC Druckseite` is not a defined dimension |
 | [TTH](https://www.turbo-technik-hamburg.de/shop/porsche/911/993/436/porsche-911-993-gt2-wls-i-ii-turbo-s-3-6-t-k24-750ps) | K24 with hot-side housing 10 | Extended Tip, CNC housing, reworked turbine, reinforced bearings/capsules, balancing stated down to 0.05 g | K24 offer up to 750 PS with adapted engine and software; not stock K16 |
 | [9ff](https://www.9ff.com/en/pages/993-konfigurator) | F64 twin turbo 550 with 2x K24-24.80 | 550 hp / 700 Nm, water intercooler, large ducting, injectors, reinforced pump and case | Complete conversion; no map or wheel geometry |
 
@@ -295,7 +295,7 @@ serves to verify the OpenFOAM chain and the relative comparisons. The next
 physical case will have to impose a justified per-bank mass flow and a geometry
 whose sections are known.
 
-Three sensitivity variants are now materialized in
+Three sensitivity variants are now materialised in
 `work/simulation/993-turbo-variants/`: `K16-OEM`, `K16-24-HYBRID` and
 `K24-REFERENCE`. They use the same derived mass flow of `0.156 kg/s` per turbo,
 at constant density, so as to compare only synthetic cold envelopes. Inlet
@@ -309,7 +309,7 @@ declarations outside the solver. The files can be regenerated with
 ### Geometry
 
 - licensed scan or CAD of the right and left turbo;
-- flange drawings, axes, center distances and common datums;
+- flange drawings, axes, centre distances and common datums;
 - inside diameters and radii of the OEM hoses;
 - geometry of the intercooler housings, fins, core density and dead volumes;
 - throttle, manifold, plenum and intake sections;
@@ -322,7 +322,7 @@ declarations outside the solver. The files can be regenerated with
 - ambient temperature, post-compressor and post-intercooler temperature;
 - compressor/turbine efficiency and shaft speed;
 - turbine inlet pressure, T3 temperature, back pressure;
-- wastegate opening law and transient behavior;
+- wastegate opening law and transient behaviour;
 - surge/choke limits and fatigue data.
 
 ### Validation
@@ -345,7 +345,7 @@ replace this bench.
 3. **Thermal**: add the intercooler and its surroundings with measured or
    explicitly swept temperatures/coefficients.
 4. **Complete K16**: only after obtaining a map or test points and an
-   authorized wheel geometry. A simulation without a map will produce an image
+   authorised wheel geometry. A simulation without a map will produce an image
    or an extrapolation, not a credible prediction.
 5. **Manufacturing**: the turbo, the wheel, the shaft, the CHRA and the hot-side
    housing remain blocked by the catalogue safety class. The first object must

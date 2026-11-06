@@ -29,7 +29,7 @@ eligible, and 252 remain after excluding cells already used.
 It reuses the predicates for rational convexity, determinant, elongation and
 face quality. The [native concavity/flatness margin](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/meshCheck/primitiveMeshCheck/primitiveMeshCheck.C#L1069-L1174)
 is kept: weak convexity would not be enough to avoid the historical refusal.
-The 1,502 affected neighboring faces are re-checked jointly, without
+The 1,502 affected neighbouring faces are re-checked jointly, without
 lowering the thresholds. These predictions do not replace the native results.
 
 ## Conservation verified on the copy actually written
@@ -110,7 +110,7 @@ intersection solid. It also re-checks the 312 warning files.
 
 The two warned subtractions remain warned. For their group, the complete
 native capture separately establishes the identity of the elements that
-define the three faces; the serialization differences attributed to edge
+define the three faces; the serialisation differences attributed to edge
 regularities do not modify the defining surfaces or contours.
 Since the old raw binary streams were not kept, this conclusion explicitly
 rests on the pinned capture and its decoders, not on a new reading of the
@@ -167,7 +167,7 @@ the five quality families are still refused.**
 *Native checkMesh defect counts after the 57-group batch; it shows mesh quality counts, not a physical field or an accepted mesh.*
 
 The selection comprises 14 groups of three parents and 43 of four.
-The 428 affected neighboring faces are re-checked jointly. The search is
+The 428 affected neighbouring faces are re-checked jointly. The search is
 bounded, not exhaustive; it does not claim to have found every possible
 improvement. Hexes and pyramids are not merged.
 

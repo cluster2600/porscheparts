@@ -35,7 +35,7 @@ stamped or assembled sheet metal remains the reference process to beat.
 The F0 weighs theoretically `325.58 g`, i.e. `41.6 %` more than the `230 g`
 published by FVD. Since the material of the commercial product is unknown,
 this result is not a validation by mass; above all, it prevents declaring AM
-the winner without further optimization and cost comparison.
+the winner without further optimisation and cost comparison.
 
 ## Screenings run
 

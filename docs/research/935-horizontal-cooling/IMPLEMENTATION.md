@@ -15,7 +15,7 @@ program remains separate.
 | 2 — Mechanism | The 17 interfaces and the existing load paths are reused. An outer portion of the shaft shows 22 periodic lobes, reconstructed as an open FreeCAD/STEP surface. The October 7 continuation adds a local inspection plane of the support and an acquired portion of bore wall. The other parts, the functional axes and the assembly remain open. No assumed internal gearing. |
 | 3 — Air | No reference computation launched: full rotor, housing, clearances, frames/directions and pilot conditions not qualified. |
 | 4 — Mechanics | No reference computation launched: solids, connections, loads and properties matching the process not qualified. |
-| 5 — Optimization | Waits for a computed reference and the mounting constraints. |
+| 5 — Optimisation | Waits for a computed reference and the mounting constraints. |
 | 6 — PhysicsNeMo | No training: no accepted set of computations. |
 | 7 — Twin | The existing functional graph remains a basis; no complete SimReady assembly delivered. The bench protocol is written. |
 
@@ -153,7 +153,7 @@ rejected diagnostic. The candidate axes remain distinct, with no coaxiality
 imposed and no functional seat identity declared.
 
 FreeCAD produces two open lateral analytic BRep faces, with the
-angular interpolations explicitly labeled. No cap and no complete solid
+angular interpolations explicitly labelled. No cap and no complete solid
 is exported. The re-read STEP preserves their area; the native files
 reopen. A tessellation of the **STEP actually exported**, overlaid on the
 scan in four private views, checks the transfer of frames. The bounds
@@ -166,7 +166,7 @@ The coordinator refuses an existing directory. Each step publishes its receipt
 before continuing. On failure, the partial outputs and `failure.json`
 are kept. To resume, reuse the verified inputs and choose a
 new directory; no resumption replaces a previous attempt.
-The CFD, FEA, optimization and training steps are not simulated by
+The CFD, FEA, optimisation and training steps are not simulated by
 empty receipts: a request for them is rejected as long as they are not implemented.
 
 ## First geometric milestone reached, with reservations
@@ -184,10 +184,10 @@ The uncalibrated distances are not compared to a tolerance in mm.
 
 The nine closed ranges show zero self-intersecting faces, zero faces
 incident to a non-manifold edge and zero non-manifold vertices in the
-MeshLab audit. For the discretization of **these ranges only**, the two final
+MeshLab audit. For the discretisation of **these ranges only**, the two final
 resolutions give **0.1204%** volume variation and **0.1412%** for the
 largest variation of the principal inertias. The inertia is transported to
-the origin of the candidate frame, not left at the center of mass.
+the origin of the candidate frame, not left at the centre of mass.
 These results give neither the mass of the full rotor nor its strength.
 
 The rejected attempts are kept: historical Poisson closure and visual
@@ -284,7 +284,7 @@ does not provide gear teeth, bearing references, preloads or seals.
    acquisitions of the back before a justified rigid registration. Obtain two
    independent dimensions per scan to calibrate, with uncertainty and provenance.
    Reconstruct the seats, axes and machined faces as analytic/BRep; close
-   missing surfaces only with evidence or an explicitly localized
+   missing surfaces only with evidence or an explicitly localised
    interpolation. Volume/inertia convergence < 1% does not replace
    the deviation from the scan or the measurement of the interfaces.
 2. Establish axes, directions as viewed, signed ratios, retentions, clearances and load paths.
@@ -303,13 +303,13 @@ does not provide gear teeth, bearing references, preloads or seals.
    cards; the existing generic WE43 card is a wrought surrogate,
    insufficient for an LPBF limit. Fatigue or property missing: the corresponding
    conclusion is impossible, with no invented value.
-5. SciPy optimizes with the reference solvers; OpenMDAO coordinates once
+5. SciPy optimises with the reference solvers; OpenMDAO coordinates once
    these calls are available. No automatic differentiation through PicoGK.
    Keep the interfaces and compare useful air at comparable power,
    mass and inertia under the same conditions.
 6. PhysicsNeMo 2.2.1, [FullyConnected](https://raw.githubusercontent.com/NVIDIA/physicsnemo/v2.2.1/physicsnemo/models/mlp/fully_connected.py): pressure and torque from parameters
    and conditions. Separate whole geometries between training/test,
-   declare the normalization and obtain a normalized error < 5% on each
+   declare the normalisation and obtain a normalised error < 5% on each
    of the two outputs. Prohibit extrapolation; recompute the retained
    candidates with the solvers. A failure of the model does not block the solvers.
 7. Compose the parts and connections in SI USD with checked conversions,
@@ -319,7 +319,7 @@ does not provide gear teeth, bearing references, preloads or seals.
 
 The thresholds above qualify the computations. Allowable speeds, strength
 limits, fatigue and balancing come from the part data and from
-the mechanical review. **No physical validation and no manufacturing authorization.**
+the mechanical review. **No physical validation and no manufacturing authorisation.**
 
 The scans, their derivatives and the parameters that allow their reconstruction
 remain private under `work/`. Git receives only programs, tests,

@@ -33,7 +33,7 @@ The eight minimum checks and generic/Geometry/Physics CPU reports pass; the
 substantive formal profile retains six failed features and its ignored-policy
 ledger. These are software asset checks. Head strength, thermal performance,
 material qualification, calibrated LPBF, computed twin fields, PhysicsNeMo and
-manufacturing authorization remain open.
+manufacturing authorisation remain open.
 
 [ARCHIVE_REVIEW.json](ARCHIVE_REVIEW.json) preserves its packaging-time
 `uploaded=false` flag. The later publication receipt records the actual upload

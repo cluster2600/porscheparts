@@ -1,6 +1,6 @@
 # M64 4V — valve spring selection from supplier data sheets
 
-**Status: screening on public catalogs, not qualification.** Nothing was ordered, no supplier contacted.
+**Status: screening on public catalogues, not qualification.** Nothing was ordered, no supplier contacted.
 The spring figures are copied from the product pages (accessed 2026-09-14). The rest follows the V1 model
 ([M64_V1_VALVETRAIN_20260914.md](M64_V1_VALVETRAIN_20260914.md)): cam, masses, stiffnesses and clearances are **assumed** there.
 
@@ -72,7 +72,7 @@ The Ferrea S10122 (996 Turbo) has good forces, but its data sheet caps lift at 1
 
 ## Still to be confirmed
 
-1. **Actual pocket**: counterbore diameter, installed height, center distance between the two springs on the same side. None of this
+1. **Actual pocket**: counterbore diameter, installed height, centre distance between the two springs on the same side. None of this
    is designed; the 30 mm OD check is an assumption.
 2. **Masses**: titanium spring and retainer not published; 45 g + 13 g are assumed. Weighings are needed.
 3. **Data sheet request to suppliers** (not sent): GSC5092 OD, wire diameter, free length,

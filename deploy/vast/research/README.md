@@ -1,6 +1,6 @@
 # M64 document readers on Vast
 
-This profile runs a public LLM to analyze a supplied document corpus. It
+This profile runs a public LLM to analyse a supplied document corpus. It
 launches no CAD, no solver and no manufacturing; the answers are never published
 automatically. See the [execution dossier](../../../docs/reports/M64_RESEARCH_EXECUTION_20260912.md).
 

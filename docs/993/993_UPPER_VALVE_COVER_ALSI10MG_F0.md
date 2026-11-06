@@ -3,10 +3,10 @@
 This candidate uses additive manufacturing to consolidate an open shell, six
 fins and three coil-on-plug coil mounts. PorscheFanatics specifically
 identifies COP integration as the benefit of the BBi kit and catalogues
-several machined aluminum covers.
+several machined aluminium covers.
 
 FVD publishes a complete kit of four covers, gaskets and fasteners in billet
-aluminum, with a commercial envelope of `400 × 150 × 200 mm` and a mass of
+aluminium, with a commercial envelope of `400 × 150 × 200 mm` and a mass of
 `3.32 kg`. Protomotive confirms an upper pair for the 993 Carrera/Turbo
 machined from `6061-T6`. None of these figures defines an individual part.
 
@@ -100,7 +100,7 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
 3. Measure crankcase pressure, temperatures, fluxes, oil, air and vibration.
 4. Redesign flange, ribs, vents and COP towers on measured interfaces.
 5. Run CHT, nonlinear gasket contact, modal, fatigue and relaxation.
-6. Qualify orientation, supports, T6, quench, HIP, machining and anodizing.
+6. Qualify orientation, supports, T6, quench, HIP, machining and anodising.
 7. Pass CT, FPI, flatness, pressure, leak, thermal cycle and endurance tests.
 
 PhysicsNeMo stays deferred until correlated CHT/structure/gasket series exist,

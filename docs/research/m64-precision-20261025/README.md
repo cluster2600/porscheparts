@@ -11,7 +11,7 @@ part fabrication or model-training job was performed.
 | Exact application | Declared data | Qualification |
 |---|---|---|
 | Porsche Type3 rod category, M64/60 only from the printed booklet applicability point | Maximum complete-rod mass difference in one engine: 6 g | Weigh without bearing shells. Set-wide difference, not ±6 g per rod or an end-specific balancing target. |
-| Metelli guide 01-2620, exact M64.60 application/cross-reference | ID8.00 / OD13.05 / length45.4 mm; material codeB1 means phosphor-bronze | No normalized alloy grade, factory interference fit or production tolerance. Valve-side assignment is unresolved. |
+| Metelli guide 01-2620, exact M64.60 application/cross-reference | ID8.00 / OD13.05 / length45.4 mm; material codeB1 means phosphor-bronze | No normalised alloy grade, factory interference fit or production tolerance. Valve-side assignment is unresolved. |
 | Metelli guide 01-2621, exact M64.60 application/cross-reference | ID8.00 / OD13.05 / length55.2 mm | CodeB is not identified as bronze by the inspected legend. Valve-side assignment remains unresolved. |
 | Factory PET993 turbo oil collection interfaces | PlugM18×1.5 with sealing ringA18×24; O-rings18.65×2.45 and63×2 mm; studM8×26 | Nominal catalogue callouts and exact component associations. No flange-hole coordinates or implied thread pitch for the M8 stud. |
 | Würth replacement plug matching Porsche90021900930 | Catalogue designationM18×1.50×12, internal hex8 mm, aluminium | Supplier product declaration;12 mm is the catalogue length designation with no detailed end-face datum. No original Porsche material inferred. |
@@ -25,7 +25,7 @@ also records related Carrera/RS crankshaft seat intervals, intermediate-shaft
 sprocket construction distances98.07/43.27 mm, and the conditional ±0.25 mm
 alignment check. No Turbo identity was established for those booklet spreads.
 The crank table's WearDimension numbers also occur as conditional grinding
-references for deeply scored oil-seal surfaces; they are not generalized into
+references for deeply scored oil-seal surfaces; they are not generalised into
 universal rejection minima. WidthA is distinct from axial endplay and from the
 separately scoped Glyco crank-web-distance record.
 

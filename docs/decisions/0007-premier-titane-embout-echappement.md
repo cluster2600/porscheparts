@@ -22,7 +22,7 @@ contradicting a cell changes the rank, and that is intended.
 | rank | part | score | verdict |
 |---|---|---:|---|
 | 1 | **oval tip, titanium variant** | **+6** | retained |
-| 2 | three-runner intake manifold | +5 | aluminum remains the right material there |
+| 2 | three-runner intake manifold | +5 | aluminium remains the right material there |
 | — | exhaust manifold | +7 | best score of the batch, **900 °C: a nickel case** |
 
 Only five parts out of thirty-two are eligible. Twenty-seven fall on the safety
@@ -119,7 +119,7 @@ catalogue lines stay with their holder.
 | score | part nos. | designation | reading |
 |---:|---:|---|---|
 | +5 | 12 | `heat exchanger` | 993 heater heat exchanger — **exhaust temperature, a nickel case** |
-| +5 | 5 | `hot-air manifold` | hot air, not gas; aluminum is enough |
+| +5 | 5 | `hot-air manifold` | hot air, not gas; aluminium is enough |
 | +4 | **21** | **`tail pipe`** | **the retained part, independently reconfirmed** |
 | +4 | 4 | `turbocharger` | prohibited pending engineering |
 | +2 | 21 | `oil pipe` | turbo oil lines, a genuine additive case, but an oil leak onto the exhaust |
@@ -160,7 +160,7 @@ All five are now disqualifying, and the ranking changes in nature:
 
 The exhaust tip is no longer the best of a batch. It is **the only titanium
 candidate in the catalogue**. The intake manifold falls on the galvanic couple
-with aluminum, the headlight hook and the door lever on the simple shape, the
+with aluminium, the headlight hook and the door lever on the simple shape, the
 hub cap on both.
 
 This strengthens the decision rather than weakening it, but it must be said in

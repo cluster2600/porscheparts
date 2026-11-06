@@ -25,10 +25,10 @@ flowchart TD
 
 The four official repositories were fetched at the commits recorded in
 `containers/m64-leap71/sources.lock`. Their LICENSE files are Apache-2.0.
-The bootstrap keeps the licenses in each clone; no third-party source
+The bootstrap keeps the licences in each clone; no third-party source
 is copied into this repository. Distributing a compiled runtime will also have to
-honor the obligations of its dependencies, which are not all reduced
-to the PicoGK license.
+honour the obligations of its dependencies, which are not all reduced
+to the PicoGK licence.
 
 - [PicoGK](https://github.com/leap71/PicoGK): volumetric geometry kernel
   based on OpenVDB, not a thermal solver.
@@ -67,18 +67,18 @@ control, never an approximation of a cylinder head nor a shape proposal.
 The smoke program uses `new Library(...)`, without `Library.Go` or viewer.
 This avoids requesting a window, but does not prove headless operation
 of the missing C++ runtime. `HelixHeatX.Task()` calls
-visualization functions: it is not declared headless by this simple bootstrap.
+visualisation functions: it is not declared headless by this simple bootstrap.
 
 ## Place in the cylinder-head project
 
 Keep the machined interfaces, datums, sealing faces and the OCCT B-Rep master.
 PicoGK is a candidate for generating **internal cooling variants**
-in explicitly authorized volumes: curved passages, transitions and
+in explicitly authorised volumes: curved passages, transitions and
 exchange surfaces. It provides neither M64 interfaces, nor a material law, nor a
 pressure-drop budget. Do not graft the complete HelixHeatX exchanger into the cylinder head.
 The Porsche envelope remains an input constraint, not a free variable.
 
-A watertight voxelized volume is neither an exact B-Rep nor a machining drawing.
+A watertight voxelised volume is neither an exact B-Rep nor a machining drawing.
 The mesh export requires a resolution study, a comparison with the master,
 an audit of the walls and of communications between cavities. Any link
 to the B-Rep must be reconstructed and checked, not renamed STEP. The oil
@@ -96,7 +96,7 @@ analysis; a HelixHeatX geometry constitutes no thermal result.
    headless smoke test on **linux/amd64**. Another possible route: first test
    the supplied macOS arm64 binary on the local machine with .NET 9.
 3. Add a channel control with geometric criteria and voxel convergence,
-   and only then integrate the authorized cooling domains.
+   and only then integrate the authorised cooling domains.
 
 No geometric GPU need is demonstrated by this preflight. Renting a GPU
 machine does not by itself solve the missing runtime. The JSON results file
@@ -162,7 +162,7 @@ as an eliminating constraint.
 The best raw weight saving of the sweep is `1.60 %`, but no variant
 passes the mechanical margin. The independent audit also finds
 non-manifold edges on all six STLs. The exact status is therefore **PicoGK geometric
-screening run, no optimization validated and no variant selected**. See
+screening run, no optimisation validated and no variant selected**. See
 [the piston record](../993/993_PISTON_CP1_COOLING_GALLERY_F0.md) and the
 [PicoGK evidence](../../twins/993-m64-60-piston-gallery-f0/evidence/picogk-f0).
 

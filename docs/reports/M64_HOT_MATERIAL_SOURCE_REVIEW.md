@@ -19,7 +19,7 @@ added to the repository. Digests, locators and figures:
 Source: [ECKART, PDF page 5, lower table](https://www.eckart.net/en/download/document/view/id/519).
 This table does not directly state treatment, orientation, sample count,
 hold time or hot test method. **It is not automatically
-labeled T7.** The upper table gives E = 74/77/79 GPa at room
+labelled T7.** The upper table gives E = 74/77/79 GPa at room
 temperature for as-built/stress-relieved/T7-treated, respectively. Stress relief
 is 300 °C, 2 h, on the build plate; the T7 recipe is proprietary.
 

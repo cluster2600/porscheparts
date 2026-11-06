@@ -58,7 +58,7 @@ The PCB will have to define outline, layers, copper, returns, decoupling, therma
 optical distance and 2.5/4 mm pitch. No placement in the schematic is a physical dimension.
 The limitation of a hung MCU with DISPLAY_EN high remains: **manual S1 and operator
 present**; no guaranteed autonomous shutdown. The E0-01 to E0-07 plan remains to be
-executed on hardware after review, routing/DRC and manufacturing authorization.
+executed on hardware after review, routing/DRC and manufacturing authorisation.
 
 ## Symbol provenance
 
@@ -70,8 +70,8 @@ sheets so they open; no proprietary manufacturer datasheet is copied.
 
 The small local library `rear_panel_e0.kicad_sym` derives from `74xx:74LVC125`
 (inheritance resolved, variant named SN74LVC125APW) and `74xGxx:74LVC1G04`
-(NC pin 1 of the DBV package made explicit). It keeps the KiCad Community license
-and attribution ([license text](LICENSE-symbols.txt));
+(NC pin 1 of the DBV package made explicit). It keeps the KiCad Community licence
+and attribution ([licence text](LICENSE-symbols.txt));
 pinouts cross-checked against TI [S32/S33](../../sources.md).
 `sym-lib-table` uses `${KIPRJMOD}`, with no user path. The minimal project
 contains no ERC exclusion and no disabled check rule.

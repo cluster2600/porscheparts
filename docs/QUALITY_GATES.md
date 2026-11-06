@@ -28,7 +28,7 @@ stateDiagram-v2
 
 Among other things, the validator blocks:
 
-- a record with no source or no license;
+- a record with no source or no licence;
 - a generation other than 993;
 - an unknown identifier or status;
 - a titanium part without treatment, inspection and isolation requirements;
@@ -47,7 +47,7 @@ analysis.
 
 The full contract for additive parts is described in
 [AM_VALIDATION_PIPELINE.md](AM_VALIDATION_PIPELINE.md). `completed_screening`
-never counts as `passed` and cannot open a manufacturing authorization.
+never counts as `passed` and cannot open a manufacturing authorisation.
 
 ## Human review
 
@@ -55,7 +55,7 @@ The reviewer checks:
 
 - agreement between geometry and measurements;
 - variants actually covered;
-- licenses and attributions;
+- licences and attributions;
 - material-process-environment consistency;
 - visible limits and assumptions;
 - no claim that goes beyond the evidence.

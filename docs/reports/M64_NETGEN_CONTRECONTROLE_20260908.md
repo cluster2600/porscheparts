@@ -20,7 +20,7 @@ flowchart TD
     class H,I open;
 ```
 
-## Volume optimization: generation recovered, mesh still rejected by OpenFOAM
+## Volume optimisation: generation recovered, mesh still rejected by OpenFOAM
 
 The intake mesh produced by Netgen processing now contains **458,307 tetrahedra** after recovery of its complete generation. The **191,968 triangles of the 88 boundary faces** keep exactly their coordinates, orientations and roles after remapping of the node numbers. **The new OpenFOAM check still rejects six families of criteria.** This step deals with the transfer and integrity of a numerical mesh; it validates neither the flow rate, nor the temperature, nor the strength of the cylinder head.
 
@@ -37,7 +37,7 @@ One preflight and **three native Netgen calls** were performed in the Gmsh **4.1
 | Call 2 | Adjacencies restored; Netgen finishes, then check blocked by the element cache | 2 | 65 s |
 | Call 3 | Immediate save and cache rebuilt; two superimposed generations detected and rejected | 2 | 129 s |
 
-The durations in the table are the integer measurements from the process receipts, not CPU times. Calls 2 and 3 spend **44.958 s** and **45.102 s** respectively in the optimizer. The parameter `niter=1` does not limit this native branch to a single internal iteration: it means a single API call per attempt. The containers were all removed and their absence verified; no new Vast rental was made.
+The durations in the table are the integer measurements from the process receipts, not CPU times. Calls 2 and 3 spend **44.958 s** and **45.102 s** respectively in the optimiser. The parameter `niter=1` does not limit this native branch to a single internal iteration: it means a single API call per attempt. The containers were all removed and their absence verified; no new Vast rental was made.
 
 ### Transfer defect identified and controlled correction
 
@@ -53,7 +53,7 @@ The recovered mesh passes the following direct checks: **zero duplicates**, **ze
 
 ### Measured quality: improvements and regressions
 
-An independent re-read in Gmsh, **with no generation or optimization**, takes **2.287 s** and finishes with exit 0. It confirms **124,940 nodes**, **458,307 tets** and all the original physical groups.
+An independent re-read in Gmsh, **with no generation or optimisation**, takes **2.287 s** and finishes with exit 0. It confirms **124,940 nodes**, **458,307 tets** and all the original physical groups.
 
 | Measure | Initial | Recovered generation | Reading |
 |---|---:|---:|---|
@@ -64,7 +64,7 @@ An independent re-read in Gmsh, **with no generation or optimization**, takes **
 | Minimum Jacobian | 6.21332 × 10⁻¹² | 9.83784 × 10⁻¹² | Positive in the unscaled coordinates |
 | Non-positive Jacobians | 0 | 0 | None observed |
 
-The SICN threshold of **0.1 is a diagnostic indicator here**, not a CFD authorization nor a criterion lowered to accept the result. The Jacobian values use the scan coordinates; they certify no physical scale in millimeters. **No uniform improvement of the mesh is claimed.**
+The SICN threshold of **0.1 is a diagnostic indicator here**, not a CFD authorisation nor a criterion lowered to accept the result. The Jacobian values use the scan coordinates; they certify no physical scale in millimetres. **No uniform improvement of the mesh is claimed.**
 
 ### OpenFOAM check actually executed
 
@@ -87,13 +87,13 @@ The four commands return **0**, but the log concludes with **six failed checks**
 
 ### Validation state and next decision
 
-The check of the recovered mesh is now **executed and rejected**, not `non_executed`. The CFD, thermal, structural and additive process solvers remain `non_executed` **in this batch**. The next step is a local correction motivated by the defects still observed, followed by the same checks; no lowering of thresholds nor solver run on the rejected mesh is authorized.
+The check of the recovered mesh is now **executed and rejected**, not `non_executed`. The CFD, thermal, structural and additive process solvers remain `non_executed` **in this batch**. The next step is a local correction motivated by the defects still observed, followed by the same checks; no lowering of thresholds nor solver run on the rejected mesh is authorised.
 
-Software assertions, the program's exit and positive Jacobians constitute neither computational convergence, nor physical validation, nor authorization to print or to run an engine.
+Software assertions, the program's exit and positive Jacobians constitute neither computational convergence, nor physical validation, nor authorisation to print or to run an engine.
 
 ## Chain of evidence
 
-The diagram at the top of this page summarizes the chain: the historical domain
+The diagram at the top of this page summarises the chain: the historical domain
 `3f20` goes through the Netgen recovery and fails the OpenFOAM check, while the
 native candidate `7fc` still needs its own face packages, mesh and checks.
 
@@ -105,7 +105,7 @@ audited geometric correspondence. The old notice reporting C0 and an old
 STEP check are not reusable for this candidate. Redo the surface and its
 checks first, before the volume and any CFD. The three
 new vertices must remain represented; no removal of detail
-nor increase of tolerance is implicitly authorized.
+nor increase of tolerance is implicitly authorised.
 
 The software tests of the [CAD batch](M64_CORRECTIONS_NATIVES_20260908.md)
 pass separately (see its software verification and resources section); they do not change these qualification rejections.

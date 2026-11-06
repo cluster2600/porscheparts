@@ -11,7 +11,7 @@
 | FT-MESH: unchanged boundary and conversion | A-MESH | P4 | Cube/bore NETGEN controls, exact determinant/boundary checks and INP readback | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
 | FT-SENSITIVITY: known sensitivity recovered | A-UQ | P5 | Fixed-seed analytical indices within 0.03 | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
 | FT-OPTIMIZATION: independently replayed optimum | A-OPT | P6 | External beam worker, closed-form comparison and independent replay | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
-| FT-GATES: no automatic carrier promotion | A-GATE, B-REVIEW | P0–P6 | Missing interfaces and convergence keep optimization disabled | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
+| FT-GATES: no automatic carrier promotion | A-GATE, B-REVIEW | P0–P6 | Missing interfaces and convergence keep optimisation disabled | [Published receipts](../../../benchmarks/free-tools/results/mac-20261025.json) |
 
 The [source manifest](../../../benchmarks/free-tools/baseline.json) freezes
 the catalogue record, independent assembly contract, R2 study parameters,
@@ -96,16 +96,16 @@ python3 benchmarks/free-tools/knowledge.py context \
   --output work/free-tools-context-new.json
 ```
 
-An authorized snapshot is JSON with `authorization` set to
+An authorised snapshot is JSON with `authorization` set to
 `owner_authored_or_approved_export` and a `documents` list. Each document has
 unique `id`, `title`, bounded `text`, `source`, `rights` and `scope` strings;
 `conflict_group` is optional. This declaration is an operator-reviewed input,
 not a licence grant. The sample corpus is authored paraphrase plus explicitly
 synthetic adversarial controls. Preserve source rights and evidence levels.
 
-FTS5 queries normalize spaced/dotted/hyphenated OEM references. The snapshot
+FTS5 queries normalise spaced/dotted/hyphenated OEM references. The snapshot
 digest is checked before every query; rebuilding is mandatory after any change.
-Queries are parameterized and excerpts are never executed.
+Queries are parameterised and excerpts are never executed.
 
 To include our actual PorscheFanatics catalogue, export only the carrier's
 identity metadata from the local source checkout (read-only), then build a
@@ -220,11 +220,11 @@ the run; no sample is silently dropped. Carrier ranges and probability models
 are not synthesized from a single nominal study value.
 
 OpenMDAO runs a separate analytical beam process for each evaluation. It
-minimizes mass subject to tip deflection, in explicit SI units. The optimum
+minimises mass subject to tip deflection, in explicit SI units. The optimum
 thickness must match an independent closed form within 0.5%; a separate replay
 checks mass and feasibility. The carrier external component instead replays
 the independent admission contract and records its blockers. It does not claim
-to have rerun or optimized the carrier's native FEM model.
+to have rerun or optimised the carrier's native FEM model.
 
 ## Test matrix and execution levels
 

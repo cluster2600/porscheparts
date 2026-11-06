@@ -9,7 +9,7 @@ nothing is proposed for manufacturing.
 as a legitimate objective. The line is not arbitrary: it runs between what
 carries load and what clothes the car. `SRC-GUNTHER-WERKS-CARBON-993` draws it
 word for word at the most advanced 993 restomod on the market — "beneath the
-carbon fiber, only the structural components and door crash bars remain steel" —
+carbon fibre, only the structural components and door crash bars remain steel" —
 for an announced saving of **91 kg** on the panels, with the steel body shell
 kept, inspected and reinforced.
 
@@ -99,7 +99,7 @@ robots.txt. It will not be queried by any tool in this repository; see
 None of these panels has, in this repository:
 
 - any **geometry**. No CAD, no scan. `SRC-SCHONER-993-GT2-LIDAR` claims a LiDAR
-  scan of a 993 but publishes no file, no scale and no license: it is a project
+  scan of a 993 but publishes no file, no scale and no licence: it is a project
   claim, not data;
 - any **measured mass**, nor sourced original material and thickness;
 - any **interface**: fastening points, styling gaps, fitting tolerances.
@@ -122,9 +122,9 @@ can therefore pass the gates of `docs/QUALITY_GATES.md` as it stands.
 The front lid comes next, with a caveat: its 14.0 kg must be confirmed before it
 is made the lead argument.
 
-## What this document does not authorize
+## What this document does not authorise
 
-It authorizes neither manufacturing, nor publication in the catalogue, nor any
+It authorises neither manufacturing, nor publication in the catalogue, nor any
 announcement of a mass saving. It establishes a list of candidates identified by
 their factory number and ranked by a declared order of magnitude. The next step
 is not CAD: it is **a scale and a caliper on a real fender**, plus the original
@@ -176,7 +176,7 @@ found in phase 1 are classified: `SRC-CGTRADER-993-DASHBOARD-SCALE-MODEL` is a
 1/8 scale model, archived as a false positive; `SRC-FSH-993-DASHBOARD-TRIM-DIMENSIONS`
 describes a Singer Style aftermarket trim, not the original part. A dashboard is
 a freeform surface with multiple interfaces — vents, instrument hood, column,
-glovebox, console junction, pillars, windshield base — that cannot be
+glovebox, console junction, pillars, windscreen base — that cannot be
 transcribed with a caliper. Photogrammetry at the scale planned for
 `993-INT-DOOR-PULL-0001` is the right method, on a part a hundred times larger.
 
@@ -185,7 +185,7 @@ Three difficulties are specific to it, and none concerns an exterior panel:
 - the original is thirty years old, cracked and warped by heat; molding a
   deformed part gives a wrong part;
 - it is the interior surface most exposed to the sun, so the resin ages there;
-- lacquered carbon under a windshield **reflects light into the driver's field
+- lacquered carbon under a windscreen **reflects light into the driver's field
   of view**, which grained leatherette does not. That is a requirement, not a
   finish.
 

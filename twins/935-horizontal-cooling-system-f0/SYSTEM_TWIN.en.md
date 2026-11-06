@@ -82,7 +82,7 @@ solution, conservation, ratio convention, thermal limits and invalid inputs.
 
 The current physical case builds a logical system but all six calculation groups
 lack values. The synthetic control executes all six. Results never change
-manufacturing authorization or twin validation state.
+manufacturing authorisation or twin validation state.
 
 ## OpenUSD and geometry
 
@@ -90,7 +90,7 @@ USD has `Scope` and component relations; no Mesh, Xform, position, mass, materia
 or rigid body schema is added. This avoids giving unregistered scans a common
 pose. `metersPerUnit = 1` defines future registry convention without scaling OBJ.
 [OpenUSD Scope](https://openusd.org/release/api/class_usd_geom_scope.html)
-organizes objects without its own transform.
+organises objects without its own transform.
 
 Both generated stages opened with OpenUSD 25.11: 37 prims, 17 resolved relations
 and native compliance passed. Format verification qualifies neither geometry nor
@@ -102,11 +102,11 @@ use measured sources/interfaces; they are not executed here.
 [Measurement contract](measurement-contract.json) defines 15 channel families:
 three shaft speeds, torques, total pressures, actual flow/distribution,
 temperatures, vibration and lubrication. Each sensor needs frame, position,
-calibration, sampling, synchronization and uncertainty. Technical owner must
-define speed bounds and criteria. This document neither launches nor authorizes
+calibration, sampling, synchronisation and uncertainty. Technical owner must
+define speed bounds and criteria. This document neither launches nor authorises
 physical testing.
 
-[Solver dossier](solver-handoff.json) organizes geometry/manufacture, CFD,
+[Solver dossier](solver-handoff.json) organises geometry/manufacture, CFD,
 structure, rotor dynamics, bearings/gears and lubrication inputs. Six domains
 remain blocked on inputs; reduced model replaces no strength, life or fatigue
 calculation. Volume-based mass/inertia needs closed geometry, qualified scale,

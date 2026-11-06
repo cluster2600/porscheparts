@@ -14,7 +14,7 @@ flowchart LR
     D --> E["Convergence 2, then 1,<br/>then 0.5 degree"]
     E --> F["BRep checks of contacts<br/>and collisions"]
     F --> G["Bearings, fastening, oiling<br/>and dynamics to qualify"]
-    F --> H["No authorization to<br/>manufacture or start the engine"]
+    F --> H["No authorisation to<br/>manufacture or start the engine"]
     classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
     classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
@@ -40,7 +40,7 @@ q(theta) = rotation(-theta) [centre_galet - centre_came]
 profil_came = q - rayon_galet × normale_exterieure(q)
 ```
 
-(`levee_soupape` = valve lift, `centre_galet` = roller center, `centre_came` = cam center,
+(`levee_soupape` = valve lift, `centre_galet` = roller centre, `centre_came` = cam centre,
 `profil_came` = cam profile, `rayon_galet` = roller radius, `normale_exterieure` = outward normal;
 the identifiers are kept as in the code.)
 
@@ -101,7 +101,7 @@ the parameters and the deliverables were re-verified after the export.
 [STEP of rockers, rollers and pins](../../twins/m64-cylinder-head/evidence/g5-rocker-train-20260925/rockers-rollers-and-shafts.step).
 The [intake](../../twins/m64-cylinder-head/evidence/g5-rocker-train-20260925/cam-profile-intake.csv)
 and [exhaust](../../twins/m64-cylinder-head/evidence/g5-rocker-train-20260925/cam-profile-exhaust.csv)
-profiles are in local x/z coordinates, millimeters and cam degrees.
+profiles are in local x/z coordinates, millimetres and cam degrees.
 
 ![Section through the candidate valvetrain: rockers on their shafts, rollers on the cams, pads on the valve stem tips; cam carrier and bearings absent](../../twins/m64-cylinder-head/evidence/g5-rocker-train-20260925/rocker-train-section.svg)
 
@@ -140,4 +140,4 @@ The CAD collisions are samples of the cycle, not certified continuous detection.
 The G4 ratio remains below 8 and the 700 hp output is not validated. Also missing are the
 exact M64 interfaces, hot material data, a correlated CFD/CHT chain,
 strength/fatigue and qualification of the printing process. **Neither a green CI nor these
-geometric contacts authorize manufacturing or starting the engine.**
+geometric contacts authorise manufacturing or starting the engine.**

@@ -6,7 +6,7 @@ in the [official Porsche PET, plate 102-05](https://assets-v2.porsche.com/jp/-/m
 and searches restricted to the Porsche domain, returned PET references, not a
 link to its text. No authentication failure was observed: we therefore cannot
 claim that it sits behind an account or a subscription. No purchase, login or
-unauthorized manual was used.
+unauthorised manual was used.
 
 ## Attributable Porsche bulletin, but a different reference
 
@@ -56,4 +56,4 @@ or illustration is added to the repository.
 Contribution: a historical procedure and precise locators are now
 accessible. What remains is to obtain the TI "02/00" itself, then a drawing of the
 seating face and groove matching the selected variant. **No dimension or procedure
-is transferred to the CAD contract or turned into a machining authorization.**
+is transferred to the CAD contract or turned into a machining authorisation.**

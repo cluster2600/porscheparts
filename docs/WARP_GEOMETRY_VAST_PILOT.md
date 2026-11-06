@@ -66,8 +66,8 @@ Use a fresh directory or filename for each repeat of the complete command.
 
 The JSON contains `source_sha256`, device metadata and per-case fixture hashes.
 The timing object states its boundaries: cold timing includes import/runtime
-initialization and kernel loading; warm timings include fresh mesh/BVH and
-buffers, transfers, query, synchronization and host readback. A pre-existing
+initialisation and kernel loading; warm timings include fresh mesh/BVH and
+buffers, transfers, query, synchronisation and host readback. A pre-existing
 disk cache can affect cold compilation; record the cache state. Fixture
 generation and oracle assessment are outside these timed pipeline scopes.
 
@@ -75,7 +75,7 @@ The NumPy
 oracle timing is a correctness reference, not an equivalent production
 benchmark: a box formula and a mesh query do different work. A CPU/CUDA speedup
 claim requires the same Warp algorithm, versions, input hashes and sample count,
-with cold initialization and warm repetitions reported separately. A CPU run
+with cold initialisation and warm repetitions reported separately. A CPU run
 under Apple Silicon's `linux/amd64` emulation is only a smoke check, not a native
 CPU performance baseline.
 
@@ -253,11 +253,11 @@ claiming acceleration; no performance gain is assumed from installing Warp.
 ## Where cluster_compilot can help
 
 Our [cluster_compilot](https://github.com/cluster2600/cluster_compilot) project
-can assist a later, measured CPU optimization task. At revision
+can assist a later, measured CPU optimisation task. At revision
 [`362a080d`](https://github.com/cluster2600/cluster_compilot/commit/362a080d6c5b7cb9272e6c2fbdcb7ca9a48d664a),
 its [runner](https://github.com/cluster2600/cluster_compilot/blob/362a080d6c5b7cb9272e6c2fbdcb7ca9a48d664a/compilot/runner.py)
 uses C, clang/OpenMP, ISL legality checks, numerical checks and repeated timings.
-The inspected path is a CPU loop optimizer, not a cluster scheduler or a direct
+The inspected path is a CPU loop optimiser, not a cluster scheduler or a direct
 C#/PicoGK/Warp/CUDA backend. Its
 [dependencies](https://github.com/cluster2600/cluster_compilot/blob/362a080d6c5b7cb9272e6c2fbdcb7ca9a48d664a/pyproject.toml)
 require Python 3.14 or newer and ISL; keep a future ComPilot environment separate
@@ -266,6 +266,6 @@ from this Python 3.12 image.
 A useful next experiment would isolate a demonstrably costly regular CPU loop,
 retain an independent numerical reference, then compare legal transformations
 and end-to-end timings. ComPilot's OpenAI-compatible model client can accept
-candidate transformations from a suitable model, but our specialized
+candidate transformations from a suitable model, but our specialised
 qwen-picogk planner has not been evaluated for this task. Neither ComPilot nor
 Qwen is required to build or run this Warp fixture.

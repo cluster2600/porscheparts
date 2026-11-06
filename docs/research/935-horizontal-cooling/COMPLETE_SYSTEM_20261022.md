@@ -3,7 +3,7 @@
 The target remains the horizontal 935 reference installation, followed later by
 the separate 993 adaptation. This continuation follows the root README and
 PR #274: retained scan-derived geometry → authored PicoGK → independent geometry
-checks → reference solvers → numerical acceptance → optimization and twin review.
+checks → reference solvers → numerical acceptance → optimisation and twin review.
 It does not substitute a small Warp benchmark for the complete-system objective.
 All new documentation is English; historical, hash-pinned records remain intact.
 
@@ -57,7 +57,7 @@ integrated end traction `M*z/I`. Its exact displacement field is stated in the
 source. Three identical mesh/load pairs compare C3D8 and C3D8I. All six native
 CalculiX 2.23 solves pass force/moment balance. C3D8I tip error is below 1e-7
 relative; C3D8 tip errors are approximately 92.6%, 75.8% and 43.9%.
-This demonstrates bending behavior on the witness, not accuracy of the rotor.
+This demonstrates bending behaviour on the witness, not accuracy of the rotor.
 
 The [rotor adapter](../../../twins/935-horizontal-cooling-system-f0/source/prepare_formulation_comparison.py)
 changes only the C3D8 element header to C3D8I. Nodes, mesh, material, centrifugal
@@ -108,7 +108,7 @@ rotor/shroud sweep bound remains a separate, assumed-scale result.
 
 ## Vast lifecycle and reproducibility
 
-The user authorized a rental. One attempt selected a qualified PicoGK/Python
+The user authorised a rental. One attempt selected a qualified PicoGK/Python
 image by digest at **$0.431852/h including 100 GB disk**, with a two-hour deadline,
 $4 attempt ceiling and a retained $10 goal ceiling. Before SSH readiness, another
 task's rental appeared in the account. The existing guard requires exclusive
@@ -146,7 +146,7 @@ cases, logs and hashes are retained. Keep the native PicoGK library directory
 on the platform's loader path when running the C# composition.
 
 The first Linux test snapshot lacked a Git index and inherited a group-writable
-umask. Its failures are retained. The snapshot was initialized as a local Git
+umask. Its failures are retained. The snapshot was initialised as a local Git
 repository, its own permissions corrected, and subsequent tests use `umask 022`.
 Kali1's system .NET SDK was 6.0; a later build test correctly refused a net9.0
 target. SDK **9.0.317** was installed in an isolated study folder after checking
@@ -161,9 +161,9 @@ environment corrections; no test or engineering threshold was relaxed.
 | Editable reconstruction | Native C#/parameters, observed surface fits and analytical hub/shaft portions exist. Hidden interfaces, complete BRep parts, fits and tolerances remain open. |
 | Full mechanism and BOM | Seventeen interface contracts exist. Gear teeth/ratio, bearings, retainers, seals, pulley/belt definition, lubrication and engine fasteners still need specimen-specific evidence. |
 | Assembly verification | Corrected rotor integrated; all six surface pairs checked at one pose. Engine-context crossing, solid occupancy, motion, elastic and thermal clearance remain unresolved. |
-| Airflow characterization | No accepted curve for this geometry. Prepare the full rotor/casing case, three meshes, stationarity and mass-balance checks; do not transfer R0/V2/S1 curves to this rotor. |
+| Airflow characterisation | No accepted curve for this geometry. Prepare the full rotor/casing case, three meshes, stationarity and mass-balance checks; do not transfer R0/V2/S1 curves to this rotor. |
 | Structural/material qualification | New formulation diagnostic completed; convergence still fails. Contacts, modal/prestress, pressure/thermal loads, process-matched AlSi10Mg/WE43/Ti-6Al-4V properties and fatigue remain open. |
-| Optimization and PhysicsNeMo | No accepted reference dataset yet. Keep direct solver verification before OpenMDAO coordination or surrogate ranking. |
+| Optimisation and PhysicsNeMo | No accepted reference dataset yet. Keep direct solver verification before OpenMDAO coordination or surrogate ranking. |
 | USD/Omniverse twin | Geometry exports and round-trip checks pass. Physical joints, mass/inertia, operating results and RTX review remain separate unfinished work. |
 | Fabrication package and bench | No manufacturing release. Complete datum/tolerance drawings, process/inspection/assembly requirements and professional review; then execute the [bench protocol](BENCH_PROTOCOL.md). |
 

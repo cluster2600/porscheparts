@@ -1,6 +1,6 @@
 # 993/993 Turbo connecting rod — Ti64 F0 topology concept
 
-TZR/PAUTER publishes for its 993/993 Turbo connecting rod a center distance of
+TZR/PAUTER publishes for its 993/993 Turbo connecting rod a centre distance of
 `127.00 mm`, a pin of `23.01 mm`, a big-end bore of `58.01 ± 0.003 mm`, widths
 of `18.75 mm` and `19.58 mm`, and a steel mass of `535 g`. The sheet announces a
 titanium option on request with a `33 %` saving per rod, without publishing the
@@ -15,11 +15,11 @@ distribution are absent.
 
 ```mermaid
 flowchart LR
-  S["Published: TZR/PAUTER<br/>127.00 mm centers, 23.01 mm pin,<br/>58.01 mm big end, 535 g steel"] --> H["Project hypotheses<br/>78/40 mm outer, 10 × 14 mm flanges,<br/>cap split, two passages"]
+  S["Published: TZR/PAUTER<br/>127.00 mm centres, 23.01 mm pin,<br/>58.01 mm big end, 535 g steel"] --> H["Project hypotheses<br/>78/40 mm outer, 10 × 14 mm flanges,<br/>cap split, two passages"]
   H --> G["F0 OCCT BREP<br/>two solids, 341.02 g"]
   G --> M["Mathematical screenings<br/>checks, not FEA<br/>nor a life prediction"]
   G --> P["LPBF print screen<br/>failed closed:<br/>not a single body"]
-  M --> V["Not authorized for manufacture,<br/>fitting or engine start-up"]
+  M --> V["Not authorised for manufacture,<br/>fitting or engine start-up"]
   P --> V
   class S ok
   class H,M open
@@ -36,7 +36,7 @@ flowchart LR
 An open LPBF topology can be reshaped from load fields, with material
 concentrated in the mechanical paths and no closed powder pocket. It must,
 however, be compared to a forged/machined 4340 steel rod and to a conventional
-titanium rod. The study by Cecchel et al. on an optimized Ti-6Al-4V connecting
+titanium rod. The study by Cecchel et al. on an optimised Ti-6Al-4V connecting
 rod made by SLM includes FEA and full-scale fatigue, but reports lower endurance
 than the conventional reference: a fine topology and a static margin therefore
 do not constitute a fatigue validation.
@@ -56,7 +56,7 @@ The regression case takes the documented bore of `100 mm`, the stroke of
 concentration factor `1.5` and a `100 h` cycle.
 
 With the CAD mass, the equations give `94.25 kN` of gas force, `17.56 kN` of
-inertia and a compression bound of `111.81 kN`. The two idealized flanges lead
+inertia and a compression bound of `111.81 kN`. The two idealised flanges lead
 to `598.98 MPa` of local compressive stress and an EOS room-temperature
 limit/stress ratio of `1.64`. The Euler/load ratio is `5.47`. The projected
 pressures are `102.80 MPa` at the big end and `248.17 MPa` at the small end, the
@@ -78,7 +78,7 @@ fatigue.
    clearances and tolerances from the measurements.
 4. Compare steel, conventional titanium and LPBF Ti64 by multibody then
    converged nonlinear 3D FEA of contact, buckling, modal and fatigue.
-5. Optimize the topology with keep-outs, orientations, machining allowances and
+5. Optimise the topology with keep-outs, orientations, machining allowances and
    manufacturing constraints, then qualify powder, heat treatment, HIP, CT,
    roughness, dye penetrant and coupons.
 6. Carry out full-scale static and fatigue proof with the chosen bolts and
@@ -86,7 +86,7 @@ fatigue.
 
 PhysicsNeMo stays deferred until a correlated FEA/fatigue set with training,
 holdout and out-of-distribution splits is available. SimReady waits for the
-measured interfaces of the assembly. This F0 STEP is authorized neither for
+measured interfaces of the assembly. This F0 STEP is authorised neither for
 manufacture, nor for fitting, nor for engine start-up.
 
 <!-- print-screen:begin -->

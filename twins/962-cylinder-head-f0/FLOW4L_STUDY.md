@@ -25,7 +25,7 @@ The previous models and their receipts remain intact.
 - Smoothing of the dry and water volumes **before** final subtraction from
   the metal. The metal wall in contact with water is not smoothed afterward.
 - 36 external BCC cells, 12 × 14 × 14 mm, with 3.5 mm strut diameter.
-  Their shape does not come from mechanical optimization under combustion loads.
+  Their shape does not come from mechanical optimisation under combustion loads.
 
 The axes are local to the study. No cylinder pitch, bank axis, assembly plane
 or donor stud coordinates are inferred from these dimensions.
@@ -83,10 +83,10 @@ in both directions. The latter two fields are **geometric**, with no
 calculated temperature, pressure or velocity.
 
 A Cartesian derivative of the water is also exported using native
-`Voxels.bIsInside` classification at cell centers. At 2 mm, two isolated cells
+`Voxels.bIsInside` classification at cell centres. At 2 mm, two isolated cells
 cause this derivative to be rejected. At 1 mm, the 149,980 cells are connected,
 but the volume mesh then fails `checkMesh` on 708 cell determinants.
-Direct Gmsh tetrahedralization of the surface is also rejected by the full
+Direct Gmsh tetrahedralisation of the surface is also rejected by the full
 checks. No threshold is lowered.
 
 The derived meshing surface remains closed: 61,504 triangles, maximum measured
@@ -95,7 +95,7 @@ This sampled check is not a global Hausdorff bound.
 Surface snapping with `snappyHexMesh` in OpenFOAM **Foundation 13** produces
 138,400 cells and one region, but the full check rejects 720 concave cells
 and one excessively warped face. A new face-conforming representation then
-uses native OpenFOAM face centers and bases: 1,612,960 positive-volume
+uses native OpenFOAM face centres and bases: 1,612,960 positive-volume
 tetrahedra, with a 0.0207% volume deviation from the parent. It is also
 rejected: five checks fail, including 9,055 determinants and seven
 excessively warped faces.
@@ -113,7 +113,7 @@ The [C# generator](source/flow4l/HeadFlow4LStudy.cs),
 [driver](source/flow4l/run_study.py) use the documented PicoGK installation.
 The verified runtime uses SDK 9.0.319, .NET 9.0.21 and a 0.5 mm voxel.
 ShapeKernel and LatticeLibrary are compared with their existing references.
-The driver acquires the catalog's shared native lock.
+The driver acquires the catalogue's shared native lock.
 
 ```sh
 python3 twins/962-cylinder-head-f0/source/flow4l/run_study.py \

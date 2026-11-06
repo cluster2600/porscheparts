@@ -18,7 +18,7 @@ The raw intake negative still includes about 735.415 units³ of each open valve
 and 797.705 units³ of each guide: these solids must be subtracted from the
 future gas domain. The six checked intake components have zero volumetric
 intersection with the four-bore master. The original floor is flat and its
-center solid: no M64 chamber was defined there. The share of flat surface
+centre solid: no M64 chamber was defined there. The share of flat surface
 observed under the check disk is **not** a sealing ratio.
 
 `build_candidate_chamber.py` builds a two-facet cutting tool, each facet passing
@@ -106,7 +106,7 @@ invented CFD or thermal field.
 The final private render uses the real VTK/PyVista depth buffer, without
 geometry smoothing, with the body's 113,910 triangles and the module's twelve
 components. The Matplotlib 3D drafts are superseded: their approximate depth
-sorting wrongly hid valves. The final gray is illustrative, not an alloy
+sorting wrongly hid valves. The final grey is illustrative, not an alloy
 selection. No private PNG is added to the repository automatically.
 
 Targeted tests:

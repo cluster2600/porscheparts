@@ -53,7 +53,7 @@ M64 cylinder head or a new substitute shape**.
 - Total area 144,617.7772 square scan units; not a certified physical
   area in m². The relative error between the per-face sum and the global integral
   is 3.82 × 10⁻¹⁵.
-- Area, center, bounding box and topological neighborhood recorded for
+- Area, centre, bounding box and topological neighbourhood recorded for
   each face; no geometry is modified or repaired by this inventory.
 - **0 faces thermally assigned** at this stage. A face without an assignment
   remains unknown; it does not automatically become adiabatic.

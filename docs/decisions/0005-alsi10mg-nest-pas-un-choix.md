@@ -26,25 +26,25 @@ functional criterion come into play.
 dashboard trim ring carries nothing. The step 04 screening shows it without
 saying it: the only mechanical gate, the minimum wall, passes by a wide margin,
 and no load case exists. What decides here is the surface finish, the gloss and
-the match with the neighboring trim.
+the match with the neighbouring trim.
 
 **2. AlSi10Mg is bad precisely at the operation the part needs.** Its silicon
-content of 9 to 11% makes it unfit for decorative anodizing: since silicon is
-not soluble in aluminum, only the silicon-poor areas anodize, and the part comes
+content of 9 to 11% makes it unfit for decorative anodising: since silicon is
+not soluble in aluminium, only the silicon-poor areas anodise, and the part comes
 out gray-brown to black (`SRC-FEHRMANN-ALMGTY-ANODISING-ALSI10MG-LIMIT`). Yet
-anodizing is explicitly listed among the record's planned post-processing steps.
+anodising is explicitly listed among the record's planned post-processing steps.
 On top of this comes an as-built Ra of 12 to 25 µm stated by the candidate
 service provider, on a visible part. The wrought 6xxx grades do the opposite:
-6063 T6 is rated excellent for bright anodizing
+6063 T6 is rated excellent for bright anodising
 (`SRC-1STCHOICEMETALS-6XXX-BRIGHT-ANODISING`), and that is very likely what the
-original ring is, described as "aluminum" with no further detail by the seller.
+original ring is, described as "aluminium" with no further detail by the seller.
 
 **3. The repository's grid already excludes this part from additive
 manufacturing.** [`TITANIUM.md`](../TITANIUM.md) retains three families where
 additive manufacturing wins: internal passages that cannot be machined, castings
 that cannot be cored, and consolidation of subassemblies. A 6 g axisymmetric
 ring is none of the three. Its own catalogue record has said so from the start:
-"the axisymmetric geometry probably favors CNC turning; the benefit of LPBF
+"the axisymmetric geometry probably favours CNC turning; the benefit of LPBF
 remains to be demonstrated".
 
 ## Consequence

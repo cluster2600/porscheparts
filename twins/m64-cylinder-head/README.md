@@ -43,7 +43,7 @@ fallback to the G7 block or an oval substitute.
 The retained source for these whole-body iterations is the exhaust-equipped V5, not
 the earlier intake-only body. Its
 [geometry checkpoint](../../docs/reports/M64_GEOMETRY_CHECKPOINT_20260908.md)
-already records five passed BOP modes, attributed serialization differences
+already records five passed BOP modes, attributed serialisation differences
 and unresolved mesh/assembly/physical gates. These earlier passes must not
 be reported as new work or as fabrication approval.
 
@@ -65,7 +65,7 @@ A [new body-only prototype](../../docs/reports/M64_COMPLETE_HEAD_INTEGRATION_202
 now has those four higher pockets: one native valid solid after readback and
 no intersection with the four nominal spring envelopes. The master remains
 unchanged. At that checkpoint, longer valves and the full actuator assembly
-were not modeled; the previous V5 BOP result did not validate that newly cut body.
+were not modelled; the previous V5 BOP result did not validate that newly cut body.
 
 Latest whole-body advance: [two local exhaust spring-seat pads](../../docs/reports/M64_WHOLEBODY_SUPPORT_GPU_20260927.md)
 complete all four nominal washer footprints on the saved body. They add about
@@ -99,7 +99,7 @@ passes exact native readback and its own BOP audit, but fails numerical integral
 does not replace the reference body or valve assembly.
 
 The [2026 mesh-tool and volume-control investigation](../../docs/reports/M64_MESH_VOLUME_TOOLCHAIN_20260928.md)
-then localizes the quadrature discrepancy to five B-spline patches. An independent,
+then localises the quadrature discrepancy to five B-spline patches. An independent,
 knot-split flux integration brings the reconciled relative spread to 1.55e-11.
 Native Netgen and conforming DelMesher trials are rejected. fTetWild produces
 1,157,489 tetrahedra with no element below minSICN 0.1, but two disconnected
@@ -133,7 +133,7 @@ simulation**, and it does not clear the prior head geometry/material gates.
 This directory holds the code, records and receipts of the M64 cylinder head
 work. This page is only an index of its README pages. Each page states its own
 limits; none of them establishes a validated cylinder head, an engine
-simulation or a manufacturing authorization.
+simulation or a manufacturing authorisation.
 
 Files under [`evidence/`](evidence/) are pinned by SHA-256 digest and are never
 edited. The B-Reps, STEPs, scans and detailed coordinates stay private; only
@@ -171,7 +171,7 @@ the [G14 report](../../docs/reports/M64_G14_TARGETED_SUPPORTS_20260926.md#actual
 | [source/picogk-connectivity](source/picogk-connectivity/README.md) | Sampled void connectivity from the boundary; no isolated component on the step-1.2 grid only |
 | [source/picogk-local-junction](source/picogk-local-junction/README.md) | Local morphological closing witness; stopped at the witness on raw-mesh defects |
 | [source/picogk-local-junction-direct-union](source/picogk-local-junction-direct-union/README.md) | Direct-union variant; rejected (field changes outside the ROI, raw-mesh screen) |
-| [source/picogk-local-junction-buffered](source/picogk-local-junction-buffered/README.md) | Inner-mask variant at step 0.2; `declared_exploratory_screen_pass` for the normalized chain only |
+| [source/picogk-local-junction-buffered](source/picogk-local-junction-buffered/README.md) | Inner-mask variant at step 0.2; `declared_exploratory_screen_pass` for the normalised chain only |
 | [source/picogk-local-junction-buffered-v2](source/picogk-local-junction-buffered-v2/README.md) | Step 0.1 with a fixed world mask; comparison rejected |
 
 ## How the pages relate

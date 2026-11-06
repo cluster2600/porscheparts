@@ -2,7 +2,7 @@
 
 These are dated experiment sources with their recorded private paths and input
 hashes. They reuse the existing PicoGK-derived master, composition helpers,
-serialization checks and native runtimes. They are not a new general meshing
+serialisation checks and native runtimes. They are not a new general meshing
 API. Keep Python assertions enabled; never replay over preserved outputs.
 
 1. `propose-relocation-001.py` is the unchanged first executed source, reducing
@@ -24,7 +24,7 @@ API. Keep Python assertions enabled; never replay over preserved outputs.
    `run-graded-tetgen-001.py PREPARED NEW_OUTPUT` executes the frozen native
    mesher with the MTR field. `audit-graded-control-001.py` checks every output
    boundary point against the analytic planes and every cell determinant,
-   with the exact serialized volume compared to 1/6.
+   with the exact serialised volume compared to 1/6.
 7. `prepare-graded-fluid-001.py` runs from the repository root on the Mac,
    checks the certified surface exchange, reuses the frozen composition helper,
    and writes the new PLC plus size field. The native runner's 8 GiB / 600 s

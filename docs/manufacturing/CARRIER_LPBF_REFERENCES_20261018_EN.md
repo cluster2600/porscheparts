@@ -52,4 +52,4 @@ distortion result.
 The manufacturer's [EPHatch description](https://www.eplus3d.com/eplus3d-printing-software-for-high-productivity-metal-3d-printing.html) also identifies SLC and CLI slice import, with separate upper-surface, lower-surface and body parameters. This documents a vendor import route for later checked slice/support data; it does not provide a carrier machine job, scan strategy, laser parameters or process qualification. Whole-layer and support admission must precede a new format export.
 
 The retained reference pages belong to their manufacturers; this note contains
-links and summarized facts. No manufacturer PDF is redistributed here.
+links and summarised facts. No manufacturer PDF is redistributed here.

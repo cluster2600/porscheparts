@@ -67,7 +67,7 @@ with `property_assignment_intent=skip`. It used the official converter
 - no rigid body, collider or joint was added.
 
 The USD files are replayable derivatives and stay out of Git. Their SHA-256
-digests, sizes, metadata and sanitized verdicts are published in
+digests, sizes, metadata and sanitised verdicts are published in
 [`simready-conversion-summary.json`](../../twins/993-engine-cooling-fan-system-f0/evidence/simready-conversion-summary.json).
 The composition script is
 [`build_usd_assembly.py`](../../twins/993-engine-cooling-fan-system-f0/source/build_usd_assembly.py).
@@ -78,7 +78,7 @@ The composition script is
 `defaultPrim`, units, an axis and a resolved composition. It proves neither the
 Porsche geometry, nor the real clearance, nor the cooling, nor the overspeed,
 nor the fatigue, nor the containment. This subassembly is not SimReady, has
-received no Physics property, has run no PhysicsNeMo model and authorizes
+received no Physics property, has run no PhysicsNeMo model and authorises
 neither manufacture, nor rotation, nor engine start.
 
 The next pass must not silently correct the F0 values to make the collision

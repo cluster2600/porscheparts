@@ -123,7 +123,7 @@ one allowed to receive the new CalculiX results.
 ## Decisive physical limit
 
 The truss does not include the openings of the new tunnel; its stiffness cannot
-be transferred to them. Neither the voxelized geometry nor the truss's equivalent
+be transferred to them. Neither the voxelised geometry nor the truss's equivalent
 material is a laminated shell mesh. The dynamic clearances,
 the measured interfaces, the laminates, the bonds and reinforcements around the
 openings, the cure, the molds and the experimental correlation remain to be

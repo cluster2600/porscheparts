@@ -133,7 +133,7 @@ docker run --rm --memory=6g --memory-swap=6g --cpus=4 \
 ```
 
 The ring stays `prohibited_pending_engineering` and `concept`: no
-manufacture, installation or start-up is authorized.
+manufacture, installation or start-up is authorised.
 
 ## Thin vane edges, still open
 
@@ -164,7 +164,7 @@ stacked slices, not a laser scan or a thermal calculation.
 ![Six layer cross-sections](../../parts/993-eng-fan-stator-alsi10mg-f1-0001/media/print-simulation/layers.png)
 
 *Geometry preview only. No melt-pool, thermal, residual-stress, distortion
-or recoater simulation; no qualified support design. Printing is not authorized.*
+or recoater simulation; no qualified support design. Printing is not authorised.*
 
 <!-- print-screen:begin -->
 

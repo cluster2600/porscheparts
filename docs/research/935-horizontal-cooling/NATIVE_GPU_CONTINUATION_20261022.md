@@ -52,7 +52,7 @@ per view. The initial top/side framing is retained as rejected. The accepted
 perspective and corrected orthographic top/side images are 1,200 × 1,000 RGBA
 pixels, nonblank, hash-checked and visually inspected. The complete installation
 fits the orthographic frames. The render worker corrects the earlier station
-example's hard-coded device-index receipt and initializes cleanup variables
+example's hard-coded device-index receipt and initialises cleanup variables
 before entering its protected renderer scope.
 
 The views show the rotor, observed drive, provisional shroud and six-cylinder
@@ -63,7 +63,7 @@ arrangement or a validated digital twin. Physical calibration remains unresolved
 metre-valued USD coordinates use the declared hypothesis of one millimetre per
 scan unit.
 
-## Surface discretization experiments
+## Surface discretisation experiments
 
 Analysis-mesh proposals do not change the PicoGK design master. Each retains
 its own lineage, rejected variants and declared limits. A watertight result with
@@ -75,7 +75,7 @@ identical tetrahedron, a tetrahedron translated by exactly 0.2 units and rejecti
 of nonpositive algorithm error provide independent controls. Its implementation
 uses [CGAL's bounded-error distance API](https://doc.cgal.org/5.5.1/Polygon_mesh_processing/group__PMP__distance__grp.html).
 The comparison budget is **0.025 scan units**, including a **0.0025-unit**
-algorithm error bound. These are numerical discretization limits, not scanner
+algorithm error bound. These are numerical discretisation limits, not scanner
 accuracy or machining tolerances.
 
 | Proposal | Complete-surface result | Decision |
@@ -107,7 +107,7 @@ are contained while its interior is not. The previously rejected complete VTK
 mesh also fails this checker. Native CMake/CTest passes with CGAL 5.5.1.
 
 After float32 export, the maximum vertex shift is 6.92215e-6 units. A second
-complete check of the actual quantized surface runs independently on Kali1,
+complete check of the actual quantised surface runs independently on Kali1,
 including topology and self-intersections, and passes the same **0.0225-unit**
 bound in 271.04 seconds. Relative volume difference is **6.50142e-7** and
 relative inertia-matrix difference **1.24439e-6**. A more aggressive 200,548-face
@@ -142,7 +142,7 @@ remaining reaction differences are at floating-point roundoff.
 The existing independent assessor again checks all 661,495 nodes and 2,116,345
 elements, including consistent centrifugal loads at constrained nodes. Force
 and moment balance errors are below 1e-9. This is replication of a conditional
-P1 result, not mesh convergence. The thin-cell quality and localized stress peaks
+P1 result, not mesh convergence. The thin-cell quality and localised stress peaks
 already documented remain unresolved.
 
 The unchanged complete C3D10 deck has 4,100,825 nodes and 2,116,345 elements.
@@ -167,7 +167,7 @@ elasticity gives the following relative factors:
 
 Three independent native complete-P1 solves check these factors: WE43 and
 Ti-6Al-4V at 6,000 rpm, and AlSi10Mg at 3,000 rpm. Every displacement, reaction,
-printed RF and element-peak stress value is compared. The largest normalized
+printed RF and element-peak stress value is compared. The largest normalised
 field error is **3.82e-7**, below the 2e-5 numerical comparison tolerance; all
 three solves also pass the unchanged force/moment audit. The first material
 attempt is preserved as rejected because an overlong density token is refused
@@ -223,5 +223,5 @@ boundary definition is accepted. The independently verified rootless F25 case
 establishes a runtime witness, not a 935 curve. The old OpenCFD v2406 case files
 cannot be relabelled as Foundation 13. Accepted fan CFD, structural h-convergence,
 prestressed modes, process qualification and a physical bench remain necessary.
-There is no accepted reference dataset for PhysicsNeMo yet, and no optimized or
+There is no accepted reference dataset for PhysicsNeMo yet, and no optimised or
 fabricable complete installation is released.

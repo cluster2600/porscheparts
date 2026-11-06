@@ -64,13 +64,13 @@ false. The empty nonpositive-cell list makes the retained
 about which positive cells below 0.1 use fixed
 boundary nodes. No such classification is inferred.
 
-A subsequent default post-export optimizer requires its own frozen inputs,
+A subsequent default post-export optimiser requires its own frozen inputs,
 controlled execution, exact-boundary checks, actual quality decision and
-independent saved-file review. The earlier 300-second optimizer timeout proves
+independent saved-file review. The earlier 300-second optimiser timeout proves
 neither stagnation nor a completion estimate for this new input.
 
 The [later bounded follow-up](derived/engineering/atomic-cavity-volume-followup/README.md)
-now records a 1,200-second optimizer stop without an API return or MSH export.
+now records a 1,200-second optimiser stop without an API return or MSH export.
 Its authoritative controller receipt supersedes the stale running checkpoint.
 A subsequent completed read-only query partitions all 283,853 positive cells
 below SICN 0.1: 245,420 contain four retained boundary nodes, and 38,433
@@ -81,7 +81,7 @@ Seven classifier tests and separate root/peer reviews pass. The original
 mesh remains rejected, and another longer default run is not scheduled.
 The [completed outcome peer review](derived/engineering/atomic-cavity-volume-followup-peer-review.json)
 is retained beside the sealed capsule; it rechecks the actual arrays, counts,
-five local rational determinants and stopped optimizer evidence.
+five local rational determinants and stopped optimiser evidence.
 
 The [separate material lookup](MATERIAL_CONDUCTIVITY_FOLLOWUP.md) adds measured
 directional AlSi10Mg conductivity points for future conditional conduction.

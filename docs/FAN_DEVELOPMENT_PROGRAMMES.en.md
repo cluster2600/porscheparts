@@ -25,7 +25,7 @@ stays separate from this horizontal adaptation.
 
 ## Reference and improved versions
 
-Each program has a characterized reference, then `improved-*` variants
+Each program has a characterised reference, then `improved-*` variants
 with their own geometry, materials, interfaces and results.
 The reference is used to measure the gains. A redesigned internal region has
 a redesign status; it is not declared as copied from the external scan.
@@ -54,7 +54,7 @@ Measurements and calculations must resolve the gains beyond their
 uncertainties. No gain percentage is set before the measured reference.
 
 The owner selected three families for additive manufacturing of the
-improved versions: aluminum, magnesium and titanium. The
+improved versions: aluminium, magnesium and titanium. The
 [material and process dossier](research/935-horizontal-cooling/ADDITIVE_MATERIALS.en.md)
 documents AlSi10Mg, WE43 and Ti64 as starting candidates. The choice is
 specific to each part and does not follow from the historical material.
@@ -80,14 +80,14 @@ cooling.
 
 1. Establish identities, units, reference frames and interface contracts for both projects.
 2. Build their editable references, including the complete horizontal assembly.
-3. Characterize these references: geometry, mass/inertia, drive,
+3. Characterise these references: geometry, mass/inertia, drive,
    installed aerodynamics, structure, vibration and available thermal data.
 4. Generate controlled variants and compare the gains under defined conditions.
 5. Test the selected variants against experiments and build two twins
    tied to the correct geometries, conditions and measurements.
 
 The [horizontal plan](research/935-horizontal-cooling/RECONSTRUCTION_PLAN.en.md)
-details the reconstruction and system optimization. The
+details the reconstruction and system optimisation. The
 [993 validation plan](../twins/993-engine-cooling-fan-system-f0/program/VALIDATION_PLAN.md)
 remains applicable to the missing evidence of that program. As of this date, the
 audits and exploratory studies demonstrate no validated performance gain.

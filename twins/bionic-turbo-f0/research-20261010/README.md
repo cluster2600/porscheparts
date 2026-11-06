@@ -1,119 +1,118 @@
-# Exemples de turbomachines conçues avec PicoGK
+# Examples of turbomachines designed with PicoGK
 
-Recherche du **10 octobre 2026** pour poursuivre le
-[turbo bionique conceptuel à 39 composants](../assembly/README.md).
-Deux projets publics fournissent du code proche de nos côtés froid et chaud :
-**QUASAR Phy-CC** et **QUASAR Phy-CT**. Les modèles LEAP 71 complètent ces
-références avec des roues téléchargeables et des turbopompes en développement.
+Research of **10 October 2026** to continue the
+[39-component conceptual bionic turbo](../assembly/README.md).
+Two public projects provide code close to our cold and hot sides:
+**QUASAR Phy-CC** and **QUASAR Phy-CT**. The LEAP 71 models complement these
+references with downloadable wheels and turbopumps under development.
 
-Les sources examinées ne démontrent pas un **turbo automobile complet PicoGK,
-fabriqué et essayé**. Cette conclusion porte sur cette recherche, pas sur
-l'existence éventuelle d'autres prototypes. Une turbine, un compresseur ou
-une turbopompe ne constituent pas à eux seuls un turbo automobile complet.
+The sources examined do not demonstrate a **complete PicoGK automotive turbo,
+manufactured and tested**. This conclusion concerns this research, not the
+possible existence of other prototypes. A turbine, a compressor or a
+turbopump does not by itself constitute a complete automotive turbo.
 
-## Comparaison des exemples
+## Comparison of the examples
 
-| Exemple | Éléments utiles | Disponibilité et licence | Preuve disponible |
+| Example | Useful elements | Availability and licence | Available evidence |
 |---|---|---|---|
-| [QUASAR Phy-CC](https://github.com/QU01/Quasar-Phy-CC) | Roue centrifuge, entrée, diffuseur, volute creuse et sortie tangentielle | C# PicoGK ; Apache-2.0 | Code et comparaisons numériques aux données publiées ; pas d'essai physique propre au projet établi |
-| [QUASAR Phy-CT](https://github.com/QU01/Quasar-Phy-CT) | Roue de turbine radiale centripète, distributeur éventuel, volute, diffuseur et tronçon d'arbre | C# PicoGK ; Apache-2.0 | Code, provenance des cas de comparaison et limites déclarées ; pas de turbo automobile assemblé essayé établi |
-| [Roues LEAP 71 à inducteur intégré](https://leap71.com/downloads/) | Trois roues de turbomachines ; intérêt visuel et géométrique | STL ; CC BY-SA 4.0 ; générateur absent de cette page | La galerie présente des roues imprimées ; aucune qualification en fonctionnement de ces trois fichiers établie |
-| [Turbopompe LEAP 71 pour moteur méthane/LOX de 28 kN](https://www.linkedin.com/posts/leap71_we-are-making-progress-in-building-an-integrated-activity-7313126036693524481-oYCQ) | Pompe LOX, générateur de gaz, turbine et échappement | Développement Noyron ; code de conception propriétaire | Publication décrivant un travail en cours et des essais à chaud futurs |
+| [QUASAR Phy-CC](https://github.com/QU01/Quasar-Phy-CC) | Centrifugal wheel, inlet, diffuser, hollow volute and tangential outlet | C# PicoGK; Apache-2.0 | Code and numerical comparisons with published data; no physical test specific to the project established |
+| [QUASAR Phy-CT](https://github.com/QU01/Quasar-Phy-CT) | Radial inflow turbine wheel, optional nozzle, volute, diffuser and shaft section | C# PicoGK; Apache-2.0 | Code, provenance of the comparison cases and declared limits; no tested assembled automotive turbo established |
+| [LEAP 71 wheels with integrated inducer](https://leap71.com/downloads/) | Three turbomachine wheels; visual and geometric interest | STL; CC BY-SA 4.0; generator absent from this page | The gallery shows printed wheels; no operational qualification of these three files established |
+| [LEAP 71 turbopump for a 28 kN methane/LOX engine](https://www.linkedin.com/posts/leap71_we-are-making-progress-in-building-an-integrated-activity-7313126036693524481-oYCQ) | LOX pump, gas generator, turbine and exhaust | Noyron development; proprietary design code | Post describing work in progress and future hot-fire tests |
 
-## 1. QUASAR Phy-CC : référence pour le côté froid
+## 1. QUASAR Phy-CC: reference for the cold side
 
-Auteur : Quasar Solutions Lab, compte GitHub `QU01`. Version examinée :
+Author: Quasar Solutions Lab, GitHub account `QU01`. Version examined:
 `fd2b4f2066176265d77bfaa860bda7030578ffc6`.
 
-Le [générateur principal](https://github.com/QU01/Quasar-Phy-CC/blob/fd2b4f2066176265d77bfaa860bda7030578ffc6/CompressorDesigner/src/CompressorDesigner/CentrifugalCompressor.cs)
-sépare le rotor et le carter. Les sources décrivent notamment les pales
-principales et secondaires, le passage méridien, le diffuseur sans aubes et
-la volute. Ce sont les éléments à comparer avec notre géométrie actuelle.
-Le [projet](https://github.com/QU01/Quasar-Phy-CC/blob/fd2b4f2066176265d77bfaa860bda7030578ffc6/CompressorDesigner/src/CompressorDesigner/CompressorDesigner.csproj)
-cible .NET 9 pour Windows avec PicoGK 2.2.0. Notre assemblage utilise PicoGK
-2.3.0 sur macOS : la compatibilité n'a pas été essayée.
-La [licence Apache-2.0](https://github.com/QU01/Quasar-Phy-CC/blob/fd2b4f2066176265d77bfaa860bda7030578ffc6/LICENSE)
-du code est vérifiée à cette révision.
+The [main generator](https://github.com/QU01/Quasar-Phy-CC/blob/fd2b4f2066176265d77bfaa860bda7030578ffc6/CompressorDesigner/src/CompressorDesigner/CentrifugalCompressor.cs)
+separates the rotor and the housing. The sources describe among other things
+the main and splitter blades, the meridional passage, the vaneless diffuser
+and the volute. These are the elements to compare with our current geometry.
+The [project](https://github.com/QU01/Quasar-Phy-CC/blob/fd2b4f2066176265d77bfaa860bda7030578ffc6/CompressorDesigner/src/CompressorDesigner/CompressorDesigner.csproj)
+targets .NET 9 for Windows with PicoGK 2.2.0. Our assembly uses PicoGK
+2.3.0 on macOS: compatibility has not been tried.
+The [Apache-2.0 licence](https://github.com/QU01/Quasar-Phy-CC/blob/fd2b4f2066176265d77bfaa860bda7030578ffc6/LICENSE)
+of the code is verified at this revision.
 
-Le [rapport numérique](https://github.com/QU01/Quasar-Phy-CC/blob/fd2b4f2066176265d77bfaa860bda7030578ffc6/validation/RESULTS.md)
-compare un modèle moyen unidimensionnel au rotor Eckardt O : le rapport de
-pression présente un écart de +0,22 %, tandis que le rendement présente
-**+2,7 points**, en échec selon son propre seuil de 2 points. Le rapport
-signale aussi une différence de longueur de diffuseur. Son cas interne
-REF_PR5 est une référence de régression, pas une mesure indépendante.
-Le [plan de validation](https://github.com/QU01/Quasar-Phy-CC/blob/fd2b4f2066176265d77bfaa860bda7030578ffc6/docs/VALIDATION.md)
-place la réalisation d'un banc propre au projet parmi les objectifs à moyen terme.
+The [numerical report](https://github.com/QU01/Quasar-Phy-CC/blob/fd2b4f2066176265d77bfaa860bda7030578ffc6/validation/RESULTS.md)
+compares a one-dimensional mean-line model with the Eckardt O rotor: the
+pressure ratio shows a deviation of +0.22 %, while the efficiency shows
+**+2.7 points**, a failure against its own 2-point threshold. The report also
+flags a difference in diffuser length. Its internal case REF_PR5 is a
+regression reference, not an independent measurement.
+The [validation plan](https://github.com/QU01/Quasar-Phy-CC/blob/fd2b4f2066176265d77bfaa860bda7030578ffc6/docs/VALIDATION.md)
+places building a project-specific test bench among its medium-term goals.
 
-## 2. QUASAR Phy-CT : référence pour le côté chaud
+## 2. QUASAR Phy-CT: reference for the hot side
 
-Même auteur. Version examinée : `fd9d78f6cccca0850273884e31faec7632810842`.
-Le [générateur principal](https://github.com/QU01/Quasar-Phy-CT/blob/fd9d78f6cccca0850273884e31faec7632810842/RadialTurbineDesigner/src/RadialTurbineDesigner/RadialTurbine.cs)
-et le [générateur de roue](https://github.com/QU01/Quasar-Phy-CT/blob/fd9d78f6cccca0850273884e31faec7632810842/RadialTurbineDesigner/src/RadialTurbineDesigner/RadialWheel.cs)
-constituent des références directes pour notre turbine et sa volute.
-La [licence du code est Apache-2.0](https://github.com/QU01/Quasar-Phy-CT/blob/fd9d78f6cccca0850273884e31faec7632810842/LICENSE).
+Same author. Version examined: `fd9d78f6cccca0850273884e31faec7632810842`.
+The [main generator](https://github.com/QU01/Quasar-Phy-CT/blob/fd9d78f6cccca0850273884e31faec7632810842/RadialTurbineDesigner/src/RadialTurbineDesigner/RadialTurbine.cs)
+and the [wheel generator](https://github.com/QU01/Quasar-Phy-CT/blob/fd9d78f6cccca0850273884e31faec7632810842/RadialTurbineDesigner/src/RadialTurbineDesigner/RadialWheel.cs)
+are direct references for our turbine and its volute.
+The [code licence is Apache-2.0](https://github.com/QU01/Quasar-Phy-CT/blob/fd9d78f6cccca0850273884e31faec7632810842/LICENSE).
 
-Le [README de cette révision](https://github.com/QU01/Quasar-Phy-CT/blob/fd9d78f6cccca0850273884e31faec7632810842/README.md)
-décrit des contrôles d'intersection sur l'assemblage complet à 360° et des
-comparaisons à des données publiées. Nous ne les avons pas reproduits.
-Les géométries CT-3 et CT-4 sont mises à l'échelle, pas indépendamment
-mesurées ; l'export TurboGrid reste non vérifié et les pales STEP sont des
-surfaces, pas des solides fermés. Le projet déconseille la calibration
-avec les observations disponibles. Le tableau des cas comprend quatre
-cas NASA et un cas Imperial College conditionnel, malgré une formulation
-plus large dans son introduction.
+The [README at this revision](https://github.com/QU01/Quasar-Phy-CT/blob/fd9d78f6cccca0850273884e31faec7632810842/README.md)
+describes intersection checks on the complete 360° assembly and comparisons
+with published data. We have not reproduced them.
+The CT-3 and CT-4 geometries are scaled, not independently measured; the
+TurboGrid export remains unverified and the STEP blades are surfaces, not
+closed solids. The project advises against calibration with the available
+observations. The table of cases includes four NASA cases and one conditional
+Imperial College case, despite broader wording in its introduction.
 
-Le [manifeste de données](https://github.com/QU01/Quasar-Phy-CT/blob/fd9d78f6cccca0850273884e31faec7632810842/validation/data/MANIFEST.json)
-et le [cas CT-1 avec provenance](https://github.com/QU01/Quasar-Phy-CT/blob/fd9d78f6cccca0850273884e31faec7632810842/validation/data/ct1_tp1730.json)
-méritent une revue avant toute reprise de paramètres. Ce projet ne fournit
-pas notre corps central complet avec paliers, joints et wastegate.
+The [data manifest](https://github.com/QU01/Quasar-Phy-CT/blob/fd9d78f6cccca0850273884e31faec7632810842/validation/data/MANIFEST.json)
+and the [CT-1 case with provenance](https://github.com/QU01/Quasar-Phy-CT/blob/fd9d78f6cccca0850273884e31faec7632810842/validation/data/ct1_tp1730.json)
+deserve a review before any reuse of parameters. This project does not
+provide our complete centre housing with bearings, seals and wastegate.
 
-## 3. LEAP 71 : roues disponibles et turbopompes en développement
+## 3. LEAP 71: available wheels and turbopumps under development
 
-[Voir l'illustration officielle des trois roues LEAP 71 à inducteur intégré](https://i0.wp.com/leap71.com/wp-content/uploads/2025/07/62BA1CA0-1871-4129-A387-7C3C7A34477C-1.jpg?resize=1080%2C608&ssl=1).
+[See the official illustration of the three LEAP 71 wheels with integrated inducer](https://i0.wp.com/leap71.com/wp-content/uploads/2025/07/62BA1CA0-1871-4129-A387-7C3C7A34477C-1.jpg?resize=1080%2C608&ssl=1).
 
-La [page de téléchargement](https://leap71.com/downloads/) propose trois
-roues au format STL, avec une archive annoncée de 170 Mo. Elle relie ces
-modèles à Noyron et PicoGK. La [galerie](https://leap71.com/gallery/)
-présente des roues imprimées ; cela ne prouve pas les performances des
-trois modèles téléchargeables. L'archive STL n'a pas été téléchargée ni inspectée.
+The [download page](https://leap71.com/downloads/) offers three wheels in STL
+format, with an advertised 170 MB archive. It links these models to Noyron and
+PicoGK. The [gallery](https://leap71.com/gallery/) shows printed wheels; this
+does not prove the performance of the three downloadable models. The STL
+archive was neither downloaded nor inspected.
 
-La [publication sur la turbopompe de 28 kN](https://www.linkedin.com/posts/leap71_we-are-making-progress-in-building-an-integrated-activity-7313126036693524481-oYCQ)
-montre une intégration plus avancée de composants, encore en développement.
-La [description officielle de Noyron](https://leap71.com/Noyron/) précise sa
-relation au noyau PicoGK. **L'ouverture du noyau géométrique ne donne pas
-accès au modèle d'ingénierie Noyron, qui reste propriétaire.**
+The [post on the 28 kN turbopump](https://www.linkedin.com/posts/leap71_we-are-making-progress-in-building-an-integrated-activity-7313126036693524481-oYCQ)
+shows a more advanced integration of components, still under development.
+The [official description of Noyron](https://leap71.com/Noyron/) states its
+relationship to the PicoGK kernel. **Opening the geometry kernel does not give
+access to the Noyron engineering model, which remains proprietary.**
 
-Les modèles téléchargeables sont proposés sous
+The downloadable models are offered under
 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
-L'illustration reste liée sur le site de LEAP 71 : aucune copie n'est intégrée
-ici, car la portée de cette licence sur cette image de présentation n'est pas
-établie. Cette illustration n'est pas une preuve de fabrication ou d'essai.
+The illustration stays linked on the LEAP 71 site: no copy is embedded here,
+because the scope of this licence over this presentation image is not
+established. This illustration is not evidence of manufacturing or testing.
 
-## Application à notre projet
+## Application to our project
 
-1. Comparer les passages méridiens, angles de pales, diffuseur et loi de
-   section de volute de Phy-CC à notre côté froid ; documenter les écarts
-   avant d'adopter du code ou des paramètres.
-2. Comparer le passage chaud et la loi de volute de Phy-CT ; examiner ses
-   contrôles de l'assemblage complet. Un contrôle à 360° ne suffit pas à
-   établir les jeux en rotation et à chaud.
-3. Définir les conditions de service communes aux deux roues et relever
-   les interfaces du corps central, paliers, joints et retenues. Les
-   valeurs inconnues restent à `null` ; aucune valeur par défaut d'un
-   exemple ne devient une cote mesurée de notre turbo.
+1. Compare the meridional passages, blade angles, diffuser and volute section
+   law of Phy-CC with our cold side; document the differences before adopting
+   code or parameters.
+2. Compare the hot passage and volute law of Phy-CT; examine its checks of the
+   complete assembly. A 360° check is not enough to establish rotating and hot
+   clearances.
+3. Define the service conditions common to both wheels and record the
+   interfaces of the centre housing, bearings, seals and retainers. Unknown
+   values remain `null`; no default value from an example becomes a measured
+   dimension of our turbo.
 
-La priorité proposée est **QUASAR pour étudier le code des deux côtés**, et
-**LEAP 71 pour les exemples de formes et de fabrication**. Assembler deux
-générateurs ne démontre ni leur appariement aérodynamique ni leur capacité
-à partager le même arbre et le même régime.
+The proposed priority is **QUASAR for studying the code of both sides**, and
+**LEAP 71 for examples of shapes and manufacturing**. Assembling two
+generators demonstrates neither their aerodynamic matching nor their ability
+to share the same shaft and the same speed.
 
-## Périmètre de la recherche
+## Scope of the research
 
-Recherche ciblée sur PicoGK, turbocharger, compressor, turbine, impeller,
-volute et LEAP 71 ; examen des pages officielles et de sources C# épinglées.
-Les résultats relatifs au ventilateur de refroidissement Porsche de notre
-propre projet ont été exclus des exemples indépendants de turbo.
-Aucun code tiers n'a été exécuté, aucune simulation reproduite, et aucun
-modèle externe n'a été intégré à l'assemblage. Ce dossier ajoute uniquement
-de la documentation et des liens ; les sources et preuves
-de géométrie existantes restent inchangées.
+Targeted search on PicoGK, turbocharger, compressor, turbine, impeller,
+volute and LEAP 71; review of the official pages and of pinned C# sources.
+Results relating to the Porsche cooling fan of our own project were excluded
+from the independent turbo examples.
+No third-party code was executed, no simulation reproduced, and no external
+model was integrated into the assembly. This directory adds only
+documentation and links; the existing geometry sources and evidence remain
+unchanged.

@@ -1,9 +1,9 @@
 # M64 — local mesh correction and blends still to be reworked
 
 Follow-up to the [CAD, contacts and mesh batch](M64_NATIVE_CAD_CONTACTS_AND_MESH_20260907.md).
-Two separate trials progress: the discretization of the skin on body 05 and
+Two separate trials progress: the discretisation of the skin on body 05 and
 the topological representation of body 06. **Neither constitutes a validated
-cylinder head nor a print authorization.** The geometries are not
+cylinder head nor a print authorisation.** The geometries are not
 interchangeable; their digests bind each result to its object.
 
 ## Mesh 05: real improvement without modifying the CAD
@@ -22,7 +22,7 @@ generation lasts 23.71 s; the inputs remain unchanged.
 | Near-flat tetrahedra, minSICN < 10⁻⁶ | 7 | 0 |
 | Non-positive Jacobians | 1 | 0 |
 | Boundary triangles minSICN < 0.1 | 869 | 799 |
-| Discretized volume gap relative to native | +0.281956% | +0.282046% |
+| Discretised volume gap relative to native | +0.281956% | +0.282046% |
 
 On the three targeted faces, the quality minima go respectively from
 0.00515 / 0.02452 / 0.00180 to 0.30998 / 0.37297 / 0.17985. The 4,889 other
@@ -65,7 +65,7 @@ after rereading, and no new STEP was exported or qualified.**
 
 The table of parametric curves on surface is identical byte for byte. The
 B-spline supports remain unchanged; a few analytic coefficients vary by at
-most 2.22 × 10⁻¹⁶ at serialization. The curve intervals are covered once, with
+most 2.22 × 10⁻¹⁶ at serialisation. The curve intervals are covered once, with
 the orientations of their occurrences kept. These are representation checks,
 not evidence of functional smoothing.
 
@@ -95,7 +95,7 @@ flowchart TD
 ```
 
 The mesh results of body 05 are not transferred to body 06. The next steps
-remain geometric: progressive blend, correctly discretized skin, then explicit
+remain geometric: progressive blend, correctly discretised skin, then explicit
 physical conditions and convergence. No heat field, stress, fatigue or LPBF
 result for the cylinder head is added by this batch.
 

@@ -1,129 +1,129 @@
-# Qualification de la station — 28 septembre 2026
+# Station qualification — 28 September 2026
 
-L'image est **publiée et vérifiée anonymement** ; l'instance Vast **53246885**
-est louée. Le préflight GPU, les témoins CPU, la réponse Qwen, l'appel d'outil
-OpenClaw, le rendu OVRTX sur GPU 3 et l'édition/sauvegarde/reconnexion
-Omniverse via le relais SSH passent. La vidéo est également reçue sur Kali2. Le premier essai simultané a échoué sur le seuil de mémoire
-GPU ; l'API Qwen est de nouveau vérifiée après fixation explicite de sa limite
-à 0,90 ; un nouvel appel d’outil OpenClaw passe également. Le deuxième essai
-a été interrompu pour diagnostiquer l’absence de réponse dans le dashboard
-utilisateur, qui a confirmé la reprise des réponses. Le [troisième essai de trente minutes](runtime/soak/README.md)
-**passe**, de 21:25:42 à 21:55:42 UTC : 120 requêtes Qwen, 53 chaînes complètes,
-aucun OOM ni redémarrage. Les 1 219 fichiers attendus sont identiques entre
-Vast et la copie persistante de Kali2. Ces résultats ne prouvent aucune
-qualification physique de pièce.
+The image is **published and verified anonymously**; Vast instance **53246885**
+is rented. The GPU preflight, the CPU witnesses, the Qwen response, the OpenClaw
+tool call, the OVRTX render on GPU 3 and the Omniverse edit/save/reconnection
+via the SSH relay pass. The video is also received on Kali2. The first simultaneous trial failed on the GPU memory
+threshold; the Qwen API is verified again after its limit was explicitly set
+to 0.90; a new OpenClaw tool call also passes. The second trial
+was interrupted to diagnose the absence of responses in the user
+dashboard, which confirmed that responses had resumed. The [third thirty-minute trial](runtime/soak/README.md)
+**passes**, from 21:25:42 to 21:55:42 UTC: 120 Qwen requests, 53 complete chains,
+no OOM and no restart. The 1,219 expected files are identical between
+Vast and the persistent copy on Kali2. These results prove no
+physical qualification of any part.
 
-Le [statut du déploiement](deployment-status.json), la
-[preuve de publication finale](publication-final.json) et les
-[preuves d'exécution sur Vast](runtime/README.md) précisent chaque état observé.
-Le manifeste publié est :
+The [deployment status](deployment-status.json), the
+[final publication evidence](publication-final.json) and the
+[run evidence on Vast](runtime/README.md) specify each observed state.
+The published manifest is:
 
 ```text
 ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:6548a22795a01bf6b4a1d79a4bf9415d839ef5f445773d19d3df81bec2bef154
 ```
 
-La publication a réutilisé l'image construite, sans reconstruction, via GitHub
-Actions et un runner JIT sur Kali2. Le run final `36490231264` a réussi ; le
-runner 23 a été automatiquement retiré. Les 78 couches, la configuration
-`4f58a4e28ab7…`, la plateforme et les seuls ports `22/tcp`, `47998/udp` sont
-vérifiés anonymement. La [publication initiale](publication.json) reste conservée.
-Les refus antérieurs de publication
-directe et le refus budgétaire antérieur à toute création restent conservés dans
-le statut comme historique ; ils ne décrivent plus l'état actuel.
+The publication reused the built image, without a rebuild, via GitHub
+Actions and a JIT runner on Kali2. The final run `36490231264` succeeded; the
+runner 23 was automatically removed. The 78 layers, the configuration
+`4f58a4e28ab7…`, the platform and the only ports `22/tcp`, `47998/udp` are
+verified anonymously. The [initial publication](publication.json) remains preserved.
+The earlier refusals of direct
+publication and the budget refusal prior to any creation remain kept in
+the status as history; they no longer describe the current state.
 
-La location porte sur l'offre **49181720**, machine **44690**. Le manifeste
-initial réservait **26,99 USD** et fixait une échéance au 29 septembre à
-00:12:16 UTC. À **21:36:31 UTC**, l'utilisateur a explicitement demandé de
-conserver Vast allumée après ajout de crédit : la [garde destructive a été retirée](runtime/keep-running.json),
-le manifeste historique est conservé et aucune destruction n'a été appelée.
-La station fonctionne désormais **sans échéance automatique**, au tarif observé
-de **6,237037 USD/h**, soit environ **149,69 USD/jour hors transferts**.
-La facture réelle reste inconnue. La [synchronisation permanente vers Kali2](runtime/sync-persistent.json)
-est active, sans suppression ni suivi de liens ; sa dernière copie relevée
-réussit à 21:42:55 UTC.
+The rental covers offer **49181720**, machine **44690**. The initial manifest
+reserved **26.99 USD** and set a deadline of 29 September at
+00:12:16 UTC. At **21:36:31 UTC**, the user explicitly asked to
+keep Vast running after adding credit: the [destructive guard was removed](runtime/keep-running.json),
+the historical manifest is kept and no destruction was called.
+The station now runs **without an automatic deadline**, at the observed rate
+of **6.237037 USD/h**, i.e. about **149.69 USD/day excluding transfers**.
+The real invoice remains unknown. The [permanent synchronisation to Kali2](runtime/sync-persistent.json)
+is active, without deletion or following links; its last recorded copy
+succeeds at 21:42:55 UTC.
 
-Le rendu OVRTX a nécessité un correctif explicite des permissions du cache
-sur l'instance. La [couche finale persistante](runtime/image-hotfix-persistent/final-image.json)
-le reprend avec les correctifs Qwen/client/relais et passe le témoin CPU en
-4,157 s ; elle est publiée au digest ci-dessus. La preuve GPU et l'endurance
-concernent l'instance initiale avec ces correctifs appliqués en fonctionnement.
-Une nouvelle instance démarrée depuis le digest final n'a pas été testée ;
-les travaux actifs sont préservés sur la location existante.
-Les échecs UDP observés depuis Mac et Kali2 ne
-permettent pas d'attribuer la cause au fournisseur, car les deux machines
-peuvent partager le même accès Internet.
+The OVRTX render required an explicit fix of the cache permissions
+on the instance. The [final persistent layer](runtime/image-hotfix-persistent/final-image.json)
+incorporates it with the Qwen/client/relay fixes and passes the CPU witness in
+4.157 s; it is published at the digest above. The GPU evidence and the endurance run
+concern the initial instance with these fixes applied while running.
+A new instance started from the final digest has not been tested;
+the active work is preserved on the existing rental.
+The UDP failures observed from the Mac and Kali2 do not
+allow the cause to be attributed to the provider, since both machines
+may share the same Internet access.
 
-Kali1 est également disponible pour du [calcul PicoGK CPU borné](runtime/kali1-cpu/summary.json).
-Le lancement depuis Kali2 et la collecte automatique sont prouvés avec
-`kali1-picogk` : deux CPU, 2 Gio, priorité réduite et cinq minutes maximum,
-sans installation système ni redémarrage du gateway. La liaison passe par le
-tunnel du contrôleur Mac, qui doit rester disponible.
+Kali1 is also available for [bounded CPU PicoGK computation](runtime/kali1-cpu/summary.json).
+Launch from Kali2 and automatic collection are proven with
+`kali1-picogk`: two CPUs, 2 GiB, reduced priority and five minutes maximum,
+without system installation or gateway restart. The link goes through the
+tunnel of the Mac controller, which must remain available.
 
-La surveillance OpenClaw est programmée toutes les **30 minutes** : elle suit
-l'avancement réel du moteur 911 993, les sources et résultats, ainsi que les
-services. Le témoin générique de cette qualification ne représente pas une
-pièce de ce moteur. Le jeton GitHub est conservé à la demande de l'utilisateur ;
-les réponses API filtrent les métadonnées temporaires d'authentification.
+OpenClaw monitoring is scheduled every **30 minutes**: it follows
+the real progress of the 911 993 engine, the sources and results, and the
+services. The generic witness of this qualification does not represent a
+part of this engine. The GitHub token is kept at the user's request;
+the API responses filter the temporary authentication metadata.
 
-L'[image construite et les témoins CPU initiaux](build/README.md) sont documentés
-à part, avec les sources C#, le document FreeCAD éditable, les STEP/STL,
-l'assemblage USD et les journaux extraits de l'image.
+The [built image and the initial CPU witnesses](build/README.md) are documented
+separately, with the C# sources, the editable FreeCAD document, the STEP/STL,
+the USD assembly and the logs extracted from the image.
 
-Le [dernier reçu `make check`](runtime/make-check-final-release.json) consigne le code
-**0** sur le contrôleur macOS : **3 231 tests principaux**, 148 ignorés et
-**574 documents Markdown sans lien cassé**. Le code est resté figé pendant ce
-contrôle, qui inclut les régressions Git 2.53 et le filtrage des métadonnées
-sensibles. Les reçus documentaires ajoutés ensuite sont contrôlés séparément. La [preuve GitHub sur Kali2](runtime/github-access/proof.json)
-confirme lecture native et `push --dry-run` sur les deux dépôts autorisés, sans
-modification distante. L’historique ci-dessous conserve le premier contrôle
-complet et ses conditions d’exécution.
+The [latest `make check` receipt](runtime/make-check-final-release.json) records exit code
+**0** on the macOS controller: **3,231 main tests**, 148 skipped and
+**574 Markdown documents without a broken link**. The code remained frozen during this
+check, which includes the Git 2.53 regressions and the filtering of sensitive
+metadata. The documentary receipts added afterwards are checked separately. The [GitHub evidence on Kali2](runtime/github-access/proof.json)
+confirms native read and `push --dry-run` on the two authorised repositories, without
+remote modification. The history below keeps the first complete
+check and its run conditions.
 
-## Historique du premier contrôle logiciel
+## History of the first software check
 
-`make check` s'est terminé avec le code **0** sur Kali2, dans une copie isolée de
-3 898 fichiers du worktree, du 28 septembre 2026 à 18:49:46 UTC jusqu'à
-18:57:39 UTC (472,58 s). Aucun fichier de cette copie n'a changé pendant le
-contrôle. Les nouveaux fichiers ont été ajoutés à l'index de cette copie avant
-l'exécution afin d'inclure leurs liens documentaires.
+`make check` finished with exit code **0** on Kali2, in an isolated copy of
+3,898 files of the worktree, from 28 September 2026 at 18:49:46 UTC until
+18:57:39 UTC (472.58 s). No file of this copy changed during the
+check. The new files were added to the index of this copy before
+the run in order to include their documentary links.
 
-| Contrôle | Résultat constaté |
+| Check | Observed result |
 |---|---|
-| Suite principale | 3 213 tests ; 140 ignorés explicitement ; aucune erreur |
-| Ensemble des 32 suites invoquées par `make check` | 3 490 invocations, avec répétitions ; 141 ignorées |
-| Liens Markdown de la copie contrôlée | 567 documents ; aucun lien cassé |
-| Contrôle natif LPBF F37 | Image `mesh-cfd` épinglée par le Makefile ; exécution sans réseau |
+| Main suite | 3,213 tests; 140 explicitly skipped; no errors |
+| All 32 suites invoked by `make check` | 3,490 invocations, with repetitions; 141 skipped |
+| Markdown links of the checked copy | 567 documents; no broken link |
+| Native LPBF F37 check | `mesh-cfd` image pinned by the Makefile; run without network |
 
-Les copies des résultats sont [summary.json](summary.json) et
-[result.json](result.json). Le journal intégral est conservé localement sous
-`work/station-linux-check-r8kj70sz/make-check.log`, hors Git. Son SHA-256 est :
+The copies of the results are [summary.json](summary.json) and
+[result.json](result.json). The full log is kept locally under
+`work/station-linux-check-r8kj70sz/make-check.log`, outside Git. Its SHA-256 is:
 
 ```text
 5db7a308778d76816b8a6787acb2dd0f263f0645c3ac634b3e0538977dfa4d51
 ```
 
-L'exécution utilise Python 3.14.7, un environnement virtuel dédié avec les
-paquets système, `PYTHONNOUSERSITE=1`, `umask 022` et un `TMPDIR` dédié. Aucun
-paquet global n'a été installé. Ces paramètres évitent les bindings OCP
-incomplets du site utilisateur et le `/tmp` plein de l'hôte. Les essais
-préliminaires avaient aussi révélé des fixtures sensibles à l'umask ; la suite
-GHCR ciblée (17 tests) puis le contrôle complet passent sous `022`.
+The run uses Python 3.14.7, a dedicated virtual environment with the
+system packages, `PYTHONNOUSERSITE=1`, `umask 022` and a dedicated `TMPDIR`. No
+global package was installed. These settings avoid the incomplete OCP bindings
+of the user site and the full `/tmp` of the host. The preliminary trials
+had also revealed umask-sensitive fixtures; the targeted GHCR
+suite (17 tests) then the complete check pass under `022`.
 
-Les tests ignorés concernent principalement les runtimes facultatifs
-OCP/CadQuery, OpenUSD et Trimesh, ainsi que des preuves locales volontairement
-absentes de Git. Leur absence ne vaut pas validation de ces fonctionnalités.
+The skipped tests mainly concern the optional runtimes
+OCP/CadQuery, OpenUSD and Trimesh, as well as local evidence deliberately
+absent from Git. Their absence does not amount to validation of these features.
 
-Après l'ajout de `soak.py` et `qualify_image.py`, les **29 tests ciblés station**
-passent sans test ignoré. Les quatre nouveaux tests du registre utilisent des
-réponses simulées : manifeste et configuration conformes, sommes de couches,
-rejet des empreintes divergentes, ports supplémentaires et tailles invalides.
-`soak.py --self-check` passe également ; il vérifie ses parseurs sans exécuter
-la qualification de 30 minutes. Ces ajouts sont postérieurs à la copie Linux
-ci-dessus et ne sont donc pas couverts par son résultat `make check`.
+After the addition of `soak.py` and `qualify_image.py`, the **29 targeted station tests**
+pass with no skipped test. The four new registry tests use
+simulated responses: compliant manifest and configuration, layer checksums,
+rejection of divergent digests, extra ports and invalid sizes.
+`soak.py --self-check` also passes; it verifies its parsers without running
+the 30-minute qualification. These additions postdate the Linux copy
+above and are therefore not covered by its `make check` result.
 
-Les preuves de publication, préflight GPU, témoins CPU, réponse Qwen, outil
-OpenClaw, rendu OVRTX, manipulation/sauvegarde USD et reconnexion WebRTC
-sur Vast et le rapport des trente minutes simultanées sont désormais liés
-ci-dessus. La facture réelle et le bilan final des transferts restent inconnus ;
-la garde destructive a été retirée à la demande de l’utilisateur. La simulation
-thermomécanique calibrée et la qualification physique restent hors du périmètre
-de cette première installation.
+The evidence of publication, GPU preflight, CPU witnesses, Qwen response, OpenClaw
+tool, OVRTX render, USD manipulation/save and WebRTC reconnection
+on Vast and the report of the thirty simultaneous minutes are now linked
+above. The real invoice and the final transfer balance remain unknown;
+the destructive guard was removed at the user's request. Calibrated
+thermomechanical simulation and physical qualification remain outside the scope
+of this first installation.

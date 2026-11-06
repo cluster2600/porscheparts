@@ -84,7 +84,7 @@ separate, unclosed gates. The master/assembly is not replaced automatically.
 
 ## Why a fixed skin cannot reach zero
 
-The [existing algebra and its native witnesses](M64_ADAPTIVE_MESH_AND_ACUTE_FACES_20260928.md#2-why-interior-optimization-alone-cannot-close-the-gate)
+The [existing algebra and its native witnesses](M64_ADAPTIVE_MESH_AND_ACUTE_FACES_20260928.md#2-why-interior-optimisation-alone-cannot-close-the-gate)
 give, for a fixed linear triangle of quality `q2`,
 
 `q3 <= 3*q2/(2+q2)`.

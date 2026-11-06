@@ -1,14 +1,14 @@
 # Printability screening — m64-valvetrain-0001 (honest, non-authorizing)
 
 Screening note, not a process qualification. Per
-[SAFETY.md](../../docs/SAFETY.md), a calculation never authorizes manufacturing;
+[SAFETY.md](../../docs/SAFETY.md), a calculation never authorises manufacturing;
 every component in this lane stays `prohibited_pending_engineering` (engine
 risk class) until dimensional inspection, fitment and professional engineering
 review exist.
 
 ## Scope
 
-The five PicoGK meshes in `validation/run/` are voxelized (1.0 mm screen)
+The five PicoGK meshes in `validation/run/` are voxelised (1.0 mm screen)
 signed-distance fields, exported as STL (mm) with PicoGK 2.3.0 /
 picogk.26.2. They are layout proxies of OHV-2V-lineage valve-ttrain forms
 used for M64/60 digital-twin layout — not candidate LPBF parts.
@@ -37,7 +37,7 @@ used for M64/60 digital-twin layout — not candidate LPBF parts.
 
 ## Gate (binding)
 
-Manufacturing of any component in this lane is **not authorized** by this
+Manufacturing of any component in this lane is **not authorised** by this
 note, by the compile/run report, or by any calculation. Metrology of the
 real M64/60 valvetrain components is the next evidence step (M64-ACQ-0002
 blocks the cam profile in particular).

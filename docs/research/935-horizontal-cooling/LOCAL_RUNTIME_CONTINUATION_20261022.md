@@ -62,7 +62,7 @@ the second uses the image's existing `/workspace` directory. Both are preserved.
 
 ## Six independent numerical controls
 
-The existing F25 generator, nine input decks, contract and analyzer are reused
+The existing F25 generator, nine input decks, contract and analyser are reused
 unchanged. They define laminar planar Poiseuille flow with an analytical solution.
 Three meshes (8, 16 and 32 cells) are each run twice through native OpenFOAM 13:
 `blockMesh`, `checkMesh`, `simpleFoam` delegating to `foamRun`, and cell-centre
@@ -79,7 +79,7 @@ criteria. On the fine mesh:
 
 The initial controller finishes all six jobs but its final receipt writer uses
 the wrong repeatability key. A separate recovery program rechecks every result
-with the unchanged analyzer and constructs the receipt without rerunning solvers
+with the unchanged analyser and constructs the receipt without rerunning solvers
 or relaxing criteria. The failed controller, recovery source and outputs are
 preserved. This qualifies this laminar numerical witness on the new backend.
 It establishes no fan flow, rotor/casing interaction or 935 performance.
@@ -97,5 +97,5 @@ its explicitly provisional casing, with documented MRF region, stations,
 operating assumptions and mesh/continuity/stationarity checks. Existing R0/V2/S1
 curves do not transfer. Structural mesh convergence, real scale, interfaces,
 transmission, engine installation and material/process qualification remain open.
-There is still no accepted dataset for PhysicsNeMo or an optimized fabrication
+There is still no accepted dataset for PhysicsNeMo or an optimised fabrication
 package. No new Vast rental was created in this continuation.

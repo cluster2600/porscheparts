@@ -2,7 +2,7 @@
 
 Verdict: **compiled clean** in the pinned station image (0 warnings, 0
 errors) after three first-time compile fixes (see below). Execution,
-voxelization and export remain unrun; "geometry validated" is still NOT
+voxelisation and export remain unrun; "geometry validated" is still NOT
 claimed.
 
 ## Environment
@@ -54,7 +54,7 @@ timeout 170 docker run --rm \
 
 - `dotnet build -c Release` inside the pinned image: **PASS** at commit
   `c48b133` (this branch), 0 warnings / 0 errors.
-- `dotnet run` (voxelization, STL/vdb export, run-report, volume sanity):
+- `dotnet run` (voxelisation, STL/vdb export, run-report, volume sanity):
   **not executed** — next validation step; requires a headless station run
   with an output dir writable by the container.
 - `dimensional_correctness_verified`: **false** (compile ≠ measurement).

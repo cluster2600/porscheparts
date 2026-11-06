@@ -109,7 +109,7 @@ rational reconstruction confirms every row. This changes no mesh and proves no
 compatible repair; all24 quality failures remain.
 
 The [complete analytic-apex diagnostic](derived/engineering/current24-analytic-apex-diagnostic/README.md)
-rejects all19 full-component tuples: selected target cells pass, but neighboring
+rejects all19 full-component tuples: selected target cells pass, but neighbouring
 cells fail, including42 inverted-cell dispositions. Independent exact arithmetic
 checks all1,415 baseline/candidate rows. No proposal is applied; the head retains
 all24 quality failures. These finite failures do not prove infeasibility.
@@ -118,7 +118,7 @@ The [saved exact-segment certificate](derived/engineering/current24-exact-segmen
 retains all19 prescribed movement paths and916 cell associations in a lossless
 35.0 MB logical /5.75 MB compressed report. Independent exact arithmetic passes
 136,316 assertions and verifies that all19 prescribed paths have empty feasible
-sets. Other movements and tetrahedralizations remain open. All24 head quality
+sets. Other movements and tetrahedralisations remain open. All24 head quality
 failures remain, with no mesh application.
 
 The [local flip-screen fixtures](derived/engineering/current24-flip-synthetic-guards/README.md)
@@ -131,7 +131,7 @@ The [complete saved flip screen](derived/engineering/current24-saved-flip-screen
 now checks all 204 observed associations: 139 are nonpatterns and all 65 replacement
 patterns fail the exact local checks. A separately authored rational checker verifies
 the complete finite result and 89 conflicts. No replacement is applied; other
-movements and tetrahedralizations remain open, with all 24 poor cells unchanged.
+movements and tetrahedralisations remain open, with all 24 poor cells unchanged.
 
 The earlier [complete 73-component coordinate study](derived/engineering/current110-complete73-coordinate-diagnostics/README.md)
 preserves all 62 passing and 11 rejected proposals. Only the passing subset was
@@ -223,7 +223,7 @@ adds an HT1 hot-strength comparison and process-specific CuCrZr/CP1 data leads;
 it selects no production material.
 
 The [material-gap audit](derived/engineering/material-production-gap-audit/README.md)
-adds a separate Nikon CP1 characterization lead and traces the matched hot-property,
+adds a separate Nikon CP1 characterisation lead and traces the matched hot-property,
 fatigue and creep data still needed. Its coupon statistics do not select a head
 material or qualify a production process.
 The [earlier head checkpoint](derived/engineering/apex1613031-head-application/README.md)
@@ -244,7 +244,7 @@ completes native capture for all 183 steps and the separate lexical-storage chec
 The unchanged 3D assessor then refuses global force balance: 1.965162169881296e-6 N
 against 1e-7 N. No complete mechanical field dataset, release-energy or final-hold
 assessment is accepted. The separate [balance diagnostics](derived/engineering/cp1-cooling-release-balance-diagnostics/README.md)
-localize the failing reaction force and moments to END181, immediately after
+localise the failing reaction force and moments to END181, immediately after
 support release. Independent force assembly reproduces the imbalance while its
 individual scalar checks meet their limits. These synthetic software results do
 not qualify a head, material or LPBF process.
@@ -427,7 +427,7 @@ boundary mesh, but independent readback confirms 283,853 tetrahedra below SICN
 The [exact rejected MSH and evidence ZIP](derived/engineering/atomic-cavity-volume-raw-review-delivery/README.md)
 is uploaded with its member manifest and checksum. All 34 archive members pass
 independent full-byte checks; all 36 preceding release assets remain intact.
-The [later optimizer and diagnosis](derived/engineering/atomic-cavity-volume-followup/README.md)
+The [later optimiser and diagnosis](derived/engineering/atomic-cavity-volume-followup/README.md)
 record a 20-minute stop without export, followed by a completed read-only query:
 245,420 poor cells contain four boundary nodes. Moving only interior nodes with
 unchanged connectivity cannot repair those cells; volume quality remains rejected.
@@ -456,7 +456,7 @@ The [separate cap-aware repair trial](derived/engineering/atomic-cavity-plane-cl
 adds a cap inspection plot, exact rim screening and four verified native fixtures.
 Its boundary-only head proposal is rejected: native in-memory quality reports
 1,122 poor faces, down from 3,112, and exports no candidate. Later topology,
-neighbor and envelope checks were not reached; head physics remains open.
+neighbour and envelope checks were not reached; head physics remains open.
 The [later mixed-side and cap refinement](derived/engineering/atomic-cavity-plane-clip-cap-refinement/README.md)
 passes the necessary q≥2/29 gate on all 8,976 saved cap triangles, with
 3,092 new interior points and all 38 fixed cells retained. The stronger Mesh_2
@@ -466,7 +466,7 @@ The [later assembled-surface checkpoint](derived/engineering/atomic-cavity-plane
 has 871,731 vertices and 1,743,878 faces, all meeting q≥2/29,
 zero global self-intersection pairs and preserved local exterior/boundary
 continuity. The eight retained opening-point screens and 16,218 affected
-neighbor checks pass within their stated scopes. The original-to-assembled
+neighbour checks pass within their stated scopes. The original-to-assembled
 distance upper bound is 0.03197034 mm; the original reverse CUB attempt hits its
 native allocation cap and returns no interval. That checkpoint preserves the
 incomplete result; the 414 stronger shape failures stay separate and unchanged.
@@ -482,7 +482,7 @@ saves 2,989,608 tetrahedra with the exact surface boundary. Independent saved-fi
 reading confirms 78,301 referenced interior nodes, positive volumes and exact
 tagged arrays, but **285,573 cells fail SICN 0.1**; the minimum is
 3.784626658982107e-9. The volume remains rejected, with no head thermal or
-strength result. No mesh generation or optimization occurs in that readback.
+strength result. No mesh generation or optimisation occurs in that readback.
 The [later complete poor-cell classification](derived/engineering/atomic-cavity-plane-clip-cap-assembly-volume-poorcell-diagnosis/README.md)
 finds 247,088 poor tetrahedra with four retained boundary vertices and 38,485
 with at least one interior vertex. With connectivity and boundary coordinates
@@ -496,10 +496,10 @@ The [separate Delaunay trial and saved-file first pass](derived/engineering/atom
 records 3,961,773 tetrahedra and 73,924 below SICN 0.1, including one
 nonpositive SICN value. Full first-pass boundary checks are saved; both deadline
 stops and the unfinished final reopen remain explicit. This volume is rejected.
-The [completed default optimizer and independent diagnosis](derived/engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-default-postexport/README.md)
+The [completed default optimiser and independent diagnosis](derived/engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-default-postexport/README.md)
 record 3,802,217 tetrahedra, 3,438 positive cells below SICN 0.1 and no
 nonpositive metrics. Independent saved-file arrays and metrics match the
-optimizer's after-proof. Of the poor cells, 1,435 use only retained boundary
+optimiser's after-proof. Of the poor cells, 1,435 use only retained boundary
 vertices and 2,003 involve an interior vertex. With connectivity and boundary
 coordinates fixed, interior movement alone cannot repair the first group.
 The unchanged quality gate still rejects this volume; no head field is accepted.
@@ -509,9 +509,9 @@ minimum SICN 0.4780600202533193 after exact saved-file readback. Both generated
 cube meshes and complete arrays are included. This toy software result supplies
 no head mesh acceptance or physical qualification.
 The [direct-SICN tiny attempt](derived/engineering/direct-sicn-cube-import-failure/README.md)
-stops during SciPy import before any optimizer call, Gmsh calibration or mesh
+stops during SciPy import before any optimiser call, Gmsh calibration or mesh
 export. Source/math and mocked lifecycle guards pass separately; the preserved
-import failure establishes no optimizer result or head-repair feasibility.
+import failure establishes no optimiser result or head-repair feasibility.
 The [completed tiny direct-SICN witness](derived/engineering/direct-sicn-cube-software-witness/README.md)
 uses a separately reviewed existing runtime and passes the unchanged SICN 0.1
 rule on all 12 cube tetrahedra, improving the native minimum from 0.0148139 to
@@ -538,7 +538,7 @@ constraints; no repair, exterior-face membership or head acceptance is establish
 The [complete seed-star census](derived/engineering/atomic-cavity-plane-clip-cap-assembly-netgen-full-stars/README.md)
 identifies 156 candidate interior nodes and 5,355 incident tetrahedra: 210 poor
 and 5,145 initially good. It retains 468 possible coordinate variables and the
-complete geometric census data. No joint feasibility, optimization or new
+complete geometric census data. No joint feasibility, optimisation or new
 candidate mesh is established; the saved head remains rejected.
 The [bounded coordinate trial](derived/engineering/direct-sicn-head-proposer-rejected/README.md)
 records solver-reported success but fails the unchanged all-cell 0.1 gate:
@@ -560,7 +560,7 @@ retains 1,098 selected node positions and all 29,473 analytic qualities.
 Its 315 cells below 0.1 and minimum 0.030665 fail the unchanged quality gate.
 The full numeric diagnostic is retained losslessly alongside the failed report.
 No accepted coordinate proposal or native head application was produced.
-The [normalized initial-barrier trial](derived/engineering/direct-sicn-sparse-head-proposer-normalized-rejection/README.md)
+The [normalised initial-barrier trial](derived/engineering/direct-sicn-sparse-head-proposer-normalized-rejection/README.md)
 retains a second complete returned diagnostic: minimum 0.067817, with 244 of
 29,473 cells below the unchanged 0.1 gate. The epigraph inequalities also fail.
 Every returned quality is independently reconstructed from the saved rows.
@@ -611,7 +611,7 @@ The [expanded interior-node census](derived/engineering/atomic-cavity-plane-clip
 contains 1,098 movable nodes and 29,473 coupled cells, including all 210 poor
 cells and 29,263 initially good cells. Its complete geometric JSON is retained
 losslessly through gzip; all 10,969 other context nodes remain fixed.
-This read-only expansion establishes no optimization or accepted head mesh.
+This read-only expansion establishes no optimisation or accepted head mesh.
 The [current BIN/PLY and seven-map download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 is uploaded to the existing draft release. All 151 archive members pass complete
 independent byte checks; all 42 preceding assets remain unchanged (45 total).
@@ -650,7 +650,7 @@ They verify the separate scalar software laws on an assumed bar; head strength
 and material/process qualification remain open.
 The [imported-cube software witness](derived/engineering/head-imported-cube-witness/README.md)
 passes a separate nine-node ASCII2.2 import, discrete P1 solve and complete
-Exodus mesh/field readback. Its normalized field w has units mm²; the retained
+Exodus mesh/field readback. Its normalised field w has units mm²; the retained
 25% continuum flux deficit prevents a convergence claim. It supplies software
 evidence for the next head import, without head strength or LPBF qualification.
 The [earlier analysis-surface evidence](ANALYSIS_QUALITY_ENGINEERING.md) passes
@@ -667,7 +667,7 @@ retains the next bulk-filled mesh and its independent quality rejection.
 The [replica family](REPLICA_FAMILY.md) defines the reference, six displacement
 targets, calculator and missing measurements. [962 C metrology](REPLICA_METROLOGY.md)
 concerns the original; no dimensionally faithful CAD master is available yet.
-This absence does not block the authorized bionic studies.
+This absence does not block the authorised bionic studies.
 
 The modern studies below and the [conversion program](KIT_962_PROGRAMME.md)
 for 911, 964 and 993 bases are preserved. Twin ignition, bionic shapes and the
@@ -696,7 +696,7 @@ its interfaces and report do not become those of an M64.
 This delivery starts the requested digital twin: water-cooled head,
 four valves and two spark plugs per cylinder, branching architecture and
 passages intended for an LPBF study. **F0 is a geometry study without measured
-interfaces, thermal simulation or manufacturing authorization.** It is not
+interfaces, thermal simulation or manufacturing authorisation.** It is not
 yet a calibrated twin of an identified 962 head.
 
 ![Solid, water circuit and candidate cutaway](derived/preview.png)
@@ -709,7 +709,7 @@ The [Porsche “40 Years Group C” dossier](https://newsroom.porsche.com/dam/jc
 pages 7 and 18–20, distinguishes air-cooled two-valve IMSA 962 engines from
 four-valve 962 C engines. The fully water-cooled 3 L appears at the 1985
 Le Mans practice sessions. The family includes 2,994 and 3,164 cm³ variants.
-Heads and cylinders are aluminum; the alloy is not specified.
+Heads and cylinders are aluminium; the alloy is not specified.
 Some cylinder/head units are electron-beam welded. Two camshafts per bank
 are gear-driven; tappets actuate the valves and shims set clearances.
 
@@ -721,7 +721,7 @@ sequence, flows and pressures remain unknown.
 |---|---|---|
 | Published bore/stroke | 92.3 × 66 mm for the 956 Type 935/76 | Reference distinct from the 962 donor |
 | Exact bore/stroke of the 962 C donor | Not established by a primary drawing | **95 mm selected** bore, assumed |
-| Overall dimensions, center distances, mounting | Unknown | No installation claimed |
+| Overall dimensions, centre distances, mounting | Unknown | No installation claimed |
 | Chambers, seats, angles, guides | Unknown | Reserved passages |
 | Original alloy and treatment | Unknown | No material equivalence |
 | Original twin ignition | Not established | Two spark plugs required for the candidate |
@@ -729,7 +729,7 @@ sequence, flows and pressures remain unknown.
 The [research.json](research.json) register retains sources, pages, consulted
 PDF digests, rights and unknowns. No manufacturer PDF, scan or third-party
 drawing is redistributed. Model values are not Porsche dimensions.
-The 993 catalog remains the source of truth for 993 parts; this separate
+The 993 catalogue remains the source of truth for 993 parts; this separate
 962 study adds no functional part to it.
 
 <a id="apport-de-la-fia"></a>
@@ -783,7 +783,7 @@ is assigned to them.
 ## Modern geometry actually generated
 
 The [Head962Study.cs](../../parts/picogk-catalog/engine/Head962Study.cs) generator
-reuses primitives and the existing PicoGK catalog runner. The C# source and
+reuses primitives and the existing PicoGK catalogue runner. The C# source and
 three JSON files are editable inputs; STL files are derived outputs, not a
 STEP parametric history.
 
@@ -798,7 +798,7 @@ STEP parametric history.
   intention; bends, junctions, overhangs and powder removal require coupon tests.
 - A skin around dry and wet volumes, a chamber deck and branching ribs
   connecting the reservations. This bionic morphology does not come from
-  optimization under combustion loads.
+  optimisation under combustion loads.
 - Three consistent exports: solid, water volume and dry volumes. No closed
   lattice or gyroid network is added to the channels.
 
@@ -821,7 +821,7 @@ flowchart LR
 ```
 
 Repeat this circuit independently for the other bank. Inter-cylinder branches,
-radiators, degassing and pumps are not modeled. The F0 loops feed the four
+radiators, degassing and pumps are not modelled. The F0 loops feed the four
 passages symmetrically; a future exhaust-priority distribution must be chosen
 from heat flux and pressure loss, not appearance. A smaller or rougher channel
 can increase local heat exchange while degrading total flow.

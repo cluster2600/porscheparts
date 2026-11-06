@@ -6,7 +6,7 @@ temperature, conductivity, preload or convection condition is defined.
 
 Scan provenance: Wolfe Classics, catalogue source
 `SRC-WOLFE-CLASSICS-935-BILLET-CYLINDER-HEAD-SCAN`. Reuse confirmed by
-the owner according to this register; exact license text not archived.
+the owner according to this register; exact licence text not archived.
 Detailed geometric data remain private; the image is an original
 diagnostic render of the reconstruction, not a new Porsche measurement.
 
@@ -31,7 +31,7 @@ flowchart LR
 inventories, of the F47 contract and of its builder before any classification.
 
 1. An F53 face is matched against F43 faces by surface type, bounding
-   box, center and area. A unique match becomes an
+   box, centre and area. A unique match becomes an
    **inherited candidate**, not automatically an air-cooled fin.
 2. Unmatched faces are sampled on their exact OCCT surface:
    a 5 × 5 UV grid restricted to points inside the trimmed face, plus all
@@ -115,7 +115,7 @@ conditions have been assigned.**
 ![Candidate groups and section of the F53 reference](../../twins/m64-cylinder-head/evidence/thermal-face-proposals-and-section.png)
 
 Image reviewed: 160,856 triangles, section at X = −19.5 scan units,
-953 intersection segments. The colors indicate candidate groups,
+953 intersection segments. The colours indicate candidate groups,
 never a temperature. The digest of the image and of the proposals file
 is in `thermal-face-proposals-render-20260907.json`; the aggregates are
 in `thermal-face-proposals-20260907.json`.

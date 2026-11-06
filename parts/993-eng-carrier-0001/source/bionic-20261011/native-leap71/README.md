@@ -51,7 +51,7 @@ Raw voxel-derived STL files fail the topology screen: the reference has
 faces in a **separate in-memory diagnostic** yields one closed, consistently
 oriented surface for each. The original STL already has one closed surface
 and no degenerate triangles. No raw file is silently repaired or admitted;
-the extraction result and the normalization result remain separate.
+the extraction result and the normalisation result remain separate.
 
 The secondary hole at (-160, -26) mm has 20/576 solid hits in an assumed
 12 mm-long, 2 mm-diameter clearance-gauge sweep, identically in all three

@@ -25,7 +25,7 @@ that guard in turn verifies the frozen PicoGK guard. The review policy retains
 exact label/image/ID ownership, an empty initial account inventory, tariff and
 total-cost checks, five-minute cleanup reserve, monotonic time protection,
 late-creation watching and signal-triggered cleanup. It accepts no sibling
-exclusion. It only uses the approved wrapper's sanitized inventory, lookup and
+exclusion. It only uses the approved wrapper's sanitised inventory, lookup and
 destruction operations. No secret is read by the guard.
 
 Before the paid call, create a private manifest and start this guard, verify its

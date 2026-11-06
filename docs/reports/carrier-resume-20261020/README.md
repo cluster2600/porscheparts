@@ -183,7 +183,7 @@ the refused Boolean outputs has been reclassified as a pass.
 
 ![Saved native radius-law comparison](../../media/carrier-resume-20261020/native-law-comparison.png)
 
-![Actual explicit patch control-net visualization](../../media/carrier-resume-20261020/explicit-nurbs-root-patch.png)
+![Actual explicit patch control-net visualisation](../../media/carrier-resume-20261020/explicit-nurbs-root-patch.png)
 
 ## Files and evidence
 
@@ -234,7 +234,7 @@ existing pinned local image and did not install a new commercial package.
 ![Actual exported boundary and tetrahedron section](../../media/carrier-resume-20261020/carrier-volume-checkpoint.png)
 
 WildMeshing returned **15,916 nodes and 48,854 C3D4 tetrahedra** after nine
-optimization passes. The complete exported boundary has **29,306 triangles**.
+optimisation passes. The complete exported boundary has **29,306 triangles**.
 The [independent complete boundary audit](evidence/wildmeshing-boundary-audit-001/assessment.json)
 passes the original criteria: zero open, nonmanifold or orientation edges,
 zero degenerate or needle triangles, one connected component and zero
@@ -255,7 +255,7 @@ unchanged 0.06 mm limit. The exact maximum deviation remains unknown. Both
 analytic predicate controls passed: a 1/64 mm translation was inside the guard,
 and a 1/8 mm translation was outside.
 
-The completed **0.03 mm mesher-envelope trial** returned 25,244 nodes and 77,196 tetrahedra. Its complete skin and exact positive-orientation checks passed, but the same global predicate refused its boundary again. Deterministic diagnostics over every vertex and face centroid observed a **0.577792 mm** source-to-output distance at a window tip near X = −65 mm. These diagnostic samples locate a defect; they are not a continuous upper-bound certificate. Neither volume mesh is admitted, and neither failed guard has been reclassified. The native optimization log also
+The completed **0.03 mm mesher-envelope trial** returned 25,244 nodes and 77,196 tetrahedra. Its complete skin and exact positive-orientation checks passed, but the same global predicate refused its boundary again. Deterministic diagnostics over every vertex and face centroid observed a **0.577792 mm** source-to-output distance at a window tip near X = −65 mm. These diagnostic samples locate a defect; they are not a continuous upper-bound certificate. Neither volume mesh is admitted, and neither failed guard has been reclassified. The native optimisation log also
 reports a peak energy near 20.03 against its requested stopping target of 10;
 that stopping target is separate from the exact orientation and boundary
 checks reported above.
@@ -316,7 +316,7 @@ or close-vertex merging; the exported boundary was checked independently.
 
 The raw backend skin used inward winding. Its independent surface audit
 therefore refused negative signed surface volume. A separate
-[winding-only normalization](evidence/tetgen-outward-boundary-001/assessment.json)
+[winding-only normalisation](evidence/tetgen-outward-boundary-001/assessment.json)
 requires an exact triangle bijection before using the audited input's outward
 order. **Every volume coordinate and tetrahedron array remains byte-identical**.
 The final skin file is byte-identical to the previously audited input surface.
@@ -492,7 +492,7 @@ It retains every face index and introduces no coincident vertices or collapsed
 triangles. Every changed vertex is recorded; the largest exact L1 displacement
 is **23555560217999 / 562949953421312 mm ≈ 0.0418431 mm**. A piecewise-affine
 map with the same triangle roster bounds the complete two-way surface edit by
-that maximum. This bound covers this edit only, not preceding voxelization.
+that maximum. This bound covers this edit only, not preceding voxelisation.
 
 The resulting **1,234,122-triangle surface** passes the independent complete
 surface audit. Its nominal dense mesh mass is **1.281680 kg**. All six shank
@@ -550,7 +550,7 @@ numerical classification rules rather than dimensional acceptance.
 
 These linear-tetrahedron results have not demonstrated stress convergence or
 strength acceptance. The native and voxel studies have different surface and
-bore discretizations; their peaks are not presented as a converged improvement
+bore discretisations; their peaks are not presented as a converged improvement
 ratio. The separate R2 closing trial below repeats its own mass, interface, surface,
 volume and mechanical checks.
 

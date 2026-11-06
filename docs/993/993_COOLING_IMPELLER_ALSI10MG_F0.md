@@ -4,7 +4,7 @@ This rotating part is the direct continuation of the fixed F0 housing.
 PorscheFanatics identifies the Porsche impeller `964 106 015 31` for 964/993.
 FVD publishes a product envelope of `300 × 300 × 150 mm` and `0.94 kg`; the
 Centre Service Porsche Poitiers publishes `0.948 kg`. Partworks states
-aluminum, without grade or process.
+aluminium, without grade or process.
 
 ```mermaid
 flowchart LR

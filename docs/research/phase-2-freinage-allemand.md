@@ -18,25 +18,25 @@ size, mass, material and 993 application — are not all sourced.
 
 | Position | Manufacturer reference | Cross-checked Porsche part number | Declared dimensions | Declared material | Blocking field |
 |---|---|---|---|---|---|
-| front left | Brembo `09.8420.11` | to be cross-checked before admission | Ø 304 x 32 mm, height 72 mm, centering 103 mm, 5 holes, minimum 30 mm | high carbon, vented | net mass, complete grade and direct Porsche part number |
-| front right | Brembo `09.8421.11` | to be cross-checked before admission | Ø 304 x 32 mm, height 72 mm, centering 103 mm, 5 holes, minimum 30 mm | high carbon, vented | net mass, complete grade and direct Porsche part number |
-| rear, quantity 2 | Brembo `09.C085.11` | to be cross-checked in the PET before admission | Ø 299 x 24 mm, height 65 mm, centering 103 mm, 5 holes, minimum 22 mm | high carbon, vented | net mass, complete grade and Porsche part number |
-| front | ATE `24.0132-0142.1` | `993 351 043 01` | Ø 304 x 32 mm, height 72 mm, centering 103 mm, 5 holes, minimum 30 mm | high carbon, alloyed, vented | net mass and complete family/grade |
-| front | ATE `24.0132-0143.1` | `993 351 044 01` | Ø 304 x 32 mm, height 72 mm, centering 103 mm, 5 holes, minimum 30 mm | high carbon, alloyed, vented | net mass and complete family/grade |
+| front left | Brembo `09.8420.11` | to be cross-checked before admission | Ø 304 x 32 mm, height 72 mm, centring 103 mm, 5 holes, minimum 30 mm | high carbon, vented | net mass, complete grade and direct Porsche part number |
+| front right | Brembo `09.8421.11` | to be cross-checked before admission | Ø 304 x 32 mm, height 72 mm, centring 103 mm, 5 holes, minimum 30 mm | high carbon, vented | net mass, complete grade and direct Porsche part number |
+| rear, quantity 2 | Brembo `09.C085.11` | to be cross-checked in the PET before admission | Ø 299 x 24 mm, height 65 mm, centring 103 mm, 5 holes, minimum 22 mm | high carbon, vented | net mass, complete grade and Porsche part number |
+| front | ATE `24.0132-0142.1` | `993 351 043 01` | Ø 304 x 32 mm, height 72 mm, centring 103 mm, 5 holes, minimum 30 mm | high carbon, alloyed, vented | net mass and complete family/grade |
+| front | ATE `24.0132-0143.1` | `993 351 044 01` | Ø 304 x 32 mm, height 72 mm, centring 103 mm, 5 holes, minimum 30 mm | high carbon, alloyed, vented | net mass and complete family/grade |
 
-The ATE catalog contains a dimensional column `I`. The value `15,4` (15.4) on
+The ATE catalogue contains a dimensional column `I`. The value `15,4` (15.4) on
 the two 993 lines is a dimension of the disc drawing, not a weight. It must not
 feed `physical.mass`.
 
 ## Sources retained
 
-- [Brembo catalog for the 993 Carrera 3.8](https://www.bremboparts.com/europe/de/catalogue/porsche-911-993-3-8-carrera/000004674-1),
+- [Brembo catalogue for the 993 Carrera 3.8](https://www.bremboparts.com/europe/de/catalogue/porsche-911-993-3-8-carrera/000004674-1),
   manufacturer source for the application and dimensions of the three
   references;
 - [Brembo `09.8421.11` data sheet](https://www.bremboparts.com/europe/de/catalogue/disc/09-8421-11),
   manufacturer source for the right side, the dimensions and the high-carbon
   designation;
-- [ATE Classic Porsche catalog](https://www.ate.de/media/2826/atec3classic_2014-porsche.pdf),
+- [ATE Classic Porsche catalogue](https://www.ate.de/media/2826/atec3classic_2014-porsche.pdf),
   manufacturer source for the Porsche part numbers, the dimension diagram and
   the cross-check of the front dimensions.
 

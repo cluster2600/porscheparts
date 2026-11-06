@@ -21,11 +21,11 @@ accuracy are known.
 
 | Component | Size | Mass | Material | Geometry | Assembly |
 |---|---|---:|---|---|---|
-| `COMP-FUCHS-37024.013` | 7J x 17 ET55, 5x130, bore 71.58 mm | 7.50 kg | forged aluminum | interface proxy | front axle, quantity 2 |
-| `COMP-FUCHS-37026.013` | 9J x 17 ET55, 5x130, bore 71.5 mm | 7.95 kg | forged aluminum | interface proxy | rear axle, quantity 2 |
-| `COMP-FUCHS-37027.011` | 8J x 18 ET52, 5x130, bore 71.5 mm | 8.20 kg | forged aluminum | interface proxy | front axle, quantity 2 |
-| `COMP-FUCHS-37028.011` | 10J x 18 ET65, 5x130, bore 71.5 mm | 8.80 kg | forged aluminum | interface proxy | rear axle, quantity 2 |
-| `COMP-PAUTER-993-230-580-1270F` | 127.0 mm center to center, bores 58.01 / 23.01 mm | 0.535 kg | 4340 steel, shot-peened; forming route not declared | none, inventory only | engine, quantity 6 |
+| `COMP-FUCHS-37024.013` | 7J x 17 ET55, 5x130, bore 71.58 mm | 7.50 kg | forged aluminium | interface proxy | front axle, quantity 2 |
+| `COMP-FUCHS-37026.013` | 9J x 17 ET55, 5x130, bore 71.5 mm | 7.95 kg | forged aluminium | interface proxy | rear axle, quantity 2 |
+| `COMP-FUCHS-37027.011` | 8J x 18 ET52, 5x130, bore 71.5 mm | 8.20 kg | forged aluminium | interface proxy | front axle, quantity 2 |
+| `COMP-FUCHS-37028.011` | 10J x 18 ET65, 5x130, bore 71.5 mm | 8.80 kg | forged aluminium | interface proxy | rear axle, quantity 2 |
+| `COMP-PAUTER-993-230-580-1270F` | 127.0 mm centre to centre, bores 58.01 / 23.01 mm | 0.535 kg | 4340 steel, shot-peened; forming route not declared | none, inventory only | engine, quantity 6 |
 
 Primary sources: for the wheels, public documentation from the manufacturer
 Otto Fuchs; for the connecting rod, the Pauter Machine Company product page,
@@ -38,7 +38,7 @@ Admitted assemblies: a 30.90 kg 17-inch set, a 34.00 kg 18-inch Carrera set and
 a 3.21 kg logical set of six Pauter rods, recorded for inventory only. The Turbo
 wheel fitments with spacers remain separate and incomplete.
 
-The KBA ECE R124 approvals of the four wheels give a 71.58 mm wheel center bore
+The KBA ECE R124 approvals of the four wheels give a 71.58 mm wheel centre bore
 and list the vehicle hub as 5/130/71.5. Three records above still carry 71.5 mm
 for the wheel; the correction is pending and recorded in the assemblies' known
 limits. The approvals also restrict the scope: the 17-inch pair is listed for the
@@ -94,6 +94,6 @@ complete material grade. The details and the exit gate are recorded in
 ## Acquisition queue
 
 The next batches are researched by subassembly: wheels and tires, braking,
-standardized bearings and seals, drivetrain, engine, body, interior. An
+standardised bearings and seals, drivetrain, engine, body, interior. An
 incomplete record stays in the source register or in a research issue; it does
 not receive a fake default weight or material.

@@ -2,7 +2,7 @@
 
 [Research home](README.md) · [Index with sources and locators](source-index.json) · [Validation plan](../VALIDATION_PLAN.md)
 
-This synthesis summarizes the four delivered lanes. IDs refer to the original
+This synthesis summarises the four delivered lanes. IDs refer to the original
 records in the index; their caveats and access levels take precedence over
 abbreviated wording. No target blade drawing, fit, safe speed, complete Turbo
 performance curve or project-impeller LPBF qualification has been established.
@@ -12,7 +12,7 @@ performance curve or project-impeller LPBF qualification has been established.
 | Question | Documentary finding | Consequence |
 |---|---|---|
 | Which 993 impeller? | PET993, plate 105-00, PDF pages 77–79: Carrera `96410601531`, RS M64.20 `.40`, Turbo M64.60 `.21/.22`. ORIG05 repeats these families. | Distinguish the Carrera reconstruction from the Turbo reference; identify the physical specimen. |
-| Hub `96410605131` | ORIG05 and PET964 document applications, including Turbo M30.69/M64.50. | Catalog applicability does not provide aftermarket-hub interface dimensions. |
+| Hub `96410605131` | ORIG05 and PET964 document applications, including Turbo M30.69/M64.50. | Catalogue applicability does not provide aftermarket-hub interface dimensions. |
 | Is “935” identical to 993? | PORSCHE935 / GEO-S008 distinguish several 935 variants; the 935/78 combines water-cooled heads and air-cooled cylinders. | Horizontal and vertical cooling fan assemblies are not interchangeable by name. Equivalence is unproven. |
 | 964 training | P10L: 12 impeller blades, 17 stator vanes, impeller drive ratio 1.6. Tiptronic alternator ratios 2.23 → 2.68 are separate. | Always identify the shaft associated with a speed. |
 | Carrera airflow | P10L: 1,010 L/s without a speed in the table. GEO-S002: 1,010 L/s at 6,000 crankshaft rpm for Carrera, ratio about 1.6. | 9,600 impeller rpm is a conditional no-slip conversion; this point is not a Turbo curve. |
@@ -31,7 +31,7 @@ physical interfaces require verification.
 | AF13, AF44 partworks | 250 mm blank to machine to 245 or 225 mm for the installation. | Blank and finished diameters are different states. |
 | AF06–AF10 INDEX | Classic PRMA030: 12 blades, 245 mm, about 430 g, A7075 hub. PRMA010 964/993: about 400 g, other dimensions unknown. Fan housing 1,400 / 1,475 g on different pages. | Variants and conflicting masses retained; the “74%” baseline is unresolved. |
 | AF04–AF05 | LN specifies a 6061 fan housing; the exact Rennline grade is not established. | Do not transfer fan housing material to the impeller or invent T6. |
-| AF14–AF17 Carpoint | RSR 225 mm: magnesium fan housing 1,365 g, impeller 885 g; separate aluminum fan housing 1,850 g. Sheet: 244.5 mm / 11 blades and 254 mm / 12 blades. | Sheet applications, datums and tolerances require identification. |
+| AF14–AF17 Carpoint | RSR 225 mm: magnesium fan housing 1,365 g, impeller 885 g; separate aluminium fan housing 1,850 g. Sheet: 244.5 mm / 11 blades and 254 mm / 12 blades. | Sheet applications, datums and tolerances require identification. |
 | AF17 | 2 mm axial impeller/fan housing projection; different alternator heights and ring depths. | 2 mm is not radial clearance. Six holes at 60° do not establish their pitch-circle diameter. |
 | AF20–AF26 | Torres, Spezialmotorer and Bailey describe complete flat-fan systems; FSH/TK/Design911 supply inlet and impeller subassemblies. | Subassembly and complete conversion are distinct. Shared FSH/TK GTIN, 1,500 / 1,600 g: lineage and conflict retained. |
 | AF27 EB Motorsport | Bench-test interview: 1.5 hp at 4,000 and 32 hp at 12,000 impeller rpm. | Protocol, hp definition, pressure, airflow and uncertainty unknown; not a qualified curve or safe-speed limit. |

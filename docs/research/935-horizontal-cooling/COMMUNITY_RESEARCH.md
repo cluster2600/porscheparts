@@ -7,7 +7,7 @@ connection details are added to the messages or to the public repository.
 
 | Priority | Discussion | Contribution and targeted question |
 |---|---|---|
-| 1 | Pelican Parts — [Flat fan assemblies](https://forums.pelicanparts.com/porsche-911-used-parts-sale-wanted/905416-flat-fan-assemblies.html), March 2016 | Direct statement from the builder of a replica: aluminum housings, machined rotor, oil circuit and run-in bench. Ask for an identifiable dimension and an internal view; the announced interchangeability does not prove that of our scans. |
+| 1 | Pelican Parts — [Flat fan assemblies](https://forums.pelicanparts.com/porsche-911-used-parts-sale-wanted/905416-flat-fan-assemblies.html), March 2016 | Direct statement from the builder of a replica: aluminium housings, machined rotor, oil circuit and run-in bench. Ask for an identifiable dimension and an internal view; the announced interchangeability does not prove that of our scans. |
 | 2 | Rennlist — [935 Users, Flat Fan](https://rennlist.com/forums/911-turbo-930-forum/94486-935-users-flat-fan.html), October 2003 | Operating feedback on the belts, the flexible coupling and the bevel gears. Ask for the actual ratio and the bearing references, with the engine variant. |
 | 3 | DDK — [Horizontal Cooling Fan](https://www.ddk-online.com/phpBB2/viewtopic.php?t=28032), December 2009 | Discussion of original installations and home-built installations, with workshop leads. Ask who today owns a disassembled assembly that can be measured. The 3.2 l conversion described is not automatically a factory Porsche unit. |
 
@@ -23,7 +23,7 @@ it does not define the internal drive being sought.
 On October 7, 2026, the adapted messages below were published on
 [Pelican Parts, post 31](https://forums.pelicanparts.com/porsche-911-used-parts-sale-wanted/905416-flat-fan-assemblies-2.html#post12710379)
 and [Rennlist, post 8](https://rennlist.com/forums/911-turbo-930-forum/94486-935-users-flat-fan.html#post20766154).
-The text and its presence under the authorized account were verified in Chrome;
+The text and its presence under the authorised account were verified in Chrome;
 the exact screenshots and receipts are kept locally outside Git. No technical
 reply to these requests is attested yet. The DDK message remains prepared:
 the registration made by the owner is awaiting administrative activation.

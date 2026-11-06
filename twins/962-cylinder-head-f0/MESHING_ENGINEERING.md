@@ -12,7 +12,7 @@ No tolerance welding, surface repair or surface remeshing was applied.
 | HXT, algorithm 10, 4 threads | Meshing finished in 18.328 s; original controller failed its surface element-tag assertion, total 31.007 s | Original failure retained; separate geometric audit below |
 
 Both used native ARM64 Gmsh 4.15.2, linear tetrahedra, `Mesh.MeshOnlyEmpty=1`,
-disabled surface-to-volume size extension and no mesh optimizer.
+disabled surface-to-volume size extension and no mesh optimiser.
 Each trial has its own fresh directory, source snapshot, deadline and receipt.
 The public controller now also requires a one-time source-bound worker claim;
 direct hidden-worker invocation cannot overwrite prior results.
@@ -45,7 +45,7 @@ The original failed receipt is not rewritten.
 The saved mesh passes the declared **geometric** gate. Nearly singular elements
 and its size prevent accepting it as an engineering analysis mesh. There is
 no thermal or structural solve, mesh-convergence result, strength claim or
-manufacturing authorization.
+manufacturing authorisation.
 
 ## Evidence and reproduction
 

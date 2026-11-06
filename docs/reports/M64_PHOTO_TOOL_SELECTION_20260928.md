@@ -100,7 +100,7 @@ The executed runtime remains **OCP 7.9.3.1**, not the website's newer version.
 
 Original maxima are `1e-7` for faces and approximately `8.03396e-6` for
 edges/vertices. These numbers are **kernel metadata**, not measured physical
-surface errors. Both trials retain every protected-face serialization and
+surface errors. Both trials retain every protected-face serialisation and
 leave the source unchanged in memory and on disk. Neither candidate is exported
 or meshed. The smaller distance does not resolve the rejection.
 

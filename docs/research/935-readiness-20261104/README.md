@@ -3,7 +3,7 @@
 Review date: 2026-11-04. Reviewed source: `860d360589e9b41dec69b968ea4bbdc017a7f701`.
 The objective remains a faithful replica of the scanned head, reproducible
 simulation and a qualified functional-metal manufacturing file before design
-optimization. That objective is **not achieved**. CADAM is integrated and tested
+optimisation. That objective is **not achieved**. CADAM is integrated and tested
 for its bounded local coupon role; it does not close the head's release gates.
 
 This review reconciles the [original contract](../935-faithful-replica-20261028/baseline-contract.json),

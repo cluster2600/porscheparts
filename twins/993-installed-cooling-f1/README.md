@@ -85,7 +85,7 @@ not extract losses from the PicoGK shapes. Loss coefficients, engine thermal
 load, fan duty and temperatures are not measured.
 
 The cases cross three tip-stagger choices, three core face envelopes
-(500 × 360, 620 × 450, 700 × 500 mm), and unequal versus hypothetically equalized
+(500 × 360, 620 × 450, 700 × 500 mm), and unequal versus hypothetically equalised
 branch resistances. Core thickness stays 60 mm. Only the 620 × 450 layout is
 exported as a complete assembly; the other areas are sizing sensitivities.
 
@@ -135,7 +135,7 @@ The [source register](research/references.json) distinguishes abstracts from ful
 text and records the inference being used:
 
 - [Li and Stefko, NASA, 1984](https://ntrs.nasa.gov/citations/19840017539): spanwise
-  twist optimization with an experimentally checked propeller analysis. Here it
+  twist optimisation with an experimentally checked propeller analysis. Here it
   motivates controlled twist comparisons, without transferring aircraft gains.
 - [Mort, NASA ducted-fan tests](https://ntrs.nasa.gov/citations/19660015325): study
   tip clearance and duct/fan coupling together.
@@ -144,14 +144,14 @@ text and records the inference being used:
 - [Pretorius and Van der Spuy, 2023](https://arxiv.org/abs/2309.13195): successful
   baseline correlation did not ensure correct predictions for modified tips.
   Variant-specific testing and mechanical deformation matter.
-- [Cuevas et al., 2011](https://orbi.uliege.be/handle/2268/95813): characterize both
+- [Cuevas et al., 2011](https://orbi.uliege.be/handle/2268/95813): characterise both
   thermal and hydraulic performance of an intercooler across operating points.
 
 ## Reproduction
 
 Use the same PicoGK 2.3 runtime and native library as the existing local
 catalogue tooling. The generator reuses the repository SDF and rotor helpers;
-no new library is introduced. Serialize native runs using
+no new library is introduced. Serialise native runs using
 `parts/picogk-catalog/tools/run_part.py`'s existing machine-wide lock.
 
 ```sh

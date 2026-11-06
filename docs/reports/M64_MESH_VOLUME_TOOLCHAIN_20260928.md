@@ -2,7 +2,7 @@
 
 ## Outcome and scope
 
-**The numerical volume discrepancy has been localized and a new reconciled
+**The numerical volume discrepancy has been localised and a new reconciled
 flux control passes the unchanged relative agreement target of `1e-10`.**
 Sixteen combinations give a relative spread of **1.548e-11** after independently
 integrating five problematic B-spline patches. This is a numerical consistency
@@ -67,9 +67,9 @@ every 2026 publication or repository. Versions were checked on September 28.
 | [OCCT 8.0.1](https://github.com/Open-Cascade-SAS/OCCT/releases/tag/V8.0.1), [OCP 8.0.1.0.0](https://pypi.org/project/cadquery-ocp/) | New kernel/bindings; relevant seam and pcurve fixes | Isolated side-by-side volume test; updating alone does not fix this case |
 | [Netgen 6.2.2607](https://pypi.org/project/netgen-mesher/), [native OCC API](https://docu.ngsolve.org/latest/i-tutorials/unit-4.4-occ/occ.html) | Native BRep pipeline, distinct from Gmsh's Netgen post-optimizer | Real head imported with 4,918 faces and one solid; meshing aborted |
 | [CGAL 6.2.1](https://github.com/CGAL/cgal/releases/tag/v6.2.1), [tetrahedral remeshing](https://doc.cgal.org/latest/Tetrahedral_remeshing/index.html) | Feature-aware flips, collapse/split and relocation | Reviewed, not executed; release is new, remeshing method is older |
-| [fTetWild](https://github.com/wildmeshing/fTetWild), [wildmeshing 0.4.1](https://pypi.org/project/wildmeshing/) | Approximate-boundary tetrahedralization within an envelope | Actual bounded experiment; SIGGRAPH 2020 algorithm, not a 2026 invention |
+| [fTetWild](https://github.com/wildmeshing/fTetWild), [wildmeshing 0.4.1](https://pypi.org/project/wildmeshing/) | Approximate-boundary tetrahedralisation within an envelope | Actual bounded experiment; SIGGRAPH 2020 algorithm, not a 2026 invention |
 | [MMG / ParMmg](https://github.com/MmgTools/mmg/releases) | Metric-driven mesh adaptation | Reviewed as an alternative, not executed; no intrinsic native-CAD proof |
-| [MFEM / TMOP](https://mfem.org/) | High-order mesh optimization, including accelerator workflows | Reviewed; not a replacement for correct boundary geometry |
+| [MFEM / TMOP](https://mfem.org/) | High-order mesh optimisation, including accelerator workflows | Reviewed; not a replacement for correct boundary geometry |
 | [TetraSDF](https://github.com/naver-ai/TetraSDF) | Neural implicit tetrahedral geometry | Not selected: fidelity to a learned field is not fidelity to this native head |
 
 DelMesher's angle guarantee applies before restoration of the original
@@ -183,7 +183,7 @@ parser reads the explicit interior count and excludes exterior elements.
 The unmodified CLI text writer uses insufficient coordinate precision: the
 analytic tetrahedron volume becomes 0.1666666635948244. A
 [one-line export patch](../../twins/m64-cylinder-head/source/wholebody/delmesher-tet-precision.patch)
-sets `max_digits10` on that stream. It changes serialization only, not meshing,
+sets `max_digits10` on that stream. It changes serialisation only, not meshing,
 predicates or interior classification. Rebuilding restores the witness volume
 to 0.16666666666666666; its topology/readback pass. Its quality gate still fails
 (two elements below 0.1), demonstrating that volume fidelity is not mesh quality.
@@ -280,7 +280,7 @@ independent curved-CAD deviation certification or a boundary-condition map.
 
 ## PicoGK's role
 
-PicoGK can reconstruct a local junction, regularize a voxel field and generate
+PicoGK can reconstruct a local junction, regularise a voxel field and generate
 new geometry. It is not a direct exact-BRep tetrahedral mesher or a substitute
 for quadrature control. The previous pitch-0.3 trial has sampled directional
 maximum deviations of about **0.319 / 0.128** provisional units, both above
@@ -338,7 +338,7 @@ SHA-256 digests matched, instance 53130211 was destroyed on September 28 around
 08:21 UTC. The approved wrapper returned `destroyed: true` and
 `verified_absent: true`; a separate inventory read returned `[]`.
 Credit readback was **35.934014191 USD**, an observed decrease of approximately
-**0.5033 USD** during this batch, not a finalized itemized invoice. The native
+**0.5033 USD** during this batch, not a finalised itemised invoice. The native
 geometry and results remain in the local private bundle; only the rented copy
 was removed. No rental is left running for this batch.
 
@@ -353,7 +353,7 @@ logs are retained; they are not scientific failures or successful mesh runs.
 Mac SciPy failed to load a compiled extension, so the independent quadrature
 ran on native Linux rather than altering system libraries.
 
-Reproduction, with private input paths supplied by an authorized operator:
+Reproduction, with private input paths supplied by an authorised operator:
 
 ```sh
 # DelOptim: exact reviewed upstream, separate precision-only build
@@ -432,4 +432,4 @@ as such; only the final scoped reconciled control is described as passing.
    discard small regions or silently merge coincident points to pass a gate.
 3. Only after an accepted full mesh and a checked boundary-role map, resume
    mesh-converged thermal/structural analysis. This batch supplies neither
-   physical metrology nor manufacturing authorization.
+   physical metrology nor manufacturing authorisation.

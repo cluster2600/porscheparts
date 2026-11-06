@@ -1,8 +1,8 @@
 <div align="center">
 
-![The 964 body shell traced from the workshop manual, turning, colored by stress under a twisting load](docs/media/diagrams/964-hero.gif)
+![The 964 body shell traced from the workshop manual, turning, coloured by stress under a twisting load](docs/media/diagrams/964-hero.gif)
 
-<sub><i>A computer simulation of a 964 body shell being twisted. Colors show where the stress goes. It is a calculation, not a product.</i></sub>
+<sub><i>A computer simulation of a 964 body shell being twisted. Colours show where the stress goes. It is a calculation, not a product.</i></sub>
 
 ![Layer-by-layer metal 3D printing preview of the 993 cooling-fan impeller, with hypothetical support regions](parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif)
 
@@ -14,7 +14,7 @@
 with nature-inspired 3D shapes. Nothing is manufactured or sold.**
 
 [![Validate catalogue](https://github.com/cluster2600/porscheparts/actions/workflows/validate.yml/badge.svg)](https://github.com/cluster2600/porscheparts/actions/workflows/validate.yml)
-[![License: all rights reserved](https://img.shields.io/badge/license-all%20rights%20reserved-lightgrey)](LICENSE)
+[![Licence: all rights reserved](https://img.shields.io/badge/license-all%20rights%20reserved-lightgrey)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
 [![Active phase](https://img.shields.io/badge/active%20phase-manufactures%20nothing-critical)](docs/SAFETY.md)
 [![Docs](https://img.shields.io/badge/docs-English-brightgreen)](docs/TRANSLATION.md)
@@ -74,7 +74,7 @@ qualified engineer reviews them.
 | term | meaning |
 |---|---|
 | **PicoGK** | Free, open-source software by LEAP 71 that builds 3D shapes from code. It works in small 3D pixels (voxels), which makes organic shapes and lattices easy. |
-| **Bionic design / topology optimization** | Letting software decide where material is needed, like bone grows where it is loaded. The result often looks organic. |
+| **Bionic design / topology optimisation** | Letting software decide where material is needed, like bone grows where it is loaded. The result often looks organic. |
 | **Gyroid lattice core** | A repeating, sponge-like internal structure. It can make a part light while keeping it stiff. |
 | **LPBF metal 3D printing** | Laser powder-bed fusion: a laser melts thin layers of metal powder, one on top of the other, to build a part. |
 | **CAD** | Computer-aided design: the digital drawings and 3D models engineers work from. |
@@ -251,7 +251,7 @@ links to the original part.
 | the 935 inspection USD with a provisional rotor revolution | [kinematic USD checkpoint](docs/research/935-horizontal-cooling/KINEMATIC_USD_20261028.md) |
 | the local AI model | [qwen-picogk](https://github.com/cluster2600/qwen-picogk) · [local training evidence](docs/QWEN_TRAINING.md) |
 | our Porsche information catalogue | [porschefanatics.com](https://porschefanatics.com/) |
-| the license | [LICENSE](LICENSE) · [third-party licenses](docs/LICENSES.md) |
+| the licence | [LICENSE](LICENSE) · [third-party licences](docs/LICENSES.md) |
 
 To run the checks locally, install `uv` and `make`, then create the isolated
 Python 3.12 environment used by this repository:
@@ -265,7 +265,7 @@ make check
 
 `check-setup` installs the same numerical dependency versions as CI into
 `.venv-check/`. Subsequent Make commands automatically use this environment,
-including their Python subprocesses. The system Python and specialized CAD/AI
+including their Python subprocesses. The system Python and specialised CAD/AI
 environments stay separate. Run `make check-setup` again after dependency updates.
 Use `.venv-check/bin/python` when running a check script directly.
 
@@ -294,7 +294,7 @@ evidence files cite these paths, so folders are not moved
 | [`docs/`](docs/) | documentation, research notes, architecture and media |
 | [`archive/`](archive/) | archived studies kept for provenance |
 
-## Disclaimer and license
+## Disclaimer and licence
 
 This repository provides research data without warranty. Printing, fitting and
 road use remain the responsibility of whoever makes and installs a part. Read
@@ -304,6 +304,6 @@ Porsche AG.
 
 **© 2026 Maxime Grenu. All rights reserved.** You may view this repository,
 but copying, modifying, manufacturing parts, redistributing, commercial use
-and AI training need prior written permission; see the [license](LICENSE).
-Third-party sources keep their own license ([LICENSES.md](docs/LICENSES.md)).
+and AI training need prior written permission; see the [licence](LICENSE).
+Third-party sources keep their own licence ([LICENSES.md](docs/LICENSES.md)).
 Revisions published before 2026-09-25 were under the MIT License.

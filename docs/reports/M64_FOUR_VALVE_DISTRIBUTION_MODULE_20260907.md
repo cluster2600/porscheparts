@@ -24,7 +24,7 @@ flowchart LR
     classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
 ```
 
-The module has its own design frame, **in millimeters**.
+The module has its own design frame, **in millimetres**.
 It reads neither the 935 scan nor F53 and changes no outer envelope.
 Its coordinates are not measured Porsche interfaces. The 100 mm bore is a
 provisional working basis, not an M64 fitting contract.
@@ -53,7 +53,7 @@ without trade-off. The [full comparison](../../twins/m64-cylinder-head/evidence/
 publishes the seven states and the four valves per state. No V3 is
 built in this batch.
 
-The roughly one millimeter left cold **is still not a validation
+The roughly one millimetre left cold **is still not a validation
 hot, under flexing, with the real piston or with assembly tolerances**.
 
 ## Parameters and provenance
@@ -98,7 +98,7 @@ The model distinguishes this conical band from the cylindrical bore of the guide
 The parts are solids of revolution, not simply stacked
 disks. The valve neck is still defined by conical segments:
 its fatigue fillets and the stem end/retainer details
-are not finalized.
+are not finalised.
 
 The positive local axis points toward the stem end. The stems splay
 outward from the module; a positive lift applies the translation
@@ -119,7 +119,7 @@ law or a computed engine cycle.
 | BRepCheck of the components and the two reimported assemblies | Valid |
 | Minimum separation between the full cylindrical seat envelopes | **2.000 mm** |
 | Geometric design threshold chosen for this separation | 1.5 mm |
-| Minimum separation between a seat and the neighboring guide | 21.755 mm |
+| Minimum separation between a seat and the neighbouring guide | 21.755 mm |
 | Maximum error of the shared band points on the two solids | `2.04e-14` mm |
 | Band placement tests | 72 native distances per valve |
 | Seat/valve volumetric intersection when closed | Below `1e-7` mm³ |
@@ -149,7 +149,7 @@ intake only at maximum and exhaust only at maximum. For each:
 six valve/valve pairs, 32 valve/fixed-component pairs and four
 valves against the working bore were checked. Unwanted
 tangencies are rejected even when their common volume is zero; the
-intentional contact of a valve's own seat face is distinguished from neighboring contacts.
+intentional contact of a valve's own seat face is distinguished from neighbouring contacts.
 
 The seat surfaces were also replaced, **for the packaging check
 only**, by their full outer cylinders. This avoids
@@ -212,8 +212,8 @@ keeps all samples and SHA256 digests; it modifies neither STEP nor scan.
 These STEP files come exclusively from the new parametric definition,
 not from a private scan. The overall render is made from the reimported STEP;
 the sections in the figure are native CAD intersections. No generative
-image is used. The `create-viz` skill guided the per-component colors,
-the millimeter axes and the visible warnings.
+image is used. The `create-viz` skill guided the per-component colours,
+the millimetre axes and the visible warnings.
 In the V2 figure, the dashed lines are the intersection of the cylinder
 with the plane `Y = 22.5 mm`, that is `X = ±√(50² − 22.5²) mm`. They replace
 the projected limits `X = ±50 mm` of the first V1 render, without changing the
@@ -241,7 +241,7 @@ validation; they do not replace the recorded native runs.
 
 The module still has to be integrated with demonstrated M64 interfaces, then completed
 with the body, the ports, the mounting faces, the valvetrain and its
-selected springs. Thermal behavior, turbo load, contact
+selected springs. Thermal behaviour, turbo load, contact
 pressures, hot clearances, fatigue and the manufacturing process are
 not validated by this sub-assembly.
 

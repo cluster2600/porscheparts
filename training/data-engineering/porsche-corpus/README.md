@@ -14,9 +14,9 @@ versions are separate sources until an item-specific relationship is established
 ## Reproducible workflow
 
 Use Python 3.10+ and Git already available on the host. The inventory and
-reconciliation commands use the standard library. Optional tokenization requires
+reconciliation commands use the standard library. Optional tokenisation requires
 an existing `transformers`, `tokenizers` and `jinja2` environment and the exact
-local tokenizer assets; missing dependencies are a blocker, not an install step.
+local tokeniser assets; missing dependencies are a blocker, not an install step.
 
 ```sh
 python3 training/data-engineering/porsche-corpus/pipeline.py build \
@@ -69,7 +69,7 @@ supplier assertions and rejected/non-converged CFD stay qualified; this tool
 does not turn them into factual SFT or numerical surrogate data.
 
 Partitions follow connected source/article/project families, explicit anchors
-and known lineage. Exact normalized copies and high-overlap lexical 5-grams are
+and known lineage. Exact normalised copies and high-overlap lexical 5-grams are
 linked before assigning splits. Conflicting anchors quarantine the entire group.
 PET markers and model-generation tokens use explicit boundaries: carpet product
 slugs, part numbers and opaque URL IDs do not establish catalogue lineage.
@@ -115,7 +115,7 @@ For reviewed Python code that exceeds the whole-row token budget,
 constants and helper definitions. It preserves original bodies, constraints,
 comments, ordering, source ranges and range hashes. All units retain their
 parent source family/split; repeated dependency context is not additional
-independent evidence. Module initialization effects, rebound names, wildcard
+independent evidence. Module initialisation effects, rebound names, wildcard
 imports and dynamic namespace access fail closed for manual review. Complete
 units that still exceed the fixed budget remain quarantined. Syntax/dependency
 checks do not claim portability beyond the original module/repository context.
@@ -131,7 +131,7 @@ checks do not claim portability beyond the original module/repository context.
 Keep Qwen3 scientific and Qwen2.5-Coder profiles separate, with model ID,
 revision, asset SHA-256 values and native chat-template SHA-256. A shared vocabulary
 does not permit reusing another model's formatted arrays. `format_tokens.py`
-loads local tokenizer assets only and verifies their exact hashes. It uses the
+loads local tokeniser assets only and verifies their exact hashes. It uses the
 native template once, without hand-added thinking tags. Qwen3 Instruct-2507
 supports non-thinking mode; its template does not take `enable_thinking`.
 See the [official Qwen guide](https://qwen.readthedocs.io/en/latest/getting_started/quickstart.html).
@@ -160,16 +160,16 @@ are complete. Prepared rows and actually trained rows must be reported separatel
 
 | Intended use | Admission conditions | Current preparation does establish |
 | --- | --- | --- |
-| Local inventory/reference retrieval | Authorized access, provenance, privacy filters, explicit claim/rights limits | Searchable metadata and traceable reviewed context; unknown-rights items remain references |
-| Bounded experimental training | Item-specific reuse permission, frozen family/exposure boundaries, faithful excerpts/targets, exact tokenizer/masks/lengths, registered protocol and explicit run authorization | Integrity and formatting can be ready while a scientific deployment review remains open |
+| Local inventory/reference retrieval | Authorised access, provenance, privacy filters, explicit claim/rights limits | Searchable metadata and traceable reviewed context; unknown-rights items remain references |
+| Bounded experimental training | Item-specific reuse permission, frozen family/exposure boundaries, faithful excerpts/targets, exact tokenizer/masks/lengths, registered protocol and explicit run authorisation | Integrity and formatting can be ready while a scientific deployment review remains open |
 | Scientific/mechanical use or deployment | Independent subject-matter/translation review, suitable experimental/solver evidence, conditions/units/uncertainty, application validation and engineering gates | Preparation and an experimental score do not supply these approvals |
 
 An assisted fidelity review may identify quotation, attribution, qualification,
 unit or translation errors and quarantine individual rows. It is not human expert
 approval. Once a bounded protocol and its data gates are satisfied, a separately
-authorized experimental run can be appropriate while real-use validation remains
+authorised experimental run can be appropriate while real-use validation remains
 open. Report these states separately, retain pending reviews, and compare against
 the exact base/retrieval controls. This preparation-only tool neither grants run
-authorization nor silently promotes `training_ready`; the experiment owner must
+authorisation nor silently promotes `training_ready`; the experiment owner must
 register the actual admission decision and its evidence. Failed CFD remains failed
 for every intended use.

@@ -10,7 +10,7 @@ the accepted software scope and private-data boundary.
 ```mermaid
 flowchart TD
     S0["0 · Candidate selection<br/>a list to sort, not a decision"] --> S1["1 · Need qualification<br/>accepted or rejected, justified"]
-    S1 --> S2["2 · Provenance<br/>URL, date, license per source"]
+    S1 --> S2["2 · Provenance<br/>URL, date, licence per source"]
     S2 --> S3["3 · Measurement and acquisition<br/>record passes make check"]
     S3 --> S4["4 · Reconstruction<br/>dimensionally_reviewed at most"]
     S4 --> S5["5 · Polymer prototype<br/>prototype_fitted only with evidence"]
@@ -56,7 +56,7 @@ Output: candidate accepted or rejected, with justification.
 ## 2. Provenance
 
 List the official documents, direct measurements, photographs and third-party
-models. Every source gets a URL, a date and a license.
+models. Every source gets a URL, a date and a licence.
 
 Output: no data of unknown origin in the publishable model.
 

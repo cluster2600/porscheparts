@@ -30,7 +30,7 @@ on the intake as on the exhaust side. The area partitions pass without
 changing the thresholds. This time the ruled envelope is identical to the new
 trunk: this result remains relative to these regions and proves neither the
 OEM conformity of the port mouths nor the absence of a pocket inside an
-authorized region. All raw contacts remain kept.
+authorised region. All raw contacts remain kept.
 
 ```mermaid
 flowchart TD
@@ -90,7 +90,7 @@ The assignment `intake → high_B`, `exhaust → low_B` follows the current V2
 bank. It is **new, non-OEM and opposite to the names of the old F36
 builder**. The latter must not be silently transferred as evidence.
 
-The port mouths are not widened to artificially obtain a favorable result.
+The port mouths are not widened to artificially obtain a favourable result.
 The minimum area of the circles of the intake branch represents about 67.6% of
 the sum of the two throats; on the exhaust side, about 98.0%. This is a
 geometric screen, without stem, boss or discharge coefficient: it flags a
@@ -121,7 +121,7 @@ settings tried are those of the
 On these diagnostic cores, the **sampled** maximum of the 3D/2D gap stays on
 the order of 2 × 10⁻⁶ unit. The reader reduces some native local tolerances of
 5 × 10⁻⁶ below this gap. This observation explains the reports without
-demonstrating a continuous bound; it does not authorize masking the defect by
+demonstrating a continuous bound; it does not authorise masking the defect by
 globally increasing the tolerances.
 
 The exploratory cut therefore uses the native B-Reps, not the rejected STEP
@@ -131,11 +131,11 @@ remain unchanged and private.
 
 ## Overrun detected by cross-check
 
-The first skin screen authorized the same loft as the one used for the common
+The first skin screen authorised the same loft as the one used for the common
 port. It returned zero contacts outside this envelope, but could not detect a
 defect shared by both constructions.
 
-The cross-check replaces only the authorization envelope with a **ruled
+The cross-check replaces only the authorisation envelope with a **ruled
 interpolation between the same circles**, without enlarging their radii. On
 the intake side it reveals 130 face portions, totaling about 690.82 units²,
 outside this independent envelope. The separate reconstruction locates the
@@ -178,7 +178,7 @@ all openings nor the wall thickness.
   the full assembly.
 - Final chamber, valvetrain and oil, materials and engine interfaces: still to
   complete or qualify.
-- Flow, thermal behavior, strength, fatigue and LPBF: no gain and no
+- Flow, thermal behaviour, strength, fatigue and LPBF: no gain and no
   printability are inferred from this geometry batch alone.
 
 The [CHT inputs](M64_CHT_HEAD_INPUT_AUDIT.md) were updated so as no longer to
@@ -198,11 +198,11 @@ this batch in the CAD preparation, before the part computations.
 
 All geometries tied to the scan, sections and images of this batch remain
 private. Only code, assumptions and receipts without private coordinates are
-publishable. No authorization for manufacturing or engine operation is
+publishable. No authorisation for manufacturing or engine operation is
 obtained.
 
 The first private views come from the 4,837 faces of trial 04, all
-tessellated, without smoothing or decimation: exterior, half view with colored
+tessellated, without smoothing or decimation: exterior, half view with coloured
 cores and planar section. Blue/orange distinguishes the ports, **not computed
 temperatures or velocities**. The [render script](../../twins/m64-cylinder-head/source/render_scan_seeded_ports.py)
 binds the meshes, images and warnings to the computation receipt.

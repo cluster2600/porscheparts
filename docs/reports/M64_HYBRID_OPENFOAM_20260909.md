@@ -1,6 +1,6 @@
 # M64 — hybrid domain assembled; OpenFOAM check executed and refused
 
-Follow-up executed: [export and localization of the defects](M64_DEFECT_LOCALISATION_20260909.md).
+Follow-up executed: [export and localisation of the defects](M64_DEFECT_LOCALISATION_20260909.md).
 The mesh described below remained unchanged; its five refusals still stand.
 
 **The assembly of the gas domain is complete and cross-checked. OpenFOAM finds
@@ -74,12 +74,12 @@ is the OpenFOAM conditioning indicator, not evidence of a zero volume;
 the volume check passes in the same log.
 
 The four utilities exit with code 0. The worker deliberately exits
-with **code 2** because the log refuses the mesh. This behavior
+with **code 2** because the log refuses the mesh. This behaviour
 is necessary: the [official checkMesh code](https://github.com/OpenFOAM/OpenFOAM-14/blob/master/applications/utilities/mesh/manipulation/checkMesh/checkMesh.C)
 can return 0 despite failed checks. No threshold is relaxed.
 
 The container has four CPUs and 4 GiB, no network, with inputs
-read-only. The OpenFOAM log shows `nProcs: 1`: four authorized CPUs
+read-only. The OpenFOAM log shows `nProcs: 1`: four authorised CPUs
 do not mean a four-process MPI run. The total time,
 cleanup included, is **17.719 s**; no timeout or OOM. The exact container
 is deleted, its absence re-verified, and the inputs remain unchanged.
@@ -91,15 +91,15 @@ steps did complete, but with a quality refusal.
 
 1. On a copy of the **saved and pinned polyMesh**, export the sets
    of defective cells/faces using the options supported by this version.
-   Do not reconvert the domain for this localization.
+   Do not reconvert the domain for this localisation.
 2. Cross their identifiers with `owner/neighbour`, the cell types,
    the boundaries and the 1,536 interfaces. Determine whether the defects come
    from the tets, the layers or their transitions before choosing a correction.
    The logs alone do not make it possible to blame a particular CAD face.
 3. Also verify MSH → polyMesh preservation under renumbering and scaling,
-   with an explicit serialization error. The existing guard on `walls`
+   with an explicit serialisation error. The existing guard on `walls`
    covers only the change of patch type, not the whole conversion.
-4. Correct the localized defects, then redo the full check without
+4. Correct the localised defects, then redo the full check without
    lowering the requirements. CFD then requires a review of the exact case and
    the application of the balance/convergence criteria already defined.
 
@@ -135,7 +135,7 @@ flowchart TD
     B --> C["Re-read: 1 domain, 1,536 internal junctions"]
     C --> D["OpenFOAM: conversion and check executed"]
     D --> E["Topology compliant; 5 quality checks failed"]
-    E --> F["To do: localize the defects on the polyMesh"]
+    E --> F["To do: localise the defects on the polyMesh"]
     F --> G["Targeted correction then new check"]
     E --> H["CFD, thermal, strength and printing not validated"]
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;

@@ -17,7 +17,7 @@ of the reference. Only edge 82 and faces 30/37 are then remeshed.
 The CAD is mounted read-only; no 3D volume is generated.
 
 The reports measure an actual chord progression from 0.909090 to
-0.909355. The last segment is 0.96736 times the neighboring segment of edge 93,
+0.909355. The last segment is 0.96736 times the neighbouring segment of edge 93,
 below the trial limit of 2. This ratio is a numerical grading criterion,
 not a dimension nor a manufacturing tolerance.
 
@@ -25,7 +25,7 @@ The nine native preservation checks pass. The counter-computation finds
 the classes, coordinates and ordered elements outside the target unchanged, including
 the 72 faces carrying 71,152 quadrilaterals. The shared boundaries 82 and 93
 remain conforming. The native parameters of the new edge 82 are kept
-during 2D generation; the final MSH does not serialize these parameters.
+during 2D generation; the final MSH does not serialise these parameters.
 
 ## Quantified result: local improvement, global rejection of the candidate
 
@@ -59,17 +59,17 @@ all pairs of the model nor the continuous coverage of the CAD.
 The degraded triangle of face 30 is attached to the last segment of 82, near
 vertex 51. The two worst triangles of 37 rest on very small
 segments of edge 99, which is distinct from 82. The next lead is therefore a local
-2D size field around these two zones, with a check of the neighboring faces,
+2D size field around these two zones, with a check of the neighbouring faces,
 rather than another progression coefficient on 82 alone. This field is not
 applied yet; this diagnosis alone does not prove the internal cause
-of the mesher's behavior. The CAD curves stay fixed.
+of the mesher's behaviour. The CAD curves stay fixed.
 
 Reading the Gmsh 4.15.2 code clarifies the next trial:
 `src/mesh/BackgroundMeshTools.cpp`, lines 244–268, queries the size
 callback then applies `Mesh.MeshSizeMin`. The current floor of 0.005
 can therefore raise a small requested size. It is not an absolute bound
 on all existing elements: `src/mesh/meshGFaceBDS.cpp`, lines 603–624,
-also initializes sizes from the incident 1D segments. The next
+also initialises sizes from the incident 1D segments. The next
 case must test the floor and the local field together, counting the
 calls per face; a callback added on its own is not a demonstrated fix.
 This code inspection does not run the next case.
@@ -92,7 +92,7 @@ The launcher's historical boolean `process_completed_and_cleaned` stays false
 because it also requires code 0: here it does not mean a container left running.
 The raw output, the candidate and the receipts are kept private; their digests
 appear in the [evidence register](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
-entry `gas_curve82_joint_remesh`. No manufacturing authorization is opened.
+entry `gas_curve82_joint_remesh`. No manufacturing authorisation is opened.
 
 ```mermaid
 flowchart LR

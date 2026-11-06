@@ -19,7 +19,7 @@ precision, the complete oriented-triangle multisets differ. Counts preserve
 duplicate multiplicity, allow cyclic vertex order and preserve winding.
 No fitted transform or relaxed tolerance was used.
 
-The USD declares millimeter stage units and Z-up. It recenters mesh points with
+The USD declares millimetre stage units and Z-up. It recenters mesh points with
 an authored Z translation of 45.000001118 mm; the composed world bounds differ
 from the source by at most 0.000001119 mm. These close bounds do not establish
 identical topology or coordinates. The causes of every omitted or changed

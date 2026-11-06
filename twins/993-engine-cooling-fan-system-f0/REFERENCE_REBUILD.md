@@ -1,180 +1,180 @@
-# Reprise du ventilateur à partir des références de pièces
+# Fan rework from the part references
 
-Recherches et reconstruction du 28 septembre 2026. Cible conservée : **993 Turbo
-M64.60 avec alternateur PMB / Classic Retrofit 240 A**. Les quatre photographies
-mélangent des variantes ; elles ne définissent pas un assemblage unique.
+Research and reconstruction of 28 September 2026. Retained target: **993 Turbo
+M64.60 with PMB / Classic Retrofit 240 A alternator**. The four photographs
+mix variants; they do not define a single assembly.
 
-[Voir les quatre vues techniques](results/reference/reference-review.png) ·
-[Télécharger la référence OpenUSD](results/reference/reference.usdz) ·
-[Registre des sources et des inconnues](reference-research.json) ·
-[Paramètres éditables PicoGK](source/picogk-reference/reference.json)
+[See the four technical views](results/reference/reference-review.png) ·
+[Download the OpenUSD reference](results/reference/reference.usdz) ·
+[Register of sources and unknowns](reference-research.json) ·
+[Editable PicoGK parameters](source/picogk-reference/reference.json)
 
-![Face, arrière, coupe et éclaté du rotor reconstruit](results/reference/reference-review.png)
+![Front, rear, section and exploded view of the reconstructed rotor](results/reference/reference-review.png)
 
-## Ce qui a été recommencé
+## What was restarted
 
-Le rotor est reconstruit séparément du modèle rejeté : **11 pales**, cuvette
-ouverte à l'arrière, **12 fenêtres de ventilation**, nervures du fond et trois
-perçages de fixation. Le moyeu à roulement est une pièce distincte. Les nombres
-de pales et de fenêtres sont des observations des photographies FVD, pas des
-cotes tirées d'un plan. Le catalogue Porsche ORIGINALE distingue lui aussi les
-rotors Turbo et Carrera.
+The rotor is reconstructed separately from the rejected model: **11 blades**, cup
+open at the rear, **12 ventilation windows**, floor ribs and three
+mounting holes. The bearing hub is a separate part. The numbers
+of blades and windows are observations from the FVD photographs, not
+dimensions taken from a drawing. The Porsche ORIGINALE catalogue also distinguishes
+the Turbo and Carrera rotors.
 
-La source C# produit deux volumes PicoGK. La scène OpenUSD porte leurs identités
-et conserve des composants explicitement non reconstruits pour le carter,
-l'alternateur PMB, le cône, la petite turbine et l'entraînement. Elle n'intègre
-**aucun ancien champ CFD ou thermique**. Il s'agit d'une reconstruction partielle
-de référence, pas encore du jumeau complet demandé.
+The C# source produces two PicoGK volumes. The OpenUSD scene carries their identities
+and keeps explicitly unreconstructed components for the housing,
+the PMB alternator, the cone, the small impeller and the drive. It incorporates
+**no old CFD or thermal field**. This is a partial reference
+reconstruction, not yet the complete twin requested.
 
-Le diamètre nominal de travail de 245 mm est une interprétation de l'enveloppe
-commerciale FVD. La profondeur de cuvette, le pas, les cordes, les épaisseurs,
-les rayons, les entraxes et les ajustements restent des hypothèses visibles
-dans le fichier de paramètres. Les interfaces internes du roulement ne sont
-pas reproduites. La profondeur totale publiée de 87 mm ne renseigne pas à elle
-seule la profondeur de pale : elle n'a pas été utilisée comme telle.
+The 245 mm nominal working diameter is an interpretation of the FVD commercial
+envelope. The cup depth, pitch, chords, thicknesses,
+radii, centre distances and fits remain visible assumptions
+in the parameter file. The internal interfaces of the bearing are
+not reproduced. The published total depth of 87 mm does not on its own
+give the blade depth: it was not used as such.
 
-## Identification et nomenclature
+## Identification and parts list
 
-Le PET Porsche, illustration **105-00**, pages PDF **77–78**, distingue :
+The Porsche PET, illustration **105-00**, PDF pages **77–78**, distinguishes:
 
-| Variante | Rotor | Carter |
+| Variant | Rotor | Housing |
 |---|---|---|
 | Carrera | 96410601531 | 99310666701 / 99310666703 |
 | Turbo M64.60 | 96410601521 / 96410601522 | 99310666750 |
 
-Références de la planche PET pertinentes au montage Turbo, à confirmer selon
-la version de véhicule et l'entraînement finalement retenu. Les anciennes et
-nouvelles références ne sont pas présentées comme des pièces à empiler ensemble.
+References from the PET plate relevant to the Turbo installation, to be confirmed according to
+the vehicle version and the drive finally retained. Old and
+new references are not presented as parts to be stacked together.
 
-| Position PET | Référence(s) | Fonction / information publiée |
+| PET position | Reference(s) | Function / published information |
 |---|---|---|
-| 1 | 99310603500 | capteur |
-| 2 | 96410631502 | support |
-| 3 | 99907200509 / 99907200501 | deux fixations M6 × 12, intitulé hexagon nut dans PET |
-| 4 | N0147432 / 90006701203 | vis M6 × 30 |
-| 5 | 99310666750 | carter Turbo |
-| 6 | 99310625150 | sangle Turbo |
-| 7 | 90006715202 | vis M8 × 55 |
-| 8 | 96410627300 / 96410627301 | deux pions |
-| 9 | 96410601522 | rotor Turbo, ancien suffixe 21 |
-| 10 | 99310650950 / 99310651050 | demi-poulies ventilateur Turbo |
-| 11 | 96410651701 | cales |
-| 12 | 90097600401 | trois vis M6 × 30 |
-| 13 | 99919234350 | courroie 9,5 × 760 |
-| 14 | 99919237350 | courroie 9,5 × 753 ; ancienne 37250 en 757, note 7/97 |
-| 15 | 99310626800 / 99310626801 | demi-poulies alternateur |
-| 16 | 96410626830 / 96410626832 | cales 0,5 / 0,7 mm selon montage |
-| 17 | 96410651530 | douille |
-| 18 | 96410621132 | deux douilles |
-| 19 | 93060304101 | cône arrière |
-| 20 | N01152427 | quatre rondelles A6,4 |
-| 21 | 90091001009 | quatre écrous VM6 |
-| 22 | 90003401302 | écrou BM16 × 1,5 |
-| 23 | 92860304501 | petite turbine alternateur |
-| 24 | 90003400302 | écrou BM10 |
-| 25 | 96410605131 | moyeu à roulement, ancien suffixe 30 |
+| 1 | 99310603500 | sensor |
+| 2 | 96410631502 | bracket |
+| 3 | 99907200509 / 99907200501 | two M6 × 12 fasteners, titled hexagon nut in PET |
+| 4 | N0147432 / 90006701203 | M6 × 30 screw |
+| 5 | 99310666750 | Turbo housing |
+| 6 | 99310625150 | Turbo strap |
+| 7 | 90006715202 | M8 × 55 screw |
+| 8 | 96410627300 / 96410627301 | two dowels |
+| 9 | 96410601522 | Turbo rotor, old suffix 21 |
+| 10 | 99310650950 / 99310651050 | Turbo fan pulley halves |
+| 11 | 96410651701 | shims |
+| 12 | 90097600401 | three M6 × 30 screws |
+| 13 | 99919234350 | belt 9.5 × 760 |
+| 14 | 99919237350 | belt 9.5 × 753; old 37250 at 757, note 7/97 |
+| 15 | 99310626800 / 99310626801 | alternator pulley halves |
+| 16 | 96410626830 / 96410626832 | 0.5 / 0.7 mm shims depending on installation |
+| 17 | 96410651530 | bush |
+| 18 | 96410621132 | two bushes |
+| 19 | 93060304101 | rear cone |
+| 20 | N01152427 | four A6.4 washers |
+| 21 | 90091001009 | four VM6 nuts |
+| 22 | 90003401302 | BM16 × 1.5 nut |
+| 23 | 92860304501 | small alternator impeller |
+| 24 | 90003400302 | BM10 nut |
+| 25 | 96410605131 | bearing hub, old suffix 30 |
 
-La petite turbine **92860304501**, le cône **93060304101** et le moyeu
-**96410605131** font partie du système d'origine. Leur maintien et leurs
-interfaces avec le nouvel alternateur doivent être vérifiés ; le PET seul ne
-prouve pas la compatibilité d'une modification.
+The small impeller **92860304501**, the cone **93060304101** and the hub
+**96410605131** are part of the original system. Their retention and their
+interfaces with the new alternator must be verified; the PET alone does not
+prove the compatibility of a modification.
 
-**Divergence découverte sur le moyeu :** [Patrick Motorsports](https://patrickmotorsports.com/products/eng96410605131)
-exclut explicitement la 993 Turbo pour 96410605131, alors que FVD la liste et
-que cette planche PET ne porte pas d'exclusion explicite à la position 25.
-Le moyeu reconstruit reste une référence à vérifier, sans compatibilité Turbo
-attestée. Cette divergence devra être résolue par référence Porsche applicable
-au montage exact avant achat ou fixation de ses ajustements.
+**Discrepancy found on the hub:** [Patrick Motorsports](https://patrickmotorsports.com/products/eng96410605131)
+explicitly excludes the 993 Turbo for 96410605131, whereas FVD lists it and
+this PET plate carries no explicit exclusion at position 25.
+The reconstructed hub remains a reference to be verified, with no attested Turbo
+compatibility. This discrepancy will have to be resolved by the Porsche reference applicable
+to the exact installation before purchase or fixing of its fits.
 
-## Dimensions trouvées et portée réelle
+## Dimensions found and their real scope
 
-| Information publiée | Source | Utilisation correcte |
+| Published information | Source | Correct use |
 |---|---|---|
-| Rotor Turbo : 245 × 245 × 87 mm ; 0,9 kg | FVD rotor | Enveloppe commerciale sans tolérances ; pas un plan de fabrication |
-| Moyeu : 64 × 64 × 35 mm ; 0,26 kg | FVD hub | Enveloppe commerciale ; ni alésage ni entraxe attesté |
-| Trois vis M6 × 30 ; écrou BM16 × 1,5 | PET | Désignations des fixations ; pas les ajustements associés |
-| Cales 0,5 et 0,7 mm | PET | Références selon montage ; quantité à déterminer |
-| Bagues WOSP : 7, 17, 2 mm | Notice WOSP | RS : 7 ; double poulie : 24 ; ancienne 964 Turbo : 26 mm |
-| Bague contre roulement en retrait | WOSP / Classic Retrofit | À conserver ; épaisseur non publiée dans cette notice |
-| AS-PL A01345S : F.1 160 mm, L.1 256 mm, 115 A | AS-PL | Autre alternateur ; aucune reprise comme dimensions PMB |
+| Turbo rotor: 245 × 245 × 87 mm; 0.9 kg | FVD rotor | Commercial envelope without tolerances; not a manufacturing drawing |
+| Hub: 64 × 64 × 35 mm; 0.26 kg | FVD hub | Commercial envelope; neither bore nor centre distance attested |
+| Three M6 × 30 screws; BM16 × 1.5 nut | PET | Fastener designations; not the associated fits |
+| 0.5 and 0.7 mm shims | PET | References depending on installation; quantity to be determined |
+| WOSP spacers: 7, 17, 2 mm | WOSP instructions | RS: 7; double pulley: 24; old 964 Turbo: 26 mm |
+| Recessed spacer against the bearing | WOSP / Classic Retrofit | To be kept; thickness not published in these instructions |
+| AS-PL A01345S: F.1 160 mm, L.1 256 mm, 115 A | AS-PL | Different alternator; not reused as PMB dimensions |
 
-Les **26 mm WOSP ne sont pas une cote générique de 993 Turbo**. La bague
-initiale contre le roulement est distincte des empilages indiqués. La notice
-concerne LMA339/LMA498 ; la correspondance exacte du produit PMB doit encore être
-confirmée. Le flyer WOSP indique LMA339 à 240 A et LMA498 à 180 A : ne pas
-confondre cette désignation avec la fiche Classic Retrofit 175 A de la photo.
+The **WOSP 26 mm is not a generic 993 Turbo dimension**. The initial spacer
+against the bearing is distinct from the stacks indicated. The instructions
+concern LMA339/LMA498; the exact correspondence of the PMB product must still be
+confirmed. The WOSP flyer gives LMA339 at 240 A and LMA498 at 180 A: do not
+confuse this designation with the Classic Retrofit 175 A sheet in the photo.
 
-## Autres informations retrouvées, à ne pas transformer en certitudes
+## Other information found, not to be turned into certainties
 
-La [fiche PorscheFanatics](https://porschefanatics.com/parts/porsche-ag-eng96410601531/)
-renvoie à la référence **Carrera 96410601531**. Son libellé « All models » est
-plus large que la distinction du PET ; il ne prouve pas son emploi sur Turbo.
-Cette fiche ne donne ni procédé de fabrication ni cotes fonctionnelles.
+The [PorscheFanatics record](https://porschefanatics.com/parts/porsche-ag-eng96410601531/)
+points to the **Carrera 96410601531** reference. Its "All models" label is
+broader than the PET distinction; it does not prove its use on the Turbo.
+This record gives neither a manufacturing process nor functional dimensions.
 
-Les registres du dépôt contiennent aussi trois pistes de couples de serrage
-(page 61 du manuel, transcription OCR **non vérifiée**) : sangle 8 N·m,
-poulie d'alternateur 50 N·m et petite turbine 14 N·m. Le modèle n'y est pas
-précisé. Ces valeurs sont consignées pour retrouver la page primaire ; elles
-ne constituent pas des consignes de montage Turbo / PMB.
+The repository registers also contain three leads on tightening torques
+(page 61 of the manual, OCR transcription **not verified**): strap 8 N·m,
+alternator pulley 50 N·m and small impeller 14 N·m. The model is not
+specified there. These values are recorded to find the primary page again; they
+are not Turbo / PMB installation instructions.
 
-## Alternateur 240 A et entraînement
+## 240 A alternator and drive
 
-PMB identifie son produit comme le Classic Retrofit 240 A. Le fabricant annonce
-une base Denso six phases à conducteurs hairpin, un carter spécifique 964/993
-et plus de 100 A au ralenti. Ce sont des données commerciales du fabricant,
-pas une cartographie thermique ni une mesure réalisée dans ce projet.
+PMB identifies its product as the Classic Retrofit 240 A. The manufacturer announces
+a six-phase Denso base with hairpin conductors, a specific 964/993 housing
+and more than 100 A at idle. These are the manufacturer's commercial data,
+not a thermal map nor a measurement made in this project.
 
-PMB et Classic Retrofit recommandent une **courroie multigorge avec tendeur**
-pour le 240 A et leur unité 175 A pour les montages double poulie / RS.
-Le remplacement ne se résume donc pas à augmenter le diamètre disponible dans
-le rotor. Il manque la définition du kit d'entraînement choisi, les vitesses
-respectives, les portées et l'empilage. L'arbre d'alternateur ne doit pas être
-fusionné au carter fixe dans la simulation. Le moyeu à roulement et les deux
-entraînements du montage d'origine empêchent d'imposer arbitrairement une
-rotation solidaire de toutes les pièces.
+PMB and Classic Retrofit recommend a **multi-groove belt with tensioner**
+for the 240 A and their 175 A unit for double-pulley / RS installations.
+The replacement therefore does not come down to increasing the diameter available in
+the rotor. The definition of the chosen drive kit, the respective
+speeds, the seats and the stack are missing. The alternator shaft must not be
+merged with the fixed housing in the simulation. The bearing hub and the two
+drives of the original installation prevent arbitrarily imposing a common
+rotation on all parts.
 
-La notice Classic Retrofit souligne aussi le rôle du cône arrière dans la
-répartition des efforts des écrous. L'affirmation commerciale de compatibilité
-avec les carters 964/993 ne remplace pas un contrôle d'interférences coté.
+The Classic Retrofit instructions also stress the role of the rear cone in
+distributing the nut loads. The commercial claim of compatibility
+with the 964/993 housings does not replace a dimensioned interference check.
 
-## Matière, débit et impression
+## Material, flow and printing
 
-Aucun document consulté ici ne donne un jeu complet de propriétés matière du
-rotor Turbo avec nuance, procédé, traitement et courbes de fatigue. On ne peut
-pas choisir une matière « optimale » sur le seul aspect d'une photographie.
-AlSi10Mg demeure le candidat de l'étude précédente, **pas une matière validée**
-pour cette reconstruction. Le choix final doit comparer masse, fatigue,
-rigidité, défauts LPBF, finition des pales, usinage des portées et équilibrage.
+No document consulted here gives a complete set of material properties for the
+Turbo rotor with grade, process, treatment and fatigue curves. One cannot
+choose an "optimal" material from the appearance of a photograph alone.
+AlSi10Mg remains the candidate of the previous study, **not a validated material**
+for this reconstruction. The final choice must compare mass, fatigue,
+stiffness, LPBF defects, blade finish, machining of the seats and balancing.
 
-Le nouveau modèle ne possède pas encore de carter ni de passage d'air PMB
-reconstruits. Il ne permet donc pas de recalculer un débit moteur représentatif.
-Les anciens chiffres sont archivés et ne sont pas transférés. L'optimisation
-reprendra par une référence complète, puis une comparaison à régime et perte
-de charge identiques : débit, pression, couple absorbé, température alternateur
-et marges mécaniques. PhysicsNeMo doit utiliser des données CFD pertinentes ;
-Omniverse sert à assembler et inspecter, sa visualisation ne valide pas le débit.
+The new model does not yet have a reconstructed housing or PMB air path.
+It therefore does not allow a representative engine flow to be recomputed.
+The old figures are archived and are not transferred. Optimisation
+will resume with a complete reference, then a comparison at identical speed and
+pressure drop: flow, pressure, absorbed torque, alternator temperature
+and mechanical margins. PhysicsNeMo must use relevant CFD data;
+Omniverse serves to assemble and inspect, its visualisation does not validate the flow.
 
-## Vérifications exécutées
+## Checks run
 
-La génération C# inclut des contrôles du passage central, des douze ouvertures,
-de la présence de chacune des onze pales et de la cuvette. Le contrôle Python
-vérifie les maillages exportés : fermeture, orientation, composante unique,
-volume positif et conservation du volume après réduction pour la revue.
-Les centres des douze fenêtres sont aussi vérifiés dans le maillage réduit.
-La scène et son paquet USDZ sont ouverts et soumis aux validateurs OpenUSD.
+The C# generation includes checks of the central passage, the twelve openings,
+the presence of each of the eleven blades and of the cup. The Python check
+verifies the exported meshes: closure, orientation, single component,
+positive volume and volume conservation after reduction for the review.
+The centres of the twelve windows are also verified in the reduced mesh.
+The scene and its USDZ package are opened and submitted to the OpenUSD validators.
 
-`make check` passe : suite principale de 3 184 tests (148 ignorés), contrôles
-complémentaires et 0 lien cassé dans 566 documents Markdown.
+`make check` passes: main suite of 3,184 tests (148 skipped), complementary
+checks and 0 broken links in 566 Markdown documents.
 
-Les résultats exacts sont dans [validation.json](results/reference/validation.json).
-Les quatre images sont des **vues techniques de maillages calculés**, produites
-localement ; ce ne sont pas des captures RTX, ni des résultats de soufflerie.
-Aucune location GPU n'a été lancée pour cette reprise géométrique.
+The exact results are in [validation.json](results/reference/validation.json).
+The four images are **technical views of computed meshes**, produced
+locally; they are not RTX captures, nor wind-tunnel results.
+No GPU rental was launched for this geometric rework.
 
 ## Reproduction
 
-Avec le runtime PicoGK local déjà installé, le SDK .NET 9 et l'environnement
-Python existant de cette étude, depuis la racine du dépôt :
+With the local PicoGK runtime already installed, the .NET 9 SDK and the existing
+Python environment of this study, from the repository root:
 
 ```sh
 docker run --rm \
@@ -194,33 +194,33 @@ work/fan-aerodynamics/physicsnemo-venv/bin/python \
   --output work/fan-aerodynamics/reference-rebuild/review-new
 ```
 
-Les dossiers de sortie doivent être nouveaux pour préserver les essais. Le
-SDK compile le C# ; l'exécution utilise le noyau natif PicoGK macOS existant.
-Ces commandes ne constituent pas un installateur portable du noyau PicoGK.
+The output directories must be new to preserve the trials. The
+SDK compiles the C#; execution uses the existing native PicoGK macOS kernel.
+These commands are not a portable installer for the PicoGK kernel.
 
-## Sources consultées et limites de recherche
+## Sources consulted and research limits
 
-- **pet** : [Porsche PET 993, illustration 105-00, pages PDF 77–78](https://a.storyblok.com/f/332100/7be45d4171/kat517-usa-911-98-katalog.pdf).
-- **originale** : [Porsche ORIGINALE 05, page PDF 7 / imprimée 83](https://a.storyblok.com/f/332100/d50d3473a6/originale-05-ww.pdf).
-- **rotor** : [FVD 96410601522, dimensions commerciales et dix vues produit](https://www.fvd.net/fr/shop/turbine-965-993-turbo-96410601522~p252068).
-- **hub** : [FVD 96410605131, enveloppe commerciale](https://www.fvd.net/en-us/shop/fan-hub-964-993-for-engine-cooling-fan-96410605131~p247931).
-- **pmb** : [PMB alternateur 240 A choisi par utilisateur](https://pmbperformance.com/products/high-output-240a-alternator-for-porsche-964-and-993-90-99).
-- **cr240** : [Classic Retrofit 240 A, recommandations entraînement](https://www.classicretrofit.com/en-us/products/porsche-964-993-240a-high-output-alternator).
-- **install** : [Classic Retrofit installation 993, bagues et cône](https://classic-retrofit.com/forum/index.php?/topic/2521-993-alternator-install/).
-- **wosp** : [WOSP LMA339/LMA498 Spacer Instructions, page unique](https://wosperformance.co.uk/ClientArea/files/Downloads/LMA339%20LMA498%20Spacer%20Instructions.pdf).
-- **wosp_flyer** : [WOSP Porsche alternator flyer, LMA339 240 A / LMA498 180 A](https://www.wosperformance.co.uk/clientarea/files/downloads/Porsche%20911%20WOSP%20Alternator%20Flyer.pdf).
-- **rothsport** : [Rothsport RS-079, conversion simple courroie](https://rothsport.com/products/964-993-rs-single-belt-conversion-hub).
-- **aspl** : [AS-PL A01345S, 115 A, F.1 160 mm / L.1 256 mm](https://as-pl.com/fi/p/A01345S).
-- **design911** : [Carter Turbo 99310666750, pos.5](https://www.design911.co.uk/p/engine-fan-housing-porsche-993-turbo-1994-98-99310666750/).
+- **pet**: [Porsche PET 993, illustration 105-00, PDF pages 77–78](https://a.storyblok.com/f/332100/7be45d4171/kat517-usa-911-98-katalog.pdf).
+- **originale**: [Porsche ORIGINALE 05, PDF page 7 / printed 83](https://a.storyblok.com/f/332100/d50d3473a6/originale-05-ww.pdf).
+- **rotor**: [FVD 96410601522, commercial dimensions and ten product views](https://www.fvd.net/fr/shop/turbine-965-993-turbo-96410601522~p252068).
+- **hub**: [FVD 96410605131, commercial envelope](https://www.fvd.net/en-us/shop/fan-hub-964-993-for-engine-cooling-fan-96410605131~p247931).
+- **pmb**: [PMB 240 A alternator chosen by the user](https://pmbperformance.com/products/high-output-240a-alternator-for-porsche-964-and-993-90-99).
+- **cr240**: [Classic Retrofit 240 A, drive recommendations](https://www.classicretrofit.com/en-us/products/porsche-964-993-240a-high-output-alternator).
+- **install**: [Classic Retrofit 993 installation, spacers and cone](https://classic-retrofit.com/forum/index.php?/topic/2521-993-alternator-install/).
+- **wosp**: [WOSP LMA339/LMA498 Spacer Instructions, single page](https://wosperformance.co.uk/ClientArea/files/Downloads/LMA339%20LMA498%20Spacer%20Instructions.pdf).
+- **wosp_flyer**: [WOSP Porsche alternator flyer, LMA339 240 A / LMA498 180 A](https://www.wosperformance.co.uk/clientarea/files/downloads/Porsche%20911%20WOSP%20Alternator%20Flyer.pdf).
+- **rothsport**: [Rothsport RS-079, single-belt conversion](https://rothsport.com/products/964-993-rs-single-belt-conversion-hub).
+- **aspl**: [AS-PL A01345S, 115 A, F.1 160 mm / L.1 256 mm](https://as-pl.com/fi/p/A01345S).
+- **design911**: [Turbo housing 99310666750, pos. 5](https://www.design911.co.uk/p/engine-fan-housing-porsche-993-turbo-1994-98-99310666750/).
 
-La recherche couvre les catalogues Porsche, les fiches fournisseur identifiées
-et les notices publiques de montage. Elle n'est pas une garantie d'exhaustivité
-sur Internet. Aucun plan de fabrication complet PMB ou rotor/carter Turbo n'a
-été trouvé dans ces sources. Les catalogues, photos produit et photographies
-utilisateur restent des références externes ; ils ne sont pas redistribués.
-Les empreintes des PDF consultés sont conservées dans le registre JSON.
+The research covers the Porsche catalogues, the identified supplier records
+and the public installation instructions. It is not a guarantee of exhaustiveness
+across the Internet. No complete manufacturing drawing of the PMB or of the Turbo rotor/housing was
+found in these sources. The catalogues, product photos and user
+photographs remain external references; they are not redistributed.
+The digests of the consulted PDFs are kept in the JSON register.
 
-Pour terminer le jumeau dimensionnel, il reste à obtenir les portées/entraxes,
-profils axiaux, géométrie des aubes fixes et du PMB, ainsi que le kit multigorge.
-La nouvelle reconstruction permet de revoir la morphologie dès maintenant ;
-elle ne ferme pas ces interfaces et n'autorise ni fabrication ni montage moteur.
+To complete the dimensional twin, the seats/centre distances,
+axial profiles, geometry of the stator vanes and of the PMB, and the multi-groove kit
+remain to be obtained. The new reconstruction allows the morphology to be reviewed now;
+it does not close these interfaces and authorises neither manufacture nor engine installation.

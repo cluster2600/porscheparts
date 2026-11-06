@@ -9,7 +9,7 @@ Updated 2026-09-29.
 |---|---|---|
 | G1 source geometry authored | **PASS** | `source/geometry/ShortBlock.cs` (parametric, 4 sources + run report) |
 | G2 compiles in pinned station image | **PASS** | `validation/build-log.md`: dotnet build 0 warnings / 0 errors in `picogk-station:qualified-final-20260928` at commit c48b133 (after 3 syntax/arg fixes; first attempt FAILED, honestly recorded) |
-| G3 runs (voxelize + STL/vdb export + run report) | **OPEN** | `dotnet run` not yet executed; needs headless station run with writable output dir |
+| G3 runs (voxelise + STL/vdb export + run report) | **OPEN** | `dotnet run` not yet executed; needs headless station run with writable output dir |
 | G4 provenance recorded per value | **PASS** | `provenance.json` (machine-readable, json.tool-validated); every dimension tagged measured/sourced/project_input/assumed/derived/missing |
 | G5 printability selection | **PASS (concept)** | `printability.md`: finned cylinder primary, crankcase halves secondary, piston dummy-only, rod no-print; fin gate FinMinLPBF ≥ 0.8 mm, voxel ≤ 0.75 mm required for print-study builds |
 | G6 dimensional correctness | **BLOCKED** | no metrology; `dimensional_correctness_verified: false` |

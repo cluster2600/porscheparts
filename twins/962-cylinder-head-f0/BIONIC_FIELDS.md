@@ -45,7 +45,7 @@ local; the code is the editable, shareable source.
 No temperature, pressure, coolant velocity or stress is calculated.
 The scalar field keeps native grid units. In the inspected API,
 `ScalarField.fSignedDistance` multiplies its value by `voxel_mm` to obtain
-millimeters; a solver working in meters still needs a division by 1,000.
+millimetres; a solver working in meters still needs a division by 1,000.
 The gradient keeps its native convention and does not represent a velocity. A successful VDB exchange
 does not prove a successful cooling simulation.
 
@@ -76,5 +76,5 @@ python twins/962-cylinder-head-f0/source/bionic/inspect_and_render.py \
 ```
 
 The [interface contracts](interface-contract.json) and manufacturing
-authorizations are unchanged. This step completes a software and
+authorisations are unchanged. This step completes a software and
 geometric study, without qualifying a cylinder head for the 1,000 hp engine kit.

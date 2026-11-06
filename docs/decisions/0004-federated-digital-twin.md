@@ -13,12 +13,12 @@ interfaces, nor the clearances, nor the uncertainty needed for a fit check.
 ## Decision
 
 The 993 twin will be a federation of functional sub-twins. Each zone contains
-the candidate part, the host geometry, the relevant neighboring parts and
+the candidate part, the host geometry, the relevant neighbouring parts and
 computable acceptance rules.
 
 The fidelity levels are cumulative:
 
-| Level | Content | Authorized use |
+| Level | Content | Authorised use |
 |---|---|---|
 | `F0_reference` | visual shape, incomplete scale or provenance | orientation only |
 | `F1_envelope` | scaled envelope and documented reference frame | rough packaging |
@@ -27,7 +27,7 @@ The fidelity levels are cumulative:
 | `F4_correlated` | results correlated with physical measurements or tests | documented decision within the validated domain |
 
 The global vehicle frame follows the project convention: origin on the plane of
-symmetry, vertically below the front axle center on the nominal ground plane;
+symmetry, vertically below the front axle centre on the nominal ground plane;
 `X` forward, `Y` to the left and `Z` up. A sub-twin may have a local frame, but
 its transform to the vehicle frame must be documented before integration into
 the global twin.

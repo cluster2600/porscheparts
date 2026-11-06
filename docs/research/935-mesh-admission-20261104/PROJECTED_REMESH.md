@@ -9,7 +9,7 @@ changed protected geometry or deviation failures. The
 ## Fixed inputs, parameters and admission gates
 
 Both trials start from the same immutable coarse reconstructed assembly:
-1,048,504 vertices, 2,099,584 triangles, 8,489 triangles below normalized shape
+1,048,504 vertices, 2,099,584 triangles, 8,489 triangles below normalised shape
 quality 0.01. Its inferred closures and unresolved physical/anatomical identities
 remain limitations. The original scan is used for distance assessment only.
 Study and scan-array hashes were checked before execution and independently
@@ -69,7 +69,7 @@ Scan → candidate p95 is 0.10252 / 0.10267 mm; reverse p95 is
 not the fine reference envelope. Reverse distances retain the effects of
 inferred/unobserved surfaces; they do not prove an identical physical replica.
 
-## Diagnostic localization and exact mask test
+## Diagnostic localisation and exact mask test
 
 The full unmasked candidate's three intersection pairs involve four triangles.
 An index-bearing CGAL companion was checked with an isolated leading triangle
@@ -89,7 +89,7 @@ result.
 
 On the full head study, **275 protected triangles are not preserved exactly**.
 An independent nearest-coordinate/connectivity check with 1e-10 mm tolerance
-confirms that this is not merely serialization roundoff:
+confirms that this is not merely serialisation roundoff:
 
 - 16 protected original vertices have no candidate vertex within that tolerance;
   the largest nearest-candidate-vertex separation is 0.20516 mm;
@@ -107,7 +107,7 @@ CGAL 6.2.1 read-only inspection, Open3D 0.20.0 and libigl 2.6.3 assess outputs
 independently of the remesher. Open3D controls accept a closed tetrahedron and
 reject two closed tetrahedra pinched at a vertex despite manifold edges. The
 unmasked driver also rejects an existing output or a corrupt prior inspector
-before writing a trial. A masked-driver serialization exception was caught in
+before writing a trial. A masked-driver serialisation exception was caught in
 its control before full remeshing; its failed source/log were retained privately,
 and the separately named v2 driver was used. Successful process exit does not
 mean candidate acceptance.
@@ -122,12 +122,12 @@ The [isotropic driver](source/trial_isotropic.py),
 [corrected masked driver](source/trial_masked_isotropic_v2.py),
 [vertex-topology inspector](source/inspect_vertex_topology.py),
 [intersection index inspector](source/inspect_intersection_indices.cpp),
-[localization driver](source/localize_remesh_defects.py) and
+[localisation driver](source/localize_remesh_defects.py) and
 [protected-face assessor](source/audit_protected_faces.py) retain actual APIs.
 Use the preceding planar trial's manifest-bound native inspector and original
 input bindings, the repair-trial Python environment, and a fresh output directory.
 Each remesh invocation had a 900-second process-group bound, native/topology
-checks a 300-second bound, and localization a 600-second outer bound. No timeout
+checks a 300-second bound, and localisation a 600-second outer bound. No timeout
 occurred. Geometry, coordinates and mask arrays remain private; this report
 publishes aggregates and hashes only. No cloud inference or paid rental was used.
 

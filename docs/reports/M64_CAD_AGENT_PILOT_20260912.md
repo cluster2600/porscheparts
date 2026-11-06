@@ -10,11 +10,11 @@ and produce neither certification nor new measurements.
 The previous batch performed documentary reads. This pilot connects
 inference to a schema of checkable CAD proposals; native execution
 remains independent. The trials concern a **local blend of the intake
-negative**, not the complete reconstruction or optimization of the cylinder head.
+negative**, not the complete reconstruction or optimisation of the cylinder head.
 
 ## Machine, access and budget
 
-- User authorization: **5 USD maximum for this batch**, not per agent.
+- User authorisation: **5 USD maximum for this batch**, not per agent.
 - One L40S, 32 effective CPUs, **193,475 MB of RAM allocated according to the offer**,
   100 GB of disk; Slovenian offer 29679192, instance 50796709.
 - The GPU exposes 46,068 MiB. The later RAM field of the instance describes the whole
@@ -30,7 +30,7 @@ negative**, not the complete reconstruction or optimization of the cylinder head
 - SSH key pair cryptographically verified, association with the instance verified,
   real BatchMode connection. API only on 127.0.0.1:8000, local tunnel.
 - No Hugging Face/GitHub secret transmitted; no scan or BRep sent to the LLM.
-  The inputs are three excerpts of the authorized code and a summary of the trials.
+  The inputs are three excerpts of the authorised code and a summary of the trials.
 
 Shutdown is confirmed by the wrapper, the external guard and an empty inventory.
 The tunnel is closed. Credit before: 37.996967 USD; at the 20:41:05 UTC reading:
@@ -75,7 +75,7 @@ The raw reports remain private and unapproved.
 | R0.25 / strict | 2 | Not retained in this small batch |
 | Abstention | 2 | Kept; volume inconsistency to be addressed |
 
-The radii are in **scan units**, not certified millimeters.
+The radii are in **scan units**, not certified millimetres.
 The 24 responses conform to the schema, but that does not verify their content.
 Several texts invent earlier trials under R0.25 or promise
 geometric conservation that was not computed: these claims are rejected.

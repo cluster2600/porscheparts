@@ -67,7 +67,7 @@ through the AppRole, checks the GHCR manifest, then revokes the OpenBao session
 token.
 
 The script `provision-openbao-ghcr.sh` is reserved for the one-off
-administrative initialization of a missing AppRole. It is outside the routine
+administrative initialisation of a missing AppRole. It is outside the routine
 procedure and must not be re-run when the dedicated identity already exists.
 
 Launching stays separate from installation:
@@ -94,7 +94,7 @@ with no error output.
 
 This `onstart` is mandatory: the official Vast.ai documentation states that the
 SSH/Jupyter modes replace the image's `ENTRYPOINT` with Vast's own, then run
-`onstart` after that initialization. See
+`onstart` after that initialisation. See
 [Creating Instances with the API](https://docs.vast.ai/api-reference/creating-instances-with-api).
 The wrapper also runs a uniqueness preflight under a local lock and refuses to
 rent if an instance already carrying the F39 label exists. After creation, it

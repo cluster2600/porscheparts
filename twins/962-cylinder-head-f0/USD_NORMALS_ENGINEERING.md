@@ -77,4 +77,4 @@ Continue with the original-surface quality investigation and unchanged
 distance/volume acceptance gates before head thermal or structural solves.
 Material selection, calibrated whole-head LPBF, mapped computed twin fields,
 PhysicsNeMo training/evaluation, OEM dimensional fidelity and manufacturing
-authorization remain open in the [engineering programme](ENGINEERING_PROGRAM.md).
+authorisation remain open in the [engineering programme](ENGINEERING_PROGRAM.md).

@@ -106,7 +106,7 @@ the three pilots, so `porsche_part_numbers` stays empty and each record says so.
 
 - Switch blank: `993 613 523 00` is a candidate, from a retailer listing of an
   OEM Schalterblende (`SRC-PARTWORKS-993-SWITCH-BLANK-OEM`, level B) in a switch
-  panel and center console context. It is not entered. The PicoGK batch
+  panel and centre console context. It is not entered. The PicoGK batch
   variant `PGK993-10` (`parts/picogk-993-batch-01/params/pgk993-10-console-switch-blank.json`
   and that batch's README) already lists it without that qualifier; this
   decision does not confirm it.
@@ -154,7 +154,7 @@ What the comparison shows, by arithmetic on declared values only:
   no stated uncertainty there is no worst-case margin, so this is not a fit
   check, and the mapping is the repository's reading, not the source's.
 - **The location is not established.** The record says dashboard; one source
-  concerns the center console, the other a window switch measured to estimate a
+  concerns the centre console, the other a window switch measured to estimate a
   lamp opening above the ignition lock.
 
 Geometry and print files are not changed. Decision 0009 already says that a kit

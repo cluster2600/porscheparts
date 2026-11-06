@@ -1,75 +1,75 @@
-# Périphériques PicoGK et assemblage de recherche — 11 octobre 2026
+# PicoGK peripherals and research assembly — 11 October 2026
 
-**Premier sous-ensemble de recherche, pas toutes les pièces fonctionnelles.**
-Le générateur produit 28 placements : 24 corps représentés et 4 volumes
-réservés aux ressorts. Ni la commande, ni les fixations, ni l'étanchéité ne
-sont complètes. Aucun fichier n'autorise l'impression ou le démarrage.
+**First research subset, not all the functional parts.**
+The generator produces 28 placements: 24 represented bodies and 4 volumes
+reserved for the springs. Neither actuation, nor fasteners, nor sealing
+is complete. No file authorises printing or starting.
 
-Le corps du 2 octobre est conservé sans modification ni substitut ovale :
+The body of 2 October is kept without modification or oval substitute:
 BRep SHA256 `9c40df1642d5eb47a3c1a1aae68c761b23b77e3f7e02e0818294e88ee0322598`.
-Il provient du scan 935 ; sa compatibilité avec une variante M64 précise et
-l'échelle absolue ne sont pas certifiées. Les 118 tétraèdres rejetés de son
-dernier maillage ne sont pas recalculés ou validés par ce travail.
+It comes from the 935 scan; its compatibility with a specific M64 variant and
+the absolute scale are not certified. The 118 rejected tetrahedra of its
+latest mesh are neither recomputed nor validated by this work.
 
-## Portée et chemins de charge
+## Scope and load paths
 
-| Famille | Modélisation présente | Interfaces et fonction non établies |
+| Family | Modelling present | Interfaces and function not established |
 |---|---|---|
-| Corps | 1 référence BRep, tessellation seule | Interfaces moteur, variante, tolérances et matériau à chaud |
-| Sièges et guides | 4 + 4 références du module STEP existant | Serrage à chaud, tribologie, conduction vers la culasse |
-| Soupapes | 4 variantes PicoGK avec tige prolongée | Tiges originales à 82 ; variante à 106,5 unités axiales. Voxelisation des surfaces fonctionnelles : **pas une CAO fournisseur ni une pièce qualifiée**. Aucun perçage interne ni hypothèse de titane ajoutés. |
-| Appuis de ressort | 4 anneaux distincts | Effort ressort → appui → corps. Contact et contraintes d'appui non acceptés. |
-| Coupelles | 4 anneaux d'étude | Effort ressort → coupelle → clavettes → tige. Clavettes, gorge, contact et résistance absents : chaîne de charge incomplète. |
-| Ressorts | 4 **enveloppes annulaires** | Pas de fil, spires, précharge, raideur, masse mobile, résonance, fournisseur retenu ou validation dynamique. |
-| Capots | 2 coques rectangulaires ouvertes dessous, nervures foliaires | Sans bride, joint ni vis. Réserve de place locale d'un cylindre, pas un couvre-culasse pour une rangée de trois cylindres. |
-| Huile | 1 distributeur extérieur ramifié et 1 volume fluide diagnostic hors nomenclature | Entrée et quatre sorties ouvertes géométriquement ; raccords, alimentation, jets ciblés, retour, étanchéité et pression manquants. **Ne refroidit pas encore les ponts de soupapes à l'intérieur du corps.** |
-| Porte-arbres, paliers et chapeaux | **Non créés** | Axes de came, attaches mesurées, précharges, chemin de charge vers le carter et les culasses voisines requis. |
-| Cames, entraînement, culbuteurs/poussoirs | **Non créés** | Architecture retenue, profils, loi de levée, calage, jeux, interfaces et collisions sur cycle complet requis. |
-| Bougies et joints | **Non créés** | Portée, filetage, saillie, dégagement de clé et tenue thermique requis. |
-| Admission, échappement, déflecteurs d'air | **Non créés** | Brides et enveloppes installées, chemin de l'air, conditions limites et budget de pertes de charge requis. |
-| Visserie, joints et raccords | **Non créés** | Fixations et étanchéité ne peuvent être remplacées par des formes plausibles. |
+| Body | 1 BRep reference, tessellation only | Engine interfaces, variant, tolerances and hot material |
+| Seats and guides | 4 + 4 references from the existing STEP module | Hot interference fit, tribology, conduction into the cylinder head |
+| Valves | 4 PicoGK variants with extended stem | Original stems at 82; variant at 106.5 axial units. Voxelisation of the functional surfaces: **not supplier CAD nor a qualified part**. No internal drilling or titanium assumption added. |
+| Spring seats | 4 distinct rings | Spring load → seat → body. Contact and seat stresses not accepted. |
+| Retainers | 4 study rings | Spring load → retainer → collets → stem. Collets, groove, contact and strength absent: load chain incomplete. |
+| Springs | 4 **annular envelopes** | No wire, coils, preload, stiffness, moving mass, resonance, retained supplier or dynamic validation. |
+| Covers | 2 rectangular shells open underneath, leaf-vein ribs | No flange, gasket or screws. Local space reservation for one cylinder, not a valve cover for a bank of three cylinders. |
+| Oil | 1 branched external manifold and 1 diagnostic fluid volume outside the parts list | Inlet and four outlets geometrically open; fittings, supply, targeted jets, return, sealing and pressure missing. **Does not yet cool the valve bridges inside the body.** |
+| Cam carriers, bearings and caps | **Not created** | Cam axes, measured attachments, preloads, load path to the case and neighbouring cylinder heads required. |
+| Cams, drive, rockers/tappets | **Not created** | Retained architecture, profiles, lift law, timing, clearances, interfaces and full-cycle collisions required. |
+| Spark plugs and gaskets | **Not created** | Seat, thread, projection, spanner clearance and thermal resistance required. |
+| Intake, exhaust, air deflectors | **Not created** | Installed flanges and envelopes, air path, boundary conditions and pressure-drop budget required. |
+| Fasteners, gaskets and fittings | **Not created** | Fasteners and sealing cannot be replaced by plausible shapes. |
 
-Les pièces 2 soupapes de `m64-valvetrain-0001` ne sont pas importées : leurs
-diamètres et leur architecture ne sont pas ceux du module quatre soupapes.
-Les quantités des familles non définies restent inconnues ; elles ne sont pas
-comptées comme présentes ou « terminées ».
+The 2-valve parts of `m64-valvetrain-0001` are not imported: their
+diameters and their architecture are not those of the four-valve module.
+The quantities of the undefined families remain unknown; they are not
+counted as present or "finished".
 
-## Références conservées et création neuve
+## Kept references and new creation
 
-- [prepare.py](prepare.py) relit trois sources privées liées par empreinte,
-  vérifie les quatre axes et les douze identités, puis tesselle. Il n'ajoute
-  aucune forme, aucun trou, aucun raccord au BRep.
-- Le module `closed.step`, SHA256 `fac380b277add2e3d265d7fa8265baeb0ce460b9f69075730d14ece555e76a76`,
-  est placé **une fois** : rotation Z −90°, translation Z +3. Cette inscription
-  conservée est une hypothèse, pas une mesure moteur.
-- [Program.cs](Program.cs) et [Design.cs](Design.cs) créent toutes les formes
-  nouvelles dans PicoGK, dans ce même repère. Les soupapes originales sont
-  gardées à part ; les variantes prolongées ne les remplacent pas sur disque.
-- Le manifeste privé `assembly.json` garde identité, rôle, empreinte, boîte,
-  statut de référence, collisions et liste des manques de chaque sous-ensemble.
-  Aucun STL global fusionné ne transforme les pièces mobiles en monobloc.
+- [prepare.py](prepare.py) reads three private sources bound by digest,
+  verifies the four axes and the twelve identities, then tessellates. It adds
+  no shape, no hole, no blend to the BRep.
+- The module `closed.step`, SHA256 `fac380b277add2e3d265d7fa8265baeb0ce460b9f69075730d14ece555e76a76`,
+  is placed **once**: rotation Z −90°, translation Z +3. This kept
+  registration is an assumption, not an engine measurement.
+- [Program.cs](Program.cs) and [Design.cs](Design.cs) create all the new
+  shapes in PicoGK, in this same frame. The original valves are
+  kept apart; the extended variants do not replace them on disk.
+- The private manifest `assembly.json` keeps the identity, role, digest, box,
+  reference status, collisions and list of gaps of each subset.
+  No merged global STL turns the moving parts into a single block.
 
-### Ce qui est réellement bio-inspiré
+### What is actually bio-inspired
 
-Les capots utilisent une nervure principale et des branches secondaires,
-comme une nervation foliaire. Ce n'est **pas** une optimisation topologique
-issue de contraintes calculées. Aucun gain de rigidité, masse ou fatigue
-n'est annoncé sans comparaison avec une coque témoin.
+The covers use a main rib and secondary branches,
+like leaf venation. This is **not** a topology optimisation
+derived from computed stresses. No stiffness, mass or fatigue gain
+is claimed without comparison against a witness shell.
 
-Le distributeur applique `r_parent³ = Σ r_fille³` comme **hypothèse de départ** :
-rayons intérieurs de 2,000, 2,519842 et 3,174802 unités, paroi nominale 2.
-La règle s'inspire du modèle vasculaire de
+The manifold applies `r_parent³ = Σ r_fille³` as a **starting assumption**:
+inner radii of 2.000, 2.519842 and 3.174802 units, nominal wall 2.
+The rule is inspired by the vascular model of
 [Murray, PNAS 1926](https://doi.org/10.1073/pnas.12.3.207).
-Ses hypothèses de débit et coût ne prouvent ni l'optimum hydraulique ni la
-tenue d'un réseau d'huile moteur chaud, pulsé ou aéré. Les pertes aux coudes,
-la rugosité LPBF, la viscosité, le débit et la cavitation restent à calculer.
-Les mélanges implicites ne démontrent pas une épaisseur minimale de 2.
+Its flow and cost assumptions prove neither the hydraulic optimum nor the
+resistance of a hot, pulsed or aerated engine oil network. Bend losses,
+LPBF roughness, viscosity, flow rate and cavitation remain to be computed.
+The implicit blends do not demonstrate a minimum thickness of 2.
 
-Les primitives sont compilées depuis le [catalogue partagé](../../../../parts/picogk-catalog/common/Sdf.cs)
-et [EngineSdf](../../../../parts/picogk-catalog/engine/EngineSdf.cs), sans copie.
-Pas de réseau osseux ou de gyrode dans une pièce fortement chargée sans
-preuve de chemin de charge et de dépoudrage. Le [transfert précédent](../picogk-protected-junction/README.md)
-reste un témoin séparé, pas une validation de cette culasse.
+The primitives are compiled from the [shared catalogue](../../../../parts/picogk-catalog/common/Sdf.cs)
+and [EngineSdf](../../../../parts/picogk-catalog/engine/EngineSdf.cs), without copying.
+No bone network or gyroid in a highly loaded part without
+proof of load path and depowdering. The [previous transfer](../picogk-protected-junction/README.md)
+remains a separate witness, not a validation of this cylinder head.
 
 ```mermaid
 flowchart LR
@@ -81,74 +81,74 @@ flowchart LR
     D -->|"requires evidence"| G["G-RELEASE: interfaces, actuation, hot loads, print qualification"]
 ```
 
-## Essais exécutés et corrections
+## Trials run and corrections
 
-Exécution locale Mac ARM64, .NET 9.0.317 et noyau PicoGK 26.2.0 déjà disponible.
-Aucun achat Vast. Pas de GPU, PhysicsNeMo, CFD, FEA ni Omniverse lancé pour
-faire passer ce contrôle géométrique pour un essai physique.
+Local run on Mac ARM64, .NET 9.0.317 and the already available PicoGK 26.2.0 kernel.
+No Vast purchase. No GPU, PhysicsNeMo, CFD, FEA or Omniverse launched to
+pass this geometric check off as a physical test.
 
-1. Première variante, pas 0,4 et 0,2 : appuis à 56,6–59,6 et tiges à 105.
-   À 0,2, chacun des quatre appuis recoupe environ 910 unités³ du corps.
-   L'huile recoupe aussi deux réserves de ressort (~25,8 chacune) et les
-   capots (~618,4 / 80,7). Cette variante est conservée comme rejet.
-2. Variante corrigée : appuis à 58,1–61,1, coupelles à 101,5–104,5,
-   tiges à 106,5. La hauteur nominale réservée au ressort reste 40,4.
-   Le distributeur est recentré entre les deux capots ; **aucune coupe du
-   corps ni suppression de collision dans les rapports**.
-3. Deux répétitions identiques, aux pas 0,4 et 0,2 : 342 paires examinées
-   par résolution, dont 56 nécessitent une intersection native après filtrage
-   par boîte. Les couples référence/référence ne sont pas revérifiés.
+1. First variant, steps 0.4 and 0.2: seats at 56.6–59.6 and stems at 105.
+   At 0.2, each of the four seats overlaps about 910 units³ of the body.
+   The oil also overlaps two spring reservations (~25.8 each) and the
+   covers (~618.4 / 80.7). This variant is kept as a rejection.
+2. Corrected variant: seats at 58.1–61.1, retainers at 101.5–104.5,
+   stems at 106.5. The nominal height reserved for the spring stays 40.4.
+   The manifold is recentred between the two covers; **no cut of the
+   body and no suppression of collisions in the reports**.
+3. Two identical repetitions, at steps 0.4 and 0.2: 342 pairs examined
+   per resolution, of which 56 require a native intersection after box
+   filtering. Reference/reference pairs are not rechecked.
 
-L'huile ne présente plus d'intersection positive avec les capots ou les
-réserves de ressort aux deux pas. **Ce n'est pas une preuve de jeu à chaud.**
-À 0,2 restent deux petits recouvrements d'appui (0,273778 et 0,335549 unités³),
-et deux résultats natifs négatifs (−0,737845 et −0,461708), conservés comme
-anomalies non résolues. Ces valeurs ne sont jamais ramenées artificiellement
-à zéro. Le placement est donc toujours rejeté pour un assemblage fonctionnel.
+The oil no longer shows a positive intersection with the covers or the
+spring reservations at either step. **This is not proof of hot clearance.**
+At 0.2 two small seat overlaps remain (0.273778 and 0.335549 units³),
+and two negative native results (−0.737845 and −0.461708), kept as
+unresolved anomalies. These values are never artificially brought back
+to zero. The placement is therefore still rejected for a functional assembly.
 
-La réserve nominale avant spires jointives vaut 6,2 / 8,1 pour les levées
-11,5 / 9,6 et la hauteur à bloc 22,7 héritées du
-[travail d'encombrement](../wholebody/spring_packaging.py). Ce calcul scalaire
-n'inclut ni tolérances, ni dilatation, ni mouvement des spires, ni dynamique.
+The nominal reserve before coil bind is 6.2 / 8.1 for lifts
+11.5 / 9.6 and the solid height 22.7 inherited from the
+[packaging work](../wholebody/spring_packaging.py). This scalar calculation
+includes neither tolerances, nor expansion, nor coil motion, nor dynamics.
 
-[audit.py](audit.py) contre-vérifie les STL bruts sans réparation : connectivité
-des faces, liens de sommets, orientation, triangles dégénérés exacts, normales
-non finies, volume signé et comparaison à deux résolutions. Les anneaux sont
-aussi confrontés à `π (R² − r²) H`. Le seuil de variation volumique de 2 %
-est un **filtre exploratoire**, pas une garantie de 0,040 mm. La limite mémoire
-de l'audit est de deux millions de faces par fichier ; le premier lancement
-limité à un million a refusé les capots fins, sans produire d'acceptation.
+[audit.py](audit.py) cross-checks the raw STLs without repair: face
+connectivity, vertex links, orientation, exactly degenerate triangles, non-finite
+normals, signed volume and comparison at two resolutions. The rings are
+also compared with `π (R² − r²) H`. The 2 % volume-variation threshold
+is an **exploratory filter**, not a guarantee of 0.040 mm. The audit's memory
+limit is two million faces per file; the first run,
+limited to one million, rejected the thin covers, without producing an acceptance.
 
-Le [résumé d'exécution et les empreintes](execution-summary.json) conserve les
-quatre calculs terminés. Tous les écarts de volume entre les deux pas restent
-sous 2 % : maximum **0,70493 %**, sur le volume fluide diagnostic. L'écart
-maximal des anneaux fins à la formule indépendante est **0,21487 %**.
-Cependant, le capot d'admission fin comporte **28 triangles exactement
-dégénérés et 28 normales STL non finies** : le contrôle brut combiné échoue.
-Les 39 autres fichiers nouveaux audités (20 par résolution, volume fluide
-compris) passent ce contrôle combinatoire à une composante. Cela ne prouve
-pas l'absence d'auto-intersection géométrique ni la fabricabilité. Le défaut
-du capot reste un point de correction, pas une acceptation par son rendu.
+The [execution summary and digests](execution-summary.json) keeps the
+four completed computations. All volume deviations between the two steps stay
+under 2 %: maximum **0.70493 %**, on the diagnostic fluid volume. The maximum
+deviation of the fine rings from the independent formula is **0.21487 %**.
+However, the fine intake cover contains **28 exactly
+degenerate triangles and 28 non-finite STL normals**: the combined raw check fails.
+The 39 other new audited files (20 per resolution, fluid volume
+included) pass this combinatorial check with one component. This does not prove
+the absence of geometric self-intersection or manufacturability. The cover
+defect remains a point to correct, not an acceptance by its render.
 
-## Images et conservation
+## Images and retention
 
-[render.py](render.py) produit trois images à partir des triangles réels :
-`assembled.png`, `exploded.png` et `section.png`. L'éclaté applique uniquement
-des translations d'affichage ; la vue assemblée et la coupe X = 22,5 gardent
-les positions effectives. Orange = **enveloppes de ressort**, pas spires.
-Les triangles bruts restent intacts ; les normales STL ne sont pas utilisées
-pour afficher les fichiers contenant des triangles dégénérés. Un rendu réussi
-ne les répare pas. Aucun lissage, décimation ou image générative.
+[render.py](render.py) produces three images from the real triangles:
+`assembled.png`, `exploded.png` and `section.png`. The exploded view applies only
+display translations; the assembled view and the X = 22.5 section keep
+the actual positions. Orange = **spring envelopes**, not coils.
+The raw triangles stay intact; the STL normals are not used
+to display files containing degenerate triangles. A successful render
+does not repair them. No smoothing, decimation or generative imagery.
 
-Les géométries dérivées du scan et ces vues d'assemblage sont conservées dans
-le dossier privé de calcul et livrées localement, conformément à la politique
-du [jumeau de culasse](../../README.md). Git contient les sources, tests,
-méthode et résumés non géométriques ; pas le scan ni ses STL dérivés.
+The scan-derived geometries and these assembly views are kept in
+the private computation directory and delivered locally, in line with the policy
+of the [cylinder head twin](../../README.md). Git contains the sources, tests,
+method and non-geometric summaries; not the scan nor its derived STLs.
 
-## Reproduction et limites
+## Reproduction and limits
 
-Fournir les trois fichiers privés dont les empreintes sont imposées, dans
-un environnement OCP 7.9.3.1. Tous les dossiers de sortie doivent être neufs.
+Supply the three private files whose digests are imposed, in
+an OCP 7.9.3.1 environment. All output directories must be new.
 
 ```sh
 python3 prepare.py --head candidate-private.brep --module closed.step \
@@ -164,13 +164,13 @@ python3 render.py --inputs /prive/inputs --directory /prive/fine \
   --output /prive/views
 ```
 
-Les bibliothèques natives correspondantes doivent être accessibles au chargeur
-système. NumPy est nécessaire à l'audit ; VTK et Matplotlib aux vues. Aucun
-nouveau paquet n'est installé automatiquement. Code 3 de l'audit = rejet
-numérique conservé. Code 0 du générateur = fichiers produits, **pas acceptation**.
+The corresponding native libraries must be accessible to the system
+loader. NumPy is required for the audit; VTK and Matplotlib for the views. No
+new package is installed automatically. Audit exit code 3 = numerical rejection
+kept. Generator exit code 0 = files produced, **not acceptance**.
 
-Tests ciblés : neuf tests de contrats Python, autotests C# et compilation sans
-avertissement. Avant de créer les pièces manquantes comme pièces fonctionnelles,
-il faut accepter les attaches, les axes de commande, les contacts et les chemins
-de charge indépendamment du générateur. Le matériau chaud, les écoulements,
-la cinématique complète et le procédé d'impression ne sont pas qualifiés ici.
+Targeted tests: nine Python contract tests, C# self-tests and compilation without
+warnings. Before creating the missing parts as functional parts,
+the attachments, actuation axes, contacts and load paths must be accepted
+independently of the generator. The hot material, flows,
+full kinematics and the printing process are not qualified here.

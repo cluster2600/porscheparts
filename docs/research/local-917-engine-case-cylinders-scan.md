@@ -7,7 +7,7 @@
   Classics, cross-checked against the file name and its local digest.
 - Identification: the seller declares a 917 engine case with cylinders, but
   the exact variant remains unknown.
-- License: open reuse confirmed by the project owner, exact text not archived;
+- Licence: open reuse confirmed by the project owner, exact text not archived;
   redistribution right not displayed and publication of the raw file blocked.
 - 993 or 935 compatibility: not demonstrated.
 
@@ -46,7 +46,7 @@ two will have to be identified visually before any deletion.
 This scan can help develop and verify the generic methods for:
 
 - segmentation of a large engine assembly;
-- repeated detection of cylinder axes and center distances;
+- repeated detection of cylinder axes and centre distances;
 - registration of cylinder banks and gasket planes;
 - construction of collision envelopes;
 - comparison of air-cooling architectures.
@@ -71,7 +71,7 @@ All these results keep identity and scale at unconfirmed status.
 
 ## Data to recover
 
-1. exact license text and redistribution right;
+1. exact licence text and redistribution right;
 2. metrology report demonstrating the declared 0.5 mm accuracy;
 3. native unit of the OBJ;
 4. 917 engine variant and scan configuration;

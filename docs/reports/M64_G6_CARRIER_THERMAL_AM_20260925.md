@@ -8,7 +8,7 @@ qualification. The 700 hp target is not demonstrated.
 |---|---|---|
 | Assembly CAD | 61 BRep-valid components; no detected carrier/component penetration; new oil drillings and returns | Geometric candidate only; no qualified drive, bearings or fasteners |
 | Heat and mechanics | Heat budget fails; long rocker shafts fail the assumed deflection budget; several valve-contact scenarios fail | Rework cooling and shaft supports before expensive full-head CAE |
-| Additive preparation | Real 60 µm layer slicing of four distinct geometries; closed-void checks; sampled thickness and support projection | No build file, process simulation or print authorization |
+| Additive preparation | Real 60 µm layer slicing of four distinct geometries; closed-void checks; sampled thickness and support projection | No build file, process simulation or print authorisation |
 
 [Native audit and source fingerprints](../../twins/m64-cylinder-head/evidence/g6-carrier-thermal-am-20260925/native-audit.json)
 · [AM audit](../../twins/m64-cylinder-head/evidence/g6-carrier-thermal-am-20260925/am-report.json)
@@ -136,7 +136,7 @@ compared; minimum downward projected area selects a candidate, not an optimum bu
 Each thickness screen uses 2,000 deterministic area-weighted face-centre probes.
 These percentages are **sample flags, not certified thin-wall area fractions**.
 Sharp bore/end-face edges can affect the maximum-sphere metric; flagged regions
-must be localized and checked in native geometry before changing walls blindly.
+must be localised and checked in native geometry before changing walls blindly.
 The caps' nominal bolt-edge ligament is 2.25 mm, illustrating why a reported
 submillimetre sphere sample is not itself a complete wall definition.
 

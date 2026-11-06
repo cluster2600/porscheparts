@@ -56,7 +56,7 @@ isolated interior point is used as evidence for a whole region.
 The [connectivity check](../../twins/m64-cylinder-head/source/picogk-connectivity/README.md)
 was run on Kali: 2,719,728 points, pitch 1.2 and phase 0.371, on the native
 0.3 VDB fields. Every void point is connected to the boundary faces with both
-6 and 26 neighbors. **No isolated cavity detected on this grid** does not mean
+6 and 26 neighbours. **No isolated cavity detected on this grid** does not mean
 no cavity in the part: the earlier micro-shells illustrate precisely its
 resolution limit. The two conventions for points lying exactly on the boundary
 are explicit and tested; no tolerance was raised to make an overlap pass.
@@ -112,7 +112,7 @@ The parallel research also delivers the
 [material/air/oil/LPBF campaign](M64_700CH_MATERIAL_COOLING_LPBF.md).
 The laser-off AdditiveFOAM smoke test and the new 25 ns step were actually
 run, **on an AlSi10Mg coupon, not on this cylinder head**. The active case
-remains capped and unqualified; its outcome authorizes no engine print.
+remains capped and unqualified; its outcome authorises no engine print.
 
 ## History: first batch of September 7, before this resumption
 
@@ -122,7 +122,7 @@ retrieved and verified by SHA-256. The body STL and the three domain STLs
 are byte-for-byte identical to the corresponding outputs on Kali.
 The rental is destroyed and the independent Vast inventory is empty.
 
-On Kali, the voxelizations at 0.6 / 0.3 / 0.15 units completed. The
+On Kali, the voxelisations at 0.6 / 0.3 / 0.15 units completed. The
 independent audit campaign processed the first two resolutions, then was
 interrupted with code 137 during the 0.15 resolution, before the overall
 report was written. Only two progress summaries were retrieved, not the
@@ -236,7 +236,7 @@ graph TD
     F --> H
     B -. "deadline, even on failure" .-> H
     H --> I["Independent verification<br/>empty Vast inventory"]
-    I --> J["GitHub: sanitized code and receipts<br/>no private geometry or secret"]
+    I --> J["GitHub: sanitised code and receipts<br/>no private geometry or secret"]
 ```
 
 [Mermaid source](../media/diagrams/m64-vast-run.mmd) ·
@@ -256,7 +256,7 @@ test, nor a justification for renting B200s.
 | Complement, core, skin and VDB | 12.324 s | 1,293,873,152 bytes |
 
 These durations exclude startup, the image download, the compilation of the
-second module and the transfers. They are not a normalized benchmark against
+second module and the transfers. They are not a normalised benchmark against
 Kali. The domain module was compiled with the SDK of the qualified image; its
 assembly has a different digest from the one compiled on Kali. The native
 library is identical and the three STLs match. The VDB files have different
@@ -302,7 +302,7 @@ defines the roles of all the requested software and the evidence still missing.
 
 1. Identify the interfaces, bearing faces, threads and zones not to be modified.
 2. Classify the void spaces and fix the inlets/outlets of the envisaged circuits.
-3. Generate local variants of channels and connections only in the authorized
+3. Generate local variants of channels and connections only in the authorised
    volumes. A channel centerline of radius `r` requires a reserve of `1.5 + r`,
    plus a numerical margin, and not simply 1.5.
 4. Compare flow rate, pressure drop, temperatures, stresses and depowdering
@@ -336,7 +336,7 @@ rates, pressure drops and stresses; redo an independent computation for each
 retained variant. A model that reproduces its training data demonstrates
 neither an engine improvement nor durability in service.
 
-No corpus of "1,000 photos", specialized PhysicsNeMo model or cylinder-head
+No corpus of "1,000 photos", specialised PhysicsNeMo model or cylinder-head
 training campaign is declared assembled or executed in this batch.
 
 ## Publishable receipts and private files
@@ -345,7 +345,7 @@ training campaign is declared assembled or executed in this batch.
 - [Qualification of the new Python/PicoGK image](../../twins/m64-cylinder-head/evidence/picogk-python-image-qualification-20260907.json).
 - [Sampled connectivity of the voids](../../twins/m64-cylinder-head/evidence/picogk-connectivity-20260907.json).
 - [Image qualification](../../twins/m64-cylinder-head/evidence/picogk-image-qualification-20260907.json).
-- [Three voxelization runs on Kali](../../twins/m64-cylinder-head/evidence/picogk-roundtrips-20260907.json).
+- [Three voxelisation runs on Kali](../../twins/m64-cylinder-head/evidence/picogk-roundtrips-20260907.json).
 - [Independent audits of the three resolutions, with partial state](../../twins/m64-cylinder-head/evidence/picogk-three-resolution-audit-20260907.json).
 - [Volume domains at two resolutions](../../twins/m64-cylinder-head/evidence/picogk-domains-20260907.json).
 - [Topological counter-audit and exact filter](../../twins/m64-cylinder-head/evidence/picogk-cooling-domain-mesh-audit-20260907.json).
@@ -354,8 +354,8 @@ training campaign is declared assembled or executed in this batch.
 The receipts include the digests of the inputs, outputs, private reports,
 programs and libraries. The STL, STEP, VDB and private renders are not
 embedded in the public repository. The rendering script is versioned and the
-images were shown in the work thread; their colors represent no computed
+images were shown in the work thread; their colours represent no computed
 temperature or stress.
 
 **Status: controlled geometric preparation, not a validated cylinder head, nor
-one authorized for manufacture or operation.**
+one authorised for manufacture or operation.**

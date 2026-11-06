@@ -57,7 +57,7 @@ tunnel, both sills and front/rear bulkheads into the central load-bearing cell.
 It must distinguish exterior panels and front/rear assemblies, and retain the
 required upper load paths and door interfaces. The [ZESAD reference](https://zesad.com/product/porsche-964-and-993-carbon-fiber-monocoque-for-restomods/)
 sets the requested architecture, not dimensions or laminate design. The all-carbon
-structural intent remains; a RUF reference does not authorize substituting its
+structural intent remains; a RUF reference does not authorise substituting its
 steel structures for the requested design.
 
 For the tunnel, three different things must be acquired and kept separate:

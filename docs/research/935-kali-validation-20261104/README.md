@@ -64,7 +64,7 @@ source changes.
 `917-manufacturing-f37-lpbf-audit-check` because the existing Docker socket is
 `root:docker` mode `0660` and this user is not in that group. The Docker command
 returns 126; the overall Make invocation returns 2. No container audit ran and
-no group, socket, daemon or privilege change was attempted. An authorized Docker
+no group, socket, daemon or privilege change was attempted. An authorised Docker
 runtime is needed to execute that target and the remaining native targets.
 Earlier failures remain distinct from this final, software-only outcome.
 GitHub run `41866259218` independently completed successfully for the same tested

@@ -45,7 +45,7 @@ Before the rotor calculation, three annular 2D meshes exercise the actual MRF
 wall boundary and force function. The stationary outer wall has radius
 0.1 m; the inner wall has radius 0.05 m and rotates at 60 rpm. Depth is 0.01 m,
 kinematic viscosity 0.001 m²/s and density **3 kg/m³**, deliberately non-unity
-to check force normalization. This laminar control does not validate SST.
+to check force normalisation. This laminar control does not validate SST.
 
 The independent solution is `u_theta = A*r + B/r`, where
 `B = Omega*Ri²*Ro²/(Ro²-Ri²)` and `A = -B/Ro²`.
@@ -180,4 +180,4 @@ discharge/engine passages require the housing definition; this axial square duct
 does not supply it. Require mass imbalance below 0.1%, final pressure
 and torque stationarity below 1%, and fine/medium differences below 3%. The
 imposed flow remains an input, not a measured or predicted installed-engine flow.
-Only accepted cases may supply optimization or PhysicsNeMo reference data.
+Only accepted cases may supply optimisation or PhysicsNeMo reference data.

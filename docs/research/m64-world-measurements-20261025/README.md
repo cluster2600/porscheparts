@@ -71,7 +71,7 @@ speed was established. Previously excluded FIA dimensions remain unresolved.
 
 All five prior research/training packs and their partitions remain frozen.
 Publisher families join manufacturer documents and their mirrors; the mirror
-host is not treated as independent evidence. No model was trained, tokenized
+host is not treated as independent evidence. No model was trained, tokenised
 or assigned a context-fit result in this increment. Supplied-record SFT assesses
 record extraction, not independent engineering reasoning.
 

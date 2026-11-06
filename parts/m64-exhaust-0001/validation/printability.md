@@ -88,4 +88,4 @@ recorded — see `compile-record.md`). All layer counts, mass and screen values
 above are the sibling F0 dossiers' results, cited as prior screens for the
 same material route. Powder lot, orientation, heat treatment, witness
 coupons, CT/dye-penetrant, leak test: all open, per the F0 dossiers' gate
-lists. **Not authorized for manufacture, an engine, or interior heating.**
+lists. **Not authorised for manufacture, an engine, or interior heating.**

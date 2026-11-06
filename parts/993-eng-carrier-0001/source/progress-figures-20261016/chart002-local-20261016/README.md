@@ -1,27 +1,27 @@
-# Correction locale de la peau 2 — 16 octobre 2026
+# Local correction of skin 2 — 16 October 2026
 
-Statut historique : **Cas local admis — région complète en cours**. Cette
-planche explique un résultat local ; elle n'accorde aucune admission globale
-à la région ou aux couches du support moteur.
+Historical status: **Local case admitted — complete region in progress**. This
+plate explains a local result; it grants no global admission to the region or
+to the layers of the engine support.
 
-Les trois JSON de `inputs/` sont des copies strictement identiques des entrées
-et résultats réels du replay `full-repair-003`. Le renderer vérifie leurs SHA-256,
-les polygones calculés et les cinq certificats de quadrilatères entièrement
-contenus dans le domaine source. Les chemins historiques présents dans ces
-reçus restent des métadonnées : le rendu ne les ouvre pas.
+The three JSON files in `inputs/` are strictly identical copies of the real
+inputs and results of the `full-repair-003` replay. The renderer checks their
+SHA-256 digests, the computed polygons and the five certificates of quadrilaterals
+fully contained in the source domain. The historical paths present in these
+receipts remain metadata: the render does not open them.
 
-Depuis ce dossier, avec Python, Matplotlib **3.11.2** et Shapely **2.2.0** :
+From this directory, with Python, Matplotlib **3.11.2** and Shapely **2.2.0**:
 
 ```sh
 python render.py /tmp/993-chart002-replay-001
 ```
 
-Le dossier de sortie doit être neuf. La commande exporte la même planche en
-PNG, SVG et PDF, puis un reçu liant le script, les entrées locales et les trois
-exports. Elle n'exécute aucun calcul `native_infill`, remapping ou génération
-de supports. `reference/` conserve le rendu rejoué avec ce script et son reçu ;
-le PNG est identique à la planche locale acceptée. Les dates internes des
-exports vectoriels peuvent varier à la reproduction.
+The output directory must be new. The command exports the same plate as
+PNG, SVG and PDF, then a receipt binding the script, the local inputs and the
+three exports. It runs no `native_infill`, remapping or support generation
+computation. `reference/` keeps the render replayed with this script and its
+receipt; the PNG is identical to the accepted local plate. Internal dates of
+the vector exports may vary on reproduction.
 
-Le [reçu de portabilité](portable-validation.json) conserve le rejeu après
-extraction, l'identité du PNG et le refus d'une sortie déjà existante.
+The [portability receipt](portable-validation.json) keeps the replay after
+extraction, the PNG identity and the refusal of an already existing output.

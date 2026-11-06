@@ -64,7 +64,7 @@ flowchart TD
     class M,N,O,P pending;
 ```
 
-The cell work establishes the reference material behavior. The closed geometry
+The cell work establishes the reference material behaviour. The closed geometry
 trial then inserts explicit finite voids. Complete-carrier analysis, transition
 geometry and additive preparation remain separate steps.
 
@@ -72,7 +72,7 @@ geometry and additive preparation remain separate steps.
 
 ![Actual explicit cell and quadratic mesh](../../media/carrier-interface-20261028/explicit-periodic-cell.png)
 
-The image shows the actual normalized research cell and a cutaway through its
+The image shows the actual normalised research cell and a cutaway through its
 T10 elements. It is generated from the saved mesh, including quadratic boundary
 nodes; [image provenance](evidence/geometry-figure-provenance.json) records hashes.
 The 1 mm cube is a mathematical reference size, not a chosen printing pitch.
@@ -104,7 +104,7 @@ Coarse to medium changes the full stiffness tensor by **0.1410616%**; medium to
 fine changes it by **0.0561359%**. Both successive comparisons pass the unchanged
 **2%** threshold. All six strain cases pass at all three levels, so the
 [fixed-STEP spatial criterion is satisfied](evidence/fixed-STEP-series-001/assessment.json).
-The minimum normalized stiffness ratio changes from **0.1706406** to
+The minimum normalised stiffness ratio changes from **0.1706406** to
 **0.1705261** to **0.1704587**. This admits the selected fixed-geometry cell study,
 not whole-carrier convergence or isolated implicit-surface convergence.
 
@@ -124,7 +124,7 @@ cannot be substituted for fixed-STEP mesh convergence.
 
 ## Mathematical checks
 
-Dense titanium is modeled as linear isotropic material with **E = 107,000 MPa**
+Dense titanium is modelled as linear isotropic material with **E = 107,000 MPa**
 and **ν = 0.31**. Six independent engineering strains of amplitude **0.001**
 recover the complete 6 × 6 stiffness tensor. Shear displacement gradients use
 half the engineering shear. Internal voids are absent from the domain and have
@@ -165,7 +165,7 @@ perturbation bound. This is a floating-point bound, not a formal interval proof.
 | Its output checker examined only 973 interior-classified nodes in the original 8,376-node probe | Check the complete volume-node roster, including all boundary nodes |
 | Its signed-difference comparison accepted a negative 10⁻⁵ mm mismatch | Independent bidirectional, bijective matching checks absolute distances at the unchanged 10⁻⁸ mm limit |
 | MSH4 transport could not be read consistently by meshio for this output | Emit explicit ASCII MSH2.2; keep native node and element rosters |
-| A native node field exceeded CalculiX's 20-character limit, returning 201 | Serialize at the highest precision that fits, then re-audit the actual serialized coordinates |
+| A native node field exceeded CalculiX's 20-character limit, returning 201 | Serialise at the highest precision that fits, then re-audit the actual serialised coordinates |
 | The first fine case exceeded its 12 GiB RSS cap, returning 125 | Preserve the refusal; run a fresh, separately declared 24 GiB profile with the same numerical criteria |
 
 The [negative controls](evidence/software-negative-controls.json) reproduce the
@@ -316,7 +316,7 @@ clearance enlargement is silently applied.
 ![Actual reconstructed inner envelopes](../../media/carrier-interface-20261028/core-envelopes.png)
 
 The four largest candidate regions are now reconstructed by native tetrahedral
-solid unions, eroded by a centered **0.20 mm cube** and reduced to their dominant
+solid unions, eroded by a centred **0.20 mm cube** and reduced to their dominant
 positive connected component. This is an explicit **0.10 mm inward design
 operation**, not a relaxed mesh tolerance. Small disconnected remnants are
 discarded; the remaining four envelopes total **2,364.280875 mm³**. They are
@@ -385,7 +385,7 @@ triangle transfer and phase-vertex checks.
 
 Every region passes **two successive volume comparisons below 2%**, both before
 and after cleanup. The [assessment](evidence/finite-gyroid-001/assessment.json)
-keeps volume stabilization separate from topology convergence and complete-carrier
+keeps volume stabilisation separate from topology convergence and complete-carrier
 mechanics; those latter claims remain false. Vertex checks also do not establish
 whole-face distance convergence.
 
@@ -403,7 +403,7 @@ The finest retained void volume totals **1,366.238188 mm³**, equivalent to
 **6.038773 g of titanium** at the study density. This replaces the earlier
 uniform-density estimate for these four regions. It is potential subtraction
 before transitions and escape routes, not an achieved reduction in carrier mass.
-A large additional saving requires broader structural optimization.
+A large additional saving requires broader structural optimisation.
 
 ### First complete closed-chamber carrier
 
@@ -437,7 +437,7 @@ A native `NoError` is insufficient. The coarse analytic sphere misses the fixed
 **0.375700%** and **0.084697%**. These controls are recomputed on every native run.
 
 Native Boolean output initially lost triangles on export/reimport. The accepted
-producer applies one fixed `as_original().simplify(0)` normalization, bounds its
+producer applies one fixed `as_original().simplify(0)` normalisation, bounds its
 native tolerance by **10⁻⁸ mm** and its volume change by **10⁻¹⁰**, then still
 requires an **exact oriented-triangle roundtrip**. No final transfer threshold
 was relaxed.

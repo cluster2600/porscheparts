@@ -424,7 +424,7 @@ Each item names the files it creates and where it runs. Everything here fits the
   `dyno-reference.json` blocks map fitting and rotor-speed inference.
 - **No status change.** All records stay `validation.status = concept` and
   `safety_class = prohibited_pending_engineering`; `reviewed_by` stays empty and all
-  authorization flags stay false. A green FEA/fatigue screen is never a step up the
+  authorisation flags stay false. A green FEA/fatigue screen is never a step up the
   ladder, and `completed_screening` never counts as `passed`.
 - **No editing pinned files.** Work adds only new dated evidence folders and edits
   only catalogue records/docs; nothing under `evidence/**` or any `*.lock.json`,

@@ -30,7 +30,7 @@ The documentary geometry comes from [Porsche](https://newsroom.porsche.com/en/hi
 
 A standalone local script integrated only the closed stroke, with no new CAD, rental or Cantera installation. The fluid is a **constant-property ideal gas** (`R = 287.05 J/kg/K`, `γ = 1.35`), with no species conversion. The air + fuel mass is assumed trapped; `T_IVC = 333.15 K` and `p_IVC = mRT/V`, without forcing this pressure to equal the manifold pressure.
 
-The prescribed heat release is a normalized Wiebe law:
+The prescribed heat release is a normalised Wiebe law:
 
 ```text
 x_b = [1 − exp(−a z^(m+1))] / [1 − exp(−a)],  z = (θ − θ0)/Δθ, limité à [0,1]
@@ -69,4 +69,4 @@ The [Cantera wall exchange](https://www.cantera.org/stable/reference/reactors/in
 - Private report kept, SHA-256: `597d6542433cd7ae34a9e6dc032b67a1922525af7180e947157ea246a2797e06`.
 - F46 inspected, SHA-256: `29f5cf4984e7cba754c3427f1f6ff974a5677673d27110f8b7a17f9bd4a81045`.
 
-Status: local numerical cross-check complete; 2V/4V performance comparison not performed; FEA/CHT transfer not authorized; physical validation and manufacturing not authorized.
+Status: local numerical cross-check complete; 2V/4V performance comparison not performed; FEA/CHT transfer not authorised; physical validation and manufacturing not authorised.

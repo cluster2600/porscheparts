@@ -63,9 +63,9 @@ this a strong out-of-distribution benchmark. Some answers are explicit in the
 prompt. It measures narrow instruction/JSON compliance, not learned engineering
 knowledge, generated C# correctness or broad coding skill.
 
-The authored examples inherit the repository's proprietary license; the owner
+The authored examples inherit the repository's proprietary licence; the owner
 requested their local use. Public model weights retain Apache-2.0 provenance
-in `model.json` and their upstream license. Neither datasets nor adapters are
+in `model.json` and their upstream licence. Neither datasets nor adapters are
 uploaded to a model hub. Do not include raw scans, proprietary manuals, vendor
 quotes, vehicle identifiers or secrets in later examples.
 

@@ -74,7 +74,7 @@ guards now pass without relaxing the gate. This is not a geometry repair.
 
 The [native section renderer](../../twins/m64-cylinder-head/source/wholebody/render_extended_valve_sections.py)
 produced and visually checked a private two-panel cut at X = −22.5 / +22.5
-through this saved assembly. Gray is the body, cyan the valves, gold the seats,
+through this saved assembly. Grey is the body, cyan the valves, gold the seats,
 purple the guides. Curves are sampled for display only; the closed-position
 image is not a functioning-engine animation. PNG SHA-256:
 `5dfbd171819a1126157338fb2e5ab3f6ebafc7cf29707b39adea6d5d505dc8a6`.
@@ -165,17 +165,17 @@ defeaturing or surface decimation. All remain **rejected** at the existing
 
 | Gmsh trial | Tetrahedra | Below 0.1 | Minimum minSICN | Outcome |
 |---|---:|---:|---:|---|
-| Delaunay, no optimizer | 251,149 | 4,990 | 0.0000406853 | quality rejected |
-| HXT, no optimizer | 325,113 | 7,549 | negative near zero | quality/integrity rejected |
+| Delaunay, no optimiser | 251,149 | 4,990 | 0.0000406853 | quality rejected |
+| HXT, no optimiser | 325,113 | 7,549 | negative near zero | quality/integrity rejected |
 | Delaunay + Netgen | 240,975 | 1,240 | 0.0015626580 | improved, still quality rejected |
 
 Netgen reduces the count below threshold, but its bad-element volume fraction
 increases from about 0.1603% to 0.2902%; it is not an unqualified improvement.
 Both Delaunay trials retain positive Jacobians, one connected region, complete
 boundary matching and all 4,918 CAD faces. HXT has a zero Jacobian before
-serialization, 20 nonpositive Jacobians after reread, and a changed surface
+serialisation, 20 nonpositive Jacobians after reread, and a changed surface
 triangulation signature. The CAD-volume discrepancy is about 0.28748% in the
-two unoptimized trials; volume agreement alone does not admit either mesh.
+two unoptimised trials; volume agreement alone does not admit either mesh.
 
 The actual PhysicsNeMo CPU/CUDA comparison is **rejected**. Normal vectors
 agree at the declared tolerances, but 1,389 CPU and 1,382 CUDA triangle areas
@@ -205,7 +205,7 @@ at most approximately **0.85 USD**, excluding transfer and provider billing
 rounding. This is an elapsed-time estimate, not a final invoice.
 
 Next engineering gates are targeted mesh-quality repair with unchanged CAD
-surfaces, high-precision area-error localization, continuous valve/seat/guide
+surfaces, high-precision area-error localisation, continuous valve/seat/guide
 and piston-clearance checks, then qualified gas/air/oil domains and hot material
 loads. The 0.040 mm target, thermal resistance, fatigue, print process and
 manufacturing release are **not established by this run**.

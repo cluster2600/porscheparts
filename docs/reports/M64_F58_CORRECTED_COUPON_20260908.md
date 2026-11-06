@@ -58,7 +58,7 @@ is likewise the instrumented discrete term, not an independent calorimetry.
 The limiter amounts to **8.406% of Q**, against **10.756%** in thermal only.
 Its integral drops by 21.891% over this window, but remains artificial.
 The ratio of the integrated absolute residual to Q is about **1.407 × 10⁻⁶**.
-A small balance error does not demonstrate that the modeled phenomena are correct.
+A small balance error does not demonstrate that the modelled phenomena are correct.
 The corrected coupon hits the ceiling on **3,956 steps**; the logged Tmax is
 3,300.000000022154 K, with the very small numerical overshoot shown.
 
@@ -106,11 +106,11 @@ retroactively turn it into a success.
 The nominal AlSi10Mg properties are not calibrated for the powder lot.
 Powder and solid still share the same k/Cp laws; no free surface,
 evaporation or mass loss has been added. The limiter is not a latent heat
-of vaporization. The next step requires reviewing these gaps and the material
+of vaporisation. The next step requires reviewing these gaps and the material
 inputs before a new campaign, not just a longer computation time.
 No second corrected run is launched in this receipt.
 
 The [exact digests and values](../../twins/m64-cylinder-head/evidence/f58-corrected-coupon-20260908.json)
 tie the result to the logs. No new Vast spending
 for this coupon. No convergence, experimental correlation, LPBF
-qualification or manufacturing authorization is established.
+qualification or manufacturing authorisation is established.

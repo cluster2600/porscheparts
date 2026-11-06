@@ -13,14 +13,14 @@ structured data used for the public OEM pages.
 | [`107-45`](https://porschefanatics.com/oem/993/107-45/) | Charge air cooler | 49 | 28 | Bill of materials of the intercooler, ducts, brackets, seals, sensors and hoses |
 
 The differences between lines and distinct references come from revisions,
-left/right variants and the presence of two PET catalogs in the local site:
-the KAT 17 transcription and the Porsche Classic 993 catalog. The
+left/right variants and the presence of two PET catalogues in the local site:
+the KAT 17 transcription and the Porsche Classic 993 catalogue. The
 machine-transcribed data are kept by the site in `data/oem-listed.json`.
 
 ## K16 references confirmed by the transcription
 
 Group `202-16` includes the four Porsche references already associated with
-the K16 pair in the twin's catalog:
+the K16 pair in the twin's catalogue:
 
 - `993 123 013 51` and `993 123 013 52`;
 - `993 123 014 51` and `993 123 014 52`.
@@ -52,8 +52,8 @@ variation is kept as a supplier caveat in the source records; the mass must
 not be used as an OEM identity criterion.
 
 The dimensions and masses above are commercial declarations, not instrumented
-measurements. They do not authorize manufacturing nor allow a flow
-cross-section, a wall thickness, radii or center distances to be deduced.
+measurements. They do not authorise manufacturing nor allow a flow
+cross-section, a wall thickness, radii or centre distances to be deduced.
 The seven source records and the corresponding entries are in
 `catalog/sources/` and `catalog/reference/993-declared-part-data.json`.
 
@@ -94,7 +94,7 @@ rod or the spoiler cannot be attributed to the K16.
 
 Still missing for a reconstruction of the K16:
 
-- diameters, center distances, flange profiles and axis datums measured on a
+- diameters, centre distances, flange profiles and axis datums measured on a
   real part;
 - surfaces of the wheels, volutes, diffusers, housings and oil passages;
 - radial/axial clearances, tolerances, roughness and wall thicknesses;
@@ -108,8 +108,8 @@ interface-location source in
 
 ## Next useful action
 
-The first object to measure or scan under license must be a non-rotating,
+The first object to measure or scan under licence must be a non-rotating,
 non-structural part: cold duct, intercooler bracket or connection adapter.
 The wheels, the shaft, the bearings, the hot housing and the CHRA stay
 excluded from any additive manufacturing until a dedicated engineering review,
-material characterization, balancing and validation.
+material characterisation, balancing and validation.

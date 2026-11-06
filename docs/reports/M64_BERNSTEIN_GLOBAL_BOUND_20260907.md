@@ -2,11 +2,11 @@
 
 September 7, 2026. Geometric reference from scan 935, future target M64.
 This independent check concerns the local blend of degree **10 × 11**,
-not a manufacturing authorization nor a cylinder head validation.
+not a manufacturing authorisation nor a cylinder head validation.
 
 ## A result not limited to a grid of points
 
-The stored scalar displacement field satisfies, over **the whole normalized
+The stored scalar displacement field satisfies, over **the whole normalised
 UV square [0,1] × [0,1]**, including the area not kept by the trim contour:
 
 ```text
@@ -85,7 +85,7 @@ neither the injectivity of the surface, nor the absence of interference with
 any other part, nor a global minimum thickness. The blend, topology and radius
 checks remain separate evidence.
 
-The scan unit is not certified in millimeters. The displacement threshold of
+The scan unit is not certified in millimetres. The displacement threshold of
 this local search is therefore not an M64 functional clearance. No conclusion
 on cooling, strength, fatigue or LPBF printability is drawn from this
 geometric bound. The number of boxes and the depth bound the algorithm's

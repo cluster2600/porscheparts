@@ -128,8 +128,8 @@ about the part.
 
 | Pilot | Datum in its plan |
 |---|---|
-| `993-INT-SWITCH-BLANK-0001` | origin at the center of the visible face; X width, Y height, Z out of the face toward the cabin, as in `TWIN-993-CABIN-DASH-SWITCH-0001` |
-| `993-INT-DOOR-PULL-0001` | origin at the center of the mounting plane; X along the handle, Z normal to the mounting plane |
+| `993-INT-SWITCH-BLANK-0001` | origin at the centre of the visible face; X width, Y height, Z out of the face toward the cabin, as in `TWIN-993-CABIN-DASH-SWITCH-0001` |
+| `993-INT-DOOR-PULL-0001` | origin at the centre of the mounting plane; X along the handle, Z normal to the mounting plane |
 | `993-INT-SEAT-RAIL-COVER-0001` | origin on the axis of the first fixing; X along the rail, Z up |
 
 Scale, in force: a certified scale bar in every shot
@@ -153,7 +153,7 @@ In force, from the pinned plans of the door pull and the dashboard trim:
 - a manifest with camera, focal length, number of views, software and version,
   reprojection error, scale bars used and residual deviation;
 - a glossy or black part gets a removable matting treatment (door pull plan); a
-  dark grained surface is favorable, unlike a glossy varnish (dashboard plan);
+  dark grained surface is favourable, unlike a glossy varnish (dashboard plan);
   nothing is sprayed before the initial state is photographed and recorded.
 
 **Proposal P4.** Take the caliper interface dimensions before any matting coat.

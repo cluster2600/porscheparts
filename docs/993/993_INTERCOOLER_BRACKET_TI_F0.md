@@ -7,7 +7,7 @@ print. Its F0 shape consolidates an open frame, two eyelets and a central boss
 into a single solid, with no powder cavity. However, the current shape remains
 largely flat and accessible to cutting followed by machining. LPBF will be
 chosen only if a measured geometry and real loads justify a topology
-optimization or a consolidation impossible to obtain economically by sheet
+optimisation or a consolidation impossible to obtain economically by sheet
 metal or CNC. For the current F0 shape, the provisional route recorded in the
 catalogue is therefore CNC.
 
@@ -138,7 +138,7 @@ claimed for this CAE.
 - support strategy, HIP, machining, CT and galvanic insulation;
 - costed CNC/sheet metal/LPBF comparison;
 - static, vibration and thermal tests and vehicle fitting;
-- professional review and manufacturing authorization.
+- professional review and manufacturing authorisation.
 
 PhysicsNeMo stays out of scope: three meshes of the same synthetic case form
 neither a correlated dataset nor an admissible training domain.

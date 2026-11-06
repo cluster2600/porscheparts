@@ -19,7 +19,7 @@ MoE (3B active) serves several dozen agents on a single card; a bigger model
 would require 4 to 8 GPUs and would break the budget.
 
 The vLLM API listens only on `127.0.0.1`. The compute node reaches it through an
-SSH tunnel with an ephemeral session key, authorized only on the LLM node and
+SSH tunnel with an ephemeral session key, authorised only on the LLM node and
 destroyed with the instances.
 
 ```mermaid

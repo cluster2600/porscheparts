@@ -110,7 +110,7 @@ read as source text and never executed.
 | [CAD-Recode v1.5](https://huggingface.co/filapro/cad-recode-v1.5) | Qwen2-1.5B with a point-cloud projection layer generates CadQuery code; [matching dataset](https://huggingface.co/datasets/filapro/cad-recode-v1.5) exists. | Later scan-to-editable-CAD research. | Model and dataset declare CC-BY-NC-4.0. Custom point-cloud architecture; cannot replace the text-only adapter. |
 
 There is also a [ThomasTheMaker CadQuery dataset](https://huggingface.co/datasets/ThomasTheMaker/cadquery).
-Its API metadata has no declared license at the check date. Keep it as a lead,
+Its API metadata has no declared licence at the check date. Keep it as a lead,
 without importing it into training until rights and provenance are established.
 A permissive model-card tag alone does not settle every upstream dataset's
 rights. Non-commercial models should remain outside the project's default
@@ -205,7 +205,7 @@ geometric intent and phrasing family before weighting or augmentation.
 Use owner-authored examples first. Keep verified old replay, including OpenUSD
 and graph tasks, and audit duplicate weighting separately from unique examples.
 All old/fresh evaluation requests and numeric intents stay out of training.
-External CAD examples need a reviewed license, source revision, unit mapping
+External CAD examples need a reviewed licence, source revision, unit mapping
 and independently checked reference geometry before inclusion.
 
 One bounded continuation is a reasonable initial budget: the existing 1.5B
@@ -289,4 +289,4 @@ All current scores concern synthetic software geometry. Strict raw-mesh/VDB
 qualification, exact Porsche interfaces, fitment, fatigue, CFD/CHT, calibrated
 metal printing and professional engineering release remain separate evidence
 gates. A generated or reconstructed part cannot provide its own inspection
-evidence or manufacturing authorization.
+evidence or manufacturing authorisation.

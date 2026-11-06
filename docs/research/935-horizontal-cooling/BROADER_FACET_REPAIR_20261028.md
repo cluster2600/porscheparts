@@ -7,7 +7,7 @@ explicitly described as conditional.
 
 ## Surface experiment
 
-The previous local repair left 35 triangles below normalized quality 0.05.
+The previous local repair left 35 triangles below normalised quality 0.05.
 Twenty-seven were missed by its needle/cap predicates. A new, separately
 versioned CGAL experiment selects faces below 0.05 using needle threshold 25
 and cap threshold cos(172°), while retaining the 0.020 edge-collapse limit,

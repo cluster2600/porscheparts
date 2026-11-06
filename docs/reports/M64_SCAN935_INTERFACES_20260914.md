@@ -12,7 +12,7 @@ facts, never as nominal M64 values.
 flowchart LR
     A["935 OBJ scan<br/>digest checked"] --> B["Sealing plane<br/>and head frame"]
     B --> C["Circle and cylinder fits<br/>with k = 1 uncertainty"]
-    C --> D["Measured: centering, studs,<br/>plugs, valves, flanges, cam carrier"]
+    C --> D["Measured: centring, studs,<br/>plugs, valves, flanges, cam carrier"]
     C --> E["Not measurable: camshaft axes,<br/>oil passages, seats, threads"]
     D --> F["Contract: candidate facts<br/>level C, not M64 nominal"]
     F --> G["M64 values still required<br/>on a real M64 head"]
@@ -38,11 +38,11 @@ contains only numbers, methods and scripts:
 2. Sealing plane: RANSAC (threshold 0.15; hypotheses within 5° of C), then
    least squares on the inliers of the flat outer ring.
 3. **Head frame**: z = normal of the sealing plane, oriented toward the
-   cylinder (head material at z < 0); origin = axis of the centering circle
+   cylinder (head material at z < 0); origin = axis of the centring circle
    on that plane; x = A projected; y = z × x.
 4. Circles: RANSAC then geometric Gauss-Newton. Cylinders: RANSAC on
    subsamples, then Gauss-Newton (axis, point, radius) on the vertices whose
-   normal is perpendicular to the axis. An unknown axis is initialized with the
+   normal is perpendicular to the axis. An unknown axis is initialised with the
    smallest eigen-direction of the local normals.
 5. Uncertainty k = 1: √(bootstrap σ² + (sensitivity range / 2)²). The
    sensitivity is evaluated over 3 windows, thresholds or balls. It **excludes**
@@ -60,7 +60,7 @@ from a section-based exploration, kept only locally.
 | Chamber lip | 91.19 ± 0.21 | 95 | 0.960 |
 | Ø13 bore at the bottom of the valve pockets | 13.15 / 13.09 (± 0.4 / 0.2) | 993 2V guide bore 13.000–13.018 (WM993 p.154) | ≈ 1.01 |
 
-**Conclusion: the OBJ units are consistent with millimeters, to within a few
+**Conclusion: the OBJ units are consistent with millimetres, to within a few
 percent.** They remain **uncalibrated**: no known physical dimension
 of this part makes it possible to fix the factor. The cross-checks rely on
 other engines (M64, 993 2V, Swindon range). The repository contains no
@@ -73,20 +73,20 @@ This agrees with a 935 cylinder head, not an M64.
 | Interface | Quantity | Value | u (k=1) | Quality / region |
 |---|---|---:|---:|---|
 | Sealing plane | apparent flatness RMS / p95 / peak-to-valley | 0.047 / 0.105 / 0.30 | normal ± 0.19° | 25,120 inliers (85 %), ring r 58.5–75; offset between 4 sectors ≤ 0.005 |
-| Cylinder centering | Ø of centering wall | 113.42 | 0.02 | 3,066 pts, 360° coverage, p95 0.13 |
+| Cylinder centring | Ø of centring wall | 113.42 | 0.02 | 3,066 pts, 360° coverage, p95 0.13 |
 | | depth (plane → counterbore bottom) | 2.21 | 0.02 | bottom parallel to within 0.04°; 11,288 pts |
 | | Ø inner edge of the bottom | 94.28 | 0.09 | 1,097 pts, p95 0.19 |
 | | Ø chamber lip (z −2.7 to −5) | 91.19 | 0.21 | inliers 24 %: band mixed with the fillet |
-| | tilt of the centering axis | 5.9° | unreliable | wall 1.2 u high, angle unconstrained; **do not use** |
+| | tilt of the centring axis | 5.9° | unreliable | wall 1.2 u high, angle unconstrained; **do not use** |
 | Cylinder-head studs | count | 4 | — | closed holes; no others in the footprint |
 | | positions (x, y) at the plane | (−43.38; 42.87) (43.16; 42.99) (43.20; −42.77) (−42.87; −42.84) | 0.06–0.08 | cylinders of 1,800 to 2,200 pts, p95 ≤ 0.23 |
-| | spacing sides / diagonals | 85.71 · 85.75 · 86.07 · 86.54 / 121.52 · 121.78 | 0.1 | pattern centroid 0.07 from the centering axis |
+| | spacing sides / diagonals | 85.71 · 85.75 · 86.07 · 86.54 / 121.52 · 121.78 | 0.1 | pattern centroid 0.07 from the centring axis |
 | | hole Ø | 10.47 · 10.56 · 10.71 · 10.88 | ≤ 0.02 | axes 0.5–1.3° from the normal |
 | Spark plugs (twin ignition) | count | 2 | — | symmetric in x (±20.3 at the plane) |
 | | apparent smooth bore Ø | 11.23 · 11.37 | 0.07 · 0.01 | thread not resolved |
 | | axis angle / sealing plane | 61.7 · 60.3° | 3.7 · 0.1° | plug 1 is sensitive to the ball size |
 | Valves | number of axes | 2 (2-valve head) | — | upper B side = 1, lower B side = 2 |
-| | angle to the normal | 26.6 · 29.2° | 1.0 · 1.4° | bore axis compared with the line through the centers of 21–22 circles |
+| | angle to the normal | 26.6 · 29.2° | 1.0 · 1.4° | bore axis compared with the line through the centres of 21–22 circles |
 | | included angle | 55.7° | 1.4° | |
 | | axis spacing at the plane | 33.0 | 1.0 | extrapolation of about 85 u |
 | | Ø tappet / spring bore | 39.26 · 39.15 | 0.14 · 0.03 | 5,800–7,100 pts, p95 0.24 |
@@ -125,7 +125,7 @@ fasteners and a Ø40 port.
 | Quantity | 935 scan | Reference | Deviation / reading |
 |---|---:|---|---|
 | Bore (counterbore edge) | 94.3 | M64 100 (P3); Swindon 95–102.7 | −5.7 % relative to 100: not transferable to an M64 |
-| Centering | 113.4 | no M64 dimension | the 145 surface (T1) is a repair dimension, not a centering |
+| Centring | 113.4 | no M64 dimension | the 145 surface (T1) is a repair dimension, not a centring |
 | Studs | 4, 86 square | M64: designations BM 8×20 / 8×50 (P1), without coordinates | holes Ø10.5–10.9; pattern not comparable for lack of a reference |
 | Valves | 2 per cylinder, throat Ø 45.7 / 38.3 | Swindon 4V: 40 / 33; 993 2V: heads 49 / 42.5 | 2-valve architecture, like the production 993; neither M64 axes nor angles documented |
 | Ø13 pocket | 13.1 | 993 guide bore: 13.000–13.018 | consistent to about 1 %, to be confirmed (feature not identified) |
@@ -137,7 +137,7 @@ The measurements in the table of the [G0 report](M64_G0_INTERFACE_CONTRACT_20260
 remain fully required (CMM, 20 °C, A/B/C datum system). The 935 scan
 only makes it possible to prepare the inspection plan:
 
-1. Ø and depth of the centering, axis relative to plane A (the scan gives an
+1. Ø and depth of the centring, axis relative to plane A (the scan gives an
    order of magnitude of 113 × 2.2 for a 935).
 2. Stud positions and diameters, and spacing between cylinders (the scan
    covers only one cylinder).

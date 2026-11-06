@@ -4,7 +4,7 @@ Research of October 3, 2026. Objective confirmed by the owner: reverse
 engineer **the entire 935 horizontal cooling system**,
 then create an improved, lighter version of it, with better-structured
 blades and more useful air on the engine. PicoGK handles the geometry,
-physics calculations its characterization, and measurements the validation of the twin.
+physics calculations its characterisation, and measurements the validation of the twin.
 The [improved vertical 993 program](../../FAN_DEVELOPMENT_PROGRAMMES.en.md)
 is a separate project.
 
@@ -175,12 +175,12 @@ information from reproduction manufacturers. The [register](dimensions.json)
 keeps each value with its scope and limitations.
 
 The [materials transcription](MATERIALS.en.md) distinguishes factory 935 drive housings
-in magnesium reported by the workshop, aluminum and 7075 reproductions,
+in magnesium reported by the workshop, aluminium and 7075 reproductions,
 composite ducts, as well as the Carrera/Turbo applications and the 993
 spares. These sources do not constitute a material identification of the two OBJ files.
 
 The [additive manufacturing dossier](ADDITIVE_MATERIALS.en.md) records the
-three families chosen by the owner: aluminum, magnesium and titanium.
+three families chosen by the owner: aluminium, magnesium and titanium.
 The first candidates are AlSi10Mg, WE43 and Ti64, to be compared separately
 for each part and process of the improved 993 and 935 versions.
 

@@ -29,9 +29,9 @@ readback, which does not repeat full tetra-face sorting.
 The two nonpositive-SICN cells contain only original fixed-boundary nodes;
 exact node coordinates and diagnostics are retained in the capsule. Interior-
 only relocation with unchanged connectivity cannot alter those cells. The
-next control is only a source proposal: one default Gmsh post-export optimizer
+next control is only a source proposal: one default Gmsh post-export optimiser
 on the saved capped software cube, allowing audited internal connectivity
-changes while preserving the exact surface. No run of that proposed optimizer
+changes while preserving the exact surface. No run of that proposed optimiser
 on either cube or head has occurred. Unfinished Relocate3D source is excluded.
 
 Open the MSH in **Gmsh** for inspection. MSH carries no standard unit metadata;

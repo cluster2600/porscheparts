@@ -17,7 +17,7 @@ it is not presented here as software published by the Porsche repository.
 | Launcher | `/Users/maxime/.local/bin/openbao-huggingface` |
 | Wrapper version | `0.1.1` |
 | Library | `huggingface-hub 1.31.0` |
-| Authorized KV v2 secret | `secrets/data/huggingface`, field `HF_TOKEN` |
+| Authorised KV v2 secret | `secrets/data/huggingface`, field `HF_TOKEN` |
 | Secret version used | `1` |
 | Repository | `orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4` |
 | Confirmed right | Read |
@@ -54,7 +54,7 @@ and returned the expected refusal:
 `bootstrap already exists; refusing to create an orphaned SecretID`. It did not
 recreate the AppRole or replace the existing credentials. The access check
 succeeded after this refusal. **Do not delete the bootstrap or force its
-replacement to get past this step**: it serves the first initialization, not the
+replacement to get past this step**: it serves the first initialisation, not the
 routine check.
 
 ## Current access circuit

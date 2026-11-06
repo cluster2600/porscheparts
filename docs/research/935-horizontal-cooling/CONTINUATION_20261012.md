@@ -1,116 +1,115 @@
-# 935 — rotor fermé sous hypothèses et premiers solveurs
+# 935 — rotor closed under assumptions, and first solvers
 
 [Dossier](README.md) · [Plan](RECONSTRUCTION_PLAN.md) ·
-[État de référence](STATUS_20261012.md) · [Banc](BENCH_PROTOCOL.md)
+[Reference status](STATUS_20261012.md) · [Bench](BENCH_PROTOCOL.md)
 
-## Résultat et statut des cinq étapes
+## Result and status of the five stages
 
-Cette continuation produit un **candidat de rotor entier**, des masses et
-inerties sur dix cartes matière, un pilote CFD MRF/SST, un maillage mécanique
-du rotor entier et un USD géométrique. Elle ne clôt pas les cinq étapes du
-système : le mécanisme complet, les interfaces de montage et la confrontation
-au banc restent à établir. La cible demeure la 935 ; aucune adaptation 993
-n'entre dans ce lot.
+This continuation produces a **whole-rotor candidate**, masses and inertias
+for ten material cards, an MRF/SST CFD pilot, a mechanical mesh of the whole
+rotor and a geometric USD. It does not close the five stages of the system:
+the complete mechanism, the mounting interfaces and the comparison with the
+bench remain to be established. The target remains the 935; no 993
+adaptation is part of this batch.
 
-| Étape | Travail livré | Clôture |
+| Stage | Work delivered | Closure |
 |---|---|---|
-| 1. Métrologie et reconstruction | Source de pale acquise, recalage cyclique des contours, répétition périodique et fermetures explicitement hypothétiques. | Échelle à confirmer par deux cotes par scan ; comparaison indépendante des surfaces et variante exacte encore nécessaires. |
-| 2. Pièces et assemblage | Rotor fermé en un solide, STEP relu et FCStd avec composants et union. | Arbres, renvoi, roulements, fixation moteur et guides ne forment pas encore un assemblage fonctionnel. |
-| 3. Calculs | Masses/inerties, 80 scénarios cinétiques, pilote CFD et calcul centrifuge 3D. | Convergence CFD/structure, charges aérauliques, thermique, modes, fatigue et transmission ne sont pas validés. |
-| 4. Fabrication | Source régénérable, surfaces du candidat et liste des opérations/contrôles ci-dessous. | Dossier provisoire ; interfaces, tolérances, procédés qualifiés et revue mécanique manquent. |
-| 5. Jumeau et banc | Géométrie USD, unités SI, dix variantes masse/inertie et rotation prescrite. | Rotor seul ; aucune simulation dynamique du mécanisme ni mesure de banc utilisée. |
+| 1. Metrology and reconstruction | Blade source acquired, cyclic registration of the contours, periodic repetition and explicitly hypothetical closures. | Scale to be confirmed by two dimensions per scan; independent comparison of the surfaces and an exact variant still needed. |
+| 2. Parts and assembly | Rotor closed as one solid, STEP read back and FCStd with components and union. | Shafts, angle drive, bearings, engine mounting and guides do not yet form a functional assembly. |
+| 3. Calculations | Masses/inertias, 80 kinetic scenarios, CFD pilot and 3D centrifugal calculation. | CFD/structural convergence, aerodynamic loads, thermal, modes, fatigue and transmission are not validated. |
+| 4. Manufacturing | Regenerable source, candidate surfaces and the list of operations/checks below. | Provisional dossier; interfaces, tolerances, qualified processes and mechanical review are missing. |
+| 5. Twin and bench | USD geometry, SI units, ten mass/inertia variants and prescribed rotation. | Rotor only; no dynamic simulation of the mechanism and no bench measurement used. |
 
-Les contrats de référence ne sont pas remplis avec ces hypothèses : les
-17 interfaces restent non vérifiées et les autorisations de fabrication et de
-validation physique restent à `false`.
+The reference contracts are not fulfilled with these assumptions: the
+17 interfaces remain unverified and the manufacturing and physical validation
+authorisations remain at `false`.
 
-## Reconstruction et variantes rejetées
+## Reconstruction and rejected variants
 
-Les anciennes plages observées constituent les entrées. Leur empreinte et
-les transformations d'acquisition sont conservées. L'échelle de
-**1 mm par unité source** est une hypothèse de travail, pas une calibration ;
-les précisions annoncées dans les noms des OBJ ne définissent pas leurs unités.
+The old observed ranges are the inputs. Their digest and the acquisition
+transforms are kept. The scale of **1 mm per source unit** is a working
+assumption, not a calibration; the precisions stated in the OBJ names do not
+define their units.
 
-Une première fermeture utilisait la médiane de plusieurs contours. Elle
-produisait un solide valide, mais l'inspection multivue a révélé des pointes
-irrégulières. **Cette variante est rejetée**, avec ses géométries, images et
-reçus conservés. Une convergence du volume ne suffit pas à accepter une forme.
+A first closure used the median of several contours. It produced a valid
+solid, but multi-view inspection revealed irregular spikes. **This variant is
+rejected**, with its geometries, images and receipts kept. Volume convergence
+is not enough to accept a shape.
 
-Le candidat suivant utilise une pale mieux couverte. Les contours sont
-recalés par permutation cyclique avant loft ; neuf secteurs identiques sont
-une hypothèse de périodicité. Les sections absentes aux pieds/extrémités
-prolongent un profil constant ; l'extrémité est recoupée circulairement.
-La cuvette, son épaisseur, sa fermeture et le bossage sont des définitions
-provisoires. Les raccordements ne constituent pas des congés qualifiés.
-Les autres pales acquises restent disponibles pour une comparaison
-indépendante ; elles ne sont pas remplacées dans les scans originaux.
+The next candidate uses a better-covered blade. The contours are registered
+by cyclic permutation before lofting; nine identical sectors are a
+periodicity assumption. The sections missing at the roots/tips extend a
+constant profile; the tip is trimmed circularly. The dish, its thickness, its
+closure and the boss are provisional definitions. The blends do not
+constitute qualified fillets. The other acquired blades remain available for
+an independent comparison; they are not replaced in the original scans.
 
-Le FCStd contient les composants BRep importés et une union éditable.
-Les paramètres et profils régénérables sont dans le cas JSON, les sections
-JSON et le programme Python ; ce FCStd n'est pas un historique natif complet
-de toutes les sections. Le STEP est relu et contrôlé en volume et solidité.
+The FCStd contains the imported BRep components and an editable union.
+The regenerable parameters and profiles are in the JSON case, the JSON
+sections and the Python program; this FCStd is not a complete native history
+of all the sections. The STEP is read back and checked for volume and
+solidity.
 
-## Environnement requalifié
+## Requalified environment
 
-Kali2 était inaccessible à l'adresse connue. Aucun changement de certificat
-ou de secret n'a été effectué. Les travaux utilisent le Mac et les conteneurs
-Linux locaux, sans nouvelle location Vast.
+Kali2 was unreachable at the known address. No certificate or secret was
+changed. The work uses the Mac and local Linux containers, without a new Vast
+rental.
 
-| Outil | Runtime exécuté |
+| Tool | Runtime executed |
 |---|---|
-| .NET | SDK 9.0.318, installé dans le dossier privé du lot |
-| PicoGK C# | 2.3.0, tag officiel `PicoGK-v2.3.0`, commit `14c5384bcac57ede245021bb78e70d1445b40e3f` |
-| PicoGK natif | Core 26.2.0, build du 5 juin 2026, macOS ARM64 |
-| FreeCAD | 1.1.4, macOS ARM64 ; STEP/FCStd relus |
-| Science/CAO | Linux AMD64 : NumPy 2.5.2, SciPy 1.18.1, build123d 0.11.1, Gmsh 4.12.1 |
+| .NET | SDK 9.0.318, installed in the batch's private folder |
+| PicoGK C# | 2.3.0, official tag `PicoGK-v2.3.0`, commit `14c5384bcac57ede245021bb78e70d1445b40e3f` |
+| PicoGK native | Core 26.2.0, build of 5 June 2026, macOS ARM64 |
+| FreeCAD | 1.1.4, macOS ARM64; STEP/FCStd read back |
+| Science/CAD | Linux AMD64: NumPy 2.5.2, SciPy 1.18.1, build123d 0.11.1, Gmsh 4.12.1 |
 | CFD | OpenCFD OpenFOAM v2406, Linux ARM64 |
-| Structure | CalculiX 2.21 ; exécutions AMD64 émulée et ARM64 native séparées dans les journaux |
-| USD | usd-core 25.11 ; relecture des dix variantes et des tenseurs d'inertie |
+| Structure | CalculiX 2.21; emulated AMD64 and native ARM64 runs kept separate in the logs |
+| USD | usd-core 25.11; ten variants and inertia tensors read back |
 
-Les versions/empreintes effectivement utilisées sont conservées avec les
-résultats. Les anciens verrous, reçus et recettes ne sont pas modifiés.
-Le code et les binaires PicoGK proviennent du
-[dépôt officiel LEAP 71](https://github.com/leap71/PicoGK/tree/PicoGK-v2.3.0).
-L'authoring utilise les schémas USD Physics standards ; un export lisible
-n'est pas une validation de simulation Omniverse ou du fonctionnement réel.
+The versions/digests actually used are kept with the results. The old locks,
+receipts and recipes are not modified. The PicoGK code and binaries come from
+the [official LEAP 71 repository](https://github.com/leap71/PicoGK/tree/PicoGK-v2.3.0).
+The authoring uses the standard USD Physics schemas; a readable export is not
+a validation of an Omniverse simulation or of real operation.
 
-## Résultats conditionnels du candidat périodique
+## Conditional results for the periodic candidate
 
-Le BRep fermé représente environ **426,24 cm³** à l'échelle supposée.
-Après correction locale des deux artefacts voxel, la surface fine est fermée,
-avec une composante et une orientation cohérente. La variation du volume
-entre 0,4 et 0,2 mm vaut **0,0149 %** et celle des inerties principales
-**0,0133 %**. Ces contrôles portent sur la discrétisation du candidat,
-pas sur sa fidélité historique ou ses tolérances de fabrication.
+The closed BRep represents about **426.24 cm³** at the assumed scale.
+After local correction of the two voxel artefacts, the fine surface is closed,
+with one component and a consistent orientation. The volume change between
+0.4 and 0.2 mm is **0.0149 %** and that of the principal inertias
+**0.0133 %**. These checks concern the discretisation of the candidate, not
+its historical fidelity or its manufacturing tolerances.
 
-| Carte | Masse CAD supposée | Inertie polaire au repère candidat |
+| Card | Assumed CAD mass | Polar inertia in the candidate frame |
 |---|---:|---:|
-| AlSi10Mg | 1,138 kg | 0,009408 kg·m² |
-| WE43 | 0,780 kg | 0,006448 kg·m² |
-| Ti‑6Al‑4V | 1,876 kg | 0,015504 kg·m² |
+| AlSi10Mg | 1.138 kg | 0.009408 kg·m² |
+| WE43 | 0.780 kg | 0.006448 kg·m² |
+| Ti‑6Al‑4V | 1.876 kg | 0.015504 kg·m² |
 
-À 6 000 tr/min, sur le **même maillage hexaédrique de 1,5 mm**, les calculs
-série fournissent les valeurs ci-dessous. L'encastrement et le matériau
-isotrope sont supposés ; la pression aérodynamique et la température ne sont
-pas appliquées. Le pic n'est pas une contrainte admissible et la convergence
-au raffinement n'est pas établie.
+At 6,000 rpm, on the **same 1.5 mm hexahedral mesh**, the serial
+calculations give the values below. Fixed clamping and an isotropic material
+are assumed; aerodynamic pressure and temperature are not applied. The peak
+is not an allowable stress and convergence under refinement is not
+established.
 
-| Carte | Pic von Mises | Déplacement maximal |
+| Card | Von Mises peak | Maximum displacement |
 |---|---:|---:|
-| AlSi10Mg | 122,6 MPa | 0,138 mm |
-| WE43 | 84,0 MPa | 0,150 mm |
-| Ti‑6Al‑4V | 202,1 MPa | 0,145 mm |
+| AlSi10Mg | 122.6 MPa | 0.138 mm |
+| WE43 | 84.0 MPa | 0.150 mm |
+| Ti‑6Al‑4V | 202.1 MPa | 0.145 mm |
 
-Le premier point CFD termine 400 itérations avec une erreur de bilan
-volumique d'environ **0,0634 %**. La pression demeure instable : ce point
-est **refusé pour la courbe débit–pression**, et aucun rendement du montage
-935 n'est annoncé. Les maillages intermédiaire/fin sont préparés ; leur
-convergence n'est pas démontrée par le pilote grossier.
+The first CFD point completes 400 iterations with a volumetric balance error
+of about **0.0634 %**. The pressure remains unstable: this point is
+**refused for the flow–pressure curve**, and no efficiency of the 935
+installation is stated. The medium/fine meshes are prepared; their
+convergence is not demonstrated by the coarse pilot.
 
-## Commandes et interfaces reproductibles
+## Reproducible commands and interfaces
 
-Le coordinateur conserve trois arguments : cas, étape, nouveau dossier privé.
-Les étapes nouvelles sont séparées de la reconstruction des surfaces observées :
+The coordinator keeps three arguments: case, stage, new private folder.
+The new stages are separate from the reconstruction of the observed surfaces:
 
 ```sh
 python twins/935-horizontal-cooling-system-f0/source/run_reconstruction.py \
@@ -142,84 +141,88 @@ python twins/935-horizontal-cooling-system-f0/source/run_reconstruction.py \
   /private/twin-case.json twin-candidate /private/new-twin
 ```
 
-Dans un checkout Git, les sorties dérivées doivent se trouver dans `work/`
-ignoré. Les exemples `/private/` désignent un dossier privé extérieur au dépôt.
-Un dossier existant est refusé. Chaque cas référence les empreintes des
-entrées ; le coordinateur sauvegarde les échecs sans promouvoir les résultats.
-Les STL sources du candidat sont en mm ; les STL CFD et le USD sont en mètres.
-Le maillage CalculiX utilise N–mm–tonne–s, avec contraintes en MPa.
+The two French comments in this block read: "In the OpenCFD v2406 runtime,
+after loading its environment:" and "The serial run copies the verified deck
+to a new working folder."
 
-## Limites des calculs et contrôles
+In a Git checkout, derived outputs must be in the ignored `work/`. The
+`/private/` examples designate a private folder outside the repository.
+An existing folder is refused. Each case references the digests of its
+inputs; the coordinator saves failures without promoting the results.
+The candidate's source STLs are in mm; the CFD STLs and the USD are in metres.
+The CalculiX mesh uses N–mm–tonne–s, with stresses in MPa.
 
-La densité transforme le volume et les inerties géométriques en masse et
-inertie mécanique. Les dix cartes précédentes restent des comparateurs.
-Le WE43 conserve des propriétés de substitution non qualifiées pour la pièce.
-Les scénarios de freinage utilisent les régimes, temps d'arrêt et balourd
-supposés de la campagne existante ; ils ne donnent pas de vitesse admissible.
+## Limits of the calculations and checks
 
-Le pilote CFD place le rotor dans un conduit carré hypothétique :
-**6 000 tr/min, débit imposé de 0,6 m³/s**. Ce débit est une condition de banc
-numérique, pas le débit prédit du montage moteur. Les stations utilisent
-la moyenne surfacique de `rho*(p + |U|²/2)` ; le couple est calculé à partir
-du moment fluide au repère candidat. L'acceptation exige aussi la stabilité
-de ces grandeurs et les trois maillages. Les premières tentatives ont été
-conservées : conversion SI, position du point fluide, diagnostics de
-concavité et en-tête du dictionnaire de qualité ont été corrigés. Le contrôle
-`checkMesh -meshQuality` applique les seuils explicites ; le diagnostic
-géométrique complet du premier maillage demeure conservé séparément.
-Les couches de paroi, le y+, le carter réel et les pertes moteur ne sont pas
-qualifiés par ce pilote.
+Density turns the geometric volume and inertias into mass and mechanical
+inertia. The ten previous cards remain comparators. WE43 keeps substitute
+properties that are not qualified for the part. The braking scenarios use the
+speeds, stopping times and imbalance assumed in the existing campaign; they
+do not give an allowable speed.
 
-Les tentatives tétraédriques du BRep ont échoué sur des intersections de
-facettes. Le pilote mécanique utilise donc des cellules hexaédriques dont
-les centres sont dans le champ signé PicoGK, avec contrôle Gmsh des Jacobiennes,
-de la connexité, du bore et du volume. Aucun fragment n'est silencieusement
-supprimé. Les grilles grossières déconnectées ou remplissant le bore sont
-refusées. Le cas exécuté encastre un bore nominal ; il applique seulement la
-centrifugation, à matériau isotrope et Poisson supposé de 0,33.
-Ce n'est ni un contact arbre/moyeu réel, ni un calcul de fatigue.
+The CFD pilot places the rotor in a hypothetical square duct:
+**6,000 rpm, imposed flow of 0.6 m³/s**. This flow is a numerical bench
+condition, not the predicted flow of the engine installation. The stations
+use the area average of `rho*(p + |U|²/2)`; torque is calculated from the
+fluid moment in the candidate frame. Acceptance also requires stability of
+these quantities and the three meshes. The first attempts were kept: SI
+conversion, fluid point position, concavity diagnostics and the quality
+dictionary header were corrected. The `checkMesh -meshQuality` check applies
+the explicit thresholds; the complete geometric diagnostics of the first mesh
+remain kept separately. The wall layers, y+, the real housing and the engine
+losses are not qualified by this pilot.
 
-Les sorties ARM parallèles ayant échoué à l'équilibre des efforts sont
-rejetées. Les rejouements et journaux de chaque architecture sont conservés ;
-le lanceur utilise désormais un calcul série dans un dossier neuf. Un code
-de retour nul ne vaut pas acceptation des contraintes ou de la vitesse.
+The tetrahedral attempts on the BRep failed on facet intersections. The
+mechanical pilot therefore uses hexahedral cells whose centres lie in the
+PicoGK signed field, with Gmsh checks of Jacobians, connectivity, bore and
+volume. No fragment is silently deleted. Coarse grids that are disconnected
+or that fill the bore are refused. The case run clamps a nominal bore; it
+applies only centrifugal loading, with an isotropic material and an assumed
+Poisson's ratio of 0.33. It is neither a real shaft/hub contact nor a fatigue
+calculation.
 
-La voxelisation à 0,2 mm a aussi produit deux petits polyèdres isolés de douze
-triangles. Ils sont identifiés comme artefacts numériques d'un BRep d'entrée
-à un seul solide, jamais comme fragments du scan. Une exclusion locale
-explicite conserve les coordonnées/octets de toutes les autres faces ;
-les sorties brutes et la conversion de format rejetée restent conservées.
-La fermeture et la connexité du résultat sont recontrôlées après correction.
+The parallel ARM outputs that failed the force balance are rejected. The
+replays and logs of each architecture are kept; the launcher now uses a
+serial calculation in a new folder. A zero return code does not amount to
+acceptance of the stresses or the speed.
 
-Le USD vérifie masses, unités, centres et tenseurs d'inertie après relecture.
-La rotation est **cinématiquement prescrite** ; elle ne prouve pas que les
-engrenages transmettent le couple, que les roulements tiennent ou que les
-interférences ont été résolues.
+Voxelisation at 0.2 mm also produced two small isolated polyhedra of twelve
+triangles. They are identified as numerical artefacts of a single-solid input
+BRep, never as fragments of the scan. An explicit local exclusion keeps the
+coordinates/bytes of all other faces; the raw outputs and the rejected format
+conversion remain kept. The closure and connectivity of the result are
+re-checked after correction.
 
-## Fabrication — dossier encore provisoire
+The USD checks masses, units, centres and inertia tensors after reading back.
+The rotation is **kinematically prescribed**; it does not prove that the gears
+transmit torque, that the bearings hold or that interferences have been
+resolved.
 
-| Élément | Définition/contrôle requis avant fabrication fonctionnelle |
+## Manufacturing — dossier still provisional
+
+| Item | Definition/check required before functional manufacturing |
 |---|---|
-| Rotor | Calibrer le scan, qualifier pieds/congés/épaisseurs, bore et retenue ; contrôler déformations, modes précontraints, survitesse et fatigue ; définir équilibrage. |
-| Moyeu/arbre | Ajustements, cannelures/clavette, serrage, retenue axiale, concentricité et transmission du couple de freinage mesurés. |
-| Renvoi | Denture, rapport, entraxes, appuis, jeu, lubrification, joints et dissipation définis ; une enveloppe extérieure ne les détermine pas. |
-| Support/carter | Plans des fixations moteur, chemins de charge, rigidité, jeux chauds/froids et accès maintenance confirmés. |
-| Guides d'air | Surfaces, fuites et raccordement au moteur établis avant de conclure au refroidissement installé. |
+| Rotor | Calibrate the scan, qualify roots/fillets/thicknesses, bore and retention; check deformations, prestressed modes, overspeed and fatigue; define balancing. |
+| Hub/shaft | Fits, splines/key, clamping, axial retention, concentricity and transmission of the braking torque measured. |
+| Angle drive | Gear teeth, ratio, centre distances, supports, backlash, lubrication, seals and heat dissipation defined; an outer envelope does not determine them. |
+| Bracket/housing | Engine mounting drawings, load paths, stiffness, hot/cold clearances and maintenance access confirmed. |
+| Air guides | Surfaces, leaks and connection to the engine established before concluding on installed cooling. |
 
-Pour AlSi10Mg, WE43 ou Ti‑6Al‑4V, le fournisseur doit figer procédé,
-orientation, poudre, traitements, reprises d'usinage et coupons. Le dossier
-doit couvrir contrôle dimensionnel, défauts/porosité, fatigue, contrôle non
-destructif et équilibrage. Pour le titane, ajouter l'isolation galvanique
-aux interfaces et la traçabilité des traitements. Les surépaisseurs d'usinage
-et tolérances restent à définir avec les interfaces et le procédé retenus ;
-les précisions des scans ne les remplacent pas.
+For AlSi10Mg, WE43 or Ti‑6Al‑4V, the supplier must freeze process,
+orientation, powder, treatments, finish machining and coupons. The dossier
+must cover dimensional inspection, defects/porosity, fatigue, non-destructive
+testing and balancing. For titanium, add galvanic isolation at the interfaces
+and traceability of the treatments. Machining allowances and tolerances
+remain to be defined with the chosen interfaces and process; the scan
+precisions do not replace them.
 
-Le [protocole de banc](BENCH_PROTOCOL.md) doit ensuite être exécuté sur un
-ensemble mécanique revu, avec points de mesure réservés pour la corrélation.
-Il faut un donneur/receveur identifié, des cotes de référence et un atelier
-ou banc accessible pour clôturer la réplique de montage et la validation physique.
-Ni le volume fermé, ni les tests logiciels, ni le USD ne remplacent ces preuves.
+The [bench protocol](BENCH_PROTOCOL.md) must then be run on a reviewed
+mechanical assembly, with measurement points reserved for correlation.
+An identified donor/recipient, reference dimensions and an accessible
+workshop or bench are needed to close the installation replica and the
+physical validation. Neither the closed volume, nor the software tests, nor
+the USD replace this evidence.
 
-Les résultats, cas, sources de chaque tentative et dérivés restent dans le
-[dépôt privé](https://github.com/cluster2600/porscheparts-935-private).
-Le Git public contient uniquement programmes, tests et documentation.
+The results, cases, sources of each attempt and derivatives stay in the
+[private repository](https://github.com/cluster2600/porscheparts-935-private).
+The public Git contains only programs, tests and documentation.

@@ -5,7 +5,7 @@ computation, CFD and SimReady preparation — does not fit on an ordinary
 workstation. It is described here as eight reproducible container images,
 runnable locally or on a GPU machine rented by the hour.
 
-No container is needed to contribute to the catalog. `make check`
+No container is needed to contribute to the catalogue. `make check`
 remains a dependency-free Python command.
 
 ## Eight images, eight needs
@@ -31,7 +31,7 @@ standard Vast.ai instance cannot run Docker Compose inside Docker.
 The image must be built and tested in GitHub Actions before any rental. NVIDIA
 secrets are never placed in a layer: they are injected after SSH login by the
 OpenBao wrapper, then `simready-services start` validates the inference
-authorization with a minimal request that displays neither secret nor
+authorisation with a minimal request that displays neither secret nor
 response, then starts the native services. An HTTP 401/403 error therefore
 blocks the chain before batch preparation and rendering.
 
@@ -54,7 +54,7 @@ On Vast.ai, the 917 and 935 scans were converted to direct USD and rendered by
 OVRTX. The Material Agent prepared its views but the call to the public model
 was refused with HTTP 403: conversion and rendering are proven, AI assignment
 and Physics Agent are not. This split avoids confusing a ready service with a
-valid API authorization.
+valid API authorisation.
 
 The profile validator must receive the three specification directories.
 Use the embedded launcher rather than the raw command:
@@ -188,7 +188,7 @@ Docker image.
   For a recent Blackwell card, check compatibility before renting.
 - Code_Aster is not copied into `physicsml`: its official reproducible
   distribution relies on the Salome-Meca/Singularity environment. CalculiX is
-  included for the immediately available containerized FE path; Code_Aster
+  included for the immediately available containerised FE path; Code_Aster
   will be consumed in its dedicated container once we have frozen a
   Vast.ai-compatible image and smoke test.
 
@@ -237,7 +237,7 @@ The Kitesurf engine can therefore, to date, only be selected through the REST
 API.
 
 Pitfall to know: `quickAction()` returns a `Response` object, not a bare
-object. Serializing it directly produces `{}` and suggests an empty page. The
+object. Serialising it directly produces `{}` and suggests an empty page. The
 useful body is `{ success, result }`.
 
 What Browser Run does not solve: a host that returns 403, and a site that
@@ -252,7 +252,7 @@ A rented machine belongs to someone else.
 - No private key, no token, no vehicle identifier on the instance.
 - Raw photos and scans stay out of the Git repository, in line with
   [AGENTS.md](../AGENTS.md).
-- Do not process personal data there: license plates, faces, registration
+- Do not process personal data there: licence plates, faces, registration
   documents.
 - What comes back into the repository is the processed result and its
   traceability, not the raw content.

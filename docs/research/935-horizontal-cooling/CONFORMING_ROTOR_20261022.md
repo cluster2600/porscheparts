@@ -46,7 +46,7 @@ after seeing them. A positive Jacobian is insufficient for a converged stress.
 `prepare_conforming_fea.py` generates C3D4 and C3D10 decks from the same parent
 tetrahedra. The quadratic deck shares edge midpoints in CalculiX order and has
 4,100,825 nodes. It does not replace the surface by a stepped hexahedral grid.
-Every serialized quadratic cell passes a whole-simplex Jacobian perturbation
+Every serialised quadratic cell passes a whole-simplex Jacobian perturbation
 bound. The complete geometric transport bound is below 2.67e-14 scan units;
 the 1e-9 budget is numerical, not a scanner or machining tolerance.
 
@@ -60,7 +60,7 @@ identified bearing fit. Pressure, thermal loading, contact and fatigue are absen
 
 The existing Linux CalculiX 2.23 solves the full C3D4 deck successfully.
 Homebrew's arm64 2.23 passes six small bending witnesses but crashes on the
-same full deck in `I2Ohash_insert` during SPOOLES factorization. The failed
+same full deck in `I2Ohash_insert` during SPOOLES factorisation. The failed
 attempt, initial binary identity and relevant crash symbols are retained.
 
 The author publishes a [SPOOLES correction for large input decks](https://www.dhondt.de/ccx_2.23.SPOOLEScorrection.tar.bz2).
@@ -165,7 +165,7 @@ Resolve thin-cell quality and demonstrate h-refinement convergence before
 accepting structural performance. Then add modal/prestress, pressure and thermal
 loads and process-specific material data. Prepare an independent full-rotor/
 casing OpenFOAM case; no previous R0/V2/S1 curve transfers to this geometry.
-OpenMDAO optimization and PhysicsNeMo training still need accepted references.
+OpenMDAO optimisation and PhysicsNeMo training still need accepted references.
 
 The 17 mechanical interfaces, dimensional calibration, hidden transmission,
 bearings, lubrication, real engine mounting and the engine-context/drive crossing

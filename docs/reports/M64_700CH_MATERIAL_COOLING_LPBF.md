@@ -24,11 +24,11 @@ flowchart LR
 1. **AlSi10Mg: software/process witness**, to correct the existing AdditiveFOAM
    coupon with consistent data, without presenting it as the M64 cylinder head.
 2. **CP1: heat-spreading branch; HT1: hot-strength branch.**
-   Compare identical geometries before optimizing each one. The heat treatments
+   Compare identical geometries before optimising each one. The heat treatments
    and test conditions differ: the figures below do not by themselves
    rank complete cylinder heads.
 3. **A20X and AlF357: alternatives**, respectively if the conditions of the A20X
-   hot tests are obtained, and as another documented LPBF aluminum route.
+   hot tests are obtained, and as another documented LPBF aluminium route.
 4. **Machined 2618: conventional benchmark**, without presuming an LPBF recipe.
    **718: mass/conduction comparison**, not a proposal for a whole cylinder head
    by default. A valve or insert material is not automatically a
@@ -41,7 +41,7 @@ flow, oil circuit, mixture richness, ignition advance and transient scenarios.
 
 ## What is actually measured
 
-`YS` denotes the yield strength as labeled by the source; a 0.2 % offset
+`YS` denotes the yield strength as labelled by the source; a 0.2 % offset
 is not invented. A treatment at 400 °C is not a test at 400 °C.
 
 | Candidate | Useful data and exact state | Limit for our computation |
@@ -52,7 +52,7 @@ is not invented. A treatment at 400 °C is not a test at 400 °C.
 | A20X | Hot table: YS/UTS 311/331 MPa at 200 °C and 215/224 at 250 °C. Announced density 2.85 g/cm³. | The hot table does not state treatment, orientation, hold time or sample size. **Do not label it T7** by proximity to another table. |
 | AlF357 | EOS M290/30 µm route: after T6, vertical, YS 265/UTS 330 MPa at room temperature; k announced 150 W/(m·K), measurement temperature not stated. | A good room-temperature sheet does not constitute a hot law. |
 | 2618 | NASA: curves for extruded 2618-T6511, including hot tests after 100 h at the test temperature. | Neither FVD billet identified, nor forged 2618-T61, nor LPBF state. Do not convert into M64 allowables. |
-| INCONEL 718 | Material bulletin: Cp 435 J/(kg·K) at 21 °C; annealed/aged state, k ≈ 11.39 at 21.1 °C and 14.42 W/(m·K) at 204.4 °C; density ≈ 8.22 g/cm³. | Conventional data, not an LPBF map. At equal volume, about three times the mass of an aluminum at 2.73 g/cm³; much lower conduction in these states, not a computed cylinder-head thermal resistance. |
+| INCONEL 718 | Material bulletin: Cp 435 J/(kg·K) at 21 °C; annealed/aged state, k ≈ 11.39 at 21.1 °C and 14.42 W/(m·K) at 204.4 °C; density ≈ 8.22 g/cm³. | Conventional data, not an LPBF map. At equal volume, about three times the mass of an aluminium at 2.73 g/cm³; much lower conduction in these states, not a computed cylinder-head thermal resistance. |
 
 Original sources: [Lehmhus et al., Materials 2022, 15, 7386, pp. 1, 5–6](https://mdpi-res.com/d_attachment/materials/materials-15-07386/article_deploy/materials-15-07386.pdf),
 [Constellium CP1, 2021 sheet, p. 2](https://assets.foleon.com/eu-central-1/de-uploads-7e3kk3/41170/product_sheet_aheadd_cp1_nov_2021docx.e81a7d073ebf.pdf),
@@ -104,14 +104,14 @@ interfaces. Evaluate at identical outer geometry and loads:
 - **A — forced air only:** fins, deflectors and circulation paths;
   conjugate solid/air computation, pressure losses, flow actually delivered by the
   fan, temperature of the exhaust/spark-plug bridges and gradients at the seats.
-- **B — air + localized oil:** same base, with an accessible passage near the
+- **B — air + localised oil:** same base, with an accessible passage near the
   hot zones and a drainable return. Compare thermal gain, mass, stiffness,
   flow, pump power, reservoir heating and lubrication margin.
 
 This is not an idea to impose without comparison: the current manufacturer page
 FVD 104 993 02 already describes an upper pocket and drilling for oil
 cooling from the 993 cam carrier. It gives neither dimensions nor flow rates. It
-announces **a 7000-series aluminum**, unlike the 930/2618 benchmark provided
+announces **a 7000-series aluminium**, unlike the 930/2618 benchmark provided
 by the user: do not confuse these references. [FVD, 993 GT2/Turbo cylinder head](https://www.fvd.net/us-en/FVD10499302/billet-993gt2-993-turbo-cylinder-head.html).
 
 The geometric benefit of additive manufacturing is demonstrated on another component by the
@@ -183,14 +183,14 @@ imposed at 300 K; the net incoming flux of about 3.8 mJ is therefore not, by
 itself, evidence of a sign error. `nOuterCorrectors=0` does not resolve the
 full convection of the melt pool. The existing map uses the same k/Cp coefficients
 for powder and solid; check their relevance and the powder fraction,
-not import these properties into CP1. No complete model of vapor recoil
+not import these properties into CP1. No complete model of vapour recoil
 or free surface has been added to the coupon.
 
 Order of the next trials, with inputs and witness results kept:
 
 1. **Laser off, the only change being power = 0**: same ICs/BCs, duration,
    material, mesh, cap; integrate sensible/latent storage and fluxes.
-   This isolates the effect of the boundaries in a witness case, without authorizing a
+   This isolates the effect of the boundaries in a witness case, without authorising a
    linear subtraction of the two nonlinear melt pools.
 2. **Third time step and a distinct spatial refinement**, with physics
    unchanged: conservative fluxes, source profile, molten volume, unclipped
@@ -198,7 +198,7 @@ Order of the next trials, with inputs and witness results kept:
    capped are not physical convergence.
 3. **Correct the physics, not the verdict**: check the validity domain of the
    properties and the optical definition, then convection/Marangoni if documented.
-   If the vaporization regime is outside the model's domain, acknowledge this gap and
+   If the vaporisation regime is outside the model's domain, acknowledge this gap and
    use a tested formulation; do not tune absorption or Tmax to
    get through the gate.
 4. **Independent calibration** on a measured melt-pool geometry and a comparable
@@ -227,7 +227,7 @@ reach 120 µs. The results with the same discrete balance are:
 | Laser / latent / advection / limiter | 0 / 0 / 0 / 0 mJ |
 | Integral of absolute residual / net boundary input | 3.166×10⁻⁹ |
 
-Normalization by the laser energy is undefined in this witness and is
+Normalisation by the laser energy is undefined in this witness and is
 not used. The heat input through the boundaries is thus confirmed without
 laser. **This witness does not correct the active-laser case**, whose limiter
 remains significant; the two responses are not subtracted linearly.
@@ -292,7 +292,7 @@ identically zero advective transport provides no order either.
 The relative gap 50→25 ns is 0.0222 % for sensible storage and 0.0730 % for the
 limiter. Despite these small differences, the disparate orders and the latent term
 demonstrate **no common asymptotic regime**. The integral of the absolute
-residual normalized by the laser goes from 3.77×10⁻⁷ to 7.67×10⁻⁷ then
+residual normalised by the laser goes from 3.77×10⁻⁷ to 7.67×10⁻⁷ then
 1.52×10⁻⁶: it is not announced as improving. The columns are
 cross-checked by the same independent sum as F58.
 

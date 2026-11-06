@@ -18,10 +18,10 @@ Original packages remain unmodified. The presentation scene and inspection
 scripts are additions by this project.
 
 `assets.lock.json` pins the revision and upstream hashes of all 140 files,
-including each package's license and dependencies. The provenance record is
+including each package's licence and dependencies. The provenance record is
 [`src-nvidia-simready-reference-assets.json`](../../catalog/sources/src-nvidia-simready-reference-assets.json).
 Downloaded models and generated results remain under `work/`, outside Git.
-Keep this attribution and the licenses when sharing a scene or render.
+Keep this attribution and the licences when sharing a scene or render.
 
 ## Run from the repository root
 

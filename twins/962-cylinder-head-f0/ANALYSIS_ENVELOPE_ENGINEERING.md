@@ -33,7 +33,7 @@ frozen before the head attempt.
 The filter constrains candidate-to-source deviation. Independent reverse
 distance, completed two-sided continuous bounds, topology, feature/channel/BCC,
 global intersection and minimum tetrahedral SICN **0.1** gates remain required.
-The 0.25 mm envelope is an analysis discretization budget, not a manufacturing
+The 0.25 mm envelope is an analysis discretisation budget, not a manufacturing
 tolerance. Neither the filter nor a completed run establishes admission.
 
 Five small known-result envelope queries passed before the head attempt.

@@ -16,7 +16,7 @@ versioned parametric solid; scans and model answers are inputs to be verified.
 | Computation meshing | Gmsh | reproducible volume meshing |
 | Structural/thermal | CalculiX | linear, nonlinear, static and thermal FE |
 | Fluid/thermal | OpenFOAM | flow, convection and heat transfer |
-| Visualization | FreeCAD, Blender, ParaView | CAD inspection, visual context and computation results |
+| Visualisation | FreeCAD, Blender, ParaView | CAD inspection, visual context and computation results |
 | Data | Git + JSON + STEP | provenance, versions, interfaces and acceptance rules |
 
 The Qwen models are published under Apache-2.0. The Coder model is a MoE of
@@ -60,8 +60,8 @@ and context length at rental time.
 
 | Offer | Recommended use | Limit |
 |---|---|---|
-| RTX 4090, 24 GB | Qwen3-VL-8B, COLMAP; quantized Coder 30B run alone | context and KV cache to be limited |
-| RTX A6000 / RTX 6000 Ada, 48 GB | baseline choice: quantized or FP8 Coder 30B, then VL/reconstruction separately | avoid two large models at the same time |
+| RTX 4090, 24 GB | Qwen3-VL-8B, COLMAP; quantised Coder 30B run alone | context and KV cache to be limited |
+| RTX A6000 / RTX 6000 Ada, 48 GB | baseline choice: quantised or FP8 Coder 30B, then VL/reconstruction separately | avoid two large models at the same time |
 | A100/H100, 80 GB or 2 × 48 GB | long contexts and heavier models | cost rarely justified for the first zone |
 
 The best first choice is therefore **a 48 GB card**, 16 vCPUs, 64 GB of
@@ -77,7 +77,7 @@ and the [volumes documentation](https://docs.vast.ai/guides/instances/storage/vo
 
 ## Launching the LLM on Vast.ai
 
-Rental is paid: these commands are a launch template, not an authorization to
+Rental is paid: these commands are a launch template, not an authorisation to
 create the instance. After selecting a 48 GB offer and creating a volume,
 start the official vLLM image with port 8000 exposed:
 
@@ -123,7 +123,7 @@ check.
   never in Git.
 - A Vast volume is temporary and tied to its host; sync the results
   at the end of every session.
-- STEP files and derived reports only enter the repository if their license
+- STEP files and derived reports only enter the repository if their licence
   and provenance allow redistribution.
 - The LLM validates neither the fit, nor the material, nor the safety of a
   part.

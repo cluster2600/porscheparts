@@ -190,10 +190,10 @@ SHA-256 is `4d4b4d0f3629d27c0eb8c1e1bea462af65526f048810b03cfe1a64dbe3674b06`;
 the receipt SHA-256 is
 `bc3146ef7de9b8bc9c691a6796718a8c764d79e51d58fb13b5743d38240ef70f`.
 No solver run or flow curve is credited. The next meshing study must target
-the weak rotor-boundary neighborhoods while preserving the certified surface
+the weak rotor-boundary neighbourhoods while preserving the certified surface
 envelope and the separate mechanical interfaces.
 
-### Exact localization of native mesh failures
+### Exact localisation of native mesh failures
 
 `checkMesh -constant -allGeometry -allTopology -writeSets -writeSurfaces`
 produced the native problem-cell and problem-face sets. The
@@ -215,12 +215,12 @@ boundary. Its three focused parser/matching tests pass.
   are not calibrated 935 dimensions.
 
 This focuses the next local volume-mesh investigation on the blade-root
-neighborhood rather than the exterior block. It does not prove that the scan
+neighbourhood rather than the exterior block. It does not prove that the scan
 itself is defective: the candidate reconstruction, surface triangulation and
 volume mesher can each contribute. Any changed surface must repeat the full
 bidirectional envelope, topology and self-intersection checks before another
 OpenFOAM conversion. The
-[private localization archive](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+[private localisation archive](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
 contains the native sets, VTK outputs, exact boundary-face mapping, plot,
 source copy and hash manifest. All 23 data/source members passed extracted
 hash readback; its SHA-256 is
@@ -259,7 +259,7 @@ other rotor faces provides a non-skew control. Median wall triangle areas
 are similar: 1.35 × 10⁻⁷ and 1.28 × 10⁻⁷ m², respectively. Yet the skew
 group's adjacent-cell height is **6.38 mm** versus **0.583 mm** in the
 control, and its cell-center projection is **2.85 mm** off the wall-face
-center versus **0.093 mm**. Dimensionless height divided by square root of
+centre versus **0.093 mm**. Dimensionless height divided by square root of
 wall area is **16.67** versus **1.70**. These ratios isolate a steep,
 lateral near-wall volume transition in the rejected TetGen mesh. They do
 not prove which meshing setting caused it or establish an actual 935
@@ -325,14 +325,14 @@ or negative face-decomposition tets, and 83,745 cells with determinant below
 0.001. It wrote 189,881 unique faces to `meshQualityFaces`. Of those, 180,083
 are internal and 9,798 are boundary faces. In the conditional rotor envelope
 `r < 0.145 m, |z| < 0.04 m`, 189,539 error faces lie near the rotor; 165,359
-lie in the `0.05 <= r < 0.10 m` radial band. This localization guides the next
+lie in the `0.05 <= r < 0.10 m` radial band. This localisation guides the next
 surface-aware remesh but does not establish a measured rotor dimension.
 
 The [reduced receipt](native-openfoam-precision-20261027.json) pins the input,
 container, logs and counts. The private
 [read-back-verified bundle](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-openfoam-precision17-20261027.tar.gz)
 contains both logs, the exact case dictionaries, coordinate audits, the
-quality-face set and the localization script/report. Its SHA-256 is
+quality-face set and the localisation script/report. Its SHA-256 is
 `a7d3fdf78315c9c4a50c0c7709fcf7171c227a09d8b1ec2764a39a272fcf5958`,
 matching the private GitHub asset digest. The large scan-derived `polyMesh`
 remains local. **No CFD solve is admitted** from either conversion. The next
@@ -381,12 +381,12 @@ self-intersections and complete bidirectional containment within the
 −6.78 × 10⁻⁹%. These are geometry checks against the reconstruction, not
 evidence of measured 935 fit.
 
-Gmsh 4.15.2 then generated 1,463,583 raw and 1,392,150 optimized
+Gmsh 4.15.2 then generated 1,463,583 raw and 1,392,150 optimised
 tetrahedra with the same settings used for the protected reference. Both
-volumes had zero nonpositive six-volumes in the numerical audit. The optimized
+volumes had zero nonpositive six-volumes in the numerical audit. The optimised
 boundary has an exact vertex and triangle multiset match to the trial
 surface. Its count below tetrahedral mean ratio 0.01 was **3,226**, compared
-with **3,255** in the reference optimization: a gain of only 29 cells, with
+with **3,255** in the reference optimisation: a gain of only 29 cells, with
 3,226 still weak. The candidate is therefore **not admitted for FEA**; this
 rotor-solid volume does not provide a fluid-domain CFD mesh.
 This trial shows that flipping only the most degenerate surface triangles is
@@ -413,9 +413,9 @@ physical scale and fit.
 
 Using the same Gmsh 4.15.2 Frontal settings as the preceding rotor-solid
 control, a direct native-surface trial generated 2,202,340 raw and 2,159,530
-optimized tetrahedra. The numerical shape audit found zero nonpositive
-six-volumes in either volume. Every optimized boundary vertex and triangle
-matches the native PicoGK input exactly. The optimized volume has 1,235
+optimised tetrahedra. The numerical shape audit found zero nonpositive
+six-volumes in either volume. Every optimised boundary vertex and triangle
+matches the native PicoGK input exactly. The optimised volume has 1,235
 tetrahedra below mean ratio 0.01, versus 3,255 of 1,393,021 on the simplified
 reference: 0.057% versus 0.234%. Its minimum mean ratio is still 0.000470,
 so this remains an **exploratory solid volume, not an admitted FEA mesh**.
@@ -423,7 +423,7 @@ It is not a CFD fluid mesh, and no solver or convergence result is claimed.
 
 The [reduced native-volume receipt](native-picogk-volume-20261027.json) and
 the private [19-file source and volume bundle](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-native-picogk-volume-20261027.tar.zst)
-retain the native PicoGK surface, raw and optimized volumes, scripts and
+retain the native PicoGK surface, raw and optimised volumes, scripts and
 audits. All payload hashes passed extraction readback; bundle SHA-256
 `7f4810c734b380811aa99b0a104eb95a4fc8126238b093d9de0e63f5f5ea6193`
 matches the private GitHub asset. The fluid-domain trial below uses this native
@@ -559,7 +559,7 @@ files were hard-linked into a new private trial directory; their SHA-256
 digests matched the archived targeted output before and after the run.
 The process used one CPU core, was observed at about 7.2 GB resident memory,
 and was stopped at the pre-set 240-second limit. It produced no `fluid.3`
-mesh or diagnostic text. Thus there is **no optimized candidate to audit**;
+mesh or diagnostic text. Thus there is **no optimised candidate to audit**;
 the earlier extreme sliver and CFD rejection stand. This timeout is a
 resource-bound observation, not evidence that TetGen cannot improve the mesh.
 The [trial receipt](targeted-volume-optimization-20261027.json) records the
@@ -571,12 +571,12 @@ surface and volume before a native OpenFOAM check.
 
 The private candidate OFF was also passed to Gmsh 4.15.2 on the Mac with its
 877,304 triangles preserved as a discrete boundary. The Frontal algorithm
-generated 1,462,151 raw and 1,387,601 optimized tetrahedra. Independent
+generated 1,462,151 raw and 1,387,601 optimised tetrahedra. Independent
 readback found an exact coordinate-and-triangle bijection with the input
 boundary, one connected tetrahedral region, no negative-volume cells and no
 nonmanifold faces in either volume. **Both volumes contain 12 tetrahedra with
 exactly zero volume, so both are refused for FEA.** All four vertices of each
-zero-volume tetrahedron lie on the boundary, in two localized patches around
+zero-volume tetrahedron lie on the boundary, in two localised patches around
 radial positions 84.87–88.87 uncalibrated source units. Altering those nodes
 would change the certified surface and requires a new geometry assessment.
 
@@ -609,13 +609,13 @@ Complete bidirectional surface-envelope checks passed at a 0.0225-source-unit
 bound relative to this reconstruction. The 0.7 native and analysis volumes
 differ by +0.00015718%.
 
-Gmsh 4.15.2 Frontal produced 1,464,371 raw and 1,393,021 optimized
+Gmsh 4.15.2 Frontal produced 1,464,371 raw and 1,393,021 optimised
 tetrahedra. Independent exact-arithmetic readback found **zero zero-volume or
 negative-volume tetrahedra** in both, an identical boundary, one connected
 volume, and the expected analysis-surface volume. This clears the basic
 geometric volume screen that the 0.6 candidate failed. It does **not** clear
-mechanical mesh quality: the optimized mean-ratio minimum is
-`1.77149e-05`, with 3,255 tetrahedra below 0.01. Netgen optimization did
+mechanical mesh quality: the optimised mean-ratio minimum is
+`1.77149e-05`, with 3,255 tetrahedra below 0.01. Netgen optimisation did
 not produce an output within 300 seconds; three TetGen attempts failed during
 internal facet repair. No FEA result is accepted.
 
@@ -862,13 +862,13 @@ Every archive member, its manifest and the GitHub asset digest were checked.
 
 ### Mechanical volume-mesh diagnosis and rejected surface-remesh trials
 
-The protected 0.7-root surface produces 1,393,021 optimized Gmsh tetrahedra.
+The protected 0.7-root surface produces 1,393,021 optimised Gmsh tetrahedra.
 Of the 3,255 cells below mean ratio 0.01, **3,040 have all four vertices on
 the boundary** and another 189 have three. The defects concentrate along the
 blade/root annulus and outer blade regions. This locates the quality problem
 at the triangulated surface rather than in a broad interior-volume pocket.
 
-Gmsh 4.15.2's standard STL classification and reparametrization trial failed
+Gmsh 4.15.2's standard STL classification and reparametrisation trial failed
 after creating 253 discrete surfaces: `Wrong topology of boundary mesh for
 parametrization`. A separate CGAL 6.2.1 isotropic remesh of the closed analysis
 surface produced a 520,378-face unconstrained surface at target edge length
@@ -876,7 +876,7 @@ surface produced a 520,378-face unconstrained surface at target edge length
 and targeted 0.7 source unit, producing 1,035,442 faces. Both remained closed,
 genus one and free of self-intersections under the independent checker.
 
-On the unconstrained 1.0 trial, the optimized Gmsh mesh had 779,177 positive
+On the unconstrained 1.0 trial, the optimised Gmsh mesh had 779,177 positive
 tetrahedra, median mean ratio 0.23707 and 16 cells below 0.01. On the
 feature-constrained 0.7 trial it had 1,555,572 positive tetrahedra, median
 mean ratio 0.15388 and 46 cells below 0.01. The original median was 0.11501.
@@ -915,8 +915,8 @@ connectivity across curved detail rather than off-surface vertices.
 
 The new raw Gmsh volume had 1,603,495 tetrahedra, including **27 exactly
 zero-volume and 8 inverted cells**; 12,514 had mean ratio below 0.01.
-Optimization reported worst quality zero and had effectively plateaued after
-184 seconds, so it was terminated. No optimized volume or FEA result is
+Optimisation reported worst quality zero and had effectively plateaued after
+184 seconds, so it was terminated. No optimised volume or FEA result is
 accepted. The private archive `local-remesh-rejected-package-001.tar.zst`,
 SHA-256 `582ac4629d2fef81628de46311dc0e5aad6af8821b5ab83f4b8277310ac36a53`,
 contains the three local surface attempts, patch selector, source, raw volume,
@@ -930,7 +930,7 @@ any load or modal calculation is accepted.
 
 ### CGAL Mesh_3 surface-domain trial
 
-A separate local Apple Silicon trial used CGAL 6.2.1 Mesh_3 to discretize the
+A separate local Apple Silicon trial used CGAL 6.2.1 Mesh_3 to discretise the
 protected 878,730-face surface. The first run, using the default non-manifold
 topology setting, produced 618,973 faces but one open and two non-manifold
 edges; it was rejected before geometric comparison. The revised runs detected
@@ -977,7 +977,7 @@ than fifteen minutes of local CPU time and was terminated without an exported
 surface; it has **no geometry acceptance result**. These trials show that
 simply detecting more edges does not provide a qualified boundary. The next
 volume-mesh attempt should preserve the protected surface itself or constrain
-only a measured, localized correction, with the same independent distance and
+only a measured, localised correction, with the same independent distance and
 self-intersection gates.
 The private release also contains `mesh3-hausdorff-followup-private-001.tar.gz`,
 SHA-256 `c6cba2bdf5b78334cbdb1a2dd94fdfe412e6cf8d7ca07f74f86bd9c5daf12c5a`,
@@ -1061,7 +1061,7 @@ zero flat or inverted cells and a volume of 431,159.926128 source units³.
 The minimum mean ratio remains only 0.0000934998; the median is 0.37395.
 Of the 391 cells below 0.01, **235 use four boundary vertices**, so the
 residual is strongly constrained by boundary connectivity. Additional
-unfocused interior refinement is unlikely to remove it; localized boundary
+unfocused interior refinement is unlikely to remove it; localised boundary
 work must be independently checked against the same envelope.
 
 The private release contains `tetgen-boundary-split-001.tar.zst`, SHA-256
@@ -1115,7 +1115,7 @@ with the scripts, accepted exploratory volume, rejected outputs, exact and
 connectivity audits, logs, and full residual-cell list. All 28 archive members
 passed hash readback; GitHub reports the same archive digest.
 
-### Higher-level TetGen optimization after interior repair
+### Higher-level TetGen optimisation after interior repair
 
 TetGen 1.5.1's [mesh-optimization switches](https://www.wias-berlin.de/software/tetgen/1.5/doc/manual/manual005.html)
 were then tested on the exact-positive interior-repaired volume. An
@@ -1149,9 +1149,9 @@ fitment and manufacturing claims.
 
 The 120 residual cells form **73 node-connected groups**. The largest group
 contains 17 cells, all with four boundary vertices, around radius 108.97 and
-Z 2.59 in uncalibrated source units. The group is a priority for a localized
+Z 2.59 in uncalibrated source units. The group is a priority for a localised
 boundary/connectivity inspection; node sharing alone does not establish that
-the scan is defective. A hash-pinned [private localization receipt](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
+the scan is defective. A hash-pinned [private localisation receipt](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
 lists every group and its original cell/node IDs. Its SHA-256 is
 `2b5e90f4da7df1680859951d9767780c93f1a3848be20780352c44fa0c9b3b2a`,
 matched by the uploaded release asset. Any altered patch must again pass the
@@ -1277,7 +1277,7 @@ side views. The local regeneration was byte-identical. The
 [private image](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
 `935-cfd-root0p7-weak-cells-top-side-001.png` has SHA-256
 `dcaa30c80d0348d164cd8c1a3b08875e34d879d5793059ba555e64b21212a650`,
-matched by GitHub's asset digest. It visualizes a concentration near the inner
+matched by GitHub's asset digest. It visualises a concentration near the inner
 rotor annulus and selected blade junctions; this is an inspection observation,
 not proof that those surfaces are inaccurate or that the whole assembly fits.
 
@@ -1318,11 +1318,11 @@ audits and SHA-256 manifest; archive SHA-256 is
 All 23 listed file hashes passed extraction readback.
 The private GitHub release reports the same archive SHA-256 digest.
 
-### Fixed-boundary TetGen optimization: improved, not admitted
+### Fixed-boundary TetGen optimisation: improved, not admitted
 
 The original, unchanged PLC (`32deebcc19f604454bb4cfe5d26d6a1e1e141fef06c0e1b095df58368e8c5bee`)
 was remeshed locally with the same TetGen 1.5.1 executable and
-`-pYq1.4O5MzCf`. The only switch change from the baseline was optimization
+`-pYq1.4O5MzCf`. The only switch change from the baseline was optimisation
 level `-O5`. TetGen completed in 395.8 s. The independent full-volume audit
 passed exact positive orientation, one connected volume, complete boundary
 coordinate/triangle/marker bijection for all 895,732 faces and exact PLC
@@ -1335,7 +1335,7 @@ Equilateral-normalized mean ratio below 0.01 fell from **3,461 to 2,929**
 below 0.1 from 92,185 to 89,765. The minimum rose from 0.00002917 to
 0.00019493; the first percentile rose from 0.04280 to 0.04422. Of the 2,929
 remaining cells below 0.01, **2,857 touch rotor-wall nodes**. This is useful
-evidence that volume optimization helps, while rotor-near quality still needs
+evidence that volume optimisation helps, while rotor-near quality still needs
 work. The median changed from 0.72962 to 0.72904, so improvement is not
 uniform. **The mesh is not CFD-quality admitted**: boundary-layer evidence,
 native OpenFOAM `checkMesh`, three-grid convergence and a measured 935
@@ -1355,7 +1355,7 @@ The [private four-view comparison](https://github.com/cluster2600/porscheparts-9
 (`weak-cell-comparison.png`, SHA-256
 `d139ea4810684d4915561884c16a5ee2bcb0f815aa4672e28a60713a531baffc`)
 shows that the main weak-cell clusters persist near the inner annulus and
-selected blade junctions. This is a visual localization, not proof of a scan
+selected blade junctions. This is a visual localisation, not proof of a scan
 defect. The private release digest matches the local image.
 
 An exact face-index audit of the `-O5` volume finds **1,357** weak cells
@@ -1366,7 +1366,7 @@ below 0.1. The [private face-audit receipt](https://github.com/cluster2600/porsc
 (`weak-face-audit.json`) has SHA-256
 `6dbf4c30954a0b71b4c58a81d633be3ed5b6071d285e61adf56c19b8aa620149`,
 matching the release digest. This separates direct wall-face cells from
-near-wall cells; further work must inspect both surface discretization and
+near-wall cells; further work must inspect both surface discretisation and
 volume filling. The counts do not identify a defect in the scanned shape.
 The hash-pinned
 [`audit_root0p7_o5_faces.py`](../../../twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/audit_root0p7_o5_faces.py)
@@ -1436,7 +1436,7 @@ and manufacturing effects. It establishes no safe speed or material choice.
 The [private ten-material comparison plot](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
 (`material-mass-inertia.png`) has SHA-256
 `9affaf3da6360cadfc9e1cc85241a550269b41ae15906d903fa232b8719c0107`,
-also matched by its release digest; it visualizes the same density-only screen.
+also matched by its release digest; it visualises the same density-only screen.
 
 The earlier 160-case transmission hypothesis used a simplified annulus. The
 hash-pinned [`rebase_root0p7_drive_loads.py`](../../../twins/935-horizontal-cooling-system-f0/source/corrected-analysis-20261025/rebase_root0p7_drive_loads.py)
@@ -1513,11 +1513,11 @@ One closest-point pair does not measure the full shaft circumference; the
 observed drive arc leaves about half the circumference unseen. A real adapter
 would need machining clearance or interference, torque-transfer features,
 axial retention and fillets that change the section and local stresses. Its
-identity, fit, fatigue, thermal behavior and support loads remain unknown.
+identity, fit, fatigue, thermal behaviour and support loads remain unknown.
 The [private 160-case report](https://github.com/cluster2600/porscheparts-935-private/releases/tag/935-root-repair-20261025)
 (`hub-annulus-screen.json`) has SHA-256
 `dd421f9c9731605c97ee2efda3ebb348fc406274eda6f80d451cfe00b23d7853`,
-matching the release digest. It authorizes no manufacturing or speed limit.
+matching the release digest. It authorises no manufacturing or speed limit.
 
 ```sh
 mkdir -p work/NEW

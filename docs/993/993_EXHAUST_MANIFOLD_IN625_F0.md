@@ -18,7 +18,7 @@ flowchart LR
   H --> G["OCCT BREP valid<br/>509.97 g"]
   G --> F["Flow and thermal screens<br/>not CFD; fully blocked bound<br/>inadmissible as a model"]
   G --> P["LPBF print screen<br/>5,375 layers sliced"]
-  F --> V["Not authorized for manufacture,<br/>an engine or interior heating"]
+  F --> V["Not authorised for manufacture,<br/>an engine or interior heating"]
   P --> V
   class S ok
   class F,P open
@@ -66,7 +66,7 @@ blowdown, roughness, real bends, the turbine and heat exchange are absent.
 Free expansion reaches `1.79 mm`. The fully blocked bound gives `1,696 MPa`,
 above the room-temperature comparison of `640 MPa`: it demonstrates that an
 elastic blocking hypothesis is inadmissible and that interfaces, plasticity,
-creep and cycles must be modeled, not that the part breaks at that value.
+creep and cycles must be modelled, not that the part breaks at that value.
 
 ## Next gates
 
@@ -84,7 +84,7 @@ creep and cycles must be modeled, not that the part breaks at that value.
 
 PhysicsNeMo will wait for a converged CFD/CHT/structure dataset, then for
 training, holdout and out-of-distribution splits. SimReady will wait for the
-measured interfaces and installed environment. The F0 STEP is authorized
+measured interfaces and installed environment. The F0 STEP is authorised
 neither for manufacture, nor for an engine, nor for interior heating.
 
 <!-- print-screen:begin -->

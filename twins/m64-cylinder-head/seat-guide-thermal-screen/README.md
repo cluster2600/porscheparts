@@ -7,13 +7,13 @@ a seat nor its retention in the engine. No material is selected.
 
 The [reproducible report](report.json) contains 48 sensitivity rows at the
 documented temperature extremes, three cases of different insert/body
-temperatures and 12 normalized ring cases. **No CAD was modified.**
+temperatures and 12 normalised ring cases. **No CAD was modified.**
 
 ![V2 four-valve sub-assembly: 3D view of the 12 STEP solids, closed and lifted CAD sections, and the 45° conical seat contact band](../evidence/four-valve-design-v2-20260907/four-valve-design-assembly-and-sections.png)
 
 *The V2 module whose seat and guide profiles supply the diameters below (labels
 in French). It shows cold CAD geometry only; the receiving body is absent, and
-the image proves no fit, retention or thermal behavior.*
+the image proves no fit, retention or thermal behaviour.*
 
 ## Real data and assumptions
 
@@ -29,7 +29,7 @@ and are in **design mm**, not in scan units. The closed STEP is bound by SHA-256
 
 PDF page 30 / printed page 28 of [MAHLE, Valve Train Components](https://www.mahle-aftermarket.com/media/homepage/facelift/media-center/product-catalogs/mahle_valve_train_components_catalog_2025_screen_v002.pdf)
 was reread visually: the ranges concern the outer diameter of the seat and its
-bore in an aluminum cylinder head. MAHLE warns of the risk of distortion and of
+bore in an aluminium cylinder head. MAHLE warns of the risk of distortion and of
 cracking between seats if the interference is excessive. These are not M64 4V
 turbo or LPBF specifications. Assembly is described at room temperature, with
 no exact temperature value. **The CAD stem/guide diametral clearances of
@@ -80,7 +80,7 @@ Example at **Ti = Th = 200 °C**, hypothetical insert at 15 × 10⁻⁶/K:
 | Formnext, T₀ = 20 °C | **−0.01860 to +0.02158 mm** | **−0.01580 to +0.02438 mm** |
 | EOS, T₀ = 25 °C | +0.01507 to +0.05522 mm | +0.01238 to +0.05253 mm |
 
-The differences in result do not justify choosing the most favorable
+The differences in result do not justify choosing the most favourable
 documentary set. They justify obtaining the expansions of the **same
 material/process/treatment pair** before sizing the interference.
 
@@ -92,7 +92,7 @@ the intake-seat threshold becomes 0.11062 / 0.07851 / 0.04641 mm respectively:
 both contact temperatures are needed, not a single temperature assigned to the
 whole cylinder head.
 
-## Lamé: a normalized local test, not a strength calculation of the cylinder head
+## Lamé: a normalised local test, not a strength calculation of the cylinder head
 
 The calculation uses two concentric isotropic elastic rings, of radii
 `a < b < c`, nominal interface `b`, **free** outer edge `c`, frictionless
@@ -111,7 +111,7 @@ p  = max(0, I) / [2b (Ki/Ei + Kh/Eh)]
 The independent test reconstructs `σr = A − B/r²`, `σθ = A + B/r²`, then the
 displacements by Hooke, and checks `2(u_corps − u_insert) = I`
 (`corps` = body): the radial/diametral factor is thus checked. The report gives
-only `p/Eh` and normalized stresses. The real `E(T)`, `ν(T)` and outer bore
+only `p/Eh` and normalised stresses. The real `E(T)`, `ν(T)` and outer bore
 radii are missing; **cylinder head pressure and stress in MPa remain null in the
 report, in the sense of "not calculated", not zero**.
 
@@ -150,7 +150,7 @@ an explicit T₀, the guide/body interference, then the CHT temperatures on eith
 side. Only then: 3D contact with plasticity/relaxation, retention under pressure
 and valve impact, and retention/thermal tests on coupons. Simply increasing the
 interference can worsen cracking of the bridge. **No print or engine
-authorization.**
+authorisation.**
 
 ```mermaid
 flowchart TD
@@ -158,7 +158,7 @@ flowchart TD
     B --> C["CHT temperatures<br/>on either side of each contact"]:::open
     C --> D["3D contact with plasticity/relaxation<br/>pressure and valve impact"]:::open
     D --> E["Retention and thermal tests<br/>on coupons"]:::open
-    E --> F["No print or engine<br/>authorization from this screen"]:::stop
+    E --> F["No print or engine<br/>authorisation from this screen"]:::stop
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
     classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
     classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;

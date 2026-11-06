@@ -1,13 +1,13 @@
 # 993 three-runner intake manifold — AlSi10Mg F0 concept
 
 PorscheFanatics and Patrick Motorsports cross-check the PMO set `FUE PMO 9150`,
-announced as **46 × 42 × 100 mm**, three bolts, two parts and raw aluminum
+announced as **46 × 42 × 100 mm**, three bolts, two parts and raw aluminium
 finish for Motronic conversions with a 964/993 3.6–3.8 L engine. No drawing
-defines the dimension chain, the center distances, the ports or the fasteners.
+defines the dimension chain, the centre distances, the ports or the fasteners.
 
 The F0 provisionally interprets `46 mm` and `42 mm` as upper and lower inner
 diameters, and `100 mm` as the height. It joins three `2 mm` conical runners,
-slightly splayed in space, between two common flanges. The center distances
+slightly splayed in space, between two common flanges. The centre distances
 and the flanges are synthetic; the three-bolt pattern is deliberately absent.
 
 ```mermaid
@@ -16,7 +16,7 @@ flowchart LR
   H --> G["F0 BREP<br/>three open runners<br/>461.03 g per bank"]
   G --> A["Flow and tuning screens<br/>not intake tuning"]
   G --> P["LPBF print screen<br/>failed closed:<br/>memory cap"]
-  A --> V["Not authorized for manufacturing<br/>or engine start-up"]
+  A --> V["Not authorised for manufacturing<br/>or engine start-up"]
   P --> V
   class S ok
   class H,A open
@@ -30,9 +30,9 @@ flowchart LR
 
 ## Why AM is being tested
 
-LPBF would allow the three axes, sections and lengths to be customized
+LPBF would allow the three axes, sections and lengths to be customised
 independently, then joined to the flanges in a single BREP. This advantage
-must still beat the cast, machined or assembled aluminum manifold on cost,
+must still beat the cast, machined or assembled aluminium manifold on cost,
 mass, roughness, flatness, cleanliness and endurance.
 
 The STEP weighs theoretically `461.03 g` per bank and `922.07 g` for the pair.
@@ -57,11 +57,11 @@ Reynolds `59,782`, Mach `0.065` and `15.76 Pa` of loss with `K=0.05`. The
 firing frequency is `340 Hz`, whereas the quarter-wave of the `100 mm` runner
 is `896.44 Hz`; a first tuning at 340 Hz would require `263.66 mm`. This
 comparison is not intake tuning, because the complete runner, the plenum, the
-valves and the reflections are not modeled.
+valves and the reflections are not modelled.
 
 ## Next gates
 
-1. Scan a PMO part and measure cylinder head ports, throttles, center
+1. Scan a PMO part and measure cylinder head ports, throttles, centre
    distances, flanges, bolts, gaskets, angles, roughness and tolerances.
 2. Measure flow, pulsed pressure, temperature, valve timing and volumetric
    efficiency of the selected M64.
@@ -75,7 +75,7 @@ valves and the reflections are not modeled.
 
 PhysicsNeMo will wait for a set of correlated CFD/CHT/structure cases and
 uncertainty gates. SimReady will wait for the measured interfaces and the
-material map. The F0 STEP is not authorized for manufacturing or engine
+material map. The F0 STEP is not authorised for manufacturing or engine
 start-up.
 
 <!-- print-screen:begin -->

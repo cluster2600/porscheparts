@@ -1,216 +1,216 @@
-# Vérification de la préparation — 26 septembre 2026
+# Readiness verification — 26 September 2026
 
-## Session GPU réelle du 26 septembre 2026
+## Real GPU session of 26 September 2026
 
-VM Vast 52810563, RTX PRO 6000 Blackwell 96 Go, 32 vCPU, disque 500 Go,
-1,924074 USD/h annoncé (transferts en supplément). Session plafonnée à trois
-heures par le wrapper local ; extinction invitée programmée séparément.
-Les essais conteneurs 52809699 et 52810056 ont été détruits et leur absence
-vérifiée avant la VM finale.
+Vast VM 52810563, RTX PRO 6000 Blackwell 96 GB, 32 vCPU, 500 GB disk,
+1.924074 USD/h advertised (transfers extra). Session capped at three
+hours by the local wrapper; guest shutdown scheduled separately.
+Container trials 52809699 and 52810056 were destroyed and their absence
+verified before the final VM.
 
-- Brut 935 original vérifié par SHA-256, sans réemploi des anciennes géométries.
-- Trois inférences GPU CAD-Recode : 7,33 / 6,14 / 5,81 s hors chargement.
-  Pic mémoire PyTorch voisin de 3,34 Go. Candidat 1 rejeté : solide invalide.
-  Candidats 2 et 3 exportés en STEP dans le worker Docker isolé.
-- Distances p95 scan → CAO / CAO → scan : candidat 2 **27,321 / 23,414** ;
-  candidat 3 **48,200 / 20,204**, en unités OBJ inconnues. Aucune acceptation
-  dimensionnelle ni validation de fabrication.
-- Nemotron Nano FP8 servi par vLLM 0.12.0 : appel d'outil réel réussi.
-- OpenClaw 2026.9.6 connecté à Nemotron : écriture réelle du fichier demandé,
-  puis lecture des rapports et rédaction d'une revue. Aucun accès Docker/shell
-  fourni à l'agent ; résultats montés en lecture seule.
-- Mise à jour NVIDIA automatique ayant provoqué une divergence NVML corrigée
-  par rechargement du pilote invité 580.178.04, GPU inutilisé à cet instant.
-- Neuf tests ciblés Python passent. `make check` exécute 912 tests, trois
-  skips, puis échoue sur le PET préexistant absent `/tmp/kat517-993.txt`.
-- Qwen2.5-VL-7B local répond aux requêtes image : rouge et bleu reconnus sur
-  des mires 256 × 256. Une mire 64 × 64 a été décrite comme blanche ; ce test
-  n'est pas une qualification de reconnaissance des détails de culasse.
-- La revue OpenClaw a nécessité une correction : elle affirmait initialement
-  dépasser des critères pourtant absents. La version corrigée conserve les
-  quatre p95 exacts et ne prétend plus appliquer un seuil. Les sorties de
-  l'agent restent des propositions soumises aux contrôles déterministes.
-- OVRTX, Material et Physics sains. Scan et STEP convertis avec NVIDIA
-  `usd-convert-cad` 0.2.0, minimum USD validé, composition relative rapatriée.
-  Le premier rendu composé était uniforme (références non embarquées) ; le
-  rendu diagnostic aplati passe, puis les rendus séparés scan/candidat passent.
-- Inspection visuelle : le candidat 2 est rejeté comme reconstruction de
-  culasse (ailettes, ouvertures et détails perdus au profit de blocs/cylindres).
-- Fixture aluminium 20 × 40 × 60 mm : Material avait d'abord choisi du plastique.
-  La consigne matière corrigée produit Aluminum_Matte. Physics écrit 0,1296 kg,
-  densité 2700 kg/m³ et gravité 9,81 m/s² après normalisation d'unités.
-  `check_simready_fixture.py` rejette la version plastique et accepte la
-  version corrigée. Les quatre validateurs, dont Prop-Robotics-Neutral, passent
-  sur la fixture finale après ajout documenté de sa ligne de préhension.
-  Aucun de ces résultats n'est une validation physique de culasse.
-- La mémoire réellement visible dans l'invité est de 101139 MiB, inférieure
-  aux 128 Go visés. La configuration tient pour ces essais ; ce n'est pas une
-  preuve de capacité pour un calcul CAE de culasse.
+- Original 935 raw scan verified by SHA-256, with no reuse of earlier geometries.
+- Three CAD-Recode GPU inferences: 7.33 / 6.14 / 5.81 s excluding loading.
+  PyTorch peak memory near 3.34 GB. Candidate 1 rejected: invalid solid.
+  Candidates 2 and 3 exported to STEP in the isolated Docker worker.
+- p95 distances scan → CAD / CAD → scan: candidate 2 **27.321 / 23.414**;
+  candidate 3 **48.200 / 20.204**, in unknown OBJ units. No dimensional
+  acceptance and no manufacturing validation.
+- Nemotron Nano FP8 served by vLLM 0.12.0: real tool call succeeded.
+- OpenClaw 2026.9.6 connected to Nemotron: real write of the requested file,
+  then reading of the reports and drafting of a review. No Docker/shell access
+  given to the agent; results mounted read-only.
+- An automatic NVIDIA update caused an NVML mismatch, corrected by reloading
+  guest driver 580.178.04 while the GPU was idle.
+- Nine targeted Python tests pass. `make check` runs 912 tests, three
+  skips, then fails on the pre-existing missing PET `/tmp/kat517-993.txt`.
+- Local Qwen2.5-VL-7B answers image queries: red and blue recognised on
+  256 × 256 test charts. A 64 × 64 chart was described as white; this test
+  is not a qualification of recognition of cylinder head details.
+- The OpenClaw review needed a correction: it initially claimed to exceed
+  criteria that did not exist. The corrected version keeps the four exact
+  p95 values and no longer claims to apply a threshold. The agent's outputs
+  remain proposals subject to deterministic checks.
+- OVRTX, Material and Physics healthy. Scan and STEP converted with NVIDIA
+  `usd-convert-cad` 0.2.0, USD minimum validated, relative composition retrieved.
+  The first composed render was uniform (references not embedded); the
+  flattened diagnostic render passes, then the separate scan/candidate renders pass.
+- Visual inspection: candidate 2 is rejected as a cylinder head reconstruction
+  (fins, openings and details lost in favour of blocks/cylinders).
+- Aluminium fixture 20 × 40 × 60 mm: Material first chose plastic.
+  The corrected material instruction produces Aluminum_Matte. Physics writes 0.1296 kg,
+  density 2700 kg/m³ and gravity 9.81 m/s² after unit normalisation.
+  `check_simready_fixture.py` rejects the plastic version and accepts the
+  corrected version. The four validators, including Prop-Robotics-Neutral, pass
+  on the final fixture after the documented addition of its grasp line.
+  None of these results is a physical validation of a cylinder head.
+- The memory actually visible in the guest is 101139 MiB, below the
+  128 GB targeted. The configuration holds for these trials; it is not
+  evidence of capacity for a cylinder head CAE calculation.
 
-Preuves rapatriées hors Git : `work/cad-recode-935-fresh/vm-results/`.
-Le rapport complet est `work/cad-recode-935-fresh/vm-results/RESULTATS.md`.
-La réussite SimReady concerne uniquement la fixture synthétique.
+Evidence retrieved outside Git: `work/cad-recode-935-fresh/vm-results/`.
+The full report is `work/cad-recode-935-fresh/vm-results/RESULTATS.md`.
+The SimReady success concerns only the synthetic fixture.
 
-## Préparation locale antérieure au déploiement
+## Local preparation before deployment
 
-- Nouveau parcours indépendant, sans import des modules ou des résultats des
-  anciennes culasses. Original 935 inchangé ; empreinte vérifiée avant analyse.
-- Brut analysé : 1 281 608 sommets, 2 466 040 triangles, quatre composants connexes.
-  Les unités demeurent inconnues ; la segmentation anatomique reste à revoir.
-- Poids CAD-Recode v1.5 et tokenizer téléchargés par révision, empreintes locales
-  conservées. Une vraie inférence CPU produit une proposition non tronquée en
-  62,39 secondes. Ce temps exclut chargement et vérification des poids.
-- Première proposition exécutée dans le conteneur CAD confiné ; export STEP
-  réussi. Cette proposition n'est pas une géométrie acceptée.
-- Fixture synthétique 20 × 40 × 60 : export isolé, réimport STEP et distances
-  bidirectionnelles p95 inférieures à 1e-12 unité ; transformation inverse ×100
-  vérifiée séparément, y compris avec centre non nul.
-- Sept tests ciblés passent dans le venv dédié : intégrité, transformations,
-  STEP, erreurs, timeout, contrat de requête et composition USD synthétique.
-- CalculiX exécuté sur deux problèmes analytiques synthétiques : déplacement
-  de traction 0,05 et flux thermique -1000, conformes aux valeurs attendues.
-- Benchmark OpenFOAM F25 exécuté : trois maillages, deux répétitions,
-  vérification du solveur réussie et ordre de convergence proche de 2.
-- Image CAD Linux amd64 construite sur le Mac par émulation, avec dépendances
-  verrouillées par version et empreinte. Image OpenClaw construite pour le
-  contrôle local ; `openclaw config validate` réussit avec la version 2026.9.6.
-- Configuration Compose, syntaxe shell et compilation Python vérifiées.
+- New independent pipeline, with no import of the modules or results of the
+  earlier cylinder heads. Original 935 unchanged; digest verified before analysis.
+- Raw scan analysed: 1,281,608 vertices, 2,466,040 triangles, four connected components.
+  Units remain unknown; the anatomical segmentation remains to be reviewed.
+- CAD-Recode v1.5 weights and tokeniser downloaded by revision, local digests
+  kept. A real CPU inference produces a non-truncated proposal in
+  62.39 seconds. This time excludes loading and verification of the weights.
+- First proposal executed in the confined CAD container; STEP export
+  succeeded. This proposal is not accepted geometry.
+- Synthetic fixture 20 × 40 × 60: isolated export, STEP reimport and
+  bidirectional p95 distances below 1e-12 unit; inverse ×100 transformation
+  verified separately, including with a non-zero centre.
+- Seven targeted tests pass in the dedicated venv: integrity, transformations,
+  STEP, errors, timeout, request contract and synthetic USD composition.
+- CalculiX run on two synthetic analytical problems: tensile displacement
+  0.05 and heat flux -1000, matching the expected values.
+- OpenFOAM F25 benchmark run: three meshes, two repetitions,
+  solver verification succeeded and order of convergence close to 2.
+- Linux amd64 CAD image built on the Mac by emulation, with dependencies
+  locked by version and digest. OpenClaw image built for local
+  checking; `openclaw config validate` succeeds with version 2026.9.6.
+- Compose configuration, shell syntax and Python compilation verified.
 
-## Limites constatées avant la session VM (historique)
+## Limits observed before the VM session (historical)
 
-- Kali inaccessible lors des essais ; pas de build GPU ni d'exécution Blackwell.
-- Nemotron : modèle/révision/configuration et smoke d'appel d'outil préparés,
-  serveur non démarré. Aucun succès d'appel d'outil Nemotron n'est revendiqué.
-- Omniverse : commandes par étape et composition USD préparées ; seuls les
-  tests USD synthétiques ont été exécutés. Aucun service RTX, rendu de culasse,
-  appel Material/Physics ou résultat SimReady GPU n'est revendiqué.
-- La CAO générée peut être très éloignée du scan malgré son export valide.
-  Aucun seuil d'écart, unité physique, matériau ou chargement réel n'est inventé.
-- Le dossier neuf d'entrées physiques reste volontairement incomplet : six
-  familles de données manquantes, solveurs culasse et entraînement bloqués.
-- `make check` a passé sa suite de 907 tests (deux skips à cet instant), puis
-  échoué sur le fichier PET préexistant absent `/tmp/kat517-993.txt`.
-  Les sept tests ciblés définitifs ont ensuite été exécutés sans skip.
-- Aucun achat, push, location Vast ou changement des anciens travaux.
+- Kali unreachable during the trials; no GPU build and no Blackwell run.
+- Nemotron: model/revision/configuration and tool-call smoke test prepared,
+  server not started. No Nemotron tool-call success is claimed.
+- Omniverse: per-step commands and USD composition prepared; only the
+  synthetic USD tests were run. No RTX service, cylinder head render,
+  Material/Physics call or GPU SimReady result is claimed.
+- Generated CAD can be very far from the scan despite its valid export.
+  No deviation threshold, physical unit, material or real loading is invented.
+- The new physical-inputs dossier remains deliberately incomplete: six
+  families of missing data, cylinder head solvers and training blocked.
+- `make check` passed its suite of 907 tests (two skips at that time), then
+  failed on the pre-existing missing PET file `/tmp/kat517-993.txt`.
+  The seven final targeted tests were then run without skips.
+- No purchase, push, Vast rental or change to earlier work.
 
-## Preuves locales, hors Git
+## Local evidence, outside Git
 
-Dans `work/cad-recode-935-fresh/` : `intake/intake.json`,
-`proposals-cpu/candidate-1.json`, `export-1/execution.json`, le STEP candidat,
-`physics-readiness/readiness.json` et `runtime-verification.json`.
-Les rapports CalculiX et OpenFOAM sont respectivement dans
-`work/cad-recode-ccx-smoke/checks.json` et
+In `work/cad-recode-935-fresh/`: `intake/intake.json`,
+`proposals-cpu/candidate-1.json`, `export-1/execution.json`, the candidate STEP,
+`physics-readiness/readiness.json` and `runtime-verification.json`.
+The CalculiX and OpenFOAM reports are respectively in
+`work/cad-recode-ccx-smoke/checks.json` and
 `work/cad-recode-poiseuille-smoke/report.json`.
 
-Les tentatives techniques échouées sont conservées séparément (dépendance SciPy
-macOS puis montage Docker corrigés), sans écraser les résultats précédents.
+Failed technical attempts are kept separately (macOS SciPy dependency,
+then Docker mount, both corrected), without overwriting earlier results.
 
-## Qualité de la première proposition
+## Quality of the first proposal
 
-L'évaluation native du STEP exporté depuis le code inspecté donne, sur 8192
-échantillons dans chaque sens :
+Native evaluation of the STEP exported from the inspected code gives, over 8192
+samples in each direction:
 
-| Sens | Médiane | p95 | Maximum échantillonné |
+| Direction | Median | p95 | Sampled maximum |
 |---|---:|---:|---:|
-| Scan → CAO | 10,531 | 38,568 | 60,200 |
-| CAO → scan | 6,186 | 29,438 | 69,397 |
+| Scan → CAD | 10.531 | 38.568 | 60.200 |
+| CAD → scan | 6.186 | 29.438 | 69.397 |
 
-Toutes ces valeurs sont en **unités OBJ inconnues**, jamais en mm vérifiés.
-La proposition reste `needs_review`, `geometry_accepted=false`. Le solide valide
-ne restitue pas suffisamment les détails pour être promu en définition CAO.
-La suite utile est une revue de segmentation et des repères depuis le brut.
+All these values are in **unknown OBJ units**, never in verified mm.
+The proposal remains `needs_review`, `geometry_accepted=false`. The valid solid
+does not reproduce enough detail to be promoted to a CAD definition.
+The useful next step is a review of the segmentation and datums from the raw scan.
 
-Le calcul a signalé un avertissement numérique de proximité sur le maillage
-source ; toutes les statistiques finales sont finies. La tessellation candidate
-utilise une déflexion de 0,01 unité OBJ et un angle de 0,1 radian. Cela ne
-constitue pas une incertitude métrologique ni un seuil d'acceptation.
+The calculation reported a numerical proximity warning on the source
+mesh; all final statistics are finite. The candidate tessellation
+uses a deflection of 0.01 OBJ unit and an angle of 0.1 radian. This does not
+constitute a metrological uncertainty or an acceptance threshold.
 
-Le doublon de cette évaluation sous émulation Docker a été arrêté après
-l'obtention du résultat natif ; son statut d'exécution reste `failed`, pas
-`passed`. Le test du parcours isolé utilise une fixture synthétique séparée.
-Preuve géométrique locale :
+The duplicate of this evaluation under Docker emulation was stopped after
+the native result was obtained; its execution status remains `failed`, not
+`passed`. The isolated pipeline test uses a separate synthetic fixture.
+Local geometric evidence:
 `work/cad-recode-935-fresh/evaluate-native/deviation.json`.
 
-Le dispatcher isolé a terminé sur la fixture synthétique : STEP valide et
-p95 bidirectionnels inférieurs à 1e-6 unité. Preuve :
+The isolated dispatcher completed on the synthetic fixture: valid STEP and
+bidirectional p95 below 1e-6 unit. Evidence:
 `work/cad-recode-fixture/evaluate-1/report/deviation.json`.
 
-## Précontrôle Vast du 26 septembre 2026
+## Vast pre-check of 26 September 2026
 
-Le wrapper installé `/Users/maxime/.local/bin/openbao-vastai` passe `--check`
-et `--auth-check`. `instances` retourne une liste vide. Le crédit disponible
-annoncé par `account-balance` est de 46,178 USD ; aucune recharge n'a été demandée.
+The installed wrapper `/Users/maxime/.local/bin/openbao-vastai` passes `--check`
+and `--auth-check`. `instances` returns an empty list. The available credit
+reported by `account-balance` is 46.178 USD; no top-up was requested.
 
-Blocage de déploiement : les opérations de création du wrapper installé utilisent
-des images et profils conteneurs fixes (`runtype=ssh_direct`). Aucun profil VM
-CAD-Recode/Nemotron ne couvre la cible Docker/NVIDIA décrite dans le README.
-Les offres `cad-specialist-offers` concernent l'ancien profil conteneur et ne
-prouvent pas une disponibilité VM. Le wrapper installé diffère de la copie du
-dépôt : ne pas l'écraser avec cette dernière.
+Deployment blocker: the creation operations of the installed wrapper use
+fixed container images and profiles (`runtype=ssh_direct`). No CAD-Recode/Nemotron
+VM profile covers the Docker/NVIDIA target described in the README.
+The `cad-specialist-offers` offers concern the old container profile and do not
+prove VM availability. The installed wrapper differs from the repository
+copy: do not overwrite it with the latter.
 
-Aucune machine n'a été louée, aucun test GPU n'a démarré. La reprise nécessite
-une VM accessible en SSH avec Docker/NVIDIA, ou un profil de lancement VM
-explicitement disponible dans le wrapper OpenBao autorisé. Ne pas contourner
-cette frontière en récupérant la clé API Vast directement.
+No machine was rented, no GPU test started. Resuming requires
+an SSH-reachable VM with Docker/NVIDIA, or a VM launch profile
+explicitly available in the authorised OpenBao wrapper. Do not bypass
+this boundary by retrieving the Vast API key directly.
 
-### Recherche VM après autorisation d'adapter le lanceur
+### VM search after authorisation to adapt the launcher
 
-L'extension `deploy/openbao/cad_recode_vm_profile.py` est intégrée au lanceur
-installé sous la commande `cad-recode-vm-offers`. Elle réutilise son accès
-OpenBao existant, sans changer les fonctions d'authentification ni les anciens
-profils. Sa portée actuelle est la recherche ; aucune opération de location
-VM n'est encore implémentée ou qualifiée.
+The extension `deploy/openbao/cad_recode_vm_profile.py` is integrated into the
+installed launcher under the command `cad-recode-vm-offers`. It reuses its existing
+OpenBao access, without changing the authentication functions or the old
+profiles. Its current scope is search; no VM rental operation
+is yet implemented or qualified.
 
-La recherche Vast renvoie **zéro offre côté fournisseur** pour les variantes
-RTX PRO 6000 WS / Blackwell Max-Q / S : une carte, au moins 95 000 Mo de VRAM,
-32 vCPU, 128 000 Mo de RAM, 500 Go, VM activée, hôte vérifié, fiabilité ≥ 99 %,
-prix ≤ 2,50 USD/h et transferts ≤ 0,05 USD/Go. Cette observation ponctuelle ne
-prouve pas une indisponibilité générale des VM Vast.
+The Vast search returns **zero offers on the provider side** for the variants
+RTX PRO 6000 WS / Blackwell Max-Q / S: one card, at least 95,000 MB of VRAM,
+32 vCPU, 128,000 MB of RAM, 500 GB, VM enabled, verified host, reliability ≥ 99 %,
+price ≤ 2.50 USD/h and transfers ≤ 0.05 USD/GB. This one-off observation does not
+prove general unavailability of Vast VMs.
 
-Le test `tests/test_cad_recode_vm_profile.py` valide les limites matérielles,
-VM et prix. La recherche semblait alors bloquée par l'absence d'offre conforme.
-Aucune instance créée et aucune dépense engagée par cette tentative.
+The test `tests/test_cad_recode_vm_profile.py` validates the hardware,
+VM and price limits. The search then seemed blocked by the absence of a compliant offer.
+No instance created and no expense incurred by this attempt.
 
-### Correction du filtre et offre disponible
+### Filter correction and available offer
 
-La conclusion d'indisponibilité était trop large : `gpu_frac=1` imposait
-tous les GPU du serveur. Ce champ est le rapport entre GPU de l'offre et GPU
-du serveur, pas une fraction de la VRAM d'une carte. Le profil accepte désormais
-`0 < gpu_frac <= 1`, en conservant une carte et la VRAM complète. Le test couvre
-explicitement une carte sur un serveur à deux GPU.
+The unavailability conclusion was too broad: `gpu_frac=1` required
+all the server's GPUs. This field is the ratio between the offer's GPUs and the
+server's GPUs, not a fraction of one card's VRAM. The profile now accepts
+`0 < gpu_frac <= 1`, keeping one card and the full VRAM. The test explicitly
+covers one card on a two-GPU server.
 
-Offre **49400940**, Bulgarie : RTX PRO 6000 WS, 97 887 Mo VRAM, 32 vCPU,
-128 713 Mo RAM, VM activée, hôte vérifié, fiabilité annoncée 99,2834 %.
-Tarif pour **500 Go : 1,924074 USD/h**, stockage inclus ; transferts entrants
-0,002604 USD/Go, sortants 0,003906 USD/Go. Trois heures : environ 5,77 USD
-hors transferts. Relire disponibilité et prix avant location.
-Preuve : `work/cad-recode-935-fresh/vast-vm-offers-corrected.json`.
+Offer **49400940**, Bulgaria: RTX PRO 6000 WS, 97,887 MB VRAM, 32 vCPU,
+128,713 MB RAM, VM enabled, verified host, advertised reliability 99.2834 %.
+Price for **500 GB: 1.924074 USD/h**, storage included; inbound transfers
+0.002604 USD/GB, outbound 0.003906 USD/GB. Three hours: about 5.77 USD
+excluding transfers. Re-read availability and price before renting.
+Evidence: `work/cad-recode-935-fresh/vast-vm-offers-corrected.json`.
 
-La commande de recherche `cad-recode-vm-alternatives` accepte aussi L40S et
-RTX 6000 Ada, au moins 48 Go nominaux, 12 vCPU, 64 Go RAM et 300 Go, avec
-le même plafond horaire. Aucun lancement ni test GPU effectué.
+The search command `cad-recode-vm-alternatives` also accepts L40S and
+RTX 6000 Ada, at least 48 GB nominal, 12 vCPU, 64 GB RAM and 300 GB, with
+the same hourly cap. No launch and no GPU test performed.
 
-Source : https://docs.vast.ai/cli/reference/search-instances (`gpu_frac`).
+Source: https://docs.vast.ai/cli/reference/search-instances (`gpu_frac`).
 
-### Lancement effectif
+### Actual launch
 
-Le profil `launch-cad-recode-vm OFFER_ID` est installé et testé hors ligne.
-Il refuse les instances déjà présentes, exige 15 USD de crédit sans recharge,
-relit les offres admissibles et crée un état exclusif avant location.
-Le LaunchAgent local `com.3dprinting993.cad-recode-vm-expiry` appelle toutes les
-60 secondes le nettoyage limité au label de cette session après trois heures.
-Il dépend du Mac et de son accès OpenBao ; `shutdown -h +180` dans la VM est
-une seconde limite de fonctionnement, pas une preuve de fin de facturation.
+The profile `launch-cad-recode-vm OFFER_ID` is installed and tested offline.
+It refuses already-present instances, requires 15 USD of credit without top-up,
+re-reads the admissible offers and creates an exclusive state before renting.
+The local LaunchAgent `com.3dprinting993.cad-recode-vm-expiry` calls, every
+60 seconds, the clean-up limited to this session's label after three hours.
+It depends on the Mac and its OpenBao access; `shutdown -h +180` in the VM is
+a second operational limit, not evidence that billing has ended.
 
-Les essais 52809699 et 52810056 avec une image KVM par digest ont abouti
-à un lancement conteneur inutilisable en SSH. Ils ont été détruits et leur
-absence vérifiée. Le paramètre `vm=true` seul n'a pas suffi avec cette image.
-Le profil utilise maintenant le modèle VM officiellement recommandé
-`fc393e1a4058a2f2b88e0c0e1a92e540`, observé avec `vm=true`. Il résout
-`docker.io/vastai/kvm:cuda-12.9.1-auto` : cette image de démarrage est choisie
-par Vast, les images applicatives restent épinglées séparément.
-L'instance 52810563 a été créée à 1,924074 USD/h ; les journaux montrent
-le démarrage libvirt/QEMU. Cela ne prouve pas encore SSH, CUDA ou la stack.
+Trials 52809699 and 52810056 with a KVM image by digest resulted
+in a container launch unusable over SSH. They were destroyed and their
+absence verified. The parameter `vm=true` alone was not enough with that image.
+The profile now uses the officially recommended VM template
+`fc393e1a4058a2f2b88e0c0e1a92e540`, observed with `vm=true`. It resolves
+`docker.io/vastai/kvm:cuda-12.9.1-auto`: this boot image is chosen
+by Vast; the application images remain pinned separately.
+Instance 52810563 was created at 1.924074 USD/h; the logs show
+libvirt/QEMU starting. This does not yet prove SSH, CUDA or the stack.
 
-Le chemin de requête des journaux du wrapper installé a également reçu
-son slash final requis par le fournisseur, corrigeant son HTTP 400.
+The log request path of the installed wrapper also received
+its trailing slash required by the provider, fixing its HTTP 400.

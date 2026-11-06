@@ -63,10 +63,10 @@ previously used development coding cases form a separate retention check.
 Instance prompts and positive recipe/parameter tuples are disjoint; task
 recipes are shared, so this is not an independent task-family benchmark.
 
-The first preparation incorrectly counted tokenizer mapping keys. It is
+The first preparation incorrectly counted tokeniser mapping keys. It is
 preserved without a model run. The corrected preparation reuses the existing
 `sequence_length` helper and checks an actual maximum of **547 tokens**, below
-the 1,024-token training limit. Neither tokenizer nor model weights changed to
+the 1,024-token training limit. Neither tokeniser nor model weights changed to
 correct that audit.
 
 The cached base is `Qwen2.5-Coder-1.5B-Instruct-4bit`, revision

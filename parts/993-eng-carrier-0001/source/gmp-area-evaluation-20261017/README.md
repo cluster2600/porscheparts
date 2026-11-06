@@ -1,57 +1,57 @@
-# GMP — essai d'aire exacte sans adoption
+# GMP — exact-area trial without adoption
 
-Cet essai isolé compare la fonction `exact_area` existante à deux voies GMP.
-Les **110 cas** rendent exactement la même `Fraction` réduite. Sur les deux
-anneaux réels, la voie entière gagne respectivement **1,097× et 1,125×** ; la
-voie `mpq` est plus lente, autour de **0,70×**. Ces mesures portent sur cette
-seule fonction. Aucun gain de constructeur complet ou de région n'est établi.
-Le résultat ne justifie pas une nouvelle dépendance de production.
+This isolated trial compares the existing `exact_area` function with two GMP paths.
+The **110 cases** return exactly the same reduced `Fraction`. On the two
+real rings, the integer path gains **1.097× and 1.125×** respectively; the
+`mpq` path is slower, around **0.70×**. These measurements cover this
+function alone. No gain for a complete builder or for a region is established.
+The result does not justify a new production dependency.
 
-Le [reçu documentaire](archive-summary.json) conserve les 110 valeurs exactes,
-les 42 mesures brutes, les médianes, CPU, temps mural, RSS, sources et
-empreintes. Chaque méthode est mesurée sept fois, dans un ordre alterné,
-conversions vers GMP et retour comprises. Le poste partagé n'était pas isolé.
-Le benchmark utilise 6,85 s CPU et 6,89 s murales ; son RSS maximal est
-46,3 Mo. La capture séparée utilise 5,27 s CPU et 128,1 Mo de RSS maximal.
+The [documentary receipt](archive-summary.json) keeps the 110 exact values,
+the 42 raw measurements, the medians, CPU, wall time, RSS, sources and
+digests. Each method is measured seven times, in alternating order,
+conversions to GMP and back included. The shared workstation was not isolated.
+The benchmark uses 6.85 s CPU and 6.89 s wall time; its maximum RSS is
+46.3 MB. The separate capture uses 5.27 s CPU and 128.1 MB maximum RSS.
 
-## Entrées et logiciel de l'essai
+## Trial inputs and software
 
-Une instance privée du constructeur `81422bc8` a capturé son premier appel
-d'aire à plus de 5 000 points : **5 878 points**, puis arrêt avant évaluation.
-Le domaine historique de **5 876 points**, lié au reçu `757b377d`, est un
-second jeu distinct. Chaque comparaison réutilise exactement les mêmes
-coordonnées rationnelles de son propre jeu. La référence scalaire est la
-fonction extraite par AST de la source `69b32aee`.
+A private instance of builder `81422bc8` captured its first area call
+above 5,000 points: **5,878 points**, then stopped before evaluation.
+The historical domain of **5,876 points**, linked to receipt `757b377d`, is a
+second, distinct set. Each comparison reuses exactly the same
+rational coordinates of its own set. The scalar reference is the
+function extracted by AST from source `69b32aee`.
 
-Un environnement Python 3.11.15 séparé contient **gmpy2 2.3.2**,
-licence **LGPL-3.0-or-later**, depuis la roue ARM64 officielle de 712 466 octets.
-Son SHA-256 `287060194af46c3de0853a62e89e76acec7c211c40ac2c1d9fabb7216432b642`
-correspond aux métadonnées PyPI sauvegardées. Les bibliothèques embarquées
-sont GMP 6.3.0, MPFR 4.2.2 et MPC 1.4.1. Les sources officielles consultées
-sont la [présentation](https://gmpy2.readthedocs.io/en/stable/overview.html),
-l'[installation](https://gmpy2.readthedocs.io/en/stable/install.html), les
-[entiers](https://gmpy2.readthedocs.io/en/stable/mpz.html) et les
-[métadonnées PyPI](https://pypi.org/pypi/gmpy2/json).
+A separate Python 3.11.15 environment contains **gmpy2 2.3.2**,
+licence **LGPL-3.0-or-later**, from the official ARM64 wheel of 712,466 bytes.
+Its SHA-256 `287060194af46c3de0853a62e89e76acec7c211c40ac2c1d9fabb7216432b642`
+matches the saved PyPI metadata. The bundled libraries
+are GMP 6.3.0, MPFR 4.2.2 and MPC 1.4.1. The official sources consulted
+are the [overview](https://gmpy2.readthedocs.io/en/stable/overview.html),
+the [installation](https://gmpy2.readthedocs.io/en/stable/install.html), the
+[integers](https://gmpy2.readthedocs.io/en/stable/mpz.html) and the
+[PyPI metadata](https://pypi.org/pypi/gmpy2/json).
 
-Les sources de la capture et le préfixe GMP ont été empreintés avant/après.
-Aucune installation ou écriture n'a été effectuée dans le runtime AM ; aucun
-prélèvement rétrospectif d'une identité complète AM avant cet essai scalaire
-n'est prétendu. La recette, les producteurs, les consommateurs, les contrôleurs
-et les calculs régionaux existants ne sont pas modifiés.
+The capture sources and the GMP prefix were digested before/after.
+No installation or write was made in the AM runtime; no
+retrospective capture of a complete AM identity before this scalar trial
+is claimed. The recipe, producers, consumers, checkers
+and existing regional calculations are not modified.
 
-## Portée de cette archive
+## Scope of this archive
 
-Les [scripts de capture](capture.py), [benchmark](benchmark.py),
-[plan](plan.json) et [exigence de roue](requirements.txt) sont des copies
-historiques exactes. Ils calculent leurs chemins depuis la disposition
-originale sous `work/` et **ne forment pas un lanceur autonome depuis ici**.
-Le reçu compact contient les identités des évaluations originales ; les
-anciens chemins absolus sont des métadonnées, pas des entrées portables.
+The [capture](capture.py), [benchmark](benchmark.py),
+[plan](plan.json) and [wheel requirement](requirements.txt) scripts are exact
+historical copies. They compute their paths from the original
+layout under `work/` and **do not form a standalone launcher from here**.
+The compact receipt contains the identities of the original evaluations; the
+old absolute paths are metadata, not portable inputs.
 
-Les deux anneaux rationnels, évaluations complètes, documentation téléchargée,
-métadonnées PyPI, roue et environnement restent dans
-`work/carrier-process-20261017/gmp-exact-area-001/`. Ils ne sont pas dupliqués
-dans Git. Une nouvelle exécution demanderait ces entrées exactes et les
-références historiques, en plus de l'environnement séparé décrit ci-dessus.
-Aucun rejeu n'est lancé par cet archivage. Cet essai ne figure pas dans la
-recette de fabrication du carrier.
+The two rational rings, complete evaluations, downloaded documentation,
+PyPI metadata, wheel and environment remain in
+`work/carrier-process-20261017/gmp-exact-area-001/`. They are not duplicated
+in Git. A new run would require these exact inputs and the
+historical references, in addition to the separate environment described above.
+No replay is launched by this archiving. This trial does not appear in the
+carrier's manufacturing recipe.

@@ -1,9 +1,9 @@
-# Reconstruction et amélioration du système horizontal 935
+# Reconstruction and improvement of the 935 horizontal system
 
-[Deux programmes distincts](../../FAN_DEVELOPMENT_PROGRAMMES.md) ·
-[Dossier et nomenclature](README.md) · [Sources](sources.json)
+[Two distinct programmes](../../FAN_DEVELOPMENT_PROGRAMMES.md) ·
+[Dossier and bill of materials](README.md) · [Sources](sources.json)
 
-## Ordre d'implémentation retenu et état actuel
+## Chosen implementation order and current state
 
 The [25 October continuation](ROOT_MESH_RESUME_20261025.md) closes five inferred
 root passages in the native PicoGK recipe, preserving protected original
@@ -12,280 +12,280 @@ control. The real fluid mesh still fails the full native concavity check.
 Calibration, installed interfaces, accepted fan CFD and fabrication remain
 open; the earlier pause record is retained as history.
 
-La [reprise du 21 octobre par la chaîne du README](README_CHAIN_20261021.md)
-conserve le rotor corrigé et isole la sensibilité du calcul à la bande de
-fixation de l'alésage. Les études analytiques R0/V2/S1 restent identifiées
-séparément ; leurs résultats ne sont pas transférés au rotor scanné.
+The [21 October resumption through the README chain](README_CHAIN_20261021.md)
+keeps the corrected rotor and isolates the sensitivity of the calculation to the
+bore fixing band. The analytical studies R0/V2/S1 remain identified
+separately; their results are not transferred to the scanned rotor.
 
-La [chaîne native 935 et l'essai local Qwen](NATIVE_935_PIPELINE.md) constituent
-la continuation active : neuf pales reconstruites individuellement, rotor et
-carénage créés dans PicoGK, enveloppes moteur à six cylindres et contrôle des
-interférences. Les sources éditables sont C# avec paramètres privés JSON.
-L'assemblage historique et la fabrication restent à qualifier.
+The [native 935 chain and the local Qwen trial](NATIVE_935_PIPELINE.md) constitute
+the active continuation: nine individually reconstructed blades, rotor and
+shroud created in PicoGK, six-cylinder engine envelopes and an interference
+check. The editable sources are C# with private JSON parameters.
+The historical assembly and manufacture remain to be qualified.
 
-La [correction de pointe du 13 octobre](TIP_CORRECTION_20261013.md) conserve
-les arcs acquis de la pale 03, remplace son extrapolation terminale et
-compare les écarts ainsi que trois calculs centrifuges. Les hypothèses de
-réparation restent distinctes des surfaces mesurées.
+The [13 October tip correction](TIP_CORRECTION_20261013.md) keeps
+the acquired arcs of blade 03, replaces its terminal extrapolation and
+compares the deviations as well as three centrifugal calculations. The repair
+hypotheses remain distinct from the measured surfaces.
 
-La [continuation du 12 octobre](CONTINUATION_20261012.md) ajoute un candidat
-de rotor fermé sous hypothèses, les interfaces de pilotes CFD/structure et
-un USD géométrique. Elle reste séparée de la référence historique calibrée
-et ne clôt pas la fabrication ou la validation de l'ensemble au banc.
+The [12 October continuation](CONTINUATION_20261012.md) adds a closed-rotor
+candidate under hypotheses, the CFD/structure pilot interfaces and
+a geometric USD. It remains separate from the calibrated historical reference
+and does not close manufacture or bench validation of the assembly.
 
-Le [raffinement et la comparaison au scan](CONVERGENCE_20261012.md) précisent
-les écarts géométriques entre pales et la sensibilité des contraintes au
-maillage ; ces résultats orientent les corrections avant la fabrication.
+The [refinement and comparison with the scan](CONVERGENCE_20261012.md) specify
+the geometric deviations between blades and the sensitivity of the stresses to the
+mesh; these results guide the corrections before manufacture.
 
-Environnement Linux/Python/.NET qualifié → surfaces depuis les scans avec
-SciPy/PicoGK → assemblage natif PicoGK et qualification des interfaces → OpenFOAM →
-Gmsh/CalculiX → optimisation SciPy puis coordination OpenMDAO → modèle
-PhysicsNeMo sur calculs acceptés → assemblage et résultats USD/Omniverse.
-La référence historique précède la variante améliorée. Le premier lot porte
-sur la validation numérique et le [protocole de banc](BENCH_PROTOCOL.md) ;
-fabrication et validation physique viennent après.
+Qualified Linux/Python/.NET environment → surfaces from the scans with
+SciPy/PicoGK → native PicoGK assembly and interface qualification → OpenFOAM →
+Gmsh/CalculiX → SciPy optimisation then OpenMDAO coordination → PhysicsNeMo
+model on accepted calculations → USD/Omniverse assembly and results.
+The historical reference precedes the improved variant. The first work package covers
+numerical validation and the [bench protocol](BENCH_PROTOCOL.md);
+manufacture and physical validation come afterwards.
 
-Le 6 octobre 2026, le propriétaire a fixé la cible du premier ensemble :
-**réplique exacte du système horizontal et de son montage sur une 935**.
-L'implantation, les interfaces, la transmission et les guides d'air de cette
-référence sont reconstruits avant toute amélioration. Une seconde étape
-adaptera le système horizontal à un **moteur de 993**, avec un contrat
-d'installation propre ; elle reste distincte du programme 993 vertical.
-Les familles de véhicules sont connues, mais les variantes exactes et leurs
-cotes de montage restent à qualifier. Cette décision ne valide aucune
-interface ni dimension encore inconnue.
+On 6 October 2026, the owner set the target of the first assembly:
+**an exact replica of the horizontal system and its mounting on a 935**.
+The layout, interfaces, transmission and air guides of this
+reference are reconstructed before any improvement. A second step
+will adapt the horizontal system to a **993 engine**, with its own installation
+contract; it remains distinct from the vertical 993 programme.
+The vehicle families are known, but the exact variants and their
+mounting dimensions remain to be qualified. This decision validates no
+interface or dimension that is still unknown.
 
-La [fiche d'implémentation du 5 au 7 octobre](IMPLEMENTATION.md) contient les
-commandes exécutables, versions, contrôles et limites. Le coordinateur accepte
-un cas, une étape et un nouveau dossier privé. La campagne a reconstruit neuf
-plages de pales observées, produit trois résolutions PicoGK, une CAO native
-éditable et les cartes d'écarts/coupes. La continuation ajoute deux surfaces
-analytiques ouvertes du moyeu, contrôlées sur des secteurs réservés du scan
-et exportées en FreeCAD/STEP. Les données et résultats détaillés sont sauvegardés
-dans les [archives GitHub privées](https://github.com/cluster2600/porscheparts-935-private).
-Le mécanisme possède désormais une portion d'arbre à 22 lobes périodiques
-observés, avec loft ouvert éditable, carte des lacunes et écarts bidirectionnels
-au STEP. Les cannelures conjuguées et les engrenages internes restent inconnus.
-Le support dispose aussi d'un plan d'inspection local et d'une portion de
-paroi d'alésage reconstruite sur son seul arc acquis ; leurs repères restent
-des candidats d'inspection, sans statut de référence de montage mesurée.
-Elle n'a pas encore clos la géométrie
-du rotor, la métrologie des interfaces ou le mécanisme ; les étapes physiques
-qui en dépendent restent ouvertes. Aucun ancien proxy n'entre dans les calculs
-de référence et aucune nouvelle location Vast n'est utilisée.
+The [5 to 7 October implementation record](IMPLEMENTATION.md) contains the
+executable commands, versions, checks and limits. The coordinator accepts
+a case, a step and a new private directory. The campaign reconstructed nine
+observed blade ranges, produced three PicoGK resolutions, an editable native
+CAD and the deviation/section maps. The continuation adds two open analytical
+hub surfaces, checked on reserved sectors of the scan
+and exported to FreeCAD/STEP. The detailed data and results are saved
+in the [private GitHub archives](https://github.com/cluster2600/porscheparts-935-private).
+The mechanism now has a shaft portion with 22 observed periodic
+lobes, with an editable open loft, a gap map and bidirectional deviations
+to the STEP. The mating splines and the internal gears remain unknown.
+The support also has a local inspection plane and a portion of
+bore wall reconstructed on its single acquired arc; their frames remain
+inspection candidates, without the status of a measured mounting reference.
+It has not yet closed the geometry
+of the rotor, the metrology of the interfaces or the mechanism; the physical steps
+that depend on them remain open. No old proxy enters the reference
+calculations and no new Vast rental is used.
 
-Le résultat attendu est une géométrie source éditable de toutes les pièces
-spécifiques, une nomenclature des composants normalisés, un assemblage avec
-interfaces documentées, des calculs caractérisant le système et un jumeau
-confronté aux mesures pour la réplique 935, puis pour l'adaptation 993 et les
-versions améliorées. Le spécimen fourni sert de référence de
-départ ; une reproduction exacte et une reconception d'une zone non observable
-ont des statuts distincts. Les lots ci-dessous caractérisent la référence et
-les variantes améliorées avec les mêmes exigences de preuve.
+The expected result is an editable source geometry of all the specific
+parts, a bill of materials of the standard components, an assembly with
+documented interfaces, calculations characterising the system and a twin
+confronted with measurements for the 935 replica, then for the 993 adaptation and the
+improved versions. The supplied specimen serves as the starting
+reference; an exact reproduction and a redesign of an unobservable zone
+have distinct statuses. The work packages below characterise the reference and
+the improved variants with the same evidence requirements.
 
-## Lot 1 — Repères, segmentation et interfaces
+## Work package 1 — Frames, segmentation and interfaces
 
-La [continuation d'assemblage du 12 octobre](INSPECTION_ASSEMBLY.md) réutilise
-PicoGK et les géométries disponibles sans location Vast. Elle livre une scène
-d'inspection réversible avec contexte moteur 917 identifié comme comparatif ;
-les interfaces du montage historique 935 restent à établir.
+The [12 October assembly continuation](INSPECTION_ASSEMBLY.md) reuses
+PicoGK and the available geometries without a Vast rental. It delivers a reversible
+inspection scene with a 917 engine context identified as comparative;
+the interfaces of the historical 935 mounting remain to be established.
 
-Reprendre les deux OBJ présents en copies privées réversibles. Segmenter les
-pièces mécaniques et les acquisitions sans éliminer les fragments inconnus.
-Classer trous, surfaces absentes et intersections avant réparation. Identifier
-les régions dos du rotor et l'empilage moyeu/arbre du Fan Drive.
+Take the two OBJs present as reversible private copies. Segment the
+mechanical parts and the acquisitions without eliminating unknown fragments.
+Classify holes, missing surfaces and intersections before repair. Identify
+the back regions of the rotor and the hub/shaft stack of the Fan Drive.
 
-Établir un repère moteur et des repères de pièces : axe de sortie vertical,
-axe d'entrée, faces de fixation et référence angulaire. Les poses PCA privées
-servent uniquement à l'inspection. Mesurer orthogonalité, entraxes et
-transformations avant d'affirmer un assemblage commun.
+Establish an engine frame and part frames: vertical output axis,
+input axis, mounting faces and angular reference. The private PCA poses
+serve only for inspection. Measure orthogonality, centre distances and
+transformations before asserting a common assembly.
 
-Pour chaque interface de la nomenclature : côté source et côté récepteur,
-axe/face/trous, cote nominale, tolérance, mode de fixation, charge transmise et
-preuve indépendante. En priorité : rotor/moyeu/arbre vertical ; arbre/appuis ;
-support/moteur ; poulie/arbre d'entrée ; carter/rotor ; guide/moteur.
-Les surfaces non acquises restent absentes du contrat fonctionnel.
+For each interface in the bill of materials: source side and receiving side,
+axis/face/holes, nominal dimension, tolerance, fastening method, transmitted load and
+independent evidence. In priority: rotor/hub/vertical shaft; shaft/bearings;
+support/engine; pulley/input shaft; housing/rotor; guide/engine.
+Unacquired surfaces remain absent from the functional contract.
 
-Obtenir unité d'export et au moins deux cotes de calibration par scan, avec
-outil/incertitude. Le rotor et l'entraînement ne sont pas mis à l'échelle par
-un ajustement visuel. Les scans de carter/guide et une vue de l'assemblage
-monté complètent le lot lorsqu'ils sont accessibles. Le catalogue ou une
-inspection démontée doit résoudre les interfaces cachées et pièces internes.
+Obtain the export unit and at least two calibration dimensions per scan, with
+tool/uncertainty. The rotor and the drive are not scaled by
+a visual fit. Scans of the housing/guide and a view of the mounted
+assembly complete the work package when they are accessible. The catalogue or a
+disassembled inspection must resolve the hidden interfaces and internal parts.
 
-**Livrables :** registre des composants, matrice d'assemblage, contrat
-d'interfaces, carte de couverture et liste d'acquisitions. **Passage :**
-assemblage traçable sans contradiction d'échelle ni coordonnées inventées.
+**Deliverables:** component register, assembly matrix, interface
+contract, coverage map and acquisition list. **Gate:**
+traceable assembly without scale contradiction or invented coordinates.
 
-## Lot 2 — Reconstruction C# PicoGK et CAO exploitable
+## Work package 2 — C# PicoGK reconstruction and usable CAD
 
-Réutiliser la chaîne C# PicoGK existante après témoin du runtime exact.
-Reconstruire séparément rotor, moyeu, support/carter, arbres, poulies et
-guidages avec paramètres issus des régions observées. Conserver distributions
-de sections et surfaces fonctionnelles. La résolution voxel est soumise à
-une étude sur trois pas ; les choix doivent résoudre les parois et jeux.
+Reuse the existing C# PicoGK chain after a witness of the exact runtime.
+Reconstruct separately the rotor, hub, support/housing, shafts, pulleys and
+guides with parameters taken from the observed regions. Keep section
+distributions and functional surfaces. The voxel resolution is subject to
+a study over three steps; the choices must resolve walls and clearances.
 
-Les engrenages ne sont pas obtenus par copie de l'enveloppe extérieure.
-Qualifier type, nombre de dents, rapport, module/géométrie, largeur, angle,
-position des axes, jeux et processus avant leur définition. Avec ces données,
-produire la source géométrique et les plans adaptés au procédé. Les roulements,
-joints et courroies normalisés sont spécifiés par référence et interface ;
-leur fabrication intégrale n'est pas supposée nécessaire.
+The gears are not obtained by copying the outer envelope.
+Qualify type, tooth count, ratio, module/geometry, width, angle,
+axis position, clearances and process before defining them. With these data,
+produce the geometric source and drawings suited to the process. Standard bearings,
+seals and belts are specified by reference and interface;
+their complete manufacture is not assumed to be necessary.
 
-Mesurer les écarts bidirectionnels entre reconstruction et scan sur les régions
-observées, puis sections, épaisseurs, jeux et continuité. Les zones interpolées
-ou redessinées disposent de leur propre statut et d'une justification.
-Le budget d'erreur dépend de la métrologie ; aucune précision universelle
-n'est promise d'après le nom du fichier.
+Measure the bidirectional deviations between reconstruction and scan on the observed
+regions, then sections, thicknesses, clearances and continuity. Interpolated
+or redrawn zones have their own status and a justification.
+The error budget depends on the metrology; no universal accuracy
+is promised on the basis of the file name.
 
-**Livrables :** C#, paramètres, géométrie PicoGK, meshes et plans d'interfaces.
-Compléter avec une reconstruction surfacique/BRep dans un outil CAD pour un
-STEP exploitable ; l'enveloppe voxel ne remplace pas les tolérances d'usinage
-ou la qualification d'une denture. **Passage :** fidélité, intégrité et
-complétude des interfaces compatibles avec le calcul concerné.
+**Deliverables:** C#, parameters, PicoGK geometry, meshes and interface drawings.
+Complete with a surface/BRep reconstruction in a CAD tool for a
+usable STEP; the voxel envelope does not replace machining tolerances
+or the qualification of a gear tooth form. **Gate:** fidelity, integrity and
+completeness of the interfaces compatible with the calculation concerned.
 
-## Lot 3 — Cinématique et transmission
+## Work package 3 — Kinematics and transmission
 
-Établir dimensions, nombre de pales, volume et distributions de sections.
-Avec densité et matériau documentés : masse, centre de gravité et tenseur
-d'inertie. Pour chaque régime du rotor, calculer vitesse périphérique, Mach,
-Reynolds et fréquence de passage des pales ; laisser les entrées physiques
-inconnues explicites et produire des scénarios séparés si nécessaire.
+Establish dimensions, blade count, volume and section distributions.
+With documented density and material: mass, centre of gravity and inertia
+tensor. For each rotor speed, calculate tip speed, Mach,
+Reynolds and blade-passing frequency; leave unknown physical inputs
+explicit and produce separate scenarios if necessary.
 
-Établir sens de rotation et rapport global depuis diamètres primitifs de
-poulies et rapport réel d'engrenage, avec convention explicite entrée/sortie.
-Les rapports issus d'anciennes coupes M64 et les régimes de kits commerciaux
-ne constituent pas les données de cette transmission.
+Establish the direction of rotation and the overall ratio from the pitch diameters of the
+pulleys and the real gear ratio, with an explicit input/output convention.
+Ratios taken from old M64 sections and speeds from commercial kits
+do not constitute the data of this transmission.
 
-Calculer vitesse du rotor et des arbres, inerties ramenées, couple aérodynamique,
-accélérations/décélérations et efforts de courroie. Établir pertes et bilan
-de puissance du moteur au ventilateur. Le couple demandé inclut la variation
-d'inertie et les pertes, au-delà du seul régime stationnaire.
+Calculate rotor and shaft speeds, reflected inertias, aerodynamic torque,
+accelerations/decelerations and belt forces. Establish losses and the power
+balance from the engine to the fan. The torque demanded includes the inertia
+variation and the losses, beyond the steady state alone.
 
-Après identification interne : charges radiales/axiales de denture,
-flexion/torsion des arbres, contacts, tenue du carter, vis et appuis. Le
-[cadre ISO 10300-1](https://www.iso.org/standard/79401.html) porte sur la capacité
-de charge des engrenages coniques ; le texte complet et les parties applicables
-restent à consulter pour l'engrenage retenu. Les fiches publiques ne sont pas
-une preuve de conformité.
+After internal identification: radial/axial tooth loads,
+shaft bending/torsion, contacts, strength of the housing, screws and bearings. The
+[ISO 10300-1 framework](https://www.iso.org/standard/79401.html) covers the load
+capacity of bevel gears; the full text and the applicable parts
+remain to be consulted for the chosen gear. Public data sheets are not
+evidence of conformity.
 
-Définir fits, précharge/jeu, vitesse, durée de vie des roulements, lubrification,
-étanchéité et dissipation du renvoi. Les méthodes
-[ISO 281](https://www.iso.org/standard/38102.html) et
+Define fits, preload/clearance, speed, bearing life, lubrication,
+sealing and heat dissipation of the angle drive. The
+[ISO 281](https://www.iso.org/standard/38102.html) and
 [SKF](https://evolution.skf.com/new-skf-engineering-software-for-the-evaluation-of-bearing-arrangements/)
-sont des références de calcul, pas des références de pièces 935. L'édition et
-les limites d'application doivent être figées au lancement du calcul.
+methods are calculation references, not references for 935 parts. The edition and
+the limits of application must be frozen when the calculation is launched.
 
-**Livrables :** schéma cinématique, courbes de couple/régime, charges et
-budget de pertes. **Passage :** entrées identifiées et résultats contrôlés
-par calculs indépendants et mesures correspondantes.
+**Deliverables:** kinematic diagram, torque/speed curves, loads and
+loss budget. **Gate:** identified inputs and results checked
+by independent calculations and corresponding measurements.
 
-## Lot 4 — Débit, distribution et refroidissement
+## Work package 4 — Flow, distribution and cooling
 
-Mailler l'assemblage rotor et pièces fixes avec sa vraie géométrie de carter,
-jeux et obstacles. Un pilote isolé est utile pour vérifier la méthode ; il
-n'est pas une prédiction du système installé.
+Mesh the assembly of rotor and fixed parts with its real housing geometry,
+clearances and obstacles. An isolated pilot is useful to check the method; it
+is not a prediction of the installed system.
 
-Sous OpenFOAM, contrôler surfaces et maillage volumique avant solveur,
-domaines tournant/fixe, interfaces, turbulence, couches limites et `y+`.
-Faire d'abord un point pilote accepté, puis courbes débit/pression/couple et
-puissance sur les régimes et contre-pressions utiles. Comparer trois
-maillages, fenêtres de convergence, conservation et bilan énergétique ;
-résoudre temporellement les interactions qui l'exigent.
+Under OpenFOAM, check surfaces and volume mesh before the solver,
+rotating/fixed domains, interfaces, turbulence, boundary layers and `y+`.
+First produce an accepted pilot point, then flow/pressure/torque and
+power curves over the relevant speeds and back-pressures. Compare three
+meshes, convergence windows, conservation and energy balance;
+resolve in time the interactions that require it.
 
-Un modèle MRF peut servir aux caractéristiques moyennes ; une interface
-rotative transitoire est nécessaire pour les interactions instationnaires
-retenues. Qualifier compressibilité et modèle d'écoulement d'après les vitesses
-et nombres sans dimension, avec famille/version OpenFOAM figée.
+An MRF model can serve for the mean characteristics; a transient rotating
+interface is necessary for the retained unsteady
+interactions. Qualify compressibility and the flow model from the velocities
+and dimensionless numbers, with a frozen OpenFOAM family/version.
 
-Inclure la résistance des guides et des passages moteur pour obtenir le point
-installé et la distribution par zone/cylindre. Le calcul thermique dépend des
-charges moteur, des surfaces d'échange et de la variante air/eau définie.
-Conserver à part les échanges avec huile, intercooler ou refroidissement d'eau
-s'ils ne font pas partie du réseau d'air documenté. Une orientation horizontale
-ne démontre pas, seule, une meilleure répartition.
+Include the resistance of the guides and engine passages to obtain the installed
+point and the distribution by zone/cylinder. The thermal calculation depends on the
+engine loads, the exchange surfaces and the defined air/water variant.
+Keep separate the exchanges with oil, intercooler or water cooling
+if they are not part of the documented air network. A horizontal orientation
+does not, on its own, demonstrate a better distribution.
 
-**Livrables :** courbes, champs natifs, répartition, pertes, températures et
-incertitudes selon les données disponibles. **Passage :** fidélité du réseau,
-convergence et accord aux mesures ; aucun ancien champ 993 n'est attaché à
-la géométrie 935.
+**Deliverables:** curves, native fields, distribution, losses, temperatures and
+uncertainties according to the available data. **Gate:** fidelity of the network,
+convergence and agreement with measurements; no old 993 field is attached to
+the 935 geometry.
 
-## Lot 5 — Résistance, vibration et fabrication
+## Work package 5 — Strength, vibration and manufacture
 
-Sur l'assemblage qualifié, combiner centrifuge, pression, température,
-entraînement, contacts et fixations. Vérifier racines de pales, moyeu,
-arbres, carter/support et maintien des jeux. Convergence spatiale et distinction
-entre singularités numériques et contraintes physiques sont nécessaires.
+On the qualified assembly, combine centrifugal, pressure, temperature,
+drive, contacts and fasteners. Check blade roots, hub,
+shafts, housing/support and maintenance of clearances. Spatial convergence and the distinction
+between numerical singularities and physical stresses are necessary.
 
-Effectuer modes précontraints en rotation et Campbell avec raideurs d'appuis,
-effets gyroscopiques selon capacités du solveur, ordres moteur, passage des
-pales et fréquence d'engrènement. Ajouter transitoires, fatigue et spectre
-d'utilisation quand matériau, process, surface et données de fatigue sont
-qualifiés. Prévoir équilibrage avec
-[ISO 21940-11](https://www.iso.org/standard/54074.html) si le comportement rigide
-est applicable ; ne pas imposer arbitrairement une classe d'équilibrage.
+Perform prestressed modes in rotation and a Campbell diagram with bearing stiffnesses,
+gyroscopic effects according to the solver's capabilities, engine orders, blade
+passing and gear-mesh frequency. Add transients, fatigue and a usage
+spectrum when material, process, surface and fatigue data are
+qualified. Plan balancing with
+[ISO 21940-11](https://www.iso.org/standard/54074.html) if rigid behaviour
+applies; do not impose a balancing grade arbitrarily.
 
-Définir pour chaque pièce son procédé : usinage, denture/traitement,
-formage/composite ou fabrication additive lorsque justifiée. Documenter
-matière, orientation, traitements, surépaisseurs, inspection et composants
-normalisés. Le choix aluminium/magnésium/composite reste propre au spécimen
-et à la conception qualifiée.
+Define for each part its process: machining, gear cutting/treatment,
+forming/composite or additive manufacturing where justified. Document
+material, orientation, treatments, machining allowances, inspection and standard
+components. The aluminium/magnesium/composite choice remains specific to the specimen
+and to the qualified design.
 
-**Livrables :** champs mécaniques, dynamique, critères de fatigue et dossier
-de fabrication/inspection. **Passage :** revue technique et plan d'essais
-correspondant ; les essais en rotation restent sous responsabilité humaine.
+**Deliverables:** mechanical fields, dynamics, fatigue criteria and
+manufacturing/inspection dossier. **Gate:** technical review and the corresponding
+test plan; rotating tests remain under human responsibility.
 
-## Optimisation après caractérisation de la référence
+## Optimisation after characterisation of the reference
 
-Définir des variantes contrôlées sur les sections, le vrillage, la cambrure,
-les pieds et extrémités de pales, puis le moyeu, le support et les passages
-d'air. Évaluer les matériaux et procédés actuels avec propriétés à température,
-état de surface et capacité d'inspection. Les dentures, appuis et lubrification
-peuvent être reconçus lorsque le bilan de pertes et les charges le justifient.
+Define controlled variants on the sections, twist, camber,
+blade roots and tips, then the hub, the support and the air
+passages. Evaluate current materials and processes with properties at temperature,
+surface finish and inspection capability. Gear teeth, bearings and lubrication
+may be redesigned when the loss budget and the loads justify it.
 
-Mesurer masse du rotor et de l'ensemble, inertie, débit réellement distribué,
-pression, puissance à l'entrée de transmission et températures pertinentes.
-Comparer à mêmes régime rotor, air et réseau, puis à budget de puissance commun
-si les variantes demandent des couples différents. Quantifier l'incertitude
-des écarts. Aucune cible de gain chiffrée n'est inventée avant ces données.
+Measure the mass of the rotor and of the assembly, inertia, actually distributed flow,
+pressure, power at the transmission input and relevant temperatures.
+Compare at the same rotor speed, air and network, then at a common power budget
+if the variants demand different torques. Quantify the uncertainty
+of the deviations. No numerical gain target is invented before these data.
 
-Conserver les interfaces d'installation définies ou documenter explicitement
-leur évolution. Recalculer structure, jeux à chaud/en rotation, modes et fatigue
-pour chaque candidat retenu. Une forme allégée ou un matériau moderne ne suffit
-pas à qualifier le gain global. Le résultat de ce lot est une comparaison
-traçable et une variante candidate aux essais, avec ses compromis connus.
+Keep the defined installation interfaces or explicitly document
+their evolution. Recalculate structure, hot/rotating clearances, modes and fatigue
+for each retained candidate. A lightened shape or a modern material is not enough
+to qualify the overall gain. The result of this work package is a traceable
+comparison and a variant that is a candidate for testing, with its known trade-offs.
 
-## Lot 6 — Validation et jumeau numérique
+## Work package 6 — Validation and digital twin
 
-Définir des essais distinguant transmission, ventilateur sur banc et système
-installé. Mesurer régime entrée/sortie, couple/puissance, température du
-renvoi, débit/pressions, répartition thermique et vibration. Documenter
-calibration, incertitudes et points indépendants de validation. L'éventuel
-banc de survitesse/équilibrage nécessite enceinte et protocole appropriés.
+Define tests distinguishing transmission, fan on the bench and installed
+system. Measure input/output speed, torque/power, temperature of the
+angle drive, flow/pressures, thermal distribution and vibration. Document
+calibration, uncertainties and independent validation points. Any
+overspeed/balancing bench requires an appropriate enclosure and protocol.
 
-Composer toutes les pièces confirmées dans OpenUSD avec unités, repères,
-assemblage et liaisons cinématiques. Associer chaque résultat à son hash
-géométrique, conditions, version solveur, matériaux et statut de validation.
-Garder formats natifs et association cellule/point pour la revue Omniverse.
+Compose all confirmed parts in OpenUSD with units, frames,
+assembly and kinematic joints. Associate each result with its geometric
+hash, conditions, solver version, materials and validation status.
+Keep native formats and the cell/point association for the Omniverse review.
 
-Inclure pertes de transmission et réseau thermique/aéraulique dans le modèle
-système. Un modèle réduit peut interpoler les calculs acceptés dans leur
-domaine de validité et être confronté aux capteurs. Une animation de roue
-seule ne clôt pas ce lot.
+Include transmission losses and the thermal/airflow network in the system
+model. A reduced model may interpolate the accepted calculations within their
+domain of validity and be confronted with the sensors. An animation of the wheel
+alone does not close this work package.
 
-**Livrables finaux :** sources et CAO, nomenclature, plans, dossier de calcul,
-plan/rapport d'essais et package de jumeau. La validation physique demeure
-ouverte si les mesures correspondantes ne sont pas disponibles.
+**Final deliverables:** sources and CAD, bill of materials, drawings, calculation dossier,
+test plan/report and twin package. Physical validation remains
+open if the corresponding measurements are not available.
 
-## Première livraison géométrique
+## First geometric delivery
 
-Le prochain lot exploitable sera l'assemblage rotor + support/entraînement
-segmenté, ses repères et le contrat d'interfaces, suivi du premier générateur
-PicoGK fondé sur le scan. Les pièces cachées et les guides auront des entrées
-explicitement manquantes. Aucun solide plausible ne les remplacera dans un
-assemblage déclaré complet.
+The next usable work package will be the segmented rotor + support/drive
+assembly, its frames and the interface contract, followed by the first
+scan-based PicoGK generator. The hidden parts and the guides will have explicitly
+missing inputs. No plausible solid will replace them in an
+assembly declared complete.
 
-Le brut, les dérivés et les paramètres issus de géométrie sous droits inconnus
-restent privés. Le code générique et les rapports permis peuvent être
-versionnés. Les modifications d'implémentation seront vérifiées par les
-contrôles ciblés et `make check`, avec ressources existantes qualifiées et
-pilotes avant toute campagne coûteuse.
+The raw data, derivatives and parameters taken from geometry under unknown rights
+remain private. Generic code and permitted reports may be
+versioned. Implementation changes will be verified by the
+targeted checks and `make check`, with existing qualified resources and
+pilots before any costly campaign.

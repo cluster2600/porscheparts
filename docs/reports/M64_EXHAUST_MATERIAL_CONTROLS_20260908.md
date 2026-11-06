@@ -10,7 +10,7 @@ The saved candidate `21c9c40b…` remains unchanged. The rejections and the two
 C0 alerts of the [previous audit](M64_EXHAUST_NATIVE_AUDIT_20260908.md) are
 kept. These two new steps are linked in a
 [separate capsule](../../twins/m64-cylinder-head/evidence/exhaust-material-controls-20260908.json);
-they rewrite no earlier receipt and authorize neither CFD nor manufacturing.
+they rewrite no earlier receipt and authorise neither CFD nor manufacturing.
 
 ## The pockets: measured change, real contact still to be checked
 
@@ -32,7 +32,7 @@ not the actually inserted lengths of the guides, whose nominal V2 length is
 computed by this new inventory.
 
 The areas of the four seat surfaces and of the two intake guide surfaces do
-not change in this computation. The full serialized digests of the eight faces
+not change in this computation. The full serialised digests of the eight faces
 nevertheless differ before/after: **neither face identity inferred from the
 areas, nor deformation inferred from a different digest**. The historical
 intake engagement of 23/35 is neither improved nor requalified by this
@@ -71,7 +71,7 @@ preservation.
 
 ## C1 curve trial: method rejected, no corrected BRep
 
-A separate attempt at synchronized reparameterization and multiplicity
+A separate attempt at synchronised reparameterisation and multiplicity
 reduction is actually executed on copies of curves, with the native budget
 `5e−6` unchanged. OCP rejects the first multiplicity reduction of the 3D curve
 of edge 1603, at the call tolerance `2.0000000000000004e−7`. The trial stops
@@ -80,7 +80,7 @@ surface and no BRep is written or modified.
 
 This result rejects this bounded method; it is neither a general
 impossibility of CAD construction nor evidence of a crack. The two C0 alerts
-remain localized and uncorrected. A first local attempt, stopped before OCP
+remain localised and uncorrected. A first local attempt, stopped before OCP
 because the macOS memory limit could not be set, remains a separate runtime
 failure, not an additional geometric rejection.
 
@@ -94,14 +94,14 @@ flowchart TD
     E --> F
     F --> G["Full gas, interfaces and walls: separate checks"]
     B --> H["No C1 correction of the BRep claimed"]
-    G --> I["CFD, strength and manufacturing not authorized"]
+    G --> I["CFD, strength and manufacturing not authorised"]
 ```
 
 ## Limits, execution and next steps
 
 Functional checks 6–12 do not pass: 7–8 only have an inventory of pocket
 surfaces; continuity of the full gas, real contacts of the inserts, separation
-of the ports, authorized openings, protected bands and final thicknesses
+of the ports, authorised openings, protected bands and final thicknesses
 remain to be checked. The next useful work is measuring the real contacts of
 the exhaust guides on `21c9`, with their axial and angular extents, then the
 throat–chamber communications.

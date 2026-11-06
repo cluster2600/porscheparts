@@ -29,7 +29,7 @@ and rejected endpoint003 output remain unchanged.
 | Minimum triangle SICN reported by the native worker | 0.06923322066867299 |
 | Removed source faces | 268 |
 | Surviving affected faces with positive old/new normal dot products | 530 |
-| Final affected neighboring pairs passing the unchanged guards | 933 |
+| Final affected neighbouring pairs passing the unchanged guards | 933 |
 | Immutable patch reference / candidate patch faces | 4,704 / 3,868 |
 | Native patch-envelope limit | 0.0625 mm |
 | Native controller window | 15.143341625109315 s |

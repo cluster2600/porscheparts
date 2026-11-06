@@ -19,7 +19,7 @@ flowchart LR
   class F stop
 ```
 
-The model uses `U = m Σ Yk uk(T)` and, for this closed adiabatic witness case, `dU/dθ = −p dV/dθ`. Formation energies are included: no LHV or additional heat release is added. The composition follows `Y = (1−xb)Yreactants + xbYproducts`; `xb` is a normalized Wiebe law, not a computed kinetics. The [Cantera conservation equations](https://cantera.org/3.2/reference/reactors/ideal-gas-reactor.html) make this dependence on composition explicit.
+The model uses `U = m Σ Yk uk(T)` and, for this closed adiabatic witness case, `dU/dθ = −p dV/dθ`. Formation energies are included: no LHV or additional heat release is added. The composition follows `Y = (1−xb)Yreactants + xbYproducts`; `xb` is a normalised Wiebe law, not a computed kinetics. The [Cantera conservation equations](https://cantera.org/3.2/reference/reactors/ideal-gas-reactor.html) make this dependence on composition explicit.
 
 ## Assumptions kept visible
 
@@ -49,7 +49,7 @@ The cross-auditor imports neither Cantera nor the producer. It re-evaluates the 
 
 Numerical threshold unchanged: `10⁻⁶ × 4,866.232173 J = 0.004866232 J`. This scale is the reference drop in internal energy of the prescribed products; it is neither an injected external heat nor the heat received by the cylinder head. The entropy drift of the motored witness case is 2.665729 × 10⁻⁹ J/(kg·K), below the fixed threshold of 10⁻⁴.
 
-The three levels show a decrease in the balance error, without demonstrating a global order of convergence of the adaptive solver [DOP853](https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html). The CSV files labeled 2V and 4V have exactly the same digest: this is a check for the absence of an artificial bonus, not a comparison of two real geometries.
+The three levels show a decrease in the balance error, without demonstrating a global order of convergence of the adaptive solver [DOP853](https://docs.scipy.org/doc/scipy-1.14.1/reference/generated/scipy.integrate.solve_ivp.html). The CSV files labelled 2V and 4V have exactly the same digest: this is a check for the absence of an artificial bonus, not a comparison of two real geometries.
 
 Verification: 13 producer tests and 11 auditor tests, all passing. A SciPy 1.15.3 preflight had failed at native loading before the computation; it is kept as a failure. The official SciPy 1.14.1 macOS12 wheel was then used in a fresh isolated environment. The six wheels and the upstream coefficients are verified by digest. The Newton refinement of the `UVY` inversion uses the same native `cv`, without changing the thermodynamic data or relaxing the energy check.
 
@@ -57,4 +57,4 @@ Verification: 13 producer tests and 11 auditor tests, all passing. A SciPy 1.15.
 
 Missing: full gas exchange, residuals, losses and shaft power, a calibrated combustion and the real effects of the 2V and 4V ports/valves. The wall is adiabatic: no distribution of flux toward the cylinder head, the cylinders, the air or the oil is computed here.
 
-The pressures of this model are not validated FEA loads; they are not compared as a gain with the old constant-γ values, since the composition and the chemical balance have also changed. The next local loads will have to be built and checked separately before a strength or cooling analysis. No FEA/CHT transfer, no 700 PS target reached and no manufacturing authorization result from this checkpoint.
+The pressures of this model are not validated FEA loads; they are not compared as a gain with the old constant-γ values, since the composition and the chemical balance have also changed. The next local loads will have to be built and checked separately before a strength or cooling analysis. No FEA/CHT transfer, no 700 PS target reached and no manufacturing authorisation result from this checkpoint.

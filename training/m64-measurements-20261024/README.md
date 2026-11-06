@@ -5,7 +5,7 @@ supplied-record SFT conversations from the reviewed
 [measurement register](../../catalog/reference/m64-measurements-20261024/facts.json).
 Exact accepted/excluded counts, measurement kinds and partition sizes appear in
 [manifest.json](manifest.json). It prepares data only: no model training,
-tokenization, context-fit evaluation or weights are produced by this increment.
+tokenisation, context-fit evaluation or weights are produced by this increment.
 
 | Dataset | Train | Validation | Test |
 |---|---:|---:|---:|

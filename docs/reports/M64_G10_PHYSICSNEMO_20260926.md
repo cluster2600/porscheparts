@@ -10,7 +10,7 @@ quarantined historical carrier result.
 screens fail. All eight subsequent CUDA corrections pass.** No geometry was
 changed and the support still exceeds 0.040 mm.
 
-| Held-out fine-mesh load | Nodal L2 error | Maximum normalized nodal error | Worst journal vector error | Raw equation residual | Field screen |
+| Held-out fine-mesh load | Nodal L2 error | Maximum normalised nodal error | Worst journal vector error | Raw equation residual | Field screen |
 |---|---:|---:|---:|---:|---|
 | Lateral +x | 8.305% | 16.232% | 3.490% | 66.37 | Fail |
 | Vertical -z | 3.353% | 13.858% | 2.220% | 31.68 | Fail |
@@ -19,7 +19,7 @@ The frozen 50,822-parameter network trained for 10,000 steps in **14.285 s**.
 Prediction of both fields on 351,392 nodes took **0.0238 s**. Training used
 146,174 medium-mesh nodes and checkpoint selection another 16,241 nodes on
 that same mesh. No test-based retraining or threshold relaxation followed.
-The cross-mesh errors combine approximation error and reference discretization
+The cross-mesh errors combine approximation error and reference discretisation
 differences; they are not a measurement of physical model error.
 
 FP64 CG then restores equation residuals <=**1.80e-10** and nodal-vector
@@ -82,7 +82,7 @@ a sourced Porsche tolerance or a demonstrated machining capability.
 ## Actual PhysicsNeMo experiment
 
 The official [linear-elasticity manual](https://github.com/NVIDIA/physicsnemo-sym/blob/main/docs/user_guide/foundational/linear_elasticity.rst)
-describes differential/variational physics-informed methods and nondimensionalization.
+describes differential/variational physics-informed methods and nondimensionalisation.
 The [FullyConnected API](https://github.com/NVIDIA/physicsnemo/blob/v2.2.0/physicsnemo/models/mlp/fully_connected.py)
 provides the installed architecture used here. This trial deliberately selects
 **supervised field approximation**, not the manual's separate PINN solver.
@@ -92,10 +92,10 @@ provides the installed architecture used here. This trial deliberately selects
 - Train a real `physicsnemo.models.mlp.FullyConnected` on the **2 mm** G9 nodal
   fields; 10% of those nodes serve only for checkpoint selection.
 - Open the **1.5 mm** mesh and its labels only after checkpoint selection.
-  This is a held-out discretization of the same shape, **not** a held-out design
+  This is a held-out discretisation of the same shape, **not** a held-out design
   or physical experiment. Coordinates and output scales use training data only.
 - Four 128-wide layers, six displacement outputs, fixed seed, at most 10,000
-  Adam steps/900 seconds. Multiply output by normalized height to impose zero
+  Adam steps/900 seconds. Multiply output by normalised height to impose zero
   displacement at the fixed foot. This does **not** impose force equilibrium.
 - Predeclared field screens: nodal L2 error <=2%, maximum nodal vector error
   divided by maximum reference displacement <=5%, journal vector error <=1%.
@@ -107,7 +107,7 @@ provides the installed architecture used here. This trial deliberately selects
 
 The reference remains numerically verified but not fully mesh-converged or
 physically correlated. Even a successful interpolation cannot qualify a
-geometry optimizer. The next geometry-learning campaign requires genuinely
+geometry optimiser. The next geometry-learning campaign requires genuinely
 different CAD variants, partitioned by **design** rather than by nearby nodes.
 
 ## Whole-stack execution path

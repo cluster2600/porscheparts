@@ -25,7 +25,7 @@ steps are recorded.
 
 Cells not connected to the boundary are **potential cavities of this grid**, not
 proof of physical sealing. An under-resolved opening can disappear; a mere
-diagonal contact accepted at 26 neighbors does not necessarily offer a physical
+diagonal contact accepted at 26 neighbours does not necessarily offer a physical
 flow section. No result automatically classifies intake, exhaust, lubrication or
 cooling.
 
@@ -34,7 +34,7 @@ cooling.
 The Python tests run the real algorithm on a hollow cube, a tunnel, a plugged
 tunnel, a diagonal contact, the six starting faces, the all-void/all-solid cases
 and invalid data. They also check that the input is preserved and that no
-CFD/manufacturing authorization is given.
+CFD/manufacturing authorisation is given.
 
 The native `--witness` mode generates only two small synthetic geometries
 (a hollow cube, then a cube with a tunnel) to test occupancy before the body.
@@ -48,7 +48,7 @@ flowchart TD
     B --> C{"Only exact double zeros,<br/>no union defect?"}
     C -- "no" --> F["Failure: FAILED.json kept<br/>Python propagation prohibited"]:::stop
     C -- "yes" --> D["Body sampling<br/>step 1.2, phase 0.371"]
-    D --> E["connectivity.py<br/>6 and 26 neighbors"]
+    D --> E["connectivity.py<br/>6 and 26 neighbours"]
     E --> G["All void samples reach<br/>the boundary, on this grid"]:::ok
     G -. "≠" .-> H["No cavity in the B-Rep,<br/>the VDB or the real part"]:::open
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
@@ -64,7 +64,7 @@ Y decreasing and the same native rounding. The first tunnel witness was rejected
 for 48 overlaps; the signed rereading demonstrated 48 `(-0,+0)` pairs and no
 double negative value. This initial receipt is kept. Two explicit conventions
 are now run on the same grid: double zero assigned to material (main) or to void
-(sensitivity), each with 6 and 26 neighbors. No epsilon, deleted point or
+(sensitivity), each with 6 and 26 neighbours. No epsilon, deleted point or
 displacement is applied. The masks must differ only by the exact number of
 double zeros. Any other contradiction remains blocking. These values are in
 native SDF units, not a distance measurement in mm.
@@ -100,7 +100,7 @@ be new. The VDBs, occupancy masks, positions and private component boxes do not
 go into the repository.
 
 A volume computed as `cell_count × step³` is a grid estimate. Agreement between
-6 and 26 neighbors proves neither convergence in step and phase, nor geometric
+6 and 26 neighbours proves neither convergence in step and phase, nor geometric
 continuity, nor a usable CFD mesh. The numerical bounds above are not physical
 criteria.
 
@@ -109,7 +109,7 @@ criteria.
 The [aggregate public receipt](../../evidence/picogk-connectivity-20260907.json)
 traces the reading of the native 0.3 field on the grid of step 1.2, phase 0.371.
 Of 2,719,728 samples, 1,898,164 are void and **all are connected to the
-boundary** at both 6 and 26 neighbors. No isolated component is detected **on
+boundary** at both 6 and 26 neighbours. No isolated component is detected **on
 this grid only**. It contains no double zero: the two masks are identical, and
 the sensitivity results were therefore reused, not artificially recomputed to
 announce four distinct runs.
@@ -119,4 +119,4 @@ negatively oriented shells. A step of 1.2 may not encounter them. The present
 check does not delete them and settles neither their nesting nor their physical
 nature: **absence detected on the grid ≠ absence of a cavity in the B-Rep, the
 VDB or the real part**. The comparison in resolution and phase, and the targeted
-geometric localization, remain to be done.
+geometric localisation, remain to be done.

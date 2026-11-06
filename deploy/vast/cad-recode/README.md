@@ -1,30 +1,30 @@
-# Culasse 935 : repartir du scan brut
+# 935 cylinder head: starting again from the raw scan
 
-R&D **non commerciale** avec CAD-Recode v1.5 (code et poids CC-BY-NC-4.0).
-Aucune géométrie, simplification, coupe, orientation, interface ou matière de
-l'ancienne reconstruction n'est réutilisée. Les anciens travaux restent intacts.
-Les outils génériques seuls sont réutilisables. La pièce reste une référence
-935, sans compatibilité 993 ni autorisation de fabrication.
+**Non-commercial** R&D with CAD-Recode v1.5 (code and weights CC-BY-NC-4.0).
+No geometry, simplification, section, orientation, interface or material from
+the old reconstruction is reused. The old work remains intact.
+Only the generic tools are reusable. The part remains a 935
+reference, with no 993 compatibility and no manufacturing authorisation.
 
-## État et frontières
+## Status and boundaries
 
-La préparation a été exécutée sur une VM Vast dédiée. Voir `verification.md`
-pour les contrôles réellement exécutés et leurs limites. Aucune image publique.
-`models.lock.json` fixe les révisions publiques ; `fetch.py` écrit les empreintes
-réelles des fichiers téléchargés. Les bases Docker sont épinglées par digest.
-CAD-Recode GPU, Nemotron et les outils OpenClaw ont été exécutés ; le parcours
-SimReady est qualifié séparément.
+The preparation was executed on a dedicated Vast VM. See `verification.md`
+for the checks actually executed and their limits. No public image.
+`models.lock.json` fixes the public revisions; `fetch.py` writes the actual
+digests of the downloaded files. The Docker bases are pinned by digest.
+CAD-Recode GPU, Nemotron and the OpenClaw tools were executed; the
+SimReady route is qualified separately.
 
-Une culasse à ailettes et galeries dépasse les formes simples des benchmarks
-CAD-Recode. Les 256 points d'entrée peuvent perdre des détails importants : le
-premier passage complet est un diagnostic, jamais une preuve de reconstruction
-fidèle. `face-components.npy` propose seulement des composants connexes ; leur
-identité et toute subdivision anatomique exigent une revue du scan brut.
-Aucun trou n'est rebouché automatiquement. Aucun résultat ancien n’alimente les nouveaux rapports.
+A cylinder head with fins and galleries goes beyond the simple shapes of the
+CAD-Recode benchmarks. The 256 input points can lose important details: the
+first complete pass is a diagnostic, never evidence of a faithful
+reconstruction. `face-components.npy` only proposes connected components; their
+identity and any anatomical subdivision require a review of the raw scan.
+No hole is filled automatically. No old result feeds the new reports.
 
-## Préparation locale
+## Local preparation
 
-Depuis la racine du dépôt (Python 3.11) :
+From the repository root (Python 3.11):
 
 ```bash
 uv venv --python 3.11 work/cad-recode-tools-venv
@@ -38,26 +38,26 @@ $PY scripts/cad_recode/pipeline.py prepare \
   work/cad-recode-935-fresh/intake
 ```
 
-Chaque sortie exige un répertoire nouveau, pour préserver les essais et leurs
-échecs. Un téléchargement interrompu est conservé ; recommencer dans un autre
-répertoire en profitant du cache HF. Aucun jeton HF n'est utilisé. Les scans,
-poids, STEP et rapports restent dans les dossiers ignorés par Git.
-Le SHA-256 attendu du brut est vérifié avant analyse. Le repère initial reste
-XYZ brut : ni PCA interprétée comme datum, ni ancien repère importé.
+Each output requires a new directory, to preserve the attempts and their
+failures. An interrupted download is kept; start again in another
+directory, taking advantage of the HF cache. No HF token is used. The scans,
+weights, STEP files and reports remain in folders ignored by Git.
+The expected SHA-256 of the raw file is verified before analysis. The initial frame remains
+raw XYZ: no PCA interpreted as a datum, no old frame imported.
 
-Le prétraitement échantillonne 8192 points, puis sélectionne 256 points éloignés.
-Il conserve centre, facteur de normalisation, graine et transformation inverse.
-**Le code CAD-Recode est à l'échelle normalisée ×100** : le worker applique
-`xyz_brut = xyz_CAD / 100 / normalization_scale + center`.
-Les unités physiques restent inconnues ; le STEP utilise les unités numériques
-OBJ pour inspection, sans prétendre que ses unités nominales soient mesurées.
+Preprocessing samples 8192 points, then selects 256 distant points.
+It keeps the centre, normalisation factor, seed and inverse transformation.
+**The CAD-Recode code is at normalised scale ×100**: the worker applies
+`xyz_brut = xyz_CAD / 100 / normalization_scale + center` (`xyz_brut` = raw XYZ).
+The physical units remain unknown; the STEP uses the numerical OBJ units
+for inspection, without claiming that its nominal units are measured.
 
-## Machine et images
+## Machine and images
 
-Cible : VM Vast Linux x86_64 avec Docker, NVIDIA Container Toolkit et accès GPU,
-RTX PRO 6000 Blackwell 96 Go, 32 vCPU, 128 Go RAM, 500 Go NVMe. Une instance
-conteneur standard n'est pas un substitut automatique à cette VM.
-Construire sur la VM ; ne pas copier les identifiants du Mac.
+Target: Linux x86_64 Vast VM with Docker, NVIDIA Container Toolkit and GPU access,
+RTX PRO 6000 Blackwell 96 GB, 32 vCPU, 128 GB RAM, 500 GB NVMe. A standard
+container instance is not an automatic substitute for this VM.
+Build on the VM; do not copy the Mac's credentials.
 
 ```bash
 docker build --platform linux/amd64 --target cad -f containers/cad-recode.Dockerfile -t 3dprinting993-cad-recode-cad:dev .
@@ -65,18 +65,18 @@ docker build --platform linux/amd64 --target inference -f containers/cad-recode.
 docker build --platform linux/amd64 -f containers/cad-recode-openclaw.Dockerfile -t 3dprinting993-cad-recode-openclaw:dev .
 ```
 
-Après tests, publier séparément les images autorisées et utiliser leurs références
-`repository@sha256:…` : aucun digest de publication n'est inventé ici.
-Pour un essai Docker local sans publication, la référence immuable retournée
-par `docker image inspect --format '{{.Id}}' IMAGE` est également acceptée.
-Consigner `pip freeze`, version pilote, `nvidia-smi`, inventaire GPU, image et
-résultats des smoke tests. Un build Mac émulé ne prouve pas l'inférence Blackwell.
+After testing, publish the authorised images separately and use their
+`repository@sha256:…` references: no publication digest is invented here.
+For a local Docker trial without publication, the immutable reference returned
+by `docker image inspect --format '{{.Id}}' IMAGE` is also accepted.
+Record `pip freeze`, driver version, `nvidia-smi`, GPU inventory, image and
+smoke-test results. An emulated Mac build does not prove Blackwell inference.
 
-## Inférence et évaluation
+## Inference and evaluation
 
-Le runtime utilise PyTorch CUDA 12.8 et l'attention eager, sans reprendre
-l'ancienne compilation FlashAttention CUDA 12.4. Tester les imports et une
-inférence avant un travail long. Aucune bascule CPU silencieuse.
+The runtime uses PyTorch CUDA 12.8 and eager attention, without reusing
+the old CUDA 12.4 FlashAttention build. Test the imports and one
+inference before a long job. No silent fallback to CPU.
 
 ```bash
 # MODEL_DIR et RUN_DIR : chemins absolus, hors Git ; images construites ci-dessus.
@@ -93,26 +93,29 @@ $PY scripts/cad_recode/pipeline.py export \
   --image "$CAD_IMAGE" --timeout 180
 ```
 
-Les trois propositions sont des générations distinctes, pas trois succès.
-Le code doit définir `r`, un Workplane CadQuery. Le worker est jetable, sans
-réseau, sans secret, non privilégié, avec 4 Go RAM, 2 CPU et timeout.
-L'évaluation relit le STEP séparément et mesure les distances **surface à
-surface, échantillonnées dans les deux sens** ; maximum échantillonné ≠ Hausdorff
-exacte. Aucun seuil dimensionnel n'est inventé. Pour les sorties non fiables,
-utiliser le dispatcher qui isole aussi le parseur STEP dans un conteneur.
+(The comments in the block read: "MODEL_DIR and RUN_DIR: absolute paths, outside
+Git; images built above." and "Only this output is writable by UID 65534.")
 
-## OpenClaw et Nemotron sur Vast
+The three proposals are distinct generations, not three successes.
+The code must define `r`, a CadQuery Workplane. The worker is disposable, with no
+network, no secret, unprivileged, with 4 GB RAM, 2 CPUs and a timeout.
+The evaluation rereads the STEP separately and measures **surface-to-surface
+distances, sampled in both directions**; sampled maximum ≠ exact
+Hausdorff. No dimensional threshold is invented. For untrusted outputs,
+use the dispatcher, which also isolates the STEP parser in a container.
 
-`compose.yaml` garde vLLM et OpenClaw sur la boucle locale de la VM. Le contexte
-initial est 32K, une seule séquence et 50 % de VRAM réservée à vLLM. Adapter cette
-réserve uniquement après mesure. La configuration sans authentification du
-gateway est limitée à loopback : accès uniquement par SSH sur une VM dédiée.
-Ne pas changer le bind pour une interface publique.
+## OpenClaw and Nemotron on Vast
 
-Définir des chemins absolus pour `CAD_MODELS`, `CAD_RUN`, `CAD_AGENT_STATE` et
-`CAD_AGENT_WORKSPACE`. Créer les dossiers état/workspace avec UID/GID 1000,
-puis copier `AGENT.md` vers `$CAD_AGENT_WORKSPACE/AGENTS.md` et créer `requests/`.
-Copier les propositions générées dans le workspace, sans anciennes géométries.
+`compose.yaml` keeps vLLM and OpenClaw on the VM's local loopback. The initial
+context is 32K, a single sequence and 50 % of VRAM reserved for vLLM. Adjust this
+reservation only after measurement. The gateway's no-authentication
+configuration is limited to loopback: access only through SSH on a dedicated VM.
+Do not change the bind to a public interface.
+
+Define absolute paths for `CAD_MODELS`, `CAD_RUN`, `CAD_AGENT_STATE` and
+`CAD_AGENT_WORKSPACE`. Create the state/workspace folders with UID/GID 1000,
+then copy `AGENT.md` to `$CAD_AGENT_WORKSPACE/AGENTS.md` and create `requests/`.
+Copy the generated proposals into the workspace, without old geometries.
 
 ```bash
 docker compose -f deploy/vast/cad-recode/compose.yaml config --quiet
@@ -123,46 +126,46 @@ python3 deploy/vast/cad-recode/smoke-nemotron.py
 docker compose -f deploy/vast/cad-recode/compose.yaml up -d openclaw
 ```
 
-Le modèle FP8 et son parseur doivent être présents dans le snapshot épinglé.
-Le smoke exige un vrai appel d'outil JSON ; `/health` seul ne suffit pas.
-OpenClaw dispose uniquement de lecture/écriture/édition du workspace. **Pas de
-shell, socket Docker, compte Vast, ancienne mémoire ou secret.** L'opérateur
-lance le dispatcher depuis la VM (répéter après chaque demande de l'agent) :
+The FP8 model and its parser must be present in the pinned snapshot.
+The smoke test requires a real JSON tool call; `/health` alone is not enough.
+OpenClaw has only read/write/edit access to the workspace. **No
+shell, Docker socket, Vast account, old memory or secret.** The operator
+runs the dispatcher from the VM (repeat after each request from the agent):
 
 ```bash
 $PY scripts/cad_recode/dispatch.py "$CAD_AGENT_WORKSPACE" "$CAD_RUN" --cad-image "$CAD_IMAGE"
 ```
 
-Seuls `export` et `evaluate`, avec tentatives 1 à 3, sont acceptés. Le dossier de
-résultats est monté en lecture seule dans OpenClaw. Les requêtes ne permettent
-ni de choisir une image, ni de modifier une commande, ni de louer une machine.
-Le profil Compose `omniverse` ajoute le VLM local Qwen2.5-VL-7B épinglé, sur
-127.0.0.1:8003 avec 23 % de VRAM. Le démarrer après Nemotron ; les deux
-réservent environ 72 Go au total sur cette machine. Arrêter les modèles avant
-un rendu lourd si la VRAM disponible est insuffisante. Sauvegarder via SSH les seules sorties,
-requêtes et conversations nécessaires ; pas de configuration d'authentification.
+Only `export` and `evaluate`, with attempts 1 to 3, are accepted. The results
+folder is mounted read-only in OpenClaw. The requests allow
+neither choosing an image, nor modifying a command, nor renting a machine.
+The Compose profile `omniverse` adds the pinned local VLM Qwen2.5-VL-7B, on
+127.0.0.1:8003 with 23 % of VRAM. Start it after Nemotron; together the two
+reserve about 72 GB on this machine. Stop the models before
+a heavy render if the available VRAM is insufficient. Save through SSH only the outputs,
+requests and conversations needed; no authentication configuration.
 
-## Content Agents locaux sur la VM qualifiée
+## Local Content Agents on the qualified VM
 
-La session utilise Content Agents v0.5.2, le convertisseur `usd-convert-cad`
-0.2.0 dans un venv Python 3.12 isolé, et le runtime SimReady épinglé installé
-par le preflight. Voir le manifeste sauvegardé pour les versions complètes.
-Le VLM se lance après Nemotron :
+The session uses Content Agents v0.5.2, the `usd-convert-cad` converter
+0.2.0 in an isolated Python 3.12 venv, and the pinned SimReady runtime installed
+by the preflight. See the saved manifest for the complete versions.
+The VLM is started after Nemotron:
 
 ```bash
 docker compose -f deploy/vast/cad-recode/compose.yaml --profile omniverse up -d vlm
 python3 deploy/vast/cad-recode/smoke-vlm.py
 ```
 
-Dans le checkout Content Agents créé par le preflight, appliquer
-`content-agents-local.patch` : ports publiés sur loopback et renderer joint
-par son nom Docker interne, reconnu comme local par les services amont.
-Démarrer OVRTX avec `OVRTX_HOST_PORT=127.0.0.1:8001`, créer le réseau
-`content-agents-network`, puis y connecter le conteneur OVRTX avec l'alias
-`ovrtx-rendering-api` avant le déploiement Material/Physics.
+In the Content Agents checkout created by the preflight, apply
+`content-agents-local.patch`: ports published on loopback and the renderer reached
+by its internal Docker name, recognised as local by the upstream services.
+Start OVRTX with `OVRTX_HOST_PORT=127.0.0.1:8001`, create the
+`content-agents-network` network, then connect the OVRTX container to it with the alias
+`ovrtx-rendering-api` before the Material/Physics deployment.
 
-Les modèles restent sur loopback. Sur cette VM, `docker0` est 172.17.0.1 ;
-les services les joignent via deux relais limités à cette interface :
+The models stay on loopback. On this VM, `docker0` is 172.17.0.1;
+the services reach them through two relays limited to that interface:
 
 ```bash
 # socat doit être installé ; vérifier l'adresse docker0 avant réemploi.
@@ -171,103 +174,106 @@ for port in 8002 8003; do
 done
 ```
 
-Configurer le preflight avec les backends `openai`, le VLM `cad-vlm` à
-`http://host.docker.internal:8003/v1` et le LLM `nemotron-cad` à
-`http://host.docker.internal:8002/v1`. Les variables `LOCAL_VLM_API_KEY` et
-`LOCAL_LLM_API_KEY` valent littéralement `local-unused` : marqueurs exigés
-par le client local, sans compte externe ni secret fournisseur.
-Dans `deploy/collection/collection.yaml`, limiter
-`dependencies.vlm.max_tokens` à 2048 pour le contexte VLM de 8192 tokens.
-Utiliser `USD_CONVERT_CAD_PYTHON` pour le venv du convertisseur, et exécuter
-le preflight avec le Python du venv SimReady (+ PyYAML 6.0.2).
+(The comment in the block reads: "socat must be installed; check the docker0
+address before reuse.")
 
-La VM avait un conflit après une mise à jour automatique des bibliothèques
-NVIDIA ; le pilote a été rechargé sans processus GPU actif. Pour reproduire,
-contrôler la cohérence pilote/NVML avant de démarrer les modèles. Ne jamais
-recharger un pilote pendant un calcul. Les timers apt ont été suspendus
-uniquement dans cet invité éphémère pendant la qualification.
+Configure the preflight with the `openai` backends, the VLM `cad-vlm` at
+`http://host.docker.internal:8003/v1` and the LLM `nemotron-cad` at
+`http://host.docker.internal:8002/v1`. The variables `LOCAL_VLM_API_KEY` and
+`LOCAL_LLM_API_KEY` are literally `local-unused`: markers required
+by the local client, with no external account or vendor secret.
+In `deploy/collection/collection.yaml`, limit
+`dependencies.vlm.max_tokens` to 2048 for the 8192-token VLM context.
+Use `USD_CONVERT_CAD_PYTHON` for the converter venv, and run
+the preflight with the Python of the SimReady venv (+ PyYAML 6.0.2).
 
-## Calculs physiques : dossier neuf
+The VM had a conflict after an automatic update of the NVIDIA
+libraries; the driver was reloaded with no active GPU process. To reproduce,
+check driver/NVML consistency before starting the models. Never
+reload a driver during a calculation. The apt timers were suspended
+only in this ephemeral guest during qualification.
 
-`engineering-inputs.json` repart vide. La commande suivante fournit les manques
-et retourne 3 tant qu'une revue d'ingénierie n'a pas été effectuée :
+## Physical calculations: a fresh dossier
+
+`engineering-inputs.json` starts empty again. The following command lists what is missing
+and returns 3 as long as an engineering review has not been carried out:
 
 ```bash
 $PY scripts/cad_recode/pipeline.py readiness \
   deploy/vast/cad-recode/engineering-inputs.json "$RUN_DIR/physics-readiness"
 ```
 
-Réutiliser les solveurs de `containers/cadsim.Dockerfile`, mais aucun ancien cas
-culasse. Pour OpenFOAM : `benchmarks/openfoam-poiseuille-f25/run_local.sh` vérifie
-un problème analytique indépendant. Le script `scripts/cad_recode/ccx_smoke.py OUTPUT --ccx ccx` vérifie une
-barre en traction (`u=FL/EA`) et une conduction 1D (`q=kAΔT/L`) en exécutant réellement CalculiX. Les propriétés et
-charges de ces fixtures synthétiques ne deviennent jamais celles de la culasse.
-PhysicsNeMo reste préparé par l'image isolée existante, sans entraînement.
+Reuse the solvers of `containers/cadsim.Dockerfile`, but no old cylinder-head
+case. For OpenFOAM: `benchmarks/openfoam-poiseuille-f25/run_local.sh` checks
+an independent analytical problem. The script `scripts/cad_recode/ccx_smoke.py OUTPUT --ccx ccx` checks a
+bar in tension (`u=FL/EA`) and 1D conduction (`q=kAΔT/L`) by actually running CalculiX. The properties and
+loads of these synthetic fixtures never become those of the cylinder head.
+PhysicsNeMo remains prepared by the existing isolated image, without training.
 
-## Parcours SimReady complet, étapes séparées
+## Complete SimReady route, separate steps
 
-Installer le skill `omniverse-cad-to-simready` et son environnement Python 3.12.
-`simready-stage.sh` appelle directement ses références, sans runner monolithique.
-Définir `SIMREADY_SKILL_ROOT`, `SIMREADY_PYTHON` et un nouveau dossier `OV`.
+Install the `omniverse-cad-to-simready` skill and its Python 3.12 environment.
+`simready-stage.sh` calls its references directly, without a monolithic runner.
+Define `SIMREADY_SKILL_ROOT`, `SIMREADY_PYTHON` and a new `OV` folder.
 
-1. `bash deploy/vast/cad-recode/simready-stage.sh preflight --env-file "$OV/preflight.env" --report "$OV/preflight.json" --markdown-report "$OV/preflight.md"`, puis sourcer le fichier env.
-2. Vérifier les services OVRTX, Material et Physics avant inspection/conversion. Utiliser le VLM Qwen2.5-VL-7B déjà prévu par les outils SimReady, et arrêter Nemotron si la VRAM l'exige. Les secrets éventuels doivent venir exclusivement du wrapper OpenBao approuvé ; une absence bloque ce parcours.
-3. Appeler `identify-asset-context`, puis `convert-to-usd` séparément sur le scan et le STEP candidat ; conserver les chemins USD rapportés, sans supposer leur nom.
-4. Valider chaque USD avec `validate-usd-minimum`. Pour la superposition, appeler `scripts/cad_recode/assemble.py SCAN_USD CAD_USD COMPARISON_USDA --scan-display-scale S --cad-display-scale C` dans l'environnement USD. Déterminer S et C depuis les transformations rapportées par le convertisseur : jamais depuis une dimension Porsche supposée. Ces échelles sont seulement visuelles ; leurs valeurs restent à vérifier au premier run du convertisseur.
-5. Sur une copie expérimentale du candidat, appeler `content-agents` avec `--call material --call physics --convert-physics-output-to-usd`, puis `simready-conform-profile --profile Prop-Robotics-Neutral`. Ne jamais modifier le scan ou le STEP maîtres.
-6. Appeler dans l'ordre `omni-asset-validate`, `omni-asset-validate-geometry`, `omni-asset-validate-physics`, `simready-validate`, puis `ovrtx-render-service`. Réutiliser à chaque fois le `output_usd_path` réel du rapport précédent.
-7. Conserver les demandes de correction FET et leurs preuves. Sans propriétés/échelle/préhensions justifiables : `blocked` ou `needs_rerun`, jamais une conformité forcée. Vérifier que les images ne sont ni vides ni uniformes.
+1. `bash deploy/vast/cad-recode/simready-stage.sh preflight --env-file "$OV/preflight.env" --report "$OV/preflight.json" --markdown-report "$OV/preflight.md"`, then source the env file.
+2. Check the OVRTX, Material and Physics services before inspection/conversion. Use the Qwen2.5-VL-7B VLM already provided for by the SimReady tools, and stop Nemotron if VRAM requires it. Any secrets must come exclusively from the approved OpenBao wrapper; their absence blocks this route.
+3. Call `identify-asset-context`, then `convert-to-usd` separately on the scan and the candidate STEP; keep the reported USD paths, without assuming their names.
+4. Validate each USD with `validate-usd-minimum`. For the overlay, call `scripts/cad_recode/assemble.py SCAN_USD CAD_USD COMPARISON_USDA --scan-display-scale S --cad-display-scale C` in the USD environment. Determine S and C from the transformations reported by the converter: never from an assumed Porsche dimension. These scales are only visual; their values remain to be verified on the converter's first run.
+5. On an experimental copy of the candidate, call `content-agents` with `--call material --call physics --convert-physics-output-to-usd`, then `simready-conform-profile --profile Prop-Robotics-Neutral`. Never modify the master scan or STEP.
+6. Call in order `omni-asset-validate`, `omni-asset-validate-geometry`, `omni-asset-validate-physics`, `simready-validate`, then `ovrtx-render-service`. Each time, reuse the actual `output_usd_path` from the previous report.
+7. Keep the FET correction requests and their evidence. Without justifiable properties/scale/grasps: `blocked` or `needs_rerun`, never forced conformance. Check that the images are neither empty nor uniform.
 
-Les flags détaillés restent ceux de `references/commands.md` du skill installé.
-Le profil SimReady décrit un objet manipulable, pas un moteur validé. Les
-matériaux, densités et collisions expérimentaux ne sont ni des mesures ni une
-validation de résistance/fatigue. Pas de texture ou de publication publique.
+The detailed flags remain those of `references/commands.md` in the installed skill.
+The SimReady profile describes a manipulable object, not a validated engine. The
+experimental materials, densities and collisions are neither measurements nor a
+validation of strength/fatigue. No texture or public publication.
 
 ## Sources
 
-- https://github.com/filaPro/cad-recode — architecture, notebook et licence.
-- https://huggingface.co/filapro/cad-recode-v1.5 — poids non commerciaux.
+- https://github.com/filaPro/cad-recode — architecture, notebook and licence.
+- https://huggingface.co/filapro/cad-recode-v1.5 — non-commercial weights.
 - https://github.com/vllm-project/recipes/blob/main/NVIDIA/Nemotron-3-Nano-30B-A3B.md
 - https://docs.openclaw.ai/gateway/config-tools/custom-providers
 - https://vast.ai/article/announcing-virtual-machine-rental-on-vast-ai
 
-### Reprise depuis les triangles : profils et surfaces partielles
+### Restarting from the triangles: profiles and partial surfaces
 
-Après le rejet visuel de la reconstruction globale à 256 points, les commandes
-suivantes repartent de l'OBJ brut et de son empreinte. Aucun ancien repère ni
-ancienne géométrie de culasse n'est importé. Exécuter dans le runtime CAO qualifié,
-avec le dépôt comme répertoire courant :
+After the visual rejection of the global 256-point reconstruction, the following
+commands start again from the raw OBJ and its digest. No old frame or
+old cylinder-head geometry is imported. Run in the qualified CAD runtime,
+with the repository as the current directory:
 
 ```sh
 python -m scripts.cad_recode.recover_sections SOURCE.obj OUTPUT/profiles --sha256 SHA256
 python -m scripts.cad_recode.recover_planes SOURCE.obj OUTPUT/surfaces --sha256 SHA256
 ```
 
-Les sorties sont des cercles analytiques et des faces planes découpées, en STEP,
-avec leurs paramètres JSON. Ce ne sont pas une culasse complète ni un solide.
-Les contours ouverts ne sont pas refermés ; les triangles formant des pincements
-sont retirés des seules zones candidates, sans modifier le scan original.
+The outputs are analytical circles and trimmed planar faces, as STEP,
+with their JSON parameters. They are not a complete cylinder head nor a solid.
+Open contours are not closed; triangles forming pinches
+are removed from the candidate zones only, without modifying the original scan.
 
-Les seuils exploratoires de 0,6 unité OBJ pour les profils et 0,4 pour la projection
-plane sont réglables par `--profile-tolerance` et `--projection-tolerance`.
-Ils ne constituent pas des tolérances mécaniques. L'échelle physique reste inconnue.
-Un arc incomplet, un mauvais ajustement, une surface sans support dans le scan ou
-un STEP qui échoue à la relecture est rejeté. Les vérifications vers le scan sont
-échantillonnées ; elles ne prouvent ni l'exactitude globale ni l'aptitude à fabriquer.
+The exploratory thresholds of 0.6 OBJ unit for profiles and 0.4 for planar
+projection are adjustable with `--profile-tolerance` and `--projection-tolerance`.
+They are not mechanical tolerances. The physical scale remains unknown.
+An incomplete arc, a poor fit, a surface without support in the scan or
+a STEP that fails to read back is rejected. The checks against the scan are
+sampled; they prove neither global accuracy nor fitness for manufacture.
 
-Vérification ciblée : `python -m unittest tests.test_cad_recode_sections`.
+Targeted check: `python -m unittest tests.test_cad_recode_sections`.
 
-Pour combler les **petites lacunes du scan**, sur une copie conservant exactement
-les sommets et triangles originaux :
+To fill **small gaps in the scan**, on a copy that keeps exactly
+the original vertices and triangles:
 
 ```sh
 python -m scripts.cad_recode.repair_scan_gaps SOURCE.obj OUTPUT/profiles/profiles.json OUTPUT/repaired --sha256 SHA256
 ```
 
-Le script protège les ouvertures circulaires relevées, impose une frontière fermée,
-une continuité des normales avec la surface voisine, une triangulation sans nouvelle
-arête non-manifold et une relecture OBJ exacte. Les paramètres `--max-gap` (3 unités
-OBJ par défaut) et `--max-planarity` (0,25) sont des limites de réparation exploratoires.
-Les grands contours, les frontières branchées et les zones ambiguës restent ouverts.
-Le rapport distingue explicitement les surfaces ajoutées par interpolation des surfaces
-mesurées. Cette opération ne rend pas automatiquement le maillage étanche.
+The script protects the detected circular openings, enforces a closed boundary,
+continuity of normals with the neighbouring surface, a triangulation with no new
+non-manifold edge and an exact OBJ read-back. The parameters `--max-gap` (3 OBJ
+units by default) and `--max-planarity` (0.25) are exploratory repair limits.
+Large contours, branched boundaries and ambiguous zones remain open.
+The report explicitly distinguishes surfaces added by interpolation from measured
+surfaces. This operation does not automatically make the mesh watertight.

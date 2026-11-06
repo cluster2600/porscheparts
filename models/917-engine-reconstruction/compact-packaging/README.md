@@ -17,9 +17,9 @@ overwrite an existing directory.
   has two rounded volumes around the camshaft lines, joined by a continuous
   skin; the cavities are subtracted after the ribs.
 - Two adapter plates have six openings aligned with the candidate cylinder
-  heads of each bank. Centers and poses come from the inherited assembly,
+  heads of each bank. Centres and poses come from the inherited assembly,
   not from an estimate on the museum's exploded views.
-- The branches are projected onto the outer skin before voxelization to keep a
+- The branches are projected onto the outer skin before voxelisation to keep a
   continuous connection between the roots and the top. Their shape is not the
   result of a stress analysis.
 - Fourteen screw positions per bank reuse the native screw prototype already
@@ -134,7 +134,7 @@ work/917-compact-new-run
 The measured interfaces and their qualification remain open in the
 [contract](interface-contract.json). Alloy, process, depowdering, surface finish,
 machining, lubrication, sealing, mechanical strength and professional validation
-are not established. These files are a reproducible study, with no authorization
+are not established. These files are a reproducible study, with no authorisation
 to manufacture for engine service or to start the engine.
 
 The figure titles in [render.py](render.py) and the two images stay in French:

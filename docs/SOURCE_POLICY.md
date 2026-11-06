@@ -7,7 +7,7 @@
 | A | Traceable direct measurement or official document | Reference dimension or specification |
 | B | Manufacturer, OEM supplier or standard | Material, process, component |
 | C | Reproducible community measurement | Cross-check or secondary geometry |
-| D | Third-party model with a license but unproven accuracy | Visual reference only |
+| D | Third-party model with a licence but unproven accuracy | Visual reference only |
 | E | Estimate from a photograph or rendering | Explicitly flagged assumption |
 
 ```mermaid
@@ -39,7 +39,7 @@ flowchart TD
 
 ## Auditing a 3D model
 
-Record: author, URL, license, format, variant, number of parts, whether the
+Record: author, URL, licence, format, variant, number of parts, whether the
 interior or the underbody is present, units, declared dimensions, whether it may
 be modified and redistributed, and the results of comparison with known
 dimensions.

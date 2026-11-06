@@ -132,7 +132,7 @@ marketing page is not the actual model-specific measurement report.
    retain the Porsche point ID and Celette item ID in separate fields, and
    document the interpretation. Do not fill missing coordinates from drawing
    pixels or bench-station numbers.
-2. **Prioritize the additional coordinate tables.** Obtain a legible sample
+2. **Prioritise the additional coordinate tables.** Obtain a legible sample
    with its original publisher, model/body style, date, datum definition and
    units before purchasing a compilation or requesting a database export.
    For Celette, target 425.D4G and the dimensional definition/calibration of

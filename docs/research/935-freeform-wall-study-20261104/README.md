@@ -8,8 +8,8 @@ verification, residual audit, runtime, sources and private manifest.
 
 ## Requirement and input admission
 
-The functional goal requires faithful geometry before design optimization.
-The earlier frozen cylindrical parameterization of observed region 1 exceeds its
+The functional goal requires faithful geometry before design optimisation.
+The earlier frozen cylindrical parameterisation of observed region 1 exceeds its
 exploratory projection screen. This experiment asks whether one compact freeform
 surface can preserve that acquired wall more closely. It does not infer anatomy,
 hidden galleries, a machining allowance or a manufacturing process.
@@ -23,10 +23,10 @@ projection checks must pass. Region 2 has folded UV triangles and is not fitted.
 Region 4 has no admitted source pair and is not invented. The source selection
 was informed by previous geometric fits, so this is conditional within-scan
 evaluation, not independent specimen metrology or unbiased segmentation truth.
-The axial parameter normalization uses the complete acquired mask to define its
+The axial parameter normalisation uses the complete acquired mask to define its
 observed domain, including evaluation-point extrema. Only the 841 training
 coordinates enter the coefficient solve. The held-out scores are therefore a
-transductive within-scan check, not a blind generalization test.
+transductive within-scan check, not a blind generalisation test.
 
 ## Registered model and acceptance screen
 
@@ -35,7 +35,7 @@ independent poles**. The angular knots are uniform, the axial basis has two
 interior knots, and three angular pole rows wrap to impose positional and first-
 derivative continuity. It is fitted once by linear least squares in Cartesian
 coordinates. The previous scan frame is used only for parameter coordinates;
-its origin and axes are not refitted. No degree, knot-count, regularization or
+its origin and axes are not refitted. No degree, knot-count, regularisation or
 source-selection sweep is performed.
 
 The trial plan is written before fitting the acquired points. It requires rank
@@ -80,9 +80,9 @@ radial displacement is measured as 0.600034 mm. The candidate's positional and
 first-derivative seam discrepancies are respectively 1.78e-15 mm and 1.33e-15 mm
 per unit angular parameter. Continuity does not establish source fidelity.
 
-## Residual localization and refusal controls
+## Residual localisation and refusal controls
 
-Source-indexed localization finds errors in all 12 edge-connected acquired
+Source-indexed localisation finds errors in all 12 edge-connected acquired
 components. The main component has 1,680 faces, 1,005 vertices and 914 over-limit
 vertices. Across the whole mask, **1,693 of 1,700 triangles** touch an over-limit
 vertex, and 1,342 have all three vertices above the screen. Discarding a small

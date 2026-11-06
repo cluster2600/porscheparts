@@ -1,44 +1,44 @@
-# Images du travail en cours — 16 octobre 2026
+# Work-in-progress images — 16 October 2026
 
-Ouvrir `index.html` pour parcourir les planches de ce dossier hors ligne. Les fichiers
-PNG restent disponibles individuellement à leur définition complète.
+Open `index.html` to browse the plates in this directory offline. The PNG
+files remain available individually at full resolution.
 
-La navigation donne aussi accès aux cartes mécaniques déjà calculées :
-[appuis rigides](mechanics.html), [appuis souples](mechanics-springs.html),
-et aux [surfaces corrigées de la région droite](right-supports.html).
-Chaque planche conserve son propre reçu et son périmètre de calcul.
+The navigation also gives access to the mechanical maps already computed:
+[rigid supports](mechanics.html), [compliant supports](mechanics-springs.html),
+and to the [corrected surfaces of the right region](right-supports.html).
+Each plate keeps its own receipt and its computation scope.
 
-La [planche locale de la peau gauche](chart002-local-20261016/README.md)
-complète ces cinq vues. Elle conserve ses trois JSON réels, son script de
-rendu et son reçu propres ; elle ne modifie pas les preuves historiques des
-cinq planches initiales.
+The [local plate of the left skin](chart002-local-20261016/README.md)
+completes these five views. It keeps its own three real JSON files, its own
+render script and its own receipt; it does not modify the historical evidence of the
+five initial plates.
 
-Les [deux planches des sept enveloppes natives](sealed-envelopes-20261016/README.md)
-ajoutent les volumes de construction dans la pose réelle et les agrandissements
-des petites régions 003/009. Leurs propres reçus conservent les sept maillages,
-les sources du rendu et les contrôles des barres d’échelle. Le rejeu depuis
-une copie séparée reproduit les deux PNG à l’octet. Ces volumes précèdent les
-grilles et les couches des supports, encore en cours de calcul.
+The [two plates of the seven native envelopes](sealed-envelopes-20261016/README.md)
+add the build volumes in the real pose and the enlargements
+of the small regions 003/009. Their own receipts keep the seven meshes,
+the render sources and the scale-bar checks. The replay from
+a separate copy reproduces the two PNGs byte for byte. These volumes precede the
+support grids and layers, still being computed.
 
-Les [deux planches des surfaces de supports calculées](calculated-surfaces-20261017/README.md)
-montrent les régions 003/009/010 dans la pose conservée, puis leurs grilles,
-peaux et dents en détail. Les trois checkpoints sont revérifiés localement ;
-le contrôle des sept régions et des couches reste en cours. Un rejeu depuis
-une copie séparée et un autre répertoire courant reproduit les deux PNG
-à l’octet. Les PDF, SVG, sources et reçus accompagnent ces images.
+The [two plates of the computed support surfaces](calculated-surfaces-20261017/README.md)
+show regions 003/009/010 in the kept pose, then their grids,
+skins and teeth in detail. The three checkpoints are re-verified locally;
+the check of the seven regions and of the layers is still in progress. A replay from
+a separate copy and another current directory reproduces the two PNGs
+byte for byte. The PDF, SVG, sources and receipts accompany these images.
 
-Les deux nouvelles vues utilisent le STL retenu et les triangles des supports
-de l'essai `real-support-source-008-015`. Les cotes, le comparatif du maillage
-et la couche 518 sont des copies identiques des figures calculées auparavant.
-Le [reçu](figures.json) conserve leurs empreintes et celles des entrées.
+The two new views use the adopted STL and the support triangles
+of trial `real-support-source-008-015`. The dimensions, the mesh comparison
+and layer 518 are identical copies of the figures computed earlier.
+The [receipt](figures.json) keeps their digests and those of the inputs.
 
-La pièce pèse 1,262212621 kg pour une limite de 1,30 kg. L'essai de supports
-perforés montré est refusé : 26 composantes, soit 35,66 mm² de surfaces,
-n'ont pas les deux ancrages requis. Il représente la région droite seule,
-pas une préparation complète admise. La vue du détail projette les triangles
-dans leur plan réel ; aucune surface supplémentaire ne comble les écarts.
+The part weighs 1.262212621 kg against a limit of 1.30 kg. The perforated support
+trial shown is refused: 26 components, i.e. 35.66 mm² of surfaces,
+lack the two required anchors. It represents the right region alone,
+not an admitted complete preparation. The detail view projects the triangles
+into their real plane; no additional surface fills the gaps.
 
-Régénération depuis la racine du dépôt, avec le runtime PySLM reproduit :
+Regeneration from the repository root, with the reproduced PySLM runtime:
 
 ```sh
 work/part-workflow/runtimes/pyslm-coverage-reproduced-012/env/bin/python \
@@ -48,93 +48,93 @@ work/part-workflow/runtimes/pyslm-coverage-reproduced-012/env/bin/python \
   work/part-workflow/progress-images-new
 ```
 
-Le répertoire de sortie doit être neuf. Le rendu refuse les divergences
-d'identité entre STEP, masse, audit CAD/maillage et STL, ainsi qu'entre le
-graphe d'ancrage et les triangles qu'il colore. VisPy utilise un tampon de
-profondeur pour les vues 3D ; Matplotlib trace le détail dans le plan réel.
+The output directory must be new. The render refuses identity
+divergences between STEP, mass, CAD/mesh audit and STL, as well as between the
+anchoring graph and the triangles it colours. VisPy uses a depth
+buffer for the 3D views; Matplotlib draws the detail in the real plane.
 
-Les cinq images ont été relues visuellement ; les empreintes des copies et
-le test ciblé de coloration du graphe passent. Les cadrages intermédiaires
-sont conservés dans `work/part-workflow/progress-images-001` à `003` avec
-leur motif de refus éditorial.
+The five images were reviewed visually; the digests of the copies and
+the targeted graph-colouring test pass. The intermediate framings
+are kept in `work/part-workflow/progress-images-001` to `003` with
+their reason for editorial refusal.
 
-La [planche de la grande zone 000](region000-material-20261017/README.md)
-montre ses 171 694 triangles originaux : 322 grilles et 15 peaux, avec un graphe
-matériel connecté. Elle conserve le refus du découpeur strict et indique la
-correction de triangulation en cours. Les sources, tableaux, index des groupes
-et exports PNG/SVG/PDF sont inclus ; le rendu a été exécuté depuis une copie séparée.
+The [plate of the large zone 000](region000-material-20261017/README.md)
+shows its 171,694 original triangles: 322 grids and 15 skins, with a connected
+material graph. It keeps the refusal of the strict cutter and states the
+triangulation correction in progress. The sources, arrays, group indices
+and PNG/SVG/PDF exports are included; the render was run from a separate copy.
 
-La [planche locale du chart 152 de la région 008](chart008-local-20261017/README.md)
-montre deux bandes déjà contenues dans le domaine source, avec leurs dimensions
-et les reçus exacts conservés. Les contacts du composant restent non validés ;
-aucune admission régionale ou globale n’est déduite de cette image. La
-[revue de publication](chart008-local-20261017/publication-validation.json)
-lie les copies exactes à l’inspection du PNG et du PDF par root.
+The [local plate of chart 152 of region 008](chart008-local-20261017/README.md)
+shows two bands already contained in the source domain, with their dimensions
+and the exact receipts kept. The contacts of the component remain not validated;
+no regional or global admission is deduced from this image. The
+[publication review](chart008-local-20261017/publication-validation.json)
+links the exact copies to the inspection of the PNG and the PDF by root.
 
-La [planche des points encodés déjà couverts](encoded-point-coverage-20261017/README.md)
-explique le diagnostic complet de la peau 13 de la zone 000 : 703 événements
-contrôlés sur les 1 034 hauteurs, avec les coupes rationnelles conservées et
-un témoin non nul du même groupe pour chaque point encodé. Les données, les
-preuves et les exports PNG/SVG/PDF sont inclus. Les autres groupes et les
-graphes d'exposition restent à contrôler avec cette nouvelle règle.
-Le [rejeu depuis une copie séparée](encoded-point-coverage-20261017/replay-validation.json),
-lancé depuis `/tmp`, reproduit les trois exports à l'octet.
-Le [contrôle suivant des 17 384 événements](../process-point-encoding-20261017/README.md)
-termine également les 1 034 hauteurs avec tous les témoins requis ; cette
-capsule conserve le helper, les tests et les preuves complètes. La planche
-reste liée à son diagnostic historique de la seule peau 13.
+The [plate of encoded points already covered](encoded-point-coverage-20261017/README.md)
+explains the complete diagnosis of skin 13 of zone 000: 703 events
+checked over the 1,034 heights, with the rational cuts kept and
+a non-zero witness from the same group for each encoded point. The data, the
+evidence and the PNG/SVG/PDF exports are included. The other groups and the
+exposure graphs remain to be checked with this new rule.
+The [replay from a separate copy](encoded-point-coverage-20261017/replay-validation.json),
+launched from `/tmp`, reproduces the three exports byte for byte.
+The [following check of the 17,384 events](../process-point-encoding-20261017/README.md)
+also completes the 1,034 heights with all the required witnesses; this
+capsule keeps the helper, the tests and the complete evidence. The plate
+remains tied to its historical diagnosis of skin 13 alone.
 
-La [planche d'encombrement de la pose actuelle](machine-envelope-20261017/README.md)
-projette les 587 404 triangles réels en XY et XZ. Elle montre la plaque de
-500 mm, une chambre nominale de 650 mm, les marges et les deux conventions de
-hauteur des machines documentées. Les sources constructeur sont liées dans
-le dossier. Un [rejeu depuis la copie publiée](machine-envelope-20261017/publication-validation.json),
-lancé depuis `/tmp`, reproduit les PNG/SVG/PDF à l'octet.
+The [envelope plate of the current pose](machine-envelope-20261017/README.md)
+projects the 587,404 real triangles in XY and XZ. It shows the 500 mm
+plate, a nominal 650 mm chamber, the margins and the two height
+conventions of the documented machines. The manufacturer sources are linked in
+the directory. A [replay from the published copy](machine-envelope-20261017/publication-validation.json),
+launched from `/tmp`, reproduces the PNG/SVG/PDF byte for byte.
 
-La [planche du retrait imposé et du débridage](wholepart-release-20261017/README.md)
-montre les quatre champs natifs en double précision sur la pièce entière.
-Le cas uniforme passe le seuil initial de déformation de 10⁻⁷. Sous le champ
-quadratique imposé et le bridage provisoire, le déplacement maximal après
-libération vaut 58,090 µm ; l'amplification visuelle de 500 est indiquée.
-Les 103 534 nœuds et les quatre champs sont conservés dans les données locales.
-Le [rejeu par root depuis une copie séparée](wholepart-release-20261017/publication-validation.json)
-reproduit les trois formats à l'octet. Cette sensibilité mécanique reste
-distincte du calcul thermique du procédé d'impression.
-La [capsule du cas natif complet](../design-20261016/wholepart-native64-20261017/README.md)
-fournit également les entrées comprimées, les quatre états et les commandes
-de restauration et de réanalyse, sans nouvelle exécution du solveur.
+The [plate of imposed shrinkage and unclamping](wholepart-release-20261017/README.md)
+shows the four native double-precision fields on the whole part.
+The uniform case passes the initial strain threshold of 10⁻⁷. Under the imposed
+quadratic field and the provisional clamping, the maximum displacement after
+release is 58.090 µm; the visual amplification of 500 is stated.
+The 103,534 nodes and the four fields are kept in the local data.
+The [replay by root from a separate copy](wholepart-release-20261017/publication-validation.json)
+reproduces the three formats byte for byte. This mechanical sensitivity remains
+distinct from the thermal computation of the printing process.
+The [capsule of the complete native case](../design-20261016/wholepart-native64-20261017/README.md)
+also supplies the compressed inputs, the four states and the restoration
+and re-analysis commands, without a new solver run.
 
-La [planche des contacts de la région 000](region000-contacts-20261017/README.md)
-montre la première coupe réelle des 337 groupes de supports, puis un détail
-aux mêmes coordonnées. Elle conserve tous les intervalles de contact avant
-et après encodage des segments. Trois contacts devenus points ne créent aucune
-ancre supplémentaire. Les 129 023 certificats ont été revérifiés séparément
-avec des fractions exactes ; la portée reste une couche et une région.
-Les [trois formats rejoués depuis la copie publiée](region000-contacts-20261017/publication-validation.json)
-accompagnent les données compactes et le script de rendu autonome.
+The [plate of the region 000 contacts](region000-contacts-20261017/README.md)
+shows the first real cut of the 337 support groups, then a detail
+at the same coordinates. It keeps all the contact intervals before
+and after segment encoding. Three contacts that became points create no
+additional anchor. The 129,023 certificates were re-verified separately
+with exact fractions; the scope remains one layer and one region.
+The [three formats replayed from the published copy](region000-contacts-20261017/publication-validation.json)
+accompany the compact data and the standalone render script.
 
-La [planche 20 des quatre pics aux points d’intégration](peak-IP-location-20261017/README.md)
-localise les maxima réels des deux maillages et des deux conditions d’appui,
-sur le vrai maillage EF7 non déformé. Les deux pics mesh9 sont exactement
-superposés et restent visibles par des symboles concentriques, sans jitter.
-Les valeurs MPa, les h mesurés et les distances aux seuls nœuds sont conservés ;
-aucune carte continue de contrainte ou convergence de maillage n’est déduite.
-Les trois exports du rendu réel ont été copiés à l’octet. Un
-[rejeu réel depuis une copie séparée et le cwd `/`](peak-IP-location-root-publication-20261017.json)
-reproduit PNG, SVG et PDF à l’octet ; root a inspecté le PNG et la première
-page du PDF. Le reçu historique de la capsule reste conservé à sa date.
-
-
-La [planche 21 du raffinement local](local-refinement-20261017/README.md) compare
-le vrai maillage EF7 avant/après, avec toutes les arêtes du périmètre de mesure
-dans deux boîtes fixes et les cibles vérifiées aux valeurs non arrondies.
-Le maillage est géométriquement contrôlé ; la convergence des contraintes
-reste à étudier. Les résultats mécaniques sont documentés séparément.
-Les [trois formats rejoués à l’octet et la QA PNG/PDF de root](local-refinement-root-publication-20261017.json)
-sont liés aux données, sources et reçus complets de la capsule.
+[Plate 20 of the four peaks at the integration points](peak-IP-location-20261017/README.md)
+locates the real maxima of the two meshes and the two support conditions,
+on the real undeformed EF7 mesh. The two mesh9 peaks are exactly
+superimposed and remain visible through concentric symbols, without jitter.
+The MPa values, the measured h and the distances to the nodes alone are kept;
+no continuous stress map or mesh convergence is deduced.
+The three exports of the real render were copied byte for byte. A
+[real replay from a separate copy and the cwd `/`](peak-IP-location-root-publication-20261017.json)
+reproduces PNG, SVG and PDF byte for byte; root inspected the PNG and the first
+page of the PDF. The capsule's historical receipt remains kept at its date.
 
 
-La [planche22 du congé R1 natif](native-fillet-20261017/README.md) montre la forme réellement construite, avant/après dans une coupe CAO commune. Le R1 appartient au congé3D du BREP candidat ; il ne s’agit pas d’un arc redessiné. Le statut reste prototype CAO, échange STEP en contrôle. Les [trois formats rejoués depuis la copie finale](native-fillet-root-publication-20261017.json) sont identiques à l’octet ; ce rejeu dessine seulement les points déjà extraits. Les CAO parentes, non incluses, restent liées par leurs empreintes.
+[Plate 21 of the local refinement](local-refinement-20261017/README.md) compares
+the real EF7 mesh before/after, with all the edges of the measurement perimeter
+in two fixed boxes and the targets verified at unrounded values.
+The mesh is geometrically checked; stress convergence
+remains to be studied. The mechanical results are documented separately.
+The [three formats replayed byte for byte and root's PNG/PDF QA](local-refinement-root-publication-20261017.json)
+are linked to the complete data, sources and receipts of the capsule.
+
+
+[Plate 22 of the native R1 fillet](native-fillet-20261017/README.md) shows the shape actually built, before/after in a common CAD section. The R1 belongs to the 3D fillet of the candidate BREP; it is not a redrawn arc. The status remains CAD prototype, STEP exchange under check. The [three formats replayed from the final copy](native-fillet-root-publication-20261017.json) are identical byte for byte; this replay only draws the points already extracted. The parent CAD files, not included, remain linked by their digests.
 
 
 [Figure 26 — original C1 and the preserved terminal taper](C1-terminal-taper-profile-20261017/README.md) compares complete actual native profiles on common oblique U/Z axes. Only the taper profile was newly extracted; figure 25 supplies the closed original profiles. The original-C1 ray is not transferred to the taper. Its saved Build result retains the original law refusal and remains unqualified. The [actual English draw and ROOT PNG review](C1-terminal-taper-profile-20261017/rendering/root-terminal-review-001.json) are closed; this picture does not grant meshing, protected-interface, FEA or global thickness qualification.
@@ -149,12 +149,12 @@ La [planche22 du congé R1 natif](native-fillet-20261017/README.md) montre la fo
 [Figure 29 — complete seven-edge radius law](C1-seven-edge-radius-law-20261017/README.md) compares the rebuilt-stock Build refusal with the patched toolkit's closed exact law result. The scalar graph and seven physical intervals retain smoothstep on edge 431 and R1 on the other six; full native coefficients and Fraction proof are separate from sampled visuals. No stock post-Build curve is fabricated. Geometry status is the historical law-observation snapshot; this figure grants no geometry or mechanical qualification.
 
 
-[Figure 30 — actual complete functional-law candidate](C1-functional-law-candidate-20261017/README.md) shows the retained 637,850-triangle STL and a conservative source-datum junction crop in the original coordinates. The separate native mass is 1.262364410 kg. Actual PNG and rasterized PDF page were reviewed; image and source markers are display evidence only, with no mechanical or manufacturing qualification. Original runtime refusals remain separate from the later accepted render.
+[Figure 30 — actual complete functional-law candidate](C1-functional-law-candidate-20261017/README.md) shows the retained 637,850-triangle STL and a conservative source-datum junction crop in the original coordinates. The separate native mass is 1.262364410 kg. Actual PNG and rasterised PDF page were reviewed; image and source markers are display evidence only, with no mechanical or manufacturing qualification. Original runtime refusals remain separate from the later accepted render.
 
 
-[Figure 31 — current complete-law coarse stress and displacement](C1-functional-law-fields-20261018/README.md) compares the actual rigid and K1000 cases using common scales and true displacement x1. Global VM is 690.250571 / 1898.691353 MPa and all-node displacement is 2.794908 / 18.181958 mm. All global peak ties and independent energy checks remain linked. These are current 07b354 coarse results, with no stress-convergence claim. The actual PNG and rasterized PDF page were reviewed; external full-field dependencies are listed explicitly.
+[Figure 31 — current complete-law coarse stress and displacement](C1-functional-law-fields-20261018/README.md) compares the actual rigid and K1000 cases using common scales and true displacement x1. Global VM is 690.250571 / 1898.691353 MPa and all-node displacement is 2.794908 / 18.181958 mm. All global peak ties and independent energy checks remain linked. These are current 07b354 coarse results, with no stress-convergence claim. The actual PNG and rasterised PDF page were reviewed; external full-field dependencies are listed explicitly.
 
-[Figure 32](first-window-stock-comparison-20261018/README.md) compares the actual previous 07b and stock-only STL surfaces with a common camera/scale and four matched first-window closeups. The main cut-profile inset is 1.5 → 2.8 mm, not wall thickness; the stock design also omits the old blend. Native masses are 1.262364410 / 1.267835378 kg, a 5.47 g increase under 1.30 kg. The actual PNG and rasterized PDF page were reviewed. The compact capsule preserves the render and source evidence; it transfers no old FEA or engineering qualification.
+[Figure 32](first-window-stock-comparison-20261018/README.md) compares the actual previous 07b and stock-only STL surfaces with a common camera/scale and four matched first-window closeups. The main cut-profile inset is 1.5 → 2.8 mm, not wall thickness; the stock design also omits the old blend. Native masses are 1.262364410 / 1.267835378 kg, a 5.47 g increase under 1.30 kg. The actual PNG and rasterised PDF page were reviewed. The compact capsule preserves the render and source evidence; it transfers no old FEA or engineering qualification.
 
 
 ## Figure 33 — stock stress and displacement

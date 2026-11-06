@@ -113,13 +113,13 @@ as training data; their reuse rights are not established.
 | Parameter | Concept value | Authority |
 |---|---:|---|
 | Maximum envelope | 600 × 50 × 50 mm | Vendor-declared bound, not a calibrated reference |
-| Boss center separation | 560 mm | Design hypothesis |
+| Boss centre separation | 560 mm | Design hypothesis |
 | Boss outside diameter / height | 40 / 50 mm | Design hypothesis |
 | End bore diameter | 13 mm | Design hypothesis; no fastener fit claim |
 | Blade thickness / graph-beam diameter | 6 / 12 mm | Design hypotheses |
 | Profile vertices | Literal coordinates in Program.cs, scaled by 10 | Design hypotheses |
 | Mirror symmetry and boss axes | X symmetry, Z axes | Design hypotheses |
-| Native voxel size for retained exports | 1 mm | Numerical discretization, not OEM accuracy |
+| Native voxel size for retained exports | 1 mm | Numerical discretisation, not OEM accuracy |
 | OEM material, interface tolerances, loads | Unknown | No values selected |
 
 The segmented graph provides a bowed outline with two windows. It does not
@@ -130,7 +130,7 @@ Vendor mass was not used to tune or qualify the shape.
 
 - [STL concept](../../derived/qwen-concept-f1/carrier-concept.stl).
 - [OpenUSD concept](../../derived/qwen-concept-f1/carrier-concept.usdc), Z-up,
-  millimeter units, with the actual exported mesh and no physics schemas.
+  millimetre units, with the actual exported mesh and no physics schemas.
 - [Native and export checks](../../derived/qwen-concept-f1/checks.json).
 
 The source compiled with .NET 9 and PicoGK revision
@@ -155,7 +155,7 @@ checks passed. Python user-site packages were excluded from that run. These
 repository checks do not establish carrier fit, strength or fatigue life.
 
 The raw STL contains degenerate facets and coincident vertices. The exporter
-welds to three decimal places in millimeters and removes degenerate/duplicate
+welds to three decimal places in millimetres and removes degenerate/duplicate
 faces, then rejects disconnected or open results. The report records the
 original/final counts and maximum original-vertex distance. This cleanup is
 bounded digital mesh processing, not a repair of the original part.
