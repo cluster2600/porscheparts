@@ -346,6 +346,7 @@ validate: check-filesystem
 	python3 scripts/validate_reference.py
 	python3 scripts/validate_registers.py
 	python3 scripts/validate_file_sizes.py
+	python3 scripts/validate_work_tree_outputs.py
 	python3 scripts/validate_935_admissibility.py
 	python3 scripts/validate_manual_measurements.py
 	python3 scripts/validate_twin.py
