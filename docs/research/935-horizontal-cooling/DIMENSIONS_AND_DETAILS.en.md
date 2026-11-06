@@ -40,7 +40,22 @@ The extensions, pages 17–28, contain no manufacturing drawing of the
 horizontal angle drive in this copy. Its SHA-256 and the locators are
 kept in the source register; the PDF stays in the private cache.
 This check does not prove the absence of useful documents in the rest of
-the FIA archive. The copy transferred to Group B remains a separate source.
+the FIA archive. The Group B transfer copy is reviewed separately below.
+
+A separate [no. 3076 Group B transfer copy](https://historicdb.fia.com/sites/default/files/car_attachment/1601075701/homologation_form_number_3076_group_b.pdf)
+was retrieved on November 5, 2026 (20 PDF pages; SHA-256
+`5f89801f58954d469e507fdd4e0fa8b170045220f686ea197d0e129842d50e38`).
+Its text was searched and PDF pages 6, 9 and 17–20 were inspected visually.
+On page 6, engine photos I–J show the vertical base-fan arrangement;
+page 9, items 148–149, state 245 mm, light alloy and 11 blades. These
+are base-car data, not independent dimensions of the scanned horizontal
+rotor. Page 17 lists the Group 4 variant's dashboard, brakes, hubs, axle
+guides and safety tank; page 18 illustrates them. Page 19 describes a
+Group 4 brake-water-cooling variant, with its photos; page 20 is a blank
+photo template. The reviewed pages do not establish horizontal-fan
+geometry, interfaces or scale. This is a targeted review, not a visual
+inspection of every page or a search of the full FIA archive. The source
+PDF and page renders remain in the private working cache.
 
 The [1976 Appendix J, articles 268–269](https://argent.fia.com/web/fia-public.nsf/ABCF4550D7659360C12574A5003C6CA0/$FILE/Hist_App_J_76_Art_269_a.pdf)
 defines Group 5 from cars recognised in Groups 1–4 and leaves the other

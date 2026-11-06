@@ -64,3 +64,16 @@ on page 1 of 1. No public technical reply follows either request. Rennlist shows
 one reaction to the request, which supplies no dimensional or mechanical evidence.
 These observations concern the public threads only; private messages were not
 checked. No further message was posted and no calibration value was inferred.
+
+## Limited follow-up — November 5, 2026
+
+A web-indexed view of [Pelican Parts page 2](https://forums.pelicanparts.com/porsche-911-used-parts-sale-wanted/905416-flat-fan-assemblies-2.html)
+still ends with the existing request at post 31, but the retrieved page was
+reported as crawled the previous week; this is not a live verification of
+current replies. The web fetch of Rennlist returned HTTP 403. Opening the
+thread in Chrome reached a human-verification challenge, so its content was
+not inspected and no challenge was completed. A targeted mail search after
+October 7 for flat-fan terms or notifications from the two forum domains
+returned no matching messages. This does not rule out private messages,
+notifications from other senders, or replies not covered by the search.
+No new outreach was sent and no dimensional or mechanical evidence was added.
