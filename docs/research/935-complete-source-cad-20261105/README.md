@@ -7,10 +7,66 @@ without modifying their source records. The original scan remains authoritative.
 This is a faceted surface reference, not a reconstructed functional head solid,
 parametric head design, qualified fabrication file or engine release.
 
-Checkpoint status: the exhaustive source STEP job, recovery, original-ID coverage
-and seam reconciliation are complete. Whole-set FreeCAD validation is resuming
-after a shared Python executable disappeared. The benchmarks below are actual
-terminal results; complete native validation is not yet claimed.
+Execution is complete for this reference increment: **83 STEP charts and 83
+saved FreeCAD reference documents** pass independent original-source checks.
+All actual saved native shapes have zero original-vertex error. This establishes
+observed-reference fidelity under the declared source-unit assumption, not a
+complete functional head or physical dimensional accuracy.
+
+[Aggregate results](results.json) retain the source hashes, actual terminal
+metrics, whole-source seam accounting, interrupted attempt and isolated-runtime
+resumption. Private capsule `935-complete-source-cad-20261105-001` is frozen
+read-only and rehashed: **3,166 payload files / 3,656,711,918 bytes**, manifest
+`ec09fb9eb5c92d0de1ae7bc7cbae94b0bdafef2116845f8959fc3ab8ce87c655`.
+Private geometry and detailed connection receipts remain outside Git.
+
+## Complete reference outcome
+
+Every admitted original triangle appears exactly once across the actual STEP
+charts and independently inspected saved-native shapes. Maximum actual native
+support-plane residual is `1.6145048330582588e-11` nominal mm, below the unchanged
+`1e-8` arithmetic guard. This is not scanner uncertainty or a physical tolerance.
+The 83 native documents occupy 628,961,078 bytes and remain separate faceted
+reference objects with unsewn chart seams and zero solids.
+
+Source-ID reconciliation finds **321,570** two-use source edges partitioned
+between charts. Native chart-edge sum **4,070,397** equals admitted original
+edges 3,748,827 plus these seams. Native chart-boundary sum **743,286** equals
+admitted original open edges 100,146 plus twice the seams. The private edge-ID
+map retains this relationship; none of these construction seams is classified
+as an additional physical hole.
+
+The complete Vast STEP job takes 1,685.496 seconds. The initial native attempt
+stops on runtime disappearance after 661.132 seconds; the resumed controller
+finishes in 770.330 seconds, reusing 35 native document/export byte sets and
+constructing only 48 further ones. All 83 actual saved shapes are inspected
+again on the isolated runtime. These durations exclude intervening runtime
+preparation and are not a GPU or cross-host speedup claim.
+
+The delivery guide identifies `native-set-v2/chunk-####/acquired-source-reference.FCStd`,
+indices 0000 through 0082, and their independently checked STEP/gzip exports.
+The interrupted `native-set/` remains history. Original OBJ and both existing
+printing/calculation 3MF studies are freshly rehashed unchanged. No replacement
+manufacturing master or newly qualified engine field is declared.
+
+## Paid resource and transfer accounting
+
+The only successful rental for this increment is instance 59331896. All 934
+returned payload files / 1,368,015,776 bytes match their final manifest before
+exact-ID destruction. Inventory and the independent guardian both confirm
+absence, before the guardian deadline. Foreign resources are untouched.
+
+The quoted compute rate includes 120 GB storage: **$0.268888889/hour**. Quoted
+network rates are $0.00390625/GB ingress and $0.006510417/GB egress. Known payloads
+are 48,395,307 input archive bytes, 1,368,995,840 returned tar-stream bytes and
+15,951,765 extra download-probe bytes. Image pulls, protocol overhead and retries
+are not metered by these payload counters; no exact final invoice is inferred.
+
+The attempt reserves $1.50 and cumulative conservative allocations are $15.34,
+not billed spend. The original $35 total / $30 compute / $5 closeout reserve
+remain unchanged. Post-run observed available credit is **$22.01**. The local
+guardian and 20-GB planning allowance are not provider hard spending/traffic
+caps. No recharge or further paid compute is requested for native resumption.
 
 ## Source admission before construction
 
