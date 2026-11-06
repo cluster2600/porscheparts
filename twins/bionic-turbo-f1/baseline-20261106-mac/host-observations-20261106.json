@@ -1,0 +1,71 @@
+{
+  "schema": "bionic-turbo-mac-runtime-readback/v1",
+  "observed_at_utc": "2026-11-06T20:42:10Z",
+  "issues": [
+    394,
+    579
+  ],
+  "parent_manifest": {
+    "path": "twins/bionic-turbo-f1/baseline-20261106/baseline-manifest.json",
+    "sha256": "ff1a11ed2458f9983fcd53df6262ea8e20dba8a0f71808c3706e8facf18a43d7"
+  },
+  "images": {
+    "opencfd": {
+      "id": "sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+      "platform": "linux/arm64"
+    },
+    "diagnostic": {
+      "tag": "bionic-openfoam2406-diagnostic-build:20261012",
+      "id": "sha256:586639782387349737869b383c9f98ec03614221255a9609009c395279835e07",
+      "platform": "linux/arm64"
+    }
+  },
+  "volume": {
+    "name": "bionic-native-source-20261012",
+    "driver": "local",
+    "present": true
+  },
+  "running_containers_at_preflight": 0,
+  "automation": {
+    "id": "poursuivre-les-r-sultats-cfd-du-turbo-bionique",
+    "status": "PAUSED"
+  },
+  "binary_directory": "/usr/lib/openfoam/openfoam2406/platforms/linuxARM64GccDPInt32Opt/bin",
+  "binary_sha256": {
+    "rhoSimpleFoam": "9fddcd4d4da2608ce159c8da1fb6c4719db4f5f558dd66e98f44b27831751646",
+    "blockMesh": "70acbec5399aad67c3ca5cb2ad91f480cc95fe4eabf871eec6494fa1573815dd",
+    "snappyHexMesh": "fdf8086f6ffbd2bd99864567121efb90e02f042af59cbeb785b542306238ed1d",
+    "checkMesh": "469fa2e3ca84b5858c3da7998536630c2ab8988efb4f8a9329a850944b4e1b33"
+  },
+  "hash_method": "Transient docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges --entrypoint /bin/bash against the exact pinned image; find and sha256sum only. No volume mounted, no case executed.",
+  "kali": {
+    "initial_attempt": "kali1 hostname failed to resolve",
+    "verified_transport": "documented direct IPv4 endpoint, BatchMode=yes, ConnectTimeout=5, StrictHostKeyChecking=yes, ForwardAgent=no",
+    "host": "kali1",
+    "architecture": "x86_64",
+    "docker_server_version": "28.5.2+dfsg4",
+    "docker_access": "verified",
+    "running_containers": 0,
+    "filesystem": "ext4",
+    "filesystem_used_percent": 100,
+    "filesystem_available_kib": 111352,
+    "build_started": false
+  },
+  "precision_revision": {
+    "path": "twins/bionic-turbo-f1/cfd/prepare_case_v2.py",
+    "sha256": "067eccbf3afe7667f47816d771ff23a6e11f8be2596382adb587f7f5a52bfe6d",
+    "change": "Only writePrecision 12 -> 16; historical source unchanged.",
+    "status": "software_tests_passed_not_admitted_for_execution"
+  },
+  "gate": "G01-execution-contract",
+  "verdict": "observations_only_gate_evaluated_separately",
+  "remaining": [
+    "Kali storage capacity blocks substantial checkout/build work.",
+    "No downstream recovery, meshing, solver or physical validation was performed."
+  ],
+  "matching_openfoam_processes": {
+    "mac": 0,
+    "kali": 0,
+    "method": "ps executable names, exact match for rhoSimpleFoam, rhoPimpleFoam, snappyHexMesh, blockMesh and checkMesh; no process arguments collected"
+  }
+}
