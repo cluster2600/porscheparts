@@ -1,4 +1,4 @@
-"""Vérifie le diagnostic VG.007 et son candidat F37 fail-closed."""
+"""Check the VG.007 diagnostic and its fail-closed F37 candidate."""
 
 from __future__ import annotations
 
@@ -182,7 +182,7 @@ class NvidiaMeshRepairEvidenceTests(unittest.TestCase):
         )
         report_path = cls.evidence / "f37-nvidia-mesh-repair-report.json"
         if not report_path.is_file():
-            raise unittest.SkipTest("preuve de réparation NVIDIA F37 absente")
+            raise unittest.SkipTest("F37 NVIDIA repair evidence absent")
         cls.report = json.loads(report_path.read_text(encoding="utf-8"))
         cls.analysis = json.loads(
             (cls.evidence / "f37-nvidia-usd-topology-analysis.json").read_text(encoding="utf-8")

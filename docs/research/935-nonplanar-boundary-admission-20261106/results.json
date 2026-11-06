@@ -1,0 +1,348 @@
+{
+  "schema": "935-nonplanar-boundary-public-results-1",
+  "date": "2026-11-06",
+  "scope": "Necessary source-corner disk conditions; one actual rejected native-checked proposal; complete sampled-support and exact global refusal certificates.",
+  "source_scan_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "authoritative_mesh_sha256": "b4705dbb46a67f467bcb43cdc5bb922a77b2b01274fea1935bd805db15a3f559",
+  "authoritative_geometry_changed": false,
+  "authoritative_boundary_edges": 95868,
+  "authoritative_boundary_walks": 1448,
+  "source_hashes": {
+    "audit_nonplanar_boundary.py": "3f36d63b1b053d3c95d2abc67766a476e198cf4651136c70db1c1a35bef2c529",
+    "construct_nonplanar_disk.py": "72a3f14a76d22b2a13e3df8b20d36f420399169c5618a0aaca62cfacd150ba23",
+    "inspect_nonplanar_disk.py": "3c1aa2f7c9fd773a21ffcb70ba72225bfaba17a63c3748f3fa6b71e72bb1f21b",
+    "run_nonplanar_native_controls.py": "23a170fcd3d873e7f5baf82114779fb518604f12f5214e4be16792d7dba8829d",
+    "screen_disk_support.py": "e471e91596719036d274f7439e7f781285a3eba600812d28a8aec9069ef833ec",
+    "verify_disk_support.py": "671393a0e3bf6870e4bde5e6221a85de87da5e04c9d0b5075ff5e9b5cd49ccac",
+    "verify_nonplanar_boundary.py": "89169e8f4fc329eddf4db3e051f297a8454977c49830eeca6724ce78e11caab3"
+  },
+  "pre_execution_job_hashes": {
+    "job-before-execution.json": "38770930798facb30e0d8ae43e3335d68595bff625579ad3a09b2b7bdc5f4e46",
+    "native-control-job-before-execution.json": "87402fd0df0423b2dd6707657b1f09b5cef8378acb02081790c67197333dd6fa",
+    "construction-job-before-execution.json": "03cf4cbf919343ed1dd90cf9777cca7604cc65b6202dd4dc278bfb4b6464d584",
+    "support-job-before-execution.json": "25470571103d0b738c192ba6e729f054cf2f0b5d4b506e385b690763defd0972"
+  },
+  "necessary_conditions": {
+    "source_sha256": "89169e8f4fc329eddf4db3e051f297a8454977c49830eeca6724ce78e11caab3",
+    "job_sha256": "38770930798facb30e0d8ae43e3335d68595bff625579ad3a09b2b7bdc5f4e46",
+    "mesh_sha256": "b4705dbb46a67f467bcb43cdc5bb922a77b2b01274fea1935bd805db15a3f559",
+    "complete_boundary_edges_verified": 95868,
+    "whole_walks": 1448,
+    "scope_partition": {
+      "mixed_or_nonacquired": 1082,
+      "outside_edge_count_scope": 12,
+      "outside_diagonal_scope": 73,
+      "compact_planar_outside_new_scope": 277,
+      "pure_acquired_compact_nonplanar": 4
+    },
+    "scoped_walks": 4,
+    "scoped_edges": 134,
+    "exact_fraction_corner_triples": 24830,
+    "exact_binary64_alignment_threshold": true,
+    "empty_rim_edges": 3,
+    "necessary_condition_passing_walks": 1,
+    "producer_imported": false,
+    "independent_eigen_scope_and_recursive_disk_counts_verified": true,
+    "nonplanar_boundary_necessary_conditions_independently_verified": true,
+    "geometry_modified": false,
+    "construction_admitted": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "seconds": 2.8021749580511823
+  },
+  "native_controls": {
+    "source_sha256": "23a170fcd3d873e7f5baf82114779fb518604f12f5214e4be16792d7dba8829d",
+    "job_sha256": "87402fd0df0423b2dd6707657b1f09b5cef8378acb02081790c67197333dd6fa",
+    "fixtures": [
+      {
+        "name": "flat",
+        "vertices": 8,
+        "old_faces": 8,
+        "new_faces": 10,
+        "old_boundary_edges": 8,
+        "new_boundary_edges": 4,
+        "unselected_outer_perimeter_exact": true,
+        "native_intersections_and_fans_passed": true,
+        "reversed_incomplete_and_wrong_owner_side_refused": true
+      },
+      {
+        "name": "folded",
+        "vertices": 8,
+        "old_faces": 8,
+        "new_faces": 10,
+        "old_boundary_edges": 8,
+        "new_boundary_edges": 4,
+        "unselected_outer_perimeter_exact": true,
+        "native_intersections_and_fans_passed": true,
+        "reversed_incomplete_and_wrong_owner_side_refused": true
+      }
+    ],
+    "frozen_native_predicate_controls": {
+      "separated": {
+        "pairs": 0,
+        "coplanar_pairs": 0
+      },
+      "crossing": {
+        "pairs": 1,
+        "coplanar_pairs": 0
+      },
+      "coplanar_overlap": {
+        "pairs": 1,
+        "coplanar_pairs": 1
+      },
+      "shared_edge": {
+        "pairs": 0,
+        "coplanar_pairs": 0
+      },
+      "shared_source_point": {
+        "pairs": 0,
+        "coplanar_pairs": 0
+      },
+      "degenerate_face_original_index_mapping_verified": true,
+      "invalid_index_refused": true
+    },
+    "native_nonplanar_controls_passed": true,
+    "scan_used": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "rejected_proposal": {
+    "source_sha256": "3c1aa2f7c9fd773a21ffcb70ba72225bfaba17a63c3748f3fa6b71e72bb1f21b",
+    "job_sha256": "03cf4cbf919343ed1dd90cf9777cca7604cc65b6202dd4dc278bfb4b6464d584",
+    "mesh_sha256": "b7e1490f112841ba246cef8d1c4fd5f151d113e4271632c2b2770251c0546577",
+    "obj_sha256": "895bbf08ca54dc0ec96e106db8e1dbd09c5d00edef8fbc00074b9bd1c8bfe2fa",
+    "all_parent_points_faces_and_provenance_preserved": true,
+    "exact_NPZ_OBJ_readback": true,
+    "complete_disk_perimeter_topology_and_Fraction_boundary_normals_passed": true,
+    "whole_mesh_intersection_pairs": 0,
+    "zero_area_faces": 0,
+    "native_vertex_fans_and_duplicate_checks_passed": true,
+    "unused_vertices": 18,
+    "added_triangles": 26,
+    "closed_parent_edges": 28,
+    "remaining_boundary_edges": 95840,
+    "added_degree16_probe_count": 3978,
+    "added_sampled_maximum_nominal_mm": 0.579888989930157,
+    "previous_source_and_omission_distances_nonincreasing_pointwise": false,
+    "candidate_surface_study_accepted": false,
+    "rejection_reasons": [
+      "complete_patch_sampled_support_exceeds_0.25_nominal_mm"
+    ],
+    "sampled_distances_are_not_Hausdorff_or_physical_tolerances": true,
+    "closed_volume": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "seconds": 18.71894054207951
+  },
+  "complete_support_screen": {
+    "source_sha256": "e471e91596719036d274f7439e7f781285a3eba600812d28a8aec9069ef833ec",
+    "job_sha256": "25470571103d0b738c192ba6e729f054cf2f0b5d4b506e385b690763defd0972",
+    "mesh_sha256": "b4705dbb46a67f467bcb43cdc5bb922a77b2b01274fea1935bd805db15a3f559",
+    "support_payload_sha256": "c038c35ced0a64f7df1918201cf927a1963228e3c0a6d330c46c934bc960548f",
+    "allowed_triangles": 3045,
+    "probes_per_triangle": 153,
+    "complete_support_probes": 465885,
+    "sampled_support_passing_triangles": 441,
+    "sampled_support_refused_triangles": 2604,
+    "maximum_sampled_distance_nominal_mm": 0.5929248995641455,
+    "independent_exact_support_and_disk_replay_pending": true,
+    "native_closest_query_is_not_independent_proof": true,
+    "geometry_modified": false,
+    "construction_admitted": false,
+    "manufacturing_authorized": false,
+    "seconds": 4.4395021660020575
+  },
+  "exact_support_verification": {
+    "source_sha256": "671393a0e3bf6870e4bde5e6221a85de87da5e04c9d0b5075ff5e9b5cd49ccac",
+    "job_sha256": "25470571103d0b738c192ba6e729f054cf2f0b5d4b506e385b690763defd0972",
+    "mesh_sha256": "b4705dbb46a67f467bcb43cdc5bb922a77b2b01274fea1935bd805db15a3f559",
+    "exact_probe_existence_witnesses": 67473,
+    "refused_triangle_global_distance_certificates": 2604,
+    "complete_source_faces": 2466040,
+    "global_AABB_retained_faces": 116,
+    "refused_probe_exact_candidate_face_checks": 1938,
+    "sampled_support_passing_triangles": 441,
+    "sampled_support_refused_triangles": 2604,
+    "complete_source_corner_triples_screened": 3045,
+    "complete_degree16_support_probes": 465885,
+    "source_supported_combinatorial_disk_count": "0",
+    "exact_scalar_distance_implementation_uses_no_native_nearest_query": true,
+    "supported_disk_sha256": "6cc586bae37cdd2a8562f44508440cc89cbf89b64f079c59ace1fcbafe4b81c7",
+    "support_and_disk_independently_verified": true,
+    "construction_admitted": false,
+    "sampled_probes_are_not_a_complete_surface_distance_bound": true,
+    "geometry_modified": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "seconds": 2.1009959579678252
+  },
+  "focused_tests": {
+    "tests_run": 169,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "passed": true,
+    "patterns": [
+      "contact_bridges",
+      "quarantine_patches",
+      "bounded_fan_pruning",
+      "acquisition_gap_trials",
+      "frontier_pairing",
+      "strip_cap_admission",
+      "untried_acquired_pairs",
+      "opposed_wall_trials",
+      "end_wall_admission",
+      "pairing_continuation",
+      "interwalk_admission",
+      "post_interwalk_continuation",
+      "large_frontier_audit",
+      "unequal_chain_census",
+      "nonplanar_boundary_admission",
+      "nonplanar_disk_construction",
+      "nonplanar_disk_support"
+    ],
+    "runtime_warning_policy": "error"
+  },
+  "private_capsule": {
+    "payload_files": 57,
+    "payload_bytes": 216713326,
+    "manifest_sha256": "3e77690cc1b3d508b355b2c87d8f4a756d1c297efb9a42b2dc906ba0829dc9c1",
+    "read_only": true
+  },
+  "execution_groups": [
+    {
+      "source_sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b",
+      "plan_sha256": "b8ff5ea9455a3bd00cefa4cba39e565e23207a425c099bce91e3e8d100a23930",
+      "phases": [
+        {
+          "phase": "nonplanar-source-corner-necessary-census",
+          "exit_code": 0,
+          "seconds": 1.0559390420094132,
+          "maximum_sampled_child_RSS_KiB": 671104,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "independent-fraction-full-boundary-and-disk-replay",
+          "exit_code": 0,
+          "seconds": 3.1979821249842644,
+          "maximum_sampled_child_RSS_KiB": 1315440,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ],
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "requested_signals": [],
+      "seconds": 4.370008208905347
+    },
+    {
+      "source_sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b",
+      "plan_sha256": "4bd3328df0a2559212986c9cffa4ce7880b2a4a0b85f30120f431fca6fc48cd8",
+      "phases": [
+        {
+          "phase": "literal-flat-folded-annulus-native-controls",
+          "exit_code": 0,
+          "seconds": 0.6405741251073778,
+          "maximum_sampled_child_RSS_KiB": 59968,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ],
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "requested_signals": [],
+      "seconds": 0.6507170000113547
+    },
+    {
+      "source_sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b",
+      "plan_sha256": "394fae7bc0c5b6c4a553b3f018947cadef3643282f7f4dd44218d56482afcc6e",
+      "phases": [
+        {
+          "phase": "single-source-corner-disk-proposal",
+          "exit_code": 0,
+          "seconds": 21.755535417003557,
+          "maximum_sampled_child_RSS_KiB": 1143072,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "independent-whole-native-and-sampled-source-inspection",
+          "exit_code": 0,
+          "seconds": 19.088741583982483,
+          "maximum_sampled_child_RSS_KiB": 2669952,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ],
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "requested_signals": [],
+      "seconds": 40.99947937496472
+    },
+    {
+      "source_sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b",
+      "plan_sha256": "213f126b2e6e0e60905e130d62042c5b15f7c0d74a730fdc7f862046eae9c2f8",
+      "phases": [
+        {
+          "phase": "complete-allowed-triangle-source-support-screen",
+          "exit_code": 0,
+          "seconds": 4.670369792031124,
+          "maximum_sampled_child_RSS_KiB": 1322768,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "exact-source-support-and-full-disk-replay",
+          "exit_code": 0,
+          "seconds": 2.332594249979593,
+          "maximum_sampled_child_RSS_KiB": 995712,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ],
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "requested_signals": [],
+      "seconds": 7.094039999996312
+    }
+  ],
+  "bounded_mail_review": {
+    "recent_query_matches": 0,
+    "prior_specimen_thread_messages_read": 3,
+    "new_specimen_data": false,
+    "mailbox_exhaustiveness_claimed": false,
+    "outbound_messages": 0
+  },
+  "gates": {
+    "G0_identity": false,
+    "G1_faithful_CAD": false,
+    "G2_reference_function_correlation": false,
+    "G3_AM_process_qualification": false,
+    "G4_finished_replica_inspection": false,
+    "G5_replica_engine_validation": false
+  },
+  "manufacturing_authorized": false,
+  "goal_complete": false,
+  "new_paid_compute_usd": 0,
+  "new_resources_created": 0,
+  "paid_budget_total_usd": 35,
+  "compute_cap_usd": 30,
+  "transfer_closeout_reserve_usd": 5,
+  "current_balance_asserted": false,
+  "remaining_scope": "25 compact nonplanar mixed-origin curves require full ancestral source-normal admission; hidden geometry, specimen interfaces/loads/material/process and physical qualification remain unresolved."
+}

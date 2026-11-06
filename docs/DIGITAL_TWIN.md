@@ -12,6 +12,11 @@ application are sourced. A logical assembly asserts that parts go together; a
 positioned assembly additionally requires their reference frames and 3D
 transforms.
 
+Every workstream under `twins/`, its kind, status, achieved fidelity and open
+issues is listed in [twins/README.md](../twins/README.md), generated from the
+cross-reference [twins/index.json](../twins/index.json) and checked by
+`make check`.
+
 The model is built zone by zone: dashboard, door, seat, engine bay, running gear
 and body. Accuracy is declared per component and per interface, because a single
 zone can combine visual trim at `F0` and measured fasteners at `F2`.
@@ -29,6 +34,17 @@ flowchart LR
     classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
     classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
 ```
+
+## Complete dashboard display — F0 concept
+
+[`twins/993-dashboard-f0/`](../twins/993-dashboard-f0/README.md) now contains a
+PicoGK scene of the complete visible dashboard, with twelve separate display
+layers and front and three-quarter renders. Every scene position and size is an
+artistic assumption in a display frame. The scene is outside the active
+measured-component graph: its surfaces have no vehicle transforms, attachment
+contracts, or physical correlation. The separate assembly inventory keeps its
+component geometry and transforms unset until lawful same-specimen capture and
+independent interface checks are available.
 
 ## First geometric slice — dashboard, pending
 

@@ -15,7 +15,7 @@ ANNOTATE = TWIN / "source" / "annotate_picogk_visualization_f11.py"
 def load_module():
     spec = importlib.util.spec_from_file_location("annotate_picogk_f11", ANNOTATE)
     if spec is None or spec.loader is None:
-        raise RuntimeError("module F11 impossible à charger")
+        raise RuntimeError("cannot load module F11")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module

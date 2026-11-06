@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Contrôles autonomes des preuves publiques de récupération CFD F50."""
+"""Standalone checks of the public F50 CFD recovery evidence."""
 
 from __future__ import annotations
 

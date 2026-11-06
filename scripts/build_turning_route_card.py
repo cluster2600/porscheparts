@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Route tournage d'une piece de revolution, fail-closed.
+"""Turning route for a part of revolution, fail-closed.
 
-Pendant de `build_process_route_card.py` pour une piece qui n'a aucune raison
-d'etre imprimee. Les portes changent avec le procede : ce qui compte ici n'est
-ni l'ilot ni le depoudrage, mais la barre disponible, la prise de piece, l'arete
-cassee, et surtout la **cote d'ajustement** — celle qui decide si la bague tient
-dans son logement, et que le depot ne mesure pas.
+Counterpart of `build_process_route_card.py` for a part that has no reason to
+be printed. The gates change with the process: what matters here is neither
+islands nor depowdering, but the available bar stock, workholding, the broken
+edge and above all the **fit dimension** — the one that decides whether the
+ring holds in its seat, and that the repository does not measure.
 
-Le dossier ecrit est une demande de devis. Il n'autorise aucun montage.
+The package written is a request for quotation. It authorises no fitting.
 """
 
 from __future__ import annotations
@@ -21,16 +21,16 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 
-# Diametres de barre courants au-dessus de 30,5 mm, en millimetres.
+# Common bar diameters above 30.5 mm, in millimetres.
 STOCK_BAR_DIAMETERS_MM = (32.0, 35.0, 36.0, 40.0)
 
-# Surepaisseur radiale minimale pour un tournage de finition propre sur la peau
-# de barre. Valeur d'atelier, volontairement conservatrice, a confirmer.
+# Minimum radial stock allowance for a clean finish turn below the bar skin.
+# Shop value, deliberately conservative, to be confirmed.
 RADIAL_CLEANUP_MM = 0.5
 
 
 class RouteError(RuntimeError):
-    """Erreur controlee de la construction de route."""
+    """Controlled route-construction error."""
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -342,7 +342,7 @@ def main() -> int:
     published = screen.get("step_roundtrip", {}).get("sha256")
     if published and published != sha256(args.master):
         raise SystemExit(
-            f"empreinte_divergente:{args.master.name}: le criblage ne decrit pas ce fichier."
+            f"empreinte_divergente:{args.master.name}: the screening does not describe this file."
         )
 
     card = build_route(part, screen, process)
@@ -363,7 +363,7 @@ def main() -> int:
                 raise SystemExit(f"absent:{path}")
             if path.read_text(encoding="utf-8") != expected:
                 raise SystemExit(f"perime:{path}")
-        print(f"route tournage a jour: {card['part_id']} status={card['status']}")
+        print(f"turning route up to date: {card['part_id']} status={card['status']}")
         return 0
 
     args.output.mkdir(parents=True, exist_ok=True)
@@ -371,7 +371,7 @@ def main() -> int:
     rfq_path.write_text(rfq, encoding="utf-8")
     print(
         f"{card['part_id']}: status={card['status']} "
-        f"portes bloquantes={card['blocking_gate_count']}"
+        f"blocking gates={card['blocking_gate_count']}"
     )
     print(f"  {card_path}")
     print(f"  {rfq_path}")

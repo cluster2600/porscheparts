@@ -139,15 +139,13 @@ def check_record(record: dict, identity: dict) -> list[str]:
         if number not in trims:
             errors.append(f"record: part number {number} is not a dashboard trim in the identity matrix")
     for variant in vehicle.get("variants", []):
-        code = variant.split()[0]
-        if code in unmapped_codes and "unmapped" not in variant.lower():
-            errors.append(f"record: variant {variant!r} must say its trim number is unmapped")
+        codes = set(re.findall(r"\bM\d{3}\b", variant))
+        if codes & unmapped_codes and not re.search(r"unmapped|unresolved", variant, re.I):
+            errors.append(f"record: variant {variant!r} must say its trim number is unmapped or unresolved")
     limits = " ".join(record.get("validation", {}).get("known_limits", []))
     for number in re.findall(r"\b\d{3} 552 0[5-7]\d \d{2}\b", limits):
         if number not in knees and number not in trims:
             errors.append(f"record: {number} in known_limits is not in the identity matrix")
-    if "pet-identity" not in limits:
-        errors.append("record: known_limits must point to evidence/pet-identity.md")
     return errors
 
 

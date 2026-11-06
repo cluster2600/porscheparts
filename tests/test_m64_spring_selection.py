@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Contre-calculs du criblage de ressorts catalogue M64 (fiches publiées, pas qualification)."""
+"""Cross-checks of the M64 catalogue spring screening (published data sheets, not qualification)."""
 
 from __future__ import annotations
 

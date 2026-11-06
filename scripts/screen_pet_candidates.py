@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
-"""Verdict sur les designations retenues par le triage du catalogue d'usine.
+"""Verdict on the designations retained by the factory-catalogue triage.
 
-Le triage lexical retient des mots. Ce script leur applique un jugement declare,
-et surtout **il ne fait pas confiance au jugement**. Le verdict est derive des
-entrees, puis confronte a celui que le fichier annonce : toute divergence est une
-erreur, pas une nuance. C'est la garde qui manquait aux criblages precedents, ou
-un verdict pouvait rester ecrit apres que ses raisons avaient change.
+The lexical triage retains words. This script applies a declared judgement to
+them, and above all **it does not trust the judgement**. The verdict is derived
+from the inputs, then compared with the one the file announces: any divergence
+is an error, not a nuance. That is the guard earlier screenings lacked, where a
+verdict could stay written after its reasons had changed.
 
-Trois conditions pour qu'une designation merite une fiche :
+Three conditions for a designation to deserve a record:
 
-1. le titane doit ameliorer la matiere d'origine — la grille compare, elle ne
-   juge pas dans l'absolu ;
-2. la piece ne doit pas tomber dans un domaine presume critique ;
-3. elle doit appartenir a au moins une des trois familles ou l'additif gagne.
+1. titanium must improve on the original material — the grid compares, it does
+   not judge in the absolute;
+2. the part must not fall in a presumed safety-critical domain;
+3. it must belong to at least one of the three families where additive wins.
 
-Aucune n'est suffisante seule, et la premiere est celle qu'on oublie.
+None is sufficient alone, and the first is the one people forget.
 """
 
 from __future__ import annotations
@@ -32,7 +32,7 @@ REJECT = "reject"
 
 
 class JudgementError(RuntimeError):
-    """Erreur controlee du verdict."""
+    """Controlled verdict error."""
 
 
 def load(path: Path) -> dict[str, Any]:
@@ -56,10 +56,10 @@ def run(triage_path: Path, judgements_path: Path, disposition_path: Path) -> dic
     triage = load(triage_path)
     judgements = load(judgements_path)["parts"]
 
-    # Le triage lexical ne retient que ce que son vocabulaire reconnait. La
-    # disposition, elle, couvre les 1 026 designations : c'est elle qui porte le
-    # denombrement de reference pour tout ce qui a ete juge a la main, `muffler`
-    # et `y-piece` compris, que le vocabulaire avait manques.
+    # The lexical triage retains only what its vocabulary recognises. The
+    # disposition covers all 1,026 designations: it carries the reference count
+    # for everything judged by hand, including `muffler` and `y-piece`, which the
+    # vocabulary had missed.
     retained = {item["description"]: item for item in triage["shortlist"]}
     if disposition_path.exists():
         for row in load(disposition_path)["rows"]:
@@ -73,7 +73,7 @@ def run(triage_path: Path, judgements_path: Path, disposition_path: Path) -> dic
     missing = sorted(set(retained) - set(judgements))
     if missing:
         raise JudgementError(
-            "designations retenues non jugees, le verdict ne couvre pas le "
+            "retained designations not judged, the verdict does not cover the "
             "triage: " + ", ".join(missing)
         )
 
@@ -103,7 +103,7 @@ def run(triage_path: Path, judgements_path: Path, disposition_path: Path) -> dic
 
     if disagreements:
         raise JudgementError(
-            "verdict declare incoherent avec ses entrees: " + " ; ".join(disagreements)
+            "declared verdict incoherent with its inputs: " + " ; ".join(disagreements)
         )
 
     rows.sort(
@@ -162,14 +162,14 @@ def main() -> int:
             raise SystemExit(f"absent:{args.output}")
         if args.output.read_text(encoding="utf-8") != text:
             raise SystemExit(f"perime:{args.output}")
-        print(f"verdict a jour: {report['designations_to_open']} fiches a ouvrir")
+        print(f"verdict up to date: {report['designations_to_open']} records to open")
         return 0
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(text, encoding="utf-8")
     print(
-        f"{report['designations_judged']} designations jugees, "
-        f"{report['designations_to_open']} meritent une fiche "
+        f"{report['designations_judged']} designations judged, "
+        f"{report['designations_to_open']} deserve a record "
         f"({report['references_under_designations_to_open']} references)"
     )
     for row in report["backlog"]:

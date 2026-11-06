@@ -18,16 +18,16 @@ SOURCE_ID_PATTERN = re.compile(r"^SRC-[A-Z0-9][A-Z0-9._-]{2,63}$")
 SOURCE_TYPES = {"official", "manufacturer", "measured", "community", "marketplace", "dataset", "academic", "estimated"}
 CONTENT_TYPES = {"technical_data", "parts_catalogue", "manual", "drawing", "photograph", "scan", "cad", "mesh", "measurement", "simulation", "material_data"}
 ACCESS_STATUSES = {"available", "access_blocked", "robots_excluded", "paywalled", "purchase_required", "unavailable", "not_checked"}
-# local_copy_read : document lu sur copie locale, sans URL publique (manuel d'atelier).
-# photograph_supplied_by_project_owner : preuve fournie par le proprietaire du projet.
+# local_copy_read: document read from a local copy, no public URL (workshop manual).
+# photograph_supplied_by_project_owner: evidence supplied by the project owner.
 ACCESS_METHODS = {"direct_download", "browser_page_read", "manual_reference", "not_accessed",
                   "local_copy_read", "photograph_supplied_by_project_owner"}
-# Methodes d'acces qui ne passent pas par le web : une URL publique n'existe pas.
+# Access methods that do not go through the web: no public URL exists.
 OFFLINE_METHODS = {"local_copy_read", "photograph_supplied_by_project_owner", "not_accessed"}
-# Generations couvertes. Le depot est ne 993 puis s'est etendu a la 964 et aux 911 anterieures.
+# Covered generations. The repository started with the 993, then extended to the 964 and earlier 911s.
 GENERATIONS = {"993", "964", "911", "911_pre_964", "generic_automotive", "other_porsche"}
-# declared_with_tolerance : le document publie une tolerance, ce qui est plus fort que declared.
-# not_applicable : la source ne porte aucune dimension (procede, cartographie de corrosion).
+# declared_with_tolerance: the document publishes a tolerance, stronger than declared.
+# not_applicable: the source carries no dimension (process, corrosion mapping).
 DIMENSIONAL_ACCURACY = {"measured", "declared", "declared_with_tolerance", "visual_only",
                         "unknown", "not_applicable"}
 REDISTRIBUTION = {"allowed", "attribution_required", "noncommercial_only", "prohibited", "unknown"}
@@ -123,7 +123,7 @@ def validate_source(record: Any) -> list[str]:
     for field in ("title", "publisher"):
         if not _text(record.get(field)):
             errors.append(f"{field}: expected a non-empty string")
-    # Une source hors web n'a pas d'URL publique : url null y est licite, et seulement la.
+    # An offline source has no public URL: url null is allowed there, and only there.
     offline = isinstance(record.get("access"), dict) and record["access"].get("method") in OFFLINE_METHODS
     if record.get("url") is None:
         if not offline:

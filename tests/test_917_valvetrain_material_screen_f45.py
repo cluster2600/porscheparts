@@ -1,4 +1,4 @@
-"""Tests fail-closed du dimensionnement distribution et matière F45."""
+"""Fail-closed tests of the F45 valvetrain sizing and material screen."""
 
 from __future__ import annotations
 

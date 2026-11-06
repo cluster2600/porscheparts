@@ -1,0 +1,108 @@
+{
+  "part_id": "993-INT-DASHBOARD-TRIM-0001",
+  "purpose": "F0 concept visualization only; not a manufacturing file or evidence of fit, function, or safety",
+  "source_stl": "work/dashboard-trim-picogk-f0-verified-20261106/993-INT-DASHBOARD-TRIM-0001.stl",
+  "source_sha256": "97d024f33dddd69d1d7fcf689b5b9186c301d24849ed6982edfb059f5f0eca91",
+  "source_manifest_sha256": "9c9498ce7d4481fcdf3e79f0170b69fc7998eec189d0b79b6a36922da3d18ab1",
+  "source_report_sha256": "770c343718d92166d6b796bdfa71ecb08d38fad225aabba06965f749e7affafa",
+  "output_stl": "work/dashboard-trim-picogk-f0-verified-20261106/dashboard-trim-f0-visual.stl",
+  "output_sha256": "7744259acbaf3823adb29ded22abe04e593a57d8d484a8c2dae6d8f3ebdd8e13",
+  "output_bytes": 900084,
+  "tracked_visual_copy": "twins/993-dashboard-f0/dashboard-trim-f0-visual.stl",
+  "tracked_visual_copy_sha256": "7744259acbaf3823adb29ded22abe04e593a57d8d484a8c2dae6d8f3ebdd8e13",
+  "rebuild_inputs": {
+    "repository_base_revision": "6a30794007d07c4870a9796286c9c0586c0ea936",
+    "picogk_source_revision": "0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3",
+    "picogk_native_runtime_sha256": "e1b04eb1fa13f3adeb75db93c20bb1e4b02c6b450656013d84d874c1b7b141de",
+    "catalogue_record_sha256": "c7311da5cae41a1a18e24cb567116ef23c603b6dc732654a2671e1f0ac1d5b8b",
+    "source_config_sha256": "fa6ff8c02d96cb895ebfaa330d04ee9f21f1b325161b7123215bb57c53388691",
+    "generator_source_sha256": "82b7416dc206daed891eae90843251586a99b96646d86f12c839a8dc3dfd03ab",
+    "build_script_sha256": "b7e4becc129465a438c5877cdf8d59ea0b98fe3f5749f4b5b519b35b38935ed4"
+  },
+  "tool_versions": {
+    "python": "3.12.3",
+    "numpy": "2.2.6",
+    "trimesh": "5.1.1",
+    "pyvista": "0.49.1",
+    "vtk": "9.7.1"
+  },
+  "export_script_sha256": "d79d5c353fa1559dfceb2fbff9db72244a603325513b020ac7ed62bddd38ca13",
+  "method": {
+    "degenerate_faces_removed": 28,
+    "cleanup": "remove degenerate faces using the nondegenerate mask; remove unreferenced vertices; merge vertices",
+    "decimator": "PyVista PolyData.decimate",
+    "target_triangles": 18000,
+    "volume_preservation": true,
+    "boundary_constraints": true,
+    "binary_stl": true
+  },
+  "source_after_cleanup": {
+    "triangles": 2493448,
+    "vertices_after_welding": 1246680,
+    "components": 1,
+    "positive_volume_bodies": 1,
+    "sealed_voids": 0,
+    "subvoxel_components": 0,
+    "watertight": true,
+    "winding_consistent": true,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "degenerate_faces": 0,
+    "bounds_min_mm": [
+      -673.354,
+      -64.822,
+      -0.006
+    ],
+    "bounds_max_mm": [
+      673.354,
+      50.923,
+      59.995
+    ],
+    "size_mm": [
+      1346.709,
+      115.746,
+      60.001
+    ],
+    "volume_cm3": 829.153
+  },
+  "visualization": {
+    "triangles": 18000,
+    "vertices_after_welding": 8956,
+    "components": 1,
+    "positive_volume_bodies": 1,
+    "sealed_voids": 0,
+    "subvoxel_components": 0,
+    "watertight": true,
+    "winding_consistent": true,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "degenerate_faces": 0,
+    "bounds_min_mm": [
+      -673.407,
+      -64.832,
+      -0.003
+    ],
+    "bounds_max_mm": [
+      673.395,
+      50.929,
+      59.997
+    ],
+    "size_mm": [
+      1346.802,
+      115.761,
+      60.0
+    ],
+    "volume_cm3": 829.506
+  },
+  "comparison": {
+    "max_absolute_bound_shift_mm": 0.053,
+    "size_delta_mm": [
+      0.093,
+      0.015,
+      -0.001
+    ],
+    "volume_delta_percent": 0.043,
+    "max_bound_shift_allowed_mm": 0.75,
+    "max_volume_delta_allowed_percent": 0.5
+  }
+}

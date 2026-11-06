@@ -82,8 +82,8 @@ class NativeProfileTests(unittest.TestCase):
 
     def test_nurbs_witness_brepcheck_default_is_not_equivalent(self):
         profiles = self.profile({}, synthetic=0.1, nurbs=True)
-        # Verdict global identique (BOP rejette), mais BRepCheck non exact
-        # accepte ce que la méthode exacte refuse : substitution rejetée.
+        # Same overall verdict (BOP rejects), but non-exact BRepCheck
+        # accepts what the exact method refuses: substitution rejected.
         self.assert_same_verdict(profiles)
         rows = profiles['default']
         self.assertFalse(rows['brepcheck_exact']['result']['valid'])
@@ -101,7 +101,7 @@ class NativeProfileTests(unittest.TestCase):
                   (('v1', 'four-valve-design-20260907'), ('v2', 'four-valve-design-v2-20260907'))}
         shapes['v2_simul'] = EVIDENCE/'four-valve-design-v2-20260907/simultaneous_100pct.step'
         profiles = self.profile(shapes)
-        # 12 solides disjoints dans chaque STEP : le contrôle mono-solide rejette.
+        # 12 disjoint solids in each STEP: the single-solid check rejects.
         self.assertEqual({prof.verdict(r) for r in profiles.values()}, {'fail'})
         self.assert_same_verdict(profiles)
 

@@ -1,4 +1,4 @@
-"""Tests de l'observation locale F15, sans exiger le scan brut en CI."""
+"""Tests of the local F15 observation, without requiring the raw scan in CI."""
 
 from __future__ import annotations
 
@@ -183,7 +183,7 @@ class ScanExecutionEvidenceF15Tests(unittest.TestCase):
 
     def test_local_outputs_match_the_tracked_digests_when_available(self):
         if not LOCAL_OUTPUT.is_dir():
-            self.skipTest("sorties locales F15 absentes de cet environnement")
+            self.skipTest("local F15 outputs absent from this environment")
         for item in self.evidence["local_outputs"]:
             path = LOCAL_OUTPUT / item["name"]
             self.assertTrue(path.is_file(), item["name"])

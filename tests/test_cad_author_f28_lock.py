@@ -1,4 +1,4 @@
-"""Tests du verrou de publication de l'image d'auteur CAO F28."""
+"""Tests of the publication lock of the F28 CAD authoring image."""
 
 from __future__ import annotations
 

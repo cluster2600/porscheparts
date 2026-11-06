@@ -1,4 +1,4 @@
-"""Tests fail-closed des faits FIA soupapes, cames et conduit F20."""
+"""Fail-closed tests of the F20 FIA valve, cam and port facts."""
 
 from __future__ import annotations
 

@@ -1,7 +1,7 @@
-"""Tests synthétiques des ajustements utilisés sur le scan 935 (numpy seul).
+"""Synthetic tests of the fits used on the 935 scan (numpy only).
 
-Aucun scan n'est lu : plans, cercles et perçages sont générés avec des
-paramètres connus et bruités, puis retrouvés dans une tolérance.
+No scan is read: planes, circles and holes are generated with known, noisy
+parameters, then recovered within a tolerance.
 """
 import importlib.util
 import sys
@@ -10,7 +10,7 @@ from pathlib import Path
 
 try:
     import numpy as np
-except ImportError:  # pragma: no cover - la CI installe numpy
+except ImportError:  # pragma: no cover - CI installs numpy
     np = None
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -106,7 +106,7 @@ class FitPrimitivesTest(unittest.TestCase):
 
 
 class Scan935ContractFactsTest(unittest.TestCase):
-    """Les faits 935 restent candidats : aucun nominal, aucun statut « found »."""
+    """The 935 facts stay candidates: no nominal value, no "found" status."""
 
     def setUp(self):
         import json

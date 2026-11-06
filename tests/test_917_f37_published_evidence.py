@@ -1,4 +1,4 @@
-"""Contrôle hors ``work/`` des preuves publiées de la définition F37."""
+"""Check, outside ``work/``, of the published F37 definition evidence."""
 
 from __future__ import annotations
 

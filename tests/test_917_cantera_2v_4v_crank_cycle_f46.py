@@ -1,4 +1,4 @@
-"""Contrôles du calcul angle-vilebrequin Cantera/Wiebe F46."""
+"""Checks of the F46 Cantera/Wiebe crank-angle calculation."""
 
 from __future__ import annotations
 

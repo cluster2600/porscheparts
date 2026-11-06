@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tests fail-closed du contrat matière et procédé LPBF F49."""
+"""Fail-closed tests of the F49 LPBF material and process contract."""
 
 from __future__ import annotations
 

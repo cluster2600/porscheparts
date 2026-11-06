@@ -1,4 +1,4 @@
-"""Tests du lot GPU F42b, sans réseau, secret, USD privé ni runtime NVIDIA."""
+"""Tests of the F42b GPU batch, with no network, secret, private USD or NVIDIA runtime."""
 
 from __future__ import annotations
 
@@ -673,7 +673,7 @@ class ComponentFactoryF42bGpuTests(unittest.TestCase):
         try:
             from pxr import Gf, Usd, UsdGeom
         except ImportError:
-            self.skipTest("pxr requis pour le test comportemental FET001")
+            self.skipTest("pxr required for the FET001 behavioral test")
 
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

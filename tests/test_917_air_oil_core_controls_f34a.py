@@ -1,4 +1,4 @@
-"""Tests adversariaux du contrat de décision F34a air/huile et contrôles."""
+"""Adversarial tests of the F34a air/oil and controls decision contract."""
 
 from __future__ import annotations
 
@@ -46,7 +46,7 @@ class AirOilCoreControlsF34aTests(unittest.TestCase):
         expected_error: str | None = None,
     ) -> None:
         errors = self.validate(contract)
-        self.assertTrue(errors, "la mutation doit etre rejetee en fail-closed")
+        self.assertTrue(errors, "the mutation must be rejected, failing closed")
         if expected_error is not None:
             self.assertTrue(
                 any(expected_error in error for error in errors),

@@ -1,4 +1,4 @@
-"""Tests statiques de l'image CPU de traitement de maillage F17."""
+"""Static tests of the F17 mesh-processing CPU image."""
 
 from __future__ import annotations
 

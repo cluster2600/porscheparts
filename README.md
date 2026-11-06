@@ -1,8 +1,10 @@
 <div align="center">
 
-![The 964 body shell traced from the workshop manual, turning, coloured by stress under a twisting load](docs/media/diagrams/964-hero.gif)
+[![Current assumed 964 central-tub study with closed sills, a through-tunnel and bulkheads](twins/964-chassis/assumed-cell-20261106/media/isometric.png)](twins/964-chassis/assumed-cell-20261106/media/turntable.mp4)
 
-<sub><i>A computer simulation of a 964 body shell being twisted. Colours show where the stress goes. It is a calculation, not a product.</i></sub>
+**[▶ Watch the 5-second video (MP4)](twins/964-chassis/assumed-cell-20261106/media/turntable.mp4)** · [Interior, sections and engineering dossier](twins/964-chassis/assumed-cell-20261106/README.md)
+
+<sub><i>Current F1 central-tub design study. Dimensions and materials are assumptions; the upper structure, vehicle fitment and physical qualification remain open.</i></sub>
 
 ![Layer-by-layer metal 3D printing preview of the 993 cooling-fan impeller, with hypothetical support regions](parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif)
 

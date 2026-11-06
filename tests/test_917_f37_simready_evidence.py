@@ -1,4 +1,4 @@
-"""Contrôle hors ``work/`` des preuves Omniverse / SimReady F37."""
+"""Check, outside ``work/``, of the F37 Omniverse / SimReady evidence."""
 
 from __future__ import annotations
 

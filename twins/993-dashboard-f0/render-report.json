@@ -1,0 +1,208 @@
+{
+  "schema": "993-dashboard-f0-render.v1",
+  "image_kind": "CAD technical illustration",
+  "publication_terms": {
+    "origin": "original project render",
+    "geometry": "project-generated PicoGK F0 visual scene",
+    "external_photo_scan_or_model": false
+  },
+  "scene_id": "993-dashboard-complete-f0-visual",
+  "status": "visual_concept_only",
+  "coordinate_frame": "visual_stage_not_vehicle",
+  "source_report": "scene-report.json",
+  "source_report_sha256": "0fe3e4e441511094551cc5a7feab50266f97beaac5966c0b6e9f5ab3b166609e",
+  "source_files": [
+    {
+      "file": "twins/993-dashboard-f0/source/scene.json",
+      "sha256": "334e918e55b058e3d9f91ce51abda09198371a8daa53711246256dbe2092adff"
+    },
+    {
+      "file": "twins/993-dashboard-f0/source/Program.cs",
+      "sha256": "ed906048dae28c0b6876ccbb2e2ecc2380d9e3b9658b192d0ddda70a8257af1f"
+    },
+    {
+      "file": "twins/993-dashboard-f0/source/render_scene.py",
+      "sha256": "f503745b31c85797a3fdbbf4fadf34caa2ed69b1014d25486c56a6b25bb9617c"
+    }
+  ],
+  "renderer": {
+    "pyvista": "0.49.1",
+    "vtk": "9.7.1",
+    "pillow": "13.0.0"
+  },
+  "views": [
+    {
+      "view": "front",
+      "file": "dashboard-front.png",
+      "sha256": "4600701f443beca88e835cc33ceff560ca70fbf1f6bca460e182c98a5c9b9bdc",
+      "camera_vector": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "projection": "parallel",
+      "resolution_px": [
+        2120,
+        1130
+      ]
+    },
+    {
+      "view": "three-quarter",
+      "file": "dashboard-three-quarter.png",
+      "sha256": "ed59153bd6e04b337e967dce2365c5427d6e09ef602b9874a46bbd82d2b3b569",
+      "camera_vector": [
+        0.72,
+        -1.55,
+        0.72
+      ],
+      "projection": "parallel",
+      "resolution_px": [
+        2120,
+        1130
+      ]
+    }
+  ],
+  "render_qa": {
+    "raw_stl_unchanged": true,
+    "note": "Zero-area triangles are skipped by VTK in the PNG. They add no visible surface but remain a mesh-quality limitation in the source STL."
+  },
+  "layers": [
+    {
+      "family_id": "DASHBOARD_TRIM",
+      "label": "Dashboard trim",
+      "file": "DASHBOARD_TRIM.stl",
+      "sha256": "e0cb6ed7920f945c64d6d69b6eba8ce3d5b0e2f5abb8e20a3b1212512e88c0ac",
+      "colour": "#333940",
+      "triangles_reported": 239396,
+      "triangles_loaded": 239396,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "INSTRUMENT_HOOD",
+      "label": "Instrument hood",
+      "file": "INSTRUMENT_HOOD.stl",
+      "sha256": "82006c8abefad8764febb02d944f70b5b385c3631ff3235cad6e475338699b27",
+      "colour": "#20252b",
+      "triangles_reported": 125324,
+      "triangles_loaded": 125324,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "INSTRUMENT_CLUSTER",
+      "label": "Instrument cluster",
+      "file": "INSTRUMENT_CLUSTER.stl",
+      "sha256": "e2736a27bcfa5fce0481b84df546ae8b3719dd5dbaae4578d8a4ae6236724231",
+      "colour": "#10171d",
+      "triangles_reported": 54696,
+      "triangles_loaded": 54696,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "INSTRUMENT_GAUGE_MARKS",
+      "label": "Gauge rings and marks",
+      "file": "INSTRUMENT_GAUGE_MARKS.stl",
+      "sha256": "93a406015b4295505b56d301c92926eefb73594e2c118bbb0f3a0af15311d7d5",
+      "colour": "#c7d3da",
+      "triangles_reported": 5376,
+      "triangles_loaded": 5376,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "CENTER_AIR_VENTS",
+      "label": "Centre air vents",
+      "file": "CENTER_AIR_VENTS.stl",
+      "sha256": "90c4ef9cb311e81604dfc416365c9ccd32be7750fd56d8697d757958edd6b5a2",
+      "colour": "#495158",
+      "triangles_reported": 11428,
+      "triangles_loaded": 11428,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "SIDE_AIR_VENTS",
+      "label": "Side air vents",
+      "file": "SIDE_AIR_VENTS.stl",
+      "sha256": "e0189b4bcfa0bc419ff2fe3a23b6138a40cff208c8840777f286d88245a94898",
+      "colour": "#5b646b",
+      "triangles_reported": 5856,
+      "triangles_loaded": 5816,
+      "zero_area_faces_raw": 40,
+      "faces_omitted_by_vtk": 40
+    },
+    {
+      "family_id": "DEFROST_OUTLETS_AND_DUCTS",
+      "label": "Defrost outlet marks",
+      "file": "DEFROST_OUTLETS_AND_DUCTS.stl",
+      "sha256": "be667eaf416150993d5fbbef15dfc1990cef10885abe816e4526fa3ce0a7a003",
+      "colour": "#56616a",
+      "triangles_reported": 12792,
+      "triangles_loaded": 12792,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "GLOVEBOX",
+      "label": "Glovebox outline",
+      "file": "GLOVEBOX.stl",
+      "sha256": "178dc4f2c517cadf1dd93615b7a2b0f71a6b535712c37aa4d4257f43ceb1add8",
+      "colour": "#58616a",
+      "triangles_reported": 12248,
+      "triangles_loaded": 12248,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "CENTER_CONSOLE",
+      "label": "Centre console",
+      "file": "CENTER_CONSOLE.stl",
+      "sha256": "e4594276741e0804422696d78ff8cddbbd1ce1bf63c77b3213c5af01f78af582",
+      "colour": "#313a43",
+      "triangles_reported": 87496,
+      "triangles_loaded": 87496,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "HVAC_RADIO_CONTROLS",
+      "label": "HVAC and radio controls",
+      "file": "HVAC_RADIO_CONTROLS.stl",
+      "sha256": "a7f74e224f8f83df082fc250ae46c94f3b2e83b15aa6e55db7d38797d201b625",
+      "colour": "#737d82",
+      "triangles_reported": 24680,
+      "triangles_loaded": 24680,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "SWITCHES_AND_BLANKS",
+      "label": "Switches and blanks",
+      "file": "SWITCHES_AND_BLANKS.stl",
+      "sha256": "f347167ae675b3cb7c02b3faa17131e46858e1aecb9a8c85adb695ec9d5359b8",
+      "colour": "#818c91",
+      "triangles_reported": 3208,
+      "triangles_loaded": 3208,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    },
+    {
+      "family_id": "KNEE_STRIP_RESERVED",
+      "label": "Knee strip reserved zone",
+      "file": "KNEE_STRIP_RESERVED.stl",
+      "sha256": "d1946a4191f0384eb8c02053377030a5abd4d289ba794edfc22ea7361b0707ab",
+      "colour": "#7a6d5d",
+      "triangles_reported": 33136,
+      "triangles_loaded": 33136,
+      "zero_area_faces_raw": 0,
+      "faces_omitted_by_vtk": 0
+    }
+  ],
+  "limitations": [
+    "Synthetic F0 display in a visual frame; dimensions and poses are assumed.",
+    "No measured vehicle transform or physical assembly is represented.",
+    "Images do not establish fit, safety, OEM identity, or manufacturing readiness."
+  ]
+}

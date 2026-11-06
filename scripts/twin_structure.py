@@ -22,7 +22,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
-# Libelles derives des groupes les plus frequents de chaque famille, pas devines.
+# Labels derived from the most frequent groups of each family, not guessed.
 SYSTEMS = {
     "0": "Consommables, adhesifs et documentation",
     "1": "Moteur",
@@ -105,11 +105,11 @@ def coverage(skeleton: dict) -> None:
     print(f"{'TOTAL':46s} {total:6d} "
           f"{sum(s['illustration_count'] for s in skeleton['systems']):6d}")
     print()
-    print(f"Pieces portant une masse documentee : {documented} sur {total} references, "
-          f"soit {documented / total * 100:.2f} %.")
-    print("La couverture massique, elle, se lit avec scripts/twin_coverage.py :")
-    print("une poignee de grosses pieces represente une part de masse sans rapport")
-    print("avec sa part de references.")
+    print(f"Parts carrying a documented mass: {documented} of {total} references, "
+          f"i.e. {documented / total * 100:.2f} %.")
+    print("Mass coverage is read with scripts/twin_coverage.py instead:")
+    print("a handful of large parts accounts for a share of mass unrelated")
+    print("to their share of references.")
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -127,7 +127,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.out:
         args.out.parent.mkdir(parents=True, exist_ok=True)
         args.out.write_text(json.dumps(skeleton, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-        print(f"\nsquelette ecrit dans {args.out}")
+        print(f"\nskeleton written to {args.out}")
     return 0
 
 

@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
-"""Triage titane de tout le catalogue d'usine 993, au niveau de la piece.
+"""Titanium triage of the whole 993 factory catalogue, at part level.
 
-Le criblage des fiches porte sur une trentaine de pieces. Le catalogue d'usine
-en compte pres de six mille. Conclure quoi que ce soit sur « tout le catalogue »
-a partir des fiches etait donc indefendable, et ce script existe pour reparer
-cela.
+The record screening covers about thirty parts. The factory catalogue lists
+nearly six thousand. Concluding anything about "the whole catalogue" from the
+records was therefore indefensible, and this script exists to fix that.
 
-Il lit le releve de designations **hors du depot**, par `--listing`, comme le
-fait deja `twin_structure.py` : les lignes de catalogue restent chez leur
-detenteur. Seuls le classement agrege et une liste courte de candidats sont
-publies.
+It reads the designation listing **outside the repository**, through
+`--listing`, as `twin_structure.py` already does: catalogue lines stay with
+their holder. Only the aggregated ranking and a short list of candidates are
+published.
 
-Ce qu'il produit reste un triage lexical. Une designation de trois mots ne dit
-ni la matiere, ni la masse, ni la temperature, ni la fonction exacte. Un candidat
-retenu ici n'est pas une piece choisie : c'est une piece qu'il faut aller
-regarder.
+What it produces remains a lexical triage. A three-word designation tells
+neither the material, the mass, the temperature nor the exact function. A
+candidate retained here is not a chosen part: it is a part someone must go and
+look at.
 """
 
 from __future__ import annotations
@@ -26,7 +25,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 
-# Rien a imprimer en titane : visserie, etancheite, souplesse, electricite.
+# Nothing to print in titanium: fasteners, sealing, flexible parts, electrics.
 COMMODITY = (
     "screw", "bolt", "nut", "washer", "shim", "clip", "clamp", "rivet", "stud",
     "circlip", "sticker", "label", "gasket", "o-ring", "sealing ring", "seal",
@@ -38,7 +37,7 @@ COMMODITY = (
     "wiper", "belt", "bag", "foam", "felt", "fabric", "leather",
 )
 
-# Presomption de criticite au sens de SAFETY.md, sur la designation ou le groupe.
+# Presumed safety-critical in the SAFETY.md sense, by designation or group.
 SAFETY = (
     "brake", "steering", "airbag", "seat belt", "wheel", "hub", "suspension",
     "wishbone", "stabiliser", "shock absorber", "coil spring", "drive shaft",
@@ -48,20 +47,20 @@ SAFETY = (
     "valve seat", "valve spring", "intake valve", "exhaust valve", "fuel tank",
 )
 
-# Chaud : la ou le titane a un interet et une limite en meme temps.
+# Hot: where titanium has both a benefit and a limit.
 HOT = (
     "exhaust", "turbocharger", "turbo", "hot-air", "heat exchanger",
     "heat protection", "heat shield", "air injection", "tail pipe",
     "heat control", "heat dissipator", "thermostat",
 )
 
-# Passages internes : la premiere famille ou l'additif gagne.
+# Internal passages: the first family where additive wins.
 PASSAGE = (
     "pipe", "line", "tube", "duct", "manifold", "distributor", "elbow",
     "nozzle", "cooler", "exchanger", "trumpet", "breather", "vent",
 )
 
-# Consolidation : la troisieme famille.
+# Consolidation: the third family.
 CONSOLIDATION = ("manifold", "distributor", "housing", "cowl", "exchanger", "console", "carrier", "guide")
 
 
@@ -74,11 +73,11 @@ def score_reference(entry: dict[str, Any]) -> dict[str, Any]:
     groups = sorted(entry["groups"])
 
     commodity = hits(description, COMMODITY)
-    # La designation prime. Le groupe n'exclut que s'il accuse **toutes** les
-    # illustrations : une meme designation traverse le catalogue, et une
-    # conduite d'huile qui apparait une fois sur une planche de carter n'est pas
-    # pour autant un organe de carter. La regle brutale faisait disparaitre
-    # `oil pipe`, qui est justement un des meilleurs candidats du lot.
+    # The designation prevails. The group excludes only if it flags **every**
+    # illustration: the same designation runs across the catalogue, and an oil
+    # line that appears once on a crankcase plate is not thereby a crankcase
+    # component. The blunt rule made `oil pipe` disappear, which is precisely
+    # one of the best candidates in the batch.
     safety = hits(description, SAFETY)
     group_safety = [group for group in groups if hits(group, SAFETY)]
     group_excluded = bool(groups) and len(group_safety) == len(groups)
@@ -192,14 +191,14 @@ def main() -> int:
         json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
     print(
-        f"{report['distinct_descriptions']} designations distinctes, "
+        f"{report['distinct_descriptions']} distinct designations, "
         f"{report['distinct_references']} references"
     )
     print(
-        f"fiches du depot: {report['catalogue_part_records']} soit "
-        f"{report['part_record_coverage_percent']} % des references"
+        f"repository records: {report['catalogue_part_records']}, i.e. "
+        f"{report['part_record_coverage_percent']} % of references"
     )
-    print(f"retenues: {report['descriptions_retained']} designations")
+    print(f"retained: {report['descriptions_retained']} designations")
     for item in report["shortlist"][:20]:
         print(
             f"  +{item['score']:<2d} {item['reference_count']:3d}x  {item['description']:28s} "

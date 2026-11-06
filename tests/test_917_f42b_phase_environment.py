@@ -1,4 +1,4 @@
-"""Tests de l'environnement commun des phases distantes F42b."""
+"""Tests of the shared environment of the remote F42b phases."""
 
 from __future__ import annotations
 

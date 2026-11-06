@@ -1,4 +1,4 @@
-"""Contrats expurgés et fixture synthétique du workpack F23."""
+"""Redacted contracts and synthetic fixture of the F23 workpack."""
 
 from __future__ import annotations
 
