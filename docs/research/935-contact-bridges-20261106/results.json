@@ -1,0 +1,455 @@
+{
+  "schema": "935-contact-bridge-public-receipt-1",
+  "source_OBJ_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "input_candidate_sha256": "3029d1bdae31deccdb6ae76f06c8245cded6cb389af47559a173e056ad771bb9",
+  "job_sha256": "5a7417b07455510f00846fd80f2d6aa40d065e64cac15eca2ada7d65f029c2c7",
+  "executed_sources": [
+    {
+      "name": "audit_contact_topology.py",
+      "sha256": "2693b5436b30c5e90942900f9b7f170667c54c257d1827283de4fba6c86645a0"
+    },
+    {
+      "name": "check_contact_bridges.py",
+      "sha256": "173cd6752bc88a89cca1e5356b80f252ad75be05e8fff406f3e0117e3af2aad1"
+    },
+    {
+      "name": "deliver_contact_candidate.py",
+      "sha256": "c5824c4142d06c0a938568b6d3b74ae7cd1a88cc9801c6a820d8dda9b1c6d86f"
+    },
+    {
+      "name": "inspect_contact_candidate.py",
+      "sha256": "da24015af3fd8578f0bcd47e7d51f04c11905ee4738463aeae66c9491d42cd25"
+    },
+    {
+      "name": "measure_contact_deviations.py",
+      "sha256": "c73ce6d668ff24492670766e2fc207ccf40a164496f480a93042d700cbe26205"
+    },
+    {
+      "name": "prepare_contact_bridges.py",
+      "sha256": "d3688dc7af52164814628df437b630bfce878606c50daced41acc4a4159231ae"
+    }
+  ],
+  "reused_helpers": [
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/inspect_intersections.py",
+      "sha256": "3e0b239ca4993388f32563092c78d97065cc1fb0753c68a2def3d631feda7976"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/inspect_vertex_fans.py",
+      "sha256": "1b9792699e0d3f42cae84184562e64d7bb1a6786b054e89d4e988cc0481883f5"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/check_cgal_patches.py",
+      "sha256": "2b5835ea1e4d53e5dfb4b8c499b0b02e858f3d495667c038b9203c2f1fb2d945"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/measure_patch_deviations.py",
+      "sha256": "8e4f401c4c76ca4cafa28979a0b2bdaf80c77049acbac2dc2a610b490720e570"
+    },
+    {
+      "path": "docs/research/935-retained-boundaries-20261106/source/audit_retained_boundaries.py",
+      "sha256": "5b1fcf5815ceca941f6af7a07683bc17b4f4b3e7f43fb6da316d598d91848ee0"
+    }
+  ],
+  "independent_report_sha256": {
+    "prepared-001": "e2f812cf7722cb46d96998ed70fa8ce85814a37d09d02e06789e69e60be2bab7",
+    "local-checks-001": "ebbe62619494a731be0d0b9417b3c9257f6f4ebd595a645ddb76f6ba5470daaa",
+    "build-001": "061d9f317fbf8b286395125dc6c3a1e9184bcc171faaa7ab48b06785d1c8c995",
+    "saved-check-001": "44b7e762bb9bf83887a7c9ae87a9673c67dc41a7d2da53d0f77560559793c188",
+    "global-check-001": "f26558f4cae93c988c318be3453c8ad480d1cfa53a75681890abe514d71c4ce5",
+    "filtered-build-001": "ab48595a85e7c6d35c5b9b298401b4a4210ff6384c33ab8a7cc79ae60ad1bdb3",
+    "filtered-saved-check-001": "16f88d89324bcf855057a8d6004931a83db161e56ff106b029a67ab161e14244",
+    "filtered-intersections-001": "eb7ba28044581636c438238a4648fe28cb1dee33186435a4930d9ff9908c230e",
+    "filtered-global-check-001": "e09868799d10c114e0a168db908b7b9598f9bf717560ccf490fe92f3e8ce561d",
+    "topology-001": "ad50ba461d745ce206652f90d96f6582669d6e7e064ba548c1cda3cb60ee5082",
+    "deviations-001": "1f34a373aa2d9d5d1dd3449ea9200f5e89da195c9bec53a973764d3baa178c32"
+  },
+  "experimental_limits": {
+    "maximum_diagonal_nominal_mm": 3.0,
+    "minimum_signed_adjacent_normal_dot": 0.8
+  },
+  "trial_counts": {
+    "source_contacts": 48,
+    "closed_fan_contacts": 23,
+    "proposals": 54,
+    "initial_screen_passed": 13,
+    "independently_accepted_local_proposals": 13,
+    "selected_local_contacts": 8,
+    "global_rejected_contacts": 2,
+    "retained_contacts": 6,
+    "new_bridge_faces": 6
+  },
+  "local_rejection_reasons": {
+    "experimental_normal_screen": 41
+  },
+  "native_controls": {
+    "one_bridge_joins_two_open_source_fans": true,
+    "duplicate_index_contact_detected": true,
+    "shared_vertex_crossing_beyond_contact_detected": true,
+    "reversed_bridge_refused": true
+  },
+  "final_geometry": {
+    "base_vertices": 1248924,
+    "base_faces": 2401792,
+    "added_contact_bridge_faces": 6,
+    "total_faces": 2401798,
+    "candidate_NPZ_sha256": "99a3854845211f097ed17334ab5eb2fc8f4aeb4d079353d6990b87eaa7a3f90c",
+    "candidate_OBJ_sha256": "a08e0a783445d8a0e880f5b8f5885c92d819d74bdb63a407bde53199757f246f",
+    "all_base_coordinates_faces_and_provenance_unchanged": true,
+    "new_faces_marked_inferred": true,
+    "index_duplicates_created": false,
+    "base_faces_removed": false
+  },
+  "initial_global_failures": {
+    "global_edge_conflicts": 1,
+    "duplicate_face_groups": 0,
+    "full_candidate_intersection_pairs": 0,
+    "source_preserving_surface_checks_passed": false
+  },
+  "final_topology": {
+    "full_candidate_intersection_pairs": 0,
+    "predicate_excluded_faces": 0,
+    "global_edge_conflicts": 0,
+    "duplicate_face_groups": 0,
+    "open_boundary_edges": 98762,
+    "source_preserving_surface_checks_passed": true
+  },
+  "used_vertices_and_boundaries": {
+    "base_nonmanifold_used_vertices": 48,
+    "candidate_nonmanifold_used_vertices": 42,
+    "exactly_selected_contacts_joined": 6,
+    "all_other_vertex_fan_counts_unchanged": true,
+    "base_boundary_edges": 98768,
+    "candidate_boundary_edges": 98762,
+    "candidate_boundary_walks": 941,
+    "removed_previous_boundary_edges": 12,
+    "new_inferred_bridge_boundary_edges": 6,
+    "complete_boundary_origin_counts": {
+      "1": 97864,
+      "2": 166,
+      "3": 726,
+      "4": 6
+    },
+    "removed_boundary_origin_counts": {
+      "1": 8,
+      "2": 4
+    },
+    "exact_whole_boundary_change_mask_verified": true,
+    "all_original_coordinates_and_base_faces_unchanged": true,
+    "index_duplicates_created": false,
+    "closed_volume": false,
+    "full_used_vertex_manifold": false,
+    "conservative_surface_workflow_fully_admitted": false,
+    "full_bare_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "deviations": {
+    "previous_distance_witness_sha256": "c300d6c5fdc148f5b1c4bf73d26eb35a8f96e1363705cce81a4b713e2ab13655",
+    "distance_control_passed": true,
+    "source_probe_count": 219476,
+    "source_random_to_candidate": {
+      "points": 100000,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 7.105427357601002e-15,
+      "p90_nominal_mm": 3.014577520672848e-14,
+      "p95_nominal_mm": 5.783398860650275e-14,
+      "p99_nominal_mm": 13.169351760346363,
+      "sampled_maximum_nominal_mm": 49.69269092922887,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.98073,
+        "0.1": 0.98075,
+        "0.25": 0.98084,
+        "0.5": 0.98106
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "original_boundary_vertices_to_candidate": {
+      "points": 99876,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.0,
+      "p90_nominal_mm": 0.0,
+      "p95_nominal_mm": 0.0,
+      "p99_nominal_mm": 19.267318422621052,
+      "sampled_maximum_nominal_mm": 49.77368564908966,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.9799751692098202,
+        "0.1": 0.9799751692098202,
+        "0.25": 0.9800052064560054,
+        "0.5": 0.9801553926869317
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "quarantined_face_probes_to_candidate": {
+      "points": 19600,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.006852680353199448,
+      "p90_nominal_mm": 0.042538853060518154,
+      "p95_nominal_mm": 0.06036229822218916,
+      "p99_nominal_mm": 0.11760570251714104,
+      "sampled_maximum_nominal_mm": 0.1660674470499043,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.9259693877551021,
+        "0.1": 0.9848979591836735,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "candidate_random_to_original": {
+      "points": 100000,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 7.105427357601002e-15,
+      "p90_nominal_mm": 2.929642751054232e-14,
+      "p95_nominal_mm": 3.557151798805476e-14,
+      "p99_nominal_mm": 6.029155041345696e-14,
+      "sampled_maximum_nominal_mm": 7.528065317933784e-14,
+      "coverage_at_nominal_mm": {
+        "0.05": 1.0,
+        "0.1": 1.0,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "candidate_boundary_vertices_to_original": {
+      "points": 98742,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.0,
+      "p90_nominal_mm": 0.0,
+      "p95_nominal_mm": 0.0,
+      "p99_nominal_mm": 0.0,
+      "sampled_maximum_nominal_mm": 1.5888218580782548e-14,
+      "coverage_at_nominal_mm": {
+        "0.05": 1.0,
+        "0.1": 1.0,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "all_new_bridge_probes_to_original": {
+      "points": 6024,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.01746994019685022,
+      "p90_nominal_mm": 0.04338521274163809,
+      "p95_nominal_mm": 0.05216876092815912,
+      "p99_nominal_mm": 0.06893931372759197,
+      "sampled_maximum_nominal_mm": 0.08392630349255581,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.9384130146082338,
+        "0.1": 1.0,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "source_distances_do_not_increase_pointwise": true,
+    "all_previous_geometry_and_patch_distance_witnesses_remain_applicable": true,
+    "missing_surfaces_have_no_measured_ground_truth": true,
+    "physical_calibration_or_tolerance_verified": false,
+    "full_bare_head_created": false,
+    "manufacturing_authorized": false
+  },
+  "runtime": {
+    "python": "3.12.13",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "libigl": "2.6.3",
+    "inherited_frozen_CAD_runtime": true,
+    "private_addon_manifest_sha256": "3cf3f669266b1981fd1c6042e1923e878719f8ab2ee35398270680a6f45df02a",
+    "all_addon_files_rehashed": true,
+    "python_binary_sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2"
+  },
+  "execution": [
+    {
+      "name": "assembly-execution-001",
+      "sha256": "4c01879fd39502b0eba78b2f05708983565b4236190ec0f0bb8608f8aa6892b9",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "phases": [
+        {
+          "phase": "complete-source-contact-candidate-build",
+          "exit_code": 0,
+          "seconds": 10.175829832907766,
+          "maximum_sampled_child_RSS_KiB": 380080,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "complete-saved-OBJ-and-provenance-readback",
+          "exit_code": 0,
+          "seconds": 5.541440833010711,
+          "maximum_sampled_child_RSS_KiB": 1829376,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ]
+    },
+    {
+      "name": "filtered-execution-001",
+      "sha256": "21476fd6f0a4735875d8688247e6ff6095245905c34dbd79b6a69def78a350f3",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "phases": [
+        {
+          "phase": "filtered-complete-source-contact-candidate-build",
+          "exit_code": 0,
+          "seconds": 10.167562999995425,
+          "maximum_sampled_child_RSS_KiB": 380224,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "filtered-complete-saved-OBJ-and-provenance-readback",
+          "exit_code": 0,
+          "seconds": 5.514679749961942,
+          "maximum_sampled_child_RSS_KiB": 1821120,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ]
+    },
+    {
+      "name": "filtered-global-execution-001",
+      "sha256": "2aed23002cab728df5957fc94683336bdcfd58982b9d41be113c7f98a2cc839b",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "phases": [
+        {
+          "phase": "filtered-entire-contact-candidate-independent-intersection-predicates",
+          "exit_code": 0,
+          "seconds": 4.134024541941471,
+          "maximum_sampled_child_RSS_KiB": 1112496,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "filtered-entire-contact-candidate-edge-and-duplicate-face-inspection",
+          "exit_code": 0,
+          "seconds": 2.1268070420483127,
+          "maximum_sampled_child_RSS_KiB": 1060320,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "entire-used-vertex-graph-and-reattributed-boundaries",
+          "exit_code": 0,
+          "seconds": 12.724651749944314,
+          "maximum_sampled_child_RSS_KiB": 2018512,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "bidirectional-source-and-every-contact-bridge-distance",
+          "exit_code": 0,
+          "seconds": 7.826049374998547,
+          "maximum_sampled_child_RSS_KiB": 1762032,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ]
+    },
+    {
+      "name": "global-execution-001",
+      "sha256": "bc61800ca7ade15cad0cb0c9a6620843f0ba953f982e012f2f80db07a456078c",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "phases": [
+        {
+          "phase": "entire-contact-candidate-independent-intersection-predicates",
+          "exit_code": 0,
+          "seconds": 4.093697082949802,
+          "maximum_sampled_child_RSS_KiB": 1108944,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "entire-contact-candidate-edge-and-duplicate-face-inspection",
+          "exit_code": 0,
+          "seconds": 2.135357083985582,
+          "maximum_sampled_child_RSS_KiB": 1028016,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ]
+    },
+    {
+      "name": "local-checks-execution-001",
+      "sha256": "d76ce4125eb0b3a7236720d51c7cd9efb4e6a8dec23258ffd194d4be878aac2a",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "phases": [
+        {
+          "phase": "independent-complete-contact-controls-and-local-proposals",
+          "exit_code": 0,
+          "seconds": 2.554292207933031,
+          "maximum_sampled_child_RSS_KiB": 361696,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ]
+    },
+    {
+      "name": "preparation-execution-001",
+      "sha256": "dead8852f4e1377c1917aaf00e15c9eb628cfb3985c17f7350f52f3e0a39846a",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "phases": [
+        {
+          "phase": "complete-contact-fan-boundaries-and-fixed-bridge-proposals",
+          "exit_code": 0,
+          "seconds": 0.4297581659629941,
+          "maximum_sampled_child_RSS_KiB": 112864,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ]
+    }
+  ],
+  "spending": {
+    "new_paid_compute": false,
+    "new_Vast_resources_created": 0,
+    "scan_transfer_to_Vast_authorized": true
+  },
+  "release": {
+    "print_ready": false,
+    "closed_volume": false,
+    "full_bare_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "full_goal_active": true
+  },
+  "private_capsule": {
+    "name": "935-contact-bridges-20261106-001",
+    "manifest_sha256": "924d9fa54b9d81492a96dfa938289ba251a1a8c5d5e780bfb3f887380f79a97f",
+    "payload_files": 119,
+    "payload_bytes": 355714127,
+    "immutable": true,
+    "raw_geometry_in_git": false
+  }
+}
