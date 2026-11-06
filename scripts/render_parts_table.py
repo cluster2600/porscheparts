@@ -43,6 +43,7 @@ SYSTEMES = [
     ("TURBOCHARGER", "Turbocharger"),
     ("EXH", "Exhaust"),
     ("BODY", "Body"),
+    ("CENTRAL", "Central cell studies"),
     ("INT", "Interior"),
     ("ELEC", "Lighting"),
     ("WHL", "Wheels"),

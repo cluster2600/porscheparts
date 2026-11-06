@@ -1,0 +1,262 @@
+{
+  "classification": "independent_hypothesis_geometry_and_kinematic_tooling_audit",
+  "variant": "baseline",
+  "panels_checked": 28,
+  "all_plate_thicknesses_equal_physical_parameter": true,
+  "connected_plate_union": true,
+  "exact_box_union_volume_mm3": 27186543.0,
+  "shell_area_times_thickness_mm3": 27309600.0,
+  "relative_CAD_union_vs_shell_volume_difference": -0.0045059978908515985,
+  "mass_difference_is_junction_volume_convention_not_weight_measurement": true,
+  "tooling_clearance_assumed_mm": 0.5,
+  "straight_pull_trials": [
+    {
+      "core": "right_sill",
+      "box_mm": {
+        "name": "right_sill",
+        "min_mm": [
+          2.0,
+          -718.0,
+          2.0
+        ],
+        "max_mm": [
+          1998.0,
+          -572.0,
+          258.0
+        ]
+      },
+      "directions": [
+        {
+          "direction": "-X",
+          "travel_mm": 4190,
+          "collision_free": false,
+          "first_collision_mm": 0.5,
+          "first_obstacle": "front_bulkhead_right"
+        },
+        {
+          "direction": "+X",
+          "travel_mm": 4190,
+          "collision_free": false,
+          "first_collision_mm": 0.5,
+          "first_obstacle": "rear_bulkhead_right"
+        },
+        {
+          "direction": "-Y",
+          "travel_mm": 4190,
+          "collision_free": false,
+          "first_collision_mm": 0.5,
+          "first_obstacle": "sill_right_outer"
+        },
+        {
+          "direction": "+Y",
+          "travel_mm": 4190,
+          "collision_free": false,
+          "first_collision_mm": 0.5,
+          "first_obstacle": "sill_right_inner"
+        },
+        {
+          "direction": "-Z",
+          "travel_mm": 4190,
+          "collision_free": false,
+          "first_collision_mm": 0.5,
+          "first_obstacle": "floor"
+        },
+        {
+          "direction": "+Z",
+          "travel_mm": 4190,
+          "collision_free": false,
+          "first_collision_mm": 0.5,
+          "first_obstacle": "sill_right_top"
+        }
+      ],
+      "any_axis_aligned_rigid_pull": false
+    },
+    {
+      "core": "left_sill",
+      "box_mm": {
+        "name": "left_sill",
+        "min_mm": [
+          2.0,
+          572.0,
+          2.0
+        ],
+        "max_mm": [
+          1998.0,
+          718.0,
+          258.0
+        ]
+      },
+      "directions": [
+        {
+          "direction": "-X",
+          "travel_mm": 4190,
+          "collision_free": false,
+          "first_collision_mm": 0.5,
+          "first_obstacle": "front_bulkhead_left"
+        },
+        {
+          "direction": "+X",
+          "travel_mm": 4190,
+          "collision_free": false,
+          "first_collision_mm": 0.5,
+          "first_obstacle": "rear_bulkhead_left"
+        },
+        {
+          "direction": "-Y",
+          "travel_mm": 4190,
+          "collision_free": false,
+          "first_collision_mm": 0.5,
+          "first_obstacle": "sill_left_inner"
+        },
+        {
+          "direction": "+Y",
+          "travel_mm": 4190,
+          "collision_free": false,
+          "first_collision_mm": 0.5,
+          "first_obstacle": "sill_left_outer"
+        },
+        {
+          "direction": "-Z",
+          "travel_mm": 4190,
+          "collision_free": false,
+          "first_collision_mm": 0.5,
+          "first_obstacle": "floor"
+        },
+        {
+          "direction": "+Z",
+          "travel_mm": 4190,
+          "collision_free": false,
+          "first_collision_mm": 0.5,
+          "first_obstacle": "sill_left_top"
+        }
+      ],
+      "any_axis_aligned_rigid_pull": false
+    },
+    {
+      "core": "tunnel",
+      "box_mm": {
+        "name": "tunnel",
+        "min_mm": [
+          -10,
+          -128.0,
+          2.0
+        ],
+        "max_mm": [
+          2010,
+          128.0,
+          218.0
+        ]
+      },
+      "directions": [
+        {
+          "direction": "-X",
+          "travel_mm": 4190,
+          "collision_free": true,
+          "first_collision_mm": null,
+          "first_obstacle": null
+        },
+        {
+          "direction": "+X",
+          "travel_mm": 4190,
+          "collision_free": true,
+          "first_collision_mm": null,
+          "first_obstacle": null
+        },
+        {
+          "direction": "-Y",
+          "travel_mm": 4190,
+          "collision_free": false,
+          "first_collision_mm": 0.5,
+          "first_obstacle": "tunnel_right"
+        },
+        {
+          "direction": "+Y",
+          "travel_mm": 4190,
+          "collision_free": false,
+          "first_collision_mm": 0.5,
+          "first_obstacle": "tunnel_left"
+        },
+        {
+          "direction": "-Z",
+          "travel_mm": 4190,
+          "collision_free": false,
+          "first_collision_mm": 0.5,
+          "first_obstacle": "floor"
+        },
+        {
+          "direction": "+Z",
+          "travel_mm": 4190,
+          "collision_free": false,
+          "first_collision_mm": 0.5,
+          "first_obstacle": "tunnel_roof"
+        }
+      ],
+      "any_axis_aligned_rigid_pull": true
+    }
+  ],
+  "kinematic_scope": "Rigid rectangular cores, fixed undeformed plates, six axis directions; excludes rotation, collapse, dissolution, draft, friction, thermal contraction and cure.",
+  "tooling_verdict": "No single-piece rigid-core manufacturing route admitted where an assumed closed-section core remains trapped.",
+  "functional_or_manufacturing_validation": false,
+  "model_sha256": "01ae2c73c5530c3b1cf247c8f627e7eda86435e6892562ac78d6b1da401f5b6c",
+  "auditor_sha256": "95007a56f6b0e3e0803a7c38ede3e406540e8d2f6621d217e79f9c51d71ed781",
+  "independent_geometry_verification": {
+    "receipt_sha256": "b78b53d0871ceaec81375746b9d5061de09f197f0d2de4e8c2a68347ca6efba8",
+    "method": "Full 3D coordinate-cell occupancy and critical-event pull intervals, independent of the author interval-sweep implementation.",
+    "real_pull_trials": 18,
+    "analytic_controls": 10,
+    "passed": true
+  },
+  "exact_STEP_verification": {
+    "public_source": "parts/964-central-cell-assumed-f1/derived/assumed-cell.step",
+    "sha256": "7f385ebab439143b5593e2551fa880003e8d6b50a1127b62dfe44fff6be9a4d5",
+    "valid_solids": 1,
+    "all_28_canonical_plates_contained": true,
+    "independent_receipt_sha256": "a9e8c290472e79afbae1e8496a0fa35522699bf110d6f89bbab1aa647060a90a"
+  },
+  "study_USD": {
+    "export": {
+      "classification": "exact_assumed_plate_union_USD_export",
+      "canonical_model_sha256": "01ae2c73c5530c3b1cf247c8f627e7eda86435e6892562ac78d6b1da401f5b6c",
+      "exporter_sha256": "14c60ac7d345d7267ac21c1dc1dfb180621d60d03dcfab20e3d961901b0089fe",
+      "stage_sha256": "cc8011f50501e1d2751d76121213e3b800e71d1242714d05a4200df156d1e495",
+      "vertices": 2438,
+      "quads": 2426,
+      "all_boundary_edges_incidence_two": true,
+      "signed_enclosed_volume_mm3": 27186543.0,
+      "relative_dependencies": [],
+      "units_mm": true,
+      "Z_up": true,
+      "native_omniverse_validation": false,
+      "physical_or_manufacturing_validation": false
+    },
+    "strict_relocated_validation": {
+      "classification": "relocated_standalone_assumed_USD_strict_validation",
+      "stage_sha256": "cc8011f50501e1d2751d76121213e3b800e71d1242714d05a4200df156d1e495",
+      "checker_binary_sha256": "16230d72d793fda6817a97361c809b03ea5dbc2adc4a3c3cd2451d3f06dde423",
+      "command": [
+        "usdchecker",
+        "--strict",
+        "assumed-cell.usda"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "09cb077aa4f71e772006dbbf6c839d753fc9b1cb3672780b4c3fa4a7c42d8df7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "relocated_copy_same_bytes": true,
+      "relative_dependencies": [],
+      "native_omniverse_application_review": false,
+      "engineering_or_manufacturing_approval": false
+    },
+    "independent_native_readback": {
+      "classification": "independent_native_USD_readback_and_axis_flux_volume",
+      "native_tool": "/usr/bin/usdcat --flatten",
+      "flattened_sha256": "e1ba6118a2f69622e917e0de7ad894a2a2b6daa8b2079b43e085246d5b2b781b",
+      "vertex_count": 2438,
+      "quad_count": 2426,
+      "axis_flux_enclosed_volume_mm3": 27186543.0,
+      "canonical_union_volume_match": true,
+      "exact_STEP_volume_match_within_1e-6_mm3": true,
+      "native_omniverse": false,
+      "physical_validation": false
+    }
+  }
+}

@@ -1,0 +1,1328 @@
+{
+  "classification": "actual_conditional_laminate_stiffness_campaign_with_corrected_RF_analysis",
+  "actual_solver_jobs": 18,
+  "solver_image": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+  "original_generator_script_path": "work/964-assumed-cell-20261106/corrected-analysis-001/generator-run-script.py",
+  "original_generator_script_sha256": "417dbfad2e2fd359b5af63e13e6825eee889e0d376b88bee3af9cea00c259fc6",
+  "current_postprocessor_script_path": "twins/964-chassis/assumed-cell-20261106/solve.py",
+  "current_postprocessor_script_sha256": "ad70de944af810552a5bc3ce30fb9e0ac84aabc8d8cc1114c91637d533d076ae",
+  "analysis_driver_sha256": "8f1bf51844e5185b4049be7fe971153c250c3971eaf2992a1c2b357a1ea53cf1",
+  "all_18_regenerated_decks_byte_identical": true,
+  "material_and_orientation_benchmark": {
+    "path": "work/964-assumed-cell-20261106/benchmark-003/benchmark.json",
+    "sha256": "753e74aadebbec811b3282d2b0e53439548ce568ed5ee061db74f82a0e6fc9e8",
+    "passed": true
+  },
+  "baseline_convergence": {
+    "torsion": {
+      "metric": "torsion_stiffness_Nm_per_deg",
+      "h120": 23694.341359222246,
+      "h80": 23683.87329875263,
+      "h60": 23676.147848935478,
+      "last_relative_change": 0.00032619030340619304,
+      "predeclared_limit": 0.03,
+      "passed": true,
+      "scope": "Last scalar change is numerical screening, not continuum extrapolation or physical validation."
+    },
+    "bending": {
+      "metric": "bending_stiffness_N_per_mm",
+      "h120": 6446.264726374162,
+      "h80": 6318.868503687983,
+      "h60": 6290.1773809526285,
+      "last_relative_change": 0.004540547523438576,
+      "predeclared_limit": 0.03,
+      "passed": true,
+      "scope": "Last scalar change is numerical screening, not continuum extrapolation or physical validation."
+    }
+  },
+  "half_load_linearity": {
+    "torsion": {
+      "all_original_node_displacement_relative_residual": 1.756448320936308e-07,
+      "quadratic_work_relative_residual": 4.077236881450119e-08,
+      "stiffness_relative_difference": 4.0772367149166655e-08,
+      "predeclared_limit": 1e-05,
+      "passed": true,
+      "scope": "Numerical linear solve verification only; does not validate large-deflection small-displacement assumptions."
+    },
+    "bending": {
+      "all_original_node_displacement_relative_residual": 1.6445998567310297e-07,
+      "quadratic_work_relative_residual": 1.860780751705704e-08,
+      "stiffness_relative_difference": 1.860780707296783e-08,
+      "predeclared_limit": 1e-05,
+      "passed": true,
+      "scope": "Numerical linear solve verification only; does not validate large-deflection small-displacement assumptions."
+    }
+  },
+  "all_translational_force_balances_verified": true,
+  "largest_relative_force_residual": 5.33333344050292e-08,
+  "reaction_moment_equilibrium_verified": false,
+  "independent_energy_output_verified": false,
+  "physical_validation": false,
+  "manufacturing_authorized": false,
+  "donor_transform": null,
+  "variant_caveat": "Open-tunnel bending gives82.3mm maximum linear displacement; wall-thin gives17.4mm. Treat all results as linear tangent/comparative response, not accepted actual-load deformations or strength. No nonlinear geometry, buckling, damage or physical load cases checked.",
+  "mesh_scope": "S8R at least2subdivisions per canonical axis break interval; initial one-element-width coupon and baseline001/002 retained only as superseded diagnostics. Global stiffness scalars admitted for conditional comparison; no singular stress peaks interpreted.",
+  "primary_manual": {
+    "url": "https://www.dhondt.de/ccx_2.21.pdf",
+    "sections": [
+      "6.2 shell composites pp108-110",
+      "6.11.5 RF semantics pp387-389",
+      "7.114 SECTION PRINT pp578-580",
+      "7.117 SHELL SECTION pp582-583",
+      "7.128 SURFACE pp599-601; 7.46 ELASTIC pp473-475; 7.102 ORIENTATION pp559-561"
+    ]
+  },
+  "results": [
+    {
+      "variant": "baseline",
+      "h_mm": 120,
+      "case": "torsion",
+      "load_factor": 1.0,
+      "elements": 1506,
+      "nodes": 4380,
+      "nominal_shell_mass_kg": 43.69536,
+      "actual_solver_elapsed_s": 3.498051624977961,
+      "metrics": {
+        "external_work_Nmm": 1225.7789166666664,
+        "linear_strain_energy_from_half_external_work_Nmm": 612.8894583333332,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          5.684341886080802e-14
+        ],
+        "applied_moment_about_origin_Nmm": [
+          1290000.0,
+          -1.1641532182693481e-10,
+          0.0
+        ],
+        "max_abs_U_mm": 0.985713368867999,
+        "max_clamp_U_mm": 9.131252e-23,
+        "force_balance_residual_N": [
+          -4.261221e-08,
+          1.446011e-06,
+          3.007800568434189e-07
+        ],
+        "force_balance_relative_residual": 7.387882401535665e-10,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "twist_rad": 0.0009502162144702842,
+        "twist_deg": 0.05444337871404515,
+        "load_patch_mean_y_mm": [
+          645.0,
+          -645.0
+        ],
+        "load_patch_mean_Uz_mm": [
+          0.6128843666666666,
+          -0.61289455
+        ],
+        "torsion_stiffness_Nm_per_deg": 23694.341359222246,
+        "DAT_clamp_total_external_force_RF_N": [
+          -4.261221e-08,
+          1.446011e-06,
+          3.0078e-07
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0,
+          0,
+          0
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          -4.261221e-08,
+          1.446011e-06,
+          3.0078e-07
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 1999.9999999999998
+      },
+      "source_result": "work/964-assumed-cell-20261106/baseline-h120-torsion-003/result.json",
+      "source_result_sha256": "2306a90bbaf2301d6dea3edb8a47595262c0d4c2b094732718db1a8ddb53a8f4",
+      "DAT_sha256": "0d05c4abb5b02e454bf999b981d515f1ac725c05a4c8a9e0b9fb7300fb4a3227",
+      "deck_sha256": "25c60fb0396cca9906c5ec1d0fec4fde7cc0d8529a08a790e0624639c37adbd6",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-baseline-001/surfaces.json": "01ae2c73c5530c3b1cf247c8f627e7eda86435e6892562ac78d6b1da401f5b6c",
+        "work/964-assumed-cell-20261106/geometry-baseline-001/audit.json": "97cda50567d0e2e872f9c4551171852f365f735a82de41cfd3a0fba806eb1138",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/baseline-h120-torsion-003/analysis.json",
+      "analysis_sha256": "5c3051ac0db864f77e7ee3d7516870a635954cf8b86a11a3339d1493b59ed73a"
+    },
+    {
+      "variant": "baseline",
+      "h_mm": 120,
+      "case": "bending",
+      "load_factor": 1.0,
+      "elements": 1506,
+      "nodes": 4380,
+      "nominal_shell_mass_kg": 43.69536,
+      "actual_solver_elapsed_s": 3.279425416025333,
+      "metrics": {
+        "external_work_Nmm": 15512.859655121101,
+        "linear_strain_energy_from_half_external_work_Nmm": 7756.429827560551,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          -10000.00000000002
+        ],
+        "applied_moment_about_origin_Nmm": [
+          -1.8189894035458565e-11,
+          9999999.999999996,
+          0.0
+        ],
+        "max_abs_U_mm": 5.928162016100242,
+        "max_clamp_U_mm": 8.3437962309459e-22,
+        "force_balance_residual_N": [
+          -9.53158e-07,
+          -1.48445e-07,
+          -0.0003333333534101257
+        ],
+        "force_balance_relative_residual": 2.0000084953575343e-08,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "work_conjugate_floor_deflection_mm": 1.55128596551211,
+        "bending_stiffness_N_per_mm": 6446.264726374162,
+        "DAT_clamp_total_external_force_RF_N": [
+          -9.53158e-07,
+          -1.48445e-07,
+          9908.333
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0.0,
+          0.0,
+          -91.66666666666661
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          -9.53158e-07,
+          -1.48445e-07,
+          9999.999666666667
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 16666.666666666664
+      },
+      "source_result": "work/964-assumed-cell-20261106/baseline-h120-bending-003/result.json",
+      "source_result_sha256": "46f3658de5713a7439646f07b89be2ac78c05638a518bebd3448be20aabff266",
+      "DAT_sha256": "8787ba475def40a91de2671b1fcea58e8fecdaddff310cf4d5190559a8ed10c4",
+      "deck_sha256": "d5a53556866fe01543ec16541ab36af5e2f4c40900ff95d2c300317b39febf9c",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-baseline-001/surfaces.json": "01ae2c73c5530c3b1cf247c8f627e7eda86435e6892562ac78d6b1da401f5b6c",
+        "work/964-assumed-cell-20261106/geometry-baseline-001/audit.json": "97cda50567d0e2e872f9c4551171852f365f735a82de41cfd3a0fba806eb1138",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/baseline-h120-bending-003/analysis.json",
+      "analysis_sha256": "760b71a786b504dd2620fb32d371860a38236be5395c193511fbe0ad29822b50"
+    },
+    {
+      "variant": "baseline",
+      "h_mm": 80,
+      "case": "torsion",
+      "load_factor": 1.0,
+      "elements": 2332,
+      "nodes": 6830,
+      "nominal_shell_mass_kg": 43.69536,
+      "actual_solver_elapsed_s": 4.855733375065029,
+      "metrics": {
+        "external_work_Nmm": 1226.3206999999998,
+        "linear_strain_energy_from_half_external_work_Nmm": 613.1603499999999,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          5.684341886080802e-14
+        ],
+        "applied_moment_about_origin_Nmm": [
+          1290000.0,
+          -1.1641532182693481e-10,
+          0.0
+        ],
+        "max_abs_U_mm": 0.9861097463638263,
+        "max_clamp_U_mm": 1.5749158674096943e-22,
+        "force_balance_residual_N": [
+          -4.304805e-08,
+          -7.409128e-08,
+          -9.066448315658114e-08
+        ],
+        "force_balance_relative_residual": 6.237527732782214e-11,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "twist_rad": 0.0009506362015503876,
+        "twist_deg": 0.0544674422011851,
+        "load_patch_mean_y_mm": [
+          645.0,
+          -645.0
+        ],
+        "load_patch_mean_Uz_mm": [
+          0.613155275,
+          -0.613165425
+        ],
+        "torsion_stiffness_Nm_per_deg": 23683.87329875263,
+        "DAT_clamp_total_external_force_RF_N": [
+          -4.304805e-08,
+          -7.409128e-08,
+          -9.066454e-08
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0,
+          0,
+          0
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          -4.304805e-08,
+          -7.409128e-08,
+          -9.066454e-08
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 1999.9999999999998
+      },
+      "source_result": "work/964-assumed-cell-20261106/baseline-h80-torsion-003/result.json",
+      "source_result_sha256": "67a75d96f980d52f827ac89b38e53797d3117032fa53ad2f86f04772a5865284",
+      "DAT_sha256": "98a0541d2f0b6b640f7834fa84d805a4714b46a4bc7694f4f13ae5cc62a89406",
+      "deck_sha256": "bfe819c52cdaba5f187a1c20e433b855576d78ba0d810815d7f9505d26a64b84",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-baseline-001/surfaces.json": "01ae2c73c5530c3b1cf247c8f627e7eda86435e6892562ac78d6b1da401f5b6c",
+        "work/964-assumed-cell-20261106/geometry-baseline-001/audit.json": "97cda50567d0e2e872f9c4551171852f365f735a82de41cfd3a0fba806eb1138",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/baseline-h80-torsion-003/analysis.json",
+      "analysis_sha256": "e8867ce8129eb438409269e02a6a3a4c454f6a1de5fb7500a98046687a8f9c64"
+    },
+    {
+      "variant": "baseline",
+      "h_mm": 80,
+      "case": "bending",
+      "load_factor": 1.0,
+      "elements": 2332,
+      "nodes": 6830,
+      "nominal_shell_mass_kg": 43.69536,
+      "actual_solver_elapsed_s": 5.405033165938221,
+      "metrics": {
+        "external_work_Nmm": 15825.618137430045,
+        "linear_strain_energy_from_half_external_work_Nmm": 7912.8090687150225,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          -9999.999999999956
+        ],
+        "applied_moment_about_origin_Nmm": [
+          7.275957614183426e-12,
+          9999999.999999963,
+          0.0
+        ],
+        "max_abs_U_mm": 6.085381040859022,
+        "max_clamp_U_mm": 5.735248e-22,
+        "force_balance_residual_N": [
+          -3.299727e-07,
+          -4.857888e-08,
+          0.00011111115418316331
+        ],
+        "force_balance_relative_residual": 6.666699286220914e-09,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "work_conjugate_floor_deflection_mm": 1.5825618137430044,
+        "bending_stiffness_N_per_mm": 6318.868503687983,
+        "DAT_clamp_total_external_force_RF_N": [
+          -3.299727e-07,
+          -4.857888e-08,
+          9938.889
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0.0,
+          0.0,
+          -61.11111111111098
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          -3.299727e-07,
+          -4.857888e-08,
+          10000.00011111111
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 16666.666666666595
+      },
+      "source_result": "work/964-assumed-cell-20261106/baseline-h80-bending-003/result.json",
+      "source_result_sha256": "037ece758b0e1012ee5e2124fef486b3f9fd94b84a190d5281e1a515537275da",
+      "DAT_sha256": "0d3146e7e5d2da114a9cd75e1c669d7e2dd4eccc9e0d888ef14dbd6293226109",
+      "deck_sha256": "f1f93a1844613138f89976f3f1ac629c4e09cf6019af295eea91a9bc7681ede9",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-baseline-001/surfaces.json": "01ae2c73c5530c3b1cf247c8f627e7eda86435e6892562ac78d6b1da401f5b6c",
+        "work/964-assumed-cell-20261106/geometry-baseline-001/audit.json": "97cda50567d0e2e872f9c4551171852f365f735a82de41cfd3a0fba806eb1138",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/baseline-h80-bending-003/analysis.json",
+      "analysis_sha256": "ed556d23ceb19bd497f2a031b12c0ea92dc4bc087e155210b566a13fb052a2ff"
+    },
+    {
+      "variant": "baseline",
+      "h_mm": 60,
+      "case": "torsion",
+      "load_factor": 1.0,
+      "elements": 3558,
+      "nodes": 10480,
+      "nominal_shell_mass_kg": 43.69536,
+      "actual_solver_elapsed_s": 8.234249458066188,
+      "metrics": {
+        "external_work_Nmm": 1226.7208444444448,
+        "linear_strain_energy_from_half_external_work_Nmm": 613.3604222222224,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "applied_moment_about_origin_Nmm": [
+          1290000.0000000002,
+          5.820766091346741e-11,
+          0.0
+        ],
+        "max_abs_U_mm": 0.9860689429510393,
+        "max_clamp_U_mm": 2.4140839181668894e-22,
+        "force_balance_residual_N": [
+          2.81676e-08,
+          -2.63798e-07,
+          7.548509e-09
+        ],
+        "force_balance_relative_residual": 1.3270246651992107e-10,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "twist_rad": 0.000950946391042205,
+        "twist_deg": 0.054485214749915536,
+        "load_patch_mean_y_mm": [
+          645.0,
+          -645.0
+        ],
+        "load_patch_mean_Uz_mm": [
+          0.6133554722222223,
+          -0.6133653722222222
+        ],
+        "torsion_stiffness_Nm_per_deg": 23676.147848935478,
+        "DAT_clamp_total_external_force_RF_N": [
+          2.81676e-08,
+          -2.63798e-07,
+          7.548509e-09
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0,
+          0,
+          0
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          2.81676e-08,
+          -2.63798e-07,
+          7.548509e-09
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 2000.0
+      },
+      "source_result": "work/964-assumed-cell-20261106/baseline-h60-torsion-003/result.json",
+      "source_result_sha256": "3abfbd0d17dea29ad5d37f8e773192360295a3ffd651a51e6aa30c40a3d08ae8",
+      "DAT_sha256": "03bd077bc721fb4bb13ae5c5e4711b93c34c4aabf26348c0357ab62eac70d9d3",
+      "deck_sha256": "a0b172d465ebd4255d0893b196cac026f46406160ee20ff7ef3b3a97999ec466",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-baseline-001/surfaces.json": "01ae2c73c5530c3b1cf247c8f627e7eda86435e6892562ac78d6b1da401f5b6c",
+        "work/964-assumed-cell-20261106/geometry-baseline-001/audit.json": "97cda50567d0e2e872f9c4551171852f365f735a82de41cfd3a0fba806eb1138",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/baseline-h60-torsion-003/analysis.json",
+      "analysis_sha256": "2f8a17e067eba004a15850d4ff59c86c52e96830a0f0b4403b62edd04e5f047c"
+    },
+    {
+      "variant": "baseline",
+      "h_mm": 60,
+      "case": "bending",
+      "load_factor": 1.0,
+      "elements": 3558,
+      "nodes": 10480,
+      "nominal_shell_mass_kg": 43.69536,
+      "actual_solver_elapsed_s": 8.313795165973715,
+      "metrics": {
+        "external_work_Nmm": 15897.802866865306,
+        "linear_strain_energy_from_half_external_work_Nmm": 7948.901433432653,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          -9999.99999999995
+        ],
+        "applied_moment_about_origin_Nmm": [
+          -4.274625098332763e-11,
+          9999999.99999996,
+          0.0
+        ],
+        "max_abs_U_mm": 6.111914362415158,
+        "max_clamp_U_mm": 7.657817508608246e-22,
+        "force_balance_residual_N": [
+          7.67923e-08,
+          1.286725e-07,
+          4.9112713895738125e-11
+        ],
+        "force_balance_relative_residual": 8.990729627085506e-12,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "work_conjugate_floor_deflection_mm": 1.5897802866865307,
+        "bending_stiffness_N_per_mm": 6290.1773809526285,
+        "DAT_clamp_total_external_force_RF_N": [
+          7.67923e-08,
+          1.286725e-07,
+          9950.0
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0.0,
+          0.0,
+          -49.99999999999989
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          7.67923e-08,
+          1.286725e-07,
+          10000.0
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 16666.666666666883
+      },
+      "source_result": "work/964-assumed-cell-20261106/baseline-h60-bending-003/result.json",
+      "source_result_sha256": "1e2b3b40db7f09b64d839ca12deae93481284d6bf8352c8a017968c24a270c7c",
+      "DAT_sha256": "f5d5049c2bb2e0c52c799a5e158813be852311135dd037bc9d8e44b321f8eb1a",
+      "deck_sha256": "d74a8b21a991166a5240824c937cb01cb27989117e5ecfa1ec61bc1b3c213b90",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-baseline-001/surfaces.json": "01ae2c73c5530c3b1cf247c8f627e7eda86435e6892562ac78d6b1da401f5b6c",
+        "work/964-assumed-cell-20261106/geometry-baseline-001/audit.json": "97cda50567d0e2e872f9c4551171852f365f735a82de41cfd3a0fba806eb1138",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/baseline-h60-bending-003/analysis.json",
+      "analysis_sha256": "def56837c45f103590ae76ef02e86e3dfed65a115f70e11ef414e67ec854c739"
+    },
+    {
+      "variant": "tunnel-low",
+      "h_mm": 80,
+      "case": "torsion",
+      "load_factor": 1.0,
+      "elements": 2332,
+      "nodes": 6830,
+      "nominal_shell_mass_kg": 42.69312,
+      "actual_solver_elapsed_s": 5.1757493750192225,
+      "metrics": {
+        "external_work_Nmm": 1397.7807,
+        "linear_strain_energy_from_half_external_work_Nmm": 698.89035,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          5.684341886080802e-14
+        ],
+        "applied_moment_about_origin_Nmm": [
+          1290000.0,
+          -1.1641532182693481e-10,
+          0.0
+        ],
+        "max_abs_U_mm": 1.1293017395208511,
+        "max_clamp_U_mm": 1.765172815162017e-22,
+        "force_balance_residual_N": [
+          -6.855405e-08,
+          -1.180893e-06,
+          7.953463684341886e-08
+        ],
+        "force_balance_relative_residual": 5.927760314145254e-10,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "twist_rad": 0.001083550930232558,
+        "twist_deg": 0.06208289518979989,
+        "load_patch_mean_y_mm": [
+          645.0,
+          -645.0
+        ],
+        "load_patch_mean_Uz_mm": [
+          0.6988846666666666,
+          -0.6988960333333334
+        ],
+        "torsion_stiffness_Nm_per_deg": 20778.670132187144,
+        "DAT_clamp_total_external_force_RF_N": [
+          -6.855405e-08,
+          -1.180893e-06,
+          7.953458e-08
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0,
+          0,
+          0
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          -6.855405e-08,
+          -1.180893e-06,
+          7.953458e-08
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 1999.9999999999998
+      },
+      "source_result": "work/964-assumed-cell-20261106/tunnel-low-h80-torsion-003/result.json",
+      "source_result_sha256": "68d803a7e0fcf20e6b996a86017d0dea39b0abff0aabe46372ff643cd887cc2a",
+      "DAT_sha256": "ccd03889fccd3521aae597c71ac30f5a288257ef0fbd016cf94092226a04362f",
+      "deck_sha256": "a722fabbd80afb80fa70e73c51af33a5616ca7d0833b58fed129889ab345b5b4",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-tunnel-low-001/surfaces.json": "b45c50b1d3f95823e4487c5747514e6b5008dfc55f97b92ad2d1bd1011879c33",
+        "work/964-assumed-cell-20261106/geometry-tunnel-low-001/audit.json": "c62f9a3ca2dcd8bc2e00790d519f499d45d843a1110247701690c7b23c0b4e4d",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/tunnel-low-h80-torsion-003/analysis.json",
+      "analysis_sha256": "33e02f138e3f63b29ca3609499a35f702d85fbbf36773040053faa68e1c0d99d"
+    },
+    {
+      "variant": "tunnel-low",
+      "h_mm": 80,
+      "case": "bending",
+      "load_factor": 1.0,
+      "elements": 2332,
+      "nodes": 6830,
+      "nominal_shell_mass_kg": 42.69312,
+      "actual_solver_elapsed_s": 5.073534665978514,
+      "metrics": {
+        "external_work_Nmm": 17460.196805379215,
+        "linear_strain_energy_from_half_external_work_Nmm": 8730.098402689608,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          -9999.999999999956
+        ],
+        "applied_moment_about_origin_Nmm": [
+          7.275957614183426e-12,
+          9999999.999999963,
+          0.0
+        ],
+        "max_abs_U_mm": 6.361611697926505,
+        "max_clamp_U_mm": 7.996715e-22,
+        "force_balance_residual_N": [
+          -4.226084e-07,
+          -3.217819e-08,
+          0.00011111115418316331
+        ],
+        "force_balance_relative_residual": 6.66671775178443e-09,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "work_conjugate_floor_deflection_mm": 1.7460196805379216,
+        "bending_stiffness_N_per_mm": 5727.312304360255,
+        "DAT_clamp_total_external_force_RF_N": [
+          -4.226084e-07,
+          -3.217819e-08,
+          9938.889
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0.0,
+          0.0,
+          -61.11111111111098
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          -4.226084e-07,
+          -3.217819e-08,
+          10000.00011111111
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 16666.666666666595
+      },
+      "source_result": "work/964-assumed-cell-20261106/tunnel-low-h80-bending-003/result.json",
+      "source_result_sha256": "1f3a48eff421ffed35adf3fa2b94b3bdbf654729cf497d54ba921d7b263a5404",
+      "DAT_sha256": "f2e928f497f0270fb491f5828d760af0f276ff75a89ee393e669d3994c09ea39",
+      "deck_sha256": "7ccd72b8aebc2d08c68032b216a41faf784a7a6af2fdb8de400e5b815ff0e104",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-tunnel-low-001/surfaces.json": "b45c50b1d3f95823e4487c5747514e6b5008dfc55f97b92ad2d1bd1011879c33",
+        "work/964-assumed-cell-20261106/geometry-tunnel-low-001/audit.json": "c62f9a3ca2dcd8bc2e00790d519f499d45d843a1110247701690c7b23c0b4e4d",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/tunnel-low-h80-bending-003/analysis.json",
+      "analysis_sha256": "ed5a587804ad158bddb1f1630c8284b563b3c3591c0cd4bc82e527919ebd31de"
+    },
+    {
+      "variant": "tunnel-high",
+      "h_mm": 80,
+      "case": "torsion",
+      "load_factor": 1.0,
+      "elements": 2366,
+      "nodes": 6940,
+      "nominal_shell_mass_kg": 44.6976,
+      "actual_solver_elapsed_s": 5.216926499968395,
+      "metrics": {
+        "external_work_Nmm": 1080.230975,
+        "linear_strain_energy_from_half_external_work_Nmm": 540.1154875,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          5.684341886080802e-14
+        ],
+        "applied_moment_about_origin_Nmm": [
+          1290000.0,
+          -1.1641532182693481e-10,
+          0.0
+        ],
+        "max_abs_U_mm": 0.8633316141348352,
+        "max_clamp_U_mm": 8.84270307376127e-23,
+        "force_balance_residual_N": [
+          3.317554e-08,
+          1.504962e-07,
+          1.1888935684341886e-07
+        ],
+        "force_balance_relative_residual": 9.73195790159583e-11,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "twist_rad": 0.0008373883527131782,
+        "twist_deg": 0.04797881842387747,
+        "load_patch_mean_y_mm": [
+          645.0,
+          -645.0
+        ],
+        "load_patch_mean_Uz_mm": [
+          0.5401118333333332,
+          -0.5401191416666666
+        ],
+        "torsion_stiffness_Nm_per_deg": 26886.864711908158,
+        "DAT_clamp_total_external_force_RF_N": [
+          3.317554e-08,
+          1.504962e-07,
+          1.188893e-07
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0,
+          0,
+          0
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          3.317554e-08,
+          1.504962e-07,
+          1.188893e-07
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 1999.9999999999998
+      },
+      "source_result": "work/964-assumed-cell-20261106/tunnel-high-h80-torsion-003/result.json",
+      "source_result_sha256": "5680d61889eb3ff7583268d1ecb4dc6693473660838f50ee47f05d534bd1db1f",
+      "DAT_sha256": "e3e675716c326217311fcad9049c292803342047f0d20d87224da97bc3201075",
+      "deck_sha256": "dfe4c56b933f30190387637d51d8e3bbbd0694121496fef95a0b5d59ab4d142e",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-tunnel-high-001/surfaces.json": "12d49028a1e5c2b13f26d7fe60519181b2ac83a7718b72870bf90897d1435b33",
+        "work/964-assumed-cell-20261106/geometry-tunnel-high-001/audit.json": "206d5164d8d3c4b6851c285aa45de81c021a6fc56b7f1f8749c3b7a2b50e52c6",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/tunnel-high-h80-torsion-003/analysis.json",
+      "analysis_sha256": "f63297dc2dda596b202eb6a053f11e5e167a28c69b3b8b5de961cdac7de4688d"
+    },
+    {
+      "variant": "tunnel-high",
+      "h_mm": 80,
+      "case": "bending",
+      "load_factor": 1.0,
+      "elements": 2366,
+      "nodes": 6940,
+      "nominal_shell_mass_kg": 44.6976,
+      "actual_solver_elapsed_s": 5.0956379160052165,
+      "metrics": {
+        "external_work_Nmm": 14306.000358047631,
+        "linear_strain_energy_from_half_external_work_Nmm": 7153.000179023816,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          -9999.999999999956
+        ],
+        "applied_moment_about_origin_Nmm": [
+          7.275957614183426e-12,
+          9999999.999999963,
+          0.0
+        ],
+        "max_abs_U_mm": 5.7984622621030075,
+        "max_clamp_U_mm": 7.01001e-22,
+        "force_balance_residual_N": [
+          7.312399e-07,
+          7.631725e-09,
+          0.00011111115418316331
+        ],
+        "force_balance_relative_residual": 6.666813637279637e-09,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "work_conjugate_floor_deflection_mm": 1.4306000358047632,
+        "bending_stiffness_N_per_mm": 6990.073919839269,
+        "DAT_clamp_total_external_force_RF_N": [
+          7.312399e-07,
+          7.631725e-09,
+          9938.889
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0.0,
+          0.0,
+          -61.11111111111098
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          7.312399e-07,
+          7.631725e-09,
+          10000.00011111111
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 16666.666666666595
+      },
+      "source_result": "work/964-assumed-cell-20261106/tunnel-high-h80-bending-003/result.json",
+      "source_result_sha256": "ee99eeac307f66e2856a225f92abf468e28668df6716a4556bc8f4be817811cc",
+      "DAT_sha256": "6977d2b8820f0324d260fb4cff334970a3cdd6bc2a254fc47d4fed1a1a6177bc",
+      "deck_sha256": "369f959df2f0bec5b0d0ca10485b377e824bc4491a2cb2232340f424b67f174c",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-tunnel-high-001/surfaces.json": "12d49028a1e5c2b13f26d7fe60519181b2ac83a7718b72870bf90897d1435b33",
+        "work/964-assumed-cell-20261106/geometry-tunnel-high-001/audit.json": "206d5164d8d3c4b6851c285aa45de81c021a6fc56b7f1f8749c3b7a2b50e52c6",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/tunnel-high-h80-bending-003/analysis.json",
+      "analysis_sha256": "5b9b203e6f1eda8d61f9354775b0c566f2495a8497545b38475670ffbf1a90b3"
+    },
+    {
+      "variant": "wall-thin",
+      "h_mm": 80,
+      "case": "torsion",
+      "load_factor": 1.0,
+      "elements": 2332,
+      "nodes": 6830,
+      "nominal_shell_mass_kg": 29.13024,
+      "actual_solver_elapsed_s": 5.093677458004095,
+      "metrics": {
+        "external_work_Nmm": 1840.8771916666665,
+        "linear_strain_energy_from_half_external_work_Nmm": 920.4385958333332,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          5.684341886080802e-14
+        ],
+        "applied_moment_about_origin_Nmm": [
+          1290000.0,
+          -1.1641532182693481e-10,
+          0.0
+        ],
+        "max_abs_U_mm": 1.4811935755195842,
+        "max_clamp_U_mm": 8.944324226692144e-23,
+        "force_balance_residual_N": [
+          5.325033e-08,
+          8.319022e-07,
+          -5.212889315658114e-08
+        ],
+        "force_balance_relative_residual": 4.1761653748135957e-10,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "twist_rad": 0.0014270365826873383,
+        "twist_deg": 0.0817631733987562,
+        "load_patch_mean_y_mm": [
+          645.0,
+          -645.0
+        ],
+        "load_patch_mean_Uz_mm": [
+          0.920435025,
+          -0.9204421666666666
+        ],
+        "torsion_stiffness_Nm_per_deg": 15777.274124485288,
+        "DAT_clamp_total_external_force_RF_N": [
+          5.325033e-08,
+          8.319022e-07,
+          -5.212895e-08
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0,
+          0,
+          0
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          5.325033e-08,
+          8.319022e-07,
+          -5.212895e-08
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 1999.9999999999998
+      },
+      "source_result": "work/964-assumed-cell-20261106/wall-thin-h80-torsion-003/result.json",
+      "source_result_sha256": "69b50fc3f2f68f36a4efcaa6d857aa30388abbf9652b5b0dc79d7dcaf87b8158",
+      "DAT_sha256": "376092620055016657f7f15241abaa465dba5bfdd8887e5a3655f07dc5aec622",
+      "deck_sha256": "d25b673a04fc5af8bebcae49f88dede5f4cb5f9cb7b0fa8f48bd73476866a0ec",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-wall-thin-001/surfaces.json": "87debac2b9b5bf46b46a21d44e85fc7bdb7a4cfa72b1008065a96d58b24a2372",
+        "work/964-assumed-cell-20261106/geometry-wall-thin-001/audit.json": "e8e4588235688ef11e371bac9cec6aae9a4bb599fc774e15aab1ca4864beb886",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/wall-thin-h80-torsion-003/analysis.json",
+      "analysis_sha256": "f310e317217b31f9cc054d299a3b29dc83be0c1a9e53a0111dac93c3c368e620"
+    },
+    {
+      "variant": "wall-thin",
+      "h_mm": 80,
+      "case": "bending",
+      "load_factor": 1.0,
+      "elements": 2332,
+      "nodes": 6830,
+      "nominal_shell_mass_kg": 29.13024,
+      "actual_solver_elapsed_s": 5.174057833966799,
+      "metrics": {
+        "external_work_Nmm": 37256.004254541804,
+        "linear_strain_energy_from_half_external_work_Nmm": 18628.002127270902,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          -9999.999999999956
+        ],
+        "applied_moment_about_origin_Nmm": [
+          7.275957614183426e-12,
+          9999999.999999963,
+          0.0
+        ],
+        "max_abs_U_mm": 17.367690106210542,
+        "max_clamp_U_mm": 7.957932e-22,
+        "force_balance_residual_N": [
+          -2.331704e-06,
+          3.441686e-07,
+          0.00011111115418316331
+        ],
+        "force_balance_relative_residual": 6.668169011515912e-09,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "work_conjugate_floor_deflection_mm": 3.7256004254541804,
+        "bending_stiffness_N_per_mm": 2684.1311085530383,
+        "DAT_clamp_total_external_force_RF_N": [
+          -2.331704e-06,
+          3.441686e-07,
+          9938.889
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0.0,
+          0.0,
+          -61.11111111111098
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          -2.331704e-06,
+          3.441686e-07,
+          10000.00011111111
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 16666.666666666595
+      },
+      "source_result": "work/964-assumed-cell-20261106/wall-thin-h80-bending-003/result.json",
+      "source_result_sha256": "6cb4c2ab469e872fee14b8179d5f0556b8ec9438a81cbbbe725c65642ecaa191",
+      "DAT_sha256": "c95a7aadebfeb9c0a1fb20f0149f7f4470102f4db4dc502cc27bdb42501e5059",
+      "deck_sha256": "22c1840fffcc911d36edb0638ab0f90ccbafcee1ec168851f1d8481621bf9480",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-wall-thin-001/surfaces.json": "87debac2b9b5bf46b46a21d44e85fc7bdb7a4cfa72b1008065a96d58b24a2372",
+        "work/964-assumed-cell-20261106/geometry-wall-thin-001/audit.json": "e8e4588235688ef11e371bac9cec6aae9a4bb599fc774e15aab1ca4864beb886",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/wall-thin-h80-bending-003/analysis.json",
+      "analysis_sha256": "15924aaf99389c50000f74ec4ea13cea11eb8507c62ff0dd29bee9255c76aa89"
+    },
+    {
+      "variant": "wall-thick",
+      "h_mm": 80,
+      "case": "torsion",
+      "load_factor": 1.0,
+      "elements": 2332,
+      "nodes": 6830,
+      "nominal_shell_mass_kg": 58.26048,
+      "actual_solver_elapsed_s": 5.020944958087057,
+      "metrics": {
+        "external_work_Nmm": 918.8326666666667,
+        "linear_strain_energy_from_half_external_work_Nmm": 459.41633333333334,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          5.684341886080802e-14
+        ],
+        "applied_moment_about_origin_Nmm": [
+          1290000.0,
+          -1.1641532182693481e-10,
+          0.0
+        ],
+        "max_abs_U_mm": 0.7384874786288661,
+        "max_clamp_U_mm": 1.449758222464929e-22,
+        "force_balance_residual_N": [
+          -1.885433e-08,
+          1.273658e-08,
+          -1.0820684315658114e-07
+        ],
+        "force_balance_relative_residual": 5.528658774006191e-11,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "twist_rad": 0.0007122733850129199,
+        "twist_deg": 0.04081025882073706,
+        "load_patch_mean_y_mm": [
+          645.0,
+          -645.0
+        ],
+        "load_patch_mean_Uz_mm": [
+          0.4594097583333333,
+          -0.4594229083333333
+        ],
+        "torsion_stiffness_Nm_per_deg": 31609.699062837306,
+        "DAT_clamp_total_external_force_RF_N": [
+          -1.885433e-08,
+          1.273658e-08,
+          -1.082069e-07
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0,
+          0,
+          0
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          -1.885433e-08,
+          1.273658e-08,
+          -1.082069e-07
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 1999.9999999999998
+      },
+      "source_result": "work/964-assumed-cell-20261106/wall-thick-h80-torsion-003/result.json",
+      "source_result_sha256": "d7212bb3a60bd3231d3f18042fee0e29fd8a9888d874aea0c5cf6e06733b6925",
+      "DAT_sha256": "366ad53a90afa5a2ea6724e7c1046cee57ec78f47061e774f1d4e9edd35e3949",
+      "deck_sha256": "8e144afc7af5878610136dcb3b1003f4e2473096d20258e917dc3370f4be1647",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-wall-thick-001/surfaces.json": "741f293d1de815c3975622b3bce95ad722d3d88c527a46da92ea3d17664e717d",
+        "work/964-assumed-cell-20261106/geometry-wall-thick-001/audit.json": "000ef4172ecc6fa1c13318ddff382ae232a38f9d362bc104b5fa3f6ab7b0aba7",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/wall-thick-h80-torsion-003/analysis.json",
+      "analysis_sha256": "e5f1048f678bb7b59814ca32af6c92d60cdc29166c90c9a4d82273a324592316"
+    },
+    {
+      "variant": "wall-thick",
+      "h_mm": 80,
+      "case": "bending",
+      "load_factor": 1.0,
+      "elements": 2332,
+      "nodes": 6830,
+      "nominal_shell_mass_kg": 58.26048,
+      "actual_solver_elapsed_s": 5.149003374972381,
+      "metrics": {
+        "external_work_Nmm": 9480.595577694,
+        "linear_strain_energy_from_half_external_work_Nmm": 4740.297788847,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          -9999.999999999956
+        ],
+        "applied_moment_about_origin_Nmm": [
+          7.275957614183426e-12,
+          9999999.999999963,
+          0.0
+        ],
+        "max_abs_U_mm": 3.1157324024042268,
+        "max_clamp_U_mm": 8.111283e-22,
+        "force_balance_residual_N": [
+          4.932603e-07,
+          -1.239322e-07,
+          0.00011111115418316331
+        ],
+        "force_balance_relative_residual": 6.666739090123654e-09,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "work_conjugate_floor_deflection_mm": 0.9480595577694001,
+        "bending_stiffness_N_per_mm": 10547.860541090959,
+        "DAT_clamp_total_external_force_RF_N": [
+          4.932603e-07,
+          -1.239322e-07,
+          9938.889
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0.0,
+          0.0,
+          -61.11111111111098
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          4.932603e-07,
+          -1.239322e-07,
+          10000.00011111111
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 16666.666666666595
+      },
+      "source_result": "work/964-assumed-cell-20261106/wall-thick-h80-bending-003/result.json",
+      "source_result_sha256": "3390598872baa369ee6865db9a420796252c63aad4cdbb15b833858bfc276ef8",
+      "DAT_sha256": "6b8d8d617aefcbb0ea0ea912d51f1e1d49743607255d11a20051f5e3f1596a8e",
+      "deck_sha256": "1158fad84674ba1c662d9d41fe09b7c21ee3b8a54155d6bcb38a3b30dbc65dff",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-wall-thick-001/surfaces.json": "741f293d1de815c3975622b3bce95ad722d3d88c527a46da92ea3d17664e717d",
+        "work/964-assumed-cell-20261106/geometry-wall-thick-001/audit.json": "000ef4172ecc6fa1c13318ddff382ae232a38f9d362bc104b5fa3f6ab7b0aba7",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/wall-thick-h80-bending-003/analysis.json",
+      "analysis_sha256": "261c9a6f39260dcd8f0bcaa6295a9c54d8541a959a09db7a64fc173b3d651f77"
+    },
+    {
+      "variant": "open-tunnel",
+      "h_mm": 80,
+      "case": "torsion",
+      "load_factor": 1.0,
+      "elements": 2000,
+      "nodes": 5931,
+      "nominal_shell_mass_kg": 37.1136,
+      "actual_solver_elapsed_s": 4.103955250000581,
+      "metrics": {
+        "external_work_Nmm": 1846.9201249999999,
+        "linear_strain_energy_from_half_external_work_Nmm": 923.4600624999999,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          5.684341886080802e-14
+        ],
+        "applied_moment_about_origin_Nmm": [
+          1290000.0,
+          -1.1641532182693481e-10,
+          0.0
+        ],
+        "max_abs_U_mm": 1.5178260325636432,
+        "max_clamp_U_mm": 1.4773986356622746e-22,
+        "force_balance_residual_N": [
+          -4.043611e-08,
+          -1.294574e-07,
+          -3.208815315658114e-08
+        ],
+        "force_balance_relative_residual": 6.968491045357724e-11,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "twist_rad": 0.0014317210271317829,
+        "twist_deg": 0.08203157229478639,
+        "load_patch_mean_y_mm": [
+          645.0,
+          -645.0
+        ],
+        "load_patch_mean_Uz_mm": [
+          0.9234512166666666,
+          -0.9234689083333333
+        ],
+        "torsion_stiffness_Nm_per_deg": 15725.652500774844,
+        "DAT_clamp_total_external_force_RF_N": [
+          -4.043611e-08,
+          -1.294574e-07,
+          -3.208821e-08
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0,
+          0,
+          0
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          -4.043611e-08,
+          -1.294574e-07,
+          -3.208821e-08
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 1999.9999999999998
+      },
+      "source_result": "work/964-assumed-cell-20261106/open-tunnel-h80-torsion-003/result.json",
+      "source_result_sha256": "d889f2ca6a4c311da3c63a4e2ee02c0c77ca52683229e7b10c04e49fbf872194",
+      "DAT_sha256": "f1881fa4680408631158ec4ec5ffbc7d497c7331685c00c7e32488e2ca99bac2",
+      "deck_sha256": "e5cf04ca17fb7fd6b5d8a2c5f32da07abb9b2417ca8018b5b6f8bdf5eeabc866",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-open-tunnel-001/surfaces.json": "b48ea7a74c8f2e927766e02170b4b51aea1efb2f9185fff085f3cadec3016191",
+        "work/964-assumed-cell-20261106/geometry-open-tunnel-001/audit.json": "b630c66a6f21709dc57eb912fad44a8edff378815acbd549edae239a040f43c4",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/open-tunnel-h80-torsion-003/analysis.json",
+      "analysis_sha256": "c50636886e7e945d7e39a1f7ae789d5232ece39d60f0e37863423a1411360742"
+    },
+    {
+      "variant": "open-tunnel",
+      "h_mm": 80,
+      "case": "bending",
+      "load_factor": 1.0,
+      "elements": 2000,
+      "nodes": 5931,
+      "nominal_shell_mass_kg": 37.1136,
+      "actual_solver_elapsed_s": 4.235783708980307,
+      "metrics": {
+        "external_work_Nmm": 264353.4285845922,
+        "linear_strain_energy_from_half_external_work_Nmm": 132176.7142922961,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          -9999.999999999956
+        ],
+        "applied_moment_about_origin_Nmm": [
+          7.275957614183426e-12,
+          9999999.999999963,
+          0.0
+        ],
+        "max_abs_U_mm": 82.29809219294772,
+        "max_clamp_U_mm": 1.629167e-21,
+        "force_balance_residual_N": [
+          -7.114542e-06,
+          -1.419265e-06,
+          0.00011111115418316331
+        ],
+        "force_balance_relative_residual": 6.680864508260082e-09,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "work_conjugate_floor_deflection_mm": 26.43534285845922,
+        "bending_stiffness_N_per_mm": 378.28145651608355,
+        "DAT_clamp_total_external_force_RF_N": [
+          -7.114542e-06,
+          -1.419265e-06,
+          9938.889
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0.0,
+          0.0,
+          -61.11111111111098
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          -7.114542e-06,
+          -1.419265e-06,
+          10000.00011111111
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 16666.666666666595
+      },
+      "source_result": "work/964-assumed-cell-20261106/open-tunnel-h80-bending-003/result.json",
+      "source_result_sha256": "365023ee150675785dd6dc092d32ccb080fa91ed6cce08cd02cccc3c32fbf374",
+      "DAT_sha256": "22b9c7f8024572f87ec11c8641cb93e4988aa180088f862fb7a1be2a4eca43fe",
+      "deck_sha256": "ffe5667fd012d6d6c63b19d8301d79a08b9811014c7d50f1aa8855ab80338ee5",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-open-tunnel-001/surfaces.json": "b48ea7a74c8f2e927766e02170b4b51aea1efb2f9185fff085f3cadec3016191",
+        "work/964-assumed-cell-20261106/geometry-open-tunnel-001/audit.json": "b630c66a6f21709dc57eb912fad44a8edff378815acbd549edae239a040f43c4",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/open-tunnel-h80-bending-003/analysis.json",
+      "analysis_sha256": "d4b0702a0d508443d01a6a563ba774e046d6a1d562177c2cdd4ee2d40704a60d"
+    },
+    {
+      "variant": "baseline",
+      "h_mm": 80,
+      "case": "torsion",
+      "load_factor": 0.5,
+      "elements": 2332,
+      "nodes": 6830,
+      "nominal_shell_mass_kg": 43.69536,
+      "actual_solver_elapsed_s": 5.036574083962478,
+      "metrics": {
+        "external_work_Nmm": 306.5801874999999,
+        "linear_strain_energy_from_half_external_work_Nmm": 153.29009374999995,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          2.842170943040401e-14
+        ],
+        "applied_moment_about_origin_Nmm": [
+          645000.0,
+          -5.820766091346741e-11,
+          0.0
+        ],
+        "max_abs_U_mm": 0.4930549070262459,
+        "max_clamp_U_mm": 8.426577867242846e-23,
+        "force_balance_residual_N": [
+          -2.152348e-08,
+          -3.704544e-08,
+          -4.533301157829057e-08
+        ],
+        "force_balance_relative_residual": 6.237553009683707e-11,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "twist_rad": 0.00047531812015503877,
+        "twist_deg": 0.02723372221097587,
+        "load_patch_mean_y_mm": [
+          645.0,
+          -645.0
+        ],
+        "load_patch_mean_Uz_mm": [
+          0.3065776416666667,
+          -0.3065827333333333
+        ],
+        "torsion_stiffness_Nm_per_deg": 23683.872333105053,
+        "DAT_clamp_total_external_force_RF_N": [
+          -2.152348e-08,
+          -3.704544e-08,
+          -4.533304e-08
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0,
+          0,
+          0
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          -2.152348e-08,
+          -3.704544e-08,
+          -4.533304e-08
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 999.9999999999999
+      },
+      "source_result": "work/964-assumed-cell-20261106/baseline-h80-torsion-half-003/result.json",
+      "source_result_sha256": "44795c64417ee9bc4cc2b990ea10e477ea00f5d40f2f80f9f4f66bd916192385",
+      "DAT_sha256": "8ba5909f5095b5b4fa4e1e8e63f7b9104ab09580e2d297e1f4df6621354a69ab",
+      "deck_sha256": "f16ca5fa03c1e36073a87709bc8cffd8bcc1e84438326b3c295872dda114fd57",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-baseline-001/surfaces.json": "01ae2c73c5530c3b1cf247c8f627e7eda86435e6892562ac78d6b1da401f5b6c",
+        "work/964-assumed-cell-20261106/geometry-baseline-001/audit.json": "97cda50567d0e2e872f9c4551171852f365f735a82de41cfd3a0fba806eb1138",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/baseline-h80-torsion-half-003/analysis.json",
+      "analysis_sha256": "461c3e09ce2c6aac3fadd67289f4c81c981dd61e2567db0aa10ee7600e4d57a1"
+    },
+    {
+      "variant": "baseline",
+      "h_mm": 80,
+      "case": "bending",
+      "load_factor": 0.5,
+      "elements": 2332,
+      "nodes": 6830,
+      "nominal_shell_mass_kg": 43.69536,
+      "actual_solver_elapsed_s": 5.23452812503092,
+      "metrics": {
+        "external_work_Nmm": 3956.4046079775253,
+        "linear_strain_energy_from_half_external_work_Nmm": 1978.2023039887627,
+        "energy_output_independently_verified": false,
+        "applied_resultant_N": [
+          0.0,
+          0.0,
+          -4999.999999999978
+        ],
+        "applied_moment_about_origin_Nmm": [
+          3.637978807091713e-12,
+          4999999.999999981,
+          0.0
+        ],
+        "max_abs_U_mm": 3.042690520429511,
+        "max_clamp_U_mm": 2.8735193241824564e-22,
+        "force_balance_residual_N": [
+          -1.649549e-07,
+          -2.427747e-08,
+          -0.00044444442210078705
+        ],
+        "force_balance_relative_residual": 5.33333344050292e-08,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true,
+        "work_conjugate_floor_deflection_mm": 0.7912809215955051,
+        "bending_stiffness_N_per_mm": 6318.868386107697,
+        "DAT_clamp_total_external_force_RF_N": [
+          -1.649549e-07,
+          -2.427747e-08,
+          4969.444
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0.0,
+          0.0,
+          -30.55555555555549
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          -1.649549e-07,
+          -2.427747e-08,
+          4999.999555555556
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 8333.333333333298
+      },
+      "source_result": "work/964-assumed-cell-20261106/baseline-h80-bending-half-003/result.json",
+      "source_result_sha256": "1637ec81e37e850f86b28a40548781bc8686af424aa414f8347877061c23f0d3",
+      "DAT_sha256": "0da3ef959765637616baa4b4bea80271d8291d7ded51fdfe64e3a3064367e3f4",
+      "deck_sha256": "9a95ef407dca1d1e5c01be3d6e9474e80805829461080e0e000e340a67fdfdd1",
+      "regenerated_deck_identical": true,
+      "input_hashes": {
+        "work/964-assumed-cell-20261106/geometry-baseline-001/surfaces.json": "01ae2c73c5530c3b1cf247c8f627e7eda86435e6892562ac78d6b1da401f5b6c",
+        "work/964-assumed-cell-20261106/geometry-baseline-001/audit.json": "97cda50567d0e2e872f9c4551171852f365f735a82de41cfd3a0fba806eb1138",
+        "/Users/maxime/.codex/worktrees/monocoque-continuation/3dprinting993/twins/964-chassis/assumed-cell-20261106/assumptions.json": "379eb6a5797f5875c1ec5e59675dd9957af4d77fe832e7293c1f1f5d5a0046e8"
+      },
+      "analysis": "work/964-assumed-cell-20261106/corrected-campaign-004/baseline-h80-bending-half-003/analysis.json",
+      "analysis_sha256": "7e6059128e0200a964152030bf0f2e0fb14c810a3fcc8a7db6b079a884c9dada"
+    }
+  ]
+}

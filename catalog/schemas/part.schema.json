@@ -27,19 +27,44 @@
       "additionalProperties": false,
       "required": ["generation", "variants", "model_years", "porsche_part_numbers"],
       "properties": {
-        "generation": { "const": "993" },
+        "generation": { "enum": ["964", "993"] },
         "variants": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
         "model_years": {
           "type": "object",
           "additionalProperties": false,
           "required": ["from", "to"],
           "properties": {
-            "from": { "type": "integer", "minimum": 1993, "maximum": 1998 },
-            "to": { "type": "integer", "minimum": 1993, "maximum": 1998 }
+            "from": { "type": "integer", "minimum": 1989, "maximum": 1998 },
+            "to": { "type": "integer", "minimum": 1989, "maximum": 1998 }
           }
         },
         "porsche_part_numbers": { "type": "array", "items": { "type": "string" } }
-      }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "generation": { "const": "964" } } },
+          "then": {
+            "properties": {
+              "model_years": {
+                "properties": {
+                  "from": { "maximum": 1994 },
+                  "to": { "maximum": 1994 }
+                }
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "model_years": {
+                "properties": {
+                  "from": { "minimum": 1993 },
+                  "to": { "minimum": 1993 }
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "classification": {
       "type": "object",

@@ -1,0 +1,149 @@
+{
+  "classification": "author_consistency_review_two_actual_bounded_geometric_nonlinearity_probes",
+  "current_probe_path": "twins/964-chassis/assumed-cell-20261106/nonlinear_probe.py",
+  "current_probe_sha256": "678860834ad394ef0a1973b090918948987ee1e5f4f285075ea12ad3334f9e79",
+  "linear_source_sha256": "ad70de944af810552a5bc3ce30fb9e0ac84aabc8d8cc1114c91637d533d076ae",
+  "review_script_sha256": "d429e3e394189083f0f94b45a263da72662c12d3692ff7741cbc1df690aa63c3",
+  "two_jobs_executed_no_retuning": true,
+  "same_geometry_mesh_elastic_material_dead_nodal_load_and_clamp": true,
+  "geometric_tangent_matrix_intentionally_changes": true,
+  "baseline_old_manifest_field_withdrawn": "matrix_material_geometry_load_clamp_unchanged was a naming error; only reference geometry, mesh, material, load and clamp are unchanged. Original receipt/source bytes remain preserved. Current code corrects the field name; both generated decks are byte-identical under current generator.",
+  "linear_campaign_scope": "All reported linear stiffnesses are zero-load tangent/comparative responses of an assumed cell, not accepted finite-load vehicle responses.",
+  "observed_conclusion": "Finite-load geometric effects alter baseline maximum displacement by about20% and open-tunnel weighted deflection by about57%. Open-tunnel linear10kN displacement is not a reliable finite-load prediction. No numerical failure or load/time shortfall occurred.",
+  "reactions_moment_equilibrium_verified": false,
+  "independent_energy_verified": false,
+  "endpoint_product_is_not_nonlinear_energy_or_path_work": true,
+  "physical_validation": false,
+  "manufacturing_authorized": false,
+  "imperfection_sensitivity_local_buckling_or_laminate_damage_qualified": false,
+  "donor_transform": null,
+  "primary_manual": {
+    "url": "https://www.dhondt.de/ccx_2.21.pdf",
+    "sections": [
+      "7.122 STATIC pp587-590",
+      "7.124 STEP pp593-594",
+      "6.11.5 RF pp387-389"
+    ]
+  },
+  "results": [
+    {
+      "variant": "baseline",
+      "source_result_path": "work/964-assumed-cell-20261106/nonlinear-baseline-001/result.json",
+      "source_result_sha256": "4eb8f3c4b45cd356724c0800a555afea196543f38b581bca40c7ea74cc106ae0",
+      "actual_probe_generator_sha256": "fe03458ce6f808368fbe38db9c85510e6ead21f62b6bd6110ec6b7f4e879bbd5",
+      "current_probe_sha256": "678860834ad394ef0a1973b090918948987ee1e5f4f285075ea12ad3334f9e79",
+      "regenerated_nonlinear_deck_identical": true,
+      "linear_source_deck_sha256": "f1f93a1844613138f89976f3f1ac629c4e09cf6019af295eea91a9bc7681ede9",
+      "nonlinear_deck_sha256": "e063c9330ab93ac2cf343efdbef64d4cba6de629f5c900d7d8dd7540c3a33217",
+      "DAT_sha256": "7fe3198748d506acf07db81b4f06755dae5f08399c26b566195b125c0c1e3adf",
+      "STA_sha256": "2467199fa3840f5d9158877afc8aa7c4858f590ed91c53a9b6763edef88387f1",
+      "actual_output_times": [
+        0.1,
+        0.2,
+        0.35,
+        0.575,
+        0.825,
+        1.0
+      ],
+      "converged_increments": 6,
+      "total_Newton_iterations": 15,
+      "final_time": 1,
+      "final_load_factor": 1,
+      "elapsed_seconds": 77.5731602080632,
+      "linear_force_weighted_floor_deflection_mm": 1.5825618137430044,
+      "nonlinear_force_weighted_floor_deflection_mm": 1.5441760626171919,
+      "weighted_deflection_relative_change": -0.02425545137793028,
+      "linear_max_U_mm": 6.085381040859022,
+      "nonlinear_max_U_mm": 4.872638182108027,
+      "max_U_relative_change": -0.19928790828516507,
+      "maximum_same_node_U_difference_mm": 1.2198565471314,
+      "maximum_clamp_U_mm": 2.8377678646400943e-21,
+      "final_time_force_balance": {
+        "DAT_clamp_total_external_force_RF_N": [
+          -0.0001370069,
+          7.7759e-08,
+          9938.889
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0.0,
+          0.0,
+          -61.11111111111098
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          -0.0001370069,
+          7.7759e-08,
+          10000.00011111111
+        ],
+        "force_balance_residual_N": [
+          -0.0001370069,
+          7.7759e-08,
+          0.00011111115418316331
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 16666.666666666595,
+        "force_balance_relative_residual": 1.0583936271574642e-08,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true
+      }
+    },
+    {
+      "variant": "open-tunnel",
+      "source_result_path": "work/964-assumed-cell-20261106/nonlinear-open-tunnel-001/result.json",
+      "source_result_sha256": "367c1da4db0b5d40c279d50e0853f9b700b5b7edd06828fe8a5bf0156c3269df",
+      "actual_probe_generator_sha256": "678860834ad394ef0a1973b090918948987ee1e5f4f285075ea12ad3334f9e79",
+      "current_probe_sha256": "678860834ad394ef0a1973b090918948987ee1e5f4f285075ea12ad3334f9e79",
+      "regenerated_nonlinear_deck_identical": true,
+      "linear_source_deck_sha256": "ffe5667fd012d6d6c63b19d8301d79a08b9811014c7d50f1aa8855ab80338ee5",
+      "nonlinear_deck_sha256": "03aa458be4b63f8e5c5a0370ac35442394fa6d97893e3675ae7a446b7f8739d0",
+      "DAT_sha256": "a621767a78a4466e2805c8dc9642901f8ffa8d859b77cadcea1a74a78e74ee03",
+      "STA_sha256": "32a3cf41c86fd759ea3e13d76f3bfb4e22b7020ba1d17868bb1b9329e4d96889",
+      "actual_output_times": [
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.55,
+        0.775,
+        1.0
+      ],
+      "converged_increments": 7,
+      "total_Newton_iterations": 28,
+      "final_time": 1,
+      "final_load_factor": 1,
+      "elapsed_seconds": 111.6028650830267,
+      "linear_force_weighted_floor_deflection_mm": 26.43534285845922,
+      "nonlinear_force_weighted_floor_deflection_mm": 11.421196905989992,
+      "weighted_deflection_relative_change": -0.5679572999245119,
+      "linear_max_U_mm": 82.29809219294772,
+      "nonlinear_max_U_mm": 29.472330680361075,
+      "max_U_relative_change": -0.6418831847126754,
+      "maximum_same_node_U_difference_mm": 52.87154571102374,
+      "maximum_clamp_U_mm": 5.075547933096091e-21,
+      "final_time_force_balance": {
+        "DAT_clamp_total_external_force_RF_N": [
+          -1.833694e-07,
+          8.580697e-10,
+          9938.889
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0.0,
+          0.0,
+          -61.11111111111098
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          -1.833694e-07,
+          8.580697e-10,
+          10000.00011111111
+        ],
+        "force_balance_residual_N": [
+          -1.833694e-07,
+          8.580697e-10,
+          0.00011111115418316331
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 16666.666666666595,
+        "force_balance_relative_residual": 6.666678329749874e-09,
+        "force_balance_limit": 1e-05,
+        "translational_force_balance_verified": true
+      }
+    }
+  ]
+}

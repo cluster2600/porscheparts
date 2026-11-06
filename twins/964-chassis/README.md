@@ -1,5 +1,13 @@
 # Digital twin of the Porsche 911 (964) chassis
 
+**Owner-authorized hypothesis study, 6 November 2026:** the
+[new F1 central-tub study](assumed-cell-20261106/README.md) starts an editable
+floor/sill/tunnel/bulkhead architecture in a separate design frame. Its assumed
+geometry feeds exact STEP, native PicoGK/ShapeKernel, layered-shell fixture
+calculations and a standalone checked USD. This study can advance comparative
+engineering while measured interfaces and physical qualification remain open.
+It does not restore the earlier withdrawn whole-body product model.
+
 **B-width correction and input readiness, 6 November 2026:**
 [native endpoint tracing](body-contact-alternatives-20261106/README.md) qualifies
 Mi B's 612 mm combined span. A complete source-only B/H pattern is now derived

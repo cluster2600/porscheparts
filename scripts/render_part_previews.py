@@ -105,6 +105,22 @@ def color(record: dict) -> str:
     return DEFAULT_COLOR
 
 
+def geometry_note(record: dict, picogk_model: bool, rotation_x_deg: int) -> str:
+    if rotation_x_deg:
+        note = ("Blade-side views of the existing K16 compressor concept. "
+                "Blade surfaces, hub and shaft interfaces remain unmeasured design hypotheses. ")
+    elif picogk_model:
+        geometry = record.get("geometry", {})
+        master = geometry.get("master_file", "")
+        source = "parts/picogk-catalog/"
+        if geometry.get("master_format") == "PicoGK" and master and not master.startswith(source):
+            source = master
+        note = f"Geometry views of the part's PicoGK concept model ({source}). "
+    else:
+        note = "Geometry views of the concept CAD. "
+    return note + "Not a photograph, not a render of a manufactured part, not evidence of fit or function."
+
+
 # --- rendering (cadsim image only) -------------------------------------------
 
 def mesh_of(path: Path):
@@ -201,8 +217,12 @@ def render(record: dict) -> dict:
     meshes = [mesh_of(f) for f in files]
     if rotation_x_deg:
         meshes = [m.rotate_x(rotation_x_deg, inplace=False) for m in meshes]
-    smooth = (record.get("geometry", {}).get("master_format") == "PicoGK"
-              or all(f.name.endswith("-picogk.stl") for f in files))
+    geometry = record.get("geometry", {})
+    picogk_model = (geometry.get("master_format") == "PicoGK"
+                   or all(f.name.endswith("-picogk.stl") for f in files))
+    exact_step = all(f.suffix.lower() in (".step", ".stp") for f in files)
+    legacy_master = geometry.get("master_file", "").startswith("parts/picogk-catalog/")
+    smooth = picogk_model and (not exact_step or legacy_master)
     tint = color(record)
     media = PARTS / part_id.lower() / "media"
     media.mkdir(parents=True, exist_ok=True)
@@ -250,19 +270,14 @@ def render(record: dict) -> dict:
         p.subplot(0, i)
         scene(p, view)
         p.add_text(labels[view], position="lower_edge", font_size=10, color="#2b2f33")
-    p.enable_anti_aliasing("ssaa")
+    # The SSAA render pass corrupts multiple viewports under VTK 9.5.2/EGL.
     p.screenshot(str(media / "views.png"))
     p.close()
 
     info = {
         "part_id": part_id,
         "kind": "geometry_render",
-        "note": ("Blade-side views of the existing K16 compressor concept. "
-                 "Blade surfaces, hub and shaft interfaces remain unmeasured design hypotheses. "
-                 if rotation_x_deg else
-                 "Geometry views of the part's PicoGK concept model (parts/picogk-catalog/). "
-                 if smooth else "Geometry views of the concept CAD. ")
-                + "Not a photograph, not a render of a manufactured part, not evidence of fit or function.",
+        "note": geometry_note(record, picogk_model, rotation_x_deg),
         "display_rotation_x_deg": rotation_x_deg,
         "sources": [{"path": f.relative_to(ROOT).as_posix(), "sha256": sha256(f)} for f in files],
         "bounding_box_mm": dims,
