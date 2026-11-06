@@ -56,7 +56,7 @@ def run(triage_path: Path, judgements_path: Path, disposition_path: Path) -> dic
     triage = load(triage_path)
     judgements = load(judgements_path)["parts"]
 
-    # The lexical triage retains only what its vocabulary recognizes. The
+    # The lexical triage retains only what its vocabulary recognises. The
     # disposition covers all 1,026 designations: it carries the reference count
     # for everything judged by hand, including `muffler` and `y-piece`, which the
     # vocabulary had missed.

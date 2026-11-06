@@ -2,7 +2,7 @@
 
 These checks do not say that the part is manufacturable. They check that what is
 published as geometric screening is linked to the master by digest, that the
-analyzed mesh is unique and watertight, that every layer was actually sliced,
+analysed mesh is unique and watertight, that every layer was actually sliced,
 and above all that **the process gates stay closed**. A screening that opened a
 manufacturing gate without a coupon or a machine would be a forgery, and that is
 what the test looks for.

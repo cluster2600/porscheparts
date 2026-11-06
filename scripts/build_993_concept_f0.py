@@ -4,7 +4,7 @@
 Each concept is a deliberately simple solid. The few published dimensions are
 marked `published` with their source; all others are **design variables**
 marked `hypothesis`. No concept claims to reproduce the original part, and none
-authorizes manufacture.
+authorises manufacture.
 
 Each part produces `parts/<slug>/derived/<name>_concept_f0.step` and
 `parts/<slug>/evidence/concept-f0.json`. The STEP is read back and its envelope

@@ -7,7 +7,7 @@ islands nor depowdering, but the available bar stock, workholding, the broken
 edge and above all the **fit dimension** — the one that decides whether the
 ring holds in its seat, and that the repository does not measure.
 
-The package written is a request for quotation. It authorizes no fitting.
+The package written is a request for quotation. It authorises no fitting.
 """
 
 from __future__ import annotations

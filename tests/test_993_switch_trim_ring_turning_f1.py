@@ -3,7 +3,7 @@
 The repository concluded that this part must be turned, not sintered. This test
 checks that the published card stays honest about what that choice does not
 solve: the fit dimension is still not toleranced, the edges are still not
-defined, and no fitting is authorized. It also checks that the grade is chosen
+defined, and no fitting is authorised. It also checks that the grade is chosen
 on the criterion that governs the part, not on the best-documented material in
 the repository — the error that decision 0005 corrected.
 """

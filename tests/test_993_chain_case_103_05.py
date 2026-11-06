@@ -1,6 +1,6 @@
 """Chain case: good additive candidate, poor titanium candidate.
 
-These tests guard both halves of the verdict. The consolidation is recognized,
+These tests guard both halves of the verdict. The consolidation is recognised,
 so that the fact that the part deserves additive manufacturing is not lost. And
 the titanium refusal is locked on its three grid reasons, so that a careless
 review does not reopen it.

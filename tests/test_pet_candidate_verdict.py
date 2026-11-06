@@ -32,7 +32,7 @@ class PetCandidateVerdictTests(unittest.TestCase):
         self.assertEqual(retained - judged, set())
 
     def test_the_verdict_covers_everything_judged_not_only_the_triage(self) -> None:
-        """The verdict covered the 70 designations the vocabulary recognized.
+        """The verdict covered the 70 designations the vocabulary recognised.
         It now covers everything judged by hand; otherwise a part that was
         judged but absent from the vocabulary — `muffler` — stayed invisible."""
         report = load(VERDICT)
