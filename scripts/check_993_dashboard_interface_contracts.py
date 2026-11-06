@@ -35,6 +35,14 @@ IDENTITY = ROOT / "parts/993-int-dashboard-trim-0001/evidence/pet-identity.json"
 SIDES = {"part": "P", "host": "H"}
 HOST_ONLY_KINDS = {"structural_attachment", "restraint_exclusion"}
 MODEL_NAMES = re.compile(r"agent|claude|codex|gpt|model|picogk|generator|qwen", re.I)
+REQUIRED_SAFETY_INTERFACES = {
+    "IF_BODY_PANEL_TO_SHELL",
+    "IF_TRIM_TO_BODY_PANEL",
+    "IF_GLOVEBOX_TO_HOST",
+    "IF_KNEE_STRIP_TO_ORIGINAL_MOUNTS",
+    "IF_COLUMN_CLEARANCE",
+    "IF_AIRBAG_CONFIGURATION",
+}
 
 
 def _measurands(contract: dict):
@@ -129,6 +137,8 @@ def check_contract(contract: dict, assembly: dict, identity: dict) -> list[str]:
                     for item in row.get(key) or []} for row_id, row in rows.items()}
 
     for iid, interface in interfaces.items():
+        if iid in REQUIRED_SAFETY_INTERFACES and interface.get("safety_relevant") is not True:
+            errors.append(f"{iid}: required safety interface must be marked safety_relevant")
         if not interface.get("acceptance"):
             errors.append(f"{iid}: no acceptance rule")
         if not interface.get("required_images"):

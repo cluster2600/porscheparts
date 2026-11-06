@@ -48,8 +48,7 @@ class RepositoryState(unittest.TestCase):
 
     def test_safety_interfaces_are_marked(self):
         safety = {i["interface_id"] for i in CONTRACT["interfaces"] if i["safety_relevant"]}
-        self.assertTrue({"IF_KNEE_STRIP_TO_ORIGINAL_MOUNTS", "IF_COLUMN_CLEARANCE",
-                         "IF_AIRBAG_CONFIGURATION", "IF_GLOVEBOX_TO_HOST"} <= safety)
+        self.assertTrue(checker.REQUIRED_SAFETY_INTERFACES <= safety)
 
 
 class Refused(unittest.TestCase):
@@ -113,6 +112,11 @@ class Refused(unittest.TestCase):
         bad = copy.deepcopy(CONTRACT)
         bad["reviewer_roles"] = [r for r in bad["reviewer_roles"] if r["role"] != "professional_engineering_reviewer"]
         self.assertRefused(bad, "without a professional engineering reviewer")
+
+    def test_trim_attachment_cannot_be_demoted(self):
+        bad = copy.deepcopy(CONTRACT)
+        interface(bad, "IF_TRIM_TO_BODY_PANEL")["safety_relevant"] = False
+        self.assertRefused(bad, "required safety interface must be marked safety_relevant")
 
     def test_unknown_load_path(self):
         bad = copy.deepcopy(CONTRACT)

@@ -31,7 +31,7 @@ records:
 | Interface | Safety | Part / host measurands | M564-LHD identity | RS identity (M002 / M003) |
 |---|---|---|---|---|
 | IF_BODY_PANEL_TO_SHELL | yes | 0 / 3 | group 502 only | not audited |
-| IF_TRIM_TO_BODY_PANEL | no | 6 / 4 | unmapped | trim + plate fasteners, 809-02 |
+| IF_TRIM_TO_BODY_PANEL | yes | 6 / 4 | unmapped | trim + plate fasteners, 809-02 |
 | IF_HOOD_TO_TRIM | no | 2 / 2 | unmapped | not transcribed |
 | IF_CLUSTER_TO_HOOD_PANEL | no | 2 / 2 | unmapped | not transcribed |
 | IF_VENTS_TO_TRIM_DUCTS | no | 3 / 3 | unmapped | vents, defroster, foam strip |
@@ -71,8 +71,10 @@ Plate 403-07, page 266, lists outer tube `964 347 013 02` /LL and shaft
   reviewer.
 - **Reviewers.** The five roles are preparer, measurement, interface,
   rights/privacy and professional engineering. No person holds two roles for
-  one interface. No model, agent or generator holds any role. All five
-  safety-relevant interfaces need the professional engineering reviewer.
+  one interface. No model, agent or generator holds any role. All six
+  safety-relevant interfaces need the professional engineering reviewer,
+  including trim retention at the body panel because an occupant-facing
+  composite substitute may change impact response or fragment behaviour.
 
 ## Fastener assignment is unknown
 
