@@ -66,10 +66,10 @@ class AirOilSeedsF34bTests(unittest.TestCase):
             bundle,
             expected_parent_hashes=self.parent_hashes,
         )
-        self.assertTrue(errors, "the mutation must be rejected, failing closed")
+        self.assertTrue(errors, "la mutation doit être rejetée en fail-closed")
         self.assertTrue(
             any(expected in error for error in errors),
-            f"expected error {expected!r}; errors received: {errors}",
+            f"erreur attendue {expected!r}; erreurs reçues: {errors}",
         )
 
     def test_build_is_deterministic_canonical_and_matches_tracked_bundle(self):

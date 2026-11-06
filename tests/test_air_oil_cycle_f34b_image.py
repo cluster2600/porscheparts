@@ -1,4 +1,4 @@
-"""Static guard of the F34b air/oil CPU image and its publication."""
+"""Garde statique de l'image CPU air/huile F34b et de sa publication."""
 
 from __future__ import annotations
 
