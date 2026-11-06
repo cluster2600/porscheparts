@@ -101,6 +101,7 @@
     "993-ENG-INTAKE-VALVE-F1-0001",
     "993-ENG-INTAKE-VALVE-TI64-HOLLOW-F0-0001",
     "993-ENG-INTERCOOLER-BRACKET-TI-F0-0001",
+    "993-ENG-INTERCOOLER-BRACKET-TI-F1-0001",
     "993-ENG-INTERCOOLER-END-TANK-ALSI10MG-F0-0001",
     "993-ENG-K16-COMPRESSOR-WHEEL-AL2139-F1-0001",
     "993-ENG-K16-COMPRESSOR-WHEEL-ALSI10MG-F0-0001",
@@ -500,7 +501,7 @@
             "twins/993-switch-trim-ring-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-lpbf-geometry-report.json",
             "twins/993-switch-trim-ring-f1/evidence/lpbf-f1/993-int-switch-trim-ring-f1-0001-layer-metrics.csv"
           ],
-          "blocker": "Les 580 couches sont reellement tranchees a 0,05 mm et le criblage ne trouve aucun nouvel ilot, 0,079 mm2 d'aire non soutenue au pire et aucun volume piege. Mais l'orientation retenue n'est pas revue par un ingenieur, les supports fournisseur n'existent pas, et le criblage recoater reste ferme faute de champ de distorsion et de jeu de lame."
+          "blocker": "Re-sliced on 2026-11-05 at 0.03 mm, the layer of the published EOS M 290 AlSi10Mg 30 um route: 967 layers actually sliced, one new island on one layer, 0.038 mm2 of unsupported area at worst and no trapped volume (the 0.05 mm run reproduced bit-for-bit before being replaced). The selected orientation is not reviewed by an engineer, supplier supports do not exist, and the recoater screen stays closed for lack of a distortion field and blade clearance."
         },
         "04_material_machine_process_card": {
           "status": "blocked_missing_input",
@@ -510,7 +511,7 @@
             "twins/993-switch-trim-ring-f1/evidence/route-f1/993-int-switch-trim-ring-f1-0001-process-route-card.json",
             "twins/993-switch-trim-ring-f1/evidence/route-f1/993-int-switch-trim-ring-f1-0001-supplier-rfq.md"
           ],
-          "blocker": "Sept portes sur onze restent fermees. La plus nette est une incoherence interne du depot : l'etape 03 a tranche a 50 um alors que la seule route AlSi10Mg publiee sur cette machine est a 30 um. S'y ajoutent l'absence de traitement thermique, de surepaisseurs d'usinage, d'admissibles de piece, de tracabilite de lot, de carte constitutive calibree en temperature et de revue DfAM de l'orientation."
+          "blocker": "Six gates out of eleven stay closed: no heat treatment, machining stock, part allowables, powder lot traceability, temperature-calibrated constitutive card or DfAM review of the orientation. Stage 03 now slices at the 30 um layer of the published route, so the layer thickness gate passes."
         }
       }
     },

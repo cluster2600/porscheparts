@@ -323,3 +323,20 @@ volume.
 The [private input, volume, audit and localisation archive](https://github.com/cluster2600/porscheparts-935-private/releases/download/935-root-repair-20261025/935-original-bound-gmsh-20261028.tar.zst)
 was downloaded, decompressed and SHA-256 verified as
 `7b9ba572e43ac91e6a7f3e5df043027684814b47e3161dca8a48482f9205fcf1`.
+
+## Guarded cfMesh execution
+
+`run_cfmesh_checked.py CASE NEW_LOG_DIRECTORY` invokes `cartesianMesh` and
+then `checkMesh -constant -allGeometry -allTopology -meshQuality` only if
+both the process status and completion log pass. The additional log gate is
+necessary because a constrained run returned zero after reporting that
+meshing had terminated. The output directory must not exist; each process has
+a default 1,800-second timeout (`--timeout` changes it). The case is written
+by cfMesh and must be an isolated copy; surface preparation and `surfaceCheck`
+remain separate prerequisites. Execute within the qualified, resource-bounded
+OpenFOAM/cfMesh environment with the intended tools on `PATH`.
+
+A `Mesh OK.` result is a mesh-quality gate only, not an airflow solution,
+scan calibration, fitment or manufacturing validation. The log gate handles
+known failure markers and does not prove that all possible mesher failures
+are detected. Keep scan-derived cases and logs in private storage.

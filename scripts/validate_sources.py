@@ -63,6 +63,48 @@ def _date(value: Any) -> bool:
     return True
 
 
+RIGHTS_KEYS = {"license", "redistribution", "attribution", "archive_capture"}
+ARCHIVE_CAPTURE_KEYS = {"status", "capture_url", "capture_timestamp", "read_on", "license_as_read", "author"}
+WAYBACK_CAPTURE = re.compile(r"^https://web\.archive\.org/web/(\d{14})/\S+$")
+
+
+def _archive_capture_errors(rights: dict[str, Any]) -> list[str]:
+    """Owner decision 2026-11-05: a Wayback capture of the original page is provenance evidence.
+
+    A licence prefixed 'archive-verified-' must carry the capture it was read from, and a
+    capture must be named by such a licence, so neither can be claimed without the other.
+    """
+    errors: list[str] = []
+    unknown = rights.keys() - RIGHTS_KEYS
+    if unknown:
+        errors.append(f"rights: unknown fields: {', '.join(sorted(unknown))}")
+    capture = rights.get("archive_capture")
+    claims = isinstance(rights.get("license"), str) and rights["license"].startswith("archive-verified-")
+    if capture is None:
+        if claims:
+            errors.append("rights.archive_capture: required when the licence is archive-verified")
+        return errors
+    if not isinstance(capture, dict):
+        return errors + ["rights.archive_capture: expected an object"]
+    if not claims:
+        errors.append("rights.license: an archive capture requires an 'archive-verified-' licence")
+    if capture.keys() != ARCHIVE_CAPTURE_KEYS:
+        errors.append(f"rights.archive_capture: expected exactly {sorted(ARCHIVE_CAPTURE_KEYS)}")
+    if capture.get("status") != "archive_verified":
+        errors.append("rights.archive_capture.status: expected archive_verified")
+    match = WAYBACK_CAPTURE.fullmatch(capture.get("capture_url") or "")
+    if not match:
+        errors.append("rights.archive_capture.capture_url: expected https://web.archive.org/web/<14 digits>/<url>")
+    elif match.group(1) != capture.get("capture_timestamp"):
+        errors.append("rights.archive_capture.capture_timestamp: must match the capture URL")
+    if not _text(capture.get("read_on")) or not _date(capture.get("read_on")):
+        errors.append("rights.archive_capture.read_on: expected YYYY-MM-DD")
+    for field in ("license_as_read", "author"):
+        if not _text(capture.get(field)):
+            errors.append(f"rights.archive_capture.{field}: expected a non-empty string")
+    return errors
+
+
 def validate_source(record: Any) -> list[str]:
     if not isinstance(record, dict):
         return ["root: expected an object"]
@@ -138,6 +180,7 @@ def validate_source(record: Any) -> list[str]:
             errors.append(f"rights.redistribution: expected one of {sorted(REDISTRIBUTION)}")
         if rights.get("redistribution") == "attribution_required" and not _text(rights.get("attribution")):
             errors.append("rights.attribution: required when attribution is required")
+        errors.extend(_archive_capture_errors(rights))
 
     quality = record.get("quality")
     if not isinstance(quality, dict):

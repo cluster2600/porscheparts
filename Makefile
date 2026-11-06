@@ -35,7 +35,7 @@ endif
 	pet-zone-triage-check pet-part-triage pet-verdict pet-verdict-check \
 	pet-explain pet-disposition \
 	route-trim-ring-check parts-table route-lever-hook route-lever-hook-check \
-	print-screens print-visuals print-screen-sections-check parts-table-check readme-gallery readme-gallery-check part-pages part-pages-check translation-status reports-index reports-index-check docs-links-check part-previews part-previews-check container-recon container-cadsim container-mesh-cfd \
+	print-screens print-visuals print-screen-sections-check parts-table-check readme-gallery readme-gallery-check part-pages part-pages-check catalogue-pages catalogue-pages-check translation-status reports-index reports-index-check docs-links-check part-previews part-previews-check container-recon container-cadsim container-mesh-cfd \
 	container-physicsml container-simready container-simready-workflow \
 	container-simready-local-ai container-ov-libraries-cpu container-smoke \
 	container-smoke-physicsml container-smoke-simready \
@@ -187,9 +187,14 @@ HAS_MATPLOTLIB := $(shell PATH="$(PATH)" python3 -c 'import matplotlib' 2>/dev/n
 help:
 	@python3 scripts/make_help.py
 
+.PHONY: check-filesystem
+#> check | Refuse WSL DrvFs and other non-native mounts before checking (see AGENTS.md)
+check-filesystem:
+	@python3 scripts/check_native_filesystem.py .
+
 .PHONY: check-setup
 #> check | Install the isolated Python 3.12 check environment (requires uv)
-check-setup:
+check-setup: check-filesystem
 	test -x .venv-check/bin/python3 || uv venv --python 3.12 .venv-check
 	uv pip install --python .venv-check/bin/python -r requirements-check.txt
 
@@ -225,7 +230,7 @@ check: validate test 917-clean-sheet-2026-f32-check \
 	tip-routes-check pet-zone-triage-check pet-verdict-check \
 	route-lever-hook-check print-screen-sections-check parts-table-check \
 	readme-gallery-check \
-	part-pages-check reports-index-check docs-links-check part-previews-check \
+	part-pages-check catalogue-pages-check reports-index-check docs-links-check part-previews-check \
 	help-check fan-program-check engine-mount-study-check
 
 .PHONY: engine-mount-study-check
@@ -332,7 +337,7 @@ endif
 	python3 tests/test_917_f50_cfd_recovery.py -v
 
 #> check | Validate catalogue records against their schemas
-validate:
+validate: check-filesystem
 	python3 scripts/validate_catalog.py
 	python3 scripts/validate_am_pipeline.py
 	python3 scripts/validate_sources.py
@@ -352,8 +357,8 @@ validate:
 	python3 twins/reference-917-engine/source/prepare_variant_configs_f10.py --manifest twins/reference-917-engine/variant-configurations-f10.json --project-root . --check
 
 #> check | Run the test suite alone
-test:
-	python3 -m unittest discover -s tests -v
+test: check-filesystem
+	python3 scripts/run_tests_with_skip_report.py
 
 #> catalogue | Digital twin coverage by zone
 twin:
@@ -1263,6 +1268,16 @@ pet-zone-triage:
 pet-zone-triage-check:
 	$(MAKE) pet-zone-triage ROUTE_CHECK=--check
 
+.PHONY: pet107-bom pet107-bom-check
+#> catalogue | Regenerate the PET107 print-buy-manufacture BOM (JSON + CSV)
+pet107-bom:
+	python3 scripts/generate_pet107_bom.py
+
+#> catalogue | Check the PET107 BOM is current and passes its self-check
+pet107-bom-check: pet107-bom
+	git diff --exit-code -- parts/m64-pet107-bom/pet107-bom-v1.json parts/m64-pet107-bom/pet107-bom-v1.csv
+	python3 parts/m64-pet107-bom/selfcheck_pet107_bom.py
+
 #> 993 | Part-by-part titanium triage, requires an out-of-repo PET listing
 pet-part-triage:
 	@test -n "$(PET_LISTING)" || { echo "PET_LISTING=<chemin>/oem-listed.json requis ; le releve reste hors du depot"; exit 2; }
@@ -1429,6 +1444,15 @@ part-pages:
 #> catalogue | Check that these pages follow the records
 part-pages-check:
 	python3 scripts/render_part_pages.py --check
+
+#> catalogue | Generate the public catalogue (gate-passed parts only) and the study status listing
+catalogue-pages:
+	python3 scripts/render_public_catalogue.py --write
+
+#> catalogue | Check that the public catalogue follows the records and the gate
+catalogue-pages-check:
+	python3 tests/test_render_public_catalogue.py
+	python3 scripts/render_public_catalogue.py --check
 
 #> containers | Photogrammetry reconstruction image
 container-recon:

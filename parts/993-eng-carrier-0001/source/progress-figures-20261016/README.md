@@ -160,3 +160,21 @@ are linked to the complete data, sources and receipts of the capsule.
 ## Figure 33 — stock stress and displacement
 
 [Figure 33](index.html#first-window-stock-fields) shows both actual rigid and K1000 fields for stock `42da92cc`, with common scales, true displacement ×1 and all global integration-point peaks. [PNG](first-window-stock-fields-20261018/carrier-first-window-stock-stress-displacement.png), [SVG](first-window-stock-fields-20261018/carrier-first-window-stock-stress-displacement.svg), [PDF](first-window-stock-fields-20261018/carrier-first-window-stock-stress-displacement.pdf), [evidence and scope](first-window-stock-fields-20261018/README.md), and [stored-byte inventory](first-window-stock-fields-20261018/archive.json). The initial-mesh maxima are 621.141462 MPa and 1633.128570 MPa; stress convergence and strength acceptance remain open. The later 1.274798 kg rib trial has local geometry checks only and does not inherit these fields.
+
+## Related figure scripts (English note, 2026-11-05)
+
+Two carrier figure scripts are not called by any Makefile target, because
+both read private `work/` inputs that are not in the repository. Their bytes
+are recorded by SHA-256 in the carrier process evidence, so they are
+documented here rather than edited:
+
+- `scripts/render_carrier_region.py <prepared-region-dir> <new-output-dir>`
+  draws one hash-verified prepared region. Its frozen copy and command are in
+  [regional-support-004](regional-support-004/README.md).
+- `scripts/render_carrier_workshop_drawing.py <stl> <study.json> <output>
+  (--sha256 <hex> | --identity-receipt <json>)` draws a binary STL against the
+  end centres and four central bolt centres of an interface study (for example
+  `../bionic-20261011/correction-20261013/interface-study.json`). It refuses an
+  STL whose hash differs from `--sha256` or the receipt's
+  `candidate_STL_sha256`. The drawn interface dimensions are the study's
+  **assumed** values, not measured ones; the drawing proves no fit.

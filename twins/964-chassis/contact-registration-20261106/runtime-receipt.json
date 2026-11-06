@@ -1,0 +1,216 @@
+{
+  "schema_version": "1.0.0",
+  "client_date": "2026-11-06",
+  "status": "needs_rerun",
+  "classification": "CPU_USD_software_validation_and_historical_stage_diagnostic",
+  "scope": "Existing rejected whole-body stage only; not the new measurement network, reconstructed cell or physical product",
+  "property_assignment_intent": "skip",
+  "runtime": {
+    "execution": "Mac Docker, Linux arm64 CPU-only",
+    "image_id": "sha256:4840d514c583a4d3d8cad3940e68dee6f0f6f3635c12fcd0a3d74c21a5b93a54",
+    "repository_digests": [
+      "python@sha256:4840d514c583a4d3d8cad3940e68dee6f0f6f3635c12fcd0a3d74c21a5b93a54"
+    ],
+    "platform": "linux/arm64",
+    "python": "3.12",
+    "usd_version": "(0, 25, 5)",
+    "pinned_versions": {
+      "usd-exchange": "2.3.0",
+      "omniverse-asset-validator": "1.18.0",
+      "omniverse-usd-profiles": "1.10.22",
+      "numpy": "1.26.4",
+      "jinja2": "3.1.6",
+      "markdown-it-py": "4.2.0",
+      "markupsafe": "3.0.3",
+      "mdurl": "0.1.2",
+      "simready-validate": "2026.4.8"
+    },
+    "foundation_commit": "a1e9dd68ee2d107f74dc6cd6da875b54ad3f8fd3",
+    "cpu_limit": 2,
+    "memory_limit_bytes": 2147483648,
+    "preflight_status": "ready",
+    "content_agents": "skipped",
+    "GPU_used": false,
+    "helper_versions": {
+      "PyYAML": "6.0.1"
+    }
+  },
+  "software_witness": {
+    "synthetic_minimum_passed": true,
+    "synthetic_metadata_rule": "StageMetadataChecker",
+    "synthetic_metadata_passed": true,
+    "simready_cli_help_exit": 0,
+    "limitations": "Narrow synthetic witness verifies executable software path only; no blanket compliance claim."
+  },
+  "historical_stage": {
+    "path": "twins/964-chassis/monocoque/omniverse/bundle-001/monocoque.usda",
+    "minimum_passed": true,
+    "asset_validator_status": "FAIL",
+    "asset_validator_issue_counts": {
+      "ERROR": 0,
+      "FAILURE": 8,
+      "INFO": 0,
+      "WARNING": 6
+    },
+    "asset_validator_failure_rules": {
+      "NormalsExistChecker": 4,
+      "TypeChecker": 3,
+      "UsdAsciiPerformanceChecker": 1
+    },
+    "asset_validator_warnings": [
+      "ZeroAreaFaceChecker: The mesh contains zero area faces.",
+      "ManifoldChecker: 14 vertices are non-manifold.",
+      "ManifoldChecker: 7 edges are non-manifold.",
+      "ManifoldChecker: 103 vertices are non-manifold.",
+      "ManifoldChecker: 76 edges are non-manifold.",
+      "ManifoldChecker: The face winding is not consistent."
+    ],
+    "simready_diagnostic_profile": {
+      "name": "Prop-Robotics-Neutral",
+      "version": "1.0.0"
+    },
+    "simready_status": "FAIL",
+    "simready_requirement_counts": {
+      "AA.001": 1,
+      "GSP.001": 1,
+      "NP.005": 1,
+      "NP.006": 1,
+      "RB.001": 2,
+      "RB.MB.001": 1,
+      "UN.007": 1
+    },
+    "profile_applicability": "Generic Prop-Robotics-Neutral diagnostic; not selected as the automotive engineering-cell acceptance profile",
+    "source_hashes_unchanged": true,
+    "committed_bundle_hash_admission": {
+      "bending.json": true,
+      "display.usda": true,
+      "geometry.usdc": true,
+      "interior.usda": true,
+      "monocoque.usda": true,
+      "presentation.usda": true,
+      "results.usda": true,
+      "torsion-monocoque.json": true,
+      "zesad-monocoque.report.json": true
+    },
+    "source_hashes": {
+      "bending.json": "931561862877d92029059d5174e013bc5d72b371b43ff1fabcfd293ca32421c2",
+      "display.usda": "cf6eb90fab72222297cfd013a301e3dcad888fa9cd8187bc47d4ee7e101f60a4",
+      "geometry.usdc": "7eda9fca37a0959c5c672d61e420bd3bcda0180cbbd0403a74f64ea985d84228",
+      "interior.usda": "18e35e7c0cf605d55167c3218b7ddee14934735f4389dccdb2f167792a6842fc",
+      "monocoque.usda": "d75a92f205cb3ad5523524ebfc743298f3429e2ba2bf79458b6a5bcff85fb388",
+      "presentation.usda": "3dfabb9ee732fd171446b888ea5f698b530262a3e68fca06ec9b2cd4f7d621d5",
+      "results.usda": "deb6ad6575e57bd8c3ab222585be6f325c5ced786f36abc82a916fdae9b3c09a",
+      "torsion-monocoque.json": "19d322de663b087b5773da8016cda3a18e699fcb7bcd4da4ae75f863c031f585",
+      "validation.json": "140b6c16ba28f272a89a8ce7546c049583daec20e1f94113e9f4e6d1a33d48c6",
+      "zesad-monocoque.report.json": "42d097111da49b38e8b87caaceae5a783a1b8c275c5c3fd2b1b4f3968e62f8f1"
+    }
+  },
+  "fet005_classification": {
+    "trigger": "GSP.001",
+    "route": "simready-foundation-conform-fet-005-simulate-grasp-physics",
+    "repair_status": "blocked_not_attempted",
+    "reason": "No explicit admitted grasp contacts or final admitted geometry; automotive engineering-cell context is not robot pickup. Validation-only/no-assignment/no-repair scope retained."
+  },
+  "limitations": [
+    "No new OVRTX image or Kit viewport captured",
+    "No material, density, laminate, mass, collision or rigid-body assignment or repair",
+    "No donor-fitment, structural, manufacturing, road or track qualification",
+    "Mac-native pinned bootstrap unsupported by usd-exchange2.3.0 wheel platforms; Linux CPU Docker path resolved that software gap",
+    "Installed SimReady CLI does not support documented --list-profiles/--foundation-root flags directly; installed reference wrapper successfully loads the selected formal profile"
+  ],
+  "evidence_sha256": {
+    "image.json": "08739ad552d79dce08167f465481885529cc9194c4956ab8478f75a3883b5273",
+    "preflight.json": "c57d43dba36bb1384c02ec7745fc18c0ef36c455a603781eb9479ad30188f187",
+    "minimum.json": "7a9ada8d21a9b47b29592a8d8ed284c918b8be85c353ca771f6851172a28dde2",
+    "asset-validator.json": "014cc4fef7b2983ad31bd69d021f60b934019b1b57782eaca07eeaff474b19c6",
+    "simready-profile.json": "0ff840c8f76729f89ae77feb0027b955728760cf77947471e6f4c64f042424ce",
+    "synthetic-minimum.json": "b9d7c94a3e5a32d4f4139dd2b5af9a8d6e38b86112975841e6b737ef043c895c",
+    "synthetic-metadata.json": "edb630195d41e46881bb05874d1011f0b6bf02921e0650ed564cbb92a0ae3b7a",
+    "witness-result.json": "1cede1396584aec48ec702821f018e3268896037056289988a3d9fe198ba3404",
+    "installed-versions.txt": "ebffa475cbcf7fe67054a251fba85fb6abbb3a686453fe6353d6e7c3b2de1725",
+    "run.sh": "9bed6f0b53ca03be4124558d4c28f24a95aca1c65e083bee3faeecf597e57b28",
+    "witness.py": "1339b43ec681fce6de3a683f882ef1b390d3334ed27bc2612f81927a441003ac"
+  },
+  "qualification": {
+    "native_omniverse_rendering_verified_this_review": false,
+    "digital_twin_validated": false,
+    "manufacturing_authorized": false
+  },
+  "evidence_policy": "Only aggregate diagnostics, settings and hashes are published. Full reports, logs, package environment and synthetic witness remain in private local storage. No raw scans, transport metadata or credentials are included.",
+  "limits": {
+    "cpu": 2,
+    "memory_bytes": 2147483648,
+    "pids": 256,
+    "bootstrap_controller_timeout_seconds": 900,
+    "supplemental_witness_timeout_seconds": 180,
+    "source_mount_read_only": true,
+    "synthetic_witness_network": "disabled",
+    "containers_removed_after_completion": true
+  },
+  "recovery": {
+    "client_date": "2026-11-06",
+    "status": "software_path_reverified_asset_still_fails",
+    "reason": "Prior local Foundation checkout became empty and host Python environments became unavailable after the original execution.",
+    "foundation_url": "https://github.com/NVIDIA/simready-foundation.git",
+    "foundation_commit": "a1e9dd68ee2d107f74dc6cd6da875b54ad3f8fd3",
+    "checkout_mode": "Fresh private depth-1 sparse checkout of nv_core/sr_specs/docs, LFS smudge disabled",
+    "foundation_spec_files": 386,
+    "foundation_spec_manifest_sha256": "21e38bc9660a86d95a83ad7c3c4e321096f603f0966cd2c4cc013ff1fe12994d",
+    "runtime": "Same immutable Linux arm64 image and existing pinned container Python environment",
+    "network": "disabled_during_validation",
+    "packages_installed": false,
+    "host_environment_repaired": false,
+    "source_mount_read_only": true,
+    "source_hashes_match_historical_receipt": true,
+    "checks": [
+      {
+        "name": "synthetic-minimum",
+        "returncode": 0
+      },
+      {
+        "name": "synthetic-metadata",
+        "returncode": 0
+      },
+      {
+        "name": "cli-help",
+        "returncode": 0
+      },
+      {
+        "name": "historical-minimum",
+        "returncode": 0
+      },
+      {
+        "name": "historical-profile",
+        "returncode": 1
+      }
+    ],
+    "simready_issue_counts": {
+      "ERROR": 0,
+      "FAILURE": 8,
+      "INFO": 0,
+      "WARNING": 0
+    },
+    "simready_requirement_counts": {
+      "AA.001": 1,
+      "GSP.001": 1,
+      "NP.005": 1,
+      "NP.006": 1,
+      "RB.001": 2,
+      "RB.MB.001": 1,
+      "UN.007": 1
+    },
+    "preflight_recomputed": false,
+    "preflight_note": "Preserved original preflight reused at its same mounted runtime and upstream paths; environment package versions and recovered Foundation commit were checked separately. This is not a new system preflight.",
+    "source_hashes_unchanged": true,
+    "evidence_sha256": {
+      "result.json": "79c8429e2c1d83328d20c4da6dbeff4b447b47605a2056f43e58723e068ea916",
+      "synthetic-minimum.json": "f7bc3673065d930c506a82208c298be1dc588bfae4e2ffa40b47549a8780876a",
+      "synthetic-metadata.json": "dc2e17d33fff1e5ce72c1d070b787ce041ad09ebff896547f07c246d277f2757",
+      "minimum.json": "7b5bd89753c56407dc4edd58afc58bd64ea1225673a1ae28a3cc4772938a2a92",
+      "simready-profile.json": "733e0835c43b165095d18fe02e0b9b2184231841f14a6670a5c84f662f4e9130",
+      "foundation-spec-hashes.json": "21e38bc9660a86d95a83ad7c3c4e321096f603f0966cd2c4cc013ff1fe12994d",
+      "replay.py": "d4b800c1bf664163b56931c3a77736e275add862f4de043778ac966e8f178455",
+      "execution-result.json": "638530629814ca8a11fd5d740efa133eab9e0f89edcd099dd2119be3b6f22280"
+    }
+  }
+}

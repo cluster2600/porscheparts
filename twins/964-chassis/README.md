@@ -1,5 +1,56 @@
 # Digital twin of the Porsche 911 (964) chassis
 
+**B-width correction and input readiness, 6 November 2026:**
+[native endpoint tracing](body-contact-alternatives-20261106/README.md) qualifies
+Mi B's 612 mm combined span. A complete source-only B/H pattern is now derived
+and independently checked without importing Other/CH values. The improved
+source-context views still do not establish the actual B head/bearing seat or
+the off-plane controls required for registration. Qualified donor interfaces
+and inner tunnel/upper-cell geometry remain the blocking engineering inputs.
+
+**Front seating correction, 6 November 2026:** the
+[new primary-photo and fixed-oblique review](front-seating-20261106/README.md)
+withdraws the two conditional front D/E interpretations. Their recess/retainer
+and wider panel pattern support cover-fixing candidates; acquired structural
+seating is not established. Original face IDs remain traceable, but neither
+point is admitted for body registration or structural boundary conditions.
+
+**Transmission-fastener review, 6 November 2026:** two observed outer heads
+have [anatomy-backed candidate Mi H roles](fastener-visibility-20261106/README.md),
+bound to exact original scan triangles and independently checked. This does not
+admit head centres, bolt axes, measured H contacts or donor registration. The
+same review records eight further source queries and four primary availability
+leads; no qualified upper-cell geometry was acquired. Autorobot remains an
+unsent draft following the owner's instruction.
+
+**Body-contact context, 6 November 2026:** the
+[source/topology review](contact-context-20261106/README.md) distinguishes the
+Mi F/G marks from neighbouring schematic features, compares two original
+reference photographs and inspects original scan triangles near four sill
+regions. Arm/pad-like observations are consistent with external lift hardware;
+their upper contacts remain unseen. Two conspicuous loops are sole boundaries
+of disconnected observed surfaces, not identified body apertures. No donor
+registration is admitted. A [preliminary road/track basis](contact-context-20261106/approval-basis.md)
+records current German and Swiss primary sources separately from engineering acceptance.
+
+**Contact/runtime review, 6 November 2026:** the
+[registration diagnostic](contact-registration-20261106/README.md) preserves
+all 1,521 original boundary component ID sets and rejects the fixed 23-contour
+subset as a complete Mi F/G network: zero compatible assignments out of
+212,520, independently checked. No physical contact or transform is admitted.
+Real Linux CPU USD validators now execute in Mac Docker; their findings concern
+the historical rejected scene, not a validated carbon cell. The
+[goal ledger](contact-registration-20261106/goal-ledger.json) retains the full
+geometry, structural, manufacturing/mould and native Omniverse requirements.
+
+**Owner frame-data acquisition, 5 November 2026:** the
+[supplied archive review](owner-frame-data-20261105/README.md) adds 15 readable
+files / 19 pages. It records 23 CH source-local coordinate rows across two
+assembly states, 14 Mi contact rows and 20 Coupe opening spans. Eighteen printed
+spatial redundancies close at integer rounding. Source datums/units and unknown
+contacts remain explicit; donor scan registration and tunnel surfaces are open.
+The separately supplied manual repeats the same 260 technical scan images.
+
 **Readable-source follow-up, 5 November 2026:** the
 [new review](readable-dimensions-20261105/README.md) extracts seven interior
 entries from the official FIA B-295 form for the 964 Carrera 2 (six non-derived
@@ -555,6 +606,10 @@ stays on a separate branch, not merged into base `7fe668b` of that rerun. Its
 truss and cure computations are F1 studies, not validations of a composite
 shell. Its axis conventions must be reconciled before any overlay with this
 twin (X rearward there, X forward here).
+The transform is now recorded in
+[monocoque-frame-transform.json](monocoque-frame-transform.json): a 180 degree
+rotation about Z (`x = -x`, `y = -y`, `z = z`, no translation), with the
+unstated monocoque Y handedness and Z datum listed as assumptions.
 
 The raw scan has since been recovered (see below). Next step: identify datums
 with XYZ, frames and uncertainties, and survey the rear interfaces and the C2/C4
@@ -577,7 +632,9 @@ of Git: 210,972,101 bytes, 2,400,031 vertices and 4,684,929 triangles. SHA-256:
 `f397909141e5af2529db961641c7699d39d40c355e05245cfb1573a2974c8dc5`.
 The input audit finds 118,411 open edges. The counts match the historical study;
 they certify neither the identity of the vehicle, nor its variant, nor the
-accuracy of the scanner. Redistribution rights remain unconfirmed.
+accuracy of the scanner. Redistribution rights remain unconfirmed and are
+recorded as `owner_pending` in
+[monocoque-frame-transform.json](monocoque-frame-transform.json).
 
 The existing symmetry, registration, transformation and wheel-sensitivity
 scripts were rerun on this original. The

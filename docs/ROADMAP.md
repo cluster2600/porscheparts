@@ -8,9 +8,9 @@ flowchart LR
     P1["Phase 1 — Source inventory<br/>4 of 5 items checked;<br/>545 valid source records on 2026-10-15;<br/>direct measurements remain"]:::open
     P2["Phase 2 — Physical inventory<br/>and twin assembly<br/>no printing; 10 items done, 4 open;<br/>physical prototypes suspended"]:::open
     P3["Phase 3 — Titanium<br/>engineering twin<br/>no manufacturing; all items open"]:::open
-    P4["Phase 4 — Public catalogue<br/>all items open"]:::open
+    P4["Phase 4 — Public catalogue<br/>2 of 4 items done"]:::open
     P0 --> P1 --> P2 --> P3 --> P4
-    COV["Cross-cutting: twin coverage<br/>share of curb weight, via make twin<br/>34.7% counted, engine scope open;<br/>target 100%"]:::open
+    COV["Cross-cutting: twin coverage<br/>share of curb weight, via make twin<br/>32.5% counted for the Carrera,<br/>gearbox excluded from the engine;<br/>target 100%"]:::open
     OUT["Initially out of scope<br/>selling parts, road homologation,<br/>replacing the load-bearing structure"]:::stop
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
     classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
@@ -67,7 +67,7 @@ recorded separately from spatial transforms.
 - [x] Logically assemble the documented front and rear pairs
 - [x] Add the 18-inch Fuchs wheels and their 5x130 / 71.5 mm interface
 - [x] Complete the 17-inch Fuchs wheel interface from the KBA type approvals
-- [x] Document the block on Michelin PS2 N3 tires for lack of consistent manufacturer material and mass
+- [x] Document the block on Michelin PS2 N3 tyres for lack of consistent manufacturer material and mass
 - [x] Qualify the Carrera Brembo/ATE discs and document their block for lack of net mass and full grade
 - [x] Research community CAD/3D work and qualify the windscreen templates, the seat ring and a full scan
 - [ ] Extend the inventory by subassembly family
@@ -132,7 +132,7 @@ parts.
 
 Original masses established by a German comparison table
 (`SRC-FEDERLEICHTE-ELFER-993-WEIGHTS`), which finally makes it possible to put
-numbers on the program instead of estimating it:
+numbers on the programme instead of estimating it:
 
 | Part | Original | Carbon | Gain |
 |---|---:|---:|---:|
@@ -159,11 +159,19 @@ refuses to build until the seven dimensions it requires are measured.
 
 ## Phase 3 — Titanium engineering twin, no manufacturing
 
-Candidate under study: **engine carrier `993-ENG-CARRIER-0001`** (993 115 021 53).
-Presumed critical in the sense of `SAFETY.md`. The benefit of titanium is not a
-given: at identical geometry, the part would be roughly twice as flexible as in
-steel. Load cases and process comparison to be filled in
-`parts/993-eng-carrier-0001/evidence/load-cases.md` before any geometry.
+Candidate under study: **oval exhaust tip `993-EXH-OVAL-TIP-TI-F1-0001`**,
+retained by [decision 0007](decisions/0007-premier-titane-embout-echappement.md)
+and kept by [decision 0014](decisions/0014-exhaust-tip-route-matrix-conditional-titanium.md)
+behind a conditional go/no-go that is closed today. The record is `functional`,
+not `non_critical`; accepting it as the first titanium part and sourcing the
+deciding temperature remain owner decisions (see 0014).
+
+The engine carrier `993-ENG-CARRIER-0001` (993 115 021 53) is no longer the
+Phase 3 candidate. It stays a safety-critical study: at identical geometry it
+would be roughly twice as flexible in titanium as in steel, and
+[`TITANIUM.md`](TITANIUM.md) uses it as the example of a part with nothing to
+gain from being printed. Its load cases stay in
+`parts/993-eng-carrier-0001/evidence/load-cases.md`.
 
 - [ ] Choose a part where Ti-6Al-4V brings a real benefit
 - [ ] Compare LPBF, CNC, sheet metal and casting
@@ -187,37 +195,45 @@ sourced parts, via `make twin`.
 |---|---:|---|
 | First survey | 30.5% | reached on August 28, 2026, 417.5 kg of 1,370 kg, with a 186.9 kg engine from an unregistered community weighing |
 | Engine mass from the workshop manual | 34.7% | October 15, 2026, 476.0 kg of 1,370 kg; engine scope open and Turbo-only parts included, see below |
+| Coverage per variant | 32.5% | November 5, 2026, 445.7 kg of 1,370 kg for the manual-transmission Carrera; Turbo and RS parts excluded, see below |
 | Complete body and trim | ~45% | in progress |
 | Detailed powertrain | ~60% | overall engine known, parts to be detailed |
 | Running gear and brakes | ~75% | not started |
 | Remainder | 100% | not started |
 
-How to read the 34.7%:
+How to read the 32.5%:
 
-- **The engine figure is the manual's, its scope is not settled.** The workshop
-  manual's p. 15 technical-data sheet gives 232 kg under the label "Manual
-  transmission" and 224 kg under "Tiptronic"; the transcription is
-  `structured_derived`, not manually checked, and the upstream record marks it
-  `ocr_transcription_unverified`. Reading it as the dry engine ready to install
-  rests on the sheet heading as recorded in
-  [the manual data map](993/993_MANUAL_DATA_MAP.md). Tiptronic lighter than
-  manual fits an engine-only figure, but only by inference. A community weighing
-  with a named weigher and a declared method, not registered as a source, gives
-  186.9 kg for a complete 1995 Carrera engine without gearbox: 45.1 kg less.
-  [The engine-carrier load cases](../parts/993-eng-carrier-0001/evidence/load-cases.md)
-  record this contradiction as open (232 kg might be engine plus gearbox). With
-  the weighing, the coverage would read 31.5%.
-- **The rise from 30.5% has two causes.** The engine change adds 45.1 kg
-  (3.3 points); the documented parts weigh 13.4 kg more than at the first
-  survey (243.97 kg against the 230.6 kg it implies, 1.0 point).
-- **Turbo-only parts are counted for the Carrera.** The part entries carry no
-  variant, so 15.3 kg of Turbo parts are included: the K16 turbochargers
-  (11.36 kg), the Turbo engine carrier (1.96 kg), and the charge-air duct,
-  hoses and sensor with a turbo heat shield (1.99 kg). Without them the figure
-  is 33.6%.
-- No Turbo engine mass is sourced, and no Tiptronic or Turbo curb weight:
-  `scripts/twin_coverage.py` stops for those runs unless `--kerb-weight` is
-  given.
+- **The engine figure excludes the gearbox; the rest of its scope is open.**
+  The workshop manual's p. 15 technical-data sheet gives 232 kg under the label
+  "Manual transmission" and 224 kg under "Tiptronic"; that transcription is
+  `structured_derived` and has not been checked against an authorised copy of
+  the manual. On November 5, 2026 the same two figures were read visually in a
+  second Porsche document, the 993 technical specification booklet
+  (`SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK`, printed p. 18): "Engine Weight
+  (Tiptronic) kg/lbs 232 (224)". The booklet lists "Transmission Weight with
+  Oil" separately (66 kg for the G50/21, 105 kg for the Tiptronic, pp. 22-23),
+  so 232 kg is not engine plus gearbox. Neither document says dry or wet, or
+  which ancillaries are included. A community weighing with a named weigher and
+  a declared method, not registered as a source, gives 186.9 kg for a complete
+  1995 Carrera engine without gearbox: 45.1 kg less, a gap that is not the
+  gearbox and stays unexplained in
+  [the engine-carrier load cases](../parts/993-eng-carrier-0001/evidence/load-cases.md).
+  With the weighing, the coverage would read 29.2%.
+- **Each counted part names its variants.** Entries in
+  `catalog/reference/993-declared-part-data.json` that carry a mass and a
+  quantity per car now carry `variants`, and `make twin` counts an entry only
+  for a variant it names, or for every variant when its source names none
+  (`unspecified`). For the Carrera this excludes 15.3 kg of Turbo parts (the K16
+  turbochargers, 11.36 kg; the Turbo engine carrier, 1.96 kg; the charge-air
+  duct, hoses, sensor and turbo heat shield, 1.99 kg) and the 15.0 kg pair of
+  RS door panels: 34.7% becomes 32.5%. The 19 `unspecified` entries are body,
+  glass and trim from a source that names no variant; they are still counted for
+  every variant.
+- **The Turbo has no engine and no registered curb weight.** No registered
+  source gives the M64/60 engine mass, and `scripts/twin_coverage.py` stops for
+  Tiptronic and Turbo runs unless `--kerb-weight` is given. With the 1,500 kg
+  Turbo curb weight declared in the reference data (`VEHICLE-KERB-TURBO`, a
+  third-party figure), the Turbo run counts 229.0 kg, i.e. 15.3%, and no engine.
 
 ### Assembly skeleton — done
 
@@ -239,7 +255,7 @@ The factory parts catalogue provided the framework: ten systems, 239 illustratio
 
 Two coverages coexist, and they do not say the same thing: **0.18% of
 references** carry a documented mass, but those few parts, with the manual's
-engine figure, account for **34.7% of curb weight**, with the caveats above.
+engine figure, account for **32.5% of the Carrera's curb weight**, with the caveats above.
 The twin fills up by mass before it fills up by count.
 
 ### Position — started with a reference envelope
@@ -256,8 +272,8 @@ verifiable measurements.
 
 ## Phase 4 — Public catalogue
 
-- [ ] Publish only the parts that have cleared their quality gates
-- [ ] Generate catalogue pages from the JSON records
+- [x] Publish only the parts that have cleared their quality gates ([public catalogue](catalogue/README.md), `make catalogue-pages`)
+- [x] Generate catalogue pages from the JSON records
 - [ ] Add views, dimensioned drawings and manufacturing instructions
 - [ ] Track versions, tested vehicles and field feedback
 

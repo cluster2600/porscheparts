@@ -1,0 +1,270 @@
+{
+  "schema": "935-native-relocation-1",
+  "date": "2026-11-05",
+  "status": "cube_passed_head_relocation_inverted_cells_independent_face_pairing_rejected",
+  "source_sha256": {
+    "inspect_relocation.py": "1547e9157c8bb18f8fffa775432dff9f7465477f37c03f8c1e6bcdf53da73a72",
+    "optimize_relocated_volume.py": "90aa65c8347a4da2df8f12a9469a2d26c6783d3b5ed0dd15b87314cc52ad0115",
+    "run_relocation.py": "fecca58021b95a0a2318ce73a746cea37b29c32fc88e2016659ae6e7ae6a072d"
+  },
+  "runtime": {
+    "python": "3.12.11",
+    "platform": "arm64",
+    "numpy": "2.5.4",
+    "gmsh_api": "4.12.1",
+    "gmsh_distribution": "4.12.1",
+    "netgen_compiled": true,
+    "gmsh_module_sha256": "fa69936fc45646eca8b29ab0fd9e32ebaf45216414cbc75c380b4c0db7b6f485"
+  },
+  "retained_sources_capsule_manifest_sha256": "9ee63840ce8db33e23f50d4bdcbd8f48e5979124126bee59bb7efd7e4d932c95",
+  "input_preservation": {
+    "sha256": {
+      "volume/head/solid.msh": "dd06871fe45c765836d9690b5e6dd4bc00cc62cd9389b2ae16b5a4aa9831ba08",
+      "volume/head/solid.npz": "b06d28ec39019fa8f91c2e8cd0397c2eb9cd87bf84df7006c8526025aef03450",
+      "regularization-001/candidate.npz": "5b04e72b5f7b48f340a39c14009292c52c1bf1ac422ad64cd3250c17ddf51db4"
+    },
+    "all_inputs_unchanged": true,
+    "parent_directory_basename": "935-corner-provenance-20261105-001"
+  },
+  "plan": {
+    "source_sha256": "fecca58021b95a0a2318ce73a746cea37b29c32fc88e2016659ae6e7ae6a072d",
+    "wrapper_sha256": "90aa65c8347a4da2df8f12a9469a2d26c6783d3b5ed0dd15b87314cc52ad0115",
+    "retained_recipe_sha256": "ea6d23871879865bdd09366c2bd6b616950f299402e65521d05d8f22b0349bb9",
+    "retained_controller_sha256": "674e984510d9429d4a92ac5609aa618b5c86d476cd4f18175f357958523dbda2",
+    "input_msh_sha256": "dd06871fe45c765836d9690b5e6dd4bc00cc62cd9389b2ae16b5a4aa9831ba08",
+    "input_arrays_sha256": "b06d28ec39019fa8f91c2e8cd0397c2eb9cd87bf84df7006c8526025aef03450",
+    "surface_sha256": "5b04e72b5f7b48f340a39c14009292c52c1bf1ac422ad64cd3250c17ddf51db4",
+    "upstream_verdict": "Netgen native readback has unresolved zero labels; test a distinct documented interior-relocation method, with unchanged boundary, reference and quality gates",
+    "method": "Relocate3D",
+    "one_api_call": true,
+    "head_kernel_alarm_seconds": 900,
+    "rss_limit_gib": 40,
+    "head_bin_reduction_min_fraction": 0.5,
+    "diagnostic_bin": 0.01,
+    "ultra_low_bin_must_not_increase": 0.0001,
+    "minimum_quality_must_not_worsen": true,
+    "parameter_sweep": false,
+    "new_paid_compute_usd": 0,
+    "physics_admitted": false
+  },
+  "control_before": {
+    "source_sha256": "b0810ac21b35654556dce18ef022f6d4ca8f30a847223c5d566188eab82f4e71",
+    "frozen_helpers_sha256": "fe8c7fa88f35d2d14094438bbae3b0860bde085a39b68f7ab941790cb4d1bec3",
+    "mesh_sha256": "cb48c305998b5aa173e8b5b06990d1309690fb21b4abd90fa45f8ed40bf1dc94",
+    "surface_sha256": "931a470cb7cdb3f068969d44dc5ba5d818c124aa5ad323604eb017816c003955",
+    "nodes": 9,
+    "tetrahedra": 12,
+    "boundary_faces": 12,
+    "interval_proven_positive_cells": 12,
+    "exact_fraction_positive_cells": 0,
+    "all_cells_positive_for_stored_binary_coordinates": true,
+    "all_nodes_used": true,
+    "all_source_vertices_exact": true,
+    "actual_complete_boundary_and_orientation_exact": true,
+    "internal_paired_faces": 18,
+    "all_internal_faces_oppositely_oriented": true,
+    "volume_mm3": 1.0,
+    "relative_volume_difference": 0.0,
+    "minimum_cell_volume_mm3": 1.6666666666666665e-07,
+    "mean_ratio_quantiles": {
+      "minimum": 9.449417323618247e-05,
+      "p01": 9.597907997570948e-05,
+      "median": 0.3436780361353619,
+      "p99": 0.8307083221585957,
+      "maximum": 0.8399477399060044
+    },
+    "mean_ratio_below": {
+      "0.0001": 1,
+      "0.001": 6,
+      "0.01": 6,
+      "0.05": 6,
+      "0.1": 6
+    },
+    "diagnostic_mean_ratio_floor": 0.01,
+    "diagnostic_quality_passed": false,
+    "interval_scope": "Outward one-ULP expansion after every binary64 operation; ambiguous signs evaluated as exact fractions of stored coordinates",
+    "controls": {
+      "exact_fraction_interval_enclosures": 203,
+      "coplanar_refused": true,
+      "thin_positive_and_negative_distinguished": true
+    },
+    "tetrahedron_pair_intersections_exhaustively_checked": false,
+    "mesh_modified": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "seconds": 0.02848191699013114
+  },
+  "control_after": {
+    "source_sha256": "b0810ac21b35654556dce18ef022f6d4ca8f30a847223c5d566188eab82f4e71",
+    "frozen_helpers_sha256": "fe8c7fa88f35d2d14094438bbae3b0860bde085a39b68f7ab941790cb4d1bec3",
+    "mesh_sha256": "b794f4d139ad69d8d97d4527642b1c6c3f80f67a0cfd1cb954553d4534f16f7f",
+    "surface_sha256": "931a470cb7cdb3f068969d44dc5ba5d818c124aa5ad323604eb017816c003955",
+    "nodes": 9,
+    "tetrahedra": 12,
+    "boundary_faces": 12,
+    "interval_proven_positive_cells": 12,
+    "exact_fraction_positive_cells": 0,
+    "all_cells_positive_for_stored_binary_coordinates": true,
+    "all_nodes_used": true,
+    "all_source_vertices_exact": true,
+    "actual_complete_boundary_and_orientation_exact": true,
+    "internal_paired_faces": 18,
+    "all_internal_faces_oppositely_oriented": true,
+    "volume_mm3": 1.0,
+    "relative_volume_difference": 0.0,
+    "minimum_cell_volume_mm3": 0.06250004166666667,
+    "mean_ratio_quantiles": {
+      "minimum": 0.6274097212232244,
+      "p01": 0.6302778741231015,
+      "median": 0.734748113890795,
+      "p99": 0.8446749123318316,
+      "maximum": 0.8481222389942216
+    },
+    "mean_ratio_below": {
+      "0.0001": 0,
+      "0.001": 0,
+      "0.01": 0,
+      "0.05": 0,
+      "0.1": 0
+    },
+    "diagnostic_mean_ratio_floor": 0.01,
+    "diagnostic_quality_passed": true,
+    "interval_scope": "Outward one-ULP expansion after every binary64 operation; ambiguous signs evaluated as exact fractions of stored coordinates",
+    "controls": {
+      "exact_fraction_interval_enclosures": 203,
+      "coplanar_refused": true,
+      "thin_positive_and_negative_distinguished": true
+    },
+    "tetrahedron_pair_intersections_exhaustively_checked": false,
+    "mesh_modified": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "seconds": 0.02605337498243898
+  },
+  "control_admission": {
+    "native_optimizer_executed": true,
+    "full_boundary_and_cells_pass": true,
+    "minimum_before": 9.449417323618247e-05,
+    "minimum_after": 0.6274097212232244
+  },
+  "actual_head_method": {
+    "retained_requested_method": "Netgen",
+    "actual_method": "Relocate3D",
+    "niter_argument": 1,
+    "one_native_api_call": true,
+    "new_topology_requested": false,
+    "physics_admitted": false
+  },
+  "head_execution": {
+    "exit_code": 0,
+    "controller_limit_reached": false,
+    "seconds": 98.10118095891085,
+    "sampled_peak_rss_kib": 7615792,
+    "log_sha256": "0cc7885cf2b5fd5b0f9eb38bdd0c798ba9eb5edb794edcdb541a8120ca60929f"
+  },
+  "native_head_tag_and_sign_audit": {
+    "wrapper_sha256": "ebd864c5e318cdf679249460759393f62d06eee7f930dab586d836e5afca60a5",
+    "raw_native_sha256": "65b77a5b91e220a242a8e78262ff41f9190a5ee6012c790ad6c37f249beb4521",
+    "geometric_adapter_sha256": "d77e2ac42bc0426d83b5c15ee89e276e4e1edf2e063115b3fa514f1c28aacc41",
+    "actual_method": "Netgen",
+    "niter_argument": 1,
+    "one_native_api_call": true,
+    "node_count": 4181299,
+    "tetrahedron_count": 13250576,
+    "node_tags_unique": true,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "all_referenced_tags_resolve_exactly": true,
+    "coordinates_finite": true,
+    "cells_with_repeated_node_tags": 0,
+    "positive_cells": 13250312,
+    "negative_cells": 264,
+    "exact_zero_cells": 0,
+    "exact_fraction_fallbacks": 791,
+    "sign_scope": "Every native cell, stored binary64 coordinates; outward intervals then exact fractions",
+    "zero_cause_beyond_native_readback_established": false
+  },
+  "export_representation": {
+    "source_sha256": "ea6d23871879865bdd09366c2bd6b616950f299402e65521d05d8f22b0349bb9",
+    "candidate_sha256": "3dc6a82bb4601b65e4351c86242baf1b1c7c199d548e4f276c48abea8084c1be",
+    "nodes": 4181299,
+    "tetrahedra": 13250576,
+    "boundary_faces": 8218458,
+    "unused_internal_nodes_pruned": 0,
+    "negative_connectivities_reordered": 264,
+    "exact_orientation_fallbacks": 791,
+    "boundary_vertices_exact": true,
+    "independent_complete_inspection_pending": true,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "seconds": 97.23439400002826
+  },
+  "independent_inspection_execution": {
+    "exit_code": 1,
+    "controller_limit_reached": false,
+    "seconds": 54.65469574998133,
+    "sampled_peak_rss_kib": 4294912,
+    "log_sha256": "b294060be47482d2e3446edf0cd8d8fe736e7bbd0104646b6f0e423c0cafd3cf"
+  },
+  "independent_relocation_comparison": {
+    "source_sha256": "1547e9157c8bb18f8fffa775432dff9f7465477f37c03f8c1e6bcdf53da73a72",
+    "raw_sha256": "65b77a5b91e220a242a8e78262ff41f9190a5ee6012c790ad6c37f249beb4521",
+    "input_sha256": "b06d28ec39019fa8f91c2e8cd0397c2eb9cd87bf84df7006c8526025aef03450",
+    "raw_sign_audit_sha256": "0f740482af05c0e7b1863a8cd5eea5663a65c88d7f1a947cb2ca0df4aac835ff",
+    "control": {
+      "native_input_tetrahedral_rows_changed": 0,
+      "all_input_connectivity_and_row_order_retained": true,
+      "complete_boundary_connectivity_exact": true,
+      "nodes_moved": 1,
+      "protected_vertices_moved": 0,
+      "maximum_displacement_mm": 0.6495177538002235,
+      "maximum_protected_displacement_mm": 0.0,
+      "no_coordinates_or_cells_modified_by_inspector": true
+    },
+    "head": {
+      "native_input_tetrahedral_rows_changed": 0,
+      "all_input_connectivity_and_row_order_retained": true,
+      "complete_boundary_connectivity_exact": true,
+      "nodes_moved": 24992,
+      "protected_vertices_moved": 0,
+      "maximum_displacement_mm": 9.55219613851823,
+      "maximum_protected_displacement_mm": 0.0,
+      "no_coordinates_or_cells_modified_by_inspector": true
+    },
+    "raw_negative_cells": 264,
+    "raw_exact_zero_cells": 0,
+    "retained_input_connectivity_proves_orientation_changes_are_not_label_permutations": true,
+    "independent_face_pairing_passed": false,
+    "optimized_head_admitted": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false
+  },
+  "terminal": {
+    "terminal": "independent_inspection_failed",
+    "stage": "head-inspection",
+    "raw_checkpoint_preserved": true,
+    "physics_admitted": false,
+    "new_paid_compute_usd": 0
+  },
+  "head_calls": 1,
+  "all_task_processes_closed": true,
+  "relative_quality_comparison_admitted": false,
+  "optimized_head_admitted": false,
+  "printing_master_replaced": false,
+  "physics_admitted": false,
+  "manufacturing_qualified": false,
+  "new_paid_compute_usd": 0,
+  "goal_complete": false,
+  "limitations": [
+    "Legacy raw audit says requested Netgen; actual-method receipt establishes Relocate3D",
+    "Reordering negative connectivity does not repair interior-node inversion; independent face pairing rejects the export",
+    "No full successful head-inspection report or admitted downstream quality comparison",
+    "No field solve, convergence study or physical/process qualification"
+  ],
+  "private_capsule": {
+    "directory_basename": "935-native-relocation-20261105-001",
+    "manifest_sha256": "d6e8a46896c967f34b29406d6988b48d9bae1cf192db179d6f8bfc6b006ff092",
+    "files": 51,
+    "bytes": 435854849
+  }
+}

@@ -1,12 +1,12 @@
-"""Etape 04 du pipeline AM pour la bague de commodo F1.
+"""Stage 04 of the AM pipeline for the F1 switch trim ring.
 
-Ce test ne dit pas que la bague est fabricable. Il verifie que la carte de route
-publiee reste **fermee** : qu'elle est liee au master par empreinte, qu'elle
-n'ouvre aucune porte de fabrication, et surtout qu'elle continue de signaler
-l'incoherence qui l'a motivee — un tranchage a 50 um confronte a la seule route
-AlSi10Mg publiee sur cette machine, qui est a 30 um. Une carte qui deviendrait
-verte sans coupon, sans traitement thermique et sans lot de poudre serait un
-faux, et c'est cela que le test cherche.
+This test does not say the ring can be made. It checks that the published route
+card stays **closed**: bound to the master by fingerprint, opening no
+manufacturing gate, and that its layer thickness gate passes only because stage
+03 really slices at the 30 um layer of the only AlSi10Mg route published for
+this machine (it sliced at 50 um until issue #470). A card that turned green
+without a coupon, a heat treatment and a powder lot would be a fake, and that is
+what the test looks for.
 """
 from __future__ import annotations
 
@@ -66,11 +66,13 @@ class SwitchTrimRingRouteF1Tests(unittest.TestCase):
                 self.assertFalse(self.gates[name]["pass"])
                 self.assertTrue(self.gates[name]["blocker"].strip())
 
-    def test_the_layer_thickness_incoherence_is_reported_not_smoothed(self) -> None:
+    def test_the_screen_slices_at_the_published_route_layer(self) -> None:
+        # Stage 03 was re-sliced at 30 um (issue #470): the gate may pass only
+        # because the screened and published layers really agree.
         screened = load(GEOMETRY)["full_build_slicing"]["layer_thickness_mm"]
         qualified = load(PROCESS)["process_reference"]["layer_thickness_um"] / 1000.0
-        self.assertNotAlmostEqual(screened, qualified)
-        self.assertFalse(self.gates["layer_thickness_consistent"]["pass"])
+        self.assertAlmostEqual(screened, qualified)
+        self.assertTrue(self.gates["layer_thickness_consistent"]["pass"])
         self.assertEqual(self.card["derived"]["screened_layer_thickness_mm"], screened)
         self.assertEqual(self.card["derived"]["qualified_layer_thickness_mm"], qualified)
 

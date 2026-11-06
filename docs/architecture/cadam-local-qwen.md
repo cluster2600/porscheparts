@@ -248,3 +248,168 @@ protrusions remain connected to the main surfaces. All original triangles and
 the independent partitions are retained. Removing small components cannot
 supply an accepted bare-head domain; missing interfaces and hidden surfaces
 remain separate acquisition requirements. The review images stay private.
+
+The owner then explicitly resumed work with declared hypotheses. The
+[local bare-head reconstruction](../research/935-bare-head-hypothesis-20261105/README.md)
+now produces a digitally checked closed mesh, exact-coordinate head and
+supported 3MF exports, and complete 50 micrometre neutral contours. Eleven
+provisional protrusions are cut locally while all other parent triangles,
+including fins, remain. A global cut that removed fins and an actual PicoGK
+candidate with 29 shells are retained as rejected trials. The admitted local
+construction uses exact CGAL post-processing of the frozen envelope; neither
+CADAM/Qwen nor PicoGK is credited with authoring or approving that output.
+Independent full geometry, all-layer readback/union and native Kali topology
+checks pass. New-geometry physics, wall/support-removal and calibrated metal
+process checks remain pending; no functional or manufacturing release follows.
+
+The [revision-specific thin-feature screen](../research/935-local-wall-screen-20261105/README.md)
+then measures 5,000 inward normal chords on the actual delivered mesh. Sixteen
+distances, including the eight shortest, agree with an independent full-triangle
+search. All 354 samples below 2 mm lie on retained envelope skin, away from
+the new cut caps. These are diagnostic material paths, not global minimum-wall
+metrology. Process-wall and simulation-feature admission remain open; the
+existing 3MFs are unchanged and no mesh sweep or automatic thickening follows.
+
+The [exact-boundary physics preparation](../research/935-local-physics-20261105/README.md)
+then qualifies a fresh native Gmsh 4.12.1 runtime and independent tetrahedral
+inspector on the actual analytic cube. Its one bounded attempt on the complete
+delivered surface reaches the 900-second limit; no final head volume mesh is
+accepted. A separate all-face bound finds 3,269 boundary triangles that force
+incident tetrahedra below diagnostic mean ratio 0.01. Surface conditioning with
+a preservation proof must precede another interior-size sweep. Kali version
+probes confirm CalculiX 2.23 and an updated OpenFOAM 14 image, requiring fresh
+OpenFOAM case controls. These software/preparation results do not qualify head
+physics or manufacturing and do not replace the frozen 3MF files.
+
+The [bounded numerical conditioning study](../research/935-local-conditioning-20261105/README.md)
+then reduces badly shaped triangles by 89.7%, with an independently checked
+0.007067 mm complete-surface correspondence bound relative to its hypothetical
+parent. Protected cut faces and sharp features remain exact. The separate
+numerical surface passes the full native geometry audit; the printing master
+is unchanged. A real bounded Vast HXT trial passes its cube control but reaches
+the 1,800-second head limit without exporting a final volume mesh. Recovered
+logs and closeout receipts preserve that negative result. The owner now permits
+the original scan on Vast when useful; this trial transferred derived geometry
+only. Head physics, process calibration and physical qualification remain open.
+
+The [separate raw-volume construction](../research/935-unoptimized-volume-20261105/README.md)
+then disables optimization explicitly in a bounded local run, leaving the
+printing master and conditioned boundary unchanged. It exports 13,252,408
+material tetrahedra. An initial floating-sign rejection is preserved; a new
+outward-interval/exact-fraction inspector verifies every positive cell, all
+internal face pairs and the complete exact source boundary. The quality gate
+still rejects 527,342 cells below mean ratio 0.01. This supplies a verified raw
+construction and a quantified quality failure, without head solver admission,
+a new paid rental or a manufacturing release.
+
+The [feature-preserving retessellation trial](../research/935-feature-preserving-retessellation-20261105/README.md)
+then protects exact edge curves instead of complete nearby face rows. Its 49
+flips preserve all 702,636 required edges and pass complete native geometry,
+but reduce forcing faces only from 633 to 584, failing the fixed 50% target.
+The candidate is not adopted or volume-meshed. A pre-execution short-edge audit
+limits one free-vertex collapse pass to touching at most 160 forcing faces,
+below the 317 required. Another audit identifies 170 acute fixed planar sectors
+that force subthreshold fan triangles under that conditional contract. The next
+method must explicitly address geometric regularization or interpolation,
+conditioning and convergence admission for anisotropic cells. The diagnostic
+shape bin is not an engine allowable; no physics or process gate is waived.
+
+The [corner-provenance and bounded-regularization study](../research/935-corner-provenance-20261105/README.md)
+traces all 170 sectors to the inherited reconstructed envelope, with exact
+indexed acquired-triangle correspondence unestablished. Its new numerical
+contract permits curve-graph contractions under a complete surface/curve image
+bound, while preserving cap-plane memberships. The 426 contractions reduce
+forcing faces from 633 to 60; independent correspondence and native geometry
+pass at a cumulative bound of 0.009643216 mm. This replaces no printing master.
+A comparable raw-volume trial exports and independently checks 13,250,576
+positive cells and the exact full boundary. Volume shape quality still fails:
+526,110 cells remain below mean ratio 0.01, with unchanged minimum. The next
+admission work concerns interior slivers and numerical conditioning; a surface
+quality pass supplies no head-physics or manufacturing approval.
+
+The [checkpoint-optimization and native-readback study](../research/935-volume-optimization-20261105/README.md)
+then corrects Gmsh region ownership without changing any checkpoint array.
+The distorted-cube Netgen control improves minimum mean ratio from 0.00009449
+to 0.76195 with complete independent consistency checks. Head admission still
+fails. An instrumented repeat preserves native labels before export and finds
+33,688 tetrahedra referencing absent node zero; all boundary labels resolve.
+The earlier apparent zero-volume cell cannot establish physical degeneracy
+because its exporter did not validate label lookup. A separate saved-array
+audit and injected missing-label control confirm the rejection. The default
+Gmsh one-call alternative fails the unchanged cube quality gate and is not run
+on the head. Both actual head calls are terminal, all private bytes are frozen,
+and no optimized head, solver field, paid resource or manufacturing release is
+admitted. Further methods must validate references before coordinate indexing.
+
+The [native interior-relocation study](../research/935-native-relocation-20261105/README.md)
+then passes the same cube gate with `Relocate3D` and performs one bounded head
+call. Native labels resolve completely and boundary coordinates remain exact,
+but 24,992 interior-node movements invert 264 cells while retaining every input
+connectivity row. Positive local reordering cannot repair that embedding:
+independent internal-face pairing rejects the export. The relative-quality
+comparison is not admitted. The next relocation method must preserve original
+cell orientation during each accepted move; no iteration-count sweep, head
+field solve, new printing master or manufacturing approval follows this trial.
+
+The [interior-relocation exclusion audit](../research/935-constrained-relocation-20261105/README.md)
+then proves that clipping those proposed movements cannot meet the fixed 50%
+quality-bin target: they touch only 94,031 bad cells. Even arbitrary motion of
+every interior vertex can affect at most 133,340 of the 526,110 bad cells,
+because 392,770 have all four vertices fixed on the source boundary. All
+partitions are reproduced with the frozen inspector's arithmetic. This excludes
+fixed-connectivity interior relocation under that contract, rather than
+relaxing the target. A separate analytic convex-bipyramid control qualifies a
+native default 3-to-2 topology change with an independently known result and
+the same minimum-quality gates. Its one head diagnostic reaches the 900-second
+kernel alarm without exporting a final mesh; the worker is reaped, all inputs
+are rehashed unchanged and the complete capsule is frozen. Local cavity
+coverage/preservation must be audited before another topology trial. No solver,
+printing-master or physical/process approval follows the witness or timeout.
+
+The [local convex-cavity method](../research/935-local-cavity-20261105/README.md)
+then conditions only volume connectivity. A full independent edge sort
+reproduces the sparse initial cavity audit. Certified convexity, exact oriented
+boundary chains, absent new faces and monotone local quality constrain every
+3-to-2 replacement. Separate segment/triangle proofs certify unchanged local
+domains, followed by the frozen complete volume inspection after each pass.
+Two passes reduce the bad 0.01 bin from 526,110 to 254,353 (51.654%), passing
+the unchanged relative target; the third declared pass is not needed. Every
+node coordinate and the complete source boundary remain exact. The absolute
+shape gate still fails, so native solver export and case-specific conditioning
+admission precede any field solve. The original scan and print master are
+rehashed unchanged; this is neither a new CAD master nor an AM/physical release.
+
+The [native solver-admission study](../research/935-native-solver-admission-20261105/README.md)
+then round-trips every conditioned coordinate, tetrahedron and boundary face
+through actual binary and 17-digit ASCII Gmsh files. Native Jacobians and
+volumes are positive, while 3,130 minSICN values are nonpositive. Exact rational
+inspection proves all flagged stored-coordinate determinants positive and
+quantifies extreme conditioning; this does not establish operator accuracy.
+The actual OpenFOAM reader rejects the binary control. The ASCII precision
+fixture imports and passes checkMesh on Kali, with complete independent
+coordinate/cell/boundary readback. A single 8 GiB full-head Kali import exits
+137 before checkMesh, with complete recovery and owned staging/container
+cleanup. One guarded cloud trial repeats the control in its pinned OpenFOAM 13
+runtime, then imports the complete head in 113.69 seconds. Native checkMesh
+reaches its 240-second deadline after its first topology checks and remains
+incomplete. Its actual native arrays, terminal outcome and owned-resource
+closeout are linked in the aggregate record. Head operator admission,
+engine boundary conditions, manufacturing qualification and physical release
+remain distinct open gates; no engine field solve follows from format success.
+
+The [extended geometry and stencil diagnostic](../research/935-native-geometry-admission-20261105/README.md)
+then distinguishes the native internal-face tensor determinant from a coordinate
+Jacobian. A complete owner/neighbour audit proves at least 1,632,958 rank-deficient
+uncoupled stencils before execution. The small precision bipyramid is unsuitable
+as an extended positive control; its failed admission and a later refused Kali
+head preparation are retained. An independently inspected 27-node/eight-cell
+cube and its reflection qualify the unchanged extended checker on Kali and Vast.
+The one head geometry diagnostic completes in 60.61 seconds and reports ten
+failed checks, despite process exit zero; report content correctly rejects it.
+A separate integer-permutation audit checks every owner and neighbour face
+winding against the certified positive tetrahedra and finds no error. Thus face
+row reversal is not an indicated repair. Extreme conditioning/native geometry
+evaluation remains an admission issue; complete import, winding and a diagnostic
+run establish no engine field or manufacturing approval. Owned cloud resources
+are recovered and removed with independent absence proof, preserving the
+original cumulative budget, source scan and printing master.

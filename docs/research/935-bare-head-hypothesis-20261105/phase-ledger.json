@@ -1,0 +1,128 @@
+{
+  "scope": "935 local reconstruction continuation; not the mandatory 962 workflow",
+  "goal_status": "active",
+  "new_paid_compute_usd": 0,
+  "new_vast_resources": [],
+  "phases": [
+    {
+      "id": "input-admission",
+      "state": "executed_passed",
+      "inputs": "Original OBJ, exact arrays, frozen fine envelope, source fits and frame",
+      "runtime_commands_checks": "run_clip.py; parent hash check; input-admission.json",
+      "expected_outputs": "Byte-bound inputs for a declared hypothesis",
+      "limitations": "Physical input acceptance remains false"
+    },
+    {
+      "id": "picogk-candidate",
+      "state": "executed_rejected",
+      "inputs": "Fine envelope converted to parent STL; .25 mm voxels",
+      "runtime_commands_checks": "PicoGKClip.cs; independent validate_build_final.py",
+      "expected_outputs": "Actual STL and full shell report",
+      "limitations": "29 components; 8 positive and 21 negative shells; no automatic deletion"
+    },
+    {
+      "id": "global-cut",
+      "state": "executed_rejected",
+      "inputs": "Three source-derived planes and .75 mm assumed stock",
+      "runtime_commands_checks": "clip_head.cpp; run_clip.py; full checks; private six-view inspection",
+      "expected_outputs": "Exact clipped mesh; native and rejection receipts",
+      "limitations": "Global low-side cut removes visible fins"
+    },
+    {
+      "id": "local-assembly",
+      "state": "executed_passed_under_hypotheses",
+      "inputs": "Unchanged parent clipped separately by each one plane; local selection plan",
+      "runtime_commands_checks": "assemble_single_plane_local.py; independent provenance/whole-triangle audit",
+      "expected_outputs": "11 local cuts, preserved fins, provenance and mesh",
+      "limitations": "Component identities and cap surfaces remain hypotheses"
+    },
+    {
+      "id": "geometry-export",
+      "state": "executed_passed_under_hypotheses",
+      "inputs": "Actual final aligned mesh and byte-bound admission reports",
+      "runtime_commands_checks": "validate_build_final.py; check_contacts.py; export_three_mf.py",
+      "expected_outputs": "One closed manifold head, no final intersections, exact 3MF readback",
+      "limitations": "Not an analytic solid CAD master, physical fit or manufacturing proof"
+    },
+    {
+      "id": "independent-kali",
+      "state": "executed_passed",
+      "inputs": "Exact aligned NPZ and source hashes",
+      "runtime_commands_checks": "check_indexed_mesh.cpp; private run_remote.py; native cube/negative controls",
+      "expected_outputs": "Identical decompressed bytes; independent topology and volume receipt",
+      "limitations": "Self-intersections are checked separately on the Mac"
+    },
+    {
+      "id": "supports",
+      "state": "executed_passed_under_hypotheses",
+      "inputs": "Actual local head, new outside-air grid and provisional support dimensions",
+      "runtime_commands_checks": "prepare_supports.py; unchanged build_component_3mf.py",
+      "expected_outputs": "1120-resource 3MF; exact resource and graph readback",
+      "limitations": "Axial overlap and coarse accessibility do not qualify removal or strength"
+    },
+    {
+      "id": "neutral-contours",
+      "state": "executed_passed_under_hypotheses",
+      "inputs": "Actual aligned mesh and exact .05 mm planes",
+      "runtime_commands_checks": "slice_hypothesis.cpp; format_cli.py; validate_cli_readback.py; union_local_layers.py; complete second CLI readback",
+      "expected_outputs": "2074 layers; independent all-layer union and actual file readback",
+      "limitations": "No hatch, exposure or machine-specific job"
+    },
+    {
+      "id": "fidelity",
+      "state": "executed_passed_as_accounting",
+      "inputs": "Original exact arrays, unchanged parent and local source mesh",
+      "runtime_commands_checks": "assess_local_fidelity.py; 100000 samples per direction; full denominators",
+      "expected_outputs": "Preservation proof and unconditioned bidirectional deviations",
+      "limitations": "Sampling is not metrology or a global error bound; inherited closures remain"
+    },
+    {
+      "id": "wall-and-feature-admission",
+      "state": "pending",
+      "inputs": "New local mesh, face provenance, independently chosen wall/removal criteria",
+      "runtime_commands_checks": "Prepare upstream thin-feature and support-accessibility audits before mesh sweeps",
+      "expected_outputs": "New revision-specific wall/feature report",
+      "limitations": "No minimum-wall or support-removal acceptance yet"
+    },
+    {
+      "id": "gmsh-physics-mesh",
+      "state": "pending",
+      "inputs": "Admitted new geometry and declared mesh-purpose/feature contract",
+      "runtime_commands_checks": "Gmsh; independent quality, domain and convergence checks",
+      "expected_outputs": "Revision-specific mesh and admission report",
+      "limitations": "Prior envelope meshes are not this geometry; no new Gmsh solve executed"
+    },
+    {
+      "id": "openfoam-thermal-flow",
+      "state": "pending",
+      "inputs": "Admitted flow/solid domains and explicit air/thermal boundary assumptions",
+      "runtime_commands_checks": "OpenFOAM; independent conservation, residual and spatial-refinement checks",
+      "expected_outputs": "New exploratory flow/thermal results",
+      "limitations": "No measured internal geometry or engine heat balance; no new solve yet"
+    },
+    {
+      "id": "calculix-mechanics",
+      "state": "pending",
+      "inputs": "Admitted solid mesh, explicit generic material/loads and restraint hypotheses",
+      "runtime_commands_checks": "CalculiX; independent analytic controls, force/energy balance and convergence",
+      "expected_outputs": "New exploratory mechanical results",
+      "limitations": "Interfaces, preload, contacts and material curves unqualified; no new solve yet"
+    },
+    {
+      "id": "adamantine-process",
+      "state": "pending",
+      "inputs": "Admitted build geometry and explicit thermal/material/process hypotheses",
+      "runtime_commands_checks": "Adamantine; energy/time/mesh checks and separate measured process calibration",
+      "expected_outputs": "Exploratory thermal study, then calibrated process comparison",
+      "limitations": "No accepted machine, powder, exposure or experimental calibration"
+    },
+    {
+      "id": "functional-release",
+      "state": "not_qualified",
+      "inputs": "Measured same-specimen interfaces/internal geometry; qualified material/process; professional validation plan",
+      "runtime_commands_checks": "Physical print/inspection, leakage, thermal, fatigue and engine tests",
+      "expected_outputs": "Approved functional head and machine-specific manufacturing dossier",
+      "limitations": "0/8 interfaces and 0/8 operating fields accepted; digital files do not close this phase"
+    }
+  ]
+}

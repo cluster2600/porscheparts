@@ -38,7 +38,7 @@ unreviewed kernels at runtime. No Qwen inference is needed for this pilot.
 Warp performs these geometry queries before expensive solver cases. Their
 success establishes neither airflow, strength, fit nor process qualification.
 The architecture follows [the engineering workflow](architecture/engineering-workflow.md)
-and [PicoGK's geometry decision](decisions/0004-picogk-new-geometry.md).
+and [PicoGK's geometry decision](decisions/0017-picogk-new-geometry.md).
 
 ## Test and acceptance contract
 

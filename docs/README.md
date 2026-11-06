@@ -25,7 +25,7 @@ flowchart LR
 | [TRANSLATION.md](TRANSLATION.md) | the French-to-English translation: scope, glossary, progress |
 | [GALLERY.md](GALLERY.md) | every figure, render and print screen on one page |
 | [../twins/README.md](../twins/README.md) | the digital twins, zone by zone |
-| [FAN_DEVELOPMENT_PROGRAMMES.md](FAN_DEVELOPMENT_PROGRAMMES.en.md) | the two improved cooling programmes: vertical 993 and complete horizontal 935 architecture |
+| [FAN_DEVELOPMENT_PROGRAMMES.en.md](FAN_DEVELOPMENT_PROGRAMMES.en.md) | the two improved cooling programmes: vertical 993 and complete horizontal 935 architecture |
 
 ## Sources and measurement
 

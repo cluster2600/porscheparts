@@ -237,7 +237,7 @@ has not yet been meshed or solved; the previous concavity failure still needs
 a native diagnosis and correction.
 
 Read the [engineering workflow](architecture/engineering-workflow.md),
-[PicoGK decision](decisions/0004-picogk-new-geometry.md),
+[PicoGK decision](decisions/0017-picogk-new-geometry.md),
 [software inventory and dated execution evidence](SOFTWARE_STACK.md), and
 [per-part workflow](WORKFLOW.md) for the detailed contracts. Passing code,
 mesh or USD checks does not close physical qualification.
@@ -496,53 +496,54 @@ engineering** stays so until an engineering review lifts it.
 <tr>
 <td align="center" width="16%"><a href="../parts/993-eng-intake-valve-ti64-hollow-f0-0001/"><img src="../parts/993-eng-intake-valve-ti64-hollow-f0-0001/media/preview.png" alt="993 hollow Ti64 intake valve" width="130"><br><sub>993 hollow Ti64 intake valve</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-eng-intercooler-bracket-ti-f0-0001/"><img src="../parts/993-eng-intercooler-bracket-ti-f0-0001/media/preview.png" alt="993 Turbo/GT2 intercooler bracket" width="130"><br><sub>993 Turbo/GT2 intercooler bracket</sub></a></td>
+<td align="center" width="16%"><a href="../parts/993-eng-intercooler-bracket-ti-f1-0001/"><img src="../parts/993-eng-intercooler-bracket-ti-f1-0001/media/preview.png" alt="993 Turbo/GT2 intercooler bracket" width="130"><br><sub>993 Turbo/GT2 intercooler bracket</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001/"><img src="../parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001/media/preview.png" alt="993 Turbo intercooler end tank" width="130"><br><sub>993 Turbo intercooler end tank</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-eng-k16-compressor-wheel-al2139-f1-0001/"><img src="../parts/993-eng-k16-compressor-wheel-al2139-f1-0001/media/preview.png" alt="🧩 K16 compressor wheel" width="130"><br><sub>🧩 K16 compressor wheel</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001/"><img src="../parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001/media/preview.png" alt="993 K16 compressor wheel" width="130"><br><sub>993 K16 compressor wheel</sub></a></td>
-<td align="center" width="16%"><a href="../parts/993-eng-k16-turbine-wheel-in718-f0-0001/"><img src="../parts/993-eng-k16-turbine-wheel-in718-f0-0001/media/preview.png" alt="🧩 K16 turbine wheel" width="130"><br><sub>🧩 K16 turbine wheel</sub></a></td>
 </tr>
 <tr>
+<td align="center" width="16%"><a href="../parts/993-eng-k16-turbine-wheel-in718-f0-0001/"><img src="../parts/993-eng-k16-turbine-wheel-in718-f0-0001/media/preview.png" alt="🧩 K16 turbine wheel" width="130"><br><sub>🧩 K16 turbine wheel</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-eng-mounting-0001/"><img src="../parts/993-eng-mounting-0001/media/preview.png" alt="Support moteur Turbo bionique — c…" width="130"><br><sub>Support moteur Turbo bionique — c…</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-eng-oil-filter-console-alsi10mg-f0-0001/"><img src="../parts/993-eng-oil-filter-console-alsi10mg-f0-0001/media/preview.png" alt="Engine oil filter console with in…" width="130"><br><sub>Engine oil filter console with in…</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-eng-piston-cp1-gallery-f0-0001/"><img src="../parts/993-eng-piston-cp1-gallery-f0-0001/media/preview.png" alt="M64/60 piston with cooling gallery" width="130"><br><sub>M64/60 piston with cooling gallery</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-eng-three-runner-intake-alsi10mg-f0-0001/"><img src="../parts/993-eng-three-runner-intake-alsi10mg-f0-0001/media/preview.png" alt="993 three-runner intake manifold" width="130"><br><sub>993 three-runner intake manifold</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-eng-turbo-heat-shield-in625-f0-0001/"><img src="../parts/993-eng-turbo-heat-shield-in625-f0-0001/media/preview.png" alt="993 left turbo heat shield cover" width="130"><br><sub>993 left turbo heat shield cover</sub></a></td>
-<td align="center" width="16%"><a href="../parts/993-eng-turbo-oil-return-line-in625-f0-0001/"><img src="../parts/993-eng-turbo-oil-return-line-in625-f0-0001/media/preview.png" alt="Turbo oil return line" width="130"><br><sub>Turbo oil return line</sub></a></td>
 </tr>
 <tr>
+<td align="center" width="16%"><a href="../parts/993-eng-turbo-oil-return-line-in625-f0-0001/"><img src="../parts/993-eng-turbo-oil-return-line-in625-f0-0001/media/preview.png" alt="Turbo oil line (feed or return un…" width="130"><br><sub>Turbo oil line (feed or return un…</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/"><img src="../parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/media/preview.png" alt="Upper valve cover with COP towers" width="130"><br><sub>Upper valve cover with COP towers</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-exh-cat-converter-pair-pet-0001/"><img src="../parts/993-exh-cat-converter-pair-pet-0001/media/preview.png" alt="993 Turbo catalytic converters (f…" width="130"><br><sub>993 Turbo catalytic converters (f…</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-exh-heat-exchanger-pair-pet-0001/"><img src="../parts/993-exh-heat-exchanger-pair-pet-0001/media/preview.png" alt="993 Turbo exhaust heat exchangers…" width="130"><br><sub>993 Turbo exhaust heat exchangers…</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-exh-oval-tip-in625-f0-0001/"><img src="../parts/993-exh-oval-tip-in625-f0-0001/media/preview.png" alt="993 oval exhaust tip" width="130"><br><sub>993 oval exhaust tip</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-exh-oval-tip-ti-f1-0001/"><img src="../parts/993-exh-oval-tip-ti-f1-0001/media/preview.png" alt="Oval exhaust tip" width="130"><br><sub>Oval exhaust tip</sub></a></td>
-<td align="center" width="16%"><a href="../parts/993-int-dashboard-trim-0001/"><img src="../parts/993-int-dashboard-trim-0001/media/preview.png" alt="Dashboard trim" width="130"><br><sub>Dashboard trim</sub></a></td>
 </tr>
 <tr>
+<td align="center" width="16%"><a href="../parts/993-int-dashboard-trim-0001/"><img src="../parts/993-int-dashboard-trim-0001/media/preview.png" alt="Dashboard trim" width="130"><br><sub>Dashboard trim</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-int-door-opener-lever-f0-0001/"><img src="../parts/993-int-door-opener-lever-f0-0001/media/preview.png" alt="993 interior door opener lever" width="130"><br><sub>993 interior door opener lever</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-int-door-pull-0001/"><img src="../parts/993-int-door-pull-0001/media/preview.png" alt="Interior door pull handle" width="130"><br><sub>Interior door pull handle</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-int-seat-rail-cover-0001/"><img src="../parts/993-int-seat-rail-cover-0001/media/preview.png" alt="Seat rail cover" width="130"><br><sub>Seat rail cover</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-int-switch-blank-0001/"><img src="../parts/993-int-switch-blank-0001/media/preview.png" alt="Switch blank" width="130"><br><sub>Switch blank</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-int-switch-trim-ring-f1-0001/"><img src="../parts/993-int-switch-trim-ring-f1-0001/media/preview.png" alt="🖨️ Aluminum switch trim ring" width="130"><br><sub>🖨️ Aluminum switch trim ring</sub></a></td>
-<td align="center" width="16%"><a href="../parts/993-turbocharger-k16-pair-0001/"><img src="../parts/993-turbocharger-k16-pair-0001/media/preview.png" alt="Pair of K16 turbochargers of the…" width="130"><br><sub>Pair of K16 turbochargers of the…</sub></a></td>
 </tr>
 <tr>
+<td align="center" width="16%"><a href="../parts/993-turbocharger-k16-pair-0001/"><img src="../parts/993-turbocharger-k16-pair-0001/media/preview.png" alt="Pair of K16 turbochargers of the…" width="130"><br><sub>Pair of K16 turbochargers of the…</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-whl-center-cap-alsi10mg-f0-0001/"><img src="../parts/993-whl-center-cap-alsi10mg-f0-0001/media/preview.png" alt="993 center cap" width="130"><br><sub>993 center cap</sub></a></td>
 </tr>
 </table>
 
-*Concept models: 41 of 43 are PicoGK voxel models ([`parts/picogk-catalog/`](../parts/picogk-catalog/README.md)), the others concept CAD blocks. **None of these is the original part, and none is validated**: 43 of 43 records are at `concept`, and 0 of 43 have measured geometry. 🖨️ Printable as designed, fit unchecked: Aluminum switch trim ring. 🧩 Printable as an engraved display mock-up, never for use: 993/993 Turbo connecting rod, K16 compressor wheel, K16 turbine wheel. Click a part to see it next to the original.*
+*Concept models: 41 of 44 are PicoGK voxel models ([`parts/picogk-catalog/`](../parts/picogk-catalog/README.md)), the others concept CAD blocks. **None of these is the original part, and none is validated**: 44 of 44 records are at `concept`, and 0 of 44 have measured geometry. 🖨️ Printable as designed, fit unchecked: Aluminum switch trim ring. 🧩 Printable as an engraved display mock-up, never for use: 993/993 Turbo connecting rod, K16 compressor wheel, K16 turbine wheel. Click a part to see it next to the original.*
 
 ```mermaid
-pie showData title 43 part records by safety class
+pie showData title 44 part records by safety class
     "prohibited pending engineering" : 25
     "safety-critical" : 1
-    "functional" : 12
+    "functional" : 13
     "non-critical" : 5
 ```
 
 ```mermaid
 flowchart LR
-    L0["concept<br/><b>43</b> records"]
+    L0["concept<br/><b>44</b> records"]
     L1["dimensionally_reviewed<br/><b>0</b> records"]
     L2["prototype_fitted<br/><b>0</b> records"]
     L3["functionally_tested<br/><b>0</b> records"]
@@ -580,6 +581,7 @@ flowchart LR
 | [993 intake valve - F1 proxy and titanium vari…](pieces/993-eng-intake-valve-f1-0001.md) | Ti-6Al-4V Grade 5 | DMLS | **prohibited pending engineering** |
 | [993 hollow Ti64 intake valve](pieces/993-eng-intake-valve-ti64-hollow-f0-0001.md) | Ti-6Al-4V Grade 5 LPBF, screening | LPBF | **prohibited pending engineering** |
 | [993 Turbo/GT2 intercooler bracket](pieces/993-eng-intercooler-bracket-ti-f0-0001.md) | Ti-6Al-4V Grade 5 for screening | CNC | functional |
+| [993 Turbo/GT2 intercooler bracket](pieces/993-eng-intercooler-bracket-ti-f1-0001.md) | Ti-6Al-4V Grade 5 for screening | CNC | functional |
 | [993 Turbo intercooler end tank](pieces/993-eng-intercooler-end-tank-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg for screening | LPBF | **prohibited pending engineering** |
 | [K16 compressor wheel](pieces/993-eng-k16-compressor-wheel-al2139-f1-0001.md) | EOS Aluminium Al2139 AM, M290 60 µm, he… | LPBF | **prohibited pending engineering** |
 | [993 K16 compressor wheel](pieces/993-eng-k16-compressor-wheel-alsi10mg-f0-0001.md) | EOS AlSi10Mg, screening | LPBF | **prohibited pending engineering** |
@@ -589,7 +591,7 @@ flowchart LR
 | [M64/60 piston with cooling gallery](pieces/993-eng-piston-cp1-gallery-f0-0001.md) | Constellium Aheadd CP1, Velo3D Sapphire… | LPBF | **prohibited pending engineering** |
 | [993 three-runner intake manifold](pieces/993-eng-three-runner-intake-alsi10mg-f0-0001.md) | generic AlSi10Mg for screening | undecided | functional |
 | [993 left turbo heat shield cover](pieces/993-eng-turbo-heat-shield-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625, scr… | undecided | functional |
-| [Turbo oil return line](pieces/993-eng-turbo-oil-return-line-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | **prohibited pending engineering** |
+| [Turbo oil line (feed or return unassigned)](pieces/993-eng-turbo-oil-return-line-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | **prohibited pending engineering** |
 | [Upper valve cover with COP towers](pieces/993-eng-upper-valve-cover-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6, for comparis… | undecided | **prohibited pending engineering** |
 
 **Charge air**
@@ -644,7 +646,7 @@ flowchart LR
 |---|---|---|---|
 | [993 center cap](pieces/993-whl-center-cap-alsi10mg-f0-0001.md) | AlSi10Mg for screening | undecided | functional |
 
-*43 records, 25 of them prohibited pending engineering, none released. Each link opens the part's description page in [`docs/pieces/`](pieces/), generated from its `catalog/parts/*.json` record; the design dossiers are in [`docs/993/`](993/). Table generated by `scripts/render_parts_table.py`, checked by `make check`.*
+*44 records, 25 of them prohibited pending engineering, none released. Each link opens the part's description page in [`docs/pieces/`](pieces/), generated from its `catalog/parts/*.json` record; the design dossiers are in [`docs/993/`](993/). Table generated by `scripts/render_parts_table.py`, checked by `make check`.*
 
 <!-- parts:end -->
 
@@ -673,7 +675,7 @@ reference.
   [coverage](../twins/m64-engine-system/bom/coverage.md)) and a dated series of
   cylinder-head, valvetrain and meshing reports in
   [docs/reports/](reports/README.md).
-- **Four-valve cylinder head**: [air + oil study](studies/993-air-oil-20261002/README.md).
+- **Four-valve cylinder head**: [air + oil study](studies/993-air-oil-20261002.en.md) ([French original](studies/993-air-oil-20261002/README.md)).
 - **K16 and hybrid turbos**: [2 October research](research/993-turbo-20261002/README.md),
   [Mezger variants and materials](research/mezger-turbo-materials-20261003/README.md),
   [German-source supplement](research/mezger-german-sources-20261003/README.md).

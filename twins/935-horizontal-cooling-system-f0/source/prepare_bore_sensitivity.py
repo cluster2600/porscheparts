@@ -67,7 +67,8 @@ def prepare(case_path, output):
     deck, audit = replace_bore((parent/'rotor.inp').read_text(), original['bore_radius_mm'], tolerance, receipt['nodes'])
     original.update(bore_selection_tolerance_mm=tolerance, bore_band_is_measured=False)
     out = Path(output).resolve()
-    if out.exists() or not any((p/'.git').exists() and out.relative_to(p).parts[0] == 'work' for p in out.parents):
+    repo = next((p for p in out.parents if (p/'.git').exists()), None)  # innermost repository decides (#416)
+    if out.exists() or repo is None or out.relative_to(repo).parts[0] != 'work':
         raise ValueError('New private work directory required')
     out.mkdir(mode=0o700)
     (out/'rotor.inp').write_text(deck)

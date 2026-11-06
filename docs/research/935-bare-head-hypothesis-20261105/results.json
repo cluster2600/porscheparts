@@ -1,0 +1,497 @@
+{
+  "revision": "935-bare-head-hypothesis-20261105-001",
+  "catalogue_source": "catalog/scans/scan-935-xtreme-cylinder-head.json",
+  "status": "digitally_checked_hypothesis_reconstruction_and_neutral_contours",
+  "original_scan_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "unit_authority": "Owner instruction: one OBJ unit is one millimetre; not physical metrology",
+  "parent_envelope_sha256": "bcced05cf880809afc007b546f2f1ceba8fb5b71870ed8dd4fb6ea11bfdeb7aa",
+  "local_source_mesh_sha256": "4f875b028ce1eb5106ade3a08a115e29e26249e053a40ee49f02f643ffe457b6",
+  "local_build_mesh_sha256": "05159cdbf903729da5b8556d2ff2c2d29680a45c2b4bd42b34e031a122205594",
+  "construction": {
+    "selected_provisional_protrusions": 11,
+    "retained_parent_triangles_identical": 8212038,
+    "clipped_skin_triangles": 4380,
+    "assumed_cap_triangles": 2892,
+    "all_unselected_parent_faces_preserved": true,
+    "coordinate_welding_used": false
+  },
+  "effective_construction": "Clip the unchanged parent independently by each one plane, select eleven isolated protrusion domains, restore all other parent triangles. The local plan's global-mesh construction sentence belongs to the rejected intermediate assembly.",
+  "geometry": {
+    "input_sha256": "05159cdbf903729da5b8556d2ff2c2d29680a45c2b4bd42b34e031a122205594",
+    "vertices": 4106745,
+    "triangles": 8219310,
+    "zero_area_triangles": 0,
+    "open_edges": 0,
+    "nonmanifold_edges": 0,
+    "connected_components": 1,
+    "component_face_counts_descending": [
+      8219310
+    ],
+    "signed_volume_mm3": 1094352.343554994,
+    "bounds_mm": [
+      [
+        10.0,
+        10.0,
+        10.0
+      ],
+      [
+        129.72215957510565,
+        234.16099141318654,
+        103.64405974187721
+      ]
+    ],
+    "manufacturing_qualified": false,
+    "engine_qualified": false,
+    "inconsistently_oriented_edges": 0,
+    "edge_orientation_controls_passed": true,
+    "shell_classification_controls_passed": true,
+    "vertex_manifold": true,
+    "intersection_pairs": 0,
+    "intersection_controls_passed": true,
+    "solid_shell_classification": {
+      "positive_shells": 1,
+      "negative_cavity_shells": 0,
+      "cavity_winding_inside_outer_shell": [],
+      "one_material_body": true,
+      "signed_shell_volumes_mm3": [
+        1094352.3435549745
+      ]
+    },
+    "geometry_export_gate_passed": true,
+    "three_mf_sha256": "e022af4306766d09e512cd2bd49c696407d887f90cd3aa1622add8014a134465",
+    "three_mf_all_coordinates_and_indices_roundtrip_exact": true,
+    "elapsed_seconds": 76.4600293750409,
+    "raw_predicate_intersection_pairs": 0,
+    "proved_indexed_shared_simplex_contacts": 0,
+    "proper_nonadjacent_intersection_pairs": 0,
+    "exact_contact_report_sha256": "e7580098b8b2b02d3c3aa6e278b004bd99d708b6ac3b86a7a0f538372f344ce9",
+    "exact_contact_source_sha256": "a12b16ca6683685a92fab720ad80b6a4746a4c803567e2d146ed1008c472cd9a",
+    "raw_report_sha256": "5b88bae7c49b985ab7fad0976cdeb0c977699108790facb4a1553da0f4bfe91f",
+    "pair_file_sha256": "55737cf1229ed3c3f82eb23b50874fb56749277d1c3a190bccfa1f3a991a57de",
+    "geometry_validator_sha256": "0355df49080d49859bff4da517becc88ca4fafa43ffe0e9477bb8ea1ff4a61f0",
+    "acceptance_scope": "Closed candidate under declared construction hypotheses; all raw findings independently classified; no physical/manufacturing qualification",
+    "export_source_sha256": "bc280af25651af4283284ff207d866a8fb566c7d3e51b3cfcfcb339274ad3c68",
+    "every_coordinate_index_and_unit_roundtrips_exact": true,
+    "binary_stl_is_not_the_preferred_delivery": true
+  },
+  "fidelity": {
+    "source_sha256": "ff8bc455edd84688bf73c38f16e105861f709a27800dcdfc27c4de7e9a6b7cdc",
+    "parent_sha256": "bcced05cf880809afc007b546f2f1ceba8fb5b71870ed8dd4fb6ea11bfdeb7aa",
+    "candidate_sha256": "4f875b028ce1eb5106ade3a08a115e29e26249e053a40ee49f02f643ffe457b6",
+    "provenance_sha256": "b6bafbf36b5c6cb8f76025ea9d9206d391f14341f6e1c808a7224e478901f0ed",
+    "scan_arrays_sha256": "dd94c37117a1f1277a4f2b7f0bf0023e0d1858991b943f766cf447db319a101a",
+    "retained_original_parent_triangles_identical": 8212038,
+    "all_unselected_parent_faces_preserved": true,
+    "clipped_skin_triangles": 4380,
+    "partial_skin_whole_triangle_containment_upper_bound_mm": 2.057143935317725e-12,
+    "assumed_cap_faces": [
+      1864,
+      500,
+      528
+    ],
+    "assumed_cap_area_mm2": [
+      316.4529091785764,
+      76.22184293999726,
+      78.75451796195208
+    ],
+    "scan_to_parent_all": {
+      "samples": 100000,
+      "p50_mm": 0.003501516956373914,
+      "p95_mm": 0.02468255055771729,
+      "p99_mm": 0.0634269401686478,
+      "max_mm": 3.330101423664197
+    },
+    "scan_to_local_candidate_all": {
+      "samples": 100000,
+      "p50_mm": 0.003681225022487057,
+      "p95_mm": 0.09786035616981789,
+      "p99_mm": 28.184237996586784,
+      "max_mm": 49.755819036774184
+    },
+    "local_candidate_to_scan_all": {
+      "samples": 100000,
+      "p50_mm": 0.004468046698138467,
+      "p95_mm": 1.5234483283154079,
+      "p99_mm": 4.329602040212736,
+      "max_mm": 10.898026089430164
+    },
+    "source_samples_with_distance_increase_over_0p01mm": 4533,
+    "sample_seed_scan": 935051,
+    "sample_seed_candidate": 935052,
+    "samples_are_not_a_global_bound_or_physical_metrology": true,
+    "no_anatomical_exclusion_from_all_sample_results": true,
+    "physical_acceptance": false,
+    "manufacturing_qualified": false
+  },
+  "supports": {
+    "representation": "3MF core composite; final union is required by section 4.2 of the specification",
+    "reference_head_input_sha256": "05159cdbf903729da5b8556d2ff2c2d29680a45c2b4bd42b34e031a122205594",
+    "three_mf_sha256": "cf91e8a31790328e7e32acb6774b2c14f3015dc6ebf8a77b621b13ccc3d1601b",
+    "mesh_resources": 1120,
+    "support_resources": 1117,
+    "all_resource_geometry_checks_passed": true,
+    "every_coordinate_and_index_roundtrip_exact": true,
+    "component_graph_readback_passed": true,
+    "all_supports_have_positive_axial_overlap_with_head": true,
+    "minimum_axial_overlap_mm": 0.24999999999997158,
+    "one_connected_union_contact_graph": true,
+    "intended_component_intersections": true,
+    "single_merged_triangle_mesh": false,
+    "machine_specific_job": false,
+    "manufacturing_qualified": false,
+    "engine_qualified": false
+  },
+  "support_assumptions": {
+    "source_sha256": "05159cdbf903729da5b8556d2ff2c2d29680a45c2b4bd42b34e031a122205594",
+    "source_triangle_count": 8219310,
+    "support_grid_mm": 6.0,
+    "stem_radius_mm": 1.2,
+    "contact_tip_radius_mm": 0.5,
+    "contact_overlap_mm": 0.25,
+    "base_plate_mm": [
+      169.72215957510565,
+      244.16099141318654,
+      5.0
+    ],
+    "coupon_radius_mm": 6.0,
+    "coupon_height_mm": 20.0,
+    "odd_intersection_rays_rejected": 0,
+    "air_intervals_rejected_as_inaccessible": 98,
+    "short_intervals_skipped": 191,
+    "exterior_grid_pitch_mm": 2.0,
+    "uncertain_winding_centres_treated_as_occupied": 0,
+    "assumptions": [
+      "Hypothetical bare-head blank and planar closures, with 0.75 mm provisional stock",
+      "Support dimensions, build orientation and coarse accessibility screen are provisional",
+      "Accessibility is not support-removal or powder-evacuation qualification",
+      "No machine-specific exposure or build calibration inferred"
+    ],
+    "manufacturing_qualified": false,
+    "engine_qualified": false
+  },
+  "head_contours": {
+    "input_sha256": "0e21047c1e962e77468f94cd9673b97466fcdfa9ed377d8c095a54b9b28fcfae",
+    "shapely_version": "2.1.2",
+    "geos_version": "3.13.1",
+    "layers_including_empty_zero_layer": 2074,
+    "layer_mm": 0.05,
+    "contours": 59242,
+    "vertices": 23552588,
+    "invalid_layers": 0,
+    "errors": [],
+    "all_layers_examined": true,
+    "contour_controls_passed": true,
+    "slice_volume_mm3": 1094349.9256159398,
+    "volume_reference_kind": "surface",
+    "surface_volume_mm3": 1094352.343554994,
+    "independent_layer_integral_mm3": null,
+    "relative_slice_volume_difference": 2.2094703488817806e-06,
+    "volume_difference_limit": 0.002,
+    "contour_export_gate_passed": true,
+    "machine_job": false,
+    "manufacturing_qualified": false,
+    "seconds": 49.0925676249899
+  },
+  "supported_contour_union": {
+    "source_sha256": "fb528beb738c6308b14d2799d108d72d317504ad1a1f7161e358c4a04070c1fa",
+    "head_cli_sha256": "0e21047c1e962e77468f94cd9673b97466fcdfa9ed377d8c095a54b9b28fcfae",
+    "hypotheses_sha256": "265167d22ba2bdba3d3a40087951c9ae4db505fc371531cb6ef94932bbf76873",
+    "output_cli_sha256": "a65e6ba2936bf2c47a5ca52cb0825d76609f4d9f516aff583f3bf79b2232f66a",
+    "pyclipper": "1.3.0.post6",
+    "shapely": "2.1.2",
+    "geos": "3.13.1",
+    "coordinate_grid_mm": 1e-12,
+    "layers_including_empty_zero_layer": 2074,
+    "contours": 382930,
+    "coordinate_pairs": 39813640,
+    "workers": 4,
+    "all_layers_independently_checked": true,
+    "all_layer_unions_match_independent_geometry": true,
+    "output_layer_volume_mm3": 1380130.1003667866,
+    "independent_layer_volume_mm3": 1380130.1003667845,
+    "maximum_layer_symmetric_difference_mm2": 1.137220568259631e-09,
+    "seconds": 190.39627420797478,
+    "machine_job": false,
+    "hatch_or_exposure_present": false,
+    "manufacturing_qualified": false,
+    "engine_qualified": false
+  },
+  "supported_contours": {
+    "input_sha256": "a65e6ba2936bf2c47a5ca52cb0825d76609f4d9f516aff583f3bf79b2232f66a",
+    "shapely_version": "2.1.2",
+    "geos_version": "3.13.1",
+    "layers_including_empty_zero_layer": 2074,
+    "layer_mm": 0.05,
+    "contours": 382930,
+    "vertices": 39813640,
+    "invalid_layers": 0,
+    "errors": [],
+    "all_layers_examined": true,
+    "contour_controls_passed": true,
+    "slice_volume_mm3": 1380130.1003667866,
+    "volume_reference_kind": "independent-layer-integral",
+    "surface_volume_mm3": null,
+    "independent_layer_integral_mm3": 1380130.1003667845,
+    "relative_slice_volume_difference": 1.5183175791383227e-15,
+    "volume_difference_limit": 1e-10,
+    "contour_export_gate_passed": true,
+    "machine_job": false,
+    "manufacturing_qualified": false,
+    "seconds": 101.52457466593478
+  },
+  "layer_discretization": {
+    "scope": "Reuse exact shared planes of the completed 50 micrometre sections; not a new physics or manufacturing convergence claim",
+    "rows": [
+      {
+        "layer_mm": 0.2,
+        "right_endpoint_volume_mm3": 1094394.997671131,
+        "relative_difference_from_surface": 3.897658408478544e-05
+      },
+      {
+        "layer_mm": 0.1,
+        "right_endpoint_volume_mm3": 1094373.9816171878,
+        "relative_difference_from_surface": 1.977248216371143e-05
+      },
+      {
+        "layer_mm": 0.05,
+        "right_endpoint_volume_mm3": 1094349.9256159398,
+        "relative_difference_from_surface": 2.2094703488817806e-06
+      }
+    ]
+  },
+  "kali_independent_check": {
+    "marker": "NATIVE_TOPOLOGY_CHECK_OK",
+    "native": {
+      "vertices": 4106745,
+      "triangles": 8219310,
+      "unique_edges": 12328965,
+      "open_edges": 0,
+      "nonmanifold_edges": 0,
+      "inconsistently_oriented_edges": 0,
+      "zero_area_faces": 0,
+      "unused_vertices": 0,
+      "edge_connected_face_components": 1,
+      "signed_volume_mm3": 1094352.3435549962,
+      "native_topology_volume_check_passed": true,
+      "self_intersections_checked_by_this_program": false,
+      "physical_acceptance": false
+    },
+    "runtime": {
+      "host": "kali1",
+      "machine": "x86_64",
+      "python": "3.12.11",
+      "numpy": "2.5.4",
+      "filesystem": "ext4",
+      "compiler": "g++ (Debian 15.3.0-4) 15.3.0",
+      "source_sha256": "869dafd8b7d68dd2982cc0dfa13b629f578b589a3a6b9412041f64a9f97ab16a",
+      "script_sha256": "4138f4b73b93d5e043b44c085698c07d4198a8b6daabb04e708a92f6aba284cd",
+      "executable_sha256": "94071f712c67b1afeb2c1e243a233edcbf7a919a5fb2f5aba5230e4ee97e8493",
+      "mesh_npz_sha256": "05159cdbf903729da5b8556d2ff2c2d29680a45c2b4bd42b34e031a122205594",
+      "vertices_binary_sha256": "4501270b04f1391784b69630b06fb045dfa4eb0712d505a95706398e41204ef5",
+      "faces_binary_sha256": "1e5d3c10b1aab742f718324d3e9f45ae88d3d2420910e71079f4ccc7b7eaecd2",
+      "self_intersections_checked_by_this_program": false,
+      "physical_acceptance": false
+    },
+    "controls": {
+      "cube": true,
+      "inverted": true,
+      "opened": true,
+      "wrong-winding": true,
+      "nonmanifold": true,
+      "existing-output-refused": true
+    },
+    "manifest_sha256": "d55e8f126eaa61f745be740a25e354d1c6e392cf7555953e1cdfa369228ee3aa",
+    "files": 32,
+    "recovered_json_files": 12,
+    "remote_manifest_hash_verified": true,
+    "working_vertices_and_faces_match_mac_byte_for_byte": true,
+    "no_new_paid_compute": true
+  },
+  "deliverables": [
+    {
+      "path": "delivery/935-head-hypotheses-mm.3mf",
+      "sha256": "e022af4306766d09e512cd2bd49c696407d887f90cd3aa1622add8014a134465",
+      "bytes": 194091666
+    },
+    {
+      "path": "delivery/935-head-supported-hypotheses-mm.3mf",
+      "sha256": "cf91e8a31790328e7e32acb6774b2c14f3015dc6ebf8a77b621b13ccc3d1601b",
+      "bytes": 174195529
+    },
+    {
+      "path": "delivery/head-build-mm.npz",
+      "sha256": "05159cdbf903729da5b8556d2ff2c2d29680a45c2b4bd42b34e031a122205594",
+      "bytes": 125243997
+    },
+    {
+      "path": "local-slicing/935-head-hypotheses-50um-fixed.cli",
+      "sha256": "0e21047c1e962e77468f94cd9673b97466fcdfa9ed377d8c095a54b9b28fcfae",
+      "bytes": 776189185
+    },
+    {
+      "path": "local-supported-contours/935-reconstruction-supported-50um.cli",
+      "sha256": "a65e6ba2936bf2c47a5ca52cb0825d76609f4d9f516aff583f3bf79b2232f66a",
+      "bytes": 1317627811
+    }
+  ],
+  "new_geometry_physics_executed": false,
+  "machine_job": false,
+  "manufacturing_qualified": false,
+  "engine_qualified": false,
+  "professional_review": false,
+  "new_paid_compute_usd": 0,
+  "scan_sent_to_external_ai_or_supplier": false,
+  "goal_status": "active",
+  "runtime": {
+    "python": "3.12.11",
+    "machine": "arm64",
+    "system": "Darwin",
+    "packages": {
+      "numpy": "2.5.4",
+      "scipy": "1.18.1",
+      "trimesh": "5.2.0",
+      "libigl": "2.6.3",
+      "pillow": "13.0.0"
+    },
+    "compiler": "Apple clang version 21.0.0 (clang-2100.3.34.2)",
+    "cgal": "cgal 6.2.1",
+    "dotnet_sdk": "10.0.402",
+    "picogk_runtime_files": [
+      {
+        "name": "PicoGK.dll",
+        "sha256": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a",
+        "bytes": 1064960
+      },
+      {
+        "name": "SkiaSharp.dll",
+        "sha256": "00703ecd3654f52bc7afa5d1721b56d07ed27f4f8cddfc19f897a61966682582",
+        "bytes": 489544
+      },
+      {
+        "name": "picogk.26.2.dylib",
+        "sha256": "5c1cd3fc12766a85bc5c1441a95f065fb274338d1333c3ae2d3396b59d0e18e7",
+        "bytes": 14762592
+      }
+    ],
+    "picogk_source_revision_not_inferred_from_binary_name": true
+  },
+  "public_source_files": [
+    {
+      "path": "source/PicoGKClip.cs",
+      "sha256": "0ef09dd6d9ec2acdff5389a65f968b4970701386693d93b1ecae2aa3ed7e99ea",
+      "bytes": 2300
+    },
+    {
+      "path": "source/assemble_local.py",
+      "sha256": "62bc89595c3807b75d5a14639fcd3db065c409e8fc91ba06726ee9b612e49f4c",
+      "bytes": 4450
+    },
+    {
+      "path": "source/assemble_single_plane_local.py",
+      "sha256": "27dfc32949fc4658a28f180b2fb5e8f89b5a065163459fcb76554c9c0dd2311a",
+      "bytes": 9515
+    },
+    {
+      "path": "source/assess_local_fidelity.py",
+      "sha256": "ff8bc455edd84688bf73c38f16e105861f709a27800dcdfc27c4de7e9a6b7cdc",
+      "bytes": 3590
+    },
+    {
+      "path": "source/assess_preservation.py",
+      "sha256": "253f97cc0b117503d5ca0c589722fc5f6666f4eaa6d697ef8cd41a10d0f1b72a",
+      "bytes": 6613
+    },
+    {
+      "path": "source/check_contacts.py",
+      "sha256": "a12b16ca6683685a92fab720ad80b6a4746a4c803567e2d146ed1008c472cd9a",
+      "bytes": 4393
+    },
+    {
+      "path": "source/check_indexed_mesh.cpp",
+      "sha256": "869dafd8b7d68dd2982cc0dfa13b629f578b589a3a6b9412041f64a9f97ab16a",
+      "bytes": 4269
+    },
+    {
+      "path": "source/clip_head.cpp",
+      "sha256": "337c56156bc05010b4899ad37c0bd9bdd0dde8f8ff18b8ace7310f38e1751969",
+      "bytes": 5119
+    },
+    {
+      "path": "source/export_candidate.py",
+      "sha256": "c2c7c44399b77ea2eecba64d79a0af953f6dd4747f3b17f91c7130100ac26386",
+      "bytes": 2385
+    },
+    {
+      "path": "source/export_three_mf.py",
+      "sha256": "bc280af25651af4283284ff207d866a8fb566c7d3e51b3cfcfcb339274ad3c68",
+      "bytes": 1292
+    },
+    {
+      "path": "source/format_cli.py",
+      "sha256": "ed94899d66dd9234cfdafcc3bcf37ebd0e0acb88c4957e06927d87e1566ffae4",
+      "bytes": 2078
+    },
+    {
+      "path": "source/localize_cuts.py",
+      "sha256": "4ad769607ccc640a025a62c09064b9753e8692dfd0a3106d6b4f28e85e9156c5",
+      "bytes": 5533
+    },
+    {
+      "path": "source/package_delivery.py",
+      "sha256": "d9f6dd5b777bc311613a37bb8be849c880eeeb91ef94fb0037308de1c47fa2ce",
+      "bytes": 9090
+    },
+    {
+      "path": "source/prepare_aligned.py",
+      "sha256": "4ace45f1ef8b8c911bb21d016d2fd643bb844fd4dc393cef98bc0fde069ff9aa",
+      "bytes": 5157
+    },
+    {
+      "path": "source/prepare_supports.py",
+      "sha256": "3274229a582036edb77c7f578f14105f706eb6ebfc5b8a2504a70112b425f8cc",
+      "bytes": 4312
+    },
+    {
+      "path": "source/run_clip.py",
+      "sha256": "db12461546e5e0d255115c509c25a855545d89dcc2d13056f01a956109a5b297",
+      "bytes": 7897
+    },
+    {
+      "path": "source/slice_hypothesis.cpp",
+      "sha256": "688e12fbdc2d17799b757ac2fcb7f5fa9bf3582e85bea10c2b80b8e187dcec93",
+      "bytes": 5515
+    },
+    {
+      "path": "source/union_local_layers.py",
+      "sha256": "fb528beb738c6308b14d2799d108d72d317504ad1a1f7161e358c4a04070c1fa",
+      "bytes": 3658
+    }
+  ],
+  "rejected_trials": [
+    {
+      "id": "global-three-plane",
+      "reason": "Visible fin material cut; rejected despite closed geometry"
+    },
+    {
+      "id": "global-local-assembly",
+      "reason": "Crossing-region guard refused truncated protrusion root"
+    },
+    {
+      "id": "picogk-global",
+      "reason": "29 components, eight positive and 21 negative shells; one-material-body gate failed"
+    },
+    {
+      "id": "global-binary-stl",
+      "reason": "Float32 reimport produces 23 degenerate faces and 22 nonmanifold edges"
+    },
+    {
+      "id": "initial-gram-containment",
+      "reason": "One numerically ill-conditioned triangle rejected at unchanged 1e-8 mm guard; dominant-axis method resolves it"
+    }
+  ],
+  "private_capsule_manifest": {
+    "sha256": "ac1468ffedab8ad1a8e12f856e5aea68791b8706175832c22ebcd421eadc1ba0",
+    "files": 491,
+    "total_bytes": 10275642198
+  }
+}

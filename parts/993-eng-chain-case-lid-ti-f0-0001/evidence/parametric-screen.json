@@ -41,6 +41,21 @@
     "titanium_beats_magnesium_on_strength": false,
     "verdict_on_mass": "Le titane est 2,45 fois plus dense que le magnesium d'origine. Il perd l'arbitrage de raideur tres largement, et il perd aussi celui de resistance, de peu. L'argument « plus resistant donc moins epais donc plus leger », valable contre l'aluminium, ne tient pas contre le magnesium : sa densite est trop basse pour etre rattrapee.",
     "what_titanium_does_win": "La corrosion. Le mode de defaillance de la piece d'origine est que sa portee se pique et cesse d'etancher. Un couvercle titane ne se pique pas. C'est le deuxieme critere de TITANIUM.md, « corrosion problematique avec la matiere d'origine », et il est ici au coeur du sujet — pas la masse.",
+    "the_1995_versus_today_reframing": {
+      "question": "La piece d'origine ne se corrode pas parce qu'elle est en magnesium. Elle se corrode parce qu'elle est en magnesium **de 1995** : purete standard, chromatation au chrome hexavalent.",
+      "what_changed": {
+        "alliage": "purete standard -> haute purete, fer, nickel et cuivre plafonnes ; jusqu'a 100x de gain au brouillard salin",
+        "traitement": "chromatation hexavalente -> PEO/MAO, couche ceramique conforme REACH",
+        "mecanisme": "barriere passive -> revetements actifs, sol-gel"
+      },
+      "consequence": "Un couvercle en magnesium moderne bat le titane et l'aluminium sur les deux indices de flexion de plaque, supprime totalement le couple galvanique puisqu'il est de meme nature que le carter, annule la dilatation differentielle, et traite le mode de defaillance a sa racine au lieu de le contourner. C'est la matiere d'origine, faite correctement.",
+      "the_real_obstacles": [
+        "L'usinage du magnesium demande un atelier equipe : les copeaux fins sont inflammables, et tous les tourneurs ne le prennent pas.",
+        "Le PEO depose 5 a 40 um : sur un plan de joint cela se masque ou se reprend apres traitement.",
+        "La plaque corroyee courante est en AZ31B, pas en AZ91E de fonderie : l'alliage disponible n'est pas celui d'origine.",
+        "Aucune de ces trois questions n'est instruite ici."
+      ]
+    },
     "the_catch": "Le couvercle se boulonne sur un carter lui aussi en magnesium. Le magnesium est le plus anodique des metaux de structure et le titane l'un des plus cathodiques : c'est le couple galvanique le plus defavorable de la liste, et TITANIUM.md nomme explicitement le magnesium. Le joint isole les portees, pas la visserie ni les chemins d'humidite. Un couvercle titane pourrait donc proteger sa propre portee tout en aggravant l'attaque du carter en face."
   },
   "thickness_equivalence": {
@@ -127,6 +142,49 @@
       "moyen": 6.6,
       "large": 7.0
     },
+    "m6_margin_matrix": [
+      {
+        "case_material": "aluminium 6061 billet, reponse du marche de la rechange",
+        "case_expansion_per_k": 2.3e-05,
+        "datum": "centroid",
+        "worst_radius_mm": 50.0,
+        "relative_shift_mm": 0.072,
+        "available_play_mm": 0.2999999999999998,
+        "margin_mm": 0.22799999999999981,
+        "play_covers_shift": true
+      },
+      {
+        "case_material": "aluminium 6061 billet, reponse du marche de la rechange",
+        "case_expansion_per_k": 2.3e-05,
+        "datum": "dowel",
+        "worst_radius_mm": 100.0,
+        "relative_shift_mm": 0.144,
+        "available_play_mm": 0.2999999999999998,
+        "margin_mm": 0.15599999999999983,
+        "play_covers_shift": true
+      },
+      {
+        "case_material": "magnesium coule, nuance d'origine non identifiee",
+        "case_expansion_per_k": 2.6e-05,
+        "datum": "centroid",
+        "worst_radius_mm": 50.0,
+        "relative_shift_mm": 0.08699999999999998,
+        "available_play_mm": 0.2999999999999998,
+        "margin_mm": 0.21299999999999986,
+        "play_covers_shift": true
+      },
+      {
+        "case_material": "magnesium coule, nuance d'origine non identifiee",
+        "case_expansion_per_k": 2.6e-05,
+        "datum": "dowel",
+        "worst_radius_mm": 100.0,
+        "relative_shift_mm": 0.17399999999999996,
+        "available_play_mm": 0.2999999999999998,
+        "margin_mm": 0.12599999999999986,
+        "play_covers_shift": true
+      }
+    ],
+    "worst_m6_margin_mm": 0.12599999999999986,
     "equations": {
       "relative_shift": "delta = r * (alpha_al - alpha_ti) * delta_T",
       "worst_radius_without_dowel": "r = span / 2",

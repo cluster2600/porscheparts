@@ -1,6 +1,6 @@
 # From a part reference to the manufacturing handover
 
-[Workshop quick start](CARRIER_QUICK_START_EN.md) · [French guide](PART_WORKFLOW.md) · [17 October results and reproduction notes](CARRIER_SUPPLEMENTS_20261017_EN.md)
+[Workshop quick start](CARRIER_QUICK_START_EN.md) · [17 October results and reproduction notes](CARRIER_SUPPLEMENTS_20261017_EN.md)
 
 This workflow turns a photograph, scan or dimensioned drawing into an editable
 CAD revision, controlled meshes, mechanical results and an LPBF preparation

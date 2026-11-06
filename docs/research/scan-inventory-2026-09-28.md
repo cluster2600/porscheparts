@@ -4,12 +4,12 @@ Register: `catalog/scans/` (new register, see its README). The raw files
 (100–202 MB) stay outside Git, recorded by absolute path + SHA-256 + size
 + mtime, recomputed on host `kali2` on 2026-09-28 with `sha256sum`.
 The prior geometric triage is in
-[obj-scan-intake-2026-09-27.md](obj-scan-intake-2026-09-27.md); this
-page records the digest and positions each scan as potential evidence.
+[obj-scan-intake-2026-09-27.md](obj-scan-intake-2026-09-27.md); this page
+records the digest and positions each scan as potential evidence.
 
 None of these scans is a certified measurement: they are raw
-`SINGLE_SOURCE` inputs. A dimension exists only after promotion by the
-`containers/obj-metrology-f15` pipeline (identity, scale, segmentation) then an
+`SINGLE_SOURCE` inputs. A dimension exists only after promotion through the
+`containers/obj-metrology-f15` pipeline (identity, scale, segmentation), then an
 `M64-ACQ-*` acquisition with declared uncertainty. The OBJ files carry no
 unit; mm is an assumed convention throughout.
 
@@ -24,52 +24,52 @@ unit; mm is an assumed convention throughout.
 | (2nd path of the 917 payload) | `428c4143…` | 107,128,223 | 2026-08-31 | same | — | `Library/Mobile Documents/com~apple~CloudDocs/Downloads/917+engine+case+w+cyl+0.5mm.obj` — **byte-identical** to the 917 raw scan: copied, not scanned twice |
 
 Intake assumption corrected: the iCloud file `917+engine+case+w+cyl+0.5mm.obj`
-is **not** a distinct high-resolution variant; its SHA-256 is that
-of the 917 scan already referenced by the 917 workpackages (F11 `EXPECTED_SHA256`,
-F15, F17). It is recorded as `other_paths` of the 917 record, without a duplicate
-source record. (Note: the actual path under iCloud is
+is **not** a distinct high-resolution variant; its SHA-256 is that of the 917
+scan already referenced by the 917 work packages (F11 `EXPECTED_SHA256`,
+F15, F17). It is recorded as `other_paths` of the 917 record, with no duplicate
+source record. (Note: the real path under iCloud is
 `…/com~apple~CloudDocs/Downloads/917+engine+case+w+cyl+0.5mm.obj`.)
 
 ## What each scan proves — and does not prove
 
 | Scan | Can prove (after F15 promotion) | Does not prove |
 |---|---|---|
-| Fan Drive 0.21 mm | Raw geometry of the fan drive: positions/Ø of the pulleys and teeth, axial height, layout → feeds `M64-ACQ-0005` (fan geometry, zone M64-Z-CL) and calibrates the F2 airflow study (`work/simulation/993-fan-baseline`) | Tooth count (already unresolved at the 0.21 mm pitch, angular coverage 0.03–0.24), conclusive stage ratio (idler pulley + elastic belt in the field: observed ratio 1.7–2.0 vs 1:1.6 `FACT_public`, inconclusive), scale, airflow |
+| Fan Drive 0.21 mm | Raw geometry of the fan drive: pulley and tooth positions/diameters, axial height, layout → feeds `M64-ACQ-0005` (fan geometry, zone M64-Z-CL) and calibrates the F2 airflow study (`work/simulation/993-fan-baseline`) | Tooth count (already unresolved at the 0.21 mm pitch, angular coverage 0.03–0.24), a conclusive stage ratio (idler pulley + elastic belt in the field: observed ratio 1.7–2.0 vs 1:1.6 `FACT_public`, not conclusive), scale, airflow |
 | 917 case + cylinders | Flat-12 case/cylinder reference for geometry review and comparative metrology; already consumed by the 917 twin (F11/F15/F17) | 917 variant identity, real accuracy of the declared 0.5 mm, 993/M64 compatibility, functional interfaces |
-| 935 cylinder head | Ground truth of an air-cooled billet cylinder head: interfaces, register, chamber, studs; feeds the `reference-935-cylinder-head` twin (already F1_interface_proxy, parametric valves F1) | 993 compatibility, material, mass, accuracy; derived STLs = `fit-check-only` |
-| 964 underside | General shape of the widebody underside, possible reference for the body-side mounting environment (body track, to compare with `SRC-CARGEOMETRY-993-BODY`) | Dimensions: 176 unsorted bodies, scale not verified, provenance not established; nothing for the engine |
+| 935 cylinder head | Ground truth of an air-cooled billet cylinder head: interfaces, register, chamber, studs; feeds the `reference-935-cylinder-head` twin (already F1_interface_proxy, parametric F1 valves) | 993 compatibility, material, mass, accuracy; derived STLs = `fit-check-only` |
+| 964 underside | Overall shape of the widebody underside, possible mounting-environment reference on the body-shell side (body track, to compare with `SRC-CARGEOMETRY-993-BODY`) | Dimensions: 176 unsorted bodies, unverified scale, unresolved provenance; nothing for the engine |
 
 ## Engine subsystems gaining measured ground truth
 
-- **Cooling (fan)**: Fan Drive 0.21 mm — first dedicated scan of the
-  M64 cooling circuit; potentially unblocks `M64-ACQ-0005`
-  (currently blocked: impeller geometry unpublished, only the flow of 1,010 l/s
-  @ ≈6,100 rpm is public).
-- **Cylinders / cylinder heads**: 935 cylinder head (in the pipeline, F1) and 917
-  case+cylinders (external case reference); the 935 is the direct candidate for the
-  cylinder head/M64 chain, the 917 remains a morphological reference.
+- **Cooling (fan)**: Fan Drive 0.21 mm — first dedicated scan of the M64
+  cooling circuit; potentially unblocks `M64-ACQ-0005`
+  (blocked today: wheel geometry not published, only the airflow of 1,010 l/s
+  at ≈6,100 rpm is public).
+- **Cylinders / cylinder heads**: 935 cylinder head (in the pipeline, F1) and
+  917 case+cylinders (external case reference); the 935 is the direct candidate
+  for the cylinder-head/M64 chain, the 917 remains a morphological reference.
 - **Body** (outside the engine): 964 underside, unsorted.
 
 ## Next metrology steps (existing pipeline `containers/obj-metrology-f15`)
 
 1. **Fan Drive** — run the F15 pipeline on the raw file mounted read-only
-   (`--source …/Fan+Drive+0.21mm.obj`, contract to be created on the model of
+   (`--source …/Fan+Drive+0.21mm.obj`, contract to create on the model of
    `twins/reference-917-engine/scan-segmentation-f15.json`): digest,
-   bounds, components. Then a planar section re-oriented perpendicular to
-   each axis (fitted local plane), crest/valley thresholding for tooth
-   counting, and separation of idler pulley / belt before any ratio. Expected
+   bounds, components. Then a plane section re-oriented perpendicular to
+   each axis (locally fitted plane), crest/valley thresholding for the tooth
+   count, and separation of idler pulley / belt before any ratio. Expected
    output: promotion of `M64-ACQ-0005` to F2 status with declared uncertainty.
-   Non-technical prerequisite: establish the provenance and licence of the scan.
-2. **935 cylinder head** — already through F15; next documented step:
-   interface metrology on a calibrated section and visual review of the
+   Non-technical prerequisite: resolve the scan's provenance and licence.
+2. **935 cylinder head** — already passed F15; next documented step:
+   interface metrology on a calibrated section and a visual re-check of the
    unit (the "probably mm" envelope remains unconfirmed).
 3. **917 case** — rerun F15 only if a new semantic segmentation contract
    requires it; F11 integrity is already sealed on `428c4143…`.
 4. **964 underside** — sort by component before any acquisition record;
-   classify in the body track, do not bring it into the engine contracts.
-5. For each record whose `rights.license = unknown` (Fan Drive, 964): publish,
-   redistribute or resell nothing until the origin of the scan is
-   documented. Honestly marked unknown, not invented.
+   file it in the body track, do not bring it into the engine contracts.
+5. For every record whose `rights.license = unknown` (Fan Drive, 964): publish,
+   redistribute or resell nothing until the scan's origin is documented.
+   Honestly marked unknown, not invented.
 
 ## Integrity and traceability
 
@@ -77,6 +77,6 @@ source record. (Note: the actual path under iCloud is
   sizes and mtime via `stat`. The two 917 duplicates verified equal byte for
   byte by common digest.
 - The 935 and 917 digests match the `EXPECTED_SHA256` of the twins'
-  `prepare_scan.py` — no drift since entry into the pipeline.
+  `prepare_scan.py` — no drift since entering the pipeline.
 - Validation: `python3 scripts/validate_scans.py` (new, covered by
   `make check`) — 4 valid records.
