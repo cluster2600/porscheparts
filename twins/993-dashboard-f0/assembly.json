@@ -1,0 +1,637 @@
+{
+  "schema_version": "1.0.0",
+  "assembly_id": "993-DASHBOARD-F0",
+  "title": "Porsche 993 complete dashboard F0 evidence inventory",
+  "fidelity": "F0_reference",
+  "status": "missing_data",
+  "claim": "Component and interface scope only. No complete dashboard geometry, assembly placement, fit, safety, or release is claimed.",
+  "vehicle_scope": {
+    "generation": "993",
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    },
+    "target_scenario": {
+      "option_code": "M564",
+      "driving_position": "left_hand_drive",
+      "status": "candidate_pending_vehicle_confirmation",
+      "option_label_evidence": null,
+      "driver_airbag_presence": "expected_absent_pending_vehicle_confirmation",
+      "passenger_airbag_presence": "expected_absent_pending_vehicle_confirmation",
+      "passenger_side_reverse_inspection_evidence": null,
+      "dashboard_trim_part_number": null,
+      "part_number_mapping_status": "unresolved",
+      "part_number_conflict": "The catalogue record lists 993 552 055 00 /LL alongside M564, but its PET note attributes 055 00 to an illustration for cars with a passenger airbag. Do not assign this number to the M564 target until PET position, option code, and the exact vehicle are reconciled.",
+      "conflict_evidence": [
+        "catalog/parts/993-int-dashboard-trim-0001.json",
+        "parts/993-int-dashboard-trim-0001/evidence/measurement-plan.md"
+      ]
+    },
+    "excluded_from_this_scenario": [
+      "M561 driver-airbag variant pending a separate restraint and passenger-side assessment",
+      "M562 driver-and-passenger-airbag variant",
+      "Carrera RS M002 and M003 variants pending separate assembly records"
+    ]
+  },
+  "coordinate_system": {
+    "frame": "vehicle",
+    "origin": null,
+    "axes": null,
+    "units": "mm",
+    "vehicle_transform": null,
+    "status": "missing_data",
+    "note": "The trim measurement plan proposes a vehicle datum, but no measured datum or part-to-vehicle transform has been admitted."
+  },
+  "components": [
+    {
+      "component_id": "BODY_SHELL_DASH_PANEL",
+      "role": "structural host",
+      "catalogue_part_id": null,
+      "porsche_part_number": "993 502 027 02",
+      "geometry_file": null,
+      "transform": null,
+      "status": "missing_data",
+      "identity_evidence": [
+        "catalog/parts/993-int-dashboard-trim-0001.json",
+        "catalog/reference/993-assembly-skeleton.json"
+      ],
+      "required_capture": [
+        "Exact body-shell panel variant",
+        "Structural mounting and datum locations",
+        "Mating surfaces and stiffness/load evidence"
+      ]
+    },
+    {
+      "component_id": "DASHBOARD_TRIM",
+      "role": "visible trim",
+      "catalogue_part_id": "993-INT-DASHBOARD-TRIM-0001",
+      "porsche_part_number": null,
+      "geometry_file": null,
+      "transform": null,
+      "status": "missing_data",
+      "identity_evidence": [
+        "catalog/parts/993-int-dashboard-trim-0001.json"
+      ],
+      "required_capture": [
+        "Resolve M564 left-hand-drive PET part number",
+        "Option label and passenger-side reverse inspection",
+        "Fitted and removed scans with scale and D01-D14 measurements",
+        "Reverse-side clips, screw points, and mating surfaces"
+      ]
+    },
+    {
+      "component_id": "INSTRUMENT_HOOD",
+      "role": "instrument hood",
+      "catalogue_part_id": null,
+      "porsche_part_number": null,
+      "geometry_file": null,
+      "transform": null,
+      "status": "missing_data",
+      "required_capture": [
+        "Exact variant and identity",
+        "Surface scan and mounting pattern",
+        "Trim aperture, cluster clearance, and tolerances"
+      ]
+    },
+    {
+      "component_id": "INSTRUMENT_CLUSTER",
+      "role": "instruments",
+      "catalogue_part_id": null,
+      "porsche_part_number": null,
+      "geometry_file": null,
+      "transform": null,
+      "status": "missing_data",
+      "required_capture": [
+        "Exact instrument set and identity",
+        "Five gauge locations, envelopes, axes, and retention",
+        "Harness and service clearances"
+      ]
+    },
+    {
+      "component_id": "CENTER_AIR_VENTS",
+      "role": "air outlets",
+      "catalogue_part_id": null,
+      "porsche_part_number": null,
+      "geometry_file": null,
+      "transform": null,
+      "status": "missing_data",
+      "required_capture": [
+        "Exact vent variant and quantity",
+        "Opening outlines, retainers, duct connection and seals",
+        "Airflow direction and service clearances"
+      ]
+    },
+    {
+      "component_id": "SIDE_AIR_VENTS",
+      "role": "air outlets",
+      "catalogue_part_id": null,
+      "porsche_part_number": null,
+      "geometry_file": null,
+      "transform": null,
+      "status": "missing_data",
+      "required_capture": [
+        "Left/right vent identities",
+        "Opening outlines, retainers, duct connections and seals"
+      ]
+    },
+    {
+      "component_id": "DEFROST_OUTLETS_AND_DUCTS",
+      "role": "defrost airflow",
+      "catalogue_part_id": null,
+      "porsche_part_number": null,
+      "geometry_file": null,
+      "transform": null,
+      "status": "missing_data",
+      "required_capture": [
+        "Slot outlines and duct identity",
+        "Duct supports, seals and windshield clearance"
+      ]
+    },
+    {
+      "component_id": "GLOVEBOX",
+      "role": "storage and passenger-side boundary",
+      "catalogue_part_id": null,
+      "porsche_part_number": null,
+      "geometry_file": null,
+      "transform": null,
+      "status": "missing_data",
+      "required_capture": [
+        "Exact glovebox variant",
+        "Hinge, latch, stop, support and opening envelope",
+        "Passenger airbag absence on target vehicle"
+      ]
+    },
+    {
+      "component_id": "CENTER_CONSOLE",
+      "role": "adjacent assembly",
+      "catalogue_part_id": null,
+      "porsche_part_number": null,
+      "geometry_file": null,
+      "transform": null,
+      "status": "missing_data",
+      "required_capture": [
+        "Exact console variant and attachment scheme",
+        "Dashboard junction, tunnel/body supports and clearances",
+        "Switch, HVAC and radio opening identities"
+      ]
+    },
+    {
+      "component_id": "HVAC_RADIO_CONTROLS",
+      "role": "controls and openings",
+      "catalogue_part_id": null,
+      "porsche_part_number": null,
+      "geometry_file": null,
+      "transform": null,
+      "status": "missing_data",
+      "required_capture": [
+        "Exact control/radio configuration",
+        "Panel cutouts, service and wiring clearances",
+        "Attachment and temperature requirements"
+      ]
+    },
+    {
+      "component_id": "SWITCHES_AND_BLANKS",
+      "role": "switch bank",
+      "catalogue_part_id": "993-INT-SWITCH-BLANK-0001",
+      "porsche_part_number": null,
+      "geometry_file": null,
+      "transform": null,
+      "status": "missing_data",
+      "identity_evidence": [
+        "catalog/parts/993-int-switch-blank-0001.json",
+        "catalog/twins/twin-993-cabin-dashboard-switch-0001.json"
+      ],
+      "required_capture": [
+        "Exact switch and blank positions",
+        "Resolve dashboard versus console opening identity",
+        "Host opening, clip depth, face overlap and tolerances"
+      ]
+    },
+    {
+      "component_id": "KNEE_PROTECTION_STRIP",
+      "role": "retained original occupant protection",
+      "catalogue_part_id": null,
+      "porsche_part_number": null,
+      "geometry_file": null,
+      "transform": null,
+      "status": "missing_data",
+      "identity_evidence": [
+        "catalog/parts/993-int-dashboard-trim-0001.json",
+        "catalog/reference/993-assembly-skeleton.json"
+      ],
+      "required_capture": [
+        "Exact M564 left-hand-drive strip identity",
+        "Original attachment positions and substrate",
+        "Occupant-impact load path and professional safety review"
+      ]
+    },
+    {
+      "component_id": "STEERING_COLUMN",
+      "role": "retained original steering system",
+      "catalogue_part_id": null,
+      "porsche_part_number": null,
+      "geometry_file": null,
+      "transform": null,
+      "status": "missing_data",
+      "required_capture": [
+        "Exact column and shroud variant",
+        "Body mounting and clearance envelopes",
+        "Safety review before any modification"
+      ]
+    },
+    {
+      "component_id": "DRIVER_AIRBAG_ZONE",
+      "role": "configuration and restraint exclusion",
+      "catalogue_part_id": null,
+      "porsche_part_number": null,
+      "geometry_file": null,
+      "transform": null,
+      "status": "missing_data",
+      "presence": "expected_absent_if_M564_confirmed",
+      "required_capture": [
+        "Redacted vehicle option label",
+        "Physical confirmation of driver restraint configuration"
+      ]
+    },
+    {
+      "component_id": "PASSENGER_AIRBAG_ZONE",
+      "role": "configuration and restraint exclusion",
+      "catalogue_part_id": null,
+      "porsche_part_number": null,
+      "geometry_file": null,
+      "transform": null,
+      "status": "missing_data",
+      "presence": "must_be_absent_for_target_scenario",
+      "required_capture": [
+        "Redacted vehicle option label",
+        "Passenger-side reverse inspection confirming no deployment flap or module"
+      ]
+    }
+  ],
+  "isolated_concept": {
+    "component_id": "DASHBOARD_TRIM",
+    "status": "estimated_visual_concept_only",
+    "generator": "parts/picogk-catalog/body/DashboardTrim.cs",
+    "builder": "parts/993-int-dashboard-trim-0001/source/build_picogk_concept.py",
+    "parameter_spec": "parts/993-int-dashboard-trim-0001/source/picogk.json",
+    "generated_mesh": null,
+    "visualization_mesh": "twins/993-dashboard-f0/dashboard-trim-f0-visual.stl",
+    "visualization_mesh_status": "isolated_estimated_concept_not_positioned",
+    "local_output_example": "work/dashboard-trim-picogk-f0-20261106/993-INT-DASHBOARD-TRIM-0001.stl",
+    "assembly_geometry_file": null,
+    "transform": null,
+    "note": "Repository-authored PicoGK trim concept. Its dimensions, vent openings, instrument opening, and ribs are hypotheses; it is not positioned in this assembly and supplies no inspection evidence."
+  },
+  "interfaces": [
+    {
+      "interface_id": "IF_BODY_PANEL_TO_SHELL",
+      "participants": [
+        "BODY_SHELL_DASH_PANEL"
+      ],
+      "kind": "structural_attachment",
+      "known": [],
+      "attachment_pattern": null,
+      "mating_faces": null,
+      "datums": null,
+      "axes": null,
+      "tolerances": null,
+      "required_evidence": [
+        "Exact host body panel and adjacent shell identity",
+        "Mount/weld pattern and measured vehicle datums",
+        "Applied loads and verified structural load path"
+      ],
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_TRIM_TO_BODY_PANEL",
+      "participants": [
+        "DASHBOARD_TRIM",
+        "BODY_SHELL_DASH_PANEL"
+      ],
+      "kind": "attachment",
+      "known": [
+        "Catalogue record describes clip nuts and self-tapping screws; count, positions, and substrate remain unknown."
+      ],
+      "attachment_pattern": null,
+      "mating_faces": null,
+      "datums": null,
+      "axes": null,
+      "tolerances": null,
+      "required_evidence": [
+        "Each clip/screw center and axis",
+        "Mating surfaces and installed shape",
+        "Fastener specification and retention loads"
+      ],
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_HOOD_TO_TRIM",
+      "participants": [
+        "INSTRUMENT_HOOD",
+        "DASHBOARD_TRIM"
+      ],
+      "kind": "attachment_and_clearance",
+      "known": [],
+      "attachment_pattern": null,
+      "mating_faces": null,
+      "datums": null,
+      "axes": null,
+      "tolerances": null,
+      "required_evidence": [
+        "Hood mounting pattern and datum",
+        "Trim aperture and mating face",
+        "Clearance and tolerance stack"
+      ],
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_CLUSTER_TO_HOOD_PANEL",
+      "participants": [
+        "INSTRUMENT_CLUSTER",
+        "INSTRUMENT_HOOD",
+        "BODY_SHELL_DASH_PANEL"
+      ],
+      "kind": "attachment_and_clearance",
+      "known": [],
+      "attachment_pattern": null,
+      "mating_faces": null,
+      "datums": null,
+      "axes": null,
+      "tolerances": null,
+      "required_evidence": [
+        "Actual cluster support path",
+        "Five gauge envelopes and axes",
+        "Harness, lens and service clearances"
+      ],
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_VENTS_TO_TRIM_DUCTS",
+      "participants": [
+        "CENTER_AIR_VENTS",
+        "SIDE_AIR_VENTS",
+        "DEFROST_OUTLETS_AND_DUCTS",
+        "DASHBOARD_TRIM"
+      ],
+      "kind": "attachment_and_airflow",
+      "known": [],
+      "attachment_pattern": null,
+      "mating_faces": null,
+      "datums": null,
+      "axes": null,
+      "tolerances": null,
+      "required_evidence": [
+        "Opening profiles and retainer locations",
+        "Duct mating faces and seals",
+        "Clearances, airflow and defrost requirements"
+      ],
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_GLOVEBOX_TO_HOST",
+      "participants": [
+        "GLOVEBOX",
+        "BODY_SHELL_DASH_PANEL",
+        "DASHBOARD_TRIM"
+      ],
+      "kind": "attachment_and_motion",
+      "known": [],
+      "attachment_pattern": null,
+      "mating_faces": null,
+      "datums": null,
+      "axes": null,
+      "tolerances": null,
+      "required_evidence": [
+        "Actual hinge/latch/support substrates",
+        "Sweep envelope and stops",
+        "Passenger-side restraint boundary"
+      ],
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_CONSOLE_TO_DASH",
+      "participants": [
+        "CENTER_CONSOLE",
+        "DASHBOARD_TRIM",
+        "BODY_SHELL_DASH_PANEL"
+      ],
+      "kind": "junction_and_clearance",
+      "known": [],
+      "attachment_pattern": null,
+      "mating_faces": null,
+      "datums": null,
+      "axes": null,
+      "tolerances": null,
+      "required_evidence": [
+        "Actual console support path",
+        "Junction faces and gap",
+        "Independent tunnel/body datums"
+      ],
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_CONTROLS_TO_PANEL",
+      "participants": [
+        "HVAC_RADIO_CONTROLS",
+        "CENTER_CONSOLE",
+        "DASHBOARD_TRIM"
+      ],
+      "kind": "attachment_and_service",
+      "known": [],
+      "attachment_pattern": null,
+      "mating_faces": null,
+      "datums": null,
+      "axes": null,
+      "tolerances": null,
+      "required_evidence": [
+        "Exact configuration and host panel",
+        "Opening profiles and retainers",
+        "Wiring, heat and service clearances"
+      ],
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_SWITCHES_TO_HOST",
+      "participants": [
+        "SWITCHES_AND_BLANKS",
+        "DASHBOARD_TRIM",
+        "CENTER_CONSOLE"
+      ],
+      "kind": "clip_and_clearance",
+      "known": [
+        "Existing switch twin lists insertion, face overlap, and clip-depth checks as missing data."
+      ],
+      "attachment_pattern": null,
+      "mating_faces": null,
+      "datums": null,
+      "axes": null,
+      "tolerances": null,
+      "required_evidence": [
+        "Resolve dashboard versus console host",
+        "Measured opening and blank dimensions",
+        "Clip reach, rear clearance, and tolerances"
+      ],
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_KNEE_STRIP_TO_ORIGINAL_MOUNTS",
+      "participants": [
+        "KNEE_PROTECTION_STRIP",
+        "DASHBOARD_TRIM",
+        "BODY_SHELL_DASH_PANEL"
+      ],
+      "kind": "occupant_protection_attachment",
+      "known": [
+        "Catalogue record requires retaining the original strip and its attachment locations."
+      ],
+      "attachment_pattern": null,
+      "mating_faces": null,
+      "datums": null,
+      "axes": null,
+      "tolerances": null,
+      "required_evidence": [
+        "Confirm actual load-bearing substrate",
+        "Original anchor positions and fasteners",
+        "Occupant-impact load path and professional review"
+      ],
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_COLUMN_CLEARANCE",
+      "participants": [
+        "STEERING_COLUMN",
+        "DASHBOARD_TRIM",
+        "INSTRUMENT_CLUSTER"
+      ],
+      "kind": "safety_clearance",
+      "known": [],
+      "attachment_pattern": null,
+      "mating_faces": null,
+      "datums": null,
+      "axes": null,
+      "tolerances": null,
+      "required_evidence": [
+        "Column/shroud sweep and collapse envelope",
+        "Trim and instrument clearances",
+        "Steering-system engineering review"
+      ],
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_AIRBAG_CONFIGURATION",
+      "participants": [
+        "DRIVER_AIRBAG_ZONE",
+        "PASSENGER_AIRBAG_ZONE",
+        "DASHBOARD_TRIM",
+        "GLOVEBOX"
+      ],
+      "kind": "restraint_exclusion",
+      "known": [
+        "M564 is the target option code, not a verified vehicle configuration."
+      ],
+      "attachment_pattern": null,
+      "mating_faces": null,
+      "datums": null,
+      "axes": null,
+      "tolerances": null,
+      "required_evidence": [
+        "Redacted option label",
+        "Physical driver/passenger restraint inspection",
+        "Separate assessment for any airbag-equipped variant"
+      ],
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_PILLARS_AND_WINDSHIELD",
+      "participants": [
+        "DASHBOARD_TRIM",
+        "BODY_SHELL_DASH_PANEL"
+      ],
+      "kind": "body_clearance",
+      "known": [],
+      "attachment_pattern": null,
+      "mating_faces": null,
+      "datums": null,
+      "axes": null,
+      "tolerances": null,
+      "required_evidence": [
+        "A-pillar and windshield-base datums",
+        "Fitted shape and gap measurements",
+        "Thermal movement and reflection assessment"
+      ],
+      "status": "missing_data"
+    }
+  ],
+  "load_paths_to_establish": [
+    {
+      "load_path_id": "LP_TRIM_SELF_WEIGHT_AND_VIBRATION",
+      "participants": [
+        "DASHBOARD_TRIM",
+        "BODY_SHELL_DASH_PANEL"
+      ],
+      "chain": null,
+      "status": "missing_data",
+      "required_evidence": [
+        "Measured clip/screw pattern and substrate",
+        "Material and fastener properties",
+        "Vehicle vibration/temperature use case and acceptance criteria"
+      ]
+    },
+    {
+      "load_path_id": "LP_KNEE_OCCUPANT_IMPACT",
+      "participants": [
+        "KNEE_PROTECTION_STRIP",
+        "DASHBOARD_TRIM",
+        "BODY_SHELL_DASH_PANEL"
+      ],
+      "chain": null,
+      "status": "missing_data",
+      "required_evidence": [
+        "Actual strip-to-body load-bearing route",
+        "Original anchors and surrounding structure",
+        "Approved professional engineering validation plan"
+      ]
+    },
+    {
+      "load_path_id": "LP_INSTRUMENT_VENT_GLOVEBOX_CONSOLE_RETENTION",
+      "participants": [
+        "INSTRUMENT_CLUSTER",
+        "INSTRUMENT_HOOD",
+        "CENTER_AIR_VENTS",
+        "SIDE_AIR_VENTS",
+        "GLOVEBOX",
+        "CENTER_CONSOLE",
+        "BODY_SHELL_DASH_PANEL"
+      ],
+      "chain": null,
+      "status": "missing_data",
+      "required_evidence": [
+        "Independent attachment contracts for each component",
+        "Mass and motion/retention cases",
+        "Measured host substrates and fastener details"
+      ]
+    },
+    {
+      "load_path_id": "LP_STEERING_AND_RESTRAINT",
+      "participants": [
+        "STEERING_COLUMN",
+        "DRIVER_AIRBAG_ZONE",
+        "PASSENGER_AIRBAG_ZONE",
+        "BODY_SHELL_DASH_PANEL"
+      ],
+      "chain": null,
+      "status": "missing_data",
+      "required_evidence": [
+        "Exact vehicle restraint configuration",
+        "Column/body attachment and collapse behavior",
+        "Professional engineering review before design changes"
+      ]
+    }
+  ],
+  "promotion_gates": [
+    "Resolve the exact variant, handedness, option label, airbag configuration, and trim part-number conflict.",
+    "Capture fitted and removed dashboard surfaces, rear side, datums, attachments, axes, mating faces, tolerances, and independent inspection evidence.",
+    "Publish an interface contract and compare each proposed PicoGK component against it; model output cannot inspect itself.",
+    "Obtain a professional engineering review and approved validation plan for occupant-impact, steering, and restraint interfaces before any functional fitting or release."
+  ]
+}
