@@ -1,0 +1,740 @@
+{
+  "schema": "935-fixed-two-class-pairing-continuation-study-1",
+  "requirement": "Continue acquired-scan reconstruction with genuinely unattempted source pairs, immutable trial history and independent checks; preserve the full editable/physics/metal-fabrication objective",
+  "parent_reference_commit": "a6aaa5057e4b1b00d780b9e9807db40eece90f1c",
+  "original_scan_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "original_scan_bytes": 104598077,
+  "series_initial_parent_sha256": "98df7fe95355d194eb10a7dbdf4174cc6d0e054fc892678c795cc79f17ebcc13",
+  "completed_construction_rounds": 2,
+  "maximum_construction_rounds": 4,
+  "initial_attempted_raw_pair_keys": 1705,
+  "final_attempted_raw_pair_keys": 1714,
+  "new_registered_pairs": 9,
+  "retained_new_pairs": 5,
+  "added_triangles": 10,
+  "all_retained_new_pairs_are_same_facing_class": true,
+  "rounds": [
+    {
+      "round": 1,
+      "census": {
+        "source_sha256": "689397711882b1a01f057a0d44b703fcf71459c06f7b7e5c6ac040d45a554803",
+        "job_sha256": "7a141f281916f74952482c338360ecc839a8794f2f3c69c8d8570059db66d8e5",
+        "mesh_sha256": "98df7fe95355d194eb10a7dbdf4174cc6d0e054fc892678c795cc79f17ebcc13",
+        "census_sha256": "137b9d729c4a7486ea7779fc0dd7cf4dfcb94012acf8a83d2a2310477587bd60",
+        "complete_walks": 1446,
+        "complete_boundary_edges": 95876,
+        "source_scope_walks": 1412,
+        "source_scope_edges": 90779,
+        "prior_attempted_pairs": 1705,
+        "global_search_envelope_pairs": 251337,
+        "same_walk_search_envelope_pairs": 242656,
+        "exact_same_walk_radius_pairs": 242656,
+        "excluded_prior_attempted_pairs": 214,
+        "excluded_unchanged_small_whole_cap_pairs": 553,
+        "evaluated_untried_pairs": 241889,
+        "same_facing_stage_counts": {
+          "shared_vertex_or_coordinate": 88397,
+          "cross_endpoint_support_distance": 75670,
+          "directed_tangent_alignment": 71670,
+          "acquired_owner_normal_alignment": 3614,
+          "no_forward_nondegenerate_quad_diagonal": 2525,
+          "eligible": 13
+        },
+        "opposed_material_stage_counts": {
+          "shared_vertex_or_coordinate": 88397,
+          "cross_endpoint_support_distance": 75670,
+          "directed_tangent_alignment": 71670,
+          "acquired_owner_normals_not_opposed": 3945,
+          "gap_is_not_towards_material_side_of_both_skins": 2201,
+          "edge_outward_binormals_incompatible": 5,
+          "no_forward_nonzero_wall_diagonal": 0,
+          "eligible": 1
+        },
+        "eligible_pairs": 14,
+        "eligible_class_counts": {
+          "0": 13,
+          "1": 1
+        },
+        "selected_pairs": 8,
+        "selected_class_counts": {
+          "0": 7,
+          "1": 1
+        },
+        "selected_walks": 8,
+        "ambiguous_edges": 0,
+        "selected_width_nominal_mm": {
+          "minimum": 0.2922540656706096,
+          "maximum": 0.49862718306466675
+        },
+        "original_class_thresholds_unchanged": true,
+        "combined_graph_selection_is_a_new_versioned_policy": true,
+        "raw_normals_from_actual_acquired_owners_only": true,
+        "geometry_modified": false,
+        "constructor_admission_pending_independent_check": true,
+        "physical_acceptance": false,
+        "manufacturing_authorized": false,
+        "seconds": 3.1079550000140443
+      },
+      "independent_census": {
+        "source_sha256": "0da2c491b7514638779a41af730445f97d21a1f9347aa31a9243d473f956d920",
+        "job_sha256": "7a141f281916f74952482c338360ecc839a8794f2f3c69c8d8570059db66d8e5",
+        "mesh_sha256": "98df7fe95355d194eb10a7dbdf4174cc6d0e054fc892678c795cc79f17ebcc13",
+        "census_sha256": "137b9d729c4a7486ea7779fc0dd7cf4dfcb94012acf8a83d2a2310477587bd60",
+        "initial_raw_pair_history": 1705,
+        "continuation_history_pairs": 0,
+        "all_attempted_raw_pair_identities": 1705,
+        "all_historical_raw_facets_and_directed_corners_verified": true,
+        "source_scope_walks": 1412,
+        "source_scope_edges": 90779,
+        "exhaustive_same_walk_radius_pairs": 242656,
+        "prior_attempts_excluded": 214,
+        "unchanged_small_cap_pairs_excluded": 553,
+        "same_scalar_stage_counts": {
+          "shared_vertex_or_coordinate": 88397,
+          "directed_tangent_alignment": 71670,
+          "cross_endpoint_support_distance": 75670,
+          "no_forward_nondegenerate_quad_diagonal": 2525,
+          "acquired_owner_normal_alignment": 3614,
+          "eligible": 13
+        },
+        "opposed_scalar_stage_counts": {
+          "shared_vertex_or_coordinate": 88397,
+          "directed_tangent_alignment": 71670,
+          "cross_endpoint_support_distance": 75670,
+          "acquired_owner_normals_not_opposed": 3945,
+          "gap_is_not_towards_material_side_of_both_skins": 2201,
+          "eligible": 1,
+          "edge_outward_binormals_incompatible": 5
+        },
+        "eligible_pairs": 14,
+        "selected_pairs": 8,
+        "selected_class_counts": {
+          "0": 7,
+          "1": 1
+        },
+        "same_class_controls_passed": 10,
+        "opposed_class_controls_passed": 8,
+        "raw_identity_controls_passed": 5,
+        "combined_selection_controls_passed": 4,
+        "complete_selected_incident_halos": 8,
+        "halo_sha256": "d658444fc7fb7388bfdaad53f3436c3b8f9357db2a410e92f22cba159e968acc",
+        "producer_imported": false,
+        "spatial_tree_used": false,
+        "census_independently_verified": true,
+        "geometry_modified": false,
+        "construction_admission_is_exploratory_only": true,
+        "physical_acceptance": false,
+        "manufacturing_authorized": false,
+        "seconds": 10.14287337497808
+      },
+      "registry": {
+        "source_sha256": "639f69ddfbe8253e352dc89a26f193fb44eda893eddbbe7164f5ae07ae8fe669",
+        "job_sha256": "3a8041016d74595f5f0615704445749bf3274b4571250b1e5c84ebc51662220e",
+        "registry_sha256": "6da4e3e7be7cefa16b6a911901aee814c94804e7ddefaca88503a2f64c5c9fb3",
+        "next_history_sha256": "c69a4c331aaa6971f6f753347c0e3cf00202ab4f8d86878e863d954bff3a22fc",
+        "census_sha256": "137b9d729c4a7486ea7779fc0dd7cf4dfcb94012acf8a83d2a2310477587bd60",
+        "census_proof_sha256": "13fb8dd493e038d101fc833dc8d0f4423f181b7b8c09292624719ce88dcad011",
+        "previous_registry_pairs": 0,
+        "appended_selected_pairs": 8,
+        "total_registry_pairs": 8,
+        "total_attempted_raw_pairs": 1713,
+        "every_prior_registry_field_exact": true,
+        "global_ids_do_not_restart": true,
+        "registry_independently_verified": true,
+        "producer_imported": false,
+        "new_strip_kind": 9,
+        "new_boundary_origin": 9,
+        "legacy_patch_label_base": 80000000,
+        "constructor_admission_is_exploratory_only": true,
+        "geometry_modified": false,
+        "physical_acceptance": false,
+        "manufacturing_authorized": false
+      },
+      "native_preflight": {
+        "source_sha256": "cf5de7f158978a0de555963f9e397228318a2fd3a71d9f2a57e69afd260ca04d",
+        "job_sha256": "4d65635d1e1406f840d060cf6dbea52d4d53d545fdd6c71c925c40f82587727d",
+        "constructor_source_sha256": "c9d6970c85951095cb47621911797b99d2bade3719f63b7a494c6d394a1ed9dd",
+        "control_helper_sha256": "c34d6c5dd69d5ce9cce429dd828d8504afc0df787ae053e991ce74b7820ddfe6",
+        "native_mask_and_incidence_controls_passed": 9,
+        "full_current_mesh_or_manufacturing_admission_granted": false,
+        "physical_acceptance": false,
+        "manufacturing_authorized": false
+      },
+      "construction": {
+        "source_sha256": "c9d6970c85951095cb47621911797b99d2bade3719f63b7a494c6d394a1ed9dd",
+        "job_sha256": "4d65635d1e1406f840d060cf6dbea52d4d53d545fdd6c71c925c40f82587727d",
+        "mesh_sha256": "f5b5ae5539f2aad64067edbfabdf0d9f4d67ae2d91377fe68b96943c4006d728",
+        "obj_sha256": "b46e87281198c11022d4ffa78cb63b8b50e5e88afa8cab62e033e534d97e4fdf",
+        "parent_mesh_sha256": "98df7fe95355d194eb10a7dbdf4174cc6d0e054fc892678c795cc79f17ebcc13",
+        "proposed_pairs": 8,
+        "diagonal_trials": 16,
+        "local_passing_pairs": 5,
+        "accepted_pairs": 5,
+        "added_triangles": 10,
+        "local_rejection_counts": {
+          "local_native_intersection_or_zero_area": 2,
+          "parent_edge_incidence_winding_or_origin": 4
+        },
+        "source_faces_deleted": 0,
+        "point_coordinates_changed": 0,
+        "whole_candidate_checks_pending": true,
+        "complete_halos_sha256": "d658444fc7fb7388bfdaad53f3436c3b8f9357db2a410e92f22cba159e968acc",
+        "registry_sha256": "6da4e3e7be7cefa16b6a911901aee814c94804e7ddefaca88503a2f64c5c9fb3",
+        "current_global_pair_id_start": 0,
+        "current_selected_pair_count": 8,
+        "assumption": "unverified outward acquired windings; exploratory wall construction only",
+        "physical_classifications_accepted": 0,
+        "manufacturing_authorized": false,
+        "seconds": 21.773533625062555,
+        "edge_budget_refused_pairs": 0
+      },
+      "outcome_counts": {
+        "accepted": 5,
+        "local_refused": 3,
+        "whole_refused": 0
+      }
+    },
+    {
+      "round": 2,
+      "census": {
+        "source_sha256": "689397711882b1a01f057a0d44b703fcf71459c06f7b7e5c6ac040d45a554803",
+        "job_sha256": "59102da4970affac12e0ce44623399748ada9af45e3cef448da8a9891074e2d8",
+        "mesh_sha256": "f5b5ae5539f2aad64067edbfabdf0d9f4d67ae2d91377fe68b96943c4006d728",
+        "census_sha256": "62137a2b69e4db348773de3b15443f9c1394567b106ed7c0afd36e3bfcc794e2",
+        "complete_walks": 1451,
+        "complete_boundary_edges": 95876,
+        "source_scope_walks": 1417,
+        "source_scope_edges": 90769,
+        "prior_attempted_pairs": 1713,
+        "global_search_envelope_pairs": 251241,
+        "same_walk_search_envelope_pairs": 242522,
+        "exact_same_walk_radius_pairs": 242522,
+        "excluded_prior_attempted_pairs": 214,
+        "excluded_unchanged_small_whole_cap_pairs": 554,
+        "evaluated_untried_pairs": 241754,
+        "same_facing_stage_counts": {
+          "shared_vertex_or_coordinate": 88380,
+          "cross_endpoint_support_distance": 75638,
+          "directed_tangent_alignment": 71606,
+          "acquired_owner_normal_alignment": 3608,
+          "no_forward_nondegenerate_quad_diagonal": 2521,
+          "eligible": 1
+        },
+        "opposed_material_stage_counts": {
+          "shared_vertex_or_coordinate": 88380,
+          "cross_endpoint_support_distance": 75638,
+          "directed_tangent_alignment": 71606,
+          "acquired_owner_normals_not_opposed": 3924,
+          "gap_is_not_towards_material_side_of_both_skins": 2201,
+          "edge_outward_binormals_incompatible": 5,
+          "no_forward_nonzero_wall_diagonal": 0,
+          "eligible": 0
+        },
+        "eligible_pairs": 1,
+        "eligible_class_counts": {
+          "0": 1
+        },
+        "selected_pairs": 1,
+        "selected_class_counts": {
+          "0": 1
+        },
+        "selected_walks": 1,
+        "ambiguous_edges": 0,
+        "selected_width_nominal_mm": {
+          "minimum": 0.45209749824346807,
+          "maximum": 0.45209749824346807
+        },
+        "original_class_thresholds_unchanged": true,
+        "combined_graph_selection_is_a_new_versioned_policy": true,
+        "raw_normals_from_actual_acquired_owners_only": true,
+        "geometry_modified": false,
+        "constructor_admission_pending_independent_check": true,
+        "physical_acceptance": false,
+        "manufacturing_authorized": false,
+        "seconds": 3.2239950000075623
+      },
+      "independent_census": {
+        "source_sha256": "0da2c491b7514638779a41af730445f97d21a1f9347aa31a9243d473f956d920",
+        "job_sha256": "59102da4970affac12e0ce44623399748ada9af45e3cef448da8a9891074e2d8",
+        "mesh_sha256": "f5b5ae5539f2aad64067edbfabdf0d9f4d67ae2d91377fe68b96943c4006d728",
+        "census_sha256": "62137a2b69e4db348773de3b15443f9c1394567b106ed7c0afd36e3bfcc794e2",
+        "initial_raw_pair_history": 1705,
+        "continuation_history_pairs": 8,
+        "all_attempted_raw_pair_identities": 1713,
+        "all_historical_raw_facets_and_directed_corners_verified": true,
+        "source_scope_walks": 1417,
+        "source_scope_edges": 90769,
+        "exhaustive_same_walk_radius_pairs": 242522,
+        "prior_attempts_excluded": 214,
+        "unchanged_small_cap_pairs_excluded": 554,
+        "same_scalar_stage_counts": {
+          "shared_vertex_or_coordinate": 88380,
+          "directed_tangent_alignment": 71606,
+          "cross_endpoint_support_distance": 75638,
+          "no_forward_nondegenerate_quad_diagonal": 2521,
+          "acquired_owner_normal_alignment": 3608,
+          "eligible": 1
+        },
+        "opposed_scalar_stage_counts": {
+          "shared_vertex_or_coordinate": 88380,
+          "directed_tangent_alignment": 71606,
+          "cross_endpoint_support_distance": 75638,
+          "acquired_owner_normals_not_opposed": 3924,
+          "gap_is_not_towards_material_side_of_both_skins": 2201,
+          "edge_outward_binormals_incompatible": 5
+        },
+        "eligible_pairs": 1,
+        "selected_pairs": 1,
+        "selected_class_counts": {
+          "0": 1
+        },
+        "same_class_controls_passed": 10,
+        "opposed_class_controls_passed": 8,
+        "raw_identity_controls_passed": 5,
+        "combined_selection_controls_passed": 4,
+        "complete_selected_incident_halos": 1,
+        "halo_sha256": "2676afb1179d1aae0a5e98a15910fd0bc23e3b3b0a6a52ab0ef13092e8bd3167",
+        "producer_imported": false,
+        "spatial_tree_used": false,
+        "census_independently_verified": true,
+        "geometry_modified": false,
+        "construction_admission_is_exploratory_only": true,
+        "physical_acceptance": false,
+        "manufacturing_authorized": false,
+        "seconds": 10.277289999998175
+      },
+      "registry": {
+        "source_sha256": "639f69ddfbe8253e352dc89a26f193fb44eda893eddbbe7164f5ae07ae8fe669",
+        "job_sha256": "3b2abb52b2906f1bee3fae429404f83e545f1b13dbe30dae0524f661c887a69e",
+        "registry_sha256": "3c8d7bb6e920c811f49b5fda1666e20ab28316f9a9d4f69f0a670371453916ed",
+        "next_history_sha256": "1ec909947199f0cb5d853fdbc262b98d51a05e53fb9e43f0df525807de109793",
+        "census_sha256": "62137a2b69e4db348773de3b15443f9c1394567b106ed7c0afd36e3bfcc794e2",
+        "census_proof_sha256": "57d8eab96c248a93a1c3c89eedc12755b200d87024fe143a550c8b5e3da7fccf",
+        "previous_registry_pairs": 8,
+        "appended_selected_pairs": 1,
+        "total_registry_pairs": 9,
+        "total_attempted_raw_pairs": 1714,
+        "every_prior_registry_field_exact": true,
+        "global_ids_do_not_restart": true,
+        "registry_independently_verified": true,
+        "producer_imported": false,
+        "new_strip_kind": 9,
+        "new_boundary_origin": 9,
+        "legacy_patch_label_base": 80000000,
+        "constructor_admission_is_exploratory_only": true,
+        "geometry_modified": false,
+        "physical_acceptance": false,
+        "manufacturing_authorized": false
+      },
+      "native_preflight": {
+        "source_sha256": "cf5de7f158978a0de555963f9e397228318a2fd3a71d9f2a57e69afd260ca04d",
+        "job_sha256": "99cd1445023e84f2e77bfb900e70113b3949b6f92a3e1dc1ffc8269835f928e8",
+        "constructor_source_sha256": "c9d6970c85951095cb47621911797b99d2bade3719f63b7a494c6d394a1ed9dd",
+        "control_helper_sha256": "c34d6c5dd69d5ce9cce429dd828d8504afc0df787ae053e991ce74b7820ddfe6",
+        "native_mask_and_incidence_controls_passed": 9,
+        "full_current_mesh_or_manufacturing_admission_granted": false,
+        "physical_acceptance": false,
+        "manufacturing_authorized": false
+      },
+      "construction": {
+        "source_sha256": "c9d6970c85951095cb47621911797b99d2bade3719f63b7a494c6d394a1ed9dd",
+        "job_sha256": "99cd1445023e84f2e77bfb900e70113b3949b6f92a3e1dc1ffc8269835f928e8",
+        "mesh_sha256": "f5b5ae5539f2aad64067edbfabdf0d9f4d67ae2d91377fe68b96943c4006d728",
+        "obj_sha256": "b46e87281198c11022d4ffa78cb63b8b50e5e88afa8cab62e033e534d97e4fdf",
+        "parent_mesh_sha256": "f5b5ae5539f2aad64067edbfabdf0d9f4d67ae2d91377fe68b96943c4006d728",
+        "proposed_pairs": 1,
+        "diagonal_trials": 2,
+        "local_passing_pairs": 0,
+        "accepted_pairs": 0,
+        "added_triangles": 0,
+        "local_rejection_counts": {
+          "parent_edge_incidence_winding_or_origin": 2
+        },
+        "source_faces_deleted": 0,
+        "point_coordinates_changed": 0,
+        "whole_candidate_checks_pending": true,
+        "complete_halos_sha256": "2676afb1179d1aae0a5e98a15910fd0bc23e3b3b0a6a52ab0ef13092e8bd3167",
+        "registry_sha256": "3c8d7bb6e920c811f49b5fda1666e20ab28316f9a9d4f69f0a670371453916ed",
+        "current_global_pair_id_start": 8,
+        "current_selected_pair_count": 1,
+        "assumption": "unverified outward acquired windings; exploratory wall construction only",
+        "physical_classifications_accepted": 0,
+        "manufacturing_authorized": false,
+        "seconds": 21.838495458941907,
+        "edge_budget_refused_pairs": 0
+      },
+      "outcome_counts": {
+        "accepted": 0,
+        "local_refused": 1,
+        "whole_refused": 0
+      }
+    }
+  ],
+  "final_audit": {
+    "source_sha256": "576452d2d2a1eef778b138bc71a3d698cdad713fa301d4cd7c7bc820ff9454e3",
+    "job_sha256": "4d65635d1e1406f840d060cf6dbea52d4d53d545fdd6c71c925c40f82587727d",
+    "mesh_sha256": "f5b5ae5539f2aad64067edbfabdf0d9f4d67ae2d91377fe68b96943c4006d728",
+    "obj_sha256": "b46e87281198c11022d4ffa78cb63b8b50e5e88afa8cab62e033e534d97e4fdf",
+    "npz_and_obj_exact_readback": true,
+    "parent_vertices_faces_and_all_provenance_preserved": true,
+    "whole_mesh_intersection_pairs": 0,
+    "zero_area_faces": 0,
+    "edge_incidence_or_winding_conflicts": 0,
+    "duplicate_indexed_face_groups": 0,
+    "nonmanifold_used_vertices": 0,
+    "unused_vertices": 18,
+    "added_strip_pairs": 5,
+    "added_triangles": 10,
+    "current_global_pair_id_start": 0,
+    "current_selected_pair_count": 8,
+    "registry_sha256": "6da4e3e7be7cefa16b6a911901aee814c94804e7ddefaca88503a2f64c5c9fb3",
+    "closed_acquired_parent_boundary_edges": 10,
+    "remaining_boundary_edges": 95876,
+    "remaining_boundary_walks": 1451,
+    "remaining_edge_origin_counts": {
+      "7": 231,
+      "1": 93132,
+      "6": 1360,
+      "8": 286,
+      "5": 25,
+      "2": 100,
+      "4": 6,
+      "9": 10,
+      "3": 726
+    },
+    "connected_surface_components": 10,
+    "largest_component_facets": 2398400,
+    "single_facet_components": 5,
+    "added_probe_count": 1530,
+    "added_sampled_maximum_nominal_mm": 0.19550660813120918,
+    "support_refused_pair_count": 0,
+    "source_probe_count": 219476,
+    "omission_probe_count": 46184,
+    "previous_source_and_omission_distances_nonincreasing_pointwise": true,
+    "random_candidate_to_raw": {
+      "points": 100000,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 7.105427357601002e-15,
+      "p90_nominal_mm": 2.929642751054232e-14,
+      "p95_nominal_mm": 4.081757258616412e-14,
+      "p99_nominal_mm": 6.07087979554246e-14,
+      "sampled_maximum_nominal_mm": 0.2061853526353696,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.9996,
+        "0.1": 0.99983,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "rejected_continuation_pair_ids": [],
+    "surface_study_checks_passed": true,
+    "inferred_missing_surfaces_have_no_measured_ground_truth": true,
+    "sampled_distances_are_not_Hausdorff_or_physical_tolerances": true,
+    "closed_volume": false,
+    "full_bare_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "seconds": 26.3673577910522
+  },
+  "terminal_stop": {
+    "source_sha256": "ab261786da2a358881d986710cebdc950dffcf21b477dbb1a09757bcc4d46dbc",
+    "job_sha256": "acaacf11e83df29bdc163ae3d722978948601bb64a6a686e9abc3159ab2573a4",
+    "final_mesh_sha256": "f5b5ae5539f2aad64067edbfabdf0d9f4d67ae2d91377fe68b96943c4006d728",
+    "unchanged_terminal_npz_bytes": true,
+    "unchanged_terminal_obj_bytes": true,
+    "full_geometric_proof_inherited_by_exact_byte_identity": true,
+    "full_mesh_checks_not_reexecuted_on_an_identical_terminal_file": true,
+    "last_full_geometric_proof_sha256": "ff9391478656776963232d56417c14018c658a59f239812e32df1f944bb653b2",
+    "all_prior_registry_fields_remain_exact": true,
+    "attempted_raw_pairs": 1714,
+    "terminal_independently_verified_eligible_pairs": 1,
+    "eligible_pairs_not_in_latest_history": 0,
+    "fixed_two_class_graph_exhausted_for_unchanged_geometry": true,
+    "other_geometry_classes_not_proven_exhausted": true,
+    "stop_reason": "no_local_geometry_in_round2_and_no_remaining_unattempted_eligible_pair",
+    "no_refused_pair_retried": true,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "small_loop_guard_scope": "All complete loops with at most four edges are excluded from pair trials. This includes newly subdivided loops that require separate whole-cap admission; the legacy field name does not prove every excluded cycle has already undergone native construction.",
+  "provenance_namespace": {
+    "new_surface_kind": 9,
+    "new_cross_edge_origin": 9,
+    "legacy_patch_label_base": 80000000,
+    "single_global_pair_field": "source_continuation_pair_ids",
+    "birth_parent_mapping_field": "continuation_birth_parent_face_rows",
+    "birth_mapping_is_not_current_immediate_parent_mapping": true,
+    "registry_fields": [
+      "global_pair_ids",
+      "raw_pair_keys",
+      "geometry_classes",
+      "birth_rounds",
+      "birth_parent_mesh_sha256",
+      "birth_census_sha256",
+      "birth_census_proof_sha256",
+      "birth_local_pair_ids"
+    ],
+    "global_ids_never_restart": true,
+    "all_selected_pairs_recorded_before_trial_including_refusals": true,
+    "prior_registry_prefixes_immutable": true,
+    "per_round_outcomes_preserved_separately": true,
+    "new_full_facet_fields_added_once": 2,
+    "additional_full_facet_fields_added_in_later_rounds": 0
+  },
+  "fixed_limits": {
+    "midpoint_radius_nominal_mm": 0.5,
+    "crossed_endpoint_max_nominal_mm": 0.5,
+    "maximum_tangent_dot": -0.8,
+    "same_class_minimum_raw_owner_normal_dot": 0.8,
+    "same_class_minimum_forward_triangle_dot_owner": 0.8,
+    "opposed_class_maximum_owner_normal_dot": -0.8,
+    "opposed_class_maximum_material_side_gap_dot": -0.8,
+    "opposed_class_minimum_binormal_dot": 0.8,
+    "opposed_class_minimum_forward_triangle_dot_binormal": 0.8,
+    "score_tie_tolerance": 1e-12,
+    "arithmetic_search_guard_nominal_mm": 1e-12,
+    "sampled_new_surface_to_raw_max_nominal_mm": 0.25,
+    "triangle_sample_grid_order": 16,
+    "old_cohort_pointwise_guard": 1e-08
+  },
+  "class_policy": "Unchanged disjoint same-facing and opposed-material-side predicates share one new reciprocal unique minimum-gap graph. Classes remain explicit; no numerical threshold or source coordinate changes.",
+  "assumption": "Raw acquired owner windings are provisionally outward for the opposed material-side class only; physical orientation, material/void role and scan-damage interpretation remain unverified.",
+  "distance_cohorts": {
+    "source_distances": {
+      "count": 219476,
+      "maximum_nominal_mm": 49.77368564908966
+    },
+    "omitted_distances": {
+      "count": 46184,
+      "maximum_nominal_mm": 0.20428437664372018
+    },
+    "added_distances": {
+      "count": 1530,
+      "maximum_nominal_mm": 0.19550660813120918
+    }
+  },
+  "kali_replay": {
+    "source_sha256": "3ae75b1a8a47c65405aae2111c89343eeec3aa0d3f7a8c32ac3b0be65648fae1",
+    "parent_sha256": "98df7fe95355d194eb10a7dbdf4174cc6d0e054fc892678c795cc79f17ebcc13",
+    "candidate_sha256": "f5b5ae5539f2aad64067edbfabdf0d9f4d67ae2d91377fe68b96943c4006d728",
+    "host": "kali1",
+    "system": "Linux",
+    "python": "3.14.7",
+    "numpy": "2.3.5",
+    "vertices": 1248924,
+    "triangles": 2405718,
+    "parent_prefix_faces": 2405708,
+    "added_triangles": 10,
+    "source_prefix_and_provenance_exact": true,
+    "whole_edge_incidence_and_winding_passed": true,
+    "no_duplicate_or_zero_area_faces": true,
+    "open_boundary_edges": 95876,
+    "unused_vertices": 18,
+    "affinity_cpus": 2,
+    "address_space_limit_bytes": 4294967296,
+    "transferred_bytes": 141508221,
+    "persistent_payload_files_written": 0,
+    "intersection_and_vertex_fan_replay_performed": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "maximum_RSS_KiB": 1817088,
+    "seconds": 7.372447365894914
+  },
+  "bounded_execution": {
+    "scientific_groups_including_kali": 10,
+    "completed_groups": 10,
+    "sampled_child_RSS_GiB_limit": 4,
+    "peak_sampled_whole_audit_RSS_KiB": 3858432,
+    "group_wall_seconds_max": 600,
+    "local_disk_floor_GiB": 4,
+    "series_construction_wall_budget_seconds": 1800,
+    "series_wall_seconds_including_final_replay_observed": 1102.1594257354736,
+    "series_payload_budget_bytes": 4294967296,
+    "all_owned_scientific_and_ssh_children_reaped": true,
+    "extra_controller_early_invocation_errors": 1,
+    "early_invocation_loaded_no_scientific_plan_or_data_and_spawned_no_child": true
+  },
+  "early_orchestration_error": {
+    "reason": "An extra manual global-controller invocation followed the expected zero-local-geometry stop. Its absent plan caused an immediate FileNotFoundError before output directory or child creation.",
+    "receipt_preserved": true,
+    "scientific_global_job_started": false,
+    "data_modified": false,
+    "geometry_retried": false,
+    "correct_disposition": "Exact terminal bytes inherit the last full proof; verified history-set subtraction shows no eligible unattempted pair remains.",
+    "native_or_physics_failure": false
+  },
+  "private_capsule": {
+    "manifest_sha256": "e489a229629471f4cb6b95978c602262bb0156a90151eb90f26b8c953c0dbee0",
+    "payload_files": 105,
+    "payload_bytes": 413195737,
+    "all_payloads_frozen_and_rehashed": true,
+    "raw_and_derived_geometry_not_committed": true
+  },
+  "executed_sources": [
+    {
+      "name": "build_continuation_strips.py",
+      "sha256": "c9d6970c85951095cb47621911797b99d2bade3719f63b7a494c6d394a1ed9dd",
+      "execution_role": "scientific-execution"
+    },
+    {
+      "name": "census_continuation_pairs.py",
+      "sha256": "689397711882b1a01f057a0d44b703fcf71459c06f7b7e5c6ac040d45a554803",
+      "execution_role": "scientific-execution"
+    },
+    {
+      "name": "filter_continuation_strips.py",
+      "sha256": "a717fab6efb374f5fdeb575232d903f37b22bab5215412c67d52ac3393db1ede",
+      "execution_role": "synthetic-filter-tests-only"
+    },
+    {
+      "name": "inspect_continuation_strips.py",
+      "sha256": "576452d2d2a1eef778b138bc71a3d698cdad713fa301d4cd7c7bc820ff9454e3",
+      "execution_role": "scientific-execution"
+    },
+    {
+      "name": "record_selected_pairs.py",
+      "sha256": "531b88fc6c3c78ccd762359e252e5e494d54a9b74c9ecf8be517415ed79685f5",
+      "execution_role": "scientific-execution"
+    },
+    {
+      "name": "verify_continuation_pairs.py",
+      "sha256": "0da2c491b7514638779a41af730445f97d21a1f9347aa31a9243d473f956d920",
+      "execution_role": "scientific-execution"
+    },
+    {
+      "name": "verify_pair_registry.py",
+      "sha256": "639f69ddfbe8253e352dc89a26f193fb44eda893eddbbe7164f5ae07ae8fe669",
+      "execution_role": "scientific-execution"
+    },
+    {
+      "name": "verify_strip_preflight.py",
+      "sha256": "cf5de7f158978a0de555963f9e397228318a2fd3a71d9f2a57e69afd260ca04d",
+      "execution_role": "scientific-execution"
+    },
+    {
+      "name": "verify_terminal_stop.py",
+      "sha256": "ab261786da2a358881d986710cebdc950dffcf21b477dbb1a09757bcc4d46dbc",
+      "execution_role": "scientific-execution"
+    }
+  ],
+  "reused_helpers": [
+    {
+      "path": "docs/research/935-untried-acquired-pairs-20261106/source/census_untried_pairs.py",
+      "sha256": "fdd9406ba9a750243f2dbe37c18e2c5071b3b7783dd8dbc32ddbb49c4e4e876e"
+    },
+    {
+      "path": "docs/research/935-untried-acquired-pairs-20261106/source/verify_untried_pairs.py",
+      "sha256": "21457c97051d711768b697951c8b2c1a82ed8beeccf411de58e0f0e9ad3bcf1f"
+    },
+    {
+      "path": "docs/research/935-frontier-pairing-20261106/source/census_frontier_pairs.py",
+      "sha256": "4b3775118329566716838328357d81da7deed3b9c253c0294a52a1a83af41f92"
+    },
+    {
+      "path": "docs/research/935-frontier-pairing-20261106/source/verify_frontier_pairs_v2.py",
+      "sha256": "a4bffe7e3b5c2180cf7c804df6f60163b3d36b4c7c611d2b902e3972bbe32718"
+    },
+    {
+      "path": "docs/research/935-untried-acquired-pairs-20261106/source/audit_opposed_skins.py",
+      "sha256": "905ce71bb44c9f08f53560ced97be5fbf3b175bebae770b143d5b127a7edda6f"
+    },
+    {
+      "path": "docs/research/935-untried-acquired-pairs-20261106/source/verify_opposed_skins_v2.py",
+      "sha256": "76888183e2b4ab5ccbb99cc771288b00524ce61bffeddd48582b58c7ebb79f98"
+    },
+    {
+      "path": "docs/research/935-opposed-wall-trials-20261106/source/verify_wall_inputs.py",
+      "sha256": "c34d6c5dd69d5ce9cce429dd828d8504afc0df787ae053e991ce74b7820ddfe6"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/inspect_intersections.py",
+      "sha256": "3e0b239ca4993388f32563092c78d97065cc1fb0753c68a2def3d631feda7976"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/inspect_vertex_fans.py",
+      "sha256": "1b9792699e0d3f42cae84184562e64d7bb1a6786b054e89d4e988cc0481883f5"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/measure_patch_deviations.py",
+      "sha256": "8e4f401c4c76ca4cafa28979a0b2bdaf80c77049acbac2dc2a610b490720e570"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/check_cgal_patches.py",
+      "sha256": "2b5835ea1e4d53e5dfb4b8c499b0b02e858f3d495667c038b9203c2f1fb2d945"
+    },
+    {
+      "path": "docs/research/935-retained-boundaries-20261106/source/audit_retained_boundaries.py",
+      "sha256": "5b1fcf5815ceca941f6af7a07683bc17b4f4b3e7f43fb6da316d598d91848ee0"
+    },
+    {
+      "path": "docs/research/935-source-cut-admission-20261106/source/run_local_delivery.py",
+      "sha256": "cef4c7662ae9808c1ec8dc6ad813835eab01e0358a4d8f3e327c70a668390dd0"
+    },
+    {
+      "path": "docs/research/935-opposed-wall-trials-20261106/source/run_streamed_replay.py",
+      "sha256": "e12edcd4d9524a90f0a251b9f701481fa6bb2e6bb84fd91e26bbad2480d949a1"
+    },
+    {
+      "path": "docs/research/935-frontier-pairing-20261106/source/verify_streamed_source.py",
+      "sha256": "3ae75b1a8a47c65405aae2111c89343eeec3aa0d3f7a8c32ac3b0be65648fae1"
+    }
+  ],
+  "derivative_source_ancestry": [
+    {
+      "child": "build_continuation_strips.py",
+      "parent_path": "docs/research/935-opposed-wall-trials-20261106/source/build_opposed_walls_v2.py",
+      "parent_sha256": "aa60e2fad65986df3723116a4990fe923764bd15c2d2df7a2525c27a3a580e28",
+      "frozen_parent_unchanged": true
+    },
+    {
+      "child": "inspect_continuation_strips.py",
+      "parent_path": "docs/research/935-opposed-wall-trials-20261106/source/inspect_opposed_walls.py",
+      "parent_sha256": "14467f89adc6bb169b8cc1a5feaae5c472a18a57389396f9e2891d72725b7192",
+      "frozen_parent_unchanged": true
+    },
+    {
+      "child": "filter_continuation_strips.py",
+      "parent_path": "docs/research/935-opposed-wall-trials-20261106/source/filter_opposed_walls.py",
+      "parent_sha256": "dfde5927e1eda88fda0366bfec12374cc43cdfb449dbf1dc653969d51e1a64cc",
+      "frozen_parent_unchanged": true
+    }
+  ],
+  "runtime": {
+    "python": "3.12.13",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "OCP": "7.9.3.1",
+    "libigl": "2.6.3",
+    "isolated_runtime_manifest_sha256": "d7879b23d83988901358bee60ecfbd3e3372c975051aa4ac1ef328614b4648f7",
+    "libigl_addon_manifest_sha256": "3cf3f669266b1981fd1c6042e1923e878719f8ab2ee35398270680a6f45df02a",
+    "packages_changed": false
+  },
+  "software_chain": {
+    "Qwen_CADAM": "Local auxiliary proposal path remains prescribed; no new inference this increment.",
+    "PicoGK_STEP": "Editable geometry authority remains; source-facet repair is upstream of the complete faithful solid.",
+    "Gmsh_OpenFOAM_CalculiX": "No newly accepted head domain/physics; inherited hypothetical Gmsh domain still has 996 failing minSICN cells.",
+    "Adamantine": "No qualified metal machine/material/powder/support/toolpath fabrication file."
+  },
+  "new_vast_resources": 0,
+  "new_vast_spend_usd": 0,
+  "scan_on_vast_authorized": true,
+  "original_budget_usd": {
+    "total": 35,
+    "compute": 30,
+    "reserve": 5
+  },
+  "scan_sent_to_external_AI": false,
+  "supplier_outreach_performed": false,
+  "gates_G0_G5": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "goal_complete": false,
+  "physical_acceptance": false,
+  "manufacturing_authorized": false
+}
