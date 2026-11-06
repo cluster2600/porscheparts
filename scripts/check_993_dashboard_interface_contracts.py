@@ -14,8 +14,12 @@ before any functional CAD. This script refuses a contract that:
 - leaves a safety-relevant interface without a professional engineering
   reviewer, or lets a model or one person hold two review roles.
 
-It also detects contradictions between admitted readings. Passing it is a
-documentary check: no fit, clearance or safety verdict follows from it.
+This F0 revision freezes physical evidence admission, frame geometry, datum
+values, attachment geometry and tolerances at missing data. A later #568
+admission implementation must explicitly replace that freeze after independent
+review; listing an existing repository file never admits a reading. It also
+detects contradictions between readings when invoked separately. Passing it
+is a documentary check: no fit, clearance or safety verdict follows from it.
 """
 
 from __future__ import annotations
@@ -43,6 +47,15 @@ REQUIRED_SAFETY_INTERFACES = {
     "IF_COLUMN_CLEARANCE",
     "IF_AIRBAG_CONFIGURATION",
 }
+M564_STATUS_EXCEPTIONS = {
+    "IF_BODY_PANEL_TO_SHELL": "group_502_identity_only",
+    "IF_COLUMN_CLEARANCE": "plate_heading",
+    "IF_AIRBAG_CONFIGURATION": "option_code_definition",
+}
+M564_COLUMN_ITEMS = {
+    ("964 347 013 02", "403-07", 266, "1", "/LL"),
+    ("964 347 051 00", "403-07", 266, "2", "/LL"),
+}
 
 
 def _measurands(contract: dict):
@@ -57,8 +70,27 @@ def _measurands(contract: dict):
 
 def check_contract(contract: dict, assembly: dict, identity: dict) -> list[str]:
     errors: list[str] = []
+    if contract.get("assembly") != str(ASSEMBLY.relative_to(ROOT)):
+        errors.append("assembly: contract must cite the checked F0 assembly")
+    if contract.get("identity_record") != str(IDENTITY.relative_to(ROOT)):
+        errors.append("identity_record: contract must cite the checked PET matrix")
+    if contract.get("status") != "proposed_awaiting_independent_review":
+        errors.append("status: F0 contract must remain proposed pending independent review")
+    frame = contract.get("vehicle_frame", {})
+    if frame.get("origin") is not None or frame.get("axes") is not None:
+        errors.append("vehicle_frame: F0 origin and axes must remain null")
+    if frame.get("status") != "missing_data":
+        errors.append("vehicle_frame: F0 status must remain missing_data")
+    if frame.get("units") != "mm":
+        errors.append("vehicle_frame: units must remain mm")
+    frame_ids = [item.get("id") for item in frame.get("host_datum_features", [])]
+    if set(frame_ids) != {"VF-H01", "VF-H02", "VF-H03", "VF-H04"} or len(frame_ids) != 4:
+        errors.append("vehicle_frame: four independent body datum features are required")
     admission = contract.get("admission", {})
-    admitted = set(contract.get("evidence_layers", {}).get("admitted_physical_evidence") or [])
+    admitted_paths = contract.get("evidence_layers", {}).get("admitted_physical_evidence")
+    if admitted_paths != []:
+        errors.append("evidence_layers.admitted_physical_evidence: F0 must remain empty until a separate admission gate is implemented")
+    admitted = {path for path in admitted_paths if isinstance(path, str)} if isinstance(admitted_paths, list) else set()
     forbidden_methods = set(admission.get("host_methods_forbidden") or [])
     forbidden_sources = admission.get("forbidden_sources") or []
     if not {"derived", "model", "assumed"} <= forbidden_methods:
@@ -66,8 +98,11 @@ def check_contract(contract: dict, assembly: dict, identity: dict) -> list[str]:
     if not forbidden_sources:
         errors.append("admission.forbidden_sources: must list the F0 concept and model outputs")
 
-    interfaces = {i.get("interface_id"): i for i in contract.get("interfaces", [])}
+    interface_list = contract.get("interfaces", [])
+    interfaces = {i.get("interface_id"): i for i in interface_list}
     expected = {i["interface_id"] for i in assembly.get("interfaces", [])}
+    if len(interfaces) != len(interface_list):
+        errors.append("interfaces: duplicate interface_id")
     if set(interfaces) != expected:
         errors.append(f"interfaces: expected {sorted(expected)}, missing {sorted(expected - set(interfaces))}, "
                       f"extra {sorted(set(interfaces) - expected)}")
@@ -93,9 +128,15 @@ def check_contract(contract: dict, assembly: dict, identity: dict) -> list[str]:
             errors.append(f"{where}: side {side!r} does not match its id")
         if not item.get("methods"):
             errors.append(f"{where}: no method")
+        if item.get("unit") != "mm" and item.get("kind") not in {"count", "identity", "state", "observation"}:
+            errors.append(f"{where}: geometric measurand must use mm")
+        if not isinstance(item.get("repetitions_min"), int) or item["repetitions_min"] < 3:
+            errors.append(f"{where}: at least three independent repetitions required")
         if side == "host" and forbidden_methods & set(item.get("methods", [])):
             errors.append(f"{where}: host reading by a forbidden method")
         evidence = item.get("evidence")
+        if any(item.get(key) is not None for key in ("value", "uncertainty", "evidence")):
+            errors.append(f"{where}: F0 datum value, uncertainty and evidence must remain null")
         if item.get("value") is not None or item.get("uncertainty") is not None:
             if evidence is None or evidence not in admitted:
                 errors.append(f"{where}: value without an admitted reading")
@@ -111,7 +152,13 @@ def check_contract(contract: dict, assembly: dict, identity: dict) -> list[str]:
         if any(token in path for token in forbidden_sources) or not (ROOT / path).is_file():
             errors.append(f"evidence_layers.admitted_physical_evidence: refused {path}")
 
-    roles = {r.get("role"): r for r in contract.get("reviewer_roles", [])}
+    role_list = contract.get("reviewer_roles", [])
+    roles = {r.get("role"): r for r in role_list}
+    if len(roles) != len(role_list) or set(roles) != {
+        "preparer", "independent_measurement_reviewer", "independent_interface_reviewer",
+        "rights_privacy_reviewer", "professional_engineering_reviewer",
+    }:
+        errors.append("reviewer_roles: all five distinct roles are required")
     people = [r.get("assigned_to") for r in roles.values() if r.get("assigned_to")]
     if len(people) != len(set(people)):
         errors.append("reviewer_roles: one person holds two roles")
@@ -120,7 +167,12 @@ def check_contract(contract: dict, assembly: dict, identity: dict) -> list[str]:
     interface_reviewer = roles.get("independent_interface_reviewer", {}).get("assigned_to")
 
     rows = {row["row_id"]: row for row in identity.get("matrix", [])}
-    candidates = {c["row_id"]: c for c in contract.get("candidate_variants", [])}
+    candidate_list = contract.get("candidate_variants", [])
+    candidates = {c["row_id"]: c for c in candidate_list}
+    if len(candidates) != len(candidate_list) or set(candidates) != {"M564-LHD", "M002-LHD", "M003-LHD"}:
+        errors.append("candidate_variants: F0 target and documented alternatives must remain M564-LHD, M002-LHD and M003-LHD")
+    if candidates.get("M564-LHD", {}).get("role") != "F0 target":
+        errors.append("candidate_variants: M564-LHD must remain the F0 target")
     for row_id, candidate in candidates.items():
         if row_id not in rows:
             errors.append(f"candidate_variants: {row_id} is not a row of the identity matrix")
@@ -137,6 +189,15 @@ def check_contract(contract: dict, assembly: dict, identity: dict) -> list[str]:
                     for item in row.get(key) or []} for row_id, row in rows.items()}
 
     for iid, interface in interfaces.items():
+        if interface.get("status") != "missing_data":
+            errors.append(f"{iid}: F0 interface status must remain missing_data")
+        attachments = interface.get("attachments", {})
+        if any(attachments.get(key) is not None for key in ("count", "hole_pattern", "axes")):
+            errors.append(f"{iid}.attachments: F0 physical attachment fields must remain null")
+        if attachments.get("fastener_identity") not in (None, "see catalogue_identity; assignment unknown"):
+            errors.append(f"{iid}.attachments: F0 fastener assignment must remain unknown")
+        if interface.get("tolerances", {}).get("value") is not None:
+            errors.append(f"{iid}.tolerances: F0 tolerance value must remain null")
         if iid in REQUIRED_SAFETY_INTERFACES and interface.get("safety_relevant") is not True:
             errors.append(f"{iid}: required safety interface must be marked safety_relevant")
         if not interface.get("acceptance"):
@@ -160,6 +221,20 @@ def check_contract(contract: dict, assembly: dict, identity: dict) -> list[str]:
         if set(identities) != set(candidates):
             errors.append(f"{iid}.catalogue_identity: variants differ from candidate_variants")
         for row_id, block in identities.items():
+            if row_id == "M564-LHD":
+                expected_status = M564_STATUS_EXCEPTIONS.get(iid, "unmapped_in_kat017")
+                if block.get("status") != expected_status:
+                    errors.append(f"{iid}.catalogue_identity[M564-LHD]: F0 status must remain {expected_status}")
+                if iid != "IF_COLUMN_CLEARANCE" and block.get("items") is not None:
+                    errors.append(f"{iid}.catalogue_identity[M564-LHD]: unmapped dashboard target cannot gain part numbers")
+                if iid == "IF_COLUMN_CLEARANCE":
+                    actual = {
+                        (item.get("part_number"), item.get("plate"), item.get("pdf_page"),
+                         item.get("position"), item.get("remark"))
+                        for item in block.get("items") or []
+                    }
+                    if actual != M564_COLUMN_ITEMS or len(block.get("items") or []) != len(M564_COLUMN_ITEMS):
+                        errors.append(f"{iid}.catalogue_identity[M564-LHD]: steering items must match the reviewed PET inventory")
             for item in block.get("items") or []:
                 where = f"{iid}.catalogue_identity[{row_id}][{item.get('part_number')}]"
                 if not all(item.get(k) for k in ("source_id", "plate", "pdf_page", "position")):
@@ -170,6 +245,8 @@ def check_contract(contract: dict, assembly: dict, identity: dict) -> list[str]:
             if rows.get(row_id, {}).get("mapping_status") == "unmapped_in_kat017":
                 if block.get("status") == "plate_inventory":
                     errors.append(f"{iid}.catalogue_identity[{row_id}]: an unmapped variant has no plate inventory")
+                if block.get("status") == "unmapped_in_kat017" and block.get("items") is not None:
+                    errors.append(f"{iid}.catalogue_identity[{row_id}]: an unmapped dashboard identity has no part numbers")
     return errors
 
 
