@@ -169,6 +169,20 @@ class RefusedRecords(unittest.TestCase):
         bad["vehicle"]["porsche_part_numbers"] = ["993 552 055 00"]
         self.assertTrue(checker.check_record(bad, IDENTITY))
 
+    def test_rs_number_cannot_be_assigned_to_a_non_rs_variant(self):
+        bad = copy.deepcopy(RECORD)
+        bad["vehicle"]["variants"] = ["M002, left-hand drive, non-RS"]
+        bad["vehicle"]["porsche_part_numbers"] = ["993 552 055 00"]
+        self.assertTrue(checker.check_record(bad, IDENTITY))
+
+    def test_clubsport_number_needs_clubsport_scope(self):
+        bad = copy.deepcopy(RECORD)
+        bad["vehicle"]["variants"] = ["M003, left-hand drive, Carrera RS"]
+        bad["vehicle"]["porsche_part_numbers"] = ["993 552 055 70"]
+        self.assertTrue(checker.check_record(bad, IDENTITY))
+        bad["vehicle"]["variants"] = ["M003, left-hand drive, Carrera RS Clubsport"]
+        self.assertEqual(checker.check_record(bad, IDENTITY), [])
+
     def test_documentary_airbag_number_can_be_named_in_known_limits(self):
         cited = copy.deepcopy(RECORD)
         cited["validation"]["known_limits"].append(

@@ -76,20 +76,19 @@ catalogue text alone. A real specimen can separate them through the
 passenger-side reverse inspection (E2 below), and so can a Porsche technical
 document that states the trim's airbag provisions.
 
-## What changed in the part record
+## The part record
 
-- The variant label now reads "M564 without airbag (trim number unmapped in
-  PET Kat 017)".
-- The PET source now points at the official copy, with its hash, and states
-  what both plates list.
-- The knee-strip limit used to call the 809-01 airbag-plate strips "series
-  production". It also gave only the left-hand-drive M003 pair and missed the
-  M002 strips. It now gives the plate-level mapping.
-- A new limit states the identity verdict and the admission rule.
+The [variant identity audit](../../../docs/reports/993-dashboard-variant-audit-20261106.md)
+(#592) corrected the catalogue record from the same plates. The record names
+only the M564 left-hand-drive non-RS target, with its trim identity unresolved.
+It lists no Porsche part number. Its knee-strip limit follows the plate-level
+mapping. This PET record adds the machine-readable matrix, the CTR-0019
+register entry and the same-specimen protocol.
+`scripts/check_993_dashboard_pet_identity.py --check` refuses a part number
+that is not supported for every listed variant and driving side.
 
-Nothing else changed. `validation.status` stays `concept`,
-`safety_class` stays `functional`, and the passenger-airbag exclusion stays in
-force.
+`validation.status` stays `concept`, `safety_class` stays `functional`, and the
+passenger-airbag exclusion stays in force.
 
 ## Same-specimen protocol
 
@@ -114,13 +113,14 @@ the admission. An admitted specimen
 establishes the identity and airbag state of that specimen only. A trim label
 read on it is not a catalogue mapping for M564.
 
-## Not done here
+## Separate work
 
-- No interface, datum or measurement contract. That is issue #567, and it
-  starts from this matrix.
-- No change to `twins/993-dashboard-f0/assembly.json`, which is still in an
-  open pull request. Its M564 trim number is already null, which agrees with
-  this audit.
+- The independent interface and measurement contract is tracked by
+  [issue #567](https://github.com/cluster2600/porscheparts/issues/567) and
+  [PR #591](https://github.com/cluster2600/porscheparts/pull/591). This audit
+  establishes no interface dimensions.
+- The F0 schematic assembly in `twins/993-dashboard-f0/assembly.json` has no
+  measured vehicle transforms. Its M564 trim number is null, as in this audit.
 - No model years per variant. Every page carries the catalogue header "Model
   life 1994>>1998", and no trim line has a year remark. Null means "not stated
   in Kat 017".

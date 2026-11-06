@@ -137,6 +137,20 @@ def matrix_numbers(identity: dict, key: str) -> set[str]:
     return {item["part_number"] for row in identity.get("matrix", []) for k, item in _entries(row) if k == key}
 
 
+def _matches_body_scope(variant: str, row: dict) -> bool:
+    scope = row.get("body_scope", "")
+    non_rs = bool(re.search(r"\bnon[- ]RS\b", variant, re.I))
+    carrera_rs = bool(re.search(r"\bCarrera RS\b", variant, re.I))
+    clubsport = bool(re.search(r"\bClubsport\b", variant, re.I))
+    if scope == "non-RS cars":
+        return non_rs and not carrera_rs and not clubsport
+    if scope == "Carrera RS road version":
+        return carrera_rs and not non_rs and not clubsport
+    if scope == "Carrera RS Clubsport":
+        return carrera_rs and clubsport and not non_rs
+    return False
+
+
 def check_record(record: dict, identity: dict) -> list[str]:
     """Refuse a part record that claims identity the matrix does not support."""
     errors: list[str] = []
@@ -160,6 +174,7 @@ def check_record(record: dict, identity: dict) -> list[str]:
             for row in identity.get("matrix", [])
             if row.get("option_code") in codes
             and row.get("handedness") in hands
+            and _matches_body_scope(variant, row)
             and row.get("mapping_status") in MAPPED
             and row.get("passenger_airbag") in {"absent_by_option_code", "absent_by_plate_title"}
             for key, item in _entries(row) if key == "dashboard_trim"
