@@ -1,0 +1,256 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-PISTON-CP1-GALLERY-F0-0001",
+  "status": "picogk_f0_multiobjective_geometry_screen_no_selected_design",
+  "executed": true,
+  "runtime": {
+    "picogk_version": "2.3.0",
+    "native_runtime_abi": "picogk.26.2",
+    "native_image_id": "sha256:307ec75e3d71548c2ac9c079c46e899e39c85b8a38bdbbface948b5b2fee6c53",
+    "execution_environment": "WSL2 host, native picogk.26.2 runtime extracted from porscheparts-picogk-native:dev",
+    "output_stage": "drop triangles with coincident vertices (exact weld at 1e-6 mm); no vertex moved",
+    "voxel_size_mm": 0.5,
+    "source_mesh_sha256": "4d70fc74140a161eced7c73791c0c0f3a1011e9fbe99c252d78df2584e7e7b41",
+    "source_mesh_triangle_count": 12334,
+    "source_voxel_volume_mm3": 255231.55
+  },
+  "optimization_problem": {
+    "objectives": [
+      "minimize CP1 mass",
+      "maximize cooling-gallery wetted area",
+      "minimize gallery pressure loss at equal oil flow"
+    ],
+    "constraints": [
+      "ambient analytical yield-to-stress ratio \u003E= 1.50",
+      "preserve all synthetic exterior, ring, pin and machining interfaces",
+      "keep skirt pockets open for powder evacuation",
+      "require hot nonlinear thermo-mechanical FEA and fatigue before selection"
+    ],
+    "authority": "All design volumes, loads and targets are F0 hypotheses, not measured Porsche 993 piston data."
+  },
+  "variants": [
+    {
+      "variant_id": "P0_reference_voxelisee",
+      "picogk_operations": {
+        "open_skirt_pocket_count": 0,
+        "open_skirt_pocket_radius_mm": 0,
+        "gallery_hydraulic_diameter_mm": 7,
+        "pin_to_crown_rib_radius_mm": 0
+      },
+      "geometry": {
+        "volume_mm3": 255231.55,
+        "mass_g": 681.46826,
+        "mass_change_from_brep_percent": 0.021759877,
+        "triangle_count": 717260,
+        "raw_triangle_count": 717264,
+        "removed_coincident_vertex_triangles": 4,
+        "outside_pocket_ligament_mm": 8.5,
+        "output_stl": "P0_reference_voxelisee.stl",
+        "output_sha256": "9060d384564ce5222f98564d0f8374bd4ad24e646356cc30696e1fca7271ec3f"
+      },
+      "thermal_hydraulic_proxies": {
+        "gallery_wetted_area_ratio": 1,
+        "laminar_pressure_loss_ratio_at_equal_flow": 1,
+        "limitation": "Geometric ratios only; no CHT, oil-jet capture, acceleration, boiling or measured boundary condition."
+      },
+      "structural_screen": {
+        "analytical_crown_ligament_mm": 5.5,
+        "clamped_plate_stress_mpa": 277.57336,
+        "ambient_yield_to_stress_ratio": 1.0699874,
+        "target_ambient_yield_ratio": 1.5,
+        "passes_target": false,
+        "ribs_credited_in_equation": false,
+        "limitation": "The plate proxy cannot credit PicoGK ribs and is not hot nonlinear contact FEA or fatigue."
+      },
+      "eligible_for_selection": false,
+      "rejection_reason": "Synthetic ambient plate margin is below the provisional 1.50 target."
+    },
+    {
+      "variant_id": "P1_six_poches",
+      "picogk_operations": {
+        "open_skirt_pocket_count": 6,
+        "open_skirt_pocket_radius_mm": 1.5,
+        "gallery_hydraulic_diameter_mm": 7,
+        "pin_to_crown_rib_radius_mm": 0
+      },
+      "geometry": {
+        "volume_mm3": 253740.67,
+        "mass_g": 677.4876,
+        "mass_change_from_brep_percent": -0.56249595,
+        "triangle_count": 737904,
+        "raw_triangle_count": 737908,
+        "removed_coincident_vertex_triangles": 4,
+        "outside_pocket_ligament_mm": 2.75,
+        "output_stl": "P1_six_poches.stl",
+        "output_sha256": "8e7886dd8bdacb78fc9dd6aa4ca091dbf9a2c6d1d4704e1af797aba36f63b43e"
+      },
+      "thermal_hydraulic_proxies": {
+        "gallery_wetted_area_ratio": 1,
+        "laminar_pressure_loss_ratio_at_equal_flow": 1,
+        "limitation": "Geometric ratios only; no CHT, oil-jet capture, acceleration, boiling or measured boundary condition."
+      },
+      "structural_screen": {
+        "analytical_crown_ligament_mm": 5.5,
+        "clamped_plate_stress_mpa": 277.57336,
+        "ambient_yield_to_stress_ratio": 1.0699874,
+        "target_ambient_yield_ratio": 1.5,
+        "passes_target": false,
+        "ribs_credited_in_equation": false,
+        "limitation": "The plate proxy cannot credit PicoGK ribs and is not hot nonlinear contact FEA or fatigue."
+      },
+      "eligible_for_selection": false,
+      "rejection_reason": "Synthetic ambient plate margin is below the provisional 1.50 target."
+    },
+    {
+      "variant_id": "P2_eight_poches",
+      "picogk_operations": {
+        "open_skirt_pocket_count": 8,
+        "open_skirt_pocket_radius_mm": 1.6,
+        "gallery_hydraulic_diameter_mm": 7,
+        "pin_to_crown_rib_radius_mm": 0
+      },
+      "geometry": {
+        "volume_mm3": 252838.23,
+        "mass_g": 675.0781,
+        "mass_change_from_brep_percent": -0.91614544,
+        "triangle_count": 750744,
+        "raw_triangle_count": 750748,
+        "removed_coincident_vertex_triangles": 4,
+        "outside_pocket_ligament_mm": 2.6500015,
+        "output_stl": "P2_eight_poches.stl",
+        "output_sha256": "80ac7d2fba40da0c9798f2664e55152cae85b3192a310d7cbb6224f0e47e3a49"
+      },
+      "thermal_hydraulic_proxies": {
+        "gallery_wetted_area_ratio": 1,
+        "laminar_pressure_loss_ratio_at_equal_flow": 1,
+        "limitation": "Geometric ratios only; no CHT, oil-jet capture, acceleration, boiling or measured boundary condition."
+      },
+      "structural_screen": {
+        "analytical_crown_ligament_mm": 5.5,
+        "clamped_plate_stress_mpa": 277.57336,
+        "ambient_yield_to_stress_ratio": 1.0699874,
+        "target_ambient_yield_ratio": 1.5,
+        "passes_target": false,
+        "ribs_credited_in_equation": false,
+        "limitation": "The plate proxy cannot credit PicoGK ribs and is not hot nonlinear contact FEA or fatigue."
+      },
+      "eligible_for_selection": false,
+      "rejection_reason": "Synthetic ambient plate margin is below the provisional 1.50 target."
+    },
+    {
+      "variant_id": "P3_galerie_8_ribs",
+      "picogk_operations": {
+        "open_skirt_pocket_count": 6,
+        "open_skirt_pocket_radius_mm": 1.5,
+        "gallery_hydraulic_diameter_mm": 8,
+        "pin_to_crown_rib_radius_mm": 1.6
+      },
+      "geometry": {
+        "volume_mm3": 255521.9,
+        "mass_g": 682.2435,
+        "mass_change_from_brep_percent": 0.13554907,
+        "triangle_count": 801036,
+        "raw_triangle_count": 801196,
+        "removed_coincident_vertex_triangles": 160,
+        "outside_pocket_ligament_mm": 2.75,
+        "output_stl": "P3_galerie_8_ribs.stl",
+        "output_sha256": "2a82033f47254761e7e47b2b8d842f82583157bef15444ec4fb682030e3d033d"
+      },
+      "thermal_hydraulic_proxies": {
+        "gallery_wetted_area_ratio": 1.1428572,
+        "laminar_pressure_loss_ratio_at_equal_flow": 0.58618164,
+        "limitation": "Geometric ratios only; no CHT, oil-jet capture, acceleration, boiling or measured boundary condition."
+      },
+      "structural_screen": {
+        "analytical_crown_ligament_mm": 5,
+        "clamped_plate_stress_mpa": 335.8638,
+        "ambient_yield_to_stress_ratio": 0.884287,
+        "target_ambient_yield_ratio": 1.5,
+        "passes_target": false,
+        "ribs_credited_in_equation": false,
+        "limitation": "The plate proxy cannot credit PicoGK ribs and is not hot nonlinear contact FEA or fatigue."
+      },
+      "eligible_for_selection": false,
+      "rejection_reason": "Synthetic ambient plate margin is below the provisional 1.50 target."
+    },
+    {
+      "variant_id": "P4_galerie_8p5_ribs",
+      "picogk_operations": {
+        "open_skirt_pocket_count": 8,
+        "open_skirt_pocket_radius_mm": 1.5,
+        "gallery_hydraulic_diameter_mm": 8.5,
+        "pin_to_crown_rib_radius_mm": 1.8
+      },
+      "geometry": {
+        "volume_mm3": 254706.81,
+        "mass_g": 680.0672,
+        "mass_change_from_brep_percent": -0.18387946,
+        "triangle_count": 819368,
+        "raw_triangle_count": 819372,
+        "removed_coincident_vertex_triangles": 4,
+        "outside_pocket_ligament_mm": 2.75,
+        "output_stl": "P4_galerie_8p5_ribs.stl",
+        "output_sha256": "c3c1f3db7c5f8f29ce66f9924825fea07a1820216549b1a234e398ae81903575"
+      },
+      "thermal_hydraulic_proxies": {
+        "gallery_wetted_area_ratio": 1.2142857,
+        "laminar_pressure_loss_ratio_at_equal_flow": 0.4599562,
+        "limitation": "Geometric ratios only; no CHT, oil-jet capture, acceleration, boiling or measured boundary condition."
+      },
+      "structural_screen": {
+        "analytical_crown_ligament_mm": 4.75,
+        "clamped_plate_stress_mpa": 372.14825,
+        "ambient_yield_to_stress_ratio": 0.79806906,
+        "target_ambient_yield_ratio": 1.5,
+        "passes_target": false,
+        "ribs_credited_in_equation": false,
+        "limitation": "The plate proxy cannot credit PicoGK ribs and is not hot nonlinear contact FEA or fatigue."
+      },
+      "eligible_for_selection": false,
+      "rejection_reason": "Synthetic ambient plate margin is below the provisional 1.50 target."
+    },
+    {
+      "variant_id": "P5_light_max_screen",
+      "picogk_operations": {
+        "open_skirt_pocket_count": 10,
+        "open_skirt_pocket_radius_mm": 1.7,
+        "gallery_hydraulic_diameter_mm": 9,
+        "pin_to_crown_rib_radius_mm": 1.6
+      },
+      "geometry": {
+        "volume_mm3": 250673.78,
+        "mass_g": 669.299,
+        "mass_change_from_brep_percent": -1.7643685,
+        "triangle_count": 832256,
+        "raw_triangle_count": 832404,
+        "removed_coincident_vertex_triangles": 148,
+        "outside_pocket_ligament_mm": 2.5499992,
+        "output_stl": "P5_light_max_screen.stl",
+        "output_sha256": "e925cee200056e305b2a52b923d7de88f4dbcff7e338e2ac78022b2bc3e1f1e6"
+      },
+      "thermal_hydraulic_proxies": {
+        "gallery_wetted_area_ratio": 1.2857143,
+        "laminar_pressure_loss_ratio_at_equal_flow": 0.36595035,
+        "limitation": "Geometric ratios only; no CHT, oil-jet capture, acceleration, boiling or measured boundary condition."
+      },
+      "structural_screen": {
+        "analytical_crown_ligament_mm": 4.5,
+        "clamped_plate_stress_mpa": 414.64667,
+        "ambient_yield_to_stress_ratio": 0.7162725,
+        "target_ambient_yield_ratio": 1.5,
+        "passes_target": false,
+        "ribs_credited_in_equation": false,
+        "limitation": "The plate proxy cannot credit PicoGK ribs and is not hot nonlinear contact FEA or fatigue."
+      },
+      "eligible_for_selection": false,
+      "rejection_reason": "Synthetic ambient plate margin is below the provisional 1.50 target."
+    }
+  ],
+  "decision": {
+    "selected_variant": null,
+    "reason": "No variant can be honestly selected before hot material allowables, measured interfaces, transient loads, CHT and nonlinear fatigue analysis exist.",
+    "picogk_role": "Executed geometry generator and Boolean field kernel; not a structural or thermal solver.",
+    "manufacturing_authorized": false,
+    "engine_operation_authorized": false
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0.0",
+  "status": "passed_output_mesh_integrity",
+  "source_screen_sha256": "e0e17f68d36e873d1e60bbb6928c968a8fc3fa21b15db287068b6dd0dbdf003a",
+  "method": "trimesh process=True followed by undirected edge multiplicity audit",
+  "output_stage": "drop triangles with coincident vertices (exact weld at 1e-6 mm); no vertex moved",
+  "all_hashes_match": true,
+  "all_meshes_watertight": true,
+  "variants": [
+    {
+      "variant_id": "P0_reference_voxelisee",
+      "file": "P0_reference_voxelisee.stl",
+      "sha256_matches_screen": true,
+      "watertight": true,
+      "winding_consistent": true,
+      "body_count": 1,
+      "boundary_edge_count": 0,
+      "nonmanifold_edge_count": 0,
+      "maximum_edge_multiplicity": 2,
+      "envelope_mm": [
+        99.0,
+        98.945084,
+        70.0
+      ],
+      "volume_mm3": 255261.268811
+    },
+    {
+      "variant_id": "P1_six_poches",
+      "file": "P1_six_poches.stl",
+      "sha256_matches_screen": true,
+      "watertight": true,
+      "winding_consistent": true,
+      "body_count": 1,
+      "boundary_edge_count": 0,
+      "nonmanifold_edge_count": 0,
+      "maximum_edge_multiplicity": 2,
+      "envelope_mm": [
+        99.0,
+        98.945084,
+        70.0
+      ],
+      "volume_mm3": 253780.24351
+    },
+    {
+      "variant_id": "P2_eight_poches",
+      "file": "P2_eight_poches.stl",
+      "sha256_matches_screen": true,
+      "watertight": true,
+      "winding_consistent": true,
+      "body_count": 1,
+      "boundary_edge_count": 0,
+      "nonmanifold_edge_count": 0,
+      "maximum_edge_multiplicity": 2,
+      "envelope_mm": [
+        99.0,
+        98.945084,
+        70.0
+      ],
+      "volume_mm3": 252875.298511
+    },
+    {
+      "variant_id": "P3_galerie_8_ribs",
+      "file": "P3_galerie_8_ribs.stl",
+      "sha256_matches_screen": true,
+      "watertight": true,
+      "winding_consistent": true,
+      "body_count": 1,
+      "boundary_edge_count": 0,
+      "nonmanifold_edge_count": 0,
+      "maximum_edge_multiplicity": 2,
+      "envelope_mm": [
+        99.0,
+        98.945084,
+        70.0
+      ],
+      "volume_mm3": 255368.322898
+    },
+    {
+      "variant_id": "P4_galerie_8p5_ribs",
+      "file": "P4_galerie_8p5_ribs.stl",
+      "sha256_matches_screen": true,
+      "watertight": true,
+      "winding_consistent": true,
+      "body_count": 1,
+      "boundary_edge_count": 0,
+      "nonmanifold_edge_count": 0,
+      "maximum_edge_multiplicity": 2,
+      "envelope_mm": [
+        99.0,
+        98.945084,
+        70.0
+      ],
+      "volume_mm3": 254473.856066
+    },
+    {
+      "variant_id": "P5_light_max_screen",
+      "file": "P5_light_max_screen.stl",
+      "sha256_matches_screen": true,
+      "watertight": true,
+      "winding_consistent": true,
+      "body_count": 1,
+      "boundary_edge_count": 0,
+      "nonmanifold_edge_count": 0,
+      "maximum_edge_multiplicity": 2,
+      "envelope_mm": [
+        99.0,
+        98.945084,
+        70.0
+      ],
+      "volume_mm3": 250519.214334
+    }
+  ],
+  "decision": {
+    "picogk_geometry_gate_passed": true,
+    "reason": "Every mesh is a single closed, consistently wound, edge-manifold body. This is mesh topology only: it does not select a design or authorize CAD promotion, LPBF slicing or manufacture.",
+    "repair_attempted": true,
+    "manufacturing_authorized": false
+  }
+}
