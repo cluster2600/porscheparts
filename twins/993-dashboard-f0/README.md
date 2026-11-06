@@ -1,6 +1,12 @@
 # Porsche 993 complete dashboard — F0 scope
 
-This workstream contains **schematic PicoGK visual scenes of the complete dashboard** and an evidence inventory for a left-hand-drive Porsche 993 targeting option M564. Both F0 scenes use an invented display frame. Component sizes and positions are artistic assumptions, not vehicle measurements or assembly transforms. The intended vehicle, its option label, and its restraint configuration have not been checked. All component transforms and assembly geometry remain `null` in [assembly.json](assembly.json).
+This workstream contains **schematic PicoGK visual scenes of the complete dashboard** and an evidence inventory for a left-hand-drive Porsche 993 targeting option M564. All F0 scenes use an invented display frame. Component sizes and positions are artistic assumptions, not vehicle measurements or assembly transforms. The intended vehicle, its option label, and its restraint configuration have not been checked. All component transforms and assembly geometry remain `null` in [assembly.json](assembly.json).
+
+## DDK-informed F0 iteration
+
+![Complete dashboard PicoGK F0 v2 with DDK-informed panel relationships; assumed layout](ddk-study-v2/dashboard-three-quarter.png)
+
+The [DDK study](ddk-study-v2/README.md) introduces a parametric upper pad and cowl, detailed dial faces, lower side vents with vertical blades, fascia-mounted HVAC/radio, a shallow glovebox and a separate sloped console. Its [photo audit](ddk-study-v2/ddk-observations.md) traces the installed and removed component views. The [dimension research](ddk-study-v2/dimension-research.md) records published product sizes and the still-missing measurements. DDK attachment descriptions guide future inspection; they supply no target-variant mounting coordinates. [Editable PicoGK source](ddk-source-v2/README.md), [references](ddk-study-v2/references.json), [scene receipt](ddk-study-v2/scene-report.json) and [render receipt](ddk-study-v2/render-report.json) preserve the distinction between improved appearance and measured geometry.
 
 ## Photo-guided F0 iteration
 
