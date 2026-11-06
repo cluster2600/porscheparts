@@ -214,11 +214,15 @@ How to read the 32.5%:
   (Tiptronic) kg/lbs 232 (224)". The booklet lists "Transmission Weight with
   Oil" separately (66 kg for the G50/21, 105 kg for the Tiptronic, pp. 22-23),
   so 232 kg is not engine plus gearbox. Neither document says dry or wet, or
-  which ancillaries are included. A community weighing with a named weigher and
-  a declared method, not registered as a source, gives 186.9 kg for a complete
-  1995 Carrera engine without gearbox: 45.1 kg less, a gap that is not the
-  gearbox and stays unexplained in
-  [the engine-carrier load cases](../parts/993-eng-carrier-0001/evidence/load-cases.md).
+  which ancillaries are included. The now-registered community weighing
+  (`SRC-PELICAN-TIMMINS-993-ENGINE-WEIGHTS`) reports a 1995 Carrera conversion
+  configuration, not a stock complete-engine specification. Its scope and
+  conversion to 186.9 kg are recorded in the
+  [source addendum](research/993-engine-mass-scope-20261107.md). Configuration
+  differences are documented, but the approximately 45.1 kg gap remains
+  unallocated. The historical
+  [engine-carrier load cases](../parts/993-eng-carrier-0001/evidence/load-cases.md)
+  are not promoted by this source recovery.
   With the weighing, the coverage would read 29.2%.
 - **Each counted part names its variants.** Entries in
   `catalog/reference/993-declared-part-data.json` that carry a mass and a
