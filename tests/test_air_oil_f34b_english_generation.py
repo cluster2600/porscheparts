@@ -1,6 +1,7 @@
 """The English generation must preserve numerical inputs and frozen sources."""
 
 import ast
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -42,12 +43,27 @@ class EnglishF34bTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             context = Path(temporary) / "context"
             receipt = generation.prepare(context)
+            recorded = json.loads((GENERATION / "generation.lock.json").read_text())
+            self.assertEqual(receipt["outputs"], recorded["outputs"])
+            self.assertEqual(receipt["inputs_lock_sha256"], recorded["inputs_lock_sha256"])
             self.assertTrue(receipt["numerical_inputs_and_authority_unchanged"])
             self.assertEqual(receipt["canonical_doe_cases_executed"], 0)
             self.assertFalse(receipt["physical_qualification"])
             self.assertEqual(receipt, json.loads((context / "generation.json").read_text()))
         for path, data in originals.items():
             self.assertEqual((ROOT / path).read_bytes(), data)
+
+    def test_recorded_source_and_smoke_hashes_are_current(self):
+        recorded = json.loads((GENERATION / "generation.lock.json").read_text())
+        for path, digest in recorded["generation_sources_sha256"].items():
+            self.assertEqual(hashlib.sha256((ROOT / path).read_bytes()).hexdigest(), digest)
+        smoke = GENERATION / recorded["smoke"]["path"]
+        self.assertEqual(hashlib.sha256(smoke.read_bytes()).hexdigest(), recorded["smoke"]["sha256"])
+        report = json.loads(smoke.read_text())
+        self.assertEqual(report["status"], recorded["smoke"]["status"])
+        self.assertTrue(report["offline"])
+        self.assertFalse(recorded["image"]["published"])
+        self.assertIsNone(recorded["image"]["registry_digest"])
 
     def test_rejects_existing_symlink_and_repository_destinations(self):
         with tempfile.TemporaryDirectory() as temporary:
