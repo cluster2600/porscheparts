@@ -1,48 +1,206 @@
 #!/usr/bin/env python3
-"""Validate digital-twin zone records without external dependencies."""
+"""Validate digital-twin zone records against the twin-record contract.
+
+The contract is `catalog/schemas/twin.schema.json`. This script executes that
+schema itself, with a small stdlib evaluator for the JSON Schema keywords the
+schema uses, so the validator and the schema cannot drift apart: a keyword the
+evaluator does not implement makes the schema load fail instead of being
+skipped. On top of the schema it applies only the rules JSON Schema cannot
+express — cross-field ordering, identifier uniqueness and references, the
+generation token in the twin id, and case-exact file resolution. Both layers
+are listed in `catalog/schemas/CHANGELOG.md`.
+"""
 
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY = ROOT / "catalog" / "twins"
-TWIN_ID = re.compile(r"^TWIN-[A-Z0-9][A-Z0-9._-]{2,63}$")
-COMPONENT_ID = re.compile(r"^[A-Z][A-Z0-9._-]{1,63}$")
-FIDELITIES = {"F0_reference", "F1_envelope", "F2_interface", "F3_engineering", "F4_correlated"}
-# Un jumeau peut servir a autre chose qu'un ajustement de piece : porter un repere,
-# une enveloppe a l'echelle, ou des cotes de controle de reparation.
-PURPOSES = {"fit", "clearance", "motion", "structural", "thermal", "fluid",
-            "datum_frame", "envelope", "repair_control"}
-# Generations couvertes, avec leur plage de millesimes. Le controle est desormais fait
-# CONTRE la generation declaree : une fiche 964 portant des millesimes 993 est refusee,
-# ce que l'ancien controle en dur sur 1993-1998 ne savait pas faire.
-GENERATION_YEARS = {"993": (1993, 1998), "964": (1989, 1994), "911": (1963, 1998)}
-ROLES = {"host", "candidate", "context"}
-# datum : le lien est une cote de controle publiee, non un contact physique.
-# registration : recalage d'un releve sur un repere.
-KINDS = {"contact", "clearance", "fastener", "clip", "motion", "datum", "registration"}
-INTERFACE_STATUSES = {"missing_data", "ready", "passed", "failed", "partially_satisfied"}
-VALIDATION_STATUSES = {"concept", "geometry_ready", "digitally_checked", "physically_correlated"}
-TOP_LEVEL_KEYS = {
-    "schema_version", "twin_id", "name", "vehicle", "scope", "fidelity",
-    "coordinate_system", "components", "interfaces", "geometry", "validation",
+SCHEMA_PATH = ROOT / "catalog" / "schemas" / "twin.schema.json"
+RETIRED_VERSIONS = {"1.0.0"}
+TWIN_GENERATION = re.compile(r"^TWIN-([0-9]{3})-")
+
+# Keywords the evaluator implements, and annotations it may ignore. Anything
+# else in the schema is a contract change the validator would silently miss.
+ASSERTIONS = {
+    "type", "const", "enum", "pattern", "minLength", "minimum", "maximum",
+    "exclusiveMinimum", "minItems", "maxItems", "uniqueItems", "items",
+    "contains", "required", "properties", "additionalProperties", "allOf",
+    "if", "then", "not", "$ref",
 }
-# Facultatif : un jumeau de structure porte une matiere, nuance, epaisseur et procede,
-# la ou un jumeau d'interface de garniture n'en a pas besoin.
-OPTIONAL_TOP_LEVEL_KEYS = {"materials"}
+ANNOTATIONS = {"$schema", "$id", "title", "description", "$comment", "$defs"}
 
 
-def _text(value: Any) -> bool:
-    return isinstance(value, str) and bool(value.strip())
+def _check_keywords(schema: Any, where: str = "#") -> None:
+    if not isinstance(schema, dict):
+        raise ValueError(f"{where}: a schema must be an object")
+    unknown = schema.keys() - ASSERTIONS - ANNOTATIONS
+    if unknown:
+        raise ValueError(f"{where}: unsupported schema keywords {sorted(unknown)}")
+    if "additionalProperties" in schema and not isinstance(schema["additionalProperties"], bool):
+        raise ValueError(f"{where}: only boolean additionalProperties is supported")
+    if "then" in schema and "if" not in schema:
+        raise ValueError(f"{where}: then without if")
+    for key in ("items", "contains", "not", "if", "then"):
+        if key in schema:
+            _check_keywords(schema[key], f"{where}/{key}")
+    for key in ("properties", "$defs"):
+        for name, sub in schema.get(key, {}).items():
+            _check_keywords(sub, f"{where}/{key}/{name}")
+    for index, sub in enumerate(schema.get("allOf", [])):
+        _check_keywords(sub, f"{where}/allOf/{index}")
 
 
-def _file(value: str, field: str, errors: list[str]) -> None:
-    if not value:
+@lru_cache(maxsize=1)
+def load_schema() -> dict[str, Any]:
+    schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
+    _check_keywords(schema)
+    return schema
+
+
+@lru_cache(maxsize=None)
+def _pattern(source: str) -> re.Pattern[str]:
+    # ECMA-262 "$" matches only at the end of the input; Python's also matches
+    # before a final newline, so translate a trailing anchor to \Z.
+    if source.endswith("$") and not source.endswith("\\$"):
+        source = source[:-1] + r"\Z"
+    return re.compile(source)
+
+
+def _equal(left: Any, right: Any) -> bool:
+    if isinstance(left, bool) or isinstance(right, bool):
+        return type(left) is type(right) and left == right
+    if isinstance(left, (int, float)) and isinstance(right, (int, float)):
+        return left == right
+    if isinstance(left, list) and isinstance(right, list):
+        return len(left) == len(right) and all(_equal(a, b) for a, b in zip(left, right))
+    if isinstance(left, dict) and isinstance(right, dict):
+        return left.keys() == right.keys() and all(_equal(left[key], right[key]) for key in left)
+    return type(left) is type(right) and left == right
+
+
+def _is_type(value: Any, name: str) -> bool:
+    if name == "null":
+        return value is None
+    if name == "boolean":
+        return isinstance(value, bool)
+    if name == "integer":
+        return (isinstance(value, int) and not isinstance(value, bool)) or (
+            isinstance(value, float) and value.is_integer())
+    if name == "number":
+        return isinstance(value, (int, float)) and not isinstance(value, bool)
+    return isinstance(value, {"string": str, "array": list, "object": dict}[name])
+
+
+def _label(path: tuple[Any, ...]) -> str:
+    text = ""
+    for part in path:
+        text += f"[{part}]" if isinstance(part, int) else (f".{part}" if text else str(part))
+    return text or "root"
+
+
+def _evaluate(value: Any, schema: dict[str, Any], path: tuple[Any, ...], errors: list[str]) -> None:
+    here = _label(path)
+    if "$ref" in schema:
+        reference = schema["$ref"]
+        if not reference.startswith("#/$defs/"):
+            raise ValueError(f"unsupported $ref {reference}")
+        _evaluate(value, load_schema()["$defs"][reference[len("#/$defs/"):]], path, errors)
+    if "type" in schema:
+        types = schema["type"] if isinstance(schema["type"], list) else [schema["type"]]
+        if not any(_is_type(value, name) for name in types):
+            errors.append(f"{here}: expected {' or '.join(types)}")
+            return
+    if "const" in schema and not _equal(value, schema["const"]):
+        errors.append(f"{here}: expected {json.dumps(schema['const'])}")
+    if "enum" in schema and not any(_equal(value, item) for item in schema["enum"]):
+        errors.append(f"{here}: expected one of {sorted(map(str, schema['enum']))}")
+    if isinstance(value, str):
+        if len(value) < schema.get("minLength", 0):
+            errors.append(f"{here}: expected at least {schema['minLength']} characters")
+        if "pattern" in schema and not _pattern(schema["pattern"]).search(value):
+            errors.append(f"{here}: does not match {schema['pattern']}")
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        if "minimum" in schema and value < schema["minimum"]:
+            errors.append(f"{here}: expected at least {schema['minimum']}")
+        if "maximum" in schema and value > schema["maximum"]:
+            errors.append(f"{here}: expected at most {schema['maximum']}")
+        if "exclusiveMinimum" in schema and value <= schema["exclusiveMinimum"]:
+            errors.append(f"{here}: expected more than {schema['exclusiveMinimum']}")
+    if isinstance(value, list):
+        if len(value) < schema.get("minItems", 0):
+            errors.append(f"{here}: expected at least {schema['minItems']} items")
+        if "maxItems" in schema and len(value) > schema["maxItems"]:
+            errors.append(f"{here}: expected at most {schema['maxItems']} items")
+        if schema.get("uniqueItems") and any(
+            _equal(value[i], value[j]) for i in range(len(value)) for j in range(i + 1, len(value))
+        ):
+            errors.append(f"{here}: items must be unique")
+        if "items" in schema:
+            for index, item in enumerate(value):
+                _evaluate(item, schema["items"], (*path, index), errors)
+        if "contains" in schema and not any(_valid(item, schema["contains"]) for item in value):
+            errors.append(f"{here}: no item matches the required item schema")
+    if isinstance(value, dict):
+        missing = [key for key in schema.get("required", []) if key not in value]
+        if missing:
+            errors.append(f"{here}: missing fields: {', '.join(missing)}")
+        properties = schema.get("properties", {})
+        for key, sub in properties.items():
+            if key in value:
+                _evaluate(value[key], sub, (*path, key), errors)
+        if schema.get("additionalProperties") is False:
+            extra = sorted(value.keys() - properties.keys())
+            if extra:
+                errors.append(f"{here}: unknown fields: {', '.join(extra)}")
+    for sub in schema.get("allOf", []):
+        _evaluate(value, sub, path, errors)
+    if "if" in schema and "then" in schema and _valid(value, schema["if"]):
+        failures: list[str] = []
+        _evaluate(value, schema["then"], path, failures)
+        rule = schema.get("$comment")
+        errors.extend(f"{failure} [rule: {rule}]" if rule else failure for failure in failures)
+    if "not" in schema and _valid(value, schema["not"]):
+        excluded = schema["not"]
+        shown = json.dumps(excluded["const"]) if excluded.keys() == {"const"} else "the excluded schema"
+        errors.append(f"{here}: must not be {shown}")
+
+
+def _valid(value: Any, schema: dict[str, Any]) -> bool:
+    errors: list[str] = []
+    _evaluate(value, schema, (), errors)
+    return not errors
+
+
+def schema_errors(record: Any) -> list[str]:
+    """Return the errors of `record` against the twin-record JSON Schema."""
+    errors: list[str] = []
+    _evaluate(record, load_schema(), (), errors)
+    return errors
+
+
+def _resolve(value: str) -> bool:
+    """True when `value` names an existing repository file, letter case included."""
+    candidate = ROOT.joinpath(*value.split("/"))
+    if not candidate.is_file():
+        return False
+    current = ROOT
+    for part in Path(value).parts:
+        if part not in os.listdir(current):
+            return False
+        current = current / part
+    return True
+
+
+def _file(value: Any, field: str, errors: list[str]) -> None:
+    if not isinstance(value, str) or not value:
         return
     candidate = (ROOT / value).resolve()
     try:
@@ -50,175 +208,73 @@ def _file(value: str, field: str, errors: list[str]) -> None:
     except ValueError:
         errors.append(f"{field}: path escapes the repository: {value}")
         return
-    if not candidate.is_file():
+    if Path(value).is_absolute() or not _resolve(value):
         errors.append(f"{field}: referenced file does not exist: {value}")
 
 
-def validate_twin(record: Any) -> list[str]:
+def _list(value: Any) -> list[Any]:
+    return value if isinstance(value, list) else []
+
+
+def _dict(value: Any) -> dict[str, Any]:
+    return value if isinstance(value, dict) else {}
+
+
+def semantic_errors(record: Any) -> list[str]:
+    """Rules of the contract that JSON Schema cannot express."""
     if not isinstance(record, dict):
-        return ["root: expected an object"]
+        return []
     errors: list[str] = []
-    missing = TOP_LEVEL_KEYS - record.keys()
-    extra = record.keys() - TOP_LEVEL_KEYS - OPTIONAL_TOP_LEVEL_KEYS
-    if missing:
-        errors.append(f"root: missing fields: {', '.join(sorted(missing))}")
-    if extra:
-        errors.append(f"root: unknown fields: {', '.join(sorted(extra))}")
+    vehicle = _dict(record.get("vehicle"))
+    years = _dict(vehicle.get("model_years"))
+    start, end = years.get("from"), years.get("to")
+    if all(isinstance(item, (int, float)) and not isinstance(item, bool) for item in (start, end)) and start > end:
+        errors.append("vehicle.model_years: from must be <= to")
+    twin_id = record.get("twin_id")
+    token = TWIN_GENERATION.match(twin_id) if isinstance(twin_id, str) else None
+    if token and token.group(1) != vehicle.get("generation"):
+        errors.append(f"twin_id: names generation {token.group(1)} but vehicle.generation is {vehicle.get('generation')}")
 
-    if record.get("schema_version") != "1.0.0":
-        errors.append("schema_version: expected 1.0.0")
-    if not isinstance(record.get("twin_id"), str) or not TWIN_ID.fullmatch(record["twin_id"]):
-        errors.append("twin_id: expected TWIN- followed by an uppercase stable identifier")
-    if not _text(record.get("name")):
-        errors.append("name: expected a non-empty string")
-
-    vehicle = record.get("vehicle")
-    if not isinstance(vehicle, dict):
-        errors.append("vehicle: expected an object")
-    else:
-        generation = vehicle.get("generation")
-        if generation not in GENERATION_YEARS:
-            errors.append(f"vehicle.generation: expected one of {sorted(GENERATION_YEARS)}")
-        variants = vehicle.get("variants")
-        if not isinstance(variants, list) or not variants or not all(_text(v) for v in variants):
-            errors.append("vehicle.variants: expected at least one string")
-        years = vehicle.get("model_years")
-        if not isinstance(years, dict):
-            errors.append("vehicle.model_years: expected an object")
-        else:
-            start, end = years.get("from"), years.get("to")
-            lo, hi = GENERATION_YEARS.get(vehicle.get("generation"), (1963, 1998))
-            if not isinstance(start, int) or not lo <= start <= hi:
-                errors.append(f"vehicle.model_years.from: expected {lo}..{hi} for this generation")
-            if not isinstance(end, int) or not lo <= end <= hi:
-                errors.append(f"vehicle.model_years.to: expected {lo}..{hi} for this generation")
-            if isinstance(start, int) and isinstance(end, int) and start > end:
-                errors.append("vehicle.model_years: from must be <= to")
-
-    scope = record.get("scope")
-    if not isinstance(scope, dict):
-        errors.append("scope: expected an object")
-    else:
-        if not _text(scope.get("zone")):
-            errors.append("scope.zone: expected a non-empty string")
-        purposes = scope.get("purposes")
-        if not isinstance(purposes, list) or not purposes or any(item not in PURPOSES for item in purposes):
-            errors.append(f"scope.purposes: expected values from {sorted(PURPOSES)}")
-    if record.get("fidelity") not in FIDELITIES:
-        errors.append(f"fidelity: expected one of {sorted(FIDELITIES)}")
-
-    coordinates = record.get("coordinate_system")
-    if not isinstance(coordinates, dict):
-        errors.append("coordinate_system: expected an object")
-    else:
-        if coordinates.get("frame") not in {"local", "vehicle"}:
-            errors.append("coordinate_system.frame: expected local or vehicle")
-        if coordinates.get("units") != "mm":
-            errors.append("coordinate_system.units: expected mm")
-        for field in ("origin", "axes"):
-            if not _text(coordinates.get(field)):
-                errors.append(f"coordinate_system.{field}: expected a non-empty string")
-        transform = coordinates.get("vehicle_transform")
-        if transform is not None and (
-            not isinstance(transform, list) or len(transform) != 16
-            or not all(isinstance(value, (int, float)) and not isinstance(value, bool) for value in transform)
-        ):
-            errors.append("coordinate_system.vehicle_transform: expected null or 16 numbers")
-
-    components = record.get("components")
-    known_components: set[str] = set()
-    if not isinstance(components, list) or len(components) < 2:
-        errors.append("components: expected at least two components")
-        components = []
-    for index, component in enumerate(components):
-        label = f"components[{index}]"
-        if not isinstance(component, dict):
-            errors.append(f"{label}: expected an object")
-            continue
+    known: set[str] = set()
+    for index, component in enumerate(_list(record.get("components"))):
+        component = _dict(component)
         identifier = component.get("component_id")
-        if not isinstance(identifier, str) or not COMPONENT_ID.fullmatch(identifier):
-            errors.append(f"{label}.component_id: invalid identifier")
-        elif identifier in known_components:
-            errors.append(f"{label}.component_id: duplicate {identifier}")
-        else:
-            known_components.add(identifier)
-        if component.get("role") not in ROLES:
-            errors.append(f"{label}.role: expected one of {sorted(ROLES)}")
-        geometry_file = component.get("geometry_file")
-        if not isinstance(geometry_file, str):
-            errors.append(f"{label}.geometry_file: expected a string")
-        else:
-            _file(geometry_file, f"{label}.geometry_file", errors)
-        accuracy = component.get("accuracy_mm")
-        if accuracy is not None and (not isinstance(accuracy, (int, float)) or isinstance(accuracy, bool) or accuracy <= 0):
-            errors.append(f"{label}.accuracy_mm: expected null or a positive number")
+        if isinstance(identifier, str):
+            if identifier in known:
+                errors.append(f"components[{index}].component_id: duplicate {identifier}")
+            known.add(identifier)
+        _file(component.get("geometry_file"), f"components[{index}].geometry_file", errors)
 
-    interfaces = record.get("interfaces")
-    if not isinstance(interfaces, list) or not interfaces:
-        errors.append("interfaces: expected at least one interface")
-        interfaces = []
-    for index, interface in enumerate(interfaces):
-        label = f"interfaces[{index}]"
-        if not isinstance(interface, dict):
-            errors.append(f"{label}: expected an object")
-            continue
-        if interface.get("kind") not in KINDS:
-            errors.append(f"{label}.kind: expected one of {sorted(KINDS)}")
-        # Une interface de contact lie deux pieces, mais une interface de datum peut en
-        # lier davantage : la cote E porte sur le plancher et les deux bas de caisse.
-        refs = interface.get("components")
-        if not isinstance(refs, list) or len(refs) < 2:
-            errors.append(f"{label}.components: expected at least two component ids")
-        elif any(ref not in known_components for ref in refs):
-            errors.append(f"{label}.components: references an unknown component")
-        required = interface.get("required_measurements")
-        if not isinstance(required, list) or not required or not all(_text(item) for item in required):
-            errors.append(f"{label}.required_measurements: expected at least one identifier")
-        if not _text(interface.get("acceptance_rule")):
-            errors.append(f"{label}.acceptance_rule: expected a non-empty rule")
-        if interface.get("status") not in INTERFACE_STATUSES:
-            errors.append(f"{label}.status: expected one of {sorted(INTERFACE_STATUSES)}")
+    seen: set[str] = set()
+    for index, interface in enumerate(_list(record.get("interfaces"))):
+        interface = _dict(interface)
+        identifier = interface.get("interface_id")
+        if isinstance(identifier, str):
+            if identifier in seen:
+                errors.append(f"interfaces[{index}].interface_id: duplicate {identifier}")
+            seen.add(identifier)
+        unknown = [ref for ref in _list(interface.get("components")) if ref not in known]
+        if unknown:
+            errors.append(f"interfaces[{index}].components: references an unknown component: {unknown}")
 
-    geometry = record.get("geometry")
-    if not isinstance(geometry, dict):
-        errors.append("geometry: expected an object")
-    else:
-        if geometry.get("master_format") not in {"build123d", "FCStd", "STEP", "none"}:
-            errors.append("geometry.master_format: unknown format")
-        master_file = geometry.get("master_file")
-        if not isinstance(master_file, str):
-            errors.append("geometry.master_file: expected a string")
-        else:
-            _file(master_file, "geometry.master_file", errors)
-        derived = geometry.get("derived_files")
-        if not isinstance(derived, list) or not all(isinstance(item, str) for item in derived):
-            errors.append("geometry.derived_files: expected a string array")
-        else:
-            for index, item in enumerate(derived):
-                _file(item, f"geometry.derived_files[{index}]", errors)
-
-    validation = record.get("validation")
-    if not isinstance(validation, dict):
-        errors.append("validation: expected an object")
-    else:
-        status = validation.get("status")
-        if status not in VALIDATION_STATUSES:
-            errors.append(f"validation.status: expected one of {sorted(VALIDATION_STATUSES)}")
-        evidence = validation.get("evidence")
-        if not isinstance(evidence, list) or not all(isinstance(item, str) for item in evidence):
-            errors.append("validation.evidence: expected a string array")
-        limits = validation.get("known_limits")
-        if not isinstance(limits, list) or not all(_text(item) for item in limits):
-            errors.append("validation.known_limits: expected a string array")
-        if status in {"digitally_checked", "physically_correlated"}:
-            if record.get("fidelity") in {"F0_reference", "F1_envelope"}:
-                errors.append("validation.status: digital checking requires at least F2_interface")
-            if any(component.get("accuracy_mm") is None for component in components if isinstance(component, dict)):
-                errors.append("validation.status: every component requires known accuracy")
-            if not evidence:
-                errors.append("validation.evidence: required for a checked twin")
-
+    geometry = _dict(record.get("geometry"))
+    _file(geometry.get("master_file"), "geometry.master_file", errors)
+    for index, item in enumerate(_list(geometry.get("derived_files"))):
+        _file(item, f"geometry.derived_files[{index}]", errors)
+    for index, item in enumerate(_list(_dict(record.get("validation")).get("evidence"))):
+        _file(item, f"validation.evidence[{index}]", errors)
     return errors
+
+
+def validate_twin(record: Any) -> list[str]:
+    errors = schema_errors(record)
+    if isinstance(record, dict) and record.get("schema_version") in RETIRED_VERSIONS:
+        errors = [error for error in errors if not error.startswith("schema_version:")]
+        errors.append(
+            f"schema_version: {record['schema_version']} is retired; migrate the record to "
+            f"{load_schema()['properties']['schema_version']['const']} (catalog/schemas/CHANGELOG.md)"
+        )
+    return errors + semantic_errors(record)
 
 
 def load_and_validate(path: Path) -> list[str]:
@@ -248,4 +304,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

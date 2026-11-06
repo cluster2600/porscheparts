@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "twin_id": "TWIN-993-CABIN-DASH-SWITCH-0001",
   "name": "Functional zone of the dashboard switch blank",
   "vehicle": {
@@ -59,6 +59,14 @@
       "required_measurements": ["D05", "H03", "H05"],
       "acceptance_rule": "worst_case_clip_reach > 0 and worst_case_rear_clearance > 0",
       "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_CORNER_INSERTION",
+      "kind": "clearance",
+      "components": ["DASH_PANEL", "SWITCH_BLANK"],
+      "required_measurements": ["D08", "D09", "D10", "H01", "H02", "H04"],
+      "acceptance_rule": "worst_case_corner_insertion_clearance > 0, the smallest all-round gap of the centred insertion body section in the opening section, rounded-rectangle containment, twins/993-cabin-dashboard-switch-0001/interface-contract.json",
+      "status": "missing_data"
     }
   ],
   "geometry": {
@@ -69,12 +77,15 @@
   "validation": {
     "status": "concept",
     "evidence": [
-      "twins/993-cabin-dashboard-switch-0001/evidence/measurement-plan.md"
+      "twins/993-cabin-dashboard-switch-0001/evidence/measurement-plan.md",
+      "twins/993-cabin-dashboard-switch-0001/measurement-plan-addendum.md"
     ],
     "known_limits": [
       "No dimension of the real opening is present yet.",
       "The vehicle variant and model year must be confirmed.",
-      "The clip test does not yet model the elastic deformation of the tabs."
+      "The clip test does not yet model the elastic deformation of the tabs.",
+      "Clip insertion and retention force are not evaluated and stay outside any pass until measured force data and a separate model exist.",
+      "The corner rule H04 needs the part-side input D10 added by measurement-plan-addendum.md; it assumes circular-arc corners and insertion without tilt."
     ]
   }
 }

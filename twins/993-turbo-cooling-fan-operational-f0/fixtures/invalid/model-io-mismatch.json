@@ -1,0 +1,16 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "model_card",
+  "description": "The model drops an output after the observations were bound to it.",
+  "expected_codes": [
+    "MODEL_BINDING_MISMATCH",
+    "MODEL_IO_MISMATCH"
+  ],
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/outputs/2"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "observation_set",
+  "description": "Ambient pressure sampled more slowly than the contract period.",
+  "expected_codes": [
+    "CADENCE"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/channels/2/nominal_period_s",
+      "value": 5.0
+    }
+  ]
+}

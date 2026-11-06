@@ -1,0 +1,19 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "observation_set",
+  "description": "A steady window shorter than the contract minimum.",
+  "expected_codes": [
+    "OPERATING_CASE"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/operating_case/steady_windows_s/0",
+      "value": [
+        5.0,
+        10.0
+      ]
+    }
+  ]
+}

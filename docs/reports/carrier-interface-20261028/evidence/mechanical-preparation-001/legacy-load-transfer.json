@@ -1,0 +1,164 @@
+{
+  "status": "legacy_traction_transfer_audited",
+  "surface_sha256": "50b1c1ccb4a868aa1a98e332dcd8221140fa0c282bcf07979b49ed33b2abb420",
+  "all_surface_faces_examined": 5765272,
+  "patches": {
+    "bolt0": {
+      "faces": 1978,
+      "area_mm2": 259.0068886058449,
+      "area_centroid_mm": [
+        -50.000115223452795,
+        -20.001109346190873,
+        0.001571168153492569
+      ],
+      "legacy_area_mm2": 259.0939839746133,
+      "relative_area_change": -0.00033615357420635483,
+      "inside_exactly_preserved_region": true
+    },
+    "bolt1": {
+      "faces": 1974,
+      "area_mm2": 259.0037703613733,
+      "area_centroid_mm": [
+        -49.999946913919565,
+        19.99993466203613,
+        -0.0013132888662508065
+      ],
+      "legacy_area_mm2": 258.67720282193557,
+      "relative_area_change": 0.0012624519512163257,
+      "inside_exactly_preserved_region": true
+    },
+    "bolt2": {
+      "faces": 1972,
+      "area_mm2": 259.0451622407277,
+      "area_centroid_mm": [
+        49.99935487118697,
+        -20.000930798407012,
+        0.0013828913223236088
+      ],
+      "legacy_area_mm2": 259.0459039642325,
+      "relative_area_change": -2.8632898395608564e-06,
+      "inside_exactly_preserved_region": true
+    },
+    "bolt3": {
+      "faces": 1984,
+      "area_mm2": 258.9913682777141,
+      "area_centroid_mm": [
+        50.00009785766447,
+        20.000108428375906,
+        -0.0015352799164442216
+      ],
+      "legacy_area_mm2": 258.98487872303747,
+      "relative_area_change": 2.505765861182674e-05,
+      "inside_exactly_preserved_region": true
+    },
+    "end0": {
+      "faces": 13643,
+      "area_mm2": 1931.5672482033854,
+      "area_centroid_mm": [
+        -280.0000826355153,
+        -0.0015275130561686256,
+        -7.971445155120295e-05
+      ],
+      "legacy_area_mm2": 1931.4448370162281,
+      "relative_area_change": 6.33780394920791e-05,
+      "inside_exactly_preserved_region": true
+    },
+    "end1": {
+      "faces": 13715,
+      "area_mm2": 1931.7933285937365,
+      "area_centroid_mm": [
+        280.0000778453932,
+        0.00022776091487478696,
+        -3.733665122864917e-05
+      ],
+      "legacy_area_mm2": 1931.7488293855527,
+      "relative_area_change": 2.303571122030945e-05,
+      "inside_exactly_preserved_region": true
+    }
+  },
+  "legacy_load_transfer": {
+    "gravity": {
+      "legacy_tractions_reused_unchanged": true,
+      "actual_force_N": [
+        5.891418008611166e-09,
+        -4.127904291993022e-08,
+        -2000.4740078811299
+      ],
+      "actual_moment_Nmm": [
+        -16.150836583141427,
+        -25.860465385994758,
+        1.9841927870578157e-06
+      ],
+      "requested": {
+        "force_N": [
+          0,
+          0,
+          -2000
+        ],
+        "moment_Nmm": [
+          0,
+          0,
+          0
+        ]
+      },
+      "wrench_residual": [
+        5.891418008611166e-09,
+        -4.127904291993022e-08,
+        -0.4740078811298645,
+        -16.150836583141427,
+        -25.860465385994758,
+        1.9841927870578157e-06
+      ],
+      "unchanged_legacy_wrench_tolerance_passed": false
+    },
+    "combined": {
+      "legacy_tractions_reused_unchanged": true,
+      "actual_force_N": [
+        -0.0002184085063540453,
+        6.208074898737814e-05,
+        -3997.108796046068
+      ],
+      "actual_moment_Nmm": [
+        96.80251840827987,
+        850135.3068326961,
+        -0.00024748850418943036
+      ],
+      "requested": {
+        "force_N": [
+          0,
+          0,
+          -4000
+        ],
+        "moment_Nmm": [
+          0,
+          850000,
+          0
+        ]
+      },
+      "wrench_residual": [
+        -0.0002184085063540453,
+        6.208074898737814e-05,
+        2.8912039539318357,
+        96.80251840827987,
+        135.30683269607835,
+        -0.00024748850418943036
+      ],
+      "unchanged_legacy_wrench_tolerance_passed": false
+    }
+  },
+  "all_patch_indices_disjoint": true,
+  "patch_selection": "Unchanged legacy nominal-bore predicate; explicit study dimensions and tolerance, not acquired vehicle interfaces",
+  "mechanical_mesh_admitted": false,
+  "solver_inputs_created": false,
+  "source_sha256": {
+    "work/carrier-resume-20261020/picogk-R2-mechanics-study.json": "f41352402649adf98dda9d6bb294f7342e5ed6f5c8b5609be9e103229f4c6ccf",
+    "work/carrier-resume-20261020/meshlib-R2-matched-traction-001/P1/assessment.json": "b4578d56caeff0975a26ace20acadb9159c96b32e7e065fd1e8333ed29fb5474",
+    "parts/993-eng-carrier-0001/source/design-20261016/convergence-20261022/refine_matched_tetrahedra.py": "03381d25aaf3bdafa767f580665a00754b7276cad91786ff4eb7a4b9a4889a8f",
+    "work/meshlib-load-transfer-audit-001/audit.py": "f7bbab5387f9f34410ce8a2c587876f247574de42e7ef379e3d1de5923f88a25"
+  },
+  "patch_indices_sha256": "6aec7967f8a379ad3b0ae19302fea399f04f0da2db6f3bcd566aa32d523b5382",
+  "publication_projection": {
+    "private_receipt_sha256": "925349c2accb9ac120cf3d4d62279e7eba944ce0fbb5ac8edc28b9c115d714ec",
+    "transformation": "Only source-path keys shortened to repository-relative paths; numerical values and source hashes unchanged."
+  }
+}

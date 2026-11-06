@@ -1,0 +1,16 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "observation_set",
+  "description": "Live synchronisation is declared but not implemented.",
+  "expected_codes": [
+    "MODE_NOT_IMPLEMENTED"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/synchronisation_mode",
+      "value": "live_synchronisation"
+    }
+  ]
+}

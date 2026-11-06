@@ -1,0 +1,139 @@
+{
+  "status": "complete_face_partition_coverage_checked",
+  "input_reference_sha256": "a5a5b20fe3635f36eb6fda8433c2943fb0036071bd0cbce68779b3c5e0582b05",
+  "input_candidate_sha256": "e750ba06b955dcbe2e84540a367d0c61621a8889afaf202e1f1f64a7e7afe834",
+  "reference_faces": 1348224,
+  "candidate_faces": 2295760,
+  "unmatched_reference_faces": 98957,
+  "unmatched_candidate_faces": 1046493,
+  "outside_original_oriented_faces_exact": true,
+  "outside_faces": 1156578,
+  "outside_face_roster_sha256": "96628b1c1bcba49b34719e013bd9e2cdcbdc43441ea293888ef686610e44d747",
+  "patches": [
+    {
+      "rank": 0,
+      "bounds_mm": [
+        [
+          65.35997772216797,
+          18.60802459716797,
+          -13.014007568359375
+        ],
+        [
+          91.17423248291016,
+          36.9975471496582,
+          15.120615005493164
+        ]
+      ],
+      "reference": {
+        "file": "reference-0.mesh64",
+        "sha256": "5c680f488be92acb05f6ac73af74f47b9c1c38ef4e9a30d0dff30f290b65a9d4",
+        "faces": 50334,
+        "vertices": 25477,
+        "exact_roundtrip": true
+      },
+      "candidate": {
+        "file": "candidate-0.mesh64",
+        "sha256": "47c6c5ba94a3b0d0ff8f6a0243286a2f00e393ebee2e02a87b96d5a511e7bf04",
+        "faces": 295348,
+        "vertices": 147984,
+        "exact_roundtrip": true
+      },
+      "indices_sha256": "c3aebeabdec43c3e5eefd226bb0619fc4162aecebb2583014072dd51fb7e98f6"
+    },
+    {
+      "rank": 1,
+      "bounds_mm": [
+        [
+          -91.10044860839844,
+          18.599287033081055,
+          -13.016754150390625
+        ],
+        [
+          -65.3720474243164,
+          36.99739074707031,
+          14.971607208251953
+        ]
+      ],
+      "reference": {
+        "file": "reference-1.mesh64",
+        "sha256": "cae02c490f3f83c0fce295c039d998b2e91106a5de41b0a0341820df6dd96428",
+        "faces": 49422,
+        "vertices": 25007,
+        "exact_roundtrip": true
+      },
+      "candidate": {
+        "file": "candidate-1.mesh64",
+        "sha256": "412a11b50f2a4a13567bbf7a28c785cb14683f1384c4daf2c1648284c08afb72",
+        "faces": 280424,
+        "vertices": 140508,
+        "exact_roundtrip": true
+      },
+      "indices_sha256": "5777ab713c902c0b7891e3beef756f12e2019c975ee775b5d495deadf3e7b893"
+    },
+    {
+      "rank": 2,
+      "bounds_mm": [
+        [
+          65.24463653564453,
+          -36.997398376464844,
+          -12.850006103515625
+        ],
+        [
+          91.12992858886719,
+          -18.59345817565918,
+          14.899822235107422
+        ]
+      ],
+      "reference": {
+        "file": "reference-2.mesh64",
+        "sha256": "67ec53bae36a4aaef7fb1c40b45ff784eccd2cb162036699701ace8886f141c8",
+        "faces": 46098,
+        "vertices": 23356,
+        "exact_roundtrip": true
+      },
+      "candidate": {
+        "file": "candidate-2.mesh64",
+        "sha256": "53bb6352d5238b0dfb24299489b8cb72fc0358e185a978bf43c7db3c616acc6c",
+        "faces": 282624,
+        "vertices": 141619,
+        "exact_roundtrip": true
+      },
+      "indices_sha256": "cbf5fc0a9033a81c346a9f048e63d6759de8d2374074c9a80864479233dc0e75"
+    },
+    {
+      "rank": 3,
+      "bounds_mm": [
+        [
+          -91.05768585205078,
+          -36.99797439575195,
+          -13.168976783752441
+        ],
+        [
+          -65.50923919677734,
+          -18.49983024597168,
+          14.89948558807373
+        ]
+      ],
+      "reference": {
+        "file": "reference-3.mesh64",
+        "sha256": "36f8bd15edf9c1a3aec92504dc702f9735705af59b7ea6135db049ac4cf059b9",
+        "faces": 45792,
+        "vertices": 23193,
+        "exact_roundtrip": true
+      },
+      "candidate": {
+        "file": "candidate-3.mesh64",
+        "sha256": "c87b64d526b26d6571e9c2d1e0e64c72881c3ee2d3065a338901a399f8fc3ceb",
+        "faces": 280786,
+        "vertices": 140690,
+        "exact_roundtrip": true
+      },
+      "indices_sha256": "9527522e1b576fbf4db42e22265d7d1724880ed6aaad9349a9e2a5651a44c06f"
+    }
+  ],
+  "global_bound_rule": "If all patch symmetric distances are <= d, global symmetric distance is <= d; every remaining face is an exact match.",
+  "maximum_allowed_mm": 0.01,
+  "algorithm_error_bound_mm": 0.001,
+  "all_patch_distances_checked": false,
+  "manufacturing_authorized": false
+}

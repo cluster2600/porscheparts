@@ -1,0 +1,41 @@
+{
+  "returncode": 0,
+  "elapsed_seconds": 441.1750875420403,
+  "image": "sha256:7ed241be10194d98e4ae750cb7f983b0d501742f1ac651580b86c165cba39537",
+  "input_hashes": {
+    "fast-quadric-coarsening-001/r3-positive-001/source-residual.meshbin": "3195dc79369d953bd35883578f089efbb6af2a6f6ae2ab28d6f8f94530f3f15c",
+    "fast-quadric-coarsening-001/r3-positive-001/candidate-residual.meshbin": "74847cbf1479b7ea3783dcd8aa46c20b793fb18e1bb75d3898aaf66145785eda",
+    "tiled-exact-envelopes-001/check.cpp": "8bbe13d6f843110bc96dd5afc874f35243206660a695b37348765fe45cf9be13",
+    "tiled-exact-envelopes-001/check": "2c5433848764f34daf866c68073113d3f54329368cf9b4f6db66f54b548cbf95"
+  },
+  "reference": {
+    "status": "complete_symmetric_envelopes_passed",
+    "error": "",
+    "source_faces": 897898,
+    "candidate_faces": 289186,
+    "candidate_in_source_envelope": true,
+    "source_in_candidate_envelope": true,
+    "tolerance_mm": 0.002,
+    "peak_resident_kib": 11313104,
+    "elapsed_seconds": 553.255522461,
+    "scope": "Complete triangle queries using CGAL5.6 EPECK polyhedral envelopes; embedding and mechanics checked separately"
+  },
+  "tiled_result": {
+    "status": "complete_tiled_symmetric_envelopes_passed",
+    "error": "",
+    "source_faces": 897898,
+    "candidate_faces": 289186,
+    "source_faces_checked": 897898,
+    "candidate_faces_checked": 289186,
+    "source_in_candidate_envelope": 1,
+    "candidate_in_source_envelope": 1,
+    "groups": 13656,
+    "maximum_local_target_faces": 3694,
+    "tolerance_mm": 0.002,
+    "tile_mm": 0.125,
+    "batch_faces": 256,
+    "peak_resident_kib": 238360,
+    "elapsed_seconds": 440.979987325,
+    "certificate": "Every complete query triangle is checked against an exact envelope of a subset of the actual target triangles. Both complete query inventories are exhausted on success. No sampled acceptance. Embedding is separate."
+  }
+}

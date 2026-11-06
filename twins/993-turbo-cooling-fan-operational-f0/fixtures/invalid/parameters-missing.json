@@ -1,0 +1,16 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "parameter_set",
+  "description": "A required parameter is absent from the bound parameter set.",
+  "expected_codes": [
+    "MODEL_BINDING_MISMATCH",
+    "PARAMETER_SET"
+  ],
+  "patch": [
+    {
+      "op": "remove",
+      "path": "/parameters/5"
+    }
+  ]
+}

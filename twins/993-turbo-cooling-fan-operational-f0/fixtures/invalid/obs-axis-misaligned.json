@@ -1,0 +1,20 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "observation_set",
+  "description": "The fan tachometer does not sense about the fan axis.",
+  "expected_codes": [
+    "FRAME_STATION"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/channels/3/mount/sensing_axis_sensor",
+      "value": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    }
+  ]
+}

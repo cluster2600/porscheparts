@@ -1,0 +1,125 @@
+{
+  "status": "strict_domain_controls_passed",
+  "cases": [
+    {
+      "case": "inside",
+      "expected_returncode": 0,
+      "report": {
+        "status": "complete_strict_domain_containment_passed",
+        "error": "",
+        "source_faces": 4,
+        "candidate_faces": 4,
+        "source_components": 1,
+        "candidate_components": 1,
+        "source_self_intersection": false,
+        "candidate_self_intersection": false,
+        "source_outward_oriented": true,
+        "candidate_outward_oriented": true,
+        "boundary_intersections": false,
+        "connected_boundary_seed_strictly_inside": true,
+        "whole_bounded_solid_containment_proved": true,
+        "manufacturing_authorized": false
+      }
+    },
+    {
+      "case": "outside",
+      "expected_returncode": 2,
+      "report": {
+        "status": "strict_domain_refused",
+        "error": "Candidate lies outside source bounded domain",
+        "source_faces": 4,
+        "candidate_faces": 4,
+        "source_components": 1,
+        "candidate_components": 1,
+        "source_self_intersection": false,
+        "candidate_self_intersection": false,
+        "source_outward_oriented": true,
+        "candidate_outward_oriented": true,
+        "boundary_intersections": false,
+        "connected_boundary_seed_strictly_inside": false,
+        "whole_bounded_solid_containment_proved": false,
+        "manufacturing_authorized": false
+      }
+    },
+    {
+      "case": "boundary-touch",
+      "expected_returncode": 2,
+      "report": {
+        "status": "strict_domain_refused",
+        "error": "Source and candidate boundaries intersect",
+        "source_faces": 4,
+        "candidate_faces": 4,
+        "source_components": 1,
+        "candidate_components": 1,
+        "source_self_intersection": false,
+        "candidate_self_intersection": false,
+        "source_outward_oriented": true,
+        "candidate_outward_oriented": true,
+        "boundary_intersections": true,
+        "connected_boundary_seed_strictly_inside": false,
+        "whole_bounded_solid_containment_proved": false,
+        "manufacturing_authorized": false
+      }
+    },
+    {
+      "case": "crossing",
+      "expected_returncode": 2,
+      "report": {
+        "status": "strict_domain_refused",
+        "error": "Source and candidate boundaries intersect",
+        "source_faces": 4,
+        "candidate_faces": 4,
+        "source_components": 1,
+        "candidate_components": 1,
+        "source_self_intersection": false,
+        "candidate_self_intersection": false,
+        "source_outward_oriented": true,
+        "candidate_outward_oriented": true,
+        "boundary_intersections": true,
+        "connected_boundary_seed_strictly_inside": false,
+        "whole_bounded_solid_containment_proved": false,
+        "manufacturing_authorized": false
+      }
+    },
+    {
+      "case": "two-boundaries",
+      "expected_returncode": 2,
+      "report": {
+        "status": "strict_domain_refused",
+        "error": "Exactly one boundary component required on each solid",
+        "source_faces": 4,
+        "candidate_faces": 8,
+        "source_components": 1,
+        "candidate_components": 2,
+        "source_self_intersection": false,
+        "candidate_self_intersection": false,
+        "source_outward_oriented": false,
+        "candidate_outward_oriented": false,
+        "boundary_intersections": false,
+        "connected_boundary_seed_strictly_inside": false,
+        "whole_bounded_solid_containment_proved": false,
+        "manufacturing_authorized": false
+      }
+    },
+    {
+      "case": "unused-inside-vertex",
+      "expected_returncode": 2,
+      "report": {
+        "status": "strict_domain_refused",
+        "error": "Candidate lies outside source bounded domain",
+        "source_faces": 4,
+        "candidate_faces": 4,
+        "source_components": 1,
+        "candidate_components": 1,
+        "source_self_intersection": false,
+        "candidate_self_intersection": false,
+        "source_outward_oriented": true,
+        "candidate_outward_oriented": true,
+        "boundary_intersections": false,
+        "connected_boundary_seed_strictly_inside": false,
+        "whole_bounded_solid_containment_proved": false,
+        "manufacturing_authorized": false
+      }
+    }
+  ]
+}

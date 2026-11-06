@@ -1,0 +1,69 @@
+{
+  "status": "exact_vertex_offset_controls_passed",
+  "cases": [
+    {
+      "case": "vertex-sphere",
+      "returncode": 0,
+      "result": {
+        "status": "exact_nearest_vertex_offset_passed",
+        "error": "",
+        "source_faces": 4,
+        "before_exact_nearest_vertex": true,
+        "after_exact_nearest_vertex": true,
+        "endpoint_vectors_exact_dot_positive": true,
+        "after_distance_in_exact_radius_interval": true,
+        "radius_mm": 0.1,
+        "radius_interval_halfwidth_mm": 1e-09,
+        "manufacturing_authorized": false
+      }
+    },
+    {
+      "case": "wrong-source-vertex",
+      "returncode": 2,
+      "result": {
+        "status": "nearest_vertex_offset_refused",
+        "error": "Nearest-vertex offset conditions refused",
+        "source_faces": 4,
+        "before_exact_nearest_vertex": false,
+        "after_exact_nearest_vertex": false,
+        "endpoint_vectors_exact_dot_positive": true,
+        "after_distance_in_exact_radius_interval": false,
+        "radius_mm": 0.1,
+        "radius_interval_halfwidth_mm": 1e-09,
+        "manufacturing_authorized": false
+      }
+    },
+    {
+      "case": "wrong-radius",
+      "returncode": 2,
+      "result": {
+        "status": "nearest_vertex_offset_refused",
+        "error": "Nearest-vertex offset conditions refused",
+        "source_faces": 4,
+        "before_exact_nearest_vertex": true,
+        "after_exact_nearest_vertex": true,
+        "endpoint_vectors_exact_dot_positive": true,
+        "after_distance_in_exact_radius_interval": false,
+        "radius_mm": 0.1,
+        "radius_interval_halfwidth_mm": 1e-09,
+        "manufacturing_authorized": false
+      }
+    },
+    {
+      "case": "face-instead-of-vertex",
+      "returncode": 2,
+      "result": {
+        "status": "nearest_vertex_offset_refused",
+        "error": "Nearest-vertex offset conditions refused",
+        "source_faces": 4,
+        "before_exact_nearest_vertex": false,
+        "after_exact_nearest_vertex": false,
+        "endpoint_vectors_exact_dot_positive": true,
+        "after_distance_in_exact_radius_interval": false,
+        "radius_mm": 0.1,
+        "radius_interval_halfwidth_mm": 1e-09,
+        "manufacturing_authorized": false
+      }
+    }
+  ]
+}

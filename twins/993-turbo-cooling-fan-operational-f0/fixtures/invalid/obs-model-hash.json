@@ -1,0 +1,16 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "observation_set",
+  "description": "The declared model-card hash does not match the model card.",
+  "expected_codes": [
+    "MODEL_BINDING_MISMATCH"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/model_binding/model_card_sha256",
+      "value": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ]
+}

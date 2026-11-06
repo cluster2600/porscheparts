@@ -1,0 +1,16 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "slice_contract",
+  "description": "A consistent band wider than the discrepant threshold.",
+  "expected_codes": [
+    "RESIDUAL_RULES"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/residual_rules/consistent_max_abs_z",
+      "value": 3.5
+    }
+  ]
+}

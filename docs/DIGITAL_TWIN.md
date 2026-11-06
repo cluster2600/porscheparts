@@ -37,12 +37,26 @@ The MVP assembles:
 1. the candidate switch blank;
 2. the opening and the thickness of the panel that receives it;
 3. the free volume behind the panel;
-4. the minimum insertion, overlap, clip-in and setback margins.
+4. the minimum insertion, overlap, clip-in and setback margins;
+5. the corner compatibility of the insertion body with the opening (H04).
 
 The script `twins/993-cabin-dashboard-switch-0001/source/check_fit.py` reads a
-measurement record and refuses to compute if a dimension is missing. It produces
-a JSON report with the nominal margin and the worst-case guaranteed margin,
-uncertainties included.
+physical measurement record and checks it against
+[the interface contract](../twins/993-cabin-dashboard-switch-0001/interface-contract.json).
+It refuses to compute if a reading is missing, duplicated, not in millimetres,
+not finite, nonphysical, taken by an unsupported method, or if the record fails
+`scripts/validate_measurements.py`. It produces a JSON report with the nominal
+margin and the worst-case guaranteed margin, uncertainties included.
+
+The corner rule treats the opening and the body section as rounded rectangles
+and reports the smallest all-round gap with the body centred. It needs a
+part-side reading, D10, the body corner radius, added by
+[the measurement plan addendum](../twins/993-cabin-dashboard-switch-0001/measurement-plan-addendum.md)
+because the frozen plan has none. A passed report covers static geometry only:
+clip insertion and retention force are not evaluated, and
+`physical_fit_status` stays `not_established`. Synthetic fixtures in
+`tests/fixtures/dt01-switch-fit/` reproduce a passing and a corner-interference
+report; they are not part data.
 
 ```bash
 python3 twins/993-cabin-dashboard-switch-0001/source/check_fit.py \
@@ -100,3 +114,20 @@ reconstruction of the whole car.
 Physical correlation remains a future level. For a critical part, a numerical
 success will replace neither the engineering review nor the material and fatigue
 tests if manufacturing is ever decided.
+
+## Operational observations — 993 Turbo cooling fan, synthetic only
+
+The levels above describe static geometry and fit. The first operational slice,
+[`twins/993-turbo-cooling-fan-operational-f0`](../twins/993-turbo-cooling-fan-operational-f0/README.md),
+adds a versioned contract for specimen-linked, timestamped observations of one
+993 Turbo cooling fan: anonymous specimen, component frame and stations, units,
+timebase, calibration, uncertainty, cadence, sample flags, predeclared residual
+rules and no-claim states
+([schema](../catalog/schemas/operational-twin.schema.json)). A single
+deterministic offline replay binds each run to the specimen, timebase,
+calibration register, model and parameter hashes and reports predictions,
+residuals and uncertainty per frame
+([replay](../scripts/replay_operational_twin.py)); live synchronisation is not
+implemented. Its observation set is
+synthetic, so the slice proves software behaviour only: it stays at
+`digitally_checked` at most and claims no physical correlation.

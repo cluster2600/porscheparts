@@ -1,0 +1,250 @@
+{
+  "scope": "Numerical study only; spatial stabilization not reached; no manufacturing release",
+  "cases": {
+    "gravity": {
+      "comparison_receipt_sha256": "c18d188c7ba19ded4b0c6dd613f6a1fbf55e2e28ee3b7a8a5c270a767aab2b46",
+      "comparison_sha256": "d9327da6a3640629bbcafaf2810aaf87083cf4d4add67ebdeab52128e253469e",
+      "comparison": {
+        "load_case": "gravity",
+        "status": "complete_same_load_nested_P1_increment_measured",
+        "controls": {
+          "Galerkin_energy_increment_identity": true,
+          "six_independent_compliance_components": true,
+          "zero_increment": true,
+          "actual_parent_child_valid_case": true,
+          "foreign_edge_refused": true,
+          "different_midpoint_refused": true,
+          "missing_parent_vertex_refused": true,
+          "valid_third": true,
+          "rejections": [
+            "wrong_fraction_point",
+            "noncanonical_fraction",
+            "rounded_midpoint_rejected",
+            "midpoint_underflow_rejected"
+          ],
+          "TwoSum_acceptance_matches_independent_Fraction_pairs": 1036
+        },
+        "nested_connectivity_binding": {
+          "all_unchanged_cells_bitwise_identical": true,
+          "all_child_pairs_bound_to_actual_parent_connectivity": true,
+          "all_midpoint_edges_used": true,
+          "split_parents": 4230427,
+          "new_interior_nodes": 854540
+        },
+        "exact_edge_point_binding": {
+          "exact_midpoint_nodes": 854537,
+          "exact_nonmidpoint_nodes": 3,
+          "all_points_exact_in_parent_edges": true,
+          "all_original_vertex_bytes_unchanged": true
+        },
+        "source_sha256": {
+          "/System/Volumes/Data/Users/maxime/.codex/private-evidence/carrier-h6-recovery-20261105/h7-full-comparison-gravity-002/coarse/result/assessment.json": "3fa01d5518cc874a37de88ef3c5c943fac2cf685c523a71ca7d8b345afc6217c",
+          "/System/Volumes/Data/Users/maxime/.codex/private-evidence/carrier-h6-recovery-20261105/h7-full-comparison-gravity-002/fine/result/assessment.json": "33754f4816cc23a5930de50cb73021302638f7e56f4bb6416da1e2916299673c",
+          "/Users/maxime/.codex/worktrees/carrier-conditioning-followup/3dprinting993/work/carrier-nested-comparison-h7-rational-003/h6-to-h7-map.npz": "eaf9701271dbf69ffe1fcc9bbe86782c602fe211d8731f41b0584a7ff99af421",
+          "/Users/maxime/.codex/worktrees/carrier-conditioning-followup/3dprinting993/work/carrier-nested-comparison-h7-rational-003/compare.py": "0c301331c447a4735dfe82c93103a74f796b90935151c2930cc37cafff7e6d18",
+          "/Users/maxime/.codex/worktrees/carrier-conditioning-followup/3dprinting993/work/carrier-nested-comparison-h7-rational-003/edge_fraction_points.py": "c9bce02428963df5a54dd33d53d6b92e9dac2e5c58505adf8d93289b54555328"
+        },
+        "source_cells": 14439856,
+        "refined_cells": 18670283,
+        "added_free_interior_nodes": 854540,
+        "all_original_vertex_bytes_unchanged": true,
+        "same_load_and_boundary_binding_checked_by_both_assessors": true,
+        "metrics": {
+          "external_work_Nmm": {
+            "source": 1468.7354078284984,
+            "refined": 1469.7707262094282,
+            "relative_change": 0.0007049046243533187
+          },
+          "displacement_max_mm": {
+            "source": 0.8150653494782293,
+            "refined": 0.8156805570064245,
+            "relative_change": 0.0007547953407527954
+          },
+          "VM_volume_weighted_p95_MPa": {
+            "source": 45.436662643352264,
+            "refined": 45.46217471261298,
+            "relative_change": 0.0005614864247615731
+          },
+          "VM_peak_MPa": {
+            "source": 21388.80683753519,
+            "refined": 28909.857706832565,
+            "relative_change": 0.35163489606623083
+          }
+        },
+        "prolongated_displacement_max_difference_mm": 0.0006224217468638355,
+        "original_node_displacement_l2_relative": 0.0006951802265711744,
+        "stress_difference_compliance_energy_Nmm": 0.5175653151984208,
+        "normalized_energy_difference": 0.026538280699076603,
+        "compliance_increment_Nmm": 1.0353183809297661,
+        "Galerkin_identity_defect_Nmm": 0.0001877505329246354,
+        "Galerkin_identity_defect_relative_to_work": 1.2774137460803036e-07,
+        "monotonic_work_observed": true,
+        "spatial_convergence_demonstrated": false,
+        "strength_qualified": false,
+        "scope": "One complete nested same-load increment. Printed-field and numerical errors remain visible; at least another admitted increment is needed for stabilization assessment."
+      },
+      "gpu": {
+        "status": "actual_CUDA_FP64_complete_admitted_field_compliance_crosscheck_passed",
+        "case": "gravity",
+        "device_name": "NVIDIA GeForce RTX 3090",
+        "device_alias": "cuda:0",
+        "warp_version": "1.18.0",
+        "numpy_version": "2.2.6",
+        "cells_checked": 18670283,
+        "batch_cells": 65536,
+        "independent_basis_and_hydrostatic_controls_passed": true,
+        "all_cell_values_compared": true,
+        "maximum_cell_absolute_energy_error_Nmm": 3.469446951953614e-18,
+        "maximum_fraction_of_cell_tolerance": 0.00020157558428589032,
+        "GPU_energy_Nmm": 734.8853276688457,
+        "independent_CPU_reference_energy_Nmm": 734.8853276688457,
+        "native_assessor_energy_Nmm": 734.8853276688457,
+        "GPU_native_relative_difference": 0.0,
+        "source_sha256": {
+          "/workspace/carrier/independent-assessment/result/assessment.json": "1d16dae90a95b42713f4afa65df14fb1a9dd3883bfdef907c9c051b266699217",
+          "/workspace/carrier/run/current-gravity/actual-terminal.json": "62332f48784dfd1cfc28488a257e796179ff1864624e1228a2d0584df9a63290",
+          "/workspace/carrier/independent-assessment/report.json": "a50064bec0b4a9e7abac32fa193b1fc37d1bb4c3348ec503775c1602a5038f7d",
+          "/workspace/carrier/independent-assessment/result/fields/s.npy": "5826b2305aeec87456c025ba012da1a5c1d45b3efad1a74a7a54c69dd2085cd1",
+          "/workspace/carrier/independent-assessment/result/fields/volumes.npy": "352c447be8438ad98f747928a3b4be27df81bd8685a68f6f94ceacf8399eefa2"
+        },
+        "kernel_source_sha256": "c2c4dce5811540b39086191de3683023b0ae557c46ef6c95f82e93b2edd38e11",
+        "elapsed_seconds": 5.881980598991504,
+        "new_solver_execution": false,
+        "geometry_or_loads_modified": false,
+        "spatial_stabilization_claimed": false
+      },
+      "gpu_terminal": {
+        "actual_returncode": 0,
+        "child_reaped": true,
+        "reason": "complete",
+        "peak_aggregate_RSS_bytes": 1489399808,
+        "elapsed_seconds": 7.026858983997954
+      }
+    },
+    "combined": {
+      "comparison_receipt_sha256": "54d43575b143da7effe13e9ef60385d331a4a17fb3481d970859e6e0648d9f07",
+      "comparison_sha256": "66a01d7e8df6f161a69544a5bdad513a63bd49253ede9b970c1eb26b3c329ef9",
+      "comparison": {
+        "load_case": "combined",
+        "status": "complete_same_load_nested_P1_increment_measured",
+        "controls": {
+          "Galerkin_energy_increment_identity": true,
+          "six_independent_compliance_components": true,
+          "zero_increment": true,
+          "actual_parent_child_valid_case": true,
+          "foreign_edge_refused": true,
+          "different_midpoint_refused": true,
+          "missing_parent_vertex_refused": true,
+          "valid_third": true,
+          "rejections": [
+            "wrong_fraction_point",
+            "noncanonical_fraction",
+            "rounded_midpoint_rejected",
+            "midpoint_underflow_rejected"
+          ],
+          "TwoSum_acceptance_matches_independent_Fraction_pairs": 1036
+        },
+        "nested_connectivity_binding": {
+          "all_unchanged_cells_bitwise_identical": true,
+          "all_child_pairs_bound_to_actual_parent_connectivity": true,
+          "all_midpoint_edges_used": true,
+          "split_parents": 4230427,
+          "new_interior_nodes": 854540
+        },
+        "exact_edge_point_binding": {
+          "exact_midpoint_nodes": 854537,
+          "exact_nonmidpoint_nodes": 3,
+          "all_points_exact_in_parent_edges": true,
+          "all_original_vertex_bytes_unchanged": true
+        },
+        "source_sha256": {
+          "/System/Volumes/Data/Users/maxime/.codex/private-evidence/carrier-h6-recovery-20261105/h7-full-comparison-combined-002/coarse/result/assessment.json": "8484df0a78a1756dc2cbae4645b0f106facbc688caaa2d04634f09e57f2ad914",
+          "/System/Volumes/Data/Users/maxime/.codex/private-evidence/carrier-h6-recovery-20261105/h7-full-comparison-combined-002/fine/result/assessment.json": "2a09ac0562a861fae0088529e71c279726eac5f0557fdd3a59418440c661469a",
+          "/Users/maxime/.codex/worktrees/carrier-conditioning-followup/3dprinting993/work/carrier-nested-comparison-h7-rational-003/h6-to-h7-map.npz": "eaf9701271dbf69ffe1fcc9bbe86782c602fe211d8731f41b0584a7ff99af421",
+          "/Users/maxime/.codex/worktrees/carrier-conditioning-followup/3dprinting993/work/carrier-nested-comparison-h7-rational-003/compare.py": "0c301331c447a4735dfe82c93103a74f796b90935151c2930cc37cafff7e6d18",
+          "/Users/maxime/.codex/worktrees/carrier-conditioning-followup/3dprinting993/work/carrier-nested-comparison-h7-rational-003/edge_fraction_points.py": "c9bce02428963df5a54dd33d53d6b92e9dac2e5c58505adf8d93289b54555328"
+        },
+        "source_cells": 14439856,
+        "refined_cells": 18670283,
+        "added_free_interior_nodes": 854540,
+        "all_original_vertex_bytes_unchanged": true,
+        "same_load_and_boundary_binding_checked_by_both_assessors": true,
+        "metrics": {
+          "external_work_Nmm": {
+            "source": 19111.103914866148,
+            "refined": 19131.402057503263,
+            "relative_change": 0.0010621125146688
+          },
+          "displacement_max_mm": {
+            "source": 2.3592695301722713,
+            "refined": 2.361464027517596,
+            "relative_change": 0.0009301596605473437
+          },
+          "VM_volume_weighted_p95_MPa": {
+            "source": 171.55793638934315,
+            "refined": 171.67011991863345,
+            "relative_change": 0.0006539104611033322
+          },
+          "VM_peak_MPa": {
+            "source": 174923.4455612606,
+            "refined": 173961.77057018274,
+            "relative_change": -0.0054976906497137806
+          }
+        },
+        "prolongated_displacement_max_difference_mm": 0.002430509574656747,
+        "original_node_displacement_l2_relative": 0.0008644810595101252,
+        "stress_difference_compliance_energy_Nmm": 10.148802928655982,
+        "normalized_energy_difference": 0.032572343652694284,
+        "compliance_increment_Nmm": 20.298142637115234,
+        "Galerkin_identity_defect_Nmm": 0.0005367798032693827,
+        "Galerkin_identity_defect_relative_to_work": 2.8057525614483635e-08,
+        "monotonic_work_observed": true,
+        "spatial_convergence_demonstrated": false,
+        "strength_qualified": false,
+        "scope": "One complete nested same-load increment. Printed-field and numerical errors remain visible; at least another admitted increment is needed for stabilization assessment."
+      },
+      "gpu": {
+        "status": "actual_CUDA_FP64_complete_admitted_field_compliance_crosscheck_passed",
+        "case": "combined",
+        "device_name": "NVIDIA GeForce RTX 3090",
+        "device_alias": "cuda:0",
+        "warp_version": "1.18.0",
+        "numpy_version": "2.2.6",
+        "cells_checked": 18670283,
+        "batch_cells": 65536,
+        "independent_basis_and_hydrostatic_controls_passed": true,
+        "all_cell_values_compared": true,
+        "maximum_cell_absolute_energy_error_Nmm": 5.551115123125783e-17,
+        "maximum_fraction_of_cell_tolerance": 0.0007578451831840334,
+        "GPU_energy_Nmm": 9565.70107578749,
+        "independent_CPU_reference_energy_Nmm": 9565.70107578749,
+        "native_assessor_energy_Nmm": 9565.70107578749,
+        "GPU_native_relative_difference": 0.0,
+        "source_sha256": {
+          "/workspace/carrier-h7-combined-001/independent-assessment/result/assessment.json": "d74b161c4165ed7987e9d38be0e6db3e1f785b3787eb809f16e12d83f810d069",
+          "/workspace/carrier-h7-combined-001/run/current-combined/actual-terminal.json": "e948dc2e8514f8dc29a5587ab1a3469b2ff7713c0f6b18f63a3b28f7d4c70c37",
+          "/workspace/carrier-h7-combined-001/independent-assessment/report.json": "a50064bec0b4a9e7abac32fa193b1fc37d1bb4c3348ec503775c1602a5038f7d",
+          "/workspace/carrier-h7-combined-001/independent-assessment/result/fields/s.npy": "d37bb0002b5766026b7df9e8d58204779199135e018c627427579239236a34a9",
+          "/workspace/carrier-h7-combined-001/independent-assessment/result/fields/volumes.npy": "352c447be8438ad98f747928a3b4be27df81bd8685a68f6f94ceacf8399eefa2"
+        },
+        "kernel_source_sha256": "c2c4dce5811540b39086191de3683023b0ae557c46ef6c95f82e93b2edd38e11",
+        "elapsed_seconds": 5.451131098991027,
+        "new_solver_execution": false,
+        "geometry_or_loads_modified": false,
+        "spatial_stabilization_claimed": false
+      },
+      "gpu_terminal": {
+        "actual_returncode": 0,
+        "child_reaped": true,
+        "reason": "complete",
+        "peak_aggregate_RSS_bytes": 1456009216,
+        "elapsed_seconds": 6.0302370869903825
+      }
+    }
+  },
+  "cleanup": {
+    "destroyed": true,
+    "instance_id": 59317446,
+    "verified_absent": true
+  }
+}

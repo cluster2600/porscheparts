@@ -1,0 +1,16 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "slice_contract",
+  "description": "An rpm conversion factor that is not pi/30.",
+  "expected_codes": [
+    "UNIT_CONVERSION"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/unit_conversions/1/scale",
+      "value": 0.1
+    }
+  ]
+}
