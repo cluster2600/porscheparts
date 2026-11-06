@@ -255,7 +255,8 @@ links to the original part.
 | our Porsche information catalogue | [porschefanatics.com](https://porschefanatics.com/) |
 | the licence | [LICENSE](LICENSE) · [third-party licences](docs/LICENSES.md) |
 
-To run the checks locally, install `uv` and `make`, then create the isolated
+To run the checks locally, clone onto a native Linux file system (ext4, not a
+WSL `/mnt/c` mount), install `uv` and `make`, then create the isolated
 Python 3.12 environment used by this repository:
 
 ```bash
@@ -270,6 +271,9 @@ make check
 including their Python subprocesses. The system Python and specialised CAD/AI
 environments stay separate. Run `make check-setup` again after dependency updates.
 Use `.venv-check/bin/python` when running a check script directly.
+[Local host setup](docs/LOCAL_HOST_SETUP.md) covers skip budgets, heavy jobs on
+WSL and the native PicoGK install; [the container index](docs/CONTAINER_INDEX.md)
+lists every image recipe, its lock and its workflow.
 
 ## Repository map
 
