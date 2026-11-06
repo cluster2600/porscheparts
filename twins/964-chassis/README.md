@@ -1,5 +1,13 @@
 # Digital twin of the Porsche 911 (964) chassis
 
+**B-width correction and input readiness, 6 November 2026:**
+[native endpoint tracing](body-contact-alternatives-20261106/README.md) qualifies
+Mi B's 612 mm combined span. A complete source-only B/H pattern is now derived
+and independently checked without importing Other/CH values. The improved
+source-context views still do not establish the actual B head/bearing seat or
+the off-plane controls required for registration. Qualified donor interfaces
+and inner tunnel/upper-cell geometry remain the blocking engineering inputs.
+
 **Front seating correction, 6 November 2026:** the
 [new primary-photo and fixed-oblique review](front-seating-20261106/README.md)
 withdraws the two conditional front D/E interpretations. Their recess/retainer
