@@ -56,10 +56,18 @@ class ExhaustTipTitaniumF1Tests(unittest.TestCase):
             with self.assertRaises(ScreenError):
                 score_part(PART_ID, "functional", judgement)
 
-    def test_the_selection_screened_the_whole_catalogue(self) -> None:
+    def test_the_historical_selection_covers_its_recorded_judgements(self) -> None:
         selection = load(SELECTION)
-        catalogue = len(list((ROOT / "catalog/parts").glob("*.json")))
-        self.assertEqual(selection["parts_screened"], catalogue)
+        # The historical screen covers its recorded judgements, not later catalogue additions.
+        # This digest guards the retained fixture; the original report recorded no input digest.
+        self.assertEqual(
+            hashlib.sha256(INPUTS.read_bytes()).hexdigest(),
+            "8c738cd9e1472d643503b4dc26ac7eaa14e5c345275b12253c28d18b2d803fe3",
+        )
+        ranked = [entry["part_id"] for entry in selection["ranking"]]
+        self.assertEqual(len(ranked), len(set(ranked)))
+        self.assertEqual(set(ranked), set(load(INPUTS)["parts"]))
+        self.assertEqual(selection["parts_screened"], len(ranked))
         self.assertEqual(selection["selected"], PART_ID)
         self.assertFalse(selection["selection_is_contested"])
 
