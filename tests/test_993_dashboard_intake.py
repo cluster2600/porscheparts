@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 import copy
+import contextlib
 import hashlib
+import io
 import json
 import shutil
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from scripts import check_993_dashboard_intake as intake
 
@@ -99,16 +102,16 @@ class DashboardIntakeTests(unittest.TestCase):
             interface["status"] = "submitted_unreviewed"
         return packet
 
-    def _add_asset(self, packet: dict, asset_id: str, path: str, state: str, *, redacted: bool) -> None:
+    def _add_asset(self, packet: dict, asset_id: str, path: str, state: str, *, redacted: bool, kind: str | None = None, publication: bool = False) -> None:
         raw = f"synthetic {asset_id}".encode("ascii")
         (self.root / path).write_bytes(raw)
         packet["assets"].append({
             "asset_id": asset_id, "specimen_id": packet["specimen_id"],
-            "kind": "option_label_redacted" if state == "fitted" else "interface_photo",
+            "kind": kind or ("option_label_redacted" if state == "fitted" else "interface_photo"),
             "capture_state": state, "relative_path": path,
             "sha256": hashlib.sha256(raw).hexdigest(), "bytes": len(raw),
             "creator_role": "test_contributor", "licence": "synthetic test only",
-            "inspection_permission": True, "publication_permission": False,
+            "inspection_permission": True, "publication_permission": publication,
             "rights_proof_asset_id": "A-RIGHTS", "redacted": redacted,
         })
 
@@ -277,6 +280,74 @@ class DashboardIntakeTests(unittest.TestCase):
         self.assertTrue(any("passenger restraint configuration" in problem for problem in problems), problems)
         self.assertTrue(any("all claims must remain false" in problem for problem in problems), problems)
         self.assertTrue(any("not independently frozen" in problem or "cannot read JSON" in problem for problem in problems), problems)
+
+    def test_m564_mixed_with_rs_codes_does_not_pass_non_rs_target(self) -> None:
+        for rs_code in ("M002", "M003"):
+            with self.subTest(rs_code=rs_code):
+                packet = self._submission()
+                packet["identity_evidence"]["E1_m_codes_observed"] = ["M564", rs_code]
+                path = self.root / "private-packet.json"
+                path.write_text(json.dumps(packet), encoding="utf-8")
+                problems = intake.check_packet(path, intake.ROOT)
+                self.assertTrue(any("Carrera RS M002/M003 is outside the non-RS target" in problem for problem in problems), problems)
+
+    def test_observed_trim_number_preserves_pet_held_reason(self) -> None:
+        packet = self._submission()
+        identity = packet["identity_evidence"]
+        identity["E3_trim_part_number_observed"] = "993 552 055 00"
+        assets = (
+            ("A-OPTION", "option.jpg", "fitted", "option_label_redacted"),
+            ("A-REVERSE", "reverse.jpg", "removed", "passenger_reverse"),
+            ("A-TRIM", "trim.jpg", "removed", "trim_label"),
+            ("A-RIGHTS", "rights.txt", "not_applicable", "rights_grant"),
+            ("A-CONTINUITY", "continuity.json", "not_applicable", "continuity_manifest"),
+            ("A-FITMARK1", "fitted-mark-one.jpg", "fitted", "interface_photo"),
+            ("A-REMMARK1", "removed-mark-one.jpg", "removed", "interface_photo"),
+            ("A-FITMARK2", "fitted-mark-two.jpg", "fitted", "interface_photo"),
+            ("A-REMMARK2", "removed-mark-two.jpg", "removed", "interface_photo"),
+        )
+        for asset_id, path, state, kind in assets:
+            self._add_asset(packet, asset_id, path, state, redacted=True, kind=kind, publication=True)
+        for asset in packet["assets"]:
+            asset["rights_proof_asset_id"] = None if asset["asset_id"] == "A-RIGHTS" else "A-RIGHTS"
+        identity["E1_option_label_asset_id"] = "A-OPTION"
+        identity["E2_passenger_reverse_asset_id"] = "A-REVERSE"
+        identity["E3_trim_label_asset_id"] = "A-TRIM"
+        identity["E4_continuity_manifest_asset_id"] = "A-CONTINUITY"
+        identity["E5_rights_manifest_asset_id"] = "A-RIGHTS"
+        identity["E4_linking_marks"] = [
+            {"mark_id": "MARK-ONE", "fitted_asset_id": "A-FITMARK1", "removed_asset_id": "A-REMMARK1"},
+            {"mark_id": "MARK-TWO", "fitted_asset_id": "A-FITMARK2", "removed_asset_id": "A-REMMARK2"},
+        ]
+        continuity = {
+            "specimen_id": packet["specimen_id"], "capture_campaign_id": packet["capture_campaign_id"],
+            "asset_ids": [asset["asset_id"] for asset in packet["assets"]],
+            "measurement_record_ids": [], "linking_marks": identity["E4_linking_marks"],
+        }
+        raw = json.dumps(continuity).encode("utf-8")
+        (self.root / "continuity.json").write_bytes(raw)
+        manifest = next(asset for asset in packet["assets"] if asset["asset_id"] == "A-CONTINUITY")
+        manifest["bytes"] = len(raw)
+        manifest["sha256"] = hashlib.sha256(raw).hexdigest()
+        path = self.root / "private-packet.json"
+        path.write_text(json.dumps(packet), encoding="utf-8")
+        held: list[str] = []
+        intake.check_packet(path, intake.ROOT, hold_reasons=held)
+        self.assertTrue(any("E3: trim label is not confirmed against the matrix" in reason for reason in held), held)
+
+    def test_cli_prints_pet_hold_reasons(self) -> None:
+        output = io.StringIO()
+
+        def held_packet(_path: Path, root: Path = intake.ROOT, hold_reasons: list[str] | None = None) -> list[str]:
+            self.assertIsNotNone(hold_reasons)
+            hold_reasons.append("E3: trim label is not confirmed against the matrix; open a contradiction")
+            return []
+
+        with patch.object(intake, "check_template", return_value=[]), patch.object(intake, "check_packet", side_effect=held_packet), contextlib.redirect_stdout(output):
+            result = intake.main(["--packet", str(self.root / "synthetic-packet.json")])
+        self.assertEqual(result, 0)
+        self.assertIn("HOLD PET E1–E5: E3: trim label is not confirmed", output.getvalue())
+        self.assertIn("held for independent review", output.getvalue())
 
     def test_submission_rejects_mixed_specimen_and_unverified_rights(self) -> None:
         packet = self._submission()

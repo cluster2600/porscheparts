@@ -269,7 +269,7 @@ def check_template(root: Path = ROOT) -> list[str]:
     return errors
 
 
-def check_packet(packet_path: Path, root: Path = ROOT) -> list[str]:
+def check_packet(packet_path: Path, root: Path = ROOT, hold_reasons: list[str] | None = None) -> list[str]:
     """Check a private submission for documentary coherence; never admit it."""
     errors: list[str] = []
     packet = _read_json(packet_path, errors, str(packet_path))
@@ -393,6 +393,8 @@ def check_packet(packet_path: Path, root: Path = ROOT) -> list[str]:
         errors.append("identity_evidence.E1_m_codes_observed: M562 passenger airbag is out of scope")
     if "M561" in codes:
         errors.append("identity_evidence.E1_m_codes_observed: M561 needs a separate variant review")
+    if "M002" in codes or "M003" in codes:
+        errors.append("identity_evidence.E1_m_codes_observed: Carrera RS M002/M003 is outside the non-RS target")
     if identity.get("E1_identifiers_visible") is not False:
         errors.append("identity_evidence.E1_identifiers_visible: VIN and personal identifiers must be masked")
     if (identity.get("E2_region_shown") is not True or identity.get("E2_passenger_module_present") is not False
@@ -618,7 +620,10 @@ def check_packet(packet_path: Path, root: Path = ROOT) -> list[str]:
         },
     }
     preflight_status, preflight_reasons = admit_specimen(preflight)
-    if preflight_status != "held":
+    if preflight_status == "held":
+        if hold_reasons is not None:
+            hold_reasons.extend(preflight_reasons)
+    else:
         errors.extend(f"PET E1–E5 preflight refused: {reason}" for reason in preflight_reasons)
     review = packet.get("review", {})
     if not _keys(review, {"independent_measurement_reviewer", "independent_interface_reviewer", "rights_privacy_reviewer", "professional_engineering_reviewer", "verdict"}, errors, "review") or not isinstance(review, dict) or review.get("verdict") not in ("submitted_unreviewed", "held_for_independent_review"):
@@ -626,13 +631,16 @@ def check_packet(packet_path: Path, root: Path = ROOT) -> list[str]:
     return errors
 
 
-def main() -> int:
+def main(arguments: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--packet", type=Path, help="private packet JSON; paths are relative to its directory")
-    arguments = parser.parse_args()
+    arguments = parser.parse_args(arguments)
     errors = check_template()
+    holds: list[str] = []
     if arguments.packet is not None:
-        errors.extend(check_packet(arguments.packet.resolve()))
+        errors.extend(check_packet(arguments.packet.resolve(), hold_reasons=holds))
+    for reason in holds:
+        print(f"HOLD PET E1–E5: {reason}")
     if errors:
         for error in errors:
             print(f"FAIL {error}")
