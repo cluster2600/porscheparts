@@ -40,3 +40,15 @@ traceable source correction, preserving the existing failures. The three
 concave volume cells have not yet been localised or repaired, and mesh
 independence remains unexecuted. Surface, mesh, physical and manufacturing
 admission remain closed.
+
+## Bounded independent witness search
+
+The 517 flagged points were recovered in a new retained Docker volume. An
+independent libigl 2.6.3 triangle-intersection search on the Mac found no
+non-adjacent, non-coplanar interior-crossing witness before reaching its
+10,000 candidate-pair limit (473 of 517 points visited; the last may be partial).
+The [search receipt](installed-cooling-source-audit-20261106/independent-search.json)
+records input and helper hashes, candidate bounds, synthetic self-checks and
+exclusions. This incomplete search neither proves absence of intersections
+nor independently confirms the OpenCFD flags. Adjacent/coplanar cases and
+precision sensitivity remain unresolved. No geometry edit is justified yet.
