@@ -2,7 +2,7 @@
   "$comment": "Consolidated register of documentary contradictions. Each entry names the values in conflict, the registered source of each value and where it sits, and what would resolve it. A contradiction stays here, with status open, until it is resolved; a resolved entry keeps its values and states the resolution. Validated by scripts/validate_registers.py.",
   "schema_version": "1.0.0",
   "register_id": "REG-CONTRADICTIONS",
-  "updated_on": "2026-11-05",
+  "updated_on": "2026-11-06",
   "entries": [
     {
       "contradiction_id": "CTR-0001",
@@ -102,14 +102,24 @@
           "value": "999 192 363 50 given as 12.5 x 1085 for the 993 and 13 x 1085 for the 964",
           "source_id": "SRC-PFF-993-AC-BELT-DIMENSIONS",
           "location": "same thread, catalogue reference quoted by a participant"
+        },
+        {
+          "value": "999 192 363 50 V-belt, designation 12.5 X 1085, plate heading M64.05/06/07, M64.08, M64.60",
+          "source_id": "SRC-PORSCHE-PET-993",
+          "location": "Kat 017 illustration 813-20 (compressor mounting and drive), position 19, PDF page 580"
+        },
+        {
+          "value": "999 192 363 50 Keilriemen, designation 12,5 X 1085, after 999 192 352 50, 12,5 X 1080, remark -92; plate heading M64.01/02/03",
+          "source_id": "SRC-PET-964-KAT013-PDF",
+          "location": "Kat 013 Bildtafel 813-20, position 19, PDF page 673"
         }
       ],
-      "status": "open",
-      "next_step": "Variant or reference mix-up; resolve with the PET line for the exact model year and an official belt specification, never by choosing the forum value that fits.",
+      "status": "resolved",
       "flagged_in": [
         "catalog/sources/src-pff-993-ac-belt-dimensions.json",
         "docs/PHASE1_SOURCE_INVENTORY.md"
-      ]
+      ],
+      "resolution": "Both official catalogues give the OEM compressor belt 999 192 363 50 the same designation, 12.5 x 1085: the 993 Kat 017 and the 964 Kat 013. The forum's '13 x 1085 for the 964' misquotes the catalogue. The 13 x 1085 and 13 x 1100 belts in the thread are non-OEM substitutes; that one fits and the other does not is an unverified fit report, not a catalogue fact, and no substitute is endorsed. Scope limit: the 993 plate heading names M64.05/06/07, M64.08 and M64.60, not the 1996+ M64.21/22 engines. Kat 017 lists no other compressor belt, so no different value is recorded for them, but the plate does not state their applicability."
     },
     {
       "contradiction_id": "CTR-0005",
@@ -372,14 +382,24 @@
           "value": "compatibility table lists several bodies and variants",
           "source_id": "SRC-FVD-993-LOWER-CONSOLE-COVER-DIMENSIONS",
           "location": "listing compatibility table"
+        },
+        {
+          "value": "993 632 071 10 Cover, model COUPE, without combined lights (order 993 632 062 00 when required); same position: 071 11 M650, 071 12 CABRIO, 071 13 M425, 071 14 M425/650",
+          "source_id": "SRC-PORSCHE-PET-993",
+          "location": "Kat 017 illustration 809-15 (centre console), position 8, PDF page 526"
+        },
+        {
+          "value": "same cover set at positions 6-6D, with 071 12 under M439 and 071 15 and 071 17 under TURBO",
+          "source_id": "SRC-PORSCHE-PET-993",
+          "location": "Kat 017 illustration 903-05 (cover, switch, centre console), positions 6-6F, PDF page 629"
         }
       ],
-      "status": "open",
-      "next_step": "Resolve with the PET line for the exact body and option codes; commercial data only.",
+      "status": "resolved",
       "flagged_in": [
         "catalog/sources/src-fvd-993-lower-console-cover-dimensions.json",
         "docs/PHASE1_SOURCE_INVENTORY.md"
-      ]
+      ],
+      "resolution": "The PET agrees with the FVD title. 993 632 071 10 is the Coupe cover without M425 (rear window wiper) and without M650 (electrical sliding roof). Every other body or option has its own number at the same position: 071 11 (M650), 071 12 (Cabriolet, or M439 electrical hood operation on 903-05), 071 13 (M425), 071 14 (M425 with M650), and 071 15 and 071 17 (Turbo). The listing's compatibility table, which shows several bodies under one number, is not supported. The FVD dimensions remain commercial data with no datum."
     },
     {
       "contradiction_id": "CTR-0016",
@@ -395,10 +415,15 @@
           "value": "165 mm front, 130 mm rear on a June 1997 Cabriolet",
           "source_id": "SRC-PFF-993-SPEAKER-DIAMETERS",
           "location": "PFF thread"
+        },
+        {
+          "value": "door speaker position 4: 993 645 506 00 'Woofer' (standard) or 964 645 505 00 'Door speaker' (CARRERA RS); position 9: 993 645 505 00 (COUPE/TARGA) or position 13: 964 645 504 00 (CABRIO); M490 sound package: 993 645 011/012 00 /L /R, woofer 993 645 501 00, mid-range 993 645 503 00, and 993 645 013/014 01 /L /R for COUPE M490. No diameter is printed.",
+          "source_id": "SRC-PORSCHE-PET-993",
+          "location": "Kat 017 illustration 911-05 (loudspeaker), PDF page 670"
         }
       ],
       "status": "open",
-      "next_step": "Probably an audio-option or body variant difference, and nominal diameter is not the opening; resolve by option code and an authorized document, not by averaging.",
+      "next_step": "Variant-dependent, as the plate shows: separate speaker sets for standard, Carrera RS and M490 (sound package) cars, and body-dependent ones for Coupe/Targa versus Cabriolet. The two forum reports may describe different sets: a non-M490 car, and a June 1997 Cabriolet of unknown audio option. Kat 017 prints no diameter, so it neither confirms nor refutes 13 cm, 165 mm or 130 mm. Resolve each variant with a Porsche document that states the size, or an admitted measurement of the opening on an identified car. Never resolve it by averaging the forum values.",
       "flagged_in": [
         "catalog/sources/src-pff-993-front-speaker-measurement.json",
         "docs/PHASE1_SOURCE_INVENTORY.md"
