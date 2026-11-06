@@ -30,6 +30,17 @@ flowchart LR
     classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
 ```
 
+## Complete dashboard display — F0 concept
+
+[`twins/993-dashboard-f0/`](../twins/993-dashboard-f0/README.md) now contains a
+PicoGK scene of the complete visible dashboard, with twelve separate display
+layers and front and three-quarter renders. Every scene position and size is an
+artistic assumption in a display frame. The scene is outside the active
+measured-component graph: its surfaces have no vehicle transforms, attachment
+contracts, or physical correlation. The separate assembly inventory keeps its
+component geometry and transforms unset until lawful same-specimen capture and
+independent interface checks are available.
+
 ## First geometric slice — dashboard, pending
 
 The MVP assembles:

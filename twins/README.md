@@ -13,7 +13,7 @@ are in [docs/DIGITAL_TWIN.md](../docs/DIGITAL_TWIN.md).
 |---|---|---|
 | [`964-chassis/`](964-chassis/README.md) | 964 floor pan and body-shell frame, steel; `F1_envelope`, with the torsion shell FEA under [`fea/`](964-chassis/fea/README.md) | README, `TWIN-964-CHASSIS-FLOOR-0001` |
 | [`993-cabin-dashboard-switch-0001/`](993-cabin-dashboard-switch-0001/) | functional zone of the dashboard switch cover; `F0_reference` | `TWIN-993-CABIN-DASH-SWITCH-0001` |
-| [`993-dashboard-f0/`](993-dashboard-f0/README.md) | complete 993 dashboard component and interface inventory; `F0_reference`, no positioned assembly | README, `assembly.json` |
+| [`993-dashboard-f0/`](993-dashboard-f0/README.md) | complete 993 dashboard schematic PicoGK display scene and interface inventory; `F0_reference`, no measured assembly | README, `source/scene.json`, `assembly.json` |
 | [`993-door-opener-lever-alsi10mg-f0/`](993-door-opener-lever-alsi10mg-f0/) | 993 interior door opener lever in AlSi10Mg; `F1_envelope` | `TWIN-993-DOOR-OPENER-LEVER-ALSI10MG-F0` |
 | [`993-engine-cooling-fan-system-f0/`](993-engine-cooling-fan-system-f0/) | 993 engine cooling fan housing and impeller subassembly; `F1_envelope` | `TWIN-993-ENGINE-COOLING-FAN-SYSTEM-F0` |
 | [`993-exhaust-tip-ti-f0/`](993-exhaust-tip-ti-f0/) | evidence for the titanium F1 variant of the oval exhaust tip (Ti-6Al-4V and Ti-6242 routes, LPBF screen) | part record `993-EXH-OVAL-TIP-TI-F1-0001` |
