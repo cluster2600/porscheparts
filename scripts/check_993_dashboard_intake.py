@@ -504,6 +504,7 @@ def check_packet(packet_path: Path, root: Path = ROOT, hold_reasons: list[str] |
         resolved_paths.add(path)
         record = _read_json(path, errors, label)
         if not isinstance(record, dict):
+            errors.append(f"{label}: expected measurement record object")
             continue
         for problem in validate_measurement(record):
             errors.append(f"{label}: {problem}")

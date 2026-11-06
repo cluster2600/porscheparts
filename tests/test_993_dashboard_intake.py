@@ -66,6 +66,25 @@ class DashboardIntakeTests(unittest.TestCase):
                 self.assertNotEqual(result, 0)
                 self.assertIn("expected packet object", output.getvalue())
 
+    def test_non_object_measurement_record_is_refused(self) -> None:
+        for value in (None, [], "text"):
+            with self.subTest(value=value):
+                packet = self._submission()
+                raw = json.dumps(value).encode("utf-8")
+                record_path = self.root / "measurement.json"
+                record_path.write_bytes(raw)
+                packet["measurement_records"].append({
+                    "record_id": "MEAS-TEST-0001", "specimen_id": packet["specimen_id"],
+                    "capture_state": "fitted", "relative_path": "measurement.json",
+                    "sha256": hashlib.sha256(raw).hexdigest(), "bytes": len(raw),
+                    "dimension_ids": [], "interface_measurand_ids": [], "calibration_asset_ids": [],
+                })
+                packet_path = self.root / "private-packet.json"
+                packet_path.write_text(json.dumps(packet), encoding="utf-8")
+                problems = intake.check_packet(packet_path, intake.ROOT)
+                self.assertTrue(any("measurement_records[0]: expected measurement record object" in error
+                                    for error in problems), problems)
+
     def test_template_rejects_prefilled_specimen_and_reading(self) -> None:
         data = self._template()
         data["specimen_id"] = "SPEC-993-DASH-0001"
