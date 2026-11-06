@@ -123,7 +123,7 @@ sintered, whatever its material.
 
 Choosing a part because it is the least risky **is not choosing it**. The
 repository did this once and corrected it: see
-[`docs/decisions/0005-alsi10mg-nest-pas-un-choix.md`](decisions/0005-alsi10mg-nest-pas-un-choix.md).
+[`docs/decisions/0005-alsi10mg-is-not-a-choice.md`](decisions/0005-alsi10mg-is-not-a-choice.md).
 Selection is made on function, against a written grid, and the result must stay
 falsifiable line by line.
 

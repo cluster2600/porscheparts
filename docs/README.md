@@ -61,7 +61,7 @@ flowchart LR
 |---|---|
 | [MONOCOQUE_964_993_PROGRAMME.md](MONOCOQUE_964_993_PROGRAMME.md) | the carbon monocoque program and what it must establish |
 | [MONOCOQUE_964_993_ARCHITECTURE.md](MONOCOQUE_964_993_ARCHITECTURE.md) | architecture concept and layup strategy |
-| [MONOCOQUE_964_993_CHAINE_CALCUL.md](MONOCOQUE_964_993_CHAINE_CALCUL.md) | the analysis chain: who does what, and where something else is needed |
+| [MONOCOQUE_964_993_COMPUTATION_CHAIN.md](MONOCOQUE_964_993_COMPUTATION_CHAIN.md) | the analysis chain: who does what, and where something else is needed |
 
 ## Digital twin and compute
 

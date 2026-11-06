@@ -17,7 +17,7 @@ brings a measurable benefit, with a mandatory comparison of LPBF, CNC, sheet
 metal, casting and polymer or aluminium, a decision matrix, load and
 environment requirements and a documented go/no-go.
 
-[Decision 0007](0007-premier-titane-embout-echappement.md) retained the oval
+[Decision 0007](0007-first-titanium-exhaust-tip.md) retained the oval
 exhaust tip `993-EXH-OVAL-TIP-TI-F1-0001` and left four gaps:
 
 - its screen compares **parts**, not processes; the tip's own engineering
@@ -29,7 +29,7 @@ exhaust tip `993-EXH-OVAL-TIP-TI-F1-0001` and left four gaps:
   does not take;
 - it calls the failure "benign", while the record is `functional`.
 
-[Decision 0008](0008-le-magnesium-moderne-bat-le-titane.md) adds the test any
+[Decision 0008](0008-modern-magnesium-beats-titanium.md) adds the test any
 titanium choice must pass: beat the **original material done properly**, not
 a nobler material.
 
@@ -73,7 +73,7 @@ says so instead of relabelling it.
   fire question is not assessed; if a reviewer judges it credible, the class
   rises to `safety_critical`. This is an open item.
 - Accepting a `functional` part as the first titanium part is the explicit
-  trade-off [decision 0005](0005-alsi10mg-nest-pas-un-choix.md) asked for. It
+  trade-off [decision 0005](0005-alsi10mg-is-not-a-choice.md) asked for. It
   is the owner's decision. "No titanium part for now" is an equally valid
   outcome of this issue.
 
