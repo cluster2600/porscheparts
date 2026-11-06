@@ -2,6 +2,14 @@
 
 This report is a documentary identity gate for a proposed left-hand-drive M564 dashboard assembly. It does not establish measured geometry, fit, occupant safety, or manufacturing approval.
 
+## Complete-dashboard F0 views
+
+The [PicoGK F0 scene](../../twins/993-dashboard-f0/README.md) shows the complete **visible** dashboard zone as twelve separate display layers. Its [editable scene source](../../twins/993-dashboard-f0/source/Program.cs), [scene specification](../../twins/993-dashboard-f0/source/scene.json) and [render provenance](../../twins/993-dashboard-f0/render-report.json) accompany these two views. The display frame, dimensions and positions are artistic assumptions. The scene contains no measured assembly transforms, structural dashboard panel, steering or airbag geometry, and no load-bearing knee protection.
+
+![Porsche 993 complete visible dashboard F0, front view; assumed layout and no scan](../../twins/993-dashboard-f0/dashboard-front.png)
+
+![Porsche 993 complete visible dashboard F0, three-quarter view; assumed layout and no scan](../../twins/993-dashboard-f0/dashboard-three-quarter.png)
+
 ## Sources and rights
 
 | Source | Reading used here | Rights and limit |
