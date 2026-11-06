@@ -163,7 +163,7 @@ class ScanAlignmentTests(unittest.TestCase):
         output = SOURCE.parents[2] / "work/911-917-picogk-f13"
         path = output / "picogk-mechanical-report-f13.json"
         if not path.exists():
-            self.skipTest("résultats privés PicoGK absents")
+            self.skipTest("private PicoGK results absent")
         report = json.loads(path.read_text())
         validate_report(report)
         np.testing.assert_allclose(report["alignment"]["fitted_longitudinal_axis_in_vehicle"], [1, 0, 0], atol=1e-7)
@@ -174,7 +174,7 @@ class ScanAlignmentTests(unittest.TestCase):
             layer = report["layers"][key]
             self.assertGreater(layer["properties"]["volume_mm3"], 0)
             self.assertTrue((output / layer["vdb"]).is_file())
-        # L'interférence héritée ne doit pas disparaître silencieusement du diagnostic.
+        # The inherited interference must not silently disappear from the diagnostic.
         self.assertTrue(report["checks"]["halfshafts_vs_structure"]["collision"])
 
 

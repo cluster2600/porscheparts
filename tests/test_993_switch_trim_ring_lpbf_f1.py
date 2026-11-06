@@ -1,11 +1,11 @@
-"""Etapes 02 et 03 du pipeline AM pour la bague de commodo F1.
+"""Steps 02 and 03 of the AM pipeline for the F1 switch trim ring.
 
-Ces controles ne disent pas que la piece est fabricable. Ils verifient que ce
-qui est publie comme criblage geometrique est bien lie au master par empreinte,
-que le maillage analyse est unique et etanche, que toutes les couches ont ete
-reellement tranchees, et surtout que **les portes de procede restent fermees**.
-Un criblage qui ouvrirait une porte de fabrication sans coupon ni machine serait
-un faux, et c'est cela que le test cherche.
+These checks do not say that the part is manufacturable. They check that what is
+published as geometric screening is linked to the master by digest, that the
+analysed mesh is unique and watertight, that every layer was actually sliced,
+and above all that **the process gates stay closed**. A screening that opened a
+manufacturing gate without a coupon or a machine would be a forgery, and that is
+what the test looks for.
 """
 from __future__ import annotations
 
@@ -53,8 +53,8 @@ class SwitchTrimRingLpbfF1Tests(unittest.TestCase):
         self.assertTrue(load(REPORT)["gates"]["full_piece_layer_slicing_completed"])
         self.assertGreater(slicing["layer_count"], 0)
         self.assertEqual(slicing["empty_internal_layers"], 0)
-        # Une ligne de metriques par couche : le CSV est la preuve que le
-        # decoupage a bien porte sur toute la piece, pas sur un echantillon.
+        # One metrics row per layer: the CSV is the evidence that slicing
+        # covered the whole part, not a sample.
         lines = METRICS.read_text(encoding="utf-8").strip().split("\n")
         self.assertEqual(len(lines) - 1, slicing["layer_count"])
 
@@ -62,7 +62,7 @@ class SwitchTrimRingLpbfF1Tests(unittest.TestCase):
         self.assertTrue(load(REPORT)["gates"]["bare_part_machine_envelope_fit"])
 
     def test_process_gates_stay_closed(self) -> None:
-        """Le criblage est geometrique. Il n'autorise aucune impression."""
+        """The screen is geometric. It authorises no printing."""
         gates = load(REPORT)["gates"]
         for gate in (
             "metal_print_authorized",
@@ -78,8 +78,8 @@ class SwitchTrimRingLpbfF1Tests(unittest.TestCase):
     def test_the_pipeline_registry_records_the_two_stages_without_overclaiming(self) -> None:
         stages = load(POLICY)["part_overrides"][PART_ID]["stages"]
         self.assertEqual(stages["02_cad_brep_and_mesh_integrity"]["status"], "passed")
-        # L'etape 03 ne peut pas etre 'passed' : sans supports fournisseur ni
-        # criblage recoater, le tranchage n'est qu'un criblage.
+        # Step 03 cannot be 'passed': without supplier supports or a recoater
+        # screen, slicing is only a screening.
         self.assertEqual(
             stages["03_full_layer_slicing_and_supports"]["status"], "completed_screening"
         )

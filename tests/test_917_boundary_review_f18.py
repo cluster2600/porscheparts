@@ -1,4 +1,4 @@
-"""Contrats de l'inventaire exhaustif des frontières du scan 917 F18."""
+"""Contracts of the exhaustive boundary inventory of the 917 F18 scan."""
 
 from __future__ import annotations
 
@@ -78,7 +78,7 @@ class BoundaryReviewF18Tests(unittest.TestCase):
 
     @unittest.skipUnless(
         importlib.util.find_spec("numpy") is not None,
-        "le test géométrique s'exécute dans l'environnement NumPy/F17",
+        "the geometric test runs in the NumPy/F17 environment",
     )
     def test_fixture_synthetique_exerce_metriques_classes_et_ply(self):
         with tempfile.TemporaryDirectory() as temporary:
@@ -177,7 +177,7 @@ class BoundaryReviewF18Tests(unittest.TestCase):
 
     def test_sorties_locales_correspondent_aux_empreintes_si_presentes(self):
         if not LOCAL_OUTPUT.is_dir():
-            self.skipTest("sorties locales F18 absentes de cet environnement")
+            self.skipTest("local F18 outputs absent from this environment")
         evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
         for item in evidence["outputs_local_only"]:
             path = LOCAL_OUTPUT / item["name"]

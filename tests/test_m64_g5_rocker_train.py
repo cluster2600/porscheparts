@@ -1,4 +1,4 @@
-"""Cinématique articulée et profils de came : checks indépendants, sans qualification moteur."""
+"""Articulated kinematics and cam profiles: independent checks, without engine qualification."""
 import json
 import math
 import sys
@@ -58,7 +58,7 @@ class RockerTrainTests(unittest.TestCase):
         p = parameters()
         for side in ('intake', 'exhaust'):
             errors = []
-            # Vérification hors des sommets utilisés pour construire le profil.
+            # Check away from the vertices used to build the profile.
             phi = np.arange(.37, 720, 3.0)
             s = rg.state(p, side, phi)
             centres = s['roller'] - [p['rocker_cam_arm'], p['cam_base_circle_radius'] + p['rocker_roller_radius']]
@@ -69,7 +69,7 @@ class RockerTrainTests(unittest.TestCase):
                 self.assertLess(profile['pressure_deg'].max(), p['rocker_pressure_angle_limit'])
             self.assertLess(errors[2], errors[1])
             self.assertLess(errors[1], errors[0])
-            self.assertLess(errors[2], .001)  # tolérance numérique, pas d'usinage
+            self.assertLess(errors[2], .001)  # numerical tolerance, not a machining one
             self.assertGreater(min(rg.cam_body_clearances(p, profile).values()), p['min_valve_clearance'])
             angles = np.arange(.37, 720, 11.0)
             recovered = rg.recover_valve_lift(p, side, angles, profile['points'])
@@ -92,7 +92,7 @@ class RockerTrainTests(unittest.TestCase):
             self.assertLess(assembly.brep_distance(pieces['rocker'], valve), 1e-6)
             for other in (cam, pieces['roller'], valve, comp.retainer(p, side, 1, lift), comp.spring(p, side, 1, lift)):
                 self.assertLess(abs(pieces['rocker'].intersect(other).Volume()), 1e-6)
-            # La came heurtait les joues étroites à forte pente, malgré un sommet sans collision.
+            # The cam struck the narrow cheeks at steep slope, despite a collision-free vertex.
             steep = rg.profile(p, side)
             phi = float(steep['phi_deg'][np.argmax(steep['pressure_deg'])])
             rocker = rt.moving_parts(p, side, 1, phi)['rocker']

@@ -1,8 +1,8 @@
-"""Concepts F0 des pieces 993 qui n'avaient aucun maitre STEP.
+"""F0 concepts of the 993 parts that had no STEP master.
 
-Le test verifie qu'un concept reste un concept : chaque STEP est lie a son
-rapport par empreinte, chaque fiche du catalogue le reference sans pretendre a
-une precision, et chaque dimension non publiee est declaree comme hypothese.
+The test checks that a concept stays a concept: each STEP is linked to its
+report by digest, each catalogue record references it without claiming
+accuracy, and each unpublished dimension is declared as an assumption.
 """
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-"""Tests de l'observation locale F17, sans exiger le scan brut en CI."""
+"""Tests of the local F17 observation, without requiring the raw scan in CI."""
 
 from __future__ import annotations
 
@@ -84,7 +84,7 @@ class ScanMeshExecutionEvidenceF17Tests(unittest.TestCase):
 
     def test_local_report_matches_digest_when_available(self):
         if not LOCAL_REPORT.is_file():
-            self.skipTest("rapport local F17 absent de cet environnement")
+            self.skipTest("local F17 report absent from this environment")
         report = self.evidence["report"]
         self.assertEqual(LOCAL_REPORT.stat().st_size, report["bytes"])
         self.assertEqual(hashlib.sha256(LOCAL_REPORT.read_bytes()).hexdigest(), report["sha256"])

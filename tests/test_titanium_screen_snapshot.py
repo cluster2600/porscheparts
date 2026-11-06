@@ -34,7 +34,7 @@ class TitaniumScreenSnapshotTests(unittest.TestCase):
         ], capture_output=True, text=True)
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("964-CENTRAL-CELL-ASSUMED-F1", result.stderr)
-        self.assertIn("ne couvre pas le catalogue", result.stderr)
+        self.assertIn("does not cover the catalogue", result.stderr)
 
     def test_missing_or_duplicate_historical_catalogue_part_is_rejected(self):
         for duplicate in (False, True):

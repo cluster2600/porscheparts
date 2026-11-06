@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
-"""Disposition explicite de **toutes** les designations du catalogue d'usine.
+"""Explicit disposition of **every** designation in the factory catalogue.
 
-Les criblages precedents publiaient ce qu'ils retenaient. Tout le reste tombait
-sans motif : 956 designations sur 1 026 disparaissaient en silence, et c'est
-ainsi que `oil pipe` puis `pulley` se sont perdus. Ce script ne retient rien : il
-**dispose de tout**, et chaque designation repart avec une categorie et une
-raison.
+Earlier screenings published what they retained. Everything else dropped out
+without a reason: 956 of 1,026 designations vanished silently, and that is how
+`oil pipe` and then `pulley` were lost. This script retains nothing: it
+**disposes of everything**, and each designation leaves with a category and a
+reason.
 
-Il produit aussi le constat qui borne l'exercice. Une designation est une unite
-de jugement utile quand elle nomme une fonction — `hot-air manifold` en est une.
-Elle ne l'est pas quand elle nomme une forme : `support` couvre 142 references
-qui n'ont rien a voir entre elles. Pour celles-la, la designation ne porte aucune
-information, et le travail doit se faire reference par reference. Le script les
-compte au lieu de faire semblant de les avoir jugees.
+It also produces the finding that bounds the exercise. A designation is a useful
+unit of judgement when it names a function — `hot-air manifold` is one. It is
+not when it names a shape: `support` covers 142 references that have nothing to
+do with each other. For those, the designation carries no information, and the
+work must be done reference by reference. The script counts them instead of
+pretending to have judged them.
 """
 
 from __future__ import annotations
@@ -25,7 +25,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 
-# Designations qui ne decrivent pas une piece metallique a refabriquer.
+# Designations that do not describe a metal part to remanufacture.
 NOT_A_METAL_PART = (
     "sticker", "label", "logo", "insignia", "emblem", "badge", "film", "foil",
     "carpet", "mat", "lining", "leather", "fabric", "felt", "foam", "textile",
@@ -41,8 +41,8 @@ NOT_A_METAL_PART = (
     "bellows", "buffer", "grommet", "rosette", "trim", "moulding",
 )
 
-# Designations qui nomment une forme, pas une fonction. La designation n'est
-# alors pas l'unite de jugement : il faut descendre a la reference.
+# Designations that name a shape, not a function. The designation is then not
+# the unit of judgement: one must go down to the reference.
 GENERIC_SHAPES = (
     "support", "cover", "lid", "bracket", "plate", "insert", "ring", "valve",
     "spacer", "stop", "stopper", "holder", "clip", "strip", "piece", "part",
@@ -178,7 +178,7 @@ def main() -> int:
         print(
             f"  {bucket['designations']:5d} designations  {bucket['references']:5d} refs  {name}"
         )
-    print(f"\nreste a instruire : {len(report['remaining_to_judge'])}")
+    print(f"\nremaining to judge: {len(report['remaining_to_judge'])}")
     for row in report["remaining_to_judge"][:40]:
         print(f"  {row['reference_count']:3d}x  {row['description']}")
     return 0

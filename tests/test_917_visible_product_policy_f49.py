@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verrouille les rendus produit sur la peau F43 issue du scan."""
+"""Lock product renders to the scan-derived F43 skin."""
 
 from __future__ import annotations
 

@@ -20,7 +20,7 @@ def load_json(path: Path) -> dict:
 def load_module():
     spec = importlib.util.spec_from_file_location("engineering_f9", SCRIPT)
     if spec is None or spec.loader is None:
-        raise RuntimeError("module F9 impossible à charger")
+        raise RuntimeError("cannot load module F9")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module

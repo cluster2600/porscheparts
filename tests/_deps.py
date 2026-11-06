@@ -1,19 +1,19 @@
-"""Dependances optionnelles des tests, declarees au lieu d'etre subies.
+"""Optional test dependencies, declared instead of endured.
 
-`make check` doit rendre un vert franc sur un Python nu. Ce n'est pas de la
-cosmetique : une suite qui echoue toujours de vingt-trois facons ne signale plus
-rien, et il faut alors comparer chaque execution a une liste d'echecs connus pour
-savoir si l'on vient de casser quelque chose. C'est exactement ce qu'il a fallu
-faire pendant la reorganisation du 2026-09-09.
+`make check` must give a clean green on a bare Python. This is not cosmetic: a
+suite that always fails in twenty-three ways no longer signals anything, and
+every run must then be compared with a list of known failures to know whether
+something was just broken. That is exactly what had to be done during the
+reorganization of 2026-09-09.
 
-Quelques tests appellent des scripts qui ont besoin de numpy, de matplotlib ou de
-jq. Ces outils ne sont pas des dependances du depot : `scripts/` s'en passe par
-principe. Les tests concernes se **sautent** donc explicitement quand l'outil
-manque, en le nommant, plutot que de tomber en ImportError.
+A few tests call scripts that need numpy, matplotlib or jq. These tools are not
+dependencies of the repository: `scripts/` does without them on principle. The
+affected tests therefore **skip** explicitly when the tool is missing, naming
+it, rather than falling over with an ImportError.
 
-Un saut reste visible : unittest les compte et les affiche. Un test saute n'est
-pas un test qui passe, et le nombre de sauts est la mesure de ce que
-l'environnement ne couvre pas.
+A skip stays visible: unittest counts and displays them. A skipped test is not a
+passing test, and the number of skips measures what the environment does not
+cover.
 
     from _deps import require_modules, require_commands
 
@@ -25,7 +25,7 @@ import unittest
 
 
 def require_modules(*modules: str) -> None:
-    """Saute le module de test si l'un des paquets nommes est absent."""
+    """Skip the test module if one of the named packages is missing."""
     for name in modules:
         if importlib.util.find_spec(name) is None:
             raise unittest.SkipTest(
@@ -35,7 +35,7 @@ def require_modules(*modules: str) -> None:
 
 
 def require_commands(*commands: str) -> None:
-    """Saute le module de test si l'un des executables nommes est absent."""
+    """Skip the test module if one of the named executables is missing."""
     for name in commands:
         if shutil.which(name) is None:
             raise unittest.SkipTest(

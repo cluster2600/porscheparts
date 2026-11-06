@@ -1,4 +1,4 @@
-"""Garde statique de l'image CPU F38 et de sa publication GHCR."""
+"""Static guard of the F38 CPU image and its GHCR publication."""
 
 from __future__ import annotations
 

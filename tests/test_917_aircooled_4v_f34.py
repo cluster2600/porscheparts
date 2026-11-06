@@ -1,4 +1,4 @@
-"""Garde-fous de la campagne F34 de culasse 4V refroidie par air."""
+"""Guards of the F34 air-cooled 4V cylinder head campaign."""
 
 from __future__ import annotations
 

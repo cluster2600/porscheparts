@@ -1,4 +1,4 @@
-"""Tests locaux isolés : transport M64, aucun appel Vast/SSH/Bao réel."""
+"""Isolated local tests: M64 transport, no real Vast/SSH/Bao call."""
 from contextlib import ExitStack, redirect_stdout
 import base64
 import hashlib

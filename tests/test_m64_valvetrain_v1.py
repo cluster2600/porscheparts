@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Contre-calculs indépendants du module V1 distribution M64 (paramètres supposés)."""
+"""Independent cross-checks of the M64 V1 valvetrain module (assumed parameters)."""
 
 from __future__ import annotations
 
@@ -62,7 +62,7 @@ class CamLawTests(unittest.TestCase):
         for k in range(3):
             integrated = c[k][0] + cumulative_trapezoid(c[k + 1], self.phi, initial=0)
             scale = np.abs(c[k]).max()
-            # le jerk (k+1=3) est discontinu aux raccords : erreur trapèze O(h) tolérée
+            # jerk (k+1=3) is discontinuous at the joins: trapezoid error O(h) tolerated
             self.assertLess(np.abs(integrated - c[k]).max() / scale, 1e-6 if k < 2 else 1e-3, k)
 
     def test_c2_continuity_and_bounded_jerk(self):
@@ -125,7 +125,7 @@ class PistonTests(unittest.TestCase):
         s = vt.piston_drop(np.array([0, math.pi]), 76.4e-3, 127e-3)
         self.assertAlmostEqual(s[0], 0.0); self.assertAlmostEqual(s[1], 76.4e-3)
         phi = np.linspace(0, 2 * math.pi, 50)
-        r, l = 38.2e-3, 1.0  # développement en r/l : r(1-cos) + r² sin²/(2l), reste ≤ r⁴/(8l³)
+        r, l = 38.2e-3, 1.0  # expansion in r/l: r(1-cos) + r² sin²/(2l), remainder ≤ r⁴/(8l³)
         approx = r * (1 - np.cos(phi)) + r * r * np.sin(phi) ** 2 / (2 * l)
         self.assertLess(np.abs(vt.piston_drop(phi, 2 * r, l) - approx).max(), r ** 4 / (8 * l ** 3) * 1.01)
 
@@ -178,7 +178,7 @@ class EvidenceTests(unittest.TestCase):
     def test_results_fingerprints_and_status(self):
         path = EVIDENCE / "valvetrain-v1-results.json"
         if not path.exists():
-            self.skipTest("run_study.py non exécuté")
+            self.skipTest("run_study.py not run")
         res = json.loads(path.read_text(encoding="utf-8"))
         self.assertEqual(res["status"], "sensitivity_study_not_qualification")
         self.assertFalse(res["m64_cam_data_used"]); self.assertFalse(res["bench_correlation"])

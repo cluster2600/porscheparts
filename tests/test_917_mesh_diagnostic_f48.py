@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tests du diagnostic de maillage F48 sur les STEP privés F47."""
+"""Tests of the F48 mesh diagnostic on the private F47 STEP files."""
 
 from __future__ import annotations
 

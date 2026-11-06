@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Etape 04 du pipeline AM : carte matiere-machine-procede, fail-closed.
+"""Stage 04 of the AM pipeline: material-machine-process card, fail-closed.
 
-Les etapes 02 et 03 disent qu'une geometrie est tranchable. Elles ne disent pas
-qu'il existe une **route** : un alliage, une poudre, une machine, une
-orientation, une epaisseur de couche, des traitements et des proprietes
-dependantes de la temperature qui appartiennent au meme procede qualifie.
+Stages 02 and 03 say that a geometry can be sliced. They do not say that a
+**route** exists: an alloy, a powder, a machine, an orientation, a layer
+thickness, treatments and temperature-dependent properties that belong to the
+same qualified process.
 
-Ce script ne fabrique pas cette route. Il confronte le rapport geometrique a la
-carte machine et a la carte procede du catalogue, et il **echoue a porte fermee**
-sur chaque incoherence ou chaque entree manquante. Le dossier fournisseur qu'il
-ecrit est une demande de devis, pas une autorisation d'impression.
+This script does not create that route. It checks the geometry report against
+the catalogue's machine card and process card, and it **fails closed** on every
+inconsistency or missing input. The supplier package it writes is a request for
+quotation, not an authorisation to print.
 """
 
 from __future__ import annotations
@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class RouteError(RuntimeError):
-    """Erreur controlee de la construction de route."""
+    """Controlled route-construction error."""
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -56,11 +56,11 @@ GENERIC_MATERIAL_WORDS = {
 
 
 def alloy_tokens(label: str) -> frozenset[str]:
-    """Reduit un libelle matiere a ses jetons d'alliage significatifs.
+    """Reduce a material label to its significant alloy tokens.
 
-    `EOS AlSi10Mg` et `EOS Aluminium AlSi10Mg` designent le meme alliage ; la
-    comparaison litterale les separerait a tort. Les qualificatifs de route
-    apres un `/` sont deja retires par l'appelant.
+    `EOS AlSi10Mg` and `EOS Aluminium AlSi10Mg` name the same alloy; a literal
+    comparison would wrongly separate them. Route qualifiers after a `/` are
+    already removed by the caller.
     """
     tokens = {
         token.strip(",;()").lower()
@@ -91,12 +91,12 @@ def part_volume_mm3(screen: dict[str, Any] | None) -> float | None:
 
 
 def coupon_block(process: dict[str, Any]) -> dict[str, Any]:
-    """Retrouve le bloc de proprietes coupon quel que soit son etat declare.
+    """Find the coupon property block whatever its declared condition.
 
-    Les cartes du depot nomment ce bloc d'apres l'etat des eprouvettes —
-    `as_manufactured` pour l'AlSi10Mg, `heat_treated` pour le Ti64. L'etat fait
-    partie de l'information et ne doit pas etre efface ; la lecture, elle, doit
-    rester generique.
+    The repository's cards name this block after the specimen condition —
+    `as_manufactured` for AlSi10Mg, `heat_treated` for Ti64. The condition is
+    part of the information and must not be erased; the reading, however, must
+    stay generic.
     """
     for key, value in process.items():
         if key.startswith("published_") and key.endswith("_properties"):

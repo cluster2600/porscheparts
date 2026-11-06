@@ -1,8 +1,8 @@
-"""Etape 04 du pipeline AM pour le levier interieur de porte F0.
+"""Step 04 of the AM pipeline for the F0 interior door lever.
 
-Le test ne dit pas que le levier est fabricable. Il verifie que la carte de
-route publiee reste fermee, liee au maitre par empreinte, que les portes de
-coherence passent et que celles qui demandent un fournisseur restent closes.
+The test does not say that the lever is manufacturable. It checks that the
+published route card stays closed and linked to the master by digest, that the
+consistency gates pass, and that those requiring a supplier stay closed.
 """
 from __future__ import annotations
 

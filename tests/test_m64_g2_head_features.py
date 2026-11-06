@@ -1,4 +1,4 @@
-"""G2 culasse : conduits courbes, galerie d'huile, ailettes (numpy) ; CAO et taux de compression en skip."""
+"""G2 cylinder head: curved ports, oil gallery, fins (numpy); CAD and compression ratio skipped."""
 import json
 import math
 import sys
@@ -22,7 +22,7 @@ import run as fv_run  # noqa: E402
 
 EXTRA = FV / 'params-g2' / 'head_features.json'
 G1_RESOLVED = ROOT / 'twins/m64-cylinder-head/evidence/g1-four-valve-20260914/parameters-resolved.json'
-# Configuration G1 acceptée : la CAO se juge sur elle, pas sur le départ 935 qui échoue aux contrôles.
+# Accepted G1 configuration: the CAD is judged on it, not on the 935 start that fails the checks.
 G1_DESIGN = {name: row['value'] for name, row in json.loads(G1_RESOLVED.read_text()).items()
              if row['provenance'] == 'derived_by_iteration'}
 
@@ -65,12 +65,12 @@ class G2FeatureTests(unittest.TestCase):
             np.testing.assert_allclose(pts[0], c + u * self.p['throat_axial_offset'], atol=1e-9)
             self.assertAlmostEqual(pts[-1][0], self.p[f'{side}_flange_x'])
             self.assertAlmostEqual(pts[-1][2], self.p[f'{side}_port_z'])
-            # Tangentes exactes d'une Bézier cubique : B'(0) ∝ p1 − p0, B'(1) ∝ p3 − p2.
+            # Exact tangents of a cubic Bézier: B'(0) ∝ p1 − p0, B'(1) ∝ p3 − p2.
             p0, p1, p2, p3 = ft.port_controls(self.p, side, sy)
             start = (p1 - p0) / np.linalg.norm(p1 - p0)
-            self.assertAlmostEqual(float(start @ u), 1.0, places=9, msg='départ tangent à l\'axe de soupape')
+            self.assertAlmostEqual(float(start @ u), 1.0, places=9, msg='start tangent to the valve axis')
             end = (p3 - p2) / np.linalg.norm(p3 - p2)
-            self.assertAlmostEqual(abs(float(end[0])), 1.0, places=9, msg='arrivée perpendiculaire à la bride')
+            self.assertAlmostEqual(abs(float(end[0])), 1.0, places=9, msg='end perpendicular to the flange')
             self.assertEqual(len(pts), int(self.p['port_bezier_segments']) + 1)
             self.assertAlmostEqual(radii[0], self.p[f'{side}_throat_diameter'] / 2)
 
@@ -108,7 +108,7 @@ class G2FeatureTests(unittest.TestCase):
         g1_faces = len(comp.head(layout.derive(G1_BASE, G1_DESIGN)).Faces())
         self.assertGreater(len(head.Faces()), g1_faces)
         cr = assembly.compression_ratio(p)
-        # Les puits de bougie restent ouverts : une BRep de culasse valide ne ferme pas le gaz.
+        # The spark plug wells stay open: a valid cylinder head BRep does not close the gas.
         self.assertEqual(cr['status'], 'blocked_unsealed_chamber')
         self.assertIsNone(cr['compression_ratio'])
         self.assertIsNone(cr['clearance_volume_cc'])
@@ -118,13 +118,13 @@ class G2FeatureTests(unittest.TestCase):
 
 
 class G2CompressionCriterionTests(unittest.TestCase):
-    """Le critère de combustion : proxy calibré pour la recherche, BRep pour le juge."""
+    """The combustion criterion: calibrated proxy for the search, BRep for the judge."""
 
     def setUp(self):
         self.p = layout.derive(G2_BASE, G1_DESIGN)
 
     def test_proxy_counts_piston_pockets(self):
-        """Les poches manquaient au proxy : 4 poches de 3,9 mm valent une quinzaine de cm³."""
+        """The proxy lacked the pockets: four 3.9 mm pockets are worth about fifteen cm³."""
         self.assertGreater(self.p['piston_pocket_depth'], 0.0)
         without = chk.chamber_volume_mm3(dict(self.p, piston_pocket_depth=0.0))
         self.assertGreater(chk.chamber_volume_mm3(self.p) - without, 10_000.0)
@@ -133,16 +133,16 @@ class G2CompressionCriterionTests(unittest.TestCase):
         raw, cal = chk.chamber_volume_mm3(self.p), chk.calibrated_chamber_volume_mm3(self.p)
         self.assertAlmostEqual(cal / raw, G2_BASE['chamber_proxy_calibration'], places=9)
         self.assertLess(chk.calibrated_compression_ratio(self.p), chk.compression_ratio(self.p))
-        # Hors G2 la calibration n'existe pas : le taux brut est rendu tel quel.
+        # Outside G2 the calibration does not exist: the raw ratio is returned as is.
         p1 = layout.derive(G1_BASE, G1_DESIGN)
         self.assertNotIn('chamber_proxy_calibration', p1)
         self.assertAlmostEqual(chk.calibrated_chamber_volume_mm3(p1), chk.chamber_volume_mm3(p1), places=9)
 
     def test_band_gap_is_zero_inside_the_widened_band_and_positive_outside(self):
         tol = G2_BASE['compression_proxy_band_tolerance']
-        self.assertEqual(chk.compression_band_gap(layout.derive(G1_BASE, G1_DESIGN)), 0.0)  # hors G2
-        self.assertGreater(chk.compression_band_gap(self.p), 0.0)  # G1 : taux 4,5, très en dessous
-        for angle in (14.0, 16.0):  # voisinage de la plage, mesuré en BRep le 2026-09-16
+        self.assertEqual(chk.compression_band_gap(layout.derive(G1_BASE, G1_DESIGN)), 0.0)  # outside G2
+        self.assertGreater(chk.compression_band_gap(self.p), 0.0)  # G1: ratio 4.5, far below
+        for angle in (14.0, 16.0):  # neighborhood of the band, measured in BRep on 2026-09-16
             d = {k: v for k, v in G1_DESIGN.items() if not k.endswith('_valve_x')}
             p = layout.derive(G2_BASE, dict(d, intake_axis_angle=angle, exhaust_axis_angle=angle))
             self.assertEqual(chk.compression_band_gap(p), 0.0, angle)
@@ -154,31 +154,31 @@ class G2CompressionCriterionTests(unittest.TestCase):
         self.assertIn('compression', g2)
         self.assertFalse(g2['compression']['in_band'])
         g1 = it.Search(G1_SPEC, space, G1_BASE).trial(dict(G1_DESIGN), 1, 'test')
-        self.assertNotIn('compression', g1)  # journal G1 inchangé, reproductible à l'octet près
+        self.assertNotIn('compression', g1)  # G1 log unchanged, byte-for-byte reproducible
         self.assertEqual(g1['score'], round(g1['min_slack'], 3))
 
     def test_compression_ranks_only_accepted_trials(self):
         def rec(accepted, in_band, score, penalty=0.0):
-            # ``score`` est le score géométrique, comme en G1 ; la combustion est tenue à part.
+            # ``score`` is the geometric score, as in G1; combustion is kept separate.
             return {'accepted': accepted, 'cycle_evaluated': True, 'min_slack': score, 'penalty': 0.0,
                     'score': score, 'compression': {'in_band': in_band, 'score_penalty': penalty}}
 
-        # Entre deux configurations acceptées, celle qui est dans la plage l'emporte.
+        # Between two accepted configurations, the one inside the band wins.
         self.assertGreater(it.Search.rank(rec(True, True, 0.2)), it.Search.rank(rec(True, False, 9.0)))
-        # Un refus reste un refus, même dans la plage.
+        # A refusal stays a refusal, even inside the band.
         self.assertGreater(it.Search.rank(rec(True, False, 9.0)), it.Search.rank(rec(False, True, 9.0)))
-        # Entre deux refus, seule la géométrie classe : sinon la recherche locale poursuit la plage
-        # en abandonnant les contrôles (constaté : dans la plage, 6 échecs, marge -4,1 mm).
+        # Between two refusals, only geometry ranks: otherwise the local search chases the band
+        # while abandoning the checks (observed: inside the band, 6 failures, margin -4.1 mm).
         self.assertGreater(it.Search.rank(rec(False, False, -0.5)), it.Search.rank(rec(False, True, -4.1)))
-        # La pénalité de combustion ne touche pas le classement d'un refus...
+        # The combustion penalty does not affect the ranking of a refusal...
         self.assertEqual(it.Search.rank(rec(False, False, -0.5, penalty=1.8))[3], -0.5)
-        # ... mais départage bien deux acceptés également hors plage.
+        # ... but does break the tie between two accepted ones equally outside the band.
         self.assertGreater(it.Search.rank(rec(True, False, 0.5, penalty=0.2))[3],
                            it.Search.rank(rec(True, False, 0.5, penalty=1.8))[3])
 
     @unittest.skipUnless(HAVE_CQ, 'cadquery absent')
     def test_connected_volume_excludes_other_voids_and_handles_overlapping_solids(self):
-        """Volumes analytiques : 16 mm³ fermés, 1 mm³ séparé, pièces occupantes recouvrantes."""
+        """Analytic volumes: 16 mm³ closed, 1 mm³ separate, overlapping occupying parts."""
         import assembly
         import cadquery as cq
         V = cq.Vector
@@ -192,7 +192,7 @@ class G2CompressionCriterionTests(unittest.TestCase):
             measured = assembly.chamber_volume(probe, [housing, duplicate], seed, 0, top)
             self.assertAlmostEqual(measured['clearance_volume_cc'], 0.016, places=9)
             self.assertAlmostEqual(measured['excluded_disconnected_void_cc'], 0.001, places=9)
-            # Même cavité ouverte vers la limite artificielle : aucun taux admissible.
+            # Same cavity open toward the artificial boundary: no admissible ratio.
             leak = cq.Solid.makeBox(0.5, 0.5, top, V(1.5, 1.5, 4))
             opened = assembly.chamber_volume(probe, [housing.cut(leak)], seed, 0, top)
             self.assertEqual(opened['status'], 'blocked_unsealed_chamber')
@@ -266,7 +266,7 @@ class SparkPlugEnvelopeTests(unittest.TestCase):
             self.assertFalse(row['artificial_boundaries_reached'])
             self.assertFalse(row['radial_crevice_included'])
         self.assertAlmostEqual(values[0]['clearance_volume_cc'], values[1]['clearance_volume_cc'], places=6)
-        # La boîte extérieure inclut désormais les petites cavités débordant de l'alésage.
+        # The outer box now includes the small cavities overflowing the bore.
         self.assertAlmostEqual(values[0]['compression_ratio'], 7.356946, places=4)
         real_plug = comp.spark_plug
         def missing_second(p, k):

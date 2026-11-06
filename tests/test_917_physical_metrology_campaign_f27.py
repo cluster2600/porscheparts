@@ -333,9 +333,9 @@ class PhysicalMetrologyCampaign917F27Tests(unittest.TestCase):
         working_scan_path = Path(directory) / "working-scan.obj"
         if not working_scan_path.exists():
             working_scan_path.write_bytes(b"synthetic non-canonical scan fixture\n")
-        # Une preimage synthetique du hash du scan reel n'existe pas. Les tests
-        # de paquet isolent donc ce seul gate; le test dedie ci-dessous exerce
-        # le lecteur/hash production et ses echecs.
+        # A synthetic preimage of the real scan hash does not exist. The package
+        # tests therefore isolate this single gate; the dedicated test below
+        # exercises the production reader/hash and its failures.
         with mock.patch.object(
             self.module, "_verify_working_scan_file", return_value=None
         ):

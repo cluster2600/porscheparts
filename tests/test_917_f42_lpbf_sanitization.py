@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tests du manifeste public et sans chemins privés F42.2."""
+"""Tests of the public F42.2 manifest, free of private paths."""
 
 from __future__ import annotations
 

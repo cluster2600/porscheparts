@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Contrôles autonomes des preuves publiques F49."""
+"""Standalone checks of the public F49 evidence."""
 
 from __future__ import annotations
 

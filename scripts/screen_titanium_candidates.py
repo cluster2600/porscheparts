@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
-"""Classement des pieces du catalogue pour un premier tirage titane.
+"""Rank catalogue parts for a first titanium print run.
 
-La decision 0005 a montre ce qui arrive quand une piece est retenue par
-elimination plutot que par critere. Ce script fait l'inverse : il applique
-mecaniquement la grille ecrite de `docs/TITANIUM.md` et les trois familles ou
-l'additif gagne, a **toutes** les fiches du catalogue, et publie le classement.
+Decision 0005 showed what happens when a part is chosen by elimination rather
+than by criterion. This script does the opposite: it mechanically applies the
+written grid of `docs/TITANIUM.md` and the three families where additive wins
+to **every** record in the catalogue, and publishes the ranking.
 
-Les entrees sont des jugements declares du depot, pas des mesures. Contredire
-une case change le rang, et c'est le but : le classement est refutable ligne a
-ligne.
+The inputs are judgements declared in the repository, not measurements.
+Contradicting a cell changes the rank, and that is the point: the ranking is
+falsifiable line by line.
 """
 
 from __future__ import annotations
@@ -21,19 +21,19 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 
-# Plafond de service du Ti-6Al-4V, limite par le fluage. Au-dela, la reponse
-# n'est plus un autre dessin mais un autre metal.
+# Ti-6Al-4V service ceiling, limited by creep. Beyond it, the answer is not a
+# different design but a different metal.
 TI64_CREEP_CEILING_C = 400.0
 
-# Nuance quasi-alpha a route LPBF publiee, retenue comme echappatoire haute
-# temperature du criblage et non comme choix acquis.
+# Near-alpha grade with a published LPBF route, kept as the screening's
+# high-temperature escape hatch, not as a settled choice.
 TI6242_CEILING_C = 550.0
 
-# « Quand le titane n'est pas pertinent », docs/TITANIUM.md.
+# "When titanium is not relevant", docs/TITANIUM.md.
 #
-# Deux de ces conditions sont des impossibilites physiques : si la fonction de
-# la piece est de conduire la chaleur, ou si sa flexion doit rester celle d'une
-# piece acier, aucun traitement n'y change rien.
+# Two of these conditions are physical impossibilities: if the part's function
+# is to conduct heat, or if its bending must stay that of a steel part, no
+# treatment changes anything.
 ABSOLUTE_REFUSALS = {
     "needs_thermal_conductivity": (
         "la fonction demande de conduire la chaleur, ce que le titane fait mal"
@@ -43,13 +43,12 @@ ABSOLUTE_REFUSALS = {
     ),
 }
 
-# Les autres sont des conditions a lever, et le texte de la grille le dit :
-# « contact glissant **non traite** », « couple galvanique **non maitrise** ».
-# Ces deux qualificatifs sont l'essentiel, et SAFETY.md inscrit d'ailleurs la
-# prevention du grippage et de la corrosion galvanique parmi les exigences
-# minimales du metal — donc comme un travail a faire, pas comme un motif
-# d'abandon. Une condition bloque tant qu'aucune parade n'est declaree ; une
-# parade declaree la transforme en exigence portee a la route.
+# The others are conditions to clear, and the grid text says so: "**untreated**
+# sliding contact", "**uncontrolled** galvanic couple". Those two qualifiers are
+# what matters, and SAFETY.md lists galling and galvanic-corrosion prevention
+# among the metal's minimum requirements — so as work to do, not as a reason to
+# abandon. A condition blocks while no mitigation is declared; a declared
+# mitigation turns it into a requirement carried on the route.
 MITIGABLE_CONDITIONS = {
     "galling_or_repeated_threads": (
         "contact glissant ou filetage repris a chaque depose : le titane grippe "
@@ -65,16 +64,16 @@ MITIGABLE_CONDITIONS = {
     ),
 }
 
-# Forme simple facilement usinable : ce n'est pas une impossibilite, c'est une
-# inutilite. Elle penalise le score et n'interdit rien.
+# Simple, easily machined shape: not an impossibility, a pointlessness. It
+# lowers the score and prohibits nothing.
 ECONOMIC_PENALTY = "simple_machinable_shape"
 
-# Classes de securite qu'un premier tirage metal non qualifie ne peut pas viser.
+# Safety classes an unqualified first metal print run cannot target.
 EXCLUDED_SAFETY_CLASSES = ("prohibited_pending_engineering", "safety_critical")
 
 
 class ScreenError(RuntimeError):
-    """Erreur controlee du criblage."""
+    """Controlled screening error."""
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -114,10 +113,10 @@ def score_part(
             f"{temperature:.0f} C depasse meme le plafond quasi-alpha de "
             f"{TI6242_CEILING_C:.0f} C : cas nickel, pas titane"
         )
-    # Les cinq entrees de « quand le titane n'est pas pertinent » sont des
-    # refus, pas des malus. N'en rendre que deux redhibitoires etait une
-    # infidelite a la grille ecrite : le grippage et le couple galvanique
-    # ecartent le titane aussi surement que la conductivite.
+    # The five entries of "when titanium is not relevant" are refusals, not
+    # penalties. Making only two of them disqualifying was unfaithful to the
+    # written grid: galling and the galvanic couple rule titanium out as surely
+    # as conductivity.
     for name, statement in ABSOLUTE_REFUSALS.items():
         if counters.get(name):
             disqualifiers.append(statement)
@@ -128,26 +127,26 @@ def score_part(
         if not counters.get(name):
             continue
         parade = (mitigations.get(name) or "").strip()
-        # Une parade qui s'avoue non resolue n'est pas une parade. Le cas s'est
-        # presente sur le couple titane/magnesium du couvercle : le texte
-        # decrivait le probleme et comptait comme sa solution.
+        # A mitigation that admits it is unresolved ("non resolu") is not a
+        # mitigation. It happened on the cover's titanium/magnesium couple: the
+        # text described the problem and counted as its solution.
         if parade and "non resolu" in parade.lower():
             raise ScreenError(
-                f"parade contradictoire sur {part_id}/{name} : une condition "
-                "declaree non resolue ne doit pas porter de parade, elle doit "
-                "bloquer"
+                f"contradictory mitigation on {part_id}/{name}: a condition "
+                "declared unresolved must not carry a mitigation, it must "
+                "block"
             )
         if parade:
             carried.append({"condition": name, "mitigation": parade})
         else:
             disqualifiers.append(statement)
 
-    # Critere manquant jusqu'au 11 septembre 2026, et c'est celui qui decidait
-    # vraiment. « Corrosion problematique **avec la matiere d'origine** » : la
-    # grille compare, elle ne juge pas dans l'absolu. Un collecteur d'admission
-    # en aluminium a 80 C ne gagne rien au titane, qui est plus dense et plus
-    # cher sans apport thermique ni tenue a la corrosion utile. Sans cette
-    # question, le criblage notait des mots au lieu de comparer des metaux.
+    # Criterion missing until 11 September 2026, and it was the one that really
+    # decided. "Problematic corrosion **with the original material**": the grid
+    # compares, it does not judge in the absolute. An aluminum intake manifold
+    # at 80 C gains nothing from titanium, which is denser and more expensive
+    # with no useful thermal or corrosion benefit. Without this question, the
+    # screening scored words instead of comparing metals.
     incumbent = judgement.get("incumbent_material", {})
     if not incumbent.get("titanium_improves_on_it"):
         disqualifiers.append(
@@ -163,8 +162,8 @@ def score_part(
             "necessaire"
         )
 
-    # Une condition levee reste une exigence : elle ne se paie plus au score,
-    # mais elle est portee a la route et devra etre tenue par le fournisseur.
+    # A cleared condition remains a requirement: it no longer costs score, but
+    # it is carried on the route and must be met by the supplier.
     unresolved = counter_count - len(carried)
     score = relevance_count + len(families) - unresolved
     return {
@@ -200,12 +199,12 @@ def run(inputs: Path, catalog: Path) -> dict[str, Any]:
     missing = set(records) - set(judgements)
     if missing:
         raise ScreenError(
-            "fiches non jugees, le criblage ne couvre pas le catalogue: "
+            "unjudged records, the screening does not cover the catalogue: "
             + ", ".join(sorted(missing))
         )
     unknown = set(judgements) - set(records)
     if unknown:
-        raise ScreenError("jugements sans fiche: " + ", ".join(sorted(unknown)))
+        raise ScreenError("judgements without a record: " + ", ".join(sorted(unknown)))
 
     scored = [
         score_part(
@@ -217,9 +216,9 @@ def run(inputs: Path, catalog: Path) -> dict[str, Any]:
     ]
     scored.sort(key=lambda entry: (entry["eligible"], entry["score"]), reverse=True)
 
-    # Une fiche titane derivee d'une fiche d'un autre metal decrit la meme
-    # geometrie. Dans un criblage titane, c'est la variante titane qui
-    # concourt ; la fiche d'origine reste au classement, signalee.
+    # A titanium record derived from another metal's record describes the same
+    # geometry. In a titanium screening the titanium variant competes; the
+    # original record stays in the ranking, flagged.
     superseded = {
         entry["variant_of"] for entry in scored if entry.get("variant_of")
     }
@@ -283,16 +282,16 @@ def main() -> int:
             raise SystemExit(f"absent:{args.output}")
         if args.output.read_text(encoding="utf-8") != text:
             raise SystemExit(f"perime:{args.output}")
-        print(f"criblage titane a jour: {report['selected']}")
+        print(f"titanium screening up to date: {report['selected']}")
         return 0
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(text, encoding="utf-8")
-    print(f"{report['parts_screened']} fiches criblees, {report['eligible_count']} eligibles")
+    print(f"{report['parts_screened']} records screened, {report['eligible_count']} eligible")
     for entry in report["ranking"][:6]:
         mark = "OK " if entry["eligible"] else "   "
         print(f"  {mark}{entry['score']:+d}  {entry['part_id']}")
-    print(f"retenue: {report['selected']}")
+    print(f"selected: {report['selected']}")
     return 0
 
 

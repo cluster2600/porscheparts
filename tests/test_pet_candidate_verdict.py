@@ -1,8 +1,8 @@
-"""Verdict sur les designations du catalogue d'usine.
+"""Verdict on the factory catalogue designations.
 
-Le test central est le dernier : le verdict ecrit dans le fichier de jugements
-doit decouler de ses propres entrees. C'est la garde qui manquait aux criblages
-precedents, ou un verdict pouvait survivre au changement de ses raisons.
+The central test is the last one: the verdict written in the judgments file
+must follow from its own inputs. That is the guard the earlier screenings
+lacked, where a verdict could survive a change in its reasons.
 """
 from __future__ import annotations
 
@@ -32,10 +32,9 @@ class PetCandidateVerdictTests(unittest.TestCase):
         self.assertEqual(retained - judged, set())
 
     def test_the_verdict_covers_everything_judged_not_only_the_triage(self) -> None:
-        """Le verdict portait sur les 70 designations que le vocabulaire
-        reconnaissait. Il porte desormais sur tout ce qui a ete juge a la main,
-        sinon une piece jugee mais absente du vocabulaire — `muffler` — restait
-        invisible."""
+        """The verdict covered the 70 designations the vocabulary recognised.
+        It now covers everything judged by hand; otherwise a part that was
+        judged but absent from the vocabulary — `muffler` — stayed invisible."""
         report = load(VERDICT)
         judged = set(load(JUDGEMENTS)["parts"])
         retained = {item["description"] for item in load(TRIAGE)["shortlist"]}
@@ -66,7 +65,7 @@ class PetCandidateVerdictTests(unittest.TestCase):
 
     def test_a_verdict_that_no_longer_follows_its_reasons_is_refused(self) -> None:
         judgements = load(JUDGEMENTS)
-        # On retourne une entree sans toucher a son verdict ecrit.
+        # Flip an input without touching its written verdict.
         judgements["parts"]["hot-air manifold"]["titanium_improves_on_it"] = False
         with tempfile.TemporaryDirectory() as tmp:
             tampered = Path(tmp) / "judgements.json"

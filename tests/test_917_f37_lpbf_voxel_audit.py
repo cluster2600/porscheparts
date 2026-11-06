@@ -1,4 +1,4 @@
-"""Régression du contrôle grossier de poudre piégée LPBF F37."""
+"""Regression of the coarse F37 LPBF trapped-powder check."""
 
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ COMPILER = ROOT / "twins/reference-917-engine/source/compile_f37_lpbf_manufactur
 try:
     import numpy as np
     import trimesh
-except ImportError:  # L'image mesh-cfd exécute les cas géométriques complets.
+except ImportError:  # The mesh-cfd image runs the full geometric cases.
     np = None
     trimesh = None
 
@@ -199,7 +199,7 @@ class LpbfManufacturingCompilerFailClosedTests(unittest.TestCase):
             self.validate()
 
 
-@unittest.skipUnless(trimesh is not None and np is not None, "trimesh absent hors image mesh-cfd")
+@unittest.skipUnless(trimesh is not None and np is not None, "trimesh absent outside the mesh-cfd image")
 class LpbfVoxelAuditGeometryTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

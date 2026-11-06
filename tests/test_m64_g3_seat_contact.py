@@ -1,4 +1,4 @@
-"""Portées concordantes candidates : contact, dégagement et témoins de chambre ouverte."""
+"""Candidate conforming seats: contact, clearance and open-chamber witnesses."""
 import json
 import math
 import sys

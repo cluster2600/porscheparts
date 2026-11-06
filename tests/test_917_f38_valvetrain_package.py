@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Test autonome des preuves publiées du paquet distribution F38."""
+"""Standalone test of the published F38 valvetrain package evidence."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-"""Garde-fous de la reconstruction F36 contrainte par le scan."""
+"""Guards of the scan-constrained F36 reconstruction."""
 
 from __future__ import annotations
 

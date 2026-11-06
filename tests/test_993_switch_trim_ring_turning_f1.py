@@ -1,11 +1,11 @@
-"""Route tournage 6063 de la bague de commodo.
+"""6063 turning route for the switch trim ring.
 
-Le depot a conclu que cette piece doit etre tournee et non frittee. Ce test
-verifie que la carte publiee reste honnete sur ce que ce choix ne resout pas :
-la cote d'ajustement n'est toujours pas tolerancee, les arêtes ne sont toujours
-pas definies, et aucun montage n'est autorise. Il verifie aussi que la nuance
-est choisie sur le critere qui gouverne la piece, et non sur la matiere la mieux
-documentee du depot — c'est l'erreur que la decision 0005 a corrigee.
+The repository concluded that this part must be turned, not sintered. This test
+checks that the published card stays honest about what that choice does not
+solve: the fit dimension is still not toleranced, the edges are still not
+defined, and no fitting is authorised. It also checks that the grade is chosen
+on the criterion that governs the part, not on the best-documented material in
+the repository — the error that decision 0005 corrected.
 """
 from __future__ import annotations
 

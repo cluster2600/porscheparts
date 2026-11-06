@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Valide le suivi obligatoire des pièces candidates LPBF/DMLS."""
+"""Validate the mandatory tracking of LPBF/DMLS candidate parts."""
 
 from __future__ import annotations
 

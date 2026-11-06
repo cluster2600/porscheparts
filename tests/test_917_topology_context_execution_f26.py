@@ -1,4 +1,4 @@
-"""Preuve agrégée d'exécution canonique F26, sans géométrie suivie."""
+"""Aggregated F26 canonical execution evidence, with no tracked geometry."""
 
 from __future__ import annotations
 
