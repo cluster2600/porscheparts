@@ -47,6 +47,16 @@ class RepositoryState(unittest.TestCase):
         self.assertIsNone(IDENTITY["f0_target"]["dashboard_trim_part_number"])
         self.assertIsNone(IDENTITY["f0_target"]["specimen_id"])
 
+    def test_review_text_keeps_m564_occurrences_and_rs_strip_pages_distinct(self):
+        review = (checker.IDENTITY.parent / "pet-identity.md").read_text(encoding="utf-8")
+        basis = row(IDENTITY, "M564-LHD")["basis"]
+        for plate in ("403-07", "903-10"):
+            self.assertIn(plate, basis)
+            self.assertIn(plate, review)
+        for row_id in ("M002-LHD", "M002-RHD", "M003-LHD", "M003-RHD"):
+            for item in row(IDENTITY, row_id)["knee_protection_strip"]:
+                self.assertIn(f"{item['part_number']} (p. {item['pdf_page']})", review)
+
     def test_shared_trim_number_conflict_stays_open(self):
         register = json.loads((ROOT / "catalog/registers/contradictions.json").read_text(encoding="utf-8"))
         entry = next(e for e in register["entries"] if e["contradiction_id"] == "CTR-0019")
@@ -130,6 +140,55 @@ class RefusedRecords(unittest.TestCase):
         bad = copy.deepcopy(RECORD)
         bad["vehicle"]["porsche_part_numbers"].append("993 552 057 00")
         self.assertTrue(any("993 552 057 00" in e for e in checker.check_record(bad, IDENTITY)))
+
+    def test_airbag_only_trim_number_is_not_an_applicable_replacement(self):
+        for number in ("993 552 055 01", "993 552 056 01"):
+            with self.subTest(number=number):
+                bad = copy.deepcopy(RECORD)
+                bad["vehicle"]["porsche_part_numbers"].append(number)
+                errors = checker.check_record(bad, IDENTITY)
+                self.assertTrue(any(number in error and "not an applicable" in error for error in errors), errors)
+
+    def test_rs_documentary_number_does_not_become_an_m564_replacement(self):
+        bad = copy.deepcopy(RECORD)
+        bad["vehicle"]["porsche_part_numbers"].append("993 552 055 00")
+        errors = checker.check_record(bad, IDENTITY)
+        self.assertTrue(any("993 552 055 00" in error and "not an applicable" in error for error in errors), errors)
+
+    def test_handedness_must_match_the_variant(self):
+        bad = copy.deepcopy(RECORD)
+        bad["vehicle"]["variants"] = ["M002, left-hand drive, Carrera RS"]
+        bad["vehicle"]["porsche_part_numbers"] = ["993 552 056 00"]
+        self.assertTrue(checker.check_record(bad, IDENTITY))
+        bad["vehicle"]["porsche_part_numbers"] = ["993 552 055 00"]
+        self.assertEqual(checker.check_record(bad, IDENTITY), [])
+
+    def test_all_listed_variants_must_support_a_claimed_number(self):
+        bad = copy.deepcopy(RECORD)
+        bad["vehicle"]["variants"].append("M002, left-hand drive, Carrera RS")
+        bad["vehicle"]["porsche_part_numbers"] = ["993 552 055 00"]
+        self.assertTrue(checker.check_record(bad, IDENTITY))
+
+    def test_rs_number_cannot_be_assigned_to_a_non_rs_variant(self):
+        bad = copy.deepcopy(RECORD)
+        bad["vehicle"]["variants"] = ["M002, left-hand drive, non-RS"]
+        bad["vehicle"]["porsche_part_numbers"] = ["993 552 055 00"]
+        self.assertTrue(checker.check_record(bad, IDENTITY))
+
+    def test_clubsport_number_needs_clubsport_scope(self):
+        bad = copy.deepcopy(RECORD)
+        bad["vehicle"]["variants"] = ["M003, left-hand drive, Carrera RS"]
+        bad["vehicle"]["porsche_part_numbers"] = ["993 552 055 70"]
+        self.assertTrue(checker.check_record(bad, IDENTITY))
+        bad["vehicle"]["variants"] = ["M003, left-hand drive, Carrera RS Clubsport"]
+        self.assertEqual(checker.check_record(bad, IDENTITY), [])
+
+    def test_documentary_airbag_number_can_be_named_in_known_limits(self):
+        cited = copy.deepcopy(RECORD)
+        cited["validation"]["known_limits"].append(
+            "The passenger-airbag plate also lists 993 552 055 01; it is excluded from this M564 record."
+        )
+        self.assertEqual(checker.check_record(cited, IDENTITY), [])
 
     def test_record_with_unknown_knee_strip(self):
         bad = copy.deepcopy(RECORD)

@@ -137,18 +137,55 @@ def matrix_numbers(identity: dict, key: str) -> set[str]:
     return {item["part_number"] for row in identity.get("matrix", []) for k, item in _entries(row) if k == key}
 
 
+def _matches_body_scope(variant: str, row: dict) -> bool:
+    scope = row.get("body_scope", "")
+    non_rs = bool(re.search(r"\bnon[- ]RS\b", variant, re.I))
+    carrera_rs = bool(re.search(r"\bCarrera RS\b", variant, re.I))
+    clubsport = bool(re.search(r"\bClubsport\b", variant, re.I))
+    if scope == "non-RS cars":
+        return non_rs and not carrera_rs and not clubsport
+    if scope == "Carrera RS road version":
+        return carrera_rs and not non_rs and not clubsport
+    if scope == "Carrera RS Clubsport":
+        return carrera_rs and clubsport and not non_rs
+    return False
+
+
 def check_record(record: dict, identity: dict) -> list[str]:
     """Refuse a part record that claims identity the matrix does not support."""
     errors: list[str] = []
     trims = matrix_numbers(identity, "dashboard_trim")
     knees = matrix_numbers(identity, "knee_protection_strip")
+    vehicle = record.get("vehicle", {})
+    per_variant_trims = []
+    for variant in vehicle.get("variants", []):
+        codes = set(re.findall(r"\bM\d{3}\b", variant))
+        hands = {
+            hand for hand, pattern in (
+                ("LHD", r"\b(?:LHD|left-hand drive)\b"),
+                ("RHD", r"\b(?:RHD|right-hand drive)\b"),
+            ) if re.search(pattern, variant, re.I)
+        }
+        if len(codes) != 1 or len(hands) != 1:
+            per_variant_trims.append(set())
+            continue
+        per_variant_trims.append({
+            item["part_number"]
+            for row in identity.get("matrix", [])
+            if row.get("option_code") in codes
+            and row.get("handedness") in hands
+            and _matches_body_scope(variant, row)
+            and row.get("mapping_status") in MAPPED
+            and row.get("passenger_airbag") in {"absent_by_option_code", "absent_by_plate_title"}
+            for key, item in _entries(row) if key == "dashboard_trim"
+        })
+    applicable_trims = set.intersection(*per_variant_trims) if per_variant_trims else set()
     unmapped_codes = {
         row["option_code"] for row in identity.get("matrix", []) if row.get("mapping_status") in UNMAPPED
     }
-    vehicle = record.get("vehicle", {})
     for number in vehicle.get("porsche_part_numbers", []):
-        if number not in trims:
-            errors.append(f"record: part number {number} is not a dashboard trim in the identity matrix")
+        if number not in applicable_trims:
+            errors.append(f"record: part number {number} is not an applicable no-passenger-airbag dashboard trim")
     for variant in vehicle.get("variants", []):
         codes = set(re.findall(r"\bM\d{3}\b", variant))
         if codes & unmapped_codes and not re.search(r"unmapped|unresolved", variant, re.I):

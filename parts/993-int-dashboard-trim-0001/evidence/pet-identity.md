@@ -26,17 +26,17 @@ and `/L` and `/R` as left and right in the direction of travel.
 
 ## Finding
 
-| Option code | Hand | Plate | Dashboard trim | Knee protection strips (left, right) | Mapping |
+| Option code | Hand | Dashboard plate/page | Dashboard trim | Knee protection strips (left, right) | Mapping |
 |---|---|---|---|---|---|
 | M564, non-RS | LHD | none | **null** | **null** | unmapped in Kat 017 |
 | M564, non-RS | RHD | none | **null** | **null** | unmapped in Kat 017 |
 | M561 | LHD / RHD | none | null | null | unmapped in Kat 017 |
 | M562 | LHD | 809-00, p. 501 | 993 552 055 00, 055 01 | 809-01, p. 505 | title match only, out of scope |
 | M562 | RHD | 809-00, p. 501 | 993 552 056 00, 056 01 | 809-01, p. 505 | title match only, out of scope |
-| M002 | LHD | 809-02, p. 511 | 993 552 055 00 | 911 552 069 00, 911 552 070 00 | option code on the line |
-| M002 | RHD | 809-02, p. 511 | 993 552 056 00 | 911 552 069 01, 911 552 070 01 | option code on the line |
-| M003 | LHD | 809-02, p. 511 | 993 552 055 70 | 964 552 077 70, 964 552 078 70 | option code on the line |
-| M003 | RHD | 809-02, p. 511 | 993 552 056 70 | 964 552 077 71, 964 552 078 71 | option code on the line |
+| M002 | LHD | 809-02, p. 511 | 993 552 055 00 | 911 552 069 00 (p. 512), 911 552 070 00 (p. 513) | option code on the line |
+| M002 | RHD | 809-02, p. 511 | 993 552 056 00 | 911 552 069 01 (p. 512), 911 552 070 01 (p. 513) | option code on the line |
+| M003 | LHD | 809-02, p. 511 | 993 552 055 70 | 964 552 077 70 (p. 512), 964 552 078 70 (p. 513) | option code on the line |
+| M003 | RHD | 809-02, p. 511 | 993 552 056 70 | 964 552 077 71 (p. 512), 964 552 078 71 (p. 513) | option code on the line |
 
 Three facts drive the table.
 
@@ -49,8 +49,10 @@ Three facts drive the table.
    reads "Dashboard, Knee protection strip, for cars without Airbag,
    Passenger's side", has CARRERA RS in the model column, and puts M002 or
    M003 on every trim and knee-strip line.
-3. **No plate names a non-RS M564 car.** Apart from the option list, M564
-   appears in Kat 017 only on illustration 403-07, for the steering shaft.
+3. **No dashboard plate maps a non-RS M564 car.** Apart from the option list,
+   M564 appears on illustration 403-07 for the steering shaft and on 903-10
+   (page 635, positions 9/10) for a Carrera RS steering-column switch. Neither
+   occurrence identifies a dashboard trim for the F0 target.
 
 So the M564 left-hand-drive F0 target has **no part number from Kat 017**. It
 stays null. The part number is not borrowed from the RS plate, and it is not
@@ -77,14 +79,13 @@ document that states the trim's airbag provisions.
 ## The part record
 
 The [variant identity audit](../../../docs/reports/993-dashboard-variant-audit-20261106.md)
-(#592) corrected the catalogue record from the same plates. The record now
-names only the M564 left-hand-drive non-RS target, with its trim identity
-unresolved. It lists no Porsche part number, and its knee-strip limit follows
-the plate-level mapping. This record adds the machine-readable matrix, the
-CTR-0019 register entry and the same-specimen protocol.
-`scripts/check_993_dashboard_pet_identity.py --check` refuses a part record
-that lists a trim number the matrix does not hold, or that names an unmapped
-variant without saying so.
+(#592) corrected the catalogue record from the same plates. The record names
+only the M564 left-hand-drive non-RS target, with its trim identity unresolved.
+It lists no Porsche part number. Its knee-strip limit follows the plate-level
+mapping. This PET record adds the machine-readable matrix, the CTR-0019
+register entry and the same-specimen protocol.
+`scripts/check_993_dashboard_pet_identity.py --check` refuses a part number
+that is not supported for every listed variant and driving side.
 
 `validation.status` stays `concept`, `safety_class` stays `functional`, and the
 passenger-airbag exclusion stays in force.
@@ -112,13 +113,14 @@ the admission. An admitted specimen
 establishes the identity and airbag state of that specimen only. A trim label
 read on it is not a catalogue mapping for M564.
 
-## Not done here
+## Separate work
 
-- No interface, datum or measurement contract. That is issue #567, and it
-  starts from this matrix.
-- No change to `twins/993-dashboard-f0/assembly.json`, which is still in an
-  open pull request. Its M564 trim number is already null, which agrees with
-  this audit.
+- The independent interface and measurement contract is tracked by
+  [issue #567](https://github.com/cluster2600/porscheparts/issues/567) and
+  [PR #591](https://github.com/cluster2600/porscheparts/pull/591). This audit
+  establishes no interface dimensions.
+- The F0 schematic assembly in `twins/993-dashboard-f0/assembly.json` has no
+  measured vehicle transforms. Its M564 trim number is null, as in this audit.
 - No model years per variant. Every page carries the catalogue header "Model
   life 1994>>1998", and no trim line has a year remark. Null means "not stated
   in Kat 017".
