@@ -1,0 +1,408 @@
+{
+  "schema": "935-unequal-chain-public-receipt-1",
+  "parent_source_commit": "66c8be7ac77b297972131140f4ca56c71d7b7d19",
+  "source_OBJ_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "unchanged_source_mesh_sha256": "b4705dbb46a67f467bcb43cdc5bb922a77b2b01274fea1935bd805db15a3f559",
+  "new_sources": [
+    {
+      "name": "census_unequal_chains.py",
+      "sha256": "f2135380e06c9dd1ef6adab29399ad10496e0c63b218336d6bafc2eef9ae2d81",
+      "role": "executed_source_census_or_independent_checker"
+    },
+    {
+      "name": "census_unequal_chains_v2.py",
+      "sha256": "e5410ed14bf089b7e3841b72e8885e56096b4cf23cfade4a9025c22848edf0d6",
+      "role": "executed_source_census_or_independent_checker"
+    },
+    {
+      "name": "probe_one_to_two_native.py",
+      "sha256": "38ee8a7fe15ae8daf06347bab79c9fcd61a5b2807c0b256a3eac722a538d1595",
+      "role": "promoted_previous_synthetic_native_source"
+    },
+    {
+      "name": "verify_unequal_chains.py",
+      "sha256": "7102e4bb956e4f87f222cf94fb92d930cd1db9c9ccd9586fbc2e6255d586c40c",
+      "role": "executed_source_census_or_independent_checker"
+    },
+    {
+      "name": "verify_unequal_chains_v2.py",
+      "sha256": "cd9266bdd49a55ac7d194dccf96b1383d0aaa6a6aa1f0ee5bc5a376a3bdf904b",
+      "role": "executed_source_census_or_independent_checker"
+    }
+  ],
+  "frozen_helpers": [
+    {
+      "role": "identity_producer",
+      "name": "census_untried_pairs.py",
+      "sha256": "fdd9406ba9a750243f2dbe37c18e2c5071b3b7783dd8dbc32ddbb49c4e4e876e"
+    },
+    {
+      "role": "identity_inspector",
+      "name": "verify_untried_pairs.py",
+      "sha256": "21457c97051d711768b697951c8b2c1a82ed8beeccf411de58e0f0e9ad3bcf1f"
+    },
+    {
+      "role": "dual_component_source",
+      "name": "census_interwalk_pairs.py",
+      "sha256": "b7117b0f29fbb472f51562f5f4883dc60c400ecedfb6296be8b7467dfe148d24"
+    },
+    {
+      "role": "boundary_helper",
+      "name": "audit_retained_boundaries.py",
+      "sha256": "5b1fcf5815ceca941f6af7a07683bc17b4f4b3e7f43fb6da316d598d91848ee0"
+    },
+    {
+      "role": "large_audit_inspector",
+      "name": "verify_large_frontier.py",
+      "sha256": "8d7b528cb377914e3d50713138d4fa5bf5b91b1c6859893dd7a3f9b1b398925c"
+    }
+  ],
+  "reports": {
+    "uniform_census": {
+      "source_sha256": "f2135380e06c9dd1ef6adab29399ad10496e0c63b218336d6bafc2eef9ae2d81",
+      "job_sha256": "90533c63c187f04fcb9acf7ab22f6d3144b12b7a0f7a5c3c780d15492de2fe7e",
+      "mesh_sha256": "b4705dbb46a67f467bcb43cdc5bb922a77b2b01274fea1935bd805db15a3f559",
+      "census_sha256": "8627b4a6842afe49123ea0eb82ce790ed32659717826a81a7e13972f0dbf318e",
+      "acquired_single_edges": 68588,
+      "actual_two_edge_chains": 68092,
+      "guarded_bipartite_envelope": 428871,
+      "exact_bipartite_radius_triples": 428871,
+      "cross_component_triples_refused": 0,
+      "evaluated_triples": 428871,
+      "common_stage_counts": {
+        "two_edges_not_directed_consecutive": 0,
+        "not_five_distinct_source_corners": 267790,
+        "cross_endpoint_or_middle_support_distance": 117137,
+        "each_opposing_directed_tangent": 43332,
+        "passed_common_geometry": 612
+      },
+      "class_stage_counts": [
+        {
+          "right_chain_acquired_owner_alignment": 64,
+          "acquired_owner_class": 218,
+          "no_nonzero_forward_pentagon_triangulation": 330,
+          "eligible": 0
+        },
+        {
+          "right_chain_acquired_owner_alignment": 64,
+          "acquired_owner_class": 468,
+          "gap_not_towards_all_actual_material_sides": 79,
+          "outward_binormals_incompatible": 1,
+          "no_nonzero_forward_pentagon_triangulation": 0,
+          "eligible": 0
+        }
+      ],
+      "eligible_chains": 0,
+      "selected_chains": 0,
+      "ambiguous_edges": 0,
+      "selected_class_counts": {},
+      "original_atomic_history_preserved": 1728,
+      "five_corners_not_four_corner_retries": true,
+      "original_distance_and_angle_bounds_unchanged": true,
+      "native_constructor_not_admitted": true,
+      "geometry_modified": false,
+      "physical_acceptance": false,
+      "manufacturing_authorized": false,
+      "seconds": 2.1404346249764785
+    },
+    "uniform_replay": {
+      "source_sha256": "7102e4bb956e4f87f222cf94fb92d930cd1db9c9ccd9586fbc2e6255d586c40c",
+      "job_sha256": "90533c63c187f04fcb9acf7ab22f6d3144b12b7a0f7a5c3c780d15492de2fe7e",
+      "mesh_sha256": "b4705dbb46a67f467bcb43cdc5bb922a77b2b01274fea1935bd805db15a3f559",
+      "census_sha256": "8627b4a6842afe49123ea0eb82ce790ed32659717826a81a7e13972f0dbf318e",
+      "complete_halos_sha256": "cc2dd8af397ede800afd033de075a3dc507be23899fe8af468f5753a37d26805",
+      "acquired_single_edges": 68588,
+      "actual_two_edge_chains": 68092,
+      "independently_complete_bipartite_radius_triples": 428871,
+      "cross_component_triples_refused": 0,
+      "evaluated_triples": 428871,
+      "scalar_common_stage_counts": {
+        "not_five_distinct_source_corners": 267790,
+        "each_opposing_directed_tangent": 43332,
+        "cross_endpoint_or_middle_support_distance": 117137,
+        "passed_common_geometry": 612
+      },
+      "scalar_class_stage_counts": [
+        {
+          "right_chain_acquired_owner_alignment": 64,
+          "acquired_owner_class": 218,
+          "no_nonzero_forward_pentagon_triangulation": 330
+        },
+        {
+          "right_chain_acquired_owner_alignment": 64,
+          "acquired_owner_class": 468,
+          "gap_not_towards_all_actual_material_sides": 79,
+          "outward_binormals_incompatible": 1
+        }
+      ],
+      "eligible_chains": 0,
+      "selected_chains": 0,
+      "complete_selected_halos": 0,
+      "selected_class_counts": {},
+      "controls": {
+        "complete_pentagon_patterns": 5,
+        "unequal_opposed_strip": true,
+        "same_facing_strip": true,
+        "void_and_global_reversal_refused": true,
+        "wrong_adjacency_and_four_corner_refused": true,
+        "annular_bore_preserved_by_source_predicate": true,
+        "independent_radius_boundary": true,
+        "three_edge_conflict_and_tie_selection": true
+      },
+      "scalar_raw_identity_controls_passed": 5,
+      "atomic_history_preserved": 1728,
+      "five_corner_chain_identities_verified": true,
+      "all_three_edge_selection_and_ties_verified": true,
+      "producer_imported": false,
+      "spatial_tree_used": false,
+      "census_independently_verified": true,
+      "native_constructor_not_yet_admitted": true,
+      "geometry_modified": false,
+      "physical_acceptance": false,
+      "manufacturing_authorized": false,
+      "seconds": 14.011819332954474
+    },
+    "local_border_census": {
+      "source_sha256": "e5410ed14bf089b7e3841b72e8885e56096b4cf23cfade4a9025c22848edf0d6",
+      "job_sha256": "52edc4a879ed74b940377e9137680d696d2a4ff4e005d605e6bea0d87d5c300e",
+      "mesh_sha256": "b4705dbb46a67f467bcb43cdc5bb922a77b2b01274fea1935bd805db15a3f559",
+      "census_sha256": "8627b4a6842afe49123ea0eb82ce790ed32659717826a81a7e13972f0dbf318e",
+      "acquired_single_edges": 68588,
+      "actual_two_edge_chains": 68092,
+      "guarded_bipartite_envelope": 428871,
+      "exact_bipartite_radius_triples": 428871,
+      "cross_component_triples_refused": 0,
+      "evaluated_triples": 428871,
+      "common_stage_counts": {
+        "two_edges_not_directed_consecutive": 0,
+        "not_five_distinct_source_corners": 267790,
+        "cross_endpoint_or_middle_support_distance": 117137,
+        "each_opposing_directed_tangent": 43332,
+        "passed_common_geometry": 612
+      },
+      "class_stage_counts": [
+        {
+          "right_chain_acquired_owner_alignment": 64,
+          "acquired_owner_class": 218,
+          "no_nonzero_forward_pentagon_triangulation": 330,
+          "eligible": 0
+        },
+        {
+          "right_chain_acquired_owner_alignment": 64,
+          "acquired_owner_class": 468,
+          "gap_not_towards_all_actual_material_sides": 79,
+          "outward_binormals_incompatible": 1,
+          "no_nonzero_forward_pentagon_triangulation": 0,
+          "eligible": 0
+        }
+      ],
+      "eligible_chains": 0,
+      "selected_chains": 0,
+      "ambiguous_edges": 0,
+      "selected_class_counts": {},
+      "original_atomic_history_preserved": 1728,
+      "five_corners_not_four_corner_retries": true,
+      "original_distance_and_angle_bounds_unchanged": true,
+      "native_constructor_not_admitted": true,
+      "geometry_modified": false,
+      "physical_acceptance": false,
+      "manufacturing_authorized": false,
+      "seconds": 2.126995667000301
+    },
+    "local_border_replay": {
+      "source_sha256": "cd9266bdd49a55ac7d194dccf96b1383d0aaa6a6aa1f0ee5bc5a376a3bdf904b",
+      "job_sha256": "52edc4a879ed74b940377e9137680d696d2a4ff4e005d605e6bea0d87d5c300e",
+      "mesh_sha256": "b4705dbb46a67f467bcb43cdc5bb922a77b2b01274fea1935bd805db15a3f559",
+      "census_sha256": "8627b4a6842afe49123ea0eb82ce790ed32659717826a81a7e13972f0dbf318e",
+      "complete_halos_sha256": "cc2dd8af397ede800afd033de075a3dc507be23899fe8af468f5753a37d26805",
+      "acquired_single_edges": 68588,
+      "actual_two_edge_chains": 68092,
+      "independently_complete_bipartite_radius_triples": 428871,
+      "cross_component_triples_refused": 0,
+      "evaluated_triples": 428871,
+      "scalar_common_stage_counts": {
+        "not_five_distinct_source_corners": 267790,
+        "each_opposing_directed_tangent": 43332,
+        "cross_endpoint_or_middle_support_distance": 117137,
+        "passed_common_geometry": 612
+      },
+      "scalar_class_stage_counts": [
+        {
+          "right_chain_acquired_owner_alignment": 64,
+          "acquired_owner_class": 218,
+          "no_nonzero_forward_pentagon_triangulation": 330
+        },
+        {
+          "right_chain_acquired_owner_alignment": 64,
+          "acquired_owner_class": 468,
+          "gap_not_towards_all_actual_material_sides": 79,
+          "outward_binormals_incompatible": 1
+        }
+      ],
+      "eligible_chains": 0,
+      "selected_chains": 0,
+      "complete_selected_halos": 0,
+      "selected_class_counts": {},
+      "controls": {
+        "complete_pentagon_patterns": 5,
+        "unequal_opposed_strip": true,
+        "same_facing_strip": true,
+        "void_and_global_reversal_refused": true,
+        "wrong_adjacency_and_four_corner_refused": true,
+        "annular_bore_preserved_by_source_predicate": true,
+        "independent_radius_boundary": true,
+        "three_edge_conflict_and_tie_selection": true,
+        "curved_local_acquired_border_control": true
+      },
+      "scalar_raw_identity_controls_passed": 5,
+      "atomic_history_preserved": 1728,
+      "five_corner_chain_identities_verified": true,
+      "all_three_edge_selection_and_ties_verified": true,
+      "producer_imported": false,
+      "spatial_tree_used": false,
+      "census_independently_verified": true,
+      "native_constructor_not_yet_admitted": true,
+      "geometry_modified": false,
+      "physical_acceptance": false,
+      "manufacturing_authorized": false,
+      "seconds": 13.794879249995574
+    }
+  },
+  "uniform_and_local_census_bytes_identical_on_this_scan": true,
+  "models_not_mathematically_identical": true,
+  "promoted_synthetic_native_witness": {
+    "source_sha256": "38ee8a7fe15ae8daf06347bab79c9fcd61a5b2807c0b256a3eac722a538d1595",
+    "job_sha256": "2f4f8d96a50c51d6a37926b19cd23b34328cfb86a73a53725fd3c8490e8bd13e",
+    "fixture": "synthetic 1.2 by 0.2 by 0.2 unequal-sampling material strip",
+    "atomic_pairs_refused_without_threshold_change": [
+      "cross_endpoint_support_distance",
+      "cross_endpoint_support_distance"
+    ],
+    "pentagon_patterns": [
+      {
+        "pattern": 0,
+        "accepted": true,
+        "area_nominal_mm2": 0.24,
+        "component_certificate": [
+          [
+            9,
+            19,
+            10,
+            2,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "pattern": 1,
+        "accepted": true,
+        "area_nominal_mm2": 0.24,
+        "component_certificate": [
+          [
+            9,
+            19,
+            10,
+            2,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "pattern": 2,
+        "accepted": true,
+        "area_nominal_mm2": 0.24,
+        "component_certificate": [
+          [
+            9,
+            19,
+            10,
+            2,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "pattern": 3,
+        "accepted": false,
+        "reason": "zero_or_nonforward_triangle"
+      },
+      {
+        "pattern": 4,
+        "accepted": false,
+        "reason": "zero_or_nonforward_triangle"
+      }
+    ],
+    "five_corners": true,
+    "three_old_acquired_edges_preserved": true,
+    "original_points_and_faces_preserved": true,
+    "complete_mask_controls_passed": true,
+    "new_chain_census_independently_admitted": false,
+    "annular_control_still_required": true,
+    "real_scan_used": false,
+    "head_geometry_changed": false,
+    "manufacturing_authorized": false
+  },
+  "synthetic_witness_report_sha256": "ea6ffc5a40b9ebe68e971f2e4f5cc17d119a224709c84e5e403e3c984699af43",
+  "synthetic_native_probe_not_reexecuted": true,
+  "source_positive_annular_control_is_not_native_scan_admission": true,
+  "source_control_thresholds": {
+    "midpoint_and_endpoint_distance_nominal_mm": 0.5,
+    "middle_projection_distance_nominal_mm": 0.5,
+    "tangent_dot_max": -0.8,
+    "owner_same_dot_min": 0.8,
+    "owner_opposed_dot_max": -0.8,
+    "material_gap_dot_max": -0.8,
+    "triangle_forward_dot_min": 0.8,
+    "width_score_tie": 1e-12
+  },
+  "private_manifest_sha256": "4b17f14e71e39412303453e2220fc09a438399524de712ba396cf2e9eee81aa0",
+  "private_payload_files": 30,
+  "private_payload_bytes": 9218507,
+  "focused_tests": {
+    "tests_run": 148,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "passed": true,
+    "patterns": [
+      "contact_bridges",
+      "quarantine_patches",
+      "bounded_fan_pruning",
+      "acquisition_gap_trials",
+      "frontier_pairing",
+      "strip_cap_admission",
+      "untried_acquired_pairs",
+      "opposed_wall_trials",
+      "end_wall_admission",
+      "pairing_continuation",
+      "interwalk_admission",
+      "post_interwalk_continuation",
+      "large_frontier_audit",
+      "unequal_chain_census"
+    ]
+  },
+  "execution": {
+    "controller_groups": 4,
+    "all_owned_children_reaped": true,
+    "shared_wall_seconds_per_group": 600,
+    "sampled_child_RSS_limit_GiB": 4,
+    "disk_floor_GiB": 4,
+    "maximum_sampled_child_RSS_KiB": 1403888
+  },
+  "native_scan_constructor_runs": 0,
+  "new_geometry_added": false,
+  "new_paid_compute_usd": 0,
+  "G0_G5": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "goal_complete": false,
+  "manufacturing_authorized": false
+}
