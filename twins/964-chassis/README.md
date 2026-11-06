@@ -1,5 +1,12 @@
 # Digital twin of the Porsche 911 (964) chassis
 
+**Front seating correction, 6 November 2026:** the
+[new primary-photo and fixed-oblique review](front-seating-20261106/README.md)
+withdraws the two conditional front D/E interpretations. Their recess/retainer
+and wider panel pattern support cover-fixing candidates; acquired structural
+seating is not established. Original face IDs remain traceable, but neither
+point is admitted for body registration or structural boundary conditions.
+
 **Transmission-fastener review, 6 November 2026:** two observed outer heads
 have [anatomy-backed candidate Mi H roles](fastener-visibility-20261106/README.md),
 bound to exact original scan triangles and independently checked. This does not
