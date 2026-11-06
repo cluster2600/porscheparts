@@ -1,0 +1,604 @@
+{
+  "schema": "935-exact-coordinate-origin-diagnostic-1",
+  "date": "2026-11-05",
+  "status": "native_pair_completed_frame_sensitivity_observed_both_frames_rejected",
+  "private_capsule": {
+    "directory_basename": "935-exact-origin-20261105-001",
+    "manifest_sha256": "ba7a618c8a137e655f907bff62a2b63cc808598c873eccb961429e64aa07be8b",
+    "entries": 382,
+    "regular_file_bytes": 5188733932,
+    "all_bytes_rehashed_after_freeze": true,
+    "read_only": true
+  },
+  "source_sha256": {
+    "certify_translation.py": "811d9e6c11d475fa89cdd965afc91f914a24fdbe6ee386e747b9cc904bf9591f",
+    "recover_origin_outputs.py": "2e5512a1773d35e0ed5fd6a42e9d87e9508fa5b04a67d9b3c8679b3fe3df17ec",
+    "run_kali_pair.py": "10498f5aac32dc9aefc5231db559e84988e4290248654153c51fc3183042e700",
+    "run_origin_pair.py": "24d108673817025b70e84186495459f184bc49b33657ee2fb42c55a232725fbd"
+  },
+  "parent_native_capsule_manifest_sha256": "91fbc0ecc6dfdeb2b95949676698f0ea9a1a8605d783efdfa61e2fe3722ed64d",
+  "parent_geometry_capsule_manifest_sha256": "c58ce27aa0aef9479c3835603034333037dd14f8a75d6aaba8f22f161a625a6a",
+  "upstream_verdict": "Certified positive source tetrahedra, exact native readback and integer winding; extreme intrinsic conditioning and rank-deficient uncoupled stencil remain; diagnostic only",
+  "exact_translation_certificate": {
+    "source_sha256": "811d9e6c11d475fa89cdd965afc91f914a24fdbe6ee386e747b9cc904bf9591f",
+    "source_volume_sha256": "233f7bd83072772fa0b92d0287f20cec3cf44c4988546be42addf5579630299e",
+    "native_original_points_sha256": "19a955aa7ff335da8adffa0e892cc236c356b61c1cdabfe8ea7dbe30280a0c84",
+    "controls": {
+      "independent_fraction_controls_passed": true,
+      "single_bit_coordinate_corruption_rejected": true,
+      "different_origin_precision_loss_witness": true
+    },
+    "points": 4181299,
+    "coordinates_checked": 12543897,
+    "source_bounds": [
+      [
+        10.0,
+        10.0,
+        10.0
+      ],
+      [
+        129.72215957510565,
+        234.16099141318654,
+        103.64405974187721
+      ]
+    ],
+    "translated_bounds": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        119.72215957510565,
+        224.16099141318654,
+        93.64405974187721
+      ]
+    ],
+    "integer_lattice_comparison_passed_for_every_coordinate": true,
+    "inverse_coordinate_roundtrip_bit_exact": true,
+    "method": "Decode x=m*2^e; compare (x-10)*2^-e to the exact integer m-10*2^-e, below 2^53",
+    "source_to_trial_frame": [
+      [
+        1,
+        0,
+        0,
+        -10
+      ],
+      [
+        0,
+        1,
+        0,
+        -10
+      ],
+      [
+        0,
+        0,
+        1,
+        -10
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "exact_geometry_deviation_after_inverse_transform": 0,
+    "intrinsic_edge_matrix_conditioning_unchanged": true,
+    "uncoupled_stencil_rank_unchanged": true,
+    "source_mesh_modified": false,
+    "printing_master_replaced": false,
+    "expected_translated_points_sha256": "2a563d4940db8e7d271adafd6ac135b19966580d061b971b752d52ebc053888a",
+    "native_io_and_geometry_trial_executed_by_this_script": false,
+    "field_solve_executed": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "seconds": 4.2128907080041245
+  },
+  "certificate_execution": {
+    "exit_code": 0,
+    "seconds": 4.613256916985847
+  },
+  "native_runtime": {
+    "image": "ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f",
+    "openfoam": "OpenFOAM-13",
+    "python_numpy": {
+      "python": "3.12.3",
+      "numpy": "2.5.2",
+      "machine": "x86_64",
+      "foam_setup_sha256": "dd62f167ea8928a76cf76af72627b50bd62788df10bf13d8d4e4c4f9d0ee9541"
+    },
+    "child_address_space_gib": 48,
+    "head_deadline_seconds_each": 600,
+    "same_image_host_and_thresholds_for_both_frames": true,
+    "registry_source_build_attestation": false
+  },
+  "actual_kali_controls": {
+    "terminal": {
+      "terminal": "native_origin_controls_completed",
+      "controls_passed": true,
+      "head_pair_started": false,
+      "head_pair_complete": false,
+      "all_original_inputs_rehashed_unchanged": true,
+      "field_solve_executed": false,
+      "physics_admitted": false,
+      "manufacturing_qualified": false
+    },
+    "precision_io": {
+      "native_identity_bit_exact": true,
+      "native_minus10_transform_bit_exact": true,
+      "wrong_frame_rejected": true,
+      "write_precision": 17,
+      "coordinates_checked_per_positive_case": 15
+    },
+    "closeout": {
+      "all_unique_outputs_recovered_and_rehashed": true,
+      "all_original_inputs_unchanged": true,
+      "owned_container_absent": true,
+      "owned_staging_absent": true,
+      "docker_oom_killed": false,
+      "container_exit_code": 0,
+      "seconds": 6.752970750094391,
+      "new_paid_compute_usd": 0
+    }
+  },
+  "local_head_preparation_refusal": {
+    "observed_controller_exit_code": 1,
+    "failed_gate": "home_free >= 11 GiB",
+    "capacity": {
+      "available_memory": 11977687040,
+      "home_free": 10122760192
+    },
+    "ram_floor_bytes": 10737418240,
+    "disk_floor_bytes": 11811160064,
+    "remote_head_staging_created": false,
+    "head_executed_on_Kali": false,
+    "source_sha256": "10498f5aac32dc9aefc5231db559e84988e4290248654153c51fc3183042e700"
+  },
+  "actual_cloud_controls": {
+    "precision_io": {
+      "native_identity_bit_exact": true,
+      "native_minus10_transform_bit_exact": true,
+      "wrong_frame_rejected": true,
+      "write_precision": 17,
+      "coordinates_checked_per_positive_case": 15
+    },
+    "structured": {
+      "passed": true,
+      "content_required_even_when_process_exit_zero": true,
+      "analytic_contract_sha256": "ae02ed991cf67d5b76e6b379c7e42794c7455592515001b57653d683ac9e760c"
+    }
+  },
+  "baseline_repetition": {
+    "all_metric_tuples_equal_prior_native_diagnostic": true,
+    "prior_capsule_manifest_sha256": "c58ce27aa0aef9479c3835603034333037dd14f8a75d6aaba8f22f161a625a6a",
+    "shape_changed": false
+  },
+  "native_transform_admission": {
+    "all_12543897_coordinate_bits_match_exact_prediction": true,
+    "unchanged_other_native_head_files": [
+      "constant/polyMesh/boundary",
+      "constant/polyMesh/cellZones",
+      "constant/polyMesh/faces",
+      "constant/polyMesh/neighbour",
+      "constant/polyMesh/owner",
+      "constant/polyMesh/sets/hypothetical_solid",
+      "system/controlDict"
+    ],
+    "native_transformed_points_sha256": "6dd3a9e038d780ee66daa87db909845a495fbdb2adeed11bb309530d1f5ae029",
+    "explicit_source_to_trial_frame": [
+      [
+        1,
+        0,
+        0,
+        -10
+      ],
+      [
+        0,
+        1,
+        0,
+        -10
+      ],
+      [
+        0,
+        0,
+        1,
+        -10
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "exact_geometry_change_after_inverse_transform": 0
+  },
+  "native_transform_execution": {
+    "exit_code": 0,
+    "timeout": false,
+    "seconds": 10.543853340903297,
+    "address_space_gib": 48,
+    "log_sha256": "a68a71ff906c3a60036f8f675e3a8a358978beb7c27e7b872c9f40280b69bbba"
+  },
+  "baseline_execution": {
+    "exit_code": 0,
+    "timeout": false,
+    "seconds": 59.921949971001595,
+    "address_space_gib": 48,
+    "log_sha256": "711b994c20a0e32753d37bb1946d637904eecb6220557d33baee8c3c47df46d5"
+  },
+  "translated_execution": {
+    "exit_code": 0,
+    "timeout": false,
+    "seconds": 60.530335198156536,
+    "address_space_gib": 48,
+    "log_sha256": "63347399e2ed6f3c9dee46eba39a02bfc3d5502285024d038d1c39906fbb3dd0"
+  },
+  "frame_comparison": {
+    "same_image_runtime_and_thresholds": true,
+    "baseline": {
+      "high_aspect_cells": [
+        1.0505536196303592e+102,
+        39913
+      ],
+      "negative_volumes": [
+        -1.562181735243843e-15,
+        4070
+      ],
+      "nonorthogonality": [
+        90.00000000022447,
+        48.431008024506816
+      ],
+      "severe_nonorthogonal_faces": [
+        3953359
+      ],
+      "nonorthogonality_errors": [
+        1009
+      ],
+      "face_pyramids": [
+        6851
+      ],
+      "skewness": [
+        1112.964604421563,
+        63762
+      ],
+      "face_tets": [
+        288815
+      ],
+      "small_edges_warning": [
+        1.192092901342628e-06,
+        15.850717694748498,
+        224
+      ],
+      "cell_determinant": [
+        0.0,
+        0.0956923606638536
+      ],
+      "small_determinants": [
+        0.001,
+        4319287
+      ],
+      "concavity_report": [
+        36752
+      ],
+      "interpolation_weight": [
+        0.0,
+        0.25987021497519774
+      ],
+      "small_interpolation_weights": [
+        0.05,
+        4151434
+      ],
+      "volume_ratio": [
+        -380.53179190751445,
+        0.4317738056361552
+      ],
+      "small_volume_ratios": [
+        0.01,
+        2022190
+      ],
+      "failed_categories": [
+        10
+      ]
+    },
+    "translated": {
+      "high_aspect_cells": [
+        1.673301787421037e+102,
+        39913
+      ],
+      "negative_volumes": [
+        -3.3070063614609735e-15,
+        3523
+      ],
+      "nonorthogonality": [
+        90.00000000016021,
+        48.43059923310285
+      ],
+      "severe_nonorthogonal_faces": [
+        3953488
+      ],
+      "nonorthogonality_errors": [
+        962
+      ],
+      "face_pyramids": [
+        5786
+      ],
+      "skewness": [
+        3.6492322962655537e+137,
+        63416
+      ],
+      "face_tets": [
+        288819
+      ],
+      "small_edges_warning": [
+        1.192092901342628e-06,
+        15.850717694748498,
+        224
+      ],
+      "cell_determinant": [
+        0.0,
+        0.0956923606638536
+      ],
+      "small_determinants": [
+        0.001,
+        4319287
+      ],
+      "concavity_report": [
+        36752
+      ],
+      "interpolation_weight": [
+        0.0,
+        0.25987053065154686
+      ],
+      "small_interpolation_weights": [
+        0.05,
+        4151437
+      ],
+      "volume_ratio": [
+        -90.39554317548746,
+        0.43181090155637
+      ],
+      "small_volume_ratios": [
+        0.01,
+        2022108
+      ],
+      "failed_categories": [
+        10
+      ]
+    },
+    "observed_differences": {
+      "high_aspect_cells": {
+        "baseline": [
+          1.0505536196303592e+102,
+          39913
+        ],
+        "translated": [
+          1.673301787421037e+102,
+          39913
+        ]
+      },
+      "negative_volumes": {
+        "baseline": [
+          -1.562181735243843e-15,
+          4070
+        ],
+        "translated": [
+          -3.3070063614609735e-15,
+          3523
+        ]
+      },
+      "nonorthogonality": {
+        "baseline": [
+          90.00000000022447,
+          48.431008024506816
+        ],
+        "translated": [
+          90.00000000016021,
+          48.43059923310285
+        ]
+      },
+      "severe_nonorthogonal_faces": {
+        "baseline": [
+          3953359
+        ],
+        "translated": [
+          3953488
+        ]
+      },
+      "nonorthogonality_errors": {
+        "baseline": [
+          1009
+        ],
+        "translated": [
+          962
+        ]
+      },
+      "face_pyramids": {
+        "baseline": [
+          6851
+        ],
+        "translated": [
+          5786
+        ]
+      },
+      "skewness": {
+        "baseline": [
+          1112.964604421563,
+          63762
+        ],
+        "translated": [
+          3.6492322962655537e+137,
+          63416
+        ]
+      },
+      "face_tets": {
+        "baseline": [
+          288815
+        ],
+        "translated": [
+          288819
+        ]
+      },
+      "interpolation_weight": {
+        "baseline": [
+          0.0,
+          0.25987021497519774
+        ],
+        "translated": [
+          0.0,
+          0.25987053065154686
+        ]
+      },
+      "small_interpolation_weights": {
+        "baseline": [
+          0.05,
+          4151434
+        ],
+        "translated": [
+          0.05,
+          4151437
+        ]
+      },
+      "volume_ratio": {
+        "baseline": [
+          -380.53179190751445,
+          0.4317738056361552
+        ],
+        "translated": [
+          -90.39554317548746,
+          0.43181090155637
+        ]
+      },
+      "small_volume_ratios": {
+        "baseline": [
+          0.01,
+          2022190
+        ],
+        "translated": [
+          0.01,
+          2022108
+        ]
+      }
+    },
+    "exact_geometry_changed": false,
+    "intrinsic_conditioning_or_uncoupled_stencil_rank_improved": false,
+    "frame_sensitivity_observed": true,
+    "invariance_tolerance_or_error_bound_not_established": true,
+    "field_solve_admitted": false
+  },
+  "terminal": {
+    "terminal": "native_origin_pair_completed",
+    "controls_passed": true,
+    "head_pair_started": true,
+    "head_pair_complete": true,
+    "frame_sensitivity_observed": true,
+    "all_original_inputs_rehashed_unchanged": true,
+    "field_solve_executed": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false
+  },
+  "verified_recovery": {
+    "archive_sha256": "7e7710f0081975fb3547f8a0e70b0ddda29bc0844e60042014ecdbd9a8ac4454",
+    "source_sha256": "2e5512a1773d35e0ed5fd6a42e9d87e9508fa5b04a67d9b3c8679b3fe3df17ec",
+    "worker_terminal": {
+      "terminal": "native_origin_pair_completed",
+      "controls_passed": true,
+      "head_pair_started": true,
+      "head_pair_complete": true,
+      "frame_sensitivity_observed": true,
+      "all_original_inputs_rehashed_unchanged": true,
+      "field_solve_executed": false,
+      "physics_admitted": false,
+      "manufacturing_qualified": false
+    },
+    "worker_confirmed_terminal_before_recovery": true,
+    "all_original_inputs_rehashed_unchanged": true,
+    "all_recovered_bytes_match": true,
+    "unique_outputs_verified": 129,
+    "duplicate_input_copies_verified": 67,
+    "field_solve_executed": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false
+  },
+  "owned_resource_closeout": {
+    "instance_id": 59293995,
+    "owned_instance_destroyed": true,
+    "controller_absence_verified": true,
+    "recovery_verified_before_deletion": true,
+    "conservative_elapsed_hours": 0.2329139163096746,
+    "observed_hourly_rate_including_storage": 0.11288888888888889,
+    "compute_storage_rate_times_elapsed_estimate_usd": 0.026293393218958818,
+    "network_planning_allowance_gb": 20,
+    "maximum_observed_network_rate_usd_per_gb": 0.005333333333333333,
+    "network_planning_upper_estimate_usd": 0.10666666666666666,
+    "provider_invoice_available": false,
+    "account_change_not_task_invoice": true,
+    "previous_reservation_ceilings_usd": 9.3,
+    "attempt_cap_usd": 1.5,
+    "combined_reservation_ceiling_usd": 10.8,
+    "automatic_recharge_requested": false,
+    "only_task_created_instance_destroyed": true
+  },
+  "independent_guard": {
+    "instance_id": 59293995,
+    "absence_verified": true,
+    "deadline_reached": false,
+    "confirmed_at_epoch": 1793898250.129013
+  },
+  "guard_exit": {
+    "absent_or_zombie": true
+  },
+  "budget": {
+    "project_total_usd": 35,
+    "compute_allocation_usd": 30,
+    "transfer_closeout_reserve_usd": 5,
+    "budget_not_reset": true,
+    "previous_reservation_ceilings_usd": 9.3,
+    "attempt_cap_usd": 1.5,
+    "combined_reservation_ceiling_usd": 10.8,
+    "maximum_duration_seconds": 3600,
+    "hourly_ceiling_including_disk_usd": 0.4,
+    "network_allowance_gb": 20,
+    "network_rate_ceiling_usd_per_gb": 0.014,
+    "one_hour_and_network_max_usd": 0.68,
+    "selected_120gb_storage_hourly_estimate": 0.11288888888888889,
+    "automatic_recharge_requested": false,
+    "account_change_not_task_invoice": true
+  },
+  "all_phases_prepared_before_rental": true,
+  "source_preservation": {
+    "original_scan": {
+      "sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+      "bytes": 104598077,
+      "unchanged": true
+    },
+    "printing_master": {
+      "sha256": "e022af4306766d09e512cd2bd49c696407d887f90cd3aa1622add8014a134465",
+      "bytes": 194091666,
+      "unchanged": true
+    }
+  },
+  "original_scan_transfer_authorized": true,
+  "original_scan_transferred": false,
+  "derived_geometry_transferred_to_Vast": true,
+  "geometry_sent_to_external_CAD_AI_service": false,
+  "supplier_message_sent": false,
+  "interpretation": {
+    "native_geometry_evaluation_is_observably_coordinate_frame_sensitive": true,
+    "precise_native_formula_or_arithmetic_cause_isolated": false,
+    "fewer_warnings_does_not_establish_quality_improvement": true,
+    "do_not_sweep_origins_to_hide_warnings": true,
+    "intrinsic_conditioning_or_uncoupled_stencil_rank_improved": false,
+    "source_relative_geometry_constraints_required_before_more_field_trials": true
+  },
+  "geometry_or_print_master_replaced": false,
+  "native_full_topology_check_completed": false,
+  "case_specific_operator_admission": false,
+  "head_field_solve_executed": false,
+  "physics_admitted": false,
+  "manufacturing_qualified": false,
+  "functional_release": false,
+  "goal_complete": false
+}
