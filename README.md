@@ -1,10 +1,11 @@
 <div align="center">
 
-[![F2 sculpted carbon central-cell study with shaped floors, an integrated tunnel, door-entry returns and upper structural paths](twins/964-chassis/sculpted-cell-f2-20261106/media/isometric.png)](twins/964-chassis/sculpted-cell-f2-20261106/media/turntable.mp4)
+**964 monocoque: correcting the dimensional baseline**
 
-**[▶ Watch the turntable (MP4)](twins/964-chassis/sculpted-cell-f2-20261106/media/turntable.mp4)** · [Interior, sections, editable CAD and engineering dossier](twins/964-chassis/sculpted-cell-f2-20261106/README.md)
+The F2 shape study was not constrained to the original body-dimension network.
+It is withdrawn as the current reconstruction baseline.
 
-<sub><i>Current F2 sculpted central-cell design. Images show the full native PicoGK wall surface. Geometry and carbon architecture are assumptions. The native mesh-quality screen rejects 36 collapsed faces, retained in these diagnostic views; vehicle fitment, strength and manufacture remain open.</i></sub>
+[Source audit and correction requirements](twins/964-chassis/dimensional-correction-20261106/README.md) · [Original frame-data network](twins/964-chassis/owner-frame-data-20261105/README.md) · [Previous F2 diagnostic images and video](twins/964-chassis/sculpted-cell-f2-20261106/README.md)
 
 ![Layer-by-layer metal 3D printing preview of the 993 cooling-fan impeller, with hypothetical support regions](parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif)
 
@@ -124,7 +125,7 @@ links to the original part.
 <table>
 <tr>
 <td align="center" valign="top" width="33%"><a href="parts/964-central-cell-assumed-f1/README.md"><img src="parts/964-central-cell-assumed-f1/media/preview.png" alt="Concept render of 964 central carbon cell" width="240"></a><br><sub><i>Concept model — not the original part, not a print file</i></sub><br><a href="parts/964-central-cell-assumed-f1/README.md"><b>964 central carbon cell</b></a><br><sub>Design study: blocked until a professional engineering review</sub></td>
-<td align="center" valign="top" width="33%"><a href="parts/964-central-cell-sculpted-f2/README.md"><img src="parts/964-central-cell-sculpted-f2/media/preview.png" alt="Concept render of 964 sculpted central carbon cell" width="240"></a><br><sub><i>Concept model — not the original part, not a print file</i></sub><br><a href="parts/964-central-cell-sculpted-f2/README.md"><b>964 sculpted central carbon cell</b></a><br><sub>Design study: blocked until a professional engineering review</sub></td>
+<td align="center" valign="top" width="33%"><a href="parts/964-central-cell-sculpted-f2/README.md"><img src="parts/964-central-cell-sculpted-f2/media/preview.png" alt="Concept render of Archived F2 sculpted central-cell study" width="240"></a><br><sub><i>Concept model — not the original part, not a print file</i></sub><br><a href="parts/964-central-cell-sculpted-f2/README.md"><b>Archived F2 sculpted central-cell study</b></a><br><sub>Design study: blocked until a professional engineering review</sub></td>
 <td align="center" valign="top" width="33%"><a href="parts/993-body-front-impact-support-alsi10mg-f0-0001/README.md"><img src="parts/993-body-front-impact-support-alsi10mg-f0-0001/media/gyroid.png" alt="Concept render of 993 front impact support" width="240"></a><br><sub><i>Concept model — not the original part, not a print file</i></sub><br><a href="parts/993-body-front-impact-support-alsi10mg-f0-0001/README.md"><b>993 front impact support</b></a><br><sub>Design study: blocked until a professional engineering review</sub></td>
 </tr>
 <tr>
