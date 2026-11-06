@@ -1,5 +1,6 @@
 {
-  "max_skips": 416,
+  "max_skips": 394,
   "measured": "2026-11-05, make check in a venv mirroring validate.yml (requirements-check.txt), clean agent worktree: 5203 tests, 415 skipped",
+  "reduced": "2026-11-07: declared trimesh 5.1.0 and rtree 1.4.1 enable 22 existing 935 synthetic tests; the 477-test group falls from 33 skips to 11, so lower the budget by 22",
   "raised": "2026-11-06, issue #509: +1 for tests/test_validate_twins.py jsonschema cross-check, which skips where jsonschema is absent (as in requirements-check.txt); the twin contract itself is executed by the stdlib evaluator in scripts/validate_twins.py and is not skipped"
 }
