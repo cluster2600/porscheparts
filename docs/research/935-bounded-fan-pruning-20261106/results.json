@@ -1,0 +1,437 @@
+{
+  "schema": "935-bounded-source-omission-public-receipt-1",
+  "source_OBJ_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "source_preserving_parent_sha256": "99a3854845211f097ed17334ab5eb2fc8f4aeb4d079353d6990b87eaa7a3f90c",
+  "job_sha256": "62ccd4f150d59841706b961bea4cef5015b77b4ea8279fd1233765f8ddb63067",
+  "executed_sources": [
+    {
+      "name": "admit_acquisition_gaps.py",
+      "sha256": "30129c9eb68cd571d2f674562bd0dc7de73cb68046760f9ccca0d1f113521ecf"
+    },
+    {
+      "name": "audit_pruned_boundaries.py",
+      "sha256": "c8bcafe55fd277fb34c054f834540e602d00a6e93eaeae743b3f1d01885e6525"
+    },
+    {
+      "name": "measure_omission_deviations.py",
+      "sha256": "4f310890ed275f4b3643ddcbb04479cd7b5c8fa9da337f73f92eff21692d8504"
+    },
+    {
+      "name": "prune_source_fans.py",
+      "sha256": "0bce91d29158b7a02a0cc2249c61fab3e6c2740eb3f1bdd0733bab36a5553f22"
+    },
+    {
+      "name": "verify_source_omissions.py",
+      "sha256": "64676d8b879854168f4e1b12e0304db4d170b17e7fed898ca140ad2774bd3f30"
+    }
+  ],
+  "reused_helpers": [
+    {
+      "path": "docs/research/935-contact-bridges-20261106/source/prepare_contact_bridges.py",
+      "sha256": "d3688dc7af52164814628df437b630bfce878606c50daced41acc4a4159231ae"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/inspect_vertex_fans.py",
+      "sha256": "1b9792699e0d3f42cae84184562e64d7bb1a6786b054e89d4e988cc0481883f5"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/inspect_intersections.py",
+      "sha256": "3e0b239ca4993388f32563092c78d97065cc1fb0753c68a2def3d631feda7976"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/check_cgal_patches.py",
+      "sha256": "2b5835ea1e4d53e5dfb4b8c499b0b02e858f3d495667c038b9203c2f1fb2d945"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/measure_patch_deviations.py",
+      "sha256": "8e4f401c4c76ca4cafa28979a0b2bdaf80c77049acbac2dc2a610b490720e570"
+    },
+    {
+      "path": "docs/research/935-retained-boundaries-20261106/source/audit_retained_boundaries.py",
+      "sha256": "5b1fcf5815ceca941f6af7a07683bc17b4f4b3e7f43fb6da316d598d91848ee0"
+    }
+  ],
+  "experimental_omission_limits": {
+    "max_facets_per_removed_fan": 3,
+    "max_area_per_removed_fan_nominal_mm2": 0.05,
+    "max_diagonal_nominal_mm": 3.0,
+    "max_rounds": 4,
+    "max_total_removed_facets": 256,
+    "max_sampled_omission_distance_nominal_mm": 0.25
+  },
+  "independent_report_sha256": {
+    "construction-001": "daf6aebcca69a5705f7289f16ebbe4408348463febcdfc5e630f3a43d314eceb",
+    "intersections-001": "5f9e5339c550da63e101a40b7d26f77cf99f86894d88d1a029c4c37b468f8cde",
+    "verified-001": "72225e76ce8019bbfc654f0db215520bf25c78ee71a06b8708da5600754cac58",
+    "boundaries-001": "5a41b409c0f80735f9ae20009ff89221d568597668a8e654abb0ec8aaf0194b8",
+    "deviations-001": "9b4f3c144a152a7b3031c4285912049f6d1a839e96d6f7772b25f7188da7b9cd",
+    "gap-admission-001": "9909fc6668f423b8f0a15e3aa18163f888326a02186cfe323a5f2b69179b94ad"
+  },
+  "construction": {
+    "parent_mesh_sha256": "99a3854845211f097ed17334ab5eb2fc8f4aeb4d079353d6990b87eaa7a3f90c",
+    "candidate_NPZ_sha256": "6af905c2781eaa7811ab60ffbb10f740899474076b538f6f7e59520f31bcabb1",
+    "candidate_OBJ_sha256": "683a85d83fc63e2fea8f345c4ee529f186a0c528cccd183df0cc585b4e1325d8",
+    "initial_nonmanifold_used_vertices": 42,
+    "final_nonmanifold_used_vertices": 0,
+    "parent_triangles": 2401798,
+    "retained_triangles": 2401752,
+    "removed_triangles": 46,
+    "rounds": 1,
+    "stop_reason": "used_vertices_manifold",
+    "convergence_reached": true,
+    "coordinates_changed": false,
+    "index_duplicates_created": false,
+    "omissions_are_hypotheses_not_proven_scan_damage": true,
+    "full_bare_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "independent_verification": {
+    "candidate_sha256": "6af905c2781eaa7811ab60ffbb10f740899474076b538f6f7e59520f31bcabb1",
+    "independently_replayed_rounds": 1,
+    "all_bounded_fan_decisions_verified": true,
+    "complete_source_omission_mask_verified": true,
+    "all_retained_coordinates_triangles_and_provenance_exact": true,
+    "actual_saved_OBJ_readback_exact": true,
+    "removed_triangles": 46,
+    "retained_triangles": 2401752,
+    "base_nonmanifold_used_vertices": 42,
+    "candidate_nonmanifold_used_vertices": 0,
+    "base_unreferenced_vertices": 0,
+    "candidate_unreferenced_vertices": 18,
+    "open_boundary_edges": 98720,
+    "duplicate_faces": 0,
+    "intersection_pairs": 0,
+    "excluded_degenerate_faces": 0,
+    "edge_incidence_and_winding_verified": true,
+    "full_used_vertex_manifold": true,
+    "conservative_surface_topology_admitted": true,
+    "physical_accuracy_or_omission_validity_verified": false,
+    "full_bare_head_created": false,
+    "closed_volume": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "boundary_and_component_audit": {
+    "candidate_sha256": "6af905c2781eaa7811ab60ffbb10f740899474076b538f6f7e59520f31bcabb1",
+    "before_boundary_edges": 98762,
+    "after_boundary_edges": 98720,
+    "old_boundary_edges_no_longer_open": 67,
+    "newly_exposed_omission_boundary_edges": 25,
+    "boundary_walks": 932,
+    "all_boundary_change_edges_independently_rejoined": true,
+    "new_boundary_owners_rejoined_to_omitted_facets": true,
+    "complete_edge_origin_counts": {
+      "1": 97863,
+      "2": 100,
+      "3": 726,
+      "4": 6,
+      "5": 25
+    },
+    "complete_walk_origin_combinations": {
+      "1": 898,
+      "1+2": 1,
+      "1+4": 2,
+      "5": 4,
+      "2+4+5": 1,
+      "2+5": 9,
+      "2": 11,
+      "2+4": 1,
+      "3": 5
+    },
+    "omitted_facet_surface_kind_counts": {
+      "0": 40,
+      "1": 6
+    },
+    "total_omitted_area_nominal_mm2": 0.24103179768822205,
+    "omissions_are_not_measured_missing_surfaces": true,
+    "connected_surface_components": 10,
+    "largest_component_facets": 2394447,
+    "single_facet_components": 5,
+    "component_selection_or_anatomy_accepted": false,
+    "all_physical_roles_unreviewed": true,
+    "full_bare_head_created": false,
+    "manufacturing_authorized": false
+  },
+  "deviations": {
+    "candidate_sha256": "6af905c2781eaa7811ab60ffbb10f740899474076b538f6f7e59520f31bcabb1",
+    "previous_source_witness_sha256": "c3691b9762c9b12a2bd77affaf03f79925968f7446591617bda1f89aaee96be3",
+    "literal_distance_controls_passed": true,
+    "all_omitted_facet_probes_to_retained_candidate": {
+      "points": 46184,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.027920550299107443,
+      "p90_nominal_mm": 0.10429425275895343,
+      "p95_nominal_mm": 0.12286186473276978,
+      "p99_nominal_mm": 0.16136119836530988,
+      "sampled_maximum_nominal_mm": 0.20428437664372018,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.67339338298978,
+        "0.1": 0.8851550320457301,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "omitted_facets_probed": 46,
+    "raw_source_random_to_candidate": {
+      "points": 100000,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 7.105427357601002e-15,
+      "p90_nominal_mm": 3.014577520672848e-14,
+      "p95_nominal_mm": 5.783398860650275e-14,
+      "p99_nominal_mm": 13.169351760346363,
+      "sampled_maximum_nominal_mm": 49.69269092922887,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.98073,
+        "0.1": 0.98075,
+        "0.25": 0.98084,
+        "0.5": 0.98106
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "raw_original_boundary_vertices_to_candidate": {
+      "points": 99876,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.0,
+      "p90_nominal_mm": 0.0,
+      "p95_nominal_mm": 0.0,
+      "p99_nominal_mm": 19.267318422621052,
+      "sampled_maximum_nominal_mm": 49.77368564908966,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.9799651567944251,
+        "0.1": 0.9799751692098202,
+        "0.25": 0.9800052064560054,
+        "0.5": 0.9801553926869317
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "quarantined_source_facet_probes_to_candidate": {
+      "points": 19600,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.01441849211767214,
+      "p90_nominal_mm": 0.07489910147249511,
+      "p95_nominal_mm": 0.10598839245171353,
+      "p99_nominal_mm": 0.16775822390664333,
+      "sampled_maximum_nominal_mm": 0.2043097669434487,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.810765306122449,
+        "0.1": 0.9425510204081633,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "maximum_sampled_source_distance_increase_nominal_mm": 0.20422382762060182,
+    "candidate_random_to_raw_source": {
+      "points": 100000,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 7.105427357601002e-15,
+      "p90_nominal_mm": 2.929642751054232e-14,
+      "p95_nominal_mm": 3.518296513576255e-14,
+      "p99_nominal_mm": 6.029155041345696e-14,
+      "sampled_maximum_nominal_mm": 1.1496422409297224e-13,
+      "coverage_at_nominal_mm": {
+        "0.05": 1.0,
+        "0.1": 1.0,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "candidate_boundary_vertices_to_raw_source": {
+      "points": 98720,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.0,
+      "p90_nominal_mm": 0.0,
+      "p95_nominal_mm": 0.0,
+      "p99_nominal_mm": 0.0,
+      "sampled_maximum_nominal_mm": 1.5888218580782548e-14,
+      "coverage_at_nominal_mm": {
+        "0.05": 1.0,
+        "0.1": 1.0,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "every_retained_inferred_facet_probes_to_raw_source": {
+      "points": 52208,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.005290392543628926,
+      "p90_nominal_mm": 0.03003591128389931,
+      "p95_nominal_mm": 0.03860585753440735,
+      "p99_nominal_mm": 0.05624500791866272,
+      "sampled_maximum_nominal_mm": 0.08557607796717222,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.9815737051792829,
+        "0.1": 1.0,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "retained_inferred_facets_probed": 52,
+    "experimental_omission_probe_limit_nominal_mm": 0.25,
+    "geometry_study_deviation_checks_passed": true,
+    "limits_are_not_physical_tolerances": true,
+    "sampled_errors_are_not_Hausdorff_bounds": true,
+    "full_bare_head_created": false,
+    "physical_accuracy_verified": false,
+    "manufacturing_authorized": false
+  },
+  "acquisition_gap_admission": {
+    "candidate_sha256": "6af905c2781eaa7811ab60ffbb10f740899474076b538f6f7e59520f31bcabb1",
+    "complete_walk_denominator": 932,
+    "acquired_only_walks": 898,
+    "experimental_trials_admitted": 286,
+    "all_rejection_reason_counts": {
+      "edge_count": 133,
+      "diagonal": 306,
+      "planarity": 235,
+      "adjacent_normal_alignment": 524,
+      "not_acquisition_only": 34,
+      "non_simple_or_zero_exact_projection": 25
+    },
+    "experimental_limits": {
+      "min_edges": 3,
+      "max_edges": 128,
+      "max_diagonal_nominal_mm": 3.0,
+      "max_plane_residual_nominal_mm": 0.25,
+      "minimum_adjacent_normal_absolute_p10": 0.8
+    },
+    "whole_topology_and_omission_deviations_checked_before_admission": true,
+    "geometry_modified": false,
+    "trial_inputs_or_native_constructor_not_yet_executed": true,
+    "physical_classifications_accepted": 0,
+    "full_bare_head_created": false,
+    "manufacturing_authorized": false
+  },
+  "runtime": {
+    "python": "3.12.13",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "libigl": "2.6.3",
+    "inherited_frozen_runtime_unchanged": true,
+    "private_addon_manifest_sha256": "3cf3f669266b1981fd1c6042e1923e878719f8ab2ee35398270680a6f45df02a",
+    "all_addon_files_rehashed": true
+  },
+  "execution": [
+    {
+      "name": "boundary-distance-execution-001",
+      "sha256": "4ea38f49cd1fcdf664acc518b6e84fb282365b22adddcb4d018e556ac804565c",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "phases": [
+        {
+          "phase": "all-boundaries-source-omission-edges-and-surface-components",
+          "exit_code": 0,
+          "seconds": 4.438560332986526,
+          "maximum_sampled_child_RSS_KiB": 1179392,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "both-directions-and-every-omitted-and-inferred-facet-probes",
+          "exit_code": 0,
+          "seconds": 10.574044625042006,
+          "maximum_sampled_child_RSS_KiB": 1889584,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ]
+    },
+    {
+      "name": "construction-execution-001",
+      "sha256": "76a35fcbee2f525ffae2da0a640618e926738990dc88feaa48cd9de6df12e1d8",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "phases": [
+        {
+          "phase": "bounded-smaller-fan-omission-study",
+          "exit_code": 0,
+          "seconds": 27.977220083004795,
+          "maximum_sampled_child_RSS_KiB": 1921984,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ]
+    },
+    {
+      "name": "gap-admission-execution-001",
+      "sha256": "5e1914415337a253beae583a3a4c45b7f1fbf3df813634966bc277e39d1827a3",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "phases": [
+        {
+          "phase": "all-current-walks-exact-source-acquisition-gap-admission",
+          "exit_code": 0,
+          "seconds": 2.103794042021036,
+          "maximum_sampled_child_RSS_KiB": 669728,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ]
+    },
+    {
+      "name": "verification-execution-001",
+      "sha256": "24a6b4e399587d7351cdaf4943245016a33fb84fe9f4e7750597ffe0a23ff35e",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "phases": [
+        {
+          "phase": "entire-pruned-candidate-independent-predicates",
+          "exit_code": 0,
+          "seconds": 4.058211166993715,
+          "maximum_sampled_child_RSS_KiB": 1110240,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        },
+        {
+          "phase": "independent-every-round-mask-and-whole-saved-source-verification",
+          "exit_code": 0,
+          "seconds": 22.70108829101082,
+          "maximum_sampled_child_RSS_KiB": 3399792,
+          "stop_reason": null,
+          "expected_report_exists": true,
+          "owned_child_reaped": true,
+          "successful": true
+        }
+      ]
+    }
+  ],
+  "spending": {
+    "new_paid_compute": false,
+    "new_Vast_resources_created": 0,
+    "scan_transfer_to_Vast_authorized": true
+  },
+  "release": {
+    "conservative_open_study_checks_passed": true,
+    "source_omissions_are_hypotheses_not_proven_damage": true,
+    "source_preserving_parent_retained": true,
+    "print_ready": false,
+    "closed_volume": false,
+    "full_bare_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "full_goal_active": true
+  },
+  "private_capsule": {
+    "name": "935-bounded-fan-pruning-20261106-001",
+    "manifest_sha256": "f8639b5a7e8ce31b298632c48496b4f7c839d6d352927ff22548f651b993ae51",
+    "payload_files": 41,
+    "payload_bytes": 214722278,
+    "immutable": true,
+    "raw_geometry_in_git": false
+  }
+}
