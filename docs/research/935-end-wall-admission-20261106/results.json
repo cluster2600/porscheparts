@@ -1,0 +1,449 @@
+{
+  "schema": "935-acquired-binormal-end-wall-study-1",
+  "requirement": "Continue faithful original-scan reconstruction under explicit exploratory assumptions, preserving full source ancestry before solid/physics/manufacturing admission",
+  "parent_reference_commit": "d104c4591650a403317b100350eea76a8c6e3db1",
+  "original_scan_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "original_scan_bytes": 104598077,
+  "parent_mesh_sha256": "abe6a3bb873ba000ce8a0e803b8d05d05fb192a3387cfcf45feec37d9fe87588",
+  "assumption": "Original acquired owner windings are provisionally outward. End-wall material/void interpretation and physical role are unverified. Actual acquired border binormals screen this distinct exploratory cap class; inferred normals are never independent source evidence.",
+  "limits": {
+    "min_edges": 3,
+    "max_edges": 128,
+    "max_diagonal_nominal_mm": 3.0,
+    "max_plane_residual_nominal_mm": 0.25,
+    "min_distinct_actual_acquired_owners": 2,
+    "minimum_acquired_binormal_signed_p10": 0.8,
+    "minimum_all_acquired_binormal_signed_dots": "strictly_positive",
+    "minimum_realized_triangle_dot_admitted_plane": "strictly_positive",
+    "max_sampled_added_surface_distance_nominal_mm": 0.25,
+    "sample_triangle_grid_order": 16,
+    "prior_cohort_pointwise_guard": 1e-08
+  },
+  "input_admission": {
+    "source_sha256": "a0c070c5096379d36f92a0b2148d7f16aa797bcfbc66a51dbf88f08d8898526e",
+    "job_sha256": "6d4a5870344b448f65dd1cdfe8919e00d4ce2113c838d2ecfefa962a006559c4",
+    "mesh_sha256": "abe6a3bb873ba000ce8a0e803b8d05d05fb192a3387cfcf45feec37d9fe87588",
+    "complete_walk_denominator": 1463,
+    "complete_boundary_edge_denominator": 95949,
+    "new_wall_border_walks": 216,
+    "new_wall_border_edges": 6411,
+    "scoped_origin_edge_counts": {
+      "1": 5946,
+      "6": 149,
+      "8": 312,
+      "7": 4
+    },
+    "admitted_trials": 18,
+    "rejection_reason_counts": {
+      "no_new_wall_ancestry_or_other_origin": 1247,
+      "edge_count": 5,
+      "diagonal": 29,
+      "planarity": 25,
+      "nonpositive_acquired_edge_binormal": 130,
+      "acquired_edge_binormal_cone": 186,
+      "non_simple_or_zero_exact_projection": 36,
+      "insufficient_distinct_actual_acquired_owners": 15
+    },
+    "new_wall_cross_edges_absent_from_all_parent_faces": 312,
+    "unchanged_previous_complete_walks_not_retried": true,
+    "inferred_normals_used_as_acquired_evidence": false,
+    "geometry_modified": false,
+    "constructor_admission_pending_independent_check": true,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "seconds": 4.536765667027794
+  },
+  "independent_admission": {
+    "source_sha256": "d2c3405af021094477b1ceb2ce03d13f74c1f3d6f4a7ce0ad22071e3653263f3",
+    "job_sha256": "6d4a5870344b448f65dd1cdfe8919e00d4ce2113c838d2ecfefa962a006559c4",
+    "mesh_sha256": "abe6a3bb873ba000ce8a0e803b8d05d05fb192a3387cfcf45feec37d9fe87588",
+    "complete_walk_denominator": 1463,
+    "new_wall_border_walks": 216,
+    "scoped_edges": 6411,
+    "admitted_trials": 18,
+    "new_cross_edges_independently_absent_from_all_parent_faces": 312,
+    "signed_source_projection_controls_passed": 16,
+    "raw_identity_controls_passed": 5,
+    "all_scoped_raw_ancestry_signatures_and_cycle_identities_verified": true,
+    "all_walk_decisions_independently_replayed": true,
+    "admission_independently_verified": true,
+    "producer_imported": false,
+    "inferred_normals_used_as_acquired_evidence": false,
+    "geometry_modified": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "seconds": 3.6224957909435034
+  },
+  "fresh_native_controls_independently_verified": true,
+  "native_cgal_binary_sha256": "6989c900f74b61a4ecb86261e9dbf7118bd30b08ed44f99b43f62507062ab5e0",
+  "native_construction": {
+    "source_sha256": "3f506bc75fca402408771da05f56b5f215074e515508145d95111cc12c878ac8",
+    "job_sha256": "74c5a6231008ae0033a33f3ca46aaee0a190b1a2c1ad768b528b7379fd679f32",
+    "native_trials": 18,
+    "native_successes": 18,
+    "all_owned_children_reaped": true,
+    "independent_inspection_required": true,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "seconds": 1.3521829169476405
+  },
+  "local_inspection": {
+    "source_sha256": "83598b390e76ea874e038d2dcd9acf402a4f789fdeda4392a92327a24eca48c8",
+    "job_sha256": "13ee7cf1d13dca05c1ee6dcc11a6283367b13cf3b0cd40e9789c2f2b80383db2",
+    "construction_job_sha256": "74c5a6231008ae0033a33f3ca46aaee0a190b1a2c1ad768b528b7379fd679f32",
+    "complete_target_denominator": 18,
+    "local_patches_accepted": 17,
+    "local_patches_refused": 1,
+    "rejection_reason_counts": {
+      "Folded, reversed or zero projected patch triangle": 1
+    },
+    "original_parent_unchanged": true,
+    "complete_parent_incident_fans_verified": true,
+    "full_candidate_checks_pending": true,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "seconds": 0.6842085419921204
+  },
+  "minimum_realized_triangle_dot_admitted_plane": 0.2547554449710668,
+  "composition": {
+    "source_sha256": "60c4b229d851fe681adbd0e0ef321cb8f5ea118c59f4ece08b7570c1ab9f58dd",
+    "job_sha256": "f1f0579ee845d4f8c1ceb1c7353028f308359bc23e4b6ea644377b5a6609ae61",
+    "parent_mesh_sha256": "abe6a3bb873ba000ce8a0e803b8d05d05fb192a3387cfcf45feec37d9fe87588",
+    "mesh_sha256": "98df7fe95355d194eb10a7dbdf4174cc6d0e054fc892678c795cc79f17ebcc13",
+    "obj_sha256": "9ef74ff739844c9b23d760edc10b016b2cee1533ea0af1b1c8cbca77750e2daa",
+    "retained_caps": 17,
+    "whole_caps_removed": 0,
+    "added_triangles": 39,
+    "parent_faces_removed": 0,
+    "coordinates_changed": 0,
+    "thresholds_relaxed": false,
+    "alternate_reselection": false,
+    "full_candidate_checks_pending": true,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false
+  },
+  "final_audit": {
+    "source_sha256": "d686a118aab217b89c21dc0d1df477df38d8974762600c76464cf2ae2c277950",
+    "job_sha256": "f1f0579ee845d4f8c1ceb1c7353028f308359bc23e4b6ea644377b5a6609ae61",
+    "mesh_sha256": "98df7fe95355d194eb10a7dbdf4174cc6d0e054fc892678c795cc79f17ebcc13",
+    "parent_mesh_sha256": "abe6a3bb873ba000ce8a0e803b8d05d05fb192a3387cfcf45feec37d9fe87588",
+    "obj_sha256": "9ef74ff739844c9b23d760edc10b016b2cee1533ea0af1b1c8cbca77750e2daa",
+    "exact_OBJ_NPZ_parent_and_provenance_preserved": true,
+    "retained_caps": 17,
+    "added_triangles": 39,
+    "intersection_pairs": 0,
+    "zero_area_faces": 0,
+    "duplicate_face_groups": 0,
+    "edge_incidence_or_winding_conflicts": 0,
+    "nonmanifold_used_vertices": 0,
+    "unused_vertices": 18,
+    "only_selected_complete_walks_closed": true,
+    "closed_parent_boundary_edges": 73,
+    "remaining_boundary_edges": 95876,
+    "remaining_boundary_walks": 1446,
+    "remaining_edge_origin_counts": {
+      "7": 231,
+      "1": 93142,
+      "6": 1360,
+      "8": 286,
+      "5": 25,
+      "2": 100,
+      "4": 6,
+      "3": 726
+    },
+    "connected_surface_components": 10,
+    "largest_component_facets": 2398390,
+    "single_facet_components": 5,
+    "new_cap_probe_count": 5967,
+    "new_cap_sampled_maximum_nominal_mm": 0.176701121376587,
+    "support_refused_caps": 0,
+    "source_probe_count": 219476,
+    "omission_probe_count": 46184,
+    "previous_source_and_omission_distances_nonincreasing_pointwise": true,
+    "source_to_candidate": {
+      "points": 219476,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 0.0,
+      "p90_nominal_mm": 3.300777846011678e-06,
+      "p95_nominal_mm": 0.025731656182090175,
+      "p99_nominal_mm": 14.6015532160283,
+      "sampled_maximum_nominal_mm": 49.77368564908966,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.9652034846634712,
+        "0.1": 0.9769860941515245,
+        "0.25": 0.9821711713353624,
+        "0.5": 0.9823397546884397
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "random_candidate_to_source": {
+      "points": 100000,
+      "minimum_nominal_mm": 0.0,
+      "median_nominal_mm": 7.105427357601002e-15,
+      "p90_nominal_mm": 2.929642751054232e-14,
+      "p95_nominal_mm": 3.6230712748823524e-14,
+      "p99_nominal_mm": 6.07087979554246e-14,
+      "sampled_maximum_nominal_mm": 0.20118985577755613,
+      "coverage_at_nominal_mm": {
+        "0.05": 0.99962,
+        "0.1": 0.99984,
+        "0.25": 1.0,
+        "0.5": 1.0
+      },
+      "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+    },
+    "rejected_end_wall_cap_curve_ids": [],
+    "surface_study_checks_passed": true,
+    "missing_surface_ground_truth_available": false,
+    "sampled_distances_are_not_Hausdorff_or_physical_tolerances": true,
+    "closed_volume": false,
+    "full_bare_head_created": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "seconds": 26.664298250107095
+  },
+  "distance_cohorts": {
+    "source_distances": {
+      "count": 219476,
+      "maximum_nominal_mm": 49.77368564908966
+    },
+    "omitted_distances": {
+      "count": 46184,
+      "maximum_nominal_mm": 0.20428437664372018
+    },
+    "added_distances": {
+      "count": 5967,
+      "maximum_nominal_mm": 0.176701121376587
+    }
+  },
+  "kali_replay": {
+    "source_sha256": "3ae75b1a8a47c65405aae2111c89343eeec3aa0d3f7a8c32ac3b0be65648fae1",
+    "parent_sha256": "abe6a3bb873ba000ce8a0e803b8d05d05fb192a3387cfcf45feec37d9fe87588",
+    "candidate_sha256": "98df7fe95355d194eb10a7dbdf4174cc6d0e054fc892678c795cc79f17ebcc13",
+    "host": "kali1",
+    "system": "Linux",
+    "python": "3.14.7",
+    "numpy": "2.3.5",
+    "vertices": 1248924,
+    "triangles": 2405708,
+    "parent_prefix_faces": 2405669,
+    "added_triangles": 39,
+    "source_prefix_and_provenance_exact": true,
+    "whole_edge_incidence_and_winding_passed": true,
+    "no_duplicate_or_zero_area_faces": true,
+    "open_boundary_edges": 95876,
+    "unused_vertices": 18,
+    "affinity_cpus": 2,
+    "address_space_limit_bytes": 4294967296,
+    "transferred_bytes": 134185937,
+    "persistent_payload_files_written": 0,
+    "intersection_and_vertex_fan_replay_performed": false,
+    "physical_acceptance": false,
+    "manufacturing_authorized": false,
+    "maximum_RSS_KiB": 1738480,
+    "seconds": 7.045697868801653
+  },
+  "provenance_namespace": {
+    "new_surface_kind": 8,
+    "new_cap_label_field": "source_end_wall_cap_curve_ids",
+    "new_immediate_parent_field": "end_wall_cap_immediate_parent_face_rows",
+    "legacy_patch_label_base": 70000000,
+    "no_new_boundary_origin_required_for_complete_caps": true,
+    "every_inherited_channel_preserved": true
+  },
+  "source_scope": {
+    "complete_walks": 1463,
+    "complete_boundary_edges": 95949,
+    "new_wall_ancestry_walks": 216,
+    "new_wall_ancestry_edges": 6411,
+    "actual_acquired_edges": 5946,
+    "old_frontier_strip_edges": 149,
+    "untried_strip_edges": 4,
+    "opposed_wall_edges": 312,
+    "new_edges_absent_from_every_parent_face": 312,
+    "all_others_not_retried": 1247,
+    "admitted_trials": 18,
+    "native_exits_zero": 18,
+    "independent_local_passes": 17,
+    "local_projection_refusals": 1,
+    "whole_candidate_refusals": 0
+  },
+  "read_only_main_source_availability": {
+    "scope": "Only the exact scan and source catalogue records on current main were reread; no exhaustive source search is claimed",
+    "records": [
+      {
+        "path": "catalog/scans/scan-935-xtreme-cylinder-head.json",
+        "blob_sha": "d26fe6672481704679023d536423a4429fc32f99"
+      },
+      {
+        "path": "catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json",
+        "blob_sha": "ba57434d7bf8f70d713ce75b3bfdf151b9b46843"
+      }
+    ],
+    "both_blob_bytes_match_current_worktree": true,
+    "new_unit_dimension_material_or_metrology_confirmation": false
+  },
+  "private_capsule": {
+    "manifest_sha256": "ceb48b500a397f68adee825fc3593b5e2c78296da107a22841570061a586d39a",
+    "payload_files": 219,
+    "payload_bytes": 204516145,
+    "all_payloads_frozen_and_rehashed": true,
+    "raw_or_derived_geometry_committed": false
+  },
+  "executed_sources": [
+    {
+      "name": "admit_end_walls.py",
+      "sha256": "a0c070c5096379d36f92a0b2148d7f16aa797bcfbc66a51dbf88f08d8898526e"
+    },
+    {
+      "name": "assemble_end_wall_candidate.py",
+      "sha256": "60c4b229d851fe681adbd0e0ef321cb8f5ea118c59f4ece08b7570c1ab9f58dd"
+    },
+    {
+      "name": "audit_end_wall_candidate.py",
+      "sha256": "d686a118aab217b89c21dc0d1df477df38d8974762600c76464cf2ae2c277950"
+    },
+    {
+      "name": "construct_end_wall_caps.py",
+      "sha256": "3f506bc75fca402408771da05f56b5f215074e515508145d95111cc12c878ac8"
+    },
+    {
+      "name": "inspect_end_wall_caps.py",
+      "sha256": "83598b390e76ea874e038d2dcd9acf402a4f789fdeda4392a92327a24eca48c8"
+    },
+    {
+      "name": "prepare_end_wall_caps.py",
+      "sha256": "577565a9bd6a9bcdd9952519d801b60b19cd71370cd651b34218cefeeb5bd1d4"
+    },
+    {
+      "name": "verify_end_wall_admission.py",
+      "sha256": "d2c3405af021094477b1ceb2ce03d13f74c1f3d6f4a7ce0ad22071e3653263f3"
+    }
+  ],
+  "reused_helpers": [
+    {
+      "path": "docs/research/935-untried-acquired-pairs-20261106/source/verify_untried_pairs.py",
+      "sha256": "21457c97051d711768b697951c8b2c1a82ed8beeccf411de58e0f0e9ad3bcf1f"
+    },
+    {
+      "path": "docs/research/935-acquisition-gap-trials-20261106/source/inspect_acquisition_patches.py",
+      "sha256": "301c2474971407b2221e7f8e26d969b4de59f9f2e6957d93df97c7722e800316"
+    },
+    {
+      "path": "docs/research/935-acquisition-gap-trials-20261106/source/run_acquisition_cgal.py",
+      "sha256": "65d58655416a0230693f551cde15373ad23f9d127bbd3ed537c7061d4675e0bf"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/inspect_intersections.py",
+      "sha256": "3e0b239ca4993388f32563092c78d97065cc1fb0753c68a2def3d631feda7976"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/inspect_vertex_fans.py",
+      "sha256": "1b9792699e0d3f42cae84184562e64d7bb1a6786b054e89d4e988cc0481883f5"
+    },
+    {
+      "path": "docs/research/935-quarantine-patches-20261106/source/measure_patch_deviations.py",
+      "sha256": "8e4f401c4c76ca4cafa28979a0b2bdaf80c77049acbac2dc2a610b490720e570"
+    },
+    {
+      "path": "docs/research/935-retained-boundaries-20261106/source/audit_retained_boundaries.py",
+      "sha256": "5b1fcf5815ceca941f6af7a07683bc17b4f4b3e7f43fb6da316d598d91848ee0"
+    },
+    {
+      "path": "docs/research/935-source-cut-admission-20261106/source/run_local_delivery.py",
+      "sha256": "cef4c7662ae9808c1ec8dc6ad813835eab01e0358a4d8f3e327c70a668390dd0"
+    },
+    {
+      "path": "docs/research/935-opposed-wall-trials-20261106/source/run_streamed_replay.py",
+      "sha256": "e12edcd4d9524a90f0a251b9f701481fa6bb2e6bb84fd91e26bbad2480d949a1"
+    },
+    {
+      "path": "docs/research/935-frontier-pairing-20261106/source/verify_streamed_source.py",
+      "sha256": "3ae75b1a8a47c65405aae2111c89343eeec3aa0d3f7a8c32ac3b0be65648fae1"
+    },
+    {
+      "path": "docs/research/935-source-shells-20261104/source/build_source_shells.py",
+      "sha256": "fca5259ef3b3412a72e441fea39816e14fea4e375095e1c83def2e4117f6ae8e"
+    }
+  ],
+  "derivative_source_ancestry": [
+    {
+      "child": "prepare_end_wall_caps.py",
+      "parent_path": "docs/research/935-strip-cap-admission-20261106/source/prepare_strip_caps.py",
+      "parent_sha256": "1b5d3ca67396d27f0115d20b30af515b4c0430cd4556d1949759e9e0b864f45e",
+      "frozen_parent_unchanged": true
+    },
+    {
+      "child": "construct_end_wall_caps.py",
+      "parent_path": "docs/research/935-strip-cap-admission-20261106/source/construct_strip_caps.py",
+      "parent_sha256": "3f506bc75fca402408771da05f56b5f215074e515508145d95111cc12c878ac8",
+      "frozen_parent_unchanged": true
+    },
+    {
+      "child": "inspect_end_wall_caps.py",
+      "parent_path": "docs/research/935-strip-cap-admission-20261106/source/inspect_strip_caps.py",
+      "parent_sha256": "0d336c12891acd3b64ddb5461005dbd372d3a6835e0bbbd1be567dfbb4a19ffe",
+      "frozen_parent_unchanged": true
+    },
+    {
+      "child": "assemble_end_wall_candidate.py",
+      "parent_path": "docs/research/935-strip-cap-admission-20261106/source/assemble_strip_cap_candidate.py",
+      "parent_sha256": "0432b91bc9b6b11be709e0591006ecefc15068daaf015e3b1303a8a792932ae4",
+      "frozen_parent_unchanged": true
+    },
+    {
+      "child": "audit_end_wall_candidate.py",
+      "parent_path": "docs/research/935-strip-cap-admission-20261106/source/audit_strip_cap_candidate.py",
+      "parent_sha256": "8ba617c11e80acf55d64e48bf65db79175fe6737c6df5180d284d0f1f6a4fdbc",
+      "frozen_parent_unchanged": true
+    }
+  ],
+  "bounded_execution": {
+    "scientific_groups_including_kali": 8,
+    "completed_groups": 8,
+    "all_owned_scientific_and_ssh_children_reaped": true,
+    "group_wall_seconds_max": 600,
+    "sampled_child_RSS_GiB_max": 4,
+    "local_disk_floor_GiB": 4,
+    "peak_sampled_whole_audit_child_RSS_KiB": 3693936,
+    "kali_remote_deadline_seconds": 110,
+    "kali_local_deadline_seconds": 120
+  },
+  "runtime": {
+    "python": "3.12.13",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "OCP": "7.9.3.1",
+    "libigl": "2.6.3",
+    "isolated_runtime_manifest_sha256": "d7879b23d83988901358bee60ecfbd3e3372c975051aa4ac1ef328614b4648f7",
+    "libigl_addon_manifest_sha256": "3cf3f669266b1981fd1c6042e1923e878719f8ab2ee35398270680a6f45df02a",
+    "packages_changed": false
+  },
+  "software_chain": {
+    "Qwen_CADAM": "Local auxiliary proposal service remains prescribed; the earlier truncated synthetic advisory grants no admission. No new inference in this increment.",
+    "PicoGK_STEP": "Editable geometry authority remains; native source-facet repair upstream does not create the complete faithful solid interchange model.",
+    "Gmsh_OpenFOAM_CalculiX": "No new head domain or physics admission. The inherited hypothetical domain still has 996 failing minSICN cells.",
+    "Adamantine": "No qualified machine/material/powder/support/toolpath fabrication file is produced."
+  },
+  "new_vast_resources": 0,
+  "new_vast_spend_usd": 0,
+  "scan_on_vast_authorized": true,
+  "original_budget_usd": {
+    "total": 35,
+    "compute": 30,
+    "reserve": 5
+  },
+  "scan_sent_to_external_AI": false,
+  "supplier_outreach_performed": false,
+  "gates_G0_G5": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "goal_complete": false,
+  "physical_acceptance": false,
+  "manufacturing_authorized": false
+}
