@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "study_id": "993-dashboard-photo-reference-f0-v1",
+  "reviewed_on": "2026-11-06",
+  "purpose": "Trace visual morphology and published product-size leads for a schematic PicoGK display. No source image is redistributed or admitted as vehicle metrology.",
+  "target_scenario": "Candidate 993 M564 left-hand drive; no photographed specimen has an independently verified option label or restraint configuration.",
+  "visual_sources": [
+    {
+      "id": "commons-1995-gt2-interior",
+      "url": "https://commons.wikimedia.org/wiki/File:1995_Porsche_911_GT2_Interior.jpg",
+      "author": "Calreyn88",
+      "provenance": "Photographer's own work, published on Wikimedia Commons",
+      "licence": "CC BY-SA 4.0",
+      "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "specimen": "1995 Porsche 911 GT2 as described by the photographer; M564 and original equipment not verified",
+      "observations": ["five individual analog dials with a dominant central dial", "rounded instrument brow integrated into the upper dashboard", "one elongated centre vent face"],
+      "use": "visual morphology comparison only",
+      "image_committed": false
+    },
+    {
+      "id": "collectingcars-1993-carrera",
+      "url": "https://collectingcars.com/for-sale/1993-porsche-911-993-carrera-4",
+      "author": "Collecting Cars listing photographer not identified on the public page",
+      "provenance": "117-photo commercial auction listing for a described 1993 993 Carrera 2 manual",
+      "licence": "no reuse licence stated",
+      "specimen": "LHD interpreted from listing photos; M564, passenger-airbag state and trim originality unverified",
+      "observations": ["overall dashboard silhouette and broad component positions only"],
+      "use": "linked visual comparator only",
+      "image_committed": false
+    },
+    {
+      "id": "smc-side-vent",
+      "url": "https://sierramadrecollection.com/products/porsche-dashboard-air-vent-911-89-98-9645722610001c",
+      "author": "Sierra Madre Collection; image creator not stated",
+      "provenance": "Genuine Porsche part 9645722610001C product listing, offered for 964/993",
+      "licence": "no photo reuse licence stated",
+      "specimen": "individual replacement vent, not tied to the target vehicle",
+      "observations": ["rectangular front face with horizontal louvers"],
+      "use": "linked visual comparator only; no copied photo or interface geometry",
+      "image_committed": false
+    },
+    {
+      "id": "smc-centre-vent",
+      "url": "https://sierramadrecollection.com/products/porsche-center-air-vent-911-89-98-9645720510001c",
+      "author": "Sierra Madre Collection; image creator not stated",
+      "provenance": "Genuine Porsche part 9645720510001C product listing, offered for 964/993",
+      "licence": "no photo reuse licence stated",
+      "specimen": "individual replacement vent, not tied to the target vehicle",
+      "observations": ["one elongated housing with two internally divided louver sections"],
+      "use": "linked visual comparator only; no copied photo or interface geometry",
+      "image_committed": false
+    }
+  ],
+  "dimension_leads": [
+    {
+      "id": "fvd-upper-dashboard-envelope",
+      "url": "https://www.fvd.net/en-us/shop/dashboard-964-993-leatherette-black-left-hand-drive-99355205500eq-993552055007ae~p311677",
+      "publisher": "FVD Brombacher, seller of the replacement item",
+      "item": "aftermarket 964/993 left-hand-drive upper dashboard, listing reference 99355205500EQ",
+      "published_values": {"length_mm": 1270, "width_mm": 190, "height_mm": 120},
+      "meaning": "commercial product envelope; measurement method and tolerances not supplied",
+      "decision": "order-of-magnitude comparison only; not imposed on the scene because the item and 993 552 055 00 mapping are not verified for M564"
+    },
+    {
+      "id": "fvd-bezel-nominal-diameters",
+      "urls": [
+        "https://www.fvd.net/en-us/shop/instrument-bezel-964-993-clock-fuel-o-80-mm-black-fvd641605015eq~p262310",
+        "https://www.fvd.net/en-us/shop/instrument-bezel-964-993-speedometer-oil-o-100-mm-black-fvd641605016~p237601",
+        "https://www.fvd.net/en-us/shop/instrument-bezel-964-993-tachometer-o-115-mm-black-fvd641605017~p237602"
+      ],
+      "publisher": "FVD Brombacher, seller of replacement bezels",
+      "item": "nominal bezel diameters in product titles; separate product bounding-box dimensions are larger",
+      "published_values_mm": {"clock_or_fuel": 80, "speedometer_or_oil": 100, "tachometer": 115},
+      "meaning": "replacement bezel size lead, not dashboard aperture or mounting diameter",
+      "decision": "relative small:medium:large gauge display ratio only; no physical hole size, axis or tolerance admitted"
+    },
+    {
+      "id": "minitools-replacement-faces",
+      "urls": [
+        "https://store.minitools.com/en/gauge-face-for-porsche-911-964-993-fuel-level-oil-level-gauge-sep-p-fa002d.html",
+        "https://store.minitools.com/en/gauge-face-for-porsche-911-993-oil-temperature-pressure-gauge-european-versions-sep-fa002o.html",
+        "https://store.minitools.com/en/gauge-face-for-porsche-911-964-993-rev-counter-7600-rpm-with-display-sep-fa002f.html",
+        "https://store.minitools.com/en/gauge-face-for-porsche-911-964-993-speedometer-300-km-h-2-odometer-counters-sep-p-fa002b.html",
+        "https://store.minitools.com/en/gauge-face-for-porsche-911-993-clock-gauge-sep-fa002q.html"
+      ],
+      "publisher": "MiniTools, maker of the replacement gauge faces",
+      "item": "replacement face discs, some with market-specific graphics",
+      "published_values_mm": {"fuel_oil_face": 75, "european_oil_temperature_pressure_face": 95, "tachometer_face": 108, "speedometer_face": 99, "clock_face": 76},
+      "meaning": "face diameters, distinct from bezel nominal diameters and dashboard apertures",
+      "decision": "cross-check of gauge-size ordering only; no image copied and no interface dimension admitted"
+    },
+    {
+      "id": "porschefanatics-owner-measurements",
+      "url": "https://porschefanatics.com/owner-measurements/993/",
+      "publisher": "PorscheFanatics aggregation of attributed DDK owner posts",
+      "item": "lower dashboard and dash-top removal tool-size reports",
+      "published_values_mm": {"lower_end_and_ashtray_bolt_socket": 10, "lower_dash_stud_nut_spanner": 8, "centre_vent_nut_spanner": 8},
+      "meaning": "reported tool sizes, not bolt diameters, hole patterns or dashboard dimensions",
+      "decision": "rejected as scene or engineering geometry input"
+    }
+  ],
+  "visual_decisions": [
+    {"feature": "instrument cluster", "decision": "individual dials under a softened brow; relative ring sizes informed by replacement bezel listings", "sources": ["commons-1995-gt2-interior", "fvd-bezel-nominal-diameters"], "basis": "photo_reference_visual_only"},
+    {"feature": "side vents", "decision": "rectangular louvered faces mask the earlier concept's round visual cutouts", "sources": ["smc-side-vent"], "basis": "photo_reference_visual_only"},
+    {"feature": "centre vent", "decision": "one housing with two divided louver sections", "sources": ["commons-1995-gt2-interior", "smc-centre-vent"], "basis": "photo_reference_visual_only"}
+  ],
+  "engineering_admission": {"measured_vehicle_transform": false, "measured_mounting_interfaces": false, "fit_verified": false, "safety_verified": false, "manufacturing_authorized": false}
+}

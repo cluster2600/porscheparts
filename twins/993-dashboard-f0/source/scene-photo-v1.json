@@ -1,0 +1,936 @@
+{
+  "schema_version": "1.0",
+  "scene_id": "993-dashboard-complete-f0-photo-study-v1",
+  "status": "visual_concept_only",
+  "coordinate_frame": "visual_stage_not_vehicle",
+  "frame_axes": {
+    "x": "lateral",
+    "y": "toward_windscreen",
+    "z": "up"
+  },
+  "unit": "mm_render_scale_only",
+  "voxel_mm": 2.0,
+  "target_scenario": {
+    "model": "Porsche 993",
+    "market": "M564",
+    "drive": "LHD",
+    "passenger_airbag": "not represented",
+    "part_number": null,
+    "verification": "unresolved"
+  },
+  "scope": "Photo-referenced schematic visible surfaces only. Photos guide visual silhouette and feature families, not scale or physical interfaces. All positions, dimensions and clearances are artistic display assumptions, not measurements or vehicle assembly transforms. The scene is not a printable or validated part.",
+  "visual_reference_register": "twins/993-dashboard-f0/photo-study-v1/references.json",
+  "photo_observation_limits": "The reference images do not prove an M564/LHD specimen or passenger-airbag state; no reference image is redistributed, traced, calibrated, or treated as a dimension source.",
+  "defrost_display_seating": "The outlet marks use z=188 only to overlap the tracked visual trim surface at y=34 after its +140 display translation; the sampled visual mesh top is approximately z=187 to 189 across these marks. This is not vehicle data.",
+  "tracked_trim": {
+    "path_from_repo": "twins/993-dashboard-f0/dashboard-trim-f0-visual.stl",
+    "sha256": "7744259acbaf3823adb29ded22abe04e593a57d8d484a8c2dae6d8f3ebdd8e13"
+  },
+  "layers": [
+    {
+      "family_id": "DASHBOARD_TRIM",
+      "colour": "#333940",
+      "elements": [
+        {
+          "id": "upper_pad",
+          "kind": "tracked_trim",
+          "centre": [
+            0,
+            0,
+            140
+          ],
+          "half": [
+            673,
+            65,
+            60
+          ],
+          "radius": 0,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "lower_fascia",
+          "kind": "round_box",
+          "centre": [
+            0,
+            -51,
+            74
+          ],
+          "half": [
+            642,
+            13,
+            73
+          ],
+          "radius": 10,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_vent_infill_display_only",
+          "kind": "round_box",
+          "centre": [
+            -7,
+            -84,
+            166
+          ],
+          "half": [
+            139,
+            7,
+            28
+          ],
+          "radius": 6,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "left_side_vent_mask_display_only",
+          "kind": "round_box",
+          "centre": [
+            -599,
+            -84,
+            166
+          ],
+          "half": [
+            65,
+            7,
+            29
+          ],
+          "radius": 6,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "right_side_vent_mask_display_only",
+          "kind": "round_box",
+          "centre": [
+            590,
+            -84,
+            166
+          ],
+          "half": [
+            65,
+            7,
+            29
+          ],
+          "radius": 6,
+          "border": 0,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "INSTRUMENT_HOOD",
+      "colour": "#20252b",
+      "elements": [
+        {
+          "id": "integrated_instrument_cowl_display_only",
+          "kind": "round_box",
+          "centre": [
+            -382,
+            -90,
+            171
+          ],
+          "half": [
+            205,
+            33,
+            58
+          ],
+          "radius": 54,
+          "border": 0,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "INSTRUMENT_CLUSTER",
+      "colour": "#10171d",
+      "elements": [
+        {
+          "id": "gauge_1_generic",
+          "kind": "disk_y",
+          "centre": [
+            -544,
+            -126,
+            176
+          ],
+          "half": [
+            32,
+            3,
+            32
+          ],
+          "radius": 32,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "gauge_2_generic",
+          "kind": "disk_y",
+          "centre": [
+            -466,
+            -126,
+            176
+          ],
+          "half": [
+            40,
+            3,
+            40
+          ],
+          "radius": 40,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "gauge_3_generic",
+          "kind": "disk_y",
+          "centre": [
+            -382,
+            -126,
+            176
+          ],
+          "half": [
+            46,
+            3,
+            46
+          ],
+          "radius": 46,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "gauge_4_generic",
+          "kind": "disk_y",
+          "centre": [
+            -298,
+            -126,
+            176
+          ],
+          "half": [
+            40,
+            3,
+            40
+          ],
+          "radius": 40,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "gauge_5_generic",
+          "kind": "disk_y",
+          "centre": [
+            -220,
+            -126,
+            176
+          ],
+          "half": [
+            32,
+            3,
+            32
+          ],
+          "radius": 32,
+          "border": 0,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "INSTRUMENT_GAUGE_MARKS",
+      "colour": "#c7d3da",
+      "elements": [
+        {
+          "id": "gauge_1_rim_mark",
+          "kind": "annulus_y",
+          "centre": [
+            -544,
+            -130,
+            176
+          ],
+          "half": [
+            35,
+            2,
+            35
+          ],
+          "radius": 35,
+          "border": 3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "gauge_2_rim_mark",
+          "kind": "annulus_y",
+          "centre": [
+            -466,
+            -130,
+            176
+          ],
+          "half": [
+            43,
+            2,
+            43
+          ],
+          "radius": 43,
+          "border": 3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "gauge_3_rim_mark",
+          "kind": "annulus_y",
+          "centre": [
+            -382,
+            -130,
+            176
+          ],
+          "half": [
+            49,
+            2,
+            49
+          ],
+          "radius": 49,
+          "border": 3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "gauge_4_rim_mark",
+          "kind": "annulus_y",
+          "centre": [
+            -298,
+            -130,
+            176
+          ],
+          "half": [
+            43,
+            2,
+            43
+          ],
+          "radius": 43,
+          "border": 3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "gauge_5_rim_mark",
+          "kind": "annulus_y",
+          "centre": [
+            -220,
+            -130,
+            176
+          ],
+          "half": [
+            35,
+            2,
+            35
+          ],
+          "radius": 35,
+          "border": 3,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "CENTER_AIR_VENTS",
+      "colour": "#495158",
+      "elements": [
+        {
+          "id": "centre_vent_continuous_frame",
+          "kind": "frame_y",
+          "centre": [
+            -7,
+            -97,
+            166
+          ],
+          "half": [
+            132,
+            6,
+            22
+          ],
+          "radius": 6,
+          "border": 4,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_vent_slat_1",
+          "kind": "round_box",
+          "centre": [
+            -7,
+            -104,
+            155
+          ],
+          "half": [
+            120,
+            3,
+            2
+          ],
+          "radius": 1,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_vent_slat_2",
+          "kind": "round_box",
+          "centre": [
+            -7,
+            -104,
+            163
+          ],
+          "half": [
+            120,
+            3,
+            2
+          ],
+          "radius": 1,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_vent_slat_3",
+          "kind": "round_box",
+          "centre": [
+            -7,
+            -104,
+            171
+          ],
+          "half": [
+            120,
+            3,
+            2
+          ],
+          "radius": 1,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_vent_slat_4",
+          "kind": "round_box",
+          "centre": [
+            -7,
+            -104,
+            179
+          ],
+          "half": [
+            120,
+            3,
+            2
+          ],
+          "radius": 1,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "centre_vent_adjustment_mark",
+          "kind": "round_box",
+          "centre": [
+            -7,
+            -108,
+            166
+          ],
+          "half": [
+            3,
+            2,
+            14
+          ],
+          "radius": 1,
+          "border": 0,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "SIDE_AIR_VENTS",
+      "colour": "#5b646b",
+      "elements": [
+        {
+          "id": "left_side_vent_rect_frame",
+          "kind": "frame_y",
+          "centre": [
+            -623,
+            -97,
+            166
+          ],
+          "half": [
+            38,
+            6,
+            18
+          ],
+          "radius": 5,
+          "border": 3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "right_side_vent_rect_frame",
+          "kind": "frame_y",
+          "centre": [
+            615,
+            -97,
+            166
+          ],
+          "half": [
+            38,
+            6,
+            18
+          ],
+          "radius": 5,
+          "border": 3,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "left_side_vent_slat_1",
+          "kind": "round_box",
+          "centre": [
+            -623,
+            -104,
+            159
+          ],
+          "half": [
+            30,
+            3,
+            2
+          ],
+          "radius": 1,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "left_side_vent_slat_2",
+          "kind": "round_box",
+          "centre": [
+            -623,
+            -104,
+            166
+          ],
+          "half": [
+            30,
+            3,
+            2
+          ],
+          "radius": 1,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "left_side_vent_slat_3",
+          "kind": "round_box",
+          "centre": [
+            -623,
+            -104,
+            173
+          ],
+          "half": [
+            30,
+            3,
+            2
+          ],
+          "radius": 1,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "right_side_vent_slat_1",
+          "kind": "round_box",
+          "centre": [
+            615,
+            -104,
+            159
+          ],
+          "half": [
+            30,
+            3,
+            2
+          ],
+          "radius": 1,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "right_side_vent_slat_2",
+          "kind": "round_box",
+          "centre": [
+            615,
+            -104,
+            166
+          ],
+          "half": [
+            30,
+            3,
+            2
+          ],
+          "radius": 1,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "right_side_vent_slat_3",
+          "kind": "round_box",
+          "centre": [
+            615,
+            -104,
+            173
+          ],
+          "half": [
+            30,
+            3,
+            2
+          ],
+          "radius": 1,
+          "border": 0,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "DEFROST_OUTLETS_AND_DUCTS",
+      "colour": "#56616a",
+      "elements": [
+        {
+          "id": "left_defrost_outlet_visual_only",
+          "kind": "round_box",
+          "centre": [
+            -333,
+            34,
+            188
+          ],
+          "half": [
+            198,
+            5,
+            4
+          ],
+          "radius": 3,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "right_defrost_outlet_visual_only",
+          "kind": "round_box",
+          "centre": [
+            333,
+            34,
+            188
+          ],
+          "half": [
+            198,
+            5,
+            4
+          ],
+          "radius": 3,
+          "border": 0,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "GLOVEBOX",
+      "colour": "#58616a",
+      "elements": [
+        {
+          "id": "glovebox_outline",
+          "kind": "frame_y",
+          "centre": [
+            384,
+            -79,
+            74
+          ],
+          "half": [
+            193,
+            5,
+            53
+          ],
+          "radius": 11,
+          "border": 4,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "glovebox_handle_mark",
+          "kind": "round_box",
+          "centre": [
+            384,
+            -85,
+            111
+          ],
+          "half": [
+            27,
+            3,
+            4
+          ],
+          "radius": 2,
+          "border": 0,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "CENTER_CONSOLE",
+      "colour": "#313a43",
+      "elements": [
+        {
+          "id": "console_face",
+          "kind": "round_box",
+          "centre": [
+            0,
+            -91,
+            -55
+          ],
+          "half": [
+            131,
+            13,
+            114
+          ],
+          "radius": 13,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "console_left_edge",
+          "kind": "round_box",
+          "centre": [
+            -127,
+            -98,
+            -55
+          ],
+          "half": [
+            7,
+            13,
+            103
+          ],
+          "radius": 5,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "console_right_edge",
+          "kind": "round_box",
+          "centre": [
+            127,
+            -98,
+            -55
+          ],
+          "half": [
+            7,
+            13,
+            103
+          ],
+          "radius": 5,
+          "border": 0,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "HVAC_RADIO_CONTROLS",
+      "colour": "#737d82",
+      "elements": [
+        {
+          "id": "radio_face",
+          "kind": "round_box",
+          "centre": [
+            0,
+            -106,
+            -3
+          ],
+          "half": [
+            95,
+            4,
+            21
+          ],
+          "radius": 4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "hvac_face",
+          "kind": "round_box",
+          "centre": [
+            0,
+            -106,
+            -55
+          ],
+          "half": [
+            95,
+            4,
+            21
+          ],
+          "radius": 4,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "hvac_left_dial",
+          "kind": "disk_y",
+          "centre": [
+            -65,
+            -113,
+            -55
+          ],
+          "half": [
+            11,
+            4,
+            11
+          ],
+          "radius": 11,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "hvac_right_dial",
+          "kind": "disk_y",
+          "centre": [
+            65,
+            -113,
+            -55
+          ],
+          "half": [
+            11,
+            4,
+            11
+          ],
+          "radius": 11,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "console_storage_outline",
+          "kind": "frame_y",
+          "centre": [
+            0,
+            -107,
+            -117
+          ],
+          "half": [
+            94,
+            4,
+            26
+          ],
+          "radius": 6,
+          "border": 4,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "SWITCHES_AND_BLANKS",
+      "colour": "#818c91",
+      "elements": [
+        {
+          "id": "switch_1_mark",
+          "kind": "round_box",
+          "centre": [
+            -85,
+            -88,
+            97
+          ],
+          "half": [
+            13,
+            4,
+            8
+          ],
+          "radius": 2,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "switch_2_mark",
+          "kind": "round_box",
+          "centre": [
+            -50,
+            -88,
+            97
+          ],
+          "half": [
+            13,
+            4,
+            8
+          ],
+          "radius": 2,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "blank_1_mark",
+          "kind": "round_box",
+          "centre": [
+            -15,
+            -88,
+            97
+          ],
+          "half": [
+            13,
+            4,
+            8
+          ],
+          "radius": 2,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "blank_2_mark",
+          "kind": "round_box",
+          "centre": [
+            20,
+            -88,
+            97
+          ],
+          "half": [
+            13,
+            4,
+            8
+          ],
+          "radius": 2,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "blank_3_mark",
+          "kind": "round_box",
+          "centre": [
+            55,
+            -88,
+            97
+          ],
+          "half": [
+            13,
+            4,
+            8
+          ],
+          "radius": 2,
+          "border": 0,
+          "basis": "artistic_assumption"
+        }
+      ]
+    },
+    {
+      "family_id": "KNEE_STRIP_RESERVED",
+      "colour": "#7a6d5d",
+      "elements": [
+        {
+          "id": "left_reserved_visual_band",
+          "kind": "round_box",
+          "centre": [
+            -383,
+            -73,
+            -14
+          ],
+          "half": [
+            241,
+            7,
+            11
+          ],
+          "radius": 6,
+          "border": 0,
+          "basis": "artistic_assumption"
+        },
+        {
+          "id": "right_reserved_visual_band",
+          "kind": "round_box",
+          "centre": [
+            383,
+            -73,
+            -14
+          ],
+          "half": [
+            241,
+            7,
+            11
+          ],
+          "radius": 6,
+          "border": 0,
+          "basis": "artistic_assumption"
+        }
+      ]
+    }
+  ]
+}
