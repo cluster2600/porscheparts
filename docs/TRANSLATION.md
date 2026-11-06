@@ -149,6 +149,14 @@ Phase 4 exceptions (2026-11-06, issue #429). These stay French on purpose:
   `tests/test_air_oil_cycle_f34b_image.py` are recipe inputs of
   `containers/air-oil-cycle-f34b.lock.json` or are pinned elsewhere by
   digest. Editing them breaks the lock.
+
+  **Owner decision, 2026-11-06 ([#581](https://github.com/cluster2600/porscheparts/issues/581)):**
+  create a new English image/lock generation while preserving the old one.
+  [Follow-up #607](https://github.com/cluster2600/porscheparts/issues/607)
+  tracks new source/recipe/output revisions, equivalence tests, build and runtime
+  receipts, coordinated with #404–#406. The four historical files and their
+  existing lock remain frozen; this decision does not claim that the English
+  image has been built, published or qualified.
 - **Generated document content (audited 2026-11-06, issue #580).** The French
   page content these generators write stays French, because translating it
   would change frozen outputs:
