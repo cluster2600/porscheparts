@@ -2,7 +2,7 @@
   "$comment": "Consolidated register of documentary contradictions. Each entry names the values in conflict, the registered source of each value and where it sits, and what would resolve it. A contradiction stays here, with status open, until it is resolved; a resolved entry keeps its values and states the resolution. Validated by scripts/validate_registers.py.",
   "schema_version": "1.0.0",
   "register_id": "REG-CONTRADICTIONS",
-  "updated_on": "2026-11-05",
+  "updated_on": "2026-11-06",
   "entries": [
     {
       "contradiction_id": "CTR-0001",
@@ -449,6 +449,29 @@
         "catalog/reference/993-turbo-research-20261002/audit.json",
         "docs/research/993-turbo-20261002/exports/fr/audit_contradictions.csv",
         "catalog/sources/src-porsche-993-piston-spray-jets-1-97.json"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0019",
+      "generation": "993",
+      "subject": "Airbag scope of dashboard trim 993 552 055 00 /LL and 993 552 056 00 /RL in PET Kat 017",
+      "values": [
+        {
+          "value": "listed on a plate titled \"Dashboard, for cars with Airbag, Passenger's side\", position 1, no option code",
+          "source_id": "SRC-PORSCHE-PET-993",
+          "location": "illustration 809-00, PDF page 501"
+        },
+        {
+          "value": "listed under M002 on a CARRERA RS plate titled \"Dashboard, Knee protection strip, for cars without Airbag, Passenger's side\", position 1",
+          "source_id": "SRC-PORSCHE-PET-993",
+          "location": "illustration 809-02, PDF page 511"
+        }
+      ],
+      "status": "open",
+      "next_step": "Do not infer from the shared number that the trim carries no deployment flap: that would relax an occupant-restraint exclusion on catalogue text. Discriminate on an admitted specimen through the passenger-side reverse inspection (E2) of parts/993-int-dashboard-trim-0001/evidence/pet-identity.json, or with a Porsche technical document that states the trim's airbag provisions. Until then the non-RS M564 trim number stays null.",
+      "flagged_in": [
+        "catalog/parts/993-int-dashboard-trim-0001.json",
+        "parts/993-int-dashboard-trim-0001/evidence/pet-identity.json"
       ]
     }
   ]
