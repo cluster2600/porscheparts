@@ -101,7 +101,7 @@
     "admitted_physical_evidence": []
   },
   "admission": {
-    "specimen_gate": "scripts/check_993_dashboard_pet_identity.py admit_specimen() must return admitted for the specimen before any of its readings is entered.",
+    "specimen_gate": "Before any reading of a specimen is entered, scripts/check_993_dashboard_pet_identity.py admit_specimen() must return held with only the pending independent-verification reason, and the independent measurement and rights/privacy reviewers must then record the specimen as admitted. The software preflight never admits on its own.",
     "reading_record": "Each reading lives in a catalog/measurements/ record that passes scripts/validate_measurements.py, names the specimen ID, the measurand ID, method, repetitions and a bounding uncertainty.",
     "host_methods_forbidden": [
       "derived",
@@ -2019,7 +2019,7 @@
         "steering-wheel hub, front and rear"
       ],
       "acceptance": [
-        "This interface is an exclusion gate, not a fit: it passes only when #566 admit_specimen returns admitted.",
+        "This interface is an exclusion gate, not a fit: it passes only when the specimen is admitted under #566 (a clean admit_specimen preflight, then the independent reviewers' recorded admission).",
         "Any airbag component found on the specimen removes it from scope."
       ],
       "tolerances": {

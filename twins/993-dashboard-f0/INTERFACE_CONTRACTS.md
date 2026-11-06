@@ -59,9 +59,11 @@ Plate 403-07, page 266, lists outer tube `964 347 013 02` /LL and shaft
 - **Host readings on the host.** A host reading is taken with the part removed.
   The `derived`, `model` and `assumed` methods are refused for host
   measurands, and so is any evidence path into the F0 concept or a mesh.
-- **Specimen first.** Readings enter only for a specimen that
-  `admit_specimen()` from #566 admits, through records that pass
-  `validate_measurements.py`.
+- **Specimen first.** Readings enter only for an admitted specimen, through
+  records that pass `validate_measurements.py`. The #566 `admit_specimen()`
+  preflight never admits on its own; at best it returns `held`. A specimen
+  is admitted only when the independent measurement and rights/privacy
+  reviewers have verified the files and recorded the admission.
 - **Uncertainty and contradictions.** Each reading carries a bounding
   half-width. Two readings of one measurand on one specimen whose intervals
   do not overlap block the interface, and `find_contradictions()` flags them.
