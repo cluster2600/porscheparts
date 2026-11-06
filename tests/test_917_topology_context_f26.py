@@ -1,4 +1,4 @@
-"""Contrats du générateur local de contexte topologique F26."""
+"""Contracts of the local F26 topological context generator."""
 
 from __future__ import annotations
 
@@ -30,7 +30,7 @@ else:
 
 requires_numpy = unittest.skipUnless(
     NUMPY_AVAILABLE,
-    "les tests géométriques F26 s'exécutent dans l'image NumPy épinglée",
+    "the F26 geometric tests run in the pinned NumPy image",
 )
 
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tests fail-closed des preuves publiques F50 B-Rep/maillage."""
+"""Fail-closed tests of the public F50 B-Rep/mesh evidence."""
 
 from __future__ import annotations
 

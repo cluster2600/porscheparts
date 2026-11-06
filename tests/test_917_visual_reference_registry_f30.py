@@ -1,4 +1,4 @@
-"""Tests fail-closed du registre link-only de références visuelles F30."""
+"""Fail-closed tests of the F30 link-only visual reference registry."""
 
 from __future__ import annotations
 
@@ -90,7 +90,7 @@ EXPECTED_SOURCE_PAGES = {
 
 
 def walk_json(value: Any, path: Tuple[str, ...] = ()) -> Iterator[Tuple[Tuple[str, ...], Any]]:
-    """Parcourt les clés JSON sans interpréter le contenu documentaire."""
+    """Walk the JSON keys without interpreting the documentary content."""
 
     if isinstance(value, dict):
         for key, child in value.items():
@@ -103,7 +103,7 @@ def walk_json(value: Any, path: Tuple[str, ...] = ()) -> Iterator[Tuple[Tuple[st
 
 
 class VisualReferenceRegistryF30Tests(unittest.TestCase):
-    """Vérifie la couverture et les barrières fail-closed de F30."""
+    """Check the coverage and fail-closed barriers of F30."""
 
     @classmethod
     def setUpClass(cls) -> None:

@@ -1,4 +1,4 @@
-"""Schéma et cohérence du registre groupe 15 (culasse/distribution 993)."""
+"""Schema and consistency of the group 15 register (993 cylinder head/valvetrain)."""
 import importlib.util
 import json
 from pathlib import Path

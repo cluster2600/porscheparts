@@ -1,10 +1,10 @@
-"""Circuit d'huile de turbo : instruit, et maintenu ecarte.
+"""Turbo oil circuit: investigated, and kept out.
 
-Le triage a fait remonter `oil pipe` comme meilleur candidat additif du
-catalogue d'usine. L'instruction conclut non, deux fois. Ces tests empechent la
-conclusion de se relacher : le mode de rupture reste l'incendie, la piece reste
-interdite, et le titane reste exclu par la grille du depot sur le filetage
-repete — meme si quelqu'un, plus tard, trouvait la geometrie elegante.
+Triage surfaced `oil pipe` as the best additive candidate in the factory
+catalogue. The investigation concludes no, twice. These tests stop that
+conclusion from loosening: the failure mode remains fire, the part remains
+prohibited, and titanium remains excluded by the repository grid on repeated
+threading — even if someone later finds the geometry elegant.
 """
 from __future__ import annotations
 

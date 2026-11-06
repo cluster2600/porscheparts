@@ -1,4 +1,4 @@
-"""G1 4 soupapes / 2 bougies : provenance, contrôles, cinématique et itération (numpy seul) ; CAO en skip."""
+"""G1 four valves / two plugs: provenance, checks, kinematics and iteration (numpy only); CAD is skipped."""
 import copy
 import hashlib
 import json

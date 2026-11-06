@@ -1,4 +1,4 @@
-"""Tests du chargement et des portes fail-closed du calcul tête F38."""
+"""Tests of loading and fail-closed gates of the F38 head calculation."""
 
 from __future__ import annotations
 

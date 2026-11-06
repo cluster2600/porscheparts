@@ -41,7 +41,7 @@ def fixture(angle=.03,bad_face=None):
 
 
 def unified_fixture(angle=.03,bad_face=None):
-    # Renommage d'un témoin synthétique, pas preuve du transfert de la CAO réelle.
+    # Renaming of a synthetic witness, not evidence of transfer of the real CAD.
     points,triangles,frames=fixture(angle,bad_face)
     domain=audit.profiles.UNIFIED_DOMAIN_SHA256
     face_ids=audit.profiles.guide_face_ids(domain)

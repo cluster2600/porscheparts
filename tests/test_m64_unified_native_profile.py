@@ -1,4 +1,4 @@
-"""Témoins synthétiques du profil 86 faces, pas des résultats de CAO ou de CFD."""
+"""Synthetic witnesses of the 86-face profile, not CAD or CFD results."""
 from contextlib import ExitStack
 from copy import deepcopy
 import importlib.util

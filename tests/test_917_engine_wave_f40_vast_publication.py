@@ -1,4 +1,4 @@
-"""Garde de la preuve de publication OCI F40 Vast."""
+"""Guard of the F40 Vast OCI publication evidence."""
 
 from __future__ import annotations
 

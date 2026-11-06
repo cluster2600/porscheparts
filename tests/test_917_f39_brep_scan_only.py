@@ -1,4 +1,4 @@
-"""Contrat autonome des preuves geometriques F39 scan-only."""
+"""Standalone contract of the F39 scan-only geometric evidence."""
 
 from __future__ import annotations
 

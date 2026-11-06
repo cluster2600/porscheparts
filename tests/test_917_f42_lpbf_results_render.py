@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tests du rendu des mesures AdditiveFOAM F42.2."""
+"""Tests of the F42.2 AdditiveFOAM measurement render."""
 
 from __future__ import annotations
 

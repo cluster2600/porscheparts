@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Contrôles du paquet intégré F38 publié en mode fail-closed."""
+"""Checks of the integrated F38 package, published in fail-closed mode."""
 
 from __future__ import annotations
 

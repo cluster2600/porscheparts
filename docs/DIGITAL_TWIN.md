@@ -12,6 +12,11 @@ application are sourced. A logical assembly asserts that parts go together; a
 positioned assembly additionally requires their reference frames and 3D
 transforms.
 
+Every workstream under `twins/`, its kind, status, achieved fidelity and open
+issues is listed in [twins/README.md](../twins/README.md), generated from the
+cross-reference [twins/index.json](../twins/index.json) and checked by
+`make check`.
+
 The model is built zone by zone: dashboard, door, seat, engine bay, running gear
 and body. Accuracy is declared per component and per interface, because a single
 zone can combine visual trim at `F0` and measured fasteners at `F2`.

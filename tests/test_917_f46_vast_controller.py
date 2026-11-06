@@ -1,4 +1,4 @@
-"""Tests hors ligne du contrôleur Vast F46; aucune API et aucun secret."""
+"""Offline tests of the F46 Vast controller; no API and no secret."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-"""Tests fail-closed du plan de qualification matière F38."""
+"""Fail-closed tests of the F38 material qualification plan."""
 
 from __future__ import annotations
 

@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""Concepts F0 des pieces 993 qui n'avaient aucun maitre STEP.
+"""F0 concepts for the 993 parts that had no STEP master.
 
-Chaque concept est un solide volontairement simple. Les rares cotes publiees
-sont marquees `published` avec leur source ; toutes les autres sont des
-**variables de conception** marquees `hypothesis`. Aucun concept ne pretend
-reproduire la piece d'origine, et aucun n'autorise une fabrication.
+Each concept is a deliberately simple solid. The few published dimensions are
+marked `published` with their source; all others are **design variables**
+marked `hypothesis`. No concept claims to reproduce the original part, and none
+authorises manufacture.
 
-Chaque piece produit `parts/<slug>/derived/<nom>_concept_f0.step` et
-`parts/<slug>/evidence/concept-f0.json`. Le STEP est relu et son enveloppe
-comparee a celle declaree : un ecart fait echouer le script.
+Each part produces `parts/<slug>/derived/<name>_concept_f0.step` and
+`parts/<slug>/evidence/concept-f0.json`. The STEP is read back and its envelope
+compared with the declared one: a mismatch fails the script.
 
-  python3 scripts/build_993_concept_f0.py            # dans l'image cadsim
+  python3 scripts/build_993_concept_f0.py            # in the cadsim image
   python3 scripts/build_993_concept_f0.py --only 993-int-door-pull-0001
 """
 from __future__ import annotations
@@ -138,7 +138,7 @@ def build(concept: dict):
             Cylinder(radius + skin, length, align=(Align.CENTER, Align.CENTER, Align.CENTER))
             - Cylinder(radius, length, align=(Align.CENTER, Align.CENTER, Align.CENTER))
         )
-        # la corde du bombe a la base de la fenetre vaut exactement la largeur
+        # the chord of the crown at the window base equals the width exactly
         base_z = (radius**2 - (width / 2) ** 2) ** 0.5
         crown = radius + skin - base_z
         window = Pos(0, 0, base_z) * Box(width, length, crown, align=base)
@@ -206,7 +206,7 @@ def generate(slug: str, concept: dict) -> dict:
     export_step(solid, str(step))
     back = import_step(str(step))
     if not back.is_valid or abs(back.volume - solid.volume) > 1e-3 * solid.volume:
-        raise SystemExit(f"{slug}: le STEP relu ne reproduit pas le solide")
+        raise SystemExit(f"{slug}: the STEP read back does not reproduce the solid")
     report = {
         "schema_version": "1.0.0",
         "slug": slug,

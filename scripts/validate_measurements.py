@@ -159,9 +159,9 @@ def _validate_declared_values(
             errors.append(f"{label}.source_collection: expected a non-empty string")
         if not _text(value.get("description")):
             errors.append(f"{label}.description: expected a non-empty string")
-        # Provenance : soit une page de PDF, soit une PLANCHE. Les manuels 964 lus ici
-        # sont cotes par planche (50-02, 44-02) et n'ont pas de pagination PDF ; exiger
-        # un numero de page y forcerait a en inventer un. Une des deux doit etre donnee.
+        # Provenance: either a PDF page or a PLATE. The 964 manuals read here are
+        # referenced by plate (50-02, 44-02) and have no PDF pagination; requiring a
+        # page number would force inventing one. One of the two must be given.
         page = value.get("pdf_page")
         plate = value.get("plate")
         if page is None:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tests fail-closed de la recherche de periodicite F40b."""
+"""Fail-closed tests of the F40b periodicity search."""
 
 from __future__ import annotations
 
@@ -339,7 +339,7 @@ class ExtendedPeriodicStateF40bTests(unittest.TestCase):
         self.assertIn('-v "$(abspath $(F40B_OUTPUT)):/output:rw"', target)
         self.assertIn("$(F40B_WAVE_RELEASE_IMAGE)", target)
 
-    @unittest.skipUnless(importlib.util.find_spec("aeolus1d"), "Aeolus1D absent de l'hote")
+    @unittest.skipUnless(importlib.util.find_spec("aeolus1d"), "Aeolus1D absent from the host")
     def test_aeolus_image_builds_exact_flat_12_nominal_network(self) -> None:
         f40, upstream = self.runner.validate_upstream_f40(ROOT, self.contract)
         case, _f39, summary = f40.build_case_for_campaign(

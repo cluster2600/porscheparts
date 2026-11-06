@@ -1,4 +1,4 @@
-"""Régressions du pont entre le skill NVIDIA et le paquet usd-convert-cad."""
+"""Regressions of the bridge between the NVIDIA skill and the usd-convert-cad package."""
 
 from __future__ import annotations
 

@@ -81,7 +81,7 @@ class SegmentedC0SurfaceTests(unittest.TestCase):
 
 
 def merge_fixture():
-    """Témoin abstrait : les nouveaux IDs ne suivent aucun décalage constant."""
+    """Abstract witness: the new IDs follow no constant offset."""
     pairs=((1,19),(2,8),(3,51),(4,12))
     before={str(i):{'curve_global_sha256':str(i),'range':[i,i+1],'tolerance':1e-7} for i,_ in pairs}
     after={str(j):copy.deepcopy(before[str(i)]) for i,j in pairs}
