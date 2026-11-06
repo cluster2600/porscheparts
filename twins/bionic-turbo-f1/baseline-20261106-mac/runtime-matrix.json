@@ -1,0 +1,714 @@
+{
+  "schema": "bionic-turbo-runtime-matrix/v1",
+  "baseline": "bionic-turbo-f1-baseline-20261106-mac",
+  "issue": "https://github.com/cluster2600/porscheparts/issues/394",
+  "turbo_historical_runtime": "opencfd-v2406-runtime",
+  "substitution_policy": "Each row is one runtime identity. A different OpenFOAM variant, version, platform, image digest or executable hash is a different row, never the same runtime. Gates bind rows and fields explicitly; an attestation that substitutes any of them is refused. OpenCFD v2406 is the only runtime with historical turbo evidence; the OpenFOAM Foundation 13 and 14 images named in the general toolchain documentation are not interchangeable with it.",
+  "availability_rule": "Availability is recorded per host and date. A host this inventory could not reach is unknown, never assumed present or absent.",
+  "rows": [
+    {
+      "id": "opencfd-v2406-runtime",
+      "tool": "OpenFOAM runtime image (rhoSimpleFoam, rhoPimpleFoam, blockMesh, snappyHexMesh, checkMesh)",
+      "variant": "OpenCFD",
+      "version": "v2406 (api 2406, patch 0, build _be01ca78-20240625)",
+      "source_commit": "be01ca78882c0bb2b9cd15c22d1b0e5e517735b3",
+      "platform": "linux/arm64",
+      "identity": {
+        "image": "docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+        "source_archive_sha256": "8d1450fb89eec1e7cecc55c3bb7bc486ccbf63d069379d1d5d7518fa16a4686a",
+        "repository_lock": "unknown"
+      },
+      "identity_notes": {
+        "claim": "The image is pinned by digest in cfd/prepare_case.py (IMAGE) and run with --pull=never --platform linux/arm64 --network none by cfd/run_case.py; no containers/*.lock.json covers it.",
+        "receipts": [
+          {
+            "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+            "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8"
+          },
+          {
+            "path": "twins/bionic-turbo-f1/cfd/run_case.py",
+            "sha256": "14a98eb9e44206b35ecf5fa60caeb933896787958e88b4617542dd839437f16f"
+          }
+        ]
+      },
+      "executables": {
+        "rhoPimpleFoam": "85e40da38fc4fd0ba24ef1560f659390684f334677554ebfb0ac2d0f41ba3467",
+        "rhoSimpleFoam": "9fddcd4d4da2608ce159c8da1fb6c4719db4f5f558dd66e98f44b27831751646",
+        "blockMesh": "70acbec5399aad67c3ca5cb2ad91f480cc95fe4eabf871eec6494fa1573815dd",
+        "snappyHexMesh": "fdf8086f6ffbd2bd99864567121efb90e02f042af59cbeb785b542306238ed1d",
+        "checkMesh": "469fa2e3ca84b5858c3da7998536630c2ab8988efb4f8a9329a850944b4e1b33"
+      },
+      "executable_notes": {
+        "claim": "Four previously unknown executable hashes read from the exact pinned image; rhoPimpleFoam retains its historical receipt.",
+        "receipts": [
+          {
+            "path": "twins/bionic-turbo-f1/baseline-20261106-mac/runtime-readback.json",
+            "sha256": "85477f2610a367501ac1e6bba152b19e96a9e3e05ab88095c76ce716dd228b86"
+          },
+          {
+            "path": "twins/bionic-turbo-f1/evidence/airflow-native-binary-20261012/binary-original-052-log.binary-sha",
+            "sha256": "3ffe70672f281c56a0f400b1a8cbeb85549808d2b2131c5ff852a572cf60e177"
+          }
+        ]
+      },
+      "availability": {
+        "wsl_host_2026-11-06": {
+          "claim": "absent: the pinned image is not present on the WSL host",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+              "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+            }
+          ]
+        },
+        "mac_host_2026-10-12": {
+          "claim": "present and executed (containers bionic-binary-original-052 and -rebuilt-053 used image id 1db0df06...)",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/evidence/airflow-native-binary-20261012/container-states.json",
+              "sha256": "4a1279922b5ebb53d0e5e948ec075ca8a497eee6014a4a32b0d8f6b222be1fec"
+            }
+          ]
+        },
+        "mac_host_2026-11-06": {
+          "claim": "Pinned image, diagnostic image and preserved source volume present; no running containers or matching OpenFOAM processes; recurring turbo automation paused.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106-mac/runtime-readback.json",
+              "sha256": "85477f2610a367501ac1e6bba152b19e96a9e3e05ab88095c76ce716dd228b86"
+            }
+          ]
+        },
+        "kali_host_2026-11-06": {
+          "claim": "SSH and Docker access verified; x86_64 ext4 host has insufficient free space for substantial transfer/build. Presence of a turbo runtime was not inspected.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106-mac/runtime-readback.json",
+              "sha256": "85477f2610a367501ac1e6bba152b19e96a9e3e05ab88095c76ce716dd228b86"
+            }
+          ]
+        }
+      },
+      "io_contract": "Input: ASCII STL in metres with exactly the regions inlet, outlet, rotor and stator (cfd/README.md). Cases are prepared by cfd/prepare_case_v2.py into new directories, run one stage at a time by cfd/run_case.py with explicit CPU, memory and time limits, and audited by cfd/audit_case.py. Outputs are native logs, polyMesh, fields and JSON receipts; large outputs stay in releases or private stores.",
+      "turbo_role": "The only runtime carrying historical turbo evidence: meshing pilots, MRF witnesses, case 084 and the 052/053 parity control.",
+      "qualification": "historical_evidence_runtime_not_qualified_for_turbo_cfd",
+      "evidence": [
+        {
+          "claim": "The official v2406 source revisions 630d60de and be01ca78 differ by zero files; this matches sources, not compiled binaries.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/evidence/airflow-native-binary-20261012/native-commit.json",
+              "sha256": "b3a45e45cd3477617d3b86d55c41edbd4486fc70fd89b18c91508bd5e946d0e8"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/evidence/airflow-native-binary-20261012/source-receipt.json",
+              "sha256": "429affd4f00f0fcc4aa50f4edb6b764de38e17d5b9af7e019271e92119321922"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/evidence/airflow-native-binary-20261012/README.md",
+              "sha256": "5a5e84b9f42685f24056c6445316044bddb8bbf2804c5a3e7b3eb611db044af3"
+            }
+          ]
+        },
+        {
+          "claim": "cfd/prepare_case.py writes writePrecision 12; later witnesses rewrite that single entry to writePrecision 16. A new case generated with prepare_case.py unchanged would violate the retained writePrecision 16.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+              "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/cfd/prepare_profile_mesh.py",
+              "sha256": "281522c448905c6745c28ea1e44d2190d3667146128e53cd98585455fdebf4e4"
+            }
+          ]
+        },
+        {
+          "claim": "New additive generator writes field writePrecision 16; no other generated dictionary setting changes. It does not qualify arithmetic under G04.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/cfd/prepare_case_v2.py",
+              "sha256": "067eccbf3afe7667f47816d771ff23a6e11f8be2596382adb587f7f5a52bfe6d"
+            },
+            {
+              "path": "tests/test_bionic_turbo_precision16_revision.py",
+              "sha256": "671c4108fefd0cfa1349614f33da8ef22ed005d45957397a7e0933c7f7555840"
+            }
+          ]
+        }
+      ],
+      "context": [
+        "twins/bionic-turbo-f1/cfd/README.md"
+      ]
+    },
+    {
+      "id": "opencfd-v2406-diagnostic-rebuild",
+      "tool": "Locally rebuilt rhoPimpleFoam from the official v2406 sources (diagnostic build image)",
+      "variant": "OpenCFD",
+      "version": "v2406 rebuild (GCC 13.3.0, C++14, double precision, 32-bit labels, original wmake options)",
+      "source_commit": "be01ca78882c0bb2b9cd15c22d1b0e5e517735b3",
+      "platform": "linux/arm64",
+      "identity": {
+        "runtime_image": "docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+        "build_dockerfile_sha256": "c5ca6ad9f2b98790d0ff7b9678d2107b51e2313d39087f13172e5e9f299241f0",
+        "build_image": "unknown"
+      },
+      "identity_notes": {
+        "claim": "The build image is recorded only by its local tag bionic-openfoam2406-diagnostic-build:20261012 and Dockerfile digest; its apt recipe is not a full package lock, so a rebuild needs a new parity comparison.",
+        "receipts": [
+          {
+            "path": "twins/bionic-turbo-f1/evidence/airflow-native-binary-20261012/build-receipt-v2.json",
+            "sha256": "34c37e174bc8cf9f963736b73e15acd199c33825e0f8264e281483a0b9b0ae7e"
+          },
+          {
+            "path": "twins/bionic-turbo-f1/evidence/airflow-native-binary-20261012/Dockerfile",
+            "sha256": "c5ca6ad9f2b98790d0ff7b9678d2107b51e2313d39087f13172e5e9f299241f0"
+          }
+        ]
+      },
+      "executables": {
+        "rhoPimpleFoam": "08e208f562e59c5faf74c4075ef90330728d548080497c3f635eeb9a72c03e00"
+      },
+      "availability": {
+        "wsl_host_2026-11-06": {
+          "claim": "absent: neither the build image nor the bionic-native-source-20261012 volume is on the WSL host",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+              "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+            }
+          ]
+        },
+        "mac_host_2026-11-06": {
+          "claim": "current presence on the Mac host",
+          "unknown": {
+            "reason": "unknown \u2014 host not reachable from the WSL host on 2026-11-06"
+          }
+        },
+        "release_archive": {
+          "claim": "the rebuilt binary, recipes and both native cases are archived in release bionic-turbo-native-binary-2026-10-12",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/evidence/airflow-native-binary-20261012/archive-receipt.json",
+              "sha256": "ef5ae7f72db7c55c66b894cee79774a7eccb15341a774c7bbca810be8341efea"
+            }
+          ]
+        }
+      },
+      "io_contract": "Mounted read-only into the pinned runtime image; same case inputs as the original binary; outputs compared byte for byte without numerical tolerance.",
+      "turbo_role": "Software-parity witness for a future instrumented solver; not an admitted solver.",
+      "qualification": "software_parity_witness_only",
+      "evidence": [
+        {
+          "claim": "On the two-step 2e-7 s control 052/053 the five final fields p, T, U, rho and phi are byte-identical between the original and the rebuilt binary; this does not qualify turbo equilibrium.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/evidence/airflow-native-binary-20261012/binary-pair-readback-v2.json",
+              "sha256": "3173f748d131593bf19bc67b88d64769fcd8f4ae33610535bd52f1b76198ccd6"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/evidence/airflow-native-binary-20261012/binary-rebuilt-053-log.binary-sha",
+              "sha256": "41d4dbb75ead883a2459ff6e5bdd94c38855b381783d4cb555c9670e3f064f54"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "openfoam-foundation-13-cadsim",
+      "tool": "General CAD/simulation image 3dprinting993-cadsim:dev",
+      "variant": "OpenFOAM Foundation",
+      "version": "13",
+      "source_commit": "unknown",
+      "platform": "linux/amd64",
+      "identity": {
+        "local_image_id": "7fd9720bb13ced8dcff55cf36f0a54fadc628b73806787cdefbf4289e5dbd970"
+      },
+      "executables": {},
+      "availability": {
+        "wsl_host_2026-11-06": {
+          "claim": "present (FOAM_VERSION=13)",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+              "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+            }
+          ]
+        }
+      },
+      "io_contract": "Not a turbo runtime. Recipe: containers/cadsim.Dockerfile (OpenFOAM Foundation apt repository, ARG OPENFOAM_VERSION=13).",
+      "turbo_role": "None. It is the only OpenFOAM present on the WSL host, which makes silent substitution a real risk.",
+      "qualification": "prohibited_for_turbo_substitution",
+      "evidence": [
+        {
+          "claim": "The cadsim recipe installs the Foundation package openfoam13, not OpenCFD v2406.",
+          "receipts": [
+            {
+              "path": "containers/cadsim.Dockerfile",
+              "sha256": "acefdc24968fd27b3b27c7ba7ce14fe5beec71540524636e4a3421fa40be10d6"
+            }
+          ]
+        }
+      ],
+      "context": [
+        "docs/TOOLCHAIN.md",
+        "docs/SOFTWARE_STACK.md",
+        "twins/bionic-turbo-f1/cfd/README.md"
+      ]
+    },
+    {
+      "id": "openfoam-foundation-14-engine",
+      "tool": "OpenFOAM Foundation 14 engine/CHT images (openfoam-engine-f35, 917-f47-cfd-cae)",
+      "variant": "OpenFOAM Foundation",
+      "version": "14 (package 20260724)",
+      "source_commit": "unknown",
+      "platform": "linux/amd64",
+      "identity": {
+        "base_image": "ubuntu:24.04@sha256:33ceb71981b602c1a7443a53469e4dba065f7503eab3078a2d7a57a2ab987517",
+        "published_image": "unknown"
+      },
+      "executables": {},
+      "availability": {
+        "wsl_host_2026-11-06": {
+          "claim": "absent: no image matching openfoam or opencfd other than cadsim",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+              "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+            }
+          ]
+        }
+      },
+      "io_contract": "Engine and CHT studies only; lock status publication_not_verified_fail_closed.",
+      "turbo_role": "None.",
+      "qualification": "prohibited_for_turbo_substitution",
+      "evidence": [
+        {
+          "claim": "The F35 lock is fail-closed and scoped to synthetic serial and MPI solver smokes.",
+          "receipts": [
+            {
+              "path": "containers/openfoam-engine-f35.lock.json",
+              "sha256": "215cd6723a06c9e7fdac13e4f4025d4a411bae81acf09fc772727860c0e793d3"
+            }
+          ]
+        }
+      ],
+      "context": [
+        "docs/TOOLCHAIN.md",
+        "docs/SOFTWARE_STACK.md"
+      ]
+    },
+    {
+      "id": "picogk-bionic-turbo-f1",
+      "tool": "PicoGK geometry generator BionicTurboF1 (C#)",
+      "variant": "LEAP 71 PicoGK",
+      "version": "2.3.0 on .NET 9",
+      "source_commit": "unknown",
+      "platform": "host .NET 9 with the native PicoGK kernel",
+      "identity": {
+        "project_file_sha256": "e1e0f485324a3353d6ef51809c33477c567ddbd1029a3a988315b5c3c5faf75e",
+        "native_runtime": "unknown"
+      },
+      "executables": {
+        "BionicTurboF1.dll": "unknown"
+      },
+      "availability": {
+        "wsl_host_2026-11-06": {
+          "claim": "dotnet 9.0.318 and a PicoGK 2.3.0 checkout present; the generator was not built or run",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+              "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+            }
+          ]
+        }
+      },
+      "io_contract": "Parameter JSON (baseline.json, candidate.json, ...) to STL, reports and previews in new work directories under the machine lock.",
+      "turbo_role": "Geometry generator for issue 398; not an interface authority. Measured interfaces are absent (issue 396).",
+      "qualification": "geometry_generator_not_interface_authority",
+      "evidence": [
+        {
+          "claim": "39 parts inspected, 38 identical to F0; wheel/housing radial separation bound 1.7858 mm, which is not a qualified running clearance.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/geometry-evidence.json",
+              "sha256": "ee6e4a7f3a1e5cdef17b5373a14e3b086ce80d65288d1aa8ff05805979530fb0"
+            }
+          ]
+        }
+      ],
+      "context": [
+        "twins/bionic-turbo-f1/README.md"
+      ]
+    },
+    {
+      "id": "cpython-evidence-readers",
+      "tool": "CPython evidence readers and checkers",
+      "variant": "CPython",
+      "version": "3.12.3",
+      "source_commit": "unknown",
+      "platform": "linux/x86-64 (WSL2)",
+      "identity": {},
+      "executables": {},
+      "availability": {
+        "wsl_host_2026-11-06": {
+          "claim": "present in the CI venv with numpy 2.2.6",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+              "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+            }
+          ]
+        }
+      },
+      "io_contract": "Read committed receipts and restored archives; write JSON receipts into new directories.",
+      "turbo_role": "Primary and independent readers of the 2026-10-14 contact package.",
+      "qualification": "evidence_reader_runtime",
+      "evidence": [
+        {
+          "claim": "The 2026-10-14 primary and independent readers ran with CPython 3.12.3 on Linux x86-64 (WSL2), exit code 0.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/evidence/airflow-internal-contact-obligations-20261014/validation.md",
+              "sha256": "4d4cdd7b69abccdaee92b5a1c45d3f1f773d6ff1582c41ea683c408bd84906f5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "free-tools-dvc",
+      "tool": "DVC",
+      "variant": "DVC",
+      "version": "3.67.1",
+      "source_commit": "unknown",
+      "platform": "isolated CPython 3.12.11 environment (Mac, Kali)",
+      "identity": {
+        "requirements_lock_sha256": "245ceb27fa48e4605dd4c438354837264b8ab55c59faae1d33d640b8d19d52a4"
+      },
+      "executables": {},
+      "availability": {
+        "wsl_host_2026-11-06": {
+          "claim": "absent from the CI venv",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+              "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+            }
+          ]
+        },
+        "kali_host_2026-10-28": {
+          "claim": "installed versions matched the lock; fresh-cache restore of the five carrier pilot inputs passed",
+          "receipts": [
+            {
+              "path": "benchmarks/free-tools/results/kali-20261028.json",
+              "sha256": "41dbc16410d316c6a72aa63c37d848bf5f3dff9cada795708b2ba44c8a8dad2b"
+            }
+          ]
+        },
+        "kali_host_2026-11-06": {
+          "claim": "current availability",
+          "unknown": {
+            "reason": "unknown \u2014 host not reachable from the WSL host on 2026-11-06"
+          }
+        }
+      },
+      "io_contract": "Archive, replicate and restore private artefacts with SHA-256 verification after restoration.",
+      "turbo_role": "Issue 395 (recovery) and 403 (delivery). No turbo object is registered.",
+      "qualification": "carrier_and_synthetic_controls_only",
+      "evidence": [
+        {
+          "claim": "The free-tools baseline and both host receipts concern 993-ENG-CARRIER-0001 and synthetic fixtures; none names the bionic turbo.",
+          "receipts": [
+            {
+              "path": "benchmarks/free-tools/baseline.json",
+              "sha256": "6a82f90e74d38ecfc6ce76a2a7f52ec4474e84a67aa325d5a5a371cedb8c3c4a"
+            },
+            {
+              "path": "benchmarks/free-tools/results/mac-20261025.json",
+              "sha256": "fac335009cbb2c409f370fd4ae24fcb1cd5e806afa4ad472d6eb01ff6e3e5777"
+            },
+            {
+              "path": "benchmarks/free-tools/results/kali-20261028.json",
+              "sha256": "41dbc16410d316c6a72aa63c37d848bf5f3dff9cada795708b2ba44c8a8dad2b"
+            }
+          ]
+        }
+      ],
+      "context": [
+        "docs/architecture/free-tools/README.md",
+        "docs/architecture/free-tools/KALI_NATIVE_20261028.md"
+      ]
+    },
+    {
+      "id": "free-tools-sqlite-fts5",
+      "tool": "SQLite FTS5 documentary index",
+      "variant": "SQLite",
+      "version": "3.45.1 on the WSL CI venv; other hosts not recorded",
+      "source_commit": "unknown",
+      "platform": "CPython sqlite3",
+      "identity": {},
+      "executables": {},
+      "availability": {
+        "wsl_host_2026-11-06": {
+          "claim": "FTS5 virtual table creation succeeds",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+              "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+            }
+          ]
+        }
+      },
+      "io_contract": "Authorised snapshot corpus to five referenced excerpts.",
+      "turbo_role": "Issue 396: sourced documentary corpus. Retrieval is not measurement.",
+      "qualification": "carrier_and_synthetic_controls_only",
+      "evidence": [
+        {
+          "claim": "30 of 30 frozen retrieval and boundary cases passed on Kali, carrier corpus only.",
+          "receipts": [
+            {
+              "path": "benchmarks/free-tools/results/kali-20261028.json",
+              "sha256": "41dbc16410d316c6a72aa63c37d848bf5f3dff9cada795708b2ba44c8a8dad2b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "free-tools-openturns",
+      "tool": "OpenTURNS",
+      "variant": "OpenTURNS",
+      "version": "1.27.post1",
+      "source_commit": "unknown",
+      "platform": "isolated CPython 3.12.11 environment (Mac, Kali)",
+      "identity": {
+        "requirements_lock_sha256": "245ceb27fa48e4605dd4c438354837264b8ab55c59faae1d33d640b8d19d52a4"
+      },
+      "executables": {},
+      "availability": {
+        "wsl_host_2026-11-06": {
+          "claim": "absent from the CI venv",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+              "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+            }
+          ]
+        }
+      },
+      "io_contract": "Fixed-seed sensitivity on admitted solver responses; failed samples reject the calculation.",
+      "turbo_role": "Issue 403 only, on admitted turbo solver responses with sourced distributions.",
+      "qualification": "carrier_and_synthetic_controls_only",
+      "evidence": [
+        {
+          "claim": "First-order indices 0.19942885009108358 and 0.8017120442305217 on the synthetic 0.2/0.8 control.",
+          "receipts": [
+            {
+              "path": "benchmarks/free-tools/results/kali-20261028.json",
+              "sha256": "41dbc16410d316c6a72aa63c37d848bf5f3dff9cada795708b2ba44c8a8dad2b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "free-tools-openmdao",
+      "tool": "OpenMDAO",
+      "variant": "OpenMDAO",
+      "version": "3.45.1",
+      "source_commit": "unknown",
+      "platform": "isolated CPython 3.12.11 environment (Mac, Kali)",
+      "identity": {
+        "requirements_lock_sha256": "245ceb27fa48e4605dd4c438354837264b8ab55c59faae1d33d640b8d19d52a4"
+      },
+      "executables": {},
+      "availability": {
+        "wsl_host_2026-11-06": {
+          "claim": "absent from the CI venv",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+              "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+            }
+          ]
+        }
+      },
+      "io_contract": "External analytical component and gated orchestration.",
+      "turbo_role": "Optional gated orchestration in issue 403; no turbo optimiser is presumed.",
+      "qualification": "carrier_and_synthetic_controls_only",
+      "evidence": [
+        {
+          "claim": "Synthetic constrained-beam optimum 0.010455159171866592 m against independent target 0.010455159171494206 m; carrier admission replay blocked_engineering.",
+          "receipts": [
+            {
+              "path": "benchmarks/free-tools/results/kali-20261028.json",
+              "sha256": "41dbc16410d316c6a72aa63c37d848bf5f3dff9cada795708b2ba44c8a8dad2b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "free-tools-cloudcompare-salome",
+      "tool": "CloudCompare CLI and SALOME/SMESH (NETGEN) container images",
+      "variant": "CloudCompare / SALOME (Simvia distribution)",
+      "version": "CloudCompare 2.13.2; SALOME version not recorded in the committed receipts",
+      "source_commit": "unknown",
+      "platform": "linux/amd64 containers",
+      "identity": {
+        "cloudcompare_image": "unknown",
+        "salome_image": "unknown"
+      },
+      "executables": {},
+      "availability": {
+        "linux_ci": {
+          "claim": "native Linux CI analytical controls passed for both images",
+          "receipts": [
+            {
+              "path": "benchmarks/free-tools/results/mac-20261025.json",
+              "sha256": "fac335009cbb2c409f370fd4ae24fcb1cd5e806afa4ad472d6eb01ff6e3e5777"
+            }
+          ]
+        },
+        "kali_host_2026-10-28": {
+          "claim": "not executed: the lolman session could not access the Docker socket and noninteractive sudo required a password; no permission was changed",
+          "receipts": [
+            {
+              "path": "benchmarks/free-tools/results/kali-20261028.json",
+              "sha256": "41dbc16410d316c6a72aa63c37d848bf5f3dff9cada795708b2ba44c8a8dad2b"
+            }
+          ]
+        },
+        "kali_host_2026-11-06": {
+          "claim": "Docker permission state",
+          "unknown": {
+            "reason": "unknown \u2014 host not reachable from the WSL host on 2026-11-06"
+          }
+        }
+      },
+      "io_contract": "CloudCompare: sampled point-to-surface diagnostics; SALOME: NETGEN volume mesh with exact boundary and CalculiX-format checks.",
+      "turbo_role": "Issue 396/398 diagnostics and an optional mesh route in 399; the carrier INP path needs a separately qualified OpenFOAM adapter. Neither has run natively on Kali.",
+      "qualification": "carrier_and_synthetic_controls_only",
+      "evidence": [
+        {
+          "claim": "CloudCompare and SALOME results are Linux CI receipts for their tested image identities, not Kali host receipts.",
+          "receipts": [
+            {
+              "path": "benchmarks/free-tools/results/mac-20261025.json",
+              "sha256": "fac335009cbb2c409f370fd4ae24fcb1cd5e806afa4ad472d6eb01ff6e3e5777"
+            },
+            {
+              "path": "benchmarks/free-tools/results/kali-20261028.json",
+              "sha256": "41dbc16410d316c6a72aa63c37d848bf5f3dff9cada795708b2ba44c8a8dad2b"
+            }
+          ]
+        }
+      ],
+      "context": [
+        "docs/architecture/free-tools/RESULTS.md",
+        "docs/architecture/free-tools/IMPLEMENTATION_TEST_PLAN.md"
+      ]
+    },
+    {
+      "id": "foamlib",
+      "tool": "foamlib Python driver",
+      "variant": "foamlib",
+      "version": "unknown",
+      "source_commit": "unknown",
+      "platform": "unknown",
+      "identity": {},
+      "executables": {},
+      "availability": {
+        "wsl_host_2026-11-06": {
+          "claim": "absent from the CI venv and not referenced by any tracked file",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+              "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+            }
+          ]
+        }
+      },
+      "io_contract": "Planned case driving for issues 397 and 399-402; not yet pinned.",
+      "turbo_role": "Planned only.",
+      "qualification": "not_pinned",
+      "evidence": []
+    },
+    {
+      "id": "calculix",
+      "tool": "CalculiX ccx",
+      "variant": "CalculiX",
+      "version": "unknown",
+      "source_commit": "unknown",
+      "platform": "unknown",
+      "identity": {},
+      "executables": {},
+      "availability": {
+        "wsl_host_2026-11-06": {
+          "claim": "absent from PATH (other CalculiX images exist in the repository but none is bound to the turbo)",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+              "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+            }
+          ]
+        }
+      },
+      "io_contract": "Conditional mechanical/thermal envelope in issue 402 with separate material, load and test evidence.",
+      "turbo_role": "Deferred.",
+      "qualification": "not_pinned",
+      "evidence": []
+    },
+    {
+      "id": "post-processing-readback",
+      "tool": "meshio / PyVista / ParaView",
+      "variant": "meshio / PyVista / ParaView",
+      "version": "unknown",
+      "source_commit": "unknown",
+      "platform": "unknown",
+      "identity": {},
+      "executables": {},
+      "availability": {
+        "wsl_host_2026-11-06": {
+          "claim": "meshio and PyVista absent from the CI venv; ParaView absent from PATH",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+              "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+            }
+          ]
+        }
+      },
+      "io_contract": "Quantitative read-back in issues 401-403; native fields and independent conservation remain authoritative.",
+      "turbo_role": "Planned only.",
+      "qualification": "not_pinned",
+      "evidence": []
+    },
+    {
+      "id": "deferred-usd-physicsnemo-lpbf",
+      "tool": "USD / USD BRep / OVRTX, PhysicsNeMo, GO-MELT, LPBF-CUDA",
+      "variant": "various",
+      "version": "unknown",
+      "source_commit": "unknown",
+      "platform": "unknown",
+      "identity": {},
+      "executables": {},
+      "availability": {
+        "turbo": {
+          "claim": "no turbo receipt for any of these tools",
+          "unknown": {
+            "reason": "outside the critical path; not inventoried for the turbo in this baseline"
+          }
+        }
+      },
+      "io_contract": "Optional review and interoperability; separate qualified datasets or material/process studies.",
+      "turbo_role": "Deferred, outside the critical path.",
+      "qualification": "not_pinned",
+      "evidence": [],
+      "context": [
+        "docs/architecture/usd-brep-lpbf.md"
+      ]
+    }
+  ]
+}
