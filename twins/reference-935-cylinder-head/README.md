@@ -143,7 +143,8 @@ compatibility can therefore be concluded.
   orientation, machining, an inspection plan and material traceability.
 - Keep the raw mesh and all its derivatives outside Git as instructed by the
   owner, even though the owner confirms an open, reusable licence whose
-  standardised identifier remains to be archived.
+  standardised identifier remains to be archived. The 2026-11-06 audit found no licence text on the vendor page; see
+  [the scan licence audit](../../docs/research/scan-licence-audit-2026-11-06.md) (licence unresolved).
 - Do not release a metal valve from the F1 proxies; require a complete
   definition, a material/process qualification and hot valvetrain tests under
   professional engineering review.
