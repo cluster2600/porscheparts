@@ -1,0 +1,40 @@
+{
+  "geometry3sharp_revision": "ece336493111ffe372a4bfc7fee5026d4127dade",
+  "license": "BSL-1.0",
+  "erosion_mm": 0.2,
+  "voxel_sizes_mm": [
+    0.1,
+    0.05,
+    0.025
+  ],
+  "cases": [
+    {
+      "case": "cube",
+      "sha256": "f20b8a060c00547db95b6abfb43c567e9e098e76fdf10a772a43eb658005b3be",
+      "triangles": 12,
+      "source_volume_mm3": 64.0
+    },
+    {
+      "case": "thin-notch",
+      "sha256": "7301ec68da2cdebe28ba9407e912e882ddcef602ff24250df5eba0f3fd4147d7",
+      "triangles": 28,
+      "source_volume_mm3": 63.999599999999994
+    },
+    {
+      "case": "thin-air-fin",
+      "sha256": "f249059ed13d0e505df7c9235af47dcdab05bfcc9f1960318169294d3871ac5c",
+      "triangles": 28,
+      "source_volume_mm3": 64.00019999999999
+    }
+  ],
+  "source_cube_side_mm": 4,
+  "notch_thickness_mm": 0.0002,
+  "notch_z_width_mm": 1,
+  "notch_y_center_mm": 0.01234,
+  "complete_implicit_residual_limit_voxels": 2.5,
+  "maximum_relative_volume_error": 0.05,
+  "finest_maximum_relative_volume_error": 0.01,
+  "thin_notch_probe_expected_eroded_field_positive": true,
+  "strict_bound_decrease_required": true,
+  "scope": "Native mesh-distance erosion controls including below-grid-scale source features; no part qualification"
+}

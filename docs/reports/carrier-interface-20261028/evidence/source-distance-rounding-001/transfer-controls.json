@@ -1,0 +1,40 @@
+{
+  "status": "precision_controls_passed",
+  "cases": [
+    {
+      "case": "tetrahedron",
+      "accepted": true,
+      "flips": 0
+    },
+    {
+      "case": "covered-zero-edge",
+      "accepted": true,
+      "flips": 0
+    },
+    {
+      "case": "duplicate-coordinate",
+      "accepted": true,
+      "flips": 0
+    },
+    {
+      "case": "collinear-partition",
+      "accepted": true,
+      "flips": 1
+    },
+    {
+      "case": "uncovered-zero-edge",
+      "accepted": false,
+      "reason": "Removed zero face image is not covered"
+    },
+    {
+      "case": "open-surface",
+      "accepted": false,
+      "reason": "Closed oriented edge contract failed"
+    },
+    {
+      "case": "nonmanifold-positive-face",
+      "accepted": false,
+      "reason": "Closed oriented edge contract failed"
+    }
+  ]
+}

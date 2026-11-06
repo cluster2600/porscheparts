@@ -1,0 +1,18 @@
+--- a/deploy/openbao/openbao-vastai
++++ b/deploy/openbao/openbao-vastai
+@@ -5068,2 +5068,15 @@
+ def picogk_singleton(api_key: str, instance_id: int | None, manifest: dict) -> None:
++    # Owner authorization: independent bounded jobs may share the account.
++    if manifest.get("profile") == PICOGK_PROFILE:
++        label = manifest.get("attempt_label")
++        if not isinstance(label, str) or not label:
++            raise SafeError("PicoGK unique attempt label is required")
++        owned = [item for item in strict_instance_inventory(api_key) if item.get("label") == label]
++        if instance_id is None:
++            if owned:
++                raise SafeError("PicoGK attempt label already exists; reconcile instead of relaunching")
++        elif (len(owned) != 1 or owned[0].get("id") != instance_id
++              or picogk_safe_instance(owned[0]).get("image") != manifest["image_ref"]):
++            raise SafeError("PicoGK exact owned instance identity differs")
++        return
+     # The small budget is account-wide: do not overlap any existing rental.

@@ -1,0 +1,41 @@
+{
+  "status": "native_cuda_query_validation_passed",
+  "target_surface_sha256": "8fe39d8c98a2a65a6184b59c1a0a1f928de7d45f645c5713e2be4f22956c161f",
+  "unchanged_PR274_kernel": true,
+  "fixed_absolute_error_limit_mm": 0.0001,
+  "cases": {
+    "closed-control": {
+      "gpu_validated": true,
+      "queries": 65536,
+      "vertices": 672323,
+      "triangles": 1344722,
+      "device_name": "NVIDIA GeForce RTX 4070 Ti SUPER",
+      "maximum_absolute_error_mm": 3.60800175067677e-05,
+      "report_sha256": "d208f43baf62a17666d45fab8c45a2a5f0485118e5b52e691cd50b3069815d89",
+      "six_fresh_dispatches": true
+    },
+    "ported-broad": {
+      "gpu_validated": true,
+      "queries": 65536,
+      "vertices": 1147813,
+      "triangles": 2295734,
+      "device_name": "NVIDIA GeForce RTX 4070 Ti SUPER",
+      "maximum_absolute_error_mm": 3.057712456211448e-05,
+      "report_sha256": "4de49e495383566990758aa8d4772a730e8c1ce09aa71017df0248a80534a49c",
+      "six_fresh_dispatches": true
+    },
+    "ported-hard": {
+      "gpu_validated": true,
+      "queries": 4644,
+      "vertices": 1147813,
+      "triangles": 2295734,
+      "device_name": "NVIDIA GeForce RTX 4070 Ti SUPER",
+      "maximum_absolute_error_mm": 7.872721570965856e-06,
+      "report_sha256": "2256e93cceb8641a283815e4bfcbace2c2565edf4c9686bf013d140634417d42",
+      "six_fresh_dispatches": true
+    }
+  },
+  "geometry_queries_only": true,
+  "complete_carrier_mechanics_converged": false,
+  "manufacturing_authorized": false
+}

@@ -1,0 +1,709 @@
+{
+  "status": "topology_and_angle_controls_passed",
+  "rows": [
+    {
+      "case": "tetra",
+      "expected_pass": true,
+      "returncode": 0,
+      "report": {
+        "status": "closed_oriented_vertex_manifold",
+        "error": "",
+        "vertices": 4,
+        "faces": 4,
+        "edges": 6,
+        "unused_vertices": 0,
+        "nonmanifold_used_vertices": 0,
+        "boundary_components": 1,
+        "component_signed_volumes_mm3": [
+          0.16666666666666666
+        ],
+        "reentrant_edges_above_degrees": {
+          "1": 0,
+          "5": 0,
+          "15": 0,
+          "30": 0,
+          "45": 0,
+          "60": 0,
+          "90": 0
+        },
+        "severe_edges_in_protected_x_regions": 0,
+        "worst_edges": [
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              1,
+              0
+            ],
+            "midpoint_mm": [
+              0.5,
+              0,
+              0
+            ]
+          },
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              0,
+              2
+            ],
+            "midpoint_mm": [
+              0,
+              0.5,
+              0
+            ]
+          },
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              3,
+              0
+            ],
+            "midpoint_mm": [
+              0,
+              0,
+              0.5
+            ]
+          },
+          {
+            "angle_degrees": 125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              2,
+              1
+            ],
+            "midpoint_mm": [
+              0.5,
+              0.5,
+              0
+            ]
+          },
+          {
+            "angle_degrees": 125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              1,
+              3
+            ],
+            "midpoint_mm": [
+              0.5,
+              0,
+              0.5
+            ]
+          },
+          {
+            "angle_degrees": 125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              3,
+              2
+            ],
+            "midpoint_mm": [
+              0,
+              0.5,
+              0.5
+            ]
+          }
+        ],
+        "elapsed_seconds": 0.000216208,
+        "exact_volume_certified": false,
+        "mechanical_admissibility_established": false
+      }
+    },
+    {
+      "case": "inward",
+      "expected_pass": true,
+      "returncode": 0,
+      "report": {
+        "status": "closed_oriented_vertex_manifold",
+        "error": "",
+        "vertices": 4,
+        "faces": 4,
+        "edges": 6,
+        "unused_vertices": 0,
+        "nonmanifold_used_vertices": 0,
+        "boundary_components": 1,
+        "component_signed_volumes_mm3": [
+          -0.16666666666666666
+        ],
+        "reentrant_edges_above_degrees": {
+          "1": 6,
+          "5": 6,
+          "15": 6,
+          "30": 6,
+          "45": 6,
+          "60": 6,
+          "90": 3
+        },
+        "severe_edges_in_protected_x_regions": 6,
+        "worst_edges": [
+          {
+            "angle_degrees": -125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              1,
+              2
+            ],
+            "midpoint_mm": [
+              0.5,
+              0.5,
+              0
+            ]
+          },
+          {
+            "angle_degrees": -125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              3,
+              1
+            ],
+            "midpoint_mm": [
+              0.5,
+              0,
+              0.5
+            ]
+          },
+          {
+            "angle_degrees": -125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              2,
+              3
+            ],
+            "midpoint_mm": [
+              0,
+              0.5,
+              0.5
+            ]
+          },
+          {
+            "angle_degrees": -90,
+            "length_mm": 1,
+            "vertices": [
+              0,
+              1
+            ],
+            "midpoint_mm": [
+              0.5,
+              0,
+              0
+            ]
+          },
+          {
+            "angle_degrees": -90,
+            "length_mm": 1,
+            "vertices": [
+              2,
+              0
+            ],
+            "midpoint_mm": [
+              0,
+              0.5,
+              0
+            ]
+          },
+          {
+            "angle_degrees": -90,
+            "length_mm": 1,
+            "vertices": [
+              0,
+              3
+            ],
+            "midpoint_mm": [
+              0,
+              0,
+              0.5
+            ]
+          }
+        ],
+        "elapsed_seconds": 0.000140458,
+        "exact_volume_certified": false,
+        "mechanical_admissibility_established": false
+      }
+    },
+    {
+      "case": "open",
+      "expected_pass": false,
+      "returncode": 2,
+      "report": {
+        "status": "topology_refused",
+        "error": "Edge incidence is not two",
+        "vertices": 4,
+        "faces": 3,
+        "edges": 3,
+        "unused_vertices": 0,
+        "nonmanifold_used_vertices": 0,
+        "boundary_components": 0,
+        "component_signed_volumes_mm3": [],
+        "reentrant_edges_above_degrees": {
+          "1": 0,
+          "5": 0,
+          "15": 0,
+          "30": 0,
+          "45": 0,
+          "60": 0,
+          "90": 0
+        },
+        "severe_edges_in_protected_x_regions": 0,
+        "worst_edges": [
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              1,
+              0
+            ],
+            "midpoint_mm": [
+              0.5,
+              0,
+              0
+            ]
+          },
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              0,
+              2
+            ],
+            "midpoint_mm": [
+              0,
+              0.5,
+              0
+            ]
+          },
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              3,
+              0
+            ],
+            "midpoint_mm": [
+              0,
+              0,
+              0.5
+            ]
+          }
+        ],
+        "elapsed_seconds": 0.000214875,
+        "exact_volume_certified": false,
+        "mechanical_admissibility_established": false
+      }
+    },
+    {
+      "case": "bad_winding",
+      "expected_pass": false,
+      "returncode": 2,
+      "report": {
+        "status": "topology_refused",
+        "error": "Inconsistent edge orientation",
+        "vertices": 4,
+        "faces": 4,
+        "edges": 0,
+        "unused_vertices": 0,
+        "nonmanifold_used_vertices": 0,
+        "boundary_components": 0,
+        "component_signed_volumes_mm3": [],
+        "reentrant_edges_above_degrees": {
+          "1": 0,
+          "5": 0,
+          "15": 0,
+          "30": 0,
+          "45": 0,
+          "60": 0,
+          "90": 0
+        },
+        "severe_edges_in_protected_x_regions": 0,
+        "worst_edges": [],
+        "elapsed_seconds": 0.000233959,
+        "exact_volume_certified": false,
+        "mechanical_admissibility_established": false
+      }
+    },
+    {
+      "case": "disjoint",
+      "expected_pass": true,
+      "returncode": 0,
+      "report": {
+        "status": "closed_oriented_vertex_manifold",
+        "error": "",
+        "vertices": 8,
+        "faces": 8,
+        "edges": 12,
+        "unused_vertices": 0,
+        "nonmanifold_used_vertices": 0,
+        "boundary_components": 2,
+        "component_signed_volumes_mm3": [
+          0.16666666666666666,
+          0.16666666666666674
+        ],
+        "reentrant_edges_above_degrees": {
+          "1": 0,
+          "5": 0,
+          "15": 0,
+          "30": 0,
+          "45": 0,
+          "60": 0,
+          "90": 0
+        },
+        "severe_edges_in_protected_x_regions": 0,
+        "worst_edges": [
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              1,
+              0
+            ],
+            "midpoint_mm": [
+              0.5,
+              0,
+              0
+            ]
+          },
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              2,
+              0
+            ],
+            "midpoint_mm": [
+              0,
+              0.5,
+              0
+            ]
+          },
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              3,
+              0
+            ],
+            "midpoint_mm": [
+              0,
+              0,
+              0.5
+            ]
+          },
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              5,
+              4
+            ],
+            "midpoint_mm": [
+              3.5,
+              3,
+              3
+            ]
+          },
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              4,
+              6
+            ],
+            "midpoint_mm": [
+              3,
+              3.5,
+              3
+            ]
+          },
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              7,
+              4
+            ],
+            "midpoint_mm": [
+              3,
+              3,
+              3.5
+            ]
+          },
+          {
+            "angle_degrees": 125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              2,
+              1
+            ],
+            "midpoint_mm": [
+              0.5,
+              0.5,
+              0
+            ]
+          },
+          {
+            "angle_degrees": 125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              1,
+              3
+            ],
+            "midpoint_mm": [
+              0.5,
+              0,
+              0.5
+            ]
+          },
+          {
+            "angle_degrees": 125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              3,
+              2
+            ],
+            "midpoint_mm": [
+              0,
+              0.5,
+              0.5
+            ]
+          },
+          {
+            "angle_degrees": 125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              6,
+              5
+            ],
+            "midpoint_mm": [
+              3.5,
+              3.5,
+              3
+            ]
+          },
+          {
+            "angle_degrees": 125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              5,
+              7
+            ],
+            "midpoint_mm": [
+              3.5,
+              3,
+              3.5
+            ]
+          },
+          {
+            "angle_degrees": 125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              7,
+              6
+            ],
+            "midpoint_mm": [
+              3,
+              3.5,
+              3.5
+            ]
+          }
+        ],
+        "elapsed_seconds": 0.000171833,
+        "exact_volume_certified": false,
+        "mechanical_admissibility_established": false
+      }
+    },
+    {
+      "case": "pinched_vertex",
+      "expected_pass": false,
+      "returncode": 2,
+      "report": {
+        "status": "topology_refused",
+        "error": "Disconnected face fans at used vertices",
+        "vertices": 7,
+        "faces": 8,
+        "edges": 12,
+        "unused_vertices": 0,
+        "nonmanifold_used_vertices": 1,
+        "boundary_components": 0,
+        "component_signed_volumes_mm3": [],
+        "reentrant_edges_above_degrees": {
+          "1": 0,
+          "5": 0,
+          "15": 0,
+          "30": 0,
+          "45": 0,
+          "60": 0,
+          "90": 0
+        },
+        "severe_edges_in_protected_x_regions": 0,
+        "worst_edges": [
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              1,
+              0
+            ],
+            "midpoint_mm": [
+              0.5,
+              0,
+              0
+            ]
+          },
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              0,
+              2
+            ],
+            "midpoint_mm": [
+              0,
+              0.5,
+              0
+            ]
+          },
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              0,
+              3
+            ],
+            "midpoint_mm": [
+              0,
+              0,
+              0.5
+            ]
+          },
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              0,
+              4
+            ],
+            "midpoint_mm": [
+              -0.5,
+              0,
+              0
+            ]
+          },
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              5,
+              0
+            ],
+            "midpoint_mm": [
+              0,
+              -0.5,
+              0
+            ]
+          },
+          {
+            "angle_degrees": 90,
+            "length_mm": 1,
+            "vertices": [
+              0,
+              6
+            ],
+            "midpoint_mm": [
+              0,
+              0,
+              -0.5
+            ]
+          },
+          {
+            "angle_degrees": 125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              1,
+              2
+            ],
+            "midpoint_mm": [
+              0.5,
+              0.5,
+              0
+            ]
+          },
+          {
+            "angle_degrees": 125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              1,
+              3
+            ],
+            "midpoint_mm": [
+              0.5,
+              0,
+              0.5
+            ]
+          },
+          {
+            "angle_degrees": 125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              3,
+              2
+            ],
+            "midpoint_mm": [
+              0,
+              0.5,
+              0.5
+            ]
+          },
+          {
+            "angle_degrees": 125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              4,
+              5
+            ],
+            "midpoint_mm": [
+              -0.5,
+              -0.5,
+              0
+            ]
+          },
+          {
+            "angle_degrees": 125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              6,
+              4
+            ],
+            "midpoint_mm": [
+              -0.5,
+              0,
+              -0.5
+            ]
+          },
+          {
+            "angle_degrees": 125.26438968275465,
+            "length_mm": 1.4142135623730951,
+            "vertices": [
+              5,
+              6
+            ],
+            "midpoint_mm": [
+              0,
+              -0.5,
+              -0.5
+            ]
+          }
+        ],
+        "elapsed_seconds": 0.000239334,
+        "exact_volume_certified": false,
+        "mechanical_admissibility_established": false
+      }
+    }
+  ],
+  "hashes": {
+    "audit.cpp": "d09c629f0c587ea3bdffc30825a0c1e614e9b4ae68c0bde0e69257ee747b3a31",
+    "audit": "1a28e5350ac9559a2903bc1e1fc82e1c3dd5070fa6d6fb7ecc78375c360c9f5b",
+    "controls.py": "3bf55f63cb1202f336ec784ca8fd536c0a8afcdf542f2931af96672e6770e07b"
+  }
+}

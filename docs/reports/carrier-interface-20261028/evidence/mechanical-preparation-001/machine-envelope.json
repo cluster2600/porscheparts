@@ -1,0 +1,107 @@
+{
+  "status": "complete_nominal_box_containment_certified",
+  "input_sha256": "50b1c1ccb4a868aa1a98e332dcd8221140fa0c282bcf07979b49ed33b2abb420",
+  "vertices_checked": 2882592,
+  "triangles_covered_by_convexity": 5765272,
+  "quaternion_xyzw_integers": [
+    879833,
+    -364448,
+    281845,
+    116771
+  ],
+  "exact_rotation_matrix": [
+    [
+      "575482625601/1000000523059",
+      "-707129399358/1000000523059",
+      "410839148954/1000000523059"
+    ],
+    [
+      "-575484109378/1000000523059",
+      "-707084900769/1000000523059",
+      "-410913651606/1000000523059"
+    ],
+    [
+      "581066978586/1000000523059",
+      "42265366/1000000523059",
+      "-813856382127/1000000523059"
+    ]
+  ],
+  "proper_rotation_proved_exactly": true,
+  "rotation_coordinate_lower_mm": [
+    -188.62408215489918,
+    -188.62420059425563,
+    -178.6956202290569
+  ],
+  "rotation_coordinate_upper_mm": [
+    188.6229998063089,
+    188.62311802897847,
+    178.69608902612535
+  ],
+  "translation_exact_mm": [
+    "6988463612340709/35184372088832",
+    "873558472444387/4398046511104",
+    "7342824355448713/35184372088832"
+  ],
+  "span_upper_exact_mm": [
+    "207393776580457/549755813888",
+    "6636605013977015/17592186044416",
+    "3143650719974499/8796093022208"
+  ],
+  "remaining_slack_exact_mm": [
+    "1513432696983/549755813888",
+    "48425682901065/17592186044416",
+    "22942768020381/8796093022208"
+  ],
+  "nominal_machine_box_mm": [
+    400,
+    400,
+    400
+  ],
+  "study_reserve_low_mm": [
+    10,
+    10,
+    30
+  ],
+  "study_reserve_high_mm": [
+    10,
+    10,
+    10
+  ],
+  "controls": [
+    {
+      "quaternion": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "exact_point_components_checked": 300
+    },
+    {
+      "quaternion": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "exact_point_components_checked": 300
+    },
+    {
+      "quaternion": [
+        -123,
+        97,
+        -31,
+        12
+      ],
+      "exact_point_components_checked": 300
+    }
+  ],
+  "zero_quaternion_refused": true,
+  "oversized_box_refused": true,
+  "source_sha256": {
+    "proposal.json": "6b21cd0ce272a09ace906fd12bac89118dd9f7bc20b3aa5e12f9eb57094d73de",
+    "certify.py": "28db5a9657d6f63be6efa46faaad3ae3d5cf2d3d97cb7b7e12e53fbb6ee9cdc3"
+  },
+  "scope": "Exact rigid geometry fits a nominal 400 mm cube with stated planning reserves. These reserves are not measured build-plate/support dimensions. No support, recoater, overhang, scan-vector or process acceptance is inferred.",
+  "manufacturing_authorized": false
+}

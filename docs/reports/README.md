@@ -2,15 +2,38 @@
 
 # Execution and audit reports
 
-130 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../SAFETY.md).
+138 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../SAFETY.md).
 
 ```mermaid
 xychart-beta
     title "Reports written per day, 2026"
-    x-axis ["09-01", "09-06", "09-07", "09-08", "09-09", "09-12", "09-14", "09-16", "09-24", "09-25", "09-26", "09-27", "09-28", "09-29", "10-15", "10-16", "10-22", "10-28"]
+    x-axis ["09-01", "09-06", "09-07", "09-08", "09-09", "09-12", "09-14", "09-16", "09-24", "09-25", "09-26", "09-27", "09-28", "09-29", "10-15", "10-16", "10-22", "10-28", "11-04", "11-05", "11-06"]
     y-axis "reports" 0 --> 25
-    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 8, 6, 3, 15, 1, 1, 2, 1, 1]
+    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 8, 6, 3, 15, 1, 1, 2, 1, 1, 2, 5, 1]
 ```
+
+## November 6, 2026
+
+| report | file |
+|---|---|
+| 993 carrier H8: global rational refinement admitted | [`carrier-h8-global-geometry-20261106.md`](carrier-h8-global-geometry-20261106.md) |
+
+## November 5, 2026
+
+| report | file |
+|---|---|
+| 993 carrier H7: localize the complete mechanical correction | [`carrier-h7-correction-localization-20261105.md`](carrier-h7-correction-localization-20261105.md) |
+| 993 carrier H7: native results and complete-field CUDA cross-check | [`carrier-h7-native-results-20261105.md`](carrier-h7-native-results-20261105.md) |
+| 993 carrier h7: exact rational edge refinement | [`carrier-h7-rational-refinement-20261105.md`](carrier-h7-rational-refinement-20261105.md) |
+| 993 carrier H8: exact local operator feasibility and ordered qualification | [`carrier-h8-local-operator-feasibility-20261105.md`](carrier-h8-local-operator-feasibility-20261105.md) |
+| Carrier refinement: numerical usefulness before machine size | [`carrier-refinement-admissibility-20261105.md`](carrier-refinement-admissibility-20261105.md) |
+
+## November 4, 2026
+
+| report | file |
+|---|---|
+| 993 Turbo carrier: complete-mesh mechanical continuation | [`carrier-current-mechanics-20261104.md`](carrier-current-mechanics-20261104.md) |
+| 993 carrier: newly documented software review | [`carrier-software-review-20261104.md`](carrier-software-review-20261104.md) |
 
 ## October 28, 2026
 

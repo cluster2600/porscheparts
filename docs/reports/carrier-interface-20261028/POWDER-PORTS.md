@@ -1,5 +1,9 @@
 # Eight powder routes and a reproducible geometry check
 
+The subsequent [surface-conditioning checkpoint](SURFACE-CONDITIONING.md)
+retains these routes, repairs the port triangles and passes native CUDA checks
+on the corrected complete surface. This page records the port construction.
+
 The new carrier has **eight open escape routes**, one connected titanium shell
 and **zero closed internal void shells**. Its nominal mass is **1.293391518 kg**
 at the study density of 4.42 g/cm³, below the **1.30 kg** ceiling. The protected
@@ -7,8 +11,8 @@ central region and both end regions retain their original oriented triangles.
 
 The complete mesh passes the independent CGAL intersection check. The port
 construction also passes **16 exact all-face distance certificates**. Complete
-carrier mechanics, the new geometry's GPU query check and clearance throughout
-the internal air networks remain active work.
+carrier mechanics and clearance throughout the internal air networks remain
+active work. GPU results for the subsequent conditioned version are linked above.
 
 ![Actual carrier sections and newly opened routes](../../media/carrier-interface-20261028/ported-carrier-sections.png)
 
