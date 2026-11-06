@@ -97,6 +97,18 @@ class PublicPreviewTests(unittest.TestCase):
         cad.write_bytes(b"updated CAD")
         self.assertEqual(self.check(), 1)
 
+    def test_picogk_caption_identifies_the_actual_master_outside_legacy_catalogue(self):
+        self.record["geometry"].update(
+            master_format="PicoGK", master_file="twins/assumed-cell/picogk/Program.cs")
+        note = previews.geometry_note(self.record, picogk_model=True, rotation_x_deg=0)
+        self.assertIn("twins/assumed-cell/picogk/Program.cs", note)
+        self.assertNotIn("parts/picogk-catalog/", note)
+        self.record["geometry"]["master_file"] = "parts/picogk-catalog/body/Cell.cs"
+        self.assertEqual(
+            previews.geometry_note(self.record, picogk_model=True, rotation_x_deg=0),
+            "Geometry views of the part's PicoGK concept model (parts/picogk-catalog/). "
+            "Not a photograph, not a render of a manufactured part, not evidence of fit or function.")
+
     def test_missing_declared_cad_does_not_become_a_status_card(self):
         self.record["geometry"]["derived_files"] = ["twins/missing.stl"]
         self.write_record()

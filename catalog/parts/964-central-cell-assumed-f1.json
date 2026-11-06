@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "964-CENTRAL-CELL-ASSUMED-F1",
+  "name": "964 central carbon cell, F1 assumption-only study",
+  "description": "Editable clean-sheet central-tub concept with floor regions, sills, a driveline service tunnel, bulkheads and seat-crossmember load paths. Geometry, interfaces, material properties and loads are declared design hypotheses; this is not a reconstruction of the donor or a copy of a commercial monocoque.",
+  "vehicle": {
+    "generation": "964",
+    "variants": [
+      "Carrera_2_study_scope_only"
+    ],
+    "model_years": {
+      "from": 1989,
+      "to": 1994
+    },
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "central_load_bearing_cell_study",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Hypothesis-only architecture, editable geometry and conditional torsion/bending studies; no vehicle fitment, manufacture or road/track release"
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "PicoGK",
+    "master_file": "twins/964-chassis/assumed-cell-20261106/picogk/Program.cs",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "parts/964-central-cell-assumed-f1/derived/assumed-cell.step"
+    ]
+  },
+  "provenance": {
+    "record_license": "Repository LICENSE for independently authored study geometry and code; no source scan, proprietary manual, vendor photograph or commercial CAD reused",
+    "sources": [
+      {
+        "title": "Owner-authorized assumption-only central-cell study",
+        "url": "https://github.com/cluster2600/porscheparts/tree/main/twins/964-chassis/assumed-cell-20261106",
+        "source_type": "estimated",
+        "license": "Repository LICENSE for the independent study",
+        "accessed_on": "2026-11-06",
+        "notes": "The owner explicitly requested continuing with hypotheses. The new study does not alter frozen donor evidence, restore withdrawn geometry or establish measured interfaces. Model-year bounds describe study scope only."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "composite_layup"
+    ],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "assumed carbon-fibre/epoxy composite for elastic screening",
+      "grade": "undecided; no supplier-certified laminate or core allowables",
+      "standard": "undecided; no process or road/track qualification"
+    },
+    "post_processing": [],
+    "supplier_requirements": [
+      "Measured functional interfaces and an independently accepted load path before functional part design or tooling commitment.",
+      "Traceable laminate, core, adhesive and insert properties, process definition, coupons, inspection and professional validation plan."
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Any later metallic inserts require their own material, attachment and isolation qualification."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "twins/964-chassis/assumed-cell-20261106/assumptions.json",
+      "twins/964-chassis/assumed-cell-20261106/build.py",
+      "twins/964-chassis/assumed-cell-20261106/picogk/Program.cs"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "All new dimensions, attachment positions and service envelopes are design assumptions, not Porsche or donor measurements.",
+      "The source frame is a local study frame; no donor registration, dimensional accuracy or physical side correspondence is admitted.",
+      "The Carrera 2 scope does not establish donor model year or gearbox, and supplies no 993 or Carrera 4 compatibility evidence.",
+      "The current open-top tub omits windshield, door and roof load paths; it is not a complete enclosed central cell.",
+      "Fixture/load-introduction regions are hypothetical; calculated stiffness applies only to the declared model and boundary conditions.",
+      "Conditional elastic results do not establish laminate strength, joint capacity, fatigue, buckling, crash, occupant-restraint, fire or aging performance.",
+      "No measured material/process allowables, mould qualification, physical correlation or manufacturing/road/track approval is supplied.",
+      "Historical rejected whole-body geometry and its renders remain withdrawn as the product baseline; their results do not transfer to this study.",
+      "This concept is not a released functional part or a validated final digital twin."
+    ]
+  }
+}

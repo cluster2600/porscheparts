@@ -14,6 +14,7 @@ from urllib.parse import urlparse
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog" / "parts"
 PART_ID_PATTERN = re.compile(r"^[A-Z0-9][A-Z0-9._-]{2,63}$")
+MODEL_YEARS_BY_GENERATION = {"964": (1989, 1994), "993": (1993, 1998)}
 
 SAFETY_CLASSES = {
     "non_critical",
@@ -134,8 +135,10 @@ def validate_record(record: Any) -> list[str]:
         errors.append("description: expected a non-empty string")
 
     vehicle = _section(record, "vehicle", errors)
-    if vehicle.get("generation") != "993":
-        errors.append("vehicle.generation: expected 993")
+    generation = vehicle.get("generation")
+    year_range = MODEL_YEARS_BY_GENERATION.get(generation) if isinstance(generation, str) else None
+    if year_range is None:
+        errors.append("vehicle.generation: expected 964 or 993")
     variants = vehicle.get("variants")
     if not _is_string_list(variants) or not variants:
         errors.append("vehicle.variants: expected at least one string")
@@ -145,10 +148,11 @@ def validate_record(record: Any) -> list[str]:
     else:
         year_from = years.get("from")
         year_to = years.get("to")
-        if not isinstance(year_from, int) or not 1993 <= year_from <= 1998:
-            errors.append("vehicle.model_years.from: expected an integer from 1993 to 1998")
-        if not isinstance(year_to, int) or not 1993 <= year_to <= 1998:
-            errors.append("vehicle.model_years.to: expected an integer from 1993 to 1998")
+        first_year, last_year = year_range or (1989, 1998)
+        if not isinstance(year_from, int) or not first_year <= year_from <= last_year:
+            errors.append(f"vehicle.model_years.from: expected an integer from {first_year} to {last_year}")
+        if not isinstance(year_to, int) or not first_year <= year_to <= last_year:
+            errors.append(f"vehicle.model_years.to: expected an integer from {first_year} to {last_year}")
         if isinstance(year_from, int) and isinstance(year_to, int) and year_from > year_to:
             errors.append("vehicle.model_years: from must be less than or equal to to")
     if not _is_string_list(vehicle.get("porsche_part_numbers")):

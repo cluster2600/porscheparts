@@ -20,6 +20,19 @@ class CatalogueValidationTests(unittest.TestCase):
         schema = json.loads(schema_path.read_text(encoding="utf-8"))
         self.assertEqual(schema["$schema"], "https://json-schema.org/draft/2020-12/schema")
 
+    def test_model_years_follow_the_declared_generation(self) -> None:
+        for generation, first, last in (("964", 1989, 1994), ("993", 1993, 1998)):
+            with self.subTest(generation=generation):
+                record = deepcopy(self.template)
+                record["vehicle"].update(generation=generation, model_years={"from": first, "to": last})
+                self.assertEqual(validate_record(record), [])
+                record["vehicle"]["model_years"]["from"] = first - 1
+                self.assertTrue(any("model_years.from" in error for error in validate_record(record)))
+                record["vehicle"]["model_years"] = {"from": first, "to": last + 1}
+                self.assertTrue(any("model_years.to" in error for error in validate_record(record)))
+        record["vehicle"]["generation"] = "unknown"
+        self.assertTrue(any("vehicle.generation" in error for error in validate_record(record)))
+
     def test_titanium_requires_process_controls(self) -> None:
         record = deepcopy(self.template)
         record["titanium"]["applicable"] = True
