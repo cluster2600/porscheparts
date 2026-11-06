@@ -93,12 +93,12 @@ each run. Some carrier runtimes are native environments, not those images.
 | 23 | WildMeshing / fTetWild bindings 0.4.1 | **R.** Positive tetrahedron control, but complete-carrier trial did not supply an admitted replacement. [R20] | Retain as mesher alternative; first resolve the documented full-boundary/envelope/resource failure. |
 | 24 | SALOME 9.16 / SMESH / NETGEN | **S.** Native cube/bore controls; pilot carrier face-group mapping missing. Kali container acceptance remained incomplete. [FR], [FK] | Separate group-preserving mesher trial only if needed. Do not confuse this runtime with row 25. |
 | 25 | Standalone netgen-mesher 6.2.2607 / netgen-occt 7.8.1 | **E.** Complete 16,239,026-cell reference passed independent volume checks. [Volume validation](carrier-interface-20261028/VOLUME-VALIDATION.md) | Fallback geometry route; mechanical groups and response belong to their own subsequent admission. |
-| 26 | CalculiX 2.21 / historical SPOOLES / current PARDISO | **E.** Complete H7 gravity and combined fields, five native controls per case and independent force/moment/energy checks. [H7](carrier-h7-native-results-20261105.md) | Finish H8 retained-field comparisons using the same source-bound native path and limits. |
+| 26 | CalculiX 2.21 / historical SPOOLES / current PARDISO | **E.** Complete H7 and H8 gravity/combined fields, native controls and independent force/moment/energy checks. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md) | Continue source-admitted refinement with the same native path and limits; H8 has not closed stabilization. |
 | 27 | scikit-fem 11.0.0 / SciPy 1.17.1 / PyAMG 5.3.0 alternative | **R.** Analytical controls passed; complete retained quadratic-reference attempts failed the iteration or true-residual gate. Actual current-cell mapping checks passed, but no replacement carrier response was admitted. [Current mechanics](carrier-current-mechanics-20261104.md#optional-local-amg-route-independent-controls-passed) | Keep native PARDISO as the comparison authority; another solver needs its own complete parity result. |
-| 28 | Repository exact-rational refinement, NumPy/SciPy field readers and comparator | **E.** Exact parent-child maps, full DAT replay, rational-fraction controls and H6→H7 comparison. [H7](carrier-h7-native-results-20261105.md), [H8 geometry](carrier-h8-global-geometry-20261106.md) | Run the prepared comparison002 sequentially after complete H8 source receipts and fields exist. |
+| 28 | Repository exact-rational refinement, NumPy/SciPy field readers and comparator | **E.** Exact parent-child maps, full DAT replay, rational-fraction controls and complete H7→H8 comparisons: 0.811685% gravity / 1.475836% combined. [H8 results](carrier-h8-native-results-20261106.md), [geometry](carrier-h8-global-geometry-20261106.md) | Build fresh marking vectors from admitted H8 fields before H9; retain the two-successive-below-1% criterion. |
 | 29 | PR #274 Warp 1.18.0 original geometry pilot | **S.** Original analytic box cases and CPU/native controls. [Warp pilot][WP] | This is the baseline software contract; do not describe the original PR as a complete CUDA/carrier/manufacturing validation. |
 | 30 | Warp 1.18.0 actual CUDA distance queries | **R.** Earlier reconstructed-carrier probes passed [IS]; latest full 10,452,018-probe witness failed all six repetitions: 422 exceed 0.0001 mm, maximum error 0.002814613 mm. [Current refusal](carrier-current-mechanics-20261104.md#complete-pr-274-cuda-accuracy-witness-refused) | Retain double CPU/libigl distances as clearance reference. Isolate and correct query errors before another acceptance claim. |
-| 31 | Warp 1.18.0 CUDA FP64 energy audit | **E.** All 18,670,283 H7 cells checked under both loads against distinct CPU algebra at abs 1e-14 N mm + rel 1e-12. [H7](carrier-h7-native-results-20261105.md) | H8 energy checks are separate pending evidence at this checkpoint. Energy agreement does not validate row 30 or provide a GPU mechanical solve. |
+| 31 | Warp 1.18.0 CUDA FP64 energy audit | **E.** All 18,670,283 H7 cells and all 18,698,908 H8 cells checked under both loads against distinct CPU algebra at abs 1e-14 N mm + rel 1e-12. H8 used RTX 4000 Ada and RTX 3090. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md) | Energy agreement does not validate row 30 or provide a GPU mechanical solve. Rebind and rerun for each new complete field. |
 | 32 | cluster_compilot / ComPilot `362a080d…` | **A.** Optional C/OpenMP loop optimization after profiling; separate Python ≥3.14/ISL environment. [WP] | Identify a costly compatible loop and preserve dependence/numerical tests before a trial. No C#/PicoGK/Warp backend or carrier speedup credited. |
 | 33 | OpenMDAO, isolated [requirements lock][FL] | **S.** Analytical beam optimum and carrier admission replay; no native carrier optimization. [FR], [FK] | Connect real accepted solver outputs, bounded variables and failure handling after stable deterministic response. |
 | 34 | OpenTURNS, isolated [requirements lock][FL] | **S.** Fixed-seed analytical sensitivity control, not carrier response sensitivity. [FR], [FK] | Define reviewed parameter ranges and use complete solver outputs; do not invent probability distributions. |
@@ -126,17 +126,18 @@ each run. Some carrier runtimes are native environments, not those images.
 | 46 | ccx2paraview | **A.** Result-conversion route in [T]; no current H7/H8 execution credited. | Optional view conversion only; complete qualified DAT reader remains numerical authority. |
 | 47 | PyVista 0.44.2 / VTK 9.3.1 | **E.** Actual quadratic-cell geometry and field figures in [IS]. | Preserve source-array hashes and keep its runtime separate from conflicting CadQuery VTK libraries. |
 | 48 | ParaView | **A.** Interactive post-processing alternative in [T]. | Use if it answers a concrete field-inspection question; no numerical acceptance inferred from display. |
-| 49 | Matplotlib / Pillow / Poppler / ReportLab | **E.** Actual geometry, stress/energy plots and report export/inspection. Versions are bound per figure, not one global environment. [H], [H7](carrier-h7-native-results-20261105.md) | Prepared H8 renderer requires both actual comparisons; it refuses missing results and produces no invented H8 values. |
+| 49 | Matplotlib / Pillow / Poppler / ReportLab | **E.** Actual geometry, stress/energy plots and report export/inspection. Versions are bound per figure, not one global environment. [H], [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md) | H8 figures bind both actual comparisons; retain source-array hashes and missing-result refusal. |
 | 50 | OpenUSD; documented usd-convert-cad 0.2.0 / nvidia_usd_validate 1.21.0 alternatives | **E, historical concept.** F1 [checks](../../parts/993-eng-carrier-0001/derived/qwen-concept-f1/checks.json) record Pixar USD 0.25.5 reopen, exact mesh-array agreement, Z-up and 0.001 metres/unit. SimReady validation was false. The converter and NVIDIA validator are documented [T], with no carrier execution credited here. | A current review bundle needs its own exchange/relocation checks; historical USD readback neither clears F1's missing attachment nor supplies current carrier manufacturing evidence. |
 | 51 | ovstage 0.1.1.355824 / ovphysx 0.5.11 / OVRTX | **A.** Documented scene, rigid-body and RTX review alternatives [T]. | Only for a concrete assembly/contact/visual question; rendering and rigid motion do not replace FEA or build simulation. |
 | 52 | DVC 3.67.1 | **E.** Real carrier input recovery; later 24-file and 69-file fresh-cache restores with all SHA-256 checks. [Current recovery](carrier-current-mechanics-20261104.md#private-recovery-with-dvc); earlier separate Kali recovery [FK] | Archive the new complete retained scientific outputs in a new checkpoint; same-Mac restoration alone is not off-device backup. |
 | 53 | Git / GitHub / Make / Python / GitHub Actions | **E.** Versioned scripts, public scalar evidence, locks, catalogue and CI. [H], [T] | New docs/results remain reviewable; a merge or CI pass is separate from numerical convergence. |
-| 54 | Docker / bounded host runners / approved OpenBao–Vast wrapper | **E.** Isolated recorded runtimes, bounded native H7 execution, recovery and teardown. [H7](carrier-h7-native-results-20261105.md) | Preserve each lease's ownership, finite budget/deadline and full recovery. This audit makes no cloud or secret changes. |
+| 54 | Docker / bounded host runners / approved OpenBao–Vast wrapper | **E.** Isolated recorded runtimes, bounded native H7/H8 execution, complete lossless recovery and verified teardown. Both parallel H8 instances are absent. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md) | Preserve each lease's ownership, finite budget/deadline and full recovery. This audit itself makes no cloud or secret changes. |
 
 ## What happens next
 
-The immediate comparison is **H7→H8 for gravity and combined loading**, using
-complete retained native fields. H6→H7 was **2.65382807% / 3.25723437%**.
+The complete **H7→H8 comparison is 0.81168514% for gravity and 1.47583589%
+for combined loading**, using all retained native fields. H6→H7 was
+**2.65382807% / 3.25723437%**.
 The criterion is still **two successive complete-field energy increments below
 1% for each load case**. Therefore even a small H7→H8 increment alone cannot
 close stabilization. Unresolved pointwise peaks remain explicitly separate.
@@ -165,10 +166,11 @@ flowchart TD
 
 Concrete integration gaps, in order:
 
-1. **Finish the actual H8 comparisons and images.** The prepared
-   `work/carrier-h8-comparison-002/compare_case.py` retains the qualified
-   comparator, source hashes and exact map. Run one local replay at a time to
-   avoid RAM overlap; `render.py` consumes actual receipts for both cases.
+1. **Prepare source-admitted H9 refinement.** H8 comparisons and images now
+   have complete-field evidence. Gravity has one increment below 1%; combined
+   remains above it. Compute new traction-jump vectors from both complete H8
+   fields, verify all loads/supports and their source geometry, then admit the
+   next exact refinement before new solves. Keep the unchanged convergence rule.
 2. **Close the current geometry's additive preparation.** Reuse PySLM and its
    installed patches, but bind a fresh pose/support/layer package to the chosen
    geometry. Check support contacts, access, complete build envelope and every

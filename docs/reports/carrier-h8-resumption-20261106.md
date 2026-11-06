@@ -17,9 +17,11 @@ remain intact. The current admission replay still returns `blocked_engineering`
 with optimization disabled. This is a provenance update, not a new optimization.
 
 The [admitted H8 geometry](carrier-h8-global-geometry-20261106.md) contains
-4,793,222 nodes and 18,698,908 tetrahedra. Its native mechanical fields remain
-pending at this preparation checkpoint. Geometry admission does not establish
-mechanical convergence.
+4,793,222 nodes and 18,698,908 tetrahedra. Both native mechanical fields and
+complete CUDA energy audits have now passed their execution checks. Both DAT
+streams are recovered losslessly, with every decompressed byte hash-verified.
+The [completed H8 results](carrier-h8-native-results-20261106.md) record the
+full-field comparisons; mechanical stabilization remains open.
 
 ## Recovery and new attempts
 
@@ -38,8 +40,9 @@ Both new instances reached authenticated SSH and began the public bidirectional
 transfer test. Gravity instance 59470533 required one explicit start of the
 same owned instance after the provider had loaded its image but left it stopped;
 the original deadline and lease were retained. Combined instance 59471489
-started without that intervention. This is infrastructure progress, not a
-completed H8 calculation.
+started without that intervention. Both native solves subsequently exited zero
+and were reaped. After complete scientific recovery, both exact owned instances
+were destroyed and their absence verified. A fresh provider inventory was empty.
 
 | Case | Instance | Advertised RAM | Advertised compute/storage rate |
 |---|---:|---:|---:|
@@ -54,9 +57,10 @@ took 270.90/55.96 seconds; combined upload/download took 141.51/130.98 seconds.
 Network charges are separate and included in each planned cost reserve.
 
 The unchanged Warp 1.18.0/NumPy 2.2.6 overlay was installed separately on each
-host using pinned wheel hashes. Setup passed in 12.28 and 17.33 seconds. The
-complete CUDA energy audit must wait for the original independent assessor to
-finish and close its fields; successful installation is not that audit.
+host using pinned wheel hashes. Setup passed in 12.28 and 17.33 seconds. After
+the independent assessors closed their fields, each CUDA audit checked all
+18,698,908 cells against a distinct CPU formulation. Both passed; execution
+identities and numerical results are in the completed H8 report.
 
 All 27 prepared file identities per lane were checked. Numerical worker sources
 are byte-identical to the corresponding prior H8 attempts. The actual deployment
@@ -86,12 +90,13 @@ flowchart LR
 
 The new comparison adapter binds the qualified fraction-aware map and complete
 H7 fields to the new H8 receivers. Both missing-input checks refuse execution
-before creating private outputs. Full replay awaits the actual H8 fields.
+before creating private outputs. Actual complete replays run sequentially to
+avoid overlapping their memory use.
 
 The existing criterion remains two successive complete energy-norm increments
 below one percent. Report each load case and its Galerkin defect; scalar
 quantiles alone do not establish stabilization. Unresolved stress peaks remain
-explicit. This checkpoint claims neither an H8 response nor convergence.
+explicit; successful native, replay and GPU checks do not close convergence.
 
 ## Software sequence after H8
 
@@ -125,7 +130,7 @@ the unchanged H8 reference remains the basis for the refinement comparison.
    verify the actual convection/radiation conversions and explicit density,
    capacity and conductivity handoff on synthetic domains. The carrier still
    needs explicit thermal material/process inputs, material activation, a moving
-   laser and mesh/time refinement remain necessary. Neither a complete carrier
+   laser and mesh/time refinement. Neither a complete carrier
    thermal simulation nor its thermomechanical transfer has been executed;
    the [isolated runtime runbook](../architecture/usd-brep-lpbf.md) records the
    current control scope.
