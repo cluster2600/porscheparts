@@ -22,3 +22,10 @@ quadratic blockage proxy + prescribed static rise). Blade count UNKNOWN
 
 Regenerate + rerun: `python3 make_case.py && ./run_case.sh caseB_corrected &&
 ./run_case.sh caseA_published && python3 post_report.py`.
+
+Solver output (time directories `100/` and `200/`, `postProcessing/` and the
+`*.log` files of both cases) is no longer tracked (issue #417). Its digests and
+the commit it can be recovered from are in
+[`catalog/registers/untracked-solver-output.json`](../../../catalog/registers/untracked-solver-output.json);
+the rerun command above regenerates it locally. `run_metrics.json` keeps the
+numerical result.
