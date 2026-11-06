@@ -1,0 +1,20 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "observation_set",
+  "description": "The outlet probe transformed into F_FAN lies upstream of the impeller.",
+  "expected_codes": [
+    "FRAME_STATION"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/channels/5/mount/translation_mm",
+      "value": [
+        0.0,
+        0.0,
+        -80.0
+      ]
+    }
+  ]
+}

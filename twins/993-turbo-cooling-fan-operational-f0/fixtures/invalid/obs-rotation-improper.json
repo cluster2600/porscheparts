@@ -1,0 +1,32 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "observation_set",
+  "description": "A mirrored mount rotation (determinant -1).",
+  "expected_codes": [
+    "FRAME_INVALID"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/channels/3/mount/rotation_parent_from_sensor",
+      "value": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0
+        ]
+      ]
+    }
+  ]
+}

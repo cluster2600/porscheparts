@@ -1,0 +1,17 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "observation_set",
+  "description": "Measured data stored inline in Git, without consent, published as synthetic.",
+  "expected_codes": [
+    "RAW_DATA_POLICY",
+    "SOURCE_RIGHTS"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/provenance/data_class",
+      "value": "measured"
+    }
+  ]
+}

@@ -1,0 +1,634 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/cluster2600/porscheparts/schemas/operational-twin.schema.json",
+  "title": "porscheparts operational twin contract: slice, model, parameters, calibration, observations and twin state",
+  "description": "Version 1.0.0. One schema for the documents that bind a specimen-linked, timestamped observation set to a versioned prediction. Each document declares document_kind and is validated against the definition of that kind. scripts/validate_operational_twin.py implements exactly the keywords used here and refuses any other keyword, then applies the semantic rules this schema cannot express (hash bindings, frames, units, privacy). Content hashes are sha256 over canonical JSON: UTF-8, sorted keys, separators ',' and ':', non-ASCII kept, Python json number repr.",
+  "x-schema-version": "1.0.0",
+  "oneOf": [
+    {"$ref": "#/$defs/slice_contract"},
+    {"$ref": "#/$defs/model_card"},
+    {"$ref": "#/$defs/parameter_set"},
+    {"$ref": "#/$defs/calibration_register"},
+    {"$ref": "#/$defs/observation_set"}
+  ],
+  "$defs": {
+    "text": {"type": "string", "minLength": 1},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "utc": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"},
+    "semver": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "repo_path": {"type": "string", "pattern": "^[A-Za-z0-9_][A-Za-z0-9_./-]*$"},
+    "upper_id": {"type": "string", "pattern": "^[A-Z][A-Z0-9_.-]{1,63}$"},
+    "specimen_id": {"type": "string", "pattern": "^SPEC-[A-Z0-9]+(-[A-Z0-9]+)*$", "maxLength": 40},
+    "vec3": {"type": "array", "items": {"type": "number"}, "minItems": 3, "maxItems": 3},
+    "mat3": {"type": "array", "items": {"$ref": "#/$defs/vec3"}, "minItems": 3, "maxItems": 3},
+    "range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+    "unit": {"type": "string", "enum": ["rad/s", "rpm", "K", "degC", "Pa", "hPa", "kPa", "1", "J/(kg K)", "kg/m3", "s"]},
+    "data_class": {"type": "string", "enum": ["synthetic", "measured"]},
+    "no_claim_reason": {
+      "type": "string",
+      "enum": ["missing", "stale", "late", "sensor_fault", "source_outlier", "out_of_range",
+               "calibration_invalid", "outside_envelope", "transient", "not_steady", "input_unavailable"]
+    },
+    "verdict": {"type": "string", "enum": ["consistent", "indeterminate", "discrepant", "no_claim"]},
+
+    "slice_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["document_kind", "schema_version", "contract_id", "contract_revision", "title",
+                   "vehicle", "programme_binding", "twin_reference", "specimen", "scope", "frames",
+                   "stations", "quantities", "unit_conversions", "channels", "timebase_requirements",
+                   "operating_envelope", "operating_cases", "prediction", "residual_rules",
+                   "sample_rules", "no_claim_states", "synchronisation_modes", "privacy",
+                   "claim_limits", "open_blockers"],
+      "properties": {
+        "document_kind": {"const": "slice_contract"},
+        "schema_version": {"const": "1.0.0"},
+        "contract_id": {"$ref": "#/$defs/upper_id"},
+        "contract_revision": {"$ref": "#/$defs/semver"},
+        "title": {"$ref": "#/$defs/text"},
+        "vehicle": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["generation", "variant", "engine", "model_years", "variant_source"],
+          "properties": {
+            "generation": {"const": "993"},
+            "variant": {"type": "string", "enum": ["993_Turbo"]},
+            "engine": {"type": "string", "enum": ["M64/60"]},
+            "model_years": {
+              "type": "object", "additionalProperties": false, "required": ["from", "to"],
+              "properties": {"from": {"type": "integer", "minimum": 1993, "maximum": 1998},
+                             "to": {"type": "integer", "minimum": 1993, "maximum": 1998}}
+            },
+            "variant_source": {"$ref": "#/$defs/repo_path"}
+          }
+        },
+        "programme_binding": {
+          "type": "object", "additionalProperties": false,
+          "required": ["programme_file", "program_id", "zone_id", "acquisition_contract_id"],
+          "properties": {
+            "programme_file": {"$ref": "#/$defs/repo_path"},
+            "program_id": {"$ref": "#/$defs/upper_id"},
+            "zone_id": {"$ref": "#/$defs/upper_id"},
+            "acquisition_contract_id": {"$ref": "#/$defs/upper_id"}
+          }
+        },
+        "twin_reference": {
+          "type": "object", "additionalProperties": false,
+          "required": ["twin_record", "twin_id", "use"],
+          "properties": {
+            "twin_record": {"$ref": "#/$defs/repo_path"},
+            "twin_id": {"type": "string", "pattern": "^TWIN-[A-Z0-9][A-Z0-9._-]{2,63}$"},
+            "use": {"$ref": "#/$defs/text"}
+          }
+        },
+        "specimen": {
+          "type": "object", "additionalProperties": false,
+          "required": ["specimen_id", "identity_class", "description", "identity_status", "identifier_policy"],
+          "properties": {
+            "specimen_id": {"$ref": "#/$defs/specimen_id"},
+            "identity_class": {"type": "string", "enum": ["synthetic_placeholder", "anonymous_physical_specimen"]},
+            "description": {"$ref": "#/$defs/text"},
+            "identity_status": {"$ref": "#/$defs/text"},
+            "identifier_policy": {"const": "anonymous_no_vehicle_identifiers"}
+          }
+        },
+        "scope": {
+          "type": "object", "additionalProperties": false,
+          "required": ["use_case", "included", "excluded"],
+          "properties": {
+            "use_case": {"$ref": "#/$defs/text"},
+            "included": {"type": "array", "items": {"$ref": "#/$defs/text"}, "minItems": 1},
+            "excluded": {"type": "array", "items": {"$ref": "#/$defs/text"}, "minItems": 1}
+          }
+        },
+        "frames": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["frame_id", "kind", "origin", "axes", "units", "parent_transform", "status"],
+            "properties": {
+              "frame_id": {"$ref": "#/$defs/upper_id"},
+              "kind": {"type": "string", "enum": ["component"]},
+              "origin": {"$ref": "#/$defs/text"},
+              "axes": {"$ref": "#/$defs/text"},
+              "units": {"const": "mm"},
+              "parent_transform": {"type": "null"},
+              "status": {"$ref": "#/$defs/text"}
+            }
+          }
+        },
+        "stations": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["station_id", "frame_id", "kind", "description", "status"],
+            "properties": {
+              "station_id": {"$ref": "#/$defs/upper_id"},
+              "frame_id": {"$ref": "#/$defs/upper_id"},
+              "kind": {"type": "string", "enum": ["axial_cylinder", "rotation_axis"]},
+              "description": {"$ref": "#/$defs/text"},
+              "z_range_mm": {"$ref": "#/$defs/range"},
+              "r_max_mm": {"type": "number", "exclusiveMinimum": 0},
+              "min_abs_axis_cosine": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+              "status": {"$ref": "#/$defs/text"}
+            },
+            "if": {"properties": {"kind": {"const": "axial_cylinder"}}},
+            "then": {"required": ["z_range_mm", "r_max_mm"]},
+            "else": {"required": ["min_abs_axis_cosine"]}
+          }
+        },
+        "quantities": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["quantity_id", "canonical_unit", "accepted_units", "note"],
+            "properties": {
+              "quantity_id": {"type": "string", "enum": ["angular_velocity", "temperature", "pressure", "pressure_difference"]},
+              "canonical_unit": {"$ref": "#/$defs/unit"},
+              "accepted_units": {"type": "array", "items": {"$ref": "#/$defs/unit"}, "minItems": 1, "uniqueItems": true},
+              "note": {"$ref": "#/$defs/text"}
+            }
+          }
+        },
+        "unit_conversions": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["from", "to", "scale", "offset"],
+            "properties": {
+              "from": {"$ref": "#/$defs/unit"},
+              "to": {"$ref": "#/$defs/unit"},
+              "scale": {"type": "number", "exclusiveMinimum": 0},
+              "offset": {"type": "number"}
+            }
+          }
+        },
+        "channels": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["channel_id", "quantity_id", "role", "station_id", "sign_convention",
+                         "nominal_period_s", "max_age_s", "plausible_range_canonical"],
+            "properties": {
+              "channel_id": {"$ref": "#/$defs/upper_id"},
+              "quantity_id": {"type": "string"},
+              "role": {"type": "string", "enum": ["input", "observed_output"]},
+              "station_id": {"type": ["string", "null"]},
+              "sign_convention": {"$ref": "#/$defs/text"},
+              "nominal_period_s": {"type": "number", "exclusiveMinimum": 0},
+              "max_age_s": {"type": "number", "exclusiveMinimum": 0},
+              "plausible_range_canonical": {"$ref": "#/$defs/range"}
+            }
+          }
+        },
+        "timebase_requirements": {
+          "type": "object", "additionalProperties": false,
+          "required": ["clock", "max_resolution_s", "max_inter_channel_skew_s", "max_drift_ppm", "sample_time_reference"],
+          "properties": {
+            "clock": {"const": "single_monotonic_acquisition_clock"},
+            "max_resolution_s": {"type": "number", "exclusiveMinimum": 0},
+            "max_inter_channel_skew_s": {"type": "number", "exclusiveMinimum": 0},
+            "max_drift_ppm": {"type": "number", "minimum": 0},
+            "sample_time_reference": {"$ref": "#/$defs/text"}
+          }
+        },
+        "operating_envelope": {
+          "type": "object", "additionalProperties": false,
+          "required": ["source", "inputs_canonical"],
+          "properties": {
+            "source": {"$ref": "#/$defs/text"},
+            "inputs_canonical": {
+              "type": "object",
+              "propertyNames": {"$ref": "#/$defs/upper_id"},
+              "additionalProperties": {"$ref": "#/$defs/range"}
+            }
+          }
+        },
+        "operating_cases": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["case_id", "description", "vehicle_state", "evaluation_period_s",
+                         "min_steady_window_s", "steady_reference_channel", "steady_tolerance_rel"],
+            "properties": {
+              "case_id": {"$ref": "#/$defs/upper_id"},
+              "description": {"$ref": "#/$defs/text"},
+              "vehicle_state": {"$ref": "#/$defs/text"},
+              "evaluation_period_s": {"type": "number", "exclusiveMinimum": 0},
+              "min_steady_window_s": {"type": "number", "exclusiveMinimum": 0},
+              "steady_reference_channel": {"$ref": "#/$defs/upper_id"},
+              "steady_tolerance_rel": {"type": "number", "exclusiveMinimum": 0, "maximum": 0.5}
+            }
+          }
+        },
+        "prediction": {
+          "type": "object", "additionalProperties": false,
+          "required": ["model_card", "inputs", "outputs"],
+          "properties": {
+            "model_card": {"$ref": "#/$defs/repo_path"},
+            "inputs": {"type": "array", "items": {"$ref": "#/$defs/upper_id"}, "minItems": 1, "uniqueItems": true},
+            "outputs": {
+              "type": "array", "minItems": 1,
+              "items": {
+                "type": "object", "additionalProperties": false,
+                "required": ["output_id", "compare_channel"],
+                "properties": {
+                  "output_id": {"$ref": "#/$defs/upper_id"},
+                  "compare_channel": {"$ref": "#/$defs/upper_id"}
+                }
+              }
+            }
+          }
+        },
+        "residual_rules": {
+          "type": "object", "additionalProperties": false,
+          "required": ["residual_definition", "uncertainty_definition", "consistent_max_abs_z",
+                       "discrepant_min_abs_z", "min_evaluated_frames_per_output",
+                       "consistent_max_discrepant_fraction", "consistent_max_indeterminate_fraction",
+                       "rejected_min_discrepant_fraction", "systematic_note"],
+          "properties": {
+            "residual_definition": {"$ref": "#/$defs/text"},
+            "uncertainty_definition": {"$ref": "#/$defs/text"},
+            "consistent_max_abs_z": {"type": "number", "exclusiveMinimum": 0},
+            "discrepant_min_abs_z": {"type": "number", "exclusiveMinimum": 0},
+            "min_evaluated_frames_per_output": {"type": "integer", "minimum": 1},
+            "consistent_max_discrepant_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+            "consistent_max_indeterminate_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+            "rejected_min_discrepant_fraction": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+            "systematic_note": {"$ref": "#/$defs/text"}
+          }
+        },
+        "sample_rules": {
+          "type": "object", "additionalProperties": false,
+          "required": ["sample_tuple", "selection", "latency_budget_s", "exact_duplicate",
+                       "contradictory_duplicate", "out_of_order_arrival", "sequence_time_contradiction",
+                       "late_sample", "flagged_sample", "outside_session"],
+          "properties": {
+            "sample_tuple": {"$ref": "#/$defs/text"},
+            "selection": {"$ref": "#/$defs/text"},
+            "latency_budget_s": {"type": "number", "exclusiveMinimum": 0},
+            "exact_duplicate": {"const": "drop_and_count"},
+            "contradictory_duplicate": {"const": "reject_run"},
+            "out_of_order_arrival": {"const": "order_by_sample_time_and_count"},
+            "sequence_time_contradiction": {"const": "reject_run"},
+            "late_sample": {"const": "exclude_and_count"},
+            "flagged_sample": {"const": "no_claim_for_dependent_outputs"},
+            "outside_session": {"const": "reject_run"}
+          }
+        },
+        "no_claim_states": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["reason", "meaning"],
+            "properties": {
+              "reason": {"$ref": "#/$defs/no_claim_reason"},
+              "meaning": {"$ref": "#/$defs/text"}
+            }
+          }
+        },
+        "synchronisation_modes": {
+          "type": "object", "additionalProperties": false,
+          "required": ["offline_replay", "live_synchronisation"],
+          "properties": {
+            "offline_replay": {
+              "type": "object", "additionalProperties": false,
+              "required": ["status", "definition"],
+              "properties": {"status": {"const": "specified"}, "definition": {"$ref": "#/$defs/text"}}
+            },
+            "live_synchronisation": {
+              "type": "object", "additionalProperties": false,
+              "required": ["status", "definition", "blockers"],
+              "properties": {
+                "status": {"const": "not_implemented"},
+                "definition": {"$ref": "#/$defs/text"},
+                "blockers": {"type": "array", "items": {"$ref": "#/$defs/text"}, "minItems": 1}
+              }
+            }
+          }
+        },
+        "privacy": {
+          "type": "object", "additionalProperties": false,
+          "required": ["specimen_identifier_policy", "raw_data_policy", "forbidden_content"],
+          "properties": {
+            "specimen_identifier_policy": {"$ref": "#/$defs/text"},
+            "raw_data_policy": {"$ref": "#/$defs/text"},
+            "forbidden_content": {"type": "array", "items": {"$ref": "#/$defs/text"}, "minItems": 1}
+          }
+        },
+        "claim_limits": {
+          "type": "object", "additionalProperties": false,
+          "required": ["max_validation_status", "physical_correlation", "live_twin", "fixture_statement"],
+          "properties": {
+            "max_validation_status": {"const": "digitally_checked"},
+            "physical_correlation": {"const": "not_claimed"},
+            "live_twin": {"const": "not_claimed"},
+            "fixture_statement": {"$ref": "#/$defs/text"}
+          }
+        },
+        "open_blockers": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["blocker_id", "needed", "unlocks"],
+            "properties": {
+              "blocker_id": {"$ref": "#/$defs/upper_id"},
+              "needed": {"$ref": "#/$defs/text"},
+              "unlocks": {"$ref": "#/$defs/text"}
+            }
+          }
+        }
+      }
+    },
+
+    "model_card": {
+      "type": "object", "additionalProperties": false,
+      "required": ["document_kind", "schema_version", "model_id", "model_revision", "contract_id",
+                   "kind", "inputs", "outputs", "parameters_required", "equations",
+                   "uncertainty_method", "assumptions", "validity", "implementation"],
+      "properties": {
+        "document_kind": {"const": "model_card"},
+        "schema_version": {"const": "1.0.0"},
+        "model_id": {"$ref": "#/$defs/upper_id"},
+        "model_revision": {"$ref": "#/$defs/semver"},
+        "contract_id": {"$ref": "#/$defs/upper_id"},
+        "kind": {"const": "quasi_steady_0d"},
+        "inputs": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["channel_id", "unit"],
+            "properties": {"channel_id": {"$ref": "#/$defs/upper_id"}, "unit": {"$ref": "#/$defs/unit"}}
+          }
+        },
+        "outputs": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["output_id", "unit", "equation"],
+            "properties": {"output_id": {"$ref": "#/$defs/upper_id"}, "unit": {"$ref": "#/$defs/unit"},
+                           "equation": {"$ref": "#/$defs/upper_id"}}
+          }
+        },
+        "parameters_required": {"type": "array", "items": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"}, "minItems": 1, "uniqueItems": true},
+        "equations": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["equation_id", "text"],
+            "properties": {"equation_id": {"$ref": "#/$defs/upper_id"}, "text": {"$ref": "#/$defs/text"}}
+          }
+        },
+        "uncertainty_method": {"$ref": "#/$defs/text"},
+        "assumptions": {"type": "array", "items": {"$ref": "#/$defs/text"}, "minItems": 1},
+        "validity": {"$ref": "#/$defs/text"},
+        "implementation": {"$ref": "#/$defs/text"}
+      }
+    },
+
+    "parameter_set": {
+      "type": "object", "additionalProperties": false,
+      "required": ["document_kind", "schema_version", "parameter_set_id", "model_id", "model_revision",
+                   "data_class", "statement", "parameters"],
+      "properties": {
+        "document_kind": {"const": "parameter_set"},
+        "schema_version": {"const": "1.0.0"},
+        "parameter_set_id": {"$ref": "#/$defs/upper_id"},
+        "model_id": {"$ref": "#/$defs/upper_id"},
+        "model_revision": {"$ref": "#/$defs/semver"},
+        "data_class": {"$ref": "#/$defs/data_class"},
+        "statement": {"$ref": "#/$defs/text"},
+        "parameters": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["name", "value", "unit", "standard_uncertainty", "source"],
+            "properties": {
+              "name": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+              "value": {"type": "number"},
+              "unit": {"$ref": "#/$defs/unit"},
+              "standard_uncertainty": {"type": "number", "minimum": 0},
+              "source": {"$ref": "#/$defs/text"}
+            }
+          }
+        }
+      }
+    },
+
+    "calibration_register": {
+      "type": "object", "additionalProperties": false,
+      "required": ["document_kind", "schema_version", "register_id", "data_class", "statement", "instruments"],
+      "properties": {
+        "document_kind": {"const": "calibration_register"},
+        "schema_version": {"const": "1.0.0"},
+        "register_id": {"$ref": "#/$defs/upper_id"},
+        "data_class": {"$ref": "#/$defs/data_class"},
+        "statement": {"$ref": "#/$defs/text"},
+        "instruments": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["instrument_id", "kind", "calibration_id", "certificate_status", "certificate_sha256",
+                         "valid_from_utc", "valid_until_utc", "unit", "standard_uncertainty_abs",
+                         "standard_uncertainty_rel", "uncertainty_basis", "range"],
+            "properties": {
+              "instrument_id": {"$ref": "#/$defs/upper_id"},
+              "kind": {"$ref": "#/$defs/text"},
+              "calibration_id": {"$ref": "#/$defs/upper_id"},
+              "certificate_status": {"type": "string", "enum": ["synthetic_no_certificate", "private_certificate_hashed"]},
+              "certificate_sha256": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/sha256"}]},
+              "valid_from_utc": {"$ref": "#/$defs/utc"},
+              "valid_until_utc": {"$ref": "#/$defs/utc"},
+              "unit": {"$ref": "#/$defs/unit"},
+              "standard_uncertainty_abs": {"type": "number", "minimum": 0},
+              "standard_uncertainty_rel": {"type": "number", "minimum": 0},
+              "uncertainty_basis": {"$ref": "#/$defs/text"},
+              "range": {"$ref": "#/$defs/range"}
+            },
+            "if": {"properties": {"certificate_status": {"const": "private_certificate_hashed"}}},
+            "then": {"properties": {"certificate_sha256": {"$ref": "#/$defs/sha256"}}},
+            "else": {"properties": {"certificate_sha256": {"type": "null"}}}
+          }
+        }
+      }
+    },
+
+    "sample": {
+      "description": "[sequence, sample_time_s, arrival_time_s, value_or_null, flag] on the declared timebase; value in the channel unit.",
+      "type": "array",
+      "prefixItems": [
+        {"type": "integer", "minimum": 0},
+        {"type": "number"},
+        {"type": "number"},
+        {"type": ["number", "null"]},
+        {"type": "string", "enum": ["ok", "missing", "source_outlier", "sensor_fault"]}
+      ],
+      "items": false,
+      "minItems": 5
+    },
+
+    "mount": {
+      "type": "object", "additionalProperties": false,
+      "required": ["sensor_frame_id", "parent_frame_id", "rotation_parent_from_sensor", "translation_mm",
+                   "position_sensor_mm", "status"],
+      "properties": {
+        "sensor_frame_id": {"$ref": "#/$defs/upper_id"},
+        "parent_frame_id": {"$ref": "#/$defs/upper_id"},
+        "rotation_parent_from_sensor": {"$ref": "#/$defs/mat3"},
+        "translation_mm": {"$ref": "#/$defs/vec3"},
+        "position_sensor_mm": {"$ref": "#/$defs/vec3"},
+        "sensing_axis_sensor": {"$ref": "#/$defs/vec3"},
+        "status": {"$ref": "#/$defs/text"}
+      }
+    },
+
+    "observation_set": {
+      "type": "object", "additionalProperties": false,
+      "required": ["document_kind", "schema_version", "observation_set_id", "contract_id", "contract_revision",
+                   "specimen_id", "synchronisation_mode", "provenance", "model_binding",
+                   "calibration_register", "timebase", "operating_case", "channels"],
+      "properties": {
+        "document_kind": {"const": "observation_set"},
+        "schema_version": {"const": "1.0.0"},
+        "observation_set_id": {"$ref": "#/$defs/upper_id"},
+        "contract_id": {"$ref": "#/$defs/upper_id"},
+        "contract_revision": {"$ref": "#/$defs/semver"},
+        "specimen_id": {"$ref": "#/$defs/specimen_id"},
+        "synchronisation_mode": {"type": "string", "enum": ["offline_replay", "live_synchronisation"]},
+        "provenance": {
+          "type": "object", "additionalProperties": false,
+          "required": ["data_class", "label", "generator", "source_rights", "raw_data"],
+          "properties": {
+            "data_class": {"$ref": "#/$defs/data_class"},
+            "label": {"$ref": "#/$defs/text"},
+            "generator": {
+              "oneOf": [
+                {"type": "null"},
+                {"type": "object", "additionalProperties": false, "required": ["script", "seed", "truth_note"],
+                 "properties": {"script": {"$ref": "#/$defs/repo_path"}, "seed": {"type": "integer"},
+                                "truth_note": {"$ref": "#/$defs/text"}}}
+              ]
+            },
+            "source_rights": {
+              "type": "object", "additionalProperties": false,
+              "required": ["licence", "rights_holder", "contributor_consent_ref", "publication"],
+              "properties": {
+                "licence": {"$ref": "#/$defs/text"},
+                "rights_holder": {"$ref": "#/$defs/text"},
+                "contributor_consent_ref": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/upper_id"}]},
+                "publication": {"type": "string", "enum": ["public_synthetic", "derived_results_only", "private"]}
+              }
+            },
+            "raw_data": {
+              "type": "object", "additionalProperties": false, "required": ["storage", "note"],
+              "properties": {
+                "storage": {"type": "string", "enum": ["inline_synthetic", "private_evidence_release"]},
+                "note": {"$ref": "#/$defs/text"}
+              }
+            }
+          }
+        },
+        "model_binding": {
+          "type": "object", "additionalProperties": false,
+          "required": ["model_id", "model_revision", "model_card_sha256", "parameter_set_id", "parameter_set_sha256"],
+          "properties": {
+            "model_id": {"$ref": "#/$defs/upper_id"},
+            "model_revision": {"$ref": "#/$defs/semver"},
+            "model_card_sha256": {"$ref": "#/$defs/sha256"},
+            "parameter_set_id": {"$ref": "#/$defs/upper_id"},
+            "parameter_set_sha256": {"$ref": "#/$defs/sha256"}
+          }
+        },
+        "calibration_register": {
+          "type": "object", "additionalProperties": false, "required": ["register_id", "sha256"],
+          "properties": {"register_id": {"$ref": "#/$defs/upper_id"}, "sha256": {"$ref": "#/$defs/sha256"}}
+        },
+        "timebase": {
+          "type": "object", "additionalProperties": false,
+          "required": ["timebase_id", "clock", "epoch_utc", "resolution_s", "max_inter_channel_skew_s", "drift_bound_ppm"],
+          "properties": {
+            "timebase_id": {"$ref": "#/$defs/upper_id"},
+            "clock": {"const": "single_monotonic_acquisition_clock"},
+            "epoch_utc": {"$ref": "#/$defs/utc"},
+            "resolution_s": {"type": "number", "exclusiveMinimum": 0},
+            "max_inter_channel_skew_s": {"type": "number", "exclusiveMinimum": 0},
+            "drift_bound_ppm": {"type": "number", "minimum": 0}
+          }
+        },
+        "operating_case": {
+          "type": "object", "additionalProperties": false,
+          "required": ["case_id", "duration_s", "steady_windows_s", "log_source"],
+          "properties": {
+            "case_id": {"$ref": "#/$defs/upper_id"},
+            "duration_s": {"type": "number", "exclusiveMinimum": 0},
+            "steady_windows_s": {"type": "array", "items": {"$ref": "#/$defs/range"}, "minItems": 1},
+            "log_source": {"$ref": "#/$defs/text"}
+          }
+        },
+        "channels": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["channel_id", "instrument_id", "calibration_id", "timebase_id", "unit",
+                         "nominal_period_s", "mount"],
+            "properties": {
+              "channel_id": {"$ref": "#/$defs/upper_id"},
+              "instrument_id": {"$ref": "#/$defs/upper_id"},
+              "calibration_id": {"$ref": "#/$defs/upper_id"},
+              "timebase_id": {"$ref": "#/$defs/upper_id"},
+              "unit": {"$ref": "#/$defs/unit"},
+              "nominal_period_s": {"type": "number", "exclusiveMinimum": 0},
+              "mount": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/mount"}]},
+              "samples": {"type": "array", "items": {"$ref": "#/$defs/sample"}},
+              "samples_ref": {
+                "type": "object", "additionalProperties": false, "required": ["sha256", "count"],
+                "properties": {"sha256": {"$ref": "#/$defs/sha256"}, "count": {"type": "integer", "minimum": 0}}
+              }
+            },
+            "oneOf": [
+              {"required": ["samples"], "not": {"required": ["samples_ref"]}},
+              {"required": ["samples_ref"], "not": {"required": ["samples"]}}
+            ]
+          }
+        }
+      }
+    },
+
+    "channel_state": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "value", "u", "seq", "age_s"],
+      "properties": {
+        "status": {"oneOf": [{"const": "usable"}, {"$ref": "#/$defs/no_claim_reason"}]},
+        "value": {"type": ["number", "null"]},
+        "u": {"type": ["number", "null"]},
+        "seq": {"type": ["integer", "null"]},
+        "age_s": {"type": ["number", "null"]}
+      }
+    },
+
+    "output_state": {
+      "type": "object", "additionalProperties": false,
+      "required": ["predicted", "u_predicted", "observed", "u_observed", "residual", "u_residual", "z", "verdict", "reasons"],
+      "properties": {
+        "predicted": {"type": ["number", "null"]},
+        "u_predicted": {"type": ["number", "null"]},
+        "observed": {"type": ["number", "null"]},
+        "u_observed": {"type": ["number", "null"]},
+        "residual": {"type": ["number", "null"]},
+        "u_residual": {"type": ["number", "null"]},
+        "z": {"type": ["number", "null"]},
+        "verdict": {"$ref": "#/$defs/verdict"},
+        "reasons": {"type": "array", "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9_.-]*:[a-z_]+$|^frame:[a-z_]+$"}, "uniqueItems": true}
+      }
+    },
+
+    "twin_state_frame": {
+      "description": "Twin state at one evaluation instant of an offline replay: the selected sample per channel in canonical units and frame, then each prediction, its residual and its verdict. A frame never carries a physical-correlation claim.",
+      "type": "object", "additionalProperties": false,
+      "required": ["t_s", "steady_window", "channels", "outputs"],
+      "properties": {
+        "t_s": {"type": "number", "minimum": 0},
+        "steady_window": {"type": ["integer", "null"], "minimum": 0},
+        "channels": {"type": "object", "propertyNames": {"$ref": "#/$defs/upper_id"}, "additionalProperties": {"$ref": "#/$defs/channel_state"}},
+        "outputs": {"type": "object", "propertyNames": {"$ref": "#/$defs/upper_id"}, "additionalProperties": {"$ref": "#/$defs/output_state"}}
+      }
+    }
+  }
+}

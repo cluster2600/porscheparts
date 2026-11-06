@@ -1,0 +1,16 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "observation_set",
+  "description": "A null value that is not flagged missing.",
+  "expected_codes": [
+    "SAMPLE_FLAG"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/channels/0/samples/3/3",
+      "value": null
+    }
+  ]
+}

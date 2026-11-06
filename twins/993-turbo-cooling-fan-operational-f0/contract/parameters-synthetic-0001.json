@@ -1,0 +1,19 @@
+{
+  "document_kind": "parameter_set",
+  "schema_version": "1.0.0",
+  "parameter_set_id": "PAR-993T-FAN-SYN-0001",
+  "model_id": "MDL-993T-FAN-QS0D",
+  "model_revision": "1.0.0",
+  "data_class": "synthetic",
+  "statement": "Synthetic placeholder values chosen to exercise the software. None of them is a Porsche dimension, drive ratio, slip, fan characteristic or efficiency; each must be replaced by a sourced value before a real observation set is admitted.",
+  "parameters": [
+    {"name": "i_drive", "value": 1.65, "unit": "1", "standard_uncertainty": 0.005, "source": "synthetic placeholder; blocked by BLK-DRIVE-RATIO"},
+    {"name": "s_belt", "value": 0.015, "unit": "1", "standard_uncertainty": 0.005, "source": "synthetic placeholder; blocked by BLK-DRIVE-RATIO"},
+    {"name": "omega_ref", "value": 628.3185307179587, "unit": "rad/s", "standard_uncertainty": 0.0, "source": "definition of the synthetic reference speed (6000 rpm)"},
+    {"name": "dp_ref", "value": 2400.0, "unit": "Pa", "standard_uncertainty": 120.0, "source": "synthetic placeholder; blocked by BLK-FAN-CHARACTERISTIC"},
+    {"name": "rho_ref", "value": 1.204, "unit": "kg/m3", "standard_uncertainty": 0.0, "source": "definition of the reference density of dp_ref"},
+    {"name": "eta_fan", "value": 0.55, "unit": "1", "standard_uncertainty": 0.05, "source": "synthetic placeholder; blocked by BLK-FAN-CHARACTERISTIC"},
+    {"name": "cp_air", "value": 1006.0, "unit": "J/(kg K)", "standard_uncertainty": 2.0, "source": "generic dry-air value near 300 K, rounded; not specimen data"},
+    {"name": "r_air", "value": 287.05, "unit": "J/(kg K)", "standard_uncertainty": 0.0, "source": "generic dry-air specific gas constant, rounded; not specimen data"}
+  ]
+}

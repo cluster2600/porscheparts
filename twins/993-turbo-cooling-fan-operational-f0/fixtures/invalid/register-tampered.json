@@ -1,0 +1,16 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "calibration_register",
+  "description": "A calibration uncertainty edited after the observations were bound.",
+  "expected_codes": [
+    "CALIBRATION_REGISTER_MISMATCH"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/instruments/1/standard_uncertainty_abs",
+      "value": 0.05
+    }
+  ]
+}

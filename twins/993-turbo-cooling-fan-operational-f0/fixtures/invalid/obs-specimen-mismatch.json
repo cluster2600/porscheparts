@@ -1,0 +1,16 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "observation_set",
+  "description": "Observations of another specimen cannot be bound to this contract.",
+  "expected_codes": [
+    "SPECIMEN_MISMATCH"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/specimen_id",
+      "value": "SPEC-993T-FAN-SYN-0002"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "fixture_kind": "invalid_patch",
+  "data_class": "synthetic",
+  "target": "slice_contract",
+  "description": "A contract that raises its own claim ceiling to physical correlation.",
+  "expected_codes": [
+    "SCHEMA"
+  ],
+  "patch": [
+    {
+      "op": "replace",
+      "path": "/claim_limits/max_validation_status",
+      "value": "physically_correlated"
+    }
+  ]
+}
