@@ -1,0 +1,880 @@
+{
+  "schema": "935-interwalk-public-receipt-1",
+  "parent_source_commit": "10f6ca7d131fbd5925c302a43954c402d29485ed",
+  "publication_base_main_commit": "71cc498c1e723075d4198d7c176620a332d4e572",
+  "scan_OBJ_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "parent_mesh_sha256": "f5b5ae5539f2aad64067edbfabdf0d9f4d67ae2d91377fe68b96943c4006d728",
+  "candidate_mesh_sha256": "1fc2b024e8b1d36faec6fa21b2a5e2d2b3638cfaf9c023e8d99fc1ee29148c48",
+  "candidate_OBJ_sha256": "722bc3b3cbff176b100b7f679bdcf586ca4bb34f8332a055265d90bb0613a95a",
+  "executed_sources": [
+    {
+      "name": "build_interwalk_strips.py",
+      "sha256": "7a2db16541ae24f38e16f75a8c975e2089d2dcd7872b986841997ad651e7eca4"
+    },
+    {
+      "name": "census_interwalk_pairs.py",
+      "sha256": "b7117b0f29fbb472f51562f5f4883dc60c400ecedfb6296be8b7467dfe148d24"
+    },
+    {
+      "name": "inspect_interwalk_strips.py",
+      "sha256": "3b106c65fb2f999f3d87a33ed10ad61a8bca302dd3072578c5dbbff926e72e34"
+    },
+    {
+      "name": "record_interwalk_pairs.py",
+      "sha256": "cc2df9d8b449470cee77cf945b2545b98315dd380e4cabf64a5d7e749c5e5963"
+    },
+    {
+      "name": "run_local_delivery_v2.py",
+      "sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b"
+    },
+    {
+      "name": "verify_interwalk_native_inputs.py",
+      "sha256": "bc75fab7b63d359fc23902b0a62b72745de1cb5bf7bd3fb3bcb99e99a7e94a7a"
+    },
+    {
+      "name": "verify_interwalk_pairs.py",
+      "sha256": "9a7cf0616713df228712407772bf789250c6575201156fe4c15fa6f3dfab1abc"
+    },
+    {
+      "name": "verify_interwalk_registry.py",
+      "sha256": "51d6db08c09f1b27dbe0a805706798f848769c9efbd691c657cac78df91161bb"
+    },
+    {
+      "name": "verify_interwalk_topology.py",
+      "sha256": "12a3f6d93dd5ce8e8c066ab493f07b4ad641bb3fff2b3e4b42f6e16b54d41a02"
+    }
+  ],
+  "unchanged_helpers": [
+    {
+      "role": "identity_producer",
+      "name": "census_untried_pairs.py",
+      "sha256": "fdd9406ba9a750243f2dbe37c18e2c5071b3b7783dd8dbc32ddbb49c4e4e876e"
+    },
+    {
+      "role": "identity_inspector",
+      "name": "verify_untried_pairs.py",
+      "sha256": "21457c97051d711768b697951c8b2c1a82ed8beeccf411de58e0f0e9ad3bcf1f"
+    },
+    {
+      "role": "same_class_producer",
+      "name": "census_frontier_pairs.py",
+      "sha256": "4b3775118329566716838328357d81da7deed3b9c253c0294a52a1a83af41f92"
+    },
+    {
+      "role": "opposed_class_producer",
+      "name": "audit_opposed_skins.py",
+      "sha256": "905ce71bb44c9f08f53560ced97be5fbf3b175bebae770b143d5b127a7edda6f"
+    },
+    {
+      "role": "opposed_class_inspector",
+      "name": "verify_opposed_skins_v2.py",
+      "sha256": "76888183e2b4ab5ccbb99cc771288b00524ce61bffeddd48582b58c7ebb79f98"
+    },
+    {
+      "role": "selection_inspector",
+      "name": "verify_frontier_pairs_v2.py",
+      "sha256": "a4bffe7e3b5c2180cf7c804df6f60163b3d36b4c7c611d2b902e3972bbe32718"
+    },
+    {
+      "role": "history_inspector",
+      "name": "verify_continuation_pairs.py",
+      "sha256": "0da2c491b7514638779a41af730445f97d21a1f9347aa31a9243d473f956d920"
+    },
+    {
+      "role": "topology_helper",
+      "name": "audit_retained_boundaries.py",
+      "sha256": "5b1fcf5815ceca941f6af7a07683bc17b4f4b3e7f43fb6da316d598d91848ee0"
+    },
+    {
+      "role": "intersection_helper",
+      "name": "inspect_intersections.py",
+      "sha256": "3e0b239ca4993388f32563092c78d97065cc1fb0753c68a2def3d631feda7976"
+    },
+    {
+      "role": "fan_helper",
+      "name": "inspect_vertex_fans.py",
+      "sha256": "1b9792699e0d3f42cae84184562e64d7bb1a6786b054e89d4e988cc0481883f5"
+    },
+    {
+      "role": "boundary_helper",
+      "name": "audit_retained_boundaries.py",
+      "sha256": "5b1fcf5815ceca941f6af7a07683bc17b4f4b3e7f43fb6da316d598d91848ee0"
+    },
+    {
+      "role": "distance_helper",
+      "name": "measure_patch_deviations.py",
+      "sha256": "8e4f401c4c76ca4cafa28979a0b2bdaf80c77049acbac2dc2a610b490720e570"
+    },
+    {
+      "role": "obj_reader",
+      "name": "check_cgal_patches.py",
+      "sha256": "2b5835ea1e4d53e5dfb4b8c499b0b02e858f3d495667c038b9203c2f1fb2d945"
+    },
+    {
+      "role": "native_control_helper",
+      "name": "verify_wall_inputs.py",
+      "sha256": "c34d6c5dd69d5ce9cce429dd828d8504afc0df787ae053e991ce74b7820ddfe6"
+    }
+  ],
+  "derivative_ancestors": [
+    {
+      "name": "record_selected_pairs.py",
+      "sha256": "531b88fc6c3c78ccd762359e252e5e494d54a9b74c9ecf8be517415ed79685f5"
+    },
+    {
+      "name": "verify_pair_registry.py",
+      "sha256": "639f69ddfbe8253e352dc89a26f193fb44eda893eddbbe7164f5ae07ae8fe669"
+    },
+    {
+      "name": "build_continuation_strips.py",
+      "sha256": "c9d6970c85951095cb47621911797b99d2bade3719f63b7a494c6d394a1ed9dd"
+    },
+    {
+      "name": "inspect_continuation_strips.py",
+      "sha256": "576452d2d2a1eef778b138bc71a3d698cdad713fa301d4cd7c7bc820ff9454e3"
+    },
+    {
+      "name": "run_local_delivery.py",
+      "sha256": "cef4c7662ae9808c1ec8dc6ad813835eab01e0358a4d8f3e327c70a668390dd0"
+    }
+  ],
+  "limits": {
+    "midpoint_search_radius_nominal_mm": 0.5,
+    "maximum_cross_endpoint_distance_nominal_mm": 0.5,
+    "maximum_tangent_dot": -0.8,
+    "minimum_owner_normal_dot": 0.8,
+    "minimum_signed_bridge_triangle_normal_dot": 0.8,
+    "squared_gap_score_ambiguity_tolerance": 1e-12,
+    "spatial_search_arithmetic_guard_nominal_mm": 1e-12,
+    "maximum_same_curve_search_pairs": 3000000,
+    "independent_pair_block_rows": 128,
+    "maximum_opposed_skin_normal_dot": -0.8,
+    "maximum_material_side_gap_dot": -0.8,
+    "minimum_outward_binormal_dot": 0.8,
+    "minimum_forward_wall_normal_dot": 0.8
+  },
+  "reports": {
+    "census": {
+      "source_sha256": "b7117b0f29fbb472f51562f5f4883dc60c400ecedfb6296be8b7467dfe148d24",
+      "job_sha256": "6482e3222ee46d1ee7f8d98d36d58a5bc519fd7fa08b57165e75f6256da4e9c8",
+      "mesh_sha256": "f5b5ae5539f2aad64067edbfabdf0d9f4d67ae2d91377fe68b96943c4006d728",
+      "census_sha256": "03fe1639a7df5350b9da74071ec1c5c3506320fc323b190387214d7f00209aaf",
+      "source_scope_edges": 90769,
+      "source_scope_walks": 1417,
+      "global_search_envelope_pairs": 251241,
+      "exact_global_radius_pairs": 251241,
+      "exact_different_walk_radius_pairs": 8719,
+      "separate_component_pairs_refused": 23,
+      "same_component_different_walk_pairs": 8696,
+      "historical_attempts_excluded": 20,
+      "evaluated_unattempted_pairs": 8676,
+      "material_side_stage_counts": {
+        "shared_vertex_or_coordinate": 0,
+        "cross_endpoint_support_distance": 3616,
+        "directed_tangent_alignment": 3936,
+        "acquired_owner_normals_not_opposed": 626,
+        "gap_is_not_towards_material_side_of_both_skins": 486,
+        "edge_outward_binormals_incompatible": 0,
+        "no_forward_nonzero_wall_diagonal": 0,
+        "eligible": 12
+      },
+      "eligible_pairs": 12,
+      "selected_pairs": 12,
+      "ambiguous_edges": 0,
+      "component_certificates": [
+        [
+          1244901,
+          3645192,
+          2398400,
+          1433,
+          -1891,
+          230
+        ],
+        [
+          5,
+          9,
+          5,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          4,
+          6,
+          3,
+          1,
+          1,
+          0
+        ],
+        [
+          4,
+          6,
+          3,
+          1,
+          1,
+          0
+        ],
+        [
+          3977,
+          11287,
+          7302,
+          10,
+          -8,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ]
+      ],
+      "selected_width_nominal_mm": {
+        "minimum": 0.22029600110080272,
+        "maximum": 0.4398194003633792
+      },
+      "raw_owner_normals_only": true,
+      "geometry_modified": false,
+      "physical_acceptance": false,
+      "construction_pending_independent_admission": true,
+      "manufacturing_authorized": false,
+      "seconds": 3.3428779169917107
+    },
+    "independent_census": {
+      "source_sha256": "9a7cf0616713df228712407772bf789250c6575201156fe4c15fa6f3dfab1abc",
+      "job_sha256": "6482e3222ee46d1ee7f8d98d36d58a5bc519fd7fa08b57165e75f6256da4e9c8",
+      "mesh_sha256": "f5b5ae5539f2aad64067edbfabdf0d9f4d67ae2d91377fe68b96943c4006d728",
+      "census_sha256": "03fe1639a7df5350b9da74071ec1c5c3506320fc323b190387214d7f00209aaf",
+      "complete_halo_sha256": "fd0d1dc71b044ec8cfd878017886e71907e04826a9e0aaf5760352cad9630669",
+      "source_scope_edges": 90769,
+      "source_scope_walks": 1417,
+      "independently_complete_global_radius_pairs": 251241,
+      "different_walk_radius_pairs": 8719,
+      "separate_component_pairs_refused": 23,
+      "historical_attempts_excluded": 20,
+      "evaluated_unattempted_pairs": 8676,
+      "scalar_stage_counts": {
+        "cross_endpoint_support_distance": 3616,
+        "directed_tangent_alignment": 3936,
+        "acquired_owner_normals_not_opposed": 626,
+        "gap_is_not_towards_material_side_of_both_skins": 486,
+        "eligible": 12
+      },
+      "eligible_pairs": 12,
+      "selected_pairs": 12,
+      "independent_vertex_component_certificates": [
+        [
+          1244901,
+          3645192,
+          2398400,
+          1433,
+          -1891,
+          230
+        ],
+        [
+          5,
+          9,
+          5,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          4,
+          6,
+          3,
+          1,
+          1,
+          0
+        ],
+        [
+          4,
+          6,
+          3,
+          1,
+          1,
+          0
+        ],
+        [
+          3977,
+          11287,
+          7302,
+          10,
+          -8,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ]
+      ],
+      "annular_scope_and_radius_controls": {
+        "annular_opposed_pairs": 16,
+        "component_fusion_refused": true,
+        "same_walk_refused": true,
+        "void_side_refused": true,
+        "global_reversal_refused": true,
+        "wrong_border_direction_refused": true,
+        "single_band_Euler_boundary_genus_verified": true,
+        "central_opening_preserved": true,
+        "independent_radius_boundary_control": true
+      },
+      "raw_identity_controls_passed": 5,
+      "opposed_scalar_controls_passed": 8,
+      "complete_selected_incident_halos": 12,
+      "producer_imported": false,
+      "spatial_tree_used": false,
+      "census_independently_verified": true,
+      "geometry_modified": false,
+      "physical_acceptance": false,
+      "manufacturing_authorized": false,
+      "construction_pending_native_mask_topology_admission": true,
+      "seconds": 10.42883091699332
+    },
+    "registry": {
+      "source_sha256": "51d6db08c09f1b27dbe0a805706798f848769c9efbd691c657cac78df91161bb",
+      "job_sha256": "b4c6d48585d58471841c1b51d5b33ff207f9e7a78949b30811d762b58106e29f",
+      "registry_sha256": "c20fe54b036fe581f86eecffcde27acd8994f57ea3b1606f2a77d3d091b3a4da",
+      "next_history_sha256": "e2b9be551374eab22ccc55f5e5cb6fb2de576b8afdad0e2e55711897e2abfc0e",
+      "census_sha256": "03fe1639a7df5350b9da74071ec1c5c3506320fc323b190387214d7f00209aaf",
+      "census_proof_sha256": "f75c4ef51796692b89b36ceb5c1e014db2cb2f01cbd9bc3c1345b5a56422b88f",
+      "previous_registry_pairs": 9,
+      "appended_selected_pairs": 12,
+      "total_registry_pairs": 21,
+      "total_attempted_raw_pairs": 1726,
+      "every_prior_registry_field_exact": true,
+      "global_ids_do_not_restart": true,
+      "registry_independently_verified": true,
+      "producer_imported": false,
+      "new_strip_kind": 9,
+      "new_boundary_origin": 9,
+      "legacy_patch_label_base": 80000000,
+      "constructor_admission_is_exploratory_only": true,
+      "geometry_modified": false,
+      "physical_acceptance": false,
+      "manufacturing_authorized": false
+    },
+    "native_inputs": {
+      "source_sha256": "bc75fab7b63d359fc23902b0a62b72745de1cb5bf7bd3fb3bcb99e99a7e94a7a",
+      "job_sha256": "ec5b130fb705e53bc6d45eb79ee4750d0c0aacc93e2bec9a8b2381a0dbba5401",
+      "controls": {
+        "inherited_native_mask_incidence_controls": 9,
+        "different_walk_material_band_native_intersections_and_fans": true,
+        "exact_target_two_walk_incidence": true,
+        "either_single_walk_refused": true,
+        "inferred_boundary_edge_refused": true,
+        "actual_annular_boundary_Euler_genus_verified": true
+      },
+      "native_inputs_admitted": true,
+      "full_scan_geometry_not_yet_accepted": true,
+      "physical_acceptance": false,
+      "manufacturing_authorized": false
+    },
+    "construction": {
+      "source_sha256": "7a2db16541ae24f38e16f75a8c975e2089d2dcd7872b986841997ad651e7eca4",
+      "job_sha256": "ec5b130fb705e53bc6d45eb79ee4750d0c0aacc93e2bec9a8b2381a0dbba5401",
+      "mesh_sha256": "1fc2b024e8b1d36faec6fa21b2a5e2d2b3638cfaf9c023e8d99fc1ee29148c48",
+      "obj_sha256": "722bc3b3cbff176b100b7f679bdcf586ca4bb34f8332a055265d90bb0613a95a",
+      "parent_mesh_sha256": "f5b5ae5539f2aad64067edbfabdf0d9f4d67ae2d91377fe68b96943c4006d728",
+      "proposed_pairs": 12,
+      "diagonal_trials": 24,
+      "local_passing_pairs": 11,
+      "edge_budget_refused_pair_ids": [],
+      "accepted_pairs": 11,
+      "added_triangles": 22,
+      "local_rejection_counts": {
+        "local_native_intersection_or_zero_area": 2
+      },
+      "source_faces_deleted": 0,
+      "point_coordinates_changed": 0,
+      "whole_candidate_checks_pending": true,
+      "complete_halos_sha256": "fd0d1dc71b044ec8cfd878017886e71907e04826a9e0aaf5760352cad9630669",
+      "registry_sha256": "c20fe54b036fe581f86eecffcde27acd8994f57ea3b1606f2a77d3d091b3a4da",
+      "current_global_pair_id_start": 9,
+      "current_selected_pair_count": 12,
+      "assumption": "unverified outward acquired windings; exploratory wall construction only",
+      "physical_classifications_accepted": 0,
+      "manufacturing_authorized": false,
+      "seconds": 21.621898708981462
+    },
+    "whole_surface": {
+      "source_sha256": "3b106c65fb2f999f3d87a33ed10ad61a8bca302dd3072578c5dbbff926e72e34",
+      "job_sha256": "ec5b130fb705e53bc6d45eb79ee4750d0c0aacc93e2bec9a8b2381a0dbba5401",
+      "mesh_sha256": "1fc2b024e8b1d36faec6fa21b2a5e2d2b3638cfaf9c023e8d99fc1ee29148c48",
+      "obj_sha256": "722bc3b3cbff176b100b7f679bdcf586ca4bb34f8332a055265d90bb0613a95a",
+      "npz_and_obj_exact_readback": true,
+      "parent_vertices_faces_and_all_provenance_preserved": true,
+      "whole_mesh_intersection_pairs": 0,
+      "zero_area_faces": 0,
+      "edge_incidence_or_winding_conflicts": 0,
+      "duplicate_indexed_face_groups": 0,
+      "nonmanifold_used_vertices": 0,
+      "unused_vertices": 18,
+      "added_strip_pairs": 11,
+      "added_triangles": 22,
+      "current_global_pair_id_start": 9,
+      "current_selected_pair_count": 12,
+      "registry_sha256": "c20fe54b036fe581f86eecffcde27acd8994f57ea3b1606f2a77d3d091b3a4da",
+      "closed_acquired_parent_boundary_edges": 22,
+      "remaining_boundary_edges": 95868,
+      "remaining_boundary_walks": 1446,
+      "remaining_edge_origin_counts": {
+        "7": 231,
+        "1": 93110,
+        "6": 1360,
+        "8": 286,
+        "5": 25,
+        "2": 100,
+        "4": 6,
+        "9": 24,
+        "3": 726
+      },
+      "connected_surface_components": 10,
+      "largest_component_facets": 2398422,
+      "single_facet_components": 5,
+      "added_probe_count": 3366,
+      "added_sampled_maximum_nominal_mm": 0.20636952797347885,
+      "support_refused_pair_count": 0,
+      "source_probe_count": 219476,
+      "omission_probe_count": 46184,
+      "previous_source_and_omission_distances_nonincreasing_pointwise": true,
+      "random_candidate_to_raw": {
+        "points": 100000,
+        "minimum_nominal_mm": 0.0,
+        "median_nominal_mm": 7.105427357601002e-15,
+        "p90_nominal_mm": 2.929642751054232e-14,
+        "p95_nominal_mm": 3.8263897345803626e-14,
+        "p99_nominal_mm": 6.07087979554246e-14,
+        "sampled_maximum_nominal_mm": 0.20070877568928278,
+        "coverage_at_nominal_mm": {
+          "0.05": 0.99956,
+          "0.1": 0.99982,
+          "0.25": 1.0,
+          "0.5": 1.0
+        },
+        "sampled_error_is_not_Hausdorff_or_physical_accuracy": true
+      },
+      "rejected_continuation_pair_ids": [],
+      "surface_study_checks_passed": true,
+      "inferred_missing_surfaces_have_no_measured_ground_truth": true,
+      "sampled_distances_are_not_Hausdorff_or_physical_tolerances": true,
+      "closed_volume": false,
+      "full_bare_head_created": false,
+      "physical_acceptance": false,
+      "manufacturing_authorized": false,
+      "seconds": 28.961677207960747
+    },
+    "component_topology": {
+      "source_sha256": "12a3f6d93dd5ce8e8c066ab493f07b4ad641bb3fff2b3e4b42f6e16b54d41a02",
+      "job_sha256": "ead620688950100380c31725e6bd76e69425befa4df4d02ae4f0f5fcbc5af3a6",
+      "mesh_sha256": "1fc2b024e8b1d36faec6fa21b2a5e2d2b3638cfaf9c023e8d99fc1ee29148c48",
+      "full_surface_proof_sha256": "eeda2e690fc99c8fdea334f3ea17fcf73caf04ce28befb12f47f821a326eaa75",
+      "component_columns": [
+        "used_vertices",
+        "unique_edges",
+        "faces",
+        "boundary_walks",
+        "chi",
+        "genus"
+      ],
+      "before": [
+        [
+          1244901,
+          3645192,
+          2398400,
+          1433,
+          -1891,
+          230
+        ],
+        [
+          5,
+          9,
+          5,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          4,
+          6,
+          3,
+          1,
+          1,
+          0
+        ],
+        [
+          4,
+          6,
+          3,
+          1,
+          1,
+          0
+        ],
+        [
+          3977,
+          11287,
+          7302,
+          10,
+          -8,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ]
+      ],
+      "after": [
+        [
+          1244901,
+          3645221,
+          2398422,
+          1428,
+          -1898,
+          236
+        ],
+        [
+          5,
+          9,
+          5,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          4,
+          6,
+          3,
+          1,
+          1,
+          0
+        ],
+        [
+          4,
+          6,
+          3,
+          1,
+          1,
+          0
+        ],
+        [
+          3977,
+          11287,
+          7302,
+          10,
+          -8,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          1,
+          0
+        ]
+      ],
+      "delta": [
+        [
+          0,
+          29,
+          22,
+          -5,
+          -7,
+          6
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "accepted_interwalk_pairs": 11,
+      "source_component_count_unchanged": true,
+      "source_component_membership_unchanged": true,
+      "source_vertices_unchanged": true,
+      "exact_final_Euler_boundary_genus_verified": true,
+      "independent_band_genus_changes_not_multiplied": true,
+      "topology_is_not_anatomical_or_passage_validation": true,
+      "physical_acceptance": false,
+      "manufacturing_authorized": false
+    },
+    "kali_replay": {
+      "source_sha256": "3ae75b1a8a47c65405aae2111c89343eeec3aa0d3f7a8c32ac3b0be65648fae1",
+      "parent_sha256": "f5b5ae5539f2aad64067edbfabdf0d9f4d67ae2d91377fe68b96943c4006d728",
+      "candidate_sha256": "1fc2b024e8b1d36faec6fa21b2a5e2d2b3638cfaf9c023e8d99fc1ee29148c48",
+      "host": "kali1",
+      "system": "Linux",
+      "python": "3.14.7",
+      "numpy": "2.3.5",
+      "vertices": 1248924,
+      "triangles": 2405740,
+      "parent_prefix_faces": 2405718,
+      "added_triangles": 22,
+      "source_prefix_and_provenance_exact": true,
+      "whole_edge_incidence_and_winding_passed": true,
+      "no_duplicate_or_zero_area_faces": true,
+      "open_boundary_edges": 95868,
+      "unused_vertices": 18,
+      "affinity_cpus": 2,
+      "address_space_limit_bytes": 4294967296,
+      "transferred_bytes": 145169445,
+      "persistent_payload_files_written": 0,
+      "intersection_and_vertex_fan_replay_performed": false,
+      "physical_acceptance": false,
+      "manufacturing_authorized": false,
+      "maximum_RSS_KiB": 1854928,
+      "seconds": 7.543089230079204
+    }
+  },
+  "private_manifest_sha256": "949927e440c3b681fe2f40218435fcbc553232553895c37aa9481580c752663a",
+  "private_payload_files": 71,
+  "private_payload_bytes": 211302039,
+  "execution": {
+    "local_controller_groups": 6,
+    "local_controller_phases": 9,
+    "all_owned_phase_children_reaped": true,
+    "shared_per_group_wall_seconds": 600,
+    "sampled_child_RSS_limit_GiB": 4,
+    "disk_floor_GiB": 4,
+    "maximum_observed_child_RSS_KiB": 3376960,
+    "kali_readonly_groups": 1,
+    "kali_persistent_payload_files": 0
+  },
+  "focused_tests": {
+    "tests_run": 119,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "passed": true,
+    "patterns": [
+      "contact_bridges",
+      "quarantine_patches",
+      "bounded_fan_pruning",
+      "acquisition_gap_trials",
+      "frontier_pairing",
+      "strip_cap_admission",
+      "untried_acquired_pairs",
+      "opposed_wall_trials",
+      "end_wall_admission",
+      "pairing_continuation",
+      "interwalk_admission"
+    ]
+  },
+  "no_new_vast_spend_usd": 0,
+  "physical_acceptance": false,
+  "manufacturing_authorized": false,
+  "G0_G5": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "goal_complete": false
+}
