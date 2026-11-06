@@ -2,38 +2,62 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/cluster2600/porscheparts/schemas/twin.schema.json",
   "title": "porscheparts digital twin zone record",
+  "description": "Twin-record contract 1.1.0, shared by every generation in catalog/twins. scripts/validate_twins.py executes this schema with a stdlib evaluator and adds only the cross-field and filesystem rules that JSON Schema cannot express; catalog/schemas/CHANGELOG.md lists both and the migration from 1.0.0.",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "twin_id", "name", "vehicle", "scope", "fidelity", "coordinate_system", "components", "interfaces", "geometry", "validation"],
   "properties": {
-    "schema_version": { "const": "1.0.0" },
+    "schema_version": { "const": "1.1.0" },
     "twin_id": { "type": "string", "pattern": "^TWIN-[A-Z0-9][A-Z0-9._-]{2,63}$" },
-    "name": { "type": "string", "minLength": 3 },
+    "name": { "$ref": "#/$defs/text" },
     "vehicle": {
       "type": "object",
       "additionalProperties": false,
       "required": ["generation", "variants", "model_years"],
       "properties": {
-        "generation": { "const": "993" },
-        "variants": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "generation": { "enum": ["993", "964"] },
+        "variants": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/text" } },
         "model_years": {
           "type": "object",
           "additionalProperties": false,
           "required": ["from", "to"],
           "properties": {
-            "from": { "type": "integer", "minimum": 1993, "maximum": 1998 },
-            "to": { "type": "integer", "minimum": 1993, "maximum": 1998 }
+            "from": { "type": "integer" },
+            "to": { "type": "integer" }
           }
         }
-      }
+      },
+      "allOf": [
+        {
+          "$comment": "993 model years are 1993..1998",
+          "if": { "properties": { "generation": { "const": "993" } }, "required": ["generation"] },
+          "then": { "properties": { "model_years": { "properties": {
+            "from": { "minimum": 1993, "maximum": 1998 },
+            "to": { "minimum": 1993, "maximum": 1998 }
+          } } } }
+        },
+        {
+          "$comment": "964 model years are 1989..1994",
+          "if": { "properties": { "generation": { "const": "964" } }, "required": ["generation"] },
+          "then": { "properties": { "model_years": { "properties": {
+            "from": { "minimum": 1989, "maximum": 1994 },
+            "to": { "minimum": 1989, "maximum": 1994 }
+          } } } }
+        }
+      ]
     },
     "scope": {
       "type": "object",
       "additionalProperties": false,
       "required": ["zone", "purposes"],
       "properties": {
-        "zone": { "type": "string", "minLength": 3 },
-        "purposes": { "type": "array", "minItems": 1, "items": { "enum": ["fit", "clearance", "motion", "structural", "thermal", "fluid"] } }
+        "zone": { "$ref": "#/$defs/text" },
+        "purposes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["fit", "clearance", "motion", "structural", "thermal", "fluid", "datum_frame", "envelope", "repair_control"] }
+        }
       }
     },
     "fidelity": { "enum": ["F0_reference", "F1_envelope", "F2_interface", "F3_engineering", "F4_correlated"] },
@@ -43,11 +67,26 @@
       "required": ["frame", "origin", "axes", "units", "vehicle_transform"],
       "properties": {
         "frame": { "enum": ["local", "vehicle"] },
-        "origin": { "type": "string", "minLength": 3 },
-        "axes": { "type": "string", "minLength": 3 },
+        "origin": { "$ref": "#/$defs/text" },
+        "axes": { "$ref": "#/$defs/text" },
         "units": { "const": "mm" },
-        "vehicle_transform": { "type": ["array", "null"], "minItems": 16, "maxItems": 16, "items": { "type": "number" } }
-      }
+        "vehicle_transform": {
+          "description": "Row-major 4x4 homogeneous matrix, or null while the transform is unknown.",
+          "type": ["array", "null"],
+          "minItems": 16,
+          "maxItems": 16,
+          "items": { "type": "number" }
+        },
+        "vehicle_transform_note": { "$ref": "#/$defs/text" },
+        "vehicle_transform_provenance": { "$ref": "#/$defs/text" }
+      },
+      "allOf": [
+        {
+          "$comment": "a known vehicle transform must state how it was established",
+          "if": { "properties": { "vehicle_transform": { "type": "array" } }, "required": ["vehicle_transform"] },
+          "then": { "required": ["vehicle_transform_provenance"] }
+        }
+      ]
     },
     "components": {
       "type": "array",
@@ -59,9 +98,20 @@
         "properties": {
           "component_id": { "type": "string", "pattern": "^[A-Z][A-Z0-9._-]{1,63}$" },
           "role": { "enum": ["host", "candidate", "context"] },
-          "part_id": { "type": ["string", "null"] },
-          "geometry_file": { "type": "string" },
-          "accuracy_mm": { "type": ["number", "null"], "exclusiveMinimum": 0 }
+          "part_id": {
+            "description": "Catalogue part_id when the component is linked to a part record; null when no record is linked.",
+            "type": ["string", "null"],
+            "pattern": "\\S"
+          },
+          "geometry_file": {
+            "description": "Repository path of the component geometry; empty when none exists.",
+            "type": "string"
+          },
+          "accuracy_mm": {
+            "description": "Declared accuracy; null while it is unknown. Zero would claim a perfect model and is refused.",
+            "type": ["number", "null"],
+            "exclusiveMinimum": 0
+          }
         }
       }
     },
@@ -74,12 +124,19 @@
         "required": ["interface_id", "kind", "components", "required_measurements", "acceptance_rule", "status"],
         "properties": {
           "interface_id": { "type": "string", "pattern": "^[A-Z][A-Z0-9._-]{1,63}$" },
-          "kind": { "enum": ["contact", "clearance", "fastener", "clip", "motion"] },
-          "components": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "string" } },
-          "required_measurements": { "type": "array", "minItems": 1, "items": { "type": "string" } },
-          "acceptance_rule": { "type": "string", "minLength": 3 },
-          "status": { "enum": ["missing_data", "ready", "passed", "failed"] }
-        }
+          "kind": { "enum": ["contact", "clearance", "fastener", "clip", "motion", "datum", "registration"] },
+          "components": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "type": "string" } },
+          "required_measurements": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/text" } },
+          "acceptance_rule": { "$ref": "#/$defs/text" },
+          "status": { "enum": ["missing_data", "ready", "partially_satisfied", "passed", "failed"] }
+        },
+        "allOf": [
+          {
+            "$comment": "contact, clearance, fastener, clip and motion interfaces join exactly two components; datum and registration interfaces may join more",
+            "if": { "properties": { "kind": { "enum": ["contact", "clearance", "fastener", "clip", "motion"] } }, "required": ["kind"] },
+            "then": { "properties": { "components": { "maxItems": 2 } } }
+          }
+        ]
       }
     },
     "geometry": {
@@ -89,7 +146,54 @@
       "properties": {
         "master_format": { "enum": ["build123d", "FCStd", "STEP", "none"] },
         "master_file": { "type": "string" },
-        "derived_files": { "type": "array", "items": { "type": "string" } }
+        "derived_files": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/text" } }
+      },
+      "allOf": [
+        {
+          "$comment": "master_format none means there is no master file",
+          "if": { "properties": { "master_format": { "const": "none" } }, "required": ["master_format"] },
+          "then": { "properties": { "master_file": { "const": "" } } }
+        },
+        {
+          "$comment": "a build123d master is a Python source file",
+          "if": { "properties": { "master_format": { "const": "build123d" } }, "required": ["master_format"] },
+          "then": { "properties": { "master_file": { "pattern": "\\.py$" } } }
+        },
+        {
+          "$comment": "an FCStd master is a FreeCAD document",
+          "if": { "properties": { "master_format": { "const": "FCStd" } }, "required": ["master_format"] },
+          "then": { "properties": { "master_file": { "pattern": "\\.FCStd$" } } }
+        },
+        {
+          "$comment": "a STEP master is a .step or .stp file",
+          "if": { "properties": { "master_format": { "const": "STEP" } }, "required": ["master_format"] },
+          "then": { "properties": { "master_file": { "pattern": "\\.(step|stp)$" } } }
+        }
+      ]
+    },
+    "materials": {
+      "description": "Optional material statement. Unknown values stay null; every value needs its source.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source"],
+      "properties": {
+        "source": { "$ref": "#/$defs/text" },
+        "grade": { "type": ["string", "null"] },
+        "process": { "$ref": "#/$defs/text" },
+        "high_strength_steel_members": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/text" } },
+        "sheet_thickness_mm": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["provenance"],
+          "properties": {
+            "stated_by_porsche": { "$ref": "#/$defs/unknown_or_positive" },
+            "measured": { "$ref": "#/$defs/unknown_or_positive" },
+            "used_for_analysis": { "$ref": "#/$defs/unknown_or_positive" },
+            "provenance": { "$ref": "#/$defs/text" },
+            "note": { "$ref": "#/$defs/text" }
+          }
+        },
+        "note": { "$ref": "#/$defs/text" }
       }
     },
     "validation": {
@@ -98,10 +202,77 @@
       "required": ["status", "evidence", "known_limits"],
       "properties": {
         "status": { "enum": ["concept", "geometry_ready", "digitally_checked", "physically_correlated"] },
-        "evidence": { "type": "array", "items": { "type": "string" } },
-        "known_limits": { "type": "array", "items": { "type": "string" } }
+        "evidence": {
+          "description": "Repository paths, resolved case-exactly by the validator.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/text" }
+        },
+        "checks_passed": { "type": "array", "items": { "$ref": "#/$defs/text" } },
+        "known_limits": { "type": "array", "items": { "$ref": "#/$defs/text" } }
+      },
+      "allOf": [
+        {
+          "$comment": "a recorded passed check needs evidence",
+          "if": { "properties": { "checks_passed": { "minItems": 1 } }, "required": ["checks_passed"] },
+          "then": { "properties": { "evidence": { "minItems": 1 } } }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "$comment": "an interface status other than missing_data needs evidence",
+      "if": {
+        "properties": { "interfaces": { "contains": { "properties": { "status": { "not": { "const": "missing_data" } } }, "required": ["status"] } } },
+        "required": ["interfaces"]
+      },
+      "then": { "properties": { "validation": { "properties": { "evidence": { "minItems": 1 } } } } }
+    },
+    {
+      "$comment": "F2_interface or above needs evidence, a known vehicle transform, no interface at missing_data and a known accuracy on every host and candidate",
+      "if": { "properties": { "fidelity": { "enum": ["F2_interface", "F3_engineering", "F4_correlated"] } }, "required": ["fidelity"] },
+      "then": {
+        "properties": {
+          "validation": { "properties": { "evidence": { "minItems": 1 } } },
+          "coordinate_system": { "properties": { "vehicle_transform": { "type": "array" } } },
+          "interfaces": { "items": { "properties": { "status": { "not": { "const": "missing_data" } } } } },
+          "components": { "items": {
+            "if": { "properties": { "role": { "enum": ["host", "candidate"] } }, "required": ["role"] },
+            "then": { "properties": { "accuracy_mm": { "type": "number" } } }
+          } }
+        }
+      }
+    },
+    {
+      "$comment": "F4_correlated needs physically_correlated validation",
+      "if": { "properties": { "fidelity": { "const": "F4_correlated" } }, "required": ["fidelity"] },
+      "then": { "properties": { "validation": { "properties": { "status": { "const": "physically_correlated" } } } } }
+    },
+    {
+      "$comment": "geometry_ready or above needs evidence, a master geometry and a known accuracy on every component",
+      "if": { "properties": { "validation": { "properties": { "status": { "enum": ["geometry_ready", "digitally_checked", "physically_correlated"] } }, "required": ["status"] } }, "required": ["validation"] },
+      "then": {
+        "properties": {
+          "validation": { "properties": { "evidence": { "minItems": 1 } } },
+          "geometry": { "properties": { "master_format": { "not": { "const": "none" } } } },
+          "components": { "items": { "properties": { "accuracy_mm": { "type": "number" } } } }
+        }
+      }
+    },
+    {
+      "$comment": "digital checking requires at least F2_interface and every interface rule executed to passed or failed",
+      "if": { "properties": { "validation": { "properties": { "status": { "enum": ["digitally_checked", "physically_correlated"] } }, "required": ["status"] } }, "required": ["validation"] },
+      "then": {
+        "properties": {
+          "fidelity": { "enum": ["F2_interface", "F3_engineering", "F4_correlated"] },
+          "interfaces": { "items": { "properties": { "status": { "enum": ["passed", "failed"] } } } }
+        }
       }
     }
+  ],
+  "$defs": {
+    "text": { "type": "string", "pattern": "\\S" },
+    "unknown_or_positive": { "type": ["number", "null"], "exclusiveMinimum": 0 }
   }
 }
-
