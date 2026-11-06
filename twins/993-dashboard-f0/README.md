@@ -29,6 +29,12 @@ The PET [assembly skeleton](../../catalog/reference/993-assembly-skeleton.json) 
 
 The target is **M564, left-hand drive**, pending a redacted vehicle option label and direct inspection. The passenger side must show no deployment flap or module. The trim part number remains **unresolved** in the [catalogue record](../../catalog/parts/993-int-dashboard-trim-0001.json). The [PET variant audit](../../docs/reports/993-dashboard-variant-audit-20261106.md) finds `993 552 055 00` on both a passenger-airbag plate and an RS no-passenger-airbag plate; neither proves the non-RS M564 identity. M561, M562, and Carrera RS variants need separate decisions and assemblies.
 
+The machine-readable [PET identity matrix](../../parts/993-int-dashboard-trim-0001/evidence/pet-identity.md) (#566) records the plate, page and position for every candidate variant and registers the conflict as CTR-0019. Its E1–E5 same-specimen protocol must pass, and independent reviewers must record the admission, before any reading is entered.
+
+## Interface contracts
+
+[interface-contracts.json](interface-contracts.json) (#567) holds the independent measurement contract for each of the 13 interfaces, covering all four load paths. See [INTERFACE_CONTRACTS.md](INTERFACE_CONTRACTS.md) for a readable summary. Every value is `null`.
+
 ## Required interface and load-path evidence
 
 [assembly.json](assembly.json) lists each unresolved connection and the data needed to close it. The capture must establish:
