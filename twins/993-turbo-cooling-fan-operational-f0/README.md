@@ -1,13 +1,14 @@
 # 993 Turbo cooling fan: operational observation contract
 
-**Status: contract and synthetic fixtures only. No physical specimen, no
+**Status: contract, synthetic fixtures and offline replay only. No physical specimen, no
 measurement, no physical correlation and no live twin.** Every observation in
 this directory is synthetic and labelled as such. The highest status any
 software pass here can reach is `digitally_checked`.
 
-This directory answers issue #510: one bounded operating slice of one 993
+This directory answers issue #510 (one bounded operating slice of one 993
 variant, with a versioned contract for specimen-linked, timestamped
-observations and for the twin state they update. It does not extend the
+observations and for the twin state they update) and issue #511 (one
+deterministic offline replay of that contract with prediction residuals). It does not extend the
 static fidelity levels of [the digital twin](../../docs/DIGITAL_TWIN.md); it
 adds the observation side those levels lacked.
 
@@ -122,6 +123,81 @@ python3 scripts/validate_operational_twin.py
 python3 twins/993-turbo-cooling-fan-operational-f0/source/make_synthetic_observations.py --check
 python3 -m unittest tests.test_993_operational_twin_contract
 ```
+
+## Offline replay and residuals
+
+Issue #511 adds the single replay path,
+[scripts/replay_operational_twin.py](../../scripts/replay_operational_twin.py),
+with its run binding [replay/run-synthetic-0001.json](replay/run-synthetic-0001.json)
+and the committed report
+[derived/replay-report-synthetic-0001.json](derived/replay-report-synthetic-0001.json)
+([schema](../../catalog/schemas/operational-replay.schema.json)).
+
+The run binds the slice contract, model card, parameter set, calibration
+register and observation set by canonical-JSON sha256 and by ID and revision,
+plus the specimen, timebase, operating case and a hash of the contract frames
+and stations. The report records those bindings and the sha256 of the two
+implementation files. Any mismatch stops the run with a named code and no
+report: `SPECIMEN_MISMATCH`, `TIMEBASE_MISMATCH`, `CALIBRATION_HASH_MISMATCH`,
+`MODEL_HASH_MISMATCH`, `PARAMETER_HASH_MISMATCH`, `OBSERVATION_HASH_MISMATCH`,
+`GEOMETRY_MISMATCH`, `INPUT_ID_MISMATCH`, or `CONTRACT_INVALID` carrying the
+validator codes.
+
+Ingest converts every channel explicitly (rpm to rad/s, degC to K, hPa and kPa
+to Pa, with the `N_FAN` sign taken from the tachometer axis transformed into
+`F_FAN`), applies the instrument range, plausible range and calibration
+window, drops exact duplicates (earliest arrival kept), reorders out-of-order
+arrivals by sample time, and excludes samples later than the 1 s latency
+budget. Contradictory duplicates, a sequence that runs against time, a sample
+outside the session or an arrival before its sample time reject the run.
+
+The twin state is evaluated every second. Each channel contributes its latest
+received sample with the declared skew tolerance, and an old, flagged or
+out-of-range sample gives a no-claim reason rather than falling back to an
+older value. Predictions carry first-order uncertainty from inputs and
+parameters (checked against finite differences in the tests). Residuals are
+judged only inside steady windows, by the contract thresholds.
+
+```mermaid
+stateDiagram-v2
+    [*] --> Bound: run hashes, IDs, specimen, timebase, case, frames match
+    [*] --> Rejected: any binding or contract check fails
+    Bound --> Ingested: conversions, ranges, calibration, duplicates, late samples
+    Bound --> Rejected: contradictory duplicate, sequence against time, outside session
+    Ingested --> NoClaim: input or observation unusable, transient, not steady, outside envelope
+    Ingested --> Judged: inputs and observation usable inside a steady window
+    Judged --> Consistent: abs z at most 2
+    Judged --> Indeterminate: abs z above 2 and at most 3
+    Judged --> Discrepant: abs z above 3
+```
+
+Result on the synthetic fixture (software behaviour only):
+
+| Output | Evaluated frames | Consistent | Indeterminate | Discrepant | Output verdict |
+|---|---:|---:|---:|---:|---|
+| `N_FAN` | 135 | 89 | 2 | 44 | `model_rejected`, all discrepancies in the 4500 rpm hold where the slip was injected |
+| `DP_FAN` | 136 | 135 | 1 | 0 | `consistent` |
+| `T_OUT` | 133 | 132 | 1 | 0 | `consistent` |
+
+The run status is `digitally_checked`: the declared rules executed and the
+report is versioned. `physical_correlation` and `live_twin` are fixed at
+`not_claimed` by the report schema.
+
+```bash
+python3 scripts/replay_operational_twin.py --check          # byte-identical to the committed report
+python3 -m unittest tests.test_993_operational_twin_replay  # includes a fresh-copy replay under two hash seeds
+```
+
+Measured samples, when a contributor provides them, stay outside the
+repository: the observation set holds `samples_ref` (sha256 and count) and the
+replay reads `<sha256>.json` from `--external-samples`, refusing a folder inside
+the repository.
+
+**Operational cadence still unproven.** The replay fixes an evaluation period
+(1 s), a latency budget (1 s), channel periods and maximum ages, but these are
+declared values exercised on synthetic data. Nothing here shows that a real
+acquisition chain on a 993 delivers samples at that cadence, within that
+latency or with that skew; that needs blockers 1, 5, 7 and 9 below.
 
 ## What still blocks physical synchronisation
 

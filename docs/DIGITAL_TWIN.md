@@ -109,7 +109,11 @@ adds a versioned contract for specimen-linked, timestamped observations of one
 993 Turbo cooling fan: anonymous specimen, component frame and stations, units,
 timebase, calibration, uncertainty, cadence, sample flags, predeclared residual
 rules and no-claim states
-([schema](../catalog/schemas/operational-twin.schema.json)). Only offline replay
-is specified; live synchronisation is not implemented. Its observation set is
+([schema](../catalog/schemas/operational-twin.schema.json)). A single
+deterministic offline replay binds each run to the specimen, timebase,
+calibration register, model and parameter hashes and reports predictions,
+residuals and uncertainty per frame
+([replay](../scripts/replay_operational_twin.py)); live synchronisation is not
+implemented. Its observation set is
 synthetic, so the slice proves software behaviour only: it stays at
 `digitally_checked` at most and claims no physical correlation.
