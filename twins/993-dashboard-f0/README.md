@@ -35,6 +35,8 @@ The machine-readable [PET identity matrix](../../parts/993-int-dashboard-trim-00
 
 [interface-contracts.json](interface-contracts.json) (#567) holds the independent measurement contract for each of the 13 interfaces, covering all four load paths. See [INTERFACE_CONTRACTS.md](INTERFACE_CONTRACTS.md) for a readable summary. Every value is `null`.
 
+The F0 checker keeps physical evidence admission empty and all datum values, frame coordinates, attachment geometry and tolerances unset. It also keeps every interface at `missing_data`. A later intake gate must verify the same specimen, measurement records, hashes, rights and independent reviewers before any of these fields can be populated. Merely listing an existing repository file does not admit a reading.
+
 ## Required interface and load-path evidence
 
 [assembly.json](assembly.json) lists each unresolved connection and the data needed to close it. The capture must establish:
