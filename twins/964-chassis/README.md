@@ -1,5 +1,13 @@
 # Digital twin of the Porsche 911 (964) chassis
 
+**Transmission-fastener review, 6 November 2026:** two observed outer heads
+have [anatomy-backed candidate Mi H roles](fastener-visibility-20261106/README.md),
+bound to exact original scan triangles and independently checked. This does not
+admit head centres, bolt axes, measured H contacts or donor registration. The
+same review records eight further source queries and four primary availability
+leads; no qualified upper-cell geometry was acquired. Autorobot remains an
+unsent draft following the owner's instruction.
+
 **Body-contact context, 6 November 2026:** the
 [source/topology review](contact-context-20261106/README.md) distinguishes the
 Mi F/G marks from neighbouring schematic features, compares two original
