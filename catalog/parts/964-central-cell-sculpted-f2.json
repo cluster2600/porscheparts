@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "964-CENTRAL-CELL-SCULPTED-F2",
+  "name": "964 sculpted central carbon cell, F2 assumption-only study",
+  "description": "Independently authored curved central-cell concept with paired floor bays, a changing service tunnel, stepped closed sills, scuttle and rear returns, pillar feet, seat-support regions and upper load-path members. Shape, material, module reservations and load introductions remain declared hypotheses; this is not a measured donor reconstruction or a commercial monocoque copy.",
+  "vehicle": {
+    "generation": "964",
+    "variants": [
+      "Carrera_2_study_scope_only"
+    ],
+    "model_years": {
+      "from": 1989,
+      "to": 1994
+    },
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "central_load_bearing_cell_study",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Assumption-only central-cell architecture, native geometry and conditional structural studies; no vehicle fitment, manufacture or road/track release"
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "PicoGK",
+    "master_file": "twins/964-chassis/sculpted-cell-f2-20261106/picogk/Program.cs",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [],
+    "private_preview_receipt": "twins/964-chassis/sculpted-cell-f2-20261106/native-preview-receipt.json"
+  },
+  "provenance": {
+    "record_license": "Repository LICENSE for independently authored study geometry and code; no source scan, proprietary manual, vendor photograph or commercial CAD reused",
+    "sources": [
+      {
+        "title": "Owner-authorized sculpted central-cell study",
+        "url": "https://github.com/cluster2600/porscheparts/tree/main/twins/964-chassis/sculpted-cell-f2-20261106",
+        "source_type": "estimated",
+        "license": "Repository LICENSE for independently authored study code and control surfaces; reference photographs remain reference-only",
+        "accessed_on": "2026-11-06",
+        "notes": "Owner photographs inform qualitative architecture only. No photo-derived dimensions, donor interfaces, vendor material identity or seller weight claim is admitted. F2 labels a design iteration, not measured interface fidelity."
+      },
+      {
+        "title": "Original Porsche 911 German 1990 brochure, nominal technical table reproduced on Scribd",
+        "url": "https://de.scribd.com/document/610802441/Porsche-911-1990-DE",
+        "source_type": "manufacturer",
+        "license": "Reference only; no licence to republish original brochure pages or photographs is asserted",
+        "accessed_on": "2026-11-06",
+        "notes": "Nominal body width, unladen height, wheelbase, front/rear tracks and tyre markings constrain the study envelope. Nominal tyre radii are derived from the markings. These are documentary reference values, not donor measurements, loaded tyre geometry, suspension motion or attachment coordinates. Structural budget limits, the common ground datum and axle-X placement remain design assumptions."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "composite_layup"
+    ],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "assumed carbon-fibre/epoxy composite, including upper structural members",
+      "grade": "undecided; no supplier-certified laminate or core allowables",
+      "standard": "undecided; no process or road/track qualification"
+    },
+    "post_processing": [],
+    "supplier_requirements": [
+      "Measured functional interfaces and an independently accepted load path before functional part design or tooling commitment.",
+      "Traceable laminate, core, adhesive and insert properties, process definition, coupons, inspection and professional validation plan."
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Any later metallic inserts require their own material, attachment and isolation qualification."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "twins/964-chassis/sculpted-cell-f2-20261106/parameters.json",
+      "twins/964-chassis/sculpted-cell-f2-20261106/geometry.py",
+      "twins/964-chassis/sculpted-cell-f2-20261106/canonical-model.json",
+      "twins/964-chassis/sculpted-cell-f2-20261106/visual-acceptance.json",
+      "twins/964-chassis/sculpted-cell-f2-20261106/reference-ledger.json",
+      "twins/964-chassis/sculpted-cell-f2-20261106/picogk/Program.cs"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Structural shapes, wall thicknesses, material properties, module reservations, fixture regions, the common ground datum and axle-X placement are authored assumptions. Brochure width/height, wheelbase, track and tyre-size nominals are documentary constraints, not measured donor interfaces.",
+      "The design frame is independent; no donor transform, dimensional accuracy or 993/Carrera 4 compatibility is admitted. Model-year bounds identify study scope only.",
+      "The current raw native mesh failed its quality screen: 36 collapsed, exactly zero-area faces are retained without filtering or repair. Published native views are unqualified diagnostics; source CAD/profile and transport checks do not admit native mesh quality.",
+      "Native wall artifacts are retained privately. Public source and image receipts bind their hashes; the catalogue images are geometry renders, not photographs or a manufactured specimen.",
+      "Any accompanying STEP consists of editable midsurfaces only and does not establish a physical wall solid. Native voxel geometry has separate resolution and topology limits.",
+      "Wheel cylinders use nominal brochure tracks and tyre markings; front/rear module boxes remain assumed static reservations. Actual modules, loaded tyre geometry, steering, suspension motion, transmission linkage, attachments and tolerance stacks remain unqualified.",
+      "Visible load-path members and numerical stiffness do not establish laminate strength, bond/insert capacity, buckling, fatigue, crash, occupant restraint, fire or aging performance.",
+      "Laminate/core/adhesive allowables, manufacturing route, tooling, drape/cure, inspection, physical correlation and professional road/track/TUV approval remain open.",
+      "The earlier F1 assumption study and withdrawn whole-body geometry remain separate; their calculations or renders do not qualify this design.",
+      "No measured mass or superiority over a commercial monocoque is established. This concept is not a released functional part or a validated final digital twin."
+    ]
+  }
+}

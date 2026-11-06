@@ -1,0 +1,71 @@
+{
+  "study_id": "964-SCULPTED-CELL-F2-20261106",
+  "status": "Explicit hypothetical structural study; no donor fit or vehicle qualification",
+  "units": "mm_N_MPa",
+  "laminate": {
+    "status": "Assumed linear elastic UD carbon/epoxy; no supplier allowables or process qualification",
+    "ply_angles_deg": [
+      0,
+      45,
+      -45,
+      90,
+      90,
+      -45,
+      45,
+      0
+    ],
+    "engineering_constants_MPa": {
+      "E1": 135000,
+      "E2": 10000,
+      "E3": 10000,
+      "G12": 5000,
+      "G13": 5000,
+      "G23": 3500
+    },
+    "poisson": {
+      "nu12": 0.3,
+      "nu13": 0.3,
+      "nu23": 0.4
+    },
+    "density_kg_m3": 1600,
+    "zero_degree_direction": "Canonical fiber_reference tangent for upper hoops/ribs where supplied; otherwise global design X projected onto the element centre tangent plane, with global Y fallback near transverse normals",
+    "positive_angle_direction": "Rotation from projected zero direction toward normal cross zero direction; normal is canonical element winding",
+    "stack_order": "Negative local normal to positive local normal; eight equal plies, symmetric sequence",
+    "joint_model": "Shared quadratic shell edges; perfectly stiff ideal joins, no adhesive/inserts/compliance",
+    "field_chart_status": "Hypothetical elementwise fiber directions; chart changes at junctions reported, no continuous draping or steering qualification"
+  },
+  "fixtures": {
+    "status": "Hypothetical design-ring cantilever fixtures; no Porsche suspension or dimensional datum",
+    "clamp_node_set": "CLAMP",
+    "clamp_dofs": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "torsion_edge_sets": [
+      "TORSION_LEFT",
+      "TORSION_RIGHT"
+    ],
+    "torsion_vertical_resultants_N": [
+      1000,
+      -1000
+    ],
+    "bending_element_set": "BENDING_FLOOR",
+    "bending_total_vertical_force_N": -10000,
+    "bending_distribution": "Dead global-Z force proportional to actual curved floor area, consistently integrated with quadratic shape functions"
+  },
+  "numerical_admission": {
+    "minimum_sampled_scaled_jacobian": 0.2,
+    "minimum_sampled_normal_dot_centre_normal": 0.5,
+    "maximum_sampled_tangent_aspect_ratio": 20,
+    "mesh_last_scalar_change_limit": 0.03,
+    "force_relative_residual_limit": 1e-05,
+    "scope": "Sampled numerical quality and global response controls; no interval proof of Jacobian positivity or stress/strength qualification"
+  },
+  "physical_validation": false,
+  "manufacturing_authorized": false,
+  "donor_transform": null
+}

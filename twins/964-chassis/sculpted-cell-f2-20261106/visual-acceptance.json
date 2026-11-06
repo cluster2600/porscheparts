@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "contract_id": "964-SCULPTED-CELL-F2-VISUAL-ARCHITECTURE",
+  "classification": "independent_visual_architecture_contract_not_physical_qualification",
+  "reference_ledger": "reference-ledger.json",
+  "reference_images_actually_reviewed": 9,
+  "scope": "A new independently authored sculpted central cell. F1 remains a frozen numerical tub study and is not the F2 geometry baseline.",
+  "promotion_rule": "Review the actual untextured geometry views and literal cuts against every criterion before accepting a featured render. Record the separate verdict with geometry and image hashes; the generator cannot approve itself.",
+  "criteria": [
+    {
+      "id": "V01",
+      "feature": "Central-cell product boundary",
+      "reference_images": ["OWNER-PHOTO-01", "OWNER-PHOTO-07", "OWNER-PHOTO-08"],
+      "pass_when": "The cell is recognizable without outer bodywork or running gear. Front and rear structures remain separate components, rather than a complete exterior 911 envelope substituted for the cell.",
+      "required_views": ["cell_front_three_quarter", "cell_rear_three_quarter", "assembly_proxy_context"]
+    },
+    {
+      "id": "V02",
+      "feature": "Shaped paired footwells and cabin floor",
+      "reference_images": ["OWNER-PHOTO-01", "OWNER-PHOTO-02", "OWNER-PHOTO-03"],
+      "pass_when": "Paired three-dimensional floor bays have deliberate front/rear changes, curved transitions into the tunnel and sidewalls, and integrated seat-support regions. A flat floor decorated with strips or constant rectangular beams fails.",
+      "required_views": ["cell_top", "cell_inside", "transverse_front_footwell", "transverse_seat_bay"]
+    },
+    {
+      "id": "V03",
+      "feature": "Varying integrated tunnel and service passage",
+      "reference_images": ["OWNER-PHOTO-01", "OWNER-PHOTO-02", "OWNER-PHOTO-03", "OWNER-PHOTO-06"],
+      "pass_when": "Tunnel width/height and shoulders vary intentionally along the cabin, blend into the surrounding floor and bulkhead regions, and retain an explicit through-service reservation. Three sections and a longitudinal cut establish actual shape and passage continuity; perspective or shading alone does not.",
+      "required_views": ["cell_inside", "transverse_front_footwell", "transverse_seat_bay", "transverse_rear_transition", "longitudinal_tunnel_cut"]
+    },
+    {
+      "id": "V04",
+      "feature": "Deep sills and recessed door-entry returns",
+      "reference_images": ["OWNER-PHOTO-04", "OWNER-PHOTO-09"],
+      "pass_when": "The sill has a deliberate longitudinal profile and a recessed entry ledge/return, with shaped aperture corners and visible front/rear junctions. A uniform solid plank with an upper bar fails. Cuts expose the intended closed-section construction.",
+      "required_views": ["cell_side", "cell_inside", "transverse_seat_bay"]
+    },
+    {
+      "id": "V05",
+      "feature": "Scuttle, front wall and A-pillar feet",
+      "reference_images": ["OWNER-PHOTO-05", "OWNER-PHOTO-06", "OWNER-PHOTO-09"],
+      "pass_when": "A shaped full-width scuttle/front-wall region integrates the central service volume and transitions into both raked A-pillar feet and lower side structure. A freestanding flat wall or a hoop merely touching its edge fails.",
+      "required_views": ["cell_front_three_quarter", "cell_inside", "longitudinal_tunnel_cut"]
+    },
+    {
+      "id": "V06",
+      "feature": "Coherent upper structural paths",
+      "reference_images": ["OWNER-PHOTO-01", "OWNER-PHOTO-04", "OWNER-PHOTO-09"],
+      "pass_when": "The raked windshield hoop, roof-side paths and rear hoop/shoulder junctions form a coherent continuous architecture into the lower cell. No floating bars, unexplained clipped intersections or unsupported roof ends are accepted. CFRP is an explicit design assumption, not an observation from black reference surfaces.",
+      "required_views": ["cell_front_three_quarter", "cell_rear_three_quarter", "cell_side", "cell_top"]
+    },
+    {
+      "id": "V07",
+      "feature": "Rear shoulders and shaped rear transition",
+      "reference_images": ["OWNER-PHOTO-01", "OWNER-PHOTO-07", "OWNER-PHOTO-09"],
+      "pass_when": "Raised rear shoulder/seat-back regions, a stepped or curved rear wall and their returns visibly integrate with the floor, tunnel, sills and upper structure. A single rectangular rear plate with separate decorative blocks fails.",
+      "required_views": ["cell_rear_three_quarter", "cell_inside", "transverse_rear_transition", "longitudinal_tunnel_cut"]
+    },
+    {
+      "id": "V08",
+      "feature": "Honest assembly and space-budget context",
+      "reference_images": ["OWNER-PHOTO-01", "OWNER-PHOTO-04", "OWNER-PHOTO-07", "OWNER-PHOTO-08"],
+      "pass_when": "A separate assembly view labels wheel, front-module and rear-module proxies as assumed and distinguishes them from the carbon cell. Independently verified manufacturer nominal width/height and tyre/track references constrain an explicit design-space budget, with one declared ground plane and per-axle radii. Check actual sampled and native bounds, not only control-point maxima; a cell exceeding the nominal external body budget fails. No unexplained overlaps or bodywork may hide the cell. Axle-X placement, tyre loading, motion, mounting, tolerances and donor fitment remain unadmitted.",
+      "required_views": ["assembly_proxy_context", "cell_side", "cell_top"]
+    },
+    {
+      "id": "V09",
+      "feature": "Literal geometry and junction visibility",
+      "reference_images": [],
+      "pass_when": "Cuts show positive intended wall sections, internal reservations and deliberate junction construction. Cracks, coincident overlapping skins, self-intersections, missing walls and disconnected structural members must be resolved in source geometry; smoothing, texture or camera choice cannot repair them.",
+      "required_views": ["transverse_front_footwell", "transverse_seat_bay", "transverse_rear_transition", "longitudinal_tunnel_cut"]
+    },
+    {
+      "id": "V10",
+      "feature": "Geometry quality before presentation",
+      "reference_images": [],
+      "pass_when": "Every required feature is readable in actual untextured source views before polished images or animation are promoted. No invented production hardware or bolt-seat detail is used to imply measured interfaces. Captions identify a hypothetical study and distinguish CPU display from native Omniverse execution.",
+      "required_views": ["cell_front_three_quarter", "cell_rear_three_quarter", "cell_side", "cell_top", "cell_inside", "assembly_proxy_context"]
+    }
+  ],
+  "required_raw_view_roles": [
+    "cell_front_three_quarter",
+    "cell_rear_three_quarter",
+    "cell_side",
+    "cell_top",
+    "cell_inside",
+    "transverse_front_footwell",
+    "transverse_seat_bay",
+    "transverse_rear_transition",
+    "longitudinal_tunnel_cut",
+    "assembly_proxy_context"
+  ],
+  "view_evidence": "Use the same declared geometry revision. Record component visibility, section planes, camera poses and source/image hashes. The three transverse stations are design-defined and must be declared; none is recovered by measuring screenshot pixels.",
+  "limits": [
+    "The reference CAD views in photos 02/03 do not establish which viewed surface is the cabin side; only qualitative topology is used.",
+    "The 65 kg overlay is a seller claim with unknown weighing method and inclusion scope; it supplies no accepted mass result or superiority threshold.",
+    "Photographs supply no measured dimensions, laminate schedule, core thickness, fixture-specific stiffness, crash result or approval.",
+    "Black appearance does not identify the reference frame or tub material; the all-carbon F2 intent is an owner-authorized hypothesis.",
+    "Visual acceptance does not admit donor interfaces, 993/C4 compatibility, manufacturing, strength, road/track qualification or a final validated digital twin."
+  ],
+  "source_photo_bytes_public": false,
+  "metric_photo_inference": false,
+  "functional_or_manufacturing_admission": false
+}

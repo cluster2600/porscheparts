@@ -132,7 +132,7 @@
       "directory": "964-chassis",
       "kind": "twin_record",
       "status": "active",
-      "scope": "964 Carrera 2 and Carrera 4, 1989-1994: steel floor pan and body datum frame, torsion shell FEA and monocoque interface work",
+      "scope": "964 body datum and interface research, with separate assumed F1 and sculpted F2 central-cell design studies; no donor compatibility or physical qualification",
       "fidelity": "F1_envelope",
       "physical_correlation": "none",
       "records": [
@@ -144,19 +144,22 @@
         }
       ],
       "part_ids": [
-        "964-CENTRAL-CELL-ASSUMED-F1"
+        "964-CENTRAL-CELL-ASSUMED-F1",
+        "964-CENTRAL-CELL-SCULPTED-F2"
       ],
       "no_record_reason": null,
-      "independent_evidence": "source-only B/H pattern derived and independently checked; candidate fastener roles bound to original scan triangles; no donor-body measurement",
+      "independent_evidence": "Source-only B/H pattern and original scan-triangle candidate roles; independently reviewed assumed F2 architecture and declared static package screens; no measured donor-body registration or functional qualification",
       "blockers": [
         "qualified donor interfaces",
-        "inner tunnel and upper-cell geometry",
+        "measured donor inner tunnel and upper-cell geometry",
         "B head/bearing seat and off-plane controls for registration"
       ],
       "owner_artefact": "twins/964-chassis/README.md",
       "evidence": [
         "twins/964-chassis/body-contact-alternatives-20261106/review.json",
-        "twins/964-chassis/interface-exploitation-20261030/contract.json"
+        "twins/964-chassis/interface-exploitation-20261030/contract.json",
+        "twins/964-chassis/sculpted-cell-f2-20261106/canonical-model.json",
+        "twins/964-chassis/sculpted-cell-f2-20261106/visual-acceptance.json"
       ],
       "issues": [
         440,
@@ -168,7 +171,8 @@
         552,
         553,
         554
-      ]
+      ],
+      "fidelity_note": "F1_envelope is the documentary twin record fidelity. Assumed F1/F2 cell suffixes are design iterations and do not admit measured F2_interface geometry."
     },
     {
       "directory": "993-cabin-dashboard-switch-0001",

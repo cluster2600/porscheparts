@@ -75,6 +75,20 @@ class CatalogueValidationTests(unittest.TestCase):
 
         self.assertTrue(any("referenced file does not exist" in error for error in errors))
 
+    def test_private_preview_receipt_requires_a_native_master_and_file(self) -> None:
+        record = deepcopy(self.template)
+        record["geometry"].update(
+            master_format="PicoGK", master_file="README.md",
+            private_preview_receipt="catalog/templates/part-record.json")
+        self.assertEqual(validate_record(record), [])
+        for value in ("", 0, "missing-receipt.json"):
+            record["geometry"]["private_preview_receipt"] = value
+            with self.subTest(value=value):
+                self.assertTrue(any("private_preview_receipt" in error for error in validate_record(record)))
+        record["geometry"]["private_preview_receipt"] = "catalog/templates/part-record.json"
+        record["geometry"]["master_format"] = "STEP"
+        self.assertTrue(any("requires a PicoGK master" in error for error in validate_record(record)))
+
     def test_template_file_loads_and_validates(self) -> None:
         path = Path(ROOT / "catalog" / "templates" / "part-record.json")
         self.assertEqual(load_and_validate(path), [])
