@@ -40,9 +40,9 @@ make check
   output) skip when it is absent. CI allows at most `max_skips` from
   [tests/skip-budget.json](../tests/skip-budget.json), enforced only where
   `SKIP_BUDGET_ENFORCE=1` (the `validate.yml` workflow).
-- The shared requirements include Trimesh and Rtree for synthetic scan topology
+- The shared requirements include Trimesh, Rtree and NetworkX for synthetic scan topology
   and surface-distance checks. Adding them enabled 22 existing 935 tests and
-  lowered the CI budget from 416 to 394. Older WSL environments produced
+  removed 78 skips across the full suite, lowering the CI budget from 416 to 338. Older WSL environments produced
   416–421 skips; refresh dependencies before comparing with the current budget.
   A local count above the budget is not by itself a regression. A new skip
   **in a test you added** is: CI will count it.
