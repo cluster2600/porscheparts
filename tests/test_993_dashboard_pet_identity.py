@@ -93,6 +93,22 @@ class RefusedMappings(unittest.TestCase):
         row(bad, "M003-RHD")["knee_protection_strip"][0]["pdf_page"] = 501
         self.assertRefused(bad, "is not a page of plate 809-02")
 
+    def test_item_plate_cannot_borrow_opposite_airbag_scope(self):
+        bad = copy.deepcopy(IDENTITY)
+        row(bad, "M002-LHD")["knee_protection_strip"][0] = copy.deepcopy(
+            row(bad, "M562-LHD")["knee_protection_strip"][0]
+        )
+        self.assertRefused(bad, "plate 809-01 is titled passenger_airbag_present")
+
+    def test_item_plate_needs_its_own_line_level_option_code(self):
+        bad = copy.deepcopy(IDENTITY)
+        plate = copy.deepcopy(next(p for p in bad["plates"] if p["illustration"] == "809-02"))
+        plate["illustration"] = "809-03"
+        plate["option_code_on_lines"] = None
+        bad["plates"].append(plate)
+        row(bad, "M002-LHD")["knee_protection_strip"][0]["plate"] = "809-03"
+        self.assertRefused(bad, "plate 809-03 carries no line-level M002")
+
     def test_missing_row(self):
         bad = copy.deepcopy(IDENTITY)
         bad["matrix"] = [r for r in bad["matrix"] if r["row_id"] != "M561-RHD"]
@@ -177,6 +193,10 @@ class SpecimenAdmission(unittest.TestCase):
         submission = complete_submission()
         submission["E3-trim-label"] = {"part_number": "993 552 055 00", "matches_matrix_row": False}
         self.assertEqual(checker.admit_specimen(submission)[0], "held")
+        submission["E3-trim-label"].pop("matches_matrix_row")
+        verdict, reasons = checker.admit_specimen(submission)
+        self.assertEqual(verdict, "held")
+        self.assertTrue(any(reason.startswith("E3:") for reason in reasons))
 
     def test_file_from_another_specimen_breaks_continuity(self):
         submission = complete_submission()
