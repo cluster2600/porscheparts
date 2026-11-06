@@ -1,0 +1,221 @@
+{
+  "schema": "935-large-frontier-public-receipt-1",
+  "parent_source_commit": "c9d2d27f4298c9d61b93cf1ad141ff30f635b841",
+  "source_OBJ_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "current_mesh_sha256": "b4705dbb46a67f467bcb43cdc5bb922a77b2b01274fea1935bd805db15a3f559",
+  "new_sources": [
+    {
+      "name": "audit_large_frontier.py",
+      "sha256": "fcb3b00e304d14a8b8fd1782eaf88f4275e55ca593e1c2203efb413640f733c3"
+    },
+    {
+      "name": "verify_large_frontier.py",
+      "sha256": "8d7b528cb377914e3d50713138d4fa5bf5b91b1c6859893dd7a3f9b1b398925c"
+    }
+  ],
+  "frozen_helpers": [
+    {
+      "role": "raw_identity_inspector",
+      "name": "verify_untried_pairs.py",
+      "sha256": "21457c97051d711768b697951c8b2c1a82ed8beeccf411de58e0f0e9ad3bcf1f"
+    },
+    {
+      "role": "raw_identity_producer",
+      "name": "census_untried_pairs.py",
+      "sha256": "fdd9406ba9a750243f2dbe37c18e2c5071b3b7783dd8dbc32ddbb49c4e4e876e"
+    },
+    {
+      "role": "legacy_screen_source",
+      "name": "admit_end_walls.py",
+      "sha256": "a0c070c5096379d36f92a0b2148d7f16aa797bcfbc66a51dbf88f08d8898526e"
+    },
+    {
+      "role": "legacy_inspector_source",
+      "name": "verify_end_wall_admission.py",
+      "sha256": "d2c3405af021094477b1ceb2ce03d13f74c1f3d6f4a7ce0ad22071e3653263f3"
+    },
+    {
+      "role": "projection_helper",
+      "name": "inspect_acquisition_patches.py",
+      "sha256": "301c2474971407b2221e7f8e26d969b4de59f9f2e6957d93df97c7722e800316"
+    },
+    {
+      "role": "boundary_helper",
+      "name": "audit_retained_boundaries.py",
+      "sha256": "5b1fcf5815ceca941f6af7a07683bc17b4f4b3e7f43fb6da316d598d91848ee0"
+    },
+    {
+      "role": "primal_component_source",
+      "name": "verify_interwalk_pairs.py",
+      "sha256": "9a7cf0616713df228712407772bf789250c6575201156fe4c15fa6f3dfab1abc"
+    },
+    {
+      "role": "dual_component_source",
+      "name": "census_interwalk_pairs.py",
+      "sha256": "b7117b0f29fbb472f51562f5f4883dc60c400ecedfb6296be8b7467dfe148d24"
+    },
+    {
+      "role": "registry_inspector",
+      "name": "verify_pair_registry.py",
+      "sha256": "639f69ddfbe8253e352dc89a26f193fb44eda893eddbbe7164f5ae07ae8fe669"
+    },
+    {
+      "role": "surface_inspector",
+      "name": "inspect_continuation_strips.py",
+      "sha256": "576452d2d2a1eef778b138bc71a3d698cdad713fa301d4cd7c7bc820ff9454e3"
+    }
+  ],
+  "unchanged_legacy_limits": {
+    "min_edges": 3,
+    "max_edges": 128,
+    "max_diagonal_nominal_mm": 3.0,
+    "max_plane_residual_nominal_mm": 0.25,
+    "min_distinct_acquired_owners": 2,
+    "minimum_acquired_binormal_signed_p10": 0.8
+  },
+  "reports": {
+    "audit": {
+      "source_sha256": "fcb3b00e304d14a8b8fd1782eaf88f4275e55ca593e1c2203efb413640f733c3",
+      "job_sha256": "a74bac989c73a75abca5e53f2ffd30d53ea4ac617012e7ac006e1e6a8a6a933c",
+      "mesh_sha256": "b4705dbb46a67f467bcb43cdc5bb922a77b2b01274fea1935bd805db15a3f559",
+      "ancestry_sha256": "67756095e4ef05858a0b2fec36c376ee32a59dff9b287541d5244f41114147ad",
+      "descriptors_sha256": "4141522ff5893d69daf8d55fb3c9ca80686cb52f9a44f630b87764808076f02b",
+      "complete_walks": 1448,
+      "complete_boundary_edges": 95868,
+      "selected_large_walks": 124,
+      "selected_large_edges": 69101,
+      "scoped_origin_counts": {
+        "1": 68588,
+        "6": 479,
+        "7": 22,
+        "8": 10,
+        "9": 2
+      },
+      "all_boundary_cycles_recomputed": true,
+      "global_registry_births_checked": 23,
+      "inferred_normals_used_as_acquired_evidence": false,
+      "non_size_legacy_refusal_counts": {
+        "planarity": 123,
+        "nonpositive_acquired_edge_binormal": 124,
+        "acquired_edge_binormal_cone": 124
+      },
+      "fixed_planar_binormal_diagnostic_compatible_walks": 0,
+      "fixed_planar_binormal_diagnostic_compatible_edges": 0,
+      "principal_thin_diagnostic_walks": 0,
+      "projection_or_contact_audit_performed": false,
+      "large_contours_admitted_for_construction": 0,
+      "existing_compact_bounds_relaxed": false,
+      "geometry_modified": false,
+      "physical_acceptance": false,
+      "manufacturing_authorized": false,
+      "seconds": 5.489268917008303
+    },
+    "independent_replay": {
+      "source_sha256": "8d7b528cb377914e3d50713138d4fa5bf5b91b1c6859893dd7a3f9b1b398925c",
+      "job_sha256": "a74bac989c73a75abca5e53f2ffd30d53ea4ac617012e7ac006e1e6a8a6a933c",
+      "mesh_sha256": "b4705dbb46a67f467bcb43cdc5bb922a77b2b01274fea1935bd805db15a3f559",
+      "ancestry_sha256": "67756095e4ef05858a0b2fec36c376ee32a59dff9b287541d5244f41114147ad",
+      "descriptors_sha256": "4141522ff5893d69daf8d55fb3c9ca80686cb52f9a44f630b87764808076f02b",
+      "independently_verified_large_walks": 124,
+      "independently_verified_large_edges": 69101,
+      "scoped_origin_counts": {
+        "1": 68588,
+        "6": 479,
+        "7": 22,
+        "8": 10,
+        "9": 2
+      },
+      "scalar_raw_identity_controls_passed": 5,
+      "all_registry_births_verified": 23,
+      "dual_and_primal_components_agree": true,
+      "all_source_references_and_directed_cycle_hashes_verified": true,
+      "independent_covariance_eigen_and_scalar_diagnostics_verified": true,
+      "fixed_planar_binormal_diagnostic_compatible_walks": 0,
+      "fixed_planar_binormal_diagnostic_compatible_edges": 0,
+      "principal_thin_diagnostic_walks": 0,
+      "producer_imported": false,
+      "large_frontier_audit_independently_verified": true,
+      "construction_admitted": false,
+      "projection_or_contact_audit_performed": false,
+      "inferred_normals_used_as_acquired_evidence": false,
+      "geometry_modified": false,
+      "physical_acceptance": false,
+      "manufacturing_authorized": false,
+      "seconds": 10.08029399998486
+    }
+  },
+  "registry_birth_censuses": [
+    {
+      "census_sha256": "137b9d729c4a7486ea7779fc0dd7cf4dfcb94012acf8a83d2a2310477587bd60",
+      "proof_sha256": "13fb8dd493e038d101fc833dc8d0f4423f181b7b8c09292624719ce88dcad011",
+      "inspector_sha256": "0da2c491b7514638779a41af730445f97d21a1f9347aa31a9243d473f956d920",
+      "birth_round": 1,
+      "class_policy": "two_classes"
+    },
+    {
+      "census_sha256": "62137a2b69e4db348773de3b15443f9c1394567b106ed7c0afd36e3bfcc794e2",
+      "proof_sha256": "57d8eab96c248a93a1c3c89eedc12755b200d87024fe143a550c8b5e3da7fccf",
+      "inspector_sha256": "0da2c491b7514638779a41af730445f97d21a1f9347aa31a9243d473f956d920",
+      "birth_round": 2,
+      "class_policy": "two_classes"
+    },
+    {
+      "census_sha256": "03fe1639a7df5350b9da74071ec1c5c3506320fc323b190387214d7f00209aaf",
+      "proof_sha256": "f75c4ef51796692b89b36ceb5c1e014db2cb2f01cbd9bc3c1345b5a56422b88f",
+      "inspector_sha256": "9a7cf0616713df228712407772bf789250c6575201156fe4c15fa6f3dfab1abc",
+      "birth_round": 3,
+      "class_policy": "opposed_only"
+    },
+    {
+      "census_sha256": "c9f38c818935079e39ac0820fcb92937c9eccc2af9e9ac65242c8a606648f428",
+      "proof_sha256": "c4649690555aa6e8ac73893e42b8c4d607c5f6249eea9e1c87a48362c3880a26",
+      "inspector_sha256": "0da2c491b7514638779a41af730445f97d21a1f9347aa31a9243d473f956d920",
+      "birth_round": 4,
+      "class_policy": "two_classes"
+    }
+  ],
+  "private_manifest_sha256": "95b12e30e8fcfb8caadee1965423614f6c0dcf9f08fd71790f45d321ac7456b7",
+  "private_payload_files": 17,
+  "private_payload_bytes": 3084318,
+  "focused_tests": {
+    "tests_run": 138,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "passed": true,
+    "patterns": [
+      "contact_bridges",
+      "quarantine_patches",
+      "bounded_fan_pruning",
+      "acquisition_gap_trials",
+      "frontier_pairing",
+      "strip_cap_admission",
+      "untried_acquired_pairs",
+      "opposed_wall_trials",
+      "end_wall_admission",
+      "pairing_continuation",
+      "interwalk_admission",
+      "post_interwalk_continuation",
+      "large_frontier_audit"
+    ]
+  },
+  "unchanged_geometric_Kali_witness": {
+    "report_sha256": "bf6abe75ad2ab7a82d137b51e79127d92e2863bbed560768739c9bb2b112c049",
+    "mesh_sha256": "b4705dbb46a67f467bcb43cdc5bb922a77b2b01274fea1935bd805db15a3f559",
+    "new_replay_performed": false,
+    "source_diagnostic_Linux_replay_performed": false
+  },
+  "construction_admitted": false,
+  "physical_acceptance": false,
+  "manufacturing_authorized": false,
+  "G0_G5": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "goal_complete": false,
+  "new_paid_compute_usd": 0
+}
