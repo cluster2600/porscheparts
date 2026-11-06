@@ -62,7 +62,7 @@ class SwitchTrimRingLpbfF1Tests(unittest.TestCase):
         self.assertTrue(load(REPORT)["gates"]["bare_part_machine_envelope_fit"])
 
     def test_process_gates_stay_closed(self) -> None:
-        """Le criblage est geometrique. Il n'autorise aucune impression."""
+        """The screen is geometric. It authorises no printing."""
         gates = load(REPORT)["gates"]
         for gate in (
             "metal_print_authorized",

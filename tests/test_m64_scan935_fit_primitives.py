@@ -106,7 +106,7 @@ class FitPrimitivesTest(unittest.TestCase):
 
 
 class Scan935ContractFactsTest(unittest.TestCase):
-    """Les faits 935 restent candidats : aucun nominal, aucun statut « found »."""
+    """The 935 facts stay candidates: no nominal value, no "found" status."""
 
     def setUp(self):
         import json

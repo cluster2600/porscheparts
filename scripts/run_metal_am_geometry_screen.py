@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Criblage géométrique LPBF générique, fail-closed et sans fichier machine.
+"""Generic LPBF geometry screen, fail-closed and without a machine file.
 
-Le noyau de coupe, d'épaisseur et de dépoudrage réutilise les fonctions déjà
-testées du programme F50. Le présent adaptateur retire les hypothèses propres à
-la culasse 917 et lie chaque résultat au master et au maillage par SHA-256.
+The slicing, thickness and depowdering kernel reuses the already tested
+functions of the F50 programme. This adapter removes the assumptions specific
+to the 917 cylinder head and binds every result to the master and the mesh by
+SHA-256.
 """
 
 from __future__ import annotations
@@ -34,7 +35,7 @@ PART_ID_PATTERN = re.compile(r"^[A-Z0-9][A-Z0-9._-]{2,63}$")
 
 
 class ScreenError(RuntimeError):
-    """Erreur contrôlée du criblage AM."""
+    """Controlled AM screening error."""
 
 
 def sha256(path: Path) -> str:
