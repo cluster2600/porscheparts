@@ -1,0 +1,2170 @@
+{
+  "$comment": "Independent interface and measurement contracts for the complete 993 dashboard F0 scope (issue #567). Written from the F0 assembly scope, the trim measurement plan, the PET identity audit (#566) and DT-01, before any functional CAD. Every value is null: nothing here is measured, and no coordinate is taken from the PicoGK concept or any other model.",
+  "schema_version": "1.0.0",
+  "contract_id": "CONTRACT-993-DASHBOARD-F0-INTERFACES-0001",
+  "revision": "2026-11-06",
+  "status": "proposed_awaiting_independent_review",
+  "assembly": "twins/993-dashboard-f0/assembly.json",
+  "identity_record": "parts/993-int-dashboard-trim-0001/evidence/pet-identity.json",
+  "measurement_plan": "parts/993-int-dashboard-trim-0001/evidence/measurement-plan.md",
+  "candidate_variants": [
+    {
+      "row_id": "M564-LHD",
+      "role": "F0 target",
+      "identity_status": "unmapped_in_kat017",
+      "note": "Contracts apply, but no catalogue identity can be attached until a source maps M564 or a specimen is admitted."
+    },
+    {
+      "row_id": "M002-LHD",
+      "role": "documented alternative",
+      "identity_status": "mapped_by_option_code"
+    },
+    {
+      "row_id": "M003-LHD",
+      "role": "documented alternative",
+      "identity_status": "mapped_by_option_code"
+    }
+  ],
+  "vehicle_frame": {
+    "frame_id": "VEH-993",
+    "origin": null,
+    "axes": null,
+    "units": "mm",
+    "status": "missing_data",
+    "rule": "Defined only from body features measured on the body: the two A-pillar faces, the windshield-base flange and the tunnel centreline. The trim plan's origin (centre of the central support on the cross member) is a part-local datum and is not used as the vehicle origin.",
+    "host_datum_features": [
+      {
+        "id": "VF-H01",
+        "side": "host",
+        "kind": "position",
+        "description": "Left A-pillar reference face at the dashboard height",
+        "methods": [
+          "cmm",
+          "photogrammetry_scaled"
+        ],
+        "unit": "mm",
+        "repetitions_min": 3,
+        "value": null,
+        "uncertainty": null,
+        "evidence": null
+      },
+      {
+        "id": "VF-H02",
+        "side": "host",
+        "kind": "position",
+        "description": "Right A-pillar reference face at the dashboard height",
+        "methods": [
+          "cmm",
+          "photogrammetry_scaled"
+        ],
+        "unit": "mm",
+        "repetitions_min": 3,
+        "value": null,
+        "uncertainty": null,
+        "evidence": null
+      },
+      {
+        "id": "VF-H03",
+        "side": "host",
+        "kind": "profile",
+        "description": "Windshield-base flange line",
+        "methods": [
+          "scan",
+          "photogrammetry_scaled"
+        ],
+        "unit": "mm",
+        "repetitions_min": 3,
+        "value": null,
+        "uncertainty": null,
+        "evidence": null
+      },
+      {
+        "id": "VF-H04",
+        "side": "host",
+        "kind": "axis",
+        "description": "Tunnel centreline at the console front",
+        "methods": [
+          "cmm",
+          "photogrammetry_scaled"
+        ],
+        "unit": "mm",
+        "repetitions_min": 3,
+        "value": null,
+        "uncertainty": null,
+        "evidence": null
+      }
+    ]
+  },
+  "evidence_layers": {
+    "catalogue_identity": "PET text read in #566: part numbers, plates, positions, quantities and printed descriptions. Identity only; a catalogue never supplies a dimension, position or tolerance.",
+    "proposed_measurement": "The measurands in this contract. Every value, uncertainty and evidence field is null until a reading is admitted.",
+    "admitted_physical_evidence": []
+  },
+  "admission": {
+    "specimen_gate": "Before any reading of a specimen is entered, scripts/check_993_dashboard_pet_identity.py admit_specimen() must return held with only the pending independent-verification reason, and the independent measurement and rights/privacy reviewers must then record the specimen as admitted. The software preflight never admits on its own.",
+    "reading_record": "Each reading lives in a catalog/measurements/ record that passes scripts/validate_measurements.py, names the specimen ID, the measurand ID, method, repetitions and a bounding uncertainty.",
+    "host_methods_forbidden": [
+      "derived",
+      "model",
+      "assumed"
+    ],
+    "forbidden_sources": [
+      "parts/picogk-catalog/",
+      "parts/993-int-dashboard-trim-0001/source/",
+      "parts/993-int-dashboard-trim-0001/derived/",
+      "twins/993-dashboard-f0/dashboard-trim-f0-visual",
+      "scripts/build_993_concept_f0.py",
+      ".stl",
+      ".step",
+      ".3mf"
+    ],
+    "independence": "A host reading is taken on the host with the part removed, or on a body feature that is not part of the participant being designed. A host value deduced from the removed part is refused, and a part reading is never used as host evidence.",
+    "uncertainty_rule": "Each reading states its uncertainty as a bounding half-width. Proposed rule, for the independent interface reviewer to confirm: a reading is usable for acceptance only when its uncertainty is at most half the tolerance it is checked against.",
+    "contradiction_rule": "Two admitted readings of the same measurand on the same specimen whose intervals do not overlap form a contradiction; the interface is blocked until it is resolved and the register records it.",
+    "rights_and_privacy": "Images and readings are admitted under #566 E5. No VIN, chassis number, registration or personal data is kept."
+  },
+  "reviewer_roles": [
+    {
+      "role": "preparer",
+      "assigned_to": null,
+      "may_review": false
+    },
+    {
+      "role": "independent_measurement_reviewer",
+      "assigned_to": null,
+      "scope": "re-reads every admitted reading against its images and record"
+    },
+    {
+      "role": "independent_interface_reviewer",
+      "assigned_to": null,
+      "scope": "sets tolerances and accepts or refuses each interface"
+    },
+    {
+      "role": "rights_privacy_reviewer",
+      "assigned_to": null,
+      "scope": "E1 redaction and E5 permission"
+    },
+    {
+      "role": "professional_engineering_reviewer",
+      "assigned_to": null,
+      "scope": "every safety_relevant interface; required before any functional change near it"
+    }
+  ],
+  "reviewer_rules": [
+    "No person holds two roles for the same interface.",
+    "Model output, an agent, PicoGK or any generator cannot hold a role or supply evidence."
+  ],
+  "interfaces": [
+    {
+      "interface_id": "IF_BODY_PANEL_TO_SHELL",
+      "kind": "structural_attachment",
+      "safety_relevant": true,
+      "load_paths": [
+        "LP_TRIM_SELF_WEIGHT_AND_VIBRATION",
+        "LP_KNEE_OCCUPANT_IMPACT",
+        "LP_INSTRUMENT_VENT_GLOVEBOX_CONSOLE_RETENTION",
+        "LP_STEERING_AND_RESTRAINT"
+      ],
+      "catalogue_identity": {
+        "M564-LHD": {
+          "status": "group_502_identity_only",
+          "items": null,
+          "basis": "The record names the body dashboard panel 993 502 027 02 /LL (group 502). Its option-code applicability was not audited in #566 and is not assumed here."
+        },
+        "M002-LHD": {
+          "status": "not_audited",
+          "items": null
+        },
+        "M003-LHD": {
+          "status": "not_audited",
+          "items": null
+        }
+      },
+      "attachments": {
+        "count": null,
+        "kind": "body-shell joint (welded or bolted, unknown)",
+        "fastener_identity": null,
+        "hole_pattern": null,
+        "axes": null
+      },
+      "part_datums": [],
+      "host_datums": [
+        {
+          "id": "BP-H01",
+          "side": "host",
+          "kind": "position",
+          "description": "Every trim-receptacle, clip-nut and anchor location on the bare body dashboard panel, in the vehicle frame VEH-993",
+          "methods": [
+            "cmm",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "BP-H02",
+          "side": "host",
+          "kind": "surface",
+          "description": "Panel surface profile under the trim footprint, trim removed",
+          "methods": [
+            "scan",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "BP-H03",
+          "side": "host",
+          "kind": "position",
+          "description": "Panel-to-A-pillar and panel-to-cowl joint locations, both sides",
+          "methods": [
+            "cmm",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        }
+      ],
+      "mating_faces": [
+        "panel faces that carry the trim receptacles",
+        "panel flanges to A-pillars and cowl"
+      ],
+      "motion_clearance": [],
+      "required_images": [
+        "installed overall view with two scale bars in frame",
+        "close-up of every attachment or contact point, installed, with scale",
+        "bare panel, trim removed, both ends and centre"
+      ],
+      "acceptance": [
+        "This interface is a host: it supplies the vehicle-frame positions every other host datum hangs from. It is accepted only as measured, never designed.",
+        "Any modification of the body panel is outside this programme."
+      ],
+      "tolerances": {
+        "value": null,
+        "set_by": "independent_interface_reviewer",
+        "rule": "Set from the function of the joint before any acceptance; never from the F0 concept."
+      },
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_TRIM_TO_BODY_PANEL",
+      "kind": "attachment",
+      "safety_relevant": true,
+      "load_paths": [
+        "LP_TRIM_SELF_WEIGHT_AND_VIBRATION"
+      ],
+      "catalogue_identity": {
+        "M564-LHD": {
+          "status": "unmapped_in_kat017",
+          "items": null,
+          "basis": "pet-identity.json rows M564-LHD: Kat 017 has no plate for a non-RS M564 car."
+        },
+        "M002-LHD": {
+          "status": "plate_inventory",
+          "items": [
+            {
+              "part_number": "993 552 055 00",
+              "description": "Dashboard trim",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "1",
+              "remark": "/LL"
+            },
+            {
+              "part_number": "999 591 713 02",
+              "description": "Speed nut",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "2",
+              "qty": 2,
+              "spec": "B 4,2"
+            },
+            {
+              "part_number": "900 025 002 02",
+              "description": "Washer",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "3",
+              "qty": 2,
+              "spec": "A 4,3"
+            },
+            {
+              "part_number": "900 143 121 07",
+              "description": "Tapping screw",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "4",
+              "qty": 2,
+              "spec": "B 4,2 X 16"
+            },
+            {
+              "part_number": "999 591 713 02",
+              "description": "Speed nut",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "8",
+              "qty": 5,
+              "spec": "B 4,2"
+            },
+            {
+              "part_number": "900 145 084 07",
+              "description": "Tapping screw",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "9",
+              "qty": 5,
+              "spec": "B 4,2 X 19"
+            },
+            {
+              "part_number": "999 591 331 02",
+              "description": "Speed nut",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "10",
+              "qty": 2,
+              "spec": "B 4,2"
+            },
+            {
+              "part_number": "900 025 002 02",
+              "description": "Washer",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "11",
+              "qty": 2,
+              "spec": "A 4,3"
+            },
+            {
+              "part_number": "900 143 121 07",
+              "description": "Tapping screw",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "12",
+              "qty": 2,
+              "spec": "B 4,2 X 16"
+            }
+          ],
+          "note": "Fasteners listed on the same plate. Which position fastens which joint is shown only on the illustration, which is not transcribed; assignment to this interface is unknown."
+        },
+        "M003-LHD": {
+          "status": "plate_inventory",
+          "items": [
+            {
+              "part_number": "993 552 055 70",
+              "description": "Dashboard trim",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "(1)",
+              "remark": "/LL"
+            },
+            {
+              "part_number": "999 591 713 02",
+              "description": "Speed nut",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "2",
+              "qty": 2,
+              "spec": "B 4,2"
+            },
+            {
+              "part_number": "900 025 002 02",
+              "description": "Washer",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "3",
+              "qty": 2,
+              "spec": "A 4,3"
+            },
+            {
+              "part_number": "900 143 121 07",
+              "description": "Tapping screw",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "4",
+              "qty": 2,
+              "spec": "B 4,2 X 16"
+            },
+            {
+              "part_number": "999 591 713 02",
+              "description": "Speed nut",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "8",
+              "qty": 5,
+              "spec": "B 4,2"
+            },
+            {
+              "part_number": "900 145 084 07",
+              "description": "Tapping screw",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "9",
+              "qty": 5,
+              "spec": "B 4,2 X 19"
+            },
+            {
+              "part_number": "999 591 331 02",
+              "description": "Speed nut",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "10",
+              "qty": 2,
+              "spec": "B 4,2"
+            },
+            {
+              "part_number": "900 025 002 02",
+              "description": "Washer",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "11",
+              "qty": 2,
+              "spec": "A 4,3"
+            },
+            {
+              "part_number": "900 143 121 07",
+              "description": "Tapping screw",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "12",
+              "qty": 2,
+              "spec": "B 4,2 X 16"
+            }
+          ],
+          "note": "Fasteners listed on the same plate. Which position fastens which joint is shown only on the illustration, which is not transcribed; assignment to this interface is unknown."
+        }
+      },
+      "attachments": {
+        "count": null,
+        "kind": "clip nuts and self-tapping screws (record text; count unknown)",
+        "fastener_identity": "see catalogue_identity; assignment unknown",
+        "hole_pattern": null,
+        "axes": null
+      },
+      "part_datums": [
+        {
+          "id": "TB-P01",
+          "side": "part",
+          "kind": "position",
+          "description": "Centre of every fastener hole of the removed trim, trim local frame",
+          "methods": [
+            "cmm",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null,
+          "plan_ref": "D05"
+        },
+        {
+          "id": "TB-P02",
+          "side": "part",
+          "kind": "length",
+          "description": "Diameter of every clip-nut hole",
+          "methods": [
+            "direct"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null,
+          "plan_ref": "D06"
+        },
+        {
+          "id": "TB-P03",
+          "side": "part",
+          "kind": "axis",
+          "description": "Axis direction of every fastener hole",
+          "methods": [
+            "cmm",
+            "gauge_pin_photogrammetry"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "TB-P04",
+          "side": "part",
+          "kind": "length",
+          "description": "Wall thickness at every bearing face, outside ribs",
+          "methods": [
+            "direct"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null,
+          "plan_ref": "D14"
+        },
+        {
+          "id": "TB-P05",
+          "side": "part",
+          "kind": "surface",
+          "description": "Back-face profile at the mating zones, installed and removed",
+          "methods": [
+            "scan",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "TB-P06",
+          "side": "part",
+          "kind": "count",
+          "description": "Number of fastener holes",
+          "methods": [
+            "count"
+          ],
+          "unit": "1",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        }
+      ],
+      "host_datums": [
+        {
+          "id": "TB-H01",
+          "side": "host",
+          "kind": "position",
+          "description": "Centre of every receptacle on the body panel with the trim removed, vehicle frame",
+          "methods": [
+            "cmm",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "TB-H02",
+          "side": "host",
+          "kind": "axis",
+          "description": "Axis of every receptacle",
+          "methods": [
+            "cmm",
+            "gauge_pin_photogrammetry"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "TB-H03",
+          "side": "host",
+          "kind": "length",
+          "description": "Substrate thickness at every receptacle",
+          "methods": [
+            "direct"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "TB-H04",
+          "side": "host",
+          "kind": "count",
+          "description": "Number of receptacles",
+          "methods": [
+            "count"
+          ],
+          "unit": "1",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        }
+      ],
+      "mating_faces": [
+        "trim bearing faces at each fastener",
+        "panel faces at each receptacle"
+      ],
+      "motion_clearance": [
+        "installed versus removed shape change, D01-D04 in place and removed (plan rule: > 2 mm means relaxation)"
+      ],
+      "required_images": [
+        "installed overall view with two scale bars in frame",
+        "close-up of every attachment or contact point, installed, with scale",
+        "removed trim back face, full",
+        "bare panel at every receptacle, trim removed"
+      ],
+      "acceptance": [
+        "TB-P06 equals TB-H04; a count mismatch is a contradiction and blocks the interface.",
+        "Every hole maps one-to-one to a receptacle after the best-fit transform; the residual of each pair is within the reviewer-set positional tolerance.",
+        "The transform is fitted on host datums measured independently of the trim; it is never taken from the F0 concept.",
+        "Before physical acceptance, an independent professional engineering reviewer must assess trim retention and the occupant-facing impact and fragment risks of a composite substitute."
+      ],
+      "tolerances": {
+        "value": null,
+        "set_by": "independent_interface_reviewer",
+        "rule": "Set from the function of the joint before any acceptance; never from the F0 concept."
+      },
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_HOOD_TO_TRIM",
+      "kind": "attachment_and_clearance",
+      "safety_relevant": false,
+      "load_paths": [
+        "LP_INSTRUMENT_VENT_GLOVEBOX_CONSOLE_RETENTION"
+      ],
+      "catalogue_identity": {
+        "M564-LHD": {
+          "status": "unmapped_in_kat017",
+          "items": null,
+          "basis": "pet-identity.json rows M564-LHD: Kat 017 has no plate for a non-RS M564 car."
+        },
+        "M002-LHD": {
+          "status": "not_transcribed",
+          "items": null
+        },
+        "M003-LHD": {
+          "status": "not_transcribed",
+          "items": null
+        }
+      },
+      "attachments": {
+        "count": null,
+        "kind": null,
+        "fastener_identity": null,
+        "hole_pattern": null,
+        "axes": null
+      },
+      "part_datums": [
+        {
+          "id": "HT-P01",
+          "side": "part",
+          "kind": "profile",
+          "description": "Instrument-hood aperture outline in the trim",
+          "methods": [
+            "scan",
+            "photogrammetry_scaled",
+            "direct"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null,
+          "plan_ref": "D09"
+        },
+        {
+          "id": "HT-P02",
+          "side": "part",
+          "kind": "length",
+          "description": "Trim width at the instrument hood",
+          "methods": [
+            "direct"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null,
+          "plan_ref": "D02"
+        }
+      ],
+      "host_datums": [
+        {
+          "id": "HT-H01",
+          "side": "host",
+          "kind": "position",
+          "description": "Hood mounting points on its own support, trim removed, vehicle frame",
+          "methods": [
+            "cmm",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "HT-H02",
+          "side": "host",
+          "kind": "profile",
+          "description": "Hood flange outline mating with the trim aperture",
+          "methods": [
+            "scan",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        }
+      ],
+      "mating_faces": [
+        "trim aperture edge",
+        "hood flange"
+      ],
+      "motion_clearance": [
+        "edge gap around the aperture, installed, at no fewer than eight stations"
+      ],
+      "required_images": [
+        "installed overall view with two scale bars in frame",
+        "close-up of every attachment or contact point, installed, with scale",
+        "hood removed and installed, from the driver's eye point"
+      ],
+      "acceptance": [
+        "The aperture contains the hood flange with a positive gap at every station, after uncertainty.",
+        "Hood datums come from the hood's own support, never from the trim aperture."
+      ],
+      "tolerances": {
+        "value": null,
+        "set_by": "independent_interface_reviewer",
+        "rule": "Set from the function of the joint before any acceptance; never from the F0 concept."
+      },
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_CLUSTER_TO_HOOD_PANEL",
+      "kind": "attachment_and_clearance",
+      "safety_relevant": false,
+      "load_paths": [
+        "LP_INSTRUMENT_VENT_GLOVEBOX_CONSOLE_RETENTION"
+      ],
+      "catalogue_identity": {
+        "M564-LHD": {
+          "status": "unmapped_in_kat017",
+          "items": null,
+          "basis": "pet-identity.json rows M564-LHD: Kat 017 has no plate for a non-RS M564 car."
+        },
+        "M002-LHD": {
+          "status": "not_transcribed",
+          "items": null
+        },
+        "M003-LHD": {
+          "status": "not_transcribed",
+          "items": null
+        }
+      },
+      "attachments": {
+        "count": null,
+        "kind": null,
+        "fastener_identity": null,
+        "hole_pattern": null,
+        "axes": null
+      },
+      "part_datums": [
+        {
+          "id": "CL-P01",
+          "side": "part",
+          "kind": "axis",
+          "description": "Axis of each of the five gauges",
+          "methods": [
+            "cmm",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "CL-P02",
+          "side": "part",
+          "kind": "envelope",
+          "description": "Gauge body envelopes behind the lens",
+          "methods": [
+            "direct",
+            "scan"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        }
+      ],
+      "host_datums": [
+        {
+          "id": "CL-H01",
+          "side": "host",
+          "kind": "position",
+          "description": "Cluster support points on the body panel, cluster removed, vehicle frame",
+          "methods": [
+            "cmm",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "CL-H02",
+          "side": "host",
+          "kind": "envelope",
+          "description": "Free volume behind the cluster for harness and service",
+          "methods": [
+            "direct",
+            "scan"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        }
+      ],
+      "mating_faces": [
+        "cluster supports",
+        "lens rim to hood"
+      ],
+      "motion_clearance": [
+        "lens-to-hood clearance",
+        "harness bend and service clearance"
+      ],
+      "required_images": [
+        "installed overall view with two scale bars in frame",
+        "close-up of every attachment or contact point, installed, with scale",
+        "cluster opening, cluster removed"
+      ],
+      "acceptance": [
+        "Five gauge axes are recorded; a count other than five is a contradiction with the F0 scope.",
+        "The trim is not a support of the cluster unless a measured support path shows it."
+      ],
+      "tolerances": {
+        "value": null,
+        "set_by": "independent_interface_reviewer",
+        "rule": "Set from the function of the joint before any acceptance; never from the F0 concept."
+      },
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_VENTS_TO_TRIM_DUCTS",
+      "kind": "attachment_and_airflow",
+      "safety_relevant": false,
+      "load_paths": [
+        "LP_INSTRUMENT_VENT_GLOVEBOX_CONSOLE_RETENTION"
+      ],
+      "catalogue_identity": {
+        "M564-LHD": {
+          "status": "unmapped_in_kat017",
+          "items": null,
+          "basis": "pet-identity.json rows M564-LHD: Kat 017 has no plate for a non-RS M564 car."
+        },
+        "M002-LHD": {
+          "status": "plate_inventory",
+          "items": [
+            {
+              "part_number": "964 572 051 00",
+              "description": "Centre nozzle",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 512,
+              "position": "16",
+              "remark": "/LL"
+            },
+            {
+              "part_number": "964 572 261 01",
+              "description": "Side vent",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 512,
+              "position": "19",
+              "remark": "/L"
+            },
+            {
+              "part_number": "964 572 262 01",
+              "description": "Side vent",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 512,
+              "position": "(19)",
+              "remark": "/R"
+            },
+            {
+              "part_number": "964 552 411 00",
+              "description": "Defroster vent",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "5"
+            },
+            {
+              "part_number": "964 572 787 00",
+              "description": "Plastic foam strip",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "15"
+            }
+          ],
+          "note": "Catalogue identities only. The foam-strip size printed in the catalogue is a description, not a measured dimension."
+        },
+        "M003-LHD": {
+          "status": "plate_inventory",
+          "items": [
+            {
+              "part_number": "964 572 051 00",
+              "description": "Centre nozzle",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 512,
+              "position": "16",
+              "remark": "/LL"
+            },
+            {
+              "part_number": "964 572 261 01",
+              "description": "Side vent",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 512,
+              "position": "19",
+              "remark": "/L"
+            },
+            {
+              "part_number": "964 572 262 01",
+              "description": "Side vent",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 512,
+              "position": "(19)",
+              "remark": "/R"
+            },
+            {
+              "part_number": "964 552 411 00",
+              "description": "Defroster vent",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "5"
+            },
+            {
+              "part_number": "964 572 787 00",
+              "description": "Plastic foam strip",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 511,
+              "position": "15"
+            }
+          ]
+        }
+      },
+      "attachments": {
+        "count": null,
+        "kind": "retainers (unknown)",
+        "fastener_identity": null,
+        "hole_pattern": null,
+        "axes": null
+      },
+      "part_datums": [
+        {
+          "id": "VD-P01",
+          "side": "part",
+          "kind": "profile",
+          "description": "Centre vent opening, width and height",
+          "methods": [
+            "direct"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null,
+          "plan_ref": "D07"
+        },
+        {
+          "id": "VD-P02",
+          "side": "part",
+          "kind": "profile",
+          "description": "Side vent openings, width and height, left and right",
+          "methods": [
+            "direct"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null,
+          "plan_ref": "D08"
+        },
+        {
+          "id": "VD-P03",
+          "side": "part",
+          "kind": "profile",
+          "description": "Defrost slots, length and width",
+          "methods": [
+            "direct"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null,
+          "plan_ref": "D10"
+        }
+      ],
+      "host_datums": [
+        {
+          "id": "VD-H01",
+          "side": "host",
+          "kind": "profile",
+          "description": "Outer body outline of each vent at its retainer plane, vent removed from the trim",
+          "methods": [
+            "direct",
+            "scan"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "VD-H02",
+          "side": "host",
+          "kind": "position",
+          "description": "Duct mouth position and seal face of each vent and defrost duct, trim removed, vehicle frame",
+          "methods": [
+            "cmm",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "VD-H03",
+          "side": "host",
+          "kind": "length",
+          "description": "Defrost duct mouth to windshield-base clearance, trim removed",
+          "methods": [
+            "direct"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        }
+      ],
+      "mating_faces": [
+        "vent retainer faces",
+        "duct seal faces"
+      ],
+      "motion_clearance": [
+        "vent louvre sweep",
+        "seal compression at each duct"
+      ],
+      "required_images": [
+        "installed overall view with two scale bars in frame",
+        "close-up of every attachment or contact point, installed, with scale",
+        "each vent removed, retainer side",
+        "each duct mouth, trim removed"
+      ],
+      "acceptance": [
+        "Each opening contains its vent outline with positive clearance after uncertainty.",
+        "Duct mouths align with openings within the reviewer-set tolerance; airflow and defrost performance are not evaluated by this contract."
+      ],
+      "tolerances": {
+        "value": null,
+        "set_by": "independent_interface_reviewer",
+        "rule": "Set from the function of the joint before any acceptance; never from the F0 concept."
+      },
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_GLOVEBOX_TO_HOST",
+      "kind": "attachment_and_motion",
+      "safety_relevant": true,
+      "load_paths": [
+        "LP_INSTRUMENT_VENT_GLOVEBOX_CONSOLE_RETENTION"
+      ],
+      "catalogue_identity": {
+        "M564-LHD": {
+          "status": "unmapped_in_kat017",
+          "items": null,
+          "basis": "pet-identity.json rows M564-LHD: Kat 017 has no plate for a non-RS M564 car."
+        },
+        "M002-LHD": {
+          "status": "plate_inventory",
+          "items": [
+            {
+              "part_number": "964 552 501 00",
+              "description": "Glove compartment",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 513,
+              "position": "41"
+            },
+            {
+              "part_number": "911 552 010 05",
+              "description": "Glove compartment cover",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 513,
+              "position": "43"
+            },
+            {
+              "part_number": "964 538 059 03",
+              "description": "Glove compartment lock",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 513,
+              "position": "38"
+            },
+            {
+              "part_number": "911 552 513 02",
+              "description": "Door lock striker",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 513,
+              "position": "47"
+            },
+            {
+              "part_number": "999 703 230 40",
+              "description": "Buffer",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 513,
+              "position": "49",
+              "qty": 2
+            }
+          ],
+          "note": "809-02 also lists 964 552 903 00 at position 41 with no distinguishing remark."
+        },
+        "M003-LHD": {
+          "status": "not_transcribed",
+          "items": null
+        }
+      },
+      "attachments": {
+        "count": null,
+        "kind": "hinge, latch and striker",
+        "fastener_identity": null,
+        "hole_pattern": null,
+        "axes": null
+      },
+      "part_datums": [
+        {
+          "id": "GB-P01",
+          "side": "part",
+          "kind": "profile",
+          "description": "Glovebox opening outline in the trim",
+          "methods": [
+            "scan",
+            "photogrammetry_scaled",
+            "direct"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        }
+      ],
+      "host_datums": [
+        {
+          "id": "GB-H01",
+          "side": "host",
+          "kind": "axis",
+          "description": "Lid hinge axis, vehicle frame",
+          "methods": [
+            "cmm",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "GB-H02",
+          "side": "host",
+          "kind": "position",
+          "description": "Striker and latch positions",
+          "methods": [
+            "cmm",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "GB-H03",
+          "side": "host",
+          "kind": "envelope",
+          "description": "Lid sweep envelope to its stop",
+          "methods": [
+            "photogrammetry_scaled",
+            "scan"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "GB-H04",
+          "side": "host",
+          "kind": "observation",
+          "description": "Passenger restraint boundary: E2 reverse inspection of the same specimen",
+          "methods": [
+            "photograph"
+          ],
+          "unit": "1",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        }
+      ],
+      "mating_faces": [
+        "lid perimeter to trim opening",
+        "compartment flange to trim"
+      ],
+      "motion_clearance": [
+        "lid sweep clears the trim at every angle to the stop"
+      ],
+      "required_images": [
+        "installed overall view with two scale bars in frame",
+        "close-up of every attachment or contact point, installed, with scale",
+        "lid open at the stop",
+        "space above the glovebox (same images as #566 E2)"
+      ],
+      "acceptance": [
+        "GB-H04 is the #566 E2 evidence; without it the interface is refused, not deferred.",
+        "The 809-00 lids 993 552 088 00 / 090 00 are airbag-car parts; finding them on a specimen is a contradiction with an M564 or RS label."
+      ],
+      "tolerances": {
+        "value": null,
+        "set_by": "independent_interface_reviewer",
+        "rule": "Set from the function of the joint before any acceptance; never from the F0 concept."
+      },
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_CONSOLE_TO_DASH",
+      "kind": "junction_and_clearance",
+      "safety_relevant": false,
+      "load_paths": [
+        "LP_INSTRUMENT_VENT_GLOVEBOX_CONSOLE_RETENTION"
+      ],
+      "catalogue_identity": {
+        "M564-LHD": {
+          "status": "unmapped_in_kat017",
+          "items": null,
+          "basis": "pet-identity.json rows M564-LHD: Kat 017 has no plate for a non-RS M564 car."
+        },
+        "M002-LHD": {
+          "status": "not_transcribed",
+          "items": null
+        },
+        "M003-LHD": {
+          "status": "not_transcribed",
+          "items": null
+        }
+      },
+      "attachments": {
+        "count": null,
+        "kind": null,
+        "fastener_identity": null,
+        "hole_pattern": null,
+        "axes": null
+      },
+      "part_datums": [
+        {
+          "id": "CD-P01",
+          "side": "part",
+          "kind": "profile",
+          "description": "Trim edge profile at the console junction",
+          "methods": [
+            "scan",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        }
+      ],
+      "host_datums": [
+        {
+          "id": "CD-H01",
+          "side": "host",
+          "kind": "position",
+          "description": "Console support points on the tunnel, console fitted, trim removed, vehicle frame",
+          "methods": [
+            "cmm",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "CD-H02",
+          "side": "host",
+          "kind": "profile",
+          "description": "Console upper edge profile at the junction",
+          "methods": [
+            "scan",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "CD-H03",
+          "side": "host",
+          "kind": "gap",
+          "description": "Junction gap, installed, at no fewer than five stations",
+          "methods": [
+            "direct"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null,
+          "plan_ref": "D12"
+        }
+      ],
+      "mating_faces": [
+        "trim lower edge",
+        "console upper edge"
+      ],
+      "motion_clearance": [
+        "junction gap"
+      ],
+      "required_images": [
+        "installed overall view with two scale bars in frame",
+        "close-up of every attachment or contact point, installed, with scale"
+      ],
+      "acceptance": [
+        "Console datums are taken on the tunnel, not on the trim."
+      ],
+      "tolerances": {
+        "value": null,
+        "set_by": "independent_interface_reviewer",
+        "rule": "Set from the function of the joint before any acceptance; never from the F0 concept."
+      },
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_CONTROLS_TO_PANEL",
+      "kind": "attachment_and_service",
+      "safety_relevant": false,
+      "load_paths": [
+        "LP_INSTRUMENT_VENT_GLOVEBOX_CONSOLE_RETENTION"
+      ],
+      "catalogue_identity": {
+        "M564-LHD": {
+          "status": "unmapped_in_kat017",
+          "items": null,
+          "basis": "pet-identity.json rows M564-LHD: Kat 017 has no plate for a non-RS M564 car."
+        },
+        "M002-LHD": {
+          "status": "not_transcribed",
+          "items": null
+        },
+        "M003-LHD": {
+          "status": "not_transcribed",
+          "items": null
+        }
+      },
+      "attachments": {
+        "count": null,
+        "kind": null,
+        "fastener_identity": null,
+        "hole_pattern": null,
+        "axes": null
+      },
+      "part_datums": [
+        {
+          "id": "CP-P01",
+          "side": "part",
+          "kind": "profile",
+          "description": "Every control and radio opening outline that lies in the trim, if any",
+          "methods": [
+            "direct",
+            "scan"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        }
+      ],
+      "host_datums": [
+        {
+          "id": "CP-H01",
+          "side": "host",
+          "kind": "observation",
+          "description": "Which panel hosts each control: trim, console or a separate bezel",
+          "methods": [
+            "photograph"
+          ],
+          "unit": "1",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "CP-H02",
+          "side": "host",
+          "kind": "envelope",
+          "description": "Control body and wiring envelope behind the host panel",
+          "methods": [
+            "direct",
+            "scan"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        }
+      ],
+      "mating_faces": [
+        "control bezels to host panel"
+      ],
+      "motion_clearance": [
+        "wiring and service clearance",
+        "heat-source clearance"
+      ],
+      "required_images": [
+        "installed overall view with two scale bars in frame",
+        "close-up of every attachment or contact point, installed, with scale",
+        "each control removed, host opening"
+      ],
+      "acceptance": [
+        "If CP-H01 shows no control hosted by the trim, the interface is recorded as not involving the trim, with its images."
+      ],
+      "tolerances": {
+        "value": null,
+        "set_by": "independent_interface_reviewer",
+        "rule": "Set from the function of the joint before any acceptance; never from the F0 concept."
+      },
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_SWITCHES_TO_HOST",
+      "kind": "clip_and_clearance",
+      "safety_relevant": false,
+      "load_paths": [
+        "LP_INSTRUMENT_VENT_GLOVEBOX_CONSOLE_RETENTION"
+      ],
+      "catalogue_identity": {
+        "M564-LHD": {
+          "status": "unmapped_in_kat017",
+          "items": null,
+          "basis": "pet-identity.json rows M564-LHD: Kat 017 has no plate for a non-RS M564 car."
+        },
+        "M002-LHD": {
+          "status": "not_transcribed",
+          "items": null
+        },
+        "M003-LHD": {
+          "status": "not_transcribed",
+          "items": null
+        }
+      },
+      "attachments": {
+        "count": null,
+        "kind": "clip",
+        "fastener_identity": null,
+        "hole_pattern": null,
+        "axes": null
+      },
+      "delegated_to": "twins/993-cabin-dashboard-switch-0001/interface-contract.json",
+      "part_datums": [],
+      "host_datums": [
+        {
+          "id": "SW-H01",
+          "side": "host",
+          "kind": "observation",
+          "description": "Which panel hosts the switch bank on the specimen: dashboard trim or console",
+          "methods": [
+            "photograph"
+          ],
+          "unit": "1",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "SW-H02",
+          "side": "host",
+          "kind": "position",
+          "description": "Each switch opening centre in the vehicle frame",
+          "methods": [
+            "cmm",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        }
+      ],
+      "mating_faces": [
+        "see the DT-01 contract"
+      ],
+      "motion_clearance": [
+        "see the DT-01 contract"
+      ],
+      "required_images": [
+        "installed overall view with two scale bars in frame",
+        "close-up of every attachment or contact point, installed, with scale"
+      ],
+      "acceptance": [
+        "The single-opening fit is governed by the DT-01 contract; this contract adds only the host identity and vehicle-frame positions."
+      ],
+      "tolerances": {
+        "value": null,
+        "set_by": "independent_interface_reviewer",
+        "rule": "Set from the function of the joint before any acceptance; never from the F0 concept."
+      },
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_KNEE_STRIP_TO_ORIGINAL_MOUNTS",
+      "kind": "occupant_protection_attachment",
+      "safety_relevant": true,
+      "load_paths": [
+        "LP_KNEE_OCCUPANT_IMPACT"
+      ],
+      "catalogue_identity": {
+        "M564-LHD": {
+          "status": "unmapped_in_kat017",
+          "items": null,
+          "basis": "pet-identity.json rows M564-LHD: Kat 017 has no plate for a non-RS M564 car."
+        },
+        "M002-LHD": {
+          "status": "plate_inventory",
+          "items": [
+            {
+              "part_number": "911 552 069 00",
+              "description": "Knee protection strip",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 512,
+              "position": "30",
+              "remark": "/LL /L"
+            },
+            {
+              "part_number": "911 552 070 00",
+              "description": "Knee protection strip",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 513,
+              "position": "37",
+              "remark": "/LL /R"
+            },
+            {
+              "part_number": "999 073 062 02",
+              "description": "Tapping screw",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 512,
+              "position": "31",
+              "qty": 2,
+              "spec": "4,8 X 19"
+            },
+            {
+              "part_number": "900 151 027 02",
+              "description": "Washer",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 513,
+              "position": "32",
+              "qty": 4,
+              "spec": "5,3"
+            },
+            {
+              "part_number": "N 011 005 14",
+              "description": "Hexagon nut",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 513,
+              "position": "33",
+              "qty": 4,
+              "spec": "M 5"
+            },
+            {
+              "part_number": "900 075 408 07",
+              "description": "Hexagon-head bolt",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 513,
+              "position": "36",
+              "qty": 2,
+              "spec": "M 4 X 16"
+            }
+          ],
+          "note": "Fasteners listed on the same plate. Which position fastens which joint is shown only on the illustration, which is not transcribed; assignment to this interface is unknown."
+        },
+        "M003-LHD": {
+          "status": "plate_inventory",
+          "items": [
+            {
+              "part_number": "964 552 077 70",
+              "description": "Knee protection strip",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 512,
+              "position": "(30)",
+              "remark": "/LL /L"
+            },
+            {
+              "part_number": "964 552 078 70",
+              "description": "Knee protection strip",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "809-02",
+              "pdf_page": 513,
+              "position": "(37)",
+              "remark": "/LL /R"
+            }
+          ]
+        }
+      },
+      "attachments": {
+        "count": null,
+        "kind": "original anchors, retained",
+        "fastener_identity": "see catalogue_identity; assignment unknown",
+        "hole_pattern": null,
+        "axes": null
+      },
+      "part_datums": [
+        {
+          "id": "KS-P01",
+          "side": "part",
+          "kind": "position",
+          "description": "Every point where the trim meets or passes the knee strip and its anchors, removed trim",
+          "methods": [
+            "cmm",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null,
+          "plan_ref": "D11"
+        }
+      ],
+      "host_datums": [
+        {
+          "id": "KS-H01",
+          "side": "host",
+          "kind": "position",
+          "description": "Every knee-strip anchor on the body, trim and strip removed, vehicle frame",
+          "methods": [
+            "cmm",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "KS-H02",
+          "side": "host",
+          "kind": "axis",
+          "description": "Axis of every anchor",
+          "methods": [
+            "cmm",
+            "gauge_pin_photogrammetry"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "KS-H03",
+          "side": "host",
+          "kind": "observation",
+          "description": "Load-bearing substrate of each anchor: body, support or trim",
+          "methods": [
+            "photograph"
+          ],
+          "unit": "1",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        }
+      ],
+      "mating_faces": [
+        "strip anchor faces",
+        "trim faces at the strip"
+      ],
+      "motion_clearance": [
+        "strip deformation space toward the occupant (not evaluated)"
+      ],
+      "required_images": [
+        "installed overall view with two scale bars in frame",
+        "close-up of every attachment or contact point, installed, with scale",
+        "every anchor, strip removed",
+        "strip back face"
+      ],
+      "acceptance": [
+        "The reproduction keeps every anchor position and its substrate unchanged; any KS-P01 point that is itself an anchor substrate blocks the trim until professional engineering review.",
+        "No occupant-impact performance is evaluated or implied."
+      ],
+      "tolerances": {
+        "value": null,
+        "set_by": "independent_interface_reviewer",
+        "rule": "Set from the function of the joint before any acceptance; never from the F0 concept."
+      },
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_COLUMN_CLEARANCE",
+      "kind": "safety_clearance",
+      "safety_relevant": true,
+      "load_paths": [
+        "LP_STEERING_AND_RESTRAINT"
+      ],
+      "catalogue_identity": {
+        "M564-LHD": {
+          "status": "plate_heading",
+          "items": [
+            {
+              "part_number": "964 347 013 02",
+              "description": "Steering outer tube",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "403-07",
+              "pdf_page": 266,
+              "position": "1",
+              "remark": "/LL"
+            },
+            {
+              "part_number": "964 347 051 00",
+              "description": "Steering shaft",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "403-07",
+              "pdf_page": 266,
+              "position": "2",
+              "remark": "/LL"
+            }
+          ],
+          "basis": "Plate 403-07 heading lists CARRERA RS and M564 in the model column; the layout leaves open whether each label applies to every heading line."
+        },
+        "M002-LHD": {
+          "status": "plate_heading",
+          "items": [
+            {
+              "part_number": "964 347 013 02",
+              "description": "Steering outer tube",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "403-07",
+              "pdf_page": 266,
+              "position": "1",
+              "remark": "/LL"
+            },
+            {
+              "part_number": "964 347 051 00",
+              "description": "Steering shaft",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "403-07",
+              "pdf_page": 266,
+              "position": "2",
+              "remark": "/LL"
+            }
+          ]
+        },
+        "M003-LHD": {
+          "status": "plate_heading",
+          "items": [
+            {
+              "part_number": "964 347 013 02",
+              "description": "Steering outer tube",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "403-07",
+              "pdf_page": 266,
+              "position": "1",
+              "remark": "/LL"
+            },
+            {
+              "part_number": "964 347 051 00",
+              "description": "Steering shaft",
+              "source_id": "SRC-PORSCHE-PET-993",
+              "plate": "403-07",
+              "pdf_page": 266,
+              "position": "2",
+              "remark": "/LL"
+            }
+          ]
+        }
+      },
+      "attachments": {
+        "count": null,
+        "kind": "none between trim and column",
+        "fastener_identity": null,
+        "hole_pattern": null,
+        "axes": null
+      },
+      "part_datums": [
+        {
+          "id": "SC-P01",
+          "side": "part",
+          "kind": "profile",
+          "description": "Trim and cluster edges around the column opening",
+          "methods": [
+            "scan",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        }
+      ],
+      "host_datums": [
+        {
+          "id": "SC-H01",
+          "side": "host",
+          "kind": "envelope",
+          "description": "Column and shroud envelope over full rake/reach travel, vehicle frame",
+          "methods": [
+            "photogrammetry_scaled",
+            "scan"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "SC-H02",
+          "side": "host",
+          "kind": "envelope",
+          "description": "Column collapse envelope",
+          "methods": [
+            "document"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        }
+      ],
+      "mating_faces": [],
+      "motion_clearance": [
+        "column and shroud sweep",
+        "collapse stroke"
+      ],
+      "required_images": [
+        "installed overall view with two scale bars in frame",
+        "close-up of every attachment or contact point, installed, with scale",
+        "column opening with the column at each travel limit"
+      ],
+      "acceptance": [
+        "SC-H02 comes from a Porsche technical document or a professional engineering assessment; it is never measured on a car or modelled by this project.",
+        "No steering part is modified; positive clearance after uncertainty is required over the whole envelope."
+      ],
+      "tolerances": {
+        "value": null,
+        "set_by": "independent_interface_reviewer",
+        "rule": "Set from the function of the joint before any acceptance; never from the F0 concept."
+      },
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_AIRBAG_CONFIGURATION",
+      "kind": "restraint_exclusion",
+      "safety_relevant": true,
+      "load_paths": [
+        "LP_STEERING_AND_RESTRAINT"
+      ],
+      "catalogue_identity": {
+        "M564-LHD": {
+          "status": "option_code_definition",
+          "items": null,
+          "basis": "M564 'Without airbag', option list page 19."
+        },
+        "M002-LHD": {
+          "status": "plate_title",
+          "items": null,
+          "basis": "809-02 is titled for cars without passenger airbag."
+        },
+        "M003-LHD": {
+          "status": "plate_title",
+          "items": null,
+          "basis": "809-02 is titled for cars without passenger airbag."
+        }
+      },
+      "attachments": {
+        "count": null,
+        "kind": "none",
+        "fastener_identity": null,
+        "hole_pattern": null,
+        "axes": null
+      },
+      "part_datums": [],
+      "host_datums": [
+        {
+          "id": "AB-H01",
+          "side": "host",
+          "kind": "observation",
+          "description": "#566 E1 redacted option label",
+          "methods": [
+            "photograph"
+          ],
+          "unit": "1",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "AB-H02",
+          "side": "host",
+          "kind": "observation",
+          "description": "#566 E2 passenger-side reverse inspection",
+          "methods": [
+            "photograph"
+          ],
+          "unit": "1",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "AB-H03",
+          "side": "host",
+          "kind": "observation",
+          "description": "Driver restraint configuration: steering-wheel hub and column as fitted",
+          "methods": [
+            "photograph"
+          ],
+          "unit": "1",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        }
+      ],
+      "mating_faces": [],
+      "motion_clearance": [],
+      "required_images": [
+        "#566 E1 and E2 images",
+        "steering-wheel hub, front and rear"
+      ],
+      "acceptance": [
+        "This interface is an exclusion gate, not a fit: it passes only when the specimen is admitted under #566 (a clean admit_specimen preflight, then the independent reviewers' recorded admission).",
+        "Any airbag component found on the specimen removes it from scope."
+      ],
+      "tolerances": {
+        "value": null,
+        "set_by": "independent_interface_reviewer",
+        "rule": "Set from the function of the joint before any acceptance; never from the F0 concept."
+      },
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_PILLARS_AND_WINDSHIELD",
+      "kind": "body_clearance",
+      "safety_relevant": false,
+      "load_paths": [
+        "LP_TRIM_SELF_WEIGHT_AND_VIBRATION"
+      ],
+      "catalogue_identity": {
+        "M564-LHD": {
+          "status": "unmapped_in_kat017",
+          "items": null,
+          "basis": "pet-identity.json rows M564-LHD: Kat 017 has no plate for a non-RS M564 car."
+        },
+        "M002-LHD": {
+          "status": "not_transcribed",
+          "items": null
+        },
+        "M003-LHD": {
+          "status": "not_transcribed",
+          "items": null
+        }
+      },
+      "attachments": {
+        "count": null,
+        "kind": "none (clearance)",
+        "fastener_identity": null,
+        "hole_pattern": null,
+        "axes": null
+      },
+      "part_datums": [
+        {
+          "id": "PW-P01",
+          "side": "part",
+          "kind": "length",
+          "description": "Overall length, pillar to pillar, installed and removed",
+          "methods": [
+            "direct"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null,
+          "plan_ref": "D01"
+        },
+        {
+          "id": "PW-P02",
+          "side": "part",
+          "kind": "profile",
+          "description": "Front edge sweep: chord and height",
+          "methods": [
+            "direct"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null,
+          "plan_ref": "D04"
+        }
+      ],
+      "host_datums": [
+        {
+          "id": "PW-H01",
+          "side": "host",
+          "kind": "position",
+          "description": "A-pillar inner trim faces at the trim ends, vehicle frame",
+          "methods": [
+            "cmm",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "PW-H02",
+          "side": "host",
+          "kind": "profile",
+          "description": "Windshield-base flange or seal line, trim removed",
+          "methods": [
+            "scan",
+            "photogrammetry_scaled"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null
+        },
+        {
+          "id": "PW-H03",
+          "side": "host",
+          "kind": "gap",
+          "description": "Gap at the windshield base, installed, at no fewer than seven stations",
+          "methods": [
+            "direct"
+          ],
+          "unit": "mm",
+          "repetitions_min": 3,
+          "value": null,
+          "uncertainty": null,
+          "evidence": null,
+          "plan_ref": "D13"
+        }
+      ],
+      "mating_faces": [
+        "trim ends to A-pillar trims",
+        "trim front edge to windshield base"
+      ],
+      "motion_clearance": [
+        "thermal movement allowance (not evaluated)",
+        "reflection into the driver's field of view (requirement, not measured here)"
+      ],
+      "required_images": [
+        "installed overall view with two scale bars in frame",
+        "close-up of every attachment or contact point, installed, with scale",
+        "windshield base, trim removed, full width"
+      ],
+      "acceptance": [
+        "Pillar and windshield datums come from the body, never from the trim ends."
+      ],
+      "tolerances": {
+        "value": null,
+        "set_by": "independent_interface_reviewer",
+        "rule": "Set from the function of the joint before any acceptance; never from the F0 concept."
+      },
+      "status": "missing_data"
+    }
+  ],
+  "not_claimed": [
+    "No component is positioned; no transform exists.",
+    "No fit, clearance, safety, airflow, thermal or manufacturing verdict.",
+    "The PicoGK F0 trim is not compared with anything here; a comparison needs admitted readings first."
+  ]
+}

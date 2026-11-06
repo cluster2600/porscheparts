@@ -28,6 +28,9 @@ Omniverse audit keeps the NVIDIA topology warning as a blocker.
 **What it can be used for**: replaying the calculations, reusing the test cases,
 reading what was attempted. **What it cannot be used for**: a part.
 
+Items the archived dossiers left open are dispositioned in
+[ARCHIVE_917_PENDING_LEDGER.md](ARCHIVE_917_PENDING_LEDGER.md) (issue #426).
+
 ## Why these directories were not moved
 
 The question came up on 2026-09-09, and the answer is measured, not aesthetic.
@@ -74,6 +77,11 @@ Four attempts, four measurements:
 | `outils/benchmarks/` | **compliant**, no test lost |
 
 Only the last one could move, because no hashed file names it.
+
+*Correction (2026-11-06, #425):* `outils/benchmarks/` passed the tests, but it
+is still named by two lock-pinned image recipes (`COPY` paths and
+`planned_inputs` of `containers/openfoam-engine-f35.lock.json`). So it stays in
+place and frozen; see [outils/README.md](../outils/README.md).
 
 **The `deploy/` case is worth reading**, because it nearly went unnoticed. The
 tests were compliant after the move — but `make check` then stopped at the

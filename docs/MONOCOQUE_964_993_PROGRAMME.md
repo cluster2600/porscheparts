@@ -377,6 +377,10 @@ stress; failure happens by delamination, debonding and local buckling,
 mechanisms the current shell model does not represent at all. No safety claim
 will come out of this repository without tests.
 
+This position is recorded in [ADR 0018](decisions/0018-composite-crash-no-claim.md),
+with a [validation-plan stub](MONOCOQUE_CRASH_VALIDATION_PLAN_STUB.md) that
+lists the questions only (issue #441).
+
 ## 9. Phases and exit criteria
 
 | phase | content | exit criterion | dependency |
