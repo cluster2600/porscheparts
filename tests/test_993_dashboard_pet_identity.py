@@ -131,6 +131,14 @@ class RefusedRecords(unittest.TestCase):
         bad["vehicle"]["porsche_part_numbers"].append("993 552 057 00")
         self.assertTrue(any("993 552 057 00" in e for e in checker.check_record(bad, IDENTITY)))
 
+    def test_airbag_only_trim_number_is_not_an_applicable_replacement(self):
+        for number in ("993 552 055 01", "993 552 056 01"):
+            with self.subTest(number=number):
+                bad = copy.deepcopy(RECORD)
+                bad["vehicle"]["porsche_part_numbers"].append(number)
+                errors = checker.check_record(bad, IDENTITY)
+                self.assertTrue(any(number in error and "not an applicable" in error for error in errors), errors)
+
     def test_record_with_unknown_knee_strip(self):
         bad = copy.deepcopy(RECORD)
         bad["validation"]["known_limits"].append("Strip 964 552 059 00 assumed.")
