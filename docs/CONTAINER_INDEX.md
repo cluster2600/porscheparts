@@ -8,7 +8,7 @@ the GitHub workflows that build it. The hand-written overview of the main
 images is [containers/README.md](../containers/README.md); how to build,
 verify and rent them is in [COMPUTE_ENVIRONMENT.md](COMPUTE_ENVIRONMENT.md).
 
-**41 recipes**, 9 named by a lock file, 19 built by a workflow. "Unlocked" means no
+**42 recipes**, 9 named by a lock file, 19 built by a workflow. "Unlocked" means no
 `containers/*.lock.json` names the recipe; such an image has no pinned
 digest in the repository and must not be cited as evidence by tag alone.
 Recipes, locks and their recipe inputs are pinned: never edit them to change
@@ -54,6 +54,7 @@ this page (see AGENTS.md).
 | [`simready-m64-runtime.Dockerfile`](../containers/simready-m64-runtime.Dockerfile) | Add the installed NVIDIA skill's exact validation pins without downgrading | unlocked | — | — | — |
 | [`simready-workflow.Dockerfile`](../containers/simready-workflow.Dockerfile) |  | unlocked | — | — | — |
 | [`simready.Dockerfile`](../containers/simready.Dockerfile) | 3dprinting993 - NVIDIA CAD-to-SimReady runtime for a single Vast.ai container. | unlocked | — | — | — |
+| [`stack-20261105/jax-fem.Dockerfile`](../containers/stack-20261105/jax-fem.Dockerfile) |  | unlocked | — | — | — |
 | [`topology-context-f26.Dockerfile`](../containers/topology-context-f26.Dockerfile) | Image CPU F26 : OBJ + topologie NumPy + SVG stdlib. Aucun scan n'est inclus. | [`topology-context-f26.lock.json`](../containers/topology-context-f26.lock.json) | `ghcr.io/cluster2600/3dprinting993-topology-context-f26` | immutable_public_cpu_image_verified_physical_release_blocked | [`topology-context-f26-image.yml`](../.github/workflows/topology-context-f26-image.yml) |
 | [`usd-brep.Dockerfile`](../containers/usd-brep.Dockerfile) |  | unlocked | — | — | — |
 | [`warp-geometry.Dockerfile`](../containers/warp-geometry.Dockerfile) | Synthetic geometry verification only. No scans, CAD, models or credentials. | unlocked | — | — | — |
