@@ -189,17 +189,87 @@ records the controls, preserved refusal, exact volume difference, runtime hashes
 independent checks and cleanup of all seven snap/distance containers. Native
 snap and distance calls took 0.037 s and 0.048 s. Independent readback checked
 968 source pins. The current piece requires its own Boolean, export and contact
-results through these same stages.
+results through these stages.
+
+### First current exact envelope: component 148
+
+![Actual top, side and orthographic views of the checked component 148 envelope](../media/carrier-current-envelope148-20261107.png)
+
+One of the seven current mask candidates now has an independently checked
+three-dimensional envelope: **22,930 vertices, 45,852 triangles and two closed,
+consistently oriented components**. The verified exact rational volume is
+approximately **10,927.564072 mm³**. Native exact and rounded-surface intersection
+checks pass, with zero degenerate triangles in either representation.
+
+The construction retains all **3,510 roof occurrences** and the complete
+5,764,688-face part input. Every one of the **73,294 parent references** across
+45,852 output faces was independently reconstructed and checked for exact
+whole-triangle containment. The role counts are 27,442 roof-prism, 31,043 mask,
+14,809 part and zero bounding-box references. Multiple geometric parents are
+retained rather than discarded. These correspondences do not yet establish
+complete contact coverage, including partial-face contacts.
+
+The original Boolean run reached its 1,200-second deadline after saving its
+geometry. A separate annotation and final-check pass reused those exact bytes,
+without repeating the Boolean operation, and completed in **663.87 seconds**.
+Its runtime is **CGAL 6.3-dev, commit `b4e8c188…`**, distinct from the 6.2.1
+projection runtime. Independent readback completed in **31.25 seconds**, with
+631 MB sampled peak RSS and all **3,017 source pins** unchanged. The container
+and owned reader processes were removed or reaped.
+
+The initial Python assessment hit its 4,300-digit integer parsing limit on the
+exact volume's 39,278-digit numerator. A bounded 65,536-digit reader passed
+boundary and refusal controls on both recorded Python runtimes; it then read
+the retained result successfully. The original refusal remains recorded, and
+no geometry or numerical tolerance changed.
+
+The [compact envelope receipt](carrier-current-support-projection-20261107/component148-envelope.json)
+records the completed scope and source hashes. The
+[figure receipt](carrier-current-support-projection-20261107/component148-image.json)
+binds the actual coordinate arrays, renderer and image; a second rendering is
+byte-identical. The figure records the exact-checkpoint stage; the subsequent
+rounded-export check is recorded below. Raw geometry remains private. Contact
+coverage, the other six current envelopes and the final support structures
+remain open.
+
+### Unchanged float64 representation: checked
+
+The existing float64 coordinates and identical face indices now pass a separate
+representation check. No snap, triangle repair or Boolean recomputation was
+needed. All **45,852 triangle normals** preserve their direction; the rounded
+surface remains closed, oriented and composed of the same two components.
+Three exact coordinate-axis volume integrals agree with the independent
+determinant sum. The volume change is approximately **7.81583e-13 mm³**,
+or **7.1524e-17** relative to the exact source.
+
+The unchanged indexed-conversion checker verifies every coordinate and face
+index. Since corresponding triangle points are convex combinations of their
+vertices, their displacement is bounded by the largest paired-vertex
+displacement. This establishes a **continuous bidirectional surface-distance
+bound of approximately 4.01628e-14 mm**, with an exact rational upper bound in
+the [representation receipt](carrier-current-support-projection-20261107/component148-rounded.json).
+This bound covers the whole matched surface, unlike the finite-sample reference
+case above. It measures conversion error; it is not a manufacturing tolerance.
+
+The bounded check finished in **10.90 seconds**, with 243 MB sampled peak RSS,
+all 3,027 source pins unchanged and its owned process group absent. The private
+NPZ was reread field by field and preserves the figure's coordinate and face
+array hashes. Exact-source parent memberships remain attached to the exact
+geometry: they are not silently transferred to rounded points, and contact
+coverage remains a separate task.
 
 ```mermaid
 flowchart TB
     INPUT["Original roofs, checked mask and complete part"] --> EXACT["Exact prism union, mask intersection and part subtraction"]
     EXACT --> RAW["Raw binary64 conversion: inspect degeneracy and intersections"]
-    RAW --> SNAP["Existing CGAL snap: fixed 51 bits and 5 iterations"]
+    RAW --> EXPORT{"Raw export passes?"}
+    EXPORT -->|"No"| SNAP["Existing CGAL snap: fixed 51 bits and 5 iterations"]
+    EXPORT -->|"Yes"| CHECK
     SNAP --> CHECK["Topology, exact distances and composed drift"]
     CHECK --> CONTACT["Current support parent mapping and contact checks"]
     CONTROL["Reference case: exact and export chain passed"] -.-> EXACT
     CONTROL -.-> CHECK
+    CURRENT["Current component 148: exact envelope and all listed parents checked"] -.-> EXACT
 ```
 
 The [compact receipt](carrier-current-support-projection-20261107/summary.json)
@@ -208,7 +278,7 @@ The figure was reproduced byte for byte and visually inspected. Raw surface
 coordinates, component correspondence arrays and projected polygons remain in
 private evidence.
 
-Current contact checks, finite envelopes, support solids,
+Current contact checks, the remaining finite envelopes, support structures,
 their complete slicing and the machine job remain open. The carrier's completed
 1,034 part layers remain a separate result. The mass ceiling is withdrawn; this
 audit changes neither the part geometry nor any acceptance threshold.

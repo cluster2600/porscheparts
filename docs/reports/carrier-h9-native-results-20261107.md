@@ -206,12 +206,32 @@ This comparison does not claim identity with the historical Linux executable.
 The [Linux qualification receipt](carrier-h9-native-results-20261107/linux-qualification.json)
 binds these results to the **6,669,520-byte** candidate,
 SHA-256 `4c9db4806c2034d2b2f52b4baac3188c3f57cc66381566f9077d686f4f03db18`.
-Finalization took 45.962 s and independent qualification 2.666 s. A new ordinary
-H9 packet, per-case source/capacity admission and complete native fields are
-still required before the higher-precision algebraic replay. The existing APFS
+Finalization took 45.962 s and independent qualification 2.666 s. The existing APFS
 receiver validator has also passed [actual identity, ownership and write/readback
 checks](carrier-h9-native-results-20261107/external-storage-probe.json) on a fresh private directory on the mounted external SSD; packet and
-audit allocations still need their own admission.
+audit allocations have separate admissions.
+
+The new ordinary **packet 018** is now built and independently read back:
+**92 archive members, 1,838,906,442 expanded bytes and 121 copied source/payload
+paths**. Its 771,666,814-byte archive preserves the H9 geometry, loads, supports,
+material and reference controls while binding the qualified 17-digit binary.
+The pinned Linux/amd64 image unpacked that actual archive and executed the
+quadratic control successfully. Independent host readback checked all 303
+numeric components, the original analytic tolerances, all runtime/input hashes
+and exact container cleanup. The image pass took **115.87 seconds**, including
+unpacking and verification; the native control itself took **0.369 seconds**.
+
+The first image attempt was refused before solving because Docker Desktop
+could not bind the external volume. A verified ordinary copy of the same
+archive to local storage resolved that environment issue; the external
+scientific receiver and all resource limits remain unchanged. The
+[packet and image receipt](carrier-h9-native-results-20261107/packet018-image.json)
+records both attempts and their cleanup. Complete native 17-digit H9 fields
+and the independent algebraic reassessment remain pending. The prepared cloud
+launch is held because the inherited lease profile permits only 2 GB of input
+and 2 GB of output declarations, while the new plan budgets 10 GB ingress and
+6 GB egress. The approved wrapper and deadline guard must price the same
+transfer allowance before a rental; no new instance has been created.
 
 The [compact algebraic receipt](carrier-h9-native-results-20261107/algebraic-audit.json)
 binds both full audits, independent readbacks, neighborhood lookup, local
