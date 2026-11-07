@@ -315,6 +315,41 @@ Membership of rounded coordinates, line/point/lateral contacts and attachment
 of generated support material remain separate checks. No geometry, support
 policy or numerical threshold changed.
 
+### First support-sheet chart retained; full assembly pending
+
+![The first computed support-sheet chart and its upper and lower boundary details](../media/carrier-current148-chart0-20261107.png)
+
+The first planar chart for component 148 completed in **452.95 seconds**. This
+figure renders its actual retained polygon in unwrapped abscissa/Z coordinates,
+with equal metric scales and all stored rings. The source and computed material
+each have one ring and no holes; their coordinate counts are 4,257 and 4,261.
+A second rendering is byte-identical. This is one completed chart, not the
+complete three-dimensional support assembly.
+
+Both bounded attempts to finish the assembly reached their unchanged
+**1,200-second limit**. The continuation reused the first chart's complete
+polygon bytes and native receipt without recomputing it, but did not finish
+the remaining work. Neither attempt produced the final support arrays or a
+complete material result.
+
+| Attempt | Observed wall time | Sampled peak RSS | Cleanup outcome |
+|---|---:|---:|---|
+| Original | 1,201.65 s | 2.475 GB | Group absence recorded; a cleanup race left the child exit code and reaping unconfirmed. |
+| Cached continuation | 1,201.89 s | 2.464 GB | Corrected helper reaped the child with return code −15 and confirmed the exact group absent. |
+
+The [original terminal](carrier-current-support-projection-20261107/component148-material-first-terminal.json)
+and [continuation terminal](carrier-current-support-projection-20261107/component148-material-resume-terminal.json)
+are preserved unchanged. A separate reconciliation confirmed the original
+supervisor, worker and group absent; it did not recover the original exit code
+or turn that attempt into a success. The
+[compact sheet receipt](carrier-current-support-projection-20261107/component148-first-sheet.json)
+records both terminal hashes, reconciliation and cleanup-control hashes, chart
+identities, image provenance and byte-identical replay.
+
+Complete component band admission, support assembly, finite thickness and
+attachment to the part and plate remain pending. Raw chart coordinates stay
+private; no generative geometry or new support policy was used for this image.
+
 ```mermaid
 flowchart TB
     INPUT["Original roofs, checked mask and complete part"] --> EXACT["Exact prism union, mask intersection and part subtraction"]

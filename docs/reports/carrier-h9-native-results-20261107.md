@@ -156,8 +156,8 @@ extremes. The existing quadratic, traction-P1 and traction-P2 controls passed.
 An additional native witness exercises **U, RF, S and ENER** at 17 significant
 digits. Its independent integrated-energy relative error is **3.9789e-15**,
 within the unchanged original control limit. The separate Linux/PARDISO
-small-control qualification below now passes; complete higher-precision H9
-execution remains pending. Wider output requires
+small-control qualification below now passes. At that qualification checkpoint,
+complete higher-precision H9 execution was still pending. Wider output requires
 fresh capacity admission: the expected complete raw DAT is **4,506,144,286 bytes
 per case**, above the old 2.75 GB gate.
 
@@ -226,8 +226,9 @@ could not bind the external volume. A verified ordinary copy of the same
 archive to local storage resolved that environment issue; the external
 scientific receiver and all resource limits remain unchanged. The
 [packet and image receipt](carrier-h9-native-results-20261107/packet018-image.json)
-records both attempts and their cleanup. Complete native 17-digit H9 fields
-and the independent algebraic reassessment remain pending. The initial cloud
+records both attempts and their cleanup. At the packet/image checkpoint,
+complete native 17-digit H9 fields and the independent algebraic reassessment
+were still pending. The initial cloud
 plan was held because its 10 GB ingress and 6 GB egress budgets exceeded the
 existing profile's 2 GB input and 2 GB output declarations.
 
@@ -235,11 +236,11 @@ That mismatch is now resolved by a separately checked, smaller transfer plan.
 It retains the existing **1.2 GB image, 2 GB input and 2 GB output declarations**,
 priced consistently by the selector, approved wrapper and deadline guard.
 The actual compressed image and metadata total 1,099,308,844 bytes. Two pinned
-GPU wheels total 165,632,756 bytes and install offline. Scientific recovery gets
+GPU wheels total 165,632,756 bytes and install offline. Scientific recovery initially received
 one XZ preset-6 encoding attempt and a **1.6 GB download ceiling**, with explicit
 space for the probe, metadata and bounded diagnostics. A larger encoded result
-is retained remotely and refused before download; full-case compression fit
-has not yet been demonstrated.
+is retained remotely and refused before download. Full-case compression fit
+had not yet been demonstrated at this initial transfer-plan checkpoint.
 
 Each file gets one whole-file transfer to a fresh target. Rsync's internal
 checksum retry is disabled, while the independent complete SHA-256 check stays
@@ -259,6 +260,50 @@ records actual prerequisite results, all source/control hashes and the limits.
 The [compact algebraic receipt](carrier-h9-native-results-20261107/algebraic-audit.json)
 binds both full audits, independent readbacks, neighborhood lookup, local
 formatting controls and actual figure to their source hashes.
+
+### Complete 17-digit gravity calculation and lossless recovery
+
+The new gravity calculation completed in **630.385 seconds**, exited zero and
+was reaped with unchanged inputs. Its native assessment passed the original
+force, moment and integrated-energy checks. All **84 recovered metadata members**
+have been rehashed. The independent CUDA FP64 audit also passed for **every
+19,199,981 cell**, with a maximum per-cell energy discrepancy of
+**5.2042e-18 N mm**. These checks do not replace the pending algebraic audit.
+
+The first single-thread encoder left an **841,166,127-byte partial file** and
+was subsequently observed absent. Its exit cause was not established. The
+closed **4,506,144,286-byte native DAT** remained available, so recovery continued
+within the same lease, without another solve or a deadline extension.
+
+An isolated official Debian XZ 5.4.1 executable passed a Linux **nine-block,
+536,873,661-byte** fixture and strict corruption, truncation, trailing-data and
+concatenated-stream refusals. Native encoding then produced **one XZ stream with
+68 blocks** in **504.274 seconds**: **1,357,446,628 bytes**, below the unchanged
+1.6 GB scientific limit. The command requested eight threads, using preset 6,
+64 MiB blocks and CRC64; the receipt does not assert the actual worker count.
+The failed partial and original raw source remained on the owned instance
+throughout recovery, then were deleted with it; the complete encoded field is
+retained locally.
+
+Inspection of the first recovery consumer found its 5 GB transfer option
+allowed only the old remote directory, while the new encoding used a fresh
+directory. No field target or transfer start was retained; no traceback is
+available to establish that stop's cause. A fresh field-only continuation uses
+the stricter **2 GB transfer call**, retains the **1.6 GB index admission**,
+single-attempt transfer and complete SHA/strict-EOF checks, and keeps the original
+**07:51:30 UTC lease deadline**. Both the complete encoded SHA and all
+**4,506,144,286 decoded bytes** now match locally, with strict XZ EOF verified
+and no retained raw DAT duplicate. The exact instance was deleted and its
+absence verified. Combined loading and the higher-precision algebraic
+reassessment remain pending. The
+[gravity recovery receipt](carrier-h9-native-results-20261107/print17-gravity-recovery.json)
+binds the complete recovery, native/GPU results and cleanup to their sources.
+
+The first local higher-precision algebraic attempt was refused before field
+replay: its decoded-geometry cache requires a same-filesystem hard link, but the
+destination is the external SSD. It exited 1 after **2.189 seconds** and was
+reaped with its owned process group absent; a verified cross-volume copy adapter
+is being prepared, and the replacement full audit has not run.
 
 ## Reproduction and next numerical step
 
