@@ -5,7 +5,7 @@ import importlib.metadata
 from pathlib import Path
 import sys
 
-from ft_common import HERE, ROOT, checked, load, new_directory, receipt, sha256, write
+from ft_common import CARRIER_BASELINE, HERE, ROOT, checked, load, new_directory, receipt, sha256, write
 import knowledge
 import pilot
 import storage
@@ -26,7 +26,7 @@ def run(root, private_root, output, porschefanatics_export=None):
     if retrieval["status"] != "passed":
         raise ValueError("retrieval acceptance failed")
     storage.archive(
-        HERE / "baseline.json",
+        CARRIER_BASELINE,
         root,
         private_root / "source",
         private_root / "store-mac",
@@ -44,19 +44,19 @@ def run(root, private_root, output, porschefanatics_export=None):
     )
     write(output / "carrier-context.json", brief)
     replay = pilot.replay(
-        HERE / "baseline.json", private_root / "restore/payload", output / "carrier"
+        CARRIER_BASELINE, private_root / "restore/payload", output / "carrier"
     )
     sensitivity = studies.sensitivity(output / "sensitivity")
     optimization = studies.optimization(output / "optimization")
     external = studies.carrier_external(
-        HERE / "baseline.json",
+        CARRIER_BASELINE,
         private_root / "restore/payload",
         output / "external-carrier",
     )
     result = receipt(
         "free-tools-acceptance",
         "partial_native_acceptance",
-        load(HERE / "baseline.json")["inputs"],
+        load(CARRIER_BASELINE)["inputs"],
         checks={
             "retrieval": retrieval["status"],
             "production_context_sources": len(brief["sources"]),

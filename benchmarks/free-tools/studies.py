@@ -7,7 +7,7 @@ import importlib.metadata
 from pathlib import Path
 import sys
 
-from ft_common import HERE, ROOT, finite, load, new_directory, receipt, sha256, write
+from ft_common import CARRIER_BASELINE, HERE, ROOT, finite, load, new_directory, receipt, sha256, write
 
 
 def evaluate_samples(samples, evaluator):
@@ -218,7 +218,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=["sensitivity", "optimization", "carrier"])
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--manifest", type=Path, default=HERE / "baseline.json")
+    parser.add_argument("--manifest", type=Path, default=CARRIER_BASELINE)
     parser.add_argument("--root", type=Path, default=ROOT)
     args = parser.parse_args()
     if args.command == "sensitivity":
