@@ -5,8 +5,9 @@ not all been exercised successfully on this carrier. Geometry construction,
 independent inspection, native mechanics, complete-field comparisons, actual
 CUDA energy checks and private recovery have carrier evidence. Several other
 tools have only synthetic controls, retained failed carrier trials or a
-documented role. Complete current-revision supports, slicing and a metal-machine
-job remain unfinished.
+documented role. The [complete current part-layer calendar](carrier-current-am-full-20261107.md)
+passed on 7 November; current-revision supports and a metal-machine job remain
+unfinished.
 
 The owner has removed the 1.30 kg design ceiling. Historical reports retain
 their original limits and results. H8 keeps the same external geometry and
@@ -120,12 +121,13 @@ The [public current-source replay](../../parts/993-eng-carrier-0001/source/proce
 now runs through the existing v3 workflow with explicit private inputs. Its actual
 layer-517 arrays and NPZ match the admitted reference byte for byte, with native
 and independent domain checks. This closes the public-source entrypoint for one
-layer in the recorded Mac profile; runtime relocation, fresh installation and
-the full-calendar recipe remain unfinished.
+layer in the recorded Mac profile. The separate [full-calendar execution](carrier-current-am-full-20261107.md)
+now passes all 1,034 layers and the global volume bound. Runtime relocation,
+fresh installation and a public full-calendar recipe remain unfinished.
 
 | ID | Tool / recorded profile | Status and actual evidence | Next use or acceptance condition |
 |---|---|---|---|
-| 37 | PySLM `8fa03f1…` + recorded patches; Shapely 2.2.0 / pyclipr 0.1.8 | **E, partial/current.** Current float64 exterior and pose checked; all 1,034 planes inspected. [Nine-layer batch](carrier-current-am-batch-20261107.md) passed 311,059 segment checks against native and independent domains, including the near-vertex plane. [First-layer image](carrier-current-am-intake-20261106.md). Historical supports and interrupted 440-layer cache remain separate [W], [pause receipt](carrier-pause-20261018/README.md#interrupted-layer-cache). | Execute and audit all 1,034 current layers; complete current support/contact/envelope checks and the machine job. The nine-layer batch is partial; old layers cannot be reused silently. |
+| 37 | PySLM `8fa03f1…` + recorded patches; Shapely 2.2.0 / pyclipr 0.1.8 | **E, current part layers complete.** The [full 1,034-layer calendar](carrier-current-am-full-20261107.md) passed native and independent checks of 36,914,986 contour/hatch segments, complete file readback and a derived global volume bound. Includes the near-vertex plane and exact layer-517 reference parity. Historical supports and interrupted 440-layer cache remain separate [W], [pause receipt](carrier-pause-20261018/README.md#interrupted-layer-cache). | Complete current support/contact/envelope checks, a public full-calendar replay recipe and the machine job. Part-layer completion does not admit historical supports or select machine parameters. |
 | 38 | PrusaSlicer / OrcaSlicer | **N.** Polymer prototype tools in [T]; not a Ti64 LPBF machine job. | Optional polymer geometry trial with its own material/printer profile. |
 | 39 | UVtools | **N.** Optional resin-job inspection in [T]. | No resin process selected for this carrier. |
 | 40 | Adamantine | **S.** Retained thermal/exporter/coupon software controls, including a Q1 conduction control; no carrier build-distortion prediction. [Historical controls](carrier-adamantine-historical-links-20261018/README.md), [W] | Define the build material, activation/heat history and verified field exchange before a bounded thermomechanical study. |
@@ -182,17 +184,17 @@ flowchart TD
 
 Concrete integration gaps, in order:
 
-1. **Prepare source-admitted H9 refinement.** H8 comparisons and images now
-   have complete-field evidence. Gravity has one increment below 1%; combined
-   remains above it. Compute new traction-jump vectors from both complete H8
-   fields, verify all loads/supports and their source geometry, then admit the
-   next exact refinement before new solves. Keep the unchanged convergence rule.
+1. **Complete the H9 native responses and comparison.** Fresh H8 marking,
+   the [19,199,981-cell H9 geometry and exact nesting map](carrier-h9-global-geometry-20261107.md)
+   are admitted. Execute both native cases, recover their complete fields and
+   compare H8 to H9. Gravity has one increment below 1%; combined remains above
+   it. Keep the unchanged convergence rule.
 2. **Close the current geometry's additive preparation.** PySLM's current-source
-   import, pose and nine-layer batch passed independent checks, including the
-   qualified near-vertex case and every segment. Execute all 1,034 part layers
-   with source-bound restart and complete audits, then check current support
-   contacts, access and the complete build envelope. The historical 440-layer
-   cache is not the current answer.
+   import, pose, all 1,034 part layers and every scan segment passed independent
+   checks, including the near-vertex case and complete volume assessment.
+   Continue current support contacts, access and the complete build envelope,
+   then package the matching machine job and reproducible full-calendar recipe.
+   The historical 440-layer cache is not reused by this result.
 3. **Turn thermal controls into a bounded process calculation.** GO-MELT's
    convection/material unit questions now have executed controls. Supply the
    remaining alloy and exposure inputs, then test activation, energy balance,
