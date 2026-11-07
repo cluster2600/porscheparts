@@ -1,0 +1,1170 @@
+{
+  "schema": "935-cap-boundary-ledger-1",
+  "previous_goal_turn_classification": "progress",
+  "parent_commit": "c9850b63f8c3ba5948a868a7a9ba2d4d42a9565d",
+  "cap_manifest_sha256": "f24e7730feaafd11f73865e5961d91e1592231e81184b86cc52a120137d25eac",
+  "volume_manifest_sha256": "5ae4030201035dce3b6a972f7cfee99ab98dee092454634608394eae6b0e96ec",
+  "contract": [
+    "Retain every original full-boundary coordinate bit",
+    "Replace only the traced 275 cap rows using the independently checked cap and source indices",
+    "Add only the checked 8125 interior cap points; preserve every other oriented facet and construction tag",
+    "Preserve every mapped marked edge and the literal cap contour",
+    "Recheck the full closed surface and actual 3MF before any volume proposal",
+    "A new surface is not a conforming volume; retain the previous volume unchanged"
+  ],
+  "phases": [
+    {
+      "id": "B0",
+      "state": "complete",
+      "inputs": "Both frozen current capsules and all consumed payloads",
+      "runtime": "Existing Python 3.12",
+      "command": "Manifest-bound source rehash",
+      "outputs": "Input-bound assembly job",
+      "checks": "Every consumed file matches frozen manifest"
+    },
+    {
+      "id": "B1",
+      "state": "complete",
+      "inputs": "B0 and passed literal source-join/tamper controls",
+      "runtime": "Pinned scientific Python, 4GiB/600s controller",
+      "command": [
+        "PRIVATE_ARTIFACTS/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+        "-B",
+        "PRIVATE_CAPSULE/inputs/assemble_boundary.py",
+        "--job",
+        "PRIVATE_CAPSULE/assembly-job.json",
+        "--output",
+        "PRIVATE_CAPSULE/assembly"
+      ],
+      "outputs": "New complete surface, tags and private join",
+      "checks": "Retain source points/facets outside the one cap; no volume change"
+    },
+    {
+      "id": "B2",
+      "state": "complete",
+      "inputs": "Actual B1 output, current source and marked-curve mapping",
+      "runtime": "Scientific Python, independent verifier",
+      "command": [
+        "python",
+        "source/check_boundary_join.py",
+        "--job",
+        "PRIVATE_JOIN_JOB",
+        "--output",
+        "NEW_DIRECTORY"
+      ],
+      "outputs": "Independent complete array/tag/feature-edge join",
+      "checks": "All original bits/tuples and every mapped feature edge"
+    },
+    {
+      "id": "B3",
+      "state": "complete",
+      "inputs": "B2-admitted actual boundary",
+      "runtime": "Existing libigl whole-surface validator, 12GiB/600s controller",
+      "command": [
+        "python",
+        "validate_build_final.py",
+        "NEW_SURFACE",
+        "NEW_DIRECTORY"
+      ],
+      "outputs": "Whole closed surface and actual 3MF readback",
+      "checks": "No open/nonmanifold/zero-area/orientation errors, complete intersections, one material body, exact export readback"
+    },
+    {
+      "id": "V0",
+      "state": "complete",
+      "inputs": "Admitted boundary and old full volume",
+      "runtime": "Existing exact volume and source-join helpers",
+      "command": null,
+      "outputs": "Exact 825-cell source region after edge/vertex-star closures; all 158 retained interfaces rejoined and complete proposed cavity surface admitted",
+      "checks": "Upstream cavity admissibility before any local remeshing"
+    },
+    {
+      "id": "V1-G5",
+      "state": "open",
+      "inputs": "Conforming new volume, physics, specimen metrology/CAD, process and inspection",
+      "runtime": "Qwen/PicoGK, Gmsh, OpenFOAM, CalculiX and Adamantine roles unchanged",
+      "command": null,
+      "outputs": "Full original functional metal objective",
+      "checks": "All final physical/engineering gates remain false"
+    }
+  ],
+  "budget": {
+    "total_cap_usd": 35,
+    "compute_cap_usd": 30,
+    "closure_reserve_usd": 5,
+    "prior_conservative_allocation_usd": 15.67884277510534,
+    "allocation_is_invoice": false,
+    "new_paid_compute_usd": 0
+  },
+  "supplier_messages_sent": false,
+  "printing_master_changed": false,
+  "scope": "Complete checked hypothesis boundary plus source-admitted cavity and a refused native volume trial; no change to the existing complete head volume or printing master",
+  "subphases": [
+    {
+      "id": "B1",
+      "state": "complete",
+      "input_plan_sha256": "cce5d1162f40c582528352a8603d10d037e5fd53cb6df95ddd1023d0d79b14d6",
+      "inputs": [
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/inputs/audit_bounded_cap.py",
+          "sha256": "ec3dc3653e0b6de29dbe99d6ae3d72c25730f276783d69aac6c20caed890ece9"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/verification/candidate-surface.npz",
+          "sha256": "627dc5d2a6679475d7807b7b4f3113daf254f58049a17fc620ecb7f762908c9c"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/verification/candidate-tags.npy",
+          "sha256": "716a7c0f155551ec42db10527b4c53ea2ed95948d0cc027e7b786f3b9f4ce0b5"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/full-cap-proposal/private-cap-proposal.npz",
+          "sha256": "6672e7869a6769d92e360c7edba969b30d40e75a2bc5d1a38cf8bb30498bc8c8"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/refinement-v3/private-refined-cap.npz",
+          "sha256": "662b86fbab7b30499c4fa4d50508a9a52ef995cf66eb9a6e3bbdb1d4a6db6036"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/refined-check/report.json",
+          "sha256": "bdab4b9247a0163d11f34f247c5cbe485bbfdc563beceb5e62153345e16028ce"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/native-readback-v3/report.json",
+          "sha256": "75f06960d2b070bac8792256dbfa3e79959d2a5d07af6c004b9e8fc794efed42"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+          "sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-interwalk-admission-20261106-001/run_local_delivery_v2.py",
+          "sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/inputs/assemble_boundary.py",
+          "sha256": "8b8c5b81a4a8d7f243c1d473aea95f3f706135f0d1601ff0a48732981f523a39"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/assembly-job.json",
+          "sha256": "7c17e2878480813a0ec687030d7988f2b40e9d7ad71d7c061856d87cf508f763"
+        }
+      ],
+      "runtime": "Existing isolated runtime under recorded 600-second bounded controller",
+      "command": [
+        "PRIVATE_ARTIFACTS/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+        "-B",
+        "PRIVATE_CAPSULE/inputs/assemble_boundary.py",
+        "--job",
+        "PRIVATE_CAPSULE/assembly-job.json",
+        "--output",
+        "PRIVATE_CAPSULE/assembly"
+      ],
+      "expected_output_report": "PRIVATE_CAPSULE/assembly/report.json",
+      "checks": "See the bound pre-execution policy, actual report and report identities; execution success does not override geometric or quality refusal"
+    },
+    {
+      "id": "B2",
+      "state": "complete",
+      "input_plan_sha256": "51b3a2ff7d97c4521c65a579f201962e3e638b56a88728dc980d260745c74901",
+      "inputs": [
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/inputs/audit_bounded_cap.py",
+          "sha256": "ec3dc3653e0b6de29dbe99d6ae3d72c25730f276783d69aac6c20caed890ece9"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/verification/candidate-surface.npz",
+          "sha256": "627dc5d2a6679475d7807b7b4f3113daf254f58049a17fc620ecb7f762908c9c"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/verification/candidate-tags.npy",
+          "sha256": "716a7c0f155551ec42db10527b4c53ea2ed95948d0cc027e7b786f3b9f4ce0b5"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/full-cap-proposal/private-cap-proposal.npz",
+          "sha256": "6672e7869a6769d92e360c7edba969b30d40e75a2bc5d1a38cf8bb30498bc8c8"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/refinement-v3/private-refined-cap.npz",
+          "sha256": "662b86fbab7b30499c4fa4d50508a9a52ef995cf66eb9a6e3bbdb1d4a6db6036"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/refined-check/report.json",
+          "sha256": "bdab4b9247a0163d11f34f247c5cbe485bbfdc563beceb5e62153345e16028ce"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/assembly/candidate-surface.npz",
+          "sha256": "9cc7c73538348cdf974b468827a374f0d6398656171ba64fe21d5461c78a1653"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/assembly/candidate-tags.npy",
+          "sha256": "fbb3406a2cb47de80db621481c0e26a45b4fbd16ef8d395827dcf4b078c80338"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-corner-provenance-20261105-001/regularization-001/private-collapse-map.npz",
+          "sha256": "2cfd7b395c2bf4603bf9e044713d12df355db567228e77b012700af1ea426b2c"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-feature-retessellation-20261105-001/short-edge-admission-002/private-required-feature-keys.npy",
+          "sha256": "e5087c3cd5c90208acb56adff830bb39edc58bb0d93362b9a57b5cbf944b70f3"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+          "sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-interwalk-admission-20261106-001/run_local_delivery_v2.py",
+          "sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/inputs/check_boundary_join.py",
+          "sha256": "ae429811f8659379283c65278f7a7b4f9105115df993d2c1939e7b853a431814"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/join-job.json",
+          "sha256": "ed506a4bd47a3dd11d903f3b483e4b16621894540d35858e037f39d94cd3f928"
+        }
+      ],
+      "runtime": "Existing isolated runtime under recorded 600-second bounded controller",
+      "command": [
+        "PRIVATE_ARTIFACTS/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+        "-B",
+        "PRIVATE_CAPSULE/inputs/check_boundary_join.py",
+        "--job",
+        "PRIVATE_CAPSULE/join-job.json",
+        "--output",
+        "PRIVATE_CAPSULE/join-check"
+      ],
+      "expected_output_report": "PRIVATE_CAPSULE/join-check/report.json",
+      "checks": "See the bound pre-execution policy, actual report and report identities; execution success does not override geometric or quality refusal"
+    },
+    {
+      "id": "B3",
+      "state": "complete",
+      "input_plan_sha256": "66b80fbaafb8854df4647e8102893554bd228c589121f6928abc7f628f0560e0",
+      "inputs": [
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/validate_build_final.py",
+          "sha256": "0355df49080d49859bff4da517becc88ca4fafa43ffe0e9477bb8ea1ff4a61f0"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-scan-tools-20261029/venv/bin/python",
+          "sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-single-volume-20261107-001/run_local_delivery_12g.py",
+          "sha256": "a6ef265c809607eb4f0d248ded48340f4a5e8aa2429ba9a77b85ebd8060275e9"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/assembly/candidate-surface.npz",
+          "sha256": "9cc7c73538348cdf974b468827a374f0d6398656171ba64fe21d5461c78a1653"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/join-check/report.json",
+          "sha256": "8959884143557836a4aec8bd3cc859c7851cb979c9c294a11d45fff11f107950"
+        }
+      ],
+      "runtime": "Existing isolated runtime under recorded 600-second bounded controller",
+      "command": [
+        "PRIVATE_ARTIFACTS/935-scan-tools-20261029/venv/bin/python",
+        "-B",
+        "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/validate_build_final.py",
+        "PRIVATE_CAPSULE/assembly/candidate-surface.npz",
+        "PRIVATE_CAPSULE/whole-surface"
+      ],
+      "expected_output_report": "PRIVATE_CAPSULE/whole-surface/report.json",
+      "checks": "See the bound pre-execution policy, actual report and report identities; execution success does not override geometric or quality refusal"
+    },
+    {
+      "id": "V0a",
+      "state": "complete",
+      "input_plan_sha256": "9b11d8ce8823eae9fa0019b010aeb615cdf9ad75e5d9586d28ec421bc3ab090a",
+      "inputs": [
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/inputs/audit_bounded_cap.py",
+          "sha256": "ec3dc3653e0b6de29dbe99d6ae3d72c25730f276783d69aac6c20caed890ece9"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/inspect_tetrahedra.py",
+          "sha256": "fe8c7fa88f35d2d14094438bbae3b0860bde085a39b68f7ab941790cb4d1bec3"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/attribute_severe_cells.py",
+          "sha256": "8edd2077f110a11038009c851d4cb052b6be41ee8e6eeca4751cdda4a2dfa046"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-residual-surface-audit-20261107-001/inputs/audit_residual_surface_v2.py",
+          "sha256": "dcfc14e9a6e9ce7c5db1458a64b01c4c0623886d371a20cd471acad227f95070"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/verify_surface_peels.py",
+          "sha256": "986bae3440420f1220b790f5ae8d54a92ebd427fb0c4a2c706712733317ddaf6"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/verification/candidate-volume.npz",
+          "sha256": "d00f2807ed32f4fd3c92f9e825fe691ef57a42b449f9dda020326ecdfc817aaa"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/verification/candidate-surface.npz",
+          "sha256": "627dc5d2a6679475d7807b7b4f3113daf254f58049a17fc620ecb7f762908c9c"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/verification/candidate-tags.npy",
+          "sha256": "716a7c0f155551ec42db10527b4c53ea2ed95948d0cc027e7b786f3b9f4ce0b5"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/full-cap-proposal/private-cap-proposal.npz",
+          "sha256": "6672e7869a6769d92e360c7edba969b30d40e75a2bc5d1a38cf8bb30498bc8c8"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/refinement-v3/private-refined-cap.npz",
+          "sha256": "662b86fbab7b30499c4fa4d50508a9a52ef995cf66eb9a6e3bbdb1d4a6db6036"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/assembly/candidate-surface.npz",
+          "sha256": "9cc7c73538348cdf974b468827a374f0d6398656171ba64fe21d5461c78a1653"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/whole-surface/report.json",
+          "sha256": "75a9d59d73deb825c57ec99efe0e18113c2cf4b987880c27970a8ede23819bf7"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/join-check/report.json",
+          "sha256": "8959884143557836a4aec8bd3cc859c7851cb979c9c294a11d45fff11f107950"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/whole-volume/report.json",
+          "sha256": "fbefd3e76382a889b93359a427f1fce9c3881e337b624628b92e99a4e870f9d2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/whole-condition/private-severe-ids.npz",
+          "sha256": "a7512d29a0edc5fde8be8ebf512f46e9232295c0b386b0d31572ff57da776799"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/native-readback/private-nonpositive-minSICN.npz",
+          "sha256": "516083c5e12d76d6245deba78ce2787bc1b3ee3d83dc148d616f6ab77768958c"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+          "sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-interwalk-admission-20261106-001/run_local_delivery_v2.py",
+          "sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/inputs/audit_cap_cavity.py",
+          "sha256": "9272a32a1e2d5a4e6643e7d41c705caf54f1a3bfe104b4cad0512ecc75458cae"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/cavity-job.json",
+          "sha256": "c885f3c684b638fb0b92e7ce64843fc9ed91837d9e3251852b3aa0d9ff312fdd"
+        }
+      ],
+      "runtime": "Existing isolated runtime under recorded 600-second bounded controller",
+      "command": [
+        "PRIVATE_ARTIFACTS/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+        "-B",
+        "PRIVATE_CAPSULE/inputs/audit_cap_cavity.py",
+        "--job",
+        "PRIVATE_CAPSULE/cavity-job.json",
+        "--output",
+        "PRIVATE_CAPSULE/cavity-audit"
+      ],
+      "expected_output_report": "PRIVATE_CAPSULE/cavity-audit/report.json",
+      "checks": "See the bound pre-execution policy, actual report and report identities; execution success does not override geometric or quality refusal"
+    },
+    {
+      "id": "V0b",
+      "state": "refused_edge_topology",
+      "input_plan_sha256": "78898402885ca4f0f643f215d759dcfbb9c70e1cad0a2b0294c6528898cca5db",
+      "inputs": [
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/validate_build_final.py",
+          "sha256": "0355df49080d49859bff4da517becc88ca4fafa43ffe0e9477bb8ea1ff4a61f0"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-scan-tools-20261029/venv/bin/python",
+          "sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-single-volume-20261107-001/run_local_delivery_12g.py",
+          "sha256": "a6ef265c809607eb4f0d248ded48340f4a5e8aa2429ba9a77b85ebd8060275e9"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/cavity-audit/candidate-cavity-surface.npz",
+          "sha256": "7ca39e54270aeaad262fbd4391b0b6e64acbf6be2c54f198883577bb1bf677f4"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/cavity-audit/report.json",
+          "sha256": "76eedc1a863625b2d6e5fa0c1c093f8fe76470fc75a8bf353776df6990264a25"
+        }
+      ],
+      "runtime": "Existing isolated runtime under recorded 600-second bounded controller",
+      "command": [
+        "PRIVATE_ARTIFACTS/935-scan-tools-20261029/venv/bin/python",
+        "-B",
+        "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/validate_build_final.py",
+        "PRIVATE_CAPSULE/cavity-audit/candidate-cavity-surface.npz",
+        "PRIVATE_CAPSULE/cavity-surface-check"
+      ],
+      "expected_output_report": "PRIVATE_CAPSULE/cavity-surface-check/report.json",
+      "checks": "See the bound pre-execution policy, actual report and report identities; execution success does not override geometric or quality refusal"
+    },
+    {
+      "id": "V0c",
+      "state": "complete",
+      "input_plan_sha256": "81aedb3458458bce8f5ba53979fb3ad058df33cb8e5fd3aab5d129c2e30eface",
+      "inputs": [
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/inputs/audit_bounded_cap.py",
+          "sha256": "ec3dc3653e0b6de29dbe99d6ae3d72c25730f276783d69aac6c20caed890ece9"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-residual-surface-audit-20261107-001/global-quality-001/inputs/global_quality_operator.py",
+          "sha256": "c81f84fc78d389ae742a3a5356ba4d82b9d17921171b567e6d5ce1c7c2db9143"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/verification/candidate-volume.npz",
+          "sha256": "d00f2807ed32f4fd3c92f9e825fe691ef57a42b449f9dda020326ecdfc817aaa"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/cavity-audit/private-cavity.npz",
+          "sha256": "c4b6ea44a65f4f99ebe9ec56631b8a162e24399b0145aadb84598b9c4f6c2014"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/cavity-surface-check/report.json",
+          "sha256": "21a1aa55274f1396ae0d43f8065615a2d606cacffd288def70c06f3764ffe6f1"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/inputs/close_cavity_edges.py",
+          "sha256": "eaf412298ccf358a021f2678338fc5dd424cf6e1be33e7253741514472c34ba3"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+          "sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-interwalk-admission-20261106-001/run_local_delivery_v2.py",
+          "sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/edge-closure-job.json",
+          "sha256": "f18cbbede49b09389e34ebbf1a9527cf9d83bafe61172bdd66e1c050a5bea115"
+        }
+      ],
+      "runtime": "Existing isolated runtime under recorded 600-second bounded controller",
+      "command": [
+        "PRIVATE_ARTIFACTS/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+        "-B",
+        "PRIVATE_CAPSULE/inputs/close_cavity_edges.py",
+        "--job",
+        "PRIVATE_CAPSULE/edge-closure-job.json",
+        "--output",
+        "PRIVATE_CAPSULE/edge-closure"
+      ],
+      "expected_output_report": "PRIVATE_CAPSULE/edge-closure/report.json",
+      "checks": "See the bound pre-execution policy, actual report and report identities; execution success does not override geometric or quality refusal"
+    },
+    {
+      "id": "V0d",
+      "state": "complete",
+      "input_plan_sha256": "34579d6d4eb2e26024bdb119108fa9ed62c7d2f520e0a4e4434f11aa28677b65",
+      "inputs": [
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/inputs/audit_bounded_cap.py",
+          "sha256": "ec3dc3653e0b6de29dbe99d6ae3d72c25730f276783d69aac6c20caed890ece9"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/inspect_tetrahedra.py",
+          "sha256": "fe8c7fa88f35d2d14094438bbae3b0860bde085a39b68f7ab941790cb4d1bec3"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/attribute_severe_cells.py",
+          "sha256": "8edd2077f110a11038009c851d4cb052b6be41ee8e6eeca4751cdda4a2dfa046"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-residual-surface-audit-20261107-001/inputs/audit_residual_surface_v2.py",
+          "sha256": "dcfc14e9a6e9ce7c5db1458a64b01c4c0623886d371a20cd471acad227f95070"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/verify_surface_peels.py",
+          "sha256": "986bae3440420f1220b790f5ae8d54a92ebd427fb0c4a2c706712733317ddaf6"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/verification/candidate-volume.npz",
+          "sha256": "d00f2807ed32f4fd3c92f9e825fe691ef57a42b449f9dda020326ecdfc817aaa"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/verification/candidate-surface.npz",
+          "sha256": "627dc5d2a6679475d7807b7b4f3113daf254f58049a17fc620ecb7f762908c9c"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/verification/candidate-tags.npy",
+          "sha256": "716a7c0f155551ec42db10527b4c53ea2ed95948d0cc027e7b786f3b9f4ce0b5"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/full-cap-proposal/private-cap-proposal.npz",
+          "sha256": "6672e7869a6769d92e360c7edba969b30d40e75a2bc5d1a38cf8bb30498bc8c8"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/refinement-v3/private-refined-cap.npz",
+          "sha256": "662b86fbab7b30499c4fa4d50508a9a52ef995cf66eb9a6e3bbdb1d4a6db6036"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/assembly/candidate-surface.npz",
+          "sha256": "9cc7c73538348cdf974b468827a374f0d6398656171ba64fe21d5461c78a1653"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/whole-surface/report.json",
+          "sha256": "75a9d59d73deb825c57ec99efe0e18113c2cf4b987880c27970a8ede23819bf7"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/join-check/report.json",
+          "sha256": "8959884143557836a4aec8bd3cc859c7851cb979c9c294a11d45fff11f107950"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/whole-volume/report.json",
+          "sha256": "fbefd3e76382a889b93359a427f1fce9c3881e337b624628b92e99a4e870f9d2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/whole-condition/private-severe-ids.npz",
+          "sha256": "a7512d29a0edc5fde8be8ebf512f46e9232295c0b386b0d31572ff57da776799"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/native-readback/private-nonpositive-minSICN.npz",
+          "sha256": "516083c5e12d76d6245deba78ce2787bc1b3ee3d83dc148d616f6ab77768958c"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/cavity-audit/private-cavity.npz",
+          "sha256": "c4b6ea44a65f4f99ebe9ec56631b8a162e24399b0145aadb84598b9c4f6c2014"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/edge-closure/private-closed-selection.npz",
+          "sha256": "4cfbb2dc11ae8cce4bfd65bbe04e2e513c6084411c501b6e6d0d51ab6a941af7"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+          "sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-interwalk-admission-20261106-001/run_local_delivery_v2.py",
+          "sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/inputs/audit_edge_closed_cavity.py",
+          "sha256": "202aa551dcafd68aee0259fd060d2fe6ac6f7f6d97197fc3fac26a982163832e"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/closed-cavity-job.json",
+          "sha256": "ad463b518172a3018577303fa81636ddf3ed97e73aabad7985c4717c5ec7116d"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/edge-audit-source-derivation.json",
+          "sha256": "e323552a90749b471ee45bb1384575663d3eb0632c697bca816cd0a0f0885ce1"
+        }
+      ],
+      "runtime": "Existing isolated runtime under recorded 600-second bounded controller",
+      "command": [
+        "PRIVATE_ARTIFACTS/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+        "-B",
+        "PRIVATE_CAPSULE/inputs/audit_edge_closed_cavity.py",
+        "--job",
+        "PRIVATE_CAPSULE/closed-cavity-job.json",
+        "--output",
+        "PRIVATE_CAPSULE/closed-cavity-audit"
+      ],
+      "expected_output_report": "PRIVATE_CAPSULE/closed-cavity-audit/report.json",
+      "checks": "See the bound pre-execution policy, actual report and report identities; execution success does not override geometric or quality refusal"
+    },
+    {
+      "id": "V0e",
+      "state": "refused_vertex_topology",
+      "input_plan_sha256": "9545dab6b3a00c1849ab369b2a2369ac438771302783fcf0fbeeee7de7c68252",
+      "inputs": [
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/validate_build_final.py",
+          "sha256": "0355df49080d49859bff4da517becc88ca4fafa43ffe0e9477bb8ea1ff4a61f0"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-scan-tools-20261029/venv/bin/python",
+          "sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-single-volume-20261107-001/run_local_delivery_12g.py",
+          "sha256": "a6ef265c809607eb4f0d248ded48340f4a5e8aa2429ba9a77b85ebd8060275e9"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/closed-cavity-audit/candidate-cavity-surface.npz",
+          "sha256": "9aa412eec0103670eafe45c1ef6723453bae6bf9896eb8c6bac2b6e791a931ff"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/closed-cavity-audit/report.json",
+          "sha256": "6357748537497927f6fb4ddf9e35f224776be8db69a852e2c946187569e8afff"
+        }
+      ],
+      "runtime": "Existing isolated runtime under recorded 600-second bounded controller",
+      "command": [
+        "PRIVATE_ARTIFACTS/935-scan-tools-20261029/venv/bin/python",
+        "-B",
+        "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/validate_build_final.py",
+        "PRIVATE_CAPSULE/closed-cavity-audit/candidate-cavity-surface.npz",
+        "PRIVATE_CAPSULE/closed-cavity-surface-check"
+      ],
+      "expected_output_report": "PRIVATE_CAPSULE/closed-cavity-surface-check/report.json",
+      "checks": "See the bound pre-execution policy, actual report and report identities; execution success does not override geometric or quality refusal"
+    },
+    {
+      "id": "V0f",
+      "state": "complete",
+      "input_plan_sha256": "187e27c2da8a59ee5a5f8eb7a88a68a9c77cd38b8e7feebbfc2a951ce69d574f",
+      "inputs": [
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/inputs/audit_bounded_cap.py",
+          "sha256": "ec3dc3653e0b6de29dbe99d6ae3d72c25730f276783d69aac6c20caed890ece9"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/inputs/inspect_vertex_fans.py",
+          "sha256": "1b9792699e0d3f42cae84184562e64d7bb1a6786b054e89d4e988cc0481883f5"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/verification/candidate-volume.npz",
+          "sha256": "d00f2807ed32f4fd3c92f9e825fe691ef57a42b449f9dda020326ecdfc817aaa"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/closed-cavity-audit/private-cavity.npz",
+          "sha256": "116f976f3e496dbdf70b4aa1955c846e3384fbf6313dcc8e560372e91b2b93db"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/closed-cavity-audit/candidate-cavity-surface.npz",
+          "sha256": "9aa412eec0103670eafe45c1ef6723453bae6bf9896eb8c6bac2b6e791a931ff"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/closed-cavity-surface-check/report.json",
+          "sha256": "44a28de7b7d8d0137ecb6cbf978478919ed289a7b9c1ab15cdaa403eee17e3ed"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/inputs/close_cavity_vertices.py",
+          "sha256": "311ae373a90140155c762893a5c448cb57158c0c2f1ff924d77a3094d40c39e3"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-scan-tools-20261029/venv/bin/python",
+          "sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-interwalk-admission-20261106-001/run_local_delivery_v2.py",
+          "sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/vertex-closure-job.json",
+          "sha256": "5f0695d043aca65ab32262fec7e2cca8fb0a462f6fb1245bab75802783e83d81"
+        }
+      ],
+      "runtime": "Existing isolated runtime under recorded 600-second bounded controller",
+      "command": [
+        "PRIVATE_ARTIFACTS/935-scan-tools-20261029/venv/bin/python",
+        "-B",
+        "PRIVATE_CAPSULE/inputs/close_cavity_vertices.py",
+        "--job",
+        "PRIVATE_CAPSULE/vertex-closure-job.json",
+        "--output",
+        "PRIVATE_CAPSULE/vertex-closure"
+      ],
+      "expected_output_report": "PRIVATE_CAPSULE/vertex-closure/report.json",
+      "checks": "See the bound pre-execution policy, actual report and report identities; execution success does not override geometric or quality refusal"
+    },
+    {
+      "id": "V0g",
+      "state": "complete",
+      "input_plan_sha256": "a0dffb177dbd59c496e0b2ba2fa32f665f897d56fbc2d16c9f1958937074500b",
+      "inputs": [
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/inputs/audit_bounded_cap.py",
+          "sha256": "ec3dc3653e0b6de29dbe99d6ae3d72c25730f276783d69aac6c20caed890ece9"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/inspect_tetrahedra.py",
+          "sha256": "fe8c7fa88f35d2d14094438bbae3b0860bde085a39b68f7ab941790cb4d1bec3"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/attribute_severe_cells.py",
+          "sha256": "8edd2077f110a11038009c851d4cb052b6be41ee8e6eeca4751cdda4a2dfa046"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-residual-surface-audit-20261107-001/inputs/audit_residual_surface_v2.py",
+          "sha256": "dcfc14e9a6e9ce7c5db1458a64b01c4c0623886d371a20cd471acad227f95070"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/verify_surface_peels.py",
+          "sha256": "986bae3440420f1220b790f5ae8d54a92ebd427fb0c4a2c706712733317ddaf6"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/verification/candidate-volume.npz",
+          "sha256": "d00f2807ed32f4fd3c92f9e825fe691ef57a42b449f9dda020326ecdfc817aaa"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/verification/candidate-surface.npz",
+          "sha256": "627dc5d2a6679475d7807b7b4f3113daf254f58049a17fc620ecb7f762908c9c"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/verification/candidate-tags.npy",
+          "sha256": "716a7c0f155551ec42db10527b4c53ea2ed95948d0cc027e7b786f3b9f4ce0b5"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/full-cap-proposal/private-cap-proposal.npz",
+          "sha256": "6672e7869a6769d92e360c7edba969b30d40e75a2bc5d1a38cf8bb30498bc8c8"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/refinement-v3/private-refined-cap.npz",
+          "sha256": "662b86fbab7b30499c4fa4d50508a9a52ef995cf66eb9a6e3bbdb1d4a6db6036"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/assembly/candidate-surface.npz",
+          "sha256": "9cc7c73538348cdf974b468827a374f0d6398656171ba64fe21d5461c78a1653"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/whole-surface/report.json",
+          "sha256": "75a9d59d73deb825c57ec99efe0e18113c2cf4b987880c27970a8ede23819bf7"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/join-check/report.json",
+          "sha256": "8959884143557836a4aec8bd3cc859c7851cb979c9c294a11d45fff11f107950"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/whole-volume/report.json",
+          "sha256": "fbefd3e76382a889b93359a427f1fce9c3881e337b624628b92e99a4e870f9d2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/whole-condition/private-severe-ids.npz",
+          "sha256": "a7512d29a0edc5fde8be8ebf512f46e9232295c0b386b0d31572ff57da776799"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/round-003/native-readback/private-nonpositive-minSICN.npz",
+          "sha256": "516083c5e12d76d6245deba78ce2787bc1b3ee3d83dc148d616f6ab77768958c"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/cavity-audit/private-cavity.npz",
+          "sha256": "c4b6ea44a65f4f99ebe9ec56631b8a162e24399b0145aadb84598b9c4f6c2014"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/edge-closure/private-closed-selection.npz",
+          "sha256": "4cfbb2dc11ae8cce4bfd65bbe04e2e513c6084411c501b6e6d0d51ab6a941af7"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/inputs/inspect_vertex_fans.py",
+          "sha256": "1b9792699e0d3f42cae84184562e64d7bb1a6786b054e89d4e988cc0481883f5"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/closed-cavity-audit/private-cavity.npz",
+          "sha256": "116f976f3e496dbdf70b4aa1955c846e3384fbf6313dcc8e560372e91b2b93db"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/vertex-closure/private-vertex-closed-selection.npz",
+          "sha256": "9f9b02aefce6409451bebb2997f90bb0234be5a92633ca4072ef61d3cc2e3f68"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+          "sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-interwalk-admission-20261106-001/run_local_delivery_v2.py",
+          "sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/inputs/audit_vertex_closed_cavity.py",
+          "sha256": "677ae09b5dbb3d7962ae725b4ee8291b84286abb5ee99d8e3f51ff8c2ca71736"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/vertex-closed-cavity-job.json",
+          "sha256": "f292396ff6eb90d98156d14a5559afbc7ace3aab1e1a38e1a77eb0311eba17b1"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/vertex-audit-source-derivation.json",
+          "sha256": "5d1938db49c107547c7798a1098a113bec8a3883ee91de1b3957909b052b2989"
+        }
+      ],
+      "runtime": "Existing isolated runtime under recorded 600-second bounded controller",
+      "command": [
+        "PRIVATE_ARTIFACTS/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+        "-B",
+        "PRIVATE_CAPSULE/inputs/audit_vertex_closed_cavity.py",
+        "--job",
+        "PRIVATE_CAPSULE/vertex-closed-cavity-job.json",
+        "--output",
+        "PRIVATE_CAPSULE/vertex-closed-cavity-audit"
+      ],
+      "expected_output_report": "PRIVATE_CAPSULE/vertex-closed-cavity-audit/report.json",
+      "checks": "See the bound pre-execution policy, actual report and report identities; execution success does not override geometric or quality refusal"
+    },
+    {
+      "id": "V0h",
+      "state": "complete",
+      "input_plan_sha256": "bf683519a6074bbabb1d0f7d3f97ad8cbe5c5a494026af57cfa417aea67dfe66",
+      "inputs": [
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/validate_build_final.py",
+          "sha256": "0355df49080d49859bff4da517becc88ca4fafa43ffe0e9477bb8ea1ff4a61f0"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-scan-tools-20261029/venv/bin/python",
+          "sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-single-volume-20261107-001/run_local_delivery_12g.py",
+          "sha256": "a6ef265c809607eb4f0d248ded48340f4a5e8aa2429ba9a77b85ebd8060275e9"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/vertex-closed-cavity-audit/candidate-cavity-surface.npz",
+          "sha256": "c364be00ee9c28a8259da6ee431b357df553b1dd3cd101c994bc6fb747c30a63"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/vertex-closed-cavity-audit/report.json",
+          "sha256": "b5dbda4f89b5388cb7e73e17378b1d68f069d3574dd0e047e1ca5e93b7f56c00"
+        }
+      ],
+      "runtime": "Existing isolated runtime under recorded 600-second bounded controller",
+      "command": [
+        "PRIVATE_ARTIFACTS/935-scan-tools-20261029/venv/bin/python",
+        "-B",
+        "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/validate_build_final.py",
+        "PRIVATE_CAPSULE/vertex-closed-cavity-audit/candidate-cavity-surface.npz",
+        "PRIVATE_CAPSULE/vertex-closed-cavity-surface-check"
+      ],
+      "expected_output_report": "PRIVATE_CAPSULE/vertex-closed-cavity-surface-check/report.json",
+      "checks": "See the bound pre-execution policy, actual report and report identities; execution success does not override geometric or quality refusal"
+    },
+    {
+      "id": "M0",
+      "state": "complete",
+      "input_plan_sha256": "4de2eb749262972f1c84e46cacfda8e1d9ba0416d0c63577897ecfe848d6a011",
+      "inputs": [
+        {
+          "path": "REPOSITORY/docs/research/935-hypothesis-study-20261029/source/mesh_solid.py",
+          "sha256": "3cf167772ab4e4d90674693cb47e986e08c43e872db0b43c7529a533dc07dae6"
+        },
+        {
+          "path": "REPOSITORY/docs/research/935-unoptimized-volume-20261105/source/mesh_without_optimization.py",
+          "sha256": "9c146ca54cb8fd5e2e615e7baa98d77536e4eeefbde026c64e7f824b24ec41b3"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-local-head-physics-20261105-001/runtime/bin/python",
+          "sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-local-head-physics-20261105-001/runtime/lib/python3.12/site-packages/gmsh.py",
+          "sha256": "fa69936fc45646eca8b29ab0fd9e32ebaf45216414cbc75c380b4c0db7b6f485"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-local-head-physics-20261105-001/runtime/lib/libgmsh.4.12.dylib",
+          "sha256": "0ad15c280dc81268f4d9b9612a210a6fb9121b09b83b3354cf58489743991603"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-interwalk-admission-20261106-001/run_local_delivery_v2.py",
+          "sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/vertex-closed-cavity-audit/candidate-cavity-surface.npz",
+          "sha256": "c364be00ee9c28a8259da6ee431b357df553b1dd3cd101c994bc6fb747c30a63"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/vertex-closed-cavity-surface-check/report.json",
+          "sha256": "02a17c4da1b5adaa4014469a7972ea2c84c7ed4057fd30f92f2a5c6d29469b0c"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/vertex-closed-cavity-audit/report.json",
+          "sha256": "b5dbda4f89b5388cb7e73e17378b1d68f069d3574dd0e047e1ca5e93b7f56c00"
+        }
+      ],
+      "runtime": "Existing isolated runtime under recorded 600-second bounded controller",
+      "command": [
+        "PRIVATE_ARTIFACTS/935-local-head-physics-20261105-001/runtime/bin/python",
+        "-B",
+        "REPOSITORY/docs/research/935-unoptimized-volume-20261105/source/mesh_without_optimization.py",
+        "--recipe",
+        "REPOSITORY/docs/research/935-hypothesis-study-20261029/source/mesh_solid.py",
+        "--input",
+        "cube",
+        "--output",
+        "PRIVATE_CAPSULE/mesher-cube",
+        "--threads",
+        "1"
+      ],
+      "expected_output_report": "PRIVATE_CAPSULE/mesher-cube/report.json",
+      "checks": "See the bound pre-execution policy, actual report and report identities; execution success does not override geometric or quality refusal"
+    },
+    {
+      "id": "M1",
+      "state": "generated_shape_refused",
+      "input_plan_sha256": "13c1660aee1bb9b60c95a626abeaadc24501d15e1b5ac093bd530fe657bfb28a",
+      "inputs": [
+        {
+          "path": "REPOSITORY/docs/research/935-hypothesis-study-20261029/source/mesh_solid.py",
+          "sha256": "3cf167772ab4e4d90674693cb47e986e08c43e872db0b43c7529a533dc07dae6"
+        },
+        {
+          "path": "REPOSITORY/docs/research/935-unoptimized-volume-20261105/source/mesh_without_optimization.py",
+          "sha256": "9c146ca54cb8fd5e2e615e7baa98d77536e4eeefbde026c64e7f824b24ec41b3"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-local-head-physics-20261105-001/runtime/bin/python",
+          "sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-local-head-physics-20261105-001/runtime/lib/python3.12/site-packages/gmsh.py",
+          "sha256": "fa69936fc45646eca8b29ab0fd9e32ebaf45216414cbc75c380b4c0db7b6f485"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-local-head-physics-20261105-001/runtime/lib/libgmsh.4.12.dylib",
+          "sha256": "0ad15c280dc81268f4d9b9612a210a6fb9121b09b83b3354cf58489743991603"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-interwalk-admission-20261106-001/run_local_delivery_v2.py",
+          "sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/vertex-closed-cavity-audit/candidate-cavity-surface.npz",
+          "sha256": "c364be00ee9c28a8259da6ee431b357df553b1dd3cd101c994bc6fb747c30a63"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/vertex-closed-cavity-surface-check/report.json",
+          "sha256": "02a17c4da1b5adaa4014469a7972ea2c84c7ed4057fd30f92f2a5c6d29469b0c"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/vertex-closed-cavity-audit/report.json",
+          "sha256": "b5dbda4f89b5388cb7e73e17378b1d68f069d3574dd0e047e1ca5e93b7f56c00"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/mesher-cube-independent-guard.json",
+          "sha256": "df2df686db81a5a5ea501f126dde8cd8999625d5932e387553aba645f6f734b5"
+        }
+      ],
+      "runtime": "Existing isolated runtime under recorded 600-second bounded controller",
+      "command": [
+        "PRIVATE_ARTIFACTS/935-local-head-physics-20261105-001/runtime/bin/python",
+        "-B",
+        "REPOSITORY/docs/research/935-unoptimized-volume-20261105/source/mesh_without_optimization.py",
+        "--recipe",
+        "REPOSITORY/docs/research/935-hypothesis-study-20261029/source/mesh_solid.py",
+        "--input",
+        "PRIVATE_CAPSULE/vertex-closed-cavity-audit/candidate-cavity-surface.npz",
+        "--output",
+        "PRIVATE_CAPSULE/cavity-mesh",
+        "--threads",
+        "1"
+      ],
+      "expected_output_report": "PRIVATE_CAPSULE/cavity-mesh/report.json",
+      "checks": "See the bound pre-execution policy, actual report and report identities; execution success does not override geometric or quality refusal"
+    },
+    {
+      "id": "M2a",
+      "state": "positive_conforming_shape_refused",
+      "input_plan_sha256": "342c200048bc4fd75532d94f5a770c0cb0cb19f97c979bf5efab864ec6474b26",
+      "inputs": [
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/inspect_interval_volume.py",
+          "sha256": "b0810ac21b35654556dce18ef022f6d4ca8f30a847223c5d566188eab82f4e71"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/inspect_tetrahedra.py",
+          "sha256": "fe8c7fa88f35d2d14094438bbae3b0860bde085a39b68f7ab941790cb4d1bec3"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+          "sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-interwalk-admission-20261106-001/run_local_delivery_v2.py",
+          "sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/cavity-mesh/solid.npz",
+          "sha256": "f6d77861bfab015a68758a9f12efe6b9203d673ff119cec86d5d8319e912b914"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/vertex-closed-cavity-audit/candidate-cavity-surface.npz",
+          "sha256": "c364be00ee9c28a8259da6ee431b357df553b1dd3cd101c994bc6fb747c30a63"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/vertex-closed-cavity-surface-check/report.json",
+          "sha256": "02a17c4da1b5adaa4014469a7972ea2c84c7ed4057fd30f92f2a5c6d29469b0c"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/cavity-mesh-native-log-guard.json",
+          "sha256": "bd42230bdf67ba9d191754f232ebf7c8e38a0d8f09e14dfbc0ccb2f33f5c4abf"
+        }
+      ],
+      "runtime": "Existing isolated runtime under recorded 600-second bounded controller",
+      "command": [
+        "PRIVATE_ARTIFACTS/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+        "-B",
+        "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/inspect_interval_volume.py",
+        "--mesh",
+        "PRIVATE_CAPSULE/cavity-mesh/solid.npz",
+        "--surface",
+        "PRIVATE_CAPSULE/vertex-closed-cavity-audit/candidate-cavity-surface.npz",
+        "--surface-report",
+        "PRIVATE_CAPSULE/vertex-closed-cavity-surface-check/report.json",
+        "--frozen-inspector",
+        "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/inspect_tetrahedra.py",
+        "--output",
+        "PRIVATE_CAPSULE/cavity-mesh-interval"
+      ],
+      "expected_output_report": "PRIVATE_CAPSULE/cavity-mesh-interval/report.json",
+      "checks": "See the bound pre-execution policy, actual report and report identities; execution success does not override geometric or quality refusal"
+    },
+    {
+      "id": "M3a",
+      "state": "actual_readback_passed_metrics_refused",
+      "input_plan_sha256": "d0c88e7b58e17114c586cdcda958be6d99a1968361bfbc237054bd7568be251b",
+      "inputs": [
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/export_native_mesh.py",
+          "sha256": "e9a4b8cb0805ddaa779f307ba7c0b89c17a679a3915028487a28879a73ecf484"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-local-head-physics-20261105-001/runtime/bin/python",
+          "sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-interwalk-admission-20261106-001/run_local_delivery_v2.py",
+          "sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/cavity-mesh/solid.npz",
+          "sha256": "f6d77861bfab015a68758a9f12efe6b9203d673ff119cec86d5d8319e912b914"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/cavity-mesh-interval/report.json",
+          "sha256": "dcb8496ba4904b1c551284e48e76ea55acf964ca2a7647c9f4169108b7ab843b"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/vertex-closed-cavity-audit/candidate-cavity-surface.npz",
+          "sha256": "c364be00ee9c28a8259da6ee431b357df553b1dd3cd101c994bc6fb747c30a63"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-local-head-physics-20261105-001/runtime/lib/python3.12/site-packages/gmsh.py",
+          "sha256": "fa69936fc45646eca8b29ab0fd9e32ebaf45216414cbc75c380b4c0db7b6f485"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-local-head-physics-20261105-001/runtime/lib/libgmsh.4.12.dylib",
+          "sha256": "0ad15c280dc81268f4d9b9612a210a6fb9121b09b83b3354cf58489743991603"
+        }
+      ],
+      "runtime": "Existing isolated runtime under recorded 600-second bounded controller",
+      "command": [
+        "PRIVATE_ARTIFACTS/935-local-head-physics-20261105-001/runtime/bin/python",
+        "-B",
+        "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/export_native_mesh.py",
+        "--mesh",
+        "PRIVATE_CAPSULE/cavity-mesh/solid.npz",
+        "--input-report",
+        "PRIVATE_CAPSULE/cavity-mesh-interval/report.json",
+        "--surface",
+        "PRIVATE_CAPSULE/vertex-closed-cavity-audit/candidate-cavity-surface.npz",
+        "--output",
+        "PRIVATE_CAPSULE/cavity-native-readback"
+      ],
+      "expected_output_report": "PRIVATE_CAPSULE/cavity-native-readback/report.json",
+      "checks": "See the bound pre-execution policy, actual report and report identities; execution success does not override geometric or quality refusal"
+    },
+    {
+      "id": "M2b",
+      "state": "complete_refusal_attribution",
+      "input_plan_sha256": "6847520104fafdd5dd990c09b8f2f1c25dbc0daabd85f43e84faad299575959b",
+      "inputs": [
+        {
+          "path": "PRIVATE_ARTIFACTS/935-cap-graph-admission-20261107-001/inputs/audit_bounded_cap.py",
+          "sha256": "ec3dc3653e0b6de29dbe99d6ae3d72c25730f276783d69aac6c20caed890ece9"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/attribute_severe_cells.py",
+          "sha256": "8edd2077f110a11038009c851d4cb052b6be41ee8e6eeca4751cdda4a2dfa046"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/inspect_tetrahedra.py",
+          "sha256": "fe8c7fa88f35d2d14094438bbae3b0860bde085a39b68f7ab941790cb4d1bec3"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/inspect_interval_volume.py",
+          "sha256": "b0810ac21b35654556dce18ef022f6d4ca8f30a847223c5d566188eab82f4e71"
+        },
+        {
+          "path": "REPOSITORY/docs/research/935-native-solver-admission-20261105/source/inspect_metric_disagreement.py",
+          "sha256": "df44407d6d808729fc9cf00f079a6b21ff30260b584b5dec1d9dec064416d64e"
+        },
+        {
+          "path": "REPOSITORY/docs/research/935-condition-directed-20261105/source/audit_all_conditions.py",
+          "sha256": "0e3ba938b3e575f02b3b35c47f79b64b0fffb015de3acc6709827747cce279ca"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-global-quality-continuation-20261107-001/face-floor-proof/inputs/certify_face_floor.py",
+          "sha256": "1cb76fa87e91a30f6b465566ec4174cc0877c7e1e408b13e6cc73be407f96f1d"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-current-peel-admission-20261107-001/inputs/verify_surface_peels.py",
+          "sha256": "986bae3440420f1220b790f5ae8d54a92ebd427fb0c4a2c706712733317ddaf6"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/cavity-mesh/solid.npz",
+          "sha256": "f6d77861bfab015a68758a9f12efe6b9203d673ff119cec86d5d8319e912b914"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/vertex-closed-cavity-audit/candidate-cavity-surface.npz",
+          "sha256": "c364be00ee9c28a8259da6ee431b357df553b1dd3cd101c994bc6fb747c30a63"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/vertex-closed-cavity-audit/private-cavity.npz",
+          "sha256": "3b1d6b13deb2a200da7af82fb33614b48204ad543efaead1e6e9b4577fbd61c0"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/cavity-mesh-interval/report.json",
+          "sha256": "dcb8496ba4904b1c551284e48e76ea55acf964ca2a7647c9f4169108b7ab843b"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/cavity-native-readback/report.json",
+          "sha256": "a5ca70c030ddd899d57f30ae52c7584ddca03fb3ea6836a6f9f80eea7848ba86"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/cavity-native-readback/private-nonpositive-minSICN.npz",
+          "sha256": "8541721f1f07130b0ad9732f79edb1684a439d92ac0915949117aa9d40c5c202"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/inputs/audit_remesh_metrics.py",
+          "sha256": "822b2790183472e0ec5b78877437e0f47ad2106a2398d29049c5cb76ad32cce4"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+          "sha256": "71720f1fc66989ebd691e81c96111b47ae6ff3f1a478666084d1cacbf0fccbf2"
+        },
+        {
+          "path": "PRIVATE_ARTIFACTS/935-interwalk-admission-20261106-001/run_local_delivery_v2.py",
+          "sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b"
+        },
+        {
+          "path": "PRIVATE_CAPSULE/remesh-metrics-job.json",
+          "sha256": "2b8f36f1ba5fb41f209a08a7b6e9326ee93e19f681270b0cda43f515a68d6911"
+        }
+      ],
+      "runtime": "Existing isolated runtime under recorded 600-second bounded controller",
+      "command": [
+        "PRIVATE_ARTIFACTS/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+        "-B",
+        "PRIVATE_CAPSULE/inputs/audit_remesh_metrics.py",
+        "--job",
+        "PRIVATE_CAPSULE/remesh-metrics-job.json",
+        "--output",
+        "PRIVATE_CAPSULE/remesh-metrics"
+      ],
+      "expected_output_report": "PRIVATE_CAPSULE/remesh-metrics/report.json",
+      "checks": "See the bound pre-execution policy, actual report and report identities; execution success does not override geometric or quality refusal"
+    }
+  ],
+  "next_action": {
+    "state": "not_prepared",
+    "inputs": "Refused actual local trial and complete source attribution",
+    "runtime": "Existing local geometry/Gmsh chain",
+    "command": null,
+    "outputs": "Conditioned, boundary-aware proposal generator with independent world-coordinate admission",
+    "checks": "Every prescribed boundary point restored exactly; all quality and native gates unchanged"
+  }
+}
