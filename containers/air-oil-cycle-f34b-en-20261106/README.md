@@ -40,8 +40,19 @@ read-only permissions and does not publish an image. The translated static
 image test checks the frozen historical publication workflow copied into the
 context as a policy fixture; it does not attest the new workflow's execution.
 
+The [native AMD64 run on November 7](https://github.com/cluster2600/porscheparts/actions/runs/42340207413)
+passed on commit `441936f9ffd0281d1622ec3928e385e2e47f3e35`. Its six generation
+tests passed; the 46 translated-context tests passed with one host Cantera skip,
+then the built image exercised Cantera offline as user `9133:9133`. The exact
+artifact members are retained in [native-validation-20261107/](native-validation-20261107/),
+with their hashes, source bindings, archive digest and image configuration ID in
+[the new native validation lock](native-validation-20261107.lock.json).
+Independent readback matches the generated outputs to the existing generation
+lock and the solver payload to the source. The earlier emulated-build lock and
+smoke remain unchanged. Neither image configuration ID is a registry digest.
+
 This generation preserves the historical Python/Cantera/NumPy dependency pins
 to isolate translation. Integration with the dependency upgrades in #404–#406,
-native amd64 workflow execution, registry publication and a registry digest
-lock remain pending. No physical, DOE execution, training or release gate is
+registry publication, anonymous digest access and a registry digest lock
+remain pending. No physical, DOE execution, training or release gate is
 promoted by the build or smoke test.
