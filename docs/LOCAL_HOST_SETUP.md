@@ -227,11 +227,25 @@ and sets `BIONIC_DOTNET=dotnet` for the main suite. Its existing executable test
 rejects invalid units, voxel size and housing hashes before native mesh loading,
 and preserves an existing output directory. All eight assembly tests pass
 locally with the selected executable; the additional base check lowers the
-skip budget by one, to 122.
+skip budget by one.
 
 ```bash
 dotnet build twins/bionic-turbo-f0/assembly/source/Assembly.csproj --configuration Release --nologo
 BIONIC_DOTNET="$(command -v dotnet)" PYTHONPATH=tests .venv-check/bin/python -m unittest -v test_bionic_turbo_assembly
+```
+
+### Retained CGAL intersection auditor
+
+The main CI job uses Ubuntu 24.04 and the recorded `libcgal-dev=5.6-1build3`
+package. It checks the unchanged auditor source hash, compiles with C++20 and
+sets `M64_CGAL_INTERSECTIONS` for the existing synthetic topology test. The
+controls cover transverse crossing, coplanar overlap, separated surfaces,
+shared edges, degeneracy and preservation of input arrays. They do not audit
+private geometry, repair a mesh or grant CFD/manufacturing admission.
+
+```bash
+g++ -std=c++20 -O2 twins/m64-cylinder-head/source/wholebody/surface_intersections_cgal.cpp -o /tmp/surface-intersections -lgmp -lmpfr
+M64_CGAL_INTERSECTIONS=/tmp/surface-intersections PYTHONPATH=tests .venv-check/bin/python -m unittest -v test_m64_projected_surface_topology.ProjectedSurfaceTopologyTests.test_intersection_selection_keeps_arrays_and_detects_crossing_and_coplanar_overlap
 ```
 
 ### Legacy OpenUSD authoring checks

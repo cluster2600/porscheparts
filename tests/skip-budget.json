@@ -1,5 +1,5 @@
 {
-  "max_skips": 122,
+  "max_skips": 121,
   "measured": "2026-11-05, make check in a venv mirroring validate.yml (requirements-check.txt), clean agent worktree: 5203 tests, 415 skipped",
   "reduced": "2026-11-07: declared trimesh 5.1.0, rtree 1.4.1 and networkx 3.7 enable synthetic geometry checks; 935 skips fall from 33 to 11 and full-suite skips from 414 to 336, so lower the budget by 78",
   "shapely_reduced": "2026-11-07: Shapely 2.2.0 enables constrained-triangulation and polygon checks; the full suite passes 5902 tests with 252 skips, 84 fewer than the preceding 336. Five repair tests explicitly retain their separate patched-PySLM requirement; keep two skips of headroom.",
@@ -10,5 +10,6 @@
   "vtk_reduced": "2026-11-07: VTK 9.7.1 enables eight native surface/render checks; all 5902 tests pass with 127 skips. Keep two skips of headroom. CadQuery/VTK 9.6.2 and the exact F33 Cantera image run in separate CI jobs; their checks are not subtracted from this base-environment skip count.",
   "jsonschema_reduced": "2026-11-07: jsonschema 4.26.0 enables the two source/twin schema cross-checks in the shared environment; lower the skip budget by two. All 14 source and eight twin validator tests pass without skips.",
   "boolean_formatter_reduced": "2026-11-07: Manifold3D 3.5.4 enables three Boolean/clearance controls, and Beautiful Soup 4.15.0 enables scientific exponent/subscript preservation. All 15 focused tests pass without skips; lower the shared budget by four. Dedicated PyVista and Warp coverage is not subtracted from this base count.",
-  "assembly_preflight_reduced": "2026-11-07: build the existing Release/net9.0 bionic assembly and select BIONIC_DOTNET in the main suite, enabling the existing input/output rejection control. All eight assembly tests pass without skips. Lower the base budget by one; isolated legacy OpenUSD coverage is not subtracted."
+  "assembly_preflight_reduced": "2026-11-07: build the existing Release/net9.0 bionic assembly and select BIONIC_DOTNET in the main suite, enabling the existing input/output rejection control. All eight assembly tests pass without skips. Lower the base budget by one; isolated legacy OpenUSD coverage is not subtracted.",
+  "cgal_reduced": "2026-11-07: compile the unchanged source with the recorded CGAL 5.6 package and select M64_CGAL_INTERSECTIONS in the main Linux suite. Enable the existing crossing, coplanar-overlap, separation, shared-edge, degeneracy and input-preservation control; lower the base skip budget by one."
 }

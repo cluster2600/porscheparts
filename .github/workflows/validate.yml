@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   check:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # Cold checkout, the full test suite and pinned image pulls exceed 10 minutes.
     timeout-minutes: 20
     steps:
@@ -24,7 +24,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install native geometry and rendering libraries
-        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libgl1 libglu1-mesa libegl1 libegl-mesa0
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libgl1 libglu1-mesa libegl1 libegl-mesa0 g++ libcgal-dev=5.6-1build3
 
       - name: Install numerical test dependencies
         run: python -m pip install --disable-pip-version-check -r requirements-check.txt
@@ -55,6 +55,12 @@ jobs:
           "$RUNNER_TEMP/usd255/bin/python" -m pip check
           "$RUNNER_TEMP/usd255/bin/python" -c 'from pxr import Usd; assert Usd.GetVersion() == (0, 25, 5)'
           "$RUNNER_TEMP/usd255/bin/python" -m unittest discover -s tests -p 'test_m64_openusd.py' -v
+
+      - name: Build the retained CGAL intersection auditor
+        run: |
+          echo "476e056e35bb98f32d9d26ef8ba81f9c90ac7464f4af8ad5d76b92fa44f2689f  twins/m64-cylinder-head/source/wholebody/surface_intersections_cgal.cpp" | sha256sum --check
+          g++ -std=c++20 -O2 twins/m64-cylinder-head/source/wholebody/surface_intersections_cgal.cpp -o "$RUNNER_TEMP/surface-intersections" -lgmp -lmpfr
+          echo "M64_CGAL_INTERSECTIONS=$RUNNER_TEMP/surface-intersections" >> "$GITHUB_ENV"
 
       - name: Validate repository
         # The test runner writes skips per reason to the job summary and fails
