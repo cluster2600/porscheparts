@@ -1,0 +1,777 @@
+{
+  "status": "actual_complete_H8_to_H9_fields_comparisons_CUDA_and_cleanup_documented",
+  "geometry": {
+    "H8_cells": 18698908,
+    "H9_cells": 19199981,
+    "H9_nodes": 4881980,
+    "added_interior_vertices": 88758,
+    "split_parents": 501073,
+    "protected_extreme_cells_retained": 135,
+    "new_extreme_cells": 0,
+    "unchanged_external_geometry": true,
+    "mass_ceiling_kg": null
+  },
+  "criterion": {
+    "two_successive_increments_strictly_below": 0.01,
+    "each_load_case_required": true,
+    "met": false
+  },
+  "previous_H7_to_H8": {
+    "gravity": {
+      "normalized_energy_difference": 0.008116851387253933,
+      "Galerkin_relative_defect": 4.234046716969402e-08
+    },
+    "combined": {
+      "normalized_energy_difference": 0.014758358916422307,
+      "Galerkin_relative_defect": 3.7819465912551596e-08
+    }
+  },
+  "actual_H8_to_H9": {
+    "gravity": {
+      "load_case": "gravity",
+      "status": "complete_same_load_nested_P1_increment_measured",
+      "controls": {
+        "Galerkin_energy_increment_identity": true,
+        "six_independent_compliance_components": true,
+        "zero_increment": true,
+        "actual_parent_child_valid_case": true,
+        "foreign_edge_refused": true,
+        "different_midpoint_refused": true,
+        "missing_parent_vertex_refused": true,
+        "valid_third": true,
+        "rejections": [
+          "wrong_fraction_point",
+          "noncanonical_fraction",
+          "rounded_midpoint_rejected",
+          "midpoint_underflow_rejected"
+        ],
+        "TwoSum_acceptance_matches_independent_Fraction_pairs": 1036
+      },
+      "nested_connectivity_binding": {
+        "all_unchanged_cells_bitwise_identical": true,
+        "all_child_pairs_bound_to_actual_parent_connectivity": true,
+        "all_midpoint_edges_used": true,
+        "split_parents": 501073,
+        "new_interior_nodes": 88758
+      },
+      "exact_edge_point_binding": {
+        "exact_midpoint_nodes": 66786,
+        "exact_nonmidpoint_nodes": 21972,
+        "all_points_exact_in_parent_edges": true,
+        "all_original_vertex_bytes_unchanged": true
+      },
+      "source_sha256": {
+        "private-evidence/carrier-h6-recovery-20261105/h9-full-comparison-gravity-001/coarse/result/assessment.json": "b2b0033e5b5a2148941ca0c56ed6518fd5cb093b049caeb5cf1730e272a72f15",
+        "private-evidence/carrier-h6-recovery-20261105/h9-full-comparison-gravity-001/fine/result/assessment.json": "e91a0cd451dc4392eacd020dcde7fc6387c69b861490d151d09f71b91dae842e",
+        "work/carrier-nested-comparison-h9-rational-002/h8-to-h9-map.npz": "679762c30413c8dced9a3d8005176e125a65b1f39f78d11d58a52954c79224fb",
+        "work/carrier-nested-comparison-h9-rational-002/compare.py": "0c301331c447a4735dfe82c93103a74f796b90935151c2930cc37cafff7e6d18",
+        "work/carrier-nested-comparison-h9-rational-002/edge_fraction_points.py": "c9bce02428963df5a54dd33d53d6b92e9dac2e5c58505adf8d93289b54555328"
+      },
+      "source_cells": 18698908,
+      "refined_cells": 19199981,
+      "added_free_interior_nodes": 88758,
+      "all_original_vertex_bytes_unchanged": true,
+      "same_load_and_boundary_binding_checked_by_both_assessors": true,
+      "metrics": {
+        "external_work_Nmm": {
+          "source": 1469.8675036616294,
+          "refined": 1470.91823991448,
+          "relative_change": 0.0007148509986329137
+        },
+        "displacement_max_mm": {
+          "source": 0.81573385442169,
+          "refined": 0.8163037490349234,
+          "relative_change": 0.0006986281250242426
+        },
+        "VM_volume_weighted_p95_MPa": {
+          "source": 45.46617365628406,
+          "refined": 45.49482574414961,
+          "relative_change": 0.0006301847189110241
+        },
+        "VM_peak_MPa": {
+          "source": 29308.727412687047,
+          "refined": 38389.582833542,
+          "relative_change": 0.309834517650332
+        }
+      },
+      "prolongated_displacement_max_difference_mm": 0.0006127976161913951,
+      "original_node_displacement_l2_relative": 0.0007079746302758545,
+      "stress_difference_compliance_energy_Nmm": 0.5253339035912657,
+      "normalized_energy_difference": 0.026726275818132843,
+      "compliance_increment_Nmm": 1.0507362528505837,
+      "Galerkin_identity_defect_Nmm": 6.84456680521972e-05,
+      "Galerkin_identity_defect_relative_to_work": 4.653261221111561e-08,
+      "monotonic_work_observed": true,
+      "spatial_convergence_demonstrated": false,
+      "strength_qualified": false,
+      "scope": "One complete nested same-load increment. Printed-field and numerical errors remain visible; at least another admitted increment is needed for stabilization assessment.",
+      "native_execution": {
+        "actual_returncode": 0,
+        "elapsed_seconds": 612.6201599419583,
+        "process_reaped": true,
+        "inputs_unchanged": true,
+        "outer_timeout": false,
+        "solver_finished_marker": true,
+        "solver_error_marker": false,
+        "raw_DAT_bytes": 2717088298,
+        "raw_DAT_sha256": "c046420b676ad9f48acf7521506eae3234fc3d9f9edde08cfa63bcbab357cfe9",
+        "GNU_time_max_RSS_KiB": 54355232
+      },
+      "scientific_retention": {
+        "status": "complete_new_current_scientific_DAT_lossless_XZ_and_all_raw_bytes_locally_SHA256_verified",
+        "scientific_files": [
+          {
+            "phase": "current-gravity",
+            "path": "private-evidence/carrier-h6-recovery-20261105/h9-gravity-043/current-gravity.dat.xz",
+            "bytes": 836017504,
+            "sha256": "ec5fe6dc4010404466fb47ddf7c33ed5288d13dee0b4603e5cc27f403f4effa3",
+            "representation": "lossless_XZ",
+            "raw_bytes": 2717088298,
+            "raw_sha256": "c046420b676ad9f48acf7521506eae3234fc3d9f9edde08cfa63bcbab357cfe9",
+            "complete_raw_SHA256_verified": true,
+            "uncompressed_raw_file_retained": false,
+            "complete": true
+          }
+        ],
+        "large_auxiliary_FRD_retained": false,
+        "reference_control_cache_binding_pending": true,
+        "native_solver_replayed": false,
+        "lease_extended": false
+      },
+      "CUDA_energy_audit": {
+        "status": "actual_CUDA_FP64_complete_admitted_field_compliance_crosscheck_passed",
+        "case": "gravity",
+        "device_name": "NVIDIA RTX 4000 Ada Generation",
+        "device_alias": "cuda:0",
+        "warp_version": "1.18.0",
+        "numpy_version": "2.2.6",
+        "cells_checked": 19199981,
+        "batch_cells": 65536,
+        "independent_basis_and_hydrostatic_controls_passed": true,
+        "all_cell_values_compared": true,
+        "maximum_cell_absolute_energy_error_Nmm": 3.469446951953614e-18,
+        "maximum_fraction_of_cell_tolerance": 0.00021303266393587792,
+        "GPU_energy_Nmm": 735.4590872961512,
+        "independent_CPU_reference_energy_Nmm": 735.4590872961511,
+        "native_assessor_energy_Nmm": 735.4590872961511,
+        "GPU_native_relative_difference": 1.5457941806059589e-16,
+        "source_sha256": {
+          "/workspace/carrier/independent-assessment/result/assessment.json": "6ee41285ace6853f427f044d7305a35a698d778d46bb0ce269d80d1675cee345",
+          "/workspace/carrier/run/current-gravity/actual-terminal.json": "879741997b9f7ea463519615fbbf4d8b8ddb855289df71db620c58ab69832e5f",
+          "/workspace/carrier/independent-assessment/report.json": "9eedcd9379ba206bee47caba732aaa3f8deb4693034d23a37f72cd1be3134a18",
+          "/workspace/carrier/independent-assessment/result/fields/s.npy": "f13328d086868321548e055cf7a2dfa87127ec9b176286b60de34061cedcab89",
+          "/workspace/carrier/independent-assessment/result/fields/volumes.npy": "14023c7d35a457ee15e221c7aedc2c1bd6e0e3801fc40226a092befa7d28a350"
+        },
+        "kernel_source_sha256": "c2c4dce5811540b39086191de3683023b0ae557c46ef6c95f82e93b2edd38e11",
+        "elapsed_seconds": 14.742265369044617,
+        "new_solver_execution": false,
+        "geometry_or_loads_modified": false,
+        "spatial_stabilization_claimed": false
+      },
+      "CUDA_supervision": {
+        "actual_returncode": 0,
+        "child_reaped": true,
+        "owned_group_absent": true,
+        "elapsed_seconds": 16.13563563406933,
+        "peak_aggregate_RSS_bytes": 1408200704
+      },
+      "owned_instance_cleanup": {
+        "destroyed": true,
+        "verified_absent": true
+      }
+    },
+    "combined": {
+      "load_case": "combined",
+      "status": "complete_same_load_nested_P1_increment_measured",
+      "controls": {
+        "Galerkin_energy_increment_identity": true,
+        "six_independent_compliance_components": true,
+        "zero_increment": true,
+        "actual_parent_child_valid_case": true,
+        "foreign_edge_refused": true,
+        "different_midpoint_refused": true,
+        "missing_parent_vertex_refused": true,
+        "valid_third": true,
+        "rejections": [
+          "wrong_fraction_point",
+          "noncanonical_fraction",
+          "rounded_midpoint_rejected",
+          "midpoint_underflow_rejected"
+        ],
+        "TwoSum_acceptance_matches_independent_Fraction_pairs": 1036
+      },
+      "nested_connectivity_binding": {
+        "all_unchanged_cells_bitwise_identical": true,
+        "all_child_pairs_bound_to_actual_parent_connectivity": true,
+        "all_midpoint_edges_used": true,
+        "split_parents": 501073,
+        "new_interior_nodes": 88758
+      },
+      "exact_edge_point_binding": {
+        "exact_midpoint_nodes": 66786,
+        "exact_nonmidpoint_nodes": 21972,
+        "all_points_exact_in_parent_edges": true,
+        "all_original_vertex_bytes_unchanged": true
+      },
+      "source_sha256": {
+        "private-evidence/carrier-h6-recovery-20261105/h9-full-comparison-combined-001/coarse/result/assessment.json": "1478c166bf65e4accdd3ae53c0f26e40724bec99d8f7446f125cc144c2f21655",
+        "private-evidence/carrier-h6-recovery-20261105/h9-full-comparison-combined-001/fine/result/assessment.json": "c1da805c97c027335a6711b565e4a0285a0f71c563996e4884742d8b6bdca70c",
+        "work/carrier-nested-comparison-h9-rational-002/h8-to-h9-map.npz": "679762c30413c8dced9a3d8005176e125a65b1f39f78d11d58a52954c79224fb",
+        "work/carrier-nested-comparison-h9-rational-002/compare.py": "0c301331c447a4735dfe82c93103a74f796b90935151c2930cc37cafff7e6d18",
+        "work/carrier-nested-comparison-h9-rational-002/edge_fraction_points.py": "c9bce02428963df5a54dd33d53d6b92e9dac2e5c58505adf8d93289b54555328"
+      },
+      "source_cells": 18698908,
+      "refined_cells": 19199981,
+      "added_free_interior_nodes": 88758,
+      "all_original_vertex_bytes_unchanged": true,
+      "same_load_and_boundary_binding_checked_by_both_assessors": true,
+      "metrics": {
+        "external_work_Nmm": {
+          "source": 19135.569236027604,
+          "refined": 19156.75588186855,
+          "relative_change": 0.0011071865999709367
+        },
+        "displacement_max_mm": {
+          "source": 2.3619344546489924,
+          "refined": 2.364348555554892,
+          "relative_change": 0.001022086324685209
+        },
+        "VM_volume_weighted_p95_MPa": {
+          "source": 171.6945470278234,
+          "refined": 171.82159907084556,
+          "relative_change": 0.0007399888069920583
+        },
+        "VM_peak_MPa": {
+          "source": 216191.8477127963,
+          "refined": 215084.41879506895,
+          "relative_change": -0.005122436065205051
+        }
+      },
+      "prolongated_displacement_max_difference_mm": 0.0025710910303715735,
+      "original_node_displacement_l2_relative": 0.0009126024214555093,
+      "stress_difference_compliance_energy_Nmm": 10.593019862389728,
+      "normalized_energy_difference": 0.03325553267876273,
+      "compliance_increment_Nmm": 21.186645840945857,
+      "Galerkin_identity_defect_Nmm": 0.0006061161664021597,
+      "Galerkin_identity_defect_relative_to_work": 3.1639812614401764e-08,
+      "monotonic_work_observed": true,
+      "spatial_convergence_demonstrated": false,
+      "strength_qualified": false,
+      "scope": "One complete nested same-load increment. Printed-field and numerical errors remain visible; at least another admitted increment is needed for stabilization assessment.",
+      "native_execution": {
+        "actual_returncode": 0,
+        "elapsed_seconds": 709.8635146629531,
+        "process_reaped": true,
+        "inputs_unchanged": true,
+        "outer_timeout": false,
+        "solver_finished_marker": true,
+        "solver_error_marker": false,
+        "raw_DAT_bytes": 2717088298,
+        "raw_DAT_sha256": "08ddd699060ba216c5c7e05065cba08000eca1cb9769c6beaa073785f276bc63",
+        "GNU_time_max_RSS_KiB": 54276592
+      },
+      "scientific_retention": {
+        "status": "complete_new_current_scientific_DAT_lossless_XZ_and_all_raw_bytes_locally_SHA256_verified",
+        "scientific_files": [
+          {
+            "phase": "current-combined",
+            "path": "private-evidence/carrier-h6-recovery-20261105/h9-combined-042/current-combined.dat.xz",
+            "bytes": 838583440,
+            "sha256": "4a71ca260cf1c999bd57ed11c8f5e7e8579c3600d450ceb8a3a9b3dcb2a037e9",
+            "representation": "lossless_XZ",
+            "raw_bytes": 2717088298,
+            "raw_sha256": "08ddd699060ba216c5c7e05065cba08000eca1cb9769c6beaa073785f276bc63",
+            "complete_raw_SHA256_verified": true,
+            "uncompressed_raw_file_retained": false,
+            "complete": true
+          }
+        ],
+        "large_auxiliary_FRD_retained": false,
+        "reference_control_cache_binding_pending": true,
+        "native_solver_replayed": false,
+        "lease_extended": false
+      },
+      "CUDA_energy_audit": {
+        "status": "actual_CUDA_FP64_complete_admitted_field_compliance_crosscheck_passed",
+        "case": "combined",
+        "device_name": "NVIDIA GeForce RTX 5070",
+        "device_alias": "cuda:0",
+        "warp_version": "1.18.0",
+        "numpy_version": "2.2.6",
+        "cells_checked": 19199981,
+        "batch_cells": 65536,
+        "independent_basis_and_hydrostatic_controls_passed": true,
+        "all_cell_values_compared": true,
+        "maximum_cell_absolute_energy_error_Nmm": 1.1102230246251565e-16,
+        "maximum_fraction_of_cell_tolerance": 0.0006904578143534652,
+        "GPU_energy_Nmm": 9578.377940224049,
+        "independent_CPU_reference_energy_Nmm": 9578.377940224049,
+        "native_assessor_energy_Nmm": 9578.377940224049,
+        "GPU_native_relative_difference": 0.0,
+        "source_sha256": {
+          "/workspace/carrier/independent-assessment/result/assessment.json": "c947dbbc873764ab309f54b5ef98b83589e3fdc582a8aec50f801b60b393489d",
+          "/workspace/carrier/run/current-combined/actual-terminal.json": "410be6c7cdf60c384896a0604e49d46945185479553c1cc330b66028d76a00bc",
+          "/workspace/carrier/independent-assessment/report.json": "9eedcd9379ba206bee47caba732aaa3f8deb4693034d23a37f72cd1be3134a18",
+          "/workspace/carrier/independent-assessment/result/fields/s.npy": "97ef56f868eea83cd1f9a94e95a0f081c60773a818c23bf2455b543686748260",
+          "/workspace/carrier/independent-assessment/result/fields/volumes.npy": "b81cb6fe843933c32780621e34532e4a5ebed870cf0ca9fd5a85c8bc009603b1"
+        },
+        "kernel_source_sha256": "c2c4dce5811540b39086191de3683023b0ae557c46ef6c95f82e93b2edd38e11",
+        "elapsed_seconds": 8.475596635835245,
+        "new_solver_execution": false,
+        "geometry_or_loads_modified": false,
+        "spatial_stabilization_claimed": false
+      },
+      "CUDA_supervision": {
+        "actual_returncode": 0,
+        "child_reaped": true,
+        "owned_group_absent": true,
+        "elapsed_seconds": 9.093221234856173,
+        "peak_aggregate_RSS_bytes": 1538809856
+      },
+      "owned_instance_cleanup": {
+        "destroyed": true,
+        "verified_absent": true
+      }
+    }
+  },
+  "complete_replay_receipts": {
+    "gravity": {
+      "status": "complete_h8_to_h9_lossless_field_comparison_measured",
+      "case": "gravity",
+      "comparison_sha256": "a62ccdbaa5266733052a61f714065663adac0200fcadc2bddc549000d1e60ed5",
+      "normalized_energy_difference": 0.026726275818132843,
+      "Galerkin_relative_defect": 4.653261221111561e-08,
+      "replays": {
+        "coarse": {
+          "status": "complete_lossless_field_replay_passed_original_force_moment_and_energy_limits",
+          "counts": {
+            "u": 4793222,
+            "rf": 14064,
+            "s": 18698908,
+            "ener": 18698908
+          },
+          "memory_field_bytes": 1461696240,
+          "raw_proof": {
+            "raw_bytes": 2648246780,
+            "raw_sha256": "7fe64e121b2c8f5075f5a070a393f593234c9ae1f2498ebe112fd0024f7a0af9",
+            "maximum_decoded_chunk_bytes": 1048576,
+            "complete_source_SHA256_verified": true
+          },
+          "complete_field_sha256": {
+            "u.npy": "c59074e978789bde07773cefc7a8ac812d4055945c119683f7c07d1c000dd90e",
+            "rf.npy": "dc286a48d44dc224ee1f69e99ed434afab92c082364bc85c6c4847998fa1799e",
+            "s.npy": "670868b830d5529cf9025a47d6a276872b08a550f72abedfc4bcd7c5aabc4e1b",
+            "ener.npy": "e296105b3b17076342c60b5e13c00d9e046df91b1aaf4066d5dd8424764328b0",
+            "volumes.npy": "9a8b370f311752a803eedda0c28c5bcc46bd51f664ab74f86cd85375170f3b99",
+            "vm.npy": "12248894bf457ae8fb1d55a5426334c760ce362ee652c62cccddfaf317523f19"
+          },
+          "native_comparison": {
+            "external_work_Nmm": {
+              "local": 1469.8675036616291,
+              "native": 1469.8675036616294,
+              "difference": -2.2737367544323206e-13
+            },
+            "displacement_max_mm": {
+              "local": 0.81573385442169,
+              "native": 0.81573385442169,
+              "difference": 0.0
+            },
+            "VM_peak_MPa": {
+              "local": 29308.727412687047,
+              "native": 29308.727412687047,
+              "difference": 0.0
+            },
+            "VM_volume_weighted_p95_MPa": {
+              "local": 45.46617365628406,
+              "native": 45.46617365628406,
+              "difference": 0.0
+            },
+            "independent_stress_compliance_energy_Nmm": {
+              "local": 734.9336845881295,
+              "native": 734.9336845881295,
+              "difference": 0.0
+            },
+            "native_energy_density_integral_Nmm": {
+              "local": 734.9336843800575,
+              "native": 734.9336843800575,
+              "difference": 0.0
+            }
+          },
+          "energy_relative_residual": 9.149489312397523e-08,
+          "native_energy_relative_residual": 9.177800985021533e-08,
+          "integrated_volume_mm3": 292791.4496688452,
+          "native_assessment_sha256": "d8ee110a7bffda50ff62a0c8250524b8424329de9eead43565b09cf0a1bd3788",
+          "view_sha256": "b2b0033e5b5a2148941ca0c56ed6518fd5cb093b049caeb5cf1730e272a72f15",
+          "payload_source_sha256": {
+            "assessment.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "assessment.stdout.log": "e3c8cf106f16eb4041f3194ed0534ff7299751470e8221665d7393e0dfe5c026",
+            "binding.py": "92a64ae6608c28b87fc37535e3749dc55991aee770e26acbcfdf5f5494d8bc90",
+            "deck-report.json": "6784ddf419a3b4a3e86f38c74abda034ae4e29b4d9f50dfe242034a7b77933ce",
+            "decode_mesh.py": "89186fe2a64a00015d6cedb91c7b32cace7506978568312ae6d285de5183f74a",
+            "derived-input-contract.json": "4b14f42648aa196d0132d405a3c05a937d6ed634eca36685afd96d33cd644e39",
+            "fast-reader-qualification.json": "f2d63a18c91a9903cec35a4f5654d002424ce82aeeec17398be9a356dc38455d",
+            "fast_reader.py": "dd75709c03728fd46b51d679c8f11f8c64b7eae17e07cafe219b8829296a8d22",
+            "gravity-serialized-loads.npz": "bd4768fb99a64b2fef3e7f8ba56894af3a39b0c8dc06c7a302052ce8c0db4c42",
+            "groups.npz": "d52a0054401c0f5b0c2fb6217956f13e9d9d83d8a1f84da62f8f4a9758602e16",
+            "native_assessor.py": "6e7353e150b457a556d0dd0df0f5a78a78436da0b8670172ae51236b7457d3d6",
+            "observer-start.json": "5ae68740b75245923fcf64bc6b9fab50c7490d55589a3c490856a3d6f5ca413b",
+            "observer.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "original-node-load-binding.json": "e9bbd547738fc92cf0012627027c75a200dafa1c6d7eef15739f53c78e6356b5",
+            "population.json": "0ee7c5042595610de67151b9cfc6be9732ffb5aff3c70f611130f48d578a375d",
+            "report.json": "4a643600bb38e0cf76d06a7870acbfd6b70bede3de3e3a4821c874ffc5a54f82",
+            "response_core.py": "73d7217e6c098bfe8f52ccdb3a4da6804996ce0bc21a29c3228fd72e437bd60b",
+            "wait_and_assess.py": "602ea56a63a74f9fbc078135ce35ed3c58523f477c8aeb3d7de42d7ccf6ff341"
+          },
+          "uncompressed_DAT_created": false,
+          "field_arrays_persisted": false
+        },
+        "fine": {
+          "status": "complete_lossless_field_replay_passed_original_force_moment_and_energy_limits",
+          "counts": {
+            "u": 4881980,
+            "rf": 14064,
+            "s": 19199981,
+            "ener": 19199981
+          },
+          "memory_field_bytes": 1499903688,
+          "raw_proof": {
+            "raw_bytes": 2717088298,
+            "raw_sha256": "c046420b676ad9f48acf7521506eae3234fc3d9f9edde08cfa63bcbab357cfe9",
+            "maximum_decoded_chunk_bytes": 1048576,
+            "complete_source_SHA256_verified": true
+          },
+          "complete_field_sha256": {
+            "u.npy": "9c2696cdedd6e53c3d1d04786bbe95905cc8007ae2573cb632f5a1608347145e",
+            "rf.npy": "cb42b05694ab1e3f420a12d6e9dbcc751109f077e3cc477deff1064d4daf3382",
+            "s.npy": "0442c8278170d1533440c487e48f28fb268e99562d3abec851e1bc6d45292f27",
+            "ener.npy": "a3f482bf39b90726507bda87dcf429da7e2e5ef455f429ffadc35f36310ad5e8",
+            "volumes.npy": "732006adb3b9d077d04ced84958a8f459fe60786b4f619e7014956269f69b1f0",
+            "vm.npy": "74e675f7207d9ba14e8e7b04b1db1835f3c0166796ed977135e65d41b5b33ce1"
+          },
+          "native_comparison": {
+            "external_work_Nmm": {
+              "local": 1470.91823991448,
+              "native": 1470.91823991448,
+              "difference": 0.0
+            },
+            "displacement_max_mm": {
+              "local": 0.8163037490349234,
+              "native": 0.8163037490349234,
+              "difference": 0.0
+            },
+            "VM_peak_MPa": {
+              "local": 38389.582833542,
+              "native": 38389.582833542,
+              "difference": 0.0
+            },
+            "VM_volume_weighted_p95_MPa": {
+              "local": 45.49482574414961,
+              "native": 45.49482574414961,
+              "difference": 0.0
+            },
+            "independent_stress_compliance_energy_Nmm": {
+              "local": 735.4590872961511,
+              "native": 735.4590872961511,
+              "difference": 0.0
+            },
+            "native_energy_density_integral_Nmm": {
+              "local": 735.4590873654869,
+              "native": 735.4590873654869,
+              "difference": 0.0
+            }
+          },
+          "energy_relative_residual": 4.440911533255295e-08,
+          "native_energy_relative_residual": 4.431483982293517e-08,
+          "integrated_volume_mm3": 292791.4496688452,
+          "native_assessment_sha256": "6ee41285ace6853f427f044d7305a35a698d778d46bb0ce269d80d1675cee345",
+          "view_sha256": "e91a0cd451dc4392eacd020dcde7fc6387c69b861490d151d09f71b91dae842e",
+          "payload_source_sha256": {
+            "assessment.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "assessment.stdout.log": "29177e9a56a9c5e848cd18f175b6525c81a3802acadb6e6d0c33b226afc50ddf",
+            "binding.py": "92a64ae6608c28b87fc37535e3749dc55991aee770e26acbcfdf5f5494d8bc90",
+            "deck-report.json": "bf0f620339a9e5e44b5e1185eea3341db109dd5b9a335930b474af2b7ac834be",
+            "decode_mesh.py": "89186fe2a64a00015d6cedb91c7b32cace7506978568312ae6d285de5183f74a",
+            "derived-input-contract.json": "304a1fd677ba46221f602423a0456b1f6e5a50fb5fc475b97a47f2f9e36c6dc4",
+            "fast-reader-qualification.json": "f2d63a18c91a9903cec35a4f5654d002424ce82aeeec17398be9a356dc38455d",
+            "fast_reader.py": "dd75709c03728fd46b51d679c8f11f8c64b7eae17e07cafe219b8829296a8d22",
+            "gravity-serialized-loads.npz": "bd4768fb99a64b2fef3e7f8ba56894af3a39b0c8dc06c7a302052ce8c0db4c42",
+            "groups.npz": "d52a0054401c0f5b0c2fb6217956f13e9d9d83d8a1f84da62f8f4a9758602e16",
+            "native_assessor.py": "6e7353e150b457a556d0dd0df0f5a78a78436da0b8670172ae51236b7457d3d6",
+            "observer-start.json": "f38df8bb4dffc222975aeb6eb34b492e53328e2220d99e202a592b960813bfdc",
+            "observer.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "original-node-load-binding.json": "e9bbd547738fc92cf0012627027c75a200dafa1c6d7eef15739f53c78e6356b5",
+            "population.json": "8504732855d3612d8c8d9269aef134b1bc3cf68c2ec9a81e895d8acdbce3731b",
+            "report.json": "9eedcd9379ba206bee47caba732aaa3f8deb4693034d23a37f72cd1be3134a18",
+            "response_core.py": "73d7217e6c098bfe8f52ccdb3a4da6804996ce0bc21a29c3228fd72e437bd60b",
+            "wait_and_assess.py": "602ea56a63a74f9fbc078135ce35ed3c58523f477c8aeb3d7de42d7ccf6ff341"
+          },
+          "uncompressed_DAT_created": false,
+          "field_arrays_persisted": false
+        }
+      },
+      "native_numeric_fields_in_views_unchanged": true,
+      "source_sha256": {
+        "work/carrier-h9-comparison-001/compare_case.py": "37e7b85cbbb1c1ca081f639eca31f89a25aedf1dc3f5b7236127f4c55fd6b052",
+        "work/carrier-nested-comparison-h9-rational-002/compare.py": "0c301331c447a4735dfe82c93103a74f796b90935151c2930cc37cafff7e6d18",
+        "work/carrier-nested-comparison-h9-rational-002/h8-to-h9-map.npz": "679762c30413c8dced9a3d8005176e125a65b1f39f78d11d58a52954c79224fb",
+        "scripts/calculix_lossless_source.py": "3d755b9a8c51fa780ccce2d70101047ebf24b9f9c88d6a384af5ba3ce33fcb27",
+        "scripts/calculix_stream_decode.py": "aa09782c60dc4bdfe12952d2142b77fb0a3aa3d0446244192a943f55b27735d9",
+        "work/carrier-rational-comparator-controls-001/controls.json": "b4610961c091b87ad0fd853f901da8763dca7bac7a4370bbb3fe2939b6c6b411"
+      },
+      "elapsed_seconds": 274.05985362501815,
+      "spatial_stabilization_claimed": false
+    },
+    "combined": {
+      "status": "complete_h8_to_h9_lossless_field_comparison_measured",
+      "case": "combined",
+      "comparison_sha256": "c38f08e493cf8cc1d6e5e5757e2072929bc1d8e5a22d33ab062859cbbb70171a",
+      "normalized_energy_difference": 0.03325553267876273,
+      "Galerkin_relative_defect": 3.1639812614401764e-08,
+      "replays": {
+        "coarse": {
+          "status": "complete_lossless_field_replay_passed_original_force_moment_and_energy_limits",
+          "counts": {
+            "u": 4793222,
+            "rf": 14064,
+            "s": 18698908,
+            "ener": 18698908
+          },
+          "memory_field_bytes": 1461696240,
+          "raw_proof": {
+            "raw_bytes": 2648246780,
+            "raw_sha256": "51f85e947fe897450197bdafe9c439a5a7e61454e0cfaedb502ff3509c50b143",
+            "maximum_decoded_chunk_bytes": 1048576,
+            "complete_source_SHA256_verified": true
+          },
+          "complete_field_sha256": {
+            "u.npy": "1989afeaa19b91167f9bbfb4051ad8b3c675f61ce93bbd11b86e33ff4e757ac4",
+            "rf.npy": "386466713d6326b81edebeb9adf3e6139b94e4d71ea1abedd71e7233643d759b",
+            "s.npy": "e504741779bf77ca8daf4ab6fbee0c865bf138359dd5a277b132e7ea8d2be2a1",
+            "ener.npy": "6cb4a0fbb3d4eec793b010fb487d5fdc6428847f880d996d639c7e1d74e25634",
+            "volumes.npy": "9a8b370f311752a803eedda0c28c5bcc46bd51f664ab74f86cd85375170f3b99",
+            "vm.npy": "05992b4c2cdd51980e35e94016a555960e3f710ff05c52bfa6c1ab638612f55e"
+          },
+          "native_comparison": {
+            "external_work_Nmm": {
+              "local": 19135.5692360276,
+              "native": 19135.569236027604,
+              "difference": -3.637978807091713e-12
+            },
+            "displacement_max_mm": {
+              "local": 2.3619344546489924,
+              "native": 2.3619344546489924,
+              "difference": 0.0
+            },
+            "VM_peak_MPa": {
+              "local": 216191.8477127963,
+              "native": 216191.8477127963,
+              "difference": 0.0
+            },
+            "VM_volume_weighted_p95_MPa": {
+              "local": 171.6945470278234,
+              "native": 171.6945470278234,
+              "difference": 0.0
+            },
+            "independent_stress_compliance_energy_Nmm": {
+              "local": 9567.784314262764,
+              "native": 9567.784314262764,
+              "difference": 0.0
+            },
+            "native_energy_density_integral_Nmm": {
+              "local": 9567.784309991588,
+              "native": 9567.784309991588,
+              "difference": 0.0
+            }
+          },
+          "energy_relative_residual": 3.1747269414897876e-08,
+          "native_energy_relative_residual": 3.219368166861668e-08,
+          "integrated_volume_mm3": 292791.4496688452,
+          "native_assessment_sha256": "dd29709c7a679bb6be1603e5d612acf7debc66eeeb3fcf8ff3e40ada4587b412",
+          "view_sha256": "1478c166bf65e4accdd3ae53c0f26e40724bec99d8f7446f125cc144c2f21655",
+          "payload_source_sha256": {
+            "assessment.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "assessment.stdout.log": "4c857f2949c399953242fd292acd15551ab0e2890b8da5ccadf25c7969d6c2d2",
+            "binding.py": "1e90fc4e440ab88e27f05e7478a1bc67810190c2e6bb7ec4913fb82ba972cccf",
+            "case-contract.json": "ac06ba12d6962463731b567c9f576158fd568d7de318f8175a9e5cf39ef21969",
+            "combined-serialized-loads.npz": "c45b35de84a982637764f789d91c048a445764ae87cc94c97bf5ef6ecafa3f98",
+            "deck-report.json": "6784ddf419a3b4a3e86f38c74abda034ae4e29b4d9f50dfe242034a7b77933ce",
+            "decode_mesh.py": "89186fe2a64a00015d6cedb91c7b32cace7506978568312ae6d285de5183f74a",
+            "derived-input-contract.json": "4b14f42648aa196d0132d405a3c05a937d6ed634eca36685afd96d33cd644e39",
+            "fast-reader-qualification.json": "f2d63a18c91a9903cec35a4f5654d002424ce82aeeec17398be9a356dc38455d",
+            "fast_reader.py": "dd75709c03728fd46b51d679c8f11f8c64b7eae17e07cafe219b8829296a8d22",
+            "gravity-serialized-loads.npz": "bd4768fb99a64b2fef3e7f8ba56894af3a39b0c8dc06c7a302052ce8c0db4c42",
+            "groups.npz": "d52a0054401c0f5b0c2fb6217956f13e9d9d83d8a1f84da62f8f4a9758602e16",
+            "native_assessor.py": "713e18a4ed451a39e037bdb78153b2313c1562f203d0bcf746d201b4375c160d",
+            "observer-start.json": "f1df0ba8dcc987b43310147f9b46f3c477314d5a80e4096844ffbda6306841ff",
+            "observer.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "original-node-load-binding.json": "e9bbd547738fc92cf0012627027c75a200dafa1c6d7eef15739f53c78e6356b5",
+            "population.json": "0ee7c5042595610de67151b9cfc6be9732ffb5aff3c70f611130f48d578a375d",
+            "report.json": "4a643600bb38e0cf76d06a7870acbfd6b70bede3de3e3a4821c874ffc5a54f82",
+            "response_core.py": "73d7217e6c098bfe8f52ccdb3a4da6804996ce0bc21a29c3228fd72e437bd60b",
+            "wait_and_assess.py": "1a5da47c31c04d3e95836ec0fa8d4d2529be25fcfe312579c428aa1be3e29f47"
+          },
+          "uncompressed_DAT_created": false,
+          "field_arrays_persisted": false
+        },
+        "fine": {
+          "status": "complete_lossless_field_replay_passed_original_force_moment_and_energy_limits",
+          "counts": {
+            "u": 4881980,
+            "rf": 14064,
+            "s": 19199981,
+            "ener": 19199981
+          },
+          "memory_field_bytes": 1499903688,
+          "raw_proof": {
+            "raw_bytes": 2717088298,
+            "raw_sha256": "08ddd699060ba216c5c7e05065cba08000eca1cb9769c6beaa073785f276bc63",
+            "maximum_decoded_chunk_bytes": 1048576,
+            "complete_source_SHA256_verified": true
+          },
+          "complete_field_sha256": {
+            "u.npy": "873d25c1ebe15ef03b6fa6e57ded1948556c2e1021a7fb0f7b9ac8484f56f5f5",
+            "rf.npy": "8ba1d57f10893a1b093167cd1b0f484c7a00f9ffa65689c61b3e8dcfc1c1b729",
+            "s.npy": "8a6e25eec2cc685c190faa2a72f311de746bfd4b7fc41e6bc4e6faab4b5dba59",
+            "ener.npy": "65252f00d5f6b19814acd39dec0fb9ea44e7b6b87006f0f8da6401d551a25a5b",
+            "volumes.npy": "732006adb3b9d077d04ced84958a8f459fe60786b4f619e7014956269f69b1f0",
+            "vm.npy": "e0c156dfaa7e8c0008318d09f04c4a89f18c95a5f4509503b5b07346b18a7149"
+          },
+          "native_comparison": {
+            "external_work_Nmm": {
+              "local": 19156.75588186855,
+              "native": 19156.75588186855,
+              "difference": 0.0
+            },
+            "displacement_max_mm": {
+              "local": 2.364348555554892,
+              "native": 2.364348555554892,
+              "difference": 0.0
+            },
+            "VM_peak_MPa": {
+              "local": 215084.41879506895,
+              "native": 215084.41879506895,
+              "difference": 0.0
+            },
+            "VM_volume_weighted_p95_MPa": {
+              "local": 171.82159907084556,
+              "native": 171.82159907084556,
+              "difference": 0.0
+            },
+            "independent_stress_compliance_energy_Nmm": {
+              "local": 9578.377940224049,
+              "native": 9578.377940224049,
+              "difference": 0.0
+            },
+            "native_energy_density_integral_Nmm": {
+              "local": 9578.377940596074,
+              "native": 9578.377940596074,
+              "difference": 0.0
+            }
+          },
+          "energy_relative_residual": 7.414890454141004e-11,
+          "native_energy_relative_residual": 3.530880321365622e-11,
+          "integrated_volume_mm3": 292791.4496688452,
+          "native_assessment_sha256": "c947dbbc873764ab309f54b5ef98b83589e3fdc582a8aec50f801b60b393489d",
+          "view_sha256": "c1da805c97c027335a6711b565e4a0285a0f71c563996e4884742d8b6bdca70c",
+          "payload_source_sha256": {
+            "assessment.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "assessment.stdout.log": "2b30cc2168eb25558c1b1362989d6141ac8190499b09bfd21dbb9f94c04e3d84",
+            "binding.py": "1e90fc4e440ab88e27f05e7478a1bc67810190c2e6bb7ec4913fb82ba972cccf",
+            "case-contract.json": "ac06ba12d6962463731b567c9f576158fd568d7de318f8175a9e5cf39ef21969",
+            "combined-serialized-loads.npz": "c45b35de84a982637764f789d91c048a445764ae87cc94c97bf5ef6ecafa3f98",
+            "deck-report.json": "bf0f620339a9e5e44b5e1185eea3341db109dd5b9a335930b474af2b7ac834be",
+            "decode_mesh.py": "89186fe2a64a00015d6cedb91c7b32cace7506978568312ae6d285de5183f74a",
+            "derived-input-contract.json": "304a1fd677ba46221f602423a0456b1f6e5a50fb5fc475b97a47f2f9e36c6dc4",
+            "fast-reader-qualification.json": "f2d63a18c91a9903cec35a4f5654d002424ce82aeeec17398be9a356dc38455d",
+            "fast_reader.py": "dd75709c03728fd46b51d679c8f11f8c64b7eae17e07cafe219b8829296a8d22",
+            "gravity-serialized-loads.npz": "bd4768fb99a64b2fef3e7f8ba56894af3a39b0c8dc06c7a302052ce8c0db4c42",
+            "groups.npz": "d52a0054401c0f5b0c2fb6217956f13e9d9d83d8a1f84da62f8f4a9758602e16",
+            "native_assessor.py": "713e18a4ed451a39e037bdb78153b2313c1562f203d0bcf746d201b4375c160d",
+            "observer-start.json": "32c39af8b6b27d0e0146d467c9df07b85e13dae455483868aaa62f4d3397afcf",
+            "observer.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "original-node-load-binding.json": "e9bbd547738fc92cf0012627027c75a200dafa1c6d7eef15739f53c78e6356b5",
+            "population.json": "8504732855d3612d8c8d9269aef134b1bc3cf68c2ec9a81e895d8acdbce3731b",
+            "report.json": "9eedcd9379ba206bee47caba732aaa3f8deb4693034d23a37f72cd1be3134a18",
+            "response_core.py": "73d7217e6c098bfe8f52ccdb3a4da6804996ce0bc21a29c3228fd72e437bd60b",
+            "wait_and_assess.py": "1a5da47c31c04d3e95836ec0fa8d4d2529be25fcfe312579c428aa1be3e29f47"
+          },
+          "uncompressed_DAT_created": false,
+          "field_arrays_persisted": false
+        }
+      },
+      "native_numeric_fields_in_views_unchanged": true,
+      "source_sha256": {
+        "work/carrier-h9-comparison-001/compare_case.py": "37e7b85cbbb1c1ca081f639eca31f89a25aedf1dc3f5b7236127f4c55fd6b052",
+        "work/carrier-nested-comparison-h9-rational-002/compare.py": "0c301331c447a4735dfe82c93103a74f796b90935151c2930cc37cafff7e6d18",
+        "work/carrier-nested-comparison-h9-rational-002/h8-to-h9-map.npz": "679762c30413c8dced9a3d8005176e125a65b1f39f78d11d58a52954c79224fb",
+        "scripts/calculix_lossless_source.py": "3d755b9a8c51fa780ccce2d70101047ebf24b9f9c88d6a384af5ba3ce33fcb27",
+        "scripts/calculix_stream_decode.py": "aa09782c60dc4bdfe12952d2142b77fb0a3aa3d0446244192a943f55b27735d9",
+        "work/carrier-rational-comparator-controls-001/controls.json": "b4610961c091b87ad0fd853f901da8763dca7bac7a4370bbb3fe2939b6c6b411"
+      },
+      "elapsed_seconds": 272.03283825004473,
+      "spatial_stabilization_claimed": false
+    }
+  },
+  "source_sha256": {
+    "private-evidence/carrier-h6-recovery-20261105/geometry-h9-selection-006/admission.json": "ebc04519e3fb4206a02337456b4b9dca66b7a7dc22787914704e067abd0022e6",
+    "private-evidence/carrier-h6-recovery-20261105/geometry-h9-selection-006/quality-admission.json": "4f6d06704bb76b85af3ebae92ea5ddad5a62316d3edddce7682f4313681fa289",
+    "work/carrier-h9-comparison-001/gravity-complete.json": "befc9d381231b0ae97249d4d8ff65d147d17e59e922deba79eb2b49bc9544055",
+    "private-evidence/carrier-h6-recovery-20261105/h9-full-comparison-gravity-001/complete.json": "8d81bfd607791f2feba6fba8b4ade65ae47f44576bfc116eb76b7dcec00901fd",
+    "private-evidence/carrier-h6-recovery-20261105/h9-full-comparison-gravity-001/h8-to-h9-comparison.json": "a62ccdbaa5266733052a61f714065663adac0200fcadc2bddc549000d1e60ed5",
+    "work/carrier-h8-comparison-002/gravity-complete.json": "ea18a9f2d884147f194557992bdfa9a02d34f2193b69e924eec2b135f75c0b31",
+    "private-evidence/carrier-h6-recovery-20261105/h8-full-comparison-gravity-002/complete.json": "a93ab4e34e25314c8d6e0bd3d757d74f7f0edc8b2cbccb17a4fe466bb8151586",
+    "private-evidence/carrier-h6-recovery-20261105/h8-full-comparison-gravity-002/h7-to-h8-comparison.json": "7e65709254ae4a1394fb354f87efb5ff9635839d279e014608ad1fda60962410",
+    "work/carrier-high-memory-direct-043/current-native-terminal-observation.json": "1eadfb22f75f4aa50562c64333a986335fe301ede86a1aee86f55192f3dadf30",
+    "work/carrier-high-memory-direct-043/scientific-complete.json": "e290979e97332ea3d81538df1dadac0b49f9d9e245a8acb1092dd30b1cd1ec50",
+    "work/carrier-high-memory-direct-043/comparison-handoff.json": "81a47024ebf930e46ee5e57d64f5c0e07c07376c938607f58ff91fe079eb174c",
+    "work/carrier-high-memory-direct-043/native-restored/independent-assessment/result/assessment.json": "6ee41285ace6853f427f044d7305a35a698d778d46bb0ce269d80d1675cee345",
+    "work/carrier-high-memory-direct-043/gpu-h9/recovery.json": "538a994c40cbc428bcdf42b9eb4fbca3e2f30a59dcb6327fd806bfbc5cb8f12d",
+    "work/carrier-high-memory-direct-043/gpu-h9/recovered/result.json": "6235f5a4c8e33cbf3c9baa22bca21d0f6693a4dff9f51dedcaaa07d8581cc5db",
+    "work/carrier-high-memory-direct-043/gpu-h9/recovered/terminal.json": "e886c2cb4af8c1e1d0b5290d0371b04b459392e55e7334ff175b1082a800319e",
+    "work/carrier-high-memory-direct-043/complete-cleanup.json": "db99ea10d6c8cb77b95adfc45d409cf1e4389607f8ffd4d674bd40551774bad9",
+    "work/carrier-h9-comparison-001/gravity-execution/comparison-terminals.json": "95955e956f6cabdf07132295934ce87bfa1ccc466a4d9fde00ebb5b13077da7d",
+    "work/carrier-h9-comparison-001/combined-complete.json": "451bc0cda8871f4c04ea9b68621f491be18db646f1c2124453705dc1dd342387",
+    "private-evidence/carrier-h6-recovery-20261105/h9-full-comparison-combined-001/complete.json": "ca4628be38be588b50d9983f6ebb83a53e548b40d8dc51e60987bded2a391840",
+    "private-evidence/carrier-h6-recovery-20261105/h9-full-comparison-combined-001/h8-to-h9-comparison.json": "c38f08e493cf8cc1d6e5e5757e2072929bc1d8e5a22d33ab062859cbbb70171a",
+    "work/carrier-h8-comparison-002/combined-complete.json": "59150b16f7ad1d24c401254c0d06ed7fcbd9ce000ca6a45c48980d59f2f4a58d",
+    "private-evidence/carrier-h6-recovery-20261105/h8-full-comparison-combined-002/complete.json": "3781dec3106cc06c466a8de509409a32ec74b3bc33736e4af4863a454e033b00",
+    "private-evidence/carrier-h6-recovery-20261105/h8-full-comparison-combined-002/h7-to-h8-comparison.json": "2277b9c7fbc24fa7d3b0b4751b63b1d3712407d10c366d71ddab323b1545a755",
+    "work/carrier-high-memory-direct-042/current-native-terminal-observation.json": "00e0599240fec5b721acfb977f590445e3008e1a81e88991ed900010d66b8174",
+    "work/carrier-high-memory-direct-042/scientific-complete.json": "a47175ce8335de5538cbd92a02bdd978c2e6bfafe13fade2d81c030e48d7c345",
+    "work/carrier-high-memory-direct-042/comparison-handoff.json": "24ffd84d9e9edff512a56290f276706d29f421b59ef284bf2c82c8e7b654ff3b",
+    "work/carrier-high-memory-direct-042/native-restored/independent-assessment/result/assessment.json": "c947dbbc873764ab309f54b5ef98b83589e3fdc582a8aec50f801b60b393489d",
+    "work/carrier-high-memory-direct-042/gpu-h9/recovery.json": "97aec39fb85eec1ce75d2152439a7f9999878f18e3f7d1a9275e782d7deeb9da",
+    "work/carrier-high-memory-direct-042/gpu-h9/recovered/result.json": "e10d6ad48b176d45f8cb947566de8c788b6e0fd8d89bdb19d0195d3fff34e932",
+    "work/carrier-high-memory-direct-042/gpu-h9/recovered/terminal.json": "5d2918d6de3bfbb0f8b32493b4f0dd4b291f661831441c6581f52329c3365e75",
+    "work/carrier-high-memory-direct-042/complete-cleanup.json": "51f8841bc30c3152fec6838568b6cac66309c8f2e87cea4457fccab6869cc60f",
+    "work/carrier-h9-comparison-001/combined-execution/comparison-terminals.json": "de061b9f0db42875ca24a6bd7ddeec1fa84975398e590f6cec587953cdcd4c2a",
+    "work/carrier-h9-comparison-001/render.py": "dd1ccbcf674934c27b7184a37b51a9931b8bad992075e8c028d1c380b9ec8768",
+    "work/carrier-h9-comparison-001/render-controls.json": "4d54f79ae6830ab2ae6191362d3825bffd5d72d04722b0c929b24d8af2cf5965",
+    "work/carrier-h9-comparison-001/render-preparation.json": "495f77b429889447687199101fcb68b47d67be3a43c9256d7fa2078321117e1c",
+    "work/carrier-h9-comparison-001/figure.json": "79a2cfb66eb039b6910810d84dd35719373e39850e0e5b9df56afe3b60540bab",
+    "work/carrier-h9-render-002/figure.json": "510becb13fba2552e839513d727474c9bb2e721e25b0577066a443c0ba9a6dcb",
+    "work/carrier-h9-render-002/render.py": "e331010bbd319f99e1f326ceda57c17f9ac148584f59b96538639a6e72718d14",
+    "work/carrier-h9-render-002/run_plot.py": "4ddd61b991e1530ceabdd563917a60a2010c2eef5d8e438ea65243aeaf99358a",
+    "work/carrier-h9-render-002/bounded-run.json": "34b8da4679b34dcac35a3a47f614282c2ce63abc3ab4ec894f0de1bfa7767929",
+    "work/carrier-h9-render-002/preparation.json": "7e9a2786bbb0a3676f0b8bb3873b8bdf766cebdcbc16f7a6c10f088e8576ba5d",
+    "work/carrier-h9-comparison-001/preparation.json": "decc2820c93e389a28c9baffa8f9344a8d2eeab34538394accb257ec1bbc3b36",
+    "work/carrier-h9-comparison-001/compare_case.py": "37e7b85cbbb1c1ca081f639eca31f89a25aedf1dc3f5b7236127f4c55fd6b052",
+    "work/carrier-h9-comparison-001/run_compare.py": "53c67e48609f1a9bbb0f759f62847be3c714ea430305e9b6b44447aa801ba941",
+    "work/carrier-nested-comparison-h9-rational-002/map-provenance.json": "2f3d66ee0d70d604d79e190d9a57273cad9b887d375c0560d1e6c8b776476893",
+    "work/carrier-h9-lanes-002/completion-summary.json": "256afc47ad03ec66d9f30ea3af5b39c5ff82ab2f251372c39b3a2072325eba17",
+    "work/carrier-h9-results-publication-20261107-001/build_report.py": "a5cd0a6997ee853785f7d7eac0e3469b17c0bd92309438cca83e68e4e17193f5"
+  },
+  "future_capacity": {
+    "H9_raw_DAT_margin_bytes": 32911702,
+    "H10_DAT_XZ_receiver_sizes_require_fresh_admission": true,
+    "H9_face_pairing_bytes": 1228798784,
+    "historical_face_RAM_cap_bytes": 1200000000,
+    "H10_marking_requires_separate_capacity_qualification": true,
+    "numerical_thresholds_unchanged": true
+  },
+  "fresh_owned_instance_inventory_empty": true,
+  "planned_pair_cost_with_cleanup_reserve_USD": 3.671709490740741,
+  "actual_provider_billing_total_observed": false,
+  "strength_qualified": false,
+  "spatial_stabilization_claimed": false
+}
