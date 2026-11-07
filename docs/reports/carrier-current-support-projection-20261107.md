@@ -195,7 +195,7 @@ results through these stages.
 
 ![Actual top, side and orthographic views of the checked component 148 envelope](../media/carrier-current-envelope148-20261107.png)
 
-One of the seven current mask candidates now has an independently checked
+At this first-envelope checkpoint, one of the seven current mask candidates had an independently checked
 three-dimensional envelope: **22,930 vertices, 45,852 triangles and two closed,
 consistently oriented components**. The verified exact rational volume is
 approximately **10,927.564072 mm³**. Native exact and rounded-surface intersection
@@ -230,7 +230,7 @@ binds the actual coordinate arrays, renderer and image; a second rendering is
 byte-identical. The figure records the exact-checkpoint stage; the subsequent
 rounded-export check is recorded below. Raw geometry remains private. Contact
 coverage, the other six current envelopes and the final support structures
-remain open.
+remained open at that checkpoint; component 534 is recorded below.
 
 ### Unchanged float64 representation: checked
 
@@ -258,7 +258,49 @@ array hashes. Exact-source parent memberships remain attached to the exact
 geometry: they are not silently transferred to rounded points, and contact
 coverage remains a separate task.
 
-### Current diagnostic section and contact encoding
+### Second current exact envelope: component 534
+
+![The checked component 534 envelope in metric top, side and orthographic views](../media/carrier-current-envelope534-20261107.png)
+
+The same CGAL kernel now completes component 534 in one bounded native run:
+**22,735 vertices, 45,462 triangles and two closed, consistently oriented
+components**. Independent exact volume is approximately **10,923.631726 mm³**.
+All **3,527 roof occurrences** and the complete 5,764,688-face part input are
+retained. Every one of the **72,811 parent references** passes exact whole-child
+containment: 27,349 roof-prism, 30,818 mask, 14,644 part and zero cutter references.
+
+Native execution completed in **1,235.741 seconds**, within its 2,400-second
+limit, followed by exact container removal. Independent readback completed in
+**31.306 seconds**, with **639,795,200 bytes** sampled peak RSS, all **3,020 source
+pins** unchanged, zero return and complete process cleanup. Its exact topology,
+volume and full retained parent roster pass. Native rounded intersection checks
+also pass with zero collapsed triangles. The representation check below
+preserves the original coordinates; complete partial-contact coverage remains open.
+
+The [component-534 receipt](carrier-current-support-projection-20261107/component534-envelope.json)
+binds the nine output files, unchanged kernel, input identities, exact checks
+and cleanup. Two of the seven current candidates now have checked exact
+envelopes; the remaining five have admitted input masks and triangulations.
+
+The unchanged-coordinate representation check also passes. All
+**45,462 matched triangle normals** retain their direction; exact rounded
+topology and three coordinate-axis volume integrals agree. Signed volume change
+is approximately **−9.34351e−13 mm³** (**−8.55349e−17** relative). The continuous
+bidirectional surface-distance upper bound is approximately **4.00067e−14 mm**,
+with its exact rational value in the
+[representation receipt](carrier-current-support-projection-20261107/component534-rounded.json).
+This is a conversion-error bound, not a manufacturing tolerance.
+
+Representation admission completed in **11.032 seconds**, with **274,644,992
+bytes** sampled peak RSS. A separate **4.989-second** readback rechecked all
+**3,097 pins**, both NPZ arrays against the original raw mesh, scalar arithmetic
+and process absence. No coordinates or connectivity changed; no snap or repair ran.
+The [figure provenance](carrier-current-support-projection-20261107/component534-image.json)
+binds the admitted arrays and actual inspected rendering. Exact parent
+memberships remain attached to the exact source; complete partial-contact
+coverage and support construction remain pending for this component.
+
+### Component 148: diagnostic section and contact encoding
 
 The unchanged interface adapter now accounts for all **45,852 current faces**:
 9,308 have upper whole-parent witnesses, 28,616 have lower witnesses and 7,928
@@ -688,11 +730,12 @@ flowchart TB
     CONTROL["Reference case: exact and export chain passed"] -.-> EXACT
     CONTROL -.-> CHECK
     CURRENT["Current component 148: exact envelope and all listed parents checked"] -.-> EXACT
+    CURRENT534["Component 534: exact and unchanged float64 checks passed; contacts pending"] -.-> CHECK
 ```
 
 The [compact receipt](carrier-current-support-projection-20261107/summary.json)
 binds the actual results, terminals, source geometry, exact proof and figure.
-The figure was reproduced byte for byte and visually inspected. Raw surface
+The opening projection figure was reproduced byte for byte and visually inspected. Raw surface
 coordinates, component correspondence arrays and projected polygons remain in
 private evidence.
 

@@ -95,7 +95,7 @@ each run. Some carrier runtimes are native environments, not those images.
 | 13 | PicoGK 2.3.0 / native ABI 26.2 / OpenVDB; ShapeKernel `554bce47…` / LatticeLibrary `81c3c7b2…` | **E.** Whole-carrier closing and subsequent checked void construction [R20]. Earlier [native V5 trial](../../parts/993-eng-carrier-0001/source/bionic-20261011/native-leap71/README.md) executed ShapeKernel masks and LatticeLibrary BCC bracing; seven VDB fields round-tripped, including 37,792 stress and 72,231 displacement bins from unchanged V5. [Exact result](../../parts/993-eng-carrier-0001/source/bionic-20261011/native-leap71/results.json) records rejected extraction geometry and the then-applicable 1.2 kg mass gate; the changed BCC trial had no solve. | Keep study identities distinct. Removing the current mass ceiling does not erase the historical refusal, extraction defects or missing changed-geometry response. |
 | 14 | geometry3Sharp `ece336493111ffe372a4bfc7fee5026d4127dade` | **E.** Nine analytical controls and actual source-distance void erosion; initial float32 handoffs refused, later checked route separate. [Follow-up][SF] | Preserve precision/clearance checks before consuming a new void surface. |
 | 15 | MeshLib / meshlib-core 3.1.4.297 | **E.** Actual decimation, cavity conditioning and eight-cavity assembly. [Assembly](carrier-interface-20261028/MESHLIB-ASSEMBLY.md) | Reapply complete source-distance, topology and interface checks after every proposed change. |
-| 16 | CGAL EPECK 5.6 / 6.1.3 / 6.2.1; separate 6.3-dev `b4e8c188…` envelope witness; libigl 2.6.3 | **E.** Independent complete intersections, embedding, containment, exact-distance and conversion checks, each in its recorded profile. [H], [R20], [IS]. Current CGAL 6.2.1 exact unions cover all 4,676 support-region projections and 905,248 source occurrences with complete readback. The separate 6.3-dev witness and independent reader now check the first current 3D envelope (component 148), including all 73,294 retained parent references. [Current support audit](carrier-current-support-projection-20261107.md) | Preserve individual runtime hashes; these versions are distinct witnesses, not interchangeable installations. Exact mask and triangulation checks are recorded separately; complete current support/contact and layer-exposure checks remain. Finite solids are required only by downstream consumers needing volumes. |
+| 16 | CGAL EPECK 5.6 / 6.1.3 / 6.2.1; separate 6.3-dev `b4e8c188…` envelope witness; libigl 2.6.3 | **E.** Independent complete intersections, embedding, containment, exact-distance and conversion checks, each in its recorded profile. [H], [R20], [IS]. Current CGAL 6.2.1 exact unions cover all 4,676 support-region projections and 905,248 source occurrences with complete readback. The separate 6.3-dev witness and independent reader check two current 3D envelopes: component 148 with all 73,294 retained parent references, and component 534 with all 72,811. Both unchanged float64 representations pass their bounded conversion checks. [Current support audit](carrier-current-support-projection-20261107.md) | Preserve individual runtime hashes; these versions are distinct witnesses, not interchangeable installations. Exact mask and triangulation checks are recorded separately; complete current support/contact and layer-exposure checks remain. Finite solids are required only by downstream consumers needing volumes. |
 | 17 | PyMesh 0.3 | **E.** Historical carrier regional Boolean/prism operations and reproduction. [W] | Reuse only when a current regional support operation requires it; historical region admission is not inherited. |
 | 18 | Manifold 3.5.2 / 3.5.4 | **E.** Source-solid screens, finite envelopes and gyroid subtraction; a historical strict union trial was refused. [R20], [IS] | Continue independent exact checks; successful Boolean return is not sufficient. |
 | 19 | NativeCAD 0.26.0 historical witness | **S.** Synthetic solid, restart persistence and STEP-volume readback documented in [L]. | Optional authoring trial only; no equivalent editable carrier conversion established. Recheck runtime/licence for a new trial. |
@@ -154,8 +154,12 @@ also passes, with a continuous surface-distance bound of approximately
 9,308 upper witnesses, 28,616 lower/plate witnesses and 7,928 exactly vertical
 faces, with no unclassified tilted face. This proves existence of positive-area
 upper/lower witnesses, not exhaustive partial-parent identities or membership of
-rounded coordinates. The other six envelopes and final support structures
-remain unfinished.
+rounded coordinates. Component 534 also has a checked exact envelope and
+unchanged float64 representation: 22,735 vertices, 45,462 faces, two closed
+components and 72,811 independently checked parent references. Its continuous
+conversion-distance bound is approximately 4.00067e-14 mm; its contact coverage
+remains pending. The other five envelopes and final support structures remain
+unfinished.
 
 | ID | Tool / recorded profile | Status and actual evidence | Next use or acceptance condition |
 |---|---|---|---|
@@ -238,7 +242,9 @@ Concrete integration gaps, in order:
    comparison. The [portable exact 3D and export chain](carrier-current-support-projection-20261107.md)
    passes its reference case. The first current exact envelope, component 148,
    also passes independent topology, volume and listed-parent checks, with an
-   actual three-view figure. Exact GMP acceleration reproduces chart 0 through
+   actual three-view figure. Component 534 now also passes exact and unchanged
+   float64 checks, with its own figure and contact coverage still pending.
+   Exact GMP acceleration reproduces chart 0 through
    309 nested unions. The latest [sheet recovery](carrier-current-support-projection-20261107/component148-sheets-recovery.json)
    verifies **2,482 complete exact receipt occurrences**, both returned charts
    and all 15,111 vertices / 13,155 triangles of the saved open sheets. The
