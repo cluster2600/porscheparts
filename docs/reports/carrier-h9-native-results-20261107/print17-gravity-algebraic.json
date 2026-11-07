@@ -1,0 +1,267 @@
+{
+  "schema": "carrier-h9-print17-gravity-algebraic-publication@1",
+  "status": "complete_gravity_print17_algebraic_audit_with_unresolved_residual",
+  "audit": {
+    "status": "independent_complete_H9_gravity_print17_algebraic_readback_passed",
+    "UTC": "2026-11-07T08:11:51.492773+00:00",
+    "pointer_sha256": "9521b7a24c4a096dc1226dd7e796c1b1441e634f59f9692e38f1ef973925d53f",
+    "result_sha256": "e517e9f0b7e0dd3cb798cacdcf353a67cd94e2cd94a53d045dfe0ab7d6fd53fb",
+    "guard_complete_sha256": "740d02a67c717c0fa167fdbc89030f2998d177f498d9a82db6fd301f30064879",
+    "execution_preparation_sha256": "8a126ecc99cb7e5e65b5189608f525420415c4c6420b3ef59ad5b51951a34e43",
+    "source_pin_count": 784,
+    "all_source_pins_unchanged": true,
+    "actual_returncode": 0,
+    "direct_child_reaped": true,
+    "owned_group_absent": true,
+    "elapsed_seconds": 382.7393930000253,
+    "peak_aggregate_RSS_bytes": 3004596224,
+    "aggregate_owned_logical_bytes": 731931787,
+    "aggregate_logical_limit_bytes": 2147483648,
+    "complete_field_counts": {
+      "u": 4881980,
+      "rf": 14064,
+      "s": 19199981,
+      "ener": 19199981
+    },
+    "complete_raw_sha256": "a6cce2b249be063c067bb4686e6b25ccc1630397b102f15af4104a02d47abd2f",
+    "complete_raw_bytes": 4506144286,
+    "encoded_sha256_independently_rechecked": true,
+    "validated_native_float_components": 149087999,
+    "special_cell_count": 137,
+    "protected_cell_count": 135,
+    "exact_geometry_cell_count": 137,
+    "force_assembly_observations": {
+      "u": {
+        "printed_field_free_residual_l2_N": 0.000681764330306528,
+        "relative_to_exact_free_load_l2": 2.0716138958314303e-05,
+        "input_print_budget_l2_N": 0.0008452019735173003,
+        "input_print_budget_relative_to_load": 2.5682366696059787e-05,
+        "component_count_exceeding_input_budget": 12589,
+        "largest_free_node_residual_N": 0.0005773176512404296,
+        "largest_free_node_zero_based": 646669,
+        "support_force_max_component_difference_N": 8.975042931069765e-12,
+        "input_print_only_lower_proxy": 0.0,
+        "input_print_only_upper_proxy": 4.639850565437409e-05,
+        "full_arithmetic_geometry_enclosure": false,
+        "true_native_solver_residual_certified": false
+      },
+      "s": {
+        "printed_field_free_residual_l2_N": 0.0006538868433670592,
+        "relative_to_exact_free_load_l2": 1.9869051676721014e-05,
+        "input_print_budget_l2_N": 1.901321309857723e-11,
+        "input_print_budget_relative_to_load": 5.777368323406933e-13,
+        "component_count_exceeding_input_budget": 14558563,
+        "largest_free_node_residual_N": 0.0005600174181911747,
+        "largest_free_node_zero_based": 646669,
+        "support_force_max_component_difference_N": 6.068923141810956e-12,
+        "input_print_only_lower_proxy": 1.986905109898418e-05,
+        "input_print_only_upper_proxy": 1.9869052254457847e-05,
+        "full_arithmetic_geometry_enclosure": false,
+        "true_native_solver_residual_certified": false
+      }
+    },
+    "native_scalar_metrics": {
+      "external_work_Nmm": 1470.9182399552867,
+      "displacement_max_mm": 0.8163037575810178,
+      "VM_peak_MPa": 38389.5876814199,
+      "VM_volume_weighted_p95_MPa": 45.49482988844318,
+      "independent_stress_compliance_energy_Nmm": 735.459087285253,
+      "native_energy_density_integral_Nmm": 735.459087285253
+    },
+    "reconstructed_displacement_energy_Nmm": 735.4590872852531,
+    "stress_reconstruction_difference_compliance_energy_Nmm": 8.471425769017039e-20,
+    "maximum_stress_component_difference_MPa": 0.0006921987453054612,
+    "maximum_stress_difference_cell_zero_based": 8696088,
+    "true_unprinted_solver_residual_certified": false,
+    "full_arithmetic_geometry_enclosure": false,
+    "spatial_convergence_claimed": false,
+    "new_paid_action": false
+  },
+  "comparison": {
+    "status": "retained_actual_seven_to_seventeen_digit_gravity_comparison",
+    "same_H9_counts": true,
+    "metrics": [
+      {
+        "metric": "U reconstructed residual norm",
+        "old": 75200.44452820542,
+        "new": 0.000681764330306528,
+        "old_divided_by_new": 110302697.25961545,
+        "relative_change": -0.9999999909340386
+      },
+      {
+        "metric": "U print-only budget norm",
+        "old": 3410416.725142863,
+        "new": 0.0008452019735173003,
+        "old_divided_by_new": 4035031663.43832,
+        "relative_change": -0.9999999997521706
+      },
+      {
+        "metric": "Printed-S residual norm",
+        "old": 0.0013789086849663942,
+        "new": 0.0006538868433670592,
+        "old_divided_by_new": 2.1087879331934256,
+        "relative_change": -0.5257939481445827
+      },
+      {
+        "metric": "Printed-S print-only budget norm",
+        "old": 0.07298327495247647,
+        "new": 1.901321309857723e-11,
+        "old_divided_by_new": 3838555565.2315207,
+        "relative_change": -0.9999999997394854
+      },
+      {
+        "metric": "U-to-S mismatch compliance energy",
+        "old": 0.03858551749139613,
+        "new": 8.471425769017039e-20,
+        "old_divided_by_new": 4.55478434722486e+17,
+        "relative_change": -1.0
+      },
+      {
+        "metric": "Maximum U-to-S stress-component difference",
+        "old": 1207619.8640991596,
+        "new": 0.0006921987453054612,
+        "old_divided_by_new": 1744614349.9815903,
+        "relative_change": -0.9999999994268074
+      }
+    ],
+    "native_scalar_changes": {
+      "external_work_Nmm": {
+        "old": 1470.91823991448,
+        "new": 1470.9182399552867,
+        "absolute_change": 4.080675353179686e-08,
+        "relative_change": 2.774236692732112e-11
+      },
+      "displacement_max_mm": {
+        "old": 0.8163037490349234,
+        "new": 0.8163037575810178,
+        "absolute_change": 8.546094387718028e-09,
+        "relative_change": 1.0469257795056882e-08
+      },
+      "VM_peak_MPa": {
+        "old": 38389.582833542,
+        "new": 38389.5876814199,
+        "absolute_change": 0.0048478778990102,
+        "relative_change": 1.2628107786507333e-07
+      },
+      "VM_volume_weighted_p95_MPa": {
+        "old": 45.49482574414961,
+        "new": 45.49482988844318,
+        "absolute_change": 4.144293569652291e-06,
+        "relative_change": 9.109373432835326e-08
+      },
+      "independent_stress_compliance_energy_Nmm": {
+        "old": 735.4590872961511,
+        "new": 735.459087285253,
+        "absolute_change": -1.0898133950831834e-08,
+        "relative_change": -1.4818137594706782e-11
+      },
+      "native_energy_density_integral_Nmm": {
+        "old": 735.4590873654869,
+        "new": 735.459087285253,
+        "absolute_change": -8.02339172878419e-08,
+        "relative_change": -1.0909365138889039e-10
+      }
+    },
+    "new_displacement_energy_Nmm": 735.4590872852531,
+    "new_stress_energy_Nmm": 735.459087285253,
+    "cause_scope": "Observed two retained gravity runs with unchanged geometry/load/material and qualified four-WRITE precision change; no claim of an unprinted native residual or arithmetic enclosure.",
+    "new_paid_action": false
+  },
+  "source_result_sha256": [
+    "5165db3f9624fbde5cb0d579c34d20bc88763418b5a815f3e7d8a4cfe379dfc1",
+    "e517e9f0b7e0dd3cb798cacdcf353a67cd94e2cd94a53d045dfe0ab7d6fd53fb"
+  ],
+  "controls": {
+    "actual_native_fixture_and_refusals_passed": true,
+    "count": 17
+  },
+  "node_census": {
+    "node_zero_based": 646669,
+    "native_node_ID": 646670,
+    "free_node": true,
+    "source_cell_count": 19199981,
+    "all_source_cells_scanned": true,
+    "incident_cell_count": 103,
+    "incident_protected_cell_count": 1,
+    "incident_peak_cases": []
+  },
+  "figure": {
+    "status": "actual_retained_gravity_precision_comparison_figure_created",
+    "image_sha256": "f303f36f0bd9cf5bb172c086f6190e868512a7291bfdd3b66442c079754c25c9",
+    "comparison_sha256": "bd76de0cb65bdb894089e9c2bd08e3c4f5597fc9fc0aba7ecbb631e9bf5454ea",
+    "renderer_sha256": "eb7d20f5feafb128dde12dafcd78ee360fdaee94df2dcefe947553a9ca55c709",
+    "source_result_sha256": [
+      "5165db3f9624fbde5cb0d579c34d20bc88763418b5a815f3e7d8a4cfe379dfc1",
+      "e517e9f0b7e0dd3cb798cacdcf353a67cd94e2cd94a53d045dfe0ab7d6fd53fb"
+    ],
+    "synthetic_result_used": false,
+    "true_native_residual_certified": false,
+    "spatial_convergence_claimed": false
+  },
+  "sources": {
+    "execution_preparation": {
+      "sha256": "8a126ecc99cb7e5e65b5189608f525420415c4c6420b3ef59ad5b51951a34e43",
+      "bytes": 175350
+    },
+    "preparation": {
+      "sha256": "4fbd62690a31163b0379da096be333dbd1e6a6164ab1732935a086ba8b6eac51",
+      "bytes": 6723
+    },
+    "complete_result": {
+      "sha256": "e517e9f0b7e0dd3cb798cacdcf353a67cd94e2cd94a53d045dfe0ab7d6fd53fb",
+      "bytes": 306183
+    },
+    "independent_readback": {
+      "sha256": "7971f6b096976f8a70fbcc701d42bacd6112735be3ff174a5bf5d6452ea39f8e",
+      "bytes": 3528
+    },
+    "completion_pointer": {
+      "sha256": "9521b7a24c4a096dc1226dd7e796c1b1441e634f59f9692e38f1ef973925d53f",
+      "bytes": 316
+    },
+    "reader_controls": {
+      "sha256": "d3f53fe6615a792ef44ab974b90cc4ccda5808456a23d0404b4cc4b23e42159d",
+      "bytes": 3005
+    },
+    "reader_controls_terminal": {
+      "sha256": "974975119896a07b2e7cce1cf283a351fa37190e2a2558fc2bf04b0c949eaf10",
+      "bytes": 934
+    },
+    "capacity_audit": {
+      "sha256": "9fd076c8e146b9a96b3f9061d4df9f30b9ccab4bd12a4bb12a283462d39e17de",
+      "bytes": 2790
+    },
+    "rebindings": {
+      "sha256": "5435a6d393238b17442394d8d3213ab84be97e24cf0d6ad27f626c9713f735f0",
+      "bytes": 4738
+    },
+    "comparison": {
+      "sha256": "bd76de0cb65bdb894089e9c2bd08e3c4f5597fc9fc0aba7ecbb631e9bf5454ea",
+      "bytes": 6394
+    },
+    "figure_receipt": {
+      "sha256": "9366d29a2e33822dade36ea0d76c8e8dc4df3ec5bf68f4e8891cd23d265ef222",
+      "bytes": 637
+    },
+    "renderer": {
+      "sha256": "eb7d20f5feafb128dde12dafcd78ee360fdaee94df2dcefe947553a9ca55c709",
+      "bytes": 3171
+    },
+    "figure": {
+      "sha256": "f303f36f0bd9cf5bb172c086f6190e868512a7291bfdd3b66442c079754c25c9",
+      "bytes": 177139
+    },
+    "node_census": {
+      "sha256": "a03861fbe25b93be5cfa7b1712c485c80f78fb856f0be45cc43b9d7a600aaa83",
+      "bytes": 109153
+    },
+    "census_terminal": {
+      "sha256": "e01a5c2a87411ee3156babb2cbc0bd4b67467b71b1a516a8e879c3b40cf184c2",
+      "bytes": 1044
+    }
+  },
+  "original_h8_h9_increments_recomputed": false,
+  "combined_print17_complete": false,
+  "all_784_prepared_sources_rehashed_for_publication": true,
+  "raw_fields_or_coordinates_published": false
+}

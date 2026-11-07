@@ -268,7 +268,7 @@ was reaped with unchanged inputs. Its native assessment passed the original
 force, moment and integrated-energy checks. All **84 recovered metadata members**
 have been rehashed. The independent CUDA FP64 audit also passed for **every
 19,199,981 cell**, with a maximum per-cell energy discrepancy of
-**5.2042e-18 N mm**. These checks do not replace the pending algebraic audit.
+**5.2042e-18 N mm**. The separate complete algebraic audit is recorded below.
 
 The first single-thread encoder left an **841,166,127-byte partial file** and
 was subsequently observed absent. Its exit cause was not established. The
@@ -294,16 +294,60 @@ single-attempt transfer and complete SHA/strict-EOF checks, and keeps the origin
 **07:51:30 UTC lease deadline**. Both the complete encoded SHA and all
 **4,506,144,286 decoded bytes** now match locally, with strict XZ EOF verified
 and no retained raw DAT duplicate. The exact instance was deleted and its
-absence verified. Combined loading and the higher-precision algebraic
-reassessment remain pending. The
+absence verified. Combined loading at the new precision remains pending. The
 [gravity recovery receipt](carrier-h9-native-results-20261107/print17-gravity-recovery.json)
 binds the complete recovery, native/GPU results and cleanup to their sources.
 
 The first local higher-precision algebraic attempt was refused before field
 replay: its decoded-geometry cache requires a same-filesystem hard link, but the
 destination is the external SSD. It exited 1 after **2.189 seconds** and was
-reaped with its owned process group absent; a verified cross-volume copy adapter
-is being prepared, and the replacement full audit has not run.
+reaped with its owned process group absent. A second attempt passed the verified
+cross-volume cache copy, then refused the larger DAT against the reader's old
+2.75 GB limit. Both failures and their output allocations remain retained.
+
+### Complete 17-digit gravity algebraic reassessment
+
+The fresh local audit now completes on **all 19,199,981 cells and 149,087,999
+numeric components**. It rechecks the complete encoded and raw hashes, strict
+EOF, field identities and all original native scalar gates. The consumer uses
+an explicit **5 GB raw capacity** and the unchanged read-only geometry arrays;
+a verified cache reference avoids further cross-volume copies. These storage
+changes do not alter the numerical assembly or its thresholds.
+
+![Actual seven- versus seventeen-digit gravity field diagnostics](../media/carrier-h9-gravity-print17-comparison-20261107.png)
+
+| Full gravity diagnostic | Seven-digit output | Seventeen-digit output |
+|---|---:|---:|
+| Force residual from reconstructed displacement, L2 N | 75,200.4445 | 0.0006817643 |
+| Force residual from printed native stress, L2 N | 0.0013789087 | 0.0006538868 |
+| Displacement-to-stress mismatch energy, N mm | 0.0385855175 | 8.47143e-20 |
+| Maximum displacement-to-stress component difference, MPa | 1,207,619.8641 | 0.0006921987 |
+
+The reconstructed-force discrepancy falls by approximately **110 million times**
+between these retained runs. The native-stress force residual falls by only
+**2.11 times**, so correcting output precision does not close that diagnostic.
+The new reconstructed and native-stress energies are respectively
+**735.4590872852531 and 735.459087285253 N mm**; native work, displacement and
+stress summaries change only slightly. This is an output-precision comparison,
+not another spatial refinement increment.
+
+For the new stress assembly, residual/load L2 is **1.98690517e-5**, while its
+input-print-only budget/load is **5.77736832e-13**. The budget excludes geometry
+inversion and floating arithmetic; neither it nor the measured residual certifies
+the unprinted native solver residual. A complete incidence census places the
+largest residual at a free, unloaded node shared by **103 cells**, including
+one retained protected cell; neither native stress-peak cell is incident there.
+The remaining local force discrepancy is being investigated separately.
+
+The audit finished in **382.739 seconds**, returned zero and was reaped with its
+owned process group absent. Peak aggregate RSS was **3,004,596,224 bytes**.
+All **784 pinned sources** remained unchanged. The 2,700-second, 16-GiB RAM,
+2-GiB aggregate-output and 8-GiB free-space limits remained in force, including
+the previous attempts' retained bytes. No new paid instance was used.
+The [new algebraic receipt](carrier-h9-native-results-20261107/print17-gravity-algebraic.json)
+binds this result, comparison, figure and control evidence. Combined-load
+reassessment and the unchanged two-successive-below-1% convergence criterion
+remain open.
 
 ## Reproduction and next numerical step
 
@@ -316,8 +360,9 @@ binds both images to the actual results and script.
 
 The completed marking pass qualified the **1,228,798,784-byte face buffer**
 required by H9, exceeding the historical 1.2 GB bound, and used both complete
-traction-jump fields. It does not close the higher-precision algebraic check
-required before H10. Correction-energy localization remains a separate diagnostic.
+traction-jump fields. The higher-precision gravity audit is complete; combined
+reassessment and residual diagnosis remain before H10 selection.
+Correction-energy localization remains a separate diagnostic.
 Before any next rental, freshly admit
 complete DAT/XZ and receiver capacity: seven-digit H9 left only 32,911,702 raw
 bytes below its 2.75 GB gate. These are capacity admissions; numerical thresholds,
@@ -334,7 +379,7 @@ flowchart TD
     M --> LOCAL["Two complete local algebraic audits: printing precision limits diagnosis"]
     LOCAL --> PRECISION["17-digit output: Mac and Linux small controls passed"]
     PRECISION --> CAP["Admit next complete-field capacities"]
-    CAP --> REPLAY["Higher-precision H9 replay and algebraic reassessment"]
+    CAP --> REPLAY["17-digit gravity: full replay and algebraic audit complete<br/>Combined reassessment and residual diagnosis pending"]
     REPLAY --> V["After accepted reassessment: common refinement and exact nesting"]
     V --> NEXT["Next native responses and complete comparison"]
     NEXT --> S
