@@ -42,6 +42,30 @@ fields `U`, `Uf`, `k`, `nut`, `omega`, `p`, `phi`, plus `uniform/time`, match
 all eight original hashes. A second private copy on the Mac was independently
 rehashed against the same worker manifest. Raw fields remain outside Git.
 
+## Saved-state wall diagnostic
+
+The recovered control also permits a native `foamPostProcess -solver
+incompressibleFluid -func yPlus -time 2000` diagnostic. The seven saved fields
+and `uniform/time` were mounted read-only and rehashed afterwards; no solver
+time step ran. The same image completed in 16.967 seconds within two CPUs,
+8 GiB and a 180-second timeout, with no network or OOM. New outputs used a
+separate directory and a 512 MiB per-file limit.
+
+| Wall patch | Faces | Minimum y+ | Median y+ | Maximum y+ | Mean y+ |
+|---|---:|---:|---:|---:|---:|
+| Rotor | 624,557 | 0.004717 | 13.4731 | 64.0132 | 12.9116 |
+| Duct | 552,960 | 0.207832 | 1.29537 | 22.8119 | 1.82263 |
+
+Independent binary64 readback checks the field layout and patch sizes, all
+1,177,517 wall values are finite and nonnegative, and both patches' minimum,
+maximum and arithmetic mean agree with the native output. The
+[independent result](yplus-result.json) preserves quantiles and descriptive
+interval counts; those intervals are not acceptance limits. The
+[native diagnostic log](yplus.log) records model selection and patch statistics.
+The original `nutkWallFunction` and `omegaWallFunction` settings are unchanged.
+This is a wall-resolution diagnostic of the unconverged control, not an
+accepted wall treatment or a mesh-independence study.
+
 ## Remaining acceptance gates
 
 The existing independent auditor was rerun on both retained native receipt
@@ -49,8 +73,8 @@ sets and reproduced both historical audit results exactly. Both cases still
 fail velocity and pressure residual limits and torque amplitude. Final mass
 balance and flow drift pass their individual limits; they do not establish
 overall convergence. The [unchanged validation plan](../../../twins/993-engine-cooling-fan-system-f0/program/VALIDATION_PLAN.md)
-still requires two complete 100-iteration windows, wall-resolution assessment
-and mesh independence. This recovery provides none of those missing results.
+still requires two complete 100-iteration windows, qualified wall treatment
+and mesh independence. Those acceptance gates remain open.
 
 The restored control can now support field diagnostics without recalculating
 its first 2000 iterations. Candidate recovery or regeneration remains separate.
