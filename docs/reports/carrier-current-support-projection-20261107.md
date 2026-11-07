@@ -258,6 +258,63 @@ array hashes. Exact-source parent memberships remain attached to the exact
 geometry: they are not silently transferred to rounded points, and contact
 coverage remains a separate task.
 
+### Current diagnostic section and contact encoding
+
+The unchanged interface adapter now accounts for all **45,852 current faces**:
+9,308 have upper whole-parent witnesses, 28,616 have lower witnesses and 7,928
+have neither. There are no contradictory parent roles. These classifications
+inherit the exact-source correspondences; they do not establish membership of
+the rounded faces in those source surfaces.
+
+![Actual component 148 section and candidate upper and lower contact traces](../media/carrier-current148-section-20261107.png)
+
+At the envelope's X midpoint, **two closed rings and 328 source-edge segments**
+are reproduced by independent section calculations. Both free intervals pass
+the existing exact contact-encoding predicate for their upper and lower traces.
+The test uses the whole free section as a diagnostic domain; it generates no
+support material. The separate horizontal layer 517 checks the part pose and
+calendar identity only.
+
+The bounded execution completed in **8.87 seconds**, with 1.81 GB peak RSS,
+all 3,060 input pins unchanged and its owned process group absent. Eight existing
+boundary tests and three source-refusal controls precede this execution. A
+calendar-binding correction keeps the canonical context key separate from the
+serialized context file's SHA-256; changed-height and changed-pose controls
+refuse the altered inputs. The original preparation refusal is retained.
+
+The [section receipt](carrier-current-support-projection-20261107/component148-section.json)
+binds the actual inputs, result, cleanup and byte-identical figure replay.
+The figure records this diagnostic stage; the following check covers every
+face of the exact envelope.
+
+### Every exact face accounted for in upper/lower area coverage
+
+All **45,852 exact faces** now pass a complete witness-coverage check. Each of
+the 9,308 upper faces lies wholly in a retained upper source triangle. Each of
+the 28,616 lower faces lies wholly in a lower source triangle or exactly on the
+plate; 23,115 are plate faces. The remaining 7,928 faces have exactly zero
+Z-normal and are vertical. There are **no unclassified nonvertical faces**.
+
+The proof checks all three exact vertices against each retained nonzero source
+witness. Convexity then covers the whole child triangle. For the vertical
+faces, a positive-area intersection with any nonvertical upper/lower source
+triangle would require coincident planes, which their exact normals exclude.
+This avoids a redundant all-pairs intersection calculation. A near-vertical
+control with a nonzero rational Z-normal is correctly kept out of this shortcut.
+
+The bounded current calculation completed in **19.02 seconds**, with 620 MB
+peak RSS. Seven intended refusal controls passed. Independent readback checked
+all 45,852 face records and their original parent-list membership; all 3,071
+input pins remained unchanged and the owned process group was absent. The
+[complete face-coverage receipt](carrier-current-support-projection-20261107/component148-area-coverage.json)
+records the proof, counts, source identities and execution.
+
+This establishes that every exact upper/lower face has at least one complete
+contact witness. It does not enumerate every partially overlapping parent.
+Membership of rounded coordinates, line/point/lateral contacts and attachment
+of generated support material remain separate checks. No geometry, support
+policy or numerical threshold changed.
+
 ```mermaid
 flowchart TB
     INPUT["Original roofs, checked mask and complete part"] --> EXACT["Exact prism union, mask intersection and part subtraction"]
@@ -267,6 +324,9 @@ flowchart TB
     EXPORT -->|"Yes"| CHECK
     SNAP --> CHECK["Topology, exact distances and composed drift"]
     CHECK --> CONTACT["Current support parent mapping and contact checks"]
+    CONTACT --> SECTION["Component 148: two diagnostic intervals checked"]
+    CONTACT --> FULL["Component 148: all exact faces covered by area witnesses or vertical exclusion"]
+    FULL --> MATERIAL["Rounded contacts and generated support attachment: pending"]
     CONTROL["Reference case: exact and export chain passed"] -.-> EXACT
     CONTROL -.-> CHECK
     CURRENT["Current component 148: exact envelope and all listed parents checked"] -.-> EXACT

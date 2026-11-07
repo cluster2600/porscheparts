@@ -227,11 +227,34 @@ archive to local storage resolved that environment issue; the external
 scientific receiver and all resource limits remain unchanged. The
 [packet and image receipt](carrier-h9-native-results-20261107/packet018-image.json)
 records both attempts and their cleanup. Complete native 17-digit H9 fields
-and the independent algebraic reassessment remain pending. The prepared cloud
-launch is held because the inherited lease profile permits only 2 GB of input
-and 2 GB of output declarations, while the new plan budgets 10 GB ingress and
-6 GB egress. The approved wrapper and deadline guard must price the same
-transfer allowance before a rental; no new instance has been created.
+and the independent algebraic reassessment remain pending. The initial cloud
+plan was held because its 10 GB ingress and 6 GB egress budgets exceeded the
+existing profile's 2 GB input and 2 GB output declarations.
+
+That mismatch is now resolved by a separately checked, smaller transfer plan.
+It retains the existing **1.2 GB image, 2 GB input and 2 GB output declarations**,
+priced consistently by the selector, approved wrapper and deadline guard.
+The actual compressed image and metadata total 1,099,308,844 bytes. Two pinned
+GPU wheels total 165,632,756 bytes and install offline. Scientific recovery gets
+one XZ preset-6 encoding attempt and a **1.6 GB download ceiling**, with explicit
+space for the probe, metadata and bounded diagnostics. A larger encoded result
+is retained remotely and refused before download; full-case compression fit
+has not yet been demonstrated.
+
+Each file gets one whole-file transfer to a fresh target. Rsync's internal
+checksum retry is disabled, while the independent complete SHA-256 check stays
+mandatory; scientific decoding additionally verifies every raw byte and strict
+EOF. The [upstream rsync manual](https://download.samba.org/pub/rsync/rsync.1#opt--checksum-choice)
+describes the selected option. Actual transfer and corrupted-file controls pass.
+These are application-byte allowances with a protocol margin, not measured
+provider wire usage. The original **$3.20 / 7,200-second per-case bounds** remain.
+
+At the **06:02 UTC checkpoint**, the gravity instance is active: the 128 MiB
+probe passed in both directions and the isolated offline GPU installation
+succeeded. The full native field is still pending. Combined loading remains
+held until complete gravity recovery and verified predecessor deletion. The
+[transfer-admission receipt](carrier-h9-native-results-20261107/transfer-admission.json)
+records actual prerequisite results, all source/control hashes and the limits.
 
 The [compact algebraic receipt](carrier-h9-native-results-20261107/algebraic-audit.json)
 binds both full audits, independent readbacks, neighborhood lookup, local

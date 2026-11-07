@@ -148,8 +148,12 @@ positive triangles, exact union/area equality and original coordinate bits. Thei
 exact envelope: 45,852 faces in two closed components, with all 73,294 listed
 parent references independently verified. Its unchanged float64 representation
 also passes, with a continuous surface-distance bound of approximately
-4.01628e-14 mm. The other six envelopes, complete
-contact coverage and final support structures remain unfinished.
+4.01628e-14 mm. A subsequent full-face proof accounts for all 45,852 exact faces:
+9,308 upper witnesses, 28,616 lower/plate witnesses and 7,928 exactly vertical
+faces, with no unclassified tilted face. This proves existence of positive-area
+upper/lower witnesses, not exhaustive partial-parent identities or membership of
+rounded coordinates. The other six envelopes and final support structures
+remain unfinished.
 
 | ID | Tool / recorded profile | Status and actual evidence | Next use or acceptance condition |
 |---|---|---|---|
