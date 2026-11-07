@@ -254,6 +254,40 @@ it does not execute PhysicsNeMo, train a model or alter frozen corpora.
 The two newly enabled shared controls lower the base skip budget by two;
 isolated Torch coverage is counted separately.
 
+### Archived field/lattice preflight checks
+
+The optional field and replay executables require the exact managed PicoGK
+assembly and all 59 LEAP sources recorded in
+`twins/964-chassis/monocoque/field-lattice/evidence/execution.json`.
+Do not substitute the shared NuGet runtime. The local runtime binaries match
+that receipt; two installed ShapeKernel files differ. Their recorded upstream
+revision supplies matching bytes, so stage a separate verified source tree
+without overwriting the installation. Both projects build with .NET 9.0.319
+and retain 35 upstream warnings each.
+
+The original field test is itself hash-pinned. Its additive companion
+`test_964_field_lattice_preflight.py` checks the four expected diagnostics as
+well as output preservation, rejecting a generic failing executable. Set
+`DOTNET`, `FIELD_LATTICE_DLL` and `REPLAY_DLL` to the verified local builds to
+run all three test modules. These are input-rejection controls; they do not
+regenerate geometry. Managed-runtime rebuild/distribution provenance remains
+unestablished, so CI retains the explicit optional runtime skip.
+
+### CalculiX cantilever control
+
+The main Ubuntu 24.04 job installs `calculix-ccx=2.21-1`, the package already
+recorded by the retained F47 recipe. This enables the existing synthetic
+cantilever test, comparing integration-point bending stress with an analytic
+beam result away from the clamp and tip. It also checks that the 2D nodal
+output retains transverse shear rather than replacing bending stress.
+The control passes in a disposable Linux AMD64 runtime; no vehicle geometry,
+material allowables or structural qualification is inferred. The base skip
+budget is lower by one.
+
+```bash
+PYTHONPATH=tests .venv-check/bin/python -m unittest -v test_964_strength_audit.StrengthAuditTests.test_cantilever_integration_stress_retains_bending
+```
+
 ### Retained CGAL intersection auditor
 
 The main CI job uses Ubuntu 24.04 and the recorded `libcgal-dev=5.6-1build3`
