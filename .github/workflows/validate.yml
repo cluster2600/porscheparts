@@ -224,3 +224,13 @@ jobs:
             --mount type=bind,src="${PWD}",dst=/repo,readonly --entrypoint /bin/sh \
             ghcr.io/cluster2600/3dprinting993-air-oil-cycle-f34b@sha256:369d51ee12c259e844d01817702d8debedcf400087ab9b289b8e59671d296664 \
             -ec 'mkdir -p /tmp/repo/twins; cp -R /repo/scripts /repo/tests /tmp/repo/; cp -R /repo/twins/reference-917-engine /tmp/repo/twins/; cd /tmp/repo; python -m unittest discover -s tests -p "test_917_air_oil_*f34b.py" -v'
+      - name: Run F39 F40 and F40b controls in the exact Aeolus image
+        run: |
+          docker run --rm --platform linux/amd64 --network none --read-only \
+            --cpus 2 --memory 2g --pids-limit 128 \
+            --cap-drop ALL --security-opt no-new-privileges \
+            --tmpfs /tmp:rw,exec,nosuid,nodev,size=256m \
+            --mount type=bind,src="${PWD}",dst=/repo,readonly -w /repo \
+            -e PYTHONPATH=/repo/tests --entrypoint /bin/sh \
+            ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3 \
+            -ec 'python -c '\''from importlib.metadata import version; assert version("aeolus1d") == "0.3.3"'\''; python -m unittest -v test_917_unsteady_network_f39 test_917_unsteady_convergence_f40 test_917_extended_periodic_state_f40b'

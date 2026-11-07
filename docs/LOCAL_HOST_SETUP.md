@@ -222,6 +222,19 @@ PYTHONPATH=tests .venv-check/bin/python -m unittest -v \
 
 These checks establish rejection behavior, not vehicle geometry or fitment.
 
+### Retained Aeolus construction checks
+
+The cycle CI job also runs all 56 F39/F40/F40b tests in the existing
+digest-pinned F39 image with Aeolus1D 0.3.3. This enables three previously skipped
+runtime checks for crank inheritance, each campaign case's constructed topology
+and the nominal flat-12 network. The exact image passed all 56 tests locally
+under AMD64 emulation without skips; native Linux execution belongs to CI.
+
+The container is offline and read-only, with bounded CPU, memory and temporary
+storage. Recipes, dependency locks, engine contracts and assertions remain
+unchanged. Constructing these networks and running synthetic/fake-executor
+controls does not execute or qualify an engine campaign.
+
 ## 3. Heavy jobs on a shared or WSL host
 
 A voxel field, mesher or solver that outgrows memory can take the whole WSL VM
