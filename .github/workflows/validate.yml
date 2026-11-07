@@ -180,6 +180,23 @@ jobs:
       - name: Run native CPU dispatch and independent oracle tests
         run: python -m unittest discover -s tests -p 'test_warp_geometry_pilot.py' -v
 
+  rear-panel-kicad:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Export and check the schematic with KiCad 9.0.2
+        # Keep KiCad's configured home writable for cache/theme initialization.
+        run: |
+          docker run --rm --platform linux/amd64 --network none \
+            --cpus 2 --memory 2g --pids-limit 128 \
+            --cap-drop ALL --security-opt no-new-privileges \
+            --tmpfs /tmp:rw,noexec,nosuid,size=512m \
+            --mount type=bind,src="${PWD}",dst=/repo,readonly -w /repo \
+            -e PYTHONDONTWRITEBYTECODE=1 --entrypoint /bin/sh \
+            kicad/kicad@sha256:8a43a0dd03e56d428cc516e2a1bd106260ef2c572288f995af67970d900cf607 \
+            -ec 'test "$(kicad-cli version)" = "9.0.2"; python3 -m unittest discover -s tests -p "test_993_rear_panel*.py" -v'
+
   cycle-thermal-f33:
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -187,3 +204,13 @@ jobs:
       - uses: actions/checkout@v4
       - name: Replay the exact F33 image
         run: make 917-cycle-thermal-f33-test
+      - name: Run F34b cycle and seed controls in the exact image
+        # Seed output-path tests need a writable disposable project root.
+        run: |
+          docker run --rm --platform linux/amd64 --network none --read-only \
+            --cpus 2 --memory 2g --pids-limit 128 \
+            --cap-drop ALL --security-opt no-new-privileges \
+            --tmpfs /tmp:rw,noexec,nosuid,size=256m \
+            --mount type=bind,src="${PWD}",dst=/repo,readonly --entrypoint /bin/sh \
+            ghcr.io/cluster2600/3dprinting993-air-oil-cycle-f34b@sha256:369d51ee12c259e844d01817702d8debedcf400087ab9b289b8e59671d296664 \
+            -ec 'mkdir -p /tmp/repo/twins; cp -R /repo/scripts /repo/tests /tmp/repo/; cp -R /repo/twins/reference-917-engine /tmp/repo/twins/; cd /tmp/repo; python -m unittest discover -s tests -p "test_917_air_oil_*f34b.py" -v'

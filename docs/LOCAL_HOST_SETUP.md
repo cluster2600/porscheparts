@@ -81,6 +81,11 @@ exact replay assertions remain unchanged. CI's `cycle-thermal-f33` job runs
 `make 917-cycle-thermal-f33-test` against the existing digest-pinned Linux
 image. All 11 tests, including the three exact-report comparisons, pass in
 that image; the native macOS installation is not an equivalent replay.
+The same CI job also runs the F34b cycle and seed controls in their separate
+digest-pinned release image. The seed tests create temporary paths under the
+project root, so the job copies the required source directories into its bounded
+temporary filesystem first. The checkout remains read-only. The Cantera fixture
+is noncanonical and executes no engine DOE cases.
 
 ### Separate CAD regression environment
 
@@ -181,6 +186,21 @@ oracle. The local AMD64 emulation attempt failed kernel compilation because its
 reported CPU target `athlon-xp` was unsupported; that failure is not a passing
 CPU result. This job covers the retained runtime, not a Warp upgrade or CUDA
 validation. The source, image recipe and lock remain unchanged.
+
+### Fresh KiCad schematic checks
+
+CI's `rear-panel-kicad` job runs all rear-panel tests in the documented KiCad
+9.0.2 image, now pinned to its Linux AMD64 manifest digest. The schematic test
+copies the design to a temporary directory, runs ERC and exports a fresh XML
+netlist, then checks all 172 components and 541 pin connections. It does not
+reuse the archived netlist as its result.
+
+Keep the image's default user and configured home: its library tables are needed,
+and KiCad initializes cache/theme directories there. Only the disposable
+container filesystem is writable; the repository is mounted read-only, network
+access is disabled and resources are bounded. All 19 tests pass locally without
+skips. This checks the schematic and software contracts, not PCB routing,
+hardware operation or manufacturing qualification.
 
 ## 3. Heavy jobs on a shared or WSL host
 
