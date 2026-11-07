@@ -322,6 +322,14 @@ their exact owned process groups absent. The
 binds the proof, sources, controls, complete readback and cleanup. Support
 generation and exposure remain unfinished for this component.
 
+### Component 534: bounded material generation and verified retained prefix
+
+The first full 534 support-sheet attempt reached its original 1,770 s material time limit and exited with code 1 after 1,778.703 s. The child was reaped and its exact process group was absent; all pinned sources remained unchanged. Peak observed RSS was 2.483 GB, within the 8 GiB limit.
+
+The first skin completed. The second remained incomplete, with 2,629 complete exact union receipts (native calls 0–2628) and the canonical input of pending call 2629 retained. An independent 13.308 s readback verified every retained output hash, ordered call record and exact receipt conservation, plus the pending input and chart identities. Completed input bodies are not retained; their complete canonical-input hashes and full exact receipts are retained.
+
+No complete sheet array, full group metadata or material admission is claimed. A separate continuation is being prepared to reuse only matching 534 canonical inputs and to execute the interrupted call; the original attempt remains unchanged. See the [compact timeout and prefix receipt](carrier-current-support-projection-20261107/component534-material-timeout.json).
+
 ### Component 148: diagnostic section and contact encoding
 
 The unchanged interface adapter now accounts for all **45,852 current faces**:
@@ -707,7 +715,26 @@ triangles**, with teal grid planes and orange peripheral skins. The
 [figure provenance](carrier-current-support-projection-20261107/component148-checked-units-image.json)
 binds the unchanged arrays, both complete unit readbacks and renderer. The
 historical recovery image above remains unchanged. This image records completed
-unit checks; complete layer exposure is still pending.
+unit checks; the complete exposure result is recorded below.
+
+### Component 148: complete exposure calendar and localized chronological rejection
+
+The complete 1,034-layer calendar was computed and independently read back: 2,216,995 encoded support vectors and all 30 material groups were accounted for. Exposure admission is **rejected**. Both rational and encoded graphs end in two components with recorded lower and upper contacts, but each records 13 earlier unanchored layer-component events. A later connection does not erase that chronological failure. The producer finished in 2,925.6 s with its owned processes reaped.
+
+An unchanged exact graph replay of layers 417–443 reproduced every local count, starting from the genuinely empty layer 417. All affected cuts belong to `skin-0-0`: each representation has 10 births without a preceding-layer intersection and three inherited unanchored events. The two representations have different local counts at 441 and 443; matching totals do not imply identical topology.
+
+| Layer | Z (mm) | Rational events | Encoded events | Rational cuts diagnosed |
+|---|---:|---:|---:|---:|
+|418|25.11|2|2|76|
+|441|26.49|4|5|116|
+|442|26.55|5|5|183|
+|443|26.61|2|1|140|
+
+The original contact callback was then applied to all 515 affected rational cuts, with the same source traces, mapping, part sections and 0.2 mm vertical penetration. Every cut had **no positive-length overlap with its mapped lower-contact bands**. None reached the part-domain filtering stage, and no missing positive lower anchor was recovered. This localizes the rejection within the existing contact model; the cause of the band/geometry mismatch remains to be determined. No tolerance, geometry, footprint or policy was changed.
+
+![Actual component148 island births and chronological rejection](../media/carrier-current148-exposure-islands-20261107.png)
+
+The figure uses retained geometry and equal metric axes; its byte-identical replay was checked. Numerical re-rendering requires the private inputs. The [scalar/hash receipt](carrier-current-support-projection-20261107/component148-exposure-rejection.json) preserves the failed original readback of one opaque Finder metadata file and the subsequent exact-name/size/hash treatment; all scientific files remained strict. This result does not admit finite support volume, finite-area attachment, or the complete seven-component support build.
 
 ### Native shell-to-laser route
 
@@ -717,8 +744,9 @@ describes this route explicitly. The [API definition](https://pyslm.readthedocs.
 defines `supportWallThickness` as the in-plane offset reinforcing the tooth
 edges; it does not specify a normal extrusion thickness or a laser track width.
 
-The next step therefore checks complete support sections, scan-vector coverage
-and layer-to-layer contact paths using the existing shell representation. A
+The complete component 148 calendar now checks support sections, scan-vector
+coverage and layer-to-layer contact paths using this shell representation; its
+chronological rejection is localized above. A
 closed support solid is needed only for a downstream solid simulation or export
 format that requires one. Laser parameters, deposited track dimensions and the
 selected-machine job require their own process inputs; the shell checks do not
@@ -745,9 +773,10 @@ flowchart TB
     UNITS --> MATERIAL
     SKINS --> SKINUNITS["Both skin units: original mapping and local-contact predicates checked"]
     SKINUNITS --> MATERIAL
-    GRAPH --> MATERIAL["Complete support scanpaths and layer contacts: pending"]
+    GRAPH --> MATERIAL["Component 148: full calendar checked; chronological exposure rejected"]
     BAND --> MATERIAL
-    MATERIAL --> JOB["Selected laser profile and machine job: pending"]
+    MATERIAL --> ISLANDS["Four layers / skin0: 515 cuts lack positive band overlap"]
+    ISLANDS --> JOB["Correct and recheck supports; selected machine job pending"]
     MATERIAL -. if required .-> SOLID["Finite support solids for solid simulation or export"]
     CONTROL["Reference case: exact and export chain passed"] -.-> EXACT
     CONTROL -.-> CHECK

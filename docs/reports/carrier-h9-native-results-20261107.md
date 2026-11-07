@@ -583,7 +583,9 @@ and fresh two-case 17-digit marking are now complete. H10 source intake,
 bounded candidate-domain and local-operator qualification passed. The first
 selection and both same-domain continuations retain the complete checkpoints
 above. The expanded selection, whole H10 geometry and exact nesting have now
-passed. The next step is to bind and execute the two complete native responses.
+passed. Both native H10 responses and full comparisons have since completed;
+see the [H10 results and actual figures](carrier-h10-native-results-20261107.md).
+The new increments are 1.70005264% / 2.00898588%, so refinement continues.
 A universal zero-residual certificate is not an added requirement.
 Correction-energy localization remains a separate diagnostic.
 Before any next rental, freshly admit
@@ -610,7 +612,7 @@ flowchart TD
     SELECT --> DOMAIN["Expanded pool qualified; both selection targets reached"]
     DOMAIN --> V["Complete H10 geometry: 20,083,501 cells checked"]
     V --> MAP["Complete exact H9-to-H10 nesting: passed"]
-    MAP --> NEXT["Next native responses and complete comparison"]
+    MAP --> NEXT["Complete H10 comparison: 1.7001% / 2.0090%"]
     NEXT --> S
     C --> FIG["Actual figures and scalar/hash receipts"]
     GPU --> FIG

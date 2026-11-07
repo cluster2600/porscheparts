@@ -110,12 +110,12 @@ each run. Some carrier runtimes are native environments, not those images.
 | 23 | WildMeshing / fTetWild bindings 0.4.1 | **R.** Positive tetrahedron control, but complete-carrier trial did not supply an admitted replacement. [R20] | Retain as mesher alternative; first resolve the documented full-boundary/envelope/resource failure. |
 | 24 | SALOME 9.16 / SMESH / NETGEN | **S.** Native cube/bore controls; pilot carrier face-group mapping missing. Kali container acceptance remained incomplete. [FR], [FK] | Separate group-preserving mesher trial only if needed. Do not confuse this runtime with row 25. |
 | 25 | Standalone netgen-mesher 6.2.2607 / netgen-occt 7.8.1 | **E.** Complete 16,239,026-cell reference passed independent volume checks. [Volume validation](carrier-interface-20261028/VOLUME-VALIDATION.md) | Fallback geometry route; mechanical groups and response belong to their own subsequent admission. |
-| 26 | CalculiX 2.21 / historical SPOOLES / current PARDISO | **E.** Complete H7, H8 and H9 gravity/combined fields, native controls and independent force/moment/energy checks. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md), [H9](carrier-h9-native-results-20261107.md) | Continue source-admitted refinement with the same native path and limits; H9 has not closed stabilization. |
+| 26 | CalculiX 2.21 / historical SPOOLES / current PARDISO | **E.** Complete H7, H8, H9 and H10 gravity/combined fields, native controls and independent force/moment/energy checks. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md), [H9](carrier-h9-native-results-20261107.md) | Continue source-admitted refinement with the same native path and limits; [H10](carrier-h10-native-results-20261107.md) has not closed stabilization. |
 | 27 | scikit-fem 11.0.0 / SciPy 1.17.1 / PyAMG 5.3.0 alternative | **R.** Analytical controls passed; complete retained quadratic-reference attempts failed the iteration or true-residual gate. Actual current-cell mapping checks passed, but no replacement carrier response was admitted. [Current mechanics](carrier-current-mechanics-20261104.md#optional-local-amg-route-independent-controls-passed) | Keep native PARDISO as the comparison authority; another solver needs its own complete parity result. |
-| 28 | Repository exact-rational refinement, NumPy/SciPy field readers and comparator | **E.** Exact parent-child maps, full DAT replay and rational-fraction controls. Complete seven-digit H8→H9 comparisons are 2.672628% gravity / 3.325553% combined across the admitted 19,199,981-cell H9 mesh. [H8 results](carrier-h8-native-results-20261106.md), [H9 geometry and map](carrier-h9-global-geometry-20261107.md), [H9 results](carrier-h9-native-results-20261107.md). Both full 17-digit audits check all 149,087,999 numeric components per case. Fresh two-case marking and H10 intake pass. Expanded H10 selection now reaches both targets; the complete 20,083,501-cell geometry and exact H9→H10 nesting pass independent readback. Exact selected-node sums and the original Linux geometry object exclude reader/local force-kernel rounding as the explanation for that gravity node's imbalance. | Bind and execute both new H10 native fields, then compare complete responses. The remaining native cause is unidentified; it introduces no zero-residual veto. Retain the two-successive-below-1% criterion. |
+| 28 | Repository exact-rational refinement, NumPy/SciPy field readers and comparator | **E.** Exact parent-child maps, full DAT replay and rational-fraction controls. Complete seven-digit H8→H9 comparisons are 2.672628% gravity / 3.325553% combined across the admitted 19,199,981-cell H9 mesh. [H8 results](carrier-h8-native-results-20261106.md), [H9 geometry and map](carrier-h9-global-geometry-20261107.md), [H9 results](carrier-h9-native-results-20261107.md). Both full 17-digit audits check all 149,087,999 numeric components per case. Fresh two-case marking and H10 intake pass. Expanded H10 selection now reaches both targets; the complete 20,083,501-cell geometry and exact H9→H10 nesting pass independent readback. Exact selected-node sums and the original Linux geometry object exclude reader/local force-kernel rounding as the explanation for that gravity node's imbalance. | Both complete H10 native fields and independent comparisons now pass: **1.700053% / 2.008986%** energy-norm increments. [H10 results](carrier-h10-native-results-20261107.md). Derive fresh complete H10 joint indicators for the next refinement. The remaining native cause is unidentified; it introduces no zero-residual veto. Retain the two-successive-below-1% criterion. |
 | 29 | PR #274 Warp 1.18.0 original geometry pilot | **S.** Original analytic box cases and CPU/native controls. [Warp pilot][WP] | This is the baseline software contract; do not describe the original PR as a complete CUDA/carrier/manufacturing validation. |
 | 30 | Warp 1.18.0 actual CUDA distance queries | **R.** Earlier reconstructed-carrier probes passed [IS]; latest full 10,452,018-probe witness failed all six repetitions: 422 exceed 0.0001 mm, maximum error 0.002814613 mm. [Current refusal](carrier-current-mechanics-20261104.md#complete-pr-274-cuda-accuracy-witness-refused) | Retain double CPU/libigl distances as clearance reference. Isolate and correct query errors before another acceptance claim. |
-| 31 | Warp 1.18.0 CUDA FP64 energy audit | **E.** Every H7, H8 and H9 cell checked under both loads against distinct CPU algebra at abs 1e-14 N mm + rel 1e-12. H9 covers 19,199,981 cells on RTX 4000 Ada and RTX 5070. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md), [H9](carrier-h9-native-results-20261107.md) | Energy agreement does not validate row 30 or provide a GPU mechanical solve. Rebind and rerun for each new complete field. |
+| 31 | Warp 1.18.0 CUDA FP64 energy audit | **E.** Every H7, H8, H9 and H10 cell checked under both loads against distinct CPU algebra at abs 1e-14 N mm + rel 1e-12. H10 covers 20,083,501 cells on RTX 4000 Ada and RTX 5070; [actual H10 checks](carrier-h10-native-results-20261107.md). [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md), [H9](carrier-h9-native-results-20261107.md) | Energy agreement does not validate row 30 or provide a GPU mechanical solve. Rebind and rerun for each new complete field. |
 | 32 | cluster_compilot / ComPilot `362a080d…` | **A.** Optional C/OpenMP loop optimization after profiling; separate Python ≥3.14/ISL environment. [WP] | Identify a costly compatible loop and preserve dependence/numerical tests before a trial. No C#/PicoGK/Warp backend or carrier speedup credited. |
 | 33 | OpenMDAO, isolated [requirements lock][FL] | **S.** Analytical beam optimum and carrier admission replay; no native carrier optimization. [FR], [FK] | Connect real accepted solver outputs, bounded variables and failure handling after stable deterministic response. |
 | 34 | OpenTURNS, isolated [requirements lock][FL] | **S.** Fixed-seed analytical sensitivity control, not carrier response sensitivity. [FR], [FK] | Define reviewed parameter ranges and use complete solver outputs; do not invent probability distributions. |
@@ -188,16 +188,56 @@ unfinished.
 | 51 | ovstage 0.1.1.355824 / ovphysx 0.5.11 / OVRTX | **A.** Documented scene, rigid-body and RTX review alternatives [T]. | Only for a concrete assembly/contact/visual question; rendering and rigid motion do not replace FEA or build simulation. |
 | 52 | DVC 3.67.1 | **E.** Real carrier input recovery; later 24-file and 69-file fresh-cache restores with all SHA-256 checks. [Current recovery](carrier-current-mechanics-20261104.md#private-recovery-with-dvc); earlier separate Kali recovery [FK] | Archive the new complete retained scientific outputs in a new checkpoint; same-Mac restoration alone is not off-device backup. |
 | 53 | Git / GitHub / Make / Python / GitHub Actions | **E.** Versioned scripts, public scalar evidence, locks, catalogue and CI. [H], [T] | New docs/results remain reviewable; a merge or CI pass is separate from numerical convergence. |
-| 54 | Docker / bounded host runners / approved OpenBao–Vast wrapper | **E.** Isolated recorded runtimes, bounded native H7/H8/H9 execution, complete lossless recovery and verified teardown. Both seven-digit H9 instances were destroyed. Both separate 17-digit lanes now completed native/GPU checks, full recovery, verified instance deletion and their complete local algebraic audits. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md), [H9](carrier-h9-native-results-20261107.md) | Preserve each lease's ownership, finite budget/deadline and full recovery. Fresh refinement requires its own complete preparation and execution evidence. |
+| 54 | Docker / bounded host runners / approved OpenBao–Vast wrapper | **E.** Isolated recorded runtimes, bounded native H7/H8/H9 execution, complete lossless recovery and verified teardown. Both complete H10 instances were also destroyed and their absence verified; [H10 receipts](carrier-h10-native-results-20261107.md). Both seven-digit H9 instances were destroyed. Both separate 17-digit lanes now completed native/GPU checks, full recovery, verified instance deletion and their complete local algebraic audits. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md), [H9](carrier-h9-native-results-20261107.md) | Preserve each lease's ownership, finite budget/deadline and full recovery. Fresh refinement requires its own complete preparation and execution evidence. |
+
+## Newer software generation: separate candidate evidence
+
+A further 7 November review includes the open, stacked [PR #640](https://github.com/cluster2600/porscheparts/pull/640)
+at [`c06fbe29`](https://github.com/cluster2600/porscheparts/tree/c06fbe2943174739bfd18f445b3c7fae1976ef0a/containers/stack-20261105),
+which is separate from the main snapshots above. Its **38 replacement recipes**
+have native Linux build and offline CPU-check receipts. Its separate 44-row
+inventory still contains 34 built entries, eight pending entries, one blocked
+wrapper migration and one English-generation reference. The PR-head container
+index lists 79 recipes. These are different inventories; none replaces the
+54 numbered capability rows or proves current-carrier execution.
+
+The [generation review receipt](carrier-toolchain-coverage-20261106/stack-generation-review-20261107.json)
+records immutable source revisions and content hashes. The current carrier's
+geometry, solver, CUDA and process-runtime pins remain unchanged. JAX-FEM and
+the CAD-Recode companion are two additional optional trials outside the
+historical 54-row snapshot; neither receives carrier execution credit.
+
+| Candidate profile | Recorded check | Concrete carrier use and remaining check |
+|---|---|---|
+| Warp 1.19 / NumPy 2.5.4 / Python 3.15 | CPU box witness | Reuse the failed complete distance-query case with the original oracle and tolerance. CUDA execution and full-carrier accuracy are untested in this profile; the Warp 1.18 energy result is not inherited. |
+| build123d 0.13 / OCP 8; separate CadQuery 2.8 / OCP 7; CGAL 6.2.1; Gmsh 4.15.2; SALOME | Isolated native CPU checks and dependency closure | Possible geometry/meshing replacement, conditional on complete source, interface and group-preservation checks. No replacement carrier mesh is admitted. |
+| CalculiX 2.23 | Synthetic bar and heat checks | Possible separate solver comparison. The current 2.21 / 17-digit / PARDISO qualification and complete-field checks must be reproduced before changing the reference. |
+| JAX-FEM 0.0.12 / JAX 0.12.0.1 / PETSc-petsc4py 3.26.1 / Basix 0.11 | Nine-node Laplace and automatic-differentiation CPU witness | Optional thermal or sensitivity experiment after its material, load and activation inputs are defined. No carrier solve, CUDA result or upgrade of the historical GO-MELT runtime is established. |
+| CAD-Recode CAD companion | Synthetic STEP dimensions and independent CalculiX bar/heat checks | Optional editable-CAD trial from admissible inputs. No model weights, generated code or carrier reconstruction were exercised. |
+| COLMAP 4.2.1 / GLOMAP 1.2 / Blender 5.2.3 | CPU command-line/import checks | Potential new licensed, scaled image reconstruction; reconstruction quality and GPU execution remain unchecked. |
+| PrusaSlicer 2.9.7 | Synthetic cube produced 109,853 bytes of G-code | Optional polymer prototype route. This is not an LPBF support or metal-machine job. |
+| PhysicsNeMo 2.2.2; standalone OV runtimes; Content Agents 0.6.2; Kit 110.4.1 packaging | Separate CPU/runtime checks with their own dependency locks | Optional surrogate or visualization routes. Current-carrier training, RTX/streaming and new CUDA execution remain unverified; Content Agents retains its distinct older OV locks. |
+
+NativeCAD has two distinct records. The generation's installation receipt reports
+0.29 while its then-active connection still reported 0.26. The later
+[PR #635 synthetic readback](https://github.com/cluster2600/porscheparts/blob/f70401f7a1482bb627afaf4d7a7546d1f05a3336/docs/research/nativecad-029-synthetic-readback-20261107.md)
+observes a live 0.29 connection and separate STEP/Picopie witnesses. Its bridge
+volume is 35,909.6015625 mm³ versus 36,000.0004580915 mm³ for exported STL;
+general conversion equivalence and a current-carrier bridge are not established.
+[Issue #407](https://github.com/cluster2600/porscheparts/issues/407) remains open.
+This bounded review found no fVDB, cuDSS or AmgX execution evidence in those
+generation sources; none is credited here.
 
 ## What happens next
 
-The complete **H8→H9 comparison is 2.67262758% for gravity and 3.32555327%
-for combined loading**, using all retained seven-digit native fields. H7→H8 was
-**0.81168514% / 1.47583589%**, and H6→H7 was **2.65382807% / 3.25723437%**.
-The criterion is still **two successive complete-field energy increments below
-1% for each load case**. The broader H9 refinement reveals a larger correction;
-stabilization remains open. Unresolved pointwise peaks remain explicitly separate.
+The complete **H9→H10 comparison is 1.70005264% for gravity and 2.00898588%
+for combined loading**, using all retained seventeen-digit native fields.
+The [H10 dossier](carrier-h10-native-results-20261107.md) includes the actual
+figures, independent readbacks and verified destruction of both paid instances.
+The criterion remains **two successive complete-field energy increments strictly
+below 1% for each load case**. Stabilization remains open; unresolved pointwise
+peaks remain separate. Historical seven-digit H8→H9 increments were
+2.67262758% / 3.32555327%; those exports are labelled separately.
 
 ```mermaid
 flowchart TD
@@ -223,19 +263,17 @@ flowchart TD
 
 Concrete integration gaps, in order:
 
-1. **Execute and compare the admitted H10 mesh.** Both 17-digit H9 native cases,
-   full lossless recovery, CUDA energy checks and complete local algebraic
-   readbacks are complete. Their original source, load and material identities
-   remain bound. The expanded H10 selection reaches both unchanged indicator
-   targets; complete geometry and exact nesting pass for **5,039,930 vertices
-   and 20,083,501 cells**. All 135 protected cells remain unchanged. Execute both
-   new native fields, recover them completely and compare them with the admitted
-   17-digit H9 fields through the exact fraction map. The
-   [H9/H10 report](carrier-h9-native-results-20261107.md) retains the earlier
-   selection exhaustion and source checks. Selection coverage is not mechanical
-   convergence. Keep two successive full-field increments below 1% per load;
-   the unresolved gravity-node diagnostic introduces no new residual veto.
-   Historical seven-digit H8→H9 increments remain scoped to those exports.
+1. **Derive fresh H10 indicators and admit the next nested refinement.** Both
+   native cases, complete lossless recovery, CUDA FP64 energy checks and full
+   H9→H10 comparisons are complete. The admitted H10 geometry contains
+   **5,039,930 vertices and 20,083,501 cells**; all 135 protected cells remain
+   unchanged. Fresh face pairing requires **1,285,344,064 bytes**, and three
+   indicator arrays require **482,004,024 payload bytes**. Retain the unchanged
+   two-case marking target and separately admit the next complete field/output
+   capacities. Selection coverage is not mechanical convergence. Keep two
+   successive full-field increments below 1% per load; the unresolved
+   gravity-node diagnostic introduces no new residual veto. See the
+   [complete H10 results](carrier-h10-native-results-20261107.md).
 2. **Close the current geometry's additive preparation.** PySLM's current-source
    import, pose, all 1,034 part layers and every scan segment passed independent
    checks, including the near-vertex case and complete volume assessment.
@@ -246,7 +284,9 @@ Concrete integration gaps, in order:
    passes its reference case. The first current exact envelope, component 148,
    also passes independent topology, volume and listed-parent checks, with an
    actual three-view figure. Component 534 now also passes exact and unchanged
-   float64 checks, with its own figure and contact coverage still pending.
+   float64 checks, its own figure and all 45,462 exact-face contact witnesses.
+   Its first material generation stopped at the finite time bound with retained
+   exact receipts; full material admission remains pending.
    Exact GMP acceleration reproduces chart 0 through
    309 nested unions. The latest [sheet recovery](carrier-current-support-projection-20261107/component148-sheets-recovery.json)
    verifies **2,482 complete exact receipt occurrences**, both returned charts
@@ -258,7 +298,11 @@ Concrete integration gaps, in order:
    All 14 nonempty grid planes and both skin units now pass their complete
    planar predicates and independent readback: 5,119 grid triangles and 8,036
    skin triangles, with original arrays and mapping bounds preserved.
-   Complete exposure and support admission remain unfinished. PySLM's native
+   The complete 1,034-layer component 148 exposure calendar is now checked:
+   13 chronological unanchored events in each representation remain across
+   four layers of skin0. The original contact callback confirms all 515 affected
+   rational cuts lack positive-length band overlap. Exposure admission is rejected;
+   full support admission remains unfinished. PySLM's native
    [shell-to-laser route](carrier-current-support-projection-20261107.md#native-shell-to-laser-route)
    uses sliced scan segments; it does not require an invented normal wall
    thickness. Finite support solids remain a separate requirement if the chosen
