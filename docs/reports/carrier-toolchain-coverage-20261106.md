@@ -24,6 +24,15 @@ without merging it into the active calculation checkout. Sources are the
 carrier execution reports linked below. Current local H7/H8 and GO-MELT
 continuations are identified separately from that main snapshot.
 
+Rechecked on 7 November against main
+[`5efface17959068eee9de2bd80e5a876b4bc8c26`](https://github.com/cluster2600/porscheparts/commit/5efface17959068eee9de2bd80e5a876b4bc8c26):
+the toolchain, container index, architecture, free-tools and container trees
+have identical Git object identities. The engineering overview only changed
+two labels in the unrelated archived 964 study. No new carrier tool requirement
+was found in those definitions; the active calculation checkout was unchanged.
+The [refresh receipt](carrier-toolchain-coverage-20261106/main-refresh-20261107.json)
+records both revisions and the compared identities.
+
 **Denominator: 54 numbered capability rows**, covering those named services
 and the later carrier-specific additions. Closely coupled components share a
 row; Warp has three rows because its three contracts have different results.
