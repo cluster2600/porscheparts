@@ -22,8 +22,8 @@ full suite also runs about six times slower there.
 
 ## 2. Run the same checks as CI
 
-On Debian/Ubuntu, install Gmsh's native libraries first:
-`sudo apt-get install --no-install-recommends libgl1 libglu1-mesa`.
+On Debian/Ubuntu, install Gmsh's native libraries and the Mesa EGL renderer first:
+`sudo apt-get install --no-install-recommends libgl1 libglu1-mesa libegl1 libegl-mesa0`.
 The catalogue CI installs these before the Python requirements.
 
 ```bash
@@ -54,7 +54,8 @@ make check
   4.15.2 then enable 35 more checks: 5,902 tests pass with 138 skips, lowering
   the budget to 140. Python-FCL 0.7.0.11 enables three further native
   surface-contact and rotor-transform fixtures: 5,902 tests pass with 135 skips
-  and a budget of 137.
+  and a budget of 137. VTK 9.7.1 then enables eight more checks; the same
+  5,902 tests pass with 127 skips and a budget of 129.
   Five repair tests still require
   the separately pinned, patched PySLM runtime; Shapely alone cannot run them.
   Older WSL environments produced
@@ -74,7 +75,30 @@ of the same Cantera 3.2.0 version failed three exact report comparisons against
 the frozen F33 evidence, with differences in the last floating-point digits.
 The version string alone does not reproduce that image's arithmetic. The
 shared requirements therefore do not install it, and the frozen report and
-exact replay assertions remain unchanged.
+exact replay assertions remain unchanged. CI's `cycle-thermal-f33` job runs
+`make 917-cycle-thermal-f33-test` against the existing digest-pinned Linux
+image. All 11 tests, including the three exact-report comparisons, pass in
+that image; the native macOS installation is not an equivalent replay.
+
+### Separate CAD regression environment
+
+CadQuery 2.8.0 requires the OCP distribution pinned to VTK 9.6.2. The frozen
+917 surface renderer was recorded with VTK 9.7.1 and requires scene-hierarchy
+metadata absent in 9.6.2. Keep these runtimes separate; the historical renderer
+and its assertions are unchanged. The base environment supplies VTK 9.7.1.
+CI's `cad-regressions` job checks native
+geometry and STEP integrity in its own environment:
+
+```sh
+uv venv --python 3.12 .venv-check-cad
+uv pip install --python .venv-check-cad/bin/python -r requirements-check-cad.txt
+.venv-check-cad/bin/python -m unittest discover -s tests -p 'test_m64_g*.py' -v
+.venv-check-cad/bin/python -m unittest discover -s tests -p 'test_cad_recode_fresh.py' -v
+```
+
+These checks supplement the main suite; its skip count still describes the
+base environment. An analytic 2 × 3 × 4 mm native solid preflight prevents a
+missing CAD runtime from silently skipping the dedicated job's geometry tests.
 
 ## 3. Heavy jobs on a shared or WSL host
 

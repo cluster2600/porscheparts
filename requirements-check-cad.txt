@@ -1,0 +1,14 @@
+# Keep the full OCP distribution out of the headless base environment:
+# the two distributions install overlapping OCP module paths.
+numpy==2.2.6
+scipy==1.17.1
+matplotlib==3.10.8
+trimesh==5.1.0
+rtree==1.4.1
+networkx==3.7
+usd-core==25.11
+# CadQuery's OCP distribution requires VTK 9.6.2; keep it separate from
+# historical renderer checks recorded with VTK 9.7.1.
+cadquery==2.8.0
+cadquery-ocp==7.9.3.1.1
+vtk==9.6.2
