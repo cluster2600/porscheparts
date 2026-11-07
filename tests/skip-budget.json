@@ -1,5 +1,5 @@
 {
-  "max_skips": 127,
+  "max_skips": 123,
   "measured": "2026-11-05, make check in a venv mirroring validate.yml (requirements-check.txt), clean agent worktree: 5203 tests, 415 skipped",
   "reduced": "2026-11-07: declared trimesh 5.1.0, rtree 1.4.1 and networkx 3.7 enable synthetic geometry checks; 935 skips fall from 33 to 11 and full-suite skips from 414 to 336, so lower the budget by 78",
   "shapely_reduced": "2026-11-07: Shapely 2.2.0 enables constrained-triangulation and polygon checks; the full suite passes 5902 tests with 252 skips, 84 fewer than the preceding 336. Five repair tests explicitly retain their separate patched-PySLM requirement; keep two skips of headroom.",
@@ -8,5 +8,6 @@
   "usd_gmsh_reduced": "2026-11-07: USD 25.11 and Gmsh 4.15.2 enable 35 more scene and meshing checks; all 5902 tests pass with 138 skips. Keep two skips of headroom. Cantera remains in its dedicated image because native macOS arithmetic does not reproduce three frozen reports exactly.",
   "fcl_reduced": "2026-11-07: python-fcl 0.7.0.11 enables three native surface-contact and rotor-transform fixtures; all 5902 tests pass with 135 skips. Keep two skips of headroom.",
   "vtk_reduced": "2026-11-07: VTK 9.7.1 enables eight native surface/render checks; all 5902 tests pass with 127 skips. Keep two skips of headroom. CadQuery/VTK 9.6.2 and the exact F33 Cantera image run in separate CI jobs; their checks are not subtracted from this base-environment skip count.",
-  "jsonschema_reduced": "2026-11-07: jsonschema 4.26.0 enables the two source/twin schema cross-checks in the shared environment; lower the skip budget by two. All 14 source and eight twin validator tests pass without skips."
+  "jsonschema_reduced": "2026-11-07: jsonschema 4.26.0 enables the two source/twin schema cross-checks in the shared environment; lower the skip budget by two. All 14 source and eight twin validator tests pass without skips.",
+  "boolean_formatter_reduced": "2026-11-07: Manifold3D 3.5.4 enables three Boolean/clearance controls, and Beautiful Soup 4.15.0 enables scientific exponent/subscript preservation. All 15 focused tests pass without skips; lower the shared budget by four. Dedicated PyVista and Warp coverage is not subtracted from this base count."
 }

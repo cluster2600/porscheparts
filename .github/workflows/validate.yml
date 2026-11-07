@@ -86,14 +86,19 @@ jobs:
           tar -xjf "$RUNNER_TEMP/micromamba.tar.bz2" -C "$RUNNER_TEMP" bin/micromamba
           MAMBA_ROOT_PREFIX="$RUNNER_TEMP/mamba" "$RUNNER_TEMP/bin/micromamba" --no-rc create -y -p "$RUNNER_TEMP/usd" --file requirements-check-usd-linux-64.txt
           echo "$RUNNER_TEMP/usd/bin" >> "$GITHUB_PATH"
+      - name: Add the shared surface inspection dependencies
+        run: |
+          python -m pip install --only-binary=:all: --no-deps trimesh==5.1.0 scipy==1.17.1
+          python -m pip check
       - name: Check native USD and shader registry
         run: |
           usdchecker --help
-          python -c "import numpy, pyvista; from pxr import Usd, Sdr; assert Usd.GetVersion() == (0, 26, 8); assert Sdr.Registry().GetShaderNodeByIdentifier('UsdPreviewSurface')"
+          python -c "import numpy, pyvista, trimesh, scipy; from pxr import Usd, Sdr; assert Usd.GetVersion() == (0, 26, 8); assert Sdr.Registry().GetShaderNodeByIdentifier('UsdPreviewSurface')"
       - name: Run bundle and framing regressions
         run: |
           python -m unittest discover -s tests -p 'test_964_omniverse_bundle.py' -v
           python -m unittest discover -s tests -p 'test_964_review_framing.py' -v
+          python -m unittest discover -s tests -p 'test_bionic_turbo_f1_surface.py' -v
 
   carrier-pyslm:
     runs-on: macos-15
@@ -185,10 +190,13 @@ jobs:
       - name: Install the retained hash-pinned Warp runtime
         run: |
           python -m pip install --only-binary=:all: --require-hashes --no-deps -r containers/warp-geometry.requirements.txt
+          python -m pip install --only-binary=:all: --no-deps trimesh==5.1.0
           python -m pip check
-          python -c "from importlib.metadata import version; import warp, numpy; assert version('warp-lang') == '1.18.0'; assert numpy.__version__ == '2.2.6'"
+          python -c "from importlib.metadata import version; import warp, numpy, trimesh; assert version('warp-lang') == '1.18.0'; assert numpy.__version__ == '2.2.6'; assert trimesh.__version__ == '5.1.0'"
       - name: Run native CPU dispatch and independent oracle tests
-        run: python -m unittest discover -s tests -p 'test_warp_geometry_pilot.py' -v
+        run: |
+          python -m unittest discover -s tests -p 'test_warp_geometry_pilot.py' -v
+          PYTHONPATH=tests python -m unittest -v test_fan_airflow_sweep.FanSweepTests.test_warp_ray_kernel_has_known_hit_and_miss
 
   rear-panel-kicad:
     runs-on: ubuntu-24.04

@@ -235,6 +235,21 @@ storage. Recipes, dependency locks, engine contracts and assertions remain
 unchanged. Constructing these networks and running synthetic/fake-executor
 controls does not execute or qualify an engine campaign.
 
+### Boolean geometry, scientific notation and remaining surface controls
+
+The shared environment includes Manifold3D 3.5.4 for the three synthetic
+intersection/clearance checks and Beautiful Soup 4.15.0 with SoupSieve 4.0.1 for
+preserving scientific exponents and chemical subscripts. All 15 focused
+packaging, clearance and grounded-source tests pass without skips; no model
+training is involved. These four enabled checks lower the base skip budget to
+123.
+
+The isolated USD/PyVista job adds the shared Trimesh 5.1.0 and SciPy 1.17.1
+versions without replacing its locked native packages, then checks dependencies
+and runs nine synthetic fluid-boundary tests. The Warp CPU job adds Trimesh
+5.1.0 and exercises the fan ray kernel against an independently known box hit
+and miss. These are geometry/software controls, not flow or fitment validation.
+
 ## 3. Heavy jobs on a shared or WSL host
 
 A voxel field, mesher or solver that outgrows memory can take the whole WSL VM
