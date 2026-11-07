@@ -147,6 +147,21 @@ libigl; this job does not claim complete carrier coverage. The retained real
 local carrier evidence is also absent on CI. Synthetic support tests do not
 admit the rejected historical carrier preparation or authorize a machine build.
 
+### Separate free-tools Python controls
+
+CI's `free-tools-python` job reuses `benchmarks/free-tools/requirements.lock.txt`
+with Python 3.12. It runs `test_free_tools.py` on every validation run, including
+the native DVC two-store restore, corruption, missing-store and interrupted
+transfer controls, plus OpenMDAO/OpenTURNS analytical and infeasible-case tests.
+Dependency and import preflights prevent those native tests from silently
+skipping. DVC telemetry and OpenMDAO report generation are disabled.
+
+These tests use temporary synthetic data. They do not restore private archives,
+contact Kali or publish artifacts. CloudCompare remains a separate native-image
+control; the existing path-filtered `free-tools-native.yml` workflow retains its
+broader acceptance, geometry-image and architecture-diagram checks. The package
+lock and historical receipts are unchanged.
+
 ## 3. Heavy jobs on a shared or WSL host
 
 A voxel field, mesher or solver that outgrows memory can take the whole WSL VM
