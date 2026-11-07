@@ -140,6 +140,46 @@ jobs:
       - name: Run synthetic storage and study controls
         run: python -m unittest discover -s tests -p 'test_free_tools.py' -v
 
+  carrier-cad:
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          architecture: arm64
+      - name: Install and verify the frozen carrier CAD base
+        run: >-
+          python parts/993-eng-carrier-0001/source/design-20261016/setup_cad_base.py
+          --python "$(command -v python)" --output "$RUNNER_TEMP/carrier-cad"
+      - name: Add Gmsh and revalidate the pinned CAD base
+        run: |
+          "$RUNNER_TEMP/carrier-cad/bin/python" -m pip install --no-deps gmsh==4.15.2
+          "$RUNNER_TEMP/carrier-cad/bin/python" -m pip check
+          python parts/993-eng-carrier-0001/source/design-20261016/setup_cad_base.py --validate-only --python "$RUNNER_TEMP/carrier-cad/bin/python" --output "$RUNNER_TEMP/carrier-cad-post-gmsh"
+          "$RUNNER_TEMP/carrier-cad/bin/python" -c "import gmsh; assert gmsh.__version__ == '4.15.2'"
+      - name: Run native root-blend and CAD-section controls
+        run: >-
+          "$RUNNER_TEMP/carrier-cad/bin/python" -B -m unittest
+          discover -s tests -p 'test_carrier_root*.py' -v
+
+  warp-cpu:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install the retained hash-pinned Warp runtime
+        run: |
+          python -m pip install --only-binary=:all: --require-hashes --no-deps -r containers/warp-geometry.requirements.txt
+          python -m pip check
+          python -c "from importlib.metadata import version; import warp, numpy; assert version('warp-lang') == '1.18.0'; assert numpy.__version__ == '2.2.6'"
+      - name: Run native CPU dispatch and independent oracle tests
+        run: python -m unittest discover -s tests -p 'test_warp_geometry_pilot.py' -v
+
   cycle-thermal-f33:
     runs-on: ubuntu-latest
     timeout-minutes: 10

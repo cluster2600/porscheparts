@@ -56,6 +56,8 @@ make check
   surface-contact and rotor-transform fixtures: 5,902 tests pass with 135 skips
   and a budget of 137. VTK 9.7.1 then enables eight more checks; the same
   5,902 tests pass with 127 skips and a budget of 129.
+  Declaring `jsonschema==4.26.0` enables the two source/twin schema cross-checks
+  locally as well as in CI and lowers the budget by two, to 127.
   Five repair tests still require
   the separately pinned, patched PySLM runtime; Shapely alone cannot run them.
   Older WSL environments produced
@@ -161,6 +163,24 @@ contact Kali or publish artifacts. CloudCompare remains a separate native-image
 control; the existing path-filtered `free-tools-native.yml` workflow retains its
 broader acceptance, geometry-image and architecture-diagram checks. The package
 lock and historical receipts are unchanged.
+
+### Carrier CAD and retained Warp CPU controls
+
+CI's `carrier-cad` job reuses the macOS ARM64/Python 3.10 carrier installer
+`parts/993-eng-carrier-0001/source/design-20261016/setup_cad_base.py`. Its
+45-wheel hash lock, native OCCT binary hash, analytic bored-box checks and STEP
+round-trip remain unchanged. Gmsh 4.15.2 is added separately, then the installer
+revalidates the original pinned packages before both `test_carrier_root*.py`
+tests run. Both tests pass locally with this combination; they distinguish
+tangent from sharp joins and inspect a known cylinder's CAD/mesh section.
+
+CI's `warp-cpu` job reuses the Linux AMD64 hash-pinned Warp 1.18.0 requirements
+from `containers/warp-geometry.requirements.txt`. It runs the pilot's independent
+tests on native Linux, including actual CPU dispatch against an analytic box
+oracle. The local AMD64 emulation attempt failed kernel compilation because its
+reported CPU target `athlon-xp` was unsupported; that failure is not a passing
+CPU result. This job covers the retained runtime, not a Warp upgrade or CUDA
+validation. The source, image recipe and lock remain unchanged.
 
 ## 3. Heavy jobs on a shared or WSL host
 
