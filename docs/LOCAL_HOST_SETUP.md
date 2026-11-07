@@ -52,7 +52,9 @@ make check
   252 skips. Headless OCP 7.9.3.1.1 then enables 79 more native geometry
   checks: the same 5,902 tests pass with 173 skips. USD 25.11 and Gmsh
   4.15.2 then enable 35 more checks: 5,902 tests pass with 138 skips, lowering
-  the budget to 140.
+  the budget to 140. Python-FCL 0.7.0.11 enables three further native
+  surface-contact and rotor-transform fixtures: 5,902 tests pass with 135 skips
+  and a budget of 137.
   Five repair tests still require
   the separately pinned, patched PySLM runtime; Shapely alone cannot run them.
   Older WSL environments produced
