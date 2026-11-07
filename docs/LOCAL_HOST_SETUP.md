@@ -45,7 +45,9 @@ make check
   and surface-distance checks. Adding them enabled 22 existing 935 tests and
   removed 78 skips across the full suite. Shapely 2.2.0 additionally enables
   polygon coverage and constrained-triangulation checks: 5,902 tests pass with
-  252 skips, lowering the CI budget to 254. Five repair tests still require
+  252 skips. Headless OCP 7.9.3.1.1 then enables 79 more native geometry
+  checks: the same 5,902 tests pass with 173 skips, lowering the budget to 175.
+  Five repair tests still require
   the separately pinned, patched PySLM runtime; Shapely alone cannot run them.
   Older WSL environments produced
   416–421 skips; refresh dependencies before comparing with the current budget.
