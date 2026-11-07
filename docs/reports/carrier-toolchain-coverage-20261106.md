@@ -179,7 +179,7 @@ remain unfinished.
 | 51 | ovstage 0.1.1.355824 / ovphysx 0.5.11 / OVRTX | **A.** Documented scene, rigid-body and RTX review alternatives [T]. | Only for a concrete assembly/contact/visual question; rendering and rigid motion do not replace FEA or build simulation. |
 | 52 | DVC 3.67.1 | **E.** Real carrier input recovery; later 24-file and 69-file fresh-cache restores with all SHA-256 checks. [Current recovery](carrier-current-mechanics-20261104.md#private-recovery-with-dvc); earlier separate Kali recovery [FK] | Archive the new complete retained scientific outputs in a new checkpoint; same-Mac restoration alone is not off-device backup. |
 | 53 | Git / GitHub / Make / Python / GitHub Actions | **E.** Versioned scripts, public scalar evidence, locks, catalogue and CI. [H], [T] | New docs/results remain reviewable; a merge or CI pass is separate from numerical convergence. |
-| 54 | Docker / bounded host runners / approved OpenBao–Vast wrapper | **E.** Isolated recorded runtimes, bounded native H7/H8/H9 execution, complete lossless recovery and verified teardown. Both H9 instances were destroyed; a fresh provider inventory was empty. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md), [H9](carrier-h9-native-results-20261107.md) | Preserve each lease's ownership, finite budget/deadline and full recovery. This audit itself makes no cloud or secret changes. |
+| 54 | Docker / bounded host runners / approved OpenBao–Vast wrapper | **E.** Isolated recorded runtimes, bounded native H7/H8/H9 execution, complete lossless recovery and verified teardown. Both instances from the completed seven-digit H9 pair were destroyed, and its post-cleanup provider inventory was empty. The separate [17-digit H9 report](carrier-h9-native-results-20261107.md) records the newly launched bounded gravity lane. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md), [H9](carrier-h9-native-results-20261107.md) | Preserve each lease's ownership, finite budget/deadline and full recovery. This audit itself makes no cloud or secret changes. |
 
 ## What happens next
 
@@ -202,7 +202,7 @@ flowchart TD
     CONV -->|"No: continue admitted refinement"| MESH
     CONV -->|"Yes: deterministic reference"| OPT["OpenMDAO / OpenTURNS<br/>new variants and declared ranges"]
     OPT --> CAD
-    CHECK --> AM["Current-revision PySLM<br/>pose, complete supports, all layers and vectors"]
+    CHECK --> AM["Current-revision PySLM<br/>pose, all part layers and vectors checked; supports pending"]
     AM --> PROCESS["Declared process study<br/>Adamantine or GO-MELT; local alternatives separately"]
     PROCESS --> TM["Checked thermal transfer<br/>thermomechanical response and refinement"]
     AM --> JOB["Selected-machine build package<br/>geometry, supports, settings and checksums"]
@@ -222,9 +222,11 @@ Concrete integration gaps, in order:
    certified unrounded residual. The [four-site source patch and Mac controls](carrier-h9-native-results-20261107.md)
    establish a bounded 17-digit route; the Linux/PARDISO small-control candidate
    now also passes. Its ordinary packet and actual pinned-image quadratic
-   control now pass independent readback. Freshly admit each complete
-   native-field receiver and controller before rental. Reassess
-   the same H9 geometry before selecting H10; keep the unchanged convergence rule.
+   control now pass independent readback. The bounded 17-digit gravity lane
+   046 has launched after receiver/controller admission; complete recovery and
+   the higher-precision reassessment remain pending. Combined loading stays
+   held until gravity recovery and verified predecessor cleanup. Reassess the
+   same H9 geometry before selecting H10; keep the unchanged convergence rule.
 2. **Close the current geometry's additive preparation.** PySLM's current-source
    import, pose, all 1,034 part layers and every scan segment passed independent
    checks, including the near-vertex case and complete volume assessment.
