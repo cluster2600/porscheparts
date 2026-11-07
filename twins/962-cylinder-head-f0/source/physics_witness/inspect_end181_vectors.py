@@ -128,12 +128,14 @@ if __name__ == '__main__':
     assert not out.exists()
     result = dict(scope='saved_END181_diagnostic_only', phase_ids=['lpbf_build','lpbf_release'],
         parser_sha256=sha(PARSER.read_bytes()), script_sha256=sha(Path(__file__).read_bytes()),
-        python=sys.version, physical_qualification=False, root_cause_established=False,
+        python=sys.version, python_executable_sha256=sha(Path(sys.executable).read_bytes()),
+        argv=sys.argv, physical_qualification=False, root_cause_established=False,
         engineering_phase_promotion=False, cases={})
     for label, name in [
         ('two_updates','cp1-oneway-cooling-release-richardson2-observer004-native-measurement-004'),
         ('three_updates','cp1-oneway-cooling-release-richardson3-observer004-native-measurement-001')]:
         result['cases'][label] = inspect(name)
         result['cases'][label]['hold_projection'] = hold_projection(ROOT/name)
-    out.write_text(json.dumps(result, indent=2, allow_nan=False)+'\n')
+    with out.open('x') as stream:
+        stream.write(json.dumps(result, indent=2, allow_nan=False)+'\n')
     print('Inspected two saved captures; no solver execution or engineering acceptance')
