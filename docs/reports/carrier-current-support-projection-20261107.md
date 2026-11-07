@@ -417,6 +417,69 @@ binds these observations and the pending exact input. The next continuation can
 reuse the complete native-call prefix, including the grid calls. Finite support
 thickness, numerical connectivity and attachment remain unfinished.
 
+### Both charts and the complete sheet arrays recovered
+
+![Actual retained grid and peripheral sheets in three measured views](../media/carrier-current148-sheets-20261107.png)
+
+The next continuation reused all **2,235 complete calls** and completed **247
+additional exact unions**. Both peripheral charts returned, and the native
+assembly saved **15,111 vertices and 13,155 triangles**. The image uses all of
+these unchanged triangles. Teal identifies the 14 grid-plane runs; orange
+identifies the two peripheral sheet runs. The top view draws projected edges
+because vertical, zero-thickness sheets have no filled top-view area.
+
+The run then refused a duplicated JSON export: the complete chart-1 receipt
+already occupied **429,435,976 bytes**, and embedding it again in
+`geometry-assessment.json` exceeded that file's unchanged **256 MiB** limit.
+The original chart receipt and compressed sheet arrays were already saved.
+This was an export refusal after geometry generation, not an interrupted union.
+The terminal remains a failure: **618.768 seconds**, **3,340,746,752 bytes** peak
+RSS, return code 1, child reaped and exact owned group absent.
+
+A separate readback verified **7,881 source pins**, all **533 scientific output
+files**, the **2,482 native-call occurrences**, both complete chart captures and
+every value of all four sheet arrays. No union remains pending. It also verified
+that chart 0's full native return equals its retained reference. The
+[sheet-recovery receipt](carrier-current-support-projection-20261107/component148-sheets-recovery.json)
+binds the refusal, recovered data, complete readback and inspected image.
+
+Numerical connectivity was after the failed export and did not run. The full
+grid/contact report existed only in memory and was not retained; its absence is
+explicit. The next step reuses the saved arrays and hash-referenced chart
+records, rather than duplicating the large receipt or recalculating the unions.
+These are open sheets with zero modeled thickness. Complete band admission,
+support solids and attachment remain unfinished.
+
+### Saved sheets: numerical connectivity independently checked
+
+The saved arrays now pass the existing numerical connectivity calculation,
+without another geometry or union calculation. Their two separated height
+intervals define **30 measured face runs**: 28 grid runs and the two peripheral
+skins. Every original triangle belongs to exactly one run, with unchanged
+coordinates, face IDs and ordering. These runs are an observed partition;
+they do not reconstruct the missing native group report.
+
+All **30 runs are internally connected by exact shared edges**. The calculation
+then records **28 positive exact triangle-intersection witnesses**, forming an
+acyclic forest with **two connected components**. Each component reaches its
+own retained skin's positive upper and lower contact witnesses. Grid contact
+evidence remains unknown; the calculation credits only the selected skin
+witnesses, without treating missing grid evidence as measured absence.
+
+The guarded calculation returned zero in **11.541 seconds**, with
+**1,488,896,000 bytes** peak RSS and verified cleanup. Independent readback in
+**6.833 seconds** rechecked all **7,911 source pins**, original arrays, full face
+partition, internal adjacency, every returned exact intersection, the forest
+and both chosen contact rows. The
+[connectivity receipt](carrier-current-support-projection-20261107/component148-sheet-connectivity.json)
+records that narrower result. The image above shows the earlier recovery
+checkpoint; this subsequent check closes its pending numerical connectivity.
+
+This result uses the recorded skin contact representation. Complete interface
+enumeration, band and layer-exposure admission, finite support solids and
+part/plate attachment remain separate work. No contact coordinate, missing
+metadata or solid thickness was invented.
+
 ```mermaid
 flowchart TB
     INPUT["Original roofs, checked mask and complete part"] --> EXACT["Exact prism union, mask intersection and part subtraction"]
@@ -428,8 +491,10 @@ flowchart TB
     CHECK --> CONTACT["Current support parent mapping and contact checks"]
     CONTACT --> SECTION["Component 148: two diagnostic intervals checked"]
     CONTACT --> FULL["Component 148: all exact faces covered by area witnesses or vertical exclusion"]
-    FULL --> UNIONS["Exact support unions: 2,235 complete receipts retained; chart 1 incomplete"]
-    UNIONS --> MATERIAL["Rounded contacts and generated support attachment: pending"]
+    FULL --> UNIONS["Exact support unions: 2,482 complete receipts; both charts returned"]
+    UNIONS --> SHEETS["15,111 vertices / 13,155 triangles recovered and checked"]
+    SHEETS --> GRAPH["Two numerical components: exact connectivity witnesses checked"]
+    GRAPH --> MATERIAL["Complete exposure, finite support solids and attachment: pending"]
     CONTROL["Reference case: exact and export chain passed"] -.-> EXACT
     CONTROL -.-> CHECK
     CURRENT["Current component 148: exact envelope and all listed parents checked"] -.-> EXACT

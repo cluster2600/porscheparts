@@ -106,7 +106,8 @@ The original acceptances check net force/moment and integrated energies.
 The additional complete free-node force assembly and displacement-to-stress
 audit below finished for both loads. At that seven-digit checkpoint, **H10
 selection was held for a higher-precision H9 output check**. Both subsequent
-17-digit reassessments are now complete; fresh marking precedes H10 selection.
+17-digit reassessments and fresh marking are now complete; the first bounded
+H10 selection and its retained checkpoint are recorded below.
 No peak cause or singularity exponent is inferred.
 The [targeted audit receipt](carrier-h9-native-results-20261107/peak-audit.json)
 records the existing acceptance scope, lineage and source hashes. The boundary
@@ -459,9 +460,39 @@ The H10 source intake now admits these actual fields and vectors, preserving
 the current geometry, boundary/load identities and **135 protected cells**.
 The [marking receipt](carrier-h9-native-results-20261107/print17-marking.json)
 records file/array hashes, complete readback, source intake and cleanup.
-The next step is bounded H10 candidate-domain and local-operator qualification,
-then a separately reviewed empty-state selection. These indicators guide
+The subsequent bounded qualification and first H10 selection are recorded
+below. These indicators guide
 refinement; they are not a global error bound or a spatial-convergence result.
+
+### Qualified H10 selection: complete checkpoint retained
+
+The actual candidate screen covers **756,943 distinct seed cells** and
+**1,857,970 candidate edges**, using the same bounded 524,288 seeds per load.
+The local production evaluator matches all **117 independently probed edge
+outcomes**, including 14 admissible cases; the exclusion and exact-cavity
+refusal controls pass. Candidate indicator coverage is not proof that a
+disjoint feasible selection can reach its target.
+
+Starting from empty state, the selector retained **84,570 selected edges**,
+including **7,870 non-midpoint fractions**, and **483,116 disjoint parent cells**.
+All 135 protected cells remain untouched. Its unchanged 1,800-second guard
+requested a graceful checkpoint; the worker returned 75 after **1,803.873
+seconds** including cleanup, with **2,437,447,680 bytes** peak RSS and both owned
+processes absent.
+
+Independent complete-vector summation gives **48.44257765% gravity**,
+**48.44258500% combined** and **48.44258197% joint indicator coverage**.
+These fractions describe the refinement indicator selected, not calculation
+progress or a convergence error. They remain below the unchanged **50% per-load
+selection target**. No H10 proposal, assembled mesh or response is admitted.
+
+The complete **79,175,711-byte checkpoint** retains selected stars, exact
+fractions, attempted edges, refusal counts and traversal positions. Independent
+readback found no lost unsaved state. The
+[qualification and checkpoint receipt](carrier-h9-native-results-20261107/h10-selector-checkpoint.json)
+records the actual bounds, hashes and recount. Continuation must restore this
+same source and domain in a fresh output directory; it changes neither the
+selection target nor the two-successive-below-1% convergence criterion.
 
 ## Reproduction and next numerical step
 
@@ -475,9 +506,10 @@ binds both images to the actual results and script.
 The completed marking pass qualified the **1,228,798,784-byte face buffer**
 required by H9, exceeding the historical 1.2 GB bound, and used both complete
 traction-jump fields from the seven-digit exports. Both higher-precision audits
-and fresh two-case 17-digit marking are now complete. H10 source intake passed;
-bounded candidate-domain and local-operator qualification precede H10 selection
-and exact nesting.
+and fresh two-case 17-digit marking are now complete. H10 source intake,
+bounded candidate-domain and local-operator qualification passed. The first
+selection retained the complete checkpoint above; same-domain continuation
+precedes a completed proposal, assembled geometry and exact nesting.
 A universal zero-residual certificate is not an added requirement.
 Correction-energy localization remains a separate diagnostic.
 Before any next rental, freshly admit
@@ -499,8 +531,9 @@ flowchart TD
     CAP --> REPLAY["Both 17-digit complete algebraic reassessments: complete"]
     REPLAY --> MARK["Fresh two-case 17-digit marking and full readback: complete"]
     MARK --> INTAKE["H10 source intake: admitted"]
-    INTAKE --> QUAL["Next: bounded candidate-domain and local-operator qualification"]
-    QUAL --> V["After qualification: H10 common refinement and exact nesting"]
+    INTAKE --> QUAL["Bounded candidate domain and local operator: passed"]
+    QUAL --> SELECT["H10 selection: checkpoint retained; 50% target pending"]
+    SELECT --> V["Next: completed proposal, H10 geometry and exact nesting"]
     V --> NEXT["Next native responses and complete comparison"]
     NEXT --> S
     C --> FIG["Actual figures and scalar/hash receipts"]

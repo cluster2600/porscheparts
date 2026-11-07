@@ -114,9 +114,43 @@ The [public replay receipt](carrier-current-am-full-20261107/public-replay.json)
 binds the complete comparison, actual workflow `verify`, source/runtime pins,
 terminals and retained first readback refusal. This closes reproducibility from
 the public recipe **on the recorded Mac runtime with the explicit private
-inputs**. Fresh installation and relocation remain separate work. The frozen
+inputs**. This complete replay used the original package paths. The frozen
 recipe files retain their pre-execution description; this report records the
 subsequent actual result.
+
+### Same-Mac package relocation: bounded checkpoint
+
+A separate private copy now preserves **10,198 package files and 407,473,634
+bytes** with identical paths relative to the package root, hashes, sizes and
+permissions. The interpreter and software versions are unchanged. The initial
+copy refused differing Finder metadata; that refusal remains intact. A separate
+readback accounts for the exact metadata paths and verifies every software file,
+with all copied bytes counted against the original 512 MiB limit.
+
+After 24 preparatory identity/path checks passed, the existing bounded controls
+passed using the relocated package tree in **79.638 seconds**, with
+**4,453,384,192 bytes** peak sampled group RSS. They include 17 storage refusals,
+10 arithmetic refusals, three native-image refusals and an actual
+interrupted-stage cleanup control. The one spawned layer-517 calculation
+reproduced the original NPZ
+byte for byte: all **seven arrays, 1,932,808 bytes**, are identical. Its 23
+boundaries, 13,813 hatch segments and 70,340 contour segments passed the unchanged
+native and independent domain audits. The numerical child was reaped and all
+owned processes were absent at independent readback.
+
+The parent actually checked imported module origins and loaded native-image
+identities against the relocated tree, rejecting the old package prefix.
+The unchanged spawned worker inherits that admitted import path and returned
+the identical arrays, but does not emit its own module-path roster. A late
+read-only process inspection found it already absent; no direct worker-path
+telemetry is claimed.
+
+The [relocation checkpoint receipt](carrier-current-am-full-20261107/runtime-relocation.json)
+binds the copy, source identities, terminal and independent array readback.
+This establishes a bounded **package-copy relocation on the same Mac**. A fresh
+dependency installation, another platform, interpreter relocation and a complete
+1,034-layer replay from the relocated tree remain untested. No original recipe,
+source geometry, numerical parameter or previous receipt was changed.
 
 ```mermaid
 flowchart TB
