@@ -3,7 +3,7 @@
   "schema_version": "1.0.0",
   "register_id": "REG-993-SOURCE-CLASSIFICATION",
   "generation": "993",
-  "updated_on": "2026-11-05",
+  "updated_on": "2026-11-07",
   "rules": [
     "Model years are recorded only from text already present in the source record (title, coverage.variants or notes), quoted verbatim; nothing is inferred from the generation alone.",
     "Every availability observation is dated and names the channel it was observed on. It describes that channel on that day, not the market.",
@@ -350,6 +350,26 @@
     }
   ],
   "sources": [
+    {
+      "source_id": "SRC-PORSCHE-993-WHEEL-CERTIFICATE-62-20",
+      "model_years": {
+        "from": 1994,
+        "to": 1998,
+        "stated_in": "coverage.variants",
+        "quote": "variant_specific_1994_to_1998",
+        "note": "Model-year scope of the fixed July 2021 certificate. Wheel, tyre, reinforcement and steering-rack-brace applicability remains variant-specific; this is not a claim of current approval."
+      }
+    },
+    {
+      "source_id": "SRC-MEZGER-AIRCOOLED-GT2-ROAD-JAN-2019",
+      "model_years": {
+        "from": 1998,
+        "to": 1998,
+        "stated_in": "notes",
+        "quote": "Manufacturer retrospective identifies the 430 hp road-car versions and the 450 hp model-year 1998 update.",
+        "note": "This entry covers only the explicitly dated 450 hp road-car update. It does not assign model years to the earlier 430 hp versions or to racing variants."
+      }
+    },
     {
       "source_id": "SRC-PORSCHE-PET-993",
       "model_years": {
