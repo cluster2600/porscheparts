@@ -480,6 +480,39 @@ enumeration, band and layer-exposure admission, finite support solids and
 part/plate attachment remain separate work. No contact coordinate, missing
 metadata or solid thickness was invented.
 
+### First retained skin: independent exact band containment
+
+The existing **CGAL 6.2.1 Epeck** executable now independently checks the first
+skin's planar material against the union of its **4,254 original band
+primitives**. Every source coordinate and primitive occurrence was preserved;
+the original rounded shift endpoints and exact plate clipping are unchanged.
+The check uses the skin's intrinsic planar chart, before its mapping to the
+saved three-dimensional sheet.
+
+The material-minus-band difference is **exactly empty**. The opposite
+difference has area approximately **0.003464148740 mm²**: material containment
+passes, while equality to the whole allowed band is explicitly not claimed.
+Both inputs are finite closed polygon sets with positive-area material. For
+these inputs, an empty regularized difference establishes boundary containment
+as well as interior containment. There is no geometric tolerance in this
+decision.
+
+Controls compared **12 original cases** with the separate Fraction algorithm,
+plus **five further cases** covering holes, concavity and a positive outside
+area of exactly `1 / 2^60` mm². The original empty-authority case is explicitly
+excluded from native parity and refused by the unchanged reader. All **11
+intended refusal cases** passed. The actual chart check completed in **10.487
+seconds**, including supervision, with **286,965,760 bytes** peak RSS and the
+owned process group absent. The native set operation took **0.959 seconds**.
+
+Independent readback checked all **2,934 source pins**, every original material
+and domain coordinate, and all primitive coordinates against the retained
+primitive hash. The [exact-band receipt](carrier-current-support-projection-20261107/component148-chart0-global-band.json)
+binds those results. This is a separate exact-set witness; it neither reproduces
+the old per-triangle subtraction log nor issues its historical admission seal.
+Complete component admission still needs the other units, construction and
+contact checks, and correspondence with the saved three-dimensional sheets.
+
 ```mermaid
 flowchart TB
     INPUT["Original roofs, checked mask and complete part"] --> EXACT["Exact prism union, mask intersection and part subtraction"]
@@ -494,7 +527,9 @@ flowchart TB
     FULL --> UNIONS["Exact support unions: 2,482 complete receipts; both charts returned"]
     UNIONS --> SHEETS["15,111 vertices / 13,155 triangles recovered and checked"]
     SHEETS --> GRAPH["Two numerical components: exact connectivity witnesses checked"]
+    SHEETS --> BAND["First skin: exact planar band containment checked"]
     GRAPH --> MATERIAL["Complete exposure, finite support solids and attachment: pending"]
+    BAND --> MATERIAL
     CONTROL["Reference case: exact and export chain passed"] -.-> EXACT
     CONTROL -.-> CHECK
     CURRENT["Current component 148: exact envelope and all listed parents checked"] -.-> EXACT

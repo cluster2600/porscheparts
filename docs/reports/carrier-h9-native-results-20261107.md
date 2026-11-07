@@ -494,6 +494,40 @@ records the actual bounds, hashes and recount. Continuation must restore this
 same source and domain in a fresh output directory; it changes neither the
 selection target nor the two-successive-below-1% convergence criterion.
 
+### Same-domain continuation: candidate inventory exhausted
+
+The second selection restored the full checkpoint and continued until a new
+snapshot exceeded its **128 MiB** limit. Its last complete checkpoint retained
+**142,793 edges**; later unsaved log progress was excluded. A separate capacity
+qualification changed only that storage limit to **256 MiB**. The complete
+checkpoint round-tripped byte for byte, and all **12 save/refusal boundary
+operations** passed. Restoration preserved every selected star, attempted edge,
+refusal count and traversal position; an independent 200-seed continuation
+matched. The numerical operator and its acceptance criteria were unchanged.
+
+The third selection then exhausted the complete **756,943-cell candidate pool**.
+Its final saved state contains **157,041 selected edges**, including **21,249
+non-midpoint fractions**, and **878,441 disjoint parent cells**. Independent
+complete-vector recount gives **51.86934456% gravity**, **49.97413715% combined**
+and **50.75605322% joint indicator coverage**. All **135 protected cells** remain
+untouched. The combined case is still below 50%, so no H10 proposal or assembled
+mesh is admitted.
+
+This was exhaustion of the configured greedy traversal, not another storage
+refusal or proof that no alternative disjoint selection exists.
+It finished in **317.131 seconds**, with **5,561,761,792 bytes** peak RSS, return
+code 3 and verified process cleanup. The final **145,147,865-byte checkpoint**
+retains the entire state, with no unsaved selection loss. The
+[continuation receipt](carrier-h9-native-results-20261107/h10-domain-exhaustion.json)
+binds the failed-capacity predecessor, successful capacity/restoration controls,
+final checkpoint and independent recount.
+
+The next step is to measure a larger candidate inventory against the same H9
+source, then qualify its traversal and resource bounds before another selection.
+Existing accepted stars can be retained, but changed order hashes require an
+explicit new-domain restart of traversal. Both the 50% selection target and the
+two-successive-below-1% spatial-convergence criterion remain unchanged.
+
 ## Reproduction and next numerical step
 
 The recorded local entry points are `work/carrier-h9-comparison-001/run_compare.py`
@@ -508,8 +542,9 @@ required by H9, exceeding the historical 1.2 GB bound, and used both complete
 traction-jump fields from the seven-digit exports. Both higher-precision audits
 and fresh two-case 17-digit marking are now complete. H10 source intake,
 bounded candidate-domain and local-operator qualification passed. The first
-selection retained the complete checkpoint above; same-domain continuation
-precedes a completed proposal, assembled geometry and exact nesting.
+selection and both same-domain continuations retain the complete checkpoints
+above. Candidate-domain enlargement now precedes a completed proposal,
+assembled geometry and exact nesting.
 A universal zero-residual certificate is not an added requirement.
 Correction-energy localization remains a separate diagnostic.
 Before any next rental, freshly admit
@@ -532,8 +567,9 @@ flowchart TD
     REPLAY --> MARK["Fresh two-case 17-digit marking and full readback: complete"]
     MARK --> INTAKE["H10 source intake: admitted"]
     INTAKE --> QUAL["Bounded candidate domain and local operator: passed"]
-    QUAL --> SELECT["H10 selection: checkpoint retained; 50% target pending"]
-    SELECT --> V["Next: completed proposal, H10 geometry and exact nesting"]
+    QUAL --> SELECT["H10 selection: candidate pool exhausted; complete checkpoint retained"]
+    SELECT --> DOMAIN["Next: qualify larger candidate pool; unchanged 50% target"]
+    DOMAIN --> V["Next: completed proposal, H10 geometry and exact nesting"]
     V --> NEXT["Next native responses and complete comparison"]
     NEXT --> S
     C --> FIG["Actual figures and scalar/hash receipts"]
