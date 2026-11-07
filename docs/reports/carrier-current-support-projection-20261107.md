@@ -12,8 +12,10 @@ check. An independent rational-coordinate calculation confirmed all nine reporte
 defects, including seven for which the floating-point difference area was zero.
 A separate CGAL calculation recovered the first component, then a complete pass
 accounted for **all 4,676 components and 905,248 selected triangle occurrences**
-with exact rational projections and independent readback. No support mask or
-solid is admitted yet.
+with exact rational projections and independent readback. The complete native
+mask-policy pass then accounted for every component: **seven polygons retained,
+32 filtered below 5 mm² and 4,642 empty masks**. Exact containment and area checks
+pass for every produced polygon. Contacts and support solids remain unfinished.
 
 ![The retained projection and all nine exact coverage witnesses](../media/carrier-current-support-projection-20261107.png)
 
@@ -93,13 +95,58 @@ correction. The executed roster and verified counts cover all 4,676 components.
 
 ## Reproducibility and remaining work
 
+The first **component-0 mask candidate** now passes exact containment and area
+checks. The unchanged nominal `buffer(-0.5)` policy produces one retained polygon
+with 14 holes and an exact area displayed as **26,648.03678915664 mm²**. Its
+set difference outside the rational source is empty, and its exact area meets
+the 5 mm² minimum. Seven policy controls and nine refusal cases passed first.
+The actual trial took 8.46 seconds and 294 MB sampled peak RSS; independent
+readback checked the files, source identities and WKB-to-rational coordinates.
+
+![The exact source and checked component-0 mask on equal-scale panels](../media/carrier-current-support-mask0-20261107.png)
+
+The source still has 99 holes. Its float conversion, used only as input to the
+native buffer, rounds 16 coordinate values and has nonzero exact additions and
+losses; it never replaces the rational authority. The buffered candidate itself
+is checked against that unchanged authority. This establishes a native-policy
+candidate, not an exact 0.5 mm Euclidean offset. The
+[mask receipt](carrier-current-support-projection-20261107/component0-mask.json)
+records this distinction, complete checks and the byte-reproduced figure.
+
+The subsequent **complete mask pass** covers all 4,676 components. Thirty-four
+components produce 39 polygons, including four split components. Seven polygons
+meet the unchanged 5 mm² threshold; 32 are explicitly excluded. The other 4,642
+components erode to empty under the same native policy. No component disappears
+from the ledger, and even the filtered polygons pass exact source-containment
+and area-decision checks.
+
+| Current source component | Retained mask area, mm² | Holes |
+|---|---:|---:|
+| 0 | 26,648.036789 | 14 |
+| 79 | 5,994.405999 | 3 |
+| 148 | 380.365137 | 0 |
+| 409 | 6,089.910711 | 3 |
+| 534 | 380.225316 | 0 |
+| 2818 | 6.375239 | 0 |
+| 3856 | 8.675774 | 0 |
+
+The single bounded pass finished in **105.71 seconds**, with **502 MB** sampled
+peak RSS and complete process cleanup. Independent readback verified all
+**32,880 new files**, all **2,839 pinned inputs** and every one of the 216,136
+source-coordinate values. Seventy-four conversions rounded; the exact source
+authorities remain unchanged. The sum of retained per-component areas is
+39,507.994965 mm²; this is not a cross-component union or a contact-area result.
+The [full-mask receipt](carrier-current-support-projection-20261107/all-masks.json)
+retains all counts, exact areas, checks and source identities. The historical
+seven masks remain a different result despite the coincident count.
+
 The [compact receipt](carrier-current-support-projection-20261107/summary.json)
 binds the actual results, terminals, source geometry, exact proof and figure.
 The figure was reproduced byte for byte and visually inspected. Raw surface
 coordinates, component correspondence arrays and projected polygons remain in
 private evidence.
 
-Current mask/contact checks, support solids,
+Current contact checks, finite envelopes, support solids,
 their complete slicing and the machine job remain open. The carrier's completed
 1,034 part layers remain a separate result. The mass ceiling is withdrawn; this
 audit changes neither the part geometry nor any acceptance threshold.

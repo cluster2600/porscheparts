@@ -83,6 +83,29 @@ ceiling; actual provider billing was not observed.
 
 ## Reproduction and next numerical step
 
+**Follow-up peak audit:** both complete H9 traction-jump vectors and their joint
+vector have now passed every-value readback. Targeted geometry checks find that
+the gravity peak occupies a new exact 3/16 child, while the combined peak is in
+an unchanged H8 cell. Both have exact positive volume and remain below the
+existing condition threshold, but their very thin shapes leave pointwise
+accuracy unresolved.
+
+| Peak-cell diagnostic | Gravity | Combined |
+|---|---:|---:|
+| Exact positive volume, mm³, displayed | 1.017008031572e-9 | 1.976828597044e-10 |
+| Normalized condition | 732,729.197 | 201,065.146 |
+| Direct exterior faces | 0 | 1 |
+| Centroid distance to retained boundary, mm | 4.194380101122e-7 | 2.104338205932e-7 |
+
+The completed acceptances check net force/moment and integrated energies; they
+do not include an independently assembled full free-node `Ku − f` residual or
+elementwise displacement-to-stress reconstruction. **H10 selection is held while
+these additional local algebraic checks are prepared**, including the uncertainty
+from printed field precision. No peak cause or singularity exponent is inferred.
+The [targeted audit receipt](carrier-h9-native-results-20261107/peak-audit.json)
+records the existing acceptance scope, lineage and source hashes. The boundary
+extension identity was recorded after that diagnostic, not pinned before launch.
+
 The recorded local entry points are `work/carrier-h9-comparison-001/run_compare.py`
 and `work/carrier-h9-render-002/render.py`. Completed outputs are exclusive: reproduce in fresh output
 bindings rather than overwrite these receipts. The renderer requires both
@@ -90,10 +113,11 @@ complete comparisons and checks exact shared H8 scalars; its
 [figure provenance](carrier-h9-native-results-20261107/figure-provenance.json)
 binds both images to the actual results and script.
 
-Use fresh complete H9 traction-jump vectors from both loads for the next common
-refinement. Correction-energy localization remains a separate diagnostic.
-Before H10 marking, qualify the 1,228,798,784-byte face buffer required by H9,
-which exceeds the historical 1.2 GB bound. Before any next rental, freshly admit
+The completed marking pass qualified the **1,228,798,784-byte face buffer**
+required by H9, exceeding the historical 1.2 GB bound, and used both complete
+traction-jump fields. It does not authorize H10 while the additional audit is
+open. Correction-energy localization remains a separate diagnostic.
+Before any next rental, freshly admit
 complete DAT/XZ and receiver capacity: H9 leaves only 32,911,702 raw bytes below
 the unchanged 2.75 GB gate. These are capacity admissions; numerical thresholds,
 protected cells and exact-nesting checks remain unchanged.
@@ -105,9 +129,10 @@ flowchart TD
     N --> GPU["Every H9 cell: CUDA FP64 energy passed"]
     R --> C["Sequential full H8-H9 comparisons: measured"]
     C --> S{"Two successive increments below 1% per load?"}
-    S -->|"Not met"| CAP["Admit next marking and complete-field capacities"]
-    CAP --> M["Fresh complete H9 traction-jump vectors"]
-    M --> V["Common refinement and exact nesting"]
+    S -->|"Not met"| M["Fresh complete H9 traction-jump vectors: passed"]
+    M --> LOCAL["Independent local algebraic audit: pending"]
+    LOCAL --> CAP["Admit next complete-field capacities"]
+    CAP --> V["Common refinement and exact nesting"]
     V --> NEXT["Next native responses and complete comparison"]
     NEXT --> S
     C --> FIG["Actual figures and scalar/hash receipts"]

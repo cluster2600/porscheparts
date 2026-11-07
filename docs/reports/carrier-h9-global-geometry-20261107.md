@@ -1,5 +1,8 @@
 # 993 carrier H9: exact refinement and complete geometry checks
 
+**Follow-up:** the [H9 native results and complete H8→H9 comparisons](carrier-h9-native-results-20261107.md)
+are now available. The pending states below describe the earlier geometry checkpoint.
+
 **H9 now has an admitted mesh of 19,199,981 tetrahedra and an exact H8-to-H9
 nesting map.** The refinement adds **88,758 interior nodes** while preserving
 the existing exterior, original coordinates, load and support nodes. Both

@@ -105,7 +105,7 @@ each run. Some carrier runtimes are native environments, not those images.
 | 25 | Standalone netgen-mesher 6.2.2607 / netgen-occt 7.8.1 | **E.** Complete 16,239,026-cell reference passed independent volume checks. [Volume validation](carrier-interface-20261028/VOLUME-VALIDATION.md) | Fallback geometry route; mechanical groups and response belong to their own subsequent admission. |
 | 26 | CalculiX 2.21 / historical SPOOLES / current PARDISO | **E.** Complete H7, H8 and H9 gravity/combined fields, native controls and independent force/moment/energy checks. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md), [H9](carrier-h9-native-results-20261107.md) | Continue source-admitted refinement with the same native path and limits; H9 has not closed stabilization. |
 | 27 | scikit-fem 11.0.0 / SciPy 1.17.1 / PyAMG 5.3.0 alternative | **R.** Analytical controls passed; complete retained quadratic-reference attempts failed the iteration or true-residual gate. Actual current-cell mapping checks passed, but no replacement carrier response was admitted. [Current mechanics](carrier-current-mechanics-20261104.md#optional-local-amg-route-independent-controls-passed) | Keep native PARDISO as the comparison authority; another solver needs its own complete parity result. |
-| 28 | Repository exact-rational refinement, NumPy/SciPy field readers and comparator | **E.** Exact parent-child maps, full DAT replay and rational-fraction controls. Complete H8→H9 comparisons are 2.672628% gravity / 3.325553% combined across the admitted 19,199,981-cell H9 mesh. [H8 results](carrier-h8-native-results-20261106.md), [H9 geometry and map](carrier-h9-global-geometry-20261107.md), [H9 results](carrier-h9-native-results-20261107.md) | Recompute both complete H9 traction-jump vectors and inspect peak locations before the next common refinement; retain the two-successive-below-1% criterion. |
+| 28 | Repository exact-rational refinement, NumPy/SciPy field readers and comparator | **E.** Exact parent-child maps, full DAT replay and rational-fraction controls. Complete H8→H9 comparisons are 2.672628% gravity / 3.325553% combined across the admitted 19,199,981-cell H9 mesh. [H8 results](carrier-h8-native-results-20261106.md), [H9 geometry and map](carrier-h9-global-geometry-20261107.md), [H9 results](carrier-h9-native-results-20261107.md) | Both complete H9 marking vectors and targeted peak geometry checks passed. Hold H10 for the additional nodal-equilibrium/displacement-to-stress audit with print uncertainty; retain the two-successive-below-1% criterion. |
 | 29 | PR #274 Warp 1.18.0 original geometry pilot | **S.** Original analytic box cases and CPU/native controls. [Warp pilot][WP] | This is the baseline software contract; do not describe the original PR as a complete CUDA/carrier/manufacturing validation. |
 | 30 | Warp 1.18.0 actual CUDA distance queries | **R.** Earlier reconstructed-carrier probes passed [IS]; latest full 10,452,018-probe witness failed all six repetitions: 422 exceed 0.0001 mm, maximum error 0.002814613 mm. [Current refusal](carrier-current-mechanics-20261104.md#complete-pr-274-cuda-accuracy-witness-refused) | Retain double CPU/libigl distances as clearance reference. Isolate and correct query errors before another acceptance claim. |
 | 31 | Warp 1.18.0 CUDA FP64 energy audit | **E.** Every H7, H8 and H9 cell checked under both loads against distinct CPU algebra at abs 1e-14 N mm + rel 1e-12. H9 covers 19,199,981 cells on RTX 4000 Ada and RTX 5070. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md), [H9](carrier-h9-native-results-20261107.md) | Energy agreement does not validate row 30 or provide a GPU mechanical solve. Rebind and rerun for each new complete field. |
@@ -131,12 +131,14 @@ The [current support-region audit](carrier-current-support-projection-20261107.m
 preserves all 905,248 selected triangles through native extraction and splitting
 into 4,676 components. The first floating-point projection failed nine
 independently exact coverage checks. CGAL exact unions now cover every component,
-with complete source-occurrence and serialized-ring readback. Current support
-masks, contacts and solids remain unadmitted.
+with complete source-occurrence and serialized-ring readback. The complete mask
+pass retains seven current candidates, excludes 32 polygons below 5 mm² and
+accounts for 4,642 empty masks. Every produced polygon passes exact containment
+and area checks. Contacts, finite envelopes and support solids remain unfinished.
 
 | ID | Tool / recorded profile | Status and actual evidence | Next use or acceptance condition |
 |---|---|---|---|
-| 37 | PySLM `8fa03f1…` + recorded patches; Shapely 2.2.0 / pyclipr 0.1.8 | **E, current part layers complete.** The [full 1,034-layer calendar](carrier-current-am-full-20261107.md) passed native and independent checks of 36,914,986 contour/hatch segments, complete file readback and a derived global volume bound. Includes the near-vertex plane and exact layer-517 reference parity. All current support-region projections now pass exact CGAL coverage [support audit](carrier-current-support-projection-20261107.md). Historical supports and interrupted 440-layer cache remain separate [W], [pause receipt](carrier-pause-20261018/README.md#interrupted-layer-cache). | Finish the actual public full-calendar replay and current support-mask/contact/envelope checks, then the machine job. Part-layer completion does not admit historical supports or select machine parameters. |
+| 37 | PySLM `8fa03f1…` + recorded patches; Shapely 2.2.0 / pyclipr 0.1.8 | **E, current part layers complete.** The [full 1,034-layer calendar](carrier-current-am-full-20261107.md) passed native and independent checks of 36,914,986 contour/hatch segments, complete file readback and a derived global volume bound. Includes the near-vertex plane and exact layer-517 reference parity. All current projections and mask-policy candidates pass exact coverage/area checks, retaining seven masks [support audit](carrier-current-support-projection-20261107.md). Historical supports and interrupted 440-layer cache remain separate [W], [pause receipt](carrier-pause-20261018/README.md#interrupted-layer-cache). | Finish the actual public full-calendar replay and current contact/envelope/solid checks, then the machine job. Part-layer completion does not admit historical supports or select machine parameters. |
 | 38 | PrusaSlicer / OrcaSlicer | **N.** Polymer prototype tools in [T]; not a Ti64 LPBF machine job. | Optional polymer geometry trial with its own material/printer profile. |
 | 39 | UVtools | **N.** Optional resin-job inspection in [T]. | No resin process selected for this carrier. |
 | 40 | Adamantine | **S.** Retained thermal/exporter/coupon software controls, including a Q1 conduction control; no carrier build-distortion prediction. [Historical controls](carrier-adamantine-historical-links-20261018/README.md), [W] | Define the build material, activation/heat history and verified field exchange before a bounded thermomechanical study. |
@@ -193,16 +195,19 @@ flowchart TD
 
 Concrete integration gaps, in order:
 
-1. **Prepare the next common refinement from complete H9 fields.** Both native
+1. **Complete the additional H9 local algebraic audit before refinement.** Both native
    cases, lossless recovery, CUDA audits and full comparisons are complete.
-   Admit the larger traction-jump buffer, recompute both vectors and inspect
-   peak locations before selecting H10. Freshly admit complete native-field
+   The larger traction-jump buffer, both complete vectors and targeted peak
+   geometry checks now pass. Independent full free-node `Ku − f` and elementwise
+   displacement-to-stress checks are still missing; prepare them with printed
+   field uncertainty before selecting H10. Freshly admit complete native-field
    storage capacity before another rental. Keep the unchanged convergence rule.
 2. **Close the current geometry's additive preparation.** PySLM's current-source
    import, pose, all 1,034 part layers and every scan segment passed independent
    checks, including the near-vertex case and complete volume assessment.
-   All 4,676 exact support-region projections now pass. Continue current masks,
-   support contacts, access and the complete build envelope; finish the actual
+   All 4,676 exact support-region projections and the complete mask-policy pass
+   now pass, retaining seven current candidates. Continue support contacts,
+   access and the complete build envelope; finish the actual
    public full-calendar replay and package the matching machine job.
    The historical 440-layer cache is not reused by this result.
 3. **Turn thermal controls into a bounded process calculation.** GO-MELT's

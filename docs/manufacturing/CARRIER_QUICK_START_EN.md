@@ -4,7 +4,9 @@
 
 Both native H9 cases, complete field recovery and independent CUDA energy checks passed. The complete H8→H9 energy-norm increments are **2.6726% for gravity and 3.3256% for combined loading**. The two-successive-below-1% convergence criterion remains unmet; the [H9 refined mesh and exact nesting map](../reports/carrier-h9-global-geometry-20261107.md) preserve the comparison geometry.
 
-The [current support-region audit](../reports/carrier-current-support-projection-20261107.md) preserved all 905,248 selected triangles through extraction and splitting. Exact CGAL unions now cover **all 4,676 components**, after the first floating-point projection failed nine exact coverage checks. Current support masks, contacts and solids remain separate unfinished stages.
+The [current support-region audit](../reports/carrier-current-support-projection-20261107.md) preserved all 905,248 selected triangles. Exact projections cover **all 4,676 components**; the subsequent complete mask pass retains **seven current mask candidates**, with exact containment and area checks and every exclusion accounted for. Current contacts, finite envelopes and support solids remain unfinished.
+
+The complete H9 marking fields are retained, but H10 selection is held for an additional independent nodal-equilibrium and displacement-to-stress audit. Printed field precision must be included in that diagnosis; global balance checks alone do not close the unresolved peak question.
 
 The [current float64 layer replay](../../parts/993-eng-carrier-0001/source/process-float64-20261107/README.md) is an executable recipe through the existing workflow runner. Its actual layer-517 output matches the admitted reference byte for byte. It requires the recorded Mac runtime at its original paths and the explicit private inputs; installation on another machine remains a separate step.
 
