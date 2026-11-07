@@ -92,7 +92,18 @@ binds the source, result, arrays, renderer and image. The original scripts and
 full runtime receipts remain in `work/carrier-current-am-intake-20261106-001/`;
 the public receipt carries their hashes, not the raw arrays.
 
-## Commands and continuation boundary
+## Replay through public sources — 7 November follow-up
+
+The [current float64 replay bundle](../../parts/993-eng-carrier-0001/source/process-float64-20261107/README.md)
+and [v3 workflow recipe](../../manufacturing/workflows/993-carrier-float64-layer-v1.json)
+have now executed the actual layer 517 with explicit private input bindings.
+The complete native NPZ is byte-identical to this report's original reference;
+the unchanged native and strict independent domain checks passed. The bundle
+records its command, source identities, controls and execution receipt. It still
+requires the original recorded Mac runtime paths; it does not qualify another
+installation or the full calendar.
+
+## Original commands and continuation boundary — 6 November
 
 Executed from the original calculation checkout:
 

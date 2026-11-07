@@ -116,6 +116,13 @@ each run. Some carrier runtimes are native environments, not those images.
 
 ## Additive preparation and process simulation — 8 rows
 
+The [public current-source replay](../../parts/993-eng-carrier-0001/source/process-float64-20261107/README.md)
+now runs through the existing v3 workflow with explicit private inputs. Its actual
+layer-517 arrays and NPZ match the admitted reference byte for byte, with native
+and independent domain checks. This closes the public-source entrypoint for one
+layer in the recorded Mac profile; runtime relocation, fresh installation and
+the full-calendar recipe remain unfinished.
+
 | ID | Tool / recorded profile | Status and actual evidence | Next use or acceptance condition |
 |---|---|---|---|
 | 37 | PySLM `8fa03f1…` + recorded patches; Shapely 2.2.0 / pyclipr 0.1.8 | **E, partial/current.** Current float64 exterior and pose checked; all 1,034 planes inspected. [Nine-layer batch](carrier-current-am-batch-20261107.md) passed 311,059 segment checks against native and independent domains, including the near-vertex plane. [First-layer image](carrier-current-am-intake-20261106.md). Historical supports and interrupted 440-layer cache remain separate [W], [pause receipt](carrier-pause-20261018/README.md#interrupted-layer-cache). | Execute and audit all 1,034 current layers; complete current support/contact/envelope checks and the machine job. The nine-layer batch is partial; old layers cannot be reused silently. |

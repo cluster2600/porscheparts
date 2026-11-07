@@ -2,6 +2,8 @@
 
 **Current entry point — 7 November 2026:** read the [H8 mechanical results](../reports/carrier-h8-native-results-20261106.md), [current-surface additive results](../reports/carrier-current-am-batch-20261107.md) and [software coverage ledger](../reports/carrier-toolchain-coverage-20261106.md). The owner has removed the **1.30 kg design ceiling**. Mechanical convergence, complete current slicing and supports remain open. The CAD commands and 24af results below reproduce the historical 18 October revision; they do not rebuild the current H8 exterior.
 
+The [current float64 layer replay](../../parts/993-eng-carrier-0001/source/process-float64-20261107/README.md) is an executable recipe through the existing workflow runner. Its actual layer-517 output matches the admitted reference byte for byte. It requires the recorded Mac runtime at its original paths and the explicit private inputs; installation on another machine remains a separate step.
+
 The [historical editable CAD bundle](../../parts/993-eng-carrier-0001/source/design-20261016/corner-slide-candidate-20261018/README.md) has an [actual reproduction report](../../parts/993-eng-carrier-0001/source/design-20261016/corner-slide-candidate-20261018-evidence/ACTUAL_REPLAY.md). Revision **24af0584** weighs **1.275992 kg** at the study's titanium density of **4,420 kg/m³**. Its then-applicable maximum was **1.30 kg**, leaving **24.01 g**.
 
 That revision's working dimensions come from the retained nominal model. Its [interface drawing](../media/carrier-nominal-interfaces-20261018/README.md) identifies the axes, holes and faces. The [actual shape comparison](../media/carrier-corner-slide-actual-surfaces-20261018/README.md) shows the window-root reinforcement.
