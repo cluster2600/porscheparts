@@ -1,0 +1,130 @@
+{
+  "optimized_180": {
+    "exit_code": -15,
+    "elapsed_seconds": 180.39380312501453,
+    "peak_sampled_rss_bytes": 3252043776,
+    "stop_reason": "timeout",
+    "native_mesh_admitted": false,
+    "solver_started": false
+  },
+  "unoptimized": {
+    "exit_code": 0,
+    "elapsed_seconds": 19.981497541069984,
+    "peak_sampled_rss_bytes": 3768565760,
+    "stop_reason": null,
+    "native_mesh_admitted": false,
+    "solver_started": false
+  },
+  "in_memory_mesh": {
+    "patch_triangle_checks": {
+      "walls": true,
+      "left1": true,
+      "inlet": true,
+      "left2": true,
+      "left3": true,
+      "right1": true,
+      "right2": true,
+      "right3": true
+    },
+    "original_points_unchanged": true,
+    "tetrahedra": 2108580,
+    "all_positive": true,
+    "volume_m3": 0.03198038331459502,
+    "source_volume_m3": 0.03198038331459504,
+    "mesh_sha256": "48d1c565045ee54b987e3d00a9efdb2a18b74cae41a89841e42c1e77a614fb75",
+    "mesh_admitted": false,
+    "solver_started": false
+  },
+  "export_coordinate_check": {
+    "source_vertices": 459068,
+    "exported_points": 598853,
+    "original_vertex_ids_exact": false,
+    "matches_16_significant_decimal_digits": true,
+    "coordinate_mismatches": 719636,
+    "max_absolute_coordinate_error_m": 5.551115123125783e-17,
+    "export_accepted": false
+  },
+  "native_conversion": {
+    "container_status": "exited",
+    "exit_code": 0,
+    "oom_killed": false,
+    "started_at": "2026-11-07T14:24:40.003597501Z",
+    "finished_at": "2026-11-07T14:25:58.851374593Z",
+    "standard_failed_checks": 2,
+    "extended_failed_checks": 7,
+    "high_aspect_ratio_cells": 16568,
+    "skew_faces": 259,
+    "low_determinant_cells": 204403,
+    "concave_cells": 578,
+    "low_weight_faces": 94769,
+    "low_volume_ratio_faces": 81657,
+    "face_tet_error_reported_faces": 37,
+    "face_tet_written_set_faces": 21,
+    "mesh_admitted": false,
+    "solver_started": false,
+    "serialization_check": "../installed-cooling-native-hxt-unoptimized-20261107/export-coordinate-check.json",
+    "logs": {
+      "log.checkMesh-extended": {
+        "sha256": "31790779525113f842bfcd273fa1f2532216c8439c12f6208a917edbaaa5710d",
+        "bytes": 7248
+      },
+      "log.checkMesh-standard": {
+        "sha256": "0716e0c1eb3ec4d43bf67ee3a4d82f31bd7189f1b252ee0b9abc48b847e05ffc",
+        "bytes": 4668
+      },
+      "log.gmshToFoam": {
+        "sha256": "6a89440e215d7335201a4d1afb44ab3f59e833b6c6758a00a845668bde957e40",
+        "bytes": 2949
+      }
+    },
+    "raw_case_preserved_in_docker_volume": "porscheparts-452-hxt-converter-20261107"
+  },
+  "precision_control": {
+    "all_live_nodes_reread_exactly": true,
+    "non_node_sections_unchanged": true,
+    "coordinate_components_corrected": 5,
+    "control_mesh_sha256": "f54342ffce42e844d12997b0c45b0c6d6398a20348cabecbd4a517f27adcc3e1"
+  },
+  "cube_control": {
+    "gmsh": "4.15.2",
+    "algorithm": "HXT",
+    "points": 18,
+    "tetrahedra": 53,
+    "fixed_boundary_and_original_points_preserved": true,
+    "positive_volumes": true,
+    "summed_volume": 1.0,
+    "mesh_sha256": "f54342ffce42e844d12997b0c45b0c6d6398a20348cabecbd4a517f27adcc3e1"
+  },
+  "source_receipts": {
+    "optimized_180": {
+      "private_relative_path": "installed-cooling-native-hxt-20261107/execution.json",
+      "sha256": "0a9a6994f75aa9fe5aca946b2566254488fe15593812beced6ddb1c9bc0fc921"
+    },
+    "unoptimized": {
+      "private_relative_path": "installed-cooling-native-hxt-unoptimized-20261107/execution.json",
+      "sha256": "1c5cbd7d1f79dd81e248ac4efe768e450c41d45dfe1757952b9b404fa49c8487"
+    },
+    "in_memory_mesh": {
+      "private_relative_path": "installed-cooling-native-hxt-unoptimized-20261107/duct-result.json",
+      "sha256": "3039b7556cf11dabb6365c6f5f0f54a70f8436958d68dc56fe993cccf4edcb02"
+    },
+    "export_coordinate_check": {
+      "private_relative_path": "installed-cooling-native-hxt-unoptimized-20261107/export-coordinate-check.json",
+      "sha256": "92f2be39537460b3c91cafa553303fdeccf11174f0543dda3d279dcc25b7b6db"
+    },
+    "native_conversion": {
+      "private_relative_path": "installed-cooling-hxt-converter-20261107/assessment.json",
+      "sha256": "a699e864ff23cae848e75d70f764af465f1224f60bb1f45271b0096ddcbe7537"
+    },
+    "precision_control": {
+      "private_relative_path": "installed-cooling-hxt-precision-control-20261107/precision-result.json",
+      "sha256": "d6257b9b7c2cfaa6e3c670bae4a95b9a8a7bb187813a2e49efe3aa56c8e8336f"
+    },
+    "cube_control": {
+      "private_relative_path": "installed-cooling-hxt-precision-control-20261107/result.json",
+      "sha256": "a342bb2411609a84fd2045540c09ab18b2762c52e54908353dba14363b6aa5b6"
+    }
+  },
+  "mesh_admitted": false,
+  "solver_started": false
+}
