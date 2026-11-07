@@ -378,10 +378,44 @@ These intervals include the pending-input write and start-event flush plus
 GMP execution. They exclude earlier input serialization and later receipt
 writes, so they are not isolated backend timings. The diagnostic returned
 zero after **155.275 s**, with its child reaped and group absent. Preserving
-completed receipts for checked continuation is the next step; no geometry,
+completed receipts enabled the subsequent continuations below; no geometry,
 support policy or arithmetic tolerance changed. The
 [GMP progress receipt](carrier-current-support-projection-20261107/component148-gmp-progress.json)
 binds the parity result, third timeout and bounded trace to their sources.
+
+### Full-material continuation: 2,235 exact receipts retained
+
+A separate chart-1 continuation reused the original 94 receipts and retained
+138 more, giving **232 completed calls**. The first full-driver integration
+then refused its first input: the driver constructs grid sheets before the
+chart, so the chart-only prefix was not its global call prefix. The corrected
+binding recognizes the exact chart context and records separate native,
+chart-scoped and new-trace call numbers; it changes no union arithmetic.
+
+The corrected full-material attempt reused those **232 receipts** and completed
+**2,003 new exact unions** before its original 1,770-second worker limit.
+The **2,235 completed call occurrences** comprise **869 grid calls and 1,366
+chart-1 calls**. It stopped after **1,779.524 seconds** including supervision
+and cleanup, with **2,486,632,448 bytes** peak RSS, return code 1, its child reaped
+and its owned group absent. The original full chart-0 return was reused exactly.
+Chart 1 and the full sheet assembly remain incomplete.
+
+Independent readback checked exact area conservation and all call mappings,
+**3,805 source pins** and **4,045 scientific output files**. The latest completed
+chart-1 union concerns triangle index 2,793; index 2,795 is pending within the
+3,676-triangle phase (zero-based indices). This is a retained prefix, not a
+percentage forecast of whole-job completion.
+
+The first readback refused changes in exactly two mutable Finder metadata paths,
+`.DS_Store` and `union-progress/.DS_Store`. A fresh reader records their original
+and observed hashes and sizes separately, while preserving the original manifest,
+exact full file set and byte/hash checks for every scientific file. Other hidden
+files remain checked. No scientific result or earlier refusal was rewritten.
+
+The [continuation receipt](carrier-current-support-projection-20261107/component148-gmp-continuation.json)
+binds these observations and the pending exact input. The next continuation can
+reuse the complete native-call prefix, including the grid calls. Finite support
+thickness, numerical connectivity and attachment remain unfinished.
 
 ```mermaid
 flowchart TB
@@ -394,7 +428,8 @@ flowchart TB
     CHECK --> CONTACT["Current support parent mapping and contact checks"]
     CONTACT --> SECTION["Component 148: two diagnostic intervals checked"]
     CONTACT --> FULL["Component 148: all exact faces covered by area witnesses or vertical exclusion"]
-    FULL --> MATERIAL["Rounded contacts and generated support attachment: pending"]
+    FULL --> UNIONS["Exact support unions: 2,235 complete receipts retained; chart 1 incomplete"]
+    UNIONS --> MATERIAL["Rounded contacts and generated support attachment: pending"]
     CONTROL["Reference case: exact and export chain passed"] -.-> EXACT
     CONTROL -.-> CHECK
     CURRENT["Current component 148: exact envelope and all listed parents checked"] -.-> EXACT

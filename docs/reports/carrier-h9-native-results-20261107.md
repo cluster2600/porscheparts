@@ -6,15 +6,20 @@ complete energy-norm increments are **2.67262758% for gravity** and
 **3.32555327% for combined loading**. The requirement of two successive
 complete increments below 1% for each load is **not met**.
 
+Those spatial comparisons use the retained **seven-digit native exports**.
+Both subsequent **17-digit H9 calculations, complete field recoveries, CUDA
+checks and local algebraic reassessments are now complete**. Their precision
+comparisons below do not replace the recorded H8→H9 increments.
+
 ![Actual H7-to-H8 and H8-to-H9 complete energy increments](../media/carrier-h9-energy-results-20261107.png)
 
-The newest comparison covers all 18,698,908 H8 cells and 19,199,981 H9 cells.
+The recorded spatial comparison covers all 18,698,908 H8 cells and 19,199,981 H9 cells.
 The admitted H9 refinement adds 88,758 interior vertices and splits 501,073
 parents, while retaining the exterior, original vertex coordinates and load/support
 bindings. All 135 protected extreme cells remain unsplit; no new extreme cell
 was admitted. No weight ceiling applies.
 
-## Complete measured results
+## Complete seven-digit spatial-comparison results
 
 | Quantity | Gravity-labelled study load | Combined force and torque |
 |---|---:|---:|
@@ -37,7 +42,7 @@ was admitted. No weight ceiling applies.
 The larger refinement reveals a larger complete-field correction than H7→H8.
 Small changes in work or displacement do not replace the energy-norm criterion.
 All four shared H8 scalars agree exactly between the old and new comparison
-receipts. Full-precision results, native/replay differences, source hashes and
+receipts. Complete comparison scalars, native/replay differences, source hashes and
 Galerkin defects remain in the [scalar receipt](carrier-h9-native-results-20261107/results.json).
 
 ![Complete H8/H9 p95 and unresolved peak stresses without clipping](../media/carrier-h9-stress-trend-20261107.png)
@@ -99,9 +104,10 @@ accuracy unresolved.
 
 The original acceptances check net force/moment and integrated energies.
 The additional complete free-node force assembly and displacement-to-stress
-audit below has now finished for both loads. **H10 selection remains held for
-a higher-precision H9 output check**: seven-digit displacement output limits
-the new algebraic diagnosis. No peak cause or singularity exponent is inferred.
+audit below finished for both loads. At that seven-digit checkpoint, **H10
+selection was held for a higher-precision H9 output check**. Both subsequent
+17-digit reassessments are now complete; fresh marking precedes H10 selection.
+No peak cause or singularity exponent is inferred.
 The [targeted audit receipt](carrier-h9-native-results-20261107/peak-audit.json)
 records the existing acceptance scope, lineage and source hashes. The boundary
 extension identity was recorded after that diagnostic, not pinned before launch.
@@ -294,7 +300,7 @@ single-attempt transfer and complete SHA/strict-EOF checks, and keeps the origin
 **07:51:30 UTC lease deadline**. Both the complete encoded SHA and all
 **4,506,144,286 decoded bytes** now match locally, with strict XZ EOF verified
 and no retained raw DAT duplicate. The exact instance was deleted and its
-absence verified. Combined loading at the new precision remains pending. The
+absence verified. Combined loading was still pending at that checkpoint. The
 [gravity recovery receipt](carrier-h9-native-results-20261107/print17-gravity-recovery.json)
 binds the complete recovery, native/GPU results and cleanup to their sources.
 
@@ -346,9 +352,9 @@ All **784 pinned sources** remained unchanged. The 2,700-second, 16-GiB RAM,
 2-GiB aggregate-output and 8-GiB free-space limits remained in force, including
 the previous attempts' retained bytes. No new paid instance was used.
 The [new algebraic receipt](carrier-h9-native-results-20261107/print17-gravity-algebraic.json)
-binds this result, comparison, figure and control evidence. Combined-load
-reassessment and the unchanged two-successive-below-1% convergence criterion
-remain open.
+binds this result, comparison, figure and control evidence. The combined-load
+reassessment is now complete below; the unchanged two-successive-below-1%
+convergence criterion remains unmet.
 
 ### Exact selected-node sum and original Linux geometry kernel
 
@@ -382,8 +388,80 @@ were not reproduced by this harness; the native cause remains unidentified.
 This closes the selected reader/force-kernel rounding question. It is an
 explanatory diagnostic, **not a new refinement veto or an energy-error bound**.
 The spatial criterion remains two successive complete increments below 1% per
-load. The next mechanical step is the complete combined-load precision audit,
-then fresh marking and refinement under the existing rules.
+load. Both precision audits are now complete; the next mechanical step is fresh
+marking and refinement under the existing rules.
+
+### Complete 17-digit combined calculation, recovery and reassessment
+
+The combined native calculation finished in **643.502 seconds**, returned zero
+and was reaped with unchanged inputs. All **three analytic controls and both
+complete reference repetitions** passed their original limits; their actual
+verdicts were inspected in the **85 recovered metadata members** (gravity had
+84). The separate CUDA FP64 audit checked all **19,199,981 cells**, with an
+integrated GPU/native relative difference of **1.89906e-16**.
+
+The qualified native XZ route compressed the complete **4,506,144,286-byte DAT**
+to **1,359,157,800 bytes**, within the 1.6 GB encoded cap. Encoding and checks
+took **515.001 seconds**, including **502.625 seconds** in native XZ.
+The single transfer and strict decoder verified the complete encoded and raw
+SHA-256 values. The exact owned instance was destroyed and its absence verified,
+under the original **7,200-second / USD 3.20** limits, with no extension;
+actual provider billing was not observed. The recovery receipt's
+`reference_control_cache_binding_pending` flag remains explicit: inspected
+reference verdicts do not create a new reference-field cache binding or recover
+the auxiliary FRD.
+
+![Actual seven- versus seventeen-digit combined field diagnostics](../media/carrier-h9-combined-print17-comparison-20261107.png)
+
+| Full combined diagnostic | Seven-digit output | Seventeen-digit output |
+|---|---:|---:|
+| Force residual from reconstructed displacement, L2 N | 291,365.5620 | 0.0012644333 |
+| Force residual from printed native stress, L2 N | 0.0055286092 | 0.0012295456 |
+| Displacement-to-stress mismatch energy, N mm | 1.8463968239 | 5.01605e-19 |
+| Maximum displacement-to-stress component difference, MPa | 4,149,236.2571 | 0.0012655898 |
+
+The reconstructed and native-stress energies are **9578.378096377377 and
+9578.378096377384 N mm**. The new stress-force residual/load is **4.27950572e-6**;
+its input-print-only budget/load is **2.38973336e-13**. Printing uncertainty alone
+does not explain that measured residual. Geometry and arithmetic error remain
+outside this budget, so it is not an unprinted native-residual certificate,
+an identified solver cause or an additional refinement veto.
+
+The complete local audit checked **149,087,999 numeric components**, all
+**137 special cells including 135 protected cells**, and all **784 source pins**.
+It finished in **386.989 seconds**, returned zero and was reaped with its owned
+group absent; peak aggregate RSS was **3,016,081,408 bytes**. The original local
+2,700-second / 16-GiB / 2-GiB-output / 8-GiB-reserve bounds were unchanged.
+The [combined recovery and algebraic receipt](carrier-h9-native-results-20261107/print17-combined.json)
+binds both source results, native/raw identities, actual control verdicts,
+cleanup and the inspected figure. The figure reads retained scalar receipts;
+it performs no additional field replay.
+
+### Complete two-case 17-digit marking and H10 source intake
+
+Both fresh traction-jump vectors and their normalized joint vector now pass
+independent readback across **all 19,199,981 cells**. Every joint value matches
+`J_gravity / W_gravity + J_combined / W_combined` bit for bit. Each case accounts
+for **35,517,618 interior faces and 5,764,688 boundary faces**.
+
+| Retained indicator | Complete-vector total |
+|---|---:|
+| Gravity, N mm | 7,398.8069102330755 |
+| Combined, N mm | 137,196.74801767664 |
+| Work-normalized joint, dimensionless | 12.191854333464129 |
+
+The three vector files retain **460,799,928 bytes** privately. The run completed
+in **805.386 seconds**, returned zero and was reaped with its owned group absent;
+peak aggregate RSS was **4,763,713,536 bytes**. The original 2,700-second,
+16-GiB RAM, 2-GiB output and 8-GiB reserve limits remained unchanged.
+
+The H10 source intake now admits these actual fields and vectors, preserving
+the current geometry, boundary/load identities and **135 protected cells**.
+The [marking receipt](carrier-h9-native-results-20261107/print17-marking.json)
+records file/array hashes, complete readback, source intake and cleanup.
+The next step is bounded H10 candidate-domain and local-operator qualification,
+then a separately reviewed empty-state selection. These indicators guide
+refinement; they are not a global error bound or a spatial-convergence result.
 
 ## Reproduction and next numerical step
 
@@ -396,9 +474,11 @@ binds both images to the actual results and script.
 
 The completed marking pass qualified the **1,228,798,784-byte face buffer**
 required by H9, exceeding the historical 1.2 GB bound, and used both complete
-traction-jump fields. The higher-precision gravity audit and selected-node
-rounding diagnosis are complete; combined reassessment remains before H10
-selection. A universal zero-residual certificate is not an added requirement.
+traction-jump fields from the seven-digit exports. Both higher-precision audits
+and fresh two-case 17-digit marking are now complete. H10 source intake passed;
+bounded candidate-domain and local-operator qualification precede H10 selection
+and exact nesting.
+A universal zero-residual certificate is not an added requirement.
 Correction-energy localization remains a separate diagnostic.
 Before any next rental, freshly admit
 complete DAT/XZ and receiver capacity: seven-digit H9 left only 32,911,702 raw
@@ -416,8 +496,11 @@ flowchart TD
     M --> LOCAL["Two complete local algebraic audits: printing precision limits diagnosis"]
     LOCAL --> PRECISION["17-digit output: Mac and Linux small controls passed"]
     PRECISION --> CAP["Admit next complete-field capacities"]
-    CAP --> REPLAY["17-digit gravity and selected-node diagnosis complete<br/>Combined reassessment pending"]
-    REPLAY --> V["After accepted reassessment: common refinement and exact nesting"]
+    CAP --> REPLAY["Both 17-digit complete algebraic reassessments: complete"]
+    REPLAY --> MARK["Fresh two-case 17-digit marking and full readback: complete"]
+    MARK --> INTAKE["H10 source intake: admitted"]
+    INTAKE --> QUAL["Next: bounded candidate-domain and local-operator qualification"]
+    QUAL --> V["After qualification: H10 common refinement and exact nesting"]
     V --> NEXT["Next native responses and complete comparison"]
     NEXT --> S
     C --> FIG["Actual figures and scalar/hash receipts"]

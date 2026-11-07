@@ -112,7 +112,7 @@ each run. Some carrier runtimes are native environments, not those images.
 | 25 | Standalone netgen-mesher 6.2.2607 / netgen-occt 7.8.1 | **E.** Complete 16,239,026-cell reference passed independent volume checks. [Volume validation](carrier-interface-20261028/VOLUME-VALIDATION.md) | Fallback geometry route; mechanical groups and response belong to their own subsequent admission. |
 | 26 | CalculiX 2.21 / historical SPOOLES / current PARDISO | **E.** Complete H7, H8 and H9 gravity/combined fields, native controls and independent force/moment/energy checks. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md), [H9](carrier-h9-native-results-20261107.md) | Continue source-admitted refinement with the same native path and limits; H9 has not closed stabilization. |
 | 27 | scikit-fem 11.0.0 / SciPy 1.17.1 / PyAMG 5.3.0 alternative | **R.** Analytical controls passed; complete retained quadratic-reference attempts failed the iteration or true-residual gate. Actual current-cell mapping checks passed, but no replacement carrier response was admitted. [Current mechanics](carrier-current-mechanics-20261104.md#optional-local-amg-route-independent-controls-passed) | Keep native PARDISO as the comparison authority; another solver needs its own complete parity result. |
-| 28 | Repository exact-rational refinement, NumPy/SciPy field readers and comparator | **E.** Exact parent-child maps, full DAT replay and rational-fraction controls. Complete H8→H9 comparisons are 2.672628% gravity / 3.325553% combined across the admitted 19,199,981-cell H9 mesh. [H8 results](carrier-h8-native-results-20261106.md), [H9 geometry and map](carrier-h9-global-geometry-20261107.md), [H9 results](carrier-h9-native-results-20261107.md). The full 17-digit gravity audit checks all 149,087,999 numeric components. Exact selected-node sums and the original Linux geometry object exclude reader/local force-kernel rounding as the explanation for that node's imbalance. | Complete the combined-load precision reassessment, then fresh marking and H10 refinement. The remaining native cause is unidentified; it introduces no zero-residual veto. Retain the two-successive-below-1% criterion. |
+| 28 | Repository exact-rational refinement, NumPy/SciPy field readers and comparator | **E.** Exact parent-child maps, full DAT replay and rational-fraction controls. Complete seven-digit H8→H9 comparisons are 2.672628% gravity / 3.325553% combined across the admitted 19,199,981-cell H9 mesh. [H8 results](carrier-h8-native-results-20261106.md), [H9 geometry and map](carrier-h9-global-geometry-20261107.md), [H9 results](carrier-h9-native-results-20261107.md). Both full 17-digit audits check all 149,087,999 numeric components per case. Fresh two-case marking, every-value joint-vector readback and H10 source intake now pass. Exact selected-node sums and the original Linux geometry object exclude reader/local force-kernel rounding as the explanation for that gravity node's imbalance. | Qualify the bounded H10 candidate domain and local operator before empty-state selection. The remaining native cause is unidentified; it introduces no zero-residual veto. Retain the two-successive-below-1% criterion. |
 | 29 | PR #274 Warp 1.18.0 original geometry pilot | **S.** Original analytic box cases and CPU/native controls. [Warp pilot][WP] | This is the baseline software contract; do not describe the original PR as a complete CUDA/carrier/manufacturing validation. |
 | 30 | Warp 1.18.0 actual CUDA distance queries | **R.** Earlier reconstructed-carrier probes passed [IS]; latest full 10,452,018-probe witness failed all six repetitions: 422 exceed 0.0001 mm, maximum error 0.002814613 mm. [Current refusal](carrier-current-mechanics-20261104.md#complete-pr-274-cuda-accuracy-witness-refused) | Retain double CPU/libigl distances as clearance reference. Isolate and correct query errors before another acceptance claim. |
 | 31 | Warp 1.18.0 CUDA FP64 energy audit | **E.** Every H7, H8 and H9 cell checked under both loads against distinct CPU algebra at abs 1e-14 N mm + rel 1e-12. H9 covers 19,199,981 cells on RTX 4000 Ada and RTX 5070. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md), [H9](carrier-h9-native-results-20261107.md) | Energy agreement does not validate row 30 or provide a GPU mechanical solve. Rebind and rerun for each new complete field. |
@@ -179,12 +179,12 @@ remain unfinished.
 | 51 | ovstage 0.1.1.355824 / ovphysx 0.5.11 / OVRTX | **A.** Documented scene, rigid-body and RTX review alternatives [T]. | Only for a concrete assembly/contact/visual question; rendering and rigid motion do not replace FEA or build simulation. |
 | 52 | DVC 3.67.1 | **E.** Real carrier input recovery; later 24-file and 69-file fresh-cache restores with all SHA-256 checks. [Current recovery](carrier-current-mechanics-20261104.md#private-recovery-with-dvc); earlier separate Kali recovery [FK] | Archive the new complete retained scientific outputs in a new checkpoint; same-Mac restoration alone is not off-device backup. |
 | 53 | Git / GitHub / Make / Python / GitHub Actions | **E.** Versioned scripts, public scalar evidence, locks, catalogue and CI. [H], [T] | New docs/results remain reviewable; a merge or CI pass is separate from numerical convergence. |
-| 54 | Docker / bounded host runners / approved OpenBao–Vast wrapper | **E.** Isolated recorded runtimes, bounded native H7/H8/H9 execution, complete lossless recovery and verified teardown. Both seven-digit H9 instances were destroyed. The separate 17-digit gravity lane also completed native/GPU checks, full recovery and verified instance deletion; its local algebraic audit is complete. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md), [H9](carrier-h9-native-results-20261107.md) | Preserve each lease's ownership, finite budget/deadline and full recovery. The combined 17-digit continuation requires its own complete preparation and execution evidence. |
+| 54 | Docker / bounded host runners / approved OpenBao–Vast wrapper | **E.** Isolated recorded runtimes, bounded native H7/H8/H9 execution, complete lossless recovery and verified teardown. Both seven-digit H9 instances were destroyed. Both separate 17-digit lanes now completed native/GPU checks, full recovery, verified instance deletion and their complete local algebraic audits. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md), [H9](carrier-h9-native-results-20261107.md) | Preserve each lease's ownership, finite budget/deadline and full recovery. Fresh refinement requires its own complete preparation and execution evidence. |
 
 ## What happens next
 
 The complete **H8→H9 comparison is 2.67262758% for gravity and 3.32555327%
-for combined loading**, using all retained native fields. H7→H8 was
+for combined loading**, using all retained seven-digit native fields. H7→H8 was
 **0.81168514% / 1.47583589%**, and H6→H7 was **2.65382807% / 3.25723437%**.
 The criterion is still **two successive complete-field energy increments below
 1% for each load case**. The broader H9 refinement reveals a larger correction;
@@ -214,23 +214,24 @@ flowchart TD
 
 Concrete integration gaps, in order:
 
-1. **Complete higher-precision H9 reassessment before refinement.** Both native
+1. **Qualify the H10 candidate domain and local operator.** Both native
    cases, lossless recovery, CUDA audits and full comparisons are complete.
    The larger traction-jump buffer, both complete vectors and targeted peak
    geometry checks now pass. Both full free-node `Ku − f` and elementwise
-   displacement-to-stress audits are complete; seven-digit output prevents a
-   certified unrounded residual. The [four-site source patch and Mac controls](carrier-h9-native-results-20261107.md)
+   displacement-to-stress audits are complete; the original seven-digit
+   checkpoint exposed a printing-precision limit. The [four-site source patch and Mac controls](carrier-h9-native-results-20261107.md)
    establish a bounded 17-digit route; the Linux/PARDISO small-control candidate
    now also passes. Its ordinary packet and actual pinned-image quadratic
-   control now pass independent readback. The bounded 17-digit gravity lane
-   046 completed native execution, full lossless recovery, CUDA checks and
-   verified predecessor deletion. Its complete local algebraic reassessment
-   now passes source/field readback. Exact selected-node and original Linux
+   control now pass independent readback. Both bounded 17-digit lanes completed
+   native execution, full lossless recovery, CUDA checks and verified instance
+   deletion. Both complete local algebraic reassessments now pass source/field
+   readback. Exact selected-node and original Linux
    geometry-kernel checks exclude reader/local force rounding as the cause of
-   the small imbalance; they add no residual veto. Combined precision execution
-   and its full recovery remain separately pending. Reassess the same H9
-   geometry before selecting H10;
-   keep the unchanged convergence rule.
+   the small gravity-node imbalance; they add no residual veto. Fresh two-case
+   17-digit marking, every-value joint-vector readback and H10 source intake now
+   pass. Qualify the actual bounded candidate domain and local operator before
+   empty-state H10 selection; retain the unchanged convergence rule. The
+   original seven-digit H8→H9 increments remain scoped to those exports.
 2. **Close the current geometry's additive preparation.** PySLM's current-source
    import, pose, all 1,034 part layers and every scan segment passed independent
    checks, including the near-vertex case and complete volume assessment.
@@ -241,9 +242,11 @@ Concrete integration gaps, in order:
    passes its reference case. The first current exact envelope, component 148,
    also passes independent topology, volume and listed-parent checks, with an
    actual three-view figure. Exact GMP acceleration reproduces chart 0 through
-   309 nested unions; a third full-material attempt timed out. A bounded trace
-   retains 94 exact chart-1 union receipts for checked continuation. Finish the
-   remaining envelopes, supports, contacts, access
+   309 nested unions. The latest [full-material continuation](carrier-current-support-projection-20261107/component148-gmp-continuation.json)
+   retains **2,235 complete exact receipt occurrences**: 232 reused and 2,003 new,
+   accounting for 869 grid and 1,366 chart-1 occurrences. It stopped at its
+   original 1,770-second work limit; the complete support remains unfinished.
+   Finish the remaining envelopes, supports, contacts, access
    and the complete build envelope, then package the matching machine job.
    The historical 440-layer cache is not reused by this result.
 3. **Turn thermal controls into a bounded process calculation.** GO-MELT's
