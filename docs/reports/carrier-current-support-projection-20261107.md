@@ -636,6 +636,15 @@ unit and the second native result. The [two-skin receipt](carrier-current-suppor
 records both units and the preserved failed attempt. All grid and skin units
 are now checked; complete layer exposure remains pending.
 
+![All fourteen checked grid planes and both peripheral skins in metric top, side and orthographic views](../media/carrier-current148-checked-units-20261107.png)
+
+This updated computational figure uses the same **15,111 vertices and 13,155
+triangles**, with teal grid planes and orange peripheral skins. The
+[figure provenance](carrier-current-support-projection-20261107/component148-checked-units-image.json)
+binds the unchanged arrays, both complete unit readbacks and renderer. The
+historical recovery image above remains unchanged. This image records completed
+unit checks; complete layer exposure is still pending.
+
 ### Native shell-to-laser route
 
 PySLM deliberately represents these grid supports as shell meshes that slice
