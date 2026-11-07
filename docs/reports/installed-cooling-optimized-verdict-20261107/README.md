@@ -13,8 +13,17 @@ in-memory checks completed normally in 540.062 seconds, with peak sampled RSS
 vertices exactly, with zero changed coordinate components. In-memory checks
 preserve the original eight boundary triangle sets and find 1,979,148 positive
 tetrahedra, whose summed volume matches the source at 0.03198038331459504 m³.
-These in-memory topology checks are not an independent exported-connectivity
-qualification; no accepted-mesh claim relies on them.
+A subsequent independent MSH2 readback verifies all source patch triangles,
+918,136 boundary faces and cancellation of all 3,499,228 internal faces, with no
+duplicate tetrahedra. Its float64 volume check finds every tetrahedron positive.
+The integer connectivity checks are exact; the full-mesh volume arithmetic is
+float64, not a rational or interval proof. Synthetic valid, duplicate-cell and
+reversed-orientation controls exercise the checker. Run it against the private
+trial directory (including its sibling source inputs):
+
+```sh
+python docs/reports/installed-cooling-optimized-verdict-20261107/verify_export_chain.py /path/to/installed-cooling-hxt-optimized600-20261107
+```
 
 The real OpenCFD 2406 conversion used the previously verified converter route
 and 17-digit output. Standard `checkMesh` passes. Extended checks fail two gates:
