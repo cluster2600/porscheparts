@@ -43,7 +43,11 @@ make check
   `SKIP_BUDGET_ENFORCE=1` (the `validate.yml` workflow).
 - The shared requirements include Trimesh, Rtree and NetworkX for synthetic scan topology
   and surface-distance checks. Adding them enabled 22 existing 935 tests and
-  removed 78 skips across the full suite, lowering the CI budget from 416 to 338. Older WSL environments produced
+  removed 78 skips across the full suite. Shapely 2.2.0 additionally enables
+  polygon coverage and constrained-triangulation checks: 5,902 tests pass with
+  252 skips, lowering the CI budget to 254. Five repair tests still require
+  the separately pinned, patched PySLM runtime; Shapely alone cannot run them.
+  Older WSL environments produced
   416–421 skips; refresh dependencies before comparing with the current budget.
   A local count above the budget is not by itself a regression. A new skip
   **in a test you added** is: CI will count it.

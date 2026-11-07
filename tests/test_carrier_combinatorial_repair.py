@@ -12,6 +12,7 @@ except ImportError:
     shapely = None
 SOURCE = Path(__file__).resolve().parents[1] / 'parts/993-eng-carrier-0001/source/process-skins-20261016'
 sys.path.insert(0, str(SOURCE))
+PYSLM_AVAILABLE = importlib.util.find_spec('pyslm') is not None
 AVAILABLE = shapely is not None and hasattr(shapely, 'constrained_delaunay_triangles')
 if AVAILABLE:
     import continuous_combinatorial_interfaces as repair
@@ -21,6 +22,7 @@ if AVAILABLE:
 
 @unittest.skipUnless(AVAILABLE, 'Constrained-triangulation runtime required')
 class CombinatorialRepairTests(unittest.TestCase):
+    @unittest.skipUnless(PYSLM_AVAILABLE, 'Pinned patched PySLM runtime required')
     def test_all_domain_retained_from_an_empty_native(self):
         free = box(0, 10, 10, 20)
         interfaces = dict(upper=[[[0, 20], [10, 20]]], lower=[[[0, 10], [10, 10]]])
@@ -33,6 +35,7 @@ class CombinatorialRepairTests(unittest.TestCase):
         self.assertEqual(row['generated_material_geometry_wkb_hex'], result.wkb_hex)
         self.assertEqual(row['attested_source_interfaces'], interfaces)
 
+    @unittest.skipUnless(PYSLM_AVAILABLE, 'Pinned patched PySLM runtime required')
     def test_separate_intervals_remain_separate_without_union_overlay(self):
         free = MultiPolygon([box(0, 10, 10, 20), box(0, 30, 10, 40)])
         interfaces = dict(upper=[[[0, 20], [10, 20]], [[0, 40], [10, 40]]],
@@ -41,6 +44,7 @@ class CombinatorialRepairTests(unittest.TestCase):
         self.assertEqual(len(result.geoms), 2)
         self.assertEqual(len(receipt['intervals']), 2)
 
+    @unittest.skipUnless(PYSLM_AVAILABLE, 'Pinned patched PySLM runtime required')
     def test_contact_strips_joining_distinct_intervals_refuse(self):
         free = MultiPolygon([box(0, 10, 10, 11), box(0, 11.1, 10, 12)])
         interfaces = dict(upper=[[[0, 11], [10, 11]], [[0, 12], [10, 12]]],
@@ -57,6 +61,7 @@ class CombinatorialRepairTests(unittest.TestCase):
             self.assertEqual(a['primitives_sha256'], b['primitives_sha256'])
             self.assertEqual(a['material_triangulation'], b['material_triangulation'])
 
+    @unittest.skipUnless(PYSLM_AVAILABLE, 'Pinned patched PySLM runtime required')
     def test_captured_carrier_intervals_reproduce_their_geometry_and_exact_gates(self):
         fixture = json.loads((SOURCE/'combinatorial-evidence/fixtures.json').read_text())
         for case in fixture['cases']:
