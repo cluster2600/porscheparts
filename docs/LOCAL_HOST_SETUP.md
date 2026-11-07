@@ -302,6 +302,21 @@ g++ -std=c++20 -O2 twins/m64-cylinder-head/source/wholebody/surface_intersection
 M64_CGAL_INTERSECTIONS=/tmp/surface-intersections PYTHONPATH=tests .venv-check/bin/python -m unittest -v test_m64_projected_surface_topology.ProjectedSurfaceTopologyTests.test_intersection_selection_keeps_arrays_and_detects_crossing_and_coplanar_overlap
 ```
 
+### OCP 8 trimmed-surface flux control
+
+The CAD CI job adds a separate temporary environment with
+`cadquery-ocp==8.0.1.0.0`, NumPy 2.2.6 and SciPy 1.17.1. The existing analytic
+bilinear-surface test crosses a spline knot and checks both orientations,
+using fixed Gauss quadrature and adaptive integration. It passes locally
+without skips; this separate coverage is not subtracted from the base budget.
+OCP 8 is not installed over the retained OCP 7 CAD environment.
+
+The older recorded SciPy 1.15.3 wheel fails to load its PROPACK extension on
+this Mac (`__DATA/__thread_bss` zero-fill offset). Using 1.17.1 in this new
+isolated environment resolves the import failure without changing the test,
+source formulas or historical runtime recipe. This is an analytic numerical
+control, not a measured part-volume or CAD-release verdict.
+
 ### Legacy OpenUSD authoring checks
 
 The main CI job creates a separate temporary environment with `usd-core==25.5.1`

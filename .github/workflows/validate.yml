@@ -105,6 +105,13 @@ jobs:
         run: |
           python -m unittest discover -s tests -p 'test_m64_g*.py' -v
           python -m unittest discover -s tests -p 'test_cad_recode_fresh.py' -v
+      - name: Run OCP 8 trimmed-surface flux control in isolation
+        run: |
+          python -m venv "$RUNNER_TEMP/ocp8-flux"
+          "$RUNNER_TEMP/ocp8-flux/bin/python" -m pip install --only-binary=:all: numpy==2.2.6 scipy==1.17.1 cadquery-ocp==8.0.1.0.0
+          "$RUNNER_TEMP/ocp8-flux/bin/python" -m pip check
+          "$RUNNER_TEMP/ocp8-flux/bin/python" -c 'import OCP, scipy; assert OCP.__version__ == "8.0.1.0"; assert scipy.__version__ == "1.17.1"'
+          PYTHONPATH=tests "$RUNNER_TEMP/ocp8-flux/bin/python" -m unittest -v test_m64_meshers_2026.FluxTests
 
   usd-regressions:
     runs-on: ubuntu-latest
