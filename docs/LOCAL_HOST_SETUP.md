@@ -234,6 +234,26 @@ dotnet build twins/bionic-turbo-f0/assembly/source/Assembly.csproj --configurati
 BIONIC_DOTNET="$(command -v dotnet)" PYTHONPATH=tests .venv-check/bin/python -m unittest -v test_bionic_turbo_assembly
 ```
 
+### CPU precision, bounded distance and external DfAM controls
+
+The shared environment includes the recorded `cascading-upper-bounds==1.0.0`
+for analytic zero/offset distance bounds and translation invariance. The main
+CI job fetches the already-reviewed MIT-licensed DfAM script at revision
+`b10144ad98616fa7156f655cbd2aba0091216d40`, verifies the SHA-256 from
+[the tool review](reports/M64_PHOTO_TOOL_SELECTION_20260928.md), and sets
+`M64_DFAM_TOOL` for its existing four CLI fixtures. This is a temporary script,
+not a globally installed skill. No private mesh is passed to it; generic
+screening defaults do not establish material or manufacturing qualification.
+
+A separate temporary environment runs both triangle-area precision tests with
+Torch 2.10.0 and NumPy 2.2.6, following the [official CPU-wheel route](https://pytorch.org/get-started/previous-versions/).
+CI asserts the CPU build and absence of CUDA. The synthetic thin-triangle
+control compares binary64 cross-product arithmetic with an independent Decimal
+reference and rejects invalid inputs. This reproduces the studied formula;
+it does not execute PhysicsNeMo, train a model or alter frozen corpora.
+The two newly enabled shared controls lower the base skip budget by two;
+isolated Torch coverage is counted separately.
+
 ### Retained CGAL intersection auditor
 
 The main CI job uses Ubuntu 24.04 and the recorded `libcgal-dev=5.6-1build3`

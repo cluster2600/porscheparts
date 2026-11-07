@@ -56,6 +56,21 @@ jobs:
           "$RUNNER_TEMP/usd255/bin/python" -c 'from pxr import Usd; assert Usd.GetVersion() == (0, 25, 5)'
           "$RUNNER_TEMP/usd255/bin/python" -m unittest discover -s tests -p 'test_m64_openusd.py' -v
 
+      - name: Check CPU triangle-area precision in isolation
+        run: |
+          python -m venv "$RUNNER_TEMP/torch-cpu"
+          "$RUNNER_TEMP/torch-cpu/bin/python" -m pip install --only-binary=:all: numpy==2.2.6
+          "$RUNNER_TEMP/torch-cpu/bin/python" -m pip install --only-binary=:all: --index-url https://download.pytorch.org/whl/cpu torch==2.10.0
+          "$RUNNER_TEMP/torch-cpu/bin/python" -m pip check
+          "$RUNNER_TEMP/torch-cpu/bin/python" -c 'import torch; assert torch.__version__ == "2.10.0+cpu"; assert torch.version.cuda is None'
+          "$RUNNER_TEMP/torch-cpu/bin/python" -m unittest discover -s tests -p 'test_m64_triangle_area_precision.py' -v
+
+      - name: Fetch the reviewed immutable DfAM script
+        run: |
+          curl --fail --silent --show-error --location --retry 3 https://raw.githubusercontent.com/earthtojake/text-to-cad/b10144ad98616fa7156f655cbd2aba0091216d40/skills/dfam-check/scripts/dfam_tool.py -o "$RUNNER_TEMP/dfam_tool.py"
+          echo "48b3cbcfe55f7f02d59bb7b8030d9384e04e032d012eed0af0203bb7989e44a6  $RUNNER_TEMP/dfam_tool.py" | sha256sum --check
+          echo "M64_DFAM_TOOL=$RUNNER_TEMP/dfam_tool.py" >> "$GITHUB_ENV"
+
       - name: Build the retained CGAL intersection auditor
         run: |
           echo "476e056e35bb98f32d9d26ef8ba81f9c90ac7464f4af8ad5d76b92fa44f2689f  twins/m64-cylinder-head/source/wholebody/surface_intersections_cgal.cpp" | sha256sum --check
