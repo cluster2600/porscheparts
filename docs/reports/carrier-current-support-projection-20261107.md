@@ -557,7 +557,26 @@ The [first-grid receipt](carrier-current-support-projection-20261107/component14
 preserves every original non-band predicate and the original contact flags.
 The separate CGAL proof replaces only the costly band proof and its receipt
 comparison; it does not issue the historical seal. The other 13 nonempty grid
-planes, both complete skin-unit admissions and layer exposure remain separate.
+planes and both skin units have their own results below; layer exposure remains
+separate.
+
+### All fourteen grid units: complete checks passed
+
+The remaining **13 nonempty planes** now pass the same complete predicates and
+exact triangle checks, covering **4,836 additional triangles**. Together with
+the reused first unit, this covers all **14 planes, 28 native material groups
+and 5,119 triangles**. All four empty scheduled planes remain accounted for.
+Every triangle retains its source ID, coordinate bits and ordering; exact union
+and area equality exclude missing material and positive-area multiplicity.
+The material-minus-band difference is exactly empty for all 28 groups.
+
+The pass completed in **25.229 seconds**, with **878,362,624 bytes** peak RSS,
+return code zero and verified cleanup. Independent readback checked 3,436 source
+pins, all 196 new scientific files and the first unit's 15 retained files.
+The [complete-grid receipt](carrier-current-support-projection-20261107/component148-all-grid-units.json)
+preserves the earlier GEOS diagnostic and deferred flags without turning them
+into a new acceptance threshold. These are complete grid-unit results; the
+full layer-exposure calculation is still separate.
 
 ### Both skins: original mapping and native groups recovered
 
@@ -582,9 +601,55 @@ The [skin-recovery receipt](carrier-current-support-projection-20261107/componen
 records the exact scope. The original unfolding union and remapping clipping/CDT
 ran; native infill, exact band construction and grids were not regenerated.
 
-This closes the missing native metadata needed by the remaining unit checks.
-It does not establish an exact inverse of the rounded skin mapping or admit
-complete skin bands, layer exposure or finite support solids.
+This supplies the native metadata for the following unit checks. Recovery alone
+does not establish an exact inverse of the rounded mapping or layer exposure.
+
+### Both skin units: exact bands and original mapping checks passed
+
+Both intrinsic planar units now pass the retained construction, source-inclusion
+and local-contact predicates. CGAL finds an exactly empty material-minus-band
+difference for each. The second skin also equals its band; the first retains the
+previously reported positive band-minus-material difference. Containment is not
+relabeled as equality.
+
+The original mapping checks cover all **7,928 source occurrences and 8,036 skin
+triangles**, with all four saved arrays unchanged. The source-coordinate
+roundtrip is approximately **4.01944e-14 mm**, below its original
+**3.63798e-12 mm** bound. The retained remapping area bounds are
+**1.67330e-7 and 2.26300e-7 mm²**. These are the original numerical bounds;
+no exact inverse of the rounded mapping is claimed. The existing removal of one
+exactly zero-area face retains its closed-segment coverage proof, with no
+positive-area removal or coordinate change.
+
+The first attempt completed skin 0, then stopped before skin 1's native overlay
+while converting an unused sum of overlapping primitive areas to decimal text.
+That sum was not the union area. The continuation omits only this diagnostic,
+preserves every primitive's positive-area check and the exact input bytes, and
+reuses the completed first unit. The Python integer limit and all geometric
+predicates remain unchanged. Twenty focused refusal checks and the actual
+candidate/authority serialization checks pass.
+
+The continuation returned zero in **76.194 seconds**, with **2,226,880,512 bytes**
+peak RSS and verified cleanup. Independent readback took **2.020 seconds**,
+checking all 3,486 source pins, original arrays, mapping bounds, retained first
+unit and the second native result. The [two-skin receipt](carrier-current-support-projection-20261107/component148-two-skin-units.json)
+records both units and the preserved failed attempt. All grid and skin units
+are now checked; complete layer exposure remains pending.
+
+### Native shell-to-laser route
+
+PySLM deliberately represents these grid supports as shell meshes that slice
+into laser scan segments. Its [support-generation documentation](https://pyslm.readthedocs.io/en/dev/examples/basic_support.html)
+describes this route explicitly. The [API definition](https://pyslm.readthedocs.io/en/latest/api/pyslm.support.GridBlockSupport.html)
+defines `supportWallThickness` as the in-plane offset reinforcing the tooth
+edges; it does not specify a normal extrusion thickness or a laser track width.
+
+The next step therefore checks complete support sections, scan-vector coverage
+and layer-to-layer contact paths using the existing shell representation. A
+closed support solid is needed only for a downstream solid simulation or export
+format that requires one. Laser parameters, deposited track dimensions and the
+selected-machine job require their own process inputs; the shell checks do not
+infer them. No additional thickening operation or support redesign is introduced.
 
 ```mermaid
 flowchart TB
@@ -600,14 +665,17 @@ flowchart TB
     FULL --> UNIONS["Exact support unions: 2,482 complete receipts; both charts returned"]
     UNIONS --> SHEETS["15,111 vertices / 13,155 triangles recovered and checked"]
     SHEETS --> GRAPH["Two numerical components: exact connectivity witnesses checked"]
-    SHEETS --> BAND["First skin: exact planar band containment checked"]
+    SHEETS --> BAND["Both skin bands: exact planar containment checked"]
     SHEETS --> GRID["Original grid arrays and 28 native groups recovered"]
     SHEETS --> SKINS["Both original skin mappings and groups recovered; all arrays identical"]
-    GRID --> UNITS["First grid: complete planar predicates and exact triangles checked"]
+    GRID --> UNITS["All 14 grids: complete predicates and 5,119 exact triangles checked"]
     UNITS --> MATERIAL
-    SKINS --> MATERIAL
-    GRAPH --> MATERIAL["Complete exposure, finite support solids and attachment: pending"]
+    SKINS --> SKINUNITS["Both skin units: original mapping and local-contact predicates checked"]
+    SKINUNITS --> MATERIAL
+    GRAPH --> MATERIAL["Complete support scanpaths and layer contacts: pending"]
     BAND --> MATERIAL
+    MATERIAL --> JOB["Selected laser profile and machine job: pending"]
+    MATERIAL -. if required .-> SOLID["Finite support solids for solid simulation or export"]
     CONTROL["Reference case: exact and export chain passed"] -.-> EXACT
     CONTROL -.-> CHECK
     CURRENT["Current component 148: exact envelope and all listed parents checked"] -.-> EXACT

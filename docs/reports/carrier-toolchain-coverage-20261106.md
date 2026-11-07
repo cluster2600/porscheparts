@@ -216,27 +216,19 @@ flowchart TD
 
 Concrete integration gaps, in order:
 
-1. **Continue the qualified H10 selection from its retained checkpoint.** Both native
-   cases, lossless recovery, CUDA audits and full comparisons are complete.
-   The larger traction-jump buffer, both complete vectors and targeted peak
-   geometry checks now pass. Both full free-node `Ku − f` and elementwise
-   displacement-to-stress audits are complete; the original seven-digit
-   checkpoint exposed a printing-precision limit. The [four-site source patch and Mac controls](carrier-h9-native-results-20261107.md)
-   establish a bounded 17-digit route; the Linux/PARDISO small-control candidate
-   now also passes. Its ordinary packet and actual pinned-image quadratic
-   control now pass independent readback. Both bounded 17-digit lanes completed
-   native execution, full lossless recovery, CUDA checks and verified instance
-   deletion. Both complete local algebraic reassessments now pass source/field
-   readback. Exact selected-node and original Linux
-   geometry-kernel checks exclude reader/local force rounding as the cause of
-   the small gravity-node imbalance; they add no residual veto. Fresh two-case
-   17-digit marking, every-value joint-vector readback and H10 source intake now
-   pass. The bounded domain and local operator also pass. The first selection
-   retained 84,570 edges and 483,116 disjoint parents at about 48.4426% of each
-   full indicator, below its unchanged 50% selection target. The checkpoint
-   passes independent recount; resume the same source and domain. Indicator
-   coverage is not a convergence result. Retain the unchanged convergence rule.
-   The original seven-digit H8→H9 increments remain scoped to those exports.
+1. **Execute and compare the admitted H10 mesh.** Both 17-digit H9 native cases,
+   full lossless recovery, CUDA energy checks and complete local algebraic
+   readbacks are complete. Their original source, load and material identities
+   remain bound. The expanded H10 selection reaches both unchanged indicator
+   targets; complete geometry and exact nesting pass for **5,039,930 vertices
+   and 20,083,501 cells**. All 135 protected cells remain unchanged. Execute both
+   new native fields, recover them completely and compare them with the admitted
+   17-digit H9 fields through the exact fraction map. The
+   [H9/H10 report](carrier-h9-native-results-20261107.md) retains the earlier
+   selection exhaustion and source checks. Selection coverage is not mechanical
+   convergence. Keep two successive full-field increments below 1% per load;
+   the unresolved gravity-node diagnostic introduces no new residual veto.
+   Historical seven-digit H8→H9 increments remain scoped to those exports.
 2. **Close the current geometry's additive preparation.** PySLM's current-source
    import, pose, all 1,034 part layers and every scan segment passed independent
    checks, including the near-vertex case and complete volume assessment.
@@ -254,8 +246,14 @@ Concrete integration gaps, in order:
    256 MiB per-file cap; the saved geometry is intact. A subsequent unchanged
    connectivity calculation and independent witness readback now admit its
    two numerical sheet components using the recorded skin-witness subset.
-   Complete exposure, finite thickness and support admission remain unfinished.
-   Finish the remaining envelopes, supports, contacts, access
+   All 14 nonempty grid planes and both skin units now pass their complete
+   planar predicates and independent readback: 5,119 grid triangles and 8,036
+   skin triangles, with original arrays and mapping bounds preserved.
+   Complete exposure and support admission remain unfinished. PySLM's native
+   [shell-to-laser route](carrier-current-support-projection-20261107.md#native-shell-to-laser-route)
+   uses sliced scan segments; it does not require an invented normal wall
+   thickness. Finite support solids remain a separate requirement if the chosen
+   simulation or export needs them. Finish the remaining envelopes, supports, contacts, access
    and the complete build envelope, then package the matching machine job.
    The historical 440-layer cache is not reused by this result.
 3. **Turn thermal controls into a bounded process calculation.** GO-MELT's
