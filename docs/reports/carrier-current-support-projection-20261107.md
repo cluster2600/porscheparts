@@ -300,6 +300,28 @@ binds the admitted arrays and actual inspected rendering. Exact parent
 memberships remain attached to the exact source; complete partial-contact
 coverage and support construction remain pending for this component.
 
+The subsequent complete exact face classification now passes: **9,203 upper
+whole-face witnesses, 28,516 lower/plate witnesses and 7,743 vertical faces**
+account for all **45,462 faces**. The lower set includes **23,075 exact plate
+faces**. No tilted face remains unclassified. Every selected non-plate witness
+has a nonzero exact Z-normal and contains the complete exact child triangle.
+
+The unchanged proof uses the same positive-area argument as component 148:
+triangles can share positive area only in coincident planes; a vertical plane
+cannot coincide with a nonvertical upper/lower source plane. This establishes
+existence of the required whole-face witnesses, while exhaustive partial-parent
+identities and line/point lateral contacts remain separate. Exact membership is
+not transferred to rounded coordinates.
+
+Execution completed in **19.164 seconds**, with **620,494,848 bytes** sampled
+peak RSS and all **3,192 source pins** unchanged. A separate **5.189-second**
+reader recomputed every exact Z-normal sign and checked selected witnesses
+against the complete original parent roster. Both runs returned zero and left
+their exact owned process groups absent. The
+[whole-face receipt](carrier-current-support-projection-20261107/component534-whole-face-witnesses.json)
+binds the proof, sources, controls, complete readback and cleanup. Support
+generation and exposure remain unfinished for this component.
+
 ### Component 148: diagnostic section and contact encoding
 
 The unchanged interface adapter now accounts for all **45,852 current faces**:
@@ -730,7 +752,7 @@ flowchart TB
     CONTROL["Reference case: exact and export chain passed"] -.-> EXACT
     CONTROL -.-> CHECK
     CURRENT["Current component 148: exact envelope and all listed parents checked"] -.-> EXACT
-    CURRENT534["Component 534: exact and unchanged float64 checks passed; contacts pending"] -.-> CHECK
+    CURRENT534["Component 534: exact envelope, unchanged float64 and whole-face witnesses passed"] -.-> CHECK
 ```
 
 The [compact receipt](carrier-current-support-projection-20261107/summary.json)

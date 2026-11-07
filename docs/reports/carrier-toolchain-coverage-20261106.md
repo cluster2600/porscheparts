@@ -157,8 +157,11 @@ upper/lower witnesses, not exhaustive partial-parent identities or membership of
 rounded coordinates. Component 534 also has a checked exact envelope and
 unchanged float64 representation: 22,735 vertices, 45,462 faces, two closed
 components and 72,811 independently checked parent references. Its continuous
-conversion-distance bound is approximately 4.00067e-14 mm; its contact coverage
-remains pending. The other five envelopes and final support structures remain
+conversion-distance bound is approximately 4.00067e-14 mm. Its complete exact
+whole-face proof now accounts for 9,203 upper, 28,516 lower/plate and 7,743
+vertical faces, with independent readback and no unclassified tilted face.
+The same existential witness scope applies; generated support attachment and
+exposure remain pending. The other five envelopes and final support structures remain
 unfinished.
 
 | ID | Tool / recorded profile | Status and actual evidence | Next use or acceptance condition |
