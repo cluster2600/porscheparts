@@ -13,7 +13,7 @@ spec.loader.exec_module(writer)
 class ExportTests(unittest.TestCase):
     def fake(self, bad=False):
         self.xyz = np.array([[1/3, 1/7, -1/9], [0., 1., 2.]])
-        self.tags = np.array([9, 2])
+        self.tags = np.array([9, 2], dtype=np.uint64)
         self.options = {}
         def save(path):
             rows = ['2 0 1 2', '9 ' + ' '.join(format(x, '.16g') for x in self.xyz[0])]

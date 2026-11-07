@@ -26,7 +26,7 @@ def write_exact_msh(gmsh, output):
             for _ in range(int(count)):
                 row = next(src).split()
                 tag = int(row[0])
-                index = int(np.searchsorted(tags, tag))
+                index = int(np.searchsorted(tags, tags.dtype.type(tag)))
                 assert index < len(tags) and tags[index] == tag and tag not in seen
                 seen.add(tag)
                 point = xyz[index]
