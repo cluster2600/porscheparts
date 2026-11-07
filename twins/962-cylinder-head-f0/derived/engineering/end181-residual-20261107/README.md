@@ -3,7 +3,7 @@
 Issue [#446](https://github.com/cluster2600/porscheparts/issues/446) requires
 inspection of the captured residual/correction vectors before another numerical
 experiment. This offline diagnostic reads the retained two- and three-update
-captures; it does not rerun the solver or change a limit. The original
+captures; it does not rerun the coupon or change a limit. The original
 [three-update trial](../rich3-coupon-and-head499-held/README.md) remains rejected:
 **12 of 36 equilibrium aggregates still fail.**
 
@@ -57,11 +57,48 @@ CSV files and the full native console remain private. The earlier six-file
 three-update scientific intake was also checked against its published pins.
 Synthetic tests check the force/moment projection and exact cancellation sum.
 
-The next justified investigation is the nonlinear reassembly/stopping behavior
-at support release, including the arithmetic of the residual evaluation.
-This evidence does not establish a root cause or prove that another nonlinear
-iteration would satisfy the complete trajectory. No further solver experiment
-has run, and independent review remains outstanding.
+## Why the solver's success label is insufficient
+
+The retained log identifies MOOSE commit `7c06bdcefd` and PETSc 3.25.4.
+That [MOOSE source](https://github.com/idaholab/moose/blob/7c06bdcefd/framework/src/utils/PetscSupport.C)
+maps `solve_type = LINEAR` to `ksponly`. The corresponding
+[PETSc implementation](https://github.com/petsc/petsc/blob/v3.25.4/src/snes/impls/ksponly/ksponly.c)
+performs one correction, records an iteration-completed reason and, when
+requested, computes a final monitor norm. It does not test that final norm
+against the nonlinear convergence tolerances. The original three-update deck
+selects this mode and a fixed-count inner Richardson solve.
+
+A separate [native witness](../../../source/physics_witness/petsc_linear_stopping.c)
+checks that behavior against the exact retained PETSc library. It solves the
+synthetic scalar equation `2x = 1` from zero, with an intentionally incomplete
+three-step Richardson correction (no preconditioner, scale 0.25). This differs
+from the coupon's LU preconditioner and is not a coupon correction trial.
+
+| Mode | Outer iterations | Independently read-back residual | Returned reason |
+|---|---:|---:|---|
+| `ksponly` | 1 | 0.125 | 5, iteration-completed |
+| `newtonls` | 12 | 1.45519e-11 | 2, absolute norm reached |
+
+Both use absolute target 1e-10 and zero relative/step tolerance. Native
+self-checks reject unexpected results. Both completed with exit zero in under
+one second, within unchanged 20-second limits; their process groups were absent.
+The [receipt](native-stopping-witness.json) binds the source, binary, runtime
+libraries, exact upstream source bodies, commands via private receipt hashes,
+results and logs. The compilation receipt and runner remain in the private
+witness package.
+
+Four earlier bounded attempts are retained as failures: they printed the
+`ksponly` result but stalled in finalization and required group termination.
+A stack sample located the wait in MPICH/libfabric's default sockets provider.
+Restoring the original coupon's explicit `FI_PROVIDER=tcp` produced clean
+termination. A printed solver result alone was not accepted as a completed run.
+
+This establishes the stopping distinction and the standalone witness's runtime
+requirement. It does not establish the origin of every coupon residual or prove
+that another nonlinear iteration would satisfy its complete trajectory. The
+next investigation is reassembled-residual arithmetic and stopping at support
+release under the original 36 gates. No new coupon solve has run; independent
+review and the separate controller-closure gate remain outstanding.
 
 Affected phase IDs are `lpbf_build` and `lpbf_release`, diagnostic only. The
 [mandatory workflow](../../../WORKFLOW.md),
