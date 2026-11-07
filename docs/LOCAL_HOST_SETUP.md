@@ -100,6 +100,31 @@ These checks supplement the main suite; its skip count still describes the
 base environment. An analytic 2 × 3 × 4 mm native solid preflight prevents a
 missing CAD runtime from silently skipping the dedicated job's geometry tests.
 
+### Separate native USD regression environment
+
+CI's `usd-regressions` job installs the Linux AMD64 full OpenUSD 26.08 SDK
+from `requirements-check-usd-linux-64.txt`, an explicit package URL and SHA-256
+lock. It runs the 964 bundle and framing tests, including rejection of an
+unknown shader, after checking that the native checker and `UsdPreviewSurface`
+registry entry are available. The Python-only USD wheel cannot supply this
+complete shader-validation runtime.
+
+Keep this environment separate: PyVista 0.48.4 requires VTK below 9.7, while
+the base suite needs the frozen renderer's VTK 9.7.1. The SDK lock contains
+299 packages (about 614 MB compressed); allow several GB for installation.
+With micromamba 2.10.0 installed on Linux AMD64:
+
+```sh
+micromamba --no-rc create -y -p /tmp/porsche-usd-check --file requirements-check-usd-linux-64.txt
+micromamba run -p /tmp/porsche-usd-check python -m unittest discover -s tests -p 'test_964_omniverse_bundle.py' -v
+micromamba run -p /tmp/porsche-usd-check python -m unittest discover -s tests -p 'test_964_review_framing.py' -v
+```
+
+Use a native Linux filesystem for both package cache and environment. A local
+macOS bind-mounted cache failed the `liburing` package file check; installation
+and all ten existing tests passed in a native Docker volume. These tests check
+portable USD composition and framing, not RTX execution or physical geometry.
+
 ## 3. Heavy jobs on a shared or WSL host
 
 A voxel field, mesher or solver that outgrows memory can take the whole WSL VM

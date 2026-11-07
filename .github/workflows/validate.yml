@@ -64,6 +64,27 @@ jobs:
           python -m unittest discover -s tests -p 'test_m64_g*.py' -v
           python -m unittest discover -s tests -p 'test_cad_recode_fresh.py' -v
 
+  usd-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install isolated native USD SDK
+        run: |
+          curl --fail --silent --show-error --location --retry 3 https://conda.anaconda.org/conda-forge/linux-64/micromamba-2.10.0-0.tar.bz2 -o "$RUNNER_TEMP/micromamba.tar.bz2"
+          echo "9a97976244929bbae28fb1fae504e74a3e7e6d1932870e3a03321f01b7fbd07b  $RUNNER_TEMP/micromamba.tar.bz2" | sha256sum --check
+          tar -xjf "$RUNNER_TEMP/micromamba.tar.bz2" -C "$RUNNER_TEMP" bin/micromamba
+          MAMBA_ROOT_PREFIX="$RUNNER_TEMP/mamba" "$RUNNER_TEMP/bin/micromamba" --no-rc create -y -p "$RUNNER_TEMP/usd" --file requirements-check-usd-linux-64.txt
+          echo "$RUNNER_TEMP/usd/bin" >> "$GITHUB_PATH"
+      - name: Check native USD and shader registry
+        run: |
+          usdchecker --help
+          python -c "import numpy, pyvista; from pxr import Usd, Sdr; assert Usd.GetVersion() == (0, 26, 8); assert Sdr.Registry().GetShaderNodeByIdentifier('UsdPreviewSurface')"
+      - name: Run bundle and framing regressions
+        run: |
+          python -m unittest discover -s tests -p 'test_964_omniverse_bundle.py' -v
+          python -m unittest discover -s tests -p 'test_964_review_framing.py' -v
+
   cycle-thermal-f33:
     runs-on: ubuntu-latest
     timeout-minutes: 10
