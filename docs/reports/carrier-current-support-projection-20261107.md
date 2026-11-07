@@ -5,6 +5,11 @@ calculation](carrier-current-am-full-20261107.md). It checks the current carrier
 surface used for support preparation; it does not reuse the historical STL
 support masks.
 
+Latest state: components **148 and 534** each have complete generated sheets and
+checked grid/skin units. Component 148's full exposure calendar remains rejected;
+the following source-representation diagnostic explains the 515 affected cuts.
+Component 534's exposure and the other five support envelopes remain pending.
+
 Native overhang extraction preserved every selected triangle coordinate. Native
 splitting then accounted for all **905,248 selected triangles in 4,676 connected
 components**. The first attempted projected union failed its source-coverage
@@ -328,7 +333,25 @@ The first full 534 support-sheet attempt reached its original 1,770 s material t
 
 The first skin completed. The second remained incomplete, with 2,629 complete exact union receipts (native calls 0–2628) and the canonical input of pending call 2629 retained. An independent 13.308 s readback verified every retained output hash, ordered call record and exact receipt conservation, plus the pending input and chart identities. Completed input bodies are not retained; their complete canonical-input hashes and full exact receipts are retained.
 
-No complete sheet array, full group metadata or material admission is claimed. A separate continuation is being prepared to reuse only matching 534 canonical inputs and to execute the interrupted call; the original attempt remains unchanged. See the [compact timeout and prefix receipt](carrier-current-support-projection-20261107/component534-material-timeout.json).
+That attempt produced no complete sheet array or full group metadata. Its preserved prefix subsequently supplied the continuation below; the original attempt remains unchanged. See the [compact timeout and prefix receipt](carrier-current-support-projection-20261107/component534-material-timeout.json).
+
+### Component 534: both charts and complete generated sheets
+
+![Actual component 534 grid and peripheral sheets in metric top, side and orthographic views](../media/carrier-current534-sheets-20261107.png)
+
+The continuation completed **14,898 vertices and 13,012 triangles**, with a sheet area of **7,440.618152 mm²**. Its 30 material groups form two numerical components, with **28 independently recomputed positive sheet-connection witnesses**. Eighteen grid planes were scheduled: fourteen generated sheets, seven per direction, and four were explicitly empty. Both peripheral charts completed.
+
+All **2,629 retained exact-union receipts** matched their new canonical inputs; **424 additional calls** completed the sequence of **3,053**. Independent readback verified their order and exact area conservation, all four saved arrays, the complete group partition and the numerical connection witnesses. Generation took **1,279.227 s**, with **3.927 GB** peak process-group RSS. Both generation and readback returned zero, reaped their children and confirmed their exact groups absent.
+
+The [generation and figure receipt](carrier-current-support-projection-20261107/component534-generated-sheets.json) binds these results and the repeated, byte-identical render. The image records the generation checkpoint, before the detailed unit checks. It uses unchanged coordinates and equal metric aspect. These are open sheets with zero modeled thickness; the inherited 1 mm `supportWallThickness` setting is an in-plane tooth-edge offset, not sheet thickness or laser footprint. Numerical sheet connectivity is distinct from source-part attachment and chronological exposure admission.
+
+### Component 534: all grid and skin planar units checked
+
+All 14 nonempty grid planes and both skin charts now pass their source-bound unit checks. The independent readback accounts for 5,179 grid triangles and 7,833 skin triangles across all 30 native material groups. Every one of the 30 exact material-minus-intended-band areas is zero. Grid occurrence IDs, coordinate bits, triangle unions and area multiplicity are verified; both skins retain the original declared mapping predicates and complete source-remap array correspondence. No tolerance or geometry was changed.
+
+The grid run took 30.346 s and the two-skin run 147.112 s. Their common independent readback took 26.408 s with 1.878 GB peak RSS; all three children were reaped and their exact process groups were absent. Large native returns remain private references. [Compact scalar/hash receipt](carrier-current-support-projection-20261107/component534-planar-units.json).
+
+This admits the current 534 planar units. Full-calendar exposure and chronological support-to-part/plate anchoring remain pending; the original deferred-contact flags and the distinction between declared mapping bounds and an exact rounded-coordinate inverse are preserved. The native shell-to-laser route remains the intended exposure path.
 
 ### Component 148: diagnostic section and contact encoding
 
@@ -730,11 +753,19 @@ An unchanged exact graph replay of layers 417–443 reproduced every local count
 |442|26.55|5|5|183|
 |443|26.61|2|1|140|
 
-The original contact callback was then applied to all 515 affected rational cuts, with the same source traces, mapping, part sections and 0.2 mm vertical penetration. Every cut had **no positive-length overlap with its mapped lower-contact bands**. None reached the part-domain filtering stage, and no missing positive lower anchor was recovered. This localizes the rejection within the existing contact model; the cause of the band/geometry mismatch remains to be determined. No tolerance, geometry, footprint or policy was changed.
+The original contact callback was then applied to all 515 affected rational cuts, with the same source traces, mapping, part sections and 0.2 mm vertical penetration. Every cut had **no positive-length overlap with its mapped lower-contact bands**. None reached the part-domain filtering stage, and no missing positive lower anchor was recovered. This localized the rejection within the existing contact model; the subsequent diagnostic below identifies the representation mismatch. No tolerance, geometry, footprint or policy was changed.
 
 ![Actual component148 island births and chronological rejection](../media/carrier-current148-exposure-islands-20261107.png)
 
 The figure uses retained geometry and equal metric axes; its byte-identical replay was checked. Numerical re-rendering requires the private inputs. The [scalar/hash receipt](carrier-current-support-projection-20261107/component148-exposure-rejection.json) preserves the failed original readback of one opaque Finder metadata file and the subsequent exact-name/size/hash treatment; all scientific files remained strict. This result does not admit finite support volume, finite-area attachment, or the complete seven-component support build.
+
+### Component 148: source-to-rounded contact mismatch diagnosed
+
+The original skin remap was replayed with its complete array and receipt identities unchanged. Using its intrinsic coordinates and exact forward mapping, **all 515 affected cuts receive positive lower contacts** from the original callback, including **834 positive subintervals inside the same recorded part sections**. The rounded source cuts still reproduce the original rejection. No contact tolerance or geometric offset was introduced.
+
+Exact barycentric interpolation associates every positive source subinterval with its rounded source-face counterpart. The endpoint squared-displacement maximum bounds the whole affine interval, and each endpoint satisfies the convex bound from its source vertex errors. This proves representation correspondence, not exact membership of rounded coordinates in a contact band. Five occurrences encode as covered points and receive no encoded anchors from this diagnostic.
+
+The [compact diagnostic receipt](carrier-current-support-projection-20261107/component148-forward-contact-diagnostic.json) records the successful 34.335 s run, 309 MB peak RSS and confirmed process cleanup. It also preserves an earlier decoder-format refusal and the corrected real-callback decoding control. A shared source-representation adapter must still check every current skin vertex against the original forward-error bound, route owned encoded segments, and replay the chronological graph. The original exposure rejection remains unchanged.
 
 ### Native shell-to-laser route
 
@@ -776,12 +807,17 @@ flowchart TB
     GRAPH --> MATERIAL["Component 148: full calendar checked; chronological exposure rejected"]
     BAND --> MATERIAL
     MATERIAL --> ISLANDS["Four layers / skin0: 515 cuts lack positive band overlap"]
-    ISLANDS --> JOB["Correct and recheck supports; selected machine job pending"]
+    ISLANDS --> SOURCECONTACT["All 515 ideal-source contacts pass; shared representation correction pending"]
+    SOURCECONTACT --> JOB["Recheck chronological exposure; selected machine job pending"]
     MATERIAL -. if required .-> SOLID["Finite support solids for solid simulation or export"]
     CONTROL["Reference case: exact and export chain passed"] -.-> EXACT
     CONTROL -.-> CHECK
     CURRENT["Current component 148: exact envelope and all listed parents checked"] -.-> EXACT
     CURRENT534["Component 534: exact envelope, unchanged float64 and whole-face witnesses passed"] -.-> CHECK
+    CURRENT534 --> SHEETS534["Both charts: 14,898 vertices / 13,012 triangles; 3,053 exact unions checked"]
+    SHEETS534 --> UNITS534["All 14 grids and both skins checked; 30 exact band subsets"]
+    UNITS534 --> EXPOSURE534["Component 534: chronological exposure pending"]
+    EXPOSURE534 --> JOB
 ```
 
 The [compact receipt](carrier-current-support-projection-20261107/summary.json)

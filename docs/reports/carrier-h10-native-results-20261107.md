@@ -23,7 +23,20 @@ Each retained native DAT stream contains **4,707,508,076 bytes** before lossless
 
 The scalar readback preserved one diagnostic distinction. Combined coarse and fine work recomputations are each one binary64 ULP below the corresponding native summary (−3.637978807091713e−12 N mm). An additional bitwise-equality assertion initially refused those receipts. The fresh readback checks the exact native identity and recorded local-minus-native delta, retaining the differences without introducing a new tolerance. The original numerical comparator and all field data remain unchanged.
 
-Next, use the complete H10 stress fields to derive fresh two-case traction-jump indicators, independently retain/check the joint vector, then admit the next nested refinement. H10 face pairing requires **1,285,344,064 bytes**; three complete indicator vectors require **482,004,024 payload bytes** (**482,004,408 bytes** in three NPY files, including headers). Those capacities and the next complete DAT/XZ/receiver sizes need explicit admission. No H11 response or convergence result is claimed.
+The complete H10 traction-jump pass now retains gravity, combined and joint indicators for all **20,083,501 cells**. Independent readback verified every joint value bitwise against `J_gravity/W_gravity + J_combined/W_combined`. The pass took **766.245 s**, with **5.074 GB** measured peak RSS, zero return code and confirmed owned-process cleanup. The original formula and tolerances are unchanged.
+
+| Complete indicator | Gravity | Combined |
+|---|---:|---:|
+| Total traction-jump indicator [N mm] | 6,897.023435056453 | 130,849.71288227486 |
+| Local replay normalization work [N mm] | 1,471.3435926860257 | 19,164.490270128015 |
+| Interior faces checked | 37,284,658 | 37,284,658 |
+| Boundary faces | 5,764,688 | 5,764,688 |
+
+These indicators guide refinement; they are not a certified global error bound. The work values retain the native/local floating-point distinction described above. The admitted face buffer contains **1,285,344,064 bytes**; the three vectors contain **482,004,024 payload bytes**, or **482,004,408 bytes** including NPY headers.
+
+The [marking and H11 intake receipt](carrier-h10-native-results-20261107/marking-intake.json) records the complete readback and subsequent source admission. H11 starts with the actual H10 fields, unchanged boundary/load/support definitions, 135 protected cells and an empty selection state. It inherits no H10 selection checkpoint. Its initial screen found **1,502,275 distinct seed cells and 3,535,396 candidate edges**, using 1,048,576 seeds per load. The unprotected pool contains 92.330568% of the gravity indicator and 92.379593% of the combined indicator. These are candidate-pool fractions, not accepted coverage or a guarantee of attainable coverage.
+
+The next mesh requires disjoint exact refinement stars covering at least 50% of both complete case indicators and their joint indicator, followed by complete geometry, nesting-map and solver-capacity checks. The receipt describes intake before selection. No H11 geometry, response or convergence result is admitted here; complete DAT/XZ/receiver capacities must be derived from the eventual accepted mesh.
 
 ```mermaid
 flowchart LR
@@ -31,8 +44,8 @@ flowchart LR
     H10["Complete H10 fields · 17 digits"] --> COMP
     H10 --> GPU["Separate CUDA FP64 energy audit"]
     COMP --> RESULT["1.7001% gravity / 2.0090% combined"]
-    RESULT --> NEXT["Criterion remains open · fresh H10 joint marking"]
-    NEXT --> H11["Admit next nested refinement and output capacities"]
+    RESULT --> NEXT["Criterion remains open · complete H10 joint marking checked"]
+    NEXT --> H11["H11 source intake passed · nested refinement and capacities pending"]
 ```
 
 The compact [results and provenance](carrier-h10-native-results-20261107/results.json) bind native execution, retained fields, cleanup and both comparisons. [Portable figure inputs](carrier-h10-native-results-20261107/figure-inputs.json) contain only the actual plotted scalars; they do not reproduce the underlying scientific solve.
