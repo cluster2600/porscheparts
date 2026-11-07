@@ -125,6 +125,28 @@ macOS bind-mounted cache failed the `liburing` package file check; installation
 and all ten existing tests passed in a native Docker volume. These tests check
 portable USD composition and framing, not RTX execution or physical geometry.
 
+### Separate PySLM generations
+
+CI's `carrier-pyslm` job uses macOS ARM64 and Python 3.11 to run the existing
+installers in `parts/993-eng-carrier-0001/source/process-20261016` and
+`process-coverage-20261016`. Both installers verify the upstream revision,
+patch and installed source hashes, check dependencies, and slice an independent
+20 × 10 mm witness. Their pinned inputs remain unchanged.
+
+The historical generation runs `test_carrier_process_20261016.py`; the coverage
+generation runs all other `test_carrier*.py` modules. These environments are
+not interchangeable: the historical build correctly rejects the coverage
+patch before checking input receipts. Never relax that guard to combine them.
+Invoke tests through `python -m unittest`, not a Python program on stdin,
+because macOS multiprocessing workers must be able to restart the main module.
+The local split run passes six historical tests and 572 coverage-generation
+tests, with 12 skips in the latter for the separately required inputs below.
+
+Some carrier tests still skip because this environment lacks CAD, Gmsh or
+libigl; this job does not claim complete carrier coverage. The retained real
+local carrier evidence is also absent on CI. Synthetic support tests do not
+admit the rejected historical carrier preparation or authorize a machine build.
+
 ## 3. Heavy jobs on a shared or WSL host
 
 A voxel field, mesher or solver that outgrows memory can take the whole WSL VM

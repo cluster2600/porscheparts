@@ -85,6 +85,40 @@ jobs:
           python -m unittest discover -s tests -p 'test_964_omniverse_bundle.py' -v
           python -m unittest discover -s tests -p 'test_964_review_framing.py' -v
 
+  carrier-pyslm:
+    runs-on: macos-15
+    timeout-minutes: 20
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          architecture: arm64
+      - name: Install both pinned PySLM generations
+        run: |
+          python -c "import platform; assert platform.system() == 'Darwin' and platform.machine() == 'arm64'"
+          for generation in process-20261016 process-coverage-20261016; do
+            python "parts/993-eng-carrier-0001/source/$generation/setup_pyslm.py" "$RUNNER_TEMP/$generation"
+          done
+      - name: Run historical generation regressions
+        run: >-
+          "$RUNNER_TEMP/process-20261016/env/bin/python" -B -m unittest
+          discover -s tests -p 'test_carrier_process_20261016.py' -v
+      - name: Run carrier coverage regressions
+        # The historical generation above has a different pinned patch.
+        run: |
+          tests=()
+          for path in tests/test_carrier*.py; do
+            if [[ "$path" != tests/test_carrier_process_20261016.py ]]; then
+              module="${path##*/}"
+              tests+=("${module%.py}")
+            fi
+          done
+          PYTHONPATH="$PWD/tests" "$RUNNER_TEMP/process-coverage-20261016/env/bin/python" -B -m unittest -v "${tests[@]}"
+
   cycle-thermal-f33:
     runs-on: ubuntu-latest
     timeout-minutes: 10
