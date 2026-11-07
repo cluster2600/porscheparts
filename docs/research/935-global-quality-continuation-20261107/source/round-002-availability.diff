@@ -1,0 +1,10 @@
+--- a/audit_global_quality_peels.py
++++ b/audit_availability.py
+@@ -43,2 +43,2 @@
+-    assert mesh_hash == 'fdce160bc7ec2456ab339de09733d00cd2f3cd4c6a1327e03b44c838000e0db6'
+-    assert sha(job['surface']) == 'aaaa18f894d609d4c265835d97f3d191cbfad40e7be32c69e5f83437dbafacf2'
++    assert mesh_hash == '0e2e7933173dae86d2a0af8479fa244220aa89000787040e5defb7ba11fd88d6'
++    assert sha(job['surface']) == '56c4e19e5125ddd067321602e5d6a08962df15deefeab02b6b2571f275ca07b0'
+@@ -81 +81 @@
+-    assert len(ids) == condition['counts_kappa_F_at_least']['1e12'] == 12811
++    assert len(ids) == condition['counts_kappa_F_at_least']['1e12'] == 443
