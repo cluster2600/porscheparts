@@ -350,6 +350,39 @@ Complete component band admission, support assembly, finite thickness and
 attachment to the part and plate remain pending. Raw chart coordinates stay
 private; no generative geometry or new support policy was used for this image.
 
+### Exact GMP acceleration checked; remaining unions measured
+
+An exact-rational GMP route (`gmpy2` 2.3.2, GMP 6.3.0) now reproduces the first
+chart's complete polygon bytes, derived coordinate arrays and native receipt;
+only elapsed time is excluded from equality. The actual chart runs in
+**123.172 s**, versus **452.946 s** for the retained Fraction run. It exercises
+**309 nested union calls**. An earlier zero-fallback observation referred only
+to the final-band stage and did not count these nested calls.
+
+The following full-material attempt reused chart 0 and applied the qualified
+GMP route to the remaining work. It still reached the unchanged 1,200-second
+limit: **1,202.759 s** including cleanup, **2.470 GB** peak RSS, child return
+code −15, child reaped and exact group absent. No complete chart 1 or full
+support material was produced. The single-chart improvement is not a measured
+whole-job speedup.
+
+A shorter instrumented run then retained **94 completed exact union receipts**
+and the 95th call's input before its graceful diagnostic stop. Independent
+readback recomputed exact area conservation for all 94 receipts and checked
+all **191 retained files**. Completed call intervals total **97.403 s**; the
+largest is **12.840 s**, or 13.18%. This sampled prefix contains many costly
+calls rather than one stalled union. The full call count and completion time
+are still unknown.
+
+These intervals include the pending-input write and start-event flush plus
+GMP execution. They exclude earlier input serialization and later receipt
+writes, so they are not isolated backend timings. The diagnostic returned
+zero after **155.275 s**, with its child reaped and group absent. Preserving
+completed receipts for checked continuation is the next step; no geometry,
+support policy or arithmetic tolerance changed. The
+[GMP progress receipt](carrier-current-support-projection-20261107/component148-gmp-progress.json)
+binds the parity result, third timeout and bounded trace to their sources.
+
 ```mermaid
 flowchart TB
     INPUT["Original roofs, checked mask and complete part"] --> EXACT["Exact prism union, mask intersection and part subtraction"]

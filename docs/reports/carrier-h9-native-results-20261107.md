@@ -337,7 +337,8 @@ inversion and floating arithmetic; neither it nor the measured residual certifie
 the unprinted native solver residual. A complete incidence census places the
 largest residual at a free, unloaded node shared by **103 cells**, including
 one retained protected cell; neither native stress-peak cell is incident there.
-The remaining local force discrepancy is being investigated separately.
+The selected-node investigation below separates this observation from reader
+and local force-kernel rounding.
 
 The audit finished in **382.739 seconds**, returned zero and was reaped with its
 owned process group absent. Peak aggregate RSS was **3,004,596,224 bytes**.
@@ -348,6 +349,41 @@ The [new algebraic receipt](carrier-h9-native-results-20261107/print17-gravity-a
 binds this result, comparison, figure and control evidence. Combined-load
 reassessment and the unchanged two-successive-below-1% convergence criterion
 remain open.
+
+### Exact selected-node sum and original Linux geometry kernel
+
+![Measured selected-node force imbalance and arithmetic-route differences](../media/carrier-h9-exact-node-native-force-20261107.png)
+
+The complete incidence census found **103 cells** at the largest residual node
+(native node 646,670). A fresh complete source read checked every field row and
+the raw SHA, retaining only those cells' 618 original stress tokens. Exact
+rational coordinates and exact decimal stress tokens give a force norm of
+**0.000560017418191022 N**. Independent cofactor arithmetic reproduces that
+result. The qualified float64 reader gives **0.0005600174181911747 N**; its
+measured conversion, geometry, product and summation differences are of order
+1e-16 N. Those differences do not explain the observed imbalance.
+
+A local Linux harness then reused the **original `shape4tet.o`**, without
+recompiling it, for all 103 cells and six well-conditioned controls. With exact
+products, its native geometry coefficients give **0.000560017418190924 N**.
+A newly compiled transcription of the force loop gives
+**0.0005600174181908036 N**. Its vector differs from the exact binary-stress
+result by **2.2341e-16 N**. The figure's “same balance” means agreement at the
+displayed scale, not exact equality between the force vectors.
+
+Both bounded runs returned zero and verified cleanup: the exact source audit
+took **213.652 s**, and the native-object harness **11.803 s**. All 109 harness
+input rows preserved their binary64 bits. The
+[selected-node receipt](carrier-h9-native-results-20261107/print17-gravity-exact-node.json)
+records both routes, independent readbacks, provenance and the actual figure.
+The full solver, stiffness assembly and original multithreaded force schedule
+were not reproduced by this harness; the native cause remains unidentified.
+
+This closes the selected reader/force-kernel rounding question. It is an
+explanatory diagnostic, **not a new refinement veto or an energy-error bound**.
+The spatial criterion remains two successive complete increments below 1% per
+load. The next mechanical step is the complete combined-load precision audit,
+then fresh marking and refinement under the existing rules.
 
 ## Reproduction and next numerical step
 
@@ -360,8 +396,9 @@ binds both images to the actual results and script.
 
 The completed marking pass qualified the **1,228,798,784-byte face buffer**
 required by H9, exceeding the historical 1.2 GB bound, and used both complete
-traction-jump fields. The higher-precision gravity audit is complete; combined
-reassessment and residual diagnosis remain before H10 selection.
+traction-jump fields. The higher-precision gravity audit and selected-node
+rounding diagnosis are complete; combined reassessment remains before H10
+selection. A universal zero-residual certificate is not an added requirement.
 Correction-energy localization remains a separate diagnostic.
 Before any next rental, freshly admit
 complete DAT/XZ and receiver capacity: seven-digit H9 left only 32,911,702 raw
@@ -379,7 +416,7 @@ flowchart TD
     M --> LOCAL["Two complete local algebraic audits: printing precision limits diagnosis"]
     LOCAL --> PRECISION["17-digit output: Mac and Linux small controls passed"]
     PRECISION --> CAP["Admit next complete-field capacities"]
-    CAP --> REPLAY["17-digit gravity: full replay and algebraic audit complete<br/>Combined reassessment and residual diagnosis pending"]
+    CAP --> REPLAY["17-digit gravity and selected-node diagnosis complete<br/>Combined reassessment pending"]
     REPLAY --> V["After accepted reassessment: common refinement and exact nesting"]
     V --> NEXT["Next native responses and complete comparison"]
     NEXT --> S

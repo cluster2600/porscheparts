@@ -112,7 +112,7 @@ each run. Some carrier runtimes are native environments, not those images.
 | 25 | Standalone netgen-mesher 6.2.2607 / netgen-occt 7.8.1 | **E.** Complete 16,239,026-cell reference passed independent volume checks. [Volume validation](carrier-interface-20261028/VOLUME-VALIDATION.md) | Fallback geometry route; mechanical groups and response belong to their own subsequent admission. |
 | 26 | CalculiX 2.21 / historical SPOOLES / current PARDISO | **E.** Complete H7, H8 and H9 gravity/combined fields, native controls and independent force/moment/energy checks. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md), [H9](carrier-h9-native-results-20261107.md) | Continue source-admitted refinement with the same native path and limits; H9 has not closed stabilization. |
 | 27 | scikit-fem 11.0.0 / SciPy 1.17.1 / PyAMG 5.3.0 alternative | **R.** Analytical controls passed; complete retained quadratic-reference attempts failed the iteration or true-residual gate. Actual current-cell mapping checks passed, but no replacement carrier response was admitted. [Current mechanics](carrier-current-mechanics-20261104.md#optional-local-amg-route-independent-controls-passed) | Keep native PARDISO as the comparison authority; another solver needs its own complete parity result. |
-| 28 | Repository exact-rational refinement, NumPy/SciPy field readers and comparator | **E.** Exact parent-child maps, full DAT replay and rational-fraction controls. Complete H8→H9 comparisons are 2.672628% gravity / 3.325553% combined across the admitted 19,199,981-cell H9 mesh. [H8 results](carrier-h8-native-results-20261106.md), [H9 geometry and map](carrier-h9-global-geometry-20261107.md), [H9 results](carrier-h9-native-results-20261107.md). The full 17-digit gravity algebraic audit now also completes, checking all 149,087,999 numeric components. | Wider output removes the large rounded-displacement reconstruction discrepancy; a much smaller native-stress residual remains unresolved. Complete the combined-load precision reassessment and local residual diagnosis before H10; retain the two-successive-below-1% criterion. |
+| 28 | Repository exact-rational refinement, NumPy/SciPy field readers and comparator | **E.** Exact parent-child maps, full DAT replay and rational-fraction controls. Complete H8→H9 comparisons are 2.672628% gravity / 3.325553% combined across the admitted 19,199,981-cell H9 mesh. [H8 results](carrier-h8-native-results-20261106.md), [H9 geometry and map](carrier-h9-global-geometry-20261107.md), [H9 results](carrier-h9-native-results-20261107.md). The full 17-digit gravity audit checks all 149,087,999 numeric components. Exact selected-node sums and the original Linux geometry object exclude reader/local force-kernel rounding as the explanation for that node's imbalance. | Complete the combined-load precision reassessment, then fresh marking and H10 refinement. The remaining native cause is unidentified; it introduces no zero-residual veto. Retain the two-successive-below-1% criterion. |
 | 29 | PR #274 Warp 1.18.0 original geometry pilot | **S.** Original analytic box cases and CPU/native controls. [Warp pilot][WP] | This is the baseline software contract; do not describe the original PR as a complete CUDA/carrier/manufacturing validation. |
 | 30 | Warp 1.18.0 actual CUDA distance queries | **R.** Earlier reconstructed-carrier probes passed [IS]; latest full 10,452,018-probe witness failed all six repetitions: 422 exceed 0.0001 mm, maximum error 0.002814613 mm. [Current refusal](carrier-current-mechanics-20261104.md#complete-pr-274-cuda-accuracy-witness-refused) | Retain double CPU/libigl distances as clearance reference. Isolate and correct query errors before another acceptance claim. |
 | 31 | Warp 1.18.0 CUDA FP64 energy audit | **E.** Every H7, H8 and H9 cell checked under both loads against distinct CPU algebra at abs 1e-14 N mm + rel 1e-12. H9 covers 19,199,981 cells on RTX 4000 Ada and RTX 5070. [H7](carrier-h7-native-results-20261105.md), [H8](carrier-h8-native-results-20261106.md), [H9](carrier-h9-native-results-20261107.md) | Energy agreement does not validate row 30 or provide a GPU mechanical solve. Rebind and rerun for each new complete field. |
@@ -225,10 +225,11 @@ Concrete integration gaps, in order:
    control now pass independent readback. The bounded 17-digit gravity lane
    046 completed native execution, full lossless recovery, CUDA checks and
    verified predecessor deletion. Its complete local algebraic reassessment
-   now passes source/field readback and exposes a remaining small force
-   discrepancy for diagnosis. Combined precision execution remains separately
-   pending; prepare its full recovery path using the qualified native XZ
-   encoder before rental. Reassess the same H9 geometry before selecting H10;
+   now passes source/field readback. Exact selected-node and original Linux
+   geometry-kernel checks exclude reader/local force rounding as the cause of
+   the small imbalance; they add no residual veto. Combined precision execution
+   and its full recovery remain separately pending. Reassess the same H9
+   geometry before selecting H10;
    keep the unchanged convergence rule.
 2. **Close the current geometry's additive preparation.** PySLM's current-source
    import, pose, all 1,034 part layers and every scan segment passed independent
@@ -239,7 +240,10 @@ Concrete integration gaps, in order:
    comparison. The [portable exact 3D and export chain](carrier-current-support-projection-20261107.md)
    passes its reference case. The first current exact envelope, component 148,
    also passes independent topology, volume and listed-parent checks, with an
-   actual three-view figure. Finish the remaining envelopes, supports, contacts, access
+   actual three-view figure. Exact GMP acceleration reproduces chart 0 through
+   309 nested unions; a third full-material attempt timed out. A bounded trace
+   retains 94 exact chart-1 union receipts for checked continuation. Finish the
+   remaining envelopes, supports, contacts, access
    and the complete build envelope, then package the matching machine job.
    The historical 440-layer cache is not reused by this result.
 3. **Turn thermal controls into a bounded process calculation.** GO-MELT's
