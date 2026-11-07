@@ -522,11 +522,50 @@ retains the entire state, with no unsaved selection loss. The
 binds the failed-capacity predecessor, successful capacity/restoration controls,
 final checkpoint and independent recount.
 
-The next step is to measure a larger candidate inventory against the same H9
-source, then qualify its traversal and resource bounds before another selection.
-Existing accepted stars can be retained, but changed order hashes require an
-explicit new-domain restart of traversal. Both the 50% selection target and the
-two-successive-below-1% spatial-convergence criterion remain unchanged.
+### Expanded H10 selection and complete geometry: passed
+
+![Actual H10 selection fractions and complete geometry checks](../media/carrier-h10-geometry-20261107.png)
+
+This figure uses the published scalar receipt. Its [reproduction script](carrier-h9-native-results-20261107/render_h10.py)
+and [image provenance](carrier-h9-native-results-20261107/h10-figure-provenance.json)
+retain the exact source and image hashes.
+
+A fresh inventory increased the limit to **1,048,576 seeds per load**, giving
+**1,482,646 distinct seed cells** and **3,400,586 candidate edges**. It contains
+every previous candidate, selected star and attempted edge. The qualified
+transition retains the complete numerical state while explicitly restarting
+traversal for the new order. The original local operator, protected cells and
+acceptance criteria are unchanged.
+
+The fourth selection reached the original target with **157,950 selected
+edges**, including **21,433 non-midpoint fractions**, and **883,520 disjoint
+parent cells**. Independent complete-vector recount gives **51.87862259%
+gravity** and **50.00001429% combined indicator coverage**. These are selection
+fractions, not a convergence result. The selection completed in **132.132
+seconds**, returned zero and retained its full checkpoint with verified cleanup.
+
+The resulting H10 geometry now contains **5,039,930 vertices** and
+**20,083,501 tetrahedra**. Complete exact orientation, indexed-boundary and
+connectedness checks pass in both original and serialized coordinate frames.
+Independent solver-deck readback matches all coordinates and connectivity.
+The original boundary, load/support nodes and mass remain unchanged.
+
+Every one of the **1,767,040 new child cells** was classified in both frames:
+none reaches the existing normalized-condition threshold of `1e6`. The maximum
+is **999,997.6266155979**, close to that limit; passing this geometry check does
+not establish response accuracy. All **135 inherited protected cells** remain
+unchanged. Assembly took **126.761 seconds**, classification **16.122 seconds**,
+and independent complete readback **9.49 seconds**, with successful terminals
+and absent owned process groups.
+
+The [expanded-selection and geometry receipt](carrier-h9-native-results-20261107/h10-expanded-geometry.json)
+binds these results. The exact H9-to-H10 nesting map also passes, including
+every parent/child connectivity relation and all rational edge points in both
+coordinate frames. Independent readback matches every packed parent, edge and
+fraction array. The guarded map calculation took **6.055 seconds**, followed
+by **8.041 seconds** of independent readback. The two new native responses
+remain pending. The spatial-convergence criterion remains
+**two successive complete energy-norm increments below 1% for each load**.
 
 ## Reproduction and next numerical step
 
@@ -543,8 +582,8 @@ traction-jump fields from the seven-digit exports. Both higher-precision audits
 and fresh two-case 17-digit marking are now complete. H10 source intake,
 bounded candidate-domain and local-operator qualification passed. The first
 selection and both same-domain continuations retain the complete checkpoints
-above. Candidate-domain enlargement now precedes a completed proposal,
-assembled geometry and exact nesting.
+above. The expanded selection, whole H10 geometry and exact nesting have now
+passed. The next step is to bind and execute the two complete native responses.
 A universal zero-residual certificate is not an added requirement.
 Correction-energy localization remains a separate diagnostic.
 Before any next rental, freshly admit
@@ -567,10 +606,11 @@ flowchart TD
     REPLAY --> MARK["Fresh two-case 17-digit marking and full readback: complete"]
     MARK --> INTAKE["H10 source intake: admitted"]
     INTAKE --> QUAL["Bounded candidate domain and local operator: passed"]
-    QUAL --> SELECT["H10 selection: candidate pool exhausted; complete checkpoint retained"]
-    SELECT --> DOMAIN["Next: qualify larger candidate pool; unchanged 50% target"]
-    DOMAIN --> V["Next: completed proposal, H10 geometry and exact nesting"]
-    V --> NEXT["Next native responses and complete comparison"]
+    QUAL --> SELECT["Original candidate pool exhausted; checkpoint retained"]
+    SELECT --> DOMAIN["Expanded pool qualified; both selection targets reached"]
+    DOMAIN --> V["Complete H10 geometry: 20,083,501 cells checked"]
+    V --> MAP["Complete exact H9-to-H10 nesting: passed"]
+    MAP --> NEXT["Next native responses and complete comparison"]
     NEXT --> S
     C --> FIG["Actual figures and scalar/hash receipts"]
     GPU --> FIG

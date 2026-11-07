@@ -513,6 +513,79 @@ the old per-triangle subtraction log nor issues its historical admission seal.
 Complete component admission still needs the other units, construction and
 contact checks, and correspondence with the saved three-dimensional sheets.
 
+### Original grid metadata recovered without new unions
+
+The original grid-generation path now reproduces all **4,755 vertices** and
+**5,119 triangles** of the saved sheet prefix, with byte-for-byte equality of
+the vertex, face, order and type arrays. It restores **28 native material
+groups** across **14 nonempty planes**; the complete schedule retains all
+18 planes, including four empty planes. These are recovered native identities,
+distinct from the earlier measured connectivity partition.
+
+The run consumed the **869 existing exact-call receipts** in their original
+order, with **zero new native union calls** and no peripheral-skin generation.
+It completed in **35.941 seconds**, returned zero, used **2,412,199,936 bytes**
+peak RSS and left its owned process group absent. Independent readback checked
+all four arrays, every group/contact reference, the full face partition and
+all 869 complete ordered receipts. The recovered metadata is newly serialized;
+no comparison to a missing historical metadata file is claimed.
+
+The [grid-recovery receipt](carrier-current-support-projection-20261107/component148-grid-recovery.json)
+records the exact inputs and results. The original deferred contact flags and
+GEOS diagnostics remain visible, including a `3.0659171062424516e-16 mm²`
+outside-area diagnostic on axis 1 / order 12. Recovering the metadata does not
+admit that plane's exact band or replace the remaining unit-level checks.
+The two peripheral skins have their own mapping-recovery result below.
+
+### First grid: complete planar unit and exact triangle correspondence
+
+The first grid plane now passes the full retained construction and contact
+predicates, exact source inclusion and the new CGAL band-containment witness.
+All **283 original triangle occurrences**, split into **149 and 134 faces**,
+have unchanged coordinates, IDs and ordering. Their complete exact unions
+equal the two recorded material polygons. Independently summed exact triangle
+areas equal material areas, excluding positive-area overlap multiplicity.
+The material areas are approximately **124.69963036 and 99.87076819 mm²**.
+
+The run returned zero in **8.948 seconds**, with **934,510,592 bytes** peak RSS
+and verified process cleanup. Independent readback checked all **3,382 source
+pins**, 15 scientific files, both material rings and every retained triangle.
+The new route also passed a positive fixture and **12 focused refusal tests**,
+including an equal-area overlap/hole case that the exact union check rejected.
+
+The [first-grid receipt](carrier-current-support-projection-20261107/component148-first-grid-admission.json)
+preserves every original non-band predicate and the original contact flags.
+The separate CGAL proof replaces only the costly band proof and its receipt
+comparison; it does not issue the historical seal. The other 13 nonempty grid
+planes, both complete skin-unit admissions and layer exposure remain separate.
+
+### Both skins: original mapping and native groups recovered
+
+The unchanged skin unfolding and remapping functions now reproduce both
+peripheral sheets from their **two retained native returns**. All four complete
+sheet arrays match the original **15,111 vertices and 13,155 triangles** byte
+for byte. This includes the original unused vertex in the first skin; no vertex
+compaction or new triangulation policy was introduced.
+
+The recovered 28 grid groups and two skin groups partition every saved triangle
+exactly once. The source charts account for **4,254 and 3,674 original vertical
+faces**, respectively: all **7,928 source occurrences** are covered once, with
+their ordered coordinate hashes and mapping values checked independently.
+The large native receipts remain referenced by exact file hashes instead of
+being duplicated in the new metadata.
+
+The run completed in **44.519 seconds**, with **2,481,324,032 bytes** peak RSS,
+return code zero and verified cleanup. Independent readback took **4.694
+seconds**, checking all **7,972 pins**, complete arrays, group/contact references,
+both native receipt references and the original 1,034-layer calendar identity.
+The [skin-recovery receipt](carrier-current-support-projection-20261107/component148-skin-recovery.json)
+records the exact scope. The original unfolding union and remapping clipping/CDT
+ran; native infill, exact band construction and grids were not regenerated.
+
+This closes the missing native metadata needed by the remaining unit checks.
+It does not establish an exact inverse of the rounded skin mapping or admit
+complete skin bands, layer exposure or finite support solids.
+
 ```mermaid
 flowchart TB
     INPUT["Original roofs, checked mask and complete part"] --> EXACT["Exact prism union, mask intersection and part subtraction"]
@@ -528,6 +601,11 @@ flowchart TB
     UNIONS --> SHEETS["15,111 vertices / 13,155 triangles recovered and checked"]
     SHEETS --> GRAPH["Two numerical components: exact connectivity witnesses checked"]
     SHEETS --> BAND["First skin: exact planar band containment checked"]
+    SHEETS --> GRID["Original grid arrays and 28 native groups recovered"]
+    SHEETS --> SKINS["Both original skin mappings and groups recovered; all arrays identical"]
+    GRID --> UNITS["First grid: complete planar predicates and exact triangles checked"]
+    UNITS --> MATERIAL
+    SKINS --> MATERIAL
     GRAPH --> MATERIAL["Complete exposure, finite support solids and attachment: pending"]
     BAND --> MATERIAL
     CONTROL["Reference case: exact and export chain passed"] -.-> EXACT
