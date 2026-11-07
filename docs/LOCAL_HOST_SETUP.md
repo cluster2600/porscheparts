@@ -22,11 +22,16 @@ full suite also runs about six times slower there.
 
 ## 2. Run the same checks as CI
 
+On Debian/Ubuntu, install Gmsh's native libraries and the Mesa EGL renderer first:
+`sudo apt-get install --no-install-recommends libgl1 libglu1-mesa libegl1 libegl-mesa0`.
+The catalogue CI installs these before the Python requirements.
+
 ```bash
 make check-setup   # installs the CI dependency versions into .venv-check/ (needs uv)
 make check
 ```
 
+- Setup also installs the same hash-pinned native geometry oracle as CI.
 - The system `python3` usually lacks NumPy. Use `.venv-check/bin/python` to run
   a check script or a single test module directly:
   `.venv-check/bin/python -m unittest discover -s tests -p 'test_<name>.py'`.
@@ -40,9 +45,25 @@ make check
   output) skip when it is absent. CI allows at most `max_skips` from
   [tests/skip-budget.json](../tests/skip-budget.json), enforced only where
   `SKIP_BUDGET_ENFORCE=1` (the `validate.yml` workflow).
-- Locally the skip count varies with what is installed (416–421 seen on WSL,
-  against a CI budget of 416). A local count above the budget is not by itself a
-  regression. A new skip **in a test you added** is: CI will count it.
+- The shared requirements include Trimesh, Rtree and NetworkX for synthetic scan topology
+  and surface-distance checks. Adding them enabled 22 existing 935 tests and
+  removed 78 skips across the full suite. Shapely 2.2.0 additionally enables
+  polygon coverage and constrained-triangulation checks: 5,902 tests pass with
+  252 skips. Headless OCP 7.9.3.1.1 then enables 79 more native geometry
+  checks: the same 5,902 tests pass with 173 skips. USD 25.11 and Gmsh
+  4.15.2 then enable 35 more checks: 5,902 tests pass with 138 skips, lowering
+  the budget to 140. Python-FCL 0.7.0.11 enables three further native
+  surface-contact and rotor-transform fixtures: 5,902 tests pass with 135 skips
+  and a budget of 137. VTK 9.7.1 then enables eight more checks; the same
+  5,902 tests pass with 127 skips and a budget of 129.
+  Declaring `jsonschema==4.26.0` enables the two source/twin schema cross-checks
+  locally as well as in CI and lowers the budget by two, to 127.
+  Five repair tests still require
+  the separately pinned, patched PySLM runtime; Shapely alone cannot run them.
+  Older WSL environments produced
+  416–421 skips; refresh dependencies before comparing with the current budget.
+  A local count above the budget is not by itself a regression. A new skip
+  **in a test you added** is: CI will count it.
 - Some test modules define more tests when optional dependencies exist. For
   example, the bionic-turbo modules run 82 tests in `.venv-check` and 109 in the
   `3dprinting993-cadsim:dev` container.
@@ -50,6 +71,289 @@ make check
   `tests/test_935_interwalk_admission.py`) are timing-sensitive and can fail
   when the machine is saturated. Rerun the module alone before treating it as
   a failure.
+
+Cantera remains in the dedicated F33 image. A native macOS arm64 installation
+of the same Cantera 3.2.0 version failed three exact report comparisons against
+the frozen F33 evidence, with differences in the last floating-point digits.
+The version string alone does not reproduce that image's arithmetic. The
+shared requirements therefore do not install it, and the frozen report and
+exact replay assertions remain unchanged. CI's `cycle-thermal-f33` job runs
+`make 917-cycle-thermal-f33-test` against the existing digest-pinned Linux
+image. All 11 tests, including the three exact-report comparisons, pass in
+that image; the native macOS installation is not an equivalent replay.
+The same CI job also runs the F34b cycle and seed controls in their separate
+digest-pinned release image. The seed tests create temporary paths under the
+project root, so the job copies the required source directories into its bounded
+temporary filesystem first. The checkout remains read-only. The Cantera fixture
+is noncanonical and executes no engine DOE cases.
+
+### Separate CAD regression environment
+
+CadQuery 2.8.0 requires the OCP distribution pinned to VTK 9.6.2. The frozen
+917 surface renderer was recorded with VTK 9.7.1 and requires scene-hierarchy
+metadata absent in 9.6.2. Keep these runtimes separate; the historical renderer
+and its assertions are unchanged. The base environment supplies VTK 9.7.1.
+CI's `cad-regressions` job checks native
+geometry and STEP integrity in its own environment:
+
+```sh
+uv venv --python 3.12 .venv-check-cad
+uv pip install --python .venv-check-cad/bin/python -r requirements-check-cad.txt
+.venv-check-cad/bin/python -m unittest discover -s tests -p 'test_m64_g*.py' -v
+.venv-check-cad/bin/python -m unittest discover -s tests -p 'test_cad_recode_fresh.py' -v
+```
+
+These checks supplement the main suite; its skip count still describes the
+base environment. An analytic 2 × 3 × 4 mm native solid preflight prevents a
+missing CAD runtime from silently skipping the dedicated job's geometry tests.
+
+### Separate native USD regression environment
+
+CI's `usd-regressions` job installs the Linux AMD64 full OpenUSD 26.08 SDK
+from `requirements-check-usd-linux-64.txt`, an explicit package URL and SHA-256
+lock. It runs the 964 bundle and framing tests, including rejection of an
+unknown shader, after checking that the native checker and `UsdPreviewSurface`
+registry entry are available. The Python-only USD wheel cannot supply this
+complete shader-validation runtime.
+
+Keep this environment separate: PyVista 0.48.4 requires VTK below 9.7, while
+the base suite needs the frozen renderer's VTK 9.7.1. The SDK lock contains
+299 packages (about 614 MB compressed); allow several GB for installation.
+With micromamba 2.10.0 installed on Linux AMD64:
+
+```sh
+micromamba --no-rc create -y -p /tmp/porsche-usd-check --file requirements-check-usd-linux-64.txt
+micromamba run -p /tmp/porsche-usd-check python -m unittest discover -s tests -p 'test_964_omniverse_bundle.py' -v
+micromamba run -p /tmp/porsche-usd-check python -m unittest discover -s tests -p 'test_964_review_framing.py' -v
+```
+
+Use a native Linux filesystem for both package cache and environment. A local
+macOS bind-mounted cache failed the `liburing` package file check; installation
+and all ten existing tests passed in a native Docker volume. These tests check
+portable USD composition and framing, not RTX execution or physical geometry.
+
+### Separate PySLM generations
+
+CI's `carrier-pyslm` job uses macOS ARM64 and Python 3.11 to run the existing
+installers in `parts/993-eng-carrier-0001/source/process-20261016` and
+`process-coverage-20261016`. Both installers verify the upstream revision,
+patch and installed source hashes, check dependencies, and slice an independent
+20 × 10 mm witness. Their pinned inputs remain unchanged.
+
+The historical generation runs `test_carrier_process_20261016.py`; the coverage
+generation runs all other `test_carrier*.py` modules. These environments are
+not interchangeable: the historical build correctly rejects the coverage
+patch before checking input receipts. Never relax that guard to combine them.
+Invoke tests through `python -m unittest`, not a Python program on stdin,
+because macOS multiprocessing workers must be able to restart the main module.
+The local split run passes six historical tests and 572 coverage-generation
+tests, with 12 skips in the latter for the separately required inputs below.
+
+Some carrier tests still skip because this environment lacks CAD, Gmsh or
+libigl; this job does not claim complete carrier coverage. The retained real
+local carrier evidence is also absent on CI. Synthetic support tests do not
+admit the rejected historical carrier preparation or authorize a machine build.
+
+### Separate free-tools Python controls
+
+CI's `free-tools-python` job reuses `benchmarks/free-tools/requirements.lock.txt`
+with Python 3.12. It runs `test_free_tools.py` on every validation run, including
+the native DVC two-store restore, corruption, missing-store and interrupted
+transfer controls, plus OpenMDAO/OpenTURNS analytical and infeasible-case tests.
+Dependency and import preflights prevent those native tests from silently
+skipping. DVC telemetry and OpenMDAO report generation are disabled.
+
+These tests use temporary synthetic data. They do not restore private archives,
+contact Kali or publish artifacts. CloudCompare remains a separate native-image
+control; the existing path-filtered `free-tools-native.yml` workflow retains its
+broader acceptance, geometry-image and architecture-diagram checks. The package
+lock and historical receipts are unchanged.
+
+### Carrier CAD and retained Warp CPU controls
+
+CI's `carrier-cad` job reuses the macOS ARM64/Python 3.10 carrier installer
+`parts/993-eng-carrier-0001/source/design-20261016/setup_cad_base.py`. Its
+45-wheel hash lock, native OCCT binary hash, analytic bored-box checks and STEP
+round-trip remain unchanged. Gmsh 4.15.2 is added separately, then the installer
+revalidates the original pinned packages before both `test_carrier_root*.py`
+tests run. Both tests pass locally with this combination; they distinguish
+tangent from sharp joins and inspect a known cylinder's CAD/mesh section.
+
+CI's `warp-cpu` job reuses the Linux AMD64 hash-pinned Warp 1.18.0 requirements
+from `containers/warp-geometry.requirements.txt`. It runs the pilot's independent
+tests on native Linux, including actual CPU dispatch against an analytic box
+oracle. The local AMD64 emulation attempt failed kernel compilation because its
+reported CPU target `athlon-xp` was unsupported; that failure is not a passing
+CPU result. This job covers the retained runtime, not a Warp upgrade or CUDA
+validation. The source, image recipe and lock remain unchanged.
+
+### Fresh KiCad schematic checks
+
+CI's `rear-panel-kicad` job runs all rear-panel tests in the documented KiCad
+9.0.2 image, now pinned to its Linux AMD64 manifest digest. The schematic test
+copies the design to a temporary directory, runs ERC and exports a fresh XML
+netlist, then checks all 172 components and 541 pin connections. It does not
+reuse the archived netlist as its result.
+
+Keep the image's default user and configured home: its library tables are needed,
+and KiCad initializes cache/theme directories there. Only the disposable
+container filesystem is writable; the repository is mounted read-only, network
+access is disabled and resources are bounded. All 19 tests pass locally without
+skips. This checks the schematic and software contracts, not PCB routing,
+hardware operation or manufacturing qualification.
+
+### F15 executable preflight checks
+
+The main CI job installs .NET SDK 9.0.319 and builds the existing
+`twins/vehicle-911-917/picogk/Vehicle911917Packaging.csproj` before `make check`.
+This enables the two native input-rejection tests: invalid F15 parameters and
+invalid or stale F13 alignment receipts must fail before opening the viewer or
+creating output. The tests use synthetic fixtures and do not need the private
+scan or a PicoGK geometry run. The existing PicoGK 2.3.0 package stays pinned.
+
+With a .NET 9 runtime and compatible SDK installed, run the same checks locally:
+
+```bash
+dotnet build twins/vehicle-911-917/picogk/Vehicle911917Packaging.csproj --nologo
+PYTHONPATH=tests .venv-check/bin/python -m unittest -v \
+  test_911_917_full_vehicle_f15.FullVehicleTests.test_native_validation_rejects_before_opening_viewer \
+  test_911_917_full_vehicle_f15.FullVehicleTests.test_native_preflight_applies_f13_receipt_rules
+```
+
+These checks establish rejection behavior, not vehicle geometry or fitment.
+
+The same CI build step also builds the bionic turbo assembly in Release mode
+and sets `BIONIC_DOTNET=dotnet` for the main suite. Its existing executable test
+rejects invalid units, voxel size and housing hashes before native mesh loading,
+and preserves an existing output directory. All eight assembly tests pass
+locally with the selected executable; the additional base check lowers the
+skip budget by one.
+
+```bash
+dotnet build twins/bionic-turbo-f0/assembly/source/Assembly.csproj --configuration Release --nologo
+BIONIC_DOTNET="$(command -v dotnet)" PYTHONPATH=tests .venv-check/bin/python -m unittest -v test_bionic_turbo_assembly
+```
+
+### CPU precision, bounded distance and external DfAM controls
+
+The shared environment includes the recorded `cascading-upper-bounds==1.0.0`
+for analytic zero/offset distance bounds and translation invariance. The main
+CI job fetches the already-reviewed MIT-licensed DfAM script at revision
+`b10144ad98616fa7156f655cbd2aba0091216d40`, verifies the SHA-256 from
+[the tool review](reports/M64_PHOTO_TOOL_SELECTION_20260928.md), and sets
+`M64_DFAM_TOOL` for its existing four CLI fixtures. This is a temporary script,
+not a globally installed skill. No private mesh is passed to it; generic
+screening defaults do not establish material or manufacturing qualification.
+
+A separate temporary environment runs both triangle-area precision tests with
+Torch 2.10.0 and NumPy 2.2.6, following the [official CPU-wheel route](https://pytorch.org/get-started/previous-versions/).
+CI asserts the CPU build and absence of CUDA. The synthetic thin-triangle
+control compares binary64 cross-product arithmetic with an independent Decimal
+reference and rejects invalid inputs. This reproduces the studied formula;
+it does not execute PhysicsNeMo, train a model or alter frozen corpora.
+The two newly enabled shared controls lower the base skip budget by two;
+isolated Torch coverage is counted separately.
+
+### Archived field/lattice preflight checks
+
+The optional field and replay executables require the exact managed PicoGK
+assembly and all 59 LEAP sources recorded in
+`twins/964-chassis/monocoque/field-lattice/evidence/execution.json`.
+Do not substitute the shared NuGet runtime. The local runtime binaries match
+that receipt; two installed ShapeKernel files differ. Their recorded upstream
+revision supplies matching bytes, so stage a separate verified source tree
+without overwriting the installation. Both projects build with .NET 9.0.319
+and retain 35 upstream warnings each.
+
+The original field test is itself hash-pinned. Its additive companion
+`test_964_field_lattice_preflight.py` checks the four expected diagnostics as
+well as output preservation, rejecting a generic failing executable. Set
+`DOTNET`, `FIELD_LATTICE_DLL` and `REPLAY_DLL` to the verified local builds to
+run all three test modules. These are input-rejection controls; they do not
+regenerate geometry. Managed-runtime rebuild/distribution provenance remains
+unestablished, so CI retains the explicit optional runtime skip.
+
+### CalculiX cantilever control
+
+The main Ubuntu 24.04 job installs `calculix-ccx=2.21-1`, the package already
+recorded by the retained F47 recipe. This enables the existing synthetic
+cantilever test, comparing integration-point bending stress with an analytic
+beam result away from the clamp and tip. It also checks that the 2D nodal
+output retains transverse shear rather than replacing bending stress.
+The control passes in a disposable Linux AMD64 runtime; no vehicle geometry,
+material allowables or structural qualification is inferred. The base skip
+budget is lower by one.
+
+```bash
+PYTHONPATH=tests .venv-check/bin/python -m unittest -v test_964_strength_audit.StrengthAuditTests.test_cantilever_integration_stress_retains_bending
+```
+
+### Retained CGAL intersection auditor
+
+The main CI job uses Ubuntu 24.04 and the recorded `libcgal-dev=5.6-1build3`
+package. It checks the unchanged auditor source hash, compiles with C++20 and
+sets `M64_CGAL_INTERSECTIONS` for the existing synthetic topology test. The
+controls cover transverse crossing, coplanar overlap, separated surfaces,
+shared edges, degeneracy and preservation of input arrays. They do not audit
+private geometry, repair a mesh or grant CFD/manufacturing admission.
+
+```bash
+g++ -std=c++20 -O2 twins/m64-cylinder-head/source/wholebody/surface_intersections_cgal.cpp -o /tmp/surface-intersections -lgmp -lmpfr
+M64_CGAL_INTERSECTIONS=/tmp/surface-intersections PYTHONPATH=tests .venv-check/bin/python -m unittest -v test_m64_projected_surface_topology.ProjectedSurfaceTopologyTests.test_intersection_selection_keeps_arrays_and_detects_crossing_and_coplanar_overlap
+```
+
+### OCP 8 trimmed-surface flux control
+
+The CAD CI job adds a separate temporary environment with
+`cadquery-ocp==8.0.1.0.0`, NumPy 2.2.6 and SciPy 1.17.1. The existing analytic
+bilinear-surface test crosses a spline knot and checks both orientations,
+using fixed Gauss quadrature and adaptive integration. It passes locally
+without skips; this separate coverage is not subtracted from the base budget.
+OCP 8 is not installed over the retained OCP 7 CAD environment.
+
+The older recorded SciPy 1.15.3 wheel fails to load its PROPACK extension on
+this Mac (`__DATA/__thread_bss` zero-fill offset). Using 1.17.1 in this new
+isolated environment resolves the import failure without changing the test,
+source formulas or historical runtime recipe. This is an analytic numerical
+control, not a measured part-volume or CAD-release verdict.
+
+### Legacy OpenUSD authoring checks
+
+The main CI job creates a separate temporary environment with `usd-core==25.5.1`
+for the existing bounded-authoring contract. All three tests pass locally,
+including native fixture authoring and rejection of external access and unsafe
+syntax. The contract retains its explicit `ShaderPropertyTypeConformanceChecker`
+exclusion; full shader checks belong to the separate OpenUSD 26.08 SDK job.
+The shared 25.11 runtime is unchanged. These checks do not train a model, modify
+the frozen corpora or qualify engineering geometry.
+
+### Retained Aeolus construction checks
+
+The cycle CI job also runs all 56 F39/F40/F40b tests in the existing
+digest-pinned F39 image with Aeolus1D 0.3.3. This enables three previously skipped
+runtime checks for crank inheritance, each campaign case's constructed topology
+and the nominal flat-12 network. The exact image passed all 56 tests locally
+under AMD64 emulation without skips; native Linux execution belongs to CI.
+
+The container is offline and read-only, with bounded CPU, memory and temporary
+storage. Recipes, dependency locks, engine contracts and assertions remain
+unchanged. Constructing these networks and running synthetic/fake-executor
+controls does not execute or qualify an engine campaign.
+
+### Boolean geometry, scientific notation and remaining surface controls
+
+The shared environment includes Manifold3D 3.5.4 for the three synthetic
+intersection/clearance checks and Beautiful Soup 4.15.0 with SoupSieve 4.0.1 for
+preserving scientific exponents and chemical subscripts. All 15 focused
+packaging, clearance and grounded-source tests pass without skips; no model
+training is involved. These four enabled checks lower the base skip budget by
+four.
+
+The isolated USD/PyVista job adds the shared Trimesh 5.1.0 and SciPy 1.17.1
+versions without replacing its locked native packages, then checks dependencies
+and runs nine synthetic fluid-boundary tests. The Warp CPU job adds Trimesh
+5.1.0 and exercises the fan ray kernel against an independently known box hit
+and miss. These are geometry/software controls, not flow or fitment validation.
 
 ## 3. Heavy jobs on a shared or WSL host
 

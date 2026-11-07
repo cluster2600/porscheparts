@@ -1,3 +1,4 @@
+import importlib.util
 import json
 from pathlib import Path
 import sys
@@ -98,6 +99,8 @@ class IndexedInterfacesTests(unittest.TestCase):
         finally:
             indexed._BASE.construct = real_construct
 
+    @unittest.skipUnless(importlib.util.find_spec('pyslm') is not None,
+                         'Pinned patched PySLM runtime required')
     def test_indexed_policy_keeps_the_complete_repair_receipt(self):
         domain = shapely.box(0, 10, 10, 20)
         interfaces = dict(upper=[[[0, 20], [10, 20]]], lower=[[[0, 10], [10, 10]]])
