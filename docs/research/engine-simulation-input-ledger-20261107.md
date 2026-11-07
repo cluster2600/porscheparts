@@ -208,3 +208,34 @@ A reviewer must trace the crossing back to the acquired surface and establish
 an admissible revision before further meshing; automatic repair or parameter
 sweeps cannot establish source fidelity. The historical failed case stays
 unchanged. No physical geometry, flow or thermal acceptance follows.
+
+### Reconstruction lineage gap
+
+The retained output also lacks `print/917-engine-display-master.stl` and
+`constant/triSurface/917-engine-exterior-full.stl`. The retained display-master
+report (SHA-256 `ae5d1e37e1186dba3d7448af1272f999a422d50cd706b59013e61eee63926f47`)
+labels the reconstruction `display_print_nonfunctional`, uses voxel size 2.0
+in unconfirmed OBJ units and names `derived/917-engine-light-600k.ply` as input.
+The retained scan preparation report (SHA-256
+`7ce1255008184103626a951e00f7c57ee62915337554f5e68436711758bb7fa0`)
+reports 101,809 open source edges and unverified physical scale and licence.
+These are historical report claims, not fresh whole-scan validation.
+
+At the repository revision above,
+[run_pipeline.sh](../../twins/reference-917-engine/run_pipeline.sh) instead
+feeds `components/component-01-main_engine_assembly.ply` into the display
+reconstruction, then feeds the display master into
+[prepare_external_cfd.py](../../twins/reference-917-engine/source/prepare_external_cfd.py).
+The respective script hashes are
+`e4a5e2f0a4c46e469ffaebf6f4ed73df8c99498f7f4a9ce4f3b44177c6686645` and
+`167671c83e959e3f6e77cf2e0b1b65f748a9d7dca67218be189776ce907f0aad`.
+The latter applies the provisional 0.001 scale and decimates to 300,000 facets;
+its closed-volume checks do not establish absence of self-intersections.
+The current scripts are not a verified record of the historical invocation.
+
+Consequently, the confirmed crossing cannot yet be attributed to the acquired
+scan, voxel reconstruction or subsequent decimation. The data custodian must
+recover the exact invocation/source revision and the missing intermediate
+identities before the reviewer can establish that lineage. Do not substitute
+one of the differently scaled display prints or rerun the current pipeline
+and call its output a recovered historical artifact. No repair is attempted.
