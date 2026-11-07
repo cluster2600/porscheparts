@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "scope": "Native Linux AMD64 offline synthetic cube slicing only",
+  "receipt": "prusa-slicer.KoQjSv",
+  "image_id": "sha256:2348bdc336c73ac29d696b2e5246c5e4a72163c5159b7efa5ad4de54e8405cd7",
+  "image_metadata": "sha256:2348bdc336c73ac29d696b2e5246c5e4a72163c5159b7efa5ad4de54e8405cd7 linux/amd64 658732966",
+  "build_exit_code": 0,
+  "offline_smoke_exit_code": 0,
+  "smoke_limits": {
+    "network": "none",
+    "cpus": 2,
+    "memory": "4g",
+    "timeout_seconds": 300
+  },
+  "started_at": "2026-11-07T08:52:20Z",
+  "finished_at": "2026-11-07T10:15:55Z",
+  "report": {
+    "status": "synthetic_cube_sliced",
+    "bytes": 109853,
+    "printer_qualified": false
+  },
+  "source_sha256": {
+    "containers/stack-20261105/prusa-slicer.Dockerfile": "76f8f504a21b34670e91877988b3ed7ba68bbb881696dc8d847c2f7ee3ff76d7",
+    "containers/stack-20261105/prusa-smoke.py": "c23466ac1cfca6ead7b4156d60b968c9750734ea133b007e3ac82fcdb5266fa2"
+  },
+  "build_runner": {
+    "sha256": "4e7324a42c817c2b8752fc54c06ce6c0f67c0a8be460797f24316c01e6db4321",
+    "scope": "Preserved private build-context runner predates the CAD companion integration; context.sha256 binds its bytes."
+  },
+  "receipt_sha256": {
+    "build-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "build.log": "545b4dc54a5c2d021cfe21588f89a5bf8a3301107b9d5a59feeeda9398d46a7f",
+    "context.sha256": "da9901817c6a1ee7ba0292b09e49c3cc5b1b77e16586d3cff5594b2dce1f9daa",
+    "finished.txt": "e5878fc4582e972fda665e62b21707cac8bdc6501529c80fbbc9f6c1ce5f6b63",
+    "image-id.txt": "992650301a612393635a5d2430f790220283bcd2ee0a468926615c511e043f68",
+    "image.txt": "3a849c2cb29230063e43eb4b932780066310bb5db0b7752a2e06a665cffba70f",
+    "local-parent-images.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "recipe.sha256": "df94750ce27a10195dce80d13671f120dab00dd8c34d0efcba6f32be9d86243f",
+    "smoke-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "smoke.log": "0805f07f8756bb147dd3ee41fdc0fbf3251717cc3cae3ae5eb222c3b57b9a053",
+    "started.txt": "e407a33d309e8c3812cab8f25248a4ac2df2e70a235cf62b0c0b6d6abe5f918d",
+    "tag.txt": "9de681c1ab82b157e3a1ff8338d95b2580e57358cad445ab75f24dcbf9ae0ca0"
+  },
+  "prior_failed_receipt": "prusa-slicer.xLHOo1",
+  "runtime_fix": "Add libpng16-16t64 for the previously missing libpng16.so.16 shared library.",
+  "registry_published": false,
+  "printer_qualified": false,
+  "physical_qualification": false
+}

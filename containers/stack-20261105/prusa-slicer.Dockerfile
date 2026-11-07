@@ -25,7 +25,7 @@ RUN cmake -S /src -B /src/build -DCMAKE_BUILD_TYPE=Release \
 FROM ubuntu:24.04@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852
 ENV DEBIAN_FRONTEND=noninteractive PATH=/opt/prusa/bin:/usr/local/bin:/usr/bin:/bin
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    ca-certificates libgl1 libglu1-mesa libdbus-1-3 libgomp1 python3 \
+    ca-certificates libgl1 libglu1-mesa libdbus-1-3 libgomp1 libpng16-16t64 python3 \
     && rm -rf /var/lib/apt/lists/*
 COPY --from=build /opt/prusa /opt/prusa
 COPY containers/stack-20261105/prusa-smoke.py /opt/stack/prusa-smoke.py

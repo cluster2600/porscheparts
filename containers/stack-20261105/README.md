@@ -12,9 +12,16 @@ Original recipes, lock files, evidence and existing image tags are preserved. Ne
 
 ## 7 November integration checkpoint
 
-The current results contain 38 replacement recipes: 36 have a matching native
-Linux build and offline CPU-smoke receipt. PrusaSlicer is still building;
-reconstruction has not passed. The separate CAD-Recode CAD companion passes
+The current results contain 38 replacement recipes: all 38 have a matching native
+Linux build and offline CPU-smoke receipt. PrusaSlicer 2.9.7 now passes its
+offline synthetic-cube slice after adding the missing PNG runtime library;
+`prusa-native-validation.json` binds the new image, inputs and receipt hashes.
+The earlier missing-library failure is retained. Reconstruction also passes its
+offline CLI, Blender-version and Python-import checks after refreshing the
+allowlisted source context; `recon-native-validation.json` binds the selected
+receipt. Cached build layers were reused. Representative reconstruction quality
+and GPU execution remain unverified.
+The separate CAD-Recode CAD companion passes
 STEP readback and CalculiX bar/heat checks, with zero measured relative error
 in both solver controls. `cad-recode-native-validation.json` binds the exact
 parent images, all 19 source inputs and retained numerical results.
@@ -66,7 +73,7 @@ Template `b8e9f2e4f2930d19e87e3702d4eeaf00d9846676` (Kit 110.4.1).
 Its packaging check is not editor, Vulkan, GPU or streaming acceptance.
 
 `build-results.json` records passing build/CPU-smoke candidates and failed attempts.
-Reconstruction and further native builds remain in progress;
+Representative reconstruction and GPU validation remain pending;
 this is not completion of the 44-recipe inventory. CAD's passing check covers
 STEP geometry and Python imports, not every solver and slicer in that image.
 
@@ -125,7 +132,7 @@ solver check after adding the matching tutorial package to the runtime image.
 | Scan preparation | NumPy 2.5.4, trimesh 5.2.0, SciPy 1.18.1 | Updated lock; existing synthetic segmentation workload retained |
 | CAD | build123d 0.13.0 and CadQuery 2.8.0 in separate environments | build123d needs OCP proxy >=8, CadQuery needs OCP <8; combined resolution fails |
 | Content Agents | 0.6.2 with its upstream runtime locks | Service locks require OVRTX 0.4.1 and OvPhysX 0.4.13; newer standalone libraries are a separate candidate |
-| Reconstruction | CUDA Docker 13.4.3, COLMAP 4.2.1, GLOMAP 1.2.0, Blender 5.2.3 | CUDA 13.5 toolkit exists but requested Docker tag is absent; build and smoke pending |
+| Reconstruction | CUDA Docker 13.4.3, COLMAP 4.2.1, GLOMAP 1.2.0, Blender 5.2.3 | CUDA 13.5 toolkit exists but requested Docker tag is absent; native build and offline CPU smoke pass; GPU validation pending |
 | Foundation OpenFOAM | 14 candidate | Existing Foundation 13 solver evidence remains unchanged; no automatic physical acceptance |
 
 The OpenFOAM candidate uses maintenance package `20261008` and ICengines commit
@@ -136,8 +143,9 @@ Local derived images use generation-specific parent tags during development;
 receipt image IDs identify the actual build. They are not published digest locks.
 
 CAD now includes source-built CalculiX 2.23. Analytic displacement and heat-flux
-checks pass without network access. PrusaSlicer remains Ubuntu 2.7.2 while the
-2.9.7 source build runs; its replacement is pending. OpenSCAD 2021.01 is
+checks pass without network access. PrusaSlicer 2.9.7 now builds from pinned
+source and passes the offline synthetic slice; this does not qualify a physical
+printer. OpenSCAD 2021.01 is
 confirmed latest stable, rather than an upgrade gap.
 The official CalculiX 2.23 Linux binary failed `ldd`/execution because it requires
 `libgfortran.so.4`; the candidate builds the pinned source with current libraries.
