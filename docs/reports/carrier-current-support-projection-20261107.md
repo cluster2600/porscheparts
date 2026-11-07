@@ -161,6 +161,47 @@ records per-component counts, exact areas, identities and checks. These are
 checked inputs for three-dimensional construction: no extrusion, contact
 calculation or current support Boolean was executed by this stage.
 
+### Portable exact 3D and export chain: reference case passed
+
+The existing native CGAL binaries now run in the recorded local Linux container
+with their pinned loader and library closures. No new geometric algorithm or
+numerical threshold was introduced. The original prism/cutter reference case
+reproduces its historical exact and rounded geometry hashes: **42 vertices,
+76 faces and exactly 3,200 mm³**, with independently checked closed orientation,
+analytic boundary and complete 52-source-parent mapping.
+
+Its raw binary64 export also reproduces the known refusal: **four collinear
+triangles**. The existing CGAL autorefinement route, fixed at **51 grid bits and
+five iterations**, then produces **40 vertices and 72 faces**, with no collinear
+triangles or post-export self-intersections. Its reconstructed complete NPZ
+matches the historical accepted output hash. The exact final volume differs
+from 3,200 mm³ by approximately **2.65269e-14 mm³**; it is not claimed unchanged.
+
+The existing bidirectional exact-distance checks cover 118 and 112 declared
+samples. Their composed displacement bound is **1.77636e-15 mm**, below the
+unchanged **1.230696e-13 mm** limit. This is a finite-sample result, not a
+continuous Hausdorff certificate. The exact-stage full parent map is retained;
+the 72 snapped faces have primary ancestry only. Neither ancestry alone nor
+this reference case establishes geometric contact coverage for current supports.
+
+The [portable qualification receipt](carrier-current-support-projection-20261107/portable-3d-qualification.json)
+records the controls, preserved refusal, exact volume difference, runtime hashes,
+independent checks and cleanup of all seven snap/distance containers. Native
+snap and distance calls took 0.037 s and 0.048 s. Independent readback checked
+968 source pins. The current piece requires its own Boolean, export and contact
+results through these same stages.
+
+```mermaid
+flowchart TB
+    INPUT["Original roofs, checked mask and complete part"] --> EXACT["Exact prism union, mask intersection and part subtraction"]
+    EXACT --> RAW["Raw binary64 conversion: inspect degeneracy and intersections"]
+    RAW --> SNAP["Existing CGAL snap: fixed 51 bits and 5 iterations"]
+    SNAP --> CHECK["Topology, exact distances and composed drift"]
+    CHECK --> CONTACT["Current support parent mapping and contact checks"]
+    CONTROL["Reference case: exact and export chain passed"] -.-> EXACT
+    CONTROL -.-> CHECK
+```
+
 The [compact receipt](carrier-current-support-projection-20261107/summary.json)
 binds the actual results, terminals, source geometry, exact proof and figure.
 The figure was reproduced byte for byte and visually inspected. Raw surface

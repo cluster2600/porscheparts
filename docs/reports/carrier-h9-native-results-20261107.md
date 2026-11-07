@@ -160,6 +160,27 @@ complete higher-precision H9 execution remain pending. Wider output requires
 fresh capacity admission: the expected complete raw DAT is **4,506,144,286 bytes
 per case**, above the old 2.75 GB gate.
 
+The [portable four-site source patch](../../parts/993-eng-carrier-0001/source/calculix-print17-20261107/README.md)
+includes fail-fast input/output checksums and an actual standard-`patch`
+application receipt. Applying it to pristine CalculiX 2.21 sources reproduces
+both qualified Mac source files byte for byte, without offsets or fuzz. The
+[Ubuntu source package record](https://archive.ubuntu.com/ubuntu/pool/universe/c/calculix-ccx/calculix-ccx_2.21-1.dsc)
+lists the matching 1,794,485-byte
+[upstream archive](https://archive.ubuntu.com/ubuntu/pool/universe/c/calculix-ccx/calculix-ccx_2.21.orig.tar.bz2)
+and SHA-256 recorded in the patch manifest. The patch is not a complete compiler,
+solver or runtime qualification.
+Its displacement/reaction edits cover the first global branches
+(`ntrans == 0` or explicitly requested global output); the stress edit covers
+`iorien == 0`. Other branches retain their original format.
+
+The first Linux continuation passed the actual 16,378-value formatter test and
+compiled the corrected SPOOLES libraries, then reached its 900-second build
+deadline during the unchanged 500-repeat threaded control. No completed Linux
+candidate or partial control count is credited. The compiled libraries and
+refusal are retained in the [independent refusal readback](carrier-h9-native-results-20261107/linux-build-refusal.json)
+for a fresh resource-bound continuation. This does not
+change the completed Mac witness or the pending full-H9 scope.
+
 The [compact algebraic receipt](carrier-h9-native-results-20261107/algebraic-audit.json)
 binds both full audits, independent readbacks, neighborhood lookup, local
 formatting controls and actual figure to their source hashes.

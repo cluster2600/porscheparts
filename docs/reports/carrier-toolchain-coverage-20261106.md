@@ -34,6 +34,13 @@ was found in those definitions; the active calculation checkout was unchanged.
 The [refresh receipt](carrier-toolchain-coverage-20261106/main-refresh-20261107.json)
 records both revisions and the compared identities.
 
+A second live check against main
+[`429deaef606277ba81f5e895ff26aebc088cb4a6`](https://github.com/cluster2600/porscheparts/commit/429deaef606277ba81f5e895ff26aebc088cb4a6)
+also finds all eight inspected toolchain definitions unchanged, including the
+carrier workflow and original Warp pilot. The [second refresh receipt](carrier-toolchain-coverage-20261106/main-refresh-20261107-002.json)
+records their exact Git identities. The active calculation checkout was not
+updated.
+
 **Denominator: 54 numbered capability rows**, covering those named services
 and the later carrier-specific additions. Closely coupled components share a
 row; Warp has three rows because its three contracts have different results.
@@ -199,20 +206,24 @@ flowchart TD
 
 Concrete integration gaps, in order:
 
-1. **Complete the additional H9 local algebraic audit before refinement.** Both native
+1. **Complete higher-precision H9 reassessment before refinement.** Both native
    cases, lossless recovery, CUDA audits and full comparisons are complete.
    The larger traction-jump buffer, both complete vectors and targeted peak
-   geometry checks now pass. Independent full free-node `Ku − f` and elementwise
-   displacement-to-stress checks are still missing; prepare them with printed
-   field uncertainty before selecting H10. Freshly admit complete native-field
-   storage capacity before another rental. Keep the unchanged convergence rule.
+   geometry checks now pass. Both full free-node `Ku − f` and elementwise
+   displacement-to-stress audits are complete; seven-digit output prevents a
+   certified unrounded residual. The [four-site source patch and Mac controls](carrier-h9-native-results-20261107.md)
+   establish a bounded 17-digit route. Finish Linux qualification and freshly
+   admit complete native-field storage capacity before another rental. Reassess
+   the same H9 geometry before selecting H10; keep the unchanged convergence rule.
 2. **Close the current geometry's additive preparation.** PySLM's current-source
    import, pose, all 1,034 part layers and every scan segment passed independent
    checks, including the near-vertex case and complete volume assessment.
    All 4,676 exact support-region projections and the complete mask-policy pass
-   now pass, retaining seven current candidates. Continue support contacts,
-   access and the complete build envelope; finish the actual
-   public full-calendar replay and package the matching machine job.
+   now pass, retaining seven current candidates with checked triangulations.
+   The public full-calendar replay also passes complete byte-for-byte array
+   comparison. The [portable exact 3D and export chain](carrier-current-support-projection-20261107.md)
+   passes its reference case. Finish current support solids, contacts, access
+   and the complete build envelope, then package the matching machine job.
    The historical 440-layer cache is not reused by this result.
 3. **Turn thermal controls into a bounded process calculation.** GO-MELT's
    convection/material unit questions now have executed controls. Supply the
