@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "kind": "runtime_qualification",
+  "phase": "picogk",
+  "passed": true,
+  "scope": "Linux x86_64 bounded synthetic runtime; not head execution or engineering acceptance",
+  "image_id": "sha256:fe3603e1a305fc388c55c03efc33a695619290a567cf25e4a789df66ec4ea641",
+  "image_registry_published": false,
+  "dotnet_sdk": "10.0.403",
+  "upstream_revisions": {
+    "PicoGK": "0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3",
+    "PicoGKRuntime": "0f26321c18ed878a7820ef769c38fd5d49d39242",
+    "ShapeKernel": "f3324cb7dde55408a92db47c10e5ced97b61dc69",
+    "LatticeLibrary": "81c3c7b2064c19e573c38d76ac09bf1cd2f562d5"
+  },
+  "source_sha256": {
+    "twins/962-cylinder-head-f0/source/flow4l/Engine.Linux.csproj": "e560abdb99f010e23bada2713d8389ce7e9bca1945a72a45b8f94acc394d024d",
+    "twins/962-cylinder-head-f0/source/linux_runtime/Qualification.cs": "ebe016379c3699b9cb638136437416c1e42bf72d974065fe7219475d8fdb5cf6",
+    "twins/962-cylinder-head-f0/source/linux_runtime/run_native.py": "66607d42048af52f2fce506ebf27521ca58703250e8e563d837f1a41492b9124",
+    "twins/962-cylinder-head-f0/source/linux_runtime/check_witness.py": "71b3c0983ad371cb583a5376e3dcb27656d3ffc4abf269b7a28e7c32627579e5"
+  },
+  "source_context_sha256": "0408a5f8d22985ad8a23c0c8e29b896c67aa09dc5950ee7fccc9c1d19fa817f6",
+  "runtime": {
+    "argv": [
+      "/usr/share/dotnet/dotnet",
+      "/output/bin/Engine.Linux.dll",
+      "/output/qualification/native"
+    ],
+    "timeout_seconds": 120.0,
+    "shared_native_lock": "/tmp/picogk-catalog.lock",
+    "runtime_sha256": {
+      "/usr/share/dotnet/dotnet": "634efbf2414144d140d6f59d167342c8b3b53b4c34346ed786dd0470ddc9a3cb",
+      "/output/bin/Engine.Linux.dll": "e0b9a31a48fdaa1dde858cafaa6cacfe5649c466ef558168663e22d71b0eefd0",
+      "/app/picogk.26.2.so": "f2c325ed6ae5b7bbae00fd32e0011ab097c378fb0310e12c4299740ca2600d27"
+    },
+    "input_sha256": {},
+    "platform": "x86_64",
+    "exit_code": 0,
+    "timed_out": false,
+    "descendants_terminated": false,
+    "process_group_absent": true,
+    "status": "executed",
+    "manufacturing_authorized": false,
+    "elapsed_seconds": 0.5935803172178566
+  },
+  "managed_dependencies_sha256": {
+    "PicoGK.dll": "6339823ec51663ce4d063de4ff8046909499a1fa1636a9ee78971573a23aa11b",
+    "SkiaSharp.dll": "00703ecd3654f52bc7afa5d1721b56d07ed27f4f8cddfc19f897a61966682582"
+  },
+  "limits": {
+    "network": "none",
+    "cpus": 2,
+    "memory": "4g",
+    "native_seconds": 120,
+    "outer_seconds": 180
+  },
+  "native_report": {
+    "scope": "synthetic_linux_runtime_only",
+    "voxel_mm": 0.5,
+    "box_dimensions_mm": [
+      10,
+      20,
+      30
+    ],
+    "lattice_library_executed": true,
+    "named_voxel_domains_equal": true,
+    "vdb_field_count": 6,
+    "scalar_vector_values_validated": false,
+    "head_geometry_executed": false,
+    "fasteners_executed": false,
+    "manufacturing_authorized": false
+  },
+  "independent_mesh_checks": {
+    "scope": "independent_synthetic_STL_readback",
+    "trimesh_version": "5.1.0",
+    "bounds_tolerance_mm": 0.5,
+    "relative_volume_tolerance": 0.1,
+    "checks": {
+      "metal_domain": {
+        "watertight": true,
+        "volume_mm3": 6000.00001754798,
+        "passed": true,
+        "bounds_mm": [
+          [
+            -5.0,
+            -10.0,
+            -8.940696716308594e-08
+          ],
+          [
+            5.0,
+            10.0,
+            30.0
+          ]
+        ],
+        "expected_bounds_mm": [
+          [
+            -5,
+            -10,
+            0
+          ],
+          [
+            5,
+            10,
+            30
+          ]
+        ],
+        "max_bound_error_mm": 8.940696716308594e-08,
+        "relative_volume_error": 2.9246633251508078e-09
+      },
+      "coolant_domain": {
+        "watertight": true,
+        "volume_mm3": 6000.00001754798,
+        "passed": true,
+        "bounds_mm": [
+          [
+            35.0,
+            -10.0,
+            -8.940696716308594e-08
+          ],
+          [
+            45.0,
+            10.0,
+            30.0
+          ]
+        ],
+        "expected_bounds_mm": [
+          [
+            35,
+            -10,
+            0
+          ],
+          [
+            45,
+            10,
+            30
+          ]
+        ],
+        "max_bound_error_mm": 8.940696716308594e-08,
+        "relative_volume_error": 2.9246633251508078e-09
+      },
+      "dry_domain": {
+        "watertight": true,
+        "volume_mm3": 6000.00001754798,
+        "passed": true,
+        "bounds_mm": [
+          [
+            75.0,
+            -10.0,
+            -8.940696716308594e-08
+          ],
+          [
+            85.0,
+            10.0,
+            30.0
+          ]
+        ],
+        "expected_bounds_mm": [
+          [
+            75,
+            -10,
+            0
+          ],
+          [
+            85,
+            10,
+            30
+          ]
+        ],
+        "max_bound_error_mm": 8.940696716308594e-08,
+        "relative_volume_error": 2.9246633251508078e-09
+      },
+      "lattice": {
+        "watertight": true,
+        "volume_mm3": 190.22218033184183,
+        "passed": true
+      }
+    },
+    "mesh_sha256": {
+      "metal_domain.stl": "6b18f509c48ff66a1b45200c0cf0e3bf5515be0c3dee5ee50b45a2fb129a418e",
+      "coolant_domain.stl": "f54931e54e89dee6757543fa55aba651740fdf5294684a8587558bacf20a282d",
+      "dry_domain.stl": "cab75f202d0d23960917417461657aa7e640ee643586cb884322341a844611b4",
+      "lattice.stl": "42e51b2950d138f4c504140d178af6770a19604db51be37092620df7fc120545"
+    },
+    "passed": true,
+    "physical_qualification": false
+  },
+  "outputs_sha256": {
+    "coolant_domain.stl": "f54931e54e89dee6757543fa55aba651740fdf5294684a8587558bacf20a282d",
+    "dry_domain.stl": "cab75f202d0d23960917417461657aa7e640ee643586cb884322341a844611b4",
+    "lattice.stl": "42e51b2950d138f4c504140d178af6770a19604db51be37092620df7fc120545",
+    "metal_domain.stl": "6b18f509c48ff66a1b45200c0cf0e3bf5515be0c3dee5ee50b45a2fb129a418e",
+    "qualification.json": "4d72e350b16dbfe40fcda11e3007eba006cf7e76fa0dcc3f6ea433dbf1e6f00a",
+    "qualification.vdb": "f2d2fb8293f04e284303606618c6ecd92823b4a16f8a9ab4218ffb6832e6ca61"
+  },
+  "receipt_sha256": {
+    "run.json": "b028ccc1af940a550c979c75bb44701b785d1ddac23f90c1814c4d67c38d8d28",
+    "native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "container-run.json": "0dc637bf07d75a2625b158aa53e61bfff76cffc032027910029529c501df7f5f",
+    "runtime-identity.txt": "830b71f280faf9bfa5449aa57d2102fea3f4debdd3841ab17056c00e2eae5e2b",
+    "independent-mesh-checks-current.json": "a6fa08c57fee100dfcf489bac0f92e7e21923c087103ddd67041ee56ef590bd7",
+    "build.log": "3b6232ad6b87699d390bfe693ce9fa2e9841730b0c06d6c4eb3def670bf7d053",
+    "native-wrapper-tests.log": "88792fb44d91473b90ce7b925e705ff93aa5aa689260fe31eb677e8a459e06f8"
+  },
+  "host_lock_released": true,
+  "owned_container_absence_confirmed": true,
+  "native_linux_boundary_tests": 7,
+  "engineering_phase_states": {
+    "provenance": "blocked",
+    "reconstruction": "blocked",
+    "picogk": "blocked",
+    "surface": "blocked",
+    "volume": "blocked",
+    "coolant_cfd": "blocked",
+    "cht": "blocked",
+    "material_strength": "blocked",
+    "lpbf_melt_pool": "blocked",
+    "lpbf_build": "blocked",
+    "lpbf_release": "blocked",
+    "omni_preflight": "blocked",
+    "omni_conversion": "blocked",
+    "omni_assignment": "blocked",
+    "omni_conformance": "blocked",
+    "field_exchange": "blocked",
+    "omni_render": "blocked",
+    "physicsnemo": "blocked",
+    "delivery": "blocked"
+  },
+  "remaining_blockers": [
+    "Provenance acceptance, measured donor interfaces and phase input bindings are missing.",
+    "Head generation and physical/numerical validation were not executed.",
+    "Fasteners need measured interfaces; this synthetic witness has no fasteners.",
+    "Scalar/vector VDB value equality and GPU behavior are outside this witness."
+  ],
+  "manufacturing_authorized": false
+}
