@@ -170,3 +170,41 @@ private. No geometry was repaired, no mesh regenerated, no flow/thermal solver
 run and no surrogate enabled. The next methodological action is independent
 surface diagnosis and recovery of the missing historical mesh, not tuning
 around the flags. Physical acceptance additionally needs all inputs above.
+
+### Independent crossing witness
+
+A bounded libigl 2.6.3 search on the unchanged STL found a non-coplanar
+intersection between zero-based facets **8 and 354** after testing 14
+non-adjacent candidate pairs. Their six vertex coordinates share no vertex.
+The segment length is 0.0005655837319969354 in the historical STL coordinates;
+this is not a physically calibrated length. The search stopped at the first
+witness and does not establish the total intersection count.
+
+A separate standard-library rational-arithmetic check reread both facets
+straight from the binary STL at offsets `84 + 50 * face_id`, verified the
+input SHA-256, and matched their coordinates exactly to the search witness.
+It converted each binary floating-point coordinate to its exact rational
+value, intersected each triangle with the other triangle's plane, and found a
+strictly positive overlap of their line segments. The common midpoint lies
+exactly on both planes and has strictly positive barycentric weights in both
+triangles. Thus this is an interior crossing, not a shared-edge contact or
+only an OpenCFD flag. A crossing and a disjoint synthetic fixture passed
+before the libigl search.
+
+The four private audit artifacts are retained beside the raw case audit;
+vertex coordinates and intersection points are not redistributed:
+
+| Artifact | SHA-256 |
+|---|---|
+| `independent_witness.py` | `8dd633933ba35a5cec18f0350169741b4a1d0fb690b7bb6341edc17970b247dd` |
+| `independent_witness.json` | `1f07a267614cf11954703c6cee33c7545ca72740db66f9a291d46f5f0504d95a` |
+| `exact_witness.py` | `084274d119a6d5177d19816e06e17b725af94f279e80c26871ef22fca2799bb8` |
+| `exact_witness.json` | `d984fd4cb4631c7776f836ef08700fb66469fcd3eacef36b9adbd8aa794e1a39` |
+
+**Admission verdict: rejected for remeshing as supplied.** At least one
+self-intersection is independently confirmed in the derived surface. The
+139,114 OpenCFD locations are not independently enumerated or all confirmed.
+A reviewer must trace the crossing back to the acquired surface and establish
+an admissible revision before further meshing; automatic repair or parameter
+sweeps cannot establish source fidelity. The historical failed case stays
+unchanged. No physical geometry, flow or thermal acceptance follows.
