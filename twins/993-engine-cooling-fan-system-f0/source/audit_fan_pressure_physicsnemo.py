@@ -7,8 +7,6 @@ import json
 from pathlib import Path
 
 import numpy as np
-import torch
-from physicsnemo.mesh import Mesh
 
 
 def read_patch(path):
@@ -46,6 +44,9 @@ def read_patch(path):
 
 
 def integrate(points, polygons, pressure, rho=1.2, device="cpu"):
+    import torch
+    from physicsnemo.mesh import Mesh
+
     if device != "cpu" and not (device.startswith("cuda") and torch.cuda.is_available()):
         raise ValueError("Requested audit device unavailable")
     vertices = list(points)
@@ -69,6 +70,8 @@ def integrate(points, polygons, pressure, rho=1.2, device="cpu"):
 
 
 if __name__ == "__main__":
+    import torch
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("vtk", type=Path, nargs="?")
     parser.add_argument("--forces", type=Path)
