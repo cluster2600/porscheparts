@@ -36,6 +36,16 @@ jobs:
           --require-hashes --keyring-provider disabled
           -r requirements-check-oracle.txt
 
+      - name: Set up the F15 preflight runtime
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.319"
+
+      - name: Build the F15 executable for input rejection tests
+        run: |
+          dotnet build twins/vehicle-911-917/picogk/Vehicle911917Packaging.csproj --nologo
+          test -f twins/vehicle-911-917/picogk/bin/Debug/net9.0/Vehicle911917Packaging.dll
+
       - name: Validate repository
         # The test runner writes skips per reason to the job summary and fails
         # when they exceed tests/skip-budget.json (issue #418).

@@ -202,6 +202,26 @@ access is disabled and resources are bounded. All 19 tests pass locally without
 skips. This checks the schematic and software contracts, not PCB routing,
 hardware operation or manufacturing qualification.
 
+### F15 executable preflight checks
+
+The main CI job installs .NET SDK 9.0.319 and builds the existing
+`twins/vehicle-911-917/picogk/Vehicle911917Packaging.csproj` before `make check`.
+This enables the two native input-rejection tests: invalid F15 parameters and
+invalid or stale F13 alignment receipts must fail before opening the viewer or
+creating output. The tests use synthetic fixtures and do not need the private
+scan or a PicoGK geometry run. The existing PicoGK 2.3.0 package stays pinned.
+
+With a .NET 9 runtime and compatible SDK installed, run the same checks locally:
+
+```bash
+dotnet build twins/vehicle-911-917/picogk/Vehicle911917Packaging.csproj --nologo
+PYTHONPATH=tests .venv-check/bin/python -m unittest -v \
+  test_911_917_full_vehicle_f15.FullVehicleTests.test_native_validation_rejects_before_opening_viewer \
+  test_911_917_full_vehicle_f15.FullVehicleTests.test_native_preflight_applies_f13_receipt_rules
+```
+
+These checks establish rejection behavior, not vehicle geometry or fitment.
+
 ## 3. Heavy jobs on a shared or WSL host
 
 A voxel field, mesher or solver that outgrows memory can take the whole WSL VM
