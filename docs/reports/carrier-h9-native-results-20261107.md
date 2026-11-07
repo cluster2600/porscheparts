@@ -81,7 +81,7 @@ refusal remains preserved. Fresh 043 creation waited for 042 startup to finish.
 Planned pair cost including cleanup reserves was USD 3.6717 within the USD 6.40
 ceiling; actual provider billing was not observed.
 
-## Reproduction and next numerical step
+## Peak geometry and refinement decision
 
 **Follow-up peak audit:** both complete H9 traction-jump vectors and their joint
 vector have now passed every-value readback. Targeted geometry checks find that
@@ -97,14 +97,74 @@ accuracy unresolved.
 | Direct exterior faces | 0 | 1 |
 | Centroid distance to retained boundary, mm | 4.194380101122e-7 | 2.104338205932e-7 |
 
-The completed acceptances check net force/moment and integrated energies; they
-do not include an independently assembled full free-node `Ku − f` residual or
-elementwise displacement-to-stress reconstruction. **H10 selection is held while
-these additional local algebraic checks are prepared**, including the uncertainty
-from printed field precision. No peak cause or singularity exponent is inferred.
+The original acceptances check net force/moment and integrated energies.
+The additional complete free-node force assembly and displacement-to-stress
+audit below has now finished for both loads. **H10 selection remains held for
+a higher-precision H9 output check**: seven-digit displacement output limits
+the new algebraic diagnosis. No peak cause or singularity exponent is inferred.
 The [targeted audit receipt](carrier-h9-native-results-20261107/peak-audit.json)
 records the existing acceptance scope, lineage and source hashes. The boundary
 extension identity was recorded after that diagnostic, not pinned before launch.
+
+## Complete local algebraic audit and output precision
+
+Two independent assemblies now cover every H9 tetrahedron: internal forces from
+stress reconstructed from printed displacement, and internal forces from native
+printed stress. Each case checked **149,087,999 numeric tokens** and matched all
+complete field hashes to the previously admitted H9 result.
+
+![Actual H9 residuals and input-print budgets](../media/carrier-h9-algebraic-print-budgets-20261107.png)
+
+| Case / force assembly | Residual / load L2 | Input-print budget / load L2 | Components above their local print budget |
+|---|---:|---:|---:|
+| Gravity / reconstructed stress | 2285.046 | 103629.163 | 0 |
+| Gravity / native printed stress | 4.18996164e-5 | 0.00221767493 | 2,023 |
+| Combined / reconstructed stress | 1014.11497 | 20475.8557 | 0 |
+| Combined / native printed stress | 1.92426494e-5 | 0.000917518073 | 519 |
+
+Seven-significant-digit displacements are too coarse to reconstruct an accurate
+residual on the thin cells. The printed-stress assembly is much better balanced
+globally, but its local budget exceedances remain unresolved observations.
+These budgets include input printing only; geometry inversion, floating
+arithmetic and accumulation do not have certified error enclosures here.
+Consequently neither assembly certifies the true unprinted native residual.
+No new solver acceptance threshold was introduced.
+
+All 135 protected cells and both native peak cells were retained, with exact
+geometry kernels for those 137 cells. Their reconstructed stress discrepancies
+all lie within their input-print budgets. Both loads' largest residual nodes
+are zero-based nodes 646,668 and 646,669, belonging to protected cell 8,696,088.
+A bounded lookup of 144 known cells places them outside the two native
+stress-peak cells and their known face neighbors; it is not a complete incidence
+search or a cause determination.
+
+The **2.67262758% / 3.32555327% H8→H9 increments remain unchanged**: that
+comparison uses native printed stresses directly. A discrepancy reconstructed
+from rounded displacement is neither a refinement increment nor a native peak.
+The two audits ran serially in 243.606 s and 245.613 s, with approximately 3 GB
+peak RSS, under the unchanged 2,700-second, 16-GiB RAM, 2-GiB aggregate output
+and 8-GiB free-space limits. Both returned zero and all owned processes were reaped.
+
+### Seventeen-digit output: local candidate passed
+
+A separate Mac CalculiX candidate changes exactly **four output WRITE sites**.
+Its **1,145 other archive objects remain byte-identical**; only the two printing
+objects and generated archive index change. The formatter passed **16,378
+binary64 roundtrips**, including signed zero, subnormal boundaries and finite
+extremes. The existing quadratic, traction-P1 and traction-P2 controls passed.
+
+An additional native witness exercises **U, RF, S and ENER** at 17 significant
+digits. Its independent integrated-energy relative error is **3.9789e-15**,
+within the unchanged original control limit. Linux/PARDISO qualification and a
+complete higher-precision H9 execution remain pending. Wider output requires
+fresh capacity admission: the expected complete raw DAT is **4,506,144,286 bytes
+per case**, above the old 2.75 GB gate.
+
+The [compact algebraic receipt](carrier-h9-native-results-20261107/algebraic-audit.json)
+binds both full audits, independent readbacks, neighborhood lookup, local
+formatting controls and actual figure to their source hashes.
+
+## Reproduction and next numerical step
 
 The recorded local entry points are `work/carrier-h9-comparison-001/run_compare.py`
 and `work/carrier-h9-render-002/render.py`. Completed outputs are exclusive: reproduce in fresh output
@@ -115,11 +175,11 @@ binds both images to the actual results and script.
 
 The completed marking pass qualified the **1,228,798,784-byte face buffer**
 required by H9, exceeding the historical 1.2 GB bound, and used both complete
-traction-jump fields. It does not authorize H10 while the additional audit is
-open. Correction-energy localization remains a separate diagnostic.
+traction-jump fields. It does not close the higher-precision algebraic check
+required before H10. Correction-energy localization remains a separate diagnostic.
 Before any next rental, freshly admit
-complete DAT/XZ and receiver capacity: H9 leaves only 32,911,702 raw bytes below
-the unchanged 2.75 GB gate. These are capacity admissions; numerical thresholds,
+complete DAT/XZ and receiver capacity: seven-digit H9 left only 32,911,702 raw
+bytes below its 2.75 GB gate. These are capacity admissions; numerical thresholds,
 protected cells and exact-nesting checks remain unchanged.
 
 ```mermaid
@@ -130,9 +190,11 @@ flowchart TD
     R --> C["Sequential full H8-H9 comparisons: measured"]
     C --> S{"Two successive increments below 1% per load?"}
     S -->|"Not met"| M["Fresh complete H9 traction-jump vectors: passed"]
-    M --> LOCAL["Independent local algebraic audit: pending"]
-    LOCAL --> CAP["Admit next complete-field capacities"]
-    CAP --> V["Common refinement and exact nesting"]
+    M --> LOCAL["Two complete local algebraic audits: printing precision limits diagnosis"]
+    LOCAL --> PRECISION["17-digit output: Mac controls passed; Linux and H9 replay pending"]
+    PRECISION --> CAP["Admit next complete-field capacities"]
+    CAP --> REPLAY["Higher-precision H9 replay and algebraic reassessment"]
+    REPLAY --> V["After accepted reassessment: common refinement and exact nesting"]
     V --> NEXT["Next native responses and complete comparison"]
     NEXT --> S
     C --> FIG["Actual figures and scalar/hash receipts"]

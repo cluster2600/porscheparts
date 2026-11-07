@@ -87,18 +87,44 @@ Public receipts are the [scalar summary](carrier-current-am-full-20261107/summar
 and [visual inspection](carrier-current-am-full-20261107/visual-inspection.json).
 Raw meshes, scan vectors and source-edge arrays remain in private evidence.
 
-The [public one-layer recipe](../../parts/993-eng-carrier-0001/source/process-float64-20261107/README.md)
-already reproduces layer 517 through the repository workflow runner. This full
-calendar was executed through the retained local bounded driver identified in
-the summary. Packaging that complete driver as a public replay recipe and
-qualifying installation on another machine remain open.
+### Complete public-recipe replay passed
+
+The [public full-calendar v4 recipe](../../parts/993-eng-carrier-0001/source/process-float64-full-20261107-v4/README.md)
+has now reproduced the complete calculation through the existing repository
+workflow runner. Its first full attempt returned zero in **4,466.06 seconds**,
+with **4,437,770,240 bytes** peak sampled RSS. The outer launcher also returned
+zero, reaped its runner and verified that all owned groups were absent.
+
+Independent readback checked all **6,209 scientific files**, then compared all
+**3,102 compressed NPZ files byte for byte** with the original run. All **13,442
+arrays**, including dtype, shape and signed-zero representations, are identical:
+**1,162,797,672 array bytes per run, zero numerical differences**. The complete
+scalar CSV and all layer/volume arithmetic bounds are also identical.
+
+Provenance metadata, source/contract identities and execution timings differ
+between the two runs and are checked separately. The replay retains
+1,086,889,644 scientific bytes; this includes its different metadata. Each run's
+single Finder `.DS_Store` is explicitly identified outside the scientific set.
+An initial readback assertion confused the canonical context identity with the
+pretty-printed context file hash. That refusal was retained; the corrected
+checker applies the existing storage schema to both runs, without changing
+scientific outputs, tolerances or the public recipe.
+
+The [public replay receipt](carrier-current-am-full-20261107/public-replay.json)
+binds the complete comparison, actual workflow `verify`, source/runtime pins,
+terminals and retained first readback refusal. This closes reproducibility from
+the public recipe **on the recorded Mac runtime with the explicit private
+inputs**. Fresh installation and relocation remain separate work. The frozen
+recipe files retain their pre-execution description; this report records the
+subsequent actual result.
 
 ```mermaid
 flowchart TB
     SOURCE["Current float64 surface and fixed pose: checked"] --> LAYERS["All 1,034 part layers and vectors: checked"]
     LAYERS --> READBACK["All 6,209 scientific files: reread and hashed"]
     READBACK --> VOLUME["Independent global volume bound: passed"]
-    VOLUME --> NEXT["Next: current supports, contacts and machine job"]
+    VOLUME --> REPLAY["Public v4 replay: all 3,102 NPZ files and 13,442 arrays identical"]
+    REPLAY --> NEXT["Next: current supports, contacts and machine job"]
 ```
 
 The [software coverage ledger](carrier-toolchain-coverage-20261106.md) keeps

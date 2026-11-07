@@ -120,15 +120,15 @@ components erode to empty under the same native policy. No component disappears
 from the ledger, and even the filtered polygons pass exact source-containment
 and area-decision checks.
 
-| Current source component | Retained mask area, mm² | Holes |
-|---|---:|---:|
-| 0 | 26,648.036789 | 14 |
-| 79 | 5,994.405999 | 3 |
-| 148 | 380.365137 | 0 |
-| 409 | 6,089.910711 | 3 |
-| 534 | 380.225316 | 0 |
-| 2818 | 6.375239 | 0 |
-| 3856 | 8.675774 | 0 |
+| Current source component | Retained mask area, mm² | Holes | Checked mask triangles |
+|---|---:|---:|---:|
+| 0 | 26,648.036789 | 14 | 27,991 |
+| 79 | 5,994.405999 | 3 | 10,330 |
+| 148 | 380.365137 | 0 | 590 |
+| 409 | 6,089.910711 | 3 | 9,840 |
+| 534 | 380.225316 | 0 | 571 |
+| 2818 | 6.375239 | 0 | 503 |
+| 3856 | 8.675774 | 0 | 673 |
 
 The single bounded pass finished in **105.71 seconds**, with **502 MB** sampled
 peak RSS and complete process cleanup. Independent readback verified all
@@ -139,6 +139,27 @@ authorities remain unchanged. The sum of retained per-component areas is
 The [full-mask receipt](carrier-current-support-projection-20261107/all-masks.json)
 retains all counts, exact areas, checks and source identities. The historical
 seven masks remain a different result despite the coincident count.
+
+### All seven masks triangulated and checked
+
+The next stage preserves the **369,273 original roof-triangle occurrences**
+belonging to these seven current components, including their global source-face
+identities and posed coordinate bits. Their constrained mask triangulations
+contain **50,472 vertices, 50,498 positive triangles and 20 holes**. Complete
+exact-union and rational-area checks show that the triangles cover each mask
+without positive-area multiplicity; all vertices retain the original mask bits.
+
+Component 148 first passed independently in 4.63 seconds. The remaining six
+completed in **14.73 seconds**, with **421 MB** peak RSS, zero return and full
+owned-process cleanup. The complete pass reuses component 148 only after
+rebinding its exact sources, result, arrays and independent receipt. Readback
+checked all 33 new scientific files, all 2,923 source pins, every array field
+and the native triangle occurrence/coordinate correspondence.
+
+The [complete triangulation receipt](carrier-current-support-projection-20261107/all-mask-triangulations.json)
+records per-component counts, exact areas, identities and checks. These are
+checked inputs for three-dimensional construction: no extrusion, contact
+calculation or current support Boolean was executed by this stage.
 
 The [compact receipt](carrier-current-support-projection-20261107/summary.json)
 binds the actual results, terminals, source geometry, exact proof and figure.
