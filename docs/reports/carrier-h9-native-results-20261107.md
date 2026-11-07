@@ -145,7 +145,7 @@ The two audits ran serially in 243.606 s and 245.613 s, with approximately 3 GB
 peak RSS, under the unchanged 2,700-second, 16-GiB RAM, 2-GiB aggregate output
 and 8-GiB free-space limits. Both returned zero and all owned processes were reaped.
 
-### Seventeen-digit output: local candidate passed
+### Seventeen-digit output: Mac and Linux controls passed
 
 A separate Mac CalculiX candidate changes exactly **four output WRITE sites**.
 Its **1,145 other archive objects remain byte-identical**; only the two printing
@@ -155,8 +155,9 @@ extremes. The existing quadratic, traction-P1 and traction-P2 controls passed.
 
 An additional native witness exercises **U, RF, S and ENER** at 17 significant
 digits. Its independent integrated-energy relative error is **3.9789e-15**,
-within the unchanged original control limit. Linux/PARDISO qualification and a
-complete higher-precision H9 execution remain pending. Wider output requires
+within the unchanged original control limit. The separate Linux/PARDISO
+small-control qualification below now passes; complete higher-precision H9
+execution remains pending. Wider output requires
 fresh capacity admission: the expected complete raw DAT is **4,506,144,286 bytes
 per case**, above the old 2.75 GB gate.
 
@@ -175,11 +176,42 @@ Its displacement/reaction edits cover the first global branches
 
 The first Linux continuation passed the actual 16,378-value formatter test and
 compiled the corrected SPOOLES libraries, then reached its 900-second build
-deadline during the unchanged 500-repeat threaded control. No completed Linux
-candidate or partial control count is credited. The compiled libraries and
+deadline during the unchanged 500-repeat threaded control. That attempt supplies
+no completed Linux candidate or partial control count. The compiled libraries and
 refusal are retained in the [independent refusal readback](carrier-h9-native-results-20261107/linux-build-refusal.json)
-for a fresh resource-bound continuation. This does not
-change the completed Mac witness or the pending full-H9 scope.
+and were reused by the following bounded continuation.
+
+The Linux continuation now passes all **500 unchanged eight-thread repetitions**,
+with zero failures and a worst absolute error of **9.5166e-9**, below the original
+1e-4 limit. Its fresh PARDISO baseline compiled successfully. A post-build command
+extraction error was then corrected without rebuilding the baseline or repeating
+the 500 tests: the parser accepts the exact linker argument list and rejects
+14 altered-command/operator cases. The earlier refusals remain retained.
+
+Only the two print objects differ between this baseline and its 17-digit
+candidate. **1,145 other archive objects and the separate main object are
+byte-identical**; all 1,385 symbol/member/type mappings match. Both modified
+Fortran sources exactly match the qualified Mac sources and public patch.
+This comparison does not claim identity with the historical Linux executable.
+
+| Independent Linux check | Actual result |
+|---|---|
+| Existing quadratic, P1 traction and P2 traction assessors | All six baseline/candidate assessments passed |
+| Binary64 formatter fixture | All 16,378 tested bit patterns round-tripped |
+| U / RF / S / ENER native witness | 8 / 8 / 6 / 6 rows in the required format |
+| Independently integrated ENER | Relative error 3.9254e-15; unchanged limit 1e-4 |
+| Build and qualification provenance | All 5,448 and 7,474 input pins unchanged |
+| Cleanup | Exact owned container and host process group absent |
+
+The [Linux qualification receipt](carrier-h9-native-results-20261107/linux-qualification.json)
+binds these results to the **6,669,520-byte** candidate,
+SHA-256 `4c9db4806c2034d2b2f52b4baac3188c3f57cc66381566f9077d686f4f03db18`.
+Finalization took 45.962 s and independent qualification 2.666 s. A new ordinary
+H9 packet, per-case source/capacity admission and complete native fields are
+still required before the higher-precision algebraic replay. The existing APFS
+receiver validator has also passed [actual identity, ownership and write/readback
+checks](carrier-h9-native-results-20261107/external-storage-probe.json) on a fresh private directory on the mounted external SSD; packet and
+audit allocations still need their own admission.
 
 The [compact algebraic receipt](carrier-h9-native-results-20261107/algebraic-audit.json)
 binds both full audits, independent readbacks, neighborhood lookup, local
@@ -212,7 +244,7 @@ flowchart TD
     C --> S{"Two successive increments below 1% per load?"}
     S -->|"Not met"| M["Fresh complete H9 traction-jump vectors: passed"]
     M --> LOCAL["Two complete local algebraic audits: printing precision limits diagnosis"]
-    LOCAL --> PRECISION["17-digit output: Mac controls passed; Linux and H9 replay pending"]
+    LOCAL --> PRECISION["17-digit output: Mac and Linux small controls passed"]
     PRECISION --> CAP["Admit next complete-field capacities"]
     CAP --> REPLAY["Higher-precision H9 replay and algebraic reassessment"]
     REPLAY --> V["After accepted reassessment: common refinement and exact nesting"]
