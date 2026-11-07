@@ -222,6 +222,28 @@ PYTHONPATH=tests .venv-check/bin/python -m unittest -v \
 
 These checks establish rejection behavior, not vehicle geometry or fitment.
 
+The same CI build step also builds the bionic turbo assembly in Release mode
+and sets `BIONIC_DOTNET=dotnet` for the main suite. Its existing executable test
+rejects invalid units, voxel size and housing hashes before native mesh loading,
+and preserves an existing output directory. All eight assembly tests pass
+locally with the selected executable; the additional base check lowers the
+skip budget by one, to 122.
+
+```bash
+dotnet build twins/bionic-turbo-f0/assembly/source/Assembly.csproj --configuration Release --nologo
+BIONIC_DOTNET="$(command -v dotnet)" PYTHONPATH=tests .venv-check/bin/python -m unittest -v test_bionic_turbo_assembly
+```
+
+### Legacy OpenUSD authoring checks
+
+The main CI job creates a separate temporary environment with `usd-core==25.5.1`
+for the existing bounded-authoring contract. All three tests pass locally,
+including native fixture authoring and rejection of external access and unsafe
+syntax. The contract retains its explicit `ShaderPropertyTypeConformanceChecker`
+exclusion; full shader checks belong to the separate OpenUSD 26.08 SDK job.
+The shared 25.11 runtime is unchanged. These checks do not train a model, modify
+the frozen corpora or qualify engineering geometry.
+
 ### Retained Aeolus construction checks
 
 The cycle CI job also runs all 56 F39/F40/F40b tests in the existing
@@ -241,8 +263,8 @@ The shared environment includes Manifold3D 3.5.4 for the three synthetic
 intersection/clearance checks and Beautiful Soup 4.15.0 with SoupSieve 4.0.1 for
 preserving scientific exponents and chemical subscripts. All 15 focused
 packaging, clearance and grounded-source tests pass without skips; no model
-training is involved. These four enabled checks lower the base skip budget to
-123.
+training is involved. These four enabled checks lower the base skip budget by
+four.
 
 The isolated USD/PyVista job adds the shared Trimesh 5.1.0 and SciPy 1.17.1
 versions without replacing its locked native packages, then checks dependencies

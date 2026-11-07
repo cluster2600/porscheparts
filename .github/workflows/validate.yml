@@ -36,21 +36,32 @@ jobs:
           --require-hashes --keyring-provider disabled
           -r requirements-check-oracle.txt
 
-      - name: Set up the F15 preflight runtime
+      - name: Set up the .NET preflight runtime
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "9.0.319"
 
-      - name: Build the F15 executable for input rejection tests
+      - name: Build the executables for input rejection tests
         run: |
           dotnet build twins/vehicle-911-917/picogk/Vehicle911917Packaging.csproj --nologo
           test -f twins/vehicle-911-917/picogk/bin/Debug/net9.0/Vehicle911917Packaging.dll
+          dotnet build twins/bionic-turbo-f0/assembly/source/Assembly.csproj --configuration Release --nologo
+          test -f twins/bionic-turbo-f0/assembly/source/bin/Release/net9.0/Assembly.dll
+
+      - name: Run the legacy OpenUSD authoring controls in isolation
+        run: |
+          python -m venv "$RUNNER_TEMP/usd255"
+          "$RUNNER_TEMP/usd255/bin/python" -m pip install --only-binary=:all: --no-deps usd-core==25.5.1
+          "$RUNNER_TEMP/usd255/bin/python" -m pip check
+          "$RUNNER_TEMP/usd255/bin/python" -c 'from pxr import Usd; assert Usd.GetVersion() == (0, 25, 5)'
+          "$RUNNER_TEMP/usd255/bin/python" -m unittest discover -s tests -p 'test_m64_openusd.py' -v
 
       - name: Validate repository
         # The test runner writes skips per reason to the job summary and fails
         # when they exceed tests/skip-budget.json (issue #418).
         env:
           SKIP_BUDGET_ENFORCE: "1"
+          BIONIC_DOTNET: dotnet
         run: make check
 
   cad-regressions:
