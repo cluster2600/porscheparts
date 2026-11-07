@@ -22,6 +22,10 @@ full suite also runs about six times slower there.
 
 ## 2. Run the same checks as CI
 
+On Debian/Ubuntu, install Gmsh's native libraries first:
+`sudo apt-get install --no-install-recommends libgl1 libglu1-mesa`.
+The catalogue CI installs these before the Python requirements.
+
 ```bash
 make check-setup   # installs the CI dependency versions into .venv-check/ (needs uv)
 make check
@@ -46,7 +50,9 @@ make check
   removed 78 skips across the full suite. Shapely 2.2.0 additionally enables
   polygon coverage and constrained-triangulation checks: 5,902 tests pass with
   252 skips. Headless OCP 7.9.3.1.1 then enables 79 more native geometry
-  checks: the same 5,902 tests pass with 173 skips, lowering the budget to 175.
+  checks: the same 5,902 tests pass with 173 skips. USD 25.11 and Gmsh
+  4.15.2 then enable 35 more checks: 5,902 tests pass with 138 skips, lowering
+  the budget to 140.
   Five repair tests still require
   the separately pinned, patched PySLM runtime; Shapely alone cannot run them.
   Older WSL environments produced
@@ -60,6 +66,13 @@ make check
   `tests/test_935_interwalk_admission.py`) are timing-sensitive and can fail
   when the machine is saturated. Rerun the module alone before treating it as
   a failure.
+
+Cantera remains in the dedicated F33 image. A native macOS arm64 installation
+of the same Cantera 3.2.0 version failed three exact report comparisons against
+the frozen F33 evidence, with differences in the last floating-point digits.
+The version string alone does not reproduce that image's arithmetic. The
+shared requirements therefore do not install it, and the frozen report and
+exact replay assertions remain unchanged.
 
 ## 3. Heavy jobs on a shared or WSL host
 

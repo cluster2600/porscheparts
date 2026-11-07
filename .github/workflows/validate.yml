@@ -23,6 +23,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install Gmsh native libraries
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libgl1 libglu1-mesa
+
       - name: Install numerical test dependencies
         run: python -m pip install --disable-pip-version-check -r requirements-check.txt
 
