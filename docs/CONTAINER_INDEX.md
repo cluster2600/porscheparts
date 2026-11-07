@@ -8,7 +8,7 @@ the GitHub workflows that build it. The hand-written overview of the main
 images is [containers/README.md](../containers/README.md); how to build,
 verify and rent them is in [COMPUTE_ENVIRONMENT.md](COMPUTE_ENVIRONMENT.md).
 
-**42 recipes**, 9 named by a lock file, 19 built by a workflow. "Unlocked" means no
+**79 recipes**, 9 named by a lock file, 19 built by a workflow. "Unlocked" means no
 `containers/*.lock.json` names the recipe; such an image has no pinned
 digest in the repository and must not be cited as evidence by tag alone.
 Recipes, locks and their recipe inputs are pinned: never edit them to change
@@ -54,7 +54,44 @@ this page (see AGENTS.md).
 | [`simready-m64-runtime.Dockerfile`](../containers/simready-m64-runtime.Dockerfile) | Add the installed NVIDIA skill's exact validation pins without downgrading | unlocked | — | — | — |
 | [`simready-workflow.Dockerfile`](../containers/simready-workflow.Dockerfile) |  | unlocked | — | — | — |
 | [`simready.Dockerfile`](../containers/simready.Dockerfile) | 3dprinting993 - NVIDIA CAD-to-SimReady runtime for a single Vast.ai container. | unlocked | — | — | — |
+| [`stack-20261105/917-engine-wave-f39.Dockerfile`](../containers/stack-20261105/917-engine-wave-f39.Dockerfile) | Image CPU F39 : Aeolus1D et ses dependances numeriques verrouillees. | unlocked | — | — | — |
+| [`stack-20261105/air-oil-cycle-f34b.Dockerfile`](../containers/stack-20261105/air-oil-cycle-f34b.Dockerfile) | Image CPU F34b : preflight air/huile et fixture Cantera generique non moteur. | unlocked | — | — | — |
+| [`stack-20261105/analysis-cgal-toolchain.Dockerfile`](../containers/stack-20261105/analysis-cgal-toolchain.Dockerfile) | New analysis-only toolchain; does not replace the frozen CFD replay image. | unlocked | — | — | — |
+| [`stack-20261105/analysis-cgal.Dockerfile`](../containers/stack-20261105/analysis-cgal.Dockerfile) |  | unlocked | — | — | — |
+| [`stack-20261105/bionic-airflow-toolchain.Dockerfile`](../containers/stack-20261105/bionic-airflow-toolchain.Dockerfile) |  | unlocked | — | — | — |
+| [`stack-20261105/boundary-review-f23.Dockerfile`](../containers/stack-20261105/boundary-review-f23.Dockerfile) | Upgrade candidate 2026-11-05. Original recipe and evidence remain immutable. | unlocked | — | — | — |
+| [`stack-20261105/cad-author-f28.Dockerfile`](../containers/stack-20261105/cad-author-f28.Dockerfile) | Image CPU F28 : auteur CAO build123d/OCCT et round-trip STEP uniquement. | unlocked | — | — | — |
+| [`stack-20261105/cad-recode-cad.Dockerfile`](../containers/stack-20261105/cad-recode-cad.Dockerfile) |  | unlocked | — | — | — |
+| [`stack-20261105/cad-recode-openclaw.Dockerfile`](../containers/stack-20261105/cad-recode-openclaw.Dockerfile) |  | unlocked | — | — | — |
+| [`stack-20261105/cadsim.Dockerfile`](../containers/stack-20261105/cadsim.Dockerfile) | Upgrade candidate: separate OCP 8 build123d and OCP 7 CadQuery environments. | unlocked | — | — | — |
+| [`stack-20261105/cae-aircooled-f34.Dockerfile`](../containers/stack-20261105/cae-aircooled-f34.Dockerfile) | Share the tested current solver stack while retaining this lane's shell entrypoint. | unlocked | — | — | — |
+| [`stack-20261105/cae-integrated-f33.Dockerfile`](../containers/stack-20261105/cae-integrated-f33.Dockerfile) | Candidate uses Foundation 14; frozen Foundation 13 consumers require migration. | unlocked | — | — | — |
+| [`stack-20261105/cae-reference-f31.Dockerfile`](../containers/stack-20261105/cae-reference-f31.Dockerfile) |  | unlocked | — | — | — |
+| [`stack-20261105/engine-cycle-f33.Dockerfile`](../containers/stack-20261105/engine-cycle-f33.Dockerfile) | Upgrade candidate 2026-11-05. Frozen original retained. | unlocked | — | — | — |
+| [`stack-20261105/fluidx3d-aircooled-f34.Dockerfile`](../containers/stack-20261105/fluidx3d-aircooled-f34.Dockerfile) |  | unlocked | — | — | — |
+| [`stack-20261105/free-tools-cloudcompare.Dockerfile`](../containers/stack-20261105/free-tools-cloudcompare.Dockerfile) |  | unlocked | — | — | — |
+| [`stack-20261105/free-tools-salome.Dockerfile`](../containers/stack-20261105/free-tools-salome.Dockerfile) | Reuse an immutable, separately maintained SALOME distribution. NETGEN is the only mesher invoked. | unlocked | — | — | — |
+| [`stack-20261105/gas-path-f38.Dockerfile`](../containers/stack-20261105/gas-path-f38.Dockerfile) | Image CPU minimale F38 : solveur stationnaire standard-library et ses sept | unlocked | — | — | — |
+| [`stack-20261105/gmsh-mesh-f35.Dockerfile`](../containers/stack-20261105/gmsh-mesh-f35.Dockerfile) | Image CPU F35 : Gmsh 4.15.2 et bibliotheques ELF minimales pour maillage | unlocked | — | — | — |
 | [`stack-20261105/jax-fem.Dockerfile`](../containers/stack-20261105/jax-fem.Dockerfile) |  | unlocked | — | — | — |
+| [`stack-20261105/m64-leap71-native.Dockerfile`](../containers/stack-20261105/m64-leap71-native.Dockerfile) |  | unlocked | — | — | — |
+| [`stack-20261105/m64-leap71.Dockerfile`](../containers/stack-20261105/m64-leap71.Dockerfile) | Managed compilation only; native execution is checked in m64-leap71-native. | unlocked | — | — | — |
+| [`stack-20261105/mesh-cfd.Dockerfile`](../containers/stack-20261105/mesh-cfd.Dockerfile) | 3dprinting993 - scan-to-CAD and CFD preparation image (CPU / high memory). | unlocked | — | — | — |
+| [`stack-20261105/obj-metrology-f15.Dockerfile`](../containers/stack-20261105/obj-metrology-f15.Dockerfile) | Upgrade candidate 2026-11-05. Original recipe and evidence remain immutable. | unlocked | — | — | — |
+| [`stack-20261105/openfoam-engine-f35.Dockerfile`](../containers/stack-20261105/openfoam-engine-f35.Dockerfile) | Image CPU F35 : OpenFOAM Foundation 14 + utilitaires AATE/ICengines. | unlocked | — | — | — |
+| [`stack-20261105/ov-libraries-cpu.Dockerfile`](../containers/stack-20261105/ov-libraries-cpu.Dockerfile) |  | unlocked | — | — | — |
+| [`stack-20261105/physicsnemo-cae-cu12.Dockerfile`](../containers/stack-20261105/physicsnemo-cae-cu12.Dockerfile) | Image modulaire PhysicsNeMo CAE. Elle contient uniquement l'environnement | unlocked | — | — | — |
+| [`stack-20261105/picogk-m64.Dockerfile`](../containers/stack-20261105/picogk-m64.Dockerfile) |  | unlocked | — | — | — |
+| [`stack-20261105/picogk-station-kit.Dockerfile`](../containers/stack-20261105/picogk-station-kit.Dockerfile) | Kit runtime builder only. The station composes its AI runtime separately. | unlocked | — | — | — |
+| [`stack-20261105/prusa-slicer.Dockerfile`](../containers/stack-20261105/prusa-slicer.Dockerfile) | Auxiliary upstream CLI build used to replace Ubuntu's older slicer. | unlocked | — | — | — |
+| [`stack-20261105/recon.Dockerfile`](../containers/stack-20261105/recon.Dockerfile) | 3dprinting993 - reconstruction image (GPU / CUDA) | unlocked | — | — | — |
+| [`stack-20261105/scan-mesh-f17.Dockerfile`](../containers/stack-20261105/scan-mesh-f17.Dockerfile) | Upgrade candidate 2026-11-05. Original recipe retained. | unlocked | — | — | — |
+| [`stack-20261105/simready-workflow.Dockerfile`](../containers/stack-20261105/simready-workflow.Dockerfile) |  | unlocked | — | — | — |
+| [`stack-20261105/simready.Dockerfile`](../containers/stack-20261105/simready.Dockerfile) | Upgrade candidate: Content Agents 0.6.2 keeps its own matched native runtime locks. | unlocked | — | — | — |
+| [`stack-20261105/topology-context-f26.Dockerfile`](../containers/stack-20261105/topology-context-f26.Dockerfile) | Upgrade candidate 2026-11-05. Original recipe retained. | unlocked | — | — | — |
+| [`stack-20261105/usd-brep.Dockerfile`](../containers/stack-20261105/usd-brep.Dockerfile) | Rebuild 2026-11-05: upstream USD BRep remains 1.0.1 on Python 3.12. | unlocked | — | — | — |
+| [`stack-20261105/vllm-runtime.Dockerfile`](../containers/stack-20261105/vllm-runtime.Dockerfile) | Auxiliary upstream runtime; GPU model serving is a separate acceptance gate. | unlocked | — | — | — |
+| [`stack-20261105/warp-geometry.Dockerfile`](../containers/stack-20261105/warp-geometry.Dockerfile) | Upgrade candidate 2026-11-05. Original recipe and evidence remain immutable. | unlocked | — | — | — |
 | [`topology-context-f26.Dockerfile`](../containers/topology-context-f26.Dockerfile) | Image CPU F26 : OBJ + topologie NumPy + SVG stdlib. Aucun scan n'est inclus. | [`topology-context-f26.lock.json`](../containers/topology-context-f26.lock.json) | `ghcr.io/cluster2600/3dprinting993-topology-context-f26` | immutable_public_cpu_image_verified_physical_release_blocked | [`topology-context-f26-image.yml`](../.github/workflows/topology-context-f26-image.yml) |
 | [`usd-brep.Dockerfile`](../containers/usd-brep.Dockerfile) |  | unlocked | — | — | — |
 | [`warp-geometry.Dockerfile`](../containers/warp-geometry.Dockerfile) | Synthetic geometry verification only. No scans, CAD, models or credentials. | unlocked | — | — | — |

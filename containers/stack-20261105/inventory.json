@@ -1,0 +1,564 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "92e9826a539a2c769d9b234961ee69cee262c52e",
+  "checked_date": "2026-11-05",
+  "tracking_issue": 404,
+  "recipe_count": 44,
+  "recipes": [
+    {
+      "id": "containers--917-component-factory-f41-vast",
+      "original_recipe": "containers/917-component-factory-f41-vast/Dockerfile",
+      "original_sha256": "0317efc156c000aeb280452349ef6a8a3da5f636f1e266e2f34d5846bb051b8d",
+      "from_declarations": [
+        "${F28_BASE_IMAGE} AS component-factory-f41-vast"
+      ],
+      "status": "pending_review",
+      "candidate_recipe": null,
+      "build_receipt": null,
+      "blockers": []
+    },
+    {
+      "id": "containers--917-engine-wave-f39",
+      "original_recipe": "containers/917-engine-wave-f39/Dockerfile",
+      "original_sha256": "09d3de8349ab877499528008315f4e607bd6913abadad4acd2562271bab5cb02",
+      "from_declarations": [
+        "${PYTHON_BASE_IMAGE} AS python-dependencies",
+        "${PYTHON_BASE_IMAGE} AS engine-wave-f39"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/917-engine-wave-f39.Dockerfile",
+      "build_receipt": "917-engine-wave-f39.VqedFo",
+      "blockers": []
+    },
+    {
+      "id": "containers--917-engine-wave-f40-vast",
+      "original_recipe": "containers/917-engine-wave-f40-vast/Dockerfile",
+      "original_sha256": "d2e72a65c7860398048bf1fc6b73f698f0d7f936f8fa8334906eabb0afa1d692",
+      "from_declarations": [
+        "${F39_BASE_IMAGE} AS engine-wave-f40-vast"
+      ],
+      "status": "blocked_approval_hook",
+      "blockers": []
+    },
+    {
+      "id": "containers--917-f47-cfd-cae",
+      "original_recipe": "containers/917-f47-cfd-cae/Dockerfile",
+      "original_sha256": "de2614bfd8cf6cc2c7ccaaf71624451316f58a83290b7ec41df07ca9d8778dc0",
+      "from_declarations": [
+        "${PYTHON_BASE_IMAGE} AS python-dependencies",
+        "${UBUNTU_BASE_IMAGE} AS openfoam-base",
+        "openfoam-base AS aate-builder",
+        "openfoam-base AS f47-runtime"
+      ],
+      "status": "pending_review",
+      "candidate_recipe": null,
+      "build_receipt": null,
+      "blockers": []
+    },
+    {
+      "id": "containers--air-oil-cycle-f34b",
+      "original_recipe": "containers/air-oil-cycle-f34b.Dockerfile",
+      "original_sha256": "b2e8f95347e9bc089926b3c7cf1c4fe973d0332d39bc540073af71843cbc6f5a",
+      "from_declarations": [
+        "${PYTHON_BASE_IMAGE} AS python-dependencies",
+        "${PYTHON_BASE_IMAGE} AS air-oil-cycle-f34b"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/air-oil-cycle-f34b.Dockerfile",
+      "build_receipt": "air-oil-cycle-f34b.L7zrsN",
+      "blockers": []
+    },
+    {
+      "id": "containers--boundary-review-f23",
+      "original_recipe": "containers/boundary-review-f23.Dockerfile",
+      "original_sha256": "b58b6ee8d5367f3e496b08d5b76eb5c8abd9ab2ffc6762c188af55dc35bf0e0e",
+      "from_declarations": [
+        "${PYTHON_BASE_IMAGE} AS boundary-review-f23"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/boundary-review-f23.Dockerfile",
+      "build_receipt": "boundary-review-f23.naZxAt",
+      "blockers": [],
+      "platform": "linux/amd64",
+      "context": "."
+    },
+    {
+      "id": "containers--cad-author-f28",
+      "original_recipe": "containers/cad-author-f28.Dockerfile",
+      "original_sha256": "acf4e2b961d7f78d670e626056b1d6ec73ab112e8d8f73558b6c37a276c85789",
+      "from_declarations": [
+        "${PYTHON_BASE_IMAGE} AS system-libs",
+        "${PYTHON_BASE_IMAGE} AS python-cad",
+        "${PYTHON_BASE_IMAGE} AS cad-author-f28"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/cad-author-f28.Dockerfile",
+      "build_receipt": "cad-author-f28.hlfbG2",
+      "blockers": []
+    },
+    {
+      "id": "containers--cad-recode-openclaw",
+      "original_recipe": "containers/cad-recode-openclaw.Dockerfile",
+      "original_sha256": "9e43d9995d7a2a5a42aaa78f048da300c3977cc0e215050db9a60803d292c99c",
+      "from_declarations": [
+        "node:24.16.0-bookworm-slim@sha256:2c87ef9bd3c6a3bd4b472b4bec2ce9d16354b0c574f736c476489d09f560a203"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/cad-recode-openclaw.Dockerfile",
+      "build_receipt": "cad-recode-openclaw.8jxqOL",
+      "blockers": []
+    },
+    {
+      "id": "containers--cad-recode",
+      "original_recipe": "containers/cad-recode.Dockerfile",
+      "original_sha256": "dded94a59e289bdc1cf50803083bf626698835578f88375845e0240e59ea6ec8",
+      "from_declarations": [
+        "python:3.11.15-slim-bookworm@sha256:d29f48a31a8b408ed19272ca1e7b10ebae13b240a27e862d3d4217c528e2e0c3 AS cad",
+        "pytorch/pytorch:2.7.1-cuda12.8-cudnn9-runtime@sha256:c16f4c749e2d9e96878875cdf6cc45cddda1d1a36fddd371dd6f2360f1b6e2a2 AS inference"
+      ],
+      "status": "pending_review",
+      "candidate_recipe": null,
+      "build_receipt": null,
+      "blockers": []
+    },
+    {
+      "id": "containers--cadsim",
+      "original_recipe": "containers/cadsim.Dockerfile",
+      "original_sha256": "acefdc24968fd27b3b27c7ba7ce14fe5beec71540524636e4a3421fa40be10d6",
+      "from_declarations": [
+        "ubuntu:24.04 AS cadsim"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/cadsim.Dockerfile",
+      "build_receipt": "cadsim.sUFXKQ",
+      "blockers": []
+    },
+    {
+      "id": "containers--cae-aircooled-f34",
+      "original_recipe": "containers/cae-aircooled-f34.Dockerfile",
+      "original_sha256": "b3a6975e59f2013d9d4b155fdcf1807c379be369328c5e6582e30b9cd40cccee",
+      "from_declarations": [
+        "ubuntu:24.04@sha256:33ceb71981b602c1a7443a53469e4dba065f7503eab3078a2d7a57a2ab987517"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/cae-aircooled-f34.Dockerfile",
+      "build_receipt": "cae-aircooled-f34.Yv9mD7",
+      "blockers": []
+    },
+    {
+      "id": "containers--cae-integrated-f33",
+      "original_recipe": "containers/cae-integrated-f33.Dockerfile",
+      "original_sha256": "b23689ee50fc25dc4520c7bc8d822f8079a294aff9f9ff244ded6953e2b2d3ce",
+      "from_declarations": [
+        "ubuntu:24.04@sha256:33ceb71981b602c1a7443a53469e4dba065f7503eab3078a2d7a57a2ab987517"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/cae-integrated-f33.Dockerfile",
+      "build_receipt": "cae-integrated-f33.RjybHR",
+      "blockers": []
+    },
+    {
+      "id": "containers--cae-reference-f31",
+      "original_recipe": "containers/cae-reference-f31.Dockerfile",
+      "original_sha256": "d5d4115803762fc109ff3c19c449b11b78bb246adecdf025ac095aaac24fb49b",
+      "from_declarations": [
+        "ubuntu:24.04@sha256:33ceb71981b602c1a7443a53469e4dba065f7503eab3078a2d7a57a2ab987517"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/cae-reference-f31.Dockerfile",
+      "build_receipt": "cae-reference-f31.DQTLyu",
+      "blockers": []
+    },
+    {
+      "id": "containers--engine-cycle-f33",
+      "original_recipe": "containers/engine-cycle-f33.Dockerfile",
+      "original_sha256": "b400003fa0dc8ba5c861b5056c74e08bb5c4bdf7359893d9f340ad211c9f9db6",
+      "from_declarations": [
+        "${PYTHON_BASE_IMAGE} AS python-dependencies",
+        "${PYTHON_BASE_IMAGE} AS engine-cycle-f33"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/engine-cycle-f33.Dockerfile",
+      "build_receipt": "engine-cycle-f33.L3Ef3K",
+      "blockers": []
+    },
+    {
+      "id": "containers--fluidx3d-aircooled-f34",
+      "original_recipe": "containers/fluidx3d-aircooled-f34.Dockerfile",
+      "original_sha256": "02608dd9a2567b4152061be9e5d12cad0c379dad929b5778b87f0ac5394668f0",
+      "from_declarations": [
+        "ubuntu:24.04@sha256:33ceb71981b602c1a7443a53469e4dba065f7503eab3078a2d7a57a2ab987517"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/fluidx3d-aircooled-f34.Dockerfile",
+      "build_receipt": "fluidx3d-aircooled-f34.6FiWUF",
+      "blockers": []
+    },
+    {
+      "id": "containers--free-tools-cloudcompare",
+      "original_recipe": "containers/free-tools-cloudcompare.Dockerfile",
+      "original_sha256": "d8214b93c07c5a50a5a433149967c6bb34768058d19226244a645cf04a2913b6",
+      "from_declarations": [
+        "python:3.12.14-slim-trixie@sha256:44ff437bba879d4941b710a369a8f19266aea34b29002807f0c487fabc9eec9b"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/free-tools-cloudcompare.Dockerfile",
+      "build_receipt": "free-tools-cloudcompare.MCl5zF",
+      "blockers": []
+    },
+    {
+      "id": "containers--free-tools-salome",
+      "original_recipe": "containers/free-tools-salome.Dockerfile",
+      "original_sha256": "82b841f169a5cdefe415e04c75ade62812aa24714409f823f16b88797966f0cf",
+      "from_declarations": [
+        "simvia/salome:9.16.0@sha256:7578fb4b5363f4667433bb3ff03efa346679281da527fd67aff537578d044561"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/free-tools-salome.Dockerfile",
+      "build_receipt": "free-tools-salome.a87z6T",
+      "blockers": []
+    },
+    {
+      "id": "containers--gas-path-f38",
+      "original_recipe": "containers/gas-path-f38.Dockerfile",
+      "original_sha256": "9aee47187f15d428f6bda95b14745a4610fcc81cedb8de6fa35de837f2d24f6a",
+      "from_declarations": [
+        "${PYTHON_BASE_IMAGE} AS gas-path-f38"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/gas-path-f38.Dockerfile",
+      "build_receipt": "gas-path-f38.hPK6Bi",
+      "blockers": []
+    },
+    {
+      "id": "containers--gmsh-mesh-f35",
+      "original_recipe": "containers/gmsh-mesh-f35.Dockerfile",
+      "original_sha256": "800ffa15fcc8ae6000522ccddf80192e2d752b0f4ee1f867c0a39f9446fd9969",
+      "from_declarations": [
+        "${PYTHON_BASE_IMAGE} AS system-libs",
+        "${PYTHON_BASE_IMAGE} AS python-gmsh",
+        "${PYTHON_BASE_IMAGE} AS gmsh-mesh-f35"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/gmsh-mesh-f35.Dockerfile",
+      "build_receipt": "gmsh-mesh-f35.DXLAxB",
+      "blockers": []
+    },
+    {
+      "id": "containers--m64-leap71",
+      "original_recipe": "containers/m64-leap71/Dockerfile",
+      "original_sha256": "2128fe46091a85e333bfe7e96c4d03c16940d4c3c8930b9f4b92bd6a05962b63",
+      "from_declarations": [
+        "mcr.microsoft.com/dotnet/sdk:9.0@sha256:f190d2dd9eef2899c91ac323caa0bd2b39334a5400ba93013e5199da39dad940"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/m64-leap71.Dockerfile",
+      "build_receipt": "m64-leap71.oVVZTN",
+      "blockers": []
+    },
+    {
+      "id": "containers--m64-leap71.native",
+      "original_recipe": "containers/m64-leap71/Dockerfile.native",
+      "original_sha256": "0b4494871efbdc351363f2eaab09f47da1e2c7a8aceb111c4c7bf434d611ed82",
+      "from_declarations": [
+        "mcr.microsoft.com/dotnet/sdk:9.0@sha256:f190d2dd9eef2899c91ac323caa0bd2b39334a5400ba93013e5199da39dad940"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/m64-leap71-native.Dockerfile",
+      "build_receipt": "m64-leap71-native.Oo3zqv",
+      "blockers": []
+    },
+    {
+      "id": "containers--mesh-cfd",
+      "original_recipe": "containers/mesh-cfd.Dockerfile",
+      "original_sha256": "6283fc82cf52f5afdd604107b494debcf0c0d2f11b7ae64377fd0c7fb2d31040",
+      "from_declarations": [
+        "ubuntu:24.04"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/mesh-cfd.Dockerfile",
+      "build_receipt": "mesh-cfd.WN5sk9",
+      "blockers": []
+    },
+    {
+      "id": "containers--obj-metrology-f15",
+      "original_recipe": "containers/obj-metrology-f15.Dockerfile",
+      "original_sha256": "d6c1ed6b25feec8266a4bf6a49249ea9bce9e19a8bfe0bb4cec008cfed4c6ed3",
+      "from_declarations": [
+        "${PYTHON_BASE_IMAGE} AS obj-metrology-f15"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/obj-metrology-f15.Dockerfile",
+      "build_receipt": "obj-metrology-f15.rXKUsh",
+      "blockers": [],
+      "platform": "linux/amd64",
+      "context": "."
+    },
+    {
+      "id": "containers--openfoam-engine-f35",
+      "original_recipe": "containers/openfoam-engine-f35.Dockerfile",
+      "original_sha256": "d0023d4ff292caf42472897ba82b08d0b7214a377ce0f81d2f14128d9c3f6cf4",
+      "from_declarations": [
+        "${UBUNTU_BASE_IMAGE} AS openfoam-base",
+        "openfoam-base AS aate-builder",
+        "openfoam-base AS openfoam-engine-f35"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/openfoam-engine-f35.Dockerfile",
+      "build_receipt": "openfoam-engine-f35.RmHwC2",
+      "blockers": []
+    },
+    {
+      "id": "containers--ov-libraries-cpu",
+      "original_recipe": "containers/ov-libraries-cpu.Dockerfile",
+      "original_sha256": "55688c878b0d1997798db1c3c38909e0bb66c02b5e146be8d8f473b1fc556d43",
+      "from_declarations": [
+        "python:3.12-slim@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/ov-libraries-cpu.Dockerfile",
+      "build_receipt": "ov-libraries-cpu.6JZBK1",
+      "blockers": []
+    },
+    {
+      "id": "containers--physicsml",
+      "original_recipe": "containers/physicsml.Dockerfile",
+      "original_sha256": "3f55fb1401a7c669ba6f1eb874c5ef5b6bf6fadcd4ef4f2665292afad74e5e25",
+      "from_declarations": [
+        "nvidia/cuda:${CUDA_VERSION}-devel-ubuntu${UBUNTU_VERSION} AS physicsml"
+      ],
+      "status": "pending_review",
+      "candidate_recipe": null,
+      "build_receipt": null,
+      "blockers": []
+    },
+    {
+      "id": "containers--physicsnemo-cae-cu12",
+      "original_recipe": "containers/physicsnemo-cae-cu12.Dockerfile",
+      "original_sha256": "384ba2753f980cdf7b3a9dfdb8b6dddf2c13e77a0b448a0d24b38202ffa3cdb5",
+      "from_declarations": [
+        "${CUDA_BASE_IMAGE} AS physicsnemo-cae"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/physicsnemo-cae-cu12.Dockerfile",
+      "build_receipt": "physicsnemo-cae-cu12.4YGOSo",
+      "blockers": []
+    },
+    {
+      "id": "containers--picogk-m64",
+      "original_recipe": "containers/picogk-m64.Dockerfile",
+      "original_sha256": "aa60c9d2a4a1c7055c06d2ebe7fb038c99042a85b98eab01d9e53adbddf9962c",
+      "from_declarations": [
+        "mcr.microsoft.com/dotnet/sdk:9.0@sha256:f190d2dd9eef2899c91ac323caa0bd2b39334a5400ba93013e5199da39dad940 AS native",
+        "${NATIVE_IMAGE} AS workstation"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/picogk-m64.Dockerfile",
+      "build_receipt": "picogk-m64.x4OpUq",
+      "blockers": []
+    },
+    {
+      "id": "containers--picogk-station-hotfix",
+      "original_recipe": "containers/picogk-station-hotfix.Dockerfile",
+      "original_sha256": "fc82eefe0d0740d41a203f2dcb009d8512f99be5f09b5c3403211bb458394919",
+      "from_declarations": [
+        "ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:540d9d4af34a73f91114f2d3dd4f4ad847eee42037c26efaf1caadb5b155e871"
+      ],
+      "status": "pending_review",
+      "candidate_recipe": null,
+      "build_receipt": null,
+      "blockers": []
+    },
+    {
+      "id": "containers--picogk-station-kit",
+      "original_recipe": "containers/picogk-station-kit/Dockerfile",
+      "original_sha256": "ee2c3d0c55dd2e74f60539d1b051f4e46b974d0e732b19e29f52537aadf060b0",
+      "from_declarations": [
+        "ghcr.io/cluster2600/qwen38-flash-next-vast@sha256:6b3b1790dd3140c27a5b5f85181dccef06c8d96c02f3003bb3c9b267b8758e34"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/picogk-station-kit.Dockerfile",
+      "build_receipt": "picogk-station-kit.IQJZQt",
+      "blockers": []
+    },
+    {
+      "id": "containers--picogk-station",
+      "original_recipe": "containers/picogk-station.Dockerfile",
+      "original_sha256": "3f808414a3746b8bac0133faf6d3feaff56de72ca751277166928e953de3a51c",
+      "from_declarations": [
+        "${QWEN_IMAGE} AS kit-build",
+        "node:22.19.0-bookworm-slim@sha256:4a4884e8a44826194dff92ba316264f392056cbe243dcc9fd3551e71cea02b90 AS client-build",
+        "${PICOGK_IMAGE} AS picogk",
+        "${QWEN_IMAGE} AS station-core",
+        "station-core AS station-demo",
+        "${KIT_IMAGE} AS kit-ready",
+        "station-demo AS station"
+      ],
+      "status": "pending_review",
+      "candidate_recipe": null,
+      "build_receipt": null,
+      "blockers": []
+    },
+    {
+      "id": "containers--recon",
+      "original_recipe": "containers/recon.Dockerfile",
+      "original_sha256": "131984d83769c75293111302e137045878ee0cc953837873df0e8f90176dcecc",
+      "from_declarations": [
+        "nvidia/cuda:${CUDA_VERSION}-devel-ubuntu${UBUNTU_VERSION} AS builder",
+        "nvidia/cuda:${CUDA_VERSION}-runtime-ubuntu${UBUNTU_VERSION} AS recon"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/recon.Dockerfile",
+      "build_receipt": "recon.hxD8un",
+      "blockers": []
+    },
+    {
+      "id": "containers--scan-mesh-f17",
+      "original_recipe": "containers/scan-mesh-f17.Dockerfile",
+      "original_sha256": "553240fd296e6a76df367085db3780d6f3ff75e3d4d6fe81cc7e1f8f10dd8aed",
+      "from_declarations": [
+        "${PYTHON_BASE_IMAGE} AS scan-mesh-f17"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/scan-mesh-f17.Dockerfile",
+      "build_receipt": "scan-mesh-f17.nPgWdl",
+      "blockers": []
+    },
+    {
+      "id": "containers--simready-local-ai",
+      "original_recipe": "containers/simready-local-ai.Dockerfile",
+      "original_sha256": "9d4eda9084d47030198c58d10a1bf30d775bdbc5e0bf1f03170e6741e5400381",
+      "from_declarations": [
+        "--platform=${TARGETPLATFORM} ghcr.io/cluster2600/3dprinting993-simready-workflow@sha256:79e76882a8f493012eb4cc9ab061bce0ca2d075cd505d6e33a5200e7e1e9b126"
+      ],
+      "status": "pending_review",
+      "candidate_recipe": null,
+      "build_receipt": null,
+      "blockers": []
+    },
+    {
+      "id": "containers--simready-m64-runtime",
+      "original_recipe": "containers/simready-m64-runtime.Dockerfile",
+      "original_sha256": "485401970d72854104f8a01e4814acc294c732894173acf59aee2ef66edfbdfd",
+      "from_declarations": [
+        "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699"
+      ],
+      "status": "pending_review",
+      "candidate_recipe": null,
+      "build_receipt": null,
+      "blockers": []
+    },
+    {
+      "id": "containers--simready-workflow",
+      "original_recipe": "containers/simready-workflow.Dockerfile",
+      "original_sha256": "f63a6546b6b0fe864e7bdf5c24d78dba4c2f1e7b0f43f935c9c3afd84c4dbe3c",
+      "from_declarations": [
+        "ghcr.io/cluster2600/3dprinting993-simready@sha256:3dc95bf1fc5f7942c86c5dba33da05b7f852aea34684c1079b24df0915324f46"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/simready-workflow.Dockerfile",
+      "build_receipt": "simready-workflow.Y3FLTO",
+      "blockers": []
+    },
+    {
+      "id": "containers--simready",
+      "original_recipe": "containers/simready.Dockerfile",
+      "original_sha256": "96659646f00f837dbda3162408264d456057da1a74913f5c9472ab8ebf216646",
+      "from_declarations": [
+        "ubuntu:24.04"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/simready.Dockerfile",
+      "build_receipt": "simready.yUxPfV",
+      "blockers": []
+    },
+    {
+      "id": "containers--topology-context-f26",
+      "original_recipe": "containers/topology-context-f26.Dockerfile",
+      "original_sha256": "777742a908519aa8c467253541a1b5343603f29c8ba3702e3df329805e0bc11a",
+      "from_declarations": [
+        "${PYTHON_BASE_IMAGE} AS topology-context-f26"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/topology-context-f26.Dockerfile",
+      "build_receipt": "topology-context-f26.PlQyfQ",
+      "blockers": []
+    },
+    {
+      "id": "containers--usd-brep",
+      "original_recipe": "containers/usd-brep.Dockerfile",
+      "original_sha256": "e29d516a9118a6535baa3fe4b91c77aab889f691219d629dd9054a536f03fad7",
+      "from_declarations": [
+        "python:3.12-slim-bookworm@sha256:e697c81897302a4c4333bade000d98038fbb21eb064f8ee1fd42d02ebcd9d337"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/usd-brep.Dockerfile",
+      "build_receipt": "usd-brep.UT5h7J",
+      "blockers": [],
+      "platform": "linux/amd64",
+      "context": "."
+    },
+    {
+      "id": "containers--warp-geometry",
+      "original_recipe": "containers/warp-geometry.Dockerfile",
+      "original_sha256": "e5af4a454283ba4ed908245d0f3277b09185b214e4a1177e81c2c303f693ac08",
+      "from_declarations": [
+        "python:3.12.14-slim-bookworm@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/warp-geometry.Dockerfile",
+      "build_receipt": "warp-geometry.jYvwUU",
+      "blockers": [],
+      "platform": "linux/amd64",
+      "context": "."
+    },
+    {
+      "id": "twins--962-cylinder-head-f0--source--analysis-cgal",
+      "original_recipe": "twins/962-cylinder-head-f0/source/analysis-cgal/Dockerfile",
+      "original_sha256": "ec275d5b942e398775e02ab50a72fdaac4f1c5539de1b8daffb10d8769f4a6cc",
+      "from_declarations": [
+        "${TOOLCHAIN_IMAGE}"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/analysis-cgal.Dockerfile",
+      "build_receipt": "analysis-cgal.W1Mv14",
+      "blockers": []
+    },
+    {
+      "id": "twins--962-cylinder-head-f0--source--analysis-cgal--toolchain",
+      "original_recipe": "twins/962-cylinder-head-f0/source/analysis-cgal/toolchain.Dockerfile",
+      "original_sha256": "0671cd6613e50debf88c131565d084ce02b755d46d3a57978d5e2930303b8e9f",
+      "from_declarations": [
+        "bionic-openfoam2406-diagnostic-build@sha256:586639782387349737869b383c9f98ec03614221255a9609009c395279835e07"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/analysis-cgal-toolchain.Dockerfile",
+      "build_receipt": "analysis-cgal-toolchain.NnhInW",
+      "blockers": []
+    },
+    {
+      "id": "twins--bionic-turbo-f1--evidence--airflow-native-binary-20261012",
+      "original_recipe": "twins/bionic-turbo-f1/evidence/airflow-native-binary-20261012/Dockerfile",
+      "original_sha256": "c5ca6ad9f2b98790d0ff7b9678d2107b51e2313d39087f13172e5e9f299241f0",
+      "from_declarations": [
+        "docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532"
+      ],
+      "status": "built_cpu_smoke_passed",
+      "candidate_recipe": "containers/stack-20261105/bionic-airflow-toolchain.Dockerfile",
+      "build_receipt": "bionic-airflow-toolchain.sy0Ys7",
+      "blockers": []
+    },
+    {
+      "original_recipe": "containers/air-oil-cycle-f34b-en-20261106/Dockerfile",
+      "original_sha256": "3dbbb1b0581c5e0d1dcde44c5ccee041170cff3be80631f1be8600be82fdae7f",
+      "from_declarations": [
+        "${PYTHON_BASE_IMAGE} AS python-dependencies",
+        "${PYTHON_BASE_IMAGE} AS air-oil-cycle-f34b"
+      ],
+      "status": "separate_english_generation_native_receipts_pr636",
+      "blockers": [
+        "Native receipt integration remains in PR #636; registry publication is not authorized."
+      ]
+    }
+  ]
+}

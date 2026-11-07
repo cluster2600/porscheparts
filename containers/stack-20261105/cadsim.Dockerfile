@@ -1,0 +1,106 @@
+# Upgrade candidate: separate OCP 8 build123d and OCP 7 CadQuery environments.
+# syntax=docker/dockerfile:1.7
+#
+# 3dprinting993 - CAD and simulation image (CPU, no GPU needed)
+#
+# Purpose: build parametric geometry from code, mesh it, run FEA and CFD, and
+# slice a prototype - all from scripts. Rented machines are used here for core
+# count and memory, not for CUDA.
+#
+# Build:  docker build -f containers/cadsim.Dockerfile -t 3dprinting993-cadsim:dev .
+# Run:    docker run --rm -v "$PWD/work:/workspace" 3dprinting993-cadsim:dev bash
+
+FROM porscheparts/cae-reference-f31:stack-20261105 AS current-ccx
+FROM ubuntu:24.04@sha256:fe81560990fae86dc4743202b2cb4d3df98d0bcf949173cecef15ce1127ef852 AS cadsim
+
+ARG OPENFOAM_VERSION=14
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PATH=/opt/venv/bin:/usr/local/bin:/usr/bin:/bin \
+    PYTHONUNBUFFERED=1 \
+    VIRTUAL_ENV=/opt/venv \
+    OMPI_ALLOW_RUN_AS_ROOT=1 \
+    OMPI_ALLOW_RUN_AS_ROOT_CONFIRM=1
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      admesh \
+      ca-certificates \
+      calculix-ccx \
+      curl \
+      git \
+      gnupg \
+      gphoto2 \
+      jq \
+      libgl1 \
+      libglu1-mesa \
+      libimage-exiftool-perl \
+      libxcursor1 \
+      libxinerama1 \
+      libxrandr2 \
+      openscad \
+      openssh-server \
+      prusa-slicer \
+      python3 \
+      python3-venv \
+      rsync \
+      time \
+      tmux \
+      unzip \
+      xvfb \
+    && rm -rf /var/lib/apt/lists/*
+
+# OpenFOAM from the OpenFOAM Foundation repository (GPL, Ubuntu 24.04 "noble").
+RUN curl -fsSL https://dl.openfoam.org/gpg.key | gpg --dearmor -o /usr/share/keyrings/openfoam.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/openfoam.gpg] http://dl.openfoam.org/ubuntu noble main" \
+        > /etc/apt/sources.list.d/openfoam.list \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends "openfoam${OPENFOAM_VERSION}" \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV FOAM_VERSION=${OPENFOAM_VERSION}
+RUN printf '. /opt/openfoam%s/etc/bashrc\n' "${OPENFOAM_VERSION}" >> /etc/bash.bashrc
+
+# Code-first CAD and simulation driving. build123d and CadQuery expose the same
+# OCCT kernel FreeCAD uses, but as a Python API, so geometry stays reviewable
+# text and STEP export is one call.
+COPY containers/stack-20261105/cadsim.requirements.txt /opt/locks/cadsim.requirements.txt
+COPY containers/stack-20261105/cadquery.requirements.txt /opt/locks/cadquery.requirements.txt
+RUN python3 -m venv /opt/venv && python3 -m venv /opt/cadquery \
+    && /opt/venv/bin/pip install --no-cache-dir pip==26.3 \
+    && /opt/cadquery/bin/pip install --no-cache-dir pip==26.3 \
+    && /opt/venv/bin/pip install --no-cache-dir --require-hashes -r /opt/locks/cadsim.requirements.txt \
+    && /opt/cadquery/bin/pip install --no-cache-dir --require-hashes -r /opt/locks/cadquery.requirements.txt \
+    && /opt/venv/bin/pip check && /opt/cadquery/bin/pip check \
+    && /opt/venv/bin/pip freeze --all > /opt/locks/cadsim.freeze.txt \
+    && /opt/cadquery/bin/pip freeze --all > /opt/locks/cadquery.freeze.txt \
+    && dpkg-query -W > /opt/locks/system-packages.txt
+COPY containers/stack-20261105/cadsim-smoke.py /opt/stack/cadsim-smoke.py
+RUN --network=none /opt/venv/bin/python /opt/stack/cadsim-smoke.py
+
+COPY containers/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY containers/smoke-test.sh /usr/local/bin/smoke-test.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh /usr/local/bin/smoke-test.sh
+
+# Repository tooling: capture at the bench and validation of what it produces.
+COPY scripts /opt/3dprinting993/scripts
+COPY catalog/templates /opt/3dprinting993/catalog/templates
+ENV PYTHONPATH=/opt/3dprinting993
+
+COPY --from=current-ccx /usr/local/bin/ccx /usr/local/bin/ccx
+COPY scripts/cad_recode/ccx_smoke.py /opt/stack/ccx-smoke.py
+RUN apt-get purge -y calculix-ccx \
+    && ccx -v | grep -F '2.23' \
+    && dpkg-query -W > /opt/locks/system-packages.txt
+RUN --network=none python /opt/stack/ccx-smoke.py /tmp/ccx-build-smoke \
+    && cat /tmp/ccx-build-smoke/checks.json && rm -rf /tmp/ccx-build-smoke
+
+WORKDIR /workspace
+EXPOSE 22
+
+LABEL org.opencontainers.image.title="3dprinting993-cadsim" \
+      org.opencontainers.image.description="Scriptable CAD and simulation toolchain (build123d, CadQuery, Gmsh, CalculiX, OpenFOAM, PrusaSlicer) for Porsche 993 parts" \
+      org.opencontainers.image.source="https://github.com/cluster2600/porscheparts" \
+      org.opencontainers.image.licenses="NOASSERTION"
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD ["sleep", "infinity"]

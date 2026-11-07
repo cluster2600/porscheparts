@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "scope": "Native Linux AMD64 package and CPU controls only",
+  "recipe": "containers/stack-20261105/vllm-runtime.Dockerfile",
+  "image_id": "sha256:22cd02a674c43684867cc6085011ca79ba2489e930cc93392905105c9091cd58",
+  "image_metadata": "sha256:22cd02a674c43684867cc6085011ca79ba2489e930cc93392905105c9091cd58 linux/amd64 25149550965",
+  "registry_published": false,
+  "started_at": "2026-11-07T07:12:18Z",
+  "finished_at": "2026-11-07T07:12:55Z",
+  "build_exit_code": 0,
+  "offline_smoke_exit_code": 0,
+  "smoke_limits": {
+    "network": "none",
+    "cpus": 2,
+    "memory": "4g",
+    "timeout_seconds": 300
+  },
+  "reports": [
+    {
+      "status": "DEPENDENCIES_MATCH_WITH_EXPLICIT_UPSTREAM_NCCL_OVERRIDE",
+      "pip_check_clean": false,
+      "accepted_metadata_mismatch": "torch 2.14.0+cu130 has requirement nvidia-nccl-cu13==2.30.7; platform_system == \"Linux\", but you have nvidia-nccl-cu13 2.31.2.",
+      "reason": "vLLM 0.33.0 Dockerfile pins NCCL 2.31.2 for DeepEPv2 GDA over EFA",
+      "source": "https://github.com/vllm-project/vllm/blob/v0.33.0/docker/Dockerfile",
+      "gpu_collectives_tested": false
+    },
+    {
+      "status": "VLLM_CPU_PACKAGE_WITNESS_PASS",
+      "versions": {
+        "vllm": "0.33.0",
+        "torch": "2.14.0+cu130",
+        "transformers": "5.20.2"
+      },
+      "cuda_build": "13.0",
+      "gpu_serving_tested": false,
+      "model_weights_loaded": false
+    }
+  ],
+  "source_sha256": {
+    "containers/stack-20261105/vllm-runtime.Dockerfile": "311c709ca43992b11272c1cda8335ad45fe9faf0b8edc3e2b4c446ed1e433207",
+    "containers/stack-20261105/vllm-cpu-smoke.py": "693c3a627e619436366074b1de8ad96c4035ecee16d8f9dfbe601d80dae1328c",
+    "containers/stack-20261105/vllm-dependency-check.py": "b8feb306d10336e1cca4f26975b6ad0894b9af3e20ae468a91a454d17b202cbe"
+  },
+  "receipt_sha256": {
+    "build-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "build.log": "c9cc0d8602794e0d59731670538f4be2990111b2e6a2b9176193a197012c53a1",
+    "context.sha256": "a0007a971a27ee38bf7acd4a8199b2a9eb59ef127115d13fb584fc1aca87d1c5",
+    "finished.txt": "433eccec8acd55abaeeadf9927df3e3248e5e52bffc26a9872ccec83dcbb9c5f",
+    "image-id.txt": "44383f716538cefe435f074bb81390d569fb4e32589e3ff22fb06337dc39350a",
+    "image.txt": "40464e6d823211ce3c82656ccf227575ac0ecc2e2d2dfab1b652c5895245c135",
+    "local-parent-images.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "recipe.sha256": "495b526db10246f3e0d570261806f317318da00520973b6393c8ed6e58f60b96",
+    "smoke-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "smoke.log": "05d43b4584a4754cdd7d721d3ce927729b41d5f5185e0b4e578ec5c874b8d2ef",
+    "started.txt": "0c21b54cb9b765a2b5dba932f5e03861a4b83beaa395f4bb3c4ec13e1957ea35",
+    "tag.txt": "e3e0419886eb25465a2403fb783b450074e2733d053acf1b4a96c2794c6e56c0"
+  },
+  "retained_failed_attempt": {
+    "receipt": "vllm-runtime.pAroR2",
+    "build_log_sha256": "2eef68fdddaaa1dec540f2f1a4027a9f9bbb4d7c9ba8ed6ae918c579535aa1ed",
+    "cause": "Prepared opentelemetry-exporter-otlp-common==0.61b0 does not exist in the package index"
+  },
+  "gpu_serving_tested": false,
+  "model_weights_loaded": false,
+  "training_performed": false
+}
