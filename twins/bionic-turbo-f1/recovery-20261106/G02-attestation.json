@@ -1,0 +1,51 @@
+{
+  "gate": "G02-evidence-recoverable",
+  "runtime": {
+    "free-tools-dvc": {
+      "variant": "DVC",
+      "version": "3.67.1",
+      "platform": "isolated CPython 3.12.11 environment (Mac, Kali)",
+      "identity": {
+        "requirements_lock_sha256": "245ceb27fa48e4605dd4c438354837264b8ab55c59faae1d33d640b8d19d52a4"
+      }
+    }
+  },
+  "execution_host": "Mac arm64; Kali not executed",
+  "config_sha256": {
+    "twins/bionic-turbo-f1/recovery-20261106/recover.py": "b6581789412b4f33852a0da3ead504db48a2720cd56bee2ac14e0ea499cc485d",
+    "twins/bionic-turbo-f1/recovery-20261106/packages.json": "2dda9e9b62911198497ee9092b5370e9190b0dd965f6ec5ed20f86f73aa79641",
+    "twins/bionic-turbo-f1/recovery-20261106/dvc-manifest.json": "7f202cea53318586e31a444446dfd138321b865a402db7636b4ae3a0fa61efd0",
+    "benchmarks/free-tools/storage.py": "8c56fa168e9c3746e7ec7b51fddf7503f93b075aecc340427fe7a3993dafd721",
+    "benchmarks/free-tools/requirements.lock.txt": "245ceb27fa48e4605dd4c438354837264b8ab55c59faae1d33d640b8d19d52a4"
+  },
+  "receipts": [
+    {
+      "path": "twins/bionic-turbo-f1/recovery-20261106/dvc-archive-receipt.json",
+      "sha256": "c63385c7391c643832e952f2e60e7777ed4c88d6d0088157f3b4ea58e031fcab"
+    },
+    {
+      "path": "twins/bionic-turbo-f1/recovery-20261106/dvc-restore-receipt.json",
+      "sha256": "0fc5f5cb00fe0f7383228ead1f76b0739a795aa03bcae385f35f8d0a38caf46a"
+    },
+    {
+      "path": "twins/bionic-turbo-f1/recovery-20261106/contact-receipt.json",
+      "sha256": "ddde2d9c59957430ed0e91d14006590d693b25a3132a7e100b0020d7d050c1a5"
+    },
+    {
+      "path": "twins/bionic-turbo-f1/recovery-20261106/native-receipt.json",
+      "sha256": "34fdcb2e671f0ccfd484ff7b771087d4947740be35358d8d59c339f7270d33ac"
+    },
+    {
+      "path": "twins/bionic-turbo-f1/recovery-20261106/independent-recovery.json",
+      "sha256": "914d0496eed150ba4c80bbfec564dcec91db73791046cce15a55093cf9a6b135"
+    },
+    {
+      "path": "twins/bionic-turbo-f1/recovery-20261106/first-attempt-failure.json",
+      "sha256": "a7ef9dba3e2b734d7feba9909382d85fc9bf9e1e6b35655205b29d7432be7f5f"
+    }
+  ],
+  "evaluation": {
+    "may_open": true,
+    "reasons": []
+  }
+}
