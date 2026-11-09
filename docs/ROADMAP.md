@@ -174,8 +174,8 @@ would be roughly twice as flexible in titanium as in steel, and
 gain from being printed. Its load cases stay in
 `parts/993-eng-carrier-0001/evidence/load-cases.md`.
 
-- [ ] Choose a part where Ti-6Al-4V brings a real benefit
-- [ ] Compare LPBF, CNC, sheet metal and casting
+- [x] Choose a part where Ti-6Al-4V brings a real benefit (decision 0014, accepted 2026-11-09)
+- [x] Compare LPBF, CNC, sheet metal and casting ([route matrix](../catalog/manufacturing/exhaust-tip-route-matrix.json))
 - [ ] Define loads, interfaces, environment and service life
 - [ ] Perform FEA and a manufacturability review with a supplier
 - [ ] Integrate geometry, loads and results at the `F3_engineering` level
@@ -185,7 +185,10 @@ gain from being printed. Its load cases stay in
 
 Exit criterion: a digital material, mass, stiffness, fatigue and
 manufacturability report available. All manufacturing remains outside the active
-phase.
+phase. The conditional report is
+[993_EXHAUST_TIP_PHASE3_REPORT.md](993/993_EXHAUST_TIP_PHASE3_REPORT.md):
+mass and the geometric manufacturability screen are established; material,
+stiffness and fatigue stop at named blockers.
 
 ## Cross-cutting goal — digital twin coverage
 
