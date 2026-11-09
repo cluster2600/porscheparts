@@ -3,7 +3,9 @@
 
 Records without geometry receive a labelled status card, never invented CAD.
 The withdrawn synthetic Carrera F0 impeller also gets a status card. Catalogue
-CAD held in a digital-twin directory is supported. Every manifest records the
+CAD held in a digital-twin directory is supported, and so is CAD a record
+declares private (geometry.private_derived_files): it is rendered from local
+bytes whose SHA-256 must match, and never committed. Every manifest records the
 image kind, publication terms, caption, source CAD and catalogue/image hashes.
 
 Render a product view of every modelled part from its own CAD.
@@ -94,6 +96,22 @@ def sources(part_id: str) -> list[Path]:
         if path.stem not in chosen or path.suffix.lower() in (".step", ".stp"):
             chosen[path.stem] = path
     return list(chosen.values())[:3]
+
+
+def private_sources(record: dict) -> list[dict]:
+    """CAD held privately (scan-derived geometry that must not be published).
+
+    The record declares each file's name and SHA-256 under
+    geometry.private_derived_files; images are rendered locally from the
+    private bytes (``--private-cad DIR``) and the manifest cites the hash with
+    a ``private:`` path, so the check can tie the images to the declared CAD
+    without the CAD itself entering Git.
+    """
+    return [{"path": "private:" + str(f["name"]), "sha256": str(f["sha256"])}
+            for f in record.get("geometry", {}).get("private_derived_files", [])]
+
+
+PRIVATE_CAD_DIR: Path | None = None
 
 
 def color(record: dict) -> str:
@@ -209,6 +227,17 @@ def display_rotation_x_deg(part_id: str, files: list[Path]) -> int:
 def render(record: dict) -> dict:
     part_id = record["part_id"]
     files = sources(part_id)
+    private = private_sources(record) if not files else []
+    if private:
+        if PRIVATE_CAD_DIR is None:
+            raise SystemExit(f"{part_id}: its CAD is private; pass --private-cad DIR holding "
+                             + ", ".join(e["path"][8:] for e in private))
+        files = []
+        for e in private:
+            path = PRIVATE_CAD_DIR / e["path"][8:]
+            if sha256(path) != e["sha256"]:
+                raise SystemExit(f"{part_id}: {path} does not match the declared SHA-256")
+            files.append(path)
     if not files or part_id == "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001":
         return status_card(record, files)
     import pyvista as pv
@@ -277,9 +306,10 @@ def render(record: dict) -> dict:
     info = {
         "part_id": part_id,
         "kind": "geometry_render",
-        "note": geometry_note(record, picogk_model, rotation_x_deg),
+        "note": geometry_note(record, picogk_model, rotation_x_deg)
+        + (" Rendered from private CAD whose SHA-256 is recorded; the CAD itself is not published." if private else ""),
         "display_rotation_x_deg": rotation_x_deg,
-        "sources": [{"path": f.relative_to(ROOT).as_posix(), "sha256": sha256(f)} for f in files],
+        "sources": private or [{"path": f.relative_to(ROOT).as_posix(), "sha256": sha256(f)} for f in files],
         "bounding_box_mm": dims,
         "images": ["preview.png", "views.png"],
         "generator": "scripts/render_part_previews.py",
@@ -298,7 +328,10 @@ def check() -> int:
             files = sources(part_id)
             info = json.loads(info_path.read_text(encoding="utf-8"))
             expected = [{"path": f.relative_to(ROOT).as_posix(), "sha256": sha256(f)} for f in files]
-            card = not files or part_id == "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001"
+            private = private_sources(record) if not files else []
+            if private:
+                expected = private
+            card = (not files and not private) or part_id == "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001"
             names = ["preview.png"] if card else ["preview.png", "views.png"]
             if info.get("kind") != ("status_card" if card else "geometry_render"):
                 raise ValueError("incorrect image kind")
@@ -360,7 +393,10 @@ def main() -> int:
     g.add_argument("--check", action="store_true")
     ap.add_argument("--only", help="render a single part_id")
     ap.add_argument("--list", action="store_true", help="print all catalogue part_ids")
+    ap.add_argument("--private-cad", type=Path, help="directory holding CAD a record declares as private")
     a = ap.parse_args()
+    global PRIVATE_CAD_DIR
+    PRIVATE_CAD_DIR = a.private_cad
     if a.check:
         return check()
     todo = [r for r in records() if not a.only or r["part_id"].lower() == a.only.lower()]

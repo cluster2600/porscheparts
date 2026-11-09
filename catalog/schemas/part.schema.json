@@ -88,7 +88,21 @@
         "master_file": { "type": "string" },
         "units": { "const": "mm" },
         "accuracy_mm": { "type": ["number", "null"], "exclusiveMinimum": 0 },
-        "derived_files": { "type": "array", "items": { "type": "string" } }
+        "derived_files": { "type": "array", "items": { "type": "string" } },
+        "private_derived_files": {
+          "description": "CAD kept out of Git (scan-derived or otherwise unpublishable). Public images are rendered from these bytes and cite the SHA-256.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "sha256", "held_in"],
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+              "held_in": { "type": "string", "minLength": 5 }
+            }
+          }
+        }
       }
     },
     "provenance": {

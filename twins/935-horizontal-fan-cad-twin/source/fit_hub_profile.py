@@ -54,6 +54,35 @@ def rdp(pts: np.ndarray, tol: float) -> np.ndarray:
     return pts[keep]
 
 
+def clean_loop(loop: np.ndarray, max_turn_deg: float = 120.0) -> np.ndarray:
+    """Remove spikes (near-reversals left by the mode refinement on bosses)
+    and self-intersections, so the loop revolves into a valid solid that
+    survives booleans."""
+    from shapely.geometry import Polygon
+    pts = loop.copy()
+    changed = True
+    while changed and len(pts) > 8:
+        changed = False
+        d_in = pts - np.roll(pts, 1, axis=0)
+        d_out = np.roll(pts, -1, axis=0) - pts
+        cosang = np.sum(d_in * d_out, 1) / np.maximum(np.linalg.norm(d_in, axis=1) * np.linalg.norm(d_out, axis=1), 1e-12)
+        turn = np.degrees(np.arccos(np.clip(cosang, -1, 1)))
+        spikes = turn > max_turn_deg
+        if spikes.any():
+            pts = pts[~spikes]
+            changed = True
+    poly = Polygon(pts)
+    if not poly.is_valid:
+        fixed = poly.buffer(0)
+        if fixed.geom_type != "Polygon":
+            fixed = max(fixed.geoms, key=lambda g: g.area)
+        pts = np.asarray(fixed.exterior.coords)[:-1]
+        pts = rdp(np.r_[pts, pts[:1]], SIMPLIFY_MM)[:-1]
+    if not Polygon(pts).is_valid:
+        raise SystemExit("hub profile still self-intersects after cleaning")
+    return pts
+
+
 def main(obj: str, cache: str, out: str) -> int:
     v, f = load_obj(Path(obj), ROTOR_SCAN_SHA256, Path(cache))
     frame = load_frame()
@@ -115,7 +144,7 @@ def main(obj: str, cache: str, out: str) -> int:
     # Keep sharp corners: use raw refined points where smoothing moves > 0.08 mm.
     moved = np.linalg.norm(sm - refined, axis=1)
     final = np.where((moved > 0.08)[:, None], refined, sm)
-    simp = rdp(np.r_[final, final[:1]], SIMPLIFY_MM)[:-1]
+    simp = clean_loop(rdp(np.r_[final, final[:1]], SIMPLIFY_MM)[:-1])
     if np.sum(simp[:, 0] * np.roll(simp[:, 1], -1) - np.roll(simp[:, 0], -1) * simp[:, 1]) < 0:
         simp = simp[::-1]
     area = 0.5 * abs(np.sum(simp[:, 0] * np.roll(simp[:, 1], -1) - np.roll(simp[:, 0], -1) * simp[:, 1]))
@@ -127,6 +156,7 @@ def main(obj: str, cache: str, out: str) -> int:
                    "refinement": "dominant mode of the normal offsets of axisymmetric points within 0.9 mm, |along| < 0.3 mm (robust to bosses, lugs and blade roots on one side)"},
         "profile_rz_mm": [[round(float(a), 3), round(float(b), 3)] for a, b in simp],
         "vertices": int(len(simp)),
+        "cleaning": "spikes (turn > 120 deg) removed and self-intersections resolved before simplification check; the loop is a valid simple polygon",
         "section_area_mm2": round(float(area), 1),
         "r_range_mm": [round(float(simp[:, 0].min()), 3), round(float(simp[:, 0].max()), 3)],
         "z_range_mm": [round(float(simp[:, 1].min()), 3), round(float(simp[:, 1].max()), 3)],
