@@ -19,6 +19,9 @@ class WorkTreeOutputGateTests(unittest.TestCase):
             "work/simulation/x/case/constant/polyMesh/points",
             "work/simulation/x/case/simpleFoam.log",
             "work/simulation/x/case/log.blockMesh",
+            "models/simulation/x/case/100/U",
+            "models/simulation/x/case/postProcessing/pIn/0/surfaceFieldValue.dat",
+            "models/simulation/x/case/log.simpleFoam",
         ):
             self.assertIsNotNone(gate.solver_output_reason(path), path)
 
@@ -31,6 +34,9 @@ class WorkTreeOutputGateTests(unittest.TestCase):
             "work/simulation/x/RUN_RECORD.md",
             "work/simulation/x/results/bench_results.json",
             "twins/y/evidence/checkMesh.log",
+            "models/simulation/x/case/0/U",
+            "models/simulation/x/case/system/controlDict",
+            "models/horizontal-fan-reconstruction/run.log",
         ):
             self.assertIsNone(gate.solver_output_reason(path), path)
 

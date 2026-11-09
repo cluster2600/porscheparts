@@ -289,9 +289,11 @@ lists every image recipe, its lock and its workflow.
 
 ## Repository map
 
-The top level stays flat on purpose: locked container recipes and frozen
-evidence files cite these paths, so folders are not moved
-([AGENTS.md](AGENTS.md)).
+Most top-level folders stay where they are on purpose: locked container
+recipes and frozen evidence files cite their paths, so they are not moved
+([AGENTS.md](AGENTS.md)). Only paths nothing pinned depends on were
+consolidated: the requirement sets into `requirements/` and the simulation
+case decks into `models/simulation/` (2026-11-09).
 
 | folder | what it holds |
 |---|---|
@@ -299,18 +301,21 @@ evidence files cite these paths, so folders are not moved
 | [`parts/`](parts/) | one folder per catalogued part: geometry, README and public media |
 | [`components/`](components/) | shared interface proxies (for example Fuchs wheel hubs) used by parts and images |
 | [`twins/`](twins/) | digital twins and their workstreams: code, contracts and evidence |
-| [`models/`](models/) | larger reconstruction models (917 engine, horizontal fan) |
+| [`models/`](models/) | larger reconstruction models (917 engine, horizontal fan) and the tracked simulation case decks in [`models/simulation/`](models/simulation/) |
 | [`manufacturing/`](manufacturing/) | manufacturing runtimes and process workflows |
 | [`benchmarks/`](benchmarks/) | solver and process benchmarks (LPBF, GPU geometry, free tools) |
 | [`outils/`](outils/README.md) | frozen: the F25 OpenFOAM verification benchmark, whose path is pinned by two CFD image recipes; new benchmarks go in `benchmarks/` |
 | [`containers/`](containers/) | reproducible, digest-locked images for heavy compute |
 | [`deploy/`](deploy/) | host and cloud deployment (Intel hosts, OpenBao secrets, Vast) |
 | [`training/`](training/) | local model training runs and their recorded evaluation |
-| [`work/`](work/) | in-progress engine and simulation workstreams |
 | [`scripts/`](scripts/) | generators, validators and audit scripts run by `make` |
 | [`tests/`](tests/) | the test suite run by `make check` |
+| [`requirements/`](requirements/) | the pinned requirement sets CI and `make check-setup` install |
 | [`docs/`](docs/) | documentation, research notes, architecture and media |
 | [`archive/`](archive/) | archived studies kept for provenance |
+
+`work/` is git-ignored local scratch for runs and private outputs; nothing in
+it is tracked.
 
 ## Disclaimer and licence
 

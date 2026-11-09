@@ -27,14 +27,14 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libgl1 libglu1-mesa libegl1 libegl-mesa0 g++ libcgal-dev=5.6-1build3 calculix-ccx=2.21-1
 
       - name: Install numerical test dependencies
-        run: python -m pip install --disable-pip-version-check -r requirements-check.txt
+        run: python -m pip install --disable-pip-version-check -r requirements/requirements-check.txt
 
       - name: Install pinned native geometry oracle
         run: >-
           python -m pip --isolated install --disable-pip-version-check
           --index-url https://pypi.org/simple --no-deps --only-binary=:all:
           --require-hashes --keyring-provider disabled
-          -r requirements-check-oracle.txt
+          -r requirements/requirements-check-oracle.txt
 
       - name: Set up the .NET preflight runtime
         uses: actions/setup-dotnet@v4
@@ -96,7 +96,7 @@ jobs:
       - name: Install native libraries
         run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libgl1 libglu1-mesa
       - name: Install isolated CAD dependencies
-        run: python -m pip install --disable-pip-version-check -r requirements-check-cad.txt
+        run: python -m pip install --disable-pip-version-check -r requirements/requirements-check-cad.txt
       - name: Check native CAD runtime
         run: |
           python -m pip check
@@ -123,7 +123,7 @@ jobs:
           curl --fail --silent --show-error --location --retry 3 https://conda.anaconda.org/conda-forge/linux-64/micromamba-2.10.0-0.tar.bz2 -o "$RUNNER_TEMP/micromamba.tar.bz2"
           echo "9a97976244929bbae28fb1fae504e74a3e7e6d1932870e3a03321f01b7fbd07b  $RUNNER_TEMP/micromamba.tar.bz2" | sha256sum --check
           tar -xjf "$RUNNER_TEMP/micromamba.tar.bz2" -C "$RUNNER_TEMP" bin/micromamba
-          MAMBA_ROOT_PREFIX="$RUNNER_TEMP/mamba" "$RUNNER_TEMP/bin/micromamba" --no-rc create -y -p "$RUNNER_TEMP/usd" --file requirements-check-usd-linux-64.txt
+          MAMBA_ROOT_PREFIX="$RUNNER_TEMP/mamba" "$RUNNER_TEMP/bin/micromamba" --no-rc create -y -p "$RUNNER_TEMP/usd" --file requirements/requirements-check-usd-linux-64.txt
           echo "$RUNNER_TEMP/usd/bin" >> "$GITHUB_PATH"
       - name: Add the shared surface inspection dependencies
         run: |
