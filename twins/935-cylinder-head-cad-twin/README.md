@@ -243,6 +243,40 @@ observed mid-plane outline, a revolved deck/register/chamber, and ports as
 lofts through observed sections. That is the next milestone. T1 already
 carries simulation, print and USD.
 
+### v1 feature tree: deck-plate baseline ([features](params/deck-features.json), [score](params/deck-features-score.json))
+
+[deck_features.py](source/deck_features.py) starts the editable feature tree
+on the deck zone. It fits analytic features to acquired facets:
+
+- the outer sides and corner radius (6.3 mm);
+- the register recess Ø113.88 mm with its floor at z = 2.17 mm;
+- the stud passages (2 of 4 found, Ø11.4–11.6 mm).
+
+It builds them as a valid 16-face build123d solid (private STEP), and scores
+that zone with the scorecard's Warp kernel. The baseline is deliberately
+recorded before iteration: **median 0.78 mm, p95 5.6 mm, 31% within 0.2 mm**
+over 29,986 mm² of scan. The known gaps are:
+
+- the combustion chamber is not cut yet;
+- the outline is not a plain rectangle (flange bosses);
+- two passages are missed;
+- the fitted plate-top level (16.6 mm) is probably a fin face.
+
+Each fix must raise this score; T1s (p95 0.015 mm) stays the reference
+surface meanwhile.
+
+```mermaid
+flowchart LR
+  F["fitted features<br/>(numbers in Git)"] --> B["build123d solid<br/>(private STEP)"]
+  B --> S["zone scorecard<br/>Warp kernel"]
+  S -->|"gap found"| F
+  S -->|"zone within tolerance"| N["next zone:<br/>fins, cam pads, ports"]
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+  class F,B ok;
+  class S,N open;
+```
+
 ## Phase ledger
 
 | Phase | Inputs | Output | Check | State |
@@ -259,7 +293,7 @@ carries simulation, print and USD.
 | Screenshots | T1, scan | private renders; public [scorecard chart](media/scorecard-t1-cdf.png) | visual review | done |
 | T4 USD | T1s, frame, hypotheses | private `.usdc`; [summary](params/usd-summary.json) | 30 OpenUSD validators | done, 0 findings |
 | T5 print | T1s | private 3MF; [summary](params/print-summary.json) | streaming round trip | done, exact volume |
-| v1 features | frame, scan | analytic deck, register, stud passages, flanges, chamber, ports | per-feature scorecard | next |
+| v1 features | frame, scan | deck plate first: [features](params/deck-features.json) | zone scorecard | baseline recorded (p95 5.6 mm); chamber, outline, passages next; then fins, cam pads, ports |
 | Port CFD | v1 ports | OpenFOAM steady port flow | mesh/flux convergence | blocked by v1 ports |
 | SimReady | T2 STEP | NVIDIA usd-convert-cad + omni.asset_validator | validator report | needs the 10 GB image on X1/Kali |
 | AM study | T1/T2 | PicoGK supports, Adamantine cooldown | as in the earlier study | after v1 |
