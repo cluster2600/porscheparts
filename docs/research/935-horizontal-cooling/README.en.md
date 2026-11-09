@@ -12,6 +12,11 @@ is a separate project.
 [Sources and limitations](sources.json) · [OBJ audit summary](scan-summary.json) ·
 [Existing fan program](../../../twins/993-engine-cooling-fan-system-f0/README.md)
 
+**2026-11-06: the bottom-up repair line is frozen** and the fan is being
+rebuilt top-down as feature-based CAD, see the
+[freeze record](REFRAME_20261106.md) and the
+[top-down twin](../../../twins/935-horizontal-fan-cad-twin/README.md).
+
 [October 12, 2026 assessment and remaining work](STATUS_20261012.md) (French).
 
 [October 22 complete-system continuation and completion audit](COMPLETE_SYSTEM_20261022.md)

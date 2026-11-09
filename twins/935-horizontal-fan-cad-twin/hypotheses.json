@@ -1,0 +1,36 @@
+{
+ "schema": "935-horizontal-fan-cad-twin/hypotheses/1",
+ "recorded_on": "2026-11-09",
+ "rule": "Every entry is an assumption, not a measurement. Geometry built from an entry must carry its id and be colour-coded as hypothesis in renders.",
+ "hypotheses": [
+  {
+   "id": "H-SCALE",
+   "statement": "One scan source unit is one millimetre.",
+   "basis": "Declared by the project owner on 2026-11-06. Consistent with the fitted bore (22.62 mm) and a tip diameter of about 271 mm, but neither is an independent calibration.",
+   "affects": ["all dimensions"],
+   "clears_when": "two independently measured dimensions of the same specimen agree through check_scan_calibration.py"
+  },
+  {
+   "id": "H-BACK-REGISTRATION",
+   "statement": "The back acquisition pass is treated as rigidly registered to the front for version 1.",
+   "basis": "Measured offset of back faces: 0.27-0.69 degree tilt, 0.44 mm drum-centre shift (params/frame.json). The scan file name says the back was not lined up with the centre.",
+   "affects": ["back-facing surfaces: flange back face, lugs, lower bowl, blade pressure sides"],
+   "clears_when": "a separate rigid fit of the back faces is applied and the scorecard of back-facing regions improves"
+  },
+  {
+   "id": "H-HUB-INTERIOR",
+   "statement": "The volume enclosed by the inner cone, the rolled lip and the outer drum/bowl is unobserved; version 1 revolves the observed outer loop as a closed section.",
+   "basis": "The scanner sees only the outside of this section. The rolled lip is about 2.7 mm across, which suggests a formed or spun wall rather than a solid casting, but the wall thickness is not observed.",
+   "affects": ["mass", "inertia", "structural results"],
+   "does_not_affect": "aerodynamic surfaces, which are all observed",
+   "clears_when": "a section, a photograph of a cut or damaged hub, or a measured mass of the specimen"
+  },
+  {
+   "id": "H-DATUM-A-FUNCTION",
+   "statement": "The front flange face carrying the bolt circle is used as datum A.",
+   "basis": "Flattest large face of the hub (0.10 mm RMS). Its role as the mounting face to the drive output is not established.",
+   "affects": ["frame origin", "interface contract with the drive"],
+   "clears_when": "the drive output flange is identified on the drive scan or from a document"
+  }
+ ]
+}
