@@ -1,0 +1,350 @@
+{
+  "scope": "saved_END181_diagnostic_only",
+  "phase_ids": [
+    "lpbf_build",
+    "lpbf_release"
+  ],
+  "parser_sha256": "3c5bfbc739bb796b6ea63f4373a8984f1702ec3cfdf4883f9903df9bf483e0f4",
+  "script_sha256": "c7c3cab204039b91ff8baaa01cacedf200ef1c49a46321f63d19c0a3bff828b1",
+  "python": "3.10.11 (v3.10.11:7d4cc5aa85, Apr  4 2023, 19:05:19) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "python_executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+  "argv": [
+    "python3",
+    "-B",
+    "twins/962-cylinder-head-f0/source/physics_witness/inspect_end181_vectors.py",
+    "<private engineering root>",
+    "<fresh private report>"
+  ],
+  "physical_qualification": false,
+  "root_cause_established": false,
+  "engineering_phase_promotion": false,
+  "cases": {
+    "two_updates": {
+      "native_receipt_sha256": "7fb0ba93c3494cdd6f9dbf0d99843ea1b63dbbf1f450d3be3142f97197029b44",
+      "inputs": {
+        "rich2-END181-dof-map.json": {
+          "sha256": "581f359f22b93b87e74c23f5ef991d0971ff574c285c169579eb9e2b4c5ca4ec",
+          "bytes": 387694
+        },
+        "native.log": {
+          "sha256": "f53294d71d4f67a73c5af5d47b8ead7307a61e30c003bbe2eb77c997079b0d1d",
+          "bytes": 272166
+        },
+        "physical-X.petsc": {
+          "sha256": "b5dadf59281095b56c5f7cfb1f8fdbb7287d1075d757fa7877386f7d856b8f86",
+          "bytes": 3244624
+        },
+        "physical-F.petsc": {
+          "sha256": "b7dee38b7cdb0c37c887fd82fbf579025fb679987bf802a581da62d6f79d3704",
+          "bytes": 3244624
+        },
+        "physical-Y.petsc": {
+          "sha256": "f750dbe34d66c337acadf1b4378fda743019e8e668edef92bfd18e1c8b731701",
+          "bytes": 3244624
+        },
+        "physical-X.petsc.info": {
+          "sha256": "fc71ba3e4e62b9fff1069fb11e71005561d34757f6764ed05da879b469c6fb79",
+          "bytes": 8008
+        },
+        "physical-F.petsc.info": {
+          "sha256": "fc71ba3e4e62b9fff1069fb11e71005561d34757f6764ed05da879b469c6fb79",
+          "bytes": 8008
+        },
+        "physical-Y.petsc.info": {
+          "sha256": "fc71ba3e4e62b9fff1069fb11e71005561d34757f6764ed05da879b469c6fb79",
+          "bytes": 8008
+        },
+        "thermoelastic_end_0181.csv": {
+          "sha256": "9970cbfd2e3d11f584e5b38615f9d92e02e00ce240b1c3f88c59716bed899f8e",
+          "bytes": 71995
+        }
+      },
+      "vectors": {
+        "X0": {
+          "l2": 0.015703390832424027,
+          "max_abs": 0.00120117237044959
+        },
+        "X1": {
+          "l2": 0.026786205535533836,
+          "max_abs": 0.0016909841903094466
+        },
+        "F0": {
+          "l2": 13803815.810558906,
+          "max_abs": 3386953.2690516077
+        },
+        "F1": {
+          "l2": 1.8498416663359772e-07,
+          "max_abs": 3.152126737404615e-08
+        },
+        "Y0": {
+          "l2": 0.0,
+          "max_abs": 0.0
+        },
+        "Y1": {
+          "l2": 0.02145707835486183,
+          "max_abs": 0.0016138026866172803
+        }
+      },
+      "free": {
+        "count": 1269,
+        "max_residual": 3.152126737404615e-08,
+        "max_nodal_force": 3.152126737404615e-08,
+        "max_residual_force_difference": 0.0,
+        "residual_sums": [
+          2.2985966976811997e-06,
+          -2.8101447597404905e-08,
+          7.158187276577553e-09
+        ],
+        "force_sums": [
+          2.2985966976811997e-06,
+          -2.8101447597404905e-08,
+          7.158187276577553e-09
+        ]
+      },
+      "constrained": {
+        "count": 6,
+        "max_residual": 0.0,
+        "max_nodal_force": 2.29850465416348e-06,
+        "max_residual_force_difference": 2.29850465416348e-06,
+        "residual_sums": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "force_sums": [
+          -2.29850465416348e-06,
+          2.815519906107511e-08,
+          -6.552426157213631e-09
+        ]
+      },
+      "update_identity_max_error": 0.0,
+      "exact_X1_CSV_matches": 1275,
+      "trace_objects": 364,
+      "hold_projection": {
+        "181": {
+          "sha256": "9970cbfd2e3d11f584e5b38615f9d92e02e00ce240b1c3f88c59716bed899f8e",
+          "native_force_and_moment": {
+            "free": [
+              2.2985966976811997e-06,
+              -2.8101447597404905e-08,
+              7.158187276577553e-09,
+              3.354479179400784e-08,
+              9.231460908915957e-07,
+              -1.0407428482579834e-06
+            ],
+            "constrained": [
+              -2.29850465416348e-06,
+              2.815519906107511e-08,
+              -6.552426157213631e-09,
+              -3.338578835609951e-08,
+              -9.236246114596725e-07,
+              1.0408839443698525e-06
+            ]
+          }
+        },
+        "182": {
+          "sha256": "6cd943becc6fa2b7cd3e7244fe259124409d48ba3a6eed7ea99ffa0c831deb3d",
+          "native_force_and_moment": {
+            "free": [
+              -3.24959803043291e-10,
+              -2.938675486158192e-11,
+              -4.218897339385564e-10,
+              9.312206275998348e-12,
+              5.006304144396083e-10,
+              4.2307578959591935e-11
+            ],
+            "constrained": [
+              -5.1585402616183273e-11,
+              1.3140066812411533e-10,
+              3.525642000568041e-10,
+              1.375610736431554e-11,
+              -5.966285243630409e-10,
+              6.693881005048752e-10
+            ]
+          }
+        }
+      }
+    },
+    "three_updates": {
+      "native_receipt_sha256": "f1c950466c39243d3b23ff2cf7cd6b4871bc974856aa2e8c3249b66afe93e716",
+      "inputs": {
+        "rich2-END181-dof-map.json": {
+          "sha256": "581f359f22b93b87e74c23f5ef991d0971ff574c285c169579eb9e2b4c5ca4ec",
+          "bytes": 387694
+        },
+        "native.log": {
+          "sha256": "fb884c52811b7371842c18b6daa71695fd6b10c214f15338138a2e024c77cc88",
+          "bytes": 303106
+        },
+        "physical-X.petsc": {
+          "sha256": "c380fd7d444439a76c45257fb243461b9248731c8832c494b883b85624af6879",
+          "bytes": 3244624
+        },
+        "physical-F.petsc": {
+          "sha256": "2ca5be2e78b61cd376b74bd39bf4c9324114f45ddd12a1068f34eaa83bd9dfc1",
+          "bytes": 3244624
+        },
+        "physical-Y.petsc": {
+          "sha256": "1613eda4086fa02eae89254b0adafaa516d955006431d253e9be61f6afb3ff8c",
+          "bytes": 3244624
+        },
+        "physical-X.petsc.info": {
+          "sha256": "fc71ba3e4e62b9fff1069fb11e71005561d34757f6764ed05da879b469c6fb79",
+          "bytes": 8008
+        },
+        "physical-F.petsc.info": {
+          "sha256": "fc71ba3e4e62b9fff1069fb11e71005561d34757f6764ed05da879b469c6fb79",
+          "bytes": 8008
+        },
+        "physical-Y.petsc.info": {
+          "sha256": "fc71ba3e4e62b9fff1069fb11e71005561d34757f6764ed05da879b469c6fb79",
+          "bytes": 8008
+        },
+        "thermoelastic_end_0181.csv": {
+          "sha256": "05d32ff636750d00a4a776c3749ccbe980caae21acd4d5e65952edf2acc2d7f9",
+          "bytes": 71939
+        }
+      },
+      "vectors": {
+        "X0": {
+          "l2": 0.015703390832424027,
+          "max_abs": 0.0012011723704495902
+        },
+        "X1": {
+          "l2": 0.026786205535534107,
+          "max_abs": 0.0016909841903094756
+        },
+        "F0": {
+          "l2": 13803815.810558906,
+          "max_abs": 3386953.269051607
+        },
+        "F1": {
+          "l2": 1.8026673655025405e-07,
+          "max_abs": 4.697722033597529e-08
+        },
+        "Y0": {
+          "l2": 0.0,
+          "max_abs": 0.0
+        },
+        "Y1": {
+          "l2": 0.02145707835486202,
+          "max_abs": 0.0016138026866173332
+        }
+      },
+      "free": {
+        "count": 1269,
+        "max_residual": 4.697722033597529e-08,
+        "max_nodal_force": 4.697722033597529e-08,
+        "max_residual_force_difference": 0.0,
+        "residual_sums": [
+          2.2532598327522865e-06,
+          -1.322063487646391e-08,
+          3.5565172032831807e-09
+        ],
+        "force_sums": [
+          2.2532598327522865e-06,
+          -1.322063487646391e-08,
+          3.5565172032831807e-09
+        ]
+      },
+      "constrained": {
+        "count": 6,
+        "max_residual": 0.0,
+        "max_nodal_force": 2.2529896739342803e-06,
+        "max_residual_force_difference": 2.2529896739342803e-06,
+        "residual_sums": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "force_sums": [
+          -2.2529896739342803e-06,
+          1.3583878910594649e-08,
+          -2.7820590275950963e-09
+        ]
+      },
+      "update_identity_max_error": 0.0,
+      "exact_X1_CSV_matches": 1275,
+      "trace_objects": 364,
+      "hold_projection": {
+        "181": {
+          "sha256": "05d32ff636750d00a4a776c3749ccbe980caae21acd4d5e65952edf2acc2d7f9",
+          "native_force_and_moment": {
+            "free": [
+              2.2532598327522865e-06,
+              -1.322063487646391e-08,
+              3.5565172032831807e-09,
+              2.0921828827450325e-08,
+              9.197931605138088e-07,
+              -9.78246363825966e-07
+            ],
+            "constrained": [
+              -2.2529896739342803e-06,
+              1.3583878910594649e-08,
+              -2.7820590275950963e-09,
+              -2.0704760572698433e-08,
+              -9.205978130921721e-07,
+              9.787181625142694e-07
+            ]
+          }
+        },
+        "182": {
+          "sha256": "39a0eb78a50c02dc1ca6d5be5540fb22342417d9ca0a7f6f0aaf0c86bc12098f",
+          "native_force_and_moment": {
+            "free": [
+              2.0174776340727973e-10,
+              -3.904100494543367e-10,
+              -1.9148204101362762e-10,
+              5.46324399529808e-11,
+              6.516012058633964e-10,
+              -4.845101216150199e-10
+            ],
+            "constrained": [
+              -3.916511559509672e-11,
+              1.6209611430895166e-10,
+              1.3713474800169934e-11,
+              4.604316927725449e-11,
+              -3.7834979593753815e-10,
+              5.675246939063072e-10
+            ]
+          }
+        }
+      }
+    }
+  },
+  "actual_execution_receipt": {
+    "sha256": "d340b8bf17a8c5240e33e15fcd03a72c2bb190d714ad1b68fc8c4990511bdf0a",
+    "exit_code": 0,
+    "timed_out": false,
+    "limit_seconds": 30,
+    "elapsed_seconds": 0.6552008329890668
+  },
+  "private_full_report": {
+    "sha256": "de9a23f43e1cf4bb40e3d0af5bb74c5b70938bf5222b6ae38fe615dba0ebd5c1",
+    "bytes": 712394
+  },
+  "remaining_failed_aggregate_checks": 12,
+  "original_total_aggregate_checks": 36,
+  "phase_states": {
+    "provenance": "blocked",
+    "reconstruction": "blocked",
+    "picogk": "blocked",
+    "surface": "blocked",
+    "volume": "blocked",
+    "coolant_cfd": "blocked",
+    "cht": "blocked",
+    "material_strength": "blocked",
+    "lpbf_melt_pool": "blocked",
+    "lpbf_build": "blocked",
+    "lpbf_release": "blocked",
+    "omni_preflight": "blocked",
+    "omni_conversion": "blocked",
+    "omni_assignment": "blocked",
+    "omni_conformance": "blocked",
+    "field_exchange": "blocked",
+    "omni_render": "blocked",
+    "physicsnemo": "blocked",
+    "delivery": "blocked"
+  },
+  "phase_state_scope": "This diagnostic does not promote any engineering phase; historical ledger remains authoritative."
+}
