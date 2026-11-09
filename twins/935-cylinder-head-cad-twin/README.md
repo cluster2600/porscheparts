@@ -269,8 +269,9 @@ that zone with the scorecard's Warp kernel. Progress is tracked per iteration:
 
 | 3 (not adopted) | valve throats fitted: Ø47.94 and Ø46.48 mm, axes about 22° from Z, radial RMS 0.23 / 0.31 mm. Cutting them, with or without a coaxial "boss" (Ø≈30 mm, RMS 0.59 mm, not credible), lowered the score | 0.31 mm | 3.29 / 3.20 mm | 44% |
 
-Iteration 3 is kept as data in the features file, but the solid stays at
-iteration 2. The throat fits look right; the score drops because the port
+| 4 | two-level outline: deck face y −65.15…71.10 mm, body steps out at z = 2.75 mm (272 mm² of step faces) | **0.22 mm** | **2.72 mm** | **49%** (81% within 1 mm) |
+
+Iteration 3 is kept as data in the features file, but not in the solid. The throat fits look right; the score drops because the port
 interior beyond them (guide bosses, seat rings) is not modelled yet.
 
 Remaining gaps: port interiors behind the throats, the plug bores, the
@@ -306,7 +307,7 @@ flowchart LR
 | Screenshots | T1, scan, thermal | private renders (observed/inferred, scan deviation, thermal field); public [scorecard chart](media/scorecard-t1-cdf.png) | visual review | done |
 | T4 USD | T1s, frame, hypotheses | private `.usdc`; [summary](params/usd-summary.json) | 30 OpenUSD validators | done, 0 findings |
 | T5 print | T1s | private 3MF; [summary](params/print-summary.json) | streaming round trip | done, exact volume |
-| v1 features | frame, scan | deck plate first: [features](params/deck-features.json) | zone scorecard | iteration 2: p95 3.05 mm (chamber, four passages); throats and outline next; then fins, cam pads, ports |
+| v1 features | frame, scan | deck plate first: [features](params/deck-features.json) | zone scorecard | iteration 4: p95 2.72 mm (chamber, four passages, two-level outline); port interiors and plug bores next; then fins, cam pads, ports |
 | Port CFD | v1 ports | OpenFOAM steady port flow | mesh/flux convergence | blocked by v1 ports |
 | SimReady | T2 STEP | NVIDIA usd-convert-cad + omni.asset_validator | validator report | needs the 10 GB image on X1/Kali |
 | AM study | T1/T2 | PicoGK supports, Adamantine cooldown | as in the earlier study | after v1 |

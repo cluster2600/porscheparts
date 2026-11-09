@@ -172,6 +172,19 @@ def main(private, params):
                               "t_range_mm": [round(float(t.min()), 3), round(float(t.max()), 3)],
                               "facets": int(len(pts))})
 
+    # Deck-face outline: sides fitted only just above the deck, and the level
+    # where the body steps out to the wider upper outline.
+    dband = side & (cen[:, 2] > 0.3) & (cen[:, 2] < 1.8) & (r > reg_d / 2 + 2.0)
+    dp, dn = cen[dband], n[dband]
+    deck_sides = {}
+    for key, axis, sign in (("x_min", 0, -1), ("x_max", 0, 1), ("y_min", 1, -1), ("y_max", 1, 1)):
+        sd = (dn[:, axis] * sign > 0.97)
+        deck_sides[key] = round(float(np.median(dp[sd, axis])), 4) if sd.sum() > 20 else sides[key]["value"]
+    outside = ((cen[:, 0] < deck_sides["x_min"] - 1) | (cen[:, 0] > deck_sides["x_max"] + 1) |
+               (cen[:, 1] < deck_sides["y_min"] - 1) | (cen[:, 1] > deck_sides["y_max"] + 1))
+    steps = level_peaks(cen[down & outside, 2], area[down & outside], 0.5, zt - 0.2, min_area=5.0)
+    step_z, step_a = max(steps, key=lambda t: t[1]) if steps else (None, 0.0)
+
     feats = {
         "schema": "935-cad-twin-deck-features/1",
         "source": "acquired bare-scan facets in the twin frame; numbers only",
@@ -182,6 +195,7 @@ def main(private, params):
         "outer": {"sides": sides, "corner_radius_mm": round(rc, 3),
                   "corner_fits": [[round(a, 3), round(b, 4)] for a, b in corner_radii]},
         "passages": pas,
+        "deck_outline": {"sides": deck_sides, "step_z": step_z, "step_area_mm2": round(step_a, 1)},
         "chamber": feats_chamber,
         "chamber_bores": bores,
     }
@@ -199,8 +213,20 @@ def build_and_score(feats, private, params, bare):
     zt = feats["plate_top_z"]
     o = feats["outer"]["sides"]
     x0, x1, y0, y1 = o["x_min"]["value"], o["x_max"]["value"], o["y_min"]["value"], o["y_max"]["value"]
-    plate = Pos((x0 + x1) / 2, (y0 + y1) / 2, zt / 2) * Box(x1 - x0, y1 - y0, zt)
-    plate = fillet(plate.edges().filter_by(Axis.Z), radius=feats["outer"]["corner_radius_mm"])
+    rcorner = feats["outer"]["corner_radius_mm"]
+    dk = feats.get("deck_outline", {})
+    zs = dk.get("step_z")
+    if zs:
+        ds = dk["sides"]
+        low = Pos((ds["x_min"] + ds["x_max"]) / 2, (ds["y_min"] + ds["y_max"]) / 2, zs / 2) * \
+            Box(ds["x_max"] - ds["x_min"], ds["y_max"] - ds["y_min"], zs)
+        low = fillet(low.edges().filter_by(Axis.Z), radius=rcorner)
+        up = Pos((x0 + x1) / 2, (y0 + y1) / 2, (zs + zt) / 2) * Box(x1 - x0, y1 - y0, zt - zs)
+        up = fillet(up.edges().filter_by(Axis.Z), radius=rcorner)
+        plate = low + up
+    else:
+        plate = Pos((x0 + x1) / 2, (y0 + y1) / 2, zt / 2) * Box(x1 - x0, y1 - y0, zt)
+        plate = fillet(plate.edges().filter_by(Axis.Z), radius=rcorner)
     reg = feats["register"]
     depth = (reg["floor_z"] or zt) + 0.0
     cut = Pos(reg["centre"][0], reg["centre"][1], depth / 2 - 0.01) * Cylinder(reg["diameter_mm"] / 2, depth + 0.02)
