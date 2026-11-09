@@ -1,0 +1,678 @@
+{
+  "schema_version": 1,
+  "classification": "source_linked_observed_exterior_floor_candidate_diagnostics_not_original_interior_reconstruction",
+  "study_date": "2026-11-06",
+  "private_execution_receipt_sha256": "a36c70cf4f233fa095505a9716ca0293f2360d3bc7892504901c800b42639110",
+  "diagnostic_source_code_sha256": "e6e90ee393b267528d4938a00d2b05c6f5ea1fda6d104d07fa370321dd8d78a7",
+  "predeclared_plan_sha256": "9e23e326f1b32afdf00e521a6f32a86267856598a60ffc2a6aa2d11f3b1972dc",
+  "source_input_sha256": {
+    "work/964-model-year-review-20261029/replay-001/verts_vehicle.npy": "201787314680bcd60fb5f9b8910e28b0025d60c380dc77fa458a41bb17942bc9",
+    "work/964-model-year-review-20261029/replay-001/faces.npy": "271c4f04717be91babfebeb809de485c940dc909ec981acd857693969563b484",
+    "work/964-observed-boundaries-20261029/review-001/source_open_edges.npz": "22fa12246c7bce2f092d370d77208f317761a74af4b525eeb75afcf11d4618c2"
+  },
+  "reviewed_document_sha256": {
+    "twins/964-chassis/source/envelope.py": "eb37eeaaf7694c0b2e250e43544c16ab206680e05c8e144daee377bedf662cc2",
+    "twins/964-chassis/source/floor_assembly.py": "e420b108b5715c36b5f8114bf64b67a68057e1d03ef83d3a6e1285527f92bbb4",
+    "twins/964-chassis/derived/964-floor-assembly.json": "f120699fa9277d6393d883c1171a782123946220633d88137a1058c71f2f1a4c",
+    "twins/964-chassis/derived/scan-recalage-20260925.json": "d5265ffbb3146fa1977b724d2abd37b365e0e2439bdc574226d0f2b5d9edae53",
+    "twins/964-chassis/monocoque/scan-coverage-20261029/regions.json": "f6fb9ff814d7ba6eae0441902ae23308f7544fbd3fd3392c89bdbb2e4554add4",
+    "twins/964-chassis/monocoque/scan-coverage-20261029/run.json": "70a4634dd933cbf74a3d388260bee7717496f6f5a06b8b58eef26b34a2d7fea4",
+    "twins/964-chassis/monocoque/component-review-20261029/review.json": "6c3a4e1ab2b274530c6eebf4bc947db3a661ffc4e019f3925fd121d303a86741",
+    "twins/964-chassis/monocoque/observed-boundaries-20261029/run.json": "6087b0bba9a6b12354796670aa7cb0bc200d2476f4c9e2dca64813154f39c843"
+  },
+  "original_OBJ_sha256": "f397909141e5af2529db961641c7699d39d40c355e05245cfb1573a2974c8dc5",
+  "geometry_continuity": {
+    "vertices": 2400031,
+    "triangles": 4684929,
+    "original_indexed_geometry_changed": false,
+    "provisional_frame": "Xforward,Yleft,Zup; tyre/symmetry derived. Scale interpreted as millimetres; no independently supplied scanner calibration or uncertainty.",
+    "retained_vehicle_transform_4x4_row_major": [
+      0.039015,
+      0.999239,
+      0.0,
+      -1246.181545,
+      -0.999208,
+      0.039014,
+      -0.00787,
+      111.957391,
+      -0.007864,
+      0.000307,
+      0.999969,
+      412.939201,
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "retained_transform_precision": "Published6decimal matrix shown for provenance; canonical float32 arrays are admitted by their exactSHA and replay uses retained fullprecision parameters.",
+    "structural_datums_registered": false,
+    "scan_to_nominal_body_marble_transform": null
+  },
+  "executed_method": {
+    "fit": "Least orthogonal squared distance with exact area-integrated first/second triangle moments. Plane orientation is fitted, never forced to nominal tyre ground.",
+    "inclusion": "All original triangles of each retained window/crop. Crops use all-three-vertex inclusive XYZ bounds only; no selected height residual threshold, RANSAC, robust weighting, smoothing, decimation, mirroring or completion.",
+    "counts": "All seven selections use exact original IDs; combined selections are sorted disjoint unions, not gap-filling surfaces.",
+    "residuals": "Area-weightedRMS is exact over piecewise-linear triangles; unfiltered all-used-vertex quantiles and maximum are also retained. Plane signed distance varies affinely on each triangle, so vertexmax is max over retainedtriangles.",
+    "topology": "Edge-connected selected surface components; boundaries separated into originalopen edges and cropcuts. This doesnot establish physical components, valid vertexlinks, materialcontinuity or original apertures.",
+    "spatial_context": "The actual existing central_floor and six-section images were viewed before fixing crops. Ribbed/circular-feature exterior candidates lie lateral to the central cover-candidate. Outboard lift/support hardware is kept separate by the preexisting crop context, not semantically relabelled from a heightcut.",
+    "limits": {
+      "cpu": 1,
+      "memory_GiB": 2,
+      "timeout_seconds": 60
+    },
+    "actual_seconds": 4.787664044,
+    "peak_RSS_KiB": 291472,
+    "python": "3.12.16 (main, Nov  5 2026, 08:06:14) [GCC 14.2.0]",
+    "numpy": "1.26.4",
+    "Docker_image_id": "sha256:4840d514c583a4d3d8cad3940e68dee6f0f6f3635c12fcd0a3d74c21a5b93a54",
+    "network": "none",
+    "container_removed": true,
+    "source_hashes_before_after_equal": true
+  },
+  "legacy_histogram": {
+    "selection": "X(-1400,-200),absY<450; all vertices, 200bins over actual min/maxZ",
+    "vertices": 234837,
+    "mode_Z_mm": 271.6944885253906,
+    "Z_p5_p95_mm": [
+      262.54107666015625,
+      296.2308654785156
+    ],
+    "matches_271_7_at_one_decimal": true,
+    "plane_or_component_identity_established": false,
+    "FLOOR_Z271_7_source": "source/envelope.py histogram; floor_assembly.py hardcoded it and labelledSCAN, then created a flat rectangularfloor with assumedthickness. Histogram lacks semantictrianglepatch/planarity/uncertainty evidence.",
+    "legacy_X400_to_minus1500_and_Y600": "Hardcoded scan-labelled extents are not independently traced boundary measurements in that script.",
+    "historical_P17_offset_minus506": "Weakly constrained oldregistration; doesnot establish currentbodyXYZ and is not inherited here."
+  },
+  "patches": [
+    {
+      "name": "FloorLeftSearch",
+      "role": "existing_exact_search_window; floor/cover identity remains conditional",
+      "selection_bounds_provisional_frame_mm": [
+        -1650,
+        -500,
+        150,
+        520,
+        0,
+        900
+      ],
+      "source_face_count": 175467,
+      "source_vertex_count": 88522,
+      "source_face_ids_i32_sha256": "58e5f53d1ad8880d0866fb79ac33c11dc9280faf8feb38557b76c97e897331e7",
+      "id_archive_sha256": "13988e070462364e3729e4514e52dcc3d97bc1d38504415799ebbee8d7245b71",
+      "bounds_min_mm": [
+        -1649.9996337890625,
+        150.0038299560547,
+        263.0317687988281
+      ],
+      "bounds_max_mm": [
+        -500.0740661621094,
+        519.9978637695312,
+        296.7381896972656
+      ],
+      "observed_triangle_area_mm2_provisional_scale": 441636.3777195716,
+      "edge_connected_selected_surface_components": 3,
+      "selected_component_face_counts_descending": [
+        175266,
+        196,
+        5
+      ],
+      "original_source_component_membership": [
+        {
+          "id": 0,
+          "faces": 175271
+        },
+        {
+          "id": 66,
+          "faces": 196
+        }
+      ],
+      "selected_frontier_edges": 1607,
+      "original_open_edges": 223,
+      "artificial_crop_edges": 1384,
+      "plane_diagnostic": {
+        "method": "Exact area-integrated triangle covariance; least orthogonal squared-distance plane. Every selected positive-area original triangle participates; no RANSAC, clipping or residual rejection.",
+        "normal_in_provisional_frame": [
+          -0.01803855287909211,
+          -0.01486823314850172,
+          0.9997267357898707
+        ],
+        "point_on_plane_provisional_frame_mm": [
+          -1072.272733364531,
+          335.93815365836093,
+          275.9969664961042
+        ],
+        "offset_d_in_n_dot_p_plus_d_equals_zero": -290.2689880125916,
+        "area_weighted_RMS_orthogonal_residual_mm": 3.0987550141642726,
+        "all_original_vertex_absolute_residual_quantiles_mm": {
+          "0": 6.964164543400818e-05,
+          "50": 1.7619744260128982,
+          "95": 5.082451323726331,
+          "99": 8.988855264479012,
+          "100": 33.908736032828365
+        },
+        "all_original_vertex_signed_residual_range_mm": [
+          -10.006478298547183,
+          33.908736032828365
+        ],
+        "plane_tilt_from_provisional_XY_deg": 1.3394882183633188,
+        "plane_is_original_interior_floor_or_body_datum": false,
+        "scanner_or_source_uncertainty_mm": null,
+        "maximum_planarity_tolerance_mm": null,
+        "accepted_planar_geometry": false
+      },
+      "physical_part_boundary_admitted": false,
+      "raw_ids_committed": false
+    },
+    {
+      "name": "FloorLeftSearchInteriorInspectionCrop",
+      "role": "fixed anatomy-context exterior candidate crop; not an interior skin or physical part perimeter",
+      "selection_bounds_provisional_frame_mm": [
+        -1400,
+        -700,
+        200,
+        450,
+        0,
+        900
+      ],
+      "source_face_count": 72207,
+      "source_vertex_count": 36581,
+      "source_face_ids_i32_sha256": "15146c409517981aea5558243857630e9ea825cfd09eb9fb61f97273110727ec",
+      "id_archive_sha256": "c16244c4f90889b5c11c8ca7f01f4f1df476f8abbde52f4b5406f56057433519",
+      "bounds_min_mm": [
+        -1399.945556640625,
+        200.00405883789062,
+        266.7178649902344
+      ],
+      "bounds_max_mm": [
+        -700.0104370117188,
+        449.9957580566406,
+        289.3797302246094
+      ],
+      "observed_triangle_area_mm2_provisional_scale": 181649.9031814964,
+      "edge_connected_selected_surface_components": 2,
+      "selected_component_face_counts_descending": [
+        72011,
+        196
+      ],
+      "original_source_component_membership": [
+        {
+          "id": 0,
+          "faces": 72011
+        },
+        {
+          "id": 66,
+          "faces": 196
+        }
+      ],
+      "selected_frontier_edges": 973,
+      "original_open_edges": 120,
+      "artificial_crop_edges": 853,
+      "plane_diagnostic": {
+        "method": "Exact area-integrated triangle covariance; least orthogonal squared-distance plane. Every selected positive-area original triangle participates; no RANSAC, clipping or residual rejection.",
+        "normal_in_provisional_frame": [
+          -0.019835184527318934,
+          -0.019735577302776197,
+          0.9996084595696924
+        ],
+        "point_on_plane_provisional_frame_mm": [
+          -1050.5192830360427,
+          325.6152842325813,
+          276.0426417881491
+        ],
+        "offset_d_in_n_dot_p_plus_d_equals_zero": -290.34559814898927,
+        "area_weighted_RMS_orthogonal_residual_mm": 2.346921820989688,
+        "all_original_vertex_absolute_residual_quantiles_mm": {
+          "0": 0.0004791318679972478,
+          "50": 1.7713357993931154,
+          "95": 4.548632029172154,
+          "99": 5.18541519612371,
+          "100": 5.93542056445671
+        },
+        "all_original_vertex_signed_residual_range_mm": [
+          -3.481611744503667,
+          5.93542056445671
+        ],
+        "plane_tilt_from_provisional_XY_deg": 1.6033934623166448,
+        "plane_is_original_interior_floor_or_body_datum": false,
+        "scanner_or_source_uncertainty_mm": null,
+        "maximum_planarity_tolerance_mm": null,
+        "accepted_planar_geometry": false
+      },
+      "physical_part_boundary_admitted": false,
+      "raw_ids_committed": false
+    },
+    {
+      "name": "FloorRightSearch",
+      "role": "existing_exact_search_window; floor/cover identity remains conditional",
+      "selection_bounds_provisional_frame_mm": [
+        -1650,
+        -500,
+        -520,
+        -150,
+        0,
+        900
+      ],
+      "source_face_count": 174553,
+      "source_vertex_count": 88197,
+      "source_face_ids_i32_sha256": "1e3f9ed286e6644e6da7e3db5274ce066e3ae7bbade4a3a0e354b0addcb5e0c8",
+      "id_archive_sha256": "62f8751f2e6924b2d18ec12a7cecaa02bfa15e83200648659286e606099203d5",
+      "bounds_min_mm": [
+        -1649.968994140625,
+        -519.9923706054688,
+        250.14712524414062
+      ],
+      "bounds_max_mm": [
+        -500.0093688964844,
+        -150.0103759765625,
+        302.5286865234375
+      ],
+      "observed_triangle_area_mm2_provisional_scale": 443077.28524952533,
+      "edge_connected_selected_surface_components": 2,
+      "selected_component_face_counts_descending": [
+        174546,
+        7
+      ],
+      "original_source_component_membership": [
+        {
+          "id": 0,
+          "faces": 174546
+        },
+        {
+          "id": 121,
+          "faces": 7
+        }
+      ],
+      "selected_frontier_edges": 1871,
+      "original_open_edges": 469,
+      "artificial_crop_edges": 1402,
+      "plane_diagnostic": {
+        "method": "Exact area-integrated triangle covariance; least orthogonal squared-distance plane. Every selected positive-area original triangle participates; no RANSAC, clipping or residual rejection.",
+        "normal_in_provisional_frame": [
+          -0.01985764157223764,
+          -0.02142718327412141,
+          0.9995731838580534
+        ],
+        "point_on_plane_provisional_frame_mm": [
+          -1071.1347604980824,
+          -335.2404091620842,
+          265.76581087918305
+        ],
+        "offset_d_in_n_dot_p_plus_d_equals_zero": -294.10584557866525,
+        "area_weighted_RMS_orthogonal_residual_mm": 3.308416296400641,
+        "all_original_vertex_absolute_residual_quantiles_mm": {
+          "0": 8.650702463139803e-06,
+          "50": 1.995581987701948,
+          "95": 6.054294089466101,
+          "99": 13.410409476042886,
+          "100": 22.886170477676924
+        },
+        "all_original_vertex_signed_residual_range_mm": [
+          -18.975250197336116,
+          22.886170477676924
+        ],
+        "plane_tilt_from_provisional_XY_deg": 1.6740695475354261,
+        "plane_is_original_interior_floor_or_body_datum": false,
+        "scanner_or_source_uncertainty_mm": null,
+        "maximum_planarity_tolerance_mm": null,
+        "accepted_planar_geometry": false
+      },
+      "physical_part_boundary_admitted": false,
+      "raw_ids_committed": false
+    },
+    {
+      "name": "FloorRightSearchInteriorInspectionCrop",
+      "role": "fixed anatomy-context exterior candidate crop; not an interior skin or physical part perimeter",
+      "selection_bounds_provisional_frame_mm": [
+        -1400,
+        -700,
+        -450,
+        -200,
+        0,
+        900
+      ],
+      "source_face_count": 70587,
+      "source_vertex_count": 35789,
+      "source_face_ids_i32_sha256": "b365ec8cf5841eb6f4969c5be52e2af4fd366a76af76032e5f3d0c421ceb843f",
+      "id_archive_sha256": "eb2d37db4f2783eaa851842a8d1823f851e979a65caf58e304581f3be68cd7f3",
+      "bounds_min_mm": [
+        -1399.988037109375,
+        -449.9850769042969,
+        254.69708251953125
+      ],
+      "bounds_max_mm": [
+        -700.0148315429688,
+        -200.01637268066406,
+        279.45831298828125
+      ],
+      "observed_triangle_area_mm2_provisional_scale": 180722.20292588655,
+      "edge_connected_selected_surface_components": 1,
+      "selected_component_face_counts_descending": [
+        70587
+      ],
+      "original_source_component_membership": [
+        {
+          "id": 0,
+          "faces": 70587
+        }
+      ],
+      "selected_frontier_edges": 997,
+      "original_open_edges": 176,
+      "artificial_crop_edges": 821,
+      "plane_diagnostic": {
+        "method": "Exact area-integrated triangle covariance; least orthogonal squared-distance plane. Every selected positive-area original triangle participates; no RANSAC, clipping or residual rejection.",
+        "normal_in_provisional_frame": [
+          -0.023032833819415146,
+          -0.014962630101706398,
+          0.9996227329681368
+        ],
+        "point_on_plane_provisional_frame_mm": [
+          -1050.7527888610014,
+          -325.85009522730815,
+          266.3353438982803
+        ],
+        "offset_d_in_n_dot_p_plus_d_equals_zero": -295.312253168222,
+        "area_weighted_RMS_orthogonal_residual_mm": 2.5016597619214758,
+        "all_original_vertex_absolute_residual_quantiles_mm": {
+          "0": 0.0003196019757306426,
+          "50": 1.8686694729105617,
+          "95": 4.732519828441359,
+          "99": 5.169022428089344,
+          "100": 5.812635655521244
+        },
+        "all_original_vertex_signed_residual_range_mm": [
+          -4.4889689865677305,
+          5.812635655521244
+        ],
+        "plane_tilt_from_provisional_XY_deg": 1.5738948437238647,
+        "plane_is_original_interior_floor_or_body_datum": false,
+        "scanner_or_source_uncertainty_mm": null,
+        "maximum_planarity_tolerance_mm": null,
+        "accepted_planar_geometry": false
+      },
+      "physical_part_boundary_admitted": false,
+      "raw_ids_committed": false
+    },
+    {
+      "name": "CentralRouteSearch",
+      "role": "existing_exact_search_window; floor/cover identity remains conditional",
+      "selection_bounds_provisional_frame_mm": [
+        -1650,
+        -500,
+        -150,
+        150,
+        0,
+        900
+      ],
+      "source_face_count": 157129,
+      "source_vertex_count": 80240,
+      "source_face_ids_i32_sha256": "5c215603461e1385231a965be6f55892330c9af4a7f81b235bbb40990693ccfb",
+      "id_archive_sha256": "d5741cd6679f7f492ebecf5f302db1cd7406469eabb00f43ff3a9be5030b8e90",
+      "bounds_min_mm": [
+        -1649.996826171875,
+        -149.99691772460938,
+        258.9545593261719
+      ],
+      "bounds_max_mm": [
+        -500.0162048339844,
+        149.9967803955078,
+        412.1831970214844
+      ],
+      "observed_triangle_area_mm2_provisional_scale": 401841.17640034616,
+      "edge_connected_selected_surface_components": 5,
+      "selected_component_face_counts_descending": [
+        141550,
+        15418,
+        96,
+        64,
+        1
+      ],
+      "original_source_component_membership": [
+        {
+          "id": 0,
+          "faces": 156969
+        },
+        {
+          "id": 124,
+          "faces": 96
+        },
+        {
+          "id": 142,
+          "faces": 64
+        }
+      ],
+      "selected_frontier_edges": 3479,
+      "original_open_edges": 2114,
+      "artificial_crop_edges": 1365,
+      "plane_diagnostic": {
+        "method": "Exact area-integrated triangle covariance; least orthogonal squared-distance plane. Every selected positive-area original triangle participates; no RANSAC, clipping or residual rejection.",
+        "normal_in_provisional_frame": [
+          0.019657124023168944,
+          -0.04533645742255332,
+          0.9987783553439225
+        ],
+        "point_on_plane_provisional_frame_mm": [
+          -1117.7572149202438,
+          3.330793736862495,
+          282.5716793414102
+        ],
+        "offset_d_in_n_dot_p_plus_d_equals_zero": -260.1035785694702,
+        "area_weighted_RMS_orthogonal_residual_mm": 22.077275273672797,
+        "all_original_vertex_absolute_residual_quantiles_mm": {
+          "0": 6.247326700927446e-05,
+          "50": 11.664507501750641,
+          "95": 50.220322376167935,
+          "99": 84.47375505021695,
+          "100": 119.72903642965085
+        },
+        "all_original_vertex_signed_residual_range_mm": [
+          -36.5487355152293,
+          119.72903642965085
+        ],
+        "plane_tilt_from_provisional_XY_deg": 2.8323981543846726,
+        "plane_is_original_interior_floor_or_body_datum": false,
+        "scanner_or_source_uncertainty_mm": null,
+        "maximum_planarity_tolerance_mm": null,
+        "accepted_planar_geometry": false
+      },
+      "physical_part_boundary_admitted": false,
+      "raw_ids_committed": false
+    },
+    {
+      "name": "CombinedFloorSearch",
+      "role": "combined unchanged floor-search windows; centre excluded",
+      "selection_bounds_provisional_frame_mm": [
+        [
+          -1650,
+          -500,
+          -520,
+          -150,
+          0,
+          900
+        ],
+        [
+          -1650,
+          -500,
+          150,
+          520,
+          0,
+          900
+        ]
+      ],
+      "source_face_count": 350020,
+      "source_vertex_count": 176719,
+      "source_face_ids_i32_sha256": "b9fe106aefc75bbbdda51d65492c94505cf820621765a5358fa09cbc06bd9b84",
+      "id_archive_sha256": "f403d01dce0932604b23c30bc6da9c96074d33670b675a26346677eeae13e900",
+      "bounds_min_mm": [
+        -1649.9996337890625,
+        -519.9923706054688,
+        250.14712524414062
+      ],
+      "bounds_max_mm": [
+        -500.0093688964844,
+        519.9978637695312,
+        302.5286865234375
+      ],
+      "observed_triangle_area_mm2_provisional_scale": 884713.6629690968,
+      "edge_connected_selected_surface_components": 5,
+      "selected_component_face_counts_descending": [
+        175266,
+        174546,
+        196,
+        7,
+        5
+      ],
+      "original_source_component_membership": [
+        {
+          "id": 0,
+          "faces": 349817
+        },
+        {
+          "id": 66,
+          "faces": 196
+        },
+        {
+          "id": 121,
+          "faces": 7
+        }
+      ],
+      "selected_frontier_edges": 3478,
+      "original_open_edges": 692,
+      "artificial_crop_edges": 2786,
+      "plane_diagnostic": {
+        "method": "Exact area-integrated triangle covariance; least orthogonal squared-distance plane. Every selected positive-area original triangle participates; no RANSAC, clipping or residual rejection.",
+        "normal_in_provisional_frame": [
+          -0.01893458574438767,
+          -0.01553042933179194,
+          0.9997000986433172
+        ],
+        "point_on_plane_provisional_frame_mm": [
+          -1071.7028202395759,
+          -0.19769229900879326,
+          270.8730570941656
+        ],
+        "offset_d_in_n_dot_p_plus_d_equals_zero": -291.0871410854618,
+        "area_weighted_RMS_orthogonal_residual_mm": 3.2513127397404498,
+        "all_original_vertex_absolute_residual_quantiles_mm": {
+          "0": 1.1138194586953376e-05,
+          "50": 1.6861399206705705,
+          "95": 5.35636097688091,
+          "99": 13.088483962538254,
+          "100": 34.46122059841701
+        },
+        "all_original_vertex_signed_residual_range_mm": [
+          -19.311295418294385,
+          34.46122059841701
+        ],
+        "plane_tilt_from_provisional_XY_deg": 1.4032585590326052,
+        "plane_is_original_interior_floor_or_body_datum": false,
+        "scanner_or_source_uncertainty_mm": null,
+        "maximum_planarity_tolerance_mm": null,
+        "accepted_planar_geometry": false
+      },
+      "physical_part_boundary_admitted": false,
+      "raw_ids_committed": false
+    },
+    {
+      "name": "CombinedExteriorInspectionCrops",
+      "role": "combined fixed exterior-candidate crops; no inferred surface between them",
+      "selection_bounds_provisional_frame_mm": [
+        [
+          -1400,
+          -700,
+          -450,
+          -200,
+          0,
+          900
+        ],
+        [
+          -1400,
+          -700,
+          200,
+          450,
+          0,
+          900
+        ]
+      ],
+      "source_face_count": 142794,
+      "source_vertex_count": 72370,
+      "source_face_ids_i32_sha256": "f84aa145ddd1488dc1067507f7a91d11768f752094fb3363fa79fc5369769529",
+      "id_archive_sha256": "c6609f0cef2de51c40730409ae5ecc880c22a8bb4d3fd769db12a4ea78638285",
+      "bounds_min_mm": [
+        -1399.988037109375,
+        -449.9850769042969,
+        254.69708251953125
+      ],
+      "bounds_max_mm": [
+        -700.0104370117188,
+        449.9957580566406,
+        289.3797302246094
+      ],
+      "observed_triangle_area_mm2_provisional_scale": 362372.1061073829,
+      "edge_connected_selected_surface_components": 3,
+      "selected_component_face_counts_descending": [
+        72011,
+        70587,
+        196
+      ],
+      "original_source_component_membership": [
+        {
+          "id": 0,
+          "faces": 142598
+        },
+        {
+          "id": 66,
+          "faces": 196
+        }
+      ],
+      "selected_frontier_edges": 1970,
+      "original_open_edges": 296,
+      "artificial_crop_edges": 1674,
+      "plane_diagnostic": {
+        "method": "Exact area-integrated triangle covariance; least orthogonal squared-distance plane. Every selected positive-area original triangle participates; no RANSAC, clipping or residual rejection.",
+        "normal_in_provisional_frame": [
+          -0.021438677049748125,
+          -0.015001507729412,
+          0.9996576103307581
+        ],
+        "point_on_plane_provisional_frame_mm": [
+          -1050.6357370521523,
+          0.7164950552176061,
+          271.20141855504795
+        ],
+        "offset_d_in_n_dot_p_plus_d_equals_zero": -293.6220537485272,
+        "area_weighted_RMS_orthogonal_residual_mm": 2.4586412312909602,
+        "all_original_vertex_absolute_residual_quantiles_mm": {
+          "0": 1.6860257670378247e-05,
+          "50": 1.8479572190044846,
+          "95": 4.759900347207414,
+          "99": 5.254860794496602,
+          "100": 6.12390086258854
+        },
+        "all_original_vertex_signed_residual_range_mm": [
+          -4.207954772857708,
+          6.12390086258854
+        ],
+        "plane_tilt_from_provisional_XY_deg": 1.4993752880200948,
+        "plane_is_original_interior_floor_or_body_datum": false,
+        "scanner_or_source_uncertainty_mm": null,
+        "maximum_planarity_tolerance_mm": null,
+        "accepted_planar_geometry": false
+      },
+      "physical_part_boundary_admitted": false,
+      "raw_ids_committed": false
+    }
+  ],
+  "conclusions": {
+    "positive_reference": "Existing source already supports bounded, source-indexed exterior floor-candidate geometry, including an unforced plane approximation and actual nonplanar rib/circular-feature residuals. It should constrain later shape work instead of freely invented rear rise.",
+    "flatness_vs_level": "Rigid-invariant flatness residuals do not depend on orientation;1.499375deg tilt of combined fixedcrops is relative only to the provisional tyreframe, not an OEM datumline or proven vehicle attitude.",
+    "scope": "InteriorInspectionCrop names refer to geometric cropinterior only; they do NOT identify an original cabin/interior skin. The upperfloor, thickness, underside-to-innerfacegap, tunnelinterior and actualfunctionalattachment geometry remain separate.",
+    "source_uncertainty_mm": null,
+    "engineering_planarity_tolerance_mm": null,
+    "new_floor_skin_or_hollowbox_released": false,
+    "OEM_Z0_minus65_or65gap_admitted": false,
+    "source_to_body_datum_registration_admitted": false,
+    "CAD_or_Pico_or_FEA_generated": false,
+    "new_geometry_or_source_repair_created": false,
+    "raw_triangle_or_private_image_bytes_published": false
+  }
+}

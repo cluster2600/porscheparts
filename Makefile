@@ -197,6 +197,7 @@ check-filesystem:
 check-setup: check-filesystem
 	test -x .venv-check/bin/python3 || uv venv --python 3.12 .venv-check
 	uv pip install --python .venv-check/bin/python -r requirements-check.txt
+	uv pip install --python .venv-check/bin/python --index-url https://pypi.org/simple --keyring-provider disabled --no-deps --only-binary :all: --require-hashes -r requirements-check-oracle.txt
 
 #> check | Targets of the archived 917/935 line
 help-917:

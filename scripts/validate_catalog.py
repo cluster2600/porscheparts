@@ -183,6 +183,13 @@ def validate_record(record: Any) -> list[str]:
     else:
         _validate_file_reference(master_file, "geometry.master_file", errors)
     derived_files = geometry.get("derived_files")
+    if "private_preview_receipt" in geometry:
+        if not _is_non_empty_string(geometry["private_preview_receipt"]):
+            errors.append("geometry.private_preview_receipt: expected a non-empty file reference")
+        else:
+            _validate_file_reference(geometry["private_preview_receipt"], "geometry.private_preview_receipt", errors)
+        if geometry.get("master_format") != "PicoGK" or derived_files:
+            errors.append("geometry.private_preview_receipt: requires a PicoGK master and no published derived CAD")
     if not _is_string_list(derived_files):
         errors.append("geometry.derived_files: expected a string array")
     else:

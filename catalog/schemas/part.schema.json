@@ -86,6 +86,7 @@
         "source_type": { "enum": ["measured", "scan", "reverse_engineered", "public_model", "estimated", "mixed"] },
         "master_format": { "enum": ["FCStd", "OpenSCAD", "build123d", "PicoGK", "STEP", "none"] },
         "master_file": { "type": "string" },
+        "private_preview_receipt": { "type": "string", "minLength": 1 },
         "units": { "const": "mm" },
         "accuracy_mm": { "type": ["number", "null"], "exclusiveMinimum": 0 },
         "derived_files": { "type": "array", "items": { "type": "string" } },

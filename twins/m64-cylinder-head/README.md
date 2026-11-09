@@ -128,6 +128,22 @@ complete through heating and cooling; their peak temperatures differ by
 0.553%. This is an IN625 software reference, **not an aluminium-head printing
 simulation**, and it does not clear the prior head geometry/material gates.
 
+The later [endpoint continuation through 2 October](../../docs/reports/M64_ENDPOINT_CONTINUATION_20260929.md#2-october-native-tip-truncation-is-not-a-junction-reconstruction)
+supersedes those September trials as the starting point for junction work.
+The lower planar tip cut exposes five new faces instead of the required single
+cap; the upper tip has no admitted strictly forward cutting direction. Both
+trials are rejected before exporting a candidate or generating a mesh. Separate
+support unification also changes six protected face representations, so it
+does not pass the unchanged protected-data guard.
+
+The next construction must replace or retrim the coupled endpoint region with
+explicit shared curves and a justified local editing boundary. Isolated tip
+cuts and further volume optimisation on the rejected surface are not accepted
+repairs. Protected geometry, native validity/BOP, bidirectional deviation,
+topology and mesh quality must pass before the AM gates can be rerun. The
+source remains a scan-derived 935 research body in provisional units; M64
+interfaces, physical scale, hot strength and manufacturing remain unqualified.
+
 ## Evidence and current work
 
 This directory holds the code, records and receipts of the M64 cylinder head

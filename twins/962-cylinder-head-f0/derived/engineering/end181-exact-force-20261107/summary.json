@@ -1,0 +1,114 @@
+{
+  "scope": "exact arithmetic diagnostic, no solver rerun or engineering acceptance",
+  "material_coefficients": {
+    "mu": "6997076691729323/262144",
+    "lambda": "6791280318443167/131072",
+    "alpha": "5902958103587057/590295810358705651712"
+  },
+  "source_sha256": "1608dab37d0905fbbf86243092bccdb23ee5f9221db9885984f01b57c44be63b",
+  "report_sha256": "7f439cd892cf9b4f8ad582ee3bf74df56347be5c3569436923bb64a8f5f8c85b",
+  "native_receipt_sha256": "f1c950466c39243d3b23ff2cf7cd6b4871bc974856aa2e8c3249b66afe93e716",
+  "inputs": {
+    "thermoelastic_begin_0080.csv": {
+      "sha256": "f54de6aafef6e8c418fcc8887f3b0ac359e3bb22d8a5de88b35be1e15bbef405",
+      "bytes": 28087
+    },
+    "thermoelastic_reference_begin_0080.csv": {
+      "sha256": "ea69e318eca4878c7f857a18864cc5ec96206dfc60bdea99cde25b98e0624ea5",
+      "bytes": 4816
+    },
+    "thermoelastic_end_0181.csv": {
+      "sha256": "05d32ff636750d00a4a776c3749ccbe980caae21acd4d5e65952edf2acc2d7f9",
+      "bytes": 71939
+    },
+    "thermoelastic_end_0182.csv": {
+      "sha256": "39a0eb78a50c02dc1ca6d5be5540fb22342417d9ca0a7f6f0aaf0c86bc12098f",
+      "bytes": 72136
+    }
+  },
+  "python": "3.10.11 (v3.10.11:7d4cc5aa85, Apr  4 2023, 19:05:19) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "python_executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+  "cases": {
+    "181": {
+      "resultants": {
+        "free": [
+          2.254498597192339e-06,
+          -1.2711571101490544e-08,
+          4.1615321807964405e-09,
+          2.0940335383627146e-08,
+          9.203343180825473e-07,
+          -9.782937037416686e-07
+        ],
+        "constrained": [
+          -2.254498597192339e-06,
+          1.2711571101490544e-08,
+          -4.1615321807964405e-09,
+          -2.0940335383627146e-08,
+          -9.203343180825473e-07,
+          9.782937037416686e-07
+        ],
+        "all": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "maximum_exact_vs_native_nodal_difference": 1.3218711968673151e-08,
+      "maximum_free_exact_force": 3.798910213114096e-08,
+      "exact_all_force_and_moment_zero": true
+    },
+    "182": {
+      "resultants": {
+        "free": [
+          1.6050140582525672e-09,
+          6.423098967115967e-10,
+          1.164634342236322e-09,
+          1.6410661988992925e-10,
+          3.426055742123709e-10,
+          -3.046670885762535e-10
+        ],
+        "constrained": [
+          -1.6050140582525672e-09,
+          -6.423098967115967e-10,
+          -1.164634342236322e-09,
+          -1.6410661988992925e-10,
+          -3.426055742123709e-10,
+          3.046670885762535e-10
+        ],
+        "all": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "maximum_exact_vs_native_nodal_difference": 1.148226075926096e-08,
+      "maximum_free_exact_force": 1.5831437820871734e-08,
+      "exact_all_force_and_moment_zero": true
+    }
+  },
+  "controls_passed": true,
+  "root_cause_accepted": false,
+  "manufacturing_authorized": false,
+  "private_full_report": {
+    "sha256": "2f44840bc78b2fc9c1aa1835d92b3bbdec0ff4a133105e8fff2eaf99bb09b7b1",
+    "bytes": 194286
+  },
+  "execution": {
+    "exit_code": 0,
+    "timed_out": false,
+    "limit_seconds": 60,
+    "elapsed_seconds": 1.2406432088464499,
+    "private_receipt_sha256": "90c92f404c8f76685196b4cc1b81dd57e79fa0df4f9911381b9df227a4787fe0"
+  },
+  "phase_ids": [
+    "lpbf_build",
+    "lpbf_release"
+  ],
+  "engineering_phase_promoted": false
+}

@@ -1,6 +1,7 @@
 """The study bundle must retain coordinates, portability and unreleased status."""
 import importlib.util
 import shutil
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -49,6 +50,20 @@ class MonocoqueBundleTests(unittest.TestCase):
         target = Path(self.temp.name) / "relocated"
         shutil.copytree(self.bundle, target)
         self.assertEqual(self.module.validate(target)["groups"], self.report["groups"])
+
+    def test_native_checker_rejects_unknown_shader(self):
+        from pxr import Usd, UsdShade
+        target = Path(self.temp.name) / "unknown-shader"
+        shutil.copytree(self.bundle, target)
+        stage = Usd.Stage.Open(str(target / "display.usda"))
+        shaders = [UsdShade.Shader(p) for p in stage.Traverse() if p.IsA(UsdShade.Shader)]
+        self.assertTrue(shaders)
+        shaders[0].CreateIdAttr("PorschePartsUnknownShaderForValidationTest")
+        stage.GetRootLayer().Save()
+        with self.assertRaises(subprocess.CalledProcessError) as error:
+            self.module.validate(target)
+        self.assertIn("PorschePartsUnknownShaderForValidationTest",
+                      error.exception.stdout + error.exception.stderr)
 
     def test_refuses_output_overwrite(self):
         with self.assertRaises(FileExistsError):

@@ -1,0 +1,43 @@
+name: Validate English F34b generation
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+      - name: Prepare and verify independent generation
+        run: |
+          python3 tests/test_air_oil_f34b_english_generation.py -v
+          python3 containers/air-oil-cycle-f34b-en-20261106/prepare_context.py "${RUNNER_TEMP}/f34b-en"
+          cd "${RUNNER_TEMP}/f34b-en"
+          python3 -m unittest discover -s tests -p 'test_*f34b*.py' -v
+      - name: Build locally and exercise offline runtime
+        run: |
+          cd "${RUNNER_TEMP}/f34b-en"
+          docker buildx build --platform linux/amd64 --load --tag f34b-en:validation \
+            --file "${GITHUB_WORKSPACE}/containers/air-oil-cycle-f34b-en-20261106/Dockerfile" .
+          docker image inspect --format '{{.Id}} {{.Os}}/{{.Architecture}} {{.Config.User}}' \
+            f34b-en:validation > image-identity.txt
+          docker run --rm --platform linux/amd64 --user 9133:9133 \
+            --network none --read-only --tmpfs /tmp:rw,noexec,nosuid,size=64m \
+            --pids-limit 64 --cap-drop ALL --security-opt no-new-privileges \
+            f34b-en:validation > smoke.json 2> smoke.stderr
+          test ! -s smoke.stderr
+          python3 -c 'import json; r=json.load(open("smoke.json")); assert r["status"] == "passed_embedded_f34b_preflight_and_generic_cantera_fixture_only"; assert r["offline"] is True'
+      - name: Retain generation and runtime receipts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: f34b-english-validation
+          path: |
+            ${{ runner.temp }}/f34b-en/generation.json
+            ${{ runner.temp }}/f34b-en/image-identity.txt
+            ${{ runner.temp }}/f34b-en/smoke.json
+          if-no-files-found: error

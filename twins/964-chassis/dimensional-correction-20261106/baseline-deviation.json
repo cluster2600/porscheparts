@@ -1,0 +1,70 @@
+{
+  "classification": "frozen_F2_internal_nonplanarity_witness_not_OEM_comparison",
+  "model_sha256": "1d323e7441c31ef8e5e5b26b895a2a0629bbf97402a274ccd416bc82a95444a2",
+  "audit_source_sha256": "13b46cd68c6d35cce2e15f3380cadfb059795083d4360611c839076502e32d56",
+  "units": "mm",
+  "witnesses": {
+    "sill": {
+      "component": "sill_left",
+      "segment_index": 15,
+      "actual_four_control_Z_mm": [
+        -30.0,
+        -65.0,
+        -65.0,
+        -35.0
+      ],
+      "station_rows_checked": 13,
+      "polynomial_ascending_Z_mm": [
+        -65.0,
+        -17.5,
+        20.0,
+        -2.5
+      ],
+      "minimum_local_t": 0.48085382523266657,
+      "minimum_midsurface_Z_mm": -69.0684919527752,
+      "level_landmarks_Z_mm": -65.0,
+      "departure_below_landmark_plane_mm": 4.068491952775204,
+      "scope": "Algebraic extremum of this actual scalar cubic, not a whole-wall or native-mesh bound"
+    },
+    "floor": {
+      "component": "floor_bay_left",
+      "station_X_mm": 600,
+      "actual_active_control_Z_mm": [
+        0.0,
+        -30.0,
+        -15.0,
+        15.0
+      ],
+      "control_height_spread_mm": 45.0,
+      "longitudinal_control_index": 12,
+      "longitudinal_X_mm": [
+        0,
+        600,
+        1400,
+        2100
+      ],
+      "longitudinal_Z_mm": [
+        15.0,
+        -30.0,
+        15.0,
+        335.0
+      ],
+      "rear_rise_from_X600_mm": 365.0,
+      "scope": "Actual source control heights; not full interpolated surface extrema or original Porsche dimensions"
+    },
+    "tunnel_lower_return": {
+      "component": "tunnel_lower_return",
+      "profile_parameter_v": 1.5,
+      "centre_midsurface_Z_at_X_mm": {
+        "0": -28.125,
+        "600": -73.125,
+        "2100": 291.875
+      },
+      "scope": "Scalar cubic evaluated between the two central controls; no native thickness/voxel or continuous-clearance inference"
+    }
+  },
+  "OEM_model_comparison_delta_mm": null,
+  "donor_frame_registered": false,
+  "whole_surface_planarity_or_functional_admission": false,
+  "scope": "Shows why level landmarks did not establish planar F2 surfaces. No donor geometry or replacement floor depth is inferred."
+}

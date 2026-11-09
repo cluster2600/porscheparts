@@ -4,4 +4,4 @@
 
 Generated from `catalog/parts/*.json`. Only parts that pass the publication gate appear here: validation status `released`, linked evidence, a recorded reviewer and review date, and public part images. See [QUALITY_GATES.md](../QUALITY_GATES.md) and [SAFETY.md](../SAFETY.md).
 
-**No part has passed the publication gate.** 46 records are studies; they are listed, labelled not ready to print, in [STATUS.md](STATUS.md).
+**No part has passed the publication gate.** 47 records are studies; they are listed, labelled not ready to print, in [STATUS.md](STATUS.md).

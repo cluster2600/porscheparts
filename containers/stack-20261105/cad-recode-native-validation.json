@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "scope": "Native Linux AMD64 synthetic CAD interchange and analytical mechanical/thermal controls",
+  "image_id": "sha256:a34530fa2854d33222cdc86e080c573bcd493824aa1d7bf97536d9e808f93290",
+  "image_metadata": "sha256:a34530fa2854d33222cdc86e080c573bcd493824aa1d7bf97536d9e808f93290 linux/amd64 2216049614",
+  "parent_image_identities": [
+    "sha256:83a16c5dd38f5740089f9568fd4183894a95b41caae2538d6d1cf97b56d38149 []",
+    "sha256:0c57b4baaf2e8a7632a471f071acfccb88bc880bc5f7b6199780a2c471178b65 []"
+  ],
+  "build_exit_code": 0,
+  "offline_smoke_exit_code": 0,
+  "smoke_limits": {
+    "network": "none",
+    "cpus": 2,
+    "memory": "4g",
+    "timeout_seconds": 300
+  },
+  "started_at": "2026-11-07T07:54:36Z",
+  "finished_at": "2026-11-07T07:56:20Z",
+  "report": {
+    "status": "CAD_RECODE_CAD_STEP_AND_CCX_PASS",
+    "untrusted_generated_code_executed": false
+  },
+  "analytical_solver_results": {
+    "status": "passed",
+    "synthetic_only": true,
+    "head_physics_validated": false,
+    "checks": {
+      "bar": {
+        "expected": 0.05,
+        "observed": [
+          0.05
+        ],
+        "relative_error": 0.0,
+        "passed": true
+      },
+      "heat": {
+        "expected": -1000.0,
+        "observed": [
+          -1000.0,
+          -1000.0,
+          -1000.0,
+          -1000.0,
+          -1000.0,
+          -1000.0,
+          -1000.0,
+          -1000.0
+        ],
+        "relative_error": 0.0,
+        "passed": true
+      }
+    }
+  },
+  "source_sha256": {
+    "containers/stack-20261105/build-one.sh": "d50e4993656e56f2e5dc960d1db1ad1b97f43c10e8f55ad776d029836f03d68e",
+    "containers/stack-20261105/cad-recode-cad-smoke.py": "b063c242ea3a12d65dd6206ce1abb0b4de9b528008c543844f48b9c89747dfbb",
+    "containers/stack-20261105/cad-recode-cad.Dockerfile": "b08d1f418f5ef0b56f9406d0550f8d85ef7ec25536f4241dee8902632bba5819",
+    "containers/stack-20261105/cad-recode-cad.in": "4a359523d18453695188419ecb307605c0b5bfe441618c08afaacb52c4e3f84b",
+    "containers/stack-20261105/cad-recode-cad.requirements.txt": "bbbb3d658e81d98317a4c43fa9c93f90be7713333ba43e95f9c83b581ab6161c",
+    "deploy/vast/cad-recode/models.lock.json": "fef23c45b7ae693a4e49fd57162121e7ca6797533d3777dc6fb162835211811c",
+    "scripts/cad_recode/__init__.py": "026ca3f06a3acb9396f212c61031f1de36a8e5b513656b5fad4a1cc9f6155504",
+    "scripts/cad_recode/assemble.py": "e42dad1c8b9bfa3e297dfbb8847f220b5c0a58ee9f08215adcf6d35519bdf891",
+    "scripts/cad_recode/ccx_smoke.py": "f559b208e1e6fedb3727b390f130eb9a6bee63214f13e474045c52db3b825729",
+    "scripts/cad_recode/check_simready_fixture.py": "6729661f7e7824c7dc23cda71780e5f178d3837c0556cb2b04f8a78ee9f77f0a",
+    "scripts/cad_recode/dispatch.py": "4baf0229f20ab3abd83f5b0c137f266b114cbe75f36fa728f01d9dfb1d473e74",
+    "scripts/cad_recode/fetch.py": "ae2f7a297d395bdc0cf2484d6b1cd1b2c2ccc443314b45150a22d420f41afa22",
+    "scripts/cad_recode/infer.py": "c35a88c239428c9af3d40d5d0db4ec974fe67b56e49ecea9888d1f85eef27517",
+    "scripts/cad_recode/pipeline.py": "8afa4224c855b468f1b88339b187c77cd1ee1e2eafb400e3d7060b48464c0072",
+    "scripts/cad_recode/recover_planes.py": "e1adabdf13c075313175736f8cbd28040b5887469ff7b29d00e02fc92552c23f",
+    "scripts/cad_recode/recover_sections.py": "894506151bf2ab79504cbfda750dca46907db7b9430781253b628b2a8ab0b42e",
+    "scripts/cad_recode/repair_scan_gaps.py": "6ee35662ef1004b6cb7c46a6bdf95ff40b1410236a7c3f2f87e7d2e60b59f314",
+    "scripts/cad_recode/requirements.txt": "4c1c838dbfb7c4e3e8138067dd760e78ff80903dffa742e850a4ad6098087801",
+    "scripts/cad_recode/worker.py": "6962c1b4071f2c01674fc9193b9e63af11fb071af05790754d1b584b53a6f5d1"
+  },
+  "receipt_sha256": {
+    "build-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "build.log": "b8d08b4aef39e6790068b17194aba78aabe99b2829552179c088d7df381ed70d",
+    "context.sha256": "0d8da99b3cd99bbf003c9c78326a264b77bac6f9b0a552146f8fc736439bafcf",
+    "finished.txt": "e4af674bc905639fa3be1c0f6fa2f08546db11e50c26cc5a309fee85269bee7b",
+    "image-id.txt": "2ff48692c3a3bf5e9ad74ed1b734371e06a1058e71290de0e3dabc6013f31957",
+    "image.txt": "0bdcc788ff8cc82dd3ed1c86c643a8d1bd5634dff0cbe3042064250a742454b1",
+    "independent-ccx-checks.json": "bdc92ec03c723b4ec8eaaedc63fa5694347e39c23d426638c8437a9becbb899b",
+    "local-parent-images.txt": "ea13600b0a967bf7183e40830721da59d532f3dbcb581c9e7253536cf0cc4b36",
+    "recipe.sha256": "75ab77985911360cdc1ee981aa62d27bee5f340368b9b7d9b7b2347175fef9a5",
+    "smoke-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "smoke.log": "f31e47632e0c6115f5c9f57f8239499dd9cb875b08ea09afafa70d6958419502",
+    "started.txt": "333c83e5e725a7fe2d76c8760c33138b4cc1155c07a222659d299009bb0efbc2",
+    "tag.txt": "20a41152d064514f84be07b62b413f1350238ee4e28a3b1b29f776e31197ef1d"
+  },
+  "registry_published": false,
+  "model_weights_loaded": false,
+  "untrusted_generated_code_executed": false,
+  "physical_qualification": false
+}

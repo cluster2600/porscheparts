@@ -1,0 +1,74 @@
+{
+  "kind": "private_native_wall_preview",
+  "part_id": "964-CENTRAL-CELL-SCULPTED-F2",
+  "artifact": {
+    "format": "STL",
+    "sha256": "a0e3338fe904546b9ddab787155e57e2ba26527b2c92bf99e3f472f9abeec643",
+    "size_bytes": 1600671884
+  },
+  "display_artifact": {
+    "format": "VTP",
+    "kind": "lossless_native_transport",
+    "reduced": false,
+    "sha256": "7dd803f20f90ff9b9b253c15dc1f39805a6d1e53ada632af7497520a963cc5db",
+    "size_bytes": 259084654,
+    "source_native_sha256": "a0e3338fe904546b9ddab787155e57e2ba26527b2c92bf99e3f472f9abeec643",
+    "method": "Exact indexed native vertex/triangle transport to VTP; complete array values, order and canonical byte hashes verified after independent readback. No reduction, merge or geometric operation."
+  },
+  "inputs": [
+    {
+      "role": "canonical",
+      "path": "twins/964-chassis/sculpted-cell-f2-20261106/canonical-model.json",
+      "sha256": "136e74a85487f40550519973f4f8280b49c567c2c824f7abf1a1780e6248ffe6"
+    },
+    {
+      "role": "master",
+      "path": "twins/964-chassis/sculpted-cell-f2-20261106/picogk/Program.cs",
+      "sha256": "85afb078a0ab61e881e1de4e3fcb95ce6fb47019a1fb81c5327e917684ba2e34"
+    },
+    {
+      "role": "source",
+      "path": "twins/964-chassis/sculpted-cell-f2-20261106/geometry.py",
+      "sha256": "f7394b94c172f507b017f53aa8ea41db0e1565584ced2effecb82979328082b5"
+    },
+    {
+      "role": "parameters",
+      "path": "twins/964-chassis/sculpted-cell-f2-20261106/parameters.json",
+      "sha256": "8da2540a3ee9099ab747dfe042ebb84c67bc994808f0bc0e35fb1a084af754d4"
+    },
+    {
+      "role": "project",
+      "path": "twins/964-chassis/sculpted-cell-f2-20261106/picogk/SculptedCell.csproj",
+      "sha256": "20b0e3677d2e40861720c64139a61919a38d8c4f90d94717afa386707b9d4bf0"
+    },
+    {
+      "role": "preflight",
+      "path": "twins/964-chassis/sculpted-cell-f2-20261106/prepare_native.py",
+      "sha256": "236f3889102500e6d5f02824755133c559f1826b4338368b0d7001e6a527de90"
+    },
+    {
+      "role": "float32_check",
+      "path": "twins/964-chassis/sculpted-cell-f2-20261106/audit_float32.py",
+      "sha256": "cf0957270b5d69af12be23c2e77dad078d7f495b900d4e889099de51c15cd079"
+    },
+    {
+      "role": "display_source",
+      "path": "twins/964-chassis/sculpted-cell-f2-20261106/export_native_vtp.py",
+      "sha256": "ec8b7c84b67a2ff7f27c2ad71592b2214d8ddfb72f4f26c80ac80a101f37446a"
+    },
+    {
+      "role": "transport_verify_source",
+      "path": "twins/964-chassis/sculpted-cell-f2-20261106/verify_native_transport.py",
+      "sha256": "737251a5ac4391aaeb04a52ad44508b903dde3cb119d6784f4a3672ca087a632"
+    },
+    {
+      "role": "transport_equality",
+      "path": "twins/964-chassis/sculpted-cell-f2-20261106/transport-equality.json",
+      "sha256": "dea800fdfc923fe9e8bac1b981495b838b51bc7a6b3ab0bf46c6a5551007ec2d"
+    }
+  ],
+  "native_voxel_mm": 1.5,
+  "canonical_model_sha256": "136e74a85487f40550519973f4f8280b49c567c2c824f7abf1a1780e6248ffe6",
+  "full_native_triangles": 32013436,
+  "physical_or_manufacturing_validation": false
+}

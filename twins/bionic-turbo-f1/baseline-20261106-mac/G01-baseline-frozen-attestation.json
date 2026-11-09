@@ -1,0 +1,29 @@
+{
+  "gate": "G01-baseline-frozen",
+  "runtime": {
+    "opencfd-v2406-runtime": {
+      "variant": "OpenCFD",
+      "version": "v2406 (api 2406, patch 0, build _be01ca78-20240625)",
+      "platform": "linux/arm64",
+      "identity": {
+        "image": "docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+        "source_archive_sha256": "8d1450fb89eec1e7cecc55c3bb7bc486ccbf63d069379d1d5d7518fa16a4686a",
+        "repository_lock": "unknown"
+      },
+      "executables": {
+        "rhoPimpleFoam": "85e40da38fc4fd0ba24ef1560f659390684f334677554ebfb0ac2d0f41ba3467",
+        "rhoSimpleFoam": "9fddcd4d4da2608ce159c8da1fb6c4719db4f5f558dd66e98f44b27831751646",
+        "blockMesh": "70acbec5399aad67c3ca5cb2ad91f480cc95fe4eabf871eec6494fa1573815dd",
+        "snappyHexMesh": "fdf8086f6ffbd2bd99864567121efb90e02f042af59cbeb785b542306238ed1d",
+        "checkMesh": "469fa2e3ca84b5858c3da7998536630c2ab8988efb4f8a9329a850944b4e1b33"
+      }
+    }
+  },
+  "config_sha256": {},
+  "receipts": [
+    {
+      "path": "twins/bionic-turbo-f1/baseline-20261106-mac/runtime-readback.json",
+      "sha256": "85477f2610a367501ac1e6bba152b19e96a9e3e05ab88095c76ce716dd228b86"
+    }
+  ]
+}
