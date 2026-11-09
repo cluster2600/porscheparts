@@ -1,5 +1,9 @@
 <div align="center">
 
+![The 964 body shell traced from the workshop manual, turning, coloured by stress under a twisting load](docs/media/diagrams/964-hero.gif)
+
+<sub><i>A computer simulation of a 964 body shell being twisted. Colours show where the stress goes. It is a calculation, not a product.</i></sub>
+
 **964 monocoque: correcting the dimensional baseline**
 
 The F2 shape study was not constrained to the original body-dimension network.
