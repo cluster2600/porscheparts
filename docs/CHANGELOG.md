@@ -172,7 +172,7 @@ The 70 factory-catalog designations investigated, September 11, 2026:
   the original material, presumed-critical domain, no additive family, or
   physical impossibility for a heat exchanger whose function is to conduct
   heat;
-- `docs/993/993_BACKLOG_TITANE.md` publishes the three denominators side by
+- `docs/993/993_TITANIUM_BACKLOG.md` publishes the three denominators side by
   side so they stop being quoted for one another.
 
 SAFETY.md rewritten and chain housing investigated, September 11, 2026:

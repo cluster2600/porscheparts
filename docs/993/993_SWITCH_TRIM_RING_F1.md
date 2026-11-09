@@ -187,8 +187,8 @@ over.
 Step 04 had compared the part with a real LPBF route. The next question — "are
 we sure it is the right material?" — showed that we were not: AlSi10Mg had
 never been chosen, it was the only grade documented in the repository. See
-[decision 0005](../decisions/0005-alsi10mg-nest-pas-un-choix.md) and
-[decision 0006](../decisions/0006-bague-tournee-6063-t6.md).
+[decision 0005](../decisions/0005-alsi10mg-is-not-a-choice.md) and
+[decision 0006](../decisions/0006-turned-6063-t6-ring.md).
 
 The part is now **turned in EN AW-6063 T6**, bright anodised. Its
 `preferred_process` is `CNC`. LPBF steps 02, 03 and 04 stay published: they

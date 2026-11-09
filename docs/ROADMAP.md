@@ -36,7 +36,7 @@ Exit criterion: `make check` passes on a clean repository.
 
 Detailed log: [docs/PHASE1_SOURCE_INVENTORY.md](PHASE1_SOURCE_INVENTORY.md).
 
-Additional research: [German-language batch of twenty candidates](research/phase-1-recherche-allemande.md).
+Additional research: [German-language batch of twenty candidates](research/phase-1-german-research.md).
 
 - [x] Survey official catalogues, legally accessible manuals and measurements
 - [x] Survey 3D models with a verifiable licence
@@ -161,7 +161,7 @@ refuses to build until the seven dimensions it requires are measured.
 ## Phase 3 — Titanium engineering twin, no manufacturing
 
 Candidate under study: **oval exhaust tip `993-EXH-OVAL-TIP-TI-F1-0001`**,
-retained by [decision 0007](decisions/0007-premier-titane-embout-echappement.md)
+retained by [decision 0007](decisions/0007-first-titanium-exhaust-tip.md)
 and kept by [decision 0014](decisions/0014-exhaust-tip-route-matrix-conditional-titanium.md)
 behind a conditional go/no-go that is closed today. The record is `functional`,
 not `non_critical`; accepting it as the first titanium part and sourcing the
