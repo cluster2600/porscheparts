@@ -162,8 +162,28 @@ sequenceDiagram
 | Twin area inferred (hypotheses) | 12.1%, 21,450 mm² |
 | Warp vs trimesh oracle on 5,000 samples | max difference 1.2e-5 mm |
 
-The 0.1 mm residual is mostly the 0.25 mm voxel pitch, not the scan. By
+The 0.1 mm residual of T1 is the 0.25 mm voxel pitch, not the scan. By
 zone, the deck, fin and cam bands score alike (p95 0.114–0.130 mm).
+
+### T1s: observed vertices snapped onto the scan ([summary](params/t1s-snap-summary.json), [scorecard](params/scorecard-t1s.json))
+
+[snap_surface.py](source/snap_surface.py) moves each T1 vertex whose closest
+scan point is within 0.3 mm onto that point (2.97 M of 3.54 M vertices),
+rejecting any triangle that would turn by more than 60°. It runs until
+rejection converges (34 rounds). Snapping both sides of the thinnest walls
+folded 4,722 faces, so
+[unsnap_intersections.py](source/unsnap_intersections.py) returns those
+vertices and one ring around them to T1 until pymeshlab finds no
+self-intersection (3 rounds, 6,363 vertices). Connectivity never changes.
+
+| Metric | T1 | **T1s** |
+|---|---|---|
+| Scan area within 0.1 mm | 89.5% | **99.0%** |
+| Scan → twin p95 | 0.118 mm | **0.015 mm** |
+| Twin area supported by the scan | 87.9% | 87.4% |
+| Watertight, consistent winding, self-intersections | yes, yes, 0 | yes, yes, 0 |
+
+T1s is the reference twin surface.
 
 ### T2 editable B-rep: measured negative result
 
@@ -192,7 +212,7 @@ carries simulation, print and USD.
 | P1b occupancy | scan, frame | private winding-number grid; [summary](params/occupancy-summary.json) | ambiguous volume reported | done |
 | T1 surface | occupancy | private closed surface; [summary](params/t1-surface-summary.json) | watertight, winding, genus | done |
 | Scorecard T1 | scan, frame, T1 | [scorecard-t1.json](params/scorecard-t1.json) | Warp vs trimesh oracle | done: 99.4% within 0.2 mm |
-| T1s snap | T1, scan | private snapped surface; [summary](params/t1s-snap-summary.json) | connectivity unchanged, watertight | done; its scorecard is next |
+| T1s snap | T1, scan | private snapped surface; [summary](params/t1s-snap-summary.json) | connectivity unchanged, watertight, 0 self-intersections | done: p95 0.015 mm ([scorecard](params/scorecard-t1s.json)) |
 | T2 B-rep v0 | occupancy | none | BRepCheck | measured negative result (see above) |
 | Simulation surface | occupancy at 0.75 mm | private; [summary](params/sim-surface-mc075-summary.json) | watertight, genus 21 | done |
 | T3 thermal | 0.75 mm surface | private deck and logs; [attempt 1](params/thermal-attempt-1.json) | mesh quality, solver return | Gmsh 9.6 M tets done; CalculiX rejected the deck (NALL undefined, now fixed); re-run pending |

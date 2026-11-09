@@ -101,6 +101,8 @@ def write_inp(path, tag, xyz, tets, bfaces):
         fh.write("*HEADING\n935 bare-head twin steady thermal screen (hypothesis case)\n*NODE\n")
         for t, p in zip(tag, xyz):
             fh.write(f"{t},{p[0]:.6f},{p[1]:.6f},{p[2]:.6f}\n")
+        if int(tag[-1]) - int(tag[0]) + 1 != len(tag):
+            raise SystemExit("node tags are not contiguous; NALL GENERATE would be wrong")
         fh.write("*NSET,NSET=NALL,GENERATE\n%d,%d,1\n" % (int(tag[0]), int(tag[-1])))
         fh.write("*ELEMENT,TYPE=C3D4,ELSET=EALL\n")
         for i, t in enumerate(tets):
@@ -112,7 +114,7 @@ def write_inp(path, tag, xyz, tets, bfaces):
         fh.write("*MATERIAL,NAME=AL\n*CONDUCTIVITY\n%g\n" % c["conductivity_W_per_mmK"])
         fh.write("*SOLID SECTION,ELSET=EALL,MATERIAL=AL\n")
         fh.write("*INITIAL CONDITIONS,TYPE=TEMPERATURE\nNALL,%g\n" % c["air_temperature_C"])
-        fh.write("*STEP\n*HEAT TRANSFER,STEADY STATE\n1.,1.\n")
+        fh.write("*STEP\n*HEAT TRANSFER,STEADY STATE,SOLVER=ITERATIVE CHOLESKY\n1.,1.\n")
         fh.write("*BOUNDARY\nNCHAMBER,11,11,%g\n" % c["chamber_wall_temperature_C"])
         fh.write("*FILM\n")
         for e, fid in film:
