@@ -296,7 +296,7 @@ flowchart LR
 | T2 B-rep v0 | occupancy | none | BRepCheck | measured negative result (see above) |
 | Simulation surface | occupancy at 0.75 mm | private; [summary](params/sim-surface-mc075-summary.json) | watertight, genus 21 | done |
 | T3 thermal | 1.0 mm surface | private deck and fields; [result](params/thermal-screen.json) | mesh quality, solver return, energy balance 0.28% | done at two levels; means agree, fin-tip minimum not converged |
-| Screenshots | T1, scan | private renders; public [scorecard chart](media/scorecard-t1-cdf.png) | visual review | done |
+| Screenshots | T1, scan, thermal | private renders (observed/inferred, scan deviation, thermal field); public [scorecard chart](media/scorecard-t1-cdf.png) | visual review | done |
 | T4 USD | T1s, frame, hypotheses | private `.usdc`; [summary](params/usd-summary.json) | 30 OpenUSD validators | done, 0 findings |
 | T5 print | T1s | private 3MF; [summary](params/print-summary.json) | streaming round trip | done, exact volume |
 | v1 features | frame, scan | deck plate first: [features](params/deck-features.json) | zone scorecard | baseline recorded (p95 5.6 mm); chamber, outline, passages next; then fins, cam pads, ports |
