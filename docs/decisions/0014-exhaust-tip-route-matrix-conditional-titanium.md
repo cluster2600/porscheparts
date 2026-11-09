@@ -4,11 +4,22 @@ Date: 2026-10-15
 
 ## Status
 
-**Proposed, not reviewed.** Drafted for issue #5. The go/no-go rule below is a
-project decision rule pending professional review. Two points are owner
-decisions and are not taken here: accepting a `functional` part as the first
-titanium part, and how the deciding temperature will be sourced. Model output
-grants no engineering approval.
+**Accepted by the owner on 2026-11-09 (issue #5); not professionally
+reviewed.** The owner accepts this decision as written: the oval exhaust tip,
+a `functional` part, is the first titanium candidate, behind the conditional
+go/no-go rule below, which stays **no-go today**. The rule itself remains a
+project decision rule pending professional review; the owner's acceptance
+grants no engineering approval, and neither does model output.
+
+Still open: how the deciding temperature will be sourced. Since
+[decision 0019](0019-accept-contributed-measurements.md) (2026-11-06), a
+measurement contributed by an outside contributor is an admissible route
+alongside a published source; neither has been obtained.
+
+*Before 2026-11-09 the status read: "Proposed, not reviewed. Drafted for
+issue #5. [...] Two points are owner decisions and are not taken here:
+accepting a `functional` part as the first titanium part, and how the deciding
+temperature will be sourced."*
 
 ## Context
 

@@ -45,7 +45,9 @@ are not reproduced.
   screening only: no manufacturing for fitting and no vehicle installation.
 - Safety class: `functional`
   ([record](../../catalog/parts/993-exh-oval-tip-ti-f1-0001.json)). Not
-  `non_critical`; the owner's acceptance of that class is pending (ADR 0014).
+  `non_critical`; the owner accepted that class for the first titanium
+  candidate on 2026-11-09 (ADR 0014). This request still must not be sent:
+  the other prerequisites below remain open.
 
 ## Material and process
 
@@ -213,7 +215,8 @@ be installed on a vehicle at all at this revision.
 
 **Prerequisites before the request may be sent** (from ADR 0014, not supplier
 criteria): a sourced T_max at or under 350 °C, inner duct included; the owner's
-written acceptance of the `functional` class; a defined galvanic isolation;
+written acceptance of the `functional` class (recorded 2026-11-09 in ADR 0014;
+the only one of these met); a defined galvanic isolation;
 a defined inlet interface and clamp; a drawing with tolerances.
 
 Acceptance criteria — **PROPOSED, NOT REVIEWED**:
