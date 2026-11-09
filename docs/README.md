@@ -80,6 +80,7 @@ The [local Qwen pilot](../training/m64-qwen/README.md) implements the first AI i
 | [TOOLCHAIN.md](TOOLCHAIN.md) | the local CAD and analysis toolchain |
 | [COMPUTE_ENVIRONMENT.md](COMPUTE_ENVIRONMENT.md) | compute environment and images |
 | [CONTAINER_INDEX.md](CONTAINER_INDEX.md) | generated index of every container recipe, lock and workflow |
+| [AGENT_TOOL_GUIDE.md](AGENT_TOOL_GUIDE.md) | for agents: task → tool, how to run it, where, what it can claim, known pitfalls |
 | [LOCAL_HOST_SETUP.md](LOCAL_HOST_SETUP.md) | workstation setup: native file system, CI-equivalent checks, skip budgets, heavy jobs on WSL, native PicoGK |
 | [GITHUB_OPENBAO_WRAPPER.md](GITHUB_OPENBAO_WRAPPER.md) | the GitHub wrapper bounded by OpenBao |
 

@@ -11,7 +11,8 @@ The tables below therefore give the command or API used, not just the software
 name. The corresponding container images are described in
 [COMPUTE_ENVIRONMENT.md](COMPUTE_ENVIRONMENT.md) and listed in full in
 [CONTAINER_INDEX.md](CONTAINER_INDEX.md); workstation setup is in
-[LOCAL_HOST_SETUP.md](LOCAL_HOST_SETUP.md).
+[LOCAL_HOST_SETUP.md](LOCAL_HOST_SETUP.md); how agents use each tool is in
+[AGENT_TOOL_GUIDE.md](AGENT_TOOL_GUIDE.md).
 
 ## Acquisition and reconstruction
 
