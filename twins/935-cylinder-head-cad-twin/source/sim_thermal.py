@@ -101,6 +101,7 @@ def write_inp(path, tag, xyz, tets, bfaces):
         fh.write("*HEADING\n935 bare-head twin steady thermal screen (hypothesis case)\n*NODE\n")
         for t, p in zip(tag, xyz):
             fh.write(f"{t},{p[0]:.6f},{p[1]:.6f},{p[2]:.6f}\n")
+        fh.write("*NSET,NSET=NALL,GENERATE\n%d,%d,1\n" % (int(tag[0]), int(tag[-1])))
         fh.write("*ELEMENT,TYPE=C3D4,ELSET=EALL\n")
         for i, t in enumerate(tets):
             fh.write(f"{i + 1},{t[0]},{t[1]},{t[2]},{t[3]}\n")

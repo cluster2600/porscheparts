@@ -25,6 +25,44 @@ The twin is therefore built from fitted datums and an inside/outside field,
 and progress is measured by one number that can only rise: the share of the
 acquired scan surface the twin explains within tolerance.
 
+```mermaid
+flowchart TB
+  subgraph OLD["Frozen: bottom-up repair (about 70 studies)"]
+    direction LR
+    O1["928 open loops"] --> O2["admit a surface<br/>one evidence class at a time"]
+    O2 --> O3["0 of 124 large loops admissible"]
+    O3 --> O4["no closed solid,<br/>no twin"]
+  end
+  subgraph NEW["Top-down twin (this directory)"]
+    direction LR
+    N1["fitted datums<br/>deck 0.040 mm RMS"] --> N2["winding-number<br/>occupancy"]
+    N2 --> N3["closed bare head<br/>+ tagged hypotheses"]
+    N3 --> N4["scorecard:<br/>share of scan explained"]
+  end
+  OLD -. "owner decision 2026-11-06" .-> NEW
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  class O3,O4 stop;
+  class N3,N4 ok;
+```
+
+Every surface of the twin belongs to exactly one evidence class, and only one
+class can count as observed:
+
+```mermaid
+flowchart LR
+  SCAN["acquired scan facets"] --> OBS["observed<br/>within 0.2 mm of the scan<br/>(grey)"]
+  GAP["regions the scanner never saw"] --> INF["inferred closure<br/>H01, H02, H04<br/>(orange)"]
+  FIT["fitted rods"] --> HW["hardware: 10 studs<br/>separate bodies<br/>(blue)"]
+  NONE["not observable from a surface"] --> HYP["analytic hypotheses<br/>H03, H05, H06<br/>(magenta, not yet modelled)"]
+  INF -. "retired only by CT, rescan or drawing" .-> OBS
+  HYP -. "retired only by specification" .-> OBS
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+  class OBS ok;
+  class INF,HYP open;
+```
+
 ## Chain and selected tools
 
 ```mermaid
@@ -42,8 +80,10 @@ flowchart LR
   H["hypotheses.json"] -.-> U
   classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
   classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
   class F,O,T1,SC ok;
-  class T2,D,TH,U,P open;
+  class D,TH,U,P open;
+  class T2 stop;
 ```
 
 | Role | Selected tool | Script |
@@ -89,6 +129,30 @@ unobserved fin gaps and passages, part of the H01/H02/H04 footprint.
 
 ### Independent scorecard ([scorecard-t1.json](params/scorecard-t1.json))
 
+The checker shares no code with the producers. It re-reads the original OBJ,
+re-derives the hardware exclusion and measures with its own Warp kernel; a
+trimesh oracle re-measures a random sample:
+
+```mermaid
+sequenceDiagram
+  participant P as producers (fit_frame, occupancy, surface_mesh)
+  participant F as params/frame.json
+  participant C as score_twin.py
+  participant W as NVIDIA Warp BVH
+  participant O as trimesh oracle
+  P->>F: declared frame and stud rods
+  P->>C: twin surface (private STL)
+  C->>C: re-read original OBJ, verify SHA-256
+  C->>C: re-derive hardware exclusion from F
+  C->>W: scan facets to twin, twin facets to scan
+  W-->>C: distances
+  C->>O: 5,000 random scan facets
+  O-->>C: distances, compared within 1e-3 mm
+  C-->>F: scorecard JSON (scalars only)
+```
+
+![Cumulative share of acquired scan area against distance to the T1 twin](media/scorecard-t1-cdf.png)
+
 | Metric | T1 |
 |---|---|
 | Acquired scan area within 0.1 mm of the twin | 89.5% |
@@ -126,11 +190,15 @@ carries simulation, print and USD.
 | P0 freeze | owner decision | notices in the old twin README and `docs/ARCHIVE.md` | — | done |
 | P1 datums | scan | [params/frame.json](params/frame.json) | plane/circle residuals recorded | done |
 | P1b occupancy | scan, frame | private winding-number grid; [summary](params/occupancy-summary.json) | ambiguous volume reported | done |
-| T1 surface | occupancy | private closed surface; [summary](params/t1-surface-summary.json) | watertight, winding, genus | see results |
-| Scorecard T1 | scan, frame, T1 | [scorecard-t1.json](params/scorecard-t1.json) | Warp vs trimesh oracle | see results |
-| T2 B-rep v0 | occupancy | private STEP; [summary](params/t2-brep-summary.json) | BRepCheck, scorecard | see results |
-| T3 thermal | T1 decimated | private FE files; [result](params/thermal-screen.json) | mesh quality, solver return | see results |
-| T4 USD | T1, frame, hypotheses | private `.usdc`; [summary](params/usd-summary.json) | OpenUSD compliance | see results |
+| T1 surface | occupancy | private closed surface; [summary](params/t1-surface-summary.json) | watertight, winding, genus | done |
+| Scorecard T1 | scan, frame, T1 | [scorecard-t1.json](params/scorecard-t1.json) | Warp vs trimesh oracle | done: 99.4% within 0.2 mm |
+| T1s snap | T1, scan | private snapped surface; [summary](params/t1s-snap-summary.json) | connectivity unchanged, watertight | done; its scorecard is next |
+| T2 B-rep v0 | occupancy | none | BRepCheck | measured negative result (see above) |
+| Simulation surface | occupancy at 0.75 mm | private; [summary](params/sim-surface-mc075-summary.json) | watertight, genus 21 | done |
+| T3 thermal | 0.75 mm surface | private deck and logs; [attempt 1](params/thermal-attempt-1.json) | mesh quality, solver return | Gmsh 9.6 M tets done; CalculiX rejected the deck (NALL undefined, now fixed); re-run pending |
+| Screenshots | T1, scan | private renders; public [scorecard chart](media/scorecard-t1-cdf.png) | visual review | done |
+| T4 USD | T1, frame, hypotheses | private `.usdc` | OpenUSD compliance | script ready, not yet run |
+| T5 print | T1 | private 3MF | round-trip volume | script ready, not yet run |
 | v1 features | frame, scan | analytic deck, register, stud passages, flanges, chamber, ports | per-feature scorecard | next |
 | Port CFD | v1 ports | OpenFOAM steady port flow | mesh/flux convergence | blocked by v1 ports |
 | SimReady | T2 STEP | NVIDIA usd-convert-cad + omni.asset_validator | validator report | needs the 10 GB image on X1/Kali |
