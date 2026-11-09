@@ -98,7 +98,7 @@ geometry and STEP integrity in its own environment:
 
 ```sh
 uv venv --python 3.12 .venv-check-cad
-uv pip install --python .venv-check-cad/bin/python -r requirements-check-cad.txt
+uv pip install --python .venv-check-cad/bin/python -r requirements/requirements-check-cad.txt
 .venv-check-cad/bin/python -m unittest discover -s tests -p 'test_m64_g*.py' -v
 .venv-check-cad/bin/python -m unittest discover -s tests -p 'test_cad_recode_fresh.py' -v
 ```
@@ -110,7 +110,7 @@ missing CAD runtime from silently skipping the dedicated job's geometry tests.
 ### Separate native USD regression environment
 
 CI's `usd-regressions` job installs the Linux AMD64 full OpenUSD 26.08 SDK
-from `requirements-check-usd-linux-64.txt`, an explicit package URL and SHA-256
+from `requirements/requirements-check-usd-linux-64.txt`, an explicit package URL and SHA-256
 lock. It runs the 964 bundle and framing tests, including rejection of an
 unknown shader, after checking that the native checker and `UsdPreviewSurface`
 registry entry are available. The Python-only USD wheel cannot supply this
@@ -122,7 +122,7 @@ the base suite needs the frozen renderer's VTK 9.7.1. The SDK lock contains
 With micromamba 2.10.0 installed on Linux AMD64:
 
 ```sh
-micromamba --no-rc create -y -p /tmp/porsche-usd-check --file requirements-check-usd-linux-64.txt
+micromamba --no-rc create -y -p /tmp/porsche-usd-check --file requirements/requirements-check-usd-linux-64.txt
 micromamba run -p /tmp/porsche-usd-check python -m unittest discover -s tests -p 'test_964_omniverse_bundle.py' -v
 micromamba run -p /tmp/porsche-usd-check python -m unittest discover -s tests -p 'test_964_review_framing.py' -v
 ```

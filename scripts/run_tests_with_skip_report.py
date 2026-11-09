@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run the unittest suite, report skips per reason and enforce a skip budget.
 
-Issue #418: CI installs only requirements-check.txt, so tests that need OCP,
+Issue #418: CI installs only requirements/requirements-check.txt, so tests that need OCP,
 trimesh, gmsh, cadquery, usd-core and similar runtimes skip. This runner makes
 those skips visible (grouped by reason, also written to $GITHUB_STEP_SUMMARY)
 and, when SKIP_BUDGET_ENFORCE=1 (set in CI), fails if the number of skips
