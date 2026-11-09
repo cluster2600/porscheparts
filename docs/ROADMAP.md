@@ -164,8 +164,8 @@ Candidate under study: **oval exhaust tip `993-EXH-OVAL-TIP-TI-F1-0001`**,
 retained by [decision 0007](decisions/0007-first-titanium-exhaust-tip.md)
 and kept by [decision 0014](decisions/0014-exhaust-tip-route-matrix-conditional-titanium.md)
 behind a conditional go/no-go that is closed today. The record is `functional`,
-not `non_critical`; accepting it as the first titanium part and sourcing the
-deciding temperature remain owner decisions (see 0014).
+not `non_critical`; the owner accepted it as the first titanium candidate on
+2026-11-09 (0014, issue #5). Sourcing the deciding temperature remains open.
 
 The engine carrier `993-ENG-CARRIER-0001` (993 115 021 53) is no longer the
 Phase 3 candidate. It stays a safety-critical study: at identical geometry it
