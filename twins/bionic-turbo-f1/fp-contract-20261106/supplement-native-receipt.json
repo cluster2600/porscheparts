@@ -1,0 +1,32 @@
+{
+  "schema": "turbo-native-scalar-controls/v1",
+  "image": "docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+  "utility_sha256": "4e85c1852c5f0a41232e322aa33fcee25558a63750981ef06e75a006295bbe0c",
+  "utility_path": "/usr/lib/openfoam/openfoam2406/platforms/linuxARM64GccDPInt32Opt/bin/foamDictionary",
+  "source_bindings_sha256": "e906f8c72e4e650d4273e5a838f0e2a48cb4a2409c436400d66a04e101e87848",
+  "locale": "C",
+  "precision": 16,
+  "function_entries_enabled": false,
+  "launcher": "turbo_scalar_input_path=$1; shift; . /usr/lib/openfoam/openfoam2406/etc/bashrc >/dev/null || exit; exec foamDictionary -disableFunctionEntries -precision 16 -entry value -value \"$turbo_scalar_input_path\"",
+  "geometry_or_solver_executed": false,
+  "engineering_gate_passed": false,
+  "runs": [
+    {
+      "id": "small-normal",
+      "input_sha256": "3d8df0bfac8503de1d80d9e1fdd226aeedec9da47adbc97f1a7ed5e27b3c37aa",
+      "exit_code": 0,
+      "stdout": "0\n",
+      "stderr": "Not expanding variables or dictionary directives\n"
+    },
+    {
+      "id": "exact-binary64",
+      "input_sha256": "345f893716124c0af0ccef4710d83295f01561cf399bc7fd6f378e8a9f460b58",
+      "exit_code": 0,
+      "stdout": "1\n",
+      "stderr": "Not expanding variables or dictionary directives\n"
+    }
+  ],
+  "cases_sha256": "167190c734131d731c2e1ca53189728eba069e4a5a8599bc6099d88cb160fb2b",
+  "plan_sha256": "56b6dd14b3d1a7d6aad5c85f5bca4f380950099e89924bd26d67aec338bc8683",
+  "seconds": 0.7280747500481084
+}
