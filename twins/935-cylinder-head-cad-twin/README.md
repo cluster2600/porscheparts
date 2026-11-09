@@ -193,17 +193,23 @@ cooled by air at 40 °C with h = 80 W/m²·K. Mesh: Gmsh HXT inside the
 marching-cubes surface of the occupancy field coarsened to 1.0 mm (400k
 triangles, watertight, genus 9). Solver: CalculiX 2.21, iterative Cholesky.
 
-| Quantity | 1.0 mm surface |
-|---|---|
-| Tetrahedra / nodes | 4,949,566 / 892,919 (no inverted element; 0.4% with minSICN < 0.1) |
-| Temperature min / mean / p95 / max | 146.6 / 189.3 / 214.6 / 220.0 °C |
-| Heat entering at the chamber | 1,643.4 W |
-| Convective loss recomputed independently | 1,648.0 W (imbalance 0.28%) |
+| Quantity | 1.0 mm surface | 0.75 mm surface |
+|---|---|---|
+| Tetrahedra / nodes | 4,949,566 / 892,919 | 9,611,548 / 1,721,933 |
+| Elements with minSICN < 0.1 (none inverted) | 0.41% | 0.37% |
+| Temperature min / mean / p95 / max (°C) | 146.6 / 189.3 / 214.6 / 220.0 | 127.5 / 188.3 / 214.5 / 220.0 |
+| Heat entering at the chamber | 1,643.4 W | 1,680.1 W |
+| Convective loss recomputed independently | 1,648.0 W (0.28%) | 1,683.3 W (0.19%) |
+
+Global quantities agree between the levels: mean within 0.5%, p95 within
+0.04%, heat within 2.2%. The minimum moves by 19 °C. The finer surface
+resolves thinner fin tips, so the coldest point depends on geometry
+resolution and is **not converged**. Both the surface and the mesh change
+between levels, so this is a resolution check rather than a pure mesh study.
 
 The first attempt failed because the deck used node set `NALL` before
 defining it ([attempt 1](params/thermal-attempt-1.json)). The deck writer now
-defines it. fTetWild was stopped after 2 h 42 min of CPU without output. A
-0.75 mm level is running as the mesh-sensitivity check.
+defines it. fTetWild was stopped after 2 h 42 min of CPU without output.
 
 ### T4 OpenUSD stage ([usd-summary.json](params/usd-summary.json))
 
@@ -289,7 +295,7 @@ flowchart LR
 | T1s snap | T1, scan | private snapped surface; [summary](params/t1s-snap-summary.json) | connectivity unchanged, watertight, 0 self-intersections | done: p95 0.015 mm ([scorecard](params/scorecard-t1s.json)) |
 | T2 B-rep v0 | occupancy | none | BRepCheck | measured negative result (see above) |
 | Simulation surface | occupancy at 0.75 mm | private; [summary](params/sim-surface-mc075-summary.json) | watertight, genus 21 | done |
-| T3 thermal | 1.0 mm surface | private deck and fields; [result](params/thermal-screen.json) | mesh quality, solver return, energy balance 0.28% | done at 1.0 mm; 0.75 mm sensitivity level running |
+| T3 thermal | 1.0 mm surface | private deck and fields; [result](params/thermal-screen.json) | mesh quality, solver return, energy balance 0.28% | done at two levels; means agree, fin-tip minimum not converged |
 | Screenshots | T1, scan | private renders; public [scorecard chart](media/scorecard-t1-cdf.png) | visual review | done |
 | T4 USD | T1s, frame, hypotheses | private `.usdc`; [summary](params/usd-summary.json) | 30 OpenUSD validators | done, 0 findings |
 | T5 print | T1s | private 3MF; [summary](params/print-summary.json) | streaming round trip | done, exact volume |
