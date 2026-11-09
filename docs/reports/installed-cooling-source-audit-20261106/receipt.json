@@ -1,0 +1,68 @@
+{
+  "exact_source_checks": {
+    "duct": {
+      "self_intersection_locations_reported": 517,
+      "triangles": 91812,
+      "units": "m"
+    },
+    "native": {
+      "self_intersection_locations_reported": 9922,
+      "triangles": 918136,
+      "units": "mm"
+    }
+  },
+  "historical_receipt_files_verified": 41,
+  "initial_python_audit": {
+    "cpus": 2,
+    "exit_code": 124,
+    "image": "porscheparts-air-oil-cycle-f34b-en:20261106",
+    "memory": "2g",
+    "network": "none",
+    "platform": "linux/amd64_emulated_on_arm64",
+    "read_only": true,
+    "script_sha256": "ac19b5b08344a9700768af85b3b35565165f9198666c5767f60d29782a656121",
+    "solver_started": false,
+    "source_modified": false,
+    "status": "timeout_no_geometry_verdict",
+    "stderr_bytes": 0,
+    "stdout_bytes": 0,
+    "time_limit_seconds": 90
+  },
+  "inputs_sha256": {
+    "twins/993-installed-cooling-f1/derived/native/delivery-fluid-domain.stl.gz": "68096ffaa1bc5e4134ec7045e603643273ae12ef703390d24ac0bc608e56419b",
+    "twins/993-installed-cooling-f1/experiment-plan.json": "15ff052be2a8eedd4c2d7c505ec15807e1a41f7dfddb6ef9f6e87430b118fa3a",
+    "twins/993-installed-cooling-f1/results/cfd/receipt.json": "5fe1136eafa997278266dbfe3b230be02631899ddad35ab14768936acc2967f5",
+    "twins/993-installed-cooling-f1/results/cfd/reproduction-inputs/duct.stl.gz": "e8185dcb812985fb25ff41f179c628aa88c80fe737bcb5e853e9585ce1c19a20"
+  },
+  "issue": 452,
+  "logs_sha256": {
+    "duct-surfaceCheck.log": "fe78eae52baf2963eb12e6df8183e507b38edd83a6d2bcdb14762a56a78761aa",
+    "native-metres-surfaceCheck.log": "42e828dc99b94e7cb46f3dc499608ec427c149ca989a649f5ff8518973ebbab2",
+    "native-surfaceCheck.log": "24439771021522560ea15e65a9002bfb03f1fd134762c97cadd6b5b43f1dc4ac"
+  },
+  "manufacturing_authorized": false,
+  "mesh_admitted": false,
+  "next_required": "Recover intersection triangle witnesses and verify independently, with coordinate precision and unit scaling controlled, before any source repair or meshing.",
+  "normalised_copy_check": {
+    "accepted_for_comparison": false,
+    "payload_sha256": "3fe54e4cc05a9492acc258237f0e3ef77f01f220dfff892c52cf759cd75a7023",
+    "reason": "unit conversion also serialises coordinates; precision and scale sensitivity have not been independently resolved",
+    "self_intersection_locations_reported": 12095,
+    "tool": "surfaceTransformPoints -scale (0.001 0.001 0.001)"
+  },
+  "runtime": {
+    "cpus": 2,
+    "image": "docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+    "memory_gib": 2,
+    "network": "none",
+    "platform": "linux/arm64",
+    "read_only": true,
+    "seconds_per_invocation": 90,
+    "version": "OpenCFD 2406"
+  },
+  "schema_version": 1,
+  "solver_started": false,
+  "source_modified": false,
+  "status": "upstream_surface_flags_block_remeshing_pending_independent_witness",
+  "surface_admitted": false
+}

@@ -63,7 +63,7 @@ def _date(value: Any) -> bool:
     return True
 
 
-RIGHTS_KEYS = {"license", "redistribution", "attribution", "archive_capture"}
+RIGHTS_KEYS = {"license", "redistribution", "attribution", "archive_capture", "primary_read"}
 ARCHIVE_CAPTURE_KEYS = {"status", "capture_url", "capture_timestamp", "read_on", "license_as_read", "author"}
 WAYBACK_CAPTURE = re.compile(r"^https://web\.archive\.org/web/(\d{14})/\S+$")
 
@@ -71,13 +71,26 @@ WAYBACK_CAPTURE = re.compile(r"^https://web\.archive\.org/web/(\d{14})/\S+$")
 def _archive_capture_errors(rights: dict[str, Any]) -> list[str]:
     """Owner decision 2026-11-05: a Wayback capture of the original page is provenance evidence.
 
-    A licence prefixed 'archive-verified-' must carry the capture it was read from, and a
-    capture must be named by such a licence, so neither can be claimed without the other.
+    An archive-qualified licence needs its capture. A later primary read may
+    supersede the licence while preserving that historical provenance.
     """
     errors: list[str] = []
     unknown = rights.keys() - RIGHTS_KEYS
     if unknown:
         errors.append(f"rights: unknown fields: {', '.join(sorted(unknown))}")
+    primary = rights.get("primary_read")
+    if "primary_read" in rights:
+        if not isinstance(primary, dict):
+            errors.append("rights.primary_read: expected an object")
+        else:
+            if primary.keys() != {"url", "read_on", "license"}:
+                errors.append("rights.primary_read: expected exactly license, read_on, url")
+            if not _url(primary.get("url")):
+                errors.append("rights.primary_read.url: expected an http(s) URL")
+            if not _text(primary.get("read_on")) or not _date(primary.get("read_on")):
+                errors.append("rights.primary_read.read_on: expected YYYY-MM-DD")
+            if not _text(primary.get("license")) or primary.get("license") != rights.get("license"):
+                errors.append("rights.primary_read.license: must match rights.license")
     capture = rights.get("archive_capture")
     claims = isinstance(rights.get("license"), str) and rights["license"].startswith("archive-verified-")
     if capture is None:
@@ -86,7 +99,7 @@ def _archive_capture_errors(rights: dict[str, Any]) -> list[str]:
         return errors
     if not isinstance(capture, dict):
         return errors + ["rights.archive_capture: expected an object"]
-    if not claims:
+    if not claims and not isinstance(primary, dict):
         errors.append("rights.license: an archive capture requires an 'archive-verified-' licence")
     if capture.keys() != ARCHIVE_CAPTURE_KEYS:
         errors.append(f"rights.archive_capture: expected exactly {sorted(ARCHIVE_CAPTURE_KEYS)}")

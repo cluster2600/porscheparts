@@ -1,0 +1,31 @@
+{
+  "schema": "turbo-recovery-controls/v1",
+  "runtime": {
+    "python": "3.12.11",
+    "dvc": "3.67.1",
+    "requirements_lock_sha256": "245ceb27fa48e4605dd4c438354837264b8ab55c59faae1d33d640b8d19d52a4"
+  },
+  "native_dvc_tests": {
+    "command": "PYTHONPATH=tests python -m unittest test_free_tools.NativeDVC -v",
+    "tests": 2,
+    "skipped": 0,
+    "status": "passed",
+    "log_sha256": "303e198e68ebd4be025e7141b92a9c92e79840d8bbdd86ee8fe31d567bb3de05",
+    "controls": [
+      "two independent local stores",
+      "corrupted object",
+      "missing object",
+      "interrupted transfer yields no success receipt"
+    ]
+  },
+  "recovery_tests": {
+    "command": "python -m unittest discover -s tests -p test_bionic_turbo_recovery.py -v",
+    "tests": 7,
+    "skipped": 0,
+    "status": "passed"
+  },
+  "private_storage_used_gib_rounded": 28,
+  "prescribed_limit_gib": 40,
+  "geometry_or_solver_executed": false,
+  "secondary_host_replication": "pending_kali_capacity"
+}
