@@ -315,7 +315,8 @@ case decks into `models/simulation/` (2026-11-09).
 | [`archive/`](archive/) | archived studies kept for provenance |
 
 `work/` is git-ignored local scratch for runs and private outputs; nothing in
-it is tracked.
+it is tracked. Saved Claude Code workflows (`.claude/workflows/`) are local to
+each checkout too.
 
 ## Disclaimer and licence
 
