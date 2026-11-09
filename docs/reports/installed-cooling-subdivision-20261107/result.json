@@ -1,0 +1,423 @@
+{
+  "issue": 452,
+  "status": "surface_subdivision_verified_volume_mesh_not_admitted",
+  "compiler": "Apple clang 21.0.0 clang-2100.3.34.2 arm64-apple-darwin27.2.0",
+  "CGAL": "6.2.1",
+  "compile_flags": [
+    "-std=c++20",
+    "-O1",
+    "-lgmp",
+    "-lmpfr"
+  ],
+  "source_sha256": "4572bd6fdc01775a47c126a18d7508c35d2fc17c5f3b3edf2b055d22727e4ddb",
+  "source_triangles": 91812,
+  "source_vertices": 45906,
+  "receipts": {
+    "duct-longest-execution.json": {
+      "exit_code": 0,
+      "elapsed_seconds": 1.5381489580031484,
+      "peak_sampled_rss_bytes": 105627648,
+      "stop_reason": null
+    },
+    "duct-longest-verification.json": {
+      "vertices": 208969,
+      "triangles": 417938,
+      "source_triangles": 91812,
+      "exact_parent_containment": true,
+      "exact_oriented_area_coverage": true,
+      "closed_oriented_edges": true,
+      "rounding_intervals_verified": true
+    },
+    "rounded-audit.json": {
+      "CGAL_version": "6.2.1",
+      "vertices": 208969,
+      "triangles": 417938,
+      "complete": true,
+      "pairs_private": []
+    },
+    "rounded-topology.json": {
+      "input_sha256": "cf38d91d476e411a801cc204f046f3dfc7bf2463bdf66450465719c92142b865",
+      "script_sha256": "cd4206cc59b527223d89bb52facee5e853659cb1808195a038d4d8081d2f050a",
+      "vertices": 208969,
+      "triangles": 417938,
+      "edges": 626907,
+      "components": 1,
+      "edges_not_twice": 0,
+      "edges_with_inconsistent_orientation": 0,
+      "non_circular_vertex_links": 0,
+      "euler_characteristic": 0,
+      "signed_volume_m3": 0.03196966878395933,
+      "geometry_modified": false,
+      "physical_qualification": false,
+      "mesh_admitted": false
+    },
+    "rounded-statistics.json": {
+      "vertices": 208969,
+      "triangles": 417938,
+      "sha256": "cf38d91d476e411a801cc204f046f3dfc7bf2463bdf66450465719c92142b865",
+      "max_edge_m_float_check": 0.004999990330644388,
+      "nonpositive_area_triangles": 0,
+      "duplicate_coordinate_vertices": 0,
+      "quality_quantiles": [
+        0.0004104750558563668,
+        0.00538709223216173,
+        0.6132051658287171,
+        0.9926469306321372,
+        0.9999997400219943
+      ],
+      "quality_below_0_01": 8065,
+      "signed_volume_m3": 0.031969668783959335,
+      "native_volume_mesh_admitted": false
+    },
+    "edge-bound-verification.json": {
+      "method": "Certified coordinate intervals independently checked against exact rational coordinates; outward nextafter after subtraction, square and each addition; compare to inward-rounded squared 0.005 m limit.",
+      "max_squared_edge_upper_m2": 2.499990330653739e-05,
+      "squared_limit_lower_m2": 2.4999999999999998e-05,
+      "all_edges_strictly_below_5mm": true,
+      "triangle_edge_occurrences": 1253814
+    },
+    "slender-box-verification.json": {
+      "native": {
+        "CGAL": "6.2.1",
+        "vertices": 1030,
+        "triangles": 2056,
+        "splits": 1022
+      },
+      "independent": {
+        "vertices": 1030,
+        "triangles": 2056,
+        "source_triangles": 12,
+        "exact_parent_containment": true,
+        "exact_oriented_area_coverage": true,
+        "closed_oriented_edges": true,
+        "rounding_intervals_verified": true
+      }
+    },
+    "cube-verification.json": {
+      "positive": {
+        "vertices": 122,
+        "triangles": 240,
+        "source_triangles": 12,
+        "exact_parent_containment": true,
+        "exact_oriented_area_coverage": true,
+        "closed_oriented_edges": true,
+        "rounding_intervals_verified": true
+      },
+      "wrong_parent": "rejected",
+      "moved_vertex": "rejected",
+      "reversed_face": "rejected"
+    },
+    "duct-counted-execution.json": {
+      "exit_code": 1,
+      "elapsed_seconds": 4.612369375070557,
+      "peak_sampled_rss_bytes": 656064512,
+      "stop_reason": null
+    },
+    "cube-longest-verification.json": {
+      "vertices": 98,
+      "triangles": 192,
+      "source_triangles": 12,
+      "exact_parent_containment": true,
+      "exact_oriented_area_coverage": true,
+      "closed_oriented_edges": true,
+      "rounding_intervals_verified": true
+    }
+  },
+  "artifacts": {
+    "area-budget.json": {
+      "bytes": 298,
+      "sha256": "26b5906439cfbb78cb647ba337cc193da08afe8e8d18afecd23c28c2a00a8b96"
+    },
+    "assessment.json": {
+      "bytes": 2180,
+      "sha256": "f2a7a8f271e8fa79914a7f9c5b963e5f5ff75439e6dce403ffd68cb626f4cf54"
+    },
+    "audit-rounded": {
+      "bytes": 240592,
+      "sha256": "096df22a1332c1b65bb3512ce2d40e61c1564f01e302702e229cc4851366621e"
+    },
+    "compile-audit.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile-counted.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile-longest.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile-v2.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile.log": {
+      "bytes": 15201,
+      "sha256": "ac2f389b418a26829001c327553b381ec4c39b412fbc19c1a3ebb31fdf8e9c2d"
+    },
+    "cube-longest.bin": {
+      "bytes": 6984,
+      "sha256": "fcaece0fcaab6cac31d9e59162a48c48caff7f8b5d054a0601c41d0983e7f03d"
+    },
+    "cube-longest.exact": {
+      "bytes": 977,
+      "sha256": "07b4653bd5aecf777c2c9007ba7daf06de25ea8ef97c538b15ff7b6af97551ad"
+    },
+    "cube-longest.intervals": {
+      "bytes": 4704,
+      "sha256": "85c4acfbec0707471312f7a29519c421776365245bfb806cd87b44cf7544b50b"
+    },
+    "cube-longest.parents": {
+      "bytes": 1536,
+      "sha256": "5cf3f5d01e99e65d269f414f4e711126194e22c2e9a7bd76cb1b4a58ecb5c374"
+    },
+    "cube-split.bin": {
+      "bytes": 8712,
+      "sha256": "7a30598e9fffab67aa7f485a8ecfb05b66cc1c42c06fd4fc9b41ee077bbc332a"
+    },
+    "cube-split.exact": {
+      "bytes": 1242,
+      "sha256": "a3285c9e9359aa4dc686c8cbed0b3e8ad106450589054ae6e81c25bb9819f196"
+    },
+    "cube-split.intervals": {
+      "bytes": 5856,
+      "sha256": "55e4204031cc60071b1ab57e3a06da614b235d2c64bcaecbba9011739dc834ef"
+    },
+    "cube-split.parents": {
+      "bytes": 1920,
+      "sha256": "39396d939899c487801a7db68911e40871de5719532ce1a55e653af795b253a9"
+    },
+    "cube-verification.json": {
+      "bytes": 341,
+      "sha256": "6bc379a07372e3c4cf5a2ccb1c98b32118e28f9288899fd03f7f014c8a1c9967"
+    },
+    "cube.bin": {
+      "bytes": 504,
+      "sha256": "9a36fed53e4bbfe30e55f2029668b71772e2b7fd56b03f625ea63cc01cd1d242"
+    },
+    "duct-counted-execution.json": {
+      "bytes": 123,
+      "sha256": "92acd7af64e7d8dee4c78bc05f3a7fa2a692d03385520ef717f19683e9bcdb27"
+    },
+    "duct-counted-native.log": {
+      "bytes": 166,
+      "sha256": "24fc08de4363c716845ccce2d892f82c9d7bfae0fc3232f85c21309473824ed7"
+    },
+    "duct-counted-plan.json": {
+      "bytes": 391,
+      "sha256": "11269e6e4c6cbe5b5ab896eb560e42c9a7d5563039a3685aff2b56f43a810feb"
+    },
+    "duct-execution.json": {
+      "bytes": 124,
+      "sha256": "fa0b02d9f9662d8813b95984155acc955642d78a6b3fff843e2409f74c918a35"
+    },
+    "duct-longest-execution.json": {
+      "bytes": 124,
+      "sha256": "0b8ac3ef153a3f5669863db7ea21e436b444f272bc41dcf1cfacbb8e5118129b"
+    },
+    "duct-longest-native.log": {
+      "bytes": 70,
+      "sha256": "9c937045fd415f8ae63893cc157bde987087570fcc3752c9ad53e4e5270fad3d"
+    },
+    "duct-longest-plan.json": {
+      "bytes": 391,
+      "sha256": "e84368aa99c2c13138c27d77fcbf92fb73fa5bbe980006aa11a430e069566d56"
+    },
+    "duct-longest-verification.json": {
+      "bytes": 225,
+      "sha256": "95df40b657dfe023e2e32b7a69240a60ee8303bf71efc0cc91600b9dc4d94448"
+    },
+    "duct-longest.bin": {
+      "bytes": 15045792,
+      "sha256": "cf38d91d476e411a801cc204f046f3dfc7bf2463bdf66450465719c92142b865"
+    },
+    "duct-longest.exact": {
+      "bytes": 23369398,
+      "sha256": "715378d8676e32b87ba66500833f7cf6894ad97a78d4b046a57ace7851fad072"
+    },
+    "duct-longest.intervals": {
+      "bytes": 10030512,
+      "sha256": "395ef8228500aa9a4ba2cf689d2ec604a1116a6179136a09e191ddeceddc971f"
+    },
+    "duct-longest.parents": {
+      "bytes": 3343504,
+      "sha256": "574b223f9a7f13c6ebd8bc53e3f4a01d2d90e84610104416513d7884cd18d70d"
+    },
+    "duct-native.log": {
+      "bytes": 19,
+      "sha256": "8c69045f011cc944cf092d4b5fd50e3ab4d35f92d0382f9707d47d1614671d45"
+    },
+    "duct-plan.json": {
+      "bytes": 391,
+      "sha256": "0d10cd1b27a097ee8df90cc2e168bdfb91d8d122d6b91639c8c40f6161871860"
+    },
+    "edge-bound-verification.json": {
+      "bytes": 405,
+      "sha256": "329f989383426ce696098483c163be704b543f7b1a776bdb6a50543d98507be7"
+    },
+    "inspect_rounded_topology.py": {
+      "bytes": 2647,
+      "sha256": "cd4206cc59b527223d89bb52facee5e853659cb1808195a038d4d8081d2f050a"
+    },
+    "rounded-audit.json": {
+      "bytes": 97,
+      "sha256": "b729d83dda841a7dfeb16d3b89bee462e87fec27bd7648cc9b9e0334d8a1bf0b"
+    },
+    "rounded-audit.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "rounded-statistics.json": {
+      "bytes": 518,
+      "sha256": "725a7b762b06f9dbc0cbd422a5a6af5832ce5306be66d8b875279de6d702542d"
+    },
+    "rounded-topology.json": {
+      "bytes": 524,
+      "sha256": "808bf887bc1330bdc52bdae8c68ebd32f61b90bed75f6ab95bf2906876d51799"
+    },
+    "run_duct.py": {
+      "bytes": 1477,
+      "sha256": "edf934de25c8dc2dfae702a273c137215ca3d0348f1bc8bb4b9fffdceb6ebe52"
+    },
+    "run_duct_counted.py": {
+      "bytes": 1525,
+      "sha256": "6cd8fc9739443f6ad3ef46ccbfd83f45599452493d2cda666bbe6706c682465b"
+    },
+    "run_duct_longest.py": {
+      "bytes": 1519,
+      "sha256": "7900885d8d2aa593612a1159a8f148ef9b7f4184c851be09f3a76546ac7cafec"
+    },
+    "slender-box-verification.json": {
+      "bytes": 359,
+      "sha256": "b8ac225003ac65746cb4914138d792c38746b85bd0b6d0c640ce349e7d6cbf03"
+    },
+    "slender-box.bin": {
+      "bytes": 504,
+      "sha256": "49917d5ee6b42b0514f774cc3417ca66b95f0f5301cf7f647166ba3def95ed3c"
+    },
+    "slender-longest.bin": {
+      "bytes": 74088,
+      "sha256": "2c475eee5f60c7a781b803ac9b3d36155dc852521374e9462efee69ec6786eed"
+    },
+    "slender-longest.exact": {
+      "bytes": 62876,
+      "sha256": "304fb0a820294717bfc64eaffe04576502f63c14711430d77c13f2202b10647f"
+    },
+    "slender-longest.intervals": {
+      "bytes": 49440,
+      "sha256": "0ebe574d6db2fca0a142f41dc9ece60f965fe9ae8a8d6e5072bf77e0e94035f9"
+    },
+    "slender-longest.parents": {
+      "bytes": 16448,
+      "sha256": "816638b410acf8b697893929bf5bb20aa8e583d0d9d0f1d1b6b1c90ca51cf44f"
+    },
+    "split": {
+      "bytes": 330584,
+      "sha256": "a6ee993aac3506887d006aa8fcff6576622c68a2084ac48f6a8584f76f6ea000"
+    },
+    "split-counted": {
+      "bytes": 330608,
+      "sha256": "1e83c2cf0c9831c76dca9a53aca45a1e8af0cf8a7ba0a91f3305d86a0af32cd9"
+    },
+    "split-counted.cpp": {
+      "bytes": 5740,
+      "sha256": "cd3977a0419d3153b2206478572f4adbbf9765bbba8cd70b28e0dbfba32bdf9f"
+    },
+    "split-initial.cpp": {
+      "bytes": 5081,
+      "sha256": "3fef51487885a072f12721a84e1ab54cf7f11b1eb1009d199c22350d3707902d"
+    },
+    "split-longest": {
+      "bytes": 264720,
+      "sha256": "7d3559f5484eb262f4c4e882cf5c995bb2bae264ea48d303d8cb704d133d451b"
+    },
+    "split-longest.cpp": {
+      "bytes": 6069,
+      "sha256": "7a7bb0ebccfcb83835850b23308d2b9d6089b2ea9db2d930d36c098ca9089ad4"
+    },
+    "split.cpp": {
+      "bytes": 5624,
+      "sha256": "3aed51045578c0d9ef3a57bb876c4aabbab05379c084f7341cb4f16205d303a8"
+    },
+    "verify.py": {
+      "bytes": 2790,
+      "sha256": "eaec29abd6668cd79d2a54055323eb6c26ca38f411d6f4049cd0b2c3cf139c95"
+    },
+    "cube-longest-verification.json": {
+      "bytes": 215,
+      "sha256": "ead9cb3c2e90615ead75ad46705633d8391eb265f003741c21444021b5cc9e38"
+    }
+  },
+  "flow_solver_started": false,
+  "physical_qualification": false,
+  "volume_mesh_admitted": false,
+  "tetrahedral_trial": {
+    "receipts": {
+      "execution-plan.json": {
+        "timeout_seconds": 180,
+        "rss_limit_bytes": 4294967296,
+        "threads": 2,
+        "worker_sha256": "80b4e16584af8ebc4490b83928f2c3dbe746f47dc2e80decdfa075c16e943285",
+        "change_from_prior_trial": "Only audited exact source-triangle subdivision; original 5 mm sizing and Gmsh options unchanged.",
+        "acceptance": "All original subdivided boundary triangles, coordinates and patch names preserved; positive tetrahedra; unchanged native standard and extended mesh checks required before any solver."
+      },
+      "execution.json": {
+        "exit_code": -15,
+        "elapsed_seconds": 180.51412595785223,
+        "peak_sampled_rss_bytes": 1766162432,
+        "stop_reason": "timeout",
+        "native_mesh_admitted": false,
+        "solver_started": false
+      },
+      "duct-plan.json": {
+        "input_sha256": "cf38d91d476e411a801cc204f046f3dfc7bf2463bdf66450465719c92142b865",
+        "regions_sha256": "689cf3d76f2a69e6d39cb26b0e375eba6cefd0f2716aa64778af32beb7ab95a6",
+        "upstream_audit": "independent exact parent containment and area coverage; rounded complete CGAL zero intersections and closed oriented vertex-manifold topology",
+        "gmsh_version": "4.15.2",
+        "sizing_m": 0.005,
+        "fixed_boundary_triangles": true,
+        "patches": [
+          "walls",
+          "inlet",
+          "left1",
+          "left2",
+          "left3",
+          "right1",
+          "right2",
+          "right3"
+        ],
+        "acceptance": "original boundary triangles and coordinates preserved, positive cells, native standard and extended checks before any flow",
+        "physical_qualification": false
+      }
+    },
+    "files": {
+      "duct-plan.json": {
+        "bytes": 730,
+        "sha256": "0d1fa3816dc5606d4b4c62814b58932a5192d7eacd44b942508fe22c524d4bf2"
+      },
+      "execution-plan.json": {
+        "bytes": 495,
+        "sha256": "da568b745ebe89ea139537178c2da78ff2d75e772ebf5bba1dfbf9e4c5b35126"
+      },
+      "execution.json": {
+        "bytes": 191,
+        "sha256": "3868112c7b97c2fb965d858d75753669a9616cebe3de27e01a66663df101fd06"
+      },
+      "mesh_duct.py": {
+        "bytes": 4625,
+        "sha256": "80b4e16584af8ebc4490b83928f2c3dbe746f47dc2e80decdfa075c16e943285"
+      },
+      "native.log": {
+        "bytes": 14837,
+        "sha256": "3cebfa7c322fbf9a906f1eb47021b1270338f3c532708c28d831f95889a22171"
+      },
+      "run.py": {
+        "bytes": 1813,
+        "sha256": "8ab5852966c1cf21961a171d79c412671a438bc7f8c49a0755a205f01d420497"
+      }
+    },
+    "mesh_output_exists": false,
+    "boundary_preservation_unverified": true
+  }
+}
