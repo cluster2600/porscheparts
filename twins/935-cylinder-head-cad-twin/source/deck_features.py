@@ -89,9 +89,11 @@ def main(private, params):
         for qy in (-1, 1):
             s = psel & (np.sign(cen[:, 0]) == qx) & (np.sign(cen[:, 1]) == qy)
             q = cen[s][:, :2]
-            c0 = np.median(q, axis=0)
+            # Seed at the provisional four-passage pattern (86.74 x 85.92 mm,
+            # twins/reference-935-cylinder-head/README.md) about the register.
+            c0 = np.array(c_reg) + np.array([qx * 86.74 / 2, qy * 85.92 / 2])
             for _ in range(4):
-                keep = np.linalg.norm(q - c0, axis=1) < 8.0
+                keep = np.abs(np.linalg.norm(q - c0, axis=1) - 5.7) < 2.0
                 if keep.sum() < 30:
                     break
                 c0, rp, res = fit_circle_2d(q[keep])

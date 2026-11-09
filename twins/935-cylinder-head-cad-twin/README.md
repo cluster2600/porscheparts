@@ -256,7 +256,7 @@ on the deck zone. It fits analytic features to acquired facets:
 
 - the outer sides and corner radius (6.3 mm);
 - the register recess Ø113.88 mm with its floor at z = 2.17 mm;
-- the stud passages (2 of 4 found, Ø11.4–11.6 mm).
+- the four stud passages (from iteration 2, Ø10.58–10.93 mm).
 
 It builds them as a valid 16-face build123d solid (private STEP), and scores
 that zone with the scorecard's Warp kernel. Progress is tracked per iteration:
@@ -264,10 +264,11 @@ that zone with the scorecard's Warp kernel. Progress is tracked per iteration:
 | Iteration | Change | Median | p95 | Within 0.2 mm |
 |---|---|---|---|---|
 | 0 baseline | plate, register recess, 2 passages | 0.78 mm | 5.62 mm | 31% |
-| 1 | chamber dome: sphere R 56.44 mm fitted to 48,013 facets (RMS 0.24 mm), cut inside the Ø92.80 shoulder | **0.43 mm** | **4.00 mm** | **41%** |
+| 1 | chamber dome: sphere R 56.44 mm fitted to 48,013 facets (RMS 0.24 mm), cut inside the Ø92.80 shoulder | 0.43 mm | 4.00 mm | 41% |
+| 2 | four stud passages found by seeding at the recorded pattern: Ø10.58–10.93 mm on about 86.2 × 85.6 mm. The two "passages" of iteration 0 were other features | **0.29 mm** | **3.05 mm** | **45%** |
 
 Remaining gaps: the valve throats and plug bores in the chamber, the flange
-bosses on the outline, two undetected passages, and the plate-top level.
+bosses on the outline, and the plate-top level.
 Each fix must raise this score; T1s (p95 0.015 mm) stays the reference
 surface meanwhile.
 
@@ -299,7 +300,7 @@ flowchart LR
 | Screenshots | T1, scan, thermal | private renders (observed/inferred, scan deviation, thermal field); public [scorecard chart](media/scorecard-t1-cdf.png) | visual review | done |
 | T4 USD | T1s, frame, hypotheses | private `.usdc`; [summary](params/usd-summary.json) | 30 OpenUSD validators | done, 0 findings |
 | T5 print | T1s | private 3MF; [summary](params/print-summary.json) | streaming round trip | done, exact volume |
-| v1 features | frame, scan | deck plate first: [features](params/deck-features.json) | zone scorecard | iteration 1: p95 4.0 mm (chamber cut); throats, outline, passages next; then fins, cam pads, ports |
+| v1 features | frame, scan | deck plate first: [features](params/deck-features.json) | zone scorecard | iteration 2: p95 3.05 mm (chamber, four passages); throats and outline next; then fins, cam pads, ports |
 | Port CFD | v1 ports | OpenFOAM steady port flow | mesh/flux convergence | blocked by v1 ports |
 | SimReady | T2 STEP | NVIDIA usd-convert-cad + omni.asset_validator | validator report | needs the 10 GB image on X1/Kali |
 | AM study | T1/T2 | PicoGK supports, Adamantine cooldown | as in the earlier study | after v1 |
