@@ -7,12 +7,21 @@ import sys
 import subprocess
 import tempfile
 import unittest
+from unittest.mock import patch
 from _deps import require_modules
 
 SOURCE = Path(__file__).resolve().parents[1] / "twins/993-engine-cooling-fan-system-f0/source"
 
 
 class FanSweepTests(unittest.TestCase):
+    def test_patch_reader_does_not_require_pressure_integration_dependencies(self):
+        require_modules("numpy")
+        with patch.dict(sys.modules, {"torch": None, "physicsnemo": None}):
+            module = runpy.run_path(str(SOURCE / "audit_fan_pressure_physicsnemo.py"))
+            self.assertTrue(callable(module["read_patch"]))
+            with self.assertRaises(ModuleNotFoundError):
+                module["integrate"]([], [], [])
+
     def test_monitor_exits_for_completed_case_without_windows(self):
         with tempfile.TemporaryDirectory() as folder:
             case = Path(folder)
@@ -50,7 +59,7 @@ class FanSweepTests(unittest.TestCase):
             self.assertFalse((root / "solver-would-start").exists())
 
     def test_velocity_plot_rejects_clipped_or_invalid_colour_scales(self):
-        require_modules("numpy", "matplotlib", "torch", "physicsnemo")
+        require_modules("numpy", "matplotlib")
         with tempfile.TemporaryDirectory() as folder:
             vtk = Path(folder) / "plane.vtk"
             vtk.write_text("# vtk DataFile Version 2.0\nplane\nASCII\nDATASET POLYDATA\n"
