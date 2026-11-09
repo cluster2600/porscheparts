@@ -80,6 +80,31 @@ class SourceValidationTests(unittest.TestCase):
         record["rights"]["license"] = "CC-BY-SA-3.0"
         self.assertIn("rights.license: an archive capture requires an 'archive-verified-' licence", validate_source(record))
 
+    def test_current_primary_read_can_preserve_archive(self) -> None:
+        record = self._archive_verified()
+        record["rights"]["license"] = "CC-BY-SA-3.0"
+        record["rights"]["primary_read"] = {
+            "url": "https://www.thingiverse.com/thing:2006970",
+            "read_on": "2026-11-07",
+            "license": "CC-BY-SA-3.0",
+        }
+        self.assertEqual(validate_source(record), [])
+        for field, value in (
+            ("url", "not-a-url"),
+            ("read_on", None),
+            ("read_on", "invalid"),
+            ("license", "CC0-1.0"),
+        ):
+            with self.subTest(field=field, value=value):
+                invalid = deepcopy(record)
+                invalid["rights"]["primary_read"][field] = value
+                self.assertTrue(validate_source(invalid))
+        for value in (None, [], {}, {"extra": True}):
+            with self.subTest(primary_read=value):
+                invalid = deepcopy(record)
+                invalid["rights"]["primary_read"] = value
+                self.assertTrue(validate_source(invalid))
+
     def test_capture_timestamp_must_match_url(self) -> None:
         record = self._archive_verified()
         record["rights"]["archive_capture"]["capture_timestamp"] = "20170424143509"

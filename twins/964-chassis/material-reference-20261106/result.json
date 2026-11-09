@@ -1,0 +1,66 @@
+{
+  "classification": "source_fed_2D_elastic_implementation_check_not_structural_qualification",
+  "inputs_sha256": "5c79b4e15537cb8a76030d1cde4be08dd870e5a2dab781c649ef716a1fab1d36",
+  "existing_helper_sha256": "c2c3358331ecdf28877ceccdd06dad0a89de2560de8162bf167e04cba7d9598b",
+  "executed_script_sha256": "98dbbeea8306f6e2e9c784bf85806312fd0c497d1324239ebdfae8a441e7443e",
+  "python": "3.12.16",
+  "numpy": "1.26.4",
+  "units": "MPa; engineering shear strain gamma_xy",
+  "Msi_to_MPa": 6894.757293168361,
+  "Q_MPa": [
+    [
+      162995.74113571452,
+      2848.0923206529783,
+      0.0
+    ],
+    [
+      2848.0923206529783,
+      9012.950381813222,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      4688.434959354486
+    ]
+  ],
+  "A_divided_by_total_thickness_MPa": [
+    [
+      67559.4998789134,
+      21292.93820050346,
+      4.916975050212991e-14
+    ],
+    [
+      21292.93820050346,
+      67559.49987891338,
+      2.308011897254644e-12
+    ],
+    [
+      4.916975050212993e-14,
+      2.3080118972546436e-12,
+      23133.28083920497
+    ]
+  ],
+  "equal_orientation_fractions_deg": [
+    0,
+    45,
+    -45,
+    90
+  ],
+  "effective_E_MPa": 60848.53816334314,
+  "effective_nu": 0.315173117602509,
+  "effective_G_MPa": 23133.280839204963,
+  "compliance_inverse_relative_error": 1.115973577512874e-17,
+  "independent_rotation_relative_errors": [
+    3.58724687583374e-16,
+    1.7612907995937508e-16,
+    3.145233771533413e-16
+  ],
+  "numerical_relative_limit_not_material_uncertainty": 1e-11,
+  "self_checks_passed": true,
+  "scope": "Equal fractions at 0/+45/-45/90; normalized in-plane stiffness only. No physical ply thickness, bending D matrix, 3D constitutive law, failure, joint, cure, mould or vehicle model.",
+  "material_allowables_or_process_qualified": false,
+  "physical_validation": false,
+  "coque_or_native_final_twin_validated": false,
+  "manufacturing_authorized": false
+}

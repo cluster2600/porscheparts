@@ -65,9 +65,20 @@
         "license": { "type": "string", "minLength": 3 },
         "redistribution": { "enum": ["allowed", "attribution_required", "noncommercial_only", "prohibited", "unknown"] },
         "attribution": { "type": "string" },
+        "primary_read": {
+          "type": "object",
+          "description": "Dated primary-page licence readback, matching rights.license. May supersede an archived licence without removing the archive capture.",
+          "additionalProperties": false,
+          "required": ["url", "read_on", "license"],
+          "properties": {
+            "url": { "type": "string", "pattern": "^https?://[^/]+" },
+            "read_on": { "type": "string", "format": "date" },
+            "license": { "type": "string", "minLength": 1 }
+          }
+        },
         "archive_capture": {
           "type": "object",
-          "description": "Licence and author read on an Internet Archive (Wayback Machine) capture of the original page, accepted as provenance evidence by owner decision of 2026-11-05. The licence string then starts with 'archive-verified-'.",
+          "description": "Licence and author read on an Internet Archive (Wayback Machine) capture of the original page, accepted as provenance evidence by owner decision of 2026-11-05. Without a superseding primary_read, the licence string starts with 'archive-verified-'.",
           "additionalProperties": false,
           "required": ["status", "capture_url", "capture_timestamp", "read_on", "license_as_read", "author"],
           "properties": {

@@ -222,6 +222,139 @@ PYTHONPATH=tests .venv-check/bin/python -m unittest -v \
 
 These checks establish rejection behavior, not vehicle geometry or fitment.
 
+The same CI build step also builds the bionic turbo assembly in Release mode
+and sets `BIONIC_DOTNET=dotnet` for the main suite. Its existing executable test
+rejects invalid units, voxel size and housing hashes before native mesh loading,
+and preserves an existing output directory. All eight assembly tests pass
+locally with the selected executable; the additional base check lowers the
+skip budget by one.
+
+```bash
+dotnet build twins/bionic-turbo-f0/assembly/source/Assembly.csproj --configuration Release --nologo
+BIONIC_DOTNET="$(command -v dotnet)" PYTHONPATH=tests .venv-check/bin/python -m unittest -v test_bionic_turbo_assembly
+```
+
+### CPU precision, bounded distance and external DfAM controls
+
+The shared environment includes the recorded `cascading-upper-bounds==1.0.0`
+for analytic zero/offset distance bounds and translation invariance. The main
+CI job fetches the already-reviewed MIT-licensed DfAM script at revision
+`b10144ad98616fa7156f655cbd2aba0091216d40`, verifies the SHA-256 from
+[the tool review](reports/M64_PHOTO_TOOL_SELECTION_20260928.md), and sets
+`M64_DFAM_TOOL` for its existing four CLI fixtures. This is a temporary script,
+not a globally installed skill. No private mesh is passed to it; generic
+screening defaults do not establish material or manufacturing qualification.
+
+A separate temporary environment runs both triangle-area precision tests with
+Torch 2.10.0 and NumPy 2.2.6, following the [official CPU-wheel route](https://pytorch.org/get-started/previous-versions/).
+CI asserts the CPU build and absence of CUDA. The synthetic thin-triangle
+control compares binary64 cross-product arithmetic with an independent Decimal
+reference and rejects invalid inputs. This reproduces the studied formula;
+it does not execute PhysicsNeMo, train a model or alter frozen corpora.
+The two newly enabled shared controls lower the base skip budget by two;
+isolated Torch coverage is counted separately.
+
+### Archived field/lattice preflight checks
+
+The optional field and replay executables require the exact managed PicoGK
+assembly and all 59 LEAP sources recorded in
+`twins/964-chassis/monocoque/field-lattice/evidence/execution.json`.
+Do not substitute the shared NuGet runtime. The local runtime binaries match
+that receipt; two installed ShapeKernel files differ. Their recorded upstream
+revision supplies matching bytes, so stage a separate verified source tree
+without overwriting the installation. Both projects build with .NET 9.0.319
+and retain 35 upstream warnings each.
+
+The original field test is itself hash-pinned. Its additive companion
+`test_964_field_lattice_preflight.py` checks the four expected diagnostics as
+well as output preservation, rejecting a generic failing executable. Set
+`DOTNET`, `FIELD_LATTICE_DLL` and `REPLAY_DLL` to the verified local builds to
+run all three test modules. These are input-rejection controls; they do not
+regenerate geometry. Managed-runtime rebuild/distribution provenance remains
+unestablished, so CI retains the explicit optional runtime skip.
+
+### CalculiX cantilever control
+
+The main Ubuntu 24.04 job installs `calculix-ccx=2.21-1`, the package already
+recorded by the retained F47 recipe. This enables the existing synthetic
+cantilever test, comparing integration-point bending stress with an analytic
+beam result away from the clamp and tip. It also checks that the 2D nodal
+output retains transverse shear rather than replacing bending stress.
+The control passes in a disposable Linux AMD64 runtime; no vehicle geometry,
+material allowables or structural qualification is inferred. The base skip
+budget is lower by one.
+
+```bash
+PYTHONPATH=tests .venv-check/bin/python -m unittest -v test_964_strength_audit.StrengthAuditTests.test_cantilever_integration_stress_retains_bending
+```
+
+### Retained CGAL intersection auditor
+
+The main CI job uses Ubuntu 24.04 and the recorded `libcgal-dev=5.6-1build3`
+package. It checks the unchanged auditor source hash, compiles with C++20 and
+sets `M64_CGAL_INTERSECTIONS` for the existing synthetic topology test. The
+controls cover transverse crossing, coplanar overlap, separated surfaces,
+shared edges, degeneracy and preservation of input arrays. They do not audit
+private geometry, repair a mesh or grant CFD/manufacturing admission.
+
+```bash
+g++ -std=c++20 -O2 twins/m64-cylinder-head/source/wholebody/surface_intersections_cgal.cpp -o /tmp/surface-intersections -lgmp -lmpfr
+M64_CGAL_INTERSECTIONS=/tmp/surface-intersections PYTHONPATH=tests .venv-check/bin/python -m unittest -v test_m64_projected_surface_topology.ProjectedSurfaceTopologyTests.test_intersection_selection_keeps_arrays_and_detects_crossing_and_coplanar_overlap
+```
+
+### OCP 8 trimmed-surface flux control
+
+The CAD CI job adds a separate temporary environment with
+`cadquery-ocp==8.0.1.0.0`, NumPy 2.2.6 and SciPy 1.17.1. The existing analytic
+bilinear-surface test crosses a spline knot and checks both orientations,
+using fixed Gauss quadrature and adaptive integration. It passes locally
+without skips; this separate coverage is not subtracted from the base budget.
+OCP 8 is not installed over the retained OCP 7 CAD environment.
+
+The older recorded SciPy 1.15.3 wheel fails to load its PROPACK extension on
+this Mac (`__DATA/__thread_bss` zero-fill offset). Using 1.17.1 in this new
+isolated environment resolves the import failure without changing the test,
+source formulas or historical runtime recipe. This is an analytic numerical
+control, not a measured part-volume or CAD-release verdict.
+
+### Legacy OpenUSD authoring checks
+
+The main CI job creates a separate temporary environment with `usd-core==25.5.1`
+for the existing bounded-authoring contract. All three tests pass locally,
+including native fixture authoring and rejection of external access and unsafe
+syntax. The contract retains its explicit `ShaderPropertyTypeConformanceChecker`
+exclusion; full shader checks belong to the separate OpenUSD 26.08 SDK job.
+The shared 25.11 runtime is unchanged. These checks do not train a model, modify
+the frozen corpora or qualify engineering geometry.
+
+### Retained Aeolus construction checks
+
+The cycle CI job also runs all 56 F39/F40/F40b tests in the existing
+digest-pinned F39 image with Aeolus1D 0.3.3. This enables three previously skipped
+runtime checks for crank inheritance, each campaign case's constructed topology
+and the nominal flat-12 network. The exact image passed all 56 tests locally
+under AMD64 emulation without skips; native Linux execution belongs to CI.
+
+The container is offline and read-only, with bounded CPU, memory and temporary
+storage. Recipes, dependency locks, engine contracts and assertions remain
+unchanged. Constructing these networks and running synthetic/fake-executor
+controls does not execute or qualify an engine campaign.
+
+### Boolean geometry, scientific notation and remaining surface controls
+
+The shared environment includes Manifold3D 3.5.4 for the three synthetic
+intersection/clearance checks and Beautiful Soup 4.15.0 with SoupSieve 4.0.1 for
+preserving scientific exponents and chemical subscripts. All 15 focused
+packaging, clearance and grounded-source tests pass without skips; no model
+training is involved. These four enabled checks lower the base skip budget by
+four.
+
+The isolated USD/PyVista job adds the shared Trimesh 5.1.0 and SciPy 1.17.1
+versions without replacing its locked native packages, then checks dependencies
+and runs nine synthetic fluid-boundary tests. The Warp CPU job adds Trimesh
+5.1.0 and exercises the fan ray kernel against an independently known box hit
+and miss. These are geometry/software controls, not flow or fitment validation.
+
 ## 3. Heavy jobs on a shared or WSL host
 
 A voxel field, mesher or solver that outgrows memory can take the whole WSL VM
