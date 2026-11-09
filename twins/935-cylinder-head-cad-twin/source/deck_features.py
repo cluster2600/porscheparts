@@ -99,6 +99,20 @@ def main(private, params):
                 pas.append({"centre": np.round(c0, 4).tolist(), "diameter_mm": round(2 * rp, 4),
                             "radial_residual": stats(res), "facets": int(keep.sum())})
 
+    # Chamber dome: algebraic sphere fit to facets inside the chamber shoulder,
+    # above the register floor, below the plate top.
+    sh_d = next(x["diameter_mm"] for x in frame["rings"] if x["name"] == "chamber_shoulder")
+    csel = (r < sh_d / 2 - 2.0) & (cen[:, 2] > (floor_z or 2.0) + 0.5) & (cen[:, 2] < zt - 0.5) & (n[:, 2] < -0.3)
+    q = cen[csel]
+    A = np.column_stack((q, np.ones(len(q))))
+    b = -(q * q).sum(axis=1)
+    sol = np.linalg.lstsq(A, b, rcond=None)[0]
+    c_sph = -sol[:3] / 2
+    r_sph = float(np.sqrt(c_sph @ c_sph - sol[3]))
+    res_sph = np.linalg.norm(q - c_sph, axis=1) - r_sph
+    feats_chamber = {"sphere_centre": np.round(c_sph, 4).tolist(), "sphere_radius_mm": round(r_sph, 4),
+                     "radial_residual": stats(res_sph), "facets": int(csel.sum()), "shoulder_diameter_mm": sh_d}
+
     feats = {
         "schema": "935-cad-twin-deck-features/1",
         "source": "acquired bare-scan facets in the twin frame; numbers only",
@@ -109,6 +123,7 @@ def main(private, params):
         "outer": {"sides": sides, "corner_radius_mm": round(rc, 3),
                   "corner_fits": [[round(a, 3), round(b, 4)] for a, b in corner_radii]},
         "passages": pas,
+        "chamber": feats_chamber,
     }
     write_json(params / "deck-features.json", feats)
     print(json.dumps({"plate_top_z": plate_top, "register_d": feats["register"]["diameter_mm"],
@@ -129,6 +144,14 @@ def build_and_score(feats, private, params, bare):
     depth = (reg["floor_z"] or zt) + 0.0
     cut = Pos(reg["centre"][0], reg["centre"][1], depth / 2 - 0.01) * Cylinder(reg["diameter_mm"] / 2, depth + 0.02)
     plate = plate - cut
+    ch = feats.get("chamber")
+    if ch:
+        from build123d import Sphere
+
+        floor = reg["floor_z"] or 0.0
+        sph = Pos(*ch["sphere_centre"]) * Sphere(ch["sphere_radius_mm"])
+        cyl = Pos(reg["centre"][0], reg["centre"][1], (floor + zt) / 2) * Cylinder(ch["shoulder_diameter_mm"] / 2, zt - floor)
+        plate = plate - (sph & cyl)
     for p in feats["passages"]:
         plate = plate - Pos(p["centre"][0], p["centre"][1], zt / 2) * Cylinder(p["diameter_mm"] / 2, zt + 1.0)
     export_step(plate, str(private / "v1-deck-plate.step"))

@@ -259,15 +259,15 @@ on the deck zone. It fits analytic features to acquired facets:
 - the stud passages (2 of 4 found, Ø11.4–11.6 mm).
 
 It builds them as a valid 16-face build123d solid (private STEP), and scores
-that zone with the scorecard's Warp kernel. The baseline is deliberately
-recorded before iteration: **median 0.78 mm, p95 5.6 mm, 31% within 0.2 mm**
-over 29,986 mm² of scan. The known gaps are:
+that zone with the scorecard's Warp kernel. Progress is tracked per iteration:
 
-- the combustion chamber is not cut yet;
-- the outline is not a plain rectangle (flange bosses);
-- two passages are missed;
-- the fitted plate-top level (16.6 mm) is probably a fin face.
+| Iteration | Change | Median | p95 | Within 0.2 mm |
+|---|---|---|---|---|
+| 0 baseline | plate, register recess, 2 passages | 0.78 mm | 5.62 mm | 31% |
+| 1 | chamber dome: sphere R 56.44 mm fitted to 48,013 facets (RMS 0.24 mm), cut inside the Ø92.80 shoulder | **0.43 mm** | **4.00 mm** | **41%** |
 
+Remaining gaps: the valve throats and plug bores in the chamber, the flange
+bosses on the outline, two undetected passages, and the plate-top level.
 Each fix must raise this score; T1s (p95 0.015 mm) stays the reference
 surface meanwhile.
 
@@ -299,7 +299,7 @@ flowchart LR
 | Screenshots | T1, scan, thermal | private renders (observed/inferred, scan deviation, thermal field); public [scorecard chart](media/scorecard-t1-cdf.png) | visual review | done |
 | T4 USD | T1s, frame, hypotheses | private `.usdc`; [summary](params/usd-summary.json) | 30 OpenUSD validators | done, 0 findings |
 | T5 print | T1s | private 3MF; [summary](params/print-summary.json) | streaming round trip | done, exact volume |
-| v1 features | frame, scan | deck plate first: [features](params/deck-features.json) | zone scorecard | baseline recorded (p95 5.6 mm); chamber, outline, passages next; then fins, cam pads, ports |
+| v1 features | frame, scan | deck plate first: [features](params/deck-features.json) | zone scorecard | iteration 1: p95 4.0 mm (chamber cut); throats, outline, passages next; then fins, cam pads, ports |
 | Port CFD | v1 ports | OpenFOAM steady port flow | mesh/flux convergence | blocked by v1 ports |
 | SimReady | T2 STEP | NVIDIA usd-convert-cad + omni.asset_validator | validator report | needs the 10 GB image on X1/Kali |
 | AM study | T1/T2 | PicoGK supports, Adamantine cooldown | as in the earlier study | after v1 |
