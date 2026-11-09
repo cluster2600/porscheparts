@@ -267,8 +267,14 @@ that zone with the scorecard's Warp kernel. Progress is tracked per iteration:
 | 1 | chamber dome: sphere R 56.44 mm fitted to 48,013 facets (RMS 0.24 mm), cut inside the Ø92.80 shoulder | 0.43 mm | 4.00 mm | 41% |
 | 2 | four stud passages found by seeding at the recorded pattern: Ø10.58–10.93 mm on about 86.2 × 85.6 mm. The two "passages" of iteration 0 were other features | **0.29 mm** | **3.05 mm** | **45%** |
 
-Remaining gaps: the valve throats and plug bores in the chamber, the flange
-bosses on the outline, and the plate-top level.
+| 3 (not adopted) | valve throats fitted: Ø47.94 and Ø46.48 mm, axes about 22° from Z, radial RMS 0.23 / 0.31 mm. Cutting them, with or without a coaxial "boss" (Ø≈30 mm, RMS 0.59 mm, not credible), lowered the score | 0.31 mm | 3.29 / 3.20 mm | 44% |
+
+Iteration 3 is kept as data in the features file, but the solid stays at
+iteration 2. The throat fits look right; the score drops because the port
+interior beyond them (guide bosses, seat rings) is not modelled yet.
+
+Remaining gaps: port interiors behind the throats, the plug bores, the
+flange bosses on the outline, and the plate-top level.
 Each fix must raise this score; T1s (p95 0.015 mm) stays the reference
 surface meanwhile.
 
