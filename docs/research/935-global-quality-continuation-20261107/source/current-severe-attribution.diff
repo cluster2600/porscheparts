@@ -1,0 +1,37 @@
+--- a/attribute_severe_cells.py
++++ b/attribute_current.py
+@@ -84,4 +84,4 @@
+-    assert sha(args.parent / "manifest.json") == "70ea643568877eb271a0ec379950d8e1230fe9f6947d17c8876a4b02900a60b4"
+-    assert sha(args.surface_parent / "manifest.json") == "3d23346c1d874be4fed6f58ce3164f00c8e6fab066caef033f5eacb005bfc3c2"
+-    expected = {row["path"]: row["sha256"] for row in json.loads((args.surface_parent / "manifest.json").read_text())["files"]}
+-    for name in ("regularization-001/candidate.npz", "regularization-001/candidate-tags.npy"):
++    assert sha(args.parent / "verification/report.json") == '898e993b9a9bd05db0e920583837c0e0113ad17339d1dc745f7f4a5fe229d888'
++    assert sha(args.surface_parent / "native-surface/report.json") == 'f69e237acf11ce11eb9e8fae6a56ff611aa31876755d33ea24c72633cdaeb2e4'
++    expected = {'verification/candidate-surface.npz': '627dc5d2a6679475d7807b7b4f3113daf254f58049a17fc620ecb7f762908c9c', 'verification/candidate-tags.npy': '716a7c0f155551ec42db10527b4c53ea2ed95948d0cc027e7b786f3b9f4ce0b5'}
++    for name in ("verification/candidate-surface.npz", "verification/candidate-tags.npy"):
+@@ -89,2 +89,2 @@
+-    mesh = args.parent / "local-proof/candidate.npz"
+-    assert sha(mesh) == "62717026bdfc3dc9c1a6cde682b32db12900cad8460f158a7319c41d001e2462"
++    mesh = args.parent / "verification/candidate-volume.npz"
++    assert sha(mesh) == "d00f2807ed32f4fd3c92f9e825fe691ef57a42b449f9dda020326ecdfc817aaa"
+@@ -92 +92 @@
+-    assert condition["source_sha256"] == "0e3ba938b3e575f02b3b35c47f79b64b0fffb015de3acc6709827747cce279ca"
++    assert condition["source_sha256"] == "71d215c941178321907c2eff9ef5eba73ba0b548409bea1362d326302202e82a"
+@@ -97 +97 @@
+-    with np.load(args.surface_parent / "regularization-001/candidate.npz", allow_pickle=False) as data:
++    with np.load(args.surface_parent / "verification/candidate-surface.npz", allow_pickle=False) as data:
+@@ -100 +100 @@
+-    tags = np.load(args.surface_parent / "regularization-001/candidate-tags.npy", allow_pickle=False)
++    tags = np.load(args.surface_parent / "verification/candidate-tags.npy", allow_pickle=False)
+@@ -103 +103 @@
+-    assert len(ids) == condition["exact_condition_values"] and np.all(ids < len(all_cells))
++    assert len(ids) == condition["counts_kappa_F_at_least"]["1e12"] and np.all(ids < len(all_cells))
+@@ -120,4 +120,4 @@
+-    result = {"source_sha256": sha(Path(__file__)), "input_mesh_sha256": sha(mesh),
+-        "severe_ids_sha256": condition["private_ids_sha256"], "severe_cells_checked": len(ids),
+-        "source_surface_faces_scanned": len(surface), "source_surface_sha256": sha(args.surface_parent / "regularization-001/candidate.npz"),
+-        "source_tags_sha256": sha(args.surface_parent / "regularization-001/candidate-tags.npy"),
++    result = {"input_cohort": 'severe', "native_cohort_is_subset_of_complete_severe_set": True, "source_sha256": sha(Path(__file__)), "input_mesh_sha256": sha(mesh),
++        "selected_ids_sha256": condition["private_ids_sha256"], "selected_cells_checked": len(ids),
++        "source_surface_faces_scanned": len(surface), "source_surface_sha256": sha(args.surface_parent / "verification/candidate-surface.npz"),
++        "source_tags_sha256": sha(args.surface_parent / "verification/candidate-tags.npy"),

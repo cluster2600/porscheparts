@@ -1,0 +1,8 @@
+--- refine_cap.py
++++ refine_cap.py
+@@ -71,2 +71 @@
+-        u, v = xy[tri[:, 1]]-xy[tri[:, 0]], xy[tri[:, 2]]-xy[tri[:, 0]]
+-        area = (u[:, 0]*v[:, 1]-u[:, 1]*v[:, 0])/2
++        area = np.cross(xy[tri[:, 1]]-xy[tri[:, 0]], xy[tri[:, 2]]-xy[tri[:, 0]])/2
+@@ -81 +79,0 @@
+-        gmsh.option.setNumber('Mesh.Binary', 1)

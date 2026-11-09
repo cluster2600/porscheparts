@@ -1,0 +1,13 @@
+--- a/audit_peeled_conditions.py
++++ b/audit_conditions.py
+@@ -40,2 +40,2 @@
+-    assert proof["source_sha256"] == "986bae3440420f1220b790f5ae8d54a92ebd427fb0c4a2c706712733317ddaf6"
+-    assert sha(args.parent_mesh) == proof["parent_mesh_sha256"] == "62717026bdfc3dc9c1a6cde682b32db12900cad8460f158a7319c41d001e2462"
++    assert proof["source_sha256"] == "c4b5e1efeec1ee2f38620dfd8e21380cce697ac173a8bd053dd2399b61709ece"
++    assert sha(args.parent_mesh) == proof["input_mesh_sha256"] == "718807830960d58fe87fce28bfb601024e3e7a0cd1e68f8c73dd9e4debacddac"
+@@ -45 +45 @@
+-    assert before["source_sha256"] == helper.sha(base/"935-condition-directed-20261105/source/audit_all_conditions.py")
++    assert before["source_sha256"] == 'eb55dfe474c303ecb6779004389cf974cc6a86c53d9959aa5194a0b381cb568b'
+@@ -48 +48 @@
+-    assert sha(exact_path) == before["private_exact_values_sha256"] == "f4b54a89ce2506228c99abd37e8bce3d7ac9db7b1f2c4c188f4bb76cc499a87b"
++    assert sha(exact_path) == before["private_exact_values_sha256"] == "c8fef248b600b0dac458470549e76e607866a3d7ea57af8e746770159faf49f8"

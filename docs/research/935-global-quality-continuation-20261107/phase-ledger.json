@@ -1,0 +1,105 @@
+{
+  "schema": "935-global-quality-continuation-phase-ledger-1",
+  "requirement": "R935-GQC-1",
+  "scope": "Three fully inspected numerical corrections, a complete peel fixed point and exact boundary-source admissibility audit; full faithful CAD / functional metal goal remains open",
+  "runtime": {
+    "python": "3.12.13",
+    "numpy": "2.5.4",
+    "gmsh": "4.12.1",
+    "new_packages": false
+  },
+  "phases": [
+    {
+      "id": "P0",
+      "state": "complete",
+      "inputs": "Frozen d7609b83 parent and 228 source-admitted proposals; predecessor manifest 3529958f",
+      "command": "Rehash consumed files against frozen manifests",
+      "outputs": "Bound current-input jobs",
+      "checks": "Actual source/cap-witness/proposal identity and diagnostic-only admission"
+    },
+    {
+      "id": "P1-P5",
+      "state": "complete_three_batches",
+      "inputs": "Actual current parent and fresh complete source admission for each batch",
+      "commands": [
+        "python -B IDENTITY_ADAPTED_VERIFIER --job PRIVATE_JOB --output NEW_VERIFICATION",
+        "python -B validate_build_final.py CANDIDATE_SURFACE NEW_NATIVE_SURFACE",
+        "python -B inspect_interval_volume.py --mesh CANDIDATE --surface SURFACE --surface-report SURFACE_REPORT --frozen-inspector HELPER --output NEW_VOLUME",
+        "python -B IDENTITY_ADAPTED_CONDITION_CENSUS --repository REPO --parent-mesh PARENT --proof-root VERIFICATION --condition-root PARENT_CENSUS --output NEW_CENSUS",
+        "python -B export_native_mesh.py --mesh CANDIDATE --input-report VOLUME_REPORT --surface SURFACE --output NEW_NATIVE"
+      ],
+      "outputs": "277 exactly certified deletions; actual candidate arrays/MSH/3MF and full reports",
+      "checks": "Controls first; all coordinate bits/cap/curve constraints; separate Fraction proofs; full native intersections/topology; every-cell signs and boundary; fresh condition counts equal exact deletion predictions; exact native readbacks",
+      "limits": "600 seconds per ledger; 4/12 GiB sampled direct-child RSS; 4 GiB disk floor"
+    },
+    {
+      "id": "P6",
+      "state": "complete_zero_successors",
+      "inputs": "All 439 final severe cells and complete current boundary",
+      "commands": [
+        "python -B IDENTITY_ADAPTED_WITNESS --job PRIVATE_JOB --output NEW_WITNESS",
+        "python -B IDENTITY_ADAPTED_SOURCE_AUDIT --job PRIVATE_JOB --output NEW_AUDIT"
+      ],
+      "outputs": "Complete refusal census: 227 not two boundary faces, 211 cap constraints, one nonconvex projected patch",
+      "checks": "Unchanged policy; no empty candidate or identical native rerun"
+    },
+    {
+      "id": "P7-A",
+      "state": "complete",
+      "inputs": "Current protected cap witness, actual complete source mesh and absolute mean-ratio floor",
+      "command": "python -B certify_face_floor.py --job PRIVATE_JOB --output NEW_CERTIFICATE",
+      "outputs": "Exact sharp fixed-face bound and unique actual boundary incidence",
+      "checks": "Regular/right-tet literals; polynomial factorization; exact current witness equality; all cells scanned; current cap triangle ceiling below unchanged 0.01 floor",
+      "blocker": "Current literal cap triangulation is inadmissible for the existing tet mean-ratio criterion"
+    },
+    {
+      "id": "P7-B",
+      "state": "complete_two_cohorts",
+      "inputs": "All 439 severe IDs and all 83 current native shape-refused IDs; complete surface/tag arrays",
+      "command": "python -B COHORT_ADAPTED_ATTRIBUTE --repository REPO --parent CURRENT_ROOT --surface-parent CURRENT_ROOT --condition-root COHORT_REPORT_ROOT --output NEW_AUDIT",
+      "outputs": "Complete boundary-face/interior-node/cap histograms",
+      "checks": "Literal join controls; native IDs inside complete severe set; numerical classification bytes unchanged; all 83 native cases have no strictly interior vertex"
+    },
+    {
+      "id": "P7-C",
+      "state": "complete_three_edge_source_audit_zero_candidates",
+      "inputs": "Current forcing cap witness, full source edge incidence, original marked-curve mapping and exact stored coordinates",
+      "command": "python -B audit_cap_witness.py --job PRIVATE_JOB --output NEW_AUDIT",
+      "outputs": "Three same-tag unmarked-edge neighborhoods; valences 4, 2, 2; exact coplanarity fails for all three",
+      "checks": "Literal square and lifted/concave refusals before head; complete source edge incidence; no candidate export; quality predicates skipped after geometric refusal"
+    },
+    {
+      "id": "P8",
+      "state": "complete",
+      "inputs": "Four historical peel batches, two preceding global-quality batches and all three current actual candidates",
+      "command": "python -B UNCHANGED_check_peel_chain.py --job PRIVATE_CHAIN_JOB --output NEW_CHAIN_CHECK",
+      "outputs": "Nine-generation source ancestry and exact cumulative volume certificate",
+      "checks": "14812 total deletions; every source coordinate/retained tuple; certified surface-row coverage; actual artifact/report hashes; exact original-coordinate removed volume"
+    },
+    {
+      "id": "P9",
+      "state": "recorded_separately_in_results_and_PR",
+      "inputs": "Terminal numerical evidence, public source and English dossier",
+      "command": "make check; source replay, size/hash/link checks; GitHub CI",
+      "outputs": "Reviewable English increment and frozen private manifests",
+      "checks": "Private geometry excluded; exact source/blob/tree/commit identity; functional gates remain false"
+    },
+    {
+      "id": "NEXT",
+      "state": "pending_source_admission",
+      "inputs": "Construction-cap source, current witness neighborhood, frontier and marked curves",
+      "command": "Read-only cap trace and geometric-support audit before selecting a new retessellation or volume construction",
+      "outputs": "Separately admitted cap representation/triangulation method",
+      "checks": "Current quality criterion retained; no assumed coplanarity or measured-interface identity; preserve source/represented-surface fidelity and volume-domain invariants"
+    }
+  ],
+  "full_goal_gates": {
+    "G0_same_specimen_metrology": false,
+    "G1_faithful_editable_CAD": false,
+    "G2_correlated_engine_physics": false,
+    "G3_qualified_metal_process": false,
+    "G4_physical_inspection": false,
+    "G5_professional_engine_validation": false
+  },
+  "new_paid_compute_usd": 0
+}

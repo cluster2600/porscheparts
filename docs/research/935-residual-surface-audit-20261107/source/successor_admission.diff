@@ -1,0 +1,22 @@
+--- a/audit_global_quality_peels.py
++++ b/audit_successor_peels.py
+@@ -40,8 +40,8 @@
+     controls = {'operator': operator.controls(), 'surface_join': attribution.controls(record.records)}
+     (args.output/'controls.json').write_text(json.dumps(controls, indent=2)+'\n')
+     mesh_hash = sha(job['mesh'])
+-    assert mesh_hash == 'fdce160bc7ec2456ab339de09733d00cd2f3cd4c6a1327e03b44c838000e0db6'
+-    assert sha(job['surface']) == 'aaaa18f894d609d4c265835d97f3d191cbfad40e7be32c69e5f83437dbafacf2'
++    assert mesh_hash == '9666fe6c5be23baed95d6a47b7881ca2fa56013c2f65abcaa0470c439057e76f'
++    assert sha(job['surface']) == '68d3e97cadb00736eabfa823dd79f8e40abc57c30fc87bc5f263dcfce9c4c4f5'
+     assert sha(job['features']) == 'e5087c3cd5c90208acb56adff830bb39edc58bb0d93362b9a57b5cbf944b70f3'
+     condition = json.loads(Path(job['condition_report']).read_text())
+     volume = json.loads(Path(job['volume_report']).read_text())
+@@ -78,7 +78,7 @@
+     assert 0 < witness_quality < Fraction.from_float(.01)**2
+     with np.load(job['severe_ids'], allow_pickle=False) as data:
+         ids = data['cell_ids']
+-    assert len(ids) == condition['counts_kappa_F_at_least']['1e12'] == 12811
++    assert len(ids) == condition['counts_kappa_F_at_least']['1e12'] == 2280
+     assert len(np.unique(ids)) == len(ids) and np.all((ids >= 0) & (ids < len(cells)))
+     rows, labels, _, _, caps = attribution.surface_join(cells[ids], faces, tags, len(nodes), record.records)
+     np.savez_compressed(args.output/'private-current-attribution.npz', cell_ids=ids,
