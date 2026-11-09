@@ -1,0 +1,284 @@
+{
+  "issue": 452,
+  "status": "complete_surface_predicate_audit_and_reproduced_mesh_failure; local_refinement_rejected",
+  "source_gzip_sha256": "e8185dcb812985fb25ff41f179c628aa88c80fe737bcb5e853e9585ce1c19a20",
+  "source_stl_sha256": "6538d450216390afc4da079c6a1688a2b5e3514ed9d068a57639ee39b0a325a9",
+  "surface": {
+    "triangles": 91812,
+    "vertices": 45906,
+    "edges": 137718,
+    "components": 1,
+    "edges_not_twice": 0,
+    "edges_with_inconsistent_orientation": 0,
+    "non_circular_vertex_links": 0,
+    "signed_volume_m3": 0.031969668783959265,
+    "cgal": {
+      "CGAL_version": "6.2.1",
+      "vertices": 45906,
+      "triangles": 91812,
+      "complete": true,
+      "pairs_private": []
+    },
+    "controls": [
+      {
+        "name": "crossing",
+        "complete": true,
+        "pairs": 1
+      },
+      {
+        "name": "separated",
+        "complete": true,
+        "pairs": 0
+      },
+      {
+        "name": "shared-edge",
+        "complete": true,
+        "pairs": 0
+      },
+      {
+        "name": "shared-edge-overlap",
+        "complete": true,
+        "pairs": 1
+      },
+      {
+        "name": "coplanar-disjoint",
+        "complete": true,
+        "pairs": 0
+      }
+    ],
+    "coordinate_indexing": "exact binary64 equality, no movement or triangle deletion",
+    "image": "sha256:ad5fcbee6e6fcc0d3ad967f02e50f72354035f5395619a3c2d711f15bb00bd50",
+    "auditor_source_sha256": "476e056e35bb98f32d9d26ef8ba81f9c90ac7464f4af8ad5d76b92fa44f2689f",
+    "auditor_binary_sha256": "dcfb3a5a66d150ff9fe00cf18cf8ee5c34f980f41a11f33fc6d9e9940290f46f",
+    "execution": {
+      "argv": [
+        "docker",
+        "run",
+        "--name",
+        "issue452-cgal-20261107-duct",
+        "--network",
+        "none",
+        "--read-only",
+        "--cpus",
+        "2",
+        "--memory",
+        "2g",
+        "--pids-limit",
+        "128",
+        "--user",
+        "1000:1000",
+        "--tmpfs",
+        "/tmp:rw,nosuid,size=128m",
+        "-v",
+        "/home/lolman/installed-cooling-cgal-20261107:/input:ro",
+        "-v",
+        "/home/lolman/installed-cooling-cgal-20261107/output:/output:rw",
+        "sha256:ad5fcbee6e6fcc0d3ad967f02e50f72354035f5395619a3c2d711f15bb00bd50",
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=5",
+        "180",
+        "/output/auditor",
+        "/input/duct.bin"
+      ],
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.6108225686475635,
+      "container_state": {
+        "Status": "exited",
+        "Running": false,
+        "Paused": false,
+        "Restarting": false,
+        "OOMKilled": false,
+        "Dead": false,
+        "Pid": 0,
+        "ExitCode": 0,
+        "Error": "",
+        "StartedAt": "2026-11-07T11:59:46.827502513Z",
+        "FinishedAt": "2026-11-07T11:59:47.173786591Z"
+      },
+      "runner_sha256": "2d6d51441395fb70d0134b9cb0c6ded587b91b876cc2e6a8003c033d1f427aa3",
+      "plan_sha256": "db6289c40c22b1abde51d4ec56d8e13808147975dc609a4058284720c26d703d",
+      "stdout_sha256": "98f5869e396dab78fdfa0e30ae24e378db1fa4f1abfda7b5090944af3f03b7e6",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "topology_script_sha256": "c71078451e98aba63fac09b472fcb9d79f1d8de64e821003dbfbd96bdc10a172",
+    "historical_OpenCFD_flags": 517,
+    "flag_mechanism_resolved": false
+  },
+  "mesh_cases": [
+    {
+      "name": "unchanged-5mm",
+      "cells": 254917,
+      "concave_cells": 3,
+      "standard_check_passed": true,
+      "extended_failed_checks": 1,
+      "accepted": false,
+      "inputs_unchanged_after_execution": true,
+      "execution": {
+        "argv": [
+          "docker",
+          "run",
+          "--name",
+          "porscheparts-452-replay-20261107",
+          "--platform",
+          "linux/arm64",
+          "--network",
+          "none",
+          "--read-only",
+          "--cpus",
+          "4",
+          "--memory",
+          "8g",
+          "--pids-limit",
+          "256",
+          "--tmpfs",
+          "/tmp:rw,nosuid,size=128m",
+          "-v",
+          "/Users/maxime/Developer/PorschePartsArtifacts/installed-cooling-replay-20261107:/input:ro",
+          "-v",
+          "porscheparts-452-replay-20261107:/case",
+          "opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+          "timeout",
+          "--signal=TERM",
+          "--kill-after=5",
+          "600",
+          "bash",
+          "/input/replay.sh"
+        ],
+        "elapsed_seconds": 19.91719974996522,
+        "exit_code": 0,
+        "timed_out": false,
+        "state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-11-07T12:04:03.078336135Z",
+          "FinishedAt": "2026-11-07T12:04:22.887291546Z"
+        },
+        "plan_sha256": "087c83e96cdc5a69b8798cf3b379682babf2d53b99349e220417d89d77575f5d",
+        "runner_sha256": "b5968da898a3e83447317098c945c047797ea656681287d5f77e80369b9847f1",
+        "script_sha256": "ba917e8cb7b21903bb9b941e1a706104c994233184e6a19958d23d9238100367",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "plan_sha256": "087c83e96cdc5a69b8798cf3b379682babf2d53b99349e220417d89d77575f5d",
+      "localization_sha256": "711472d8935323fc1f27c3b039d8f218499e293fc629d9c86a83ac8e79cb7d94",
+      "standard_log_sha256": "c89941e7f525caed58eb0fff9dc85adc65cd1e20bbbada0ccbafa9c899261cca",
+      "extended_log_sha256": "4a27b36b2e39e9a44682b91226ad6fa972f818ce43d8bae817354cb0650377ea"
+    },
+    {
+      "name": "local-refinement",
+      "cells": 256594,
+      "concave_cells": 173,
+      "standard_check_passed": true,
+      "extended_failed_checks": 1,
+      "accepted": false,
+      "inputs_unchanged_after_execution": true,
+      "execution": {
+        "argv": [
+          "docker",
+          "run",
+          "--name",
+          "porscheparts-452-local-refinement-20261107",
+          "--platform",
+          "linux/arm64",
+          "--network",
+          "none",
+          "--read-only",
+          "--cpus",
+          "4",
+          "--memory",
+          "8g",
+          "--pids-limit",
+          "256",
+          "--tmpfs",
+          "/tmp:rw,nosuid,size=128m",
+          "-v",
+          "/Users/maxime/Developer/PorschePartsArtifacts/installed-cooling-local-refinement-20261107:/input:ro",
+          "-v",
+          "porscheparts-452-local-refinement-20261107:/case",
+          "opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+          "timeout",
+          "--signal=TERM",
+          "--kill-after=5",
+          "600",
+          "bash",
+          "/input/replay.sh"
+        ],
+        "elapsed_seconds": 23.849978750105947,
+        "exit_code": 0,
+        "timed_out": false,
+        "state": {
+          "Status": "exited",
+          "Running": false,
+          "Paused": false,
+          "Restarting": false,
+          "OOMKilled": false,
+          "Dead": false,
+          "Pid": 0,
+          "ExitCode": 0,
+          "Error": "",
+          "StartedAt": "2026-11-07T12:08:40.608405471Z",
+          "FinishedAt": "2026-11-07T12:09:04.349620927Z"
+        },
+        "plan_sha256": "f1ee4f3d2e87c543586337ed80e208a45e7a862358decded59c9da4f1cbf59a4",
+        "runner_sha256": "94fa550d130f334aa4fb6ec72d4585077405b5f83d533157f5020a5b012911cb",
+        "script_sha256": "ba917e8cb7b21903bb9b941e1a706104c994233184e6a19958d23d9238100367",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "plan_sha256": "f1ee4f3d2e87c543586337ed80e208a45e7a862358decded59c9da4f1cbf59a4",
+      "localization_sha256": "7e61ad36b90fe24cd5609f9cfddf158d757ca0ee349ff0eb1c4c5472d8336dcc",
+      "standard_log_sha256": "5fde47e9787242b4200d806ea669eca81e0530a351fb874ef2bf2596e85e9b09",
+      "extended_log_sha256": "8940131505ffd4df47b611c49b0b8d1763e540f1516586cbf0d2ede6a2a21637"
+    }
+  ],
+  "refinement_failure_classification": {
+    "scope": "classification of the failed local-refinement mesh, not acceptance",
+    "bad_cells": 173,
+    "bad_cell_levels": {
+      "0": 173
+    },
+    "bad_cells_adjacent_to_level_one": 173
+  },
+  "failed_preparations": [
+    {
+      "source": "/Users/maxime/Developer/PorschePartsArtifacts/installed-cooling-cgal-20261107/prepare-binary-assumption-failed.py",
+      "sha256": "ed85924873122e13178ee52e2b4f94ecd619ef9f780c4b5b412b6968a430c328",
+      "reason": "binary-STL assumption rejected; retained source is ASCII"
+    },
+    {
+      "source": "/Users/maxime/Developer/PorschePartsArtifacts/installed-cooling-replay-20261107/localize.py",
+      "sha256": "f3911cb07c8a55b14043cf1c733af0a73af3342bf468ccbf84399734f6890d42",
+      "reason": "VTK coordinate dtype is Float32 even with 64-bit input configured; refused as coordinate authority"
+    }
+  ],
+  "localization_coordinate_authority": "original ASCII polyMesh points decoded directly to binary64; VTK 9.7.1 cell point IDs independently matched to owner/neighbour/face records",
+  "raw_payloads": "retained privately in separate fresh artifact directories; not committed",
+  "collections": [
+    {
+      "path": "/Users/maxime/Developer/PorschePartsArtifacts/installed-cooling-cgal-20261107/collection.json",
+      "sha256": "0e2fa7256027d7bad6d7e2044da6e2834f74c9d50a73b55aa83a723c72c8442d"
+    },
+    {
+      "path": "/Users/maxime/Developer/PorschePartsArtifacts/installed-cooling-replay-20261107/collection.json",
+      "sha256": "b6f7fc05b475ac88794a2ce2e7933971c0db50a98897598f3223c0c31156907e"
+    },
+    {
+      "path": "/Users/maxime/Developer/PorschePartsArtifacts/installed-cooling-local-refinement-20261107/collection.json",
+      "sha256": "0ec1e479238dd3b32d5f4499fb1f41b8fafa2f1cb6b10845af85d6fd9eb39964"
+    }
+  ],
+  "mesh_admitted": false,
+  "mesh_independence_demonstrated": false,
+  "solver_started": false,
+  "geometry_modified": false,
+  "manufacturing_authorized": false
+}

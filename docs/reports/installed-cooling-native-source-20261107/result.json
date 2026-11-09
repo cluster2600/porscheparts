@@ -1,0 +1,399 @@
+{
+  "issue": 452,
+  "status": "source_and_conversion_verified_volume_mesh_rejected",
+  "source": {
+    "source_gzip_sha256": "68096ffaa1bc5e4134ec7045e603643273ae12ef703390d24ac0bc608e56419b",
+    "source_cleaned_stl_sha256": "4d91f2518aa7a92f2628783852ec77a13fcb772d5d31a35614b7fc8cff32d025",
+    "indexed_sha256": "7dd050d458585f0272058ffa01b74ba3c638071b755492540b463342a7ec4c2b",
+    "vertices": 459068,
+    "triangles": 918136,
+    "units": "mm",
+    "coordinates_exactly_preserved": true,
+    "nonpositive_area_triangles": 0,
+    "quality_below_0_01": 0,
+    "quality_quantiles": [
+      0.2040984796612866,
+      0.5452098256027843,
+      0.8660033427305144,
+      0.9659672648148385,
+      0.9999747180102574
+    ],
+    "maximum_edge_mm": 2.639561279913496,
+    "signed_volume_mm3": 31980383.828581516,
+    "mesh_admitted": false
+  },
+  "source_topology": {
+    "input_sha256": "7dd050d458585f0272058ffa01b74ba3c638071b755492540b463342a7ec4c2b",
+    "script_sha256": "48a03eb6d78f25b1c44376d4f3d73931f56b6d689ac74afa0135d9ad8ec23462",
+    "vertices": 459068,
+    "triangles": 918136,
+    "edges": 1377204,
+    "components": 1,
+    "edges_not_twice": 0,
+    "edges_with_inconsistent_orientation": 0,
+    "non_circular_vertex_links": 0,
+    "euler_characteristic": 0,
+    "signed_volume_mm3": 31980383.828581512,
+    "geometry_modified": false,
+    "physical_qualification": false,
+    "mesh_admitted": false
+  },
+  "source_intersections": {
+    "CGAL_version": "6.2.1",
+    "vertices": 459068,
+    "triangles": 918136,
+    "complete": true,
+    "pairs_private": []
+  },
+  "source_audit_controls": {
+    "crossing": {
+      "expected_pairs": 1,
+      "actual_pairs": 1
+    },
+    "separated": {
+      "expected_pairs": 0,
+      "actual_pairs": 0
+    },
+    "shared-edge": {
+      "expected_pairs": 0,
+      "actual_pairs": 0
+    },
+    "shared-edge-overlap": {
+      "expected_pairs": 1,
+      "actual_pairs": 1
+    },
+    "coplanar-disjoint": {
+      "expected_pairs": 0,
+      "actual_pairs": 0
+    }
+  },
+  "feature_inspection": {
+    "feature_points": 6494,
+    "feature_edges": 6732,
+    "direct_binary64_source_point_matches": 0,
+    "float32_then_binary64_source_point_matches": 6494,
+    "all_feature_edges_are_source_triangle_edges": true,
+    "source_vertices_collapsed_by_float32": 0,
+    "max_coordinate_rounding_error_m": 1.478195188475695e-08,
+    "feature_segments_with_bbox_overlapping_failed_cell_bbox": {
+      "209810": 3,
+      "209833": 7
+    },
+    "strict_original_binary64_acceptance": false,
+    "mesh_admitted": false
+  },
+  "native_ingestion": {
+    "native_obj_sha256": "653e206631bd6a3077be96af64a642eeacb12ed2ac2e8c9c81c3358fd0f2bfc9",
+    "expected_ingested_binary_sha256": "80daaea26b32bc5a39579128f73a40e463a72624aff51ebbe1908db5ef6c19ca",
+    "all_459068_points_match_binary32_rounding_exactly": true,
+    "all_918136_oriented_triangles_and_patch_labels_preserved": true,
+    "patch_checks": {
+      "inlet": true,
+      "left1": true,
+      "left2": true,
+      "left3": true,
+      "right1": true,
+      "right2": true,
+      "right3": true,
+      "walls": true
+    },
+    "mesh_admitted": false
+  },
+  "ingested_surface_intersections": {
+    "CGAL_version": "6.2.1",
+    "vertices": 459068,
+    "triangles": 918136,
+    "complete": true,
+    "pairs_private": []
+  },
+  "gmsh_converter_control": {
+    "cells": 12,
+    "points": 9,
+    "oriented_boundary_triangles_and_names_preserved": {
+      "bottom": true,
+      "top": true,
+      "front": true,
+      "right": true,
+      "back": true,
+      "left": true
+    },
+    "point_values_match_declared_10_digit_write_precision": true,
+    "all_cell_volumes_positive_exactly": true,
+    "sum_volume_exact_m3": "1",
+    "native_standard_check": "passed",
+    "native_extended_check": "passed",
+    "physical_qualification": false,
+    "files": {
+      "points": "1e6a2c1867d6ab7093e0800e24370c571de2d1147af89883f3dfd3f8f5e1d3b7",
+      "faces": "527ce6a6b439efd379b00de54bd9016d809bbb51af42c4c71b19f2dea76c796e",
+      "owner": "ef91e840c23e907698cd895e8fb744729f2c7a512ff11cd1200a5c9bef4e7dcc",
+      "neighbour": "1ac2bd311640c99e5574e470d3462f5237cf07dda8fbc5c887a941d0c96c43d0",
+      "boundary": "08195802b292348e1f5eb6fa4a425eb131ed971859d6e7d7fb5449db2f6544b7"
+    }
+  },
+  "full_source_trial": {
+    "cells": 254962,
+    "points": 268446,
+    "concave_cells": [
+      209810,
+      209833
+    ],
+    "concave_face_warnings": 17,
+    "standard": "passed",
+    "extended": "failed",
+    "elapsed_seconds": 23.281546708894894,
+    "source_surface": {
+      "sha256": "da61a064dd9bb6f46653ec6fe6ea33b5642859300dd1851f28812e84ed1c83ad",
+      "bytes": 240236439
+    }
+  },
+  "feature_snap_trial": {
+    "cells": 254962,
+    "points": 268180,
+    "concave_cells": [
+      41925,
+      49793,
+      209834,
+      209857,
+      231532,
+      231557,
+      238251,
+      239260
+    ],
+    "concave_face_warnings": 45,
+    "standard": "passed",
+    "extended": "failed",
+    "elapsed_seconds": 41.24035254097544,
+    "feature_contract": {
+      "source_feature_edges": 6732,
+      "native_ingestion_verified": true,
+      "exact_original_binary64_coordinates_preserved": false,
+      "verified_ingestion": "all source coordinates round once to binary32, all oriented triangles and 8 patch labels preserved",
+      "max_coordinate_rounding_error_m": 1.478195188475695e-08,
+      "ingestion_receipt_sha256": "9e225642403c88e3aa88605db2abd2f6402f1481a8b55fa35def97496ecf36e4",
+      "feature_inspection_sha256": "820e366301ef71fc0e01eebec265df508de63b4404a7640aa6af7faa3854942d",
+      "rounded_surface_audit_sha256": "47d0fce6ddc7f0e7da3948a2df5b22e3f5c776c02f358a8978d46a8e41c9dd03"
+    }
+  },
+  "tetrahedral_trial": {
+    "exit_code": -15,
+    "elapsed_seconds": 170.65608637500554,
+    "peak_sampled_rss_bytes": 4317855744,
+    "stop_reason": "rss_limit",
+    "native_mesh_admitted": false,
+    "solver_started": false
+  },
+  "private_receipts": {
+    "installed-cooling-native-source-20261107": {
+      "source-inspection.json": {
+        "sha256": "1e995ccfc9c87171665f7c0922e5e760b439cb0247646cfc3116a1f291b4f8d6",
+        "bytes": 705
+      },
+      "initial-hash-check.json": {
+        "sha256": "c3cbcb5663067276a5bc6d68b14cd33f033ca048354be034ce03f7672a7bfaf7",
+        "bytes": 492
+      },
+      "inspect_source.py": {
+        "sha256": "270c3705848d488828e6de99b7eeeb7d4dcdc8e81864dcd657c2fba63b4f0296",
+        "bytes": 2023
+      },
+      "audit.json": {
+        "sha256": "47d0fce6ddc7f0e7da3948a2df5b22e3f5c776c02f358a8978d46a8e41c9dd03",
+        "bytes": 97
+      },
+      "audit-execution.json": {
+        "sha256": "acb16ec44065cd9d7b7603b9833ba3572062b794fd69bb81fca333d0bb1f16e7",
+        "bytes": 123
+      },
+      "topology.json": {
+        "sha256": "7630e0744d1c7832efd6192cb86ae5829d65506f1864f2136238838b5719684c",
+        "bytes": 525
+      },
+      "prepare_mesh.py": {
+        "sha256": "98467fcd303133a32d6684619c84c45983619ffc90be6dfadf8e94340433f6fd",
+        "bytes": 3769
+      },
+      "prepare_mesh-initial.py": {
+        "sha256": "a4f0b51053d34bdd9e15ef71e1a4339c80fd009e1836864133bad6067e33a29d",
+        "bytes": 3556
+      },
+      "preparation-initial-failure.json": {
+        "sha256": "50d4a89a18a1a51858685e1ffd3203c95a29e5d10ef5c410ff1e48b0bce93e53",
+        "bytes": 294
+      },
+      "prepare_tet.py": {
+        "sha256": "ad6ba3b6eb8e0a6822a671bdabedf0d318d2026dae00fde2260a7923bee7d2de",
+        "bytes": 2546
+      }
+    },
+    "installed-cooling-feature-extract-20261107": {
+      "plan.json": {
+        "sha256": "545a9386df5e6846ed665fd012293343724d8b0e2d45cd79e38919aa28f9618b",
+        "bytes": 4391
+      },
+      "execution.json": {
+        "sha256": "81c93e2c839b822ca06796ca15c169027f305ca40e9989f8880932a2bca8b6ac",
+        "bytes": 1523
+      },
+      "duct.eMesh": {
+        "sha256": "48aecf0a9792339b68063dffc22c22d469aa3befeee342425e59ae24398b7373",
+        "bytes": 497806
+      },
+      "log.surfaceFeatureExtract": {
+        "sha256": "ae9c4274391ae07eee525e4f1f4a50b6e7b566613e52c99197b40ad890105641",
+        "bytes": 3632
+      },
+      "inspect_features.py": {
+        "sha256": "50b6075ff59c938c14aa03f5f6f919339de553945b9d1094bf79b1c3651eb355",
+        "bytes": 2822
+      },
+      "feature-inspection.json": {
+        "sha256": "820e366301ef71fc0e01eebec265df508de63b4404a7640aa6af7faa3854942d",
+        "bytes": 488
+      },
+      "native.obj": {
+        "sha256": "41ab5345037c64caacf33028beb65678420bf7ce17845c845e77260e9d0599ba",
+        "bytes": 33069457
+      },
+      "native17.obj": {
+        "sha256": "653e206631bd6a3077be96af64a642eeacb12ed2ac2e8c9c81c3358fd0f2bfc9",
+        "bytes": 49743723
+      },
+      "log.native-ingestion": {
+        "sha256": "6a845ad3a0e1fabe48d38bef845a29a727a9f5cbaad342daf2909b7d386522bc",
+        "bytes": 1252
+      },
+      "log.native-ingestion17": {
+        "sha256": "1144de1569d15297dbf1f4c06104fa2df094afdda5473f542201684f583219c0",
+        "bytes": 1589
+      },
+      "verify_ingestion.py": {
+        "sha256": "be27ae24b89a5a6f98897c6ed8e57c6f59b221602a79240e1a3269bfb9a36f87",
+        "bytes": 2374
+      },
+      "ingestion-verification.json": {
+        "sha256": "9e225642403c88e3aa88605db2abd2f6402f1481a8b55fa35def97496ecf36e4",
+        "bytes": 533
+      },
+      "ingested-surface-audit.json": {
+        "sha256": "47d0fce6ddc7f0e7da3948a2df5b22e3f5c776c02f358a8978d46a8e41c9dd03",
+        "bytes": 97
+      },
+      "verify_ingestion_v2.py": {
+        "sha256": "71129caaeb58ba39f5ea6f4be65eb85ace836c181fe3b9147b31342e753fa958",
+        "bytes": 3012
+      },
+      "ingestion-verification-v2.json": {
+        "sha256": "9e225642403c88e3aa88605db2abd2f6402f1481a8b55fa35def97496ecf36e4",
+        "bytes": 533
+      },
+      "historical-label-replay.json": {
+        "sha256": "f0995de5da69cb02f9a0139a11980adc9eed4be1468f733c9c7d1f0b2ba05373",
+        "bytes": 548
+      }
+    },
+    "installed-cooling-native-mesh-20261107": {
+      "plan.json": {
+        "sha256": "9486ef2e2fbf1e6a41e43be2fdd2df402b7c63fd051e4ae54edc0deaf4659ae3",
+        "bytes": 3955
+      },
+      "execution.json": {
+        "sha256": "faf942c43bbb41383afb9395d83d4e6142ba4547306762aaceddf116c6396881",
+        "bytes": 1516
+      },
+      "localization.json": {
+        "sha256": "27b9d295eca37e5140a955b30757d38dbcd4f7dae670eb9c686151f9df2dcb6c",
+        "bytes": 3667
+      },
+      "localize.py": {
+        "sha256": "289fcc73669e55eb398609d1391a7a6d1db88eea5a5603923e6779b6d7fc5557",
+        "bytes": 5355
+      },
+      "assessment.json": {
+        "sha256": "d1eef6f6e8fed9211ecffc051f2c9cc13aa201c341ea90851ca8cd3a549e4257",
+        "bytes": 738
+      },
+      "collection.json": {
+        "sha256": "f125deb1eaaec07324d8c3bd06ca993d541e3aa795213bce86327f90b89fb386",
+        "bytes": 8339
+      }
+    },
+    "installed-cooling-feature-mesh-20261107": {
+      "plan.json": {
+        "sha256": "f420410c9cd58b938fb1a883c03bd058de0b68da1212fd427def455738e73bd9",
+        "bytes": 5133
+      },
+      "execution.json": {
+        "sha256": "41ea3980335f43534fadc1431c5b9ae0e0d75ab215028f17946d766c4757fcc3",
+        "bytes": 1514
+      },
+      "localization.json": {
+        "sha256": "e7e53899f13f970663227a229c534eef0e3e84dd08067d632e43b9e8c823443e",
+        "bytes": 11326
+      },
+      "localize.py": {
+        "sha256": "4ccad08f907bd117a63d613c5152a82ed6481d4737c6f4da9f43016bff4472bb",
+        "bytes": 5395
+      }
+    },
+    "installed-cooling-native-tet-20261107": {
+      "execution-plan.json": {
+        "sha256": "23b19b2c9b667af0530cf8be25c04cd399891cf07444fa89df7ab2c2f0dc15c0",
+        "bytes": 540
+      },
+      "execution.json": {
+        "sha256": "5e9be2259820e49ad5dba838e0a17837f22b46387bbd4ac175a6c5e09c823ea2",
+        "bytes": 193
+      },
+      "duct-plan.json": {
+        "sha256": "33aadd7624c39c58cd91538280ebe655933ce27f349f6c6b76439080c0633cc3",
+        "bytes": 666
+      },
+      "mesh_duct.py": {
+        "sha256": "48d4f2caeac29a78c33302375cc415b7d1ad5efc36c0834ea798c423f651ab07",
+        "bytes": 4527
+      },
+      "native.log": {
+        "sha256": "b7d8f349646cc45ffdc049fd1348f6e13f6217ea7134b2126f7262e71530620b",
+        "bytes": 119917
+      }
+    },
+    "installed-cooling-gmsh-converter-v2-20261107": {
+      "plan.json": {
+        "sha256": "5e5ca02beb4c9a916bf74ae57fa3d592467de1ca5e8d319708af069127980437",
+        "bytes": 768
+      },
+      "cube.msh": {
+        "sha256": "54a2fe81dfcb612cbf287704718509b1f28597b03426fa0354e101910df6d5b2",
+        "bytes": 753
+      },
+      "verify.py": {
+        "sha256": "3818d0c9db331edee48b6e373829910c03cb9ea72aad336bc612ff3a07c46513",
+        "bytes": 2916
+      },
+      "verification.json": {
+        "sha256": "363bbcf4923bf18b7632c8dd00b615495c5472a7067b5723d725aa4fe22c2dd8",
+        "bytes": 881
+      },
+      "verify-v2.py": {
+        "sha256": "94e0ab1ce08c8a76b5ce89b61b3ff91ee1fd7d9e79cc41efeab4bd45a3462560",
+        "bytes": 3050
+      },
+      "verification-v2.json": {
+        "sha256": "363bbcf4923bf18b7632c8dd00b615495c5472a7067b5723d725aa4fe22c2dd8",
+        "bytes": 881
+      }
+    }
+  },
+  "mesh_admitted": false,
+  "flow_solver_started": false,
+  "physical_qualification": false,
+  "historical_label_replay": {
+    "all_historical_patch_labels_reproduced": true,
+    "triangles": 91812,
+    "current_label_source_sha256": "591d901a9ffec1cca46d297a81964bf018c00767ca99fd8b724c0a31846198ff",
+    "current_study_sha256": "cc79c29e97717e57f20593082f1ff2154fd263681fe214d43abcd123a2aa4fa3",
+    "historical_regions_sha256": "689cf3d76f2a69e6d39cb26b0e375eba6cefd0f2716aa64778af32beb7ab95a6",
+    "scope": "Current pure label function reproduces every historical CFD patch label; source-file hashes differ from the historical preparation and are not treated as identical."
+  }
+}

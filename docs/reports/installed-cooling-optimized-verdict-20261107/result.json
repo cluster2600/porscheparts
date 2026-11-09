@@ -1,0 +1,249 @@
+{
+  "execution": {
+    "exit_code": 0,
+    "elapsed_seconds": 540.0623732090462,
+    "peak_sampled_rss_bytes": 3003432960,
+    "stop_reason": null,
+    "native_mesh_admitted": false,
+    "solver_started": false
+  },
+  "mesh": {
+    "patch_triangle_checks": {
+      "walls": true,
+      "left1": true,
+      "inlet": true,
+      "left2": true,
+      "left3": true,
+      "right1": true,
+      "right2": true,
+      "right3": true
+    },
+    "original_points_unchanged": true,
+    "tetrahedra": 1979148,
+    "all_positive": true,
+    "volume_m3": 0.03198038331459504,
+    "source_volume_m3": 0.03198038331459504,
+    "mesh_sha256": "76c052c1df8613905055a4befebe05f3fd8f481f6210a6371bd9e09eb1c004d5",
+    "mesh_admitted": false,
+    "solver_started": false
+  },
+  "export": {
+    "source_vertices": 459068,
+    "exported_points": 598793,
+    "original_vertex_ids_exact": true,
+    "matches_16_significant_decimal_digits": false,
+    "coordinate_mismatches": 0,
+    "max_absolute_coordinate_error_m": 0.0,
+    "export_accepted": true
+  },
+  "native": {
+    "container_status": "exited",
+    "exit_code": 0,
+    "oom_killed": false,
+    "started_at": "2026-11-07T14:37:26.63114122Z",
+    "finished_at": "2026-11-07T14:38:29.613307513Z",
+    "standard_mesh_ok": true,
+    "extended_failed_checks": 2,
+    "low_determinant_cells": 44239,
+    "low_interpolation_weight_faces": 455,
+    "concavity_check_ok": true,
+    "skewness_check_ok": true,
+    "severe_nonorthogonal_faces_warning": 1138,
+    "mesh_admitted": false,
+    "solver_started": false,
+    "raw_case_preserved_in_docker_volume": "porscheparts-452-hxt-optimized-converter-20261107",
+    "logs": {
+      "log.checkMesh-extended": {
+        "sha256": "c4a61b77dea58a78259f7ae805104178cb1878ae5f9cf4e164d010dac7b8ed91",
+        "bytes": 6676
+      },
+      "log.checkMesh-standard": {
+        "sha256": "fd9218ffc48d60b88dfd2340be36356be93a3e5402555df64f139e87889f74b0",
+        "bytes": 4462
+      },
+      "log.gmshToFoam": {
+        "sha256": "69c4a5c1fc986154e34824be1e76e58fb826699f0a1ff4c80f2b02aaeadda4b4",
+        "bytes": 2949
+      }
+    }
+  },
+  "classification": {
+    "cells": 1979148,
+    "bad_determinant_cells": 44239,
+    "bad_cells_by_internal_face_count": {
+      "2": 3221,
+      "3": 40587,
+      "4": 431
+    },
+    "all_cells_by_internal_face_count": {
+      "2": 3221,
+      "3": 911694,
+      "4": 1064233
+    },
+    "bad_cells_with_no_boundary_faces": 431,
+    "patches": {
+      "walls": {
+        "faces": 861690,
+        "bad_cells_touching_patch": 43628
+      },
+      "left1": {
+        "faces": 4633,
+        "bad_cells_touching_patch": 24
+      },
+      "inlet": {
+        "faces": 28648,
+        "bad_cells_touching_patch": 174
+      },
+      "left2": {
+        "faces": 4633,
+        "bad_cells_touching_patch": 25
+      },
+      "left3": {
+        "faces": 4633,
+        "bad_cells_touching_patch": 14
+      },
+      "right1": {
+        "faces": 4633,
+        "bad_cells_touching_patch": 25
+      },
+      "right2": {
+        "faces": 4633,
+        "bad_cells_touching_patch": 31
+      },
+      "right3": {
+        "faces": 4633,
+        "bad_cells_touching_patch": 17
+      }
+    },
+    "low_weight_faces_internal": 455,
+    "low_weight_faces_boundary": 0,
+    "low_weight_owner_internal_face_count": {
+      "2": 13,
+      "3": 198,
+      "4": 244
+    },
+    "mesh_admitted": false,
+    "inputs": {
+      "mesh/owner": "da4d22f77d041fa407216159fa4442ae7000e079327463136d077719c829b4cd",
+      "mesh/neighbour": "346a1aa1a175cd74fa1667d37d88ccd3e38640541c5cb0feb199720c605a4d2a",
+      "mesh/boundary": "03146cd7986e566ccfc45dec34be76480edb1dbb1fb56b049d4e28759be81497",
+      "mesh/sets/underdeterminedCells": "d5005a8b4f5e9d0f718c153e8392407bf943942b618acf27918ca2aebbced10a",
+      "mesh/sets/lowWeightFaces": "18ec04be8ebd118ec0ed3bd87bf390545f8f24bbf732a6eebc510528aa27bbec"
+    }
+  },
+  "determinant": {
+    "native_state": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-11-07T14:46:24.683433513Z",
+      "FinishedAt": "2026-11-07T14:47:13.559075632Z"
+    },
+    "native_determinant_set_reproduced_exactly": true,
+    "native_low_weight_adjacent_cells_reproduced_exactly": false,
+    "vol_field_cells_below_005": 449,
+    "expected_adjacent_cells_below_005": 449,
+    "expected_adjacent_weight_range": [
+      0.020635066236021307,
+      0.9583470321143553
+    ],
+    "low_weight_adjacent_cells": 905,
+    "determinant_failures_by_internal_face_count": {
+      "2": {
+        "cells": 3221,
+        "minimum": 1.1628023643424166e-21,
+        "median": 3.1946979229667048e-18,
+        "maximum": 3.3745415125784925e-17,
+        "worst_cell": 590992
+      },
+      "3": {
+        "cells": 40587,
+        "minimum": 1.1177653052779507e-05,
+        "median": 0.0007128996121575727,
+        "maximum": 0.000999942389501797,
+        "worst_cell": 329947
+      },
+      "4": {
+        "cells": 431,
+        "minimum": 7.234884820002614e-05,
+        "median": 0.0007695446288846606,
+        "maximum": 0.0009985693276214603,
+        "worst_cell": 195310
+      }
+    },
+    "all_cell_determinant_minimum": 1.1628023643424166e-21,
+    "all_cell_determinant_maximum": 0.29602401908214965,
+    "minimum_interpolation_weight": 0.020635066236021307,
+    "mesh_admitted": false,
+    "hashes": {
+      "cellDeterminant": "9303d338ff6b5920400f7aceffdc3009ed3c22fda7b1c7adb1e0705e02d31ade",
+      "faceWeight": "078c3a97a684743b688748eb7474f64a5222520163ba632af2fda49a9a203295",
+      "log.quality-fields": "93359054c9596cfc895c3317dea430cf7ad08c93d4d970f657d00fab920309b6"
+    }
+  },
+  "surface_weight": {
+    "native_low_weight_face_set_reproduced_exactly": true,
+    "internal_faces": 3499228,
+    "failing_faces": 455,
+    "minimum_symmetric_weight": 0.020635066236021307,
+    "field_sha256": "c8eb4bce5f6a3e5c1141b2359917706276734ffeab1fb1e083dba104408b7a92",
+    "mesh_admitted": false,
+    "note": "Surface-field verification; the earlier cell-field adjacent-cell equivalence hypothesis remains rejected."
+  },
+  "receipts": {
+    "execution": {
+      "private_relative_path": "installed-cooling-hxt-optimized600-20261107/execution.json",
+      "sha256": "599fc735421174ea5483969922c28e706db287a9c261be9e934ae41fef6c231e"
+    },
+    "mesh": {
+      "private_relative_path": "installed-cooling-hxt-optimized600-20261107/duct-result.json",
+      "sha256": "73765253747b31352f81428982297a392ed50be1a5dcdd2c221874785f57aa49"
+    },
+    "export": {
+      "private_relative_path": "installed-cooling-hxt-optimized600-20261107/export-coordinate-check.json",
+      "sha256": "5cdb53912f4542d0f0f6093fbdeb3e15d05851e433ff419ef07af956a10a44e9"
+    },
+    "native": {
+      "private_relative_path": "installed-cooling-hxt-optimized-converter-20261107/assessment.json",
+      "sha256": "a3b9ee0c95fc83cfb64a3bbdd4d1eb8e82b165098453d87082b4afb362c89c21"
+    },
+    "classification": {
+      "private_relative_path": "installed-cooling-hxt-optimized-converter-20261107/failure-classification.json",
+      "sha256": "3440254d3ffef5d7a51d8b5d1b643c97300d17c4cc70151526838f084d394721"
+    },
+    "determinant": {
+      "private_relative_path": "installed-cooling-hxt-quality-fields-20261107/verification.json",
+      "sha256": "a99a361699c0c34c77da6b831946de9c4368a5bcb4be40b562b39c54d1892d6b"
+    },
+    "surface_weight": {
+      "private_relative_path": "installed-cooling-hxt-quality-fields-20261107/surface-verification.json",
+      "sha256": "1779d5b17e3a424662e4d846a1d7eb8bd6f3676b883fde42d81cf66ecd129407"
+    },
+    "exported_chain": {
+      "private_relative_path": "installed-cooling-hxt-optimized600-20261107/export-chain-verification.json",
+      "sha256": "bdbfbdc1a87eefb7c4a9cab6cdb6902ea0258fa00ef51ce505edf0ad8ace9f1f"
+    }
+  },
+  "mesh_admitted": false,
+  "solver_started": false,
+  "exported_chain": {
+    "internal_faces": 3499228,
+    "boundary_faces": 918136,
+    "tetrahedra": 1979148,
+    "source_coordinates_exact": true,
+    "source_patch_triangles_exact": true,
+    "all_internal_faces_cancel": true,
+    "duplicate_tetrahedra": false,
+    "all_float64_volumes_positive": true,
+    "float64_volume_sum_m3": 0.031980383314595025,
+    "minimum_float64_cell_volume_m3": 1.786211284850837e-11,
+    "mesh_admitted": false,
+    "mesh_sha256": "76c052c1df8613905055a4befebe05f3fd8f481f6210a6371bd9e09eb1c004d5"
+  }
+}
