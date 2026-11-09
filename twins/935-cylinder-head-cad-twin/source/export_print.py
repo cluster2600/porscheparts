@@ -18,16 +18,38 @@ import numpy as np
 NOTICE = "935 bare-head CAD twin, study only: fit-check object, not an engine part, not a metal build file"
 
 
+def read_back(path):
+    """Stream-parse the written 3MF (no full DOM) and rebuild the mesh."""
+
+    import zipfile
+
+    import trimesh
+    from lxml import etree
+
+    verts, tris = [], []
+    with zipfile.ZipFile(path) as z:
+        name = next(n for n in z.namelist() if n.endswith(".model"))
+        with z.open(name) as fh:
+            for _, el in etree.iterparse(fh, events=("end",)):
+                tag = el.tag.rsplit("}", 1)[-1]
+                if tag == "vertex":
+                    verts.append((float(el.get("x")), float(el.get("y")), float(el.get("z"))))
+                elif tag == "triangle":
+                    tris.append((int(el.get("v1")), int(el.get("v2")), int(el.get("v3"))))
+                el.clear()
+    return trimesh.Trimesh(np.array(verts), np.array(tris), process=False)
+
+
 def main(src, out, report):
     import trimesh
 
     m = trimesh.load(src, force="mesh")
     m.metadata["name"] = "935-bare-head-twin-study"
     m.metadata["notice"] = NOTICE
-    data = trimesh.exchange.threemf.export_3mf(m)
+    data = trimesh.exchange.threemf.export_3MF(m)
     with open(out, "wb") as fh:
         fh.write(data)
-    back = trimesh.load(out, force="mesh")
+    back = read_back(out)
     rep = {
         "schema": "935-cad-twin-print/1",
         "notice": NOTICE,

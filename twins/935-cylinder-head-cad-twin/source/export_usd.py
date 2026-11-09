@@ -7,7 +7,7 @@
     Datums                    frame, deck, register and flange data as customData
 
 The observed/inferred colouring is a visual aid; the evidence is the
-independent scorecard. Validated with OpenUSD's UsdUtils.ComplianceChecker.
+independent scorecard. Validated with the OpenUSD 26 UsdValidation framework (all registered validators).
 
 Usage: export_usd.py PRIVATE_DIR PARAMS_DIR SURFACE.stl OUT.usda
 """
@@ -48,7 +48,7 @@ def classify(tv, tf, bare_v, bare_f):
 
 def main(private, params, surface, out):
     import trimesh
-    from pxr import Gf, Sdf, Usd, UsdGeom, UsdUtils, Vt
+    from pxr import Gf, Sdf, Usd, UsdGeom, UsdValidation, Vt
 
     private, params = Path(private), Path(params)
     frame = json.loads((params / "frame.json").read_text())
@@ -114,20 +114,25 @@ def main(private, params, surface, out):
         [{k: r[k] for k in ("name", "diameter_mm", "depth_below_deck_mm")} for r in frame["rings"]]))
     stage.GetRootLayer().Save()
 
-    checker = UsdUtils.ComplianceChecker(arkit=False, skipARKitRootLayerCheck=True, rootPackageOnly=False)
-    checker.CheckCompliance(str(out))
+    # OpenUSD 26 validation framework (replaces the removed ComplianceChecker).
+    registry = UsdValidation.ValidationRegistry()
+    validators = registry.GetOrLoadAllValidators()
+    errors = UsdValidation.ValidationContext(validators).Validate(Usd.Stage.Open(str(out)))
+    by_type = {}
+    for e in errors:
+        by_type.setdefault(str(e.GetType()).split(".")[-1], []).append(f"{e.GetName()}: {e.GetMessage()[:160]}")
     report = {
         "schema": "935-cad-twin-usd/1",
         "surface_triangles": int(len(tf)),
         "studs": n,
         "inferred_face_share": round(float(inferred.mean()), 5),
         "inferred_area_share": round(float(mesh.area_faces[inferred].sum() / mesh.area), 5),
-        "compliance_errors": list(checker.GetErrors()),
-        "compliance_failed_checks": list(checker.GetFailedChecks()),
-        "compliance_warnings": list(checker.GetWarnings())[:20],
+        "validators_run": len(validators),
+        "validation_findings_by_type": {k: v[:20] for k, v in by_type.items()},
+        "validation_error_count": len(by_type.get("Error", [])),
         "usd_version": ".".join(map(str, Usd.GetVersion())),
         "pending": "NVIDIA usd-convert-cad STEP->USD and omni.asset_validator need the 10 GB SimReady image "
-                   "(not pulled: 37 GB free on this host)",
+                   "(not pulled: insufficient free disk on this host; see README)",
     }
     (params / "usd-summary.json").write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report, indent=1))

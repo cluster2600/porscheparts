@@ -185,6 +185,46 @@ self-intersection (3 rounds, 6,363 vertices). Connectivity never changes.
 
 T1s is the reference twin surface.
 
+### T3 steady thermal screen ([thermal-screen.json](params/thermal-screen.json))
+
+Declared hypothesis case, uncorrelated with any engine: generic cast
+aluminium (k = 150 W/m·K), chamber wall fixed at 220 °C, every other face
+cooled by air at 40 °C with h = 80 W/m²·K. Mesh: Gmsh HXT inside the
+marching-cubes surface of the occupancy field coarsened to 1.0 mm (400k
+triangles, watertight, genus 9). Solver: CalculiX 2.21, iterative Cholesky.
+
+| Quantity | 1.0 mm surface |
+|---|---|
+| Tetrahedra / nodes | 4,949,566 / 892,919 (no inverted element; 0.4% with minSICN < 0.1) |
+| Temperature min / mean / p95 / max | 146.6 / 189.3 / 214.6 / 220.0 °C |
+| Heat entering at the chamber | 1,643.4 W |
+| Convective loss recomputed independently | 1,648.0 W (imbalance 0.28%) |
+
+The first attempt failed because the deck used node set `NALL` before
+defining it ([attempt 1](params/thermal-attempt-1.json)). The deck writer now
+defines it. fTetWild was stopped after 2 h 42 min of CPU without output. A
+0.75 mm level is running as the mesh-sensitivity check.
+
+### T4 OpenUSD stage ([usd-summary.json](params/usd-summary.json))
+
+`/Head935` (Z-up, millimetres) holds:
+
+- the T1s display surface (600k triangles) with per-face colour: grey is
+  observed, orange inferred (12.8% of area);
+- the 10 studs as hardware cylinders;
+- the datums as customData.
+
+All 30 OpenUSD 26 validators report no finding. The NVIDIA usd-convert-cad
+and omni.asset_validator pass needs the SimReady image (10 GB compressed),
+which does not fit on this host's disk yet.
+
+### T5 print study ([print-summary.json](params/print-summary.json))
+
+A single-object 3MF of T1s in millimetres: 7,081,318 triangles, watertight,
+consistent winding. A streaming re-read gives exactly the same volume
+(1,095,212.3 mm³). The file is labelled as a fit-check study object, never
+an engine part or a metal build file.
+
 ### T2 editable B-rep: measured negative result
 
 The band-stack B-rep was tried on a 10 mm slab (z 20–30 mm) and stopped
@@ -215,10 +255,10 @@ carries simulation, print and USD.
 | T1s snap | T1, scan | private snapped surface; [summary](params/t1s-snap-summary.json) | connectivity unchanged, watertight, 0 self-intersections | done: p95 0.015 mm ([scorecard](params/scorecard-t1s.json)) |
 | T2 B-rep v0 | occupancy | none | BRepCheck | measured negative result (see above) |
 | Simulation surface | occupancy at 0.75 mm | private; [summary](params/sim-surface-mc075-summary.json) | watertight, genus 21 | done |
-| T3 thermal | 0.75 mm surface | private deck and logs; [attempt 1](params/thermal-attempt-1.json) | mesh quality, solver return | Gmsh 9.6 M tets done; CalculiX rejected the deck (NALL undefined, now fixed); re-run pending |
+| T3 thermal | 1.0 mm surface | private deck and fields; [result](params/thermal-screen.json) | mesh quality, solver return, energy balance 0.28% | done at 1.0 mm; 0.75 mm sensitivity level running |
 | Screenshots | T1, scan | private renders; public [scorecard chart](media/scorecard-t1-cdf.png) | visual review | done |
-| T4 USD | T1, frame, hypotheses | private `.usdc` | OpenUSD compliance | script ready, not yet run |
-| T5 print | T1 | private 3MF | round-trip volume | script ready, not yet run |
+| T4 USD | T1s, frame, hypotheses | private `.usdc`; [summary](params/usd-summary.json) | 30 OpenUSD validators | done, 0 findings |
+| T5 print | T1s | private 3MF; [summary](params/print-summary.json) | streaming round trip | done, exact volume |
 | v1 features | frame, scan | analytic deck, register, stud passages, flanges, chamber, ports | per-feature scorecard | next |
 | Port CFD | v1 ports | OpenFOAM steady port flow | mesh/flux convergence | blocked by v1 ports |
 | SimReady | T2 STEP | NVIDIA usd-convert-cad + omni.asset_validator | validator report | needs the 10 GB image on X1/Kali |
