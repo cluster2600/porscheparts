@@ -293,8 +293,8 @@ Sloped port and dome walls defeat band merging, and OCCT cannot glue
 hundreds of dense prisms into one valid solid. A full-body editable B-rep
 therefore needs a real feature tree: each fin as one extrusion of its
 observed mid-plane outline, a revolved deck/register/chamber, and ports as
-lofts through observed sections. That is the next milestone. T1 already
-carries simulation, print and USD.
+lofts through observed sections. That feature tree is v1 below; it stops at
+69.9% within 0.2 mm, and the body is now the v2 section loft.
 
 ### v1 feature tree: deck-plate baseline ([features](params/deck-features.json), [score](params/deck-features-score.json))
 

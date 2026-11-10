@@ -47,6 +47,7 @@ tool beyond that table.*
 | Part images after a geometry change | `scripts/render_part_previews.py` | `make part-previews` (each part runs in `3dprinting993-cadsim:dev`, 6 GB cap) | Docker CPU | public images match the record and CAD hashes | AGENTS.md |
 | Parametric CAD | build123d 0.11 / OCCT 7.9 | the part's `parts/<id>/source/*.py`; qualified image `cad-author-f28` | host venv or container | a STEP built from declared parameters | [TOOLCHAIN.md](TOOLCHAIN.md) |
 | Implicit, lattice or voxel geometry | PicoGK 2.3 + LEAP 71 ShapeKernel/LatticeLibrary | `dotnet build -p:UpstreamRoot=<sources>`, then run under a memory cap; catalogue driver `parts/picogk-catalog/tools/run_part.py`; the 962 head only through its bounded Linux runner `run_native.py`, never the native DLL directly | native host or `containers/m64-leap71` | a voxel/mesh body; never a BREP master. The 962 Linux runner is qualified on a synthetic witness only; the head generator has not run on Linux | [LOCAL_HOST_SETUP.md §4](LOCAL_HOST_SETUP.md#4-native-picogk-on-linux-or-wsl), [LEAP_STACK.md](../twins/vehicle-911-917/LEAP_STACK.md), [962 Linux runner](../twins/962-cylinder-head-f0/source/linux_runtime/README.md) |
+| Union of closed triangle solids | manifold3d 3.5 (Apache-2.0), `Manifold.batch_boolean` on `Mesh64` (double precision) | build each piece as a closed oriented mesh, unite, then check the result yourself (watertight, winding, volume). Used by the [935 head twin](../twins/935-cylinder-head-cad-twin/source/loft_stack.py) | host venv | one manifold surface from touching or overlapping solids. It leaves triangles without area and needle triangles; it is a mesh, never a B-rep | [twin README](../twins/935-cylinder-head-cad-twin/README.md) |
 | FE / CFD meshing | Gmsh (pinned per evidence) | Python API inside the study's source | container or host | a mesh with recorded size fields and quality | study README |
 | Stress, modal, buckling, thermal | CalculiX 2.21 `ccx` | text deck written by the study script; **one thread** | `3dprinting993-cadsim` or capped host | a numerical result for stated loads and supports | [twins/964-chassis/fea/README.md](../twins/964-chassis/fea/README.md) |
 | CFD, conjugate heat | OpenFOAM 13 (`cadsim`, `mesh-cfd`) or 14 + AATE (`openfoam-engine-f35`) | case generator in the study, `checkMesh` first | container CPU | fields for stated boundaries; not vehicle-correlated | study README, [COMPUTE_ENVIRONMENT.md](COMPUTE_ENVIRONMENT.md) |
@@ -182,6 +183,32 @@ neighbouring study's README for more before starting.
 - Pass a log path: the default `~/Documents/PicoGK.log` crashes if that folder
   is missing.
 
+### Sections, voxel grids and mesh unions
+
+All measured on the 935 head twin on 2026-11-10.
+
+- **Even-odd nesting must be applied ring by ring.** Uniting the even rings and
+  subtracting the odd ones in one step removes every island standing inside a
+  hole. The twin lost the land inside its sealing groove and its valve-guide
+  bosses that way, in every body built before the fix.
+- **Do not take the 0.5 iso-surface of a block-averaged binary grid.** The
+  means are multiples of 1/k³, so the level falls exactly on grid values,
+  marching cubes emits folded facets and Gmsh HXT refuses the surface. Use a
+  level between two attainable means (31.5/64 for k = 4).
+- **A single-precision distance kernel loses up to 0.02 mm on needle
+  triangles** (tens of millimetres long, a fraction wide). Cap the edge length
+  of a mesh before scoring it with Warp, and keep an oracle in the checker:
+  that is what caught it.
+- **Write 3MF and USD from double-precision arrays, not from an STL.** The
+  STL's single precision welded neighbouring vertices and the 3MF read-back was
+  no longer watertight.
+- **Passing the OpenUSD validators is not passing the NVIDIA validator.** A
+  stage with no normals, three points per triangle and an unindexed primvar
+  passed all 30 of the former and failed the latter.
+- `usd-convert-cad` 0.2.0 and `usd-validation-nvidia` 1.21.0 install from
+  wheels into two separate venvs (about 2.3 GB). The 10 GB SimReady image is not
+  needed to convert a STEP and validate a stage.
+
 ### OCC / build123d
 
 - **A difference of two large OCC volumes cannot judge a small feature.**
@@ -189,6 +216,9 @@ neighbouring study's README for more before starting.
   size of the fillet being checked. Judge a blend on its own surface (face
   areas, sampled curvature radius), and verify the base body's symmetry first.
   `is_valid` and a single solid catch none of this.
+- build123d's `.volume` was off by +0.17% and −0.21% on two lofted solids
+  against an adaptive OCCT integration (935 head twin, 2026-11-10). Do not use
+  it as a reference below about 0.5%.
 
 ### Memory, logs and the host
 
