@@ -1,0 +1,69 @@
+{
+  "schema": "935-cad-twin-simready/1",
+  "claims": "study twin; a validator pass shows a well-formed stage only: not SimReady-certified, not measured, not fitted, not functional, not released",
+  "kind": "validation of an existing stage",
+  "status": "passed",
+  "tools": {
+    "python": "3.12.3",
+    "usd_validation_nvidia": "1.21.0",
+    "validator_openusd": "0.26.8",
+    "validator_rules_initialized": 42,
+    "validator_rule_names": "ArticulationChecker ColliderChecker DanglingOverPrimChecker DefaultPrimChecker ExtentsChecker IndexedPrimvarChecker KindChecker LayerSpecChecker ManifoldChecker MassChecker MaterialOldMdlSchemaChecker MaterialOutOfScopeChecker MaterialPathChecker MaterialUsdPreviewSurfaceChecker MissingReferenceChecker NormalMapTextureChecker NormalsExistChecker NormalsValidChecker NormalsWindingsChecker PhysicsJointChecker PrimEncapsulationChecker RigidBodyChecker ShaderImplementationSourceChecker SkelBindingAPIAppliedChecker StageMetadataChecker SubdivisionSchemeChecker TextureChecker TypeChecker UnicodeNameChecker UnusedMeshTopologyChecker UnusedPrimvarChecker UsdAsciiPerformanceChecker UsdDanglingMaterialBinding UsdGeomSubsetChecker UsdGeomSubsetFamiliesChecker UsdGeomSubsetParentIsImageableChecker UsdLuxSchemaChecker UsdMaterialBindingApi UsdzPackageValidator ValidateTopologyChecker WeldChecker ZeroAreaFaceChecker"
+  },
+  "stage_input": {
+    "name": "935-head-twin.usdc",
+    "sha256": "8ddfd7a6fcce55610c9130e4aa5092250910c1a942ce8e8b19defc798146eb67",
+    "bytes": 14090172,
+    "stage": {
+      "default_prim": "/Head935",
+      "root_prims": [
+        "/Head935"
+      ],
+      "meters_per_unit": 0.001,
+      "meters_per_unit_authored": true,
+      "up_axis": "Z",
+      "up_axis_authored": true,
+      "kilograms_per_unit": null,
+      "layer_creator": null,
+      "prims": 14,
+      "prims_including_abstract": 14,
+      "prims_by_type": {
+        "Cylinder": 10,
+        "Mesh": 1,
+        "Scope": 1,
+        "Xform": 2
+      },
+      "meshes": 1,
+      "mesh_faces": 600000,
+      "triangles": 600000,
+      "non_triangle_faces": 0,
+      "mesh_points": 299128,
+      "world_bound_from_authored_extents_stage_units": [
+        [
+          -63.1356,
+          -127.2511,
+          -0.6034
+        ],
+        [
+          58.0339,
+          119.2215,
+          138.9939
+        ]
+      ]
+    },
+    "validation": {
+      "status": "PASS",
+      "returncode": 0,
+      "wall_seconds": 13.01,
+      "issues_by_severity": {
+        "FAILURE": 0,
+        "ERROR": 0,
+        "WARNING": 0,
+        "INFO": 0
+      },
+      "rules_with_issues": [],
+      "raw_report_sha256": "fdb36636e75946975b0e4039ea3ba649570f65388d4497b411fcaa28fd97403f"
+    }
+  },
+  "wall_seconds_total": 13.86
+}

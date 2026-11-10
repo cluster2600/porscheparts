@@ -4,7 +4,7 @@ Writes the closed T1 surface as a single-object 3MF in millimetres and
 re-reads it to check the round trip. It is a polymer study and fit-check
 object: never an engine part, never a metal build file.
 
-Usage: export_print.py T1.stl OUT.3mf REPORT.json
+Usage: export_print.py SURFACE(.stl|.npz) OUT.3mf REPORT.json
 """
 
 from __future__ import annotations
@@ -43,7 +43,14 @@ def read_back(path):
 def main(src, out, report):
     import trimesh
 
-    m = trimesh.load(src, force="mesh")
+    if str(src).endswith(".npz"):
+        # Indexed body in double precision (loft_stack.py). Its STL is single
+        # precision: rounding welds neighbouring vertices of the thinnest
+        # triangles and the read-back is no longer watertight (measured).
+        d = np.load(src)
+        m = trimesh.Trimesh(d["v"], d["f"], process=False)
+    else:
+        m = trimesh.load(src, force="mesh")
     m.metadata["name"] = "935-bare-head-twin-study"
     m.metadata["notice"] = NOTICE
     data = trimesh.exchange.threemf.export_3MF(m)

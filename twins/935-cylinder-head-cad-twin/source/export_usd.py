@@ -9,7 +9,7 @@
 The observed/inferred colouring is a visual aid; the evidence is the
 independent scorecard. Validated with the OpenUSD 26 UsdValidation framework (all registered validators).
 
-Usage: export_usd.py PRIVATE_DIR PARAMS_DIR SURFACE.stl OUT.usda
+Usage: export_usd.py PRIVATE_DIR PARAMS_DIR SURFACE(.stl|.npz) OUT.usda [SUMMARY.json [SOURCE_NOTE]]
 """
 
 from __future__ import annotations
@@ -46,7 +46,7 @@ def classify(tv, tf, bare_v, bare_f):
     return out.numpy()
 
 
-def main(private, params, surface, out):
+def main(private, params, surface, out, summary="usd-summary.json", source="T1s display surface"):
     import trimesh
     from pxr import Gf, Sdf, Usd, UsdGeom, UsdValidation, Vt
 
@@ -55,7 +55,14 @@ def main(private, params, surface, out):
     hyp = json.loads((params.parent / "hypotheses.json").read_text())
     occ = json.loads((params / "occupancy-summary.json").read_text())
     colours = hyp["display_colours"]
-    mesh = trimesh.load(surface, process=False, force="mesh")
+    if str(surface).endswith(".npz"):       # indexed body written by loft_stack.py
+        d = np.load(surface)
+        mesh = trimesh.Trimesh(d["v"], d["f"], process=False)
+    else:
+        # An STL is a triangle soup: weld it, or the stage carries three points
+        # per triangle (NVIDIA WeldChecker, measured on the 2026-11-09 stage).
+        mesh = trimesh.load(surface, process=False, force="mesh")
+        mesh.merge_vertices()
     tv, tf = np.asarray(mesh.vertices), np.asarray(mesh.faces)
     bare = np.load(private / "bare-scan-twin.npz")
     d = classify(tv, tf, bare["v"], bare["f"])
@@ -71,6 +78,7 @@ def main(private, params, surface, out):
     root.GetPrim().SetCustomDataByKey("porscheparts:scan_sha256", frame["scan_sha256"])
     root.GetPrim().SetCustomDataByKey("porscheparts:hypotheses", hyp["register_id"])
     root.GetPrim().SetCustomDataByKey("porscheparts:claims", "study twin; not measured, not functional, not released")
+    root.GetPrim().SetCustomDataByKey("porscheparts:surface_source", source)
 
     m = UsdGeom.Mesh.Define(stage, "/Head935/BareHead")
     m.CreatePointsAttr(Vt.Vec3fArray.FromNumpy(tv.astype(np.float32)))
@@ -78,9 +86,23 @@ def main(private, params, surface, out):
     m.CreateFaceVertexIndicesAttr(Vt.IntArray.FromNumpy(tf.astype(np.int32).ravel()))
     m.CreateSubdivisionSchemeAttr(UsdGeom.Tokens.none)
     m.CreateExtentAttr([Gf.Vec3f(*tv.min(axis=0)), Gf.Vec3f(*tv.max(axis=0))])
-    col = np.where(inferred[:, None], np.array(colours["inferred_closure"]), np.array(colours["observed"]))
+    # Faceted surface: one authored normal per face (the NVIDIA NormalsExistChecker
+    # rejects a mesh with neither normals nor a subdivision scheme).
+    # The union that closes the loft body leaves some triangles with collinear
+    # corners. They are kept, because removing them would open the surface; a
+    # face without area has no direction, so it is given +Z. The NVIDIA
+    # ZeroAreaFaceChecker reports these faces and the summary counts them.
+    t = tv[tf]
+    cross = np.cross(t[:, 1] - t[:, 0], t[:, 2] - t[:, 0])
+    norm = np.linalg.norm(cross, axis=1)
+    flat = norm < 1.0e-12
+    normals = np.where(flat[:, None], np.array([0.0, 0.0, 1.0]), cross / np.where(flat, 1.0, norm)[:, None])
+    m.CreateNormalsAttr(Vt.Vec3fArray.FromNumpy(normals.astype(np.float32)))
+    m.SetNormalsInterpolation(UsdGeom.Tokens.uniform)
+    # Two colours, indexed per face: 0 observed, 1 inferred.
     pv = UsdGeom.PrimvarsAPI(m).CreatePrimvar("displayColor", Sdf.ValueTypeNames.Color3fArray, UsdGeom.Tokens.uniform)
-    pv.Set(Vt.Vec3fArray.FromNumpy(col.astype(np.float32)))
+    pv.Set(Vt.Vec3fArray.FromNumpy(np.array([colours["observed"], colours["inferred_closure"]], dtype=np.float32)))
+    pv.SetIndices(Vt.IntArray.FromNumpy(inferred.astype(np.int32)))
     m.GetPrim().SetCustomDataByKey("porscheparts:inferred_area_share",
                                    float(mesh.area_faces[inferred].sum() / mesh.area))
 
@@ -123,7 +145,10 @@ def main(private, params, surface, out):
         by_type.setdefault(str(e.GetType()).split(".")[-1], []).append(f"{e.GetName()}: {e.GetMessage()[:160]}")
     report = {
         "schema": "935-cad-twin-usd/1",
+        "surface_source": source,
         "surface_triangles": int(len(tf)),
+        "surface_points": int(len(tv)),
+        "faces_without_area": int(flat.sum()),
         "studs": n,
         "inferred_face_share": round(float(inferred.mean()), 5),
         "inferred_area_share": round(float(mesh.area_faces[inferred].sum() / mesh.area), 5),
@@ -131,12 +156,11 @@ def main(private, params, surface, out):
         "validation_findings_by_type": {k: v[:20] for k, v in by_type.items()},
         "validation_error_count": len(by_type.get("Error", [])),
         "usd_version": ".".join(map(str, Usd.GetVersion())),
-        "pending": "NVIDIA usd-convert-cad STEP->USD and omni.asset_validator need the 10 GB SimReady image "
-                   "(not pulled: insufficient free disk on this host; see README)",
+        "nvidia_tools": "usd-convert-cad and the NVIDIA validator run separately: simready_convert.py",
     }
-    (params / "usd-summary.json").write_text(json.dumps(report, indent=2) + "\n")
+    (params / summary).write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report, indent=1))
 
 
 if __name__ == "__main__":
-    main(*sys.argv[1:5])
+    main(*sys.argv[1:7])

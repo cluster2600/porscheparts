@@ -47,10 +47,17 @@ def slice_region(w2d, grid):
             rings.append(p)
     rings.sort(key=lambda p: -p.area)
     # Even-odd nesting: depth 0, 2, ... are material; 1, 3, ... are holes.
+    # Rings are applied from the largest to the smallest, so an island inside a
+    # hole is added back after its hole was cut. Until 2026-11-10 this function
+    # united the even rings and subtracted the odd ones in one step, which
+    # removed every such island: the land inside the sealing groove and the
+    # valve-guide bosses inside the spring pockets were missing from all bodies
+    # built from it (fin_stack runs a to h).
     depth = [sum(1 for q in rings[:i] if q.contains(p.representative_point())) for i, p in enumerate(rings)]
-    solid = unary_union([p for p, d in zip(rings, depth) if d % 2 == 0])
-    holes = unary_union([p for p, d in zip(rings, depth) if d % 2 == 1])
-    return solid.difference(holes).buffer(0)
+    region = Polygon()
+    for p, d in zip(rings, depth):
+        region = region.union(p) if d % 2 == 0 else region.difference(p)
+    return region.buffer(0)
 
 
 def same_band(a, b, tol):
