@@ -1,0 +1,37 @@
+{
+  "status": "reproduction_and_read_only_audit_not_a_mesh_trial",
+  "issue": 452,
+  "date": "2026-11-10",
+  "reproduced_attempt": 5,
+  "inputs": "results/cfd/reproduction-inputs/ (hashes in receipt.json; the auditor re-checks them and the case dictionaries)",
+  "image": {
+    "reference": "opencfd/openfoam-run:2406",
+    "used_digest": "sha256:32c0541bc3577916a6ddae618ad12d5082a40702249e101358a3f078bcc7f722",
+    "used_platform": "linux/amd64",
+    "attempt_digest": "sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+    "attempt_platform": "linux/arm64",
+    "relation": "both digests are platform members of the same opencfd/openfoam-run:2406 image index, read from Docker Hub on 2026-11-10; the arm64 member is the one attempts 1-6 recorded",
+    "build_reported_by_checkMesh": "_be01ca78-20240625 OPENFOAM=2406"
+  },
+  "host": "native Linux ext4 under WSL2 x86_64, Docker 29.1.3",
+  "container": "docker run --rm --network none --memory 4g --cpus 4 -u 1000:1000, case bind-mounted at /case",
+  "commands": [
+    "blockMesh",
+    "snappyHexMesh -overwrite",
+    "checkMesh -allGeometry -allTopology",
+    "postProcess -func writeCellCentres -time 0"
+  ],
+  "result": "identical to attempt 5 on every parsed checkMesh metric: 254,917 cells, 30 concave-angle faces (max 55.216 deg), 3 concave cells, 1 failed check; see mesh-audit.json reproduction.metrics_identical",
+  "auditor": "source/audit_mesh_admission.py --case <case> --output results/cfd/audit-20261110/mesh-audit.json",
+  "not_retained_in_git": "the polyMesh, the cell-centre field and the written sets (regenerable from the inputs above in about 25 s)",
+  "files": {
+    "mesh-audit.json": "1bc809c044a0bcead14b7737172aa2089287ca8b6576ecfc340c20f9ed3598a5",
+    "reproduction/log.blockMesh.gz": "0f282e322d1d1912bcebaae77c5ec62b4841a7f7aa378ad1f0169a1b4ad1228c",
+    "reproduction/log.cellCentres.gz": "032de727b0659e4727f85471773f616b54d9b10b3a9dd57570760b141260542d",
+    "reproduction/log.checkMesh.gz": "ebe756a828fd49911c2a2e0806f27d14fd065ad06ac1f7dedbea1e79b4565778",
+    "reproduction/log.snappyHexMesh.gz": "7208ec5266d438640b28329ed93678288084ad2e1edc81bbeef5e2671c4dc53c"
+  },
+  "mesh_admitted": false,
+  "flow_solver_started": false,
+  "manufacturing_authorized": false
+}

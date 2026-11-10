@@ -122,6 +122,62 @@ not reclassified as convergence. Fixing those cells, then demonstrating mesh
 independence, is the next numerical gate. The full rotating, thermal assembly
 remains beyond this stationary-duct pilot.
 
+### Upstream audit of the rejected mesh (2026-11-10, #452)
+
+The six attempts changed mesh settings; none audited the surface being meshed.
+[`source/audit_mesh_admission.py`](source/audit_mesh_admission.py) does that,
+read-only. It rebuilds the fluid domain's constructive surfaces from
+`Program.cs` and checks them against the surface first: they reproduce the
+native surface to a median of 0.002 mm (99th percentile 0.04 mm). Results are in
+[`results/cfd/audit-20261110/`](results/cfd/audit-20261110/runtime.json).
+
+- **Reproduction.** Attempt 5 was re-meshed from its retained inputs with the
+  amd64 build of the same OpenCFD 2406 image (the attempts ran the arm64 build).
+  Every parsed `checkMesh` metric is identical: 254,917 cells, 30 concave-angle
+  faces, 3 concave cells, 1 failed check.
+- **Where the cells are.** All three concave cells lie within one cell diagonal
+  of an edge that `Program.cs` makes sharp. One is at the alternator envelope's
+  rear rim, where it meets the plenum top and the fan cylinder's end. One is on
+  the hard union seam between the fan cylinder and the plenum box, and one is on
+  a branch outlet rim. The 30 concave-angle faces sit on the same
+  kinds of edge: 12 at outlet rims, 5 on the union seam, and 13 where the branch
+  cones blend into the plenum.
+- **What the geometry carries.** The union seam (`MathF.Min` of cylinder and
+  box) and the alternator subtraction leave unblended re-entrant edges. On the
+  analysis surface they total 882 mm along the seam, 426 mm along the
+  alternator rear rim and 21 mm on other alternator edges. The exact solution is singular at
+  such an edge, and no mesh setting removes that (AGENTS.md).
+- **What the preparation added.** `prepare_duct_cfd.py` decimates the
+  918,136-triangle voxel surface by 90 %. On the result, 1,007 creases over 30°
+  (6.9 m) lie on smooth constructive faces, mostly the six branch cones (592)
+  and the plenum box (318). The undecimated native surface has none. The
+  decimation also left 3,761 triangles with an angle under 5° and edges up to
+  413 mm. The native surface has neither: its edges run from 0.25 to 2.6 mm.
+
+**Verdict:** the attempt-5 input is not admissible for a mesh-settings sweep,
+so attempts 1–6 tuned settings on a defective input. No mesh is admitted and no
+solver has run.
+
+The smallest correction that the audit supports has three parts. None of them
+has been executed:
+
+1. Stop decimating, or replace decimation with a surface that this auditor finds
+   free of creases off constructive edges. This is a new preparer revision; the
+   old preparer hash stays in the attempt receipts.
+2. Blend the two hard re-entrant joins with the generator's own polynomial
+   blend, which the branch cones already use. Both joins are unmeasured layout
+   hypotheses. The r = 70 mm alternator envelope is not the 240 A alternator
+   chosen in #454, for which no dimensioned drawing exists. Blending therefore
+   contradicts no measurement, but it is a new geometry revision regenerated
+   with PicoGK. The blend radius must be fixed before meshing.
+3. Keep the inlet and outlet rims sharp, because they are patch boundaries. Give
+   snappyHexMesh their region-boundary edges as explicit features. Attempt 6's
+   implicit feature snapping raised the concave-cell count to 26.
+
+A new mesh trial counts only once the auditor reports
+`input_admissible_for_settings_sweep: true` on the revised surface. Mesh
+independence then follows the [experiment plan](experiment-plan.json).
+
 Next, after the baseline is admissible: vary duct turns and branch sections;
 then clearance, section twist, sweep and a matched stator as separate factors.
 Use equal shaft power, minimum branch mass flow, distribution, core pressure
