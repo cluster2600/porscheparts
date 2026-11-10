@@ -1,0 +1,62 @@
+{
+  "schema": "fatigue-postprocessor-witness/1",
+  "script_sha256": "c1ec2a731cff4e4db44e02629079692e5375ff135e85c4eb28424a28e8126a2a",
+  "lock_sha256": "a278121b7bcf824c7462fe24a2636ff95a0d5535269684dba271e6cabbf36daf",
+  "pylife": "2.3.1",
+  "numpy": "2.5.4",
+  "rainflow": {
+    "history": [
+      -2.0,
+      1.0,
+      -3.0,
+      5.0,
+      -1.0,
+      3.0,
+      -4.0,
+      4.0,
+      -2.0
+    ],
+    "astm_e1049_table": {
+      "3.0": 0.5,
+      "4.0": 1.5,
+      "6.0": 0.5,
+      "8.0": 1.0,
+      "9.0": 0.5
+    },
+    "pylife_three_point": {
+      "3.0": 0.5,
+      "4.0": 1.5,
+      "6.0": 0.5,
+      "8.0": 1.0,
+      "9.0": 0.5
+    },
+    "matches_astm": true
+  },
+  "damage": {
+    "sn_line": {
+      "k_1": 5.0,
+      "ND": 1000000.0,
+      "SD": 100.0
+    },
+    "amplitude_mpa_per_range_unit": 20.0,
+    "collective_amplitude_mpa": {
+      "60.0": 0.5,
+      "80.0": 1.5,
+      "120.0": 0.5,
+      "160.0": 1.0,
+      "180.0": 0.5
+    },
+    "miner_original": {
+      "pylife": 2.1177760000000003e-05,
+      "closed_form": 2.1177760000000003e-05,
+      "relative_error": 0.0
+    },
+    "miner_elementary": {
+      "pylife": 2.1708160000000004e-05,
+      "closed_form": 2.1708160000000004e-05,
+      "relative_error": 0.0
+    }
+  },
+  "passed": true,
+  "claims": "counting and damage arithmetic only; no material, alloy, AM process, mean-stress or notch data"
+}

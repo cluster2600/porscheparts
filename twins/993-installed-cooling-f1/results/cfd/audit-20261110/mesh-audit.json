@@ -1,0 +1,981 @@
+{
+  "status": "upstream_audit_complete_mesh_not_admitted",
+  "issue": 452,
+  "scope": "read-only audit of attempt 5; no geometry, mesh setting or earlier receipt changed",
+  "generator": {
+    "path": "twins/993-installed-cooling-f1/source/Program.cs",
+    "sha256": "d36e2094f21143523bda8154dde390e48d8da42ce9cb5888de95ee8094d6a050"
+  },
+  "auditor_sha256": "6bbaaffb9ad5854359938e61f153fae1d29d368cef6c59457aee72e0c58c5156",
+  "reproduction": {
+    "reference_attempt": 5,
+    "surface_sha256": "6538d450216390afc4da079c6a1688a2b5e3514ed9d068a57639ee39b0a325a9",
+    "reproduced": {
+      "build": "_be01ca78-20240625 OPENFOAM=2406",
+      "cells": 254917,
+      "faces": 777072,
+      "points": 268392,
+      "concave_angle_faces": 30,
+      "max_concave_angle_deg": 55.21626801,
+      "concave_cells": 3,
+      "failed_checks": 1,
+      "min_determinant": 0.02692596344,
+      "max_non_orthogonality_deg": 46.00710676
+    },
+    "retained_attempt_metrics": {
+      "build": "_be01ca78-20240625 OPENFOAM=2406",
+      "cells": 254917,
+      "faces": 777072,
+      "points": 268392,
+      "concave_angle_faces": 30,
+      "max_concave_angle_deg": 55.21626801,
+      "concave_cells": 3,
+      "failed_checks": 1,
+      "min_determinant": 0.02692596344,
+      "max_non_orthogonality_deg": 46.00710676
+    },
+    "metrics_identical": {
+      "cells": true,
+      "faces": true,
+      "points": true,
+      "concave_angle_faces": true,
+      "max_concave_angle_deg": true,
+      "concave_cells": true,
+      "failed_checks": true,
+      "min_determinant": true,
+      "max_non_orthogonality_deg": true
+    },
+    "all_compared_metrics_identical": true
+  },
+  "native_voxel_surface": {
+    "path": "twins/993-installed-cooling-f1/derived/native/delivery-fluid-domain.stl.gz",
+    "sha256": "4d91f2518aa7a92f2628783852ec77a13fcb772d5d31a35614b7fc8cff32d025",
+    "generator_output_sha256": "5914107a9d17544a9013e52fb39589d1bcf09765289445af96439f9a95789c87",
+    "triangles": 918136,
+    "vertices_after_exact_merge": 459068,
+    "closed_single_outward_body": true,
+    "volume_mm3": 31980383.8,
+    "constructive_model_residual_mm": {
+      "meaning": "|fluid SDF of the Program.cs re-implementation| at analysis-surface vertices",
+      "p50": 0.002,
+      "p95": 0.015,
+      "p99": 0.038,
+      "max": 0.75
+    },
+    "edge_length_mm": {
+      "min": 0.245,
+      "p05": 0.921,
+      "median": 1.5,
+      "p95": 2.122,
+      "max": 2.64
+    },
+    "triangles_with_min_angle_below_5_deg": 0,
+    "normal_angle_histogram_deg": {
+      "30-45": 3082,
+      "45-60": 1567,
+      "60-90": 297,
+      "90-120": 0,
+      "120-180": 0
+    },
+    "sharp_edges_over_30_deg": 4946,
+    "sharp_edges_by_construction": {
+      "alternator_hard_subtraction_edge": {
+        "edges": 197,
+        "length_mm": 265.7,
+        "re_entrant_edges": 9,
+        "re_entrant_length_mm": 14.2,
+        "salient_edges": 188,
+        "max_normal_angle_deg": 75.08
+      },
+      "alternator_rear_rim_hard_subtraction": {
+        "edges": 306,
+        "length_mm": 384.8,
+        "re_entrant_edges": 291,
+        "re_entrant_length_mm": 362.3,
+        "salient_edges": 15,
+        "max_normal_angle_deg": 59.05
+      },
+      "fan_cylinder_plenum_hard_union_seam": {
+        "edges": 631,
+        "length_mm": 863.9,
+        "re_entrant_edges": 530,
+        "re_entrant_length_mm": 713.0,
+        "salient_edges": 101,
+        "max_normal_angle_deg": 87.87
+      },
+      "fan_cylinder_rear_edge": {
+        "edges": 510,
+        "length_mm": 636.0,
+        "re_entrant_edges": 31,
+        "re_entrant_length_mm": 48.6,
+        "salient_edges": 479,
+        "max_normal_angle_deg": 58.63
+      },
+      "inlet_inner_rim_plane_cut": {
+        "edges": 602,
+        "length_mm": 868.0,
+        "re_entrant_edges": 52,
+        "re_entrant_length_mm": 103.7,
+        "salient_edges": 550,
+        "max_normal_angle_deg": 52.52
+      },
+      "inlet_outer_rim_plane_cut": {
+        "edges": 1002,
+        "length_mm": 1416.5,
+        "re_entrant_edges": 80,
+        "re_entrant_length_mm": 161.1,
+        "salient_edges": 922,
+        "max_normal_angle_deg": 54.71
+      },
+      "outlet_rim_plane_cut": {
+        "edges": 1698,
+        "length_mm": 2107.5,
+        "re_entrant_edges": 138,
+        "re_entrant_length_mm": 227.3,
+        "salient_edges": 1560,
+        "max_normal_angle_deg": 67.36
+      }
+    }
+  },
+  "analysis_surface": {
+    "preparation": "prepare_duct_cfd.py: pyvista decimate_pro(0.90, preserve_topology)",
+    "triangles": 91812,
+    "vertices_after_exact_merge": 45906,
+    "closed_single_outward_body": true,
+    "volume_mm3": 31969668.8,
+    "constructive_model_residual_mm": {
+      "meaning": "|fluid SDF of the Program.cs re-implementation| at analysis-surface vertices",
+      "p50": 0.006,
+      "p95": 0.234,
+      "p99": 0.509,
+      "max": 0.75
+    },
+    "edge_length_mm": {
+      "min": 0.245,
+      "p05": 1.221,
+      "median": 3.072,
+      "p95": 9.69,
+      "max": 413.304
+    },
+    "triangles_with_min_angle_below_5_deg": 3761,
+    "normal_angle_histogram_deg": {
+      "30-45": 3494,
+      "45-60": 1712,
+      "60-90": 669,
+      "90-120": 40,
+      "120-180": 1
+    },
+    "sharp_edges_over_30_deg": 5916,
+    "sharp_edges_by_construction": {
+      "alternator_hard_subtraction_edge": {
+        "edges": 193,
+        "length_mm": 288.1,
+        "re_entrant_edges": 11,
+        "re_entrant_length_mm": 20.8,
+        "salient_edges": 182,
+        "max_normal_angle_deg": 103.07
+      },
+      "alternator_rear_rim_hard_subtraction": {
+        "edges": 316,
+        "length_mm": 501.1,
+        "re_entrant_edges": 297,
+        "re_entrant_length_mm": 425.8,
+        "salient_edges": 19,
+        "max_normal_angle_deg": 110.54
+      },
+      "branch_cone_smooth_union_k12": {
+        "edges": 3,
+        "length_mm": 13.8,
+        "re_entrant_edges": 1,
+        "re_entrant_length_mm": 6.9,
+        "salient_edges": 2,
+        "max_normal_angle_deg": 66.14
+      },
+      "fan_cylinder_plenum_hard_union_seam": {
+        "edges": 448,
+        "length_mm": 1148.4,
+        "re_entrant_edges": 332,
+        "re_entrant_length_mm": 882.3,
+        "salient_edges": 116,
+        "max_normal_angle_deg": 102.06
+      },
+      "fan_cylinder_rear_edge": {
+        "edges": 530,
+        "length_mm": 841.8,
+        "re_entrant_edges": 39,
+        "re_entrant_length_mm": 165.3,
+        "salient_edges": 491,
+        "max_normal_angle_deg": 88.64
+      },
+      "inlet_inner_rim_plane_cut": {
+        "edges": 626,
+        "length_mm": 949.6,
+        "re_entrant_edges": 63,
+        "re_entrant_length_mm": 142.6,
+        "salient_edges": 563,
+        "max_normal_angle_deg": 127.63
+      },
+      "inlet_outer_rim_plane_cut": {
+        "edges": 998,
+        "length_mm": 1430.1,
+        "re_entrant_edges": 76,
+        "re_entrant_length_mm": 155.7,
+        "salient_edges": 922,
+        "max_normal_angle_deg": 101.2
+      },
+      "outlet_rim_plane_cut": {
+        "edges": 1795,
+        "length_mm": 2412.2,
+        "re_entrant_edges": 156,
+        "re_entrant_length_mm": 320.9,
+        "salient_edges": 1639,
+        "max_normal_angle_deg": 83.16
+      },
+      "smooth_surface_no_constructive_edge": {
+        "edges": 1007,
+        "length_mm": 6901.2,
+        "re_entrant_edges": 513,
+        "re_entrant_length_mm": 3496.2,
+        "salient_edges": 494,
+        "max_normal_angle_deg": 99.44
+      }
+    },
+    "regions": [
+      "walls",
+      "inlet",
+      "left1",
+      "left2",
+      "left3",
+      "right1",
+      "right2",
+      "right3"
+    ],
+    "sharp_edges_on_region_boundaries": 299
+  },
+  "concave_cells": [
+    {
+      "centre_mm": [
+        -53.0,
+        -8.0,
+        228.0
+      ],
+      "radius_from_fan_axis_mm": 71.5,
+      "distance_to_analysis_surface_mm": 1.55,
+      "faces": [
+        "alternator_side",
+        "fan_cylinder_end"
+      ],
+      "junction_distance_mm": 3.01,
+      "construction": "alternator_hard_subtraction_edge",
+      "nearest_faces_mm": {
+        "alternator_side": 1.52,
+        "fan_cylinder_end": 3.01,
+        "plenum_box": 3.01,
+        "alternator_end": 3.37
+      },
+      "cell": 238179
+    },
+    {
+      "centre_mm": [
+        -122.3,
+        -52.1,
+        206.7
+      ],
+      "radius_from_fan_axis_mm": 125.2,
+      "distance_to_analysis_surface_mm": 0.76,
+      "faces": [
+        "fan_cylinder_side",
+        "plenum_box"
+      ],
+      "junction_distance_mm": 4.17,
+      "construction": "fan_cylinder_plenum_hard_union_seam",
+      "nearest_faces_mm": {
+        "fan_cylinder_side": 0.81,
+        "plenum_box": 4.17,
+        "fan_cylinder_end": 47.12,
+        "branch_cone_left1": 50.62
+      },
+      "cell": 209765
+    },
+    {
+      "centre_mm": [
+        167.3,
+        212.3,
+        22.4
+      ],
+      "radius_from_fan_axis_mm": 229.9,
+      "distance_to_analysis_surface_mm": 2.15,
+      "faces": [
+        "outlet_plane",
+        "branch_cone_right3"
+      ],
+      "junction_distance_mm": 3.2,
+      "construction": "outlet_rim_plane_cut",
+      "nearest_faces_mm": {
+        "outlet_plane": 2.37,
+        "branch_cone_right3": 3.2,
+        "branch_cone_right2": 53.08,
+        "plenum_box": 62.63
+      },
+      "cell": 1011
+    }
+  ],
+  "concave_faces": {
+    "count": 30,
+    "by_construction": {
+      "branch_cone_smooth_union_k12": 13,
+      "fan_cylinder_plenum_hard_union_seam": 5,
+      "outlet_rim_plane_cut": 12
+    },
+    "faces": [
+      {
+        "centre_mm": [
+          -233.7,
+          224.6,
+          86.4
+        ],
+        "radius_from_fan_axis_mm": 251.7,
+        "distance_to_analysis_surface_mm": 1.17,
+        "faces": [
+          "plenum_box",
+          "branch_cone_left3"
+        ],
+        "junction_distance_mm": 5.76,
+        "construction": "branch_cone_smooth_union_k12",
+        "nearest_faces_mm": {
+          "plenum_box": 0.14,
+          "branch_cone_left3": 5.76,
+          "outlet_plane": 66.42,
+          "branch_cone_left2": 69.37
+        }
+      },
+      {
+        "centre_mm": [
+          -118.6,
+          -30.5,
+          223.2
+        ],
+        "radius_from_fan_axis_mm": 126.2,
+        "distance_to_analysis_surface_mm": 0.16,
+        "faces": [
+          "plenum_box",
+          "fan_cylinder_side"
+        ],
+        "junction_distance_mm": 0.18,
+        "construction": "fan_cylinder_plenum_hard_union_seam",
+        "nearest_faces_mm": {
+          "plenum_box": 0.09,
+          "fan_cylinder_side": 0.18,
+          "fan_cylinder_end": 25.51,
+          "alternator_side": 56.18
+        }
+      },
+      {
+        "centre_mm": [
+          233.7,
+          224.6,
+          86.5
+        ],
+        "radius_from_fan_axis_mm": 251.7,
+        "distance_to_analysis_surface_mm": 1.13,
+        "faces": [
+          "plenum_box",
+          "branch_cone_right3"
+        ],
+        "junction_distance_mm": 5.82,
+        "construction": "branch_cone_smooth_union_k12",
+        "nearest_faces_mm": {
+          "plenum_box": 0.15,
+          "branch_cone_right3": 5.82,
+          "outlet_plane": 66.45,
+          "branch_cone_right2": 69.4
+        }
+      },
+      {
+        "centre_mm": [
+          118.6,
+          -30.5,
+          223.2
+        ],
+        "radius_from_fan_axis_mm": 126.2,
+        "distance_to_analysis_surface_mm": 0.11,
+        "faces": [
+          "plenum_box",
+          "fan_cylinder_side"
+        ],
+        "junction_distance_mm": 0.2,
+        "construction": "fan_cylinder_plenum_hard_union_seam",
+        "nearest_faces_mm": {
+          "plenum_box": 0.09,
+          "fan_cylinder_side": 0.2,
+          "fan_cylinder_end": 25.46,
+          "alternator_side": 56.2
+        }
+      },
+      {
+        "centre_mm": [
+          -233.7,
+          104.6,
+          86.4
+        ],
+        "radius_from_fan_axis_mm": 251.7,
+        "distance_to_analysis_surface_mm": 1.17,
+        "faces": [
+          "plenum_box",
+          "branch_cone_left2"
+        ],
+        "junction_distance_mm": 5.76,
+        "construction": "branch_cone_smooth_union_k12",
+        "nearest_faces_mm": {
+          "plenum_box": 0.14,
+          "branch_cone_left2": 5.76,
+          "outlet_plane": 66.42,
+          "branch_cone_left1": 69.37
+        }
+      },
+      {
+        "centre_mm": [
+          233.7,
+          104.6,
+          86.5
+        ],
+        "radius_from_fan_axis_mm": 251.7,
+        "distance_to_analysis_surface_mm": 1.13,
+        "faces": [
+          "plenum_box",
+          "branch_cone_right2"
+        ],
+        "junction_distance_mm": 5.82,
+        "construction": "branch_cone_smooth_union_k12",
+        "nearest_faces_mm": {
+          "plenum_box": 0.15,
+          "branch_cone_right2": 5.82,
+          "outlet_plane": 66.45,
+          "branch_cone_right1": 69.41
+        }
+      },
+      {
+        "centre_mm": [
+          -233.7,
+          255.4,
+          86.4
+        ],
+        "radius_from_fan_axis_mm": 251.8,
+        "distance_to_analysis_surface_mm": 1.1,
+        "faces": [
+          "plenum_box",
+          "branch_cone_left3"
+        ],
+        "junction_distance_mm": 5.85,
+        "construction": "branch_cone_smooth_union_k12",
+        "nearest_faces_mm": {
+          "plenum_box": 0.12,
+          "branch_cone_left3": 5.85,
+          "outlet_plane": 66.42,
+          "branch_cone_left2": 97.86
+        }
+      },
+      {
+        "centre_mm": [
+          233.7,
+          255.4,
+          86.4
+        ],
+        "radius_from_fan_axis_mm": 251.7,
+        "distance_to_analysis_surface_mm": 1.14,
+        "faces": [
+          "plenum_box",
+          "branch_cone_right3"
+        ],
+        "junction_distance_mm": 5.8,
+        "construction": "branch_cone_smooth_union_k12",
+        "nearest_faces_mm": {
+          "plenum_box": 0.13,
+          "branch_cone_right3": 5.8,
+          "outlet_plane": 66.42,
+          "branch_cone_right2": 97.83
+        }
+      },
+      {
+        "centre_mm": [
+          -122.7,
+          -49.7,
+          207.2
+        ],
+        "radius_from_fan_axis_mm": 125.7,
+        "distance_to_analysis_surface_mm": 0.3,
+        "faces": [
+          "fan_cylinder_side",
+          "plenum_box"
+        ],
+        "junction_distance_mm": 2.06,
+        "construction": "fan_cylinder_plenum_hard_union_seam",
+        "nearest_faces_mm": {
+          "fan_cylinder_side": 0.31,
+          "plenum_box": 2.06,
+          "fan_cylinder_end": 44.65,
+          "branch_cone_left1": 49.56
+        }
+      },
+      {
+        "centre_mm": [
+          -105.1,
+          -48.2,
+          107.6
+        ],
+        "radius_from_fan_axis_mm": 127.7,
+        "distance_to_analysis_surface_mm": 0.95,
+        "faces": [
+          "plenum_box",
+          "fan_cylinder_side"
+        ],
+        "junction_distance_mm": 1.66,
+        "construction": "fan_cylinder_plenum_hard_union_seam",
+        "nearest_faces_mm": {
+          "plenum_box": 0.84,
+          "fan_cylinder_side": 1.66,
+          "branch_cone_left1": 35.25,
+          "fan_cylinder_end": 43.23
+        }
+      },
+      {
+        "centre_mm": [
+          -233.7,
+          -15.4,
+          86.4
+        ],
+        "radius_from_fan_axis_mm": 251.7,
+        "distance_to_analysis_surface_mm": 1.16,
+        "faces": [
+          "plenum_box",
+          "branch_cone_left1"
+        ],
+        "junction_distance_mm": 5.79,
+        "construction": "branch_cone_smooth_union_k12",
+        "nearest_faces_mm": {
+          "plenum_box": 0.15,
+          "branch_cone_left1": 5.79,
+          "outlet_plane": 66.44,
+          "branch_cone_left2": 97.83
+        }
+      },
+      {
+        "centre_mm": [
+          105.1,
+          -48.2,
+          107.6
+        ],
+        "radius_from_fan_axis_mm": 127.7,
+        "distance_to_analysis_surface_mm": 0.88,
+        "faces": [
+          "plenum_box",
+          "fan_cylinder_side"
+        ],
+        "junction_distance_mm": 1.68,
+        "construction": "fan_cylinder_plenum_hard_union_seam",
+        "nearest_faces_mm": {
+          "plenum_box": 0.86,
+          "fan_cylinder_side": 1.68,
+          "branch_cone_right1": 35.23,
+          "fan_cylinder_end": 43.21
+        }
+      },
+      {
+        "centre_mm": [
+          233.7,
+          -15.4,
+          86.4
+        ],
+        "radius_from_fan_axis_mm": 251.7,
+        "distance_to_analysis_surface_mm": 1.14,
+        "faces": [
+          "plenum_box",
+          "branch_cone_right1"
+        ],
+        "junction_distance_mm": 5.8,
+        "construction": "branch_cone_smooth_union_k12",
+        "nearest_faces_mm": {
+          "plenum_box": 0.15,
+          "branch_cone_right1": 5.8,
+          "outlet_plane": 66.44,
+          "branch_cone_right2": 97.84
+        }
+      },
+      {
+        "centre_mm": [
+          -233.7,
+          135.4,
+          86.5
+        ],
+        "radius_from_fan_axis_mm": 251.7,
+        "distance_to_analysis_surface_mm": 1.13,
+        "faces": [
+          "plenum_box",
+          "branch_cone_left2"
+        ],
+        "junction_distance_mm": 5.82,
+        "construction": "branch_cone_smooth_union_k12",
+        "nearest_faces_mm": {
+          "plenum_box": 0.15,
+          "branch_cone_left2": 5.82,
+          "outlet_plane": 66.45,
+          "branch_cone_left3": 69.4
+        }
+      },
+      {
+        "centre_mm": [
+          233.7,
+          135.4,
+          86.4
+        ],
+        "radius_from_fan_axis_mm": 251.7,
+        "distance_to_analysis_surface_mm": 1.17,
+        "faces": [
+          "plenum_box",
+          "branch_cone_right2"
+        ],
+        "junction_distance_mm": 5.76,
+        "construction": "branch_cone_smooth_union_k12",
+        "nearest_faces_mm": {
+          "plenum_box": 0.14,
+          "branch_cone_right2": 5.76,
+          "outlet_plane": 66.42,
+          "branch_cone_right3": 69.37
+        }
+      },
+      {
+        "centre_mm": [
+          185.3,
+          288.1,
+          86.8
+        ],
+        "radius_from_fan_axis_mm": 207.5,
+        "distance_to_analysis_surface_mm": 0.56,
+        "faces": [
+          "branch_cone_right3",
+          "plenum_box"
+        ],
+        "junction_distance_mm": 3.49,
+        "construction": "branch_cone_smooth_union_k12",
+        "nearest_faces_mm": {
+          "branch_cone_right3": 1.01,
+          "plenum_box": 3.49,
+          "outlet_plane": 66.83,
+          "branch_cone_right2": 120.93
+        }
+      },
+      {
+        "centre_mm": [
+          -233.7,
+          15.4,
+          86.5
+        ],
+        "radius_from_fan_axis_mm": 251.7,
+        "distance_to_analysis_surface_mm": 1.13,
+        "faces": [
+          "plenum_box",
+          "branch_cone_left1"
+        ],
+        "junction_distance_mm": 5.82,
+        "construction": "branch_cone_smooth_union_k12",
+        "nearest_faces_mm": {
+          "plenum_box": 0.15,
+          "branch_cone_left1": 5.82,
+          "outlet_plane": 66.45,
+          "branch_cone_left2": 69.41
+        }
+      },
+      {
+        "centre_mm": [
+          -155.7,
+          18.9,
+          27.2
+        ],
+        "radius_from_fan_axis_mm": 218.2,
+        "distance_to_analysis_surface_mm": 0.11,
+        "faces": [
+          "branch_cone_left1",
+          "outlet_plane"
+        ],
+        "junction_distance_mm": 7.16,
+        "construction": "outlet_rim_plane_cut",
+        "nearest_faces_mm": {
+          "branch_cone_left1": 0.14,
+          "outlet_plane": 7.16,
+          "plenum_box": 57.84,
+          "branch_cone_left2": 64.31
+        }
+      },
+      {
+        "centre_mm": [
+          -155.7,
+          138.9,
+          27.2
+        ],
+        "radius_from_fan_axis_mm": 218.2,
+        "distance_to_analysis_surface_mm": 0.11,
+        "faces": [
+          "branch_cone_left2",
+          "outlet_plane"
+        ],
+        "junction_distance_mm": 7.16,
+        "construction": "outlet_rim_plane_cut",
+        "nearest_faces_mm": {
+          "branch_cone_left2": 0.14,
+          "outlet_plane": 7.16,
+          "plenum_box": 57.84,
+          "branch_cone_left3": 64.31
+        }
+      },
+      {
+        "centre_mm": [
+          -155.7,
+          258.9,
+          27.2
+        ],
+        "radius_from_fan_axis_mm": 218.2,
+        "distance_to_analysis_surface_mm": 0.11,
+        "faces": [
+          "branch_cone_left3",
+          "outlet_plane"
+        ],
+        "junction_distance_mm": 7.16,
+        "construction": "outlet_rim_plane_cut",
+        "nearest_faces_mm": {
+          "branch_cone_left3": 0.14,
+          "outlet_plane": 7.16,
+          "plenum_box": 57.84,
+          "branch_cone_left2": 100.18
+        }
+      },
+      {
+        "centre_mm": [
+          233.7,
+          15.4,
+          86.4
+        ],
+        "radius_from_fan_axis_mm": 251.7,
+        "distance_to_analysis_surface_mm": 1.17,
+        "faces": [
+          "plenum_box",
+          "branch_cone_right1"
+        ],
+        "junction_distance_mm": 5.76,
+        "construction": "branch_cone_smooth_union_k12",
+        "nearest_faces_mm": {
+          "plenum_box": 0.14,
+          "branch_cone_right1": 5.76,
+          "outlet_plane": 66.42,
+          "branch_cone_right2": 69.37
+        }
+      },
+      {
+        "centre_mm": [
+          -155.7,
+          -18.9,
+          27.2
+        ],
+        "radius_from_fan_axis_mm": 218.2,
+        "distance_to_analysis_surface_mm": 0.11,
+        "faces": [
+          "branch_cone_left1",
+          "outlet_plane"
+        ],
+        "junction_distance_mm": 7.16,
+        "construction": "outlet_rim_plane_cut",
+        "nearest_faces_mm": {
+          "branch_cone_left1": 0.16,
+          "outlet_plane": 7.16,
+          "plenum_box": 57.84,
+          "fan_cylinder_side": 92.21
+        }
+      },
+      {
+        "centre_mm": [
+          155.7,
+          -18.9,
+          27.2
+        ],
+        "radius_from_fan_axis_mm": 218.2,
+        "distance_to_analysis_surface_mm": 0.11,
+        "faces": [
+          "branch_cone_right1",
+          "outlet_plane"
+        ],
+        "junction_distance_mm": 7.16,
+        "construction": "outlet_rim_plane_cut",
+        "nearest_faces_mm": {
+          "branch_cone_right1": 0.14,
+          "outlet_plane": 7.16,
+          "plenum_box": 57.84,
+          "fan_cylinder_side": 92.2
+        }
+      },
+      {
+        "centre_mm": [
+          155.7,
+          18.9,
+          27.2
+        ],
+        "radius_from_fan_axis_mm": 218.2,
+        "distance_to_analysis_surface_mm": 0.11,
+        "faces": [
+          "branch_cone_right1",
+          "outlet_plane"
+        ],
+        "junction_distance_mm": 7.16,
+        "construction": "outlet_rim_plane_cut",
+        "nearest_faces_mm": {
+          "branch_cone_right1": 0.16,
+          "outlet_plane": 7.16,
+          "plenum_box": 57.84,
+          "branch_cone_right2": 64.32
+        }
+      },
+      {
+        "centre_mm": [
+          -155.7,
+          101.1,
+          27.2
+        ],
+        "radius_from_fan_axis_mm": 218.2,
+        "distance_to_analysis_surface_mm": 0.11,
+        "faces": [
+          "branch_cone_left2",
+          "outlet_plane"
+        ],
+        "junction_distance_mm": 7.16,
+        "construction": "outlet_rim_plane_cut",
+        "nearest_faces_mm": {
+          "branch_cone_left2": 0.16,
+          "outlet_plane": 7.16,
+          "plenum_box": 57.84,
+          "branch_cone_left1": 64.32
+        }
+      },
+      {
+        "centre_mm": [
+          155.7,
+          101.1,
+          27.2
+        ],
+        "radius_from_fan_axis_mm": 218.2,
+        "distance_to_analysis_surface_mm": 0.11,
+        "faces": [
+          "branch_cone_right2",
+          "outlet_plane"
+        ],
+        "junction_distance_mm": 7.16,
+        "construction": "outlet_rim_plane_cut",
+        "nearest_faces_mm": {
+          "branch_cone_right2": 0.14,
+          "outlet_plane": 7.16,
+          "plenum_box": 57.84,
+          "branch_cone_right1": 64.31
+        }
+      },
+      {
+        "centre_mm": [
+          155.7,
+          138.9,
+          27.2
+        ],
+        "radius_from_fan_axis_mm": 218.2,
+        "distance_to_analysis_surface_mm": 0.11,
+        "faces": [
+          "branch_cone_right2",
+          "outlet_plane"
+        ],
+        "junction_distance_mm": 7.16,
+        "construction": "outlet_rim_plane_cut",
+        "nearest_faces_mm": {
+          "branch_cone_right2": 0.16,
+          "outlet_plane": 7.16,
+          "plenum_box": 57.84,
+          "branch_cone_right3": 64.32
+        }
+      },
+      {
+        "centre_mm": [
+          -155.7,
+          221.1,
+          27.2
+        ],
+        "radius_from_fan_axis_mm": 218.2,
+        "distance_to_analysis_surface_mm": 0.11,
+        "faces": [
+          "branch_cone_left3",
+          "outlet_plane"
+        ],
+        "junction_distance_mm": 7.16,
+        "construction": "outlet_rim_plane_cut",
+        "nearest_faces_mm": {
+          "branch_cone_left3": 0.16,
+          "outlet_plane": 7.16,
+          "plenum_box": 57.84,
+          "branch_cone_left2": 64.32
+        }
+      },
+      {
+        "centre_mm": [
+          155.7,
+          221.1,
+          27.2
+        ],
+        "radius_from_fan_axis_mm": 218.2,
+        "distance_to_analysis_surface_mm": 0.06,
+        "faces": [
+          "branch_cone_right3",
+          "outlet_plane"
+        ],
+        "junction_distance_mm": 7.16,
+        "construction": "outlet_rim_plane_cut",
+        "nearest_faces_mm": {
+          "branch_cone_right3": 0.14,
+          "outlet_plane": 7.16,
+          "plenum_box": 57.84,
+          "branch_cone_right2": 64.31
+        }
+      },
+      {
+        "centre_mm": [
+          155.7,
+          258.9,
+          27.2
+        ],
+        "radius_from_fan_axis_mm": 218.2,
+        "distance_to_analysis_surface_mm": 0.11,
+        "faces": [
+          "branch_cone_right3",
+          "outlet_plane"
+        ],
+        "junction_distance_mm": 7.16,
+        "construction": "outlet_rim_plane_cut",
+        "nearest_faces_mm": {
+          "branch_cone_right3": 0.16,
+          "outlet_plane": 7.16,
+          "plenum_box": 57.84,
+          "branch_cone_right2": 100.16
+        }
+      }
+    ]
+  },
+  "verdict": {
+    "concave_cells_at_designed_sharp_edges": true,
+    "input_admissible_for_settings_sweep": false,
+    "mesh_admitted": false,
+    "flow_solver_started": false,
+    "reason": "All 3 concave cells lie within one cell diagonal of a sharp constructive edge (alternator_hard_subtraction_edge, fan_cylinder_plenum_hard_union_seam, outlet_rim_plane_cut). The surface carries 882 mm of re-entrant fan_cylinder_plenum_hard_union_seam, 426 mm of re-entrant alternator_rear_rim_hard_subtraction and 21 mm of re-entrant alternator_hard_subtraction_edge. It also carries 1007 creases over 30 deg (6901 mm) on smooth constructive faces; the undecimated native surface has 0, so the 90 % decimation in prepare_duct_cfd.py introduced them.",
+    "hard_re_entrant_length_mm": {
+      "fan_cylinder_plenum_hard_union_seam": 882.3,
+      "alternator_rear_rim_hard_subtraction": 425.8,
+      "alternator_hard_subtraction_edge": 20.8
+    },
+    "decimation_creases": {
+      "edges": 1007,
+      "length_mm": 6901.2
+    }
+  },
+  "manufacturing_authorized": false,
+  "physical_validation": false
+}

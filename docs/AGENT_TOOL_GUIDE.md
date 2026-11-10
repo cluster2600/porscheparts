@@ -30,7 +30,9 @@ flowchart TD
     G -->|prismatic| B["build123d / OCCT<br/>→ STEP"]
     G -->|"implicit, lattice, voxel"| P["PicoGK C#<br/>(ADR 0017)"]
     T -->|"mesh for FE/CFD"| M["Gmsh"]
+    T -->|"scan → CAD features"| R["Open3D sequential RANSAC<br/>+ normal agreement (planes)"]
     T -->|"stress, modal, buckling"| X["CalculiX ccx"]
+    X -->|"fatigue post-processing"| Y["pyLife: rainflow,<br/>Miner damage"]
     T -->|"flow, heat, combustion"| F["OpenFOAM 13/14<br/>Cantera"]
     T -->|"LPBF printability"| L["layer screen,<br/>then AdditiveFOAM"]
     T -->|"scene, contact, render"| U["OpenUSD + ovphysx<br/>(OVRTX on RTX GPU)"]
@@ -47,6 +49,8 @@ tool beyond that table.*
 | Part images after a geometry change | `scripts/render_part_previews.py` | `make part-previews` (each part runs in `3dprinting993-cadsim:dev`, 6 GB cap) | Docker CPU | public images match the record and CAD hashes | AGENTS.md |
 | Parametric CAD | build123d 0.11 / OCCT 7.9 | the part's `parts/<id>/source/*.py`; qualified image `cad-author-f28` | host venv or container | a STEP built from declared parameters | [TOOLCHAIN.md](TOOLCHAIN.md) |
 | Implicit, lattice or voxel geometry | PicoGK 2.3 + LEAP 71 ShapeKernel/LatticeLibrary | `dotnet build -p:UpstreamRoot=<sources>`, then run under a memory cap; catalogue driver `parts/picogk-catalog/tools/run_part.py`; the 962 head only through its bounded Linux runner `run_native.py`, never the native DLL directly | native host or `containers/m64-leap71` | a voxel/mesh body; never a BREP master. The 962 Linux runner is qualified on a synthetic witness only; the head generator has not run on Linux | [LOCAL_HOST_SETUP.md §4](LOCAL_HOST_SETUP.md#4-native-picogk-on-linux-or-wsl), [LEAP_STACK.md](../twins/vehicle-911-917/LEAP_STACK.md), [962 Linux runner](../twins/962-cylinder-head-f0/source/linux_runtime/README.md) |
+| Scan-to-CAD feature fitting (planes) | Open3D 0.19 `segment_plane`, repeated, keeping only inliers whose normals agree; refit each plane by least squares | [`benchmarks/scan-primitive-fitting/`](../benchmarks/scan-primitive-fitting/README.md): venv from its hash lock; set the distance to about 3× the scan noise | host venv | planes of a scan, each with its own fit residual. Qualified on a synthetic drafted-fin witness only (24/24 faces, drafts 0–3°); cylinders, cones and fillets are not covered | [README](../benchmarks/scan-primitive-fitting/README.md) |
+| Fatigue post-processing | pyLife 2.3 (Apache-2.0): rainflow counting, Wöhler curves, Miner damage | [`benchmarks/fatigue-postprocessor/`](../benchmarks/fatigue-postprocessor/README.md): venv from its hash lock; stress histories from a converged FE result | host venv | counts and damage for a **stated** S-N curve. It supplies no material data: S-N, mean-stress and AM process properties need their own source | [README](../benchmarks/fatigue-postprocessor/README.md) |
 | Union of closed triangle solids | manifold3d 3.5 (Apache-2.0), `Manifold.batch_boolean` on `Mesh64` (double precision) | build each piece as a closed oriented mesh, unite, then check the result yourself (watertight, winding, volume). Used by the [935 head twin](../twins/935-cylinder-head-cad-twin/source/loft_stack.py) | host venv | one manifold surface from touching or overlapping solids. It leaves triangles without area and needle triangles; it is a mesh, never a B-rep | [twin README](../twins/935-cylinder-head-cad-twin/README.md) |
 | FE / CFD meshing | Gmsh (pinned per evidence) | Python API inside the study's source | container or host | a mesh with recorded size fields and quality | study README |
 | Stress, modal, buckling, thermal | CalculiX 2.21 `ccx` | text deck written by the study script; **one thread** | `3dprinting993-cadsim` or capped host | a numerical result for stated loads and supports | [twins/964-chassis/fea/README.md](../twins/964-chassis/fea/README.md) |
@@ -59,6 +63,7 @@ tool beyond that table.*
 | Render, sensors | OVRTX | only after the GPU gates | rented RTX GPU | pixels; never a physical result | [SOFTWARE_STACK.md](SOFTWARE_STACK.md#gates-before-paid-gpu-computation) |
 | Local AI CAD proposals | CADAM + local Qwen/MLX | per the runbook; proposals checked independently | Mac | a proposal, never its own inspection | [cadam-local-qwen.md](architecture/cadam-local-qwen.md) |
 | Measurement intake | `scripts/capture_caliper.py`, `scripts/capture_photoset.py` | contributor data only ([ADR 0019](decisions/0019-accept-contributed-measurements.md)) | contributor | an admitted reading with instrument and uncertainty | [CAPTURE_PROTOCOL.md](CAPTURE_PROTOCOL.md) |
+| Back up private outputs (STEP, meshes, solver fields) | [`scripts/private_release_backup.py`](../scripts/private_release_backup.py) | `backup`, then `verify`, into a release of a **private** repository (935 data: `porscheparts-935-private`); files still being written are skipped and listed | any host with `gh` | a storage copy whose every file rehashes identically after download. Not a DVC registration: the DVC stores (Mac, Kali) are not reachable from every host | script docstring |
 | 962 cylinder-head work | `workflow_plan.py` + the 19-phase contract | read the head's AGENTS.md and WORKFLOW.md **first** | per phase | phase states, never physical approval | [WORKFLOW.md](../twins/962-cylinder-head-f0/WORKFLOW.md) |
 
 ## 2. Where each tool runs
@@ -169,6 +174,22 @@ neighbouring study's README for more before starting.
   a 2.5 mm-cell core while the generator reported 5–49 % savings. Use cells of
   at least nine wall thicknesses.
 
+### Scan feature fitting
+
+- **A fine Z-level histogram misses drafted faces.** With a 0.1 mm window it
+  found levels near only 7 of 28 fin faces on the 935 head (2026-11-09): a cast
+  face drafted by 1–2° spreads over 1–2 mm of height and never forms a sharp
+  peak. On the synthetic witness the same detector recovered only the undrafted
+  faces (4/24) and reported 1,514 spurious levels. The twin's later per-face fit
+  recovered all 28 on the real scan; it has no witness. Those faces then proved
+  not to be planes within tolerance (0.25 to 0.6 mm RMS), and the twin's body is
+  now a loft through sections.
+- **Open3D `detect_planar_patches` with library defaults misses stacked
+  faces.** On the same witness (fins 3 mm thick, 4 mm apart) it returned the two
+  outermost faces only. Sequential `segment_plane` with a normal-agreement
+  filter recovered all 24; the normal filter is what keeps a fin's facing
+  neighbour out of its inliers.
+
 ### PicoGK 2.3
 
 - `IntersectImplicit` aborts below 1/3 mm voxels; use
@@ -238,9 +259,10 @@ All measured on the 935 head twin on 2026-11-10.
 | Photogrammetry on real data (COLMAP/GLOMAP) | image defined, never run on real captures | `containers/recon.Dockerfile` |
 | Material Agent / Omniverse endpoints | HTTP 403 | #459, #561 |
 | PhysicsNeMo on a part | GPU smoke only; needs converged, correlated cases | SOFTWARE_STACK.md |
-| Vehicle dynamics, multibody | candidate: Chrono::Vehicle (BSD-3), code-to-code validation only; needs measured 993 data | [twin tooling research](research/993-digital-twin-tooling-2026-11-06.md), #504 |
+| Vehicle dynamics, multibody, valve-train dynamics | candidate: Chrono (BSD-3; Chrono::Vehicle for the car), not installed: no image, lock or witness. A head twin needs it for anything beyond static geometry; code-to-code validation only until measured 993 data exist | [twin tooling research](research/993-digital-twin-tooling-2026-11-06.md), #504 |
+| Fatigue material data | none admitted. pyLife (above) computes damage only from an S-N curve someone states; titanium and AM parts need alloy-, process- and orientation-specific data (AGENTS.md) | SAFETY.md |
 | System co-simulation | candidates: OMSimulator, FMPy, Ecos; FMI 2.0 co-simulation is the common level; ovfmi (pre-release) bridges FMUs to OpenUSD | same research, #504 |
-| 1D engine and turbo gas dynamics | no maintained free tool (OpenWAM dormant since 2016) | same research |
+| Validated 1D engine and turbo gas dynamics | Aeolus1D 0.3.3 (MIT, alpha) runs in the digest-pinned F39 image `ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:7425…`, used for 917 network construction checks. Only a Sod shock-tube smoke qualifies its runtime: no engine, turbo or 993 validation. No mature maintained alternative (OpenWAM dormant since 2016). No `containers/*.lock.json` names the image, so the container index lists it as unlocked | same research, [917 reference engine](../twins/reference-917-engine/README.md) |
 | Operational data from the car | python-OBD only on OBD-II-compliant 993s; nothing free for 19-pin / K-line Motronic | same research, #510–#514 |
 
 Licences differ: FluidX3D is non-commercial, the NVIDIA SDKs are free to use
