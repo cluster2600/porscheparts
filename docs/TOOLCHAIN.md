@@ -22,6 +22,7 @@ name. The corresponding container images are described in
 | Dense reconstruction | COLMAP `patch_match_stereo` | CLI, CUDA required | Dense PLY |
 | Mesh cleanup | pymeshlab | Python API | PLY, OBJ, STL |
 | Point clouds | Open3D | Python API | PLY, PCD |
+| Scan-to-CAD planes | Open3D sequential `segment_plane` with a normal-agreement filter; [witness](../benchmarks/scan-primitive-fitting/README.md) | Python API | plane parameters with fit residuals |
 | Organic shapes | Blender `--background --python` | Python script | BLEND, OBJ, PLY |
 | Photogrammetry second opinion | Meshroom `meshroom_batch` | CLI, installed on demand | OBJ, point cloud |
 
@@ -68,6 +69,7 @@ The `.3mf` and `.stl` formats are manufacturing derivatives.
 | Mechanical analysis | CalculiX `ccx` | Text input deck |
 | Result conversion | `ccx2paraview`, meshio | CLI and Python |
 | Post-processing | PyVista, ParaView | Python script |
+| Fatigue post-processing | pyLife 2.3 (rainflow, Wöhler, Miner); [witness](../benchmarks/fatigue-postprocessor/README.md) | Python API; S-N data from a cited source, never from the tool |
 | Exploratory CFD | OpenFOAM + foamlib | CLI and Python |
 | Local LPBF melt pool | ORNL AdditiveFOAM 2.0.0 on OpenFOAM 14 | CLI/MPI, correlated coupons required |
 | Multilevel LPBF thermal research | GO-MELT, pinned source | Isolated JAX CPU kernel witness; multilevel scan and CUDA qualification pending |

@@ -117,6 +117,12 @@ every value the verifiers checked held.
   on GitHub and PyPI.
 - So no maintained free tool covers the air-cooled M64 or the twin-turbo
   M64/60. The current 0D bench model and Cantera fixtures remain uncorrelated.
+- **Correction, 2026-11-10:** this survey missed a tool the repository already
+  runs. Aeolus1D 0.3.3 (MIT, alpha) is in the digest-pinned F39 image used for
+  the 917 wave-action network checks
+  ([917 reference engine](../../twins/reference-917-engine/README.md)). Only a
+  Sod shock-tube smoke qualifies it, so the gap above, a *validated* 1D engine
+  and turbo tool, still stands.
 
 ### Operational data acquisition: gap for most 993s
 
