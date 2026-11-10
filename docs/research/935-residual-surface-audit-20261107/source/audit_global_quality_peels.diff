@@ -1,0 +1,60 @@
+--- a/audit_current_peels.py
++++ b/audit_global_quality_peels.py
+@@ -40,8 +40,8 @@
+     controls = {'operator': operator.controls(), 'surface_join': attribution.controls(record.records)}
+     (args.output/'controls.json').write_text(json.dumps(controls, indent=2)+'\n')
+     mesh_hash = sha(job['mesh'])
+-    assert mesh_hash == 'd618763474f2eeb7bf680ce18f6f2efce22795e538263b7dfc639ffb68be62c5'
+-    assert sha(job['surface']) == '16553493632d689fbb78f18403d7a3734a7ed4a111f67cf89f93864cfbec57e9'
++    assert mesh_hash == 'fdce160bc7ec2456ab339de09733d00cd2f3cd4c6a1327e03b44c838000e0db6'
++    assert sha(job['surface']) == 'aaaa18f894d609d4c265835d97f3d191cbfad40e7be32c69e5f83437dbafacf2'
+     assert sha(job['features']) == 'e5087c3cd5c90208acb56adff830bb39edc58bb0d93362b9a57b5cbf944b70f3'
+     condition = json.loads(Path(job['condition_report']).read_text())
+     volume = json.loads(Path(job['volume_report']).read_text())
+@@ -49,7 +49,7 @@
+     assert condition['input_mesh_sha256'] == volume['mesh_sha256'] == mesh_hash
+     assert volume['all_cells_positive_for_stored_binary_coordinates']
+     assert volume['actual_complete_boundary_and_orientation_exact']
+-    assert not volume['diagnostic_quality_passed'] and not condition['absolute_quality_gate_passed']
++    assert not volume['diagnostic_quality_passed'] and not condition['physics_admitted']
+     assert parent['candidate_surface_sha256'] == sha(job['surface'])
+     assert parent['candidate_tags_sha256'] == sha(job['tags'])
+     assert condition['private_ids_sha256'] == sha(job['severe_ids'])
+@@ -61,9 +61,24 @@
+     assert np.array_equal(nodes[:len(vertices)].view(np.uint64), vertices.view(np.uint64))
+     del boundary
+     tags = np.load(job['tags'], allow_pickle=False)
++    spec = importlib.util.spec_from_file_location('exact_quality_witness', job['quality_source'])
++    quality_helper = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(quality_helper)
++    tested_quality = quality_helper.controls()
++    witness = json.loads(Path(job['witness']).read_text())
++    witness_report = json.loads(Path(job['witness_report']).read_text())
++    witness_row = witness['row']
++    assert witness_report['input_surface_sha256'] == sha(job['surface'])
++    assert witness_report['input_tags_sha256'] == sha(job['tags'])
++    assert witness_report['private_witness_sha256'] == sha(job['witness'])
++    assert isinstance(witness_row, int) and 0 <= witness_row < len(faces)
++    assert tags[witness_row] > 0 and np.array_equal(faces[witness_row], witness['vertices'])
++    witness_quality = quality_helper.quality_squared(vertices[faces[witness_row]])
++    assert witness_quality == Fraction(*map(int, witness_report['exact_witness_q_squared']))
++    assert 0 < witness_quality < Fraction.from_float(.01)**2
+     with np.load(job['severe_ids'], allow_pickle=False) as data:
+         ids = data['cell_ids']
+-    assert len(ids) == condition['counts_kappa_F_at_least']['1e12'] == 15251
++    assert len(ids) == condition['counts_kappa_F_at_least']['1e12'] == 12811
+     assert len(np.unique(ids)) == len(ids) and np.all((ids >= 0) & (ids < len(cells)))
+     rows, labels, _, _, caps = attribution.surface_join(cells[ids], faces, tags, len(nodes), record.records)
+     np.savez_compressed(args.output/'private-current-attribution.npz', cell_ids=ids,
+@@ -128,7 +143,10 @@
+     maximum = max((row[4]['deviation'] for row in packed), default=Fraction(0))
+     loss = sum((row[4]['removed_volume'] for row in packed), Fraction(0))
+     report = dict(source_sha256=sha(__file__), job_sha256=sha(args.job), input_mesh_sha256=mesh_hash,
+-                  controls=controls, severe_cells_examined=len(ids), source_surface_faces_scanned=len(faces),
++                  controls=controls, quality_controls=tested_quality, witness_report_sha256=sha(job['witness_report']),
++                  exact_witness_q_squared=[str(witness_quality.numerator), str(witness_quality.denominator)],
++                  new_faces_require_existing_warning_quality=True, global_quality_proof_pending_verification=True,
++                  severe_cells_examined=len(ids), source_surface_faces_scanned=len(faces),
+                   cells_by_boundary_face_count=np.bincount((rows >= 0).sum(axis=1), minlength=5).tolist(),
+                   exact_geometry_and_global_incidence_admitted=len(admitted), vertex_disjoint_peels_admitted=len(packed),
+                   reasons=dict(reasons), fixed_graph_deviation_limit_nominal_mm=float(bound),

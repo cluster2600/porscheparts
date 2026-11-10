@@ -35,7 +35,7 @@ endif
 	pet-zone-triage-check pet-part-triage pet-verdict pet-verdict-check \
 	pet-explain pet-disposition \
 	route-trim-ring-check parts-table route-lever-hook route-lever-hook-check \
-	print-screens print-visuals print-screen-sections-check parts-table-check readme-gallery readme-gallery-check part-pages part-pages-check catalogue-pages catalogue-pages-check translation-status reports-index reports-index-check docs-links-check part-previews part-previews-check container-recon container-cadsim container-mesh-cfd \
+	print-screens print-visuals print-screen-sections-check parts-table-check readme-gallery readme-gallery-check part-pages part-pages-check container-index catalogue-pages catalogue-pages-check translation-status reports-index reports-index-check docs-links-check part-previews part-previews-check container-recon container-cadsim container-mesh-cfd \
 	container-physicsml container-simready container-simready-workflow \
 	container-simready-local-ai container-ov-libraries-cpu container-smoke \
 	container-smoke-physicsml container-smoke-simready \
@@ -196,7 +196,8 @@ check-filesystem:
 #> check | Install the isolated Python 3.12 check environment (requires uv)
 check-setup: check-filesystem
 	test -x .venv-check/bin/python3 || uv venv --python 3.12 .venv-check
-	uv pip install --python .venv-check/bin/python -r requirements-check.txt
+	uv pip install --python .venv-check/bin/python -r requirements/requirements-check.txt
+	uv pip install --python .venv-check/bin/python --index-url https://pypi.org/simple --keyring-provider disabled --no-deps --only-binary :all: --require-hashes -r requirements/requirements-check-oracle.txt
 
 #> check | Targets of the archived 917/935 line
 help-917:
@@ -346,6 +347,7 @@ validate: check-filesystem
 	python3 scripts/validate_reference.py
 	python3 scripts/validate_registers.py
 	python3 scripts/validate_file_sizes.py
+	python3 scripts/render_container_index.py --check
 	python3 scripts/validate_work_tree_outputs.py
 	python3 scripts/validate_935_admissibility.py
 	python3 scripts/validate_manual_measurements.py
@@ -1438,6 +1440,10 @@ readme-gallery:
 #> catalogue | Check that this gallery follows the records
 readme-gallery-check:
 	python3 scripts/render_readme_gallery.py --check
+
+#> check | Regenerate the index of every container recipe, lock and workflow
+container-index:
+	python3 scripts/render_container_index.py --write
 
 #> catalogue | Generate one description page per part
 part-pages:

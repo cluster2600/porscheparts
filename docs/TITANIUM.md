@@ -11,7 +11,7 @@ powder designation.
 
 The project's first titanium candidate is the **oval exhaust tip
 `993-EXH-OVAL-TIP-TI-F1-0001`**: retained by
-[decision 0007](decisions/0007-premier-titane-embout-echappement.md), kept by
+[decision 0007](decisions/0007-first-titanium-exhaust-tip.md), kept by
 [decision 0014](decisions/0014-exhaust-tip-route-matrix-conditional-titanium.md)
 behind a conditional go/no-go that is closed today. The engine carrier is not a
 candidate (see below). [ROADMAP.md](ROADMAP.md) Phase 3 names the same part.

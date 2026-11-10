@@ -1,0 +1,182 @@
+{
+  "schema": "935-cap-graph-phase-ledger-1",
+  "parent_commit": "9787cd9b152519561cbff7e98787e7a32737b6ca",
+  "parent_manifest_sha256": "5ae4030201035dce3b6a972f7cfee99ab98dee092454634608394eae6b0e96ec",
+  "scope": "Local numerical cap-surface reconstruction and independent checks; full head and volume unchanged; no functional release",
+  "phases": [
+    {
+      "id": "P0",
+      "state": "complete",
+      "inputs": "Current frozen mesh and witness; original construction and transform",
+      "runtime": "Existing Python 3.12",
+      "command": "Rehash each consumed input against frozen manifests",
+      "outputs": "Bound job",
+      "checks": "All hashes match"
+    },
+    {
+      "id": "P1",
+      "state": "complete",
+      "inputs": "P0 job, exact metric helpers",
+      "runtime": "Pinned Python/NumPy; bounded local controller",
+      "command": [
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-source-cad-isolated-runtime-20261106-001/venv/bin/python",
+        "-B",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-cap-graph-admission-20261107-001/inputs/audit_bounded_cap.py",
+        "--job",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-cap-graph-admission-20261107-001/job.json",
+        "--output",
+        "/Users/maxime/Developer/PorschePartsArtifacts/935-cap-graph-admission-20261107-001/audit"
+      ],
+      "outputs": "Three local diagonal refusals; complete fixed-point certificate; independently checked refined cap and complete actual native readback",
+      "checks": "All final source-bound controller runs completed; failed controls and ASCII readback retained; cap graph and all face metrics pass; all actual native nodes/facets join"
+    },
+    {
+      "id": "P2",
+      "state": "not_executed",
+      "inputs": "Only P1 metric candidates",
+      "runtime": "Independent exact domain checker required",
+      "command": null,
+      "outputs": "Domain partition and overlap proof",
+      "checks": "Must precede replacement mesh"
+    },
+    {
+      "id": "P3",
+      "state": "not_executed",
+      "inputs": "Only a P2-admitted complete boundary",
+      "runtime": "Existing whole-mesh and native chain",
+      "command": null,
+      "outputs": "Complete mesh/native admission",
+      "checks": "All gates; no field solve on rejected geometry"
+    },
+    {
+      "id": "G0-G5",
+      "state": "open",
+      "inputs": "Specimen metrology, faithful editable CAD, correlated loads, process and inspection",
+      "runtime": "Qwen/PicoGK, Gmsh, OpenFOAM, CalculiX, Adamantine roles unchanged",
+      "command": null,
+      "outputs": "Faithful functional metal cylinder head",
+      "checks": "All six engineering/physical gates remain false"
+    }
+  ],
+  "budget": {
+    "total_cap_usd": 35,
+    "compute_cap_usd": 30,
+    "closure_reserve_usd": 5,
+    "prior_conservative_allocation_usd": 15.67884277510534,
+    "allocation_is_invoice": false,
+    "new_paid_compute_usd": 0
+  },
+  "no_supplier_message": true,
+  "printing_master_changed": false,
+  "subphases": [
+    {
+      "id": "P1a",
+      "state": "complete",
+      "report_sha256": "190479c3fc1c728b0090127448241b22d5bcfc1a80af0a18c1bdc517aa7915dd",
+      "inputs": "Current witness, original construction and exact helper identities",
+      "runtime": "Existing scientific Python 3.12",
+      "command": [
+        "python",
+        "-B",
+        "source/audit_bounded_cap.py",
+        "--job",
+        "PRIVATE_CAPSULE/job.json",
+        "--output",
+        "NEW_DIRECTORY"
+      ],
+      "outputs": "Three bounded local diagonal metric refusals",
+      "checks": "Exact rational source ancestry, projected graph, face and tet checks"
+    },
+    {
+      "id": "P1b",
+      "state": "complete",
+      "report_sha256": "12fd93d520b73d266574f9147cb0b31956621a46aba3fbb7fa52bfad9171cb81",
+      "inputs": "Current literal cap, mapped marked-curve inputs",
+      "runtime": "Existing scientific Python 3.12",
+      "command": [
+        "python",
+        "-B",
+        "source/retessellate_cap.py",
+        "--job",
+        "PRIVATE_CAPSULE/full-cap-job.json",
+        "--output",
+        "NEW_DIRECTORY"
+      ],
+      "outputs": "Private unchanged cap proposal",
+      "checks": "Exact strict incircle and constrained-edge predicates"
+    },
+    {
+      "id": "P1c",
+      "state": "complete",
+      "report_sha256": "12dfdb014ef3a5d89e978f1d317ccf6c248f9bf4350b8030b8f241ca49e6ce11",
+      "inputs": "Actual unchanged cap proposal and independent mapped-curve inputs",
+      "runtime": "Existing scientific Python 3.12",
+      "command": [
+        "python",
+        "-B",
+        "source/certify_cap_fixed_point.py",
+        "--job",
+        "PRIVATE_CAPSULE/certificate-job.json",
+        "--output",
+        "NEW_DIRECTORY"
+      ],
+      "outputs": "Full 551-edge fixed-point certificate",
+      "checks": "Direct exact permutation determinants; literal source array identity"
+    },
+    {
+      "id": "P1d",
+      "state": "complete",
+      "report_sha256": "46001f9110b82b23615bc7a75174ad929bc531746071468844f81924f04be59a",
+      "inputs": "Source-bound 277-point cap and fixed Gmsh policy",
+      "runtime": "Existing pinned Gmsh 4.12.1",
+      "command": [
+        "python",
+        "-B",
+        "source/refine_cap.py",
+        "--job",
+        "PRIVATE_CAPSULE/refine-job.json",
+        "--output",
+        "NEW_DIRECTORY"
+      ],
+      "outputs": "Lifted cap NPZ and actual binary native MSH",
+      "checks": "Real native square control and original point-bit conservation",
+      "superseded_sources": "The final binary refiner is v3; failed v1 control and v2 ASCII readback are retained. Both patches reconstruct prior source bytes."
+    },
+    {
+      "id": "P1e",
+      "state": "complete",
+      "report_sha256": "bdab4b9247a0163d11f34f247c5cbe485bbfdc563beceb5e62153345e16028ce",
+      "inputs": "Actual lifted cap and original full-surface/parent bound identities",
+      "runtime": "Existing libigl predicate runtime",
+      "command": [
+        "python",
+        "-B",
+        "source/check_refined_cap.py",
+        "--job",
+        "PRIVATE_CAPSULE/check-refined-job.json",
+        "--output",
+        "NEW_DIRECTORY"
+      ],
+      "outputs": "Complete cap graph and metric certificate",
+      "checks": "Exact positive projection, manifold disk, all projected intersections, residual bound and all face qualities"
+    },
+    {
+      "id": "P1f",
+      "state": "complete",
+      "report_sha256": "75f06960d2b070bac8792256dbfa3e79959d2a5d07af6c004b9e8fc794efed42",
+      "inputs": "Actual binary native MSH and hash-identical independently checked cap",
+      "runtime": "Existing pinned Gmsh 4.12.1",
+      "command": [
+        "python",
+        "-B",
+        "source/check_cap_msh.py",
+        "--job",
+        "PRIVATE_CAPSULE/native-job-v3.json",
+        "--output",
+        "NEW_DIRECTORY"
+      ],
+      "outputs": "All-node/all-oriented-facet native readback",
+      "checks": "Cyclic join controls and every coordinate bit"
+    }
+  ]
+}

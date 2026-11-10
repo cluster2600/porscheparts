@@ -136,7 +136,7 @@ Catalogue record: [`catalog/parts/993-exh-oval-tip-ti-f1-0001.json`](../../catal
 ## Design dossiers
 
 - [993-exh-oval-tip-ti-f1-0001-manufacturing-request](../../docs/993/993-exh-oval-tip-ti-f1-0001-manufacturing-request.md)
-- [993_EMBOUT_TITANE_F1](../../docs/993/993_EMBOUT_TITANE_F1.md)
+- [993_TITANIUM_EXHAUST_TIP_F1](../../docs/993/993_TITANIUM_EXHAUST_TIP_F1.md)
 
 ---
 

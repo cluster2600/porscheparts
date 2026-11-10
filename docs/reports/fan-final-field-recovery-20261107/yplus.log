@@ -1,0 +1,50 @@
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  14
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 14-a4867fc914c1
+Exec   : foamPostProcess -case /case -solver incompressibleFluid -func yPlus -time 2000
+Date   : Nov 07 2026
+Time   : 12:34:34
+Host   : "9fda79a7c2b4"
+PID    : 7
+I/O    : uncollated
+Case   : //case
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 2000
+
+
+Constructing functionObjects from system/functions
+    Selecting yPlus with name yPlus
+Time = 2000s
+
+Selecting solver incompressibleFluid
+
+Selecting viscosity model constant
+
+Selecting momentum transport model type RAS
+    Selecting RAS turbulence model kOmegaSST
+
+Constructing MRF zones from MRFProperties
+    MRF zone list
+        Constructing MRF zone MRF
+
+Selecting patchDistMethod meshWave
+yPlus yPlus write:
+    writing object yPlus
+    patch rotor y+ : min = 0.004717167665, max = 64.01321654, average = 12.91162908
+    patch duct y+ : min = 0.2078317858, max = 22.81185244, average = 1.822631999
+
+
+End
+

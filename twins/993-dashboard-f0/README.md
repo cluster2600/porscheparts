@@ -1,6 +1,12 @@
 # Porsche 993 complete dashboard — F0 scope
 
-This workstream contains **schematic PicoGK visual scenes of the complete dashboard** and an evidence inventory for a left-hand-drive Porsche 993 targeting option M564. Both F0 scenes use an invented display frame. Component sizes and positions are artistic assumptions, not vehicle measurements or assembly transforms. The intended vehicle, its option label, and its restraint configuration have not been checked. All component transforms and assembly geometry remain `null` in [assembly.json](assembly.json).
+This workstream contains **schematic PicoGK visual scenes of the complete dashboard** and an evidence inventory for a left-hand-drive Porsche 993 targeting option M564. All F0 scenes use an invented display frame. Component sizes and positions are artistic assumptions, not vehicle measurements or assembly transforms. The intended vehicle, its option label, and its restraint configuration have not been checked. All component transforms and assembly geometry remain `null` in [assembly.json](assembly.json).
+
+## DDK-informed F0 iteration
+
+![Complete dashboard PicoGK F0 v2 with DDK-informed panel relationships; assumed layout](ddk-study-v2/dashboard-three-quarter.png)
+
+The [DDK study](ddk-study-v2/README.md) introduces a parametric upper pad and cowl, detailed dial faces, lower side vents with vertical blades, fascia-mounted HVAC/radio, a shallow glovebox and a separate sloped console. Its [photo audit](ddk-study-v2/ddk-observations.md) traces the installed and removed component views. The [dimension research](ddk-study-v2/dimension-research.md) records published product sizes and the still-missing measurements. DDK attachment descriptions guide future inspection; they supply no target-variant mounting coordinates. [Editable PicoGK source](ddk-source-v2/README.md), [references](ddk-study-v2/references.json), [scene receipt](ddk-study-v2/scene-report.json) and [render receipt](ddk-study-v2/render-report.json) preserve the distinction between improved appearance and measured geometry.
 
 ## Photo-guided F0 iteration
 
@@ -38,6 +44,8 @@ The PET [assembly skeleton](../../catalog/reference/993-assembly-skeleton.json) 
 The target is **M564, left-hand drive**, pending a redacted vehicle option label and direct inspection. The passenger side must show no deployment flap or module. The trim part number remains **unresolved** in the [catalogue record](../../catalog/parts/993-int-dashboard-trim-0001.json). The [PET variant audit](../../docs/reports/993-dashboard-variant-audit-20261106.md) finds `993 552 055 00` on both a passenger-airbag plate and an RS no-passenger-airbag plate; neither proves the non-RS M564 identity. M561, M562, and Carrera RS variants need separate decisions and assemblies.
 
 The machine-readable [PET identity matrix](../../parts/993-int-dashboard-trim-0001/evidence/pet-identity.md) (#566) records the plate, page and position for every candidate variant and registers the conflict as CTR-0019. Its E1–E5 same-specimen protocol must pass, and independent reviewers must record the admission, before any reading is entered.
+
+The [external same-specimen intake package](intake/README.md) provides an empty, blocked template for a lawful outside contributor covering this complete dashboard; it contains no vehicle data or measurements.
 
 ## Interface contracts
 

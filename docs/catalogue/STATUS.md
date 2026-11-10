@@ -4,11 +4,12 @@
 
 **Nothing on this page is a catalogue part.** Every record below is refused by the publication gate of the [public catalogue](README.md). None is dimensionally accurate, fitted, tested or released, and none may be printed or fitted to a vehicle. Images, where present, show concept geometry or a status card, never a manufactured part.
 
-45 records.
+46 records.
 
 | part | name | status | safety class | why it is not published |
 |---|---|---|---|---|
 | [964-CENTRAL-CELL-ASSUMED-F1](../pieces/964-central-cell-assumed-f1.md) | **Not ready to print.** 964 central carbon cell, F1 assumption-only study | `concept` | prohibited_pending_engineering | validation status `concept`, not `released`; no recorded reviewer and review date |
+| [964-CENTRAL-CELL-SCULPTED-F2](../pieces/964-central-cell-sculpted-f2.md) | **Not ready to print.** Archived F2 sculpted central-cell study | `concept` | prohibited_pending_engineering | validation status `concept`, not `released`; no recorded reviewer and review date |
 | [993-BODY-FRONT-IMPACT-SUPPORT-ALSI10MG-F0-0001](../pieces/993-body-front-impact-support-alsi10mg-f0-0001.md) | **Not ready to print.** 993 front impact support, AlSi10Mg graded-core concept F0 | `concept` | prohibited_pending_engineering | validation status `concept`, not `released`; no recorded reviewer and review date |
 | [993-BODY-FRONT-LID-0001](../pieces/993-body-front-lid-0001.md) | **Not ready to print.** Front lid, composite panel | `concept` | functional | validation status `concept`, not `released`; no validation evidence; no recorded reviewer and review date |
 | [993-CA-CHARGE-PIPE-SET-PET-0001](../pieces/993-ca-charge-pipe-set-pet-0001.md) | **Not ready to print.** 993 Turbo charge-air tract transcribed parts (group 107-45) - PET-transcribed identity set | `concept` | non_critical | validation status `concept`, not `released`; no recorded reviewer and review date |

@@ -61,7 +61,7 @@ flowchart LR
 |---|---|
 | [MONOCOQUE_964_993_PROGRAMME.md](MONOCOQUE_964_993_PROGRAMME.md) | the carbon monocoque program and what it must establish |
 | [MONOCOQUE_964_993_ARCHITECTURE.md](MONOCOQUE_964_993_ARCHITECTURE.md) | architecture concept and layup strategy |
-| [MONOCOQUE_964_993_CHAINE_CALCUL.md](MONOCOQUE_964_993_CHAINE_CALCUL.md) | the analysis chain: who does what, and where something else is needed |
+| [MONOCOQUE_964_993_COMPUTATION_CHAIN.md](MONOCOQUE_964_993_COMPUTATION_CHAIN.md) | the analysis chain: who does what, and where something else is needed |
 
 ## Digital twin and compute
 
@@ -79,6 +79,9 @@ The [local Qwen pilot](../training/m64-qwen/README.md) implements the first AI i
 | [QWEN_TRAINING.md](QWEN_TRAINING.md) | how Qwen was trained, the actual datasets and results, and the next experiments for the 993 project |
 | [TOOLCHAIN.md](TOOLCHAIN.md) | the local CAD and analysis toolchain |
 | [COMPUTE_ENVIRONMENT.md](COMPUTE_ENVIRONMENT.md) | compute environment and images |
+| [CONTAINER_INDEX.md](CONTAINER_INDEX.md) | generated index of every container recipe, lock and workflow |
+| [AGENT_TOOL_GUIDE.md](AGENT_TOOL_GUIDE.md) | for agents: task → tool, how to run it, where, what it can claim, known pitfalls |
+| [LOCAL_HOST_SETUP.md](LOCAL_HOST_SETUP.md) | workstation setup: native file system, CI-equivalent checks, skip budgets, heavy jobs on WSL, native PicoGK |
 | [GITHUB_OPENBAO_WRAPPER.md](GITHUB_OPENBAO_WRAPPER.md) | the GitHub wrapper bounded by OpenBao |
 
 ## 993 Turbo and forced induction

@@ -1,0 +1,113 @@
+{
+  "issue": 453,
+  "scope": "exact recovery of rejected control final state, not a new flow solution",
+  "historical_solver_build": "14-7b05503f98a8",
+  "runtime_build": "14-a4867fc914c1",
+  "runtime_image": "sha256:9be47fc6241e1d34238d488ccfaec07b3136b071d7246602db1d8308b56cc0d3",
+  "command": [
+    "reconstructPar",
+    "-case",
+    "/case",
+    "-time",
+    "2000",
+    "-noLagrangian",
+    "-noSets"
+  ],
+  "limits": {
+    "cpus": 2,
+    "memory_gib": 8,
+    "timeout_seconds": 600,
+    "per_file_output_limit_bytes": 1048576000
+  },
+  "elapsed_seconds": 5.272155252285302,
+  "native_exit_code": 0,
+  "oom_killed": false,
+  "timed_out": false,
+  "staged_inputs_verified_before_and_after": 675,
+  "historical_recovered_inputs_reverified": 897,
+  "comparison": {
+    "reconstructed_fields": [
+      {
+        "path": "U",
+        "bytes": 211823859,
+        "sha256": "0d270a6ec0c9a897deddb261fb093fb4fc5860b2a9eb9404cbc3479acaa448cd",
+        "historical_sha256": "0d270a6ec0c9a897deddb261fb093fb4fc5860b2a9eb9404cbc3479acaa448cd",
+        "exact_match": true
+      },
+      {
+        "path": "Uf",
+        "bytes": 393857117,
+        "sha256": "5d625a6f253b64b6e0002c7d150bc5975881373935b9bd480662eb07e9bcc62c",
+        "historical_sha256": "5d625a6f253b64b6e0002c7d150bc5975881373935b9bd480662eb07e9bcc62c",
+        "exact_match": true
+      },
+      {
+        "path": "k",
+        "bytes": 74958078,
+        "sha256": "f29c8ab3f8e13f4fad84a18d997e90aaa40f33307e19bf176ce02b1d6106e6b9",
+        "historical_sha256": "f29c8ab3f8e13f4fad84a18d997e90aaa40f33307e19bf176ce02b1d6106e6b9",
+        "exact_match": true
+      },
+      {
+        "path": "nut",
+        "bytes": 75032634,
+        "sha256": "b82aa082229f46ce52a16390bf775059ac1ae0edb8bdfbd488d32091a41d1f38",
+        "historical_sha256": "b82aa082229f46ce52a16390bf775059ac1ae0edb8bdfbd488d32091a41d1f38",
+        "exact_match": true
+      },
+      {
+        "path": "omega",
+        "bytes": 74958204,
+        "sha256": "d24798c99ff04d63279cc3531c71577773cc45f1089e81a30a2438accc4e79f2",
+        "historical_sha256": "d24798c99ff04d63279cc3531c71577773cc45f1089e81a30a2438accc4e79f2",
+        "exact_match": true
+      },
+      {
+        "path": "p",
+        "bytes": 65612438,
+        "sha256": "62c193502a81d870b6bd5f597b9adc4c558676348af26a61c02951a2f6f1daf3",
+        "historical_sha256": "62c193502a81d870b6bd5f597b9adc4c558676348af26a61c02951a2f6f1daf3",
+        "exact_match": true
+      },
+      {
+        "path": "phi",
+        "bytes": 130713744,
+        "sha256": "3056a3171f93387a3243b8050ec8934219119498f62b7650fe2431ec1017a0e8",
+        "historical_sha256": "3056a3171f93387a3243b8050ec8934219119498f62b7650fe2431ec1017a0e8",
+        "exact_match": true
+      },
+      {
+        "path": "uniform/time",
+        "bytes": 803,
+        "sha256": "406fe0e2e8690db973aa63d31fa0cf24e2559e113a0e4909af6734654083107e",
+        "historical_sha256": "406fe0e2e8690db973aa63d31fa0cf24e2559e113a0e4909af6734654083107e",
+        "exact_match": true
+      }
+    ],
+    "input_files_reverified": 675,
+    "all_historical_bytes_match": true,
+    "solver_started": false,
+    "convergence_claimed": false
+  },
+  "mac_copy_reverified": true,
+  "native_receipt_audits_reproduced": [
+    "control",
+    "pitch42"
+  ],
+  "private_receipt_sha256": {
+    "plan.json": "4c757ddcd4d9248d9e6190997b8946dde3bad54459b874e188979c908ee00253",
+    "reverification.json": "b8d6bd09b9d236f298644309059bf19bbc74e162b2271a7eb6c597fbcefd560f",
+    "execution.json": "db3edba0f684f1c148d69d5dba55a0a59d7c81e213a9200d1ddd9bf35e2e9549",
+    "execution-v2.json": "d083b89d02e3a441d638b861cf843fd9001c7e8d494eb48e85263bc1e64c5552",
+    "comparison.json": "51e042791cb6d9c95eeb3fbd9850a3361550ffdf1a2cd954e017d3409e99653d",
+    "control-audit-replayed.json": "5dd158fdcdb7abbfde0a6e042b84859377bbb124faef98e229331b76748ec356",
+    "pitch42-audit-replayed.json": "3ec2e62d2f2d01dd2f7fab5198d934ddaf1d609948c0849916414d73e11d0473",
+    "log.reconstructPar": "e0e7b3334d0d41ce0c39b7933841ac2efb6a9d19df0be1b43795744554a719b0",
+    "log.reconstructPar-v2": "02c50a31dfd7d6acded52227253a19051c9d09a5fd4f922dad1b332c92ef4e62"
+  },
+  "initial_attempt": "Container mount setup failed before utility execution; empty output mountpoint added to staged copy; failure preserved.",
+  "solver_started": false,
+  "candidate_fields_recovered": false,
+  "convergence_accepted": false,
+  "physical_qualification": false
+}

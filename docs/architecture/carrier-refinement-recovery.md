@@ -116,7 +116,7 @@ The executed local runtime is Python 3.12.11 with NumPy 2.2.6 on macOS arm64.
 Four carrier admission rejection tests were skipped on the hosted runner because
 `igl` was absent. The catalogue workflow now installs libigl 2.6.3 from
 [the published wheels](https://pypi.org/project/libigl/2.6.3/), using the separate
-[`requirements-check-oracle.txt`](../../requirements-check-oracle.txt) with
+[`requirements/requirements-check-oracle.txt`](../../requirements/requirements-check-oracle.txt) with
 SHA-256 pins for Python 3.12 on Linux x86_64 and macOS arm64. Existing frozen
 numerical requirements, geometry oracle source and the skip budget are unchanged.
 

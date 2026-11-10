@@ -38,6 +38,14 @@ They bound the assumed vertical-only motion, not a real suspension trajectory.
 1,735 mm body width. The engine reservation has only 10 mm clearance above
 the proposed floor. Neither a longer shaft nor a wider track proves traction.
 
+**Direction for F15+ (owner decision 2026-11-09,
+[ADR 0022](../../docs/decisions/0022-911-917-wide-body-wide-track-research-target.md),
+#464):** a widened body with a wide track, between the baseline and the F14
+trial value, is the research target. The 1,735 mm width stays the recorded 993
+baseline but no longer bounds the research envelope. No track, body width or
+floor height is selected by that decision, and the 10 mm floor clearance is
+still open.
+
 ## Reproduction
 
 From the repository root, with NumPy/Pillow and .NET 9 available:
@@ -68,6 +76,8 @@ the data is absent. No scan is added to make CI pass.
    direction. Scan alignment is not a bellhousing-interface measurement.
 5. Build load cases from measured masses/centers of gravity, tire limits,
    ratios, torque transients and duty cycle before sizing structure or shafts.
+6. Source a widened-body surface with a recorded licence (ADR 0022). Until
+   one exists, the wide-body target has no body surface to clear against.
 
 No unsupported attachment coordinates, material allowables or tire-friction
 values are supplied by this checkpoint. Strength, fatigue, cooling,

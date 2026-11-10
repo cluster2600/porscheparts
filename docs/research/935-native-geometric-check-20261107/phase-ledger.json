@@ -1,0 +1,95 @@
+{
+  "schema": "935-native-geometric-check-phase-ledger-1",
+  "status": "terminal_diagnostic_rejected_recovered_and_instance_absent",
+  "admission": "Diagnostic native geometry inspection only; poor absolute cell shape retained; not an engine or manufacturing field solve",
+  "geometry_lineage": "Recovered native mesh of separately conditioned hypothetical bare head; not the new supported print assembly. Conditioning has an independently reported 0.0070661043 mm correspondence bound to the frozen hypothetical printing surface; no physical metrology claimed.",
+  "image": "ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f",
+  "credit_usd_at_preflight": 9.813862774388099,
+  "prior_conservative_allocation_usd": 15.342688367141704,
+  "attempt_cap_usd": 1.5,
+  "combined_conservative_allocation_usd": 16.842688367141704,
+  "budget_total_usd": 35,
+  "compute_cap_usd": 30,
+  "reserve_usd": 5,
+  "account_balance_changes_are_not_task_invoices": true,
+  "child_address_space_gib": 48,
+  "network_planning_gb": 20,
+  "inputs": {
+    "native_input_manifest_sha256": "90a94f87e4e38798a80fecd80967ef7f6d0747f3fed4102fc012cd175c34a618",
+    "archive_sha256": "53583ab407ccd1aa59c2d2783ba12892f228e50ebb3ae561f0517fbf9af289e8",
+    "worker_source_sha256": "d8313bbc664308f2abcc23b48b9db6a57612a053d22db966ce187222a6e084ea",
+    "guard_sha256": "ecdb196e2c89b090abd65bd847ba1ddcd7033dabd37e57e80d3c4e10efabaf39",
+    "identity_helper_sha256": "f5a07d536b582696424d713d4af9e6951d08b4017f4780260dd60ae14651c295"
+  },
+  "phases": [
+    {
+      "id": "N0",
+      "inputs": "Frozen native files, prior manifests, exact full native readback, shape-quality audit",
+      "runtime": "Mac Python 3.12.13",
+      "command": "Verify all 16 case files; package archive; execute completion-status and rental-identity controls",
+      "expected_outputs": "preparation.json; input-manifest.json; archive; control receipts",
+      "checks": "Original checksums exact; no geometry change; 17 payload entries including worker",
+      "state": "complete"
+    },
+    {
+      "id": "N1",
+      "inputs": "Fresh balance, instance inventory, mesh offer; predeclared guard configuration",
+      "runtime": "Approved OpenBao wrapper and independent local guard",
+      "command": "guard_conditioned_rental.py --manifest guard-manifest.json --helper guard_mesh_rental.py; openbao-vastai launch-mesh OFFER",
+      "expected_outputs": "guard-armed.json; exact launch-receipt.json",
+      "checks": "Guard alive before creation; receipt ID not preexisting; actual hourly/network rates below ceilings; expected pinned image",
+      "state": "complete"
+    },
+    {
+      "id": "N2",
+      "inputs": "Checksummed 474522459-byte archive; trusted SSH endpoint metadata",
+      "runtime": "Pinned mesh-CFD image on task-owned instance",
+      "command": "Upload archive once; sha256sum; extract in fresh private directory; python3 -B check_recovered_mesh.py",
+      "expected_outputs": "remote input hashes; worker PID and runtime/version/control logs",
+      "checks": "Verify provider endpoint; exact input hashes and OpenFOAM setup hash; fresh analytic control must pass",
+      "state": "complete"
+    },
+    {
+      "id": "N3",
+      "inputs": "Exact recovered head native case, 4,181,299 nodes and 12,981,388 cells",
+      "runtime": "OpenFOAM 13; 48 GiB child address-space cap",
+      "command": "checkMesh -case head",
+      "expected_outputs": "head-check.log; head-check-execution.json; terminal.json or worker-error.json",
+      "checks": "One 1200-second attempt; exact mesh counts; End marker and exit status; timeout is not completion; all original inputs rehashed unchanged",
+      "state": "complete",
+      "outcome": "Native diagnostic completed and rejected five geometry checks; no field solve"
+    },
+    {
+      "id": "N4",
+      "inputs": "Confirmed terminal worker and generated files",
+      "runtime": "SSH plus local independent hash verifier",
+      "command": "Create generated-output manifest and archive excluding verified input copies; recover; hash every retained file",
+      "expected_outputs": "Verified recovered logs, receipts, native generated sets and remote manifest",
+      "checks": "Worker terminal before archive; all recovered bytes exact; no field solve",
+      "state": "complete"
+    },
+    {
+      "id": "N5",
+      "inputs": "Exact task launch receipt and verified recovery",
+      "runtime": "Approved scoped wrapper and independent guard",
+      "command": "openbao-vastai destroy OWNED_ID --confirm; independently observe absence",
+      "expected_outputs": "Controller and guard closeout receipts; estimated rate/network charges",
+      "checks": "Never delete foreign instances; guard and controller observe owned absence; reserve preserved",
+      "state": "complete"
+    },
+    {
+      "id": "N6",
+      "inputs": "Terminal diagnostic evidence and unchanged engineering gates",
+      "runtime": "Repository and Linux CI",
+      "command": "Publish English source, aggregate verdict, input/output hashes and limitations",
+      "expected_outputs": "Reviewable GitHub increment",
+      "checks": "No raw geometry or private connection data published; no physical/functional release",
+      "state": "publication_prepared"
+    }
+  ],
+  "initial_offer_id": 59082313,
+  "successful_offer_id": 45433724,
+  "effective_deadline_epoch": 1794054848.366288,
+  "deadline_amendment": "Successful creation-intent epoch plus 2400 seconds; earlier preparation-clock deadline superseded with independent guard replacement",
+  "original_pre_rental_ledger_sha256": "01c1f43a9636bbe8e1d13800736f18575881e2b1d1576476a3d48db6ab24e2a6"
+}

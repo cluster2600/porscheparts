@@ -1,0 +1,453 @@
+{
+  "schema_version": 1,
+  "study_id": "964-SCULPTED-CELL-F2-20261106",
+  "classification": "executed_synthetic_method_controls_not_vehicle_or_material_qualification",
+  "verdict": {
+    "shell_displacement_controls_passed": true,
+    "shell_load_quadrature_resultants_verified": true,
+    "shell_reaction_equilibrium_verified": false,
+    "oblique_original_and_expanded_shell_RF_controls_failed": true,
+    "direct_solid_displacement_and_equilibrium_control_passed": true,
+    "allowed_next_action": "Only two coarse F2 displacement diagnostics after independent canonical geometry and complete-edge mesh admission; review before refinement/nonlinear campaign"
+  },
+  "shell_controls": [
+    {
+      "id": "isotropic",
+      "type": "S6",
+      "nodes": 205,
+      "elements": 80,
+      "analytical_tip_mm": 0.7142857142857143,
+      "actual_tip_mm": 0.7143850249999999,
+      "relative_displacement_difference": 0.00013903499999989855,
+      "displacement_limit": 0.01,
+      "displacement_control_passed": true,
+      "integrated_applied_resultant_N": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "analytic_applied_resultant_N": [
+        0,
+        0,
+        -1
+      ],
+      "force_sum_absolute_error_N": 0.0,
+      "moment_sum_absolute_error_Nmm": 1.4210854715202004e-14,
+      "original_node_RF_diagnostic": {
+        "DAT_clamp_total_external_force_RF_N": [
+          9.17133e-12,
+          -4.647126e-11,
+          1.0
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0,
+          0,
+          0
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          9.17133e-12,
+          -4.647126e-11,
+          1.0
+        ],
+        "force_balance_residual_N": [
+          9.17133e-12,
+          -4.647126e-11,
+          0.0
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 1.0,
+        "force_balance_relative_residual": 4.73676186857277e-11,
+        "force_balance_limit": 1e-05,
+        "original_node_DAT_screen_passed": true,
+        "scope": "Original-node DAT RF is not a complete reaction field for oblique shells; screen only, no global equilibrium admission"
+      },
+      "expanded_RF_diagnostic": {
+        "scope": "Noncomposite isotropic expanded FRD control only; RF includes all external loads and reactions",
+        "expanded_nodes": 473,
+        "global_force_sum_N": [
+          -2.0539769109986283e-12,
+          1.5478824396887786e-11,
+          -2.0989737771211713e-09
+        ],
+        "global_moment_sum_Nmm": [
+          -3.4776941725648285e-07,
+          0.00014018469586079145,
+          9.695749838830119e-10
+        ],
+        "force_relative_residual": 2.0990318553724183e-09,
+        "moment_relative_residual": 1.3995222305735428e-06,
+        "limit": 0.0001,
+        "passed": true
+      },
+      "global_composite_equilibrium_admitted": false,
+      "executed_solver_source_sha256": "fbe4e7e23ef66320c9b97bc0656483391015712c4ba5045bf115191ce3636614",
+      "deck_sha256": "ce865a10450dfc6bbe5cac3dfd4bb7af70ce648fb1f8ffee45fc97e223ab1a05",
+      "DAT_sha256": "3c4d9bb9c31299400cc9489eb6ff389225d021979ebd29f3e1e28e6c5831a0d5",
+      "FRD_sha256": "2a7e88c80b575ad8938ae6c4dd43da85b7fea01a72d3e2656b5e762319ba7130",
+      "actual_result_sha256": "e4373d127a32438ceec1abaf8a123d05cbbf47cb96bd655072dba693a88426af",
+      "regenerated_deck_identical_under_current_source": true
+    },
+    {
+      "id": "isotropic-oblique",
+      "type": "S6",
+      "nodes": 205,
+      "elements": 80,
+      "analytical_tip_mm": 0.7142857142857143,
+      "actual_tip_mm": 0.7143850192793382,
+      "relative_displacement_difference": 0.0001390269910734876,
+      "displacement_limit": 0.01,
+      "displacement_control_passed": true,
+      "integrated_applied_resultant_N": [
+        -0.3213938048432695,
+        0.38302222155948895,
+        -0.8660254037844386
+      ],
+      "analytic_applied_resultant_N": [
+        -0.32139380484326957,
+        0.38302222155948895,
+        -0.8660254037844387
+      ],
+      "force_sum_absolute_error_N": 1.2412670766236366e-16,
+      "moment_sum_absolute_error_Nmm": 2.9639087436257526e-13,
+      "original_node_RF_diagnostic": {
+        "DAT_clamp_total_external_force_RF_N": [
+          0.3213938,
+          -0.3830222,
+          15.10389
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0,
+          0,
+          0
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          0.3213938,
+          -0.3830222,
+          15.10389
+        ],
+        "force_balance_residual_N": [
+          -4.843269507670556e-09,
+          2.1559488971867324e-08,
+          14.23786459621556
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 1.0,
+        "force_balance_relative_residual": 14.23786459621556,
+        "force_balance_limit": 1e-05,
+        "original_node_DAT_screen_passed": false,
+        "scope": "Original-node DAT RF is not a complete reaction field for oblique shells; screen only, no global equilibrium admission"
+      },
+      "expanded_RF_diagnostic": {
+        "scope": "Noncomposite isotropic expanded FRD control only; RF includes all external loads and reactions",
+        "expanded_nodes": 473,
+        "global_force_sum_N": [
+          8.909984373554544e-05,
+          3.389995937482782e-05,
+          14.237877797342648
+        ],
+        "global_moment_sum_Nmm": [
+          41.75106533756553,
+          35.03320251428568,
+          -0.0003780217600137473
+        ],
+        "force_relative_residual": 14.237877797661795,
+        "moment_relative_residual": 0.5441153010908067,
+        "limit": 0.0001,
+        "passed": false
+      },
+      "global_composite_equilibrium_admitted": false,
+      "executed_solver_source_sha256": "fbe4e7e23ef66320c9b97bc0656483391015712c4ba5045bf115191ce3636614",
+      "deck_sha256": "1030a3ab9de71e3fa11b61e45c17b7ff160c57d617a239e7708d0edd9633a3d2",
+      "DAT_sha256": "185d6e5ad6e13c2e4d4997cd27482b63f2c448a25baa715a4b6de823db0a1d85",
+      "FRD_sha256": "002dd1ba56fd62c4c62a36fdb023e62099949c68c1cb10f112a0ab4b3fdb648e",
+      "actual_result_sha256": "2e759c4df8276efc73c22d77b724ab998abca5a655ae682015b5ac5b444be22f",
+      "regenerated_deck_identical_under_current_source": true
+    },
+    {
+      "id": "isotropic-eight-ply",
+      "type": "S6",
+      "nodes": 205,
+      "elements": 80,
+      "analytical_tip_mm": 0.7142857142857143,
+      "actual_tip_mm": 0.7143850249999999,
+      "relative_displacement_difference": 0.00013903499999989855,
+      "displacement_limit": 0.01,
+      "displacement_control_passed": true,
+      "integrated_applied_resultant_N": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "analytic_applied_resultant_N": [
+        0,
+        0,
+        -1
+      ],
+      "force_sum_absolute_error_N": 0.0,
+      "moment_sum_absolute_error_Nmm": 1.4210854715202004e-14,
+      "original_node_RF_diagnostic": {
+        "DAT_clamp_total_external_force_RF_N": [
+          -2.336646e-10,
+          -2.177987e-10,
+          1.0
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0,
+          0,
+          0
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          -2.336646e-10,
+          -2.177987e-10,
+          1.0
+        ],
+        "force_balance_residual_N": [
+          -2.336646e-10,
+          -2.177987e-10,
+          0.0
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 1.0,
+        "force_balance_relative_residual": 3.194298342591844e-10,
+        "force_balance_limit": 1e-05,
+        "original_node_DAT_screen_passed": true,
+        "scope": "Original-node DAT RF is not a complete reaction field for oblique shells; screen only, no global equilibrium admission"
+      },
+      "expanded_RF_diagnostic": null,
+      "global_composite_equilibrium_admitted": false,
+      "executed_solver_source_sha256": "fbe4e7e23ef66320c9b97bc0656483391015712c4ba5045bf115191ce3636614",
+      "deck_sha256": "d06a72f1b14a8a89cd448fb704e188b015daf9ad5835975bda0d89f375d89ce6",
+      "DAT_sha256": "1966472c7af2f4854a5f0aa1c2c5274e28f5e2452082f345135b14b957b8f4b0",
+      "FRD_sha256": "5278bf8581082ba161bea28d29a766dbfa113bbfd3fe511c12fc3d99271fe4bd",
+      "actual_result_sha256": "457fd5aeee8641f4074ad2f672f07859c668b5ed06e70afd45c71b199534ece0",
+      "regenerated_deck_identical_under_current_source": true
+    },
+    {
+      "id": "UD-zero-oblique",
+      "type": "S6",
+      "nodes": 205,
+      "elements": 80,
+      "analytical_tip_mm": 0.37037037037037035,
+      "actual_tip_mm": 0.3713685399755666,
+      "relative_displacement_difference": 0.0026950579340299097,
+      "displacement_limit": 0.01,
+      "displacement_control_passed": true,
+      "integrated_applied_resultant_N": [
+        -0.3213938048432695,
+        0.38302222155948895,
+        -0.8660254037844386
+      ],
+      "analytic_applied_resultant_N": [
+        -0.32139380484326957,
+        0.38302222155948895,
+        -0.8660254037844387
+      ],
+      "force_sum_absolute_error_N": 1.2412670766236366e-16,
+      "moment_sum_absolute_error_Nmm": 2.9639087436257526e-13,
+      "original_node_RF_diagnostic": {
+        "DAT_clamp_total_external_force_RF_N": [
+          0.3213938,
+          -0.3830222,
+          15.10824
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0,
+          0,
+          0
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          0.3213938,
+          -0.3830222,
+          15.10824
+        ],
+        "force_balance_residual_N": [
+          -4.843269507670556e-09,
+          2.1559488971867324e-08,
+          14.242214596215561
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 1.0,
+        "force_balance_relative_residual": 14.242214596215561,
+        "force_balance_limit": 1e-05,
+        "original_node_DAT_screen_passed": false,
+        "scope": "Original-node DAT RF is not a complete reaction field for oblique shells; screen only, no global equilibrium admission"
+      },
+      "expanded_RF_diagnostic": null,
+      "global_composite_equilibrium_admitted": false,
+      "executed_solver_source_sha256": "fbe4e7e23ef66320c9b97bc0656483391015712c4ba5045bf115191ce3636614",
+      "deck_sha256": "96df96374b90abb811bc59717b77648bf438d5104d7621f601c60766768c3065",
+      "DAT_sha256": "486e33565d7d93f3b1ff80bd70460e76de9a8b9f457216ddca239fb081c8d4cf",
+      "FRD_sha256": "9a544b652a652d5cfe0d3c87319efb5964ce3e23f9a67a7222e0842364688726",
+      "actual_result_sha256": "7ba759b86a4a5d89f45df0539328ba61076b7d5d329a9c777c1487570916e3e8",
+      "regenerated_deck_identical_under_current_source": true
+    },
+    {
+      "id": "UD-ninety-oblique",
+      "type": "S6",
+      "nodes": 205,
+      "elements": 80,
+      "analytical_tip_mm": 5.0,
+      "actual_tip_mm": 5.001193868260281,
+      "relative_displacement_difference": 0.00023877365205615675,
+      "displacement_limit": 0.01,
+      "displacement_control_passed": true,
+      "integrated_applied_resultant_N": [
+        -0.3213938048432695,
+        0.38302222155948895,
+        -0.8660254037844386
+      ],
+      "analytic_applied_resultant_N": [
+        -0.32139380484326957,
+        0.38302222155948895,
+        -0.8660254037844387
+      ],
+      "force_sum_absolute_error_N": 1.2412670766236366e-16,
+      "moment_sum_absolute_error_Nmm": 2.9639087436257526e-13,
+      "original_node_RF_diagnostic": {
+        "DAT_clamp_total_external_force_RF_N": [
+          0.3213938,
+          -0.3830222,
+          15.1052
+        ],
+        "CLOAD_on_clamped_nodes_N": [
+          0,
+          0,
+          0
+        ],
+        "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+          0.3213938,
+          -0.3830222,
+          15.1052
+        ],
+        "force_balance_residual_N": [
+          -4.843269507670556e-09,
+          2.1559488971867324e-08,
+          14.23917459621556
+        ],
+        "force_balance_reference_sum_nodal_force_magnitudes_N": 1.0,
+        "force_balance_relative_residual": 14.23917459621556,
+        "force_balance_limit": 1e-05,
+        "original_node_DAT_screen_passed": false,
+        "scope": "Original-node DAT RF is not a complete reaction field for oblique shells; screen only, no global equilibrium admission"
+      },
+      "expanded_RF_diagnostic": null,
+      "global_composite_equilibrium_admitted": false,
+      "executed_solver_source_sha256": "fbe4e7e23ef66320c9b97bc0656483391015712c4ba5045bf115191ce3636614",
+      "deck_sha256": "fa277fe4d6a06230e1c825323fe4486959f782efaad6ee5923e18c93db14fa83",
+      "DAT_sha256": "02ca780ce7e2f17727e9f29526344f19c81a24c17237db10a2dd51ee2de9d6ee",
+      "FRD_sha256": "bc4a083b343aa88b728124c25f7a328bb94280f7255879fc0723d251e6177e07",
+      "actual_result_sha256": "4e0df4249cad6668255ce564a586f90d4ef46958a345cacb6e36a18f901b306a",
+      "regenerated_deck_identical_under_current_source": true
+    }
+  ],
+  "eight_ply_isotropic_relative_displacement_difference": 0.0,
+  "direct_solid_control": {
+    "nodes": 1989,
+    "elements": 320,
+    "type": "C3D20R",
+    "layers": 8,
+    "layup": "Eight identicalUD0 layers,nu0; constitutive/coordinate/fixture control, not F2materialqualification",
+    "bounds_mm": [
+      100,
+      10,
+      2
+    ],
+    "load_N": 1,
+    "clamp": "Allglobaltranslations atlocalX0; no rotational shell MPC",
+    "source_sha256": "2f784d2d679470eb695583ef1d9a750e88d78faa09dccba2decd9e40a89ebcb0",
+    "deck_sha256": "0e89d5e9b5a220a2d65321560b93bc0f26b410c8293e7e055834f6c3e3ad09b0",
+    "tip_work_conjugate_deflection_mm": 0.3715690399839286,
+    "analytic_Euler_Bernoulli_mm": 0.37037037037037035,
+    "relative_displacement_difference": 0.003236407956607179,
+    "expanded_RF_balance": {
+      "scope": "Directorthotropic C3D20R solid control,8identicalUD0layers,no shellMPC; complete external-force field",
+      "expanded_nodes": 1989,
+      "global_force_sum_N": [
+        -9.140516558842939e-06,
+        -7.5708784732266e-06,
+        -3.3765946362562804e-07
+      ],
+      "global_moment_sum_Nmm": [
+        2.9955503250134186e-05,
+        -2.622730469270529e-05,
+        0.0002273684668760989
+      ],
+      "force_relative_residual": 7.124131721381923e-06,
+      "moment_relative_residual": 1.3825532904575298e-06,
+      "limit": 0.0001,
+      "passed": true
+    },
+    "original_RF_balance": {
+      "DAT_clamp_total_external_force_RF_N": [
+        0.3213938,
+        -0.3830222,
+        0.8660254
+      ],
+      "CLOAD_on_clamped_nodes_N": [
+        0,
+        0,
+        0
+      ],
+      "physical_clamp_reaction_RF_minus_clamp_CLOAD_N": [
+        0.3213938,
+        -0.3830222,
+        0.8660254
+      ],
+      "force_balance_residual_N": [
+        -4.843263790021979e-09,
+        2.1559481644395362e-08,
+        -3.784449864596695e-09
+      ],
+      "force_balance_reference_sum_nodal_force_magnitudes_N": 1.6666666666666736,
+      "force_balance_relative_residual": 1.3451118352362532e-08,
+      "force_balance_limit": 1e-05,
+      "translational_force_balance_verified": true
+    },
+    "pass_displacement": true,
+    "pass_force_moment": true,
+    "DAT_sha256": "8765b68885e85d32d0f60f07d594eeb1087ccd99addbb59483cd39407f725dc9",
+    "FRD_sha256": "d4d3b062748830567f1e0a1af35ba501889deae232253b3932b3c1bb24374195",
+    "postprocessor_sha256": "13e8223b971bb7bf84c0912a59e2dfe011079da377596bae16dd94bf522b7ab3",
+    "physical_validation": false,
+    "actual_result_sha256": "26d4a1d26d69ca7a0f7b30cd422a303326c8f11abc6d6111f3d9fe4dc83f859b"
+  },
+  "source_hashes": {
+    "current_F2_solver_sha256": "0cf359731d27834cd41d642e64c9f6bc1a18dab165a73c487abcb600d22c0458",
+    "executed_shell_benchmark_source_sha256": "466b2ae2c2cbe2232d976ecef7cc92bb3ce6a473163d83a8bc2ff3c9a1b8e0a3",
+    "executed_shell_solver_source_sha256": "fbe4e7e23ef66320c9b97bc0656483391015712c4ba5045bf115191ce3636614",
+    "F1_runtime_support_sha256": "ad70de944af810552a5bc3ce30fb9e0ac84aabc8d8cc1114c91637d533d076ae",
+    "final_time_U_RF_parser_sha256": "678860834ad394ef0a1973b090918948987ee1e5f4f285075ea12ad3334f9e79",
+    "publication_driver_sha256": "ddbb6e9da32542dcf7351ff5a5ce1c2287b9de48e41518e1676491455e49ea28"
+  },
+  "diagnostic_policy_revision": {
+    "original_policy": "Original-node DAT force screen was initially a hard stop",
+    "counterexample": "Rigid-oblique S6 controls reproduce analytical displacement but original-node and expanded isotropic RF do not close global force balance; complete output coverage is not established",
+    "amended_policy": "Retain actual RF failures and unverified equilibrium; admit only displacement diagnostics after analytical U and exact integrated load controls",
+    "documented_fact": "Official CalculiX2.21 NODE FILE/PRINT sections say MPC-induced forces are not calculated",
+    "mechanism_inference": "Shell-generated MPC omission is consistent with passing direct-solid oblique control; exact cause is not proven",
+    "global_strength_or_release_gate_relaxed": false
+  },
+  "preserved_software_corrections": {
+    "solid_control_001": "Input rejected before assembly:20node connectivity required continuation lines. Exact failure/logs preserved privately",
+    "solid_control_002": "Only connectivity line serialization corrected. Solver completed once; subsequent parser-dictionary unpacking mistake corrected by a separate postprocessor without rerun or deck change",
+    "shell_control_001": "Hard force-screen failure retained privately",
+    "shell_control_002": "Five actual shell runs retained, with failed oblique expanded-RF overall benchmark verdict unchanged"
+  },
+  "primary_manual": {
+    "url": "https://www.dhondt.de/ccx_2.21.pdf",
+    "sections": [
+      "6.2 composite shells pp108-110",
+      "7.49 ELEMENT p482",
+      "7.96 NODE FILE",
+      "7.98 NODE PRINT",
+      "6.11.5 RF pp387-389"
+    ]
+  },
+  "limits": [
+    "Euler-Bernoulli beam omits shear deformation;1percent is a numerical coupon screen",
+    "All material constants, ply schedule, geometry, fixtures and fiber charts are assumptions",
+    "Passing direct-solid control does not validate composite-shell reaction forces",
+    "No continuous draping, damage, fatigue, crash, road/track, T\u00dcV or manufacturing approval",
+    "No measured donor interfaces or transform are admitted"
+  ],
+  "physical_validation": false,
+  "manufacturing_authorized": false,
+  "donor_transform": null,
+  "raw_fields_and_logs_private": true
+}

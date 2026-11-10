@@ -128,8 +128,8 @@ Catalogue record: [`catalog/parts/993-exh-oval-tip-in625-f0-0001.json`](../../ca
 
 ## Design dossiers
 
-- [993_EMBOUT_TITANE_F1](../../docs/993/993_EMBOUT_TITANE_F1.md)
 - [993_OVAL_EXHAUST_TIP_IN625_F0](../../docs/993/993_OVAL_EXHAUST_TIP_IN625_F0.md)
+- [993_TITANIUM_EXHAUST_TIP_F1](../../docs/993/993_TITANIUM_EXHAUST_TIP_F1.md)
 
 ---
 

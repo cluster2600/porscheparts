@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/cluster2600/porscheparts/twins/993-dashboard-f0/intake/packet.schema.json",
+  "title": "External same-specimen Porsche 993 dashboard evidence packet",
+  "description": "Structure only. Validation of this schema never grants specimen, interface, fit, safety or manufacturing approval.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "packet_kind", "status", "target_scenario", "specimen_id", "capture_campaign_id", "identity_evidence", "contract", "required_capture_states", "required_dimension_ids", "assets", "measurement_records", "vehicle_frame_reading_ids", "interface_evidence", "review", "claims"],
+  "properties": {
+    "$comment": {"type": "string"},
+    "schema_version": {"const": "1.0.0"},
+    "packet_kind": {"enum": ["template", "external_submission"]},
+    "status": {"enum": ["blocked_missing_external_evidence", "submitted_unreviewed", "held_for_independent_review", "blocked_contradiction"]},
+    "target_scenario": {
+      "type": "object", "additionalProperties": false,
+      "required": ["generation", "option_code_candidate", "driving_position_candidate", "rs_candidate", "model_year_observed", "physical_vehicle_confirmed"],
+      "properties": {
+        "generation": {"const": "993"},
+        "option_code_candidate": {"const": "M564"},
+        "driving_position_candidate": {"const": "left_hand_drive"},
+        "rs_candidate": {"const": false},
+        "model_year_observed": {"type": ["integer", "null"], "minimum": 1994, "maximum": 1998},
+        "physical_vehicle_confirmed": {"type": "boolean"}
+      }
+    },
+    "specimen_id": {"type": ["string", "null"], "pattern": "^SPEC-993-DASH-[0-9]{4}$"},
+    "capture_campaign_id": {"type": ["string", "null"], "pattern": "^SESSION-993-DASH-[A-Z0-9]{4,16}$"},
+    "identity_evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["E1_option_label_asset_id", "E1_identifiers_visible", "E1_m_codes_observed", "E2_passenger_reverse_asset_id", "E2_region_shown", "E2_passenger_module_present", "E2_tear_line_present", "E2_passenger_flap_present", "E3_trim_label_asset_id", "E3_trim_part_number_observed", "E4_continuity_manifest_asset_id", "E4_linking_marks", "E5_rights_manifest_asset_id", "E5_personal_data_removed"],
+      "properties": {
+        "E1_option_label_asset_id": {"type": ["string", "null"]},
+        "E1_identifiers_visible": {"type": ["boolean", "null"]},
+        "E1_m_codes_observed": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^M[0-9]{3}$"}},
+        "E2_passenger_reverse_asset_id": {"type": ["string", "null"]},
+        "E2_region_shown": {"type": ["boolean", "null"]},
+        "E2_passenger_module_present": {"type": ["boolean", "null"]},
+        "E2_tear_line_present": {"type": ["boolean", "null"]},
+        "E2_passenger_flap_present": {"type": ["boolean", "null"]},
+        "E3_trim_label_asset_id": {"type": ["string", "null"]},
+        "E3_trim_part_number_observed": {"type": ["string", "null"]},
+        "E4_continuity_manifest_asset_id": {"type": ["string", "null"]},
+        "E4_linking_marks": {"type": "array", "minItems": 0, "items": {"$ref": "#/$defs/linking_mark"}},
+        "E5_rights_manifest_asset_id": {"type": ["string", "null"]},
+        "E5_personal_data_removed": {"type": ["boolean", "null"]}
+      }
+    },
+    "contract": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256", "status"],
+      "properties": {
+        "path": {"const": "twins/993-dashboard-f0/interface-contracts.json"},
+        "sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+        "status": {"enum": ["awaiting_frozen_independent_review", "frozen_for_intake"]}
+      }
+    },
+    "required_capture_states": {"const": ["fitted", "removed", "host"]},
+    "required_dimension_ids": {"const": ["D01", "D02", "D03", "D04", "D05", "D06", "D07", "D08", "D09", "D10", "D11", "D12", "D13", "D14"]},
+    "assets": {"type": "array", "items": {"$ref": "#/$defs/asset"}},
+    "measurement_records": {"type": "array", "items": {"$ref": "#/$defs/measurement_record"}},
+    "vehicle_frame_reading_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^MEAS-[A-Z0-9._-]+:VF_H[0-9]{2}$"}},
+    "interface_evidence": {"type": "array", "minItems": 13, "maxItems": 13, "items": {"$ref": "#/$defs/interface_evidence"}},
+    "review": {
+      "type": "object", "additionalProperties": false,
+      "required": ["independent_measurement_reviewer", "independent_interface_reviewer", "rights_privacy_reviewer", "professional_engineering_reviewer", "verdict"],
+      "properties": {
+        "independent_measurement_reviewer": {"type": ["string", "null"]},
+        "independent_interface_reviewer": {"type": ["string", "null"]},
+        "rights_privacy_reviewer": {"type": ["string", "null"]},
+        "professional_engineering_reviewer": {"type": ["string", "null"]},
+        "verdict": {"enum": ["blocked_missing_external_evidence", "submitted_unreviewed", "held_for_independent_review", "blocked_contradiction"]}
+      }
+    },
+    "claims": {
+      "type": "object", "additionalProperties": false,
+      "required": ["dimensional_fit", "occupant_safety", "manufacturing_release"],
+      "properties": {
+        "dimensional_fit": {"const": false},
+        "occupant_safety": {"const": false},
+        "manufacturing_release": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "linking_mark": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mark_id", "fitted_asset_id", "removed_asset_id"],
+      "properties": {
+        "mark_id": {"type": "string", "pattern": "^MARK-[A-Z0-9._-]{3,32}$"},
+        "fitted_asset_id": {"type": "string", "pattern": "^A-[A-Z0-9._-]{3,64}$"},
+        "removed_asset_id": {"type": "string", "pattern": "^A-[A-Z0-9._-]{3,64}$"}
+      }
+    },
+    "asset": {
+      "type": "object", "additionalProperties": false,
+      "required": ["asset_id", "specimen_id", "kind", "capture_state", "relative_path", "sha256", "bytes", "creator_role", "licence", "inspection_permission", "publication_permission", "rights_proof_asset_id", "redacted"],
+      "properties": {
+        "asset_id": {"type": "string", "pattern": "^A-[A-Z0-9._-]{3,64}$"},
+        "specimen_id": {"type": "string", "pattern": "^SPEC-993-DASH-[0-9]{4}$"},
+        "kind": {"enum": ["option_label_redacted", "passenger_reverse", "trim_label", "continuity_manifest", "rights_grant", "fitted_scan", "removed_scan", "reverse_support_scan", "host_scan", "scale_calibration", "instrument_calibration", "interface_photo", "other"]},
+        "capture_state": {"enum": ["fitted", "removed", "host", "not_applicable"]},
+        "relative_path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "creator_role": {"type": "string", "minLength": 3},
+        "licence": {"type": "string", "minLength": 3},
+        "inspection_permission": {"type": "boolean"},
+        "publication_permission": {"type": "boolean"},
+        "rights_proof_asset_id": {"type": ["string", "null"]},
+        "redacted": {"type": "boolean"}
+      }
+    },
+    "measurement_record": {
+      "type": "object", "additionalProperties": false,
+      "required": ["record_id", "specimen_id", "capture_state", "relative_path", "sha256", "bytes", "dimension_ids", "interface_measurand_ids", "calibration_asset_ids"],
+      "properties": {
+        "record_id": {"type": "string", "pattern": "^MEAS-[A-Z0-9._-]{3,64}$"},
+        "specimen_id": {"type": "string", "pattern": "^SPEC-993-DASH-[0-9]{4}$"},
+        "capture_state": {"enum": ["fitted", "removed", "host"]},
+        "relative_path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "dimension_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^D(0[1-9]|1[0-4])$"}},
+        "interface_measurand_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[A-Z]{2,4}_[PH][0-9]{2}$"}},
+        "calibration_asset_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}
+      }
+    },
+    "interface_evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["interface_id", "part_reading_ids", "host_reading_ids", "asset_ids", "status"],
+      "properties": {
+        "interface_id": {"type": "string", "pattern": "^IF_[A-Z0-9_]+$"},
+        "part_reading_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^MEAS-[A-Z0-9._-]+:[A-Z]{2,4}_[PH][0-9]{2}$"}},
+        "host_reading_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^MEAS-[A-Z0-9._-]+:[A-Z]{2,4}_[PH][0-9]{2}$"}},
+        "asset_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "status": {"enum": ["missing_data", "submitted_unreviewed", "blocked_contradiction"]}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"packet_kind": {"const": "template"}}},
+      "then": {
+        "properties": {
+          "status": {"const": "blocked_missing_external_evidence"},
+          "specimen_id": {"const": null},
+          "capture_campaign_id": {"const": null},
+          "assets": {"maxItems": 0},
+          "measurement_records": {"maxItems": 0},
+          "vehicle_frame_reading_ids": {"maxItems": 0},
+          "identity_evidence": {"properties": {"E1_m_codes_observed": {"maxItems": 0}, "E4_linking_marks": {"maxItems": 0}}},
+          "target_scenario": {"properties": {"model_year_observed": {"const": null}, "physical_vehicle_confirmed": {"const": false}}},
+          "contract": {"properties": {"sha256": {"const": null}, "status": {"const": "awaiting_frozen_independent_review"}}},
+          "review": {"properties": {"verdict": {"const": "blocked_missing_external_evidence"}}}
+        }
+      },
+      "else": {
+        "properties": {
+          "vehicle_frame_reading_ids": {"minItems": 4},
+          "identity_evidence": {"properties": {"E1_m_codes_observed": {"minItems": 1}, "E4_linking_marks": {"minItems": 2}}}
+        }
+      }
+    }
+  ]
+}

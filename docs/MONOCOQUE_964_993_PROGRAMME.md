@@ -134,7 +134,7 @@ path.** As long as it holds, there is no monocoque: there is an object that
 looks like a body shell and does not bolt up.
 
 It is not opened by calculation. It is opened by data, and the leads are
-already sorted in `docs/research/964-combler-le-gap-de-donnees.md`: a jig bench
+already sorted in `docs/research/964-closing-the-data-gap.md`: a jig bench
 survey (Autorobot, Car-O-Data, Celette), the Rennlist 993 point table, a scan
 of a production body. **The jig bench survey goes from "desirable" to
 "blocking".** It is the first budget to commit.
