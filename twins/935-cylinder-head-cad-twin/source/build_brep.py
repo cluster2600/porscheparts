@@ -120,7 +120,15 @@ def band_solid(region, z0, z1):
         outer = ring_wire(poly.exterior.coords)
         inners = [ring_wire(r.coords) for r in poly.interiors if Polygon(r).area >= MIN_RING_AREA_MM2]
         face = Face(outer, inners)
-        solids.append(Pos(0, 0, z0) * extrude(face, amount=z1 - z0))
+        # The contour orientation decides the face normal, and extrude() follows
+        # the normal by default. Until 2026-11-10 that put every band one
+        # thickness below its interval (measured: asked 41.80..44.12, got
+        # 39.48..41.80). The direction is now explicit and checked.
+        solid = Pos(0, 0, z0) * extrude(face, amount=z1 - z0, dir=(0, 0, 1))
+        box = solid.bounding_box()
+        if abs(box.min.Z - z0) > 1e-6 or abs(box.max.Z - z1) > 1e-6:
+            raise ValueError(f"band {z0}..{z1} built at {box.min.Z}..{box.max.Z}")
+        solids.append(solid)
     return solids
 
 

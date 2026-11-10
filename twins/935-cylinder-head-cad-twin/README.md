@@ -92,6 +92,8 @@ flowchart LR
 | Inside/outside of the open scan | libigl fast winding number (CGAL/MeshLib/libigl scan route) | [occupancy.py](source/occupancy.py) |
 | Closed bare-head surface | scikit-image marching cubes, trimesh checks | [surface_mesh.py](source/surface_mesh.py) |
 | Editable B-rep | build123d 0.13 / OCCT (OCP 8.0.1) | [build_brep.py](source/build_brep.py) |
+| Fin faces, port sections | NumPy/SciPy fits on acquired facets and on the occupancy field | [fit_fins.py](source/fit_fins.py), [fit_ports.py](source/fit_ports.py) |
+| Body stack, port lofts | build123d / OCCT, one process per band | [fin_stack.py](source/fin_stack.py), [port_loft.py](source/port_loft.py) |
 | Independent scorecard | NVIDIA Warp BVH queries, trimesh oracle | [score_twin.py](source/score_twin.py) |
 | Simulation surface | pymeshlab topology-preserving decimation (recon image) | [decimate.py](source/decimate.py) |
 | Thermal FE screen | Gmsh HXT + CalculiX 2.21 (cadsim image) | [sim_thermal.py](source/sim_thermal.py) |
@@ -279,6 +281,120 @@ flange bosses on the outline, and the plate-top level.
 Each fix must raise this score; T1s (p95 0.015 mm) stays the reference
 surface meanwhile.
 
+### v1 body stack: fins, port lofts and chamber dome ([fin faces](params/fin-faces.json), [port fit](params/port-fit.json), [loft check](params/port-loft-check.json), [error breakdown](params/error-breakdown-v1-stack-f-shell.json))
+
+[fin_stack.py](source/fin_stack.py) builds the whole body as one extrusion per
+interval between measured horizontal faces. Each band's sketch is the
+occupancy contour at its mid-level; fitted features are then cut from the
+bands. The bands stay a compound of individually valid solids. Every run is
+kept with its summary and scorecard (`params/v1-body-stack-<run>-summary.json`,
+`params/scorecard-v1-stack-<run>[-shell].json`):
+
+| Run | Change | Scored on | p50 | p95 | Within 0.2 mm | Within 0.5 mm | Within 1 mm | Twin area supported |
+|---|---|---|---|---|---|---|---|---|
+| a | levels from a 0.1 mm detector only | compound | 0.96 mm | 9.65 mm | 28.3% | 39.3% | 50.8% | n/a |
+| b | fin faces fitted by [fit_fins.py](source/fit_fins.py) added as boundaries | compound | 0.26 mm | 1.62 mm | 44.1% | 66.9% | 85.6% | n/a |
+| c | extrusion direction fixed (see below) | shell | 0.11 mm | 0.90 mm | 65.2% | 84.7% | 96.7% | 56.9% |
+| d | 13 fin faces as tilted planes | shell | 0.11 mm | 0.90 mm | 64.8% | 85.7% | 96.6% | 58.1% |
+| e | two port lofts cut in | shell | 0.10 mm | 0.87 mm | 67.9% | 87.1% | 96.8% | 57.8% |
+| **f** | chamber dome cut, thick cam-side band split | shell | 0.10 mm | 0.85 mm | 69.9% | 88.3% | 96.9% | 59.9% |
+| g | trial: interpolated sketches and dome ended at 42 mm | shell | 0.10 mm | 0.87 mm | 69.3% | 87.9% | 96.8% | 59.0% |
+| h | trial: interpolated sketches only | shell | 0.10 mm | 0.86 mm | 69.7% | 88.1% | 96.8% | 59.7% |
+
+The first five columns are scan → twin on the whole acquired surface
+(146,967 mm², studs excluded). **Run f is the reference**; T1s (p95 0.015 mm)
+remains the reference surface.
+
+**Compound and shell.** The compound's tessellation contains the faces two
+touching bands share, 1.2 to 1.4 million mm² of them. A scan facet lying on
+such a hidden face scores as explained although the model has material on both
+sides. From run c on, `fin_stack.py` also writes the outer shell: of each pair
+of caps meeting on a boundary, only the parts the other band does not cover
+are kept. Scored on the shell, run e reads p95 0.87 mm and 67.9% within
+0.2 mm, against 0.74 mm and 69.8% on its compound. The compound scorecards of
+runs c to e are kept beside the shell ones; runs a and b predate the shell and
+their figures are optimistic by a similar margin.
+
+What each step found:
+
+- **Fins (a → b).** The fins are plates normal to the bore axis: 13 top and 15
+  bottom faces, median top pitch 5.74 mm. Their faces are cast and spread over
+  1 to 2 mm of Z, so the 0.1 mm detector of run a found levels near only 7 of
+  the 28 and left single bands from z = 7.6 to 38.1 mm and from 50.0 to
+  69.4 mm. `fit_fins.py` histograms up-facing and down-facing facets
+  separately at 0.25 mm and fits every face as a level and as a plane.
+- **A defect in `band_solid` (b → c).** `extrude()` followed the face normal,
+  which the contour orientation decides, so every band of runs a and b sat one
+  thickness below its interval (asked 41.80–44.12 mm, built 39.48–41.80 mm).
+  The direction is now explicit, checked at build time and covered by a test.
+  Runs a and b are kept as measured. The T2 slab trial above used the same
+  function and has not been repeated.
+- **Tilt (c → d): neutral.** The top faces tilt by a median 0.53° towards
+  azimuth ≈ 40° in XY, a steady ramp of about 1.8 mm across the head; the
+  bottom faces are flat (median 0.10°). A face becomes a tilted plane when its
+  plane fit has at most 0.8 of the level fit's RMS and tilts at least 0.3°;
+  one candidate (z = 78.97 mm) is demoted because it would cross its
+  neighbour. On the shell the tilt gains 1.0 point within 0.5 mm and loses
+  0.4 point within 0.2 mm. It is kept because the ramp is measured, not
+  because it scores.
+- **Ports (d → e).** [fit_ports.py](source/fit_ports.py) finds the enclosed
+  cavities of the occupancy field, follows the two that reach a flange face and
+  measures a 48-ray section every 3 mm. [port_loft.py](source/port_loft.py)
+  lofts them through periodic splines and adopts a loft only when it explains
+  more of its own wall than the stack does. The ports are named by flange
+  side; which one is intake is not established.
+- **Chamber dome and cam side (e → f).** The fitted sphere (R 56.44 mm) is cut
+  inside the fitted shoulder; each band first regains the dome footprint
+  where the occupancy is material at the band's top, so valve pockets stay
+  open. The 48 mm band above z = 87.2 mm is split at two occupancy steps
+  (92.9 and 94.4 mm). The deck zone goes from 70.0% to 75.2% within 0.2 mm.
+- **Two rejected trials (g, h).** Ending the dome at 42 mm, where a flat ring
+  at the register floor starts to replace the sphere, restores that ring but
+  gives up the sphere in rings where most facets still follow it. Taking each
+  sketch from the occupancy interpolated at the exact mid-level, instead of
+  the nearest 0.25 mm slice, also scores lower. Both stay available as options
+  and neither is adopted.
+
+| Port | Loft | Wall seen by the scanner | Port-wall scan within 0.2 mm: stack d → loft |
+|---|---|---|---|
+| `port_y_minus` | 18 sections, 51 mm, Ø 41–43 mm equivalent | 77% of wall points | 40.8% → 96.2% (5,591 mm²) |
+| `port_y_plus` | 9 sections, 24 mm, Ø 38–41 mm equivalent | 92% of wall points | 43.4% → 90.0% (3,017 mm²) |
+
+Each loft stops where its section stops being a tube, before the valve pocket.
+The unseen share of each wall is winding-number closure, i.e. hypothesis H04.
+The section profiles are geometry and stay private. The other 8 enclosed
+cavities above 5,000 mm³ (two of them sit on stud passages) give no run
+of closed sections and are not lofted: they are open pockets, not tubes, and
+need a different feature.
+
+The bands are built and tessellated in a process pool, and the STEP is written
+only on request. The body of run b takes 58 s with 8 workers against 295 s
+serially; run f, with its tilt, loft and dome cuts in 34 bands, takes about
+5 minutes with 12 workers.
+
+Where run f still misses, from [error_breakdown.py](source/error_breakdown.py)
+on its shell, in points of the whole scan area:
+
+| Surface class (facet normal) | Scan area | Within 0.2 mm | Points outside 0.2 mm | Points outside 0.5 mm |
+|---|---|---|---|---|
+| sloped, 0.17 ≤ \|n_z\| ≤ 0.94 | 39.1% | 60.9% | 15.3 | 5.4 |
+| up-facing horizontal | 21.0% | 66.3% | 7.1 | 2.7 |
+| down-facing horizontal | 15.1% | 68.6% | 4.7 | 2.4 |
+| vertical walls | 24.8% | 88.1% | 3.0 | 1.1 |
+
+- The sloped class is mostly the fin edges: about 15% of the scan area lies
+  on the rounded or chamfered rims of the 12 fins, which the prisms leave
+  square. The corner is roughly 1.3 mm wide by 0.6 mm high, the same size as
+  the scatter of the cast faces it starts from, so a rim feature has to be
+  fitted per fin and cannot be a single radius.
+- The horizontal classes are the cast fin faces themselves: their plane fits
+  leave 0.25 to 0.6 mm RMS, so a planar face cannot bring them all within
+  0.2 mm. Within 0.5 mm the whole model stands at 88.3%.
+- Still staircase: the port bends and valve pockets beyond the lofts, and
+  the other enclosed pockets.
+- A few hundred mm² above z = 94 mm (the largest errors, up to 48 mm) belong
+  to thin features the mid-level sketch of that band misses.
+
 ```mermaid
 flowchart LR
   F["fitted features<br/>(numbers in Git)"] --> B["build123d solid<br/>(private STEP)"]
@@ -307,7 +423,8 @@ flowchart LR
 | Screenshots | T1, scan, thermal | private renders (observed/inferred, scan deviation, thermal field); public [scorecard chart](media/scorecard-t1-cdf.png) | visual review | done |
 | T4 USD | T1s, frame, hypotheses | private `.usdc`; [summary](params/usd-summary.json) | 30 OpenUSD validators | done, 0 findings |
 | T5 print | T1s | private 3MF; [summary](params/print-summary.json) | streaming round trip | done, exact volume |
-| v1 features | frame, scan | deck plate first: [features](params/deck-features.json) | zone scorecard | iteration 4: p95 2.72 mm (chamber, four passages, two-level outline); port interiors and plug bores next; then fins, cam pads, ports |
+| v1 features | frame, scan | deck plate first: [features](params/deck-features.json) | zone scorecard | iteration 4: p95 2.72 mm (chamber, four passages, two-level outline) |
+| v1 body stack | occupancy, scan, fin faces, port sections, deck features | private compound of band solids and its outer shell; [run f summary](params/v1-body-stack-f-summary.json) | whole-scan scorecard on the shell, per run | run f: p95 0.85 mm, 69.9% within 0.2 mm, 88.3% within 0.5 mm; next: per-fin rim feature, port bends and valve pockets, the other enclosed pockets as pocket features |
 | Port CFD | v1 ports | OpenFOAM steady port flow | mesh/flux convergence | blocked by v1 ports |
 | SimReady | T2 STEP | NVIDIA usd-convert-cad + omni.asset_validator | validator report | needs the 10 GB image on X1/Kali |
 | AM study | T1/T2 | PicoGK supports, Adamantine cooldown | as in the earlier study | after v1 |
