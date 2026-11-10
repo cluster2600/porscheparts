@@ -95,8 +95,9 @@ class FitTests(unittest.TestCase):
         self.assertLess(np.abs(res).max(), 1e-9)
 
 
-@unittest.skipUnless(has("numpy", "shapely", "skimage"), "numpy/shapely/scikit-image absent")
+@unittest.skipUnless(has("numpy", "shapely"), "numpy/shapely absent")
 class BandTests(unittest.TestCase):
+    @unittest.skipUnless(has("skimage"), "scikit-image absent")
     def test_slice_region_keeps_holes_and_area(self):
         import numpy as np
 
@@ -124,7 +125,7 @@ class BandTests(unittest.TestCase):
         self.assertFalse(build_brep.same_band(a, Point(0, 0).buffer(20.5, 256), 0.2))
 
 
-@unittest.skipUnless(has("numpy", "shapely", "skimage"), "numpy/shapely/scikit-image absent")
+@unittest.skipUnless(has("numpy", "shapely", "skimage"), "scikit-image absent")
 class NestingTests(unittest.TestCase):
     def test_slice_region_keeps_an_island_inside_a_hole(self):
         # Until 2026-11-10 the even rings were united and the odd ones subtracted
@@ -148,7 +149,7 @@ class NestingTests(unittest.TestCase):
         self.assertFalse(region.contains(Point(40.0, 40.0)))    # pocket
 
 
-@unittest.skipUnless(has("numpy", "shapely", "skimage", "manifold3d", "trimesh"), "loft stack absent")
+@unittest.skipUnless(has("numpy", "shapely", "manifold3d", "trimesh"), "numpy/shapely/manifold3d/trimesh absent")
 class LoftTests(unittest.TestCase):
     @staticmethod
     def square(lo, hi, hole=None):
@@ -362,7 +363,7 @@ class BandSolidTests(unittest.TestCase):
             self.assertAlmostEqual(solid.volume, 100 * 2.32, places=6)
 
 
-@unittest.skipUnless(has("numpy", "shapely", "skimage"), "numpy/shapely/scikit-image absent")
+@unittest.skipUnless(has("numpy"), "numpy absent")
 class BoundaryTests(unittest.TestCase):
     CORNERS = [(-60.0, -120.0), (-60.0, 120.0), (60.0, -120.0), (60.0, 120.0)]
 
@@ -405,7 +406,7 @@ class BoundaryTests(unittest.TestCase):
         self.assertEqual(notes["tilted"], 0)
 
 
-@unittest.skipUnless(has("numpy", "shapely", "skimage"), "numpy/shapely/scikit-image absent")
+@unittest.skipUnless(has("numpy", "shapely"), "numpy/shapely absent")
 class ShellTests(unittest.TestCase):
     def test_only_the_uncovered_part_of_a_cap_is_kept(self):
         import numpy as np
@@ -451,8 +452,9 @@ class ShellTests(unittest.TestCase):
         self.assertEqual(fin_stack.split_levels(wn, grid, 0.0, 8.0), [])
 
 
-@unittest.skipUnless(has("numpy", "warp", "trimesh"), "numpy/warp/trimesh absent")
+@unittest.skipUnless(has("numpy"), "numpy absent")
 class ScorecardTests(unittest.TestCase):
+    @unittest.skipUnless(has("warp", "trimesh"), "warp/trimesh absent")
     def test_warp_distances_match_analytic_cube(self):
         import numpy as np
         import trimesh
