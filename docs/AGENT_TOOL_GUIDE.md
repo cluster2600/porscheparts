@@ -30,9 +30,11 @@ flowchart TD
     G -->|prismatic| B["build123d / OCCT<br/>→ STEP"]
     G -->|"implicit, lattice, voxel"| P["PicoGK C#<br/>(ADR 0017)"]
     T -->|"mesh for FE/CFD"| M["Gmsh"]
-    T -->|"scan → CAD features"| R["Open3D sequential RANSAC<br/>+ normal agreement (planes)"]
+    T -->|"scan → CAD features"| R["Open3D sequential RANSAC (planes)<br/>primitive_fit.py (cylinders, cones)"]
+    R -->|"scan vs CAD deviation"| D["CloudCompare"]
     T -->|"stress, modal, buckling"| X["CalculiX ccx"]
     X -->|"fatigue post-processing"| Y["pyLife: rainflow,<br/>Miner damage"]
+    X -->|"laminate ply failure"| W["laminate_failure.py:<br/>four first-ply criteria"]
     T -->|"flow, heat, combustion"| F["OpenFOAM 13/14<br/>Cantera"]
     T -->|"LPBF printability"| L["layer screen,<br/>then AdditiveFOAM"]
     T -->|"scene, contact, render"| U["OpenUSD + ovphysx<br/>(OVRTX on RTX GPU)"]
@@ -50,7 +52,10 @@ tool beyond that table.*
 | Parametric CAD | build123d 0.11 / OCCT 7.9 | the part's `parts/<id>/source/*.py`; qualified image `cad-author-f28` | host venv or container | a STEP built from declared parameters | [TOOLCHAIN.md](TOOLCHAIN.md) |
 | Implicit, lattice or voxel geometry | PicoGK 2.3 + LEAP 71 ShapeKernel/LatticeLibrary | `dotnet build -p:UpstreamRoot=<sources>`, then run under a memory cap; catalogue driver `parts/picogk-catalog/tools/run_part.py`; the 962 head only through its bounded Linux runner `run_native.py`, never the native DLL directly | native host or `containers/m64-leap71` | a voxel/mesh body; never a BREP master. The 962 Linux runner is qualified on a synthetic witness only; the head generator has not run on Linux | [LOCAL_HOST_SETUP.md §4](LOCAL_HOST_SETUP.md#4-native-picogk-on-linux-or-wsl), [LEAP_STACK.md](../twins/vehicle-911-917/LEAP_STACK.md), [962 Linux runner](../twins/962-cylinder-head-f0/source/linux_runtime/README.md) |
 | Scan-to-CAD feature fitting (planes) | Open3D 0.19 `segment_plane`, repeated, keeping only inliers whose normals agree; refit each plane by least squares | [`benchmarks/scan-primitive-fitting/`](../benchmarks/scan-primitive-fitting/README.md): venv from its hash lock; set the distance to about 3× the scan noise | host venv | planes of a scan, each with its own fit residual. Qualified on a synthetic drafted-fin witness only (24/24 faces, drafts 0–3°); cylinders, cones and fillets are not covered | [README](../benchmarks/scan-primitive-fitting/README.md) |
+| Scan-to-CAD feature fitting (cylinders, cones, fillets) | [`primitive_fit.py`](../benchmarks/scan-primitive-fitting/primitive_fit.py) on SciPy `least_squares`; one model for cylinder and cone, so draft is measured | same venv: `primitive_fit.py <scan> --noise-mm <sigma> --output <fits.json>`; the noise must come from a measured flat or the scanner record | host venv | axis, radius and half-angle of each primitive with its own standard deviation, or `"determined": false`. Qualified on synthetic isolated features only (18/18, plus ten further scenes); a 3 mm fillet at 1 mm pitch is reported as not determined. Spheres, tori and tangent-constrained blends are not covered | [README](../benchmarks/scan-primitive-fitting/README.md#cylinders-cones-and-fillets) |
+| Scan-versus-CAD deviation | CloudCompare 2.13.2, command line | build `containers/free-tools-cloudcompare.Dockerfile`, then `python3 benchmarks/free-tools/native_container.py cloudcompare --image <image> --output <new dir>` | CPU container, no network | point-to-surface distances in mm after a stated rigid transform. Sampled diagnostics; synthetic controls only (0, 1 and 0 mm recovered), no measured scan registered | [free tools](architecture/free-tools/README.md) |
 | Fatigue post-processing | pyLife 2.3 (Apache-2.0): rainflow counting, Wöhler curves, Miner damage | [`benchmarks/fatigue-postprocessor/`](../benchmarks/fatigue-postprocessor/README.md): venv from its hash lock; stress histories from a converged FE result | host venv | counts and damage for a **stated** S-N curve. It supplies no material data: S-N, mean-stress and AM process properties need their own source | [README](../benchmarks/fatigue-postprocessor/README.md) |
+| Laminate first-ply failure | [`scripts/laminate_failure.py`](../scripts/laminate_failure.py) (NumPy): lamination theory, maximum stress, Tsai-Wu, Hashin 1980, Puck inter-fibre | `python3 scripts/laminate_failure.py <case.json> --output <report.json>`; ply stresses from lamination theory or supplied from a laminated-shell solve | any host with NumPy | a reserve factor per ply face and criterion, for **stated** stiffness, strength and criterion parameters. It supplies no material data; no delamination, progressive damage or crash ([ADR 0018](decisions/0018-composite-crash-no-claim.md)). Reading ply stresses out of a CalculiX result is not implemented | script docstring, `tests/test_laminate_failure.py` |
 | Union of closed triangle solids | manifold3d 3.5 (Apache-2.0), `Manifold.batch_boolean` on `Mesh64` (double precision) | build each piece as a closed oriented mesh, unite, then check the result yourself (watertight, winding, volume). Used by the [935 head twin](../twins/935-cylinder-head-cad-twin/source/loft_stack.py) | host venv | one manifold surface from touching or overlapping solids. It leaves triangles without area and needle triangles; it is a mesh, never a B-rep | [twin README](../twins/935-cylinder-head-cad-twin/README.md) |
 | FE / CFD meshing | Gmsh (pinned per evidence) | Python API inside the study's source | container or host | a mesh with recorded size fields and quality | study README |
 | Stress, modal, buckling, thermal | CalculiX 2.21 `ccx` | text deck written by the study script; **one thread** | `3dprinting993-cadsim` or capped host | a numerical result for stated loads and supports | [twins/964-chassis/fea/README.md](../twins/964-chassis/fea/README.md) |
@@ -63,6 +68,18 @@ tool beyond that table.*
 | Render, sensors | OVRTX | only after the GPU gates | rented RTX GPU | pixels; never a physical result | [SOFTWARE_STACK.md](SOFTWARE_STACK.md#gates-before-paid-gpu-computation) |
 | Local AI CAD proposals | CADAM + local Qwen/MLX | per the runbook; proposals checked independently | Mac | a proposal, never its own inspection | [cadam-local-qwen.md](architecture/cadam-local-qwen.md) |
 | Measurement intake | `scripts/capture_caliper.py`, `scripts/capture_photoset.py` | contributor data only ([ADR 0019](decisions/0019-accept-contributed-measurements.md)) | contributor | an admitted reading with instrument and uncertainty | [CAPTURE_PROTOCOL.md](CAPTURE_PROTOCOL.md) |
+| Self-intersection audit of a surface mesh | CGAL 5.6 auditor (`surface_intersections_cgal.cpp`), read-only | `g++ -std=c++20 -O2 … -lgmp -lmpfr`, then set `M64_CGAL_INTERSECTIONS` | host with `libcgal-dev`, or CI | which triangles cross or overlap. It repairs nothing and admits no mesh for CFD or manufacturing | [LOCAL_HOST_SETUP.md](LOCAL_HOST_SETUP.md#retained-cgal-intersection-auditor) |
+| Second volume mesher, for comparison | SALOME 9.16 with NETGEN | `python3 benchmarks/free-tools/native_container.py salome --image <image> --output <new dir>` | CPU container | a tetrahedral mesh with checked boundary and CalculiX format. Synthetic cube and bore only; the carrier is blocked until its face groups are reviewed | [free tools](architecture/free-tools/README.md) |
+| Mesh cleanup, decimation, heavy mesh operations | pymeshlab 2025.7 (`scan-mesh-f17` image); Blender `--background --python` (`mesh-cfd`, `recon`) | per study script | CPU container | a derived mesh. Blender has a version check only and no recent receipt | [TOOLCHAIN.md](TOOLCHAIN.md) |
+| CFD cross-check (lattice Boltzmann) | FluidX3D at a pinned commit, **non-commercial licence** | `make 917-aircooled-4v-f34-fluidx3d-image` | container, CPU OpenCL | a second flow estimate. Its three-grid study did not pass mesh independence | [F34 record](../archive/917/docs/917_AIRCOOLED_4V_F34.md) |
+| LPBF thermal research codes | adamantine, GO-MELT, LPBF-CUDA, each at a pinned revision | `make go-melt-smoke`, `make lpbf-cuda-cpu-smoke`; adamantine per its README | CPU | kernel and export witnesses only: no full scan, no CUDA run, no physical validation | [usd-brep-lpbf.md](architecture/usd-brep-lpbf.md), [adamantine](../benchmarks/lpbf-adamantine-export/README.md) |
+| LPBF slicing and hatching | PySLM at a pinned, patched revision | the installers in `parts/993-eng-carrier-0001/source/process-*`; the two generations are not interchangeable | macOS arm64, Python 3.11 | layers and hatches of one part. Not an admitted build preparation and no machine file | [carrier process](../parts/993-eng-carrier-0001/source/process-coverage-20261016/README.md) |
+| Sensitivity and optimisation studies | OpenTURNS 1.27, OpenMDAO 3.45 | `make free-tools-check`, `make free-tools-controls` | venv from `benchmarks/free-tools/requirements.lock.txt` | analytic controls only. No probability distribution is invented for a part | [test plan](architecture/free-tools/IMPLEMENTATION_TEST_PLAN.md) |
+| Versioned private data between hosts | DVC 3.67 | `benchmarks/free-tools/storage.py archive`, `restore`, `replicate` | same venv | a transfer that rehashes on restore. A push is not a verified backup | [free tools](architecture/free-tools/README.md) |
+| Differentiable FE, GPU geometry kernels | JAX-FEM 0.0.12; NVIDIA Warp 1.18 | per runbook; Warp: `bash containers/warp-geometry-build.sh <tag>` | CPU container | smoke and synthetic geometry controls. Neither has run on a GPU, and no study uses JAX-FEM | [JAX-FEM](../containers/stack-20261105/JAX_FEM_NATIVE.md), [Warp pilot](WARP_GEOMETRY_VAST_PILOT.md) |
+| Electronics schematic checks | KiCad 9.0.2, image pinned by digest | the rear-panel tests, run inside the image | CPU container | ERC and a fresh netlist against the contract. No PCB; not validated for manufacturing | [KiCad README](projects/993-programmable-rear-panel/electronics/kicad/README.md) |
+| Human CAD review | FreeCAD 1.1 (`FreeCADCmd`) | interactive, or scripted per study | Mac only; not on the Linux host or in `cadsim` | a person's reading of a STEP. No CI job runs it | [935 example](research/935-source-cut-admission-20261106/README.md) |
+| Polymer slicing | PrusaSlicer (unpinned in `cadsim`; 2.9.7 in the stack recipe) | command line | CPU container | a sliced file. Only a synthetic cube has been sliced by script; no printer is qualified | [stack recipes](../containers/stack-20261105/README.md) |
 | Back up private outputs (STEP, meshes, solver fields) | [`scripts/private_release_backup.py`](../scripts/private_release_backup.py) | `backup`, then `verify`, into a release of a **private** repository (935 data: `porscheparts-935-private`); files still being written are skipped and listed | any host with `gh` | a storage copy whose every file rehashes identically after download. Not a DVC registration: the DVC stores (Mac, Kali) are not reachable from every host | script docstring |
 | 962 cylinder-head work | `workflow_plan.py` + the 19-phase contract | read the head's AGENTS.md and WORKFLOW.md **first** | per phase | phase states, never physical approval | [WORKFLOW.md](../twins/962-cylinder-head-f0/WORKFLOW.md) |
 
@@ -190,6 +207,28 @@ neighbouring study's README for more before starting.
   filter recovered all 24; the normal filter is what keeps a fin's facing
   neighbour out of its inliers.
 
+- **Draft makes a cylinder a cone.** A cylinder-only fit of bores and bosses
+  drafted by 0.5 to 2° reported each as a determined cylinder outside the
+  limits and left ten spurious fragments; the cone-or-cylinder model recovered
+  all of them to 0.001°.
+- **A small fillet between two flanks may hold no usable points.** At 1 mm
+  pitch a 3 mm fillet keeps two columns of vertices outside the zones it shares
+  with its flanks, and a cylinder a sixth of its radius fits those exactly.
+  Check the normals, and treat `"determined": false` as "not measured".
+- **A narrow cone band does not fix its own axis.** A 3 mm valve-seat band
+  gave 0.1° and 0.03 mm of axis uncertainty against 0.01° and 0.002 mm for its
+  guide. Take the axis from the guide, and read the reported standard
+  deviations before using an axis.
+
+### Laminate failure
+
+- **A reserve factor is only as good as its strengths.** `laminate_failure.py`
+  evaluates a criterion only where its parameters are stated and has no
+  defaults: the Tsai-Wu interaction term, Hashin's transverse shear strength and
+  Puck's inclination parameters are material inputs that need a source.
+- Compare reserve factors, not raw indices: Tsai-Wu's index is not linear in
+  load, so an index of 0.5 does not mean half the failure load.
+
 ### PicoGK 2.3
 
 - `IntersectImplicit` aborts below 1/3 mm voxels; use
@@ -260,6 +299,10 @@ All measured on the 935 head twin on 2026-11-10.
 | Material Agent / Omniverse endpoints | HTTP 403 | #459, #561 |
 | PhysicsNeMo on a part | GPU smoke only; needs converged, correlated cases | SOFTWARE_STACK.md |
 | Vehicle dynamics, multibody, valve-train dynamics | candidate: Chrono (BSD-3; Chrono::Vehicle for the car), not installed: no image, lock or witness. A head twin needs it for anything beyond static geometry; code-to-code validation only until measured 993 data exist | [twin tooling research](research/993-digital-twin-tooling-2026-11-06.md), #504 |
+| Laminate strengths, delamination | no admitted ply strength or criterion parameter for any laminate; `laminate_failure.py` covers in-plane first-ply failure only. Interlaminar stresses, cohesive zones and reading ply stresses from a CalculiX result are not implemented | [computation chain](MONOCOQUE_964_993_COMPUTATION_CHAIN.md), ADR 0018 |
+| Small fillets, spheres, tori, tangent blends from a scan | not covered by `primitive_fit.py`; a fillet needs several vertex columns outside its shared zones, or a fit constrained tangent to its flanks | [fitting README](../benchmarks/scan-primitive-fitting/README.md) |
+| Dimensioned drawings for a supplier | [TOOLCHAIN.md](TOOLCHAIN.md) promises one with every titanium order; no tool is assigned or witnessed. build123d 0.11 in `cadsim` carries projection and dimension objects (import and one call checked, nothing more); FreeCAD TechDraw is not installed | TOOLCHAIN.md |
+| ParaView, Meshroom | named in TOOLCHAIN.md, installed in no recipe and never run; PyVista does the post-processing | TOOLCHAIN.md |
 | Fatigue material data | none admitted. pyLife (above) computes damage only from an S-N curve someone states; titanium and AM parts need alloy-, process- and orientation-specific data (AGENTS.md) | SAFETY.md |
 | System co-simulation | candidates: OMSimulator, FMPy, Ecos; FMI 2.0 co-simulation is the common level; ovfmi (pre-release) bridges FMUs to OpenUSD | same research, #504 |
 | Validated 1D engine and turbo gas dynamics | Aeolus1D 0.3.3 (MIT, alpha) runs in the digest-pinned F39 image `ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:7425…`, used for 917 network construction checks. Only a Sod shock-tube smoke qualifies its runtime: no engine, turbo or 993 validation. No mature maintained alternative (OpenWAM dormant since 2016). No `containers/*.lock.json` names the image, so the container index lists it as unlocked | same research, [917 reference engine](../twins/reference-917-engine/README.md) |

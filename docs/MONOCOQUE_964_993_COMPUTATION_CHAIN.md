@@ -49,7 +49,7 @@ nonlinearity. That is the whole programme up to M6.
 | need | why CalculiX is not enough | tool |
 |---|---|---|
 | **crash, energy absorption, cell integrity** | implicit solver; crash is an explicit problem with large deformations, general contact and failure | **OpenRadioss** (open source, Altair, 2022); failing that LS-DYNA or Abaqus/Explicit |
-| **laminate failure and delamination** | no built-in composite criterion: no Hashin, no Puck, no cohesive zone | per-ply stress post-processing, to be written; or a dedicated solver |
+| **laminate failure and delamination** | no built-in composite criterion: no Hashin, no Puck, no cohesive zone | in-plane first-ply failure: [`scripts/laminate_failure.py`](../scripts/laminate_failure.py), written on 2026-11-10 (maximum stress, Tsai-Wu, Hashin, Puck inter-fibre, on stated strengths). Still to be written: reading ply stresses from the CalculiX result, and delamination, which needs a dedicated solver. No ply strength is admitted for any laminate |
 | **drapability** | a manufacturing question, not a mechanics one: a ply does not lie on an arbitrary double curvature | dedicated draping tool, all commercial |
 | **high-dimensional exploration** | every calculation costs; thousands would be needed | surrogate model, see section 3 |
 
