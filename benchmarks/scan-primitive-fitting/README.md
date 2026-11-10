@@ -1,4 +1,4 @@
-# Scan-to-CAD plane fitting: tool and witness
+# Scan-to-CAD primitive fitting: tools and witnesses
 
 Fitting CAD features to a scan had no assigned tool. The 935 head twin used a
 hand-written level detector that bins horizontal facets in Z. With a 0.1 mm
@@ -48,11 +48,102 @@ hashes, and resolves for `manylinux_2_31` x86-64. The `recon` image also
 carries Open3D 0.19.0, but installed unpinned and with no lock, so it is not
 used here.
 
+## Cylinders, cones and fillets
+
+The plane witness left bores, valve seats, drafted bosses and fillets with no
+tool. [`primitive_fit.py`](primitive_fit.py) fits planes, cylinders and cones to
+oriented scan points, on NumPy and SciPy `least_squares` from the same lock.
+Three choices matter:
+
+- **A cylinder and a cone are one model.** A straight generator revolved about
+  an axis has a radius that varies as `r0 + k t` along it; `k = 0` is the
+  cylinder. Draft is therefore measured, not assumed: a fit is called a
+  cylinder only when its half-angle is under 0.1° or within three standard
+  deviations of zero.
+- **Every axis, radius and half-angle carries a standard deviation**, from the
+  covariance of its own least-squares fit.
+- **Shared zones are left out of the fit.** Near a tangency a point lies on two
+  surfaces at once. Giving it to either by its residual biases the smaller one,
+  so points whose foot on their own model also lies on a second model are
+  excluded from both. A model that the remaining points do not fix is reported
+  with `"determined": false` and no uncertainty: detected, not measured.
+
+[`witness_bores_cones_fillets.py`](witness_bores_cones_fillets.py) builds 19
+isolated features with known parameters, meshes them at 1 mm with 0.03 mm normal
+noise (69,487 vertices, normals from Open3D's mesh vertex normals), and scores
+the detector against the generated truth. The detector was developed on seeds 1
+to 12. The acceptance and the primary seed were fixed before its first run on
+that seed.
+
+Result ([`results-bores-cones-fillets-20261110.json`](results-bores-cones-fillets-20261110.json),
+reproduced byte-identically on a second run):
+
+| Features | Within acceptance | Largest error |
+|---|---|---|
+| 6 cylinders: bores of 4, 4, 9 and 50 mm radius, arcs of 120° and 180° | 6 / 6 | radius 0.004 mm, axis 0.011° |
+| 3 drafted bores and bosses: 0.5°, 1° and 2° | 3 / 3, each reported as a cone | half-angle 0.001°, radius 0.001 mm |
+| 3 valve seats: 30°, and two 45° bands 3 mm wide, each coaxial with a guide | 3 / 3 | half-angle 0.09°, axis 0.06° |
+| Fillet, 6 mm, between two flanks | 1 / 1 | radius 0.040 mm |
+| 5 planes | 5 / 5 | tilt 0.006° |
+| Fillet, 3 mm (limit probe) | reported as **not determined** | not applicable |
+
+No detection was spurious, and no error exceeded 2.9 of the detector's own
+reported standard deviations (limit 5). Ten further scenes, seeds 20261111 to
+20261120, were run once each and all pass the same rule.
+
+**Negative control:** the same detector with cones disabled finds the six
+cylinders and none of the six cones. It reports the three drafted features as
+determined cylinders outside the limits and leaves ten spurious fragments.
+
+### Limits found while building it
+
+- **A 3 mm fillet is not resolvable at 1 mm pitch.** Between the shared zones
+  of its two flanks it keeps two columns of vertices, spanning 18° of arc. A
+  cylinder a sixth of the true radius fits those two columns exactly, with a
+  small formal uncertainty; only the normals expose it. The detector refuses
+  the refit and flags the fillet. A fillet needs several columns outside the
+  shared zones: scan finer, or fit the blend as tangent to its two flanks, which
+  this module does not do.
+- **A narrow seat fixes its angle and radius, not its axis.** On a 3 mm band,
+  tilting the axis and shifting it sideways change the surface alike. The 45°
+  seats report an axis uncertainty near 0.1° and 0.03 mm, against 0.01° and
+  0.002 mm for the guide they sit on. Take a seat's axis from its guide. The
+  first acceptance draft held these seats to the bore limits (0.2°, 0.05 mm); a
+  development seed missed it at 0.26° and 0.08 mm, and the seat class was given
+  its own limits (0.5°, 0.15 mm) before the primary run.
+- **Assigning tangent points by their residual biases a fillet.** Sequential
+  extraction left the 6 mm fillet 0.1 mm small on a development seed, and
+  giving each point to its nearest model left both fillets 0.07 to 0.10 mm
+  large, six to nine of the then-reported standard deviations. The shared-zone
+  rule removed the bias.
+- **A half cylinder has a second, false optimum** as a cone of 0.17° with a
+  tilted axis, holding a few more inliers. The type is decided on the final
+  refit, not on the inlier count.
+
+Run it (about 3 minutes, under 1 GB), then fit a scan:
+
+```bash
+work/scan-primitive-fitting-venv/bin/python -I \
+  benchmarks/scan-primitive-fitting/witness_bores_cones_fillets.py --output <new.json>
+work/scan-primitive-fitting-venv/bin/python -I \
+  benchmarks/scan-primitive-fitting/primitive_fit.py <scan.ply> --noise-mm <sigma> --output <fits.json>
+```
+
+`--noise-mm` is the scan noise at one standard deviation, from a measured flat
+or the scanner record; every threshold follows from it and from `--pitch-mm`.
+
 ## What this does not establish
 
-This qualifies plane detection on synthetic drafted faces. It says nothing
-about the accuracy of any real scan, part or fit. Cylinders, cones, tori and
-fillets are not covered: CGAL's shape detection (header-only C++, in the
-`analysis-cgal-toolchain` recipe) is the candidate there, and has no witness
-yet. On a real scan, check each fitted plane against an independent deviation
-measure, not against the detector's own residual.
+Both witnesses qualify the software on synthetic geometry. They say nothing
+about the accuracy of any real scan, part or fit. In the second witness the
+features are isolated, complete and free of occlusion, apart from each seat on
+its guide and each fillet between its flanks; clutter, holes and registration
+error are not tested. The reported standard deviations assume independent noise
+on each vertex, which a real scanner does not deliver, so treat them as a lower
+bound. Spheres, tori, free-form surfaces and tangent-constrained blends are not
+covered. CGAL's shape detection (in the `analysis-cgal-toolchain` recipe) was
+not evaluated. `primitive_fit.py` takes about 10 s on 70,000 points; a run on
+the 360,000-sample fin scene was stopped unfinished after 27 minutes on a busy
+host, so plane-only scans keep the Open3D loop above. On a real scan, check each fitted primitive
+against an independent deviation measure, not against the detector's own
+residual.

@@ -23,6 +23,8 @@ name. The corresponding container images are described in
 | Mesh cleanup | pymeshlab | Python API | PLY, OBJ, STL |
 | Point clouds | Open3D | Python API | PLY, PCD |
 | Scan-to-CAD planes | Open3D sequential `segment_plane` with a normal-agreement filter; [witness](../benchmarks/scan-primitive-fitting/README.md) | Python API | plane parameters with fit residuals |
+| Scan-to-CAD cylinders, cones, fillets | [`primitive_fit.py`](../benchmarks/scan-primitive-fitting/primitive_fit.py) on SciPy; [witness](../benchmarks/scan-primitive-fitting/README.md#cylinders-cones-and-fillets) | CLI and Python | JSON: axis, radius, half-angle and their standard deviations |
+| Scan-versus-CAD deviation | CloudCompare 2.13.2; [free tools](architecture/free-tools/README.md) | CLI in a container | distances in mm, SVG |
 | Organic shapes | Blender `--background --python` | Python script | BLEND, OBJ, PLY |
 | Photogrammetry second opinion | Meshroom `meshroom_batch` | CLI, installed on demand | OBJ, point cloud |
 
@@ -70,6 +72,7 @@ The `.3mf` and `.stl` formats are manufacturing derivatives.
 | Result conversion | `ccx2paraview`, meshio | CLI and Python |
 | Post-processing | PyVista, ParaView | Python script |
 | Fatigue post-processing | pyLife 2.3 (rainflow, Wöhler, Miner); [witness](../benchmarks/fatigue-postprocessor/README.md) | Python API; S-N data from a cited source, never from the tool |
+| Laminate first-ply failure | [`scripts/laminate_failure.py`](../scripts/laminate_failure.py): lamination theory, maximum stress, Tsai-Wu, Hashin, Puck inter-fibre | CLI and Python; strengths and criterion parameters from a cited source, never from the tool |
 | Exploratory CFD | OpenFOAM + foamlib | CLI and Python |
 | Local LPBF melt pool | ORNL AdditiveFOAM 2.0.0 on OpenFOAM 14 | CLI/MPI, correlated coupons required |
 | Multilevel LPBF thermal research | GO-MELT, pinned source | Isolated JAX CPU kernel witness; multilevel scan and CUDA qualification pending |

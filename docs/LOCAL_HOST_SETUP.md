@@ -355,6 +355,47 @@ and runs nine synthetic fluid-boundary tests. The Warp CPU job adds Trimesh
 5.1.0 and exercises the fan ray kernel against an independently known box hit
 and miss. These are geometry/software controls, not flow or fitment validation.
 
+### Tool environments under `work/`
+
+Two assigned tools run from their own hash-locked environments, kept in the
+ignored `work/` folder. They are not part of `make check-setup`; create them
+once per checkout:
+
+```bash
+uv venv --python 3.12 work/scan-primitive-fitting-venv
+uv pip install --python work/scan-primitive-fitting-venv/bin/python \
+  --require-hashes -r benchmarks/scan-primitive-fitting/requirements.lock.txt
+uv venv --python 3.12 work/fatigue-venv
+uv pip install --python work/fatigue-venv/bin/python \
+  --require-hashes -r benchmarks/fatigue-postprocessor/requirements.lock.txt
+```
+
+Each benchmark README gives the witness command that proves the environment:
+both reproduced their committed receipts byte for byte on the WSL host on
+2026-11-10. `scripts/laminate_failure.py` needs only NumPy and runs in
+`.venv-check`.
+
+### Docker needs buildx
+
+Most recipes under `containers/` start with a `# syntax=` line and expect
+BuildKit. Ubuntu's `docker.io` package ships without it: `docker buildx` is
+then an unknown command and `docker build` stops with "Install the buildx
+component". With root, install the `docker-buildx` package. Without root, the
+same package installs for one user:
+
+```bash
+apt-get download docker-buildx          # no root needed; apt checks the hash against its signed index
+dpkg-deb -x docker-buildx_*.deb unpacked
+install -D -m 0755 unpacked/usr/libexec/docker/cli-plugins/docker-buildx ~/.docker/cli-plugins/docker-buildx
+docker buildx version
+```
+
+Done this way on the WSL host on 2026-11-10 (buildx 0.30.1, Docker 29.1.3):
+`containers/free-tools-cloudcompare.Dockerfile` then built from the repository
+root and its native controls passed. apt does not update a per-user plugin;
+repeat the steps to upgrade it. An image built locally has its own image ID. It
+is not the digest a lock file pins.
+
 ## 3. Heavy jobs on a shared or WSL host
 
 A voxel field, mesher or solver that outgrows memory can take the whole WSL VM
