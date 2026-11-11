@@ -6,6 +6,18 @@
 > geometry is closed by declared hypotheses listed in
 > [hypotheses.json](hypotheses.json); none is a measurement.
 
+![The twin of the scanned head turning once about its bore axis: a finned air-cooled cylinder head with two ports, grey where the scan supports the surface and orange where it is inferred](media/hero.gif)
+
+*The v2 CAD body, turning. Grey: within 0.2 mm of the acquired scan. Orange:
+closure the scanner never saw. These are renderings of a study twin; no
+geometry file is published ([provenance](media/provenance.json)).*
+
+| What was acquired, and what was built from it | Fitted axes and the hypothesis solids |
+|---|---|
+| ![Left, the acquired scan: an open surface with its ten studs still on. Right, the v2 CAD body: one closed solid without the studs, with orange patches where the surface is inferred](media/scan-and-twin.png) | ![The body made translucent, seen from the port side and from the chamber, with the fitted valve axes in red, plug axes in blue, stud passage axes in green, and the hypothetical valves and plugs of the thermal screen in magenta](media/features.png) |
+
+![The v2 CAD body from four sides: cam side, chamber and deck, the port of the y-minus flange, and the fins of the x-plus side](media/views.png)
+
 ## State on 2026-11-11
 
 | Body | What it is | Scan within 0.2 mm | p95 | What runs on it |
@@ -159,9 +171,12 @@ The feature fit is amber because CloudCompare confirms 4 of its 32 features.*
 | Six-view render of the body, read by the agent | `preview.py` of the `cad-skill` skill (trimesh, pyrender, EGL under `xvfb-run`) | none: the script is the skill's |
 
 The private inputs and outputs live under `work/935-cad-twin/` (ignored by
-Git). Only code, fitted scalar parameters and statistics are committed, as
-the owner decided on 2026-11-06; the STEP, meshes and USD stay private and
-rebuild from the code. [run_twin.sh](source/run_twin.sh) replays the chain.
+Git). Code, fitted scalar parameters and statistics are committed, as the
+owner decided on 2026-11-06; the STEP, meshes and USD stay private and
+rebuild from the code. On 2026-11-11 the owner asked for pictures on this
+page: [render_media.py](source/render_media.py) writes captioned renderings
+to `media/`, with the scan's licence state in
+[provenance.json](media/provenance.json). [run_twin.sh](source/run_twin.sh) replays the chain.
 
 ## Results
 
