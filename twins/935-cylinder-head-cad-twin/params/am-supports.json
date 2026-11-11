@@ -5,11 +5,11 @@
     "occupancy_grid": "occupancy-wn.npy",
     "grid_pitch_mm": 0.25,
     "inside_rule": "winding number > 0.5",
-    "inside_volume_mm3": 1095101.2,
+    "inside_volume_mm3": 1094483.3,
     "body": "largest face-connected solid component",
     "dropped_solid_components": {
-      "components": 184,
-      "volume_mm3": 27.062
+      "components": 124,
+      "volume_mm3": 14.656
     },
     "body_extent_mm": {
       "x": [
@@ -17,22 +17,22 @@
         58.125
       ],
       "y": [
-        -112.875,
+        -109.875,
         119.125
       ],
       "z": [
         -0.625,
-        113.875
+        94.625
       ]
     },
     "surfaces_for_the_triangle_check": {
       "mc_1p0mm": {
-        "triangles": 400022,
-        "area_mm2": 151356.9
+        "triangles": 399142,
+        "area_mm2": 151077.1
       },
       "t1s_clean": {
-        "triangles": 7081318,
-        "area_mm2": 169097.3
+        "triangles": 7050948,
+        "area_mm2": 168407.6
       }
     }
   },
@@ -457,8 +457,8 @@
     "strict_flood_fill_fine": {
       "pitch_mm": 0.25,
       "grid_boundary_all_air": true,
-      "enclosed_void_volume_mm3": 10.09375,
-      "enclosed_voids": 185,
+      "enclosed_void_volume_mm3": 10.046875,
+      "enclosed_voids": 184,
       "enclosed_voids_of_1mm3_or_more": 1,
       "largest_enclosed_void_mm3": 1.0,
       "enclosed_void_volume_in_voids_of_1mm3_or_more_mm3": 1.0
@@ -466,17 +466,17 @@
     "strict_flood_fill_coarse": {
       "pitch_mm": 0.5,
       "grid_boundary_all_air": true,
-      "enclosed_void_volume_mm3": 54.5,
+      "enclosed_void_volume_mm3": 54.75,
       "enclosed_voids": 102,
       "enclosed_voids_of_1mm3_or_more": 12,
       "largest_enclosed_void_mm3": 11.25,
-      "enclosed_void_volume_in_voids_of_1mm3_or_more_mm3": 36.875
+      "enclosed_void_volume_in_voids_of_1mm3_or_more_mm3": 37.0
     },
     "ball_probe_coarse": {
       "pitch_mm": 0.5,
       "ball_diameter_mm": 2.0,
-      "pockets": 9,
-      "pocket_volume_mm3": 36.0
+      "pockets": 10,
+      "pocket_volume_mm3": 39.875
     }
   },
   "orientations": {
@@ -487,67 +487,67 @@
       "named_face": "deck plane z = 0",
       "named_face_above_lowest_point_mm": 0.62,
       "plate_contact_area_mm2": 0.2,
-      "down_facing_projected_area_any_angle_mm2": 50178.4,
-      "overhang_area_mm2": 38101.2,
-      "overhang_projected_area_mm2": 34875.4,
-      "support_volume_mm3": 444050.4,
-      "support_volume_landing_on_plate_mm3": 275941.1,
-      "support_volume_landing_on_part_mm3": 168109.3,
-      "overhang_area_within_1mm_of_plate_mm2": 5445.8,
-      "support_volume_within_1mm_of_plate_mm3": 3361.9,
-      "build_height_mm": 114.5,
+      "down_facing_projected_area_any_angle_mm2": 50158.4,
+      "overhang_area_mm2": 38109.2,
+      "overhang_projected_area_mm2": 34883.5,
+      "support_volume_mm3": 444123.6,
+      "support_volume_landing_on_plate_mm3": 275935.6,
+      "support_volume_landing_on_part_mm3": 168188.0,
+      "overhang_area_within_1mm_of_plate_mm2": 5445.7,
+      "support_volume_within_1mm_of_plate_mm3": 3361.8,
+      "build_height_mm": 95.25,
       "support_height_max_mm": 82.5,
-      "support_volume_over_part_volume": 0.4055,
-      "enclosed_void_volume_mm3": 10.1,
+      "support_volume_over_part_volume": 0.4058,
+      "enclosed_void_volume_mm3": 10.0,
       "sensitivity_0p5mm": {
-        "overhang_area_mm2": 36792.5,
-        "support_volume_mm3": 432584.1,
-        "build_height_mm": 114.0,
-        "plate_contact_area_mm2": 5.8,
+        "overhang_area_mm2": 36801.9,
+        "support_volume_mm3": 432629.4,
+        "build_height_mm": 95.0,
+        "plate_contact_area_mm2": 6.0,
         "overhang_area_relative_to_working": -0.0343,
-        "support_volume_relative_to_working": -0.0258
+        "support_volume_relative_to_working": -0.0259
       },
       "triangle_overhang_area_mm2": {
-        "mc_1p0mm": 33720.0,
-        "t1s_clean": 39638.7
+        "mc_1p0mm": 33713.7,
+        "t1s_clean": 39634.6
       },
       "overhang_area_relative_to_triangles": {
-        "mc_1p0mm": 0.1299,
-        "t1s_clean": -0.0388
+        "mc_1p0mm": 0.1304,
+        "t1s_clean": -0.0385
       }
     },
     "deck_up": {
       "definition": "build direction -Z; the cam-housing side faces the plate",
       "build_axis": "Z",
       "build_sign": -1,
-      "plate_contact_area_mm2": 0.1,
-      "down_facing_projected_area_any_angle_mm2": 50178.6,
-      "overhang_area_mm2": 40739.0,
-      "overhang_projected_area_mm2": 38286.7,
-      "support_volume_mm3": 883849.1,
-      "support_volume_landing_on_plate_mm3": 719551.3,
-      "support_volume_landing_on_part_mm3": 164297.8,
-      "overhang_area_within_1mm_of_plate_mm2": 0.5,
-      "support_volume_within_1mm_of_plate_mm3": 0.3,
-      "build_height_mm": 114.5,
-      "support_height_max_mm": 114.0,
-      "support_volume_over_part_volume": 0.8071,
-      "enclosed_void_volume_mm3": 10.1,
+      "plate_contact_area_mm2": 0.4,
+      "down_facing_projected_area_any_angle_mm2": 50158.2,
+      "overhang_area_mm2": 40779.3,
+      "overhang_projected_area_mm2": 38323.4,
+      "support_volume_mm3": 511388.4,
+      "support_volume_landing_on_plate_mm3": 347079.3,
+      "support_volume_landing_on_part_mm3": 164309.0,
+      "overhang_area_within_1mm_of_plate_mm2": 29.0,
+      "support_volume_within_1mm_of_plate_mm3": 11.1,
+      "build_height_mm": 95.25,
+      "support_height_max_mm": 94.75,
+      "support_volume_over_part_volume": 0.4672,
+      "enclosed_void_volume_mm3": 10.0,
       "sensitivity_0p5mm": {
-        "overhang_area_mm2": 39335.8,
-        "support_volume_mm3": 861477.0,
-        "build_height_mm": 114.0,
-        "plate_contact_area_mm2": 0.2,
-        "overhang_area_relative_to_working": -0.0344,
-        "support_volume_relative_to_working": -0.0253
+        "overhang_area_mm2": 39360.1,
+        "support_volume_mm3": 495859.8,
+        "build_height_mm": 95.0,
+        "plate_contact_area_mm2": 21.5,
+        "overhang_area_relative_to_working": -0.0348,
+        "support_volume_relative_to_working": -0.0304
       },
       "triangle_overhang_area_mm2": {
-        "mc_1p0mm": 38465.1,
-        "t1s_clean": 42119.5
+        "mc_1p0mm": 38484.2,
+        "t1s_clean": 42117.0
       },
       "overhang_area_relative_to_triangles": {
-        "mc_1p0mm": 0.0591,
-        "t1s_clean": -0.0328
+        "mc_1p0mm": 0.0596,
+        "t1s_clean": -0.0318
       }
     },
     "flange_y_minus_down": {
@@ -555,35 +555,35 @@
       "build_axis": "Y",
       "build_sign": 1,
       "named_face": "flange plane y = -104.26",
-      "named_face_above_lowest_point_mm": 8.62,
-      "plate_contact_area_mm2": 0.1,
-      "down_facing_projected_area_any_angle_mm2": 26483.6,
-      "overhang_area_mm2": 15227.2,
-      "overhang_projected_area_mm2": 13633.6,
-      "support_volume_mm3": 468612.9,
-      "support_volume_landing_on_plate_mm3": 244008.2,
-      "support_volume_landing_on_part_mm3": 224604.7,
-      "overhang_area_within_1mm_of_plate_mm2": 0.6,
-      "support_volume_within_1mm_of_plate_mm3": 0.3,
-      "build_height_mm": 232.0,
-      "support_height_max_mm": 225.5,
-      "support_volume_over_part_volume": 0.4279,
-      "enclosed_void_volume_mm3": 10.1,
+      "named_face_above_lowest_point_mm": 5.62,
+      "plate_contact_area_mm2": 0.3,
+      "down_facing_projected_area_any_angle_mm2": 26206.7,
+      "overhang_area_mm2": 15002.0,
+      "overhang_projected_area_mm2": 13424.5,
+      "support_volume_mm3": 423396.7,
+      "support_volume_landing_on_plate_mm3": 205339.4,
+      "support_volume_landing_on_part_mm3": 218057.2,
+      "overhang_area_within_1mm_of_plate_mm2": 5.3,
+      "support_volume_within_1mm_of_plate_mm3": 2.6,
+      "build_height_mm": 229.0,
+      "support_height_max_mm": 222.25,
+      "support_volume_over_part_volume": 0.3868,
+      "enclosed_void_volume_mm3": 10.0,
       "sensitivity_0p5mm": {
-        "overhang_area_mm2": 14185.9,
-        "support_volume_mm3": 450465.1,
-        "build_height_mm": 231.5,
-        "plate_contact_area_mm2": 0.2,
-        "overhang_area_relative_to_working": -0.0684,
-        "support_volume_relative_to_working": -0.0387
+        "overhang_area_mm2": 13959.6,
+        "support_volume_mm3": 409832.9,
+        "build_height_mm": 229.0,
+        "plate_contact_area_mm2": 1.2,
+        "overhang_area_relative_to_working": -0.0695,
+        "support_volume_relative_to_working": -0.032
       },
       "triangle_overhang_area_mm2": {
-        "mc_1p0mm": 12577.1,
-        "t1s_clean": 15504.7
+        "mc_1p0mm": 12460.7,
+        "t1s_clean": 15245.7
       },
       "overhang_area_relative_to_triangles": {
-        "mc_1p0mm": 0.2107,
-        "t1s_clean": -0.0179
+        "mc_1p0mm": 0.2039,
+        "t1s_clean": -0.016
       }
     },
     "flange_y_plus_down": {
@@ -593,33 +593,33 @@
       "named_face": "flange plane y = 85.39",
       "named_face_above_lowest_point_mm": 33.73,
       "plate_contact_area_mm2": 46.6,
-      "down_facing_projected_area_any_angle_mm2": 26437.1,
-      "overhang_area_mm2": 14105.2,
-      "overhang_projected_area_mm2": 12557.9,
-      "support_volume_mm3": 494894.5,
-      "support_volume_landing_on_plate_mm3": 272471.4,
-      "support_volume_landing_on_part_mm3": 222423.2,
+      "down_facing_projected_area_any_angle_mm2": 26160.4,
+      "overhang_area_mm2": 13896.6,
+      "overhang_projected_area_mm2": 12369.4,
+      "support_volume_mm3": 473952.0,
+      "support_volume_landing_on_plate_mm3": 252286.6,
+      "support_volume_landing_on_part_mm3": 221665.4,
       "overhang_area_within_1mm_of_plate_mm2": 90.4,
       "support_volume_within_1mm_of_plate_mm3": 46.2,
-      "build_height_mm": 232.0,
-      "support_height_max_mm": 208.5,
-      "support_volume_over_part_volume": 0.4519,
-      "enclosed_void_volume_mm3": 10.1,
+      "build_height_mm": 229.0,
+      "support_height_max_mm": 208.25,
+      "support_volume_over_part_volume": 0.433,
+      "enclosed_void_volume_mm3": 10.0,
       "sensitivity_0p5mm": {
-        "overhang_area_mm2": 13650.0,
-        "support_volume_mm3": 480950.4,
-        "build_height_mm": 231.5,
+        "overhang_area_mm2": 13441.7,
+        "support_volume_mm3": 460331.9,
+        "build_height_mm": 229.0,
         "plate_contact_area_mm2": 71.0,
-        "overhang_area_relative_to_working": -0.0323,
-        "support_volume_relative_to_working": -0.0282
+        "overhang_area_relative_to_working": -0.0327,
+        "support_volume_relative_to_working": -0.0287
       },
       "triangle_overhang_area_mm2": {
-        "mc_1p0mm": 12635.5,
-        "t1s_clean": 15473.8
+        "mc_1p0mm": 12534.5,
+        "t1s_clean": 15242.3
       },
       "overhang_area_relative_to_triangles": {
-        "mc_1p0mm": 0.1163,
-        "t1s_clean": -0.0884
+        "mc_1p0mm": 0.1087,
+        "t1s_clean": -0.0883
       }
     },
     "side_x_minus_down": {
@@ -627,33 +627,33 @@
       "build_axis": "X",
       "build_sign": 1,
       "plate_contact_area_mm2": 40.6,
-      "down_facing_projected_area_any_angle_mm2": 33968.6,
-      "overhang_area_mm2": 23613.7,
-      "overhang_projected_area_mm2": 21431.1,
-      "support_volume_mm3": 422393.4,
-      "support_volume_landing_on_plate_mm3": 173120.8,
-      "support_volume_landing_on_part_mm3": 249272.6,
-      "overhang_area_within_1mm_of_plate_mm2": 1938.3,
-      "support_volume_within_1mm_of_plate_mm3": 1549.3,
+      "down_facing_projected_area_any_angle_mm2": 33791.1,
+      "overhang_area_mm2": 23492.1,
+      "overhang_projected_area_mm2": 21326.9,
+      "support_volume_mm3": 418503.4,
+      "support_volume_landing_on_plate_mm3": 169079.2,
+      "support_volume_landing_on_part_mm3": 249424.3,
+      "overhang_area_within_1mm_of_plate_mm2": 1938.2,
+      "support_volume_within_1mm_of_plate_mm3": 1549.2,
       "build_height_mm": 121.25,
       "support_height_max_mm": 113.5,
-      "support_volume_over_part_volume": 0.3857,
-      "enclosed_void_volume_mm3": 10.1,
+      "support_volume_over_part_volume": 0.3824,
+      "enclosed_void_volume_mm3": 10.0,
       "sensitivity_0p5mm": {
-        "overhang_area_mm2": 22735.5,
-        "support_volume_mm3": 418750.9,
+        "overhang_area_mm2": 22603.0,
+        "support_volume_mm3": 414224.0,
         "build_height_mm": 121.0,
         "plate_contact_area_mm2": 35.2,
-        "overhang_area_relative_to_working": -0.0372,
-        "support_volume_relative_to_working": -0.0086
+        "overhang_area_relative_to_working": -0.0378,
+        "support_volume_relative_to_working": -0.0102
       },
       "triangle_overhang_area_mm2": {
-        "mc_1p0mm": 20866.1,
-        "t1s_clean": 23551.9
+        "mc_1p0mm": 20810.3,
+        "t1s_clean": 23435.4
       },
       "overhang_area_relative_to_triangles": {
-        "mc_1p0mm": 0.1317,
-        "t1s_clean": 0.0026
+        "mc_1p0mm": 0.1289,
+        "t1s_clean": 0.0024
       }
     },
     "side_x_plus_down": {
@@ -661,36 +661,36 @@
       "build_axis": "X",
       "build_sign": -1,
       "plate_contact_area_mm2": 0.1,
-      "down_facing_projected_area_any_angle_mm2": 34009.1,
-      "overhang_area_mm2": 23144.2,
-      "overhang_projected_area_mm2": 20902.0,
-      "support_volume_mm3": 473250.0,
-      "support_volume_landing_on_plate_mm3": 220499.9,
-      "support_volume_landing_on_part_mm3": 252750.1,
+      "down_facing_projected_area_any_angle_mm2": 33831.6,
+      "overhang_area_mm2": 23033.6,
+      "overhang_projected_area_mm2": 20802.4,
+      "support_volume_mm3": 466010.2,
+      "support_volume_landing_on_plate_mm3": 213109.6,
+      "support_volume_landing_on_part_mm3": 252900.5,
       "overhang_area_within_1mm_of_plate_mm2": 0.6,
       "support_volume_within_1mm_of_plate_mm3": 0.3,
       "build_height_mm": 121.25,
       "support_height_max_mm": 113.75,
-      "support_volume_over_part_volume": 0.4322,
-      "enclosed_void_volume_mm3": 10.1,
+      "support_volume_over_part_volume": 0.4258,
+      "enclosed_void_volume_mm3": 10.0,
       "sensitivity_0p5mm": {
-        "overhang_area_mm2": 22704.4,
-        "support_volume_mm3": 458662.1,
+        "overhang_area_mm2": 22589.9,
+        "support_volume_mm3": 451357.8,
         "build_height_mm": 121.0,
         "plate_contact_area_mm2": 0.8,
-        "overhang_area_relative_to_working": -0.019,
-        "support_volume_relative_to_working": -0.0308
+        "overhang_area_relative_to_working": -0.0193,
+        "support_volume_relative_to_working": -0.0314
       },
       "triangle_overhang_area_mm2": {
-        "mc_1p0mm": 19120.7,
-        "t1s_clean": 24176.9
+        "mc_1p0mm": 19066.5,
+        "t1s_clean": 24073.4
       },
       "overhang_area_relative_to_triangles": {
-        "mc_1p0mm": 0.2104,
-        "t1s_clean": -0.0427
+        "mc_1p0mm": 0.2081,
+        "t1s_clean": -0.0432
       }
     }
   },
-  "seconds": 153.5,
+  "seconds": 51.9,
   "limits": "Screen of the study twin (1 scan unit = 1 mm by owner instruction, no physical calibration; 12% of its area is hypothesis closure, and the enclosed voids and thin handles in the unobserved regions are winding-number artefacts as much as geometry). Only six axis-aligned orientations are measured; tilted orientations are not. The 45 degree rule and the air-column volume are conventions, not a support design: no support type, density, tooth, removal access, heat path, recoater load or distortion is considered, short bridges are not credited, and the plate touches the lowest point without machining stock. Column volumes are envelope volumes, not support material. The strict flood fill lets powder leave through a 0.25 mm opening; the ball probe is the sensitivity to that. Attached studs are excluded from the body. Nothing here establishes printability, an orientation choice, a material, dimensional accuracy or function."
 }

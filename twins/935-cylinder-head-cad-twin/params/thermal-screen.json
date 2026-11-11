@@ -17,50 +17,50 @@
       "mesh": {
         "mesher": "Gmsh HXT",
         "size_max_mm": 3.0,
-        "nodes": 892919,
-        "tets": 4949566,
-        "volume_mm3": 1097349.5,
+        "nodes": 889267,
+        "tets": 4928248,
+        "volume_mm3": 1096787.9,
         "quality_measure": "minSICN",
         "quality": {
           "min": 0.0,
-          "p1": 0.2364,
-          "share_below_0p1": 0.004064,
+          "p1": 0.2365,
+          "share_below_0p1": 0.004066,
           "nonpositive": 0
         },
-        "seconds": 161.9
+        "seconds": 28.1
       },
       "boundary": {
-        "chamber_nodes": 12963,
-        "film_faces": 374915
+        "chamber_nodes": 12967,
+        "film_faces": 374027
       },
       "solver": {
         "returncode": 0,
-        "seconds": 642.1,
+        "seconds": 161.9,
         "ccx_version_line": "CalculiX Version 2.21, Copyright(C) 1998-2023 Guido Dhondt"
       },
       "temperature_C": {
-        "min": 146.645,
+        "min": 154.336,
         "max": 220.0,
-        "mean_nodal": 189.28,
-        "p95": 214.584
+        "mean_nodal": 189.344,
+        "p95": 214.597
       },
       "claims": "numerical screen under declared hypotheses; not an engine temperature prediction",
       "surface": {
         "pitch_mm": 1.0,
-        "triangles": 400022,
+        "iso_level": 0.5,
+        "triangles": 399142,
         "watertight": true,
         "winding_consistent": true,
-        "genus": 9,
-        "volume_mm3": 1097349.5,
+        "genus": 10,
+        "volume_mm3": 1096787.9,
         "discarded_components": 3
       },
       "energy_balance": {
-        "film_faces": 374915,
-        "film_area_mm2": 142943.1,
-        "convective_loss_W": 1648.0213,
-        "chamber_inflow_W": 1643.419,
-        "relative_imbalance": 0.002793,
-        "checker": "check_thermal_balance.py (recomputes film loss from the deck and nodal temperatures)"
+        "film_faces": 374027,
+        "film_area_mm2": 142663.6,
+        "convective_loss_W": 1646.2896,
+        "chamber_inflow_W": 1641.687,
+        "relative_imbalance": 0.002796
       }
     },
     "surface_0p75mm": {
@@ -79,72 +79,75 @@
       "mesh": {
         "mesher": "Gmsh HXT",
         "size_max_mm": 3.0,
-        "nodes": 1721933,
-        "tets": 9611548,
-        "volume_mm3": 1097484.7,
+        "nodes": 1720334,
+        "tets": 9603449,
+        "volume_mm3": 1096995.5,
         "quality_measure": "minSICN",
         "quality": {
           "min": 0.0,
-          "p1": 0.2492,
-          "share_below_0p1": 0.003678,
+          "p1": 0.2499,
+          "share_below_0p1": 0.003648,
           "nonpositive": 0
         },
-        "seconds": 159.1
+        "seconds": 1142.5
       },
       "boundary": {
-        "chamber_nodes": 23106,
-        "film_faces": 684576
+        "chamber_nodes": 23102,
+        "film_faces": 683296
       },
       "solver": {
         "returncode": 0,
-        "seconds": 1913.2,
+        "seconds": 358.3,
         "ccx_version_line": "CalculiX Version 2.21, Copyright(C) 1998-2023 Guido Dhondt"
       },
       "temperature_C": {
-        "min": 127.48,
+        "min": 154.621,
         "max": 220.0,
-        "mean_nodal": 188.261,
-        "p95": 214.495
+        "mean_nodal": 188.324,
+        "p95": 214.526
       },
       "claims": "numerical screen under declared hypotheses; not an engine temperature prediction",
       "surface": {
         "pitch_mm": 0.75,
-        "triangles": 729708,
+        "iso_level": 0.5,
+        "triangles": 728428,
         "watertight": true,
         "winding_consistent": true,
-        "genus": 21,
-        "volume_mm3": 1097484.7,
-        "discarded_components": 15
+        "genus": 26,
+        "volume_mm3": 1096995.5,
+        "discarded_components": 16
       },
       "energy_balance": {
-        "film_faces": 684576,
-        "film_area_mm2": 146946.3,
-        "convective_loss_W": 1683.3205,
-        "chamber_inflow_W": 1680.099,
-        "relative_imbalance": 0.001914,
-        "checker": "check_thermal_balance.py (recomputes film loss from the deck and nodal temperatures)"
+        "film_faces": 683296,
+        "film_area_mm2": 146759.6,
+        "convective_loss_W": 1682.5846,
+        "chamber_inflow_W": 1679.352,
+        "relative_imbalance": 0.001921
       }
     }
   },
   "mesh_sensitivity": {
     "note": "both the surface (geometry resolution) and the mesh change between levels",
     "mean_nodal_C": [
-      189.28,
-      188.261
+      189.344,
+      188.324
     ],
     "p95_C": [
-      214.584,
-      214.495
+      214.597,
+      214.526
     ],
     "min_C": [
-      146.645,
-      127.48
+      154.336,
+      154.621
     ],
     "heat_W": [
-      1643.419,
-      1680.099
+      1641.687,
+      1679.352
     ],
-    "verdict": "global quantities agree (mean 0.5%, p95 0.04%, heat 2.2%); the minimum (thin fin tips) moves 19 C with surface resolution and is not converged"
+    "mean_relative_difference": -0.00539,
+    "p95_relative_difference": -0.00033,
+    "heat_relative_difference": 0.02294,
+    "min_difference_C": 0.285
   },
   "claims": "numerical screen under declared hypotheses; not an engine temperature prediction"
 }

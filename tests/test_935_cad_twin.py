@@ -340,7 +340,10 @@ class DownstreamContractTests(unittest.TestCase):
             s = self.load(name)
             self.assertIn("not SimReady-certified", s["claims"])
             self.assertIn(s["status"], ("passed", "validator_findings"))
-        self.assertEqual(self.load("simready-validate-t4-stage.json")["status"], "passed")
+        # The display surface rebuilt after the stud repair carries one non-manifold vertex.
+        t4 = self.load("simready-validate-t4-stage.json")["stage_input"]["validation"]
+        self.assertEqual((t4["issues_by_severity"]["FAILURE"], t4["issues_by_severity"]["ERROR"]), (0, 0))
+        self.assertEqual([r["rule"] for r in t4["rules_with_issues"]], ["ManifoldChecker"])
         cad = self.load("simready-validate-cad-stage.json")["stage_input"]["validation"]["issues_by_severity"]
         self.assertEqual((cad["FAILURE"], cad["ERROR"]), (0, 0))
 
@@ -673,6 +676,11 @@ class SimReadyAssetTests(unittest.TestCase):
         body = json.loads((params / "v2-body-visual-check.json").read_text())
         self.assertFalse(body["strict_gate_passed"])
         self.assertTrue(body["as_built"]["watertight"])
+        self.assertEqual(body["as_built"]["triangles"], st["render_triangles"])
+        # The stud repair must have removed what the first reading saw.
+        self.assertLess(body["readings"][-1]["top_of_the_body_mm"], body["readings"][0]["top_of_the_body_mm"] - 15.0)
+        occ = json.loads((params / "occupancy-summary.json").read_text())
+        self.assertGreater(sum(x.get("removed_facets_beyond_the_cylinder", 0) for x in occ["studs"]), 8000)
 
 
 @unittest.skipUnless(has("numpy"), "numpy absent")
@@ -689,6 +697,26 @@ class ScorecardTests(unittest.TestCase):
         pts = np.array([[0, 0, 7.0], [0, 0, 5.0], [8.0, 0, 0], [0, 0, 0]])
         d = score_twin.warp_distances(pts, np.asarray(box.vertices), np.asarray(box.faces))
         np.testing.assert_allclose(d, [2.0, 0.0, 3.0, 5.0], atol=1e-5)
+
+    def test_hardware_mask_takes_the_whole_rod_cluster_above_its_fit_height(self):
+        import numpy as np
+
+        sys.path.insert(0, str(SOURCE))
+        import score_twin
+
+        rod = {"axis": [0, 0, 1.0], "point_on_axis": [0, 0, 30.0], "base_point": [0, 0, 10.0], "radius_mm": 3.5,
+               "protrusion_mm": 50.0, "radial_residual": {"rms_mm": 0.7, "max_mm": 3.0}}
+        frame = {"rods": {"beyond_cam_face": [rod]}}
+        cen = np.array([
+            [4.0, 0, 12.0],    # within 0.8 mm of the cylinder, just above the base: hardware
+            [5.5, 0, 12.0],    # a boss beside the base, below the fit height: head
+            [5.5, 0, 30.0],    # a smeared shell of the stud above the fit height: hardware
+            [6.6, 0, 30.0],    # outside the cluster envelope (3.5 + 3.0 + 0.05): head
+            [5.5, 0, 15.9],    # still below base + 6 mm: head
+        ])
+        self.assertEqual(score_twin.hardware_mask(cen, frame).tolist(), [True, False, True, False, False])
+        rod["protrusion_mm"] = 8.0          # too short to be accepted as a stud: nothing is removed
+        self.assertFalse(score_twin.hardware_mask(cen, frame).any())
 
     def test_weighted_percentiles_follow_area(self):
         import numpy as np

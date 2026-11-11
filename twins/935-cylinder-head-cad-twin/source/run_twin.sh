@@ -16,17 +16,31 @@ cap "$PY" -I "$HERE/occupancy.py" "$PRIV" "$PARAMS" 0.25
 cap "$PY" -I "$HERE/surface_mesh.py" "$PRIV" "$PARAMS"
 cap "$PY" -I "$HERE/score_twin.py" "$SCAN" "$PARAMS/frame.json" "$PRIV/t1-bare-head.stl" "$PARAMS/scorecard-t1.json" T1
 
-docker run --rm --memory=10g -v "$PRIV:/p" -v "$HERE:/src:ro" --entrypoint /opt/venv/bin/python \
-  3dprinting993-recon:dev -I /src/decimate.py /p/t1-bare-head.stl /p/t1-sim-surface.stl 400000 /p/decimate.json
-cp "$PRIV/decimate.json" "$PARAMS/sim-surface-summary.json"
-MEM=12G cap "$PY" -I "$HERE/tetmesh.py" "$PRIV/t1-sim-surface.stl" "$PRIV/t1-tets.npz" 1.5 0.1 "$PRIV/tetmesh.json"
-cp "$PRIV/tetmesh.json" "$PARAMS/tetmesh-summary.json"
-docker run --rm --memory=10g -v "$PRIV:/p" -v "$HERE:/src:ro" --entrypoint /opt/venv/bin/python \
-  3dprinting993-cadsim:dev -I /src/sim_thermal.py /p/t1-tets.npz /p/thermal 1.5 T1-thermal
-cp "$PRIV/thermal/result.json" "$PARAMS/thermal-screen.json"
+# T1s: snap observed vertices onto the scan, then revert the few that fold (recon image).
+cap "$PY" -I "$HERE/snap_surface.py" "$PRIV" "$PARAMS"
+docker run --rm --memory=10g --user "$(id -u):$(id -g)" -v "$PRIV:/p" -v "$HERE:/src:ro" --entrypoint /opt/venv/bin/python \
+  3dprinting993-recon:dev -I /src/unsnap_intersections.py /p/t1-bare-head.ply /p/t1s-bare-head.ply /p/t1s-clean.ply /p/unsnap.json
+cap "$PY" -I "$HERE/assemble_records.py" t1s "$PRIV" "$PARAMS"
+cap "$PY" -I "$HERE/score_twin.py" "$SCAN" "$PARAMS/frame.json" "$PRIV/t1s-clean.stl" "$PARAMS/scorecard-t1s.json" T1s
 
-cap "$PY" -I "$HERE/export_print.py" "$PRIV/t1-bare-head.stl" "$PRIV/935-bare-head-twin-study.3mf" "$PARAMS/print-summary.json"
-cap "$PY" -I "$HERE/export_usd.py" "$PRIV" "$PARAMS" "$PRIV/t1-sim-surface.stl" "$PRIV/935-head-twin.usdc"
+# T3 thermal screen on marching-cubes surfaces of the occupancy at 1.0 and 0.75 mm
+# (cadsim image). The decimated surface and fTetWild were tried first and are
+# measured negative results: see README.
+for lv in 4:mc100 3:mc075; do
+  n=${lv#*:}
+  cap "$PY" -I "$HERE/sim_surface_mc.py" "$PRIV" "$PRIV/t1-sim-$n.stl" "$PRIV/t1-sim-$n.json" "${lv%:*}"
+  docker run --rm --memory=10g -v "$PRIV:/p" -v "$HERE:/src:ro" --entrypoint /opt/venv/bin/python \
+    3dprinting993-cadsim:dev -I /src/sim_thermal.py "/p/t1-sim-$n.stl" "/p/thermal-$n" 3.0 "T1-$n-thermal"
+  cap "$PY" -I "$HERE/check_thermal_balance.py" "$PRIV/thermal-$n" "$PRIV/balance-$n.json"
+done
+cp "$PRIV/t1-sim-mc075.json" "$PARAMS/sim-surface-mc075-summary.json"
+"$PY" -I "$HERE/assemble_records.py" thermal "$PRIV" "$PARAMS" surface_1p0mm=mc100 surface_0p75mm=mc075
+
+# T4 and T5 from T1s: a 600,000-triangle display surface for the stage, the full surface for the 3MF.
+docker run --rm --memory=10g --user "$(id -u):$(id -g)" -v "$PRIV:/p" -v "$HERE:/src:ro" --entrypoint /opt/venv/bin/python \
+  3dprinting993-recon:dev -I /src/decimate.py /p/t1s-clean.stl /p/t1s-display.stl 600000 /p/decimate-display.json
+cap "$PY" -I "$HERE/export_print.py" "$PRIV/t1s-clean.stl" "$PRIV/935-bare-head-twin-study.3mf" "$PARAMS/print-summary.json"
+cap "$PY" -I "$HERE/export_usd.py" "$PRIV" "$PARAMS" "$PRIV/t1s-display.stl" "$PRIV/935-head-twin.usdc"
 # T2 (build_brep.py) is a measured negative result on this host; see README.
 
 # v1 body stack: run d (fin faces, tilted tops), the port lofts checked against

@@ -26,11 +26,13 @@ import hashlib
 import importlib.util
 import json
 import math
+import sys
 from pathlib import Path
 
 import numpy as np
 
-from twin_common import sha256_file, write_json
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from twin_common import sha256_file, write_json  # noqa: E402
 
 SCHEMA = "935-cad-twin-feature-fits/1"
 

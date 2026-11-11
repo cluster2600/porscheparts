@@ -236,6 +236,15 @@ neighbouring study's README for more before starting.
   valve axis while reporting 0.2° to 1.3°. The line through two
   fitted centres 63 mm apart came within 0.42° of a guide bore seen at both
   ends (0.02°). Take a direction from a long feature or from two centres.
+- **A fitted cylinder plus a margin does not remove a scanned rod, and a score
+  will not tell you.** The 935 head's studs are smeared shells up to 3.7 mm
+  off their fitted cylinder. A 0.8 mm margin left 8,881 stud facets in the
+  "bare" head, and the winding number closed them into slivers 26 mm tall
+  (2026-11-11). The body still scored 97.3% within 0.2 mm; a six-view render
+  showed them at once. They had also set the thermal minimum, recorded as
+  "not converged" (146.6 against 127.5 °C; 154.3 against 154.6 °C once
+  removed). Remove a rod by the extent of the cluster it was fitted on, and
+  look at a render of every body before running tiers on it.
 
 ### Laminate failure
 

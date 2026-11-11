@@ -28,13 +28,15 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import sys
 import os
 import subprocess
 from pathlib import Path
 
 import numpy as np
 
-from twin_common import sha256_file, write_json
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from twin_common import sha256_file, write_json  # noqa: E402
 
 SCHEMA = "935-cad-twin-feature-check/1"
 BAND_MM = 0.5
