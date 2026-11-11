@@ -770,6 +770,20 @@ class PrintBodyTests(unittest.TestCase):
         self.assertEqual(supports["voids"]["strict_flood_fill_fine"]["enclosed_void_volume_mm3"], 0.0)
 
 
+    def test_layer_screen_record_keeps_its_failed_attempts_and_its_closed_gates(self):
+        record = json.loads((TWIN / "params" / "print-body-layer-screen.json").read_text())
+        self.assertEqual([a["outcome"].split(" ")[0] for a in record["attempts"]], ["killed", "killed", "completed"])
+        report = record["report"]
+        self.assertTrue(report["gates"]["full_piece_layer_slicing_completed"])
+        self.assertTrue(report["gates"]["bare_part_machine_envelope_fit"])
+        for gate in ("metal_print_authorized", "physical_coupon_qualified", "recoater_clearance_validated",
+                     "supplier_supports_validated", "supplier_machine_file_signed"):
+            self.assertFalse(report["gates"][gate], gate)
+        self.assertEqual(report["full_build_slicing"]["layer_count"], 4481)
+        self.assertEqual(report["powder_escape_screen"]["trapped_void_volume_mm3"], 0.0)
+        self.assertEqual(report["machine_candidate"]["model"], "EP-M300")
+
+
 @unittest.skipUnless(has("numpy"), "numpy absent")
 class BuildWitnessTests(unittest.TestCase):
     def setUp(self):

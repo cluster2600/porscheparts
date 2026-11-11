@@ -848,6 +848,35 @@ print body:
   An envelope is not a support design: no support is generated, and none of
   the installed tools designs one.
 
+**Layer screen**, with the repository's assigned tool on the Eplus3D EP-M300
+card ([record](params/print-body-layer-screen.json)). It slices the whole
+part at 0.05 mm and keeps every layer in memory, so on the 0.5 mm surface it
+was killed at a 6 GiB cap and again at 12 GiB. It completed on a 1.0 mm
+surface of the same body (398,652 triangles):
+
+| Quantity | Result |
+|---|---|
+| Orientation the tool selects | build along Y, the least downward-facing area (11,168 mm² against 19,131 along X and 32,249 along Z) |
+| Layers | 4,481 over 224.0 mm, none empty |
+| Fit in the 300 × 300 × 450 mm envelope | yes, bare part: margins 183, 205 and 226 mm |
+| Layers with unsupported area | 2,844; the largest unsupported area in one layer is 643 mm² |
+| New islands | 216 in 159 layers |
+| Support proxy (vertical columns) | 456,345 mm³ |
+| Trapped powder at 1.0 mm | none detected |
+| Local thickness, 2,000 probes | median 4.71 mm, 5th percentile 1.38 mm, 1st percentile 0.75 mm; 6.8% of probes below 1.5 mm |
+
+- **The tool's own choice agrees with the column screen:** building along Y,
+  on a flange, is the orientation with the least overhang.
+- **216 islands start in mid-air** and need a support each;
+  most layers carry some unsupported area. The support proxy is a
+  conservative column volume, not a design.
+- **About 7% of the surface is thinner than 1.5 mm:** the fin tips. The
+  smallest probe value (0.06 mm) is at a probe on an edge and
+  is not a wall thickness.
+- Every qualification gate of the report is false: no engineering review of
+  the orientation, no recoater check, no supplier supports, no machine file,
+  no coupon, no process physics.
+
 Left open on purpose: stud passages, ports, plug wells and spring pockets.
 Not done: supports, a machining drawing, tolerances, shrinkage or distortion
 compensation. The print body is a study object, not a build file.
@@ -1328,6 +1357,7 @@ valve, seat and guide geometry (H05).
 | 993 manual cross-check | fitted features, workshop-manual catalogue | [published-993-comparison.json](params/published-993-comparison.json) | same-dimension flag on each row | done: scale not contradicted; not a calibration |
 | Print body | v2 occupancy, fits, [declared stock](params/print-body-case.json) | private occupancy and 0.5 mm surface; [record](params/print-body.json) | welded watertight, no non-manifold edge, no enclosed void; the renderer's strict gate | done as a study object: passes the gate the twin body failed; stock amounts are hypotheses |
 | Print-body orientations | print-body occupancy | [print-body-supports.json](params/print-body-supports.json) | the AM screen's analytic witnesses | done as a screen: flange y− down and side x+ down kept for the build study; no support designed |
+| Print-body layer screen | 1.0 mm surface of the print body, EP-M300 card | [print-body-layer-screen.json](params/print-body-layer-screen.json); private per-layer table and chart | hashes of master and surface; the tool's gates | done on the coarser surface: 4,481 layers, fits the envelope, 216 islands, no trapped powder at 1.0 mm; the 0.5 mm surface needs more than 12 GiB |
 | Build simulation witness | a block, two lumped layers from a deposition file | [am-build-witness.json](params/am-build-witness.json) | active volume and mean temperature against a closed form, on the solver's mesh and on an imported one | passed on both; no head build: heat input, time scale and plasticity each need a decision or a witness |
 | Fatigue, valve-train dynamics, drawing | none | none | — | not run: no stress history or S-N data, no installed dynamics tool, no confirmed features to dimension |
 
