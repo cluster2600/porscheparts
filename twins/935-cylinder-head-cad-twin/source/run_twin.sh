@@ -102,6 +102,16 @@ cp "$PRIV/assembly-thermal-summary.json" "$PARAMS/assembly-thermal.json"
 MEM=4G cap "$PY" -I "$HERE/am_supports.py" "$PRIV" "$PARAMS"
 "$PY" -I "$HERE/am_cooldown.py" all "$PRIV" "$PARAMS"
 
+# Print body (a study object derived from the CAD body), its orientation screen, and the
+# deposition witness of the build simulation. The witness directory must be new.
+MEM=8G cap "$PY" -I "$HERE/print_body.py" "$PRIV/v2-loft-s025-occ" "$PARAMS" "$PRIV/print-occ-$STAMP"
+MEM=8G cap "$PY" -I "$HERE/sim_surface_mc.py" "$PRIV/print-occ-$STAMP" "$PRIV/print-body-mc050.stl" "$PRIV/print-body-mc050.json" 2 0.4375
+MEM=6G cap "$PY" -I "$HERE/print_body.py" check "$PRIV/print-body-mc050.stl" "$PRIV/print-occ-$STAMP/print-body-occupancy.json" "$PARAMS/print-body.json"
+mkdir "$PRIV/print-supports-$STAMP" && cp "$PARAMS/frame.json" "$PRIV/print-supports-$STAMP/"
+MEM=4G cap "$PY" -I "$HERE/am_supports.py" "$PRIV/print-occ-$STAMP" "$PRIV/print-supports-$STAMP"
+cp "$PRIV/print-supports-$STAMP/am-supports.json" "$PARAMS/print-body-supports.json"
+"$PY" -I "$HERE/am_build.py" witness "$PRIV/am-build-witness-$STAMP" "$PARAMS/am-build-witness.json"
+
 # Revolved machined features, with the assigned fitting tool and its own environment
 # (docs/LOCAL_HOST_SETUP.md, "Tool environments under work/"), then CloudCompare on the
 # held-out half of each window and on the v2 body. FIT and CC_IMAGE are optional:

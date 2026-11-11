@@ -1,0 +1,45 @@
+{
+ "schema": "935-cad-twin-print-body-case/1",
+ "date": "2026-11-11",
+ "rule": "Every amount here is a declared hypothesis. The print body is a study object for slicing and build simulation; the twin itself is not changed.",
+ "stud_clearance_above_seat_mm": 0.25,
+ "stud_rule": "above a stud's seat, everything within the stud's fitted radius plus its largest radial residual is removed; the twin's own rule only does so from 6 mm above the face",
+ "stock": {
+  "deck_and_register_mm": 1.0,
+  "deck_zone_z_max_mm": 3.0,
+  "valve_seat_mm": 0.5,
+  "valve_seat_band_half_length_mm": 2.5,
+  "bore_fill_margin_mm": 0.25,
+  "status": "hypothesis, declared; no drawing of this head exists"
+ },
+ "guides": {
+  "valve_y_minus": {
+   "bore_from": "valve_y_minus_guide_bore",
+   "stations_mm": [
+    -19.174,
+    29.621
+   ],
+   "status": "hypothesis, declared; no drawing of this head exists"
+  },
+  "valve_y_plus": {
+   "bore_from": "valve_y_plus_guide_bore_cam_end",
+   "stations_mm": [
+    22.07,
+    72.284
+   ],
+   "status": "hypothesis, declared; no drawing of this head exists"
+  }
+ },
+ "left_open": [
+  "stud passages",
+  "ports",
+  "plug wells and chamber-side plug reliefs",
+  "spring pockets"
+ ],
+ "not_done": [
+  "supports",
+  "a machining drawing or tolerances",
+  "fillets or draft changes for printing",
+  "shrinkage or distortion compensation"
+ ]
+}
