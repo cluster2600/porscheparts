@@ -1,0 +1,127 @@
+{
+ "schema": "935-cad-twin-thermal-literature/1",
+ "date": "2026-11-11",
+ "question": "is there published data on the heat a standard air-cooled 911 head sees, to replace the declared boundary values of the assembly thermal screen",
+ "answer": "No factory or peer-reviewed head temperature, heat balance or fan power for the 911 engine could be opened. What is citable is generic: head temperature limits, an effective gas temperature measured on 1930s aircraft cylinders, chamber and port heat loadings, exhaust gas and valve temperatures, and an upper bound of the air-side coefficient. They bound the declared case; none calibrates it.",
+ "not_found": [
+  "a factory head temperature limit or operating value for the 911",
+  "an SAE, MTZ or ATZ paper with measured 911 head temperatures",
+  "a heat balance of the 911 engine, or its heat to oil",
+  "fan power, and the share of the cooling air that reaches the heads",
+  "contact conductance at a valve seat or at the cylinder joint as a number",
+  "an inlet valve temperature",
+  "a single published chamber heat transfer coefficient (the correlations need a cylinder pressure trace)"
+ ],
+ "rows": [
+  {
+   "topic": "head temperature limit",
+   "quantity": "highest admissible temperature of cast aluminium heads",
+   "value": "235 °C, hot spots 250 °C at the most",
+   "condition": "general design rule for air-cooled engines",
+   "source": "Mackerle, Air-Cooled Motor Engines, SNTL / Cleaver-Hume, 1961, about p. 240",
+   "class": "book",
+   "verification": "reported by the research pass of 2026-11-11, which read the page or its OCR text; not re-read"
+  },
+  {
+   "topic": "head temperature limit",
+   "quantity": "metal temperature in high heat-flux regions",
+   "value": "under about 300 °C for aluminium alloys",
+   "condition": "general",
+   "source": "Heywood, Internal Combustion Engine Fundamentals, 1st ed., 1988, sec. 12.1",
+   "class": "book",
+   "verification": "reported by the research pass of 2026-11-11, which read the page or its OCR text; not re-read"
+  },
+  {
+   "topic": "gas side",
+   "quantity": "effective gas temperature for the head",
+   "value": "1,150 °F (621 °C); 600 °F (316 °C) for the barrel",
+   "condition": "air-cooled aircraft cylinders of the 1930s; practically independent of speed and load",
+   "source": "Pinkel, NACA Report 612, 1938",
+   "url": "https://ntrs.nasa.gov/citations/19930091688",
+   "class": "NACA report",
+   "verification": "re-read in the downloaded report on 2026-11-11 (file SHA-256 dc9cf2c862f1f080...); the Celsius values are conversions made here"
+  },
+  {
+   "topic": "gas side",
+   "quantity": "heat loading of the combustion chamber wall",
+   "value": "about 400,000 kcal/(m² h), i.e. 465 kW/m²; 125,000 kcal/(m² h), i.e. 145 kW/m², on cylinder walls and exhaust ducts",
+   "condition": "'measurements have established', air-cooled engines",
+   "source": "Mackerle 1961",
+   "class": "book",
+   "verification": "reported by the research pass of 2026-11-11, which read the page or its OCR text; not re-read; the kW/m² values are conversions made here"
+  },
+  {
+   "topic": "exhaust",
+   "quantity": "exhaust gas temperature",
+   "value": "about 800 °C at the valve plane, about 600 °C at the port exit",
+   "condition": "averages",
+   "source": "Heywood 1988, p. 616",
+   "class": "book",
+   "verification": "reported by the research pass of 2026-11-11, which read the page or its OCR text; not re-read"
+  },
+  {
+   "topic": "exhaust",
+   "quantity": "exhaust valve temperature",
+   "value": "about 700 °C",
+   "condition": "general",
+   "source": "Heywood 1988, p. 15",
+   "class": "book",
+   "verification": "reported by the research pass of 2026-11-11, which read the page or its OCR text; not re-read"
+  },
+  {
+   "topic": "air side",
+   "quantity": "upper bound of the air-side coefficient",
+   "value": "no more than 100 to 200 kcal/(m² h °C), i.e. 116 to 233 W/(m² K)",
+   "condition": "air cooling in general",
+   "source": "Mackerle 1961",
+   "class": "book",
+   "verification": "reported by the research pass of 2026-11-11, which read the page or its OCR text; not re-read; the W/(m² K) values are conversions made here"
+  },
+  {
+   "topic": "heat balance",
+   "quantity": "heat removed by cooling",
+   "value": "0.6 to 0.8 times the brake power",
+   "condition": "preliminary rule for air-cooled engines (eq. 36)",
+   "source": "Mackerle 1961",
+   "class": "book",
+   "verification": "reported by the research pass of 2026-11-11, which read the page or its OCR text; not re-read"
+  },
+  {
+   "topic": "heat balance",
+   "quantity": "split of the fuel heating value",
+   "value": "brake 25-28 %, coolant 17-26 %, oil and external surfaces 3-10 %, sensible exhaust 34-45 %",
+   "condition": "automotive spark-ignition engines at maximum power, not specific to air cooling",
+   "source": "Heywood 1988, Table 12.1",
+   "class": "book",
+   "verification": "reported by the research pass of 2026-11-11, which read the page or its OCR text; not re-read"
+  },
+  {
+   "topic": "cooling air",
+   "quantity": "fan delivery, 964/993",
+   "value": "1,010 l/s at 6,100 rpm in two forum tables (pulley ratio given as 1.6 and as 1.16); 1,210 l/s in a third",
+   "condition": "sources disagree; no factory document opened",
+   "source": "enthusiast forums",
+   "class": "forum",
+   "verification": "reported by the research pass from a search snippet only; the page was not opened"
+  },
+  {
+   "topic": "cooling air",
+   "quantity": "fan delivery, earlier 911 engines",
+   "value": "1,390 l/s at 6,100 rpm (2.0 litre); 1,380 raised to 1,500 l/s at 6,000 rpm (later engine)",
+   "condition": "engine speed",
+   "source": "Frère, Porsche 911 Story, 1984 edition",
+   "class": "book",
+   "verification": "reported by the research pass from a search snippet only; the page was not opened"
+  },
+  {
+   "topic": "head temperature in operation",
+   "quantity": "owner readings at the head sensor",
+   "value": "about 100 °C most of the time and about 120 °C after a full-power run (993); about 170 to 200 °C (964 turbo, hard track use)",
+   "condition": "factory sensor on cylinder 3; instrument chain not documented",
+   "source": "enthusiast forums",
+   "class": "forum",
+   "verification": "reported by the research pass from a search snippet only; the page was not opened"
+  }
+ ],
+ "claims": "a reading of public sources on one day; book and forum values were not re-read here unless a row says so, and none describes the scanned head"
+}

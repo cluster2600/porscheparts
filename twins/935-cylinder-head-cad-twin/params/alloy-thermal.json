@@ -1,0 +1,382 @@
+{
+  "schema": "935-cad-twin-alloy-thermal/1",
+  "case": {
+    "material": "generic cast aluminium alloy (hypothesis; specimen alloy unknown)",
+    "conductivity_W_per_mmK": 0.15,
+    "chamber_wall_temperature_C": 220.0,
+    "film_coefficient_W_per_mm2K": 8e-05,
+    "air_temperature_C": 40.0,
+    "chamber_radius_mm": 46.4,
+    "chamber_z_max_mm": 30.0,
+    "status": "declared hypotheses; uncorrelated with any engine measurement"
+  },
+  "distinct_conductivities_solved": 12,
+  "reference_deck": "the v2 CAD-body thermal screen at 1.0 mm (thermal-screen-cad.json); only the conductivity changes",
+  "ranking_by_heat_rejected": [
+    {
+      "id": "alsi10mg-3ds-stress-relieved-high",
+      "alloy": "AlSi10Mg",
+      "condition": "after stress relief, upper end (160-170)",
+      "conductivity_W_per_mK": 170.0,
+      "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 \u00b0C",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "temperature_C": {
+        "min": 161.334,
+        "mean_nodal": 191.735,
+        "p95": 215.238
+      },
+      "heat_W": 1673.762,
+      "convective_loss_W": 1678.3512,
+      "relative_imbalance": 0.002734,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.107542,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.81759
+    },
+    {
+      "id": "alsi7mg-eplus3d-high",
+      "alloy": "AlSi7Mg (Eplus3D)",
+      "condition": "condition not stated, upper end of 150-170",
+      "conductivity_W_per_mK": 170.0,
+      "method": "not stated",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "temperature_C": {
+        "min": 161.334,
+        "mean_nodal": 191.735,
+        "p95": 215.238
+      },
+      "heat_W": 1673.762,
+      "convective_loss_W": 1678.3512,
+      "relative_imbalance": 0.002734,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.107542,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.81759
+    },
+    {
+      "id": "alsi10mg-eos-t6-v",
+      "alloy": "AlSi10Mg",
+      "condition": "EOS T6 (530 \u00b0C 30 min, water quench, 165 \u00b0C 6 h), vertical",
+      "conductivity_W_per_mK": 165.0,
+      "method": "measured, EN ISO 22007-2 (hot disk)",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "temperature_C": {
+        "min": 160.017,
+        "mean_nodal": 191.058,
+        "p95": 215.117
+      },
+      "heat_W": 1664.961,
+      "convective_loss_W": 1669.5491,
+      "relative_imbalance": 0.002748,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.108111,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.81329
+    },
+    {
+      "id": "alsi10mg-3ds-stress-relieved-low",
+      "alloy": "AlSi10Mg",
+      "condition": "after stress relief, lower end (160-170)",
+      "conductivity_W_per_mK": 160.0,
+      "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 \u00b0C",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "temperature_C": {
+        "min": 158.639,
+        "mean_nodal": 190.348,
+        "p95": 214.992
+      },
+      "heat_W": 1655.728,
+      "convective_loss_W": 1660.3156,
+      "relative_imbalance": 0.002763,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.108714,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.80878
+    },
+    {
+      "id": "alsi10mg-eos-stress-relieved-v",
+      "alloy": "AlSi10Mg",
+      "condition": "stress relieved (270 \u00b0C 90 min), vertical",
+      "conductivity_W_per_mK": 160.0,
+      "method": "measured, EN ISO 22007-2 (hot disk)",
+      "verification": "reported by the research pass of 2026-11-11 only; not re-read",
+      "temperature_C": {
+        "min": 158.639,
+        "mean_nodal": 190.348,
+        "p95": 214.992
+      },
+      "heat_W": 1655.728,
+      "convective_loss_W": 1660.3156,
+      "relative_imbalance": 0.002763,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.108714,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.80878
+    },
+    {
+      "id": "cp1-velo3d-blog",
+      "alloy": "Aheadd CP1 (Al-Fe-Zr)",
+      "condition": "condition unclear",
+      "conductivity_W_per_mK": 160.0,
+      "method": "not stated",
+      "verification": "reported by the research pass of 2026-11-11 only; not re-read",
+      "temperature_C": {
+        "min": 158.639,
+        "mean_nodal": 190.348,
+        "p95": 214.992
+      },
+      "heat_W": 1655.728,
+      "convective_loss_W": 1660.3156,
+      "relative_imbalance": 0.002763,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.108714,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.80878
+    },
+    {
+      "id": "alsi10mg-eos-t6-h",
+      "alloy": "AlSi10Mg",
+      "condition": "EOS T6, horizontal",
+      "conductivity_W_per_mK": 155.0,
+      "method": "measured, EN ISO 22007-2 (hot disk)",
+      "verification": "reported by the research pass of 2026-11-11 only; not re-read",
+      "temperature_C": {
+        "min": 157.197,
+        "mean_nodal": 189.602,
+        "p95": 214.858
+      },
+      "heat_W": 1646.032,
+      "convective_loss_W": 1650.6182,
+      "relative_imbalance": 0.002778,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.109354,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.80405
+    },
+    {
+      "id": "alsi7mg-eos-t6",
+      "alloy": "AlSi7Mg (EOS AlF357)",
+      "condition": "T6-like (540 \u00b0C 30 min, quench, 165 \u00b0C 6 h), vertical and horizontal",
+      "conductivity_W_per_mK": 150.0,
+      "method": "measured, EN ISO 22007-2 (hot disk)",
+      "verification": "reported by the research pass of 2026-11-11 only; not re-read",
+      "temperature_C": {
+        "min": 155.687,
+        "mean_nodal": 188.817,
+        "p95": 214.719
+      },
+      "heat_W": 1635.835,
+      "convective_loss_W": 1640.4208,
+      "relative_imbalance": 0.002795,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.110036,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.79906
+    },
+    {
+      "id": "alsi7mg-eplus3d-low",
+      "alloy": "AlSi7Mg (Eplus3D)",
+      "condition": "condition not stated, lower end of 150-170",
+      "conductivity_W_per_mK": 150.0,
+      "method": "not stated",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "temperature_C": {
+        "min": 155.687,
+        "mean_nodal": 188.817,
+        "p95": 214.719
+      },
+      "heat_W": 1635.835,
+      "convective_loss_W": 1640.4208,
+      "relative_imbalance": 0.002795,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.110036,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.79906
+    },
+    {
+      "id": "generic-reference",
+      "alloy": "generic cast aluminium of the thermal screen",
+      "condition": "declared hypothesis, no source",
+      "conductivity_W_per_mK": 150.0,
+      "method": "declared",
+      "verification": "the value of sim_thermal.py",
+      "temperature_C": {
+        "min": 155.687,
+        "mean_nodal": 188.817,
+        "p95": 214.719
+      },
+      "heat_W": 1635.835,
+      "convective_loss_W": 1640.4208,
+      "relative_imbalance": 0.002795,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.110036,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.79906
+    },
+    {
+      "id": "alsi7mg-eos-as-built",
+      "alloy": "AlSi7Mg (EOS AlF357)",
+      "condition": "as manufactured, vertical and horizontal",
+      "conductivity_W_per_mK": 140.0,
+      "method": "measured, EN ISO 22007-2 (hot disk)",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "temperature_C": {
+        "min": 152.44,
+        "mean_nodal": 187.119,
+        "p95": 214.414
+      },
+      "heat_W": 1613.779,
+      "convective_loss_W": 1618.3625,
+      "relative_imbalance": 0.002832,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.111539,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.78829
+    },
+    {
+      "id": "al5x1-eos-heat-treated-v",
+      "alloy": "EOS Al5X1",
+      "condition": "heat treated, vertical",
+      "conductivity_W_per_mK": 132.0,
+      "method": "measured, ASTM E1461 (laser flash)",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "temperature_C": {
+        "min": 149.601,
+        "mean_nodal": 185.621,
+        "p95": 214.143
+      },
+      "heat_W": 1594.328,
+      "convective_loss_W": 1598.9092,
+      "relative_imbalance": 0.002865,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.1129,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.77879
+    },
+    {
+      "id": "alsi10mg-3ds-as-printed-high",
+      "alloy": "AlSi10Mg",
+      "condition": "as printed, upper end of the published range",
+      "conductivity_W_per_mK": 130.0,
+      "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 \u00b0C",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "temperature_C": {
+        "min": 148.854,
+        "mean_nodal": 185.225,
+        "p95": 214.071
+      },
+      "heat_W": 1589.185,
+      "convective_loss_W": 1593.766,
+      "relative_imbalance": 0.002874,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.113266,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.77628
+    },
+    {
+      "id": "alsi10mg-3ds-as-printed-low",
+      "alloy": "AlSi10Mg",
+      "condition": "as printed, lower end of the published range",
+      "conductivity_W_per_mK": 120.0,
+      "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 \u00b0C",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "temperature_C": {
+        "min": 144.872,
+        "mean_nodal": 183.098,
+        "p95": 213.682
+      },
+      "heat_W": 1561.586,
+      "convective_loss_W": 1566.1644,
+      "relative_imbalance": 0.002923,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.115267,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.7628
+    },
+    {
+      "id": "alsi10mg-eos-as-built-h",
+      "alloy": "AlSi10Mg",
+      "condition": "as manufactured, horizontal",
+      "conductivity_W_per_mK": 110.0,
+      "method": "measured, EN ISO 22007-2 (hot disk)",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "temperature_C": {
+        "min": 140.429,
+        "mean_nodal": 180.692,
+        "p95": 213.238
+      },
+      "heat_W": 1530.393,
+      "convective_loss_W": 1534.9677,
+      "relative_imbalance": 0.00298,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.117617,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.74756
+    },
+    {
+      "id": "alsi10mg-eos-as-built-v",
+      "alloy": "AlSi10Mg",
+      "condition": "as manufactured, vertical",
+      "conductivity_W_per_mK": 100.0,
+      "method": "measured, EN ISO 22007-2 (hot disk)",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "temperature_C": {
+        "min": 135.442,
+        "mean_nodal": 177.948,
+        "p95": 212.728
+      },
+      "heat_W": 1494.848,
+      "convective_loss_W": 1499.4196,
+      "relative_imbalance": 0.003049,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.120414,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.7302
+    },
+    {
+      "id": "scalmalloy-3ds-high",
+      "alloy": "Al-Mg-Sc (Scalmalloy)",
+      "condition": "heat treated, upper end of 95-100",
+      "conductivity_W_per_mK": 100.0,
+      "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 \u00b0C",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "temperature_C": {
+        "min": 135.442,
+        "mean_nodal": 177.948,
+        "p95": 212.728
+      },
+      "heat_W": 1494.848,
+      "convective_loss_W": 1499.4196,
+      "relative_imbalance": 0.003049,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.120414,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.7302
+    },
+    {
+      "id": "scalmalloy-3ds-low",
+      "alloy": "Al-Mg-Sc (Scalmalloy)",
+      "condition": "heat treated, lower end of 95-100",
+      "conductivity_W_per_mK": 95.0,
+      "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 \u00b0C",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "temperature_C": {
+        "min": 132.713,
+        "mean_nodal": 176.426,
+        "p95": 212.439
+      },
+      "heat_W": 1475.147,
+      "convective_loss_W": 1479.7168,
+      "relative_imbalance": 0.003088,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.122022,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.72057
+    }
+  ],
+  "spread": {
+    "heat_best_over_worst": 1.13464,
+    "conductivity_best_over_worst": 1.78947
+  },
+  "claims": "a ranking under one declared hypothesis case, on conductivities quoted from the sources in alloy-candidates.json; not an engine prediction, not a material qualification, and strength at temperature is not considered"
+}

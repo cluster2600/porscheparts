@@ -1,0 +1,69 @@
+{
+ "schema": "935-cad-twin-published-comparison/1",
+ "date": "2026-11-11",
+ "manual_record": "catalog/manual/993-workshop-manual-measurements.json",
+ "manual_source": "993 Repair Manual (Porsche AG, 2001 printing), OCR pass 2026-08-28",
+ "rule": "The manual describes the stock 993 engine. The scanned part is an aftermarket 935-type head, so no manual value calibrates it. The comparison shows only whether the scan's assumed scale (1 unit = 1 mm) is contradicted by sizes the two heads are likely to share. Manual values are OCR transcriptions and carry the status given in the manual record.",
+ "verdict": "not contradicted: the two seat diameters fall on the two manual valve sizes within about 1.5%, and one seat angle matches. This supports the scale as an indication and suggests valve_y_minus is the inlet. It is not a calibration and it identifies no dimension of the specimen.",
+ "comparisons": [
+  {
+   "quantity": "inlet valve head diameter",
+   "manual": "49 + 0.1 mm",
+   "manual_page": 155,
+   "scan": "seat cone of valve_y_minus, diameter at mid-band about the guide axis",
+   "scan_value_mm": 48.9709,
+   "same_dimension": false,
+   "reading": "the seat contact circle is a little smaller than the valve head; the two agree within 0.1%"
+  },
+  {
+   "quantity": "exhaust valve head diameter",
+   "manual": "42.5 + 0.1 mm (43.5 + 0.1 mm on a second variant)",
+   "manual_page": 155,
+   "scan": "seat cone of valve_y_plus, diameter at mid-band about the valve axis",
+   "scan_value_mm": 43.1028,
+   "same_dimension": false,
+   "reading": "between the two manual variants"
+  },
+  {
+   "quantity": "valve seat angle",
+   "manual": "45 degrees",
+   "manual_page": 155,
+   "scan": "half-angle of the two seat cones about their own axes",
+   "scan_value_deg": [
+    45.5117,
+    48.9586
+   ],
+   "same_dimension": true,
+   "reading": "valve_y_minus within 0.5 degree; valve_y_plus, detected only, 4 degrees off"
+  },
+  {
+   "quantity": "valve guide bore",
+   "manual": "8.00 to 8.015 mm",
+   "manual_page": 153,
+   "scan": "guide bore of valve_y_minus, one cylinder over 48.8 mm",
+   "scan_value_mm": 8.5081,
+   "same_dimension": true,
+   "reading": "the scan reads 0.5 mm larger; either this head takes another guide or the scanner misreads a small deep bore (CloudCompare did not confirm this fit)"
+  },
+  {
+   "quantity": "spark plug thread",
+   "manual": "M 14 x 1.25",
+   "manual_page": 60,
+   "scan": "thread bores as scanned",
+   "scan_value_mm": [
+    11.4878,
+    11.2778
+   ],
+   "same_dimension": false,
+   "reading": "too small for an M14 thread; consistent with a 12 mm plug, so this head differs from the stock 993 head here"
+  },
+  {
+   "quantity": "cylinder bore",
+   "manual": "100 mm",
+   "manual_page": 15,
+   "scan": "register recess 113.36 mm, chamber shoulder 92.80 mm",
+   "same_dimension": false,
+   "reading": "no scanned feature is the bore itself; no comparison is drawn"
+  }
+ ]
+}

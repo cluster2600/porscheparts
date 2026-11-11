@@ -1,0 +1,192 @@
+{
+ "schema": "935-cad-twin-lpbf-machine-survey/1",
+ "date": "2026-11-11",
+ "question": "which LPBF machine maker in mainland China publishes its data openly, for a full-size study print of a part of about 118 x 229 x 95 mm",
+ "answer": "None publishes everything a build simulation needs. Eplus3D publishes the most: it is the only maker read that states a spot size and an oxygen level in a datasheet, and the only one that gives an aluminium thermal conductivity. Kings publishes the most complete machine sheet but no alloy data; Farsoon states open parameters most clearly but no spot size or oxygen level.",
+ "not_published_by_any_maker_read": [
+  "laser absorptivity",
+  "hatch spacing and scan strategy",
+  "the laser power and scan speed used for each alloy",
+  "beam profile",
+  "chamber gas flow field",
+  "powder-bed conductivity and packing density",
+  "temperature-dependent conductivity and specific heat of the alloy",
+  "recoater type and force"
+ ],
+ "pages_not_opened": [
+  "BLT brochure downloads and the BLT S310 page",
+  "ZRapid",
+  "Longyuan AFS"
+ ],
+ "claims": "a reading of public pages and datasheets on one day; values are the makers' own statements, not measurements, and a datasheet is not a qualified process",
+ "machines": [
+  {
+   "rank_by_open_data": 1,
+   "maker": "Eplus3D (Hangzhou)",
+   "machine": "EP-M260",
+   "build_envelope_mm": "260 x 260 x 390, height including the build plate",
+   "lasers": "fibre, 500 W or 700 W, single or dual",
+   "wavelength": "not published",
+   "spot_size_um": "70 - 100",
+   "max_scan_speed_m_per_s": 8,
+   "layer_thickness_um": "20 - 120",
+   "preheat": "not published",
+   "gas": "Ar / N2",
+   "oxygen": "<= 100 ppm",
+   "build_rate_cm3_per_h": "up to 55",
+   "recoater": "not published",
+   "parameters": "open on the EP-M300 sheet; not stated for the EP-M260",
+   "aluminium_offered": "AlSi10Mg, AlSi7Mg; Aheadd CP1 listed for the EP-M300, M450, M450H and M650 only",
+   "verification": "re-read in the downloaded datasheet on 2026-11-11 for envelope, spot, scan speed, layer, gas and oxygen; the rest reported by the research pass of 2026-11-11 only; not re-read",
+   "source": {
+    "title": "EP-M260 datasheet",
+    "url": "https://oss-usa-client.1t2.us/eplus3dcom/uploads/pdf-2026/260.pdf",
+    "file_sha256": "81df19d21f4fa73d922e81a000da455219bcc0d05ae566c4652141f0399ae214"
+   }
+  },
+  {
+   "rank_by_open_data": 1,
+   "maker": "Eplus3D (Hangzhou)",
+   "machine": "EP-M300",
+   "build_envelope_mm": "300 x 300 x 450, height including the build plate",
+   "lasers": "1, 2 or 4 x 500 W",
+   "wavelength": "not published",
+   "spot_size_um": "70 - 120",
+   "max_scan_speed_m_per_s": "not published",
+   "layer_thickness_um": "not published",
+   "preheat": "not published",
+   "gas": "consumption <= 6 L/min",
+   "oxygen": "not published",
+   "build_rate_cm3_per_h": "not published",
+   "recoater": "several recoating lips available; type not published",
+   "parameters": "open: laser power, scan speed, scan direction, up and down facing surfaces",
+   "aluminium_offered": "AlSi10Mg, AlSi7Mg, Aheadd CP1",
+   "verification": "re-read in the downloaded datasheet on 2026-11-11 for envelope, spot and the open-parameter statement; laser count reported by the research pass of 2026-11-11 only; not re-read",
+   "source": {
+    "title": "EP-M300 datasheet",
+    "url": "https://oss-usa-client.1t2.us/eplus3dcom/uploads/pdf-2026/300.pdf",
+    "file_sha256": "71ca9f8f3d818430735dd21e66eedc87e4d0302cb931dd8ad10301e7b9ad0a9b"
+   }
+  },
+  {
+   "rank_by_open_data": 2,
+   "maker": "Kings 3D (Shenzhen)",
+   "machine": "M280",
+   "build_envelope_mm": "250 x 250 x 320",
+   "lasers": "IPG 500 W x 2",
+   "wavelength": "1064 nm",
+   "spot_size_um": "not published",
+   "max_scan_speed_m_per_s": "up to 11 (1.0 - 4.0 recommended), reported by the research pass of 2026-11-11 only; not re-read",
+   "layer_thickness_um": "20 - 100",
+   "preheat": "RT+20 °C to 80 °C",
+   "gas": "nitrogen or argon",
+   "oxygen": "not published",
+   "build_rate_cm3_per_h": "20 - 50",
+   "recoater": "not published",
+   "parameters": "parameter packages supplied; openness not stated",
+   "aluminium_offered": "'aluminium alloy' only; no material datasheet found",
+   "verification": "re-read in the downloaded datasheet on 2026-11-11 for envelope, laser, wavelength, layer, preheat, gas and build rate",
+   "source": {
+    "title": "M280 Series datasheet",
+    "url": "https://www.kings3dprinter.com/data/upload/main/20260819/6a851cd93d11a.pdf",
+    "file_sha256": "568bfe48547eb011d6ce68f7322b4eeca3fa1acb680eed8b1fe694dbf20e02a9"
+   }
+  },
+  {
+   "rank_by_open_data": 3,
+   "maker": "Farsoon (Hunan)",
+   "machine": "FS273M",
+   "build_envelope_mm": "275 x 275 x 355",
+   "lasers": "1 or 2 x 500 W, reported by the research pass of 2026-11-11 only; not re-read",
+   "wavelength": "not published",
+   "spot_size_um": "not published",
+   "max_scan_speed_m_per_s": 10,
+   "layer_thickness_um": "20 - 100, reported by the research pass of 2026-11-11 only; not re-read",
+   "preheat": "pre-heated base plate; temperature not published",
+   "gas": "argon or nitrogen, 3 - 5 L/min in process",
+   "oxygen": "not published",
+   "build_rate_cm3_per_h": "not published",
+   "recoater": "not published",
+   "parameters": "open machine key parameters, real-time build parameter modification",
+   "aluminium_offered": "AlSi10Mg; AlMgSc and AlSi7Mg marked as in build process development",
+   "verification": "re-read in the downloaded datasheet on 2026-11-11 for envelope, scan speed, gas, the open-parameter statement and the materials note",
+   "source": {
+    "title": "FS273M brochure",
+    "url": "https://www.farsoon-gl.com/wp-content/uploads/2021/07/FS273M-4.pdf",
+    "file_sha256": "79076fea5728b9bcf0a060396c751f8a4ce69a53d98abf8b0faf5d1be31fb3ee"
+   }
+  },
+  {
+   "rank_by_open_data": 4,
+   "maker": "Laseradd (Guangzhou)",
+   "machine": "DiMetal-280",
+   "build_envelope_mm": "250 x 250 x 300",
+   "lasers": "Yb fibre, 500 W x 1 or 2",
+   "wavelength": "not published",
+   "spot_size_um": "not published",
+   "max_scan_speed_m_per_s": 7,
+   "layer_thickness_um": "20 - 100",
+   "preheat": "not published",
+   "gas": "not published",
+   "oxygen": "not published",
+   "build_rate_cm3_per_h": "not published",
+   "recoater": "flexible blade",
+   "parameters": "not published",
+   "aluminium_offered": "generic",
+   "verification": "reported by the research pass of 2026-11-11 only; not re-read",
+   "source": {
+    "title": "DiMetal-280 product page",
+    "url": "https://www.laseradd.com/dimetal-280/",
+    "file_sha256": null
+   }
+  },
+  {
+   "rank_by_open_data": 5,
+   "maker": "Bright Laser Technologies, BLT (Xi'an)",
+   "machine": "BLT-A300 / A320",
+   "build_envelope_mm": "250 x 250 x 300, excluding the substrate",
+   "lasers": "500 W or 500 W x 2",
+   "wavelength": "not published",
+   "spot_size_um": "not published",
+   "max_scan_speed_m_per_s": "not published",
+   "layer_thickness_um": "not published",
+   "preheat": "not published",
+   "gas": "not published",
+   "oxygen": "not published",
+   "build_rate_cm3_per_h": "25 / 50",
+   "recoater": "not published",
+   "parameters": "not published",
+   "aluminium_offered": "AlSi10Mg, AlSi7Mg",
+   "verification": "reported by the research pass of 2026-11-11 only; not re-read",
+   "source": {
+    "title": "BLT-A300/A320 product page",
+    "url": "https://www.xa-blt.com/en/product/blt-a300-a320/?category=11",
+    "file_sha256": null
+   }
+  },
+  {
+   "rank_by_open_data": 6,
+   "maker": "HBD (Guangdong)",
+   "machine": "HBD 400",
+   "build_envelope_mm": "350 x 400 x 400, including the plate",
+   "lasers": "4 or 6 x 500 W / 1000 W fibre",
+   "wavelength": "not published",
+   "spot_size_um": "not published",
+   "max_scan_speed_m_per_s": "not published",
+   "layer_thickness_um": "not published",
+   "preheat": "not published",
+   "gas": "inert gas",
+   "oxygen": "not published",
+   "build_rate_cm3_per_h": "100 / 150",
+   "recoater": "bidirectional",
+   "parameters": "not published",
+   "aluminium_offered": "generic",
+   "verification": "reported by the research pass of 2026-11-11 only; not re-read",
+   "source": {
+    "title": "HBD 400 product page",
+    "url": "https://en.hb3dp.com/products/hbd-400/",
+    "file_sha256": null
+   }
+  }
+ ]
+}

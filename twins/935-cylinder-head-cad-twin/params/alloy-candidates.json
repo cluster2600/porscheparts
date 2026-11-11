@@ -1,0 +1,229 @@
+{
+ "schema": "935-cad-twin-alloy-candidates/1",
+ "date": "2026-11-11",
+ "note": "Thermal conductivities of LPBF aluminium alloys as their publishers state them, at room temperature. None is given at 150 to 250 °C, and none is a property of a part printed for this study. Measured and calculated values are different quantities and are ranked side by side only because each row says which it is. The datasheets are not redistributed: each source is a URL and the SHA-256 of the file as downloaded.",
+ "excluded": [
+  {
+   "alloy": "A20X / A205 (Al-Cu-TiB2)",
+   "reason": "no thermal conductivity published in the sheets read"
+  },
+  {
+   "alloy": "Aheadd CP1, datasheet values",
+   "reason": "electrical conductivity only (28 %IACS as built, 46 to 48 %IACS after 400 °C 4 h); converting it is a calculation this record does not make"
+  }
+ ],
+ "sources": {
+  "EOS-AlSi10Mg": {
+   "title": "EOS Aluminium AlSi10Mg for EOS M 290 | 30 µm, process data sheet",
+   "publisher": "EOS GmbH",
+   "url": "https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-alsi10mg-eos-m-290-30um",
+   "file_sha256": "fdf26e17220297dc4adb8f1aa86911493b64210cfd1ee3d9f1835400334b5529"
+  },
+  "EOS-AlF357": {
+   "title": "EOS Aluminium AlF357 for EOS M 290 | 30 µm, process data sheet",
+   "publisher": "EOS GmbH",
+   "url": "https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-alf357-eos-m-290-30um",
+   "file_sha256": "1eef3aeb242c8a5761f1fadfa393c934520c0885c0ecb2cb7f306959c3504b96"
+  },
+  "EOS-Al5X1": {
+   "title": "EOS Aluminium Al5X1 for EOS M 290 | 40 µm, process data sheet",
+   "publisher": "EOS GmbH",
+   "url": "https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-al5x1-eos-m-290-40um",
+   "file_sha256": "6b00e38f6fdade31e72eb1c4b8cb7b7e10703adf065284acf704680e07e36165"
+  },
+  "3DS-Scalmalloy": {
+   "title": "Certified Scalmalloy (A) datasheet, 2022-02-23",
+   "publisher": "3D Systems",
+   "url": "https://3dsystems.com/sites/default/files/2022-02/3d-systems-certified-scalmalloy(a)-datasheet-usen-2022-02-23-a-print.pdf",
+   "file_sha256": "857da10bcfa754f2ef24aa540521634564fb2258adccf425b89233261a7e7ce0"
+  },
+  "3DS-AlSi10Mg": {
+   "title": "LaserForm AlSi10Mg (A) datasheet, 2022-10-28",
+   "publisher": "3D Systems",
+   "url": "https://ko.3dsystems.com/sites/default/files/2022-10/3d-systems-laserform-alsi10mg%28a%29-datasheet-usen-2022-10-28-a-print.pdf",
+   "file_sha256": "7af1f0fcc9121ce103db303716aa5e04607b83a5dab2b56be450deac16748d82"
+  },
+  "Eplus3D-Al": {
+   "title": "Aluminum 3D printing material, product page",
+   "publisher": "Eplus3D (Hangzhou)",
+   "url": "https://www.eplus3d.com/products/aluminum-3d-printing-material/",
+   "file_sha256": "3e0e35723579000106e1fd4163e5c5e4a99f0d79c4bb4ff1ef427d87131e6872"
+  },
+  "Velo3D-CP1": {
+   "title": "CP1: revolutionizing AM in high-performance applications, blog, 2024-05-29",
+   "publisher": "Velo3D",
+   "url": "https://www.velo3d.com/blogs/cp1-revolutionizing-am-in-high-performance-applications",
+   "file_sha256": null
+  }
+ },
+ "candidates": [
+  {
+   "id": "alsi10mg-eos-as-built-v",
+   "alloy": "AlSi10Mg",
+   "condition": "as manufactured, vertical",
+   "conductivity_W_per_mK": 100.0,
+   "method": "measured, EN ISO 22007-2 (hot disk)",
+   "source": "EOS-AlSi10Mg",
+   "verification": "value re-read in the downloaded source file on 2026-11-11"
+  },
+  {
+   "id": "alsi10mg-eos-as-built-h",
+   "alloy": "AlSi10Mg",
+   "condition": "as manufactured, horizontal",
+   "conductivity_W_per_mK": 110.0,
+   "method": "measured, EN ISO 22007-2 (hot disk)",
+   "source": "EOS-AlSi10Mg",
+   "verification": "value re-read in the downloaded source file on 2026-11-11"
+  },
+  {
+   "id": "alsi10mg-eos-t6-v",
+   "alloy": "AlSi10Mg",
+   "condition": "EOS T6 (530 °C 30 min, water quench, 165 °C 6 h), vertical",
+   "conductivity_W_per_mK": 165.0,
+   "method": "measured, EN ISO 22007-2 (hot disk)",
+   "source": "EOS-AlSi10Mg",
+   "verification": "value re-read in the downloaded source file on 2026-11-11"
+  },
+  {
+   "id": "alsi10mg-eos-t6-h",
+   "alloy": "AlSi10Mg",
+   "condition": "EOS T6, horizontal",
+   "conductivity_W_per_mK": 155.0,
+   "method": "measured, EN ISO 22007-2 (hot disk)",
+   "source": "EOS-AlSi10Mg",
+   "verification": "reported by the research pass of 2026-11-11 only; not re-read"
+  },
+  {
+   "id": "alsi10mg-eos-stress-relieved-v",
+   "alloy": "AlSi10Mg",
+   "condition": "stress relieved (270 °C 90 min), vertical",
+   "conductivity_W_per_mK": 160.0,
+   "method": "measured, EN ISO 22007-2 (hot disk)",
+   "source": "EOS-AlSi10Mg",
+   "verification": "reported by the research pass of 2026-11-11 only; not re-read"
+  },
+  {
+   "id": "alsi10mg-3ds-as-printed-low",
+   "alloy": "AlSi10Mg",
+   "condition": "as printed, lower end of the published range",
+   "conductivity_W_per_mK": 120.0,
+   "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 °C",
+   "source": "3DS-AlSi10Mg",
+   "verification": "value re-read in the downloaded source file on 2026-11-11"
+  },
+  {
+   "id": "alsi10mg-3ds-as-printed-high",
+   "alloy": "AlSi10Mg",
+   "condition": "as printed, upper end of the published range",
+   "conductivity_W_per_mK": 130.0,
+   "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 °C",
+   "source": "3DS-AlSi10Mg",
+   "verification": "value re-read in the downloaded source file on 2026-11-11"
+  },
+  {
+   "id": "alsi10mg-3ds-stress-relieved-low",
+   "alloy": "AlSi10Mg",
+   "condition": "after stress relief, lower end (160-170)",
+   "conductivity_W_per_mK": 160.0,
+   "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 °C",
+   "source": "3DS-AlSi10Mg",
+   "verification": "value re-read in the downloaded source file on 2026-11-11",
+   "note": "the heat-treatment column of this range (285 °C 2 h) was reported by the research pass"
+  },
+  {
+   "id": "alsi10mg-3ds-stress-relieved-high",
+   "alloy": "AlSi10Mg",
+   "condition": "after stress relief, upper end (160-170)",
+   "conductivity_W_per_mK": 170.0,
+   "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 °C",
+   "source": "3DS-AlSi10Mg",
+   "verification": "value re-read in the downloaded source file on 2026-11-11",
+   "note": "same column note"
+  },
+  {
+   "id": "alsi7mg-eos-as-built",
+   "alloy": "AlSi7Mg (EOS AlF357)",
+   "condition": "as manufactured, vertical and horizontal",
+   "conductivity_W_per_mK": 140.0,
+   "method": "measured, EN ISO 22007-2 (hot disk)",
+   "source": "EOS-AlF357",
+   "verification": "value re-read in the downloaded source file on 2026-11-11"
+  },
+  {
+   "id": "alsi7mg-eos-t6",
+   "alloy": "AlSi7Mg (EOS AlF357)",
+   "condition": "T6-like (540 °C 30 min, quench, 165 °C 6 h), vertical and horizontal",
+   "conductivity_W_per_mK": 150.0,
+   "method": "measured, EN ISO 22007-2 (hot disk)",
+   "source": "EOS-AlF357",
+   "verification": "reported by the research pass of 2026-11-11 only; not re-read"
+  },
+  {
+   "id": "alsi7mg-eplus3d-low",
+   "alloy": "AlSi7Mg (Eplus3D)",
+   "condition": "condition not stated, lower end of 150-170",
+   "conductivity_W_per_mK": 150.0,
+   "method": "not stated",
+   "source": "Eplus3D-Al",
+   "verification": "value re-read in the downloaded source file on 2026-11-11"
+  },
+  {
+   "id": "alsi7mg-eplus3d-high",
+   "alloy": "AlSi7Mg (Eplus3D)",
+   "condition": "condition not stated, upper end of 150-170",
+   "conductivity_W_per_mK": 170.0,
+   "method": "not stated",
+   "source": "Eplus3D-Al",
+   "verification": "value re-read in the downloaded source file on 2026-11-11"
+  },
+  {
+   "id": "al5x1-eos-heat-treated-v",
+   "alloy": "EOS Al5X1",
+   "condition": "heat treated, vertical",
+   "conductivity_W_per_mK": 132.0,
+   "method": "measured, ASTM E1461 (laser flash)",
+   "source": "EOS-Al5X1",
+   "verification": "value re-read in the downloaded source file on 2026-11-11",
+   "note": "the heat treatment (400 °C 6 h) was reported by the research pass"
+  },
+  {
+   "id": "scalmalloy-3ds-low",
+   "alloy": "Al-Mg-Sc (Scalmalloy)",
+   "condition": "heat treated, lower end of 95-100",
+   "conductivity_W_per_mK": 95.0,
+   "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 °C",
+   "source": "3DS-Scalmalloy",
+   "verification": "value re-read in the downloaded source file on 2026-11-11",
+   "note": "the heat treatment (325 °C 4 h) was reported by the research pass"
+  },
+  {
+   "id": "scalmalloy-3ds-high",
+   "alloy": "Al-Mg-Sc (Scalmalloy)",
+   "condition": "heat treated, upper end of 95-100",
+   "conductivity_W_per_mK": 100.0,
+   "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 °C",
+   "source": "3DS-Scalmalloy",
+   "verification": "value re-read in the downloaded source file on 2026-11-11",
+   "note": "same"
+  },
+  {
+   "id": "cp1-velo3d-blog",
+   "alloy": "Aheadd CP1 (Al-Fe-Zr)",
+   "condition": "condition unclear",
+   "conductivity_W_per_mK": 160.0,
+   "method": "not stated",
+   "source": "Velo3D-CP1",
+   "verification": "reported by the research pass of 2026-11-11 only; not re-read",
+   "note": "a blog figure; no datasheet read on 2026-11-11 gives CP1 a value in W/(m K), only electrical conductivity in %IACS"
+  },
+  {
+   "id": "generic-reference",
+   "alloy": "generic cast aluminium of the thermal screen",
+   "condition": "declared hypothesis, no source",
+   "conductivity_W_per_mK": 150.0,
+   "method": "declared",
+   "source": "none",
+   "verification": "the value of sim_thermal.py"
+  }
+ ]
+}

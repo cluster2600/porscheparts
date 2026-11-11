@@ -245,6 +245,18 @@ neighbouring study's README for more before starting.
   "not converged" (146.6 against 127.5 °C; 154.3 against 154.6 °C once
   removed). Remove a rod by the extent of the cluster it was fitted on, and
   look at a render of every body before running tiers on it.
+- **Material by centroid leaves a skin of the wrong material on a coarse
+  surface.** The 935 head's assembly screen united valves with the body and
+  extracted the surface at 1.0 mm, up to half a millimetre off the valve
+  solids. Tetrahedra in that skin took the head alloy, and the "alloy peak"
+  read 490 °C: the valve's own temperature (2026-11-11). Give a part every
+  element outside the base body within the extraction pitch of it, count a
+  node as alloy only if all its elements are, and report where the peak is.
+- **A fixed wall temperature hides what conductivity does.** With the chamber
+  wall held at 220 °C, going from 95 to 170 W/(m·K) moved the rejected heat by
+  13%, because the air side limits it. With the heat coming from gas films on
+  an assembly, the same range moved the peak metal temperature by 38 °C. Rank
+  materials on the quantity the part will be limited by.
 
 ### Laminate failure
 

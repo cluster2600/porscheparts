@@ -601,6 +601,165 @@ class FeatureFitTests(unittest.TestCase):
             self.assertAlmostEqual(body["cloudcompare"][key], body["scorecard_scan_to_twin"][key], delta=0.005)
 
 
+@unittest.skipUnless(has("numpy"), "numpy absent")
+class AlloyThermalTests(unittest.TestCase):
+    def setUp(self):
+        sys.path.insert(0, str(SOURCE))
+        import alloy_thermal
+
+        self.at = alloy_thermal
+
+    def test_only_the_conductivity_card_changes(self):
+        deck = "*MATERIAL,NAME=AL\n*CONDUCTIVITY\n0.15\n*SOLID SECTION,ELSET=EALL,MATERIAL=AL\n*FILM\n1,F1,40,8e-05\n"
+        new = self.at.deck_with(deck, 0.173)
+        self.assertEqual(new, deck.replace("\n0.15\n", "\n0.173\n"))
+        with self.assertRaises(SystemExit):
+            self.at.deck_with(deck + "*CONDUCTIVITY\n0.2\n", 0.1)
+
+    def test_fin_efficiency_is_bounded_by_the_isothermal_body(self):
+        case = self.at.CASE
+        delta = case["chamber_wall_temperature_C"] - case["air_temperature_C"]
+        area = 100000.0
+        ideal = case["film_coefficient_W_per_mm2K"] * area * delta
+        got = self.at.derived(0.8 * ideal, area)
+        self.assertAlmostEqual(got["fin_efficiency"], 0.8, places=4)
+        self.assertAlmostEqual(got["ideal_heat_W"], ideal, places=1)
+        self.assertAlmostEqual(got["thermal_resistance_K_per_W"], delta / (0.8 * ideal), places=5)
+
+
+@unittest.skipUnless(has("numpy"), "numpy absent")
+class AssemblyThermalTests(unittest.TestCase):
+    """assembly_thermal.py: hypothesis solids, materials and film groups on the committed fits."""
+
+    def setUp(self):
+        sys.path.insert(0, str(SOURCE))
+        import assembly_thermal
+        import numpy as np
+
+        self.at, self.np = assembly_thermal, np
+        self.case = json.loads((TWIN / "params" / "assembly-case.json").read_text())
+        self.comps = assembly_thermal.build_components(
+            self.case, json.loads((TWIN / "params" / "feature-fits.json").read_text()))
+
+    def point(self, part, station, radius=0.0):
+        np = self.np
+        a = np.asarray(part["direction"])
+        e = np.cross(a, [1.0, 0.0, 0.0])
+        return np.asarray(part["origin"]) + station * a + radius * e / np.linalg.norm(e)
+
+    def test_every_number_of_the_case_is_a_declared_hypothesis(self):
+        for block in ("valves", "plugs", "materials", "films"):
+            for name, item in self.case[block].items():
+                self.assertIn("hypothesis", item["status"], f"{block}/{name}")
+        self.assertIn("hypothesis", self.case["regions"]["status"])
+        self.assertEqual(set(self.case["films"]), set(self.at.GROUPS))
+
+    def test_the_two_valve_faces_sit_at_the_same_height_and_the_inlet_is_larger(self):
+        np = self.np
+        v = self.comps["valves"]
+        z = {n: (np.asarray(x["origin"]) + x["t_face"] * np.asarray(x["direction"]))[2] for n, x in v.items()}
+        self.assertAlmostEqual(z["valve_y_minus"], z["valve_y_plus"], delta=0.5)
+        self.assertGreater(v["valve_y_minus"]["r_head"], v["valve_y_plus"]["r_head"])
+        self.assertEqual({x["role"] for x in v.values()}, {"inlet", "exhaust"})
+
+    def test_materials_follow_the_solids_with_the_valve_first(self):
+        np = self.np
+        v = self.comps["valves"]["valve_y_minus"]
+        p = self.comps["plugs"]["plug_x_plus"]
+        middle = 0.5 * (v["guide_stations"][0] + v["guide_stations"][1])
+        points = np.array([
+            self.point(v, middle),                              # stem inside the guide
+            self.point(v, middle, v["r_stem"] + 0.5),           # guide wall
+            self.point(v, middle, v["r_guide"] + 2.0),          # head alloy beside the guide
+            self.point(v, v["t_face"] - 0.5, v["r_head"] - 0.2),   # rim of the valve head
+            self.point(v, v["t_face"] - 0.5, v["r_head"] + 0.2),   # just outside it
+            self.point(p, 0.5 * (p["t_tip"] + p["t_seat"])),    # plug thread
+        ])
+        names = [self.at.MATERIALS[i] for i in self.at.material_of(points, self.comps)]
+        self.assertEqual(names, ["valve", "guide", "alloy", "valve", "alloy", "plug"])
+        self.assertEqual(self.at.added_solid(points, self.comps).tolist(), [True, False, False, True, False, True])
+
+    def test_faces_are_sorted_into_the_five_film_groups(self):
+        np = self.np
+        v_in, v_ex = self.comps["valves"]["valve_y_minus"], self.comps["valves"]["valve_y_plus"]
+        ports = {"inlet": [{"centre": [0.0, -90.0, 46.0], "radius_max_mm": 21.0}],
+                 "exhaust": [{"centre": [0.0, 70.0, 36.0], "radius_max_mm": 20.0}]}
+        centroid = np.array([
+            [0.0, 0.0, 20.0],                                   # chamber roof
+            self.point(v_in, v_in["t_face"] + 6.0, 10.0),       # back of the inlet valve
+            self.point(v_ex, v_ex["t_face"] + 6.0, 10.0),       # back of the exhaust valve
+            [20.0, -90.0, 46.0],                                # inlet port wall, looking at its centreline
+            [20.0, -90.0, 46.0],                                # same place, looking away: an outside face
+            [50.0, 0.0, 2.2],                                   # floor of the register recess
+            [60.0, 0.0, 0.0],                                   # deck plane outside the recess
+            [0.0, 0.0, 90.0],                                   # cam side
+        ])
+        normal = np.array([[0, 0, -1.0], [0, 0, 1.0], [0, 0, 1.0], [-1.0, 0, 0], [1.0, 0, 0], [0, 0, -1.0],
+                           [0, 0, -1.0], [0, 0, 1.0]])
+        got = [self.at.GROUPS[i] for i in self.at.classify_faces(centroid, normal, self.comps, self.case, ports)]
+        self.assertEqual(got, ["chamber_gas", "cool_port", "hot_port", "cool_port", "air", "cylinder_contact", "air", "air"])
+
+    def test_heat_by_group_is_film_coefficient_times_area_times_excess(self):
+        np = self.np
+        tag = np.array([1, 2, 3])
+        xyz = np.array([[0, 0, 0], [10.0, 0, 0], [0, 10.0, 0]])
+        faces = (np.array([0]), np.array([1]), np.array([[1, 2, 3]]))
+        temps = np.array([200.0, 220.0, 240.0])
+        heat = self.at.heat_by_group(temps, tag, xyz, faces, np.array([self.at.GROUPS.index("air")]), self.case, 1.0)
+        film = self.case["films"]["air"]
+        expected = film["coefficient_W_per_m2K"] * 1e-6 * 50.0 * (220.0 - film["sink_temperature_C"])
+        self.assertAlmostEqual(heat["air"]["heat_out_W"], expected, places=2)
+        self.assertEqual(heat["chamber_gas"]["area_mm2"], 0.0)
+
+
+class AlloyRecordTests(unittest.TestCase):
+    """The committed alloy candidates, both rankings and the surveys."""
+
+    def load(self, name):
+        return json.loads((TWIN / "params" / name).read_text())
+
+    def test_every_candidate_names_a_source_and_how_far_it_was_verified(self):
+        cand = self.load("alloy-candidates.json")
+        for row in cand["candidates"]:
+            self.assertTrue(row["verification"] and row["method"], row["id"])
+            if row["source"] != "none":
+                self.assertTrue(cand["sources"][row["source"]]["url"].startswith("https://"), row["id"])
+        self.assertEqual(len({r["id"] for r in cand["candidates"]}), len(cand["candidates"]))
+
+    def test_bare_head_ranking_is_monotonic_bounded_and_reproduces_the_cad_screen(self):
+        rank = self.load("alloy-thermal.json")["ranking_by_heat_rejected"]
+        by_k = sorted({(r["conductivity_W_per_mK"], r["heat_W"], r["fin_efficiency"]) for r in rank})
+        heats = [h for _, h, _ in by_k]
+        self.assertEqual(heats, sorted(heats))
+        self.assertTrue(all(0.0 < e < 1.0 for _, _, e in by_k))
+        self.assertTrue(all(r["relative_imbalance"] < 0.005 for r in rank))
+        cad = self.load("thermal-screen-cad.json")["level"]["energy_balance"]["chamber_inflow_W"]
+        self.assertAlmostEqual(next(h for k, h, _ in by_k if k == 150.0), cad, places=2)
+
+    def test_assembly_ranking_cools_with_conductivity_and_conserves_energy(self):
+        asm = self.load("assembly-thermal.json")
+        self.assertFalse(asm["exploratory_single_solve"])
+        rank = asm["ranking_by_peak_alloy_temperature"]
+        by_k = sorted({(r["alloy_conductivity_W_per_mK"], r["peak_C"]["alloy"], r["peak_C"]["valve_bridge"]) for r in rank})
+        self.assertEqual([p for _, p, _ in by_k], sorted((p for _, p, _ in by_k), reverse=True))
+        self.assertEqual([b for _, _, b in by_k], sorted((b for _, _, b in by_k), reverse=True))
+        for r in rank + asm["load_sensitivity"]:
+            self.assertLess(r["energy_imbalance_relative"], 1e-3)
+            self.assertLess(r["heat_out_W_by_group"]["chamber_gas"], 0.0)       # gas heats the assembly
+            self.assertGreater(r["heat_out_W_by_group"]["air"], 0.0)            # air cools it
+            self.assertGreater(r["valve_peak_C"]["exhaust"], r["valve_peak_C"]["inlet"])
+        self.assertTrue(all(n > 100 for n in asm["zone_nodes"].values()))
+        self.assertIn("hypothesis", asm["claims"])
+        ids = {i["id"][:3] for i in json.loads((TWIN / "hypotheses.json").read_text())["items"]}
+        self.assertTrue({"H09", "H10", "H11", "H12"} <= ids)
+
+    def test_surveys_say_what_was_not_found(self):
+        self.assertTrue(self.load("thermal-literature-bounds.json")["not_found"])
+        machines = self.load("lpbf-machine-survey.json")
+        self.assertTrue(machines["not_published_by_any_maker_read"])
+        self.assertIn("not a calibration", self.load("published-993-comparison.json")["verdict"])
+
+
 class SimReadyAssetTests(unittest.TestCase):
     """export_simready.py on a synthetic stage, and the committed asset records."""
 
