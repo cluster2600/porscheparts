@@ -546,6 +546,20 @@ class FeatureFitTests(unittest.TestCase):
         self.assertFalse(self.cf.verdict(poor)["confirmed"])
         self.assertFalse(self.cf.verdict(np.full(50, 0.01))["confirmed"])
 
+    def test_feature_scripts_start_in_isolated_mode(self):
+        # run_twin.sh runs every step with -I, which leaves the script directory out of
+        # sys.path: a script that imports twin_common must add that directory itself.
+        import subprocess
+
+        for name in ("fit_features.py", "check_features.py", "export_simready.py", "assemble_records.py"):
+            source = (SOURCE / name).read_text()
+            if "twin_common" in source:
+                self.assertLess(source.index("sys.path.insert(0, str(Path(__file__).resolve().parent))"),
+                                source.index("from twin_common import"), name)
+        for name in ("fit_features.py", "check_features.py"):
+            run = subprocess.run([sys.executable, "-I", str(SOURCE / name), "--help"], capture_output=True, text=True)
+            self.assertEqual(run.returncode, 0, f"{name}: {run.stderr[-300:]}")
+
     def test_committed_fits_and_check_are_bound_and_consistent(self):
         import hashlib
 
