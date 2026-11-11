@@ -1,0 +1,160 @@
+{
+ "schema": "935-cad-twin-published-comparison/1",
+ "date": "2026-11-11",
+ "manual_record": "catalog/manual/993-workshop-manual-measurements.json",
+ "manual_source": "993 Repair Manual (Porsche AG, 2001 printing), OCR pass 2026-08-28",
+ "rule": "The manual describes the stock 993 engine. The scanned part is an aftermarket 935-type head, so no manual value calibrates it. The comparison shows only whether the scan's assumed scale (1 unit = 1 mm) is contradicted by sizes the two heads are likely to share. Manual values are OCR transcriptions and carry the status given in the manual record.",
+ "verdict": "not contradicted: the two seat diameters fall on the manual's two valve heads within about 1.5%, one seat angle matches, and the forum figures for a 3.2-type head (ports of 41.5 and 40 mm, a 49 mm inlet valve, guides of about 13 mm) fall inside what the scan shows. This supports the scale as an indication and the inlet role of valve_y_minus. It is not a calibration and it identifies no dimension of the specimen.",
+ "comparisons": [
+  {
+   "quantity": "inlet valve head diameter",
+   "manual": "49 + 0.1 mm",
+   "manual_page": 155,
+   "scan": "seat cone of valve_y_minus, diameter at mid-band about the guide axis",
+   "scan_value_mm": 48.9709,
+   "same_dimension": false,
+   "reading": "the seat contact circle is a little smaller than the valve head; the two agree within 0.1%"
+  },
+  {
+   "quantity": "exhaust valve head diameter",
+   "manual": "42.5 + 0.1 mm (43.5 + 0.1 mm on a second variant)",
+   "manual_page": 155,
+   "scan": "seat cone of valve_y_plus, diameter at mid-band about the valve axis",
+   "scan_value_mm": 43.1028,
+   "same_dimension": false,
+   "reading": "between the two manual variants"
+  },
+  {
+   "quantity": "valve seat angle",
+   "manual": "45 degrees",
+   "manual_page": 155,
+   "scan": "half-angle of the two seat cones about their own axes",
+   "scan_value_deg": [
+    45.5117,
+    48.9586
+   ],
+   "same_dimension": true,
+   "reading": "valve_y_minus within 0.5 degree; valve_y_plus, detected only, 4 degrees off"
+  },
+  {
+   "quantity": "valve guide bore",
+   "manual": "8.00 to 8.015 mm",
+   "manual_page": 153,
+   "scan": "guide bore of valve_y_minus, one cylinder over 48.8 mm",
+   "scan_value_mm": 8.5081,
+   "same_dimension": true,
+   "reading": "the scan reads 0.5 mm larger; either this head takes another guide or the scanner misreads a small deep bore (CloudCompare did not confirm this fit)"
+  },
+  {
+   "quantity": "spark plug thread",
+   "manual": "M 14 x 1.25",
+   "manual_page": 60,
+   "scan": "thread bores as scanned",
+   "scan_value_mm": [
+    11.4878,
+    11.2778
+   ],
+   "same_dimension": false,
+   "reading": "too small for an M14 thread; consistent with a 12 mm plug, so this head differs from the stock 993 head here"
+  },
+  {
+   "quantity": "cylinder bore",
+   "manual": "100 mm",
+   "manual_page": 15,
+   "scan": "register recess 113.36 mm, chamber shoulder 92.80 mm",
+   "same_dimension": false,
+   "reading": "no scanned feature is the bore itself; no comparison is drawn"
+  }
+ ],
+ "ddk_forum": {
+  "dataset": "PorscheFanatics data/forum-measurements.json, 5,916 records read from the public boards of the DDK forum (ddk-online.com) on 2026-10-27",
+  "dataset_sha256": "8a288acd49ff46123ba51cc6d482e582ee47e0e71173bab41896c9445a7b15a5",
+  "dataset_terms": "the forum's robots.txt content signal: search=yes, ai-train=no, use=reference",
+  "rule": "Forum figures: reported, quoted or measured by members on early 911, 3.2 Carrera and RSR-type engines, none on this head. Only record identifiers, values and the stated basis are given here; no post text and no member field. They are leads, weaker than the manual, and calibrate nothing.",
+  "searched_and_not_found": [
+   "any cylinder head temperature (the 45 temperature records are oil, heater-duct, thermostat and fitting temperatures)",
+   "any cooling-air delivery of the engine fan (the 12 flow records are fuel flows)"
+  ],
+  "comparisons": [
+   {
+    "quantity": "inlet port diameter",
+    "record": "ddk-84268-inlet-port-diameter-3-2-head",
+    "value": "41.5 mm",
+    "basis": "quoted",
+    "engine": "3.2 Carrera",
+    "scan": "equivalent diameter of the closed sections of port_y_minus",
+    "scan_value_mm": [
+     40.8,
+     44.2
+    ],
+    "reading": "inside the scan's range"
+   },
+   {
+    "quantity": "exhaust port diameter",
+    "record": "ddk-218433-cylinder-head-exhaust-port-diameter-3-2-carrera",
+    "value": "40 mm",
+    "basis": "measured",
+    "engine": "3.2 Carrera",
+    "scan": "equivalent diameter of the closed sections of port_y_plus",
+    "scan_value_mm": [
+     38.1,
+     40.5
+    ],
+    "reading": "inside the scan's range"
+   },
+   {
+    "quantity": "inlet valve diameter",
+    "record": "ddk-84268-inlet-valve-diameter-3-2-engine; ddk-595813-inlet-valve-diameter-rsr-spec-heads-on-3-2-build; ddk-684174-intake-valve-head-diameter-rsr-spec-3-0-build",
+    "value": "49 mm; 49 mm; 50 mm",
+    "basis": "quoted; reported; reported",
+    "engine": "3.2 Carrera; RSR-type builds",
+    "scan": "seat cone of valve_y_minus at mid-band",
+    "scan_value_mm": 48.9709,
+    "reading": "the scan's seat falls on the 49 mm valve"
+   },
+   {
+    "quantity": "exhaust valve diameter",
+    "record": "ddk-595813-exhaust-valve-diameter-rsr-spec-heads-on-3-2-build; ddk-684174-exhaust-valve-head-diameter-rsr-spec-3-0-build",
+    "value": "41.4 mm; 42.5 mm",
+    "basis": "reported; reported",
+    "engine": "RSR-type builds",
+    "scan": "seat cone of valve_y_plus at mid-band",
+    "scan_value_mm": 43.1028,
+    "reading": "the scan's seat is 0.6 to 1.7 mm larger than the valve heads, as a seat mid-band can be"
+   },
+   {
+    "quantity": "valve guide outside diameter",
+    "record": "ddk-679056-first-oversize-valve-guide-outside-diameter-early-911; ddk-679259-first-oversize-valve-guide-outside-diameter-new-guides-from",
+    "value": "13.2 mm (first oversize, book); 13.26 mm (first oversize, measured)",
+    "basis": "quoted; measured",
+    "engine": "early 911",
+    "scan": "guide outside diameter at the cam end, both valves",
+    "scan_value_mm": [
+     12.8749,
+     13.0187
+    ],
+    "reading": "the scan reads 12.9 and 13.0 mm, just under the first oversize: consistent with a standard guide of about 13 mm"
+   },
+   {
+    "quantity": "valve stem diameter",
+    "record": "ddk-678767-exhaust-valve-stem-wear-limit-early-911",
+    "value": "8.928 mm wear limit, i.e. a 9 mm stem",
+    "basis": "reported",
+    "engine": "early 911",
+    "scan": "guide bore of valve_y_minus",
+    "scan_value_mm": 8.5081,
+    "reading": "the scan's 8.51 mm lies between the 993 manual's 8 mm and the early engines' 9 mm; the scan cannot decide (CloudCompare did not confirm this fit)"
+   },
+   {
+    "quantity": "interference of guides and seat inserts",
+    "record": "ddk-679050-valve-guide-interference-fit-in-head-early-911; ddk-689215-valve-seat-insert-interference-in-head-early-911",
+    "value": "0.05 mm; 0.14 mm",
+    "basis": "reported; reported",
+    "engine": "early 911",
+    "scan": "not observable on a surface",
+    "scan_value_mm": null,
+    "reading": "a lead for the contact hypotheses of the assembly screen (H11), nothing more"
+   }
+  ]
+ }
+}

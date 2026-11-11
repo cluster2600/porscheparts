@@ -92,6 +92,38 @@
       "how": "it does not pass the stud test (axis inclined 36 degrees to the bore axis, protrudes 10 mm), so it is kept as head body and flagged",
       "colour": "hardware",
       "retire_with": "photograph or drawing identifying the feature"
+    },
+    {
+      "id": "H09-valve-roles",
+      "region": "which valve is the inlet and which the exhaust",
+      "status": "assumed_for_the_assembly_thermal_screen",
+      "how": "the valve with the larger seat (valve_y_minus, 49.0 mm at mid-band) is taken as the inlet and the other as the exhaust; the 993 manual gives 49 mm and 42.5 mm valve heads, but describes another head",
+      "colour": "analytic_hypothesis",
+      "retire_with": "supplier documentation of this head, or an inspection of the ports and valves of the specimen"
+    },
+    {
+      "id": "H10-valves-guides-plugs-as-solids",
+      "region": "two closed valves, two guides and two spark plugs in the assembly thermal screen",
+      "status": "modelled_as_hypothesis_solids_for_one_screen",
+      "how": "solids of revolution about the fitted axes: valve heads on the fitted seat cones, stems filling the fitted guide bores, guides as tubes of the fitted outside diameter, plugs filling the thread bores; every other length comes from params/assembly-case.json. They exist only in the united thermal domain, not in the CAD body, the USD stages or the 3MF",
+      "colour": "analytic_hypothesis",
+      "retire_with": "valve, guide and plug drawings or the parts themselves"
+    },
+    {
+      "id": "H11-assembly-materials-and-contacts",
+      "region": "conductivities of valve, guide and plug; contact at seats, guides, threads and the cylinder joint",
+      "status": "declared_values_no_source",
+      "how": "valve steel 20, bronze guide 60 and plug steel 45 W/(m K); seat inserts keep the head alloy's conductivity; every contact is perfect, with no gap and no contact resistance",
+      "colour": "analytic_hypothesis",
+      "retire_with": "material specifications of the fitted parts and a contact conductance from test or literature for each joint"
+    },
+    {
+      "id": "H12-assembly-thermal-boundaries",
+      "region": "gas, port, air and cylinder boundary conditions of the assembly thermal screen",
+      "status": "declared_values_no_source",
+      "how": "five films with one sink temperature and one coefficient each (params/assembly-case.json); the cylinder is a contact condition on the deck at one temperature, not a modelled part; no oil cooling, no radiation, both valves closed",
+      "colour": "analytic_hypothesis",
+      "retire_with": "an engine heat balance and measured head temperatures for one operating point"
     }
   ]
 }

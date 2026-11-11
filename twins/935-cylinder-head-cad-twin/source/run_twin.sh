@@ -10,6 +10,7 @@ set -euo pipefail
 SCAN=$(realpath "$1"); PRIV=$(realpath "$2"); PY=$3
 HERE=$(cd "$(dirname "$0")" && pwd); TWIN=$(dirname "$HERE"); PARAMS=$TWIN/params
 cap() { systemd-run --user --scope -q -p MemoryMax="${MEM:-11G}" "$@"; }
+STAMP=$(date +%Y%m%d-%H%M%S)   # new private directories for the steps that refuse an existing one
 
 cap "$PY" -I "$HERE/fit_frame.py" "$SCAN" "$PRIV" "$PARAMS"
 cap "$PY" -I "$HERE/occupancy.py" "$PRIV" "$PARAMS" 0.25
@@ -80,6 +81,20 @@ cap "$PY" -I "$HERE/export_usd.py" "$PRIV" "$PARAMS" "$PRIV/v2-loft-s025.npz" "$
   usd-cad-summary.json "v2 loft body, sections at most 0.25 mm apart"
 cap "$PY" -I "$HERE/export_print.py" "$PRIV/v2-loft-s025.npz" "$PRIV/935-head-cad-twin-study.3mf" "$PARAMS/print-cad-summary.json"
 
+# Alloy screens (cadsim image). Bare head: the deck of the CAD-body screen with each
+# candidate conductivity. Assembly: valves, guides and plugs as hypothesis solids
+# united with the body, then one solve per conductivity and the load sensitivity.
+docker run --rm --memory=10g --user "$(id -u):$(id -g)" -v "$PRIV:/p" -v "$HERE:/src:ro" -v "$PARAMS:/params:ro" \
+  --entrypoint /opt/venv/bin/python 3dprinting993-cadsim:dev -I /src/alloy_thermal.py /p/thermal-v2-loft-mc100 \
+  /params/alloy-candidates.json "/p/alloy-thermal-$STAMP" /p/alloy-thermal-summary.json
+cp "$PRIV/alloy-thermal-summary.json" "$PARAMS/alloy-thermal.json"
+MEM=8G cap "$PY" -I "$HERE/assembly_thermal.py" occupancy "$PRIV/v2-loft-s025-occ" "$PARAMS" "$PRIV/assembly-occ-$STAMP"
+MEM=8G cap "$PY" -I "$HERE/sim_surface_mc.py" "$PRIV/assembly-occ-$STAMP" "$PRIV/assembly-sim-mc100.stl" "$PRIV/assembly-sim-mc100.json" 4 0.4921875
+docker run --rm --memory=8g --user "$(id -u):$(id -g)" -v "$PRIV:/p" -v "$HERE:/src:ro" -v "$PARAMS:/params:ro" \
+  --entrypoint /opt/venv/bin/python 3dprinting993-cadsim:dev -I /src/assembly_thermal.py solve /p/assembly-sim-mc100.stl \
+  /params /p/v2-loft-s025-occ "/p/assembly-thermal-$STAMP" /p/assembly-thermal-summary.json
+cp "$PRIV/assembly-thermal-summary.json" "$PARAMS/assembly-thermal.json"
+
 # Port CFD: the audit only. It finds no admissible fluid domain, so no solver runs.
 "$PY" -I "$HERE/audit_port_domain.py" "$PARAMS" "$TWIN/hypotheses.json" "$PARAMS/port-cfd-audit.json"
 
@@ -92,7 +107,7 @@ MEM=4G cap "$PY" -I "$HERE/am_supports.py" "$PRIV" "$PARAMS"
 # held-out half of each window and on the v2 body. FIT and CC_IMAGE are optional:
 #   FIT=work/scan-primitive-fitting-venv/bin/python  CC_IMAGE=free-tools-cloudcompare:local
 # check_features.py refuses an existing --work directory: name a new one for each run.
-REPO=$(cd "$TWIN/../.." && pwd); STAMP=$(date +%Y%m%d-%H%M%S)
+REPO=$(cd "$TWIN/../.." && pwd)
 if [ -n "${FIT:-}" ] && [ -n "${CC_IMAGE:-}" ]; then
   MEM=4G cap "$FIT" -I "$HERE/fit_features.py" --bare-scan "$PRIV/bare-scan-twin.npz" --rois "$PARAMS/feature-rois.json" \
     --tool "$REPO/benchmarks/scan-primitive-fitting/primitive_fit.py" --frame "$PARAMS/frame.json" \
