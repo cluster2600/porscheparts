@@ -56,6 +56,7 @@ tool beyond that table.*
 | Scan-versus-CAD deviation | CloudCompare 2.13.2, command line | build `containers/free-tools-cloudcompare.Dockerfile`, then `python3 benchmarks/free-tools/native_container.py cloudcompare --image <image> --output <new dir>` | CPU container, no network | point-to-surface distances in mm after a stated rigid transform. Sampled diagnostics; synthetic controls only (0, 1 and 0 mm recovered), no measured scan registered | [free tools](architecture/free-tools/README.md) |
 | Fatigue post-processing | pyLife 2.3 (Apache-2.0): rainflow counting, Wöhler curves, Miner damage | [`benchmarks/fatigue-postprocessor/`](../benchmarks/fatigue-postprocessor/README.md): venv from its hash lock; stress histories from a converged FE result | host venv | counts and damage for a **stated** S-N curve. It supplies no material data: S-N, mean-stress and AM process properties need their own source | [README](../benchmarks/fatigue-postprocessor/README.md) |
 | Laminate first-ply failure | [`scripts/laminate_failure.py`](../scripts/laminate_failure.py) (NumPy): lamination theory, maximum stress, Tsai-Wu, Hashin 1980, Puck inter-fibre | `python3 scripts/laminate_failure.py <case.json> --output <report.json>`; ply stresses from lamination theory or supplied from a laminated-shell solve | any host with NumPy | a reserve factor per ply face and criterion, for **stated** stiffness, strength and criterion parameters. It supplies no material data; no delamination, progressive damage or crash ([ADR 0018](decisions/0018-composite-crash-no-claim.md)). Reading ply stresses out of a CalculiX result is not implemented | script docstring, `tests/test_laminate_failure.py` |
+| Union of closed triangle solids | manifold3d 3.5 (Apache-2.0), `Manifold.batch_boolean` on `Mesh64` (double precision) | build each piece as a closed oriented mesh, unite, then check the result yourself (watertight, winding, volume). Used by the [935 head twin](../twins/935-cylinder-head-cad-twin/source/loft_stack.py) | host venv | one manifold surface from touching or overlapping solids. It leaves triangles without area and needle triangles; it is a mesh, never a B-rep | [twin README](../twins/935-cylinder-head-cad-twin/README.md) |
 | FE / CFD meshing | Gmsh (pinned per evidence) | Python API inside the study's source | container or host | a mesh with recorded size fields and quality | study README |
 | Stress, modal, buckling, thermal | CalculiX 2.21 `ccx` | text deck written by the study script; **one thread** | `3dprinting993-cadsim` or capped host | a numerical result for stated loads and supports | [twins/964-chassis/fea/README.md](../twins/964-chassis/fea/README.md) |
 | CFD, conjugate heat | OpenFOAM 13 (`cadsim`, `mesh-cfd`) or 14 + AATE (`openfoam-engine-f35`) | case generator in the study, `checkMesh` first | container CPU | fields for stated boundaries; not vehicle-correlated | study README, [COMPUTE_ENVIRONMENT.md](COMPUTE_ENVIRONMENT.md) |
@@ -197,7 +198,9 @@ neighbouring study's README for more before starting.
   face drafted by 1–2° spreads over 1–2 mm of height and never forms a sharp
   peak. On the synthetic witness the same detector recovered only the undrafted
   faces (4/24) and reported 1,514 spurious levels. The twin's later per-face fit
-  recovered all 28 on the real scan; it is not on main and has no witness.
+  recovered all 28 on the real scan; it has no witness. Those faces then proved
+  not to be planes within tolerance (0.25 to 0.6 mm RMS), and the twin's body is
+  now a loft through sections.
 - **Open3D `detect_planar_patches` with library defaults misses stacked
   faces.** On the same witness (fins 3 mm thick, 4 mm apart) it returned the two
   outermost faces only. Sequential `segment_plane` with a normal-agreement
@@ -240,6 +243,32 @@ neighbouring study's README for more before starting.
 - Pass a log path: the default `~/Documents/PicoGK.log` crashes if that folder
   is missing.
 
+### Sections, voxel grids and mesh unions
+
+All measured on the 935 head twin on 2026-11-10.
+
+- **Even-odd nesting must be applied ring by ring.** Uniting the even rings and
+  subtracting the odd ones in one step removes every island standing inside a
+  hole. The twin lost the land inside its sealing groove and its valve-guide
+  bosses that way, in every body built before the fix.
+- **Do not take the 0.5 iso-surface of a block-averaged binary grid.** The
+  means are multiples of 1/k³, so the level falls exactly on grid values,
+  marching cubes emits folded facets and Gmsh HXT refuses the surface. Use a
+  level between two attainable means (31.5/64 for k = 4).
+- **A single-precision distance kernel loses up to 0.02 mm on needle
+  triangles** (tens of millimetres long, a fraction wide). Cap the edge length
+  of a mesh before scoring it with Warp, and keep an oracle in the checker:
+  that is what caught it.
+- **Write 3MF and USD from double-precision arrays, not from an STL.** The
+  STL's single precision welded neighbouring vertices and the 3MF read-back was
+  no longer watertight.
+- **Passing the OpenUSD validators is not passing the NVIDIA validator.** A
+  stage with no normals, three points per triangle and an unindexed primvar
+  passed all 30 of the former and failed the latter.
+- `usd-convert-cad` 0.2.0 and `usd-validation-nvidia` 1.21.0 install from
+  wheels into two separate venvs (about 2.3 GB). The 10 GB SimReady image is not
+  needed to convert a STEP and validate a stage.
+
 ### OCC / build123d
 
 - **A difference of two large OCC volumes cannot judge a small feature.**
@@ -247,6 +276,9 @@ neighbouring study's README for more before starting.
   size of the fillet being checked. Judge a blend on its own surface (face
   areas, sampled curvature radius), and verify the base body's symmetry first.
   `is_valid` and a single solid catch none of this.
+- build123d's `.volume` was off by +0.17% and −0.21% on two lofted solids
+  against an adaptive OCCT integration (935 head twin, 2026-11-10). Do not use
+  it as a reference below about 0.5%.
 
 ### Memory, logs and the host
 

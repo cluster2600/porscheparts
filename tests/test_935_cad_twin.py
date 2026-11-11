@@ -1,0 +1,482 @@
+"""Contract tests for the 935 head CAD twin (twins/935-cylinder-head-cad-twin).
+
+They run on synthetic geometry and the committed scalar parameters only; the
+private scan never reaches CI.
+"""
+
+import importlib.util
+import json
+import sys
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+TWIN = ROOT / "twins" / "935-cylinder-head-cad-twin"
+SOURCE = TWIN / "source"
+SCAN_SHA256 = "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486"
+
+
+def has(*mods):
+    return all(importlib.util.find_spec(m) is not None for m in mods)
+
+
+class RegisterTests(unittest.TestCase):
+    def test_hypotheses_register_is_complete(self):
+        reg = json.loads((TWIN / "hypotheses.json").read_text())
+        ids = [i["id"] for i in reg["items"]]
+        self.assertEqual(len(ids), len(set(ids)))
+        for item in reg["items"]:
+            for key in ("region", "status", "how", "colour", "retire_with"):
+                self.assertTrue(item.get(key), f"{item['id']} lacks {key}")
+            self.assertIn(item["colour"], reg["display_colours"])
+            self.assertNotIn("measured", item["status"])
+
+    def test_frame_is_bound_to_the_scan_and_orthonormal(self):
+        frame = json.loads((TWIN / "params" / "frame.json").read_text())
+        self.assertEqual(frame["scan_sha256"], SCAN_SHA256)
+        r = frame["rotation_scan_to_twin_rows"]
+        for i in range(3):
+            for j in range(3):
+                dot = sum(r[i][k] * r[j][k] for k in range(3))
+                self.assertAlmostEqual(dot, 1.0 if i == j else 0.0, places=6)
+        det = (r[0][0] * (r[1][1] * r[2][2] - r[1][2] * r[2][1])
+               - r[0][1] * (r[1][0] * r[2][2] - r[1][2] * r[2][0])
+               + r[0][2] * (r[1][0] * r[2][1] - r[1][1] * r[2][0]))
+        self.assertAlmostEqual(det, 1.0, places=6)
+        self.assertEqual(frame["levels_twin"]["deck_z"], 0.0)
+
+    def test_scorecards_report_both_directions_and_pass_the_oracle(self):
+        cards = sorted((TWIN / "params").glob("scorecard-*.json"))
+        self.assertTrue(cards, "no scorecard committed")
+        for card in cards:
+            s = json.loads(card.read_text())
+            self.assertEqual(s["scan_sha256"], SCAN_SHA256)
+            self.assertIn("scan_to_twin", s)
+            self.assertIn("twin_to_scan", s)
+            self.assertTrue(s["oracle_check"]["passed"], card.name)
+            self.assertIn("unobserved", s["limits"])
+
+    def test_no_geometry_bearing_files_are_tracked(self):
+        banned = {".obj", ".stl", ".ply", ".step", ".stp", ".3mf", ".usdc", ".usda", ".npz", ".npy", ".frd"}
+        for p in TWIN.rglob("*"):
+            self.assertNotIn(p.suffix.lower(), banned, f"geometry file in Git: {p}")
+
+
+@unittest.skipUnless(has("numpy"), "numpy absent")
+class FitTests(unittest.TestCase):
+    def setUp(self):
+        sys.path.insert(0, str(SOURCE))
+        import twin_common
+
+        self.tc = twin_common
+        import numpy as np
+
+        self.np = np
+
+    def test_circle_fit_recovers_a_noisy_circle(self):
+        np = self.np
+        rng = np.random.default_rng(1)
+        t = rng.uniform(0, 2 * np.pi, 2000)
+        xy = np.column_stack((3 + 56.94 * np.cos(t), -2 + 56.94 * np.sin(t))) + rng.normal(0, 0.03, (2000, 2))
+        c, r, res = self.tc.fit_circle_2d(xy)
+        self.assertAlmostEqual(r, 56.94, delta=0.005)
+        self.assertAlmostEqual(c[0], 3, delta=0.005)
+        self.assertLess(np.sqrt(np.mean(res ** 2)), 0.04)
+
+    def test_plane_fit_recovers_normal(self):
+        np = self.np
+        rng = np.random.default_rng(2)
+        p = rng.uniform(-50, 50, (5000, 3))
+        n = np.array([0.1, -0.8, -0.6])
+        n /= np.linalg.norm(n)
+        p -= np.outer(p @ n - 7.0, n)
+        nrm, pt, res = self.tc.fit_plane(p, np.ones(len(p)))
+        self.assertGreater(abs(nrm @ n), 1 - 1e-9)
+        self.assertLess(np.abs(res).max(), 1e-9)
+
+
+@unittest.skipUnless(has("numpy", "shapely"), "numpy/shapely absent")
+class BandTests(unittest.TestCase):
+    @unittest.skipUnless(has("skimage"), "scikit-image absent")
+    def test_slice_region_keeps_holes_and_area(self):
+        import numpy as np
+
+        sys.path.insert(0, str(SOURCE))
+        import build_brep
+
+        h = 0.25
+        x = np.arange(-30, 30, h)
+        X, Y = np.meshgrid(x, x, indexing="ij")
+        r = np.hypot(X, Y)
+        w = ((r < 20) & (r > 8)).astype(np.float32)
+        grid = {"pitch_mm": h, "x0": float(x[0]), "y0": float(x[0])}
+        region = build_brep.slice_region(w, grid)
+        expected = np.pi * (20 ** 2 - 8 ** 2)
+        self.assertAlmostEqual(region.area / expected, 1.0, delta=0.01)
+        self.assertEqual(len(region.interiors), 1)
+
+    def test_band_merge_tolerance(self):
+        sys.path.insert(0, str(SOURCE))
+        import build_brep
+        from shapely.geometry import Point
+
+        a = Point(0, 0).buffer(20, 256)
+        self.assertTrue(build_brep.same_band(a, Point(0, 0).buffer(20.05, 256), 0.2))
+        self.assertFalse(build_brep.same_band(a, Point(0, 0).buffer(20.5, 256), 0.2))
+
+
+@unittest.skipUnless(has("numpy", "shapely", "skimage"), "scikit-image absent")
+class NestingTests(unittest.TestCase):
+    def test_slice_region_keeps_an_island_inside_a_hole(self):
+        # Until 2026-11-10 the even rings were united and the odd ones subtracted
+        # in one step, which removed every island standing inside a hole.
+        import numpy as np
+
+        sys.path.insert(0, str(SOURCE))
+        import build_brep
+
+        w = np.zeros((120, 120), dtype=np.float32)
+        w[10:110, 10:110] = 1.0     # body, 100 x 100 cells
+        w[30:90, 30:90] = 0.0       # pocket, 60 x 60
+        w[50:70, 50:70] = 1.0       # boss standing in the pocket, 20 x 20
+        w[57:63, 57:63] = 0.0       # bore in the boss, 6 x 6
+        region = build_brep.slice_region(w, {"pitch_mm": 1.0, "x0": 0.0, "y0": 0.0})
+        self.assertAlmostEqual(region.area, 100 * 100 - 60 * 60 + 20 * 20 - 6 * 6, delta=12.0)
+        from shapely.geometry import Point
+
+        self.assertTrue(region.contains(Point(52.0, 52.0)))     # boss wall
+        self.assertFalse(region.contains(Point(59.5, 59.5)))    # bore
+        self.assertFalse(region.contains(Point(40.0, 40.0)))    # pocket
+
+
+@unittest.skipUnless(has("numpy", "shapely", "manifold3d", "trimesh"), "numpy/shapely/manifold3d/trimesh absent")
+class LoftTests(unittest.TestCase):
+    @staticmethod
+    def square(lo, hi, hole=None):
+        from shapely.geometry import Polygon, box
+        from shapely.geometry.polygon import orient
+
+        holes = [] if hole is None else [box(hole[0], hole[0], hole[1], hole[1]).exterior.coords]
+        return orient(Polygon(box(lo, lo, hi, hi).exterior.coords, holes), 1.0)
+
+    def test_bands_put_a_prism_on_each_side_of_a_face(self):
+        sys.path.insert(0, str(SOURCE))
+        import loft_stack
+
+        bands = loft_stack.plan_bands([0.0, 2.0, 2.3], 0.5)
+        self.assertEqual(bands[0], (0.0, 0.25, 0.25, 0.25))                 # prism above the face at 0
+        self.assertEqual(bands[-2], (1.75, 2.0, 1.75, 1.75))                # prism below the face at 2
+        self.assertEqual([round(b[1] - b[0], 6) for b in bands[1:-2]], [0.5, 0.5, 0.5])
+        self.assertTrue(all(b[2] == b[0] and b[3] == b[1] for b in bands[1:-2]))   # ruled between
+        self.assertEqual(bands[-1], (2.0, 2.3, 2.15, 2.15))                 # gap too thin: one prism
+        self.assertAlmostEqual(sum(b[1] - b[0] for b in bands), 2.3)
+
+    def test_ruled_frustum_has_the_exact_volume_and_an_unpaired_hole_stays_a_prism(self):
+        import numpy as np
+        import trimesh
+
+        sys.path.insert(0, str(SOURCE))
+        import loft_stack
+
+        bottom, top = self.square(0, 10, (4, 6)), self.square(1, 9, (4.5, 5.5))
+        partner = loft_stack.pair_rings([bottom], [top], 2.0)
+        self.assertEqual(sorted(partner), [(0, 0)])     # the hole's overlap is 0.25: not paired
+        plans = loft_stack.ruling_plans(bottom, 0, partner)
+        self.assertEqual([(len(p[2]), p[3]) for p in plans], [(0, 1), (1, 1), (0, 0)])
+        v, f = loft_stack.polygon_solid(plans[0], 0.0, 2.0)
+        self.assertTrue(loft_stack.is_manifold(v, f))
+        # The second plan cuts the hole out of the ruled solid: same body.
+        v2, f2 = loft_stack.polygon_solid(plans[1], 0.0, 2.0)
+        self.assertAlmostEqual(trimesh.Trimesh(v2, f2, process=False).volume, 2.0 / 3.0 * (100 + 64 + 80) - 8.0, places=9)
+        mesh = trimesh.Trimesh(v, f, process=False)
+        self.assertTrue(mesh.is_watertight and mesh.is_winding_consistent)
+        # Square frustum 100 -> 64 over 2 mm, minus a 2 x 2 prism.
+        self.assertAlmostEqual(mesh.volume, 2.0 / 3.0 * (100 + 64 + 80) - 8.0, places=9)
+        self.assertGreater(np.cross(v[f][:, 1] - v[f][:, 0], v[f][:, 2] - v[f][:, 0])[:, 2].max(), 0)
+
+    def test_stitch_uses_only_the_rings_own_vertices(self):
+        import numpy as np
+        from shapely import segmentize
+        from shapely.geometry import Point
+
+        sys.path.insert(0, str(SOURCE))
+        import loft_stack
+
+        a = loft_stack.open_ring(segmentize(Point(0, 0).buffer(10.0, 16), 0.7).exterior)[::-1]
+        b = loft_stack.open_ring(Point(0.4, -0.2).buffer(8.0, 5).exterior)[::-1]
+        rolled, tris = loft_stack.stitch(a, b)
+        self.assertEqual(len(tris), len(a) + len(b))
+        self.assertEqual(sorted(map(tuple, rolled.tolist())), sorted(map(tuple, b.tolist())))
+        # Every edge of either ring is used by exactly one wall triangle.
+        for ring, n in ((0, len(a)), (1, len(b))):
+            own = tris[(tris[:, :, 0] == ring).sum(axis=1) == 2]
+            self.assertEqual(len(own), n)
+
+    def test_union_of_stacked_bands_is_one_closed_body(self):
+        import tempfile
+
+        import numpy as np
+
+        sys.path.insert(0, str(SOURCE))
+        import loft_stack
+
+        lower, upper = self.square(0, 10), self.square(2, 6)
+        with tempfile.TemporaryDirectory() as tmp:
+            files = []
+            for k, (poly, z0, z1) in enumerate(((lower, 0.0, 1.0), (upper, 1.0, 3.0))):
+                rings = [loft_stack.open_ring(poly.exterior)]
+                v, f = loft_stack.polygon_mesh(rings, rings, z0, z1)
+                files.append(Path(tmp) / f"band-{k}.npz")
+                np.savez(files[-1], v=v, f=f, tri_part=np.zeros(len(f), dtype=np.int64))
+            whole, parts = loft_stack.unite(files)
+        self.assertEqual(parts, 2)
+        self.assertEqual(len(whole.decompose()), 1)
+        self.assertAlmostEqual(whole.volume(), 100.0 + 32.0, places=9)
+        self.assertAlmostEqual(whole.surface_area(), 2 * 100 + 40 + 4 * 4 * 2, places=9)   # shared face gone
+
+
+@unittest.skipUnless(has("numpy", "trimesh"), "numpy/trimesh absent")
+class LoftOccupancyTests(unittest.TestCase):
+    def test_plane_cut_fill_reproduces_a_sphere_and_a_tube(self):
+        import numpy as np
+        import trimesh
+
+        sys.path.insert(0, str(SOURCE))
+        import loft_occupancy
+
+        h, n = 0.25, 96
+        x0 = y0 = z0 = -12.0
+        sphere = trimesh.creation.icosphere(subdivisions=4, radius=10.0)
+        outer = trimesh.creation.cylinder(radius=10.0, height=8.0, sections=96)
+        inner = trimesh.creation.cylinder(radius=6.0, height=8.0, sections=96)
+        inner.invert()                                    # inward wall of a tube; open ends do not matter here
+        for mesh, radius_in in ((sphere, None), (trimesh.util.concatenate([outer, inner]), 6.0)):
+            tri = np.asarray(mesh.triangles, dtype=np.float64)
+            filled = 0
+            for k in range(n):
+                z = z0 + k * h + loft_occupancy.SLICE_SHIFT_MM
+                mask = loft_occupancy.fill(loft_occupancy.plane_segments(tri, z), (n, n), x0, y0, h)
+                filled += int(mask.sum())
+                if radius_in is not None and abs(z) < 3.9:
+                    self.assertFalse(mask[n // 2, n // 2])          # the bore stays empty (even-odd)
+                    self.assertTrue(mask[n // 2 + 32, n // 2])      # the wall at r = 8 mm is solid
+            exact = 4.0 / 3.0 * np.pi * 1000.0 if radius_in is None else np.pi * (100.0 - 36.0) * 8.0
+            self.assertAlmostEqual(filled * h ** 3 / exact, 1.0, delta=0.01)
+
+
+class PortAuditTests(unittest.TestCase):
+    FIT = {"method": {"station_step_mm": 3.0},
+           "ports": [{"name": "p", "stations": 11, "closed_stations": 11, "loft_length_mm": 30.0,
+                      "wall_points_observed_share": 0.97}]}
+
+    def test_a_port_needs_closed_sections_observed_walls_and_a_valve(self):
+        sys.path.insert(0, str(SOURCE))
+        import audit_port_domain
+
+        built = {"items": [{"id": "H05-valve-seats-guides", "status": "modelled_from_specification"}]}
+        self.assertEqual(audit_port_domain.audit(self.FIT, built)["verdict"], "admissible")
+        missing = {"items": [{"id": "H05-valve-seats-guides", "status": "not_modelled_in_v0"}]}
+        self.assertEqual(audit_port_domain.audit(self.FIT, missing)["verdict"], "not_admissible")
+        import copy
+
+        for key, value in (("closed_stations", 8), ("wall_points_observed_share", 0.90)):
+            fit = copy.deepcopy(self.FIT)
+            fit["ports"][0][key] = value
+            res = audit_port_domain.audit(fit, built)
+            self.assertEqual(res["verdict"], "not_admissible")
+            self.assertEqual(sum(res["ports"][0]["gates"].values()), 2)
+
+    def test_the_committed_audit_matches_the_register(self):
+        sys.path.insert(0, str(SOURCE))
+        import audit_port_domain
+
+        fit = json.loads((TWIN / "params" / "port-fit.json").read_text())
+        reg = json.loads((TWIN / "hypotheses.json").read_text())
+        self.assertEqual(audit_port_domain.audit(fit, reg),
+                         json.loads((TWIN / "params" / "port-cfd-audit.json").read_text()))
+
+
+class DownstreamContractTests(unittest.TestCase):
+    """The committed summaries of the v2 body and of what was run on it."""
+
+    def load(self, name):
+        return json.loads((TWIN / "params" / name).read_text())
+
+    def test_every_loft_body_is_one_closed_solid(self):
+        p95 = []
+        for label in ("s100", "s050", "s025"):
+            s = self.load(f"v2-loft-{label}-summary.json")
+            self.assertEqual(s["union"]["status"], "Error.NoError")
+            self.assertEqual(s["bands_failed"], [])
+            self.assertTrue(s["body"]["trimesh_watertight"] and s["body"]["trimesh_winding_consistent"])
+            self.assertAlmostEqual(s["body"]["volume_mm3"] / s["body"]["trimesh_volume_mm3"], 1.0, places=9)
+            p95.append(self.load(f"scorecard-v2-loft-{label}.json")["scan_to_twin"]["p95"])
+        self.assertEqual(p95, sorted(p95, reverse=True))      # finer sections never score worse
+
+    def test_the_rasterised_body_keeps_its_volume(self):
+        occ = self.load("v2-loft-s025-occupancy.json")
+        self.assertLess(abs(occ["relative_difference"]), 2e-3)
+
+    def test_thermal_on_the_cad_body_closes_its_energy_balance(self):
+        t = self.load("thermal-screen-cad.json")
+        self.assertEqual(t["level"]["solver"]["returncode"], 0)
+        self.assertEqual(t["level"]["mesh"]["quality"]["nonpositive"], 0)
+        self.assertLess(abs(t["level"]["energy_balance"]["relative_imbalance"]), 0.01)
+        self.assertIn("not an engine temperature prediction", t["claims"])
+        self.assertIn("mean_nodal_difference_C", t["against_reference"])
+
+    def test_am_screen_passed_its_witnesses_and_claims_nothing(self):
+        sup = self.load("am-supports.json")
+        self.assertTrue(sup["witness"]["all_within_tolerance"])
+        self.assertIn("no orientation choice", sup["scope"])
+        cool = self.load("am-cooldown.json")
+        self.assertIn("declared-hypothesis", cool["scope"])
+        for name in ("hex_4mm", "hex_2mm", "witness_block"):
+            self.assertIn(name, cool["levels"])
+
+    def test_simready_summaries_state_what_a_pass_means(self):
+        for name in ("simready-deck-plate.json", "simready-ports.json", "simready-validate-t4-stage.json",
+                     "simready-validate-cad-stage.json"):
+            s = self.load(name)
+            self.assertIn("not SimReady-certified", s["claims"])
+            self.assertIn(s["status"], ("passed", "validator_findings"))
+        self.assertEqual(self.load("simready-validate-t4-stage.json")["status"], "passed")
+        cad = self.load("simready-validate-cad-stage.json")["stage_input"]["validation"]["issues_by_severity"]
+        self.assertEqual((cad["FAILURE"], cad["ERROR"]), (0, 0))
+
+
+@unittest.skipUnless(has("numpy", "shapely", "skimage", "build123d"), "build123d stack absent")
+class BandSolidTests(unittest.TestCase):
+    def test_band_solid_sits_on_its_interval_whatever_the_contour_orientation(self):
+        # Until 2026-11-10 extrude() followed the face normal, so a band built
+        # from a clockwise contour sat one thickness below its interval.
+        sys.path.insert(0, str(SOURCE))
+        import build_brep
+        from shapely.geometry import Polygon
+
+        square = [(0, 0), (10, 0), (10, 10), (0, 10)]
+        for ring in (square, square[::-1]):
+            (solid,) = build_brep.band_solid(Polygon(ring), 41.8, 44.12)
+            box = solid.bounding_box()
+            self.assertAlmostEqual(box.min.Z, 41.8, places=6)
+            self.assertAlmostEqual(box.max.Z, 44.12, places=6)
+            self.assertAlmostEqual(solid.volume, 100 * 2.32, places=6)
+
+
+@unittest.skipUnless(has("numpy"), "numpy absent")
+class BoundaryTests(unittest.TestCase):
+    CORNERS = [(-60.0, -120.0), (-60.0, 120.0), (60.0, -120.0), (60.0, 120.0)]
+
+    @staticmethod
+    def face(z, side, tilt_slope=0.0, rms_level=0.6, rms_plane=0.3):
+        import math
+
+        return {"side": side, "z_level_mm": z, "rms_level_mm": rms_level, "rms_plane_mm": rms_plane,
+                "plane_z_at_axis_mm": z, "plane_slope_xy": [tilt_slope, 0.0],
+                "plane_tilt_deg": math.degrees(math.atan(tilt_slope)),
+                "plane_z_span_mm": [z - 60 * tilt_slope, z + 60 * tilt_slope]}
+
+    def test_tilt_needs_a_better_plane_fit_and_a_real_angle(self):
+        sys.path.insert(0, str(SOURCE))
+        import fin_stack
+
+        faces = [self.face(20.0, "top", 0.009), self.face(30.0, "top", 0.009, rms_plane=0.55),
+                 self.face(40.0, "bottom", 0.001)]
+        bounds, notes = fin_stack.make_boundaries([], faces, 0.0, 60.0, True, self.CORNERS)
+        self.assertEqual([b["plane"] is not None for b in bounds], [False, True, False, False, False])
+        self.assertEqual(notes["tilted"], 1)
+        flat, _ = fin_stack.make_boundaries([], faces, 0.0, 60.0, False, self.CORNERS)
+        self.assertTrue(all(b["plane"] is None for b in flat))
+
+    def test_fine_levels_inside_a_fin_face_are_dropped_and_crossings_demoted(self):
+        sys.path.insert(0, str(SOURCE))
+        import fin_stack
+
+        faces = [self.face(20.0, "top", 0.009)]
+        bounds, notes = fin_stack.make_boundaries([19.8, 20.5, 25.0], faces, 0.0, 60.0, True, self.CORNERS)
+        self.assertEqual(notes["fine_levels_dropped"], 2)
+        self.assertEqual([round(b["z"], 1) for b in bounds], [0.0, 20.0, 25.0, 60.0])
+        # A level 0.45 mm above a plane that rises 0.54 mm over the footprint crosses it.
+        bounds, notes = fin_stack.make_boundaries([20.45], [self.face(20.0, "top", 0.009)], 0.0, 60.0, True,
+                                                  self.CORNERS)
+        self.assertEqual(notes["demoted"], [])  # dropped as inside the face's own span instead
+        faces = [self.face(20.0, "top", 0.009), self.face(20.4, "bottom", 0.0)]
+        bounds, notes = fin_stack.make_boundaries([], faces, 0.0, 60.0, True, self.CORNERS)
+        self.assertEqual(notes["demoted"], [20.0])
+        self.assertEqual(notes["tilted"], 0)
+
+
+@unittest.skipUnless(has("numpy", "shapely"), "numpy/shapely absent")
+class ShellTests(unittest.TestCase):
+    def test_only_the_uncovered_part_of_a_cap_is_kept(self):
+        import numpy as np
+
+        sys.path.insert(0, str(SOURCE))
+        import fin_stack
+        from shapely.geometry import box
+
+        boundary = {"z": 5.0, "plane": None}
+        lower_band_top, upper_band_bottom = box(0, 0, 10, 10), box(4, 0, 10, 10)
+        tris, shown = fin_stack.exposed_cap(lower_band_top, upper_band_bottom, boundary)
+        self.assertAlmostEqual(shown, 40.0, places=2)   # the 4 x 10 ledge the upper band leaves bare
+        self.assertTrue(np.allclose(tris[:, :, 2], 5.0))
+        self.assertLessEqual(tris[:, :, 0].max(), 4.001)
+        _, hidden_side = fin_stack.exposed_cap(upper_band_bottom, lower_band_top, boundary)
+        self.assertAlmostEqual(hidden_side, 0.0, places=6)
+        tilted = {"z": 5.0, "plane": (5.0, 0.01, 0.0)}
+        tris, _ = fin_stack.exposed_cap(lower_band_top, None, tilted)
+        self.assertTrue(np.allclose(tris[:, :, 2], 5.0 + 0.01 * tris[:, :, 0]))
+
+    def test_cap_flags_follow_the_boundary_surface(self):
+        import numpy as np
+
+        sys.path.insert(0, str(SOURCE))
+        import fin_stack
+
+        v = np.array([[0, 0, 5.0], [10, 0, 5.1], [0, 10, 5.0], [0, 0, 3.0]])
+        f = np.array([[0, 1, 2], [0, 1, 3]])
+        self.assertEqual(fin_stack.cap_flags(v, f, {"z": 5.0, "plane": (5.0, 0.01, 0.0)}).tolist(), [True, False])
+        self.assertEqual(fin_stack.cap_flags(v, f, {"z": 5.0, "plane": None}).tolist(), [False, False])
+
+    def test_thick_band_is_split_at_an_occupancy_step(self):
+        import numpy as np
+
+        sys.path.insert(0, str(SOURCE))
+        import fin_stack
+
+        grid = {"pitch_mm": 0.25, "x0": 0.0, "y0": 0.0, "z0": 0.0, "shape": [40, 40, 80]}
+        wn = np.zeros((40, 40, 80), dtype=np.float32)
+        wn[:, :, :] = 1.0                 # a 10 x 10 mm column ...
+        wn[20:, :, 40:] = 0.0             # ... that loses half its section above z = 10 mm
+        self.assertEqual(fin_stack.split_levels(wn, grid, 0.0, 19.75), [9.875])
+        self.assertEqual(fin_stack.split_levels(wn, grid, 0.0, 8.0), [])
+
+
+@unittest.skipUnless(has("numpy"), "numpy absent")
+class ScorecardTests(unittest.TestCase):
+    @unittest.skipUnless(has("warp", "trimesh"), "warp/trimesh absent")
+    def test_warp_distances_match_analytic_cube(self):
+        import numpy as np
+        import trimesh
+
+        sys.path.insert(0, str(SOURCE))
+        import score_twin
+
+        box = trimesh.creation.box(extents=(10, 10, 10))
+        pts = np.array([[0, 0, 7.0], [0, 0, 5.0], [8.0, 0, 0], [0, 0, 0]])
+        d = score_twin.warp_distances(pts, np.asarray(box.vertices), np.asarray(box.faces))
+        np.testing.assert_allclose(d, [2.0, 0.0, 3.0, 5.0], atol=1e-5)
+
+    def test_weighted_percentiles_follow_area(self):
+        import numpy as np
+
+        sys.path.insert(0, str(SOURCE))
+        import score_twin
+
+        d = np.array([0.0, 1.0])
+        w = np.array([99.0, 1.0])
+        self.assertEqual(score_twin.weighted_percentiles(d, w, (95,))["p95"], 0.0)
+
+
+if __name__ == "__main__":
+    unittest.main()
