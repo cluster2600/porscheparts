@@ -584,6 +584,97 @@ class FeatureFitTests(unittest.TestCase):
             self.assertAlmostEqual(body["cloudcompare"][key], body["scorecard_scan_to_twin"][key], delta=0.005)
 
 
+class SimReadyAssetTests(unittest.TestCase):
+    """export_simready.py on a synthetic stage, and the committed asset records."""
+
+    @unittest.skipUnless(has("numpy", "pxr", "trimesh"), "numpy/usd-core/trimesh absent")
+    def test_asset_adds_collider_material_and_package_without_touching_geometry(self):
+        import tempfile
+
+        import trimesh
+        from pxr import Sdf, Usd, UsdGeom, Vt
+
+        sys.path.insert(0, str(SOURCE))
+        import export_simready
+
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            box = trimesh.creation.box(extents=(20.0, 30.0, 10.0))
+            stage = Usd.Stage.CreateNew(str(tmp / "cad.usdc"))
+            UsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)
+            UsdGeom.SetStageMetersPerUnit(stage, 0.001)
+            root = UsdGeom.Xform.Define(stage, "/Head935")
+            stage.SetDefaultPrim(root.GetPrim())
+            Usd.ModelAPI(root.GetPrim()).SetKind("component")
+            root.GetPrim().SetCustomDataByKey("porscheparts:claims", "synthetic")
+            mesh = UsdGeom.Mesh.Define(stage, "/Head935/BareHead")
+            mesh.CreatePointsAttr(Vt.Vec3fArray.FromNumpy(box.vertices.astype("float32")))
+            mesh.CreateFaceVertexCountsAttr([3] * len(box.faces))
+            mesh.CreateFaceVertexIndicesAttr(Vt.IntArray.FromNumpy(box.faces.astype("int32").ravel()))
+            mesh.CreateSubdivisionSchemeAttr(UsdGeom.Tokens.none)
+            mesh.CreateExtentAttr([(-10, -15, -5), (10, 15, 5)])
+            mesh.CreateNormalsAttr(Vt.Vec3fArray.FromNumpy(box.face_normals.astype("float32")))
+            mesh.SetNormalsInterpolation(UsdGeom.Tokens.uniform)
+            UsdGeom.PrimvarsAPI(mesh).CreatePrimvar("displayColor", Sdf.ValueTypeNames.Color3fArray,
+                                                    UsdGeom.Tokens.constant).Set([(0.7, 0.7, 0.7)])
+            stage.GetRootLayer().Save()
+            box.export(tmp / "collider.stl")
+
+            # usd-core 25 cannot resolve the preview shaders: its registry rule fires on any
+            # UsdPreviewSurface and its shader discovery can raise. The validators are
+            # exercised from OpenUSD 26 on; everything else is checked on both.
+            import contextlib
+            from unittest import mock
+
+            legacy = Usd.GetVersion() < (0, 26, 0)
+            stub = {"validators_run": 0, "findings_by_type": {}, "error_count": 0}
+            with (mock.patch.object(export_simready, "findings", return_value=stub) if legacy
+                  else contextlib.nullcontext()):
+                export_simready.main(tmp / "cad.usdc", tmp / "collider.stl", tmp / "asset", tmp / "summary.json")
+            got = json.loads((tmp / "summary.json").read_text())
+            self.assertTrue(got["geometry_layer_is_source_stage"])
+            self.assertTrue(got["package_reads_back_identically"])
+            self.assertAlmostEqual(got["collider_volume_over_render_volume"], 1.0, places=4)
+            st = got["stage"]
+            self.assertEqual((st["default_prim"], st["up_axis"], st["meters_per_unit"]), ("/Head935", "Z", 0.001))
+            self.assertEqual((st["collider_purpose"], st["collider_approximation"]), ("guide", "convexDecomposition"))
+            self.assertTrue(st["collider_has_collision_api"])
+            self.assertEqual(st["gprims_with_bound_material"], 1)
+            self.assertFalse(st["rigid_body_or_mass_authored"])
+            for name in ("part.usda", "part.usdz"):
+                self.assertEqual(got["openusd_validation"][name]["error_count"], 0, name)
+                self.assertEqual(got["openusd_validation"][name]["validators_run"] > 0, not legacy)
+            package = Usd.Stage.Open(str(tmp / "asset" / "part.usdz"))
+            self.assertEqual(package.GetDefaultPrim().GetCustomDataByKey("porscheparts:claims"), "synthetic")
+            del package
+            with self.assertRaises(SystemExit):
+                export_simready.main(tmp / "cad.usdc", tmp / "collider.stl", tmp / "asset", tmp / "again.json")
+
+    def test_committed_asset_record_is_consistent_and_claims_no_physics(self):
+        params = TWIN / "params"
+        asset = json.loads((params / "simready-asset.json").read_text())
+        st = asset["stage"]
+        self.assertTrue(asset["geometry_layer_is_source_stage"] and asset["package_reads_back_identically"])
+        self.assertEqual(st["render_triangles"], json.loads((params / "usd-cad-summary.json").read_text())["surface_triangles"])
+        self.assertEqual((st["up_axis"], st["meters_per_unit"], st["kilograms_per_unit"]), ("Z", 0.001, 1.0))
+        self.assertTrue(st["collider_has_collision_api"])
+        self.assertFalse(st["rigid_body_or_mass_authored"])
+        self.assertAlmostEqual(asset["collider_volume_over_render_volume"], 1.0, delta=0.001)
+        self.assertIn("no physics was run", asset["claims"])
+        for name in ("part.usda", "part.usdz"):
+            self.assertEqual(asset["openusd_validation"][name]["error_count"], 0)
+            nvidia = json.loads((params / f"simready-validate-asset-{name[-4:]}.json").read_text())
+            self.assertEqual(nvidia["stage_input"]["sha256"], asset["files"][name]["sha256"])
+            severity = nvidia["stage_input"]["validation"]["issues_by_severity"]
+            self.assertEqual((severity["FAILURE"], severity["ERROR"]), (0, 0))
+            # The two warnings are the ones the CAD stage already carries; the asset adds none.
+            self.assertEqual(sorted(r["rule"] for r in nvidia["stage_input"]["validation"]["rules_with_issues"]),
+                             ["WeldChecker", "ZeroAreaFaceChecker"])
+        body = json.loads((params / "v2-body-visual-check.json").read_text())
+        self.assertFalse(body["strict_gate_passed"])
+        self.assertTrue(body["as_built"]["watertight"])
+
+
 @unittest.skipUnless(has("numpy"), "numpy absent")
 class ScorecardTests(unittest.TestCase):
     @unittest.skipUnless(has("warp", "trimesh"), "warp/trimesh absent")

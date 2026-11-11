@@ -1,0 +1,90 @@
+{
+  "schema": "935-cad-twin-simready/1",
+  "claims": "study twin; a validator pass shows a well-formed stage only: not SimReady-certified, not measured, not fitted, not functional, not released",
+  "kind": "validation of an existing stage",
+  "status": "validator_findings",
+  "tools": {
+    "python": "3.12.3",
+    "usd_validation_nvidia": "1.21.0",
+    "validator_openusd": "0.26.8",
+    "validator_rules_initialized": 42,
+    "validator_rule_names": "ArticulationChecker ColliderChecker DanglingOverPrimChecker DefaultPrimChecker ExtentsChecker IndexedPrimvarChecker KindChecker LayerSpecChecker ManifoldChecker MassChecker MaterialOldMdlSchemaChecker MaterialOutOfScopeChecker MaterialPathChecker MaterialUsdPreviewSurfaceChecker MissingReferenceChecker NormalMapTextureChecker NormalsExistChecker NormalsValidChecker NormalsWindingsChecker PhysicsJointChecker PrimEncapsulationChecker RigidBodyChecker ShaderImplementationSourceChecker SkelBindingAPIAppliedChecker StageMetadataChecker SubdivisionSchemeChecker TextureChecker TypeChecker UnicodeNameChecker UnusedMeshTopologyChecker UnusedPrimvarChecker UsdAsciiPerformanceChecker UsdDanglingMaterialBinding UsdGeomSubsetChecker UsdGeomSubsetFamiliesChecker UsdGeomSubsetParentIsImageableChecker UsdLuxSchemaChecker UsdMaterialBindingApi UsdzPackageValidator ValidateTopologyChecker WeldChecker ZeroAreaFaceChecker"
+  },
+  "stage_input": {
+    "name": "part.usda",
+    "sha256": "a4a4674be19ad792180c1832faeb88b6070a5197ed25b12a824fe84105c4ce67",
+    "bytes": 4134,
+    "stage": {
+      "default_prim": "/Head935",
+      "root_prims": [
+        "/Head935"
+      ],
+      "meters_per_unit": 0.001,
+      "meters_per_unit_authored": true,
+      "up_axis": "Z",
+      "up_axis_authored": true,
+      "kilograms_per_unit": 1.0,
+      "layer_creator": null,
+      "prims": 20,
+      "prims_including_abstract": 20,
+      "prims_by_type": {
+        "Cylinder": 10,
+        "Material": 1,
+        "Mesh": 2,
+        "Scope": 3,
+        "Shader": 2,
+        "Xform": 2
+      },
+      "meshes": 2,
+      "mesh_faces": 2669684,
+      "triangles": 2669684,
+      "non_triangle_faces": 0,
+      "mesh_points": 1334612,
+      "world_bound_from_authored_extents_stage_units": [
+        [
+          -63.0989,
+          -127.2511,
+          -0.2458
+        ],
+        [
+          54.3781,
+          119.1174,
+          138.9939
+        ]
+      ]
+    },
+    "validation": {
+      "status": "FAIL",
+      "returncode": 1,
+      "wall_seconds": 52.13,
+      "issues_by_severity": {
+        "FAILURE": 0,
+        "ERROR": 0,
+        "WARNING": 2,
+        "INFO": 0
+      },
+      "rules_with_issues": [
+        {
+          "rule": "WeldChecker",
+          "rule_status": "FAIL",
+          "issues_by_severity": {
+            "WARNING": 1
+          },
+          "first_message": "Some points are co-located and may be able to be merged.",
+          "first_at": "/Head935/BareHead"
+        },
+        {
+          "rule": "ZeroAreaFaceChecker",
+          "rule_status": "FAIL",
+          "issues_by_severity": {
+            "WARNING": 1
+          },
+          "first_message": "The mesh contains zero area faces.",
+          "first_at": "/Head935/BareHead"
+        }
+      ],
+      "raw_report_sha256": "9f485f96ab8fe1c343ce5608f4d04857a37d6891372114600e2b75dea051cd3f"
+    }
+  },
+  "wall_seconds_total": 53.88
+}

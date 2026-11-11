@@ -91,6 +91,11 @@ if [ -n "${FIT:-}" ] && [ -n "${CC_IMAGE:-}" ]; then
     --scorecard "$PARAMS/scorecard-v2-loft-s025.json" --out "$PARAMS/cloudcompare-v2-body.json"
 fi
 
+# The CAD-body stage packaged with a collider and a display material. The output
+# directory must be new. The NVIDIA validation of both forms follows below when SIM is set.
+"$PY" -I "$HERE/export_simready.py" "$PRIV/935-head-twin-cad.usdc" "$PRIV/v2-loft-sim-mc100.stl" \
+  "$PRIV/simready-asset-$STAMP" "$PARAMS/simready-asset.json"
+
 # NVIDIA tools live in two environments of their own, never in $PY:
 #   uv venv --python 3.12 "$SIM/convert";  uv pip install --python "$SIM/convert/bin/python" \
 #     --extra-index-url https://pypi.nvidia.com "usd-convert-cad==0.2.0"
@@ -108,6 +113,11 @@ if [ -n "${SIM:-}" ]; then
   MEM=4G cap "$SIM/validate/bin/python" -I "$HERE/simready_convert.py" --converter "$SIM/convert/bin/usd-convert-cad" \
     --out-dir "$PRIV/simready" --existing-stage "$PRIV/935-head-twin-cad.usdc" \
     --existing-stage-summary "$PARAMS/simready-validate-cad-stage.json" || [ $? -eq 3 ]
+  for form in usda usdz; do
+    MEM=4G cap "$SIM/validate/bin/python" -I "$HERE/simready_convert.py" --out-dir "$PRIV/simready-asset-$STAMP" \
+      --existing-stage "$PRIV/simready-asset-$STAMP/part.$form" \
+      --existing-stage-summary "$PARAMS/simready-validate-asset-$form.json" || [ $? -eq 3 ]
+  done
   for part in v1-deck-plate:v1_deck_plate:simready-deck-plate simready/step/v1-port_y_minus:v1_port_y_minus:simready-ports \
               simready/step/v1-port_y_plus:v1_port_y_plus:simready-ports; do
     IFS=: read -r step stage summary <<<"$part"
