@@ -340,7 +340,10 @@ class DownstreamContractTests(unittest.TestCase):
             s = self.load(name)
             self.assertIn("not SimReady-certified", s["claims"])
             self.assertIn(s["status"], ("passed", "validator_findings"))
-        self.assertEqual(self.load("simready-validate-t4-stage.json")["status"], "passed")
+        # The display surface rebuilt after the stud repair carries one non-manifold vertex.
+        t4 = self.load("simready-validate-t4-stage.json")["stage_input"]["validation"]
+        self.assertEqual((t4["issues_by_severity"]["FAILURE"], t4["issues_by_severity"]["ERROR"]), (0, 0))
+        self.assertEqual([r["rule"] for r in t4["rules_with_issues"]], ["ManifoldChecker"])
         cad = self.load("simready-validate-cad-stage.json")["stage_input"]["validation"]["issues_by_severity"]
         self.assertEqual((cad["FAILURE"], cad["ERROR"]), (0, 0))
 
@@ -453,6 +456,248 @@ class ShellTests(unittest.TestCase):
 
 
 @unittest.skipUnless(has("numpy"), "numpy absent")
+class FeatureFitTests(unittest.TestCase):
+    """fit_features.py and check_features.py on synthetic geometry and on the committed records."""
+
+    def setUp(self):
+        sys.path.insert(0, str(SOURCE))
+        import check_features
+        import fit_features
+        import numpy as np
+
+        self.ff, self.cf, self.np = fit_features, check_features, np
+
+    def cone_points(self, radius, half_angle_deg, offset=(0.0, 0.0), n=4000, seed=3):
+        np = self.np
+        rng = np.random.default_rng(seed)
+        t = rng.uniform(-2.0, 2.0, n)
+        theta = rng.uniform(0, 2 * np.pi, n)
+        rho = radius + np.tan(np.radians(half_angle_deg)) * t
+        return np.column_stack((offset[0] + rho * np.cos(theta), offset[1] + rho * np.sin(theta), t))
+
+    def test_about_axis_recovers_angle_diameter_and_eccentricity(self):
+        points = self.cone_points(24.5, 45.0, offset=(0.3, -0.4))
+        got = self.ff.about_axis(points, [0, 0, 0], [0, 0, 1])
+        self.assertAlmostEqual(got["half_angle_deg"], 45.0, delta=0.05)
+        # The diameter is the one at the mean station of the points, on a 45 degree cone.
+        self.assertAlmostEqual(got["diameter_mm"], 49.0 + 2.0 * got["station_mm"], delta=0.02)
+        self.assertAlmostEqual(got["eccentricity_mm"], 0.5, delta=0.01)
+        # Read the other way along the axis, the same surface closes instead of opening.
+        self.assertAlmostEqual(self.ff.about_axis(points, [0, 0, 0], [0, 0, -1])["half_angle_deg"], -45.0, delta=0.05)
+
+    def test_window_selects_a_tube_by_position_only(self):
+        np = self.np
+        points = np.array([[4.0, 0, 1.0], [4.0, 0, 9.0], [7.0, 0, 1.0], [0, 4.0, -1.0], [0.5, 0, 1.0]])
+        roi = {"seed_point": [0, 0, 0], "seed_axis": [0, 0, 2.0], "t_mm": [0, 5], "rho_mm": [3, 5]}
+        self.assertEqual(self.ff.window(points, roi).tolist(), [0])
+
+    def test_split_is_deterministic_disjoint_and_about_half(self):
+        np = self.np
+        index = np.arange(100000, 140000)
+        fitted, held = self.ff.split_halves(index)
+        again, _ = self.ff.split_halves(index[::-1])
+        self.assertEqual(set(fitted.tolist()), set(again.tolist()))
+        self.assertFalse(set(fitted.tolist()) & set(held.tolist()))
+        self.assertEqual(len(fitted) + len(held), len(index))
+        self.assertAlmostEqual(len(fitted) / len(index), 0.5, delta=0.02)
+
+    def test_choose_keeps_the_stated_kind_and_prefers_a_determined_fit(self):
+        axis = {"axis_direction": [0, 0, 1], "side": "concave"}
+        bore = {**axis, "type": "cylinder", "determined": True, "points": 300}
+        rival = {**axis, "type": "cylinder", "determined": False, "points": 900}
+        seat = {**axis, "type": "cone", "half_angle_deg": 45.0, "determined": True, "points": 500}
+        boss = {**axis, "type": "cylinder", "side": "convex", "determined": True, "points": 800}
+        tilted = {**axis, "axis_direction": [0, 0.5, 0.866], "type": "cylinder", "determined": True, "points": 999}
+        face = {"type": "plane", "normal": [0, 0, -1], "determined": True, "points": 50}
+        found = [rival, seat, boss, tilted, face, bore]
+        roi = {"seed_axis": [0, 0, 1], "side": "concave"}
+        self.assertIs(self.ff.choose(found, {**roi, "kind": "bore"}), bore)
+        self.assertIs(self.ff.choose(found, {**roi, "kind": "seat"}), seat)
+        self.assertIs(self.ff.choose(found, {**roi, "kind": "boss", "side": "convex"}), boss)
+        self.assertIs(self.ff.choose(found, {**roi, "kind": "plane", "side": "plane"}), face)
+        self.assertIs(self.ff.choose([rival], {**roi, "kind": "bore"}), rival)
+        self.assertIsNone(self.ff.choose([face], {**roi, "kind": "bore"}))
+
+    def test_two_centre_datum_points_from_the_first_centre_to_the_second(self):
+        by_id = {"a": {"fit": {"axis_point": [0, 0, 0]}}, "b": {"fit": {"axis_point": [0, 30.0, 40.0]}}, "c": {"fit": None}}
+        got = self.ff.group_datums({"g": {"line_through": ["a", "b"]}, "h": {"line_through": ["a", "c"]}}, by_id)
+        self.assertEqual(list(got), ["g"])
+        self.assertEqual(got["g"]["span_mm"], 50.0)
+        self.np.testing.assert_allclose(got["g"]["axis_direction"], [0, 0.6, 0.8], atol=1e-6)
+
+    def test_primitive_mesh_lies_on_the_primitive(self):
+        np = self.np
+        fit = {"type": "cone", "axis_point": [1.0, 2.0, 3.0], "axis_direction": [0, 0, 1], "diameter_mm": 20.0,
+               "half_angle_deg": 45.0, "station_range_mm": [-1.0, 2.0]}
+        v, f = self.cf.primitive_mesh(fit)
+        t = v[:, 2] - 3.0
+        np.testing.assert_allclose(np.hypot(v[:, 0] - 1.0, v[:, 1] - 2.0), 10.0 + t, atol=1e-9)
+        self.assertEqual((float(t.min()), float(t.max())), (-1.0, 2.0))
+        self.assertEqual(len(f), 2 * self.cf.SEGMENTS)
+        flat, _ = self.cf.primitive_mesh({"type": "plane", "point": [0, 0, 5.0], "normal": [0, 0, 1]})
+        np.testing.assert_allclose(flat[:, 2], 5.0)
+
+    def test_verdict_applies_the_fixed_acceptance(self):
+        np = self.np
+        good = np.concatenate([np.full(95, 0.05), np.full(5, 0.3), np.full(40, 2.0)])
+        poor = np.concatenate([np.full(80, 0.05), np.full(20, 0.3)])
+        self.assertTrue(self.cf.verdict(good)["confirmed"])
+        self.assertEqual(self.cf.verdict(good)["check_vertices"], 100)
+        self.assertFalse(self.cf.verdict(poor)["confirmed"])
+        self.assertFalse(self.cf.verdict(np.full(50, 0.01))["confirmed"])
+
+    def test_feature_scripts_start_in_isolated_mode(self):
+        # run_twin.sh runs every step with -I, which leaves the script directory out of
+        # sys.path: a script that imports twin_common must add that directory itself.
+        import subprocess
+
+        for name in ("fit_features.py", "check_features.py", "export_simready.py", "assemble_records.py"):
+            source = (SOURCE / name).read_text()
+            if "twin_common" in source:
+                self.assertLess(source.index("sys.path.insert(0, str(Path(__file__).resolve().parent))"),
+                                source.index("from twin_common import"), name)
+        for name in ("fit_features.py", "check_features.py"):
+            run = subprocess.run([sys.executable, "-I", str(SOURCE / name), "--help"], capture_output=True, text=True)
+            self.assertEqual(run.returncode, 0, f"{name}: {run.stderr[-300:]}")
+
+    def test_committed_fits_and_check_are_bound_and_consistent(self):
+        import hashlib
+
+        params = TWIN / "params"
+        fits = json.loads((params / "feature-fits.json").read_text())
+        check = json.loads((params / "feature-check.json").read_text())
+        self.assertEqual(fits["scan_sha256"], SCAN_SHA256)
+        self.assertEqual(fits["rois_sha256"], hashlib.sha256((params / "feature-rois.json").read_bytes()).hexdigest())
+        self.assertEqual(check["fits_sha256"], hashlib.sha256((params / "feature-fits.json").read_bytes()).hexdigest())
+        self.assertEqual(fits["tool"]["noise_mm"],
+                         json.loads((params / "frame.json").read_text())["planes"][0]["residual"]["rms_mm"])
+        self.assertEqual(check["acceptance"], {"fixed_before_first_run": True, "band_mm": self.cf.BAND_MM,
+                                               "tolerance_mm": self.cf.TOLERANCE_MM, "min_share": self.cf.MIN_SHARE,
+                                               "min_vertices": self.cf.MIN_VERTICES})
+        self.assertEqual([r["id"] for r in fits["regions"]], [r["id"] for r in check["regions"]])
+        self.assertEqual(check["confirmed"], sum(r["confirmed"] for r in check["regions"]))
+        for region, row in zip(fits["regions"], check["regions"]):
+            fit = region["fit"]
+            if fit is None:
+                self.assertFalse(row["confirmed"])
+                continue
+            self.assertEqual(row["determined_by_the_fit"], fit["determined"])
+            if not fit["determined"] and fit["type"] != "plane":
+                # Detected, not measured: no uncertainty may be quoted for it.
+                self.assertIsNone(fit["radius_sigma_mm"])
+                self.assertIsNone(fit["axis_direction_sigma_deg"])
+            if row["confirmed"]:
+                self.assertGreaterEqual(row["share_within_tolerance"], self.cf.MIN_SHARE)
+        for group, datum in fits["group_datums"].items():
+            rule = datum["rule"]
+            if "axis_of" in rule:
+                self.assertTrue(next(r for r in fits["regions"] if r["id"] == rule["axis_of"])["fit"]["determined"], group)
+
+    def test_body_cloudcompare_agrees_with_the_scorecard(self):
+        body = json.loads((TWIN / "params" / "cloudcompare-v2-body.json").read_text())
+        for key in ("p50_mm", "p95_mm"):
+            self.assertAlmostEqual(body["cloudcompare"][key], body["scorecard_scan_to_twin"][key], delta=0.005)
+        for key in ("share_within_0p1_mm", "share_within_0p2_mm", "share_within_0p5_mm"):
+            self.assertAlmostEqual(body["cloudcompare"][key], body["scorecard_scan_to_twin"][key], delta=0.005)
+
+
+class SimReadyAssetTests(unittest.TestCase):
+    """export_simready.py on a synthetic stage, and the committed asset records."""
+
+    @unittest.skipUnless(has("numpy", "pxr", "trimesh"), "numpy/usd-core/trimesh absent")
+    def test_asset_adds_collider_material_and_package_without_touching_geometry(self):
+        import tempfile
+
+        import trimesh
+        from pxr import Sdf, Usd, UsdGeom, Vt
+
+        sys.path.insert(0, str(SOURCE))
+        import export_simready
+
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            box = trimesh.creation.box(extents=(20.0, 30.0, 10.0))
+            stage = Usd.Stage.CreateNew(str(tmp / "cad.usdc"))
+            UsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)
+            UsdGeom.SetStageMetersPerUnit(stage, 0.001)
+            root = UsdGeom.Xform.Define(stage, "/Head935")
+            stage.SetDefaultPrim(root.GetPrim())
+            Usd.ModelAPI(root.GetPrim()).SetKind("component")
+            root.GetPrim().SetCustomDataByKey("porscheparts:claims", "synthetic")
+            mesh = UsdGeom.Mesh.Define(stage, "/Head935/BareHead")
+            mesh.CreatePointsAttr(Vt.Vec3fArray.FromNumpy(box.vertices.astype("float32")))
+            mesh.CreateFaceVertexCountsAttr([3] * len(box.faces))
+            mesh.CreateFaceVertexIndicesAttr(Vt.IntArray.FromNumpy(box.faces.astype("int32").ravel()))
+            mesh.CreateSubdivisionSchemeAttr(UsdGeom.Tokens.none)
+            mesh.CreateExtentAttr([(-10, -15, -5), (10, 15, 5)])
+            mesh.CreateNormalsAttr(Vt.Vec3fArray.FromNumpy(box.face_normals.astype("float32")))
+            mesh.SetNormalsInterpolation(UsdGeom.Tokens.uniform)
+            UsdGeom.PrimvarsAPI(mesh).CreatePrimvar("displayColor", Sdf.ValueTypeNames.Color3fArray,
+                                                    UsdGeom.Tokens.constant).Set([(0.7, 0.7, 0.7)])
+            stage.GetRootLayer().Save()
+            box.export(tmp / "collider.stl")
+
+            # usd-core 25 cannot resolve the preview shaders: its registry rule fires on any
+            # UsdPreviewSurface and its shader discovery can raise. The validators are
+            # exercised from OpenUSD 26 on; everything else is checked on both.
+            import contextlib
+            from unittest import mock
+
+            legacy = Usd.GetVersion() < (0, 26, 0)
+            stub = {"validators_run": 0, "findings_by_type": {}, "error_count": 0}
+            with (mock.patch.object(export_simready, "findings", return_value=stub) if legacy
+                  else contextlib.nullcontext()):
+                export_simready.main(tmp / "cad.usdc", tmp / "collider.stl", tmp / "asset", tmp / "summary.json")
+            got = json.loads((tmp / "summary.json").read_text())
+            self.assertTrue(got["geometry_layer_is_source_stage"])
+            self.assertTrue(got["package_reads_back_identically"])
+            self.assertAlmostEqual(got["collider_volume_over_render_volume"], 1.0, places=4)
+            st = got["stage"]
+            self.assertEqual((st["default_prim"], st["up_axis"], st["meters_per_unit"]), ("/Head935", "Z", 0.001))
+            self.assertEqual((st["collider_purpose"], st["collider_approximation"]), ("guide", "convexDecomposition"))
+            self.assertTrue(st["collider_has_collision_api"])
+            self.assertEqual(st["gprims_with_bound_material"], 1)
+            self.assertFalse(st["rigid_body_or_mass_authored"])
+            for name in ("part.usda", "part.usdz"):
+                self.assertEqual(got["openusd_validation"][name]["error_count"], 0, name)
+                self.assertEqual(got["openusd_validation"][name]["validators_run"] > 0, not legacy)
+            package = Usd.Stage.Open(str(tmp / "asset" / "part.usdz"))
+            self.assertEqual(package.GetDefaultPrim().GetCustomDataByKey("porscheparts:claims"), "synthetic")
+            del package
+            with self.assertRaises(SystemExit):
+                export_simready.main(tmp / "cad.usdc", tmp / "collider.stl", tmp / "asset", tmp / "again.json")
+
+    def test_committed_asset_record_is_consistent_and_claims_no_physics(self):
+        params = TWIN / "params"
+        asset = json.loads((params / "simready-asset.json").read_text())
+        st = asset["stage"]
+        self.assertTrue(asset["geometry_layer_is_source_stage"] and asset["package_reads_back_identically"])
+        self.assertEqual(st["render_triangles"], json.loads((params / "usd-cad-summary.json").read_text())["surface_triangles"])
+        self.assertEqual((st["up_axis"], st["meters_per_unit"], st["kilograms_per_unit"]), ("Z", 0.001, 1.0))
+        self.assertTrue(st["collider_has_collision_api"])
+        self.assertFalse(st["rigid_body_or_mass_authored"])
+        self.assertAlmostEqual(asset["collider_volume_over_render_volume"], 1.0, delta=0.001)
+        self.assertIn("no physics was run", asset["claims"])
+        for name in ("part.usda", "part.usdz"):
+            self.assertEqual(asset["openusd_validation"][name]["error_count"], 0)
+            nvidia = json.loads((params / f"simready-validate-asset-{name[-4:]}.json").read_text())
+            self.assertEqual(nvidia["stage_input"]["sha256"], asset["files"][name]["sha256"])
+            severity = nvidia["stage_input"]["validation"]["issues_by_severity"]
+            self.assertEqual((severity["FAILURE"], severity["ERROR"]), (0, 0))
+            # The two warnings are the ones the CAD stage already carries; the asset adds none.
+            self.assertEqual(sorted(r["rule"] for r in nvidia["stage_input"]["validation"]["rules_with_issues"]),
+                             ["WeldChecker", "ZeroAreaFaceChecker"])
+        body = json.loads((params / "v2-body-visual-check.json").read_text())
+        self.assertFalse(body["strict_gate_passed"])
+        self.assertTrue(body["as_built"]["watertight"])
+        self.assertEqual(body["as_built"]["triangles"], st["render_triangles"])
+        # The stud repair must have removed what the first reading saw.
+        self.assertLess(body["readings"][-1]["top_of_the_body_mm"], body["readings"][0]["top_of_the_body_mm"] - 15.0)
+        occ = json.loads((params / "occupancy-summary.json").read_text())
+        self.assertGreater(sum(x.get("removed_facets_beyond_the_cylinder", 0) for x in occ["studs"]), 8000)
+
+
+@unittest.skipUnless(has("numpy"), "numpy absent")
 class ScorecardTests(unittest.TestCase):
     @unittest.skipUnless(has("warp", "trimesh"), "warp/trimesh absent")
     def test_warp_distances_match_analytic_cube(self):
@@ -466,6 +711,26 @@ class ScorecardTests(unittest.TestCase):
         pts = np.array([[0, 0, 7.0], [0, 0, 5.0], [8.0, 0, 0], [0, 0, 0]])
         d = score_twin.warp_distances(pts, np.asarray(box.vertices), np.asarray(box.faces))
         np.testing.assert_allclose(d, [2.0, 0.0, 3.0, 5.0], atol=1e-5)
+
+    def test_hardware_mask_takes_the_whole_rod_cluster_above_its_fit_height(self):
+        import numpy as np
+
+        sys.path.insert(0, str(SOURCE))
+        import score_twin
+
+        rod = {"axis": [0, 0, 1.0], "point_on_axis": [0, 0, 30.0], "base_point": [0, 0, 10.0], "radius_mm": 3.5,
+               "protrusion_mm": 50.0, "radial_residual": {"rms_mm": 0.7, "max_mm": 3.0}}
+        frame = {"rods": {"beyond_cam_face": [rod]}}
+        cen = np.array([
+            [4.0, 0, 12.0],    # within 0.8 mm of the cylinder, just above the base: hardware
+            [5.5, 0, 12.0],    # a boss beside the base, below the fit height: head
+            [5.5, 0, 30.0],    # a smeared shell of the stud above the fit height: hardware
+            [6.6, 0, 30.0],    # outside the cluster envelope (3.5 + 3.0 + 0.05): head
+            [5.5, 0, 15.9],    # still below base + 6 mm: head
+        ])
+        self.assertEqual(score_twin.hardware_mask(cen, frame).tolist(), [True, False, True, False, False])
+        rod["protrusion_mm"] = 8.0          # too short to be accepted as a stud: nothing is removed
+        self.assertFalse(score_twin.hardware_mask(cen, frame).any())
 
     def test_weighted_percentiles_follow_area(self):
         import numpy as np

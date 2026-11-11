@@ -2,7 +2,7 @@
   "schema": "935-cad-twin-simready/1",
   "claims": "study twin; a validator pass shows a well-formed stage only: not SimReady-certified, not measured, not fitted, not functional, not released",
   "kind": "validation of an existing stage",
-  "status": "passed",
+  "status": "validator_findings",
   "tools": {
     "python": "3.12.3",
     "usd_validation_nvidia": "1.21.0",
@@ -12,8 +12,8 @@
   },
   "stage_input": {
     "name": "935-head-twin.usdc",
-    "sha256": "8ddfd7a6fcce55610c9130e4aa5092250910c1a942ce8e8b19defc798146eb67",
-    "bytes": 14090172,
+    "sha256": "cf7a743d746e64fe076cb4de80448ec8579ed52a0998783319942bfbbed4e22a",
+    "bytes": 14091605,
     "stage": {
       "default_prim": "/Head935",
       "root_prims": [
@@ -37,33 +37,43 @@
       "mesh_faces": 600000,
       "triangles": 600000,
       "non_triangle_faces": 0,
-      "mesh_points": 299128,
+      "mesh_points": 299141,
       "world_bound_from_authored_extents_stage_units": [
         [
-          -63.1356,
+          -63.1286,
           -127.2511,
-          -0.6034
+          -0.6104
         ],
         [
-          58.0339,
-          119.2215,
+          58.0337,
+          119.223,
           138.9939
         ]
       ]
     },
     "validation": {
-      "status": "PASS",
-      "returncode": 0,
-      "wall_seconds": 13.01,
+      "status": "FAIL",
+      "returncode": 1,
+      "wall_seconds": 8.94,
       "issues_by_severity": {
         "FAILURE": 0,
         "ERROR": 0,
-        "WARNING": 0,
+        "WARNING": 1,
         "INFO": 0
       },
-      "rules_with_issues": [],
-      "raw_report_sha256": "fdb36636e75946975b0e4039ea3ba649570f65388d4497b411fcaa28fd97403f"
+      "rules_with_issues": [
+        {
+          "rule": "ManifoldChecker",
+          "rule_status": "FAIL",
+          "issues_by_severity": {
+            "WARNING": 1
+          },
+          "first_message": "1 vertices are non-manifold.",
+          "first_at": "/Head935/BareHead"
+        }
+      ],
+      "raw_report_sha256": "0f8bacd20e04801a34569edd8d12a5b39695e9a27b04e03fe41fd14501ac6bcf"
     }
   },
-  "wall_seconds_total": 13.86
+  "wall_seconds_total": 9.73
 }

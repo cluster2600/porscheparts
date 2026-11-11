@@ -29,6 +29,14 @@ STUD_RADIUS_RANGE = (3.0, 4.5)  # mm; M8-class threaded rods fit 6.5-7.3 mm
 STUD_MAX_RADIAL_RMS = 1.0
 STUD_MIN_PROTRUSION = 12.0
 CLEAR = 0.8  # mm radial clearance used to collect stud facets
+# fit_frame.py fits each rod on every vertex standing more than this far beyond
+# its face, so above that height the rod's own cluster reaches its radius plus
+# its largest radial residual. Everything inside that envelope is the rod: the
+# studs are scanned as smeared shells up to 3.7 mm off their fitted cylinder,
+# and the 0.8 mm rule alone left 8,881 of their facets in the bare head
+# (measured on 2026-11-11: slivers up to 26 mm above the cam face).
+ROD_CLUSTER_CLEARANCE = 6.0
+ENVELOPE_MARGIN = 0.05
 
 
 def select_studs(frame):
@@ -89,6 +97,11 @@ def main(private, params, pitch="0.25"):
         t = d @ ax
         radial = np.linalg.norm(d - np.outer(t, ax), axis=1)
         sel = (radial < s["radius_mm"] + CLEAR) & (t > t_seat + 0.15)
+        t_base = float((base - c0) @ ax)
+        envelope = s["radius_mm"] + s["radial_residual"]["max_mm"] + ENVELOPE_MARGIN
+        cluster = (radial < envelope) & (t > t_base + ROD_CLUSTER_CLEARANCE) & ~sel
+        s["removed_facets_beyond_the_cylinder"] = int(cluster.sum())
+        sel |= cluster
         remove |= sel
         s["seat_level_along_axis"] = round(t_seat, 4)
         s["seat_from"] = "annulus facets" if seat is not None else "fitted face plane"
@@ -133,7 +146,8 @@ def main(private, params, pitch="0.25"):
         "scan_facets": int(len(f)),
         "hardware_facets_removed": int(remove.sum()),
         "studs": [{k: s[k] for k in ("group", "accepted", "radius_mm", "protrusion_mm", "axis", "point_on_axis",
-                                     "seat_level_along_axis", "seat_from", "removed_facets") if k in s}
+                                     "seat_level_along_axis", "seat_from", "removed_facets",
+                                     "removed_facets_beyond_the_cylinder") if k in s}
                   for s in studs],
         "inside_volume_mm3": round(inside * pitch ** 3, 1),
         "ambiguous_voxels_0p2_0p8": int(amb.sum()),

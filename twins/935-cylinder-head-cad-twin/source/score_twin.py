@@ -102,6 +102,9 @@ def hardware_mask(cen, frame):
             t = d @ ax
             radial = np.linalg.norm(d - np.outer(t, ax), axis=1)
             mask |= (radial < r["radius_mm"] + 0.8) & (t > t_base - 1.5)
+            # Beyond the height from which the rod was fitted, its whole cluster is hardware:
+            # the scanned studs are smeared shells, wider than their fitted cylinder.
+            mask |= (radial < r["radius_mm"] + r["radial_residual"]["max_mm"] + 0.05) & (t > t_base + 6.0)
     return mask
 
 

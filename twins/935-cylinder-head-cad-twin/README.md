@@ -6,23 +6,28 @@
 > geometry is closed by declared hypotheses listed in
 > [hypotheses.json](hypotheses.json); none is a measurement.
 
-## State on 2026-11-10
+## State on 2026-11-11
 
 | Body | What it is | Scan within 0.2 mm | p95 | What runs on it |
 |---|---|---|---|---|
 | T1s | reference surface: marching cubes of the occupancy, snapped onto the scan | 99.5% | 0.015 mm | thermal screen, OpenUSD stage, 3MF, AM screen |
-| **v2** | **CAD body: a loft through sections, one closed solid, regenerated from code** | **97.3%** | **0.158 mm** | thermal screen, OpenUSD stage, 3MF, all rebuilt from it |
+| **v2** | **CAD body: a loft through sections, one closed solid, regenerated from code** | **97.4%** | **0.157 mm** | thermal screen, OpenUSD stage, 3MF, all rebuilt from it; packaged with a collider and a display material as `.usda` and `.usdz` |
 | v1 | analytic features: deck plate and two port lofts as B-rep, prism stack | 69.9% | 0.846 mm | STEP → OpenUSD with the NVIDIA converter |
 
-![Share of the acquired scan area within 0.2 mm of each twin body, from 69.9% for the v1 prism stack to 97.3% for the v2 CAD body and 99.5% for the T1s reference surface](media/scorecard-bodies.png)
+![Share of the acquired scan area within 0.2 mm of each twin body, from 69.9% for the v1 prism stack to 97.4% for the v2 CAD body and 99.5% for the T1s reference surface](media/scorecard-bodies.png)
 
 Every row of the [phase ledger](#phase-ledger) is closed or closed with a
 stated blocker. What the twin still does not have:
 
 - **A B-rep of the whole body.** v2 is a triangle solid; only the deck plate
   and the two port lofts are B-rep.
-- **A valve train.** Valves, seats and guides are hypotheses (H05), so no
-  port-flow domain is admissible and no port CFD was run.
+- **A valve train.** The guides, seats, throats, plug bores and stud passages
+  are now [fitted where the scanner reached them](#machined-features-fitted-with-the-assigned-tool-checked-with-cloudcompare-windows-fits-check):
+  two valve axes, 25.9° and 29.9° from the bore axis, a guide bore of 8.51 mm
+  and seats near 45° and 49°. CloudCompare confirms 4 of the 32 fits within
+  0.2 mm, so they are nominal sizes and axes, not inspected surfaces. No
+  valve, seat insert or guide is modelled in a body (H05), no port-flow domain
+  is admissible and no port CFD was run.
 - **Any physical calibration.** Every distance is to the scan, whose scale is
   an owner instruction.
 
@@ -105,17 +110,21 @@ flowchart LR
   U --> SR
   O --> AM["AM screen<br/>supports, Adamantine"]
   V1 --> PA["Port CFD audit<br/>no admissible domain"]
+  F --> FF["Feature fit<br/>primitive_fit.py"]
+  FF --> CC["CloudCompare check<br/>held-out vertices"]
+  V2 --> CC
   H["hypotheses.json"] -.-> U
   classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
   classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
   classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
   class F,O,T1,SC,V2,TH,U,P,SR,AM ok;
-  class V1 open;
+  class V1,FF,CC open;
   class PA stop;
 ```
 
 *Diagram: the chain as run. T1s is the reference surface; v2 is the CAD body
-and feeds the same tiers; v1 holds the analytic features and stops at 69.9%.*
+and feeds the same tiers; v1 holds the analytic features and stops at 69.9%.
+The feature fit is amber because CloudCompare confirms 4 of its 32 features.*
 
 | Role | Selected tool | Script |
 |---|---|---|
@@ -136,6 +145,10 @@ and feeds the same tiers; v1 holds the analytic features and stops at 69.9%.*
 | LPBF orientation screen | NumPy voxel columns on the occupancy grid | [am_supports.py](source/am_supports.py) |
 | Cooldown screen | Adamantine 1.1.9 (`rombur/adamantine:1.1`) with an independent VTU reader | [am_cooldown.py](source/am_cooldown.py) |
 | Port-flow admissibility | reads the port fit and the hypotheses register | [audit_port_domain.py](source/audit_port_domain.py) |
+| Revolved machined features | [`primitive_fit.py`](../../benchmarks/scan-primitive-fitting/primitive_fit.py), the assigned cylinder and cone fit, in its own locked environment | [fit_features.py](source/fit_features.py) |
+| Independent deviation of each feature and of the v2 body | CloudCompare 2.13.2 in the `free-tools-cloudcompare` image, no network | [check_features.py](source/check_features.py) |
+| Asset package: collider, display material, `.usda` and `.usdz` | OpenUSD 26.11 (`UsdPhysics`, `UsdShade`, `UsdUtils`), then both validators | [export_simready.py](source/export_simready.py) |
+| Six-view render of the body, read by the agent | `preview.py` of the `cad-skill` skill (trimesh, pyrender, EGL under `xvfb-run`) | none: the script is the skill's |
 
 The private inputs and outputs live under `work/935-cad-twin/` (ignored by
 Git). Only code, fitted scalar parameters and statistics are committed, as
@@ -158,13 +171,74 @@ rebuild from the code. [run_twin.sh](source/run_twin.sh) replays the chain.
 Two short rod-like features (Ø4.6 × 7 mm and Ø6.4 × 8.7 mm proud) fail the
 stud test and stay in the body, flagged as H08.
 
+### The stud repair of 2026-11-11 ([occupancy](params/occupancy-summary.json))
+
+The first render of the v2 body showed five slivers, 1.3 to 5.1 mm wide,
+standing 18 to 26 mm above the cam face beside three of the four long
+studs. They were stud, not head. `occupancy.py` removed the facets within
+0.8 mm of each fitted stud cylinder, but the studs are scanned as smeared
+shells: their vertices lie up to 3.7 mm off the fitted cylinder (radial RMS
+0.33 to 0.81 mm). 8,881 stud facets, 497 mm², stayed in the "bare" head,
+and the winding number closed them into slivers.
+
+The rule now also removes, above the height from which `fit_frame.py` fitted
+each rod (6 mm beyond its face), every facet inside the rod's own cluster:
+its radius plus its largest radial residual. No facet lies within 3 mm
+outside that envelope on any of the ten studs, so the envelope separates
+stud from head without a tuned margin. The independent checker applies the
+same rule from `frame.json`, in its own code.
+
+```mermaid
+flowchart LR
+  R["render of the v2 body:<br/>slivers 26 mm above the cam face"] --> C["8,881 stud facets left<br/>by the 0.8 mm rule"]
+  C --> F["rule: the rod's whole cluster<br/>above its fit height"]
+  F --> O["occupancy, T1, T1s"]
+  O --> T["thermal, USD, 3MF, AM screen"]
+  O --> V["v2 body at three steps<br/>and its tiers"]
+  V --> P["CloudCompare check,<br/>package, second render"]
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  class R,C stop;
+  class F,O,T,V,P ok;
+```
+
+*Diagram: what the repair rebuilt. Everything from the occupancy field down
+was run again in a new private folder; the state before it is kept in the
+private release `935-head-cad-twin-work-20261111`.*
+
+| Quantity | Before | After |
+|---|---|---|
+| Stud facets removed | 144,731 | 153,612 |
+| Top of the body above the deck | 113.8 mm | 94.6 mm |
+| Largest scan-to-body distance (v2) | 48.5 mm | 5.5 mm |
+| v2 body, scan within 0.2 mm / p95 | 97.31% / 0.1579 mm | 97.37% / 0.1572 mm |
+| Thermal minimum, 1.0 / 0.75 mm surface | 146.6 / 127.5 °C, not converged | 154.3 / 154.6 °C |
+| Deck-up support envelope | 883,849 mm³ | 511,388 mm³ |
+| Edges shared by more than two faces once welded (v2) | 23 | 5 |
+
+Two earlier readings were the residue and not the head: the thermal minimum
+"on thin fin tips", and the scan facets up to 48 mm from every body.
+
+Not rebuilt, and kept as measured before the repair: the v1 runs a to h,
+their scorecards and error breakdown, the T2 slab, the deck plate and the
+two port lofts with their SimReady conversions, and the fTetWild and
+decimation trials. The fin faces and the port sections were fitted again:
+the fin levels moved by at most 0.003 mm and the port section radii by at
+most 0.06 mm. The v1 bodies were built from the earlier fits.
+One enclosed "cavity" of 7,393 mm³ on the cam side is gone from the port
+fit: the stud residue had closed it.
+
+What the repair does not reach: below the fit height the 0.8 mm rule still
+applies, and stubs up to 5.5 mm tall remain beside three studs. The two
+short rods of H08 are unchanged.
+
 ### T1 closed bare-head surface
 
-The libigl winding-number field at 0.25 mm gives 1,095,128 mm³ inside. Of
-that, 239,664 mm³ of voxels have 0.2 < w < 0.8: the surface transition band
+The libigl winding-number field at 0.25 mm gives 1,094,498 mm³ inside. Of
+that, 238,787 mm³ of voxels have 0.2 < w < 0.8: the surface transition band
 plus the unobserved regions. Marching cubes yields a single **watertight,
-consistently wound** surface of 7.08 M triangles enclosing 1,095,597 mm³.
-Its genus is 437, far above what a real head needs: closure handles in the
+consistently wound** surface of 7.05 M triangles enclosing 1,094,988 mm³.
+Its genus is 430, far above what a real head needs: closure handles in the
 unobserved fin gaps and passages, part of the H01/H02/H04 footprint.
 
 ### Independent scorecard ([scorecard-t1.json](params/scorecard-t1.json))
@@ -195,32 +269,32 @@ sequenceDiagram
 
 | Metric | T1 |
 |---|---|
-| Acquired scan area within 0.1 mm of the twin | 89.5% |
-| Acquired scan area within 0.2 mm of the twin | **99.4%** of 146,967 mm² (studs excluded) |
-| Scan → twin distance | median 0.044, p95 0.118, p99 0.166 mm |
-| Twin area supported by the scan (≤ 0.2 mm) | **87.9%** |
-| Twin area inferred (hypotheses) | 12.1%, 21,450 mm² |
-| Warp vs trimesh oracle on 5,000 samples | max difference 1.2e-5 mm |
+| Acquired scan area within 0.1 mm of the twin | 89.7% |
+| Acquired scan area within 0.2 mm of the twin | **99.5%** of 146,470 mm² (studs excluded) |
+| Scan → twin distance | median 0.043, p95 0.117, p99 0.163 mm |
+| Twin area supported by the scan (≤ 0.2 mm) | **88.0%** |
+| Twin area inferred (hypotheses) | 12.0%, 21,179 mm² |
+| Warp vs trimesh oracle on 5,000 samples | max difference 1.3e-5 mm |
 
 The 0.1 mm residual of T1 is the 0.25 mm voxel pitch, not the scan. By
-zone, the deck, fin and cam bands score alike (p95 0.114–0.130 mm).
+zone, the deck, fin and cam bands score alike (p95 0.113–0.129 mm).
 
 ### T1s: observed vertices snapped onto the scan ([summary](params/t1s-snap-summary.json), [scorecard](params/scorecard-t1s.json))
 
 [snap_surface.py](source/snap_surface.py) moves each T1 vertex whose closest
-scan point is within 0.3 mm onto that point (2.97 M of 3.54 M vertices),
+scan point is within 0.3 mm onto that point (2.97 M of 3.52 M vertices),
 rejecting any triangle that would turn by more than 60°. It runs until
-rejection converges (34 rounds). Snapping both sides of the thinnest walls
-folded 4,722 faces, so
+rejection converges (17 rounds). Snapping both sides of the thinnest walls
+folded 4,053 faces, so
 [unsnap_intersections.py](source/unsnap_intersections.py) returns those
 vertices and one ring around them to T1 until pymeshlab finds no
-self-intersection (3 rounds, 6,363 vertices). Connectivity never changes.
+self-intersection (4 rounds, 5,745 vertices). Connectivity never changes.
 
 | Metric | T1 | **T1s** |
 |---|---|---|
-| Scan area within 0.1 mm | 89.5% | **99.0%** |
-| Scan → twin p95 | 0.118 mm | **0.015 mm** |
-| Twin area supported by the scan | 87.9% | 87.4% |
+| Scan area within 0.1 mm | 89.7% | **99.1%** |
+| Scan → twin p95 | 0.117 mm | **0.015 mm** |
+| Twin area supported by the scan | 88.0% | 87.5% |
 | Watertight, consistent winding, self-intersections | yes, yes, 0 | yes, yes, 0 |
 
 T1s is the reference twin surface.
@@ -230,22 +304,26 @@ T1s is the reference twin surface.
 Declared hypothesis case, uncorrelated with any engine: generic cast
 aluminium (k = 150 W/m·K), chamber wall fixed at 220 °C, every other face
 cooled by air at 40 °C with h = 80 W/m²·K. Mesh: Gmsh HXT inside the
-marching-cubes surface of the occupancy field coarsened to 1.0 mm (400k
-triangles, watertight, genus 9). Solver: CalculiX 2.21, iterative Cholesky.
+marching-cubes surface of the occupancy field coarsened to 1.0 mm (399k
+triangles, watertight, genus 10). Solver: CalculiX 2.21, iterative Cholesky.
 
 | Quantity | 1.0 mm surface | 0.75 mm surface |
 |---|---|---|
-| Tetrahedra / nodes | 4,949,566 / 892,919 | 9,611,548 / 1,721,933 |
-| Elements with minSICN < 0.1 (none inverted) | 0.41% | 0.37% |
-| Temperature min / mean / p95 / max (°C) | 146.6 / 189.3 / 214.6 / 220.0 | 127.5 / 188.3 / 214.5 / 220.0 |
-| Heat entering at the chamber | 1,643.4 W | 1,680.1 W |
-| Convective loss recomputed independently | 1,648.0 W (0.28%) | 1,683.3 W (0.19%) |
+| Tetrahedra / nodes | 4,928,248 / 889,267 | 9,603,449 / 1,720,334 |
+| Elements with minSICN < 0.1 (none inverted) | 0.41% | 0.36% |
+| Temperature min / mean / p95 / max (°C) | 154.3 / 189.3 / 214.6 / 220.0 | 154.6 / 188.3 / 214.5 / 220.0 |
+| Heat entering at the chamber | 1,641.7 W | 1,679.4 W |
+| Convective loss recomputed independently | 1,646.3 W (0.28%) | 1,682.6 W (0.19%) |
 
-Global quantities agree between the levels: mean within 0.5%, p95 within
-0.04%, heat within 2.2%. The minimum moves by 19 °C. The finer surface
-resolves thinner fin tips, so the coldest point depends on geometry
-resolution and is **not converged**. Both the surface and the mesh change
-between levels, so this is a resolution check rather than a pure mesh study.
+The levels agree: mean within 0.5%, p95 within 0.03%, heat within 2.3%, and
+the minimum within 0.3 °C. Both the surface and the mesh change between
+levels, so this is a resolution check rather than a pure mesh study.
+
+Until 2026-11-11 the minimum read 146.6 and 127.5 °C and was recorded as not
+converged, on "thin fin tips". It sat on the stud residue described under
+[the stud repair](#the-stud-repair-of-2026-11-11-occupancy): slivers a few millimetres
+wide standing 26 mm clear of the head. With the studs properly removed the
+two levels give 154.3 and 154.6 °C.
 
 The first attempt failed because the deck used node set `NALL` before
 defining it ([attempt 1](params/thermal-attempt-1.json)). The deck writer now
@@ -255,14 +333,17 @@ defines it. fTetWild was stopped after 2 h 42 min of CPU without output.
 
 `/Head935` (Z-up, millimetres) holds:
 
-- the T1s display surface (600,000 triangles on 299,128 welded points) with
+- the T1s display surface (600,000 triangles on 299,141 welded points) with
   one authored normal per face and an indexed per-face colour: grey is
-  observed, orange inferred (12.8% of area);
+  observed, orange inferred (12.7% of area);
 - the 10 studs as hardware cylinders;
 - the datums as customData.
 
-All 30 OpenUSD 26 validators report no finding, and the NVIDIA validator
-(42 rules) passes with no issue. The first stage, written on 2026-11-09,
+All 30 OpenUSD 26 validators report no finding. The NVIDIA validator
+(42 rules) reports no failure or error and one warning: one non-manifold
+vertex in the decimated display surface. The stage of 2026-11-10, decimated
+from the surface that still carried the stud residue, passed with no issue;
+the warning is left as measured. The first stage, written on 2026-11-09,
 passed the OpenUSD validators but failed the NVIDIA ones: no normals on a
 mesh without subdivision, three points per triangle, and an unindexed
 colour. [export_usd.py](source/export_usd.py) now welds the points, authors
@@ -270,9 +351,9 @@ the normals and indexes the colour.
 
 ### T5 print study ([print-summary.json](params/print-summary.json))
 
-A single-object 3MF of T1s in millimetres: 7,081,318 triangles, watertight,
+A single-object 3MF of T1s in millimetres: 7,050,948 triangles, watertight,
 consistent winding. A streaming re-read gives exactly the same volume
-(1,095,212.3 mm³). The file is labelled as a fit-check study object, never
+(1,094,605.2 mm³). The file is labelled as a fit-check study object, never
 an engine part or a metal build file.
 
 ### T2 editable B-rep: measured negative result
@@ -347,8 +428,8 @@ kept with its summary and scorecard (`params/v1-body-stack-<run>-summary.json`,
 | h | trial: interpolated sketches only | shell | 0.10 mm | 0.86 mm | 69.7% | 88.1% | 96.8% | 59.7% |
 
 The first five columns are scan → twin on the whole acquired surface
-(146,967 mm², studs excluded). **Run f is the last v1 run**; the CAD body is
-now v2, below. Runs a to h were built with a `slice_region` that dropped
+(146,967 mm², studs excluded by the rule in force before the stud repair).
+**Run f is the last v1 run**; the CAD body is now v2, below. Runs a to h were built with a `slice_region` that dropped
 every island standing inside a hole: the land inside the sealing groove and
 the valve-guide bosses in the spring pockets are missing from them. They are
 kept as measured and have not been repeated.
@@ -410,7 +491,7 @@ What each step found:
 
 Each loft stops where its section stops being a tube, before the valve pocket.
 The unseen share of each wall is winding-number closure, i.e. hypothesis H04.
-The section profiles are geometry and stay private. The other 8 enclosed
+The section profiles are geometry and stay private. The other 7 enclosed
 cavities above 5,000 mm³ (two of them sit on stud passages) give no run
 of closed sections and are not lofted: they are open pockets, not tubes, and
 need a different feature.
@@ -502,28 +583,28 @@ a band already 0.125 mm thin becomes a stair step.*
 
 | Sections at most | Bands (split) | Ring length ruled | p50 | p95 | Within 0.1 mm | Within 0.2 mm | Within 0.5 mm | Triangles |
 |---|---|---|---|---|---|---|---|---|
-| 1.0 mm apart | 175 (35) | 94.9% | 0.052 mm | 0.294 mm | 76.3% | 91.4% | 98.2% | 1.67 M |
-| 0.5 mm apart | 277 (46) | 95.7% | 0.048 mm | 0.191 mm | 81.1% | 95.4% | 99.4% | 1.84 M |
-| **0.25 mm apart** | 481 (0) | 96.8% | 0.046 mm | **0.158 mm** | 84.5% | **97.3%** | 99.5% | 2.27 M |
+| 1.0 mm apart | 157 (36) | 94.9% | 0.052 mm | 0.291 mm | 76.4% | 91.4% | 98.3% | 1.68 M |
+| 0.5 mm apart | 241 (48) | 95.7% | 0.048 mm | 0.190 mm | 81.2% | 95.5% | 99.5% | 1.85 M |
+| **0.25 mm apart** | 410 (0) | 96.8% | 0.045 mm | **0.157 mm** | 84.6% | **97.4%** | 99.6% | 2.26 M |
 | v1 run f, for comparison | 69 | none | 0.099 mm | 0.846 mm | 50.2% | 69.9% | 88.3% | |
-| T1, for comparison | | | 0.044 mm | 0.118 mm | 89.5% | 99.4% | 99.8% | 7.08 M |
+| T1, for comparison | | | 0.043 mm | 0.117 mm | 89.7% | 99.5% | 99.8% | 7.05 M |
 
 All three bodies are watertight, consistently wound single solids, and the
 checker's oracle agrees within 5e-5 mm on each. **The 0.25 mm body is the
-reference CAD body**: 1,096,036 mm³ against 1,095,128 mm³ in the occupancy
-field (+0.08%), genus 108, and p95 0.134 / 0.163 / 0.159 mm in the deck, fin
+reference CAD body**: 1,095,426 mm³ against 1,094,498 mm³ in the occupancy
+field (+0.08%), genus 112, and p95 0.134 / 0.162 / 0.158 mm in the deck, fin
 and cam zones.
 
 Where the reference body still misses, in points of the whole scan area:
 
 | Surface class (facet normal) | Scan area | Within 0.2 mm | Points outside 0.2 mm | Points outside 0.5 mm |
 |---|---|---|---|---|
-| up-facing horizontal | 21.0% | 94.9% | 1.07 | 0.11 |
-| sloped | 39.1% | 98.4% | 0.64 | 0.16 |
-| vertical walls | 24.8% | 97.2% | 0.70 | 0.21 |
+| up-facing horizontal | 21.1% | 94.9% | 1.08 | 0.11 |
+| sloped | 39.2% | 98.5% | 0.61 | 0.12 |
+| vertical walls | 24.6% | 97.3% | 0.66 | 0.18 |
 | down-facing horizontal | 15.1% | 98.2% | 0.28 | 0.01 |
 
-The sloped class, 15.3 points outside 0.2 mm in run f, is down to 0.64. The
+The sloped class, 15.3 points outside 0.2 mm in run f, is down to 0.61. The
 largest remaining class is the up-facing cast surfaces, which sit between two
 sections.
 
@@ -546,25 +627,29 @@ Found on the way, each measured:
 - **Small unpaired holes.** A hole with no partner, under a wall that leans
   over it, made the polygon invalid and the whole polygon fell back to a
   prism: 27% of ring length. The polygon is now ruled without such holes and
-  each is subtracted as a prism (144 holes in the reference body).
+  each is subtracted as a prism (143 holes in the reference body).
 - **Needle triangles and the checker.** Long straight walls and the caps of the
   union gave triangles tens of millimetres long and a fraction of a millimetre
   wide. The checker's single-precision kernel lost up to 0.02 mm on them and
   its oracle failed. Section edges are now at most 1 mm and body edges at most
   2 mm; the surface does not move and the scores are unchanged.
-- **Rejected: flipping edges to remove flat triangles.** It changed the genus
-  from 108 to 107, so it is not used. 22 triangles without area remain.
+- **Rejected: flipping edges to remove flat triangles.** On the body of
+  2026-11-10 it changed the genus from 108 to 107, so it is not used. 35
+  triangles without area remain in the reference body.
 
 Limits of the v2 body:
 
-- **Its surface area is 14% above the reference surface** (193,532 against
-  169,097 mm² for T1s), and 81.8% of it is supported by the scan against
-  87.4%. Stair steps remain where rings are unpaired, mostly in unobserved
+- **Its surface area is 14% above the reference surface** (192,794 against
+  168,408 mm² for T1s), and 81.9% of it is supported by the scan against
+  87.5%. Stair steps remain where rings are unpaired, mostly in unobserved
   regions where the occupancy contour changes from one section to the next.
   Anything that integrates over the raw surface inherits that excess.
-- **88 detached pieces (81 mm³ in total) are dropped** and 77 enclosed voids
-  (378 mm³) are kept. 0.18% of the scan area is farther than 1 mm from the
-  body, against 0.10% for T1.
+- **83 detached pieces (66 mm³ in total) are dropped** and 76 enclosed voids
+  (370 mm³) are kept. 0.13% of the scan area is farther than 1 mm from the
+  body, against 0.06% for T1.
+- **It keeps stud stubs and touches itself at four points.** See the visual
+  check under the package section: stubs up to 5.5 mm tall beside three
+  removed studs, and 5 non-manifold edges for any tool that welds vertices.
 - **It is a triangle solid, not a B-rep.** It regenerates from the code and
   the parameters in about three minutes. As a B-rep it would need one face
   per wall triangle, about 3 million for the reference body, so no STEP is
@@ -583,18 +668,17 @@ on the lattice of the scan occupancy; its volume matches the solid within
 
 | Thermal screen, 1.0 mm surface | From the scan occupancy (T3) | From the v2 CAD body |
 |---|---|---|
-| Surface triangles / genus / volume | 400,022 / 9 / 1,097,350 mm³ | 397,604 / 9 / 1,096,164 mm³ |
-| Tetrahedra / nodes | 4,949,566 / 892,919 | 4,541,848 / 827,483 |
+| Surface triangles / genus / volume | 399,142 / 10 / 1,096,788 mm³ | 396,244 / 8 / 1,095,610 mm³ |
+| Tetrahedra / nodes | 4,928,248 / 889,267 | 4,542,800 / 827,179 |
 | Elements with minSICN < 0.1 (none inverted) | 0.41% | 0.56% |
-| Temperature min / mean / p95 / max (°C) | 146.6 / 189.3 / 214.6 / 220.0 | 141.4 / 188.7 / 214.7 / 220.0 |
-| Heat entering at the chamber | 1,643.4 W | 1,638.9 W |
-| Convective loss recomputed independently | 1,648.0 W (0.28%) | 1,643.5 W (0.28%) |
-| Cooled area | 142,943 mm² | 142,617 mm² |
+| Temperature min / mean / p95 / max (°C) | 154.3 / 189.3 / 214.6 / 220.0 | 155.7 / 188.8 / 214.7 / 220.0 |
+| Heat entering at the chamber | 1,641.7 W | 1,635.8 W |
+| Convective loss recomputed independently | 1,646.3 W (0.28%) | 1,640.4 W (0.28%) |
+| Cooled area | 142,664 mm² | 142,166 mm² |
 
 The CAD body reproduces the scan-derived screen: the mean differs by
-0.56 °C, the 95th percentile by 0.11 °C, the heat by 0.28% and the cooled
-area by 0.23%. The minimum differs by 5.2 °C; it sits on thin fin tips and
-was already not converged between the two scan-derived levels. Same declared
+0.53 °C, the 95th percentile by 0.12 °C, the minimum by 1.4 °C, the heat by
+0.36% and the cooled area by 0.35%. Same declared
 hypothesis case, uncorrelated with any engine. Passing through the 1.0 mm
 surface also removes the stair steps, which is why the 14% area excess of the
 raw body does not appear here.
@@ -606,16 +690,77 @@ refused the surface. The level is now 31.5/64 for such a grid.
 | Tier | From T1s | From the v2 CAD body |
 |---|---|---|
 | OpenUSD stage, 30 OpenUSD validators | 0 findings | 0 findings |
-| OpenUSD stage, NVIDIA validator (42 rules) | pass, 0 issues | 0 failures, 0 errors, 2 warnings |
-| Stage mesh | 600,000 triangles, 12.8% of area inferred | 2,272,080 triangles, 18.1% inferred |
-| 3MF study | 7,081,318 triangles, watertight, exact round trip | 2,272,080 triangles, watertight, exact round trip (1,096,036.1 mm³) |
+| OpenUSD stage, NVIDIA validator (42 rules) | 0 failures, 0 errors, 1 warning | 0 failures, 0 errors, 2 warnings |
+| Stage mesh | 600,000 triangles, 12.7% of area inferred | 2,262,390 triangles, 18.0% inferred |
+| 3MF study | 7,050,948 triangles, watertight, exact round trip | 2,262,390 triangles, watertight, exact round trip (1,095,426.1 mm³) |
 
-The two warnings on the CAD stage are the 22 triangles without area and
+The two warnings on the CAD stage are the 35 triangles without area and
 points that coincide in single precision
 ([report](params/simready-validate-cad-stage.json)). They are left as
 measured: removing the triangles would open the surface. The 3MF is written
 from the double-precision body; written from its single-precision STL, the
 read-back was not watertight.
+
+### The CAD body as a simulation-ready package ([asset](params/simready-asset.json), [NVIDIA: usda](params/simready-validate-asset-usda.json), [usdz](params/simready-validate-asset-usdz.json), [visual check](params/v2-body-visual-check.json))
+
+The CAD-body stage is geometry with evidence colours. A physics or rendering
+application also expects a collider, a bound material and one file to load.
+[export_simready.py](source/export_simready.py) adds them in a text root layer
+and leaves the geometry layer byte for byte as it was:
+
+```mermaid
+flowchart LR
+  G["geometry.usdc<br/>CAD-body stage, unchanged"] --> R["part.usda<br/>metadata, material,<br/>collision schemas"]
+  C["collider.usdc<br/>1.0 mm closed surface"] --> R
+  R --> Z["part.usdz<br/>one package"]
+  R --> V1["30 OpenUSD validators"]
+  Z --> V1
+  R --> V2["NVIDIA validator<br/>42 rules"]
+  Z --> V2
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  class G,C,R,Z,V1 ok;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+  class V2 open;
+```
+
+*Diagram: the package is three layers. The NVIDIA box is amber for the two
+warnings the geometry layer already carried; the package adds none.*
+
+| Item | In the package |
+|---|---|
+| Stage | default prim `/Head935`, kind component, Z-up, 0.001 m per unit, 1 kg per unit |
+| Render mesh | `BareHead`, 2,262,390 triangles, one normal per face, evidence colours |
+| Material | `Looks/EvidenceDisplay`, a `UsdPreviewSurface` that reads the evidence colour; bound to the body and the 10 studs |
+| Collider | `Collision/BareHead`, guide purpose, 396,244 triangles (the 1.0 mm surface of the thermal screen), `UsdPhysics` collision with convex decomposition; volume 1.00017 of the render body |
+| OpenUSD validators (30) | no finding on `part.usda` or on `part.usdz` |
+| NVIDIA validator (42 rules) | 0 failures, 0 errors, 2 warnings on each: 35 triangles without area and co-located points, both on `BareHead` and both inherited |
+| Read back from the `.usdz` | identical to the layers |
+
+Not authored, on purpose: **no mass, density or rigid body**, because the
+alloy is unknown, and **no physical material**. The bound material displays
+the observed and inferred classes; it is not a material of the part. No
+physics was run on the package, and the NVIDIA skill named for this step
+(`omniverse-cad-to-sim-ready`) is not installed on the host, so its rules
+were not consulted.
+
+**Visual check.** The six-view render shows a recognisable head: fins, both
+ports, spring pockets with guide bosses, the chamber with two throats and
+two plug bores, four stud bosses. The first render, on 2026-11-11, also
+showed what the scores did not: five slivers standing up to 26 mm above the
+cam face. They led to [the stud repair](#the-stud-repair-of-2026-11-11-occupancy); the
+figures below are from the body rebuilt after it.
+
+- **Stud residue is down to stubs.** Nothing stands more than 5.5 mm above
+  the cam face beside the studs, against 26 mm before. The stubs sit below
+  the height from which the studs were fitted, where the repair does not
+  reach, beside three of the four long studs.
+- **The renderer's strict gate still refuses the body.** Its loader welds
+  vertices and drops degenerate triangles before testing. As built the body
+  is watertight (2,262,390 triangles); after trimesh's default processing 4
+  vertices merge and 5 edges are shared by more than two faces, against 10
+  and 23 before the repair. The solid touches itself at those points. A
+  slicer or mesher that welds will see the same thing; the 3MF and the
+  thermal surface were built without welding.
 
 ### SimReady tools: STEP → OpenUSD and NVIDIA validation ([deck plate](params/simready-deck-plate.json), [ports](params/simready-ports.json))
 
@@ -668,22 +813,25 @@ enclosed sphere, a vented sphere) are reproduced within 2.5%.
 
 | Build direction | Height | Overhang below 45° | Support envelope (÷ part volume) | Lands on plate / on part |
 |---|---|---|---|---|
-| deck down (+Z) | 114.5 mm | 38,101 mm² | 444,050 mm³ (0.41) | 275,941 / 168,109 mm³ |
-| deck up (−Z) | 114.5 mm | 40,739 mm² | 883,849 mm³ (0.81) | 719,551 / 164,298 mm³ |
-| flange y− down (+Y) | 232.0 mm | 15,227 mm² | 468,613 mm³ (0.43) | 244,008 / 224,605 mm³ |
-| flange y+ down (−Y) | 232.0 mm | 14,105 mm² | 494,895 mm³ (0.45) | 272,471 / 222,423 mm³ |
-| side x− down (+X) | 121.25 mm | 23,614 mm² | 422,393 mm³ (0.39) | 173,121 / 249,273 mm³ |
-| side x+ down (−X) | 121.25 mm | 23,144 mm² | 473,250 mm³ (0.43) | 220,500 / 252,750 mm³ |
+| deck down (+Z) | 95.25 mm | 38,109 mm² | 444,124 mm³ (0.41) | 275,936 / 168,188 mm³ |
+| deck up (−Z) | 95.25 mm | 40,779 mm² | 511,388 mm³ (0.47) | 347,079 / 164,309 mm³ |
+| flange y− down (+Y) | 229.0 mm | 15,002 mm² | 423,397 mm³ (0.39) | 205,339 / 218,057 mm³ |
+| flange y+ down (−Y) | 229.0 mm | 13,897 mm² | 473,952 mm³ (0.43) | 252,287 / 221,665 mm³ |
+| side x− down (+X) | 121.25 mm | 23,492 mm² | 418,503 mm³ (0.38) | 169,079 / 249,424 mm³ |
+| side x+ down (−X) | 121.25 mm | 23,034 mm² | 466,010 mm³ (0.43) | 213,110 / 252,900 mm³ |
 
 - The overhang area agrees with a separate count on the T1s triangles within
-  +0.3% to −8.8%.
-- Enclosed volume is 10.1 mm³ in 185 voids, the largest 1.0 mm³: the ports
+  +0.2% to −8.8%.
+- Enclosed volume is 10.0 mm³ in 184 voids, the largest 1.0 mm³: the ports
   and pockets are open to the outside. On a 0.5 mm grid the figure is
-  54.5 mm³, so it depends on the pitch.
-- Between 19% (deck up) and 59% (side x− down) of the support envelope
+  54.8 mm³, so it depends on the pitch.
+- Between 32% (deck up) and 60% (side x− down) of the support envelope
   lands on the part itself, not on the plate.
 - The flange directions do not put the flange on the plate: the named faces
-  sit 8.6 and 33.7 mm above the lowest point.
+  sit 5.6 and 33.7 mm above the lowest point.
+- Before the stud repair the deck-up envelope read 883,849 mm³ (0.81 of the
+  part volume): the columns under the stud residue, 114.5 mm tall, made up
+  the difference.
 
 [am_cooldown.py](source/am_cooldown.py) runs 20 s of convective cooldown in
 Adamantine on hexahedra of the occupancy, from a uniform 500 K into 300 K
@@ -693,17 +841,17 @@ files only.
 
 | At 20 s | 4 mm hexahedra | 2 mm hexahedra |
 |---|---|---|
-| Hexahedra / nodes | 16,950 / 22,091 | 137,422 / 161,058 |
-| Volume | 1,084,800 mm³ | 1,099,376 mm³ |
-| Exterior area | 162,208 mm² | 188,248 mm² |
-| Mean temperature | 495.09 K | 494.39 K |
+| Hexahedra / nodes | 16,944 / 22,078 | 137,344 / 160,912 |
+| Volume | 1,084,416 mm³ | 1,098,752 mm³ |
+| Exterior area | 162,048 mm² | 187,832 mm² |
+| Mean temperature | 495.09 K | 494.40 K |
 | Largest displacement | 0.018 mm | 0.021 mm |
 | Energy imbalance | 1.1e-4 | 1.5e-4 |
 
 - The mean temperature follows the discrete area over volume, and the
-  stair-step area does not converge: it is 4.1% below the T1s area at 4 mm
-  and 11.3% above it at 2 mm. A lumped estimate on the T1s surface gives
-  494.93 K, between the two. The difference between the levels is therefore
+  stair-step area does not converge: it is 3.8% below the T1s area at 4 mm
+  and 11.5% above it at 2 mm. A lumped estimate on the T1s surface gives
+  494.94 K, between the two. The difference between the levels is therefore
   not a discretisation error estimate.
 - The solver's von Mises maximum rose 40% with refinement (25.8 to 36.2 MPa).
   It sits at re-entrant voxel corners and is not a stress.
@@ -711,6 +859,128 @@ files only.
 - The image tagged 1.1 holds source version 1.1.9; this is not the native
   build of the 2026-10-29 study, and that study's body still had its studs,
   so the two are not comparable like for like.
+
+### Machined features: fitted with the assigned tool, checked with CloudCompare ([windows](params/feature-rois.json), [fits](params/feature-fits.json), [check](params/feature-check.json))
+
+Until 2026-11-10 the repository had no assigned tool for fitting a bore or a
+valve seat to a scan, and the twin's own circle fits were the only numbers on
+its machined features. [fit_features.py](source/fit_features.py) now runs the
+assigned tool on 32 windows of the acquired scan: one tube per feature, drawn
+by hand on radius-against-station plots and selecting points by position
+only. The noise given to the tool is the RMS of the deck plane, 0.040 mm.
+Half of the vertices of each window are fitted. The other half goes to
+[check_features.py](source/check_features.py), where CloudCompare measures it
+against the fitted primitive.
+
+```mermaid
+flowchart LR
+  W["32 windows<br/>(tubes about seed axes)"] --> H{"hash of the<br/>vertex index"}
+  H -->|"half"| FIT["primitive_fit.py<br/>cylinder or cone, own sigma"]
+  H -->|"other half"| CC["CloudCompare<br/>distance to the primitive"]
+  FIT --> PRIM["fitted primitive"]
+  PRIM --> CC
+  FIT --> DET{"determined<br/>by the fit?"}
+  DET -->|"25"| M["fitted, with sigma"]
+  DET -->|"7"| D["detected,<br/>no sigma"]
+  CC --> ACC{"90% of held-out vertices<br/>within 0.2 mm?"}
+  ACC -->|"4"| OK["confirmed"]
+  ACC -->|"28"| NO["not confirmed"]
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  class OK,M ok;
+  class D open;
+  class NO stop;
+```
+
+*Diagram: every window is split before fitting, so the check never measures a
+vertex the fit saw. The acceptance was fixed before the first check run.*
+
+**The check, first.** A feature is confirmed when at least 90% of its
+held-out vertices within 0.5 mm of the primitive lie within 0.2 mm, the
+twin's tolerance. **4 of 32 pass**: the throat and the seat of `valve_y_plus`
+and the two plug seat faces. The other 28 hold between 63% and 90% within
+0.2 mm, with a median distance of 0.03 to 0.13 mm and a 95th percentile of
+0.29 to 0.46 mm. The fit's own residual, 0.03 to 0.06 mm RMS, does not show
+this: it only counts the vertices inside its 0.12 mm band. The numbers below
+are therefore nominal sizes and axes of the scanned features. None is an
+inspected surface, and the tool's standard deviations are lower bounds.
+
+**Valve train**, in the twin frame. The valves are named by flange side;
+which one is the intake is not established.
+
+| | `valve_y_minus` | `valve_y_plus` |
+|---|---|---|
+| Axis datum | guide bore, acquired at both ends, one cylinder over 48.8 mm | line through the throat centre and the cam-end guide centre, 65.9 mm apart |
+| Axis to the bore axis | 25.89° | 29.89° |
+| Guide bore | Ø8.51 mm (σ 0.008 mm) | Ø8.55 mm about the datum, cam end only |
+| Guide outside diameter, cam end | Ø12.89 mm | Ø13.02 mm about the datum |
+| Throat | Ø45.81 mm, detected only: a barrel profile that five rival cones share | Ø38.45 mm, 1.9° cone, **confirmed** |
+| Seat | cone of 45.5° ± 0.14° about its own axis, 46.6° about the guide axis, Ø49.0 mm at mid-band | 49.0°, Ø43.1 mm, detected only, **confirmed** |
+| Seat centre off the valve axis | 0.46 mm | 0.36 mm |
+| Spring seat normal to the valve axis | 0.30° | 1.61° |
+
+The two valve axes make 55.76° with each other.
+
+- **Only one guide bore is seen at both ends.** On `valve_y_plus` the port
+  end of the guide is not acquired, and its cam-end features, 8 to 11 mm
+  long, point 3.2° to 4.3° away from the line through the two centres while
+  reporting 0.4° to 1.3°. The same two-centre construction on `valve_y_minus`
+  lies 0.42° from its guide bore axis, so the `valve_y_plus` axis is good to
+  about half a degree, not to the 0.02° of the other valve.
+- **This scan does not give seat run-out.** The seat centres sit 0.36 and
+  0.46 mm from their valve axes, the plug wells 0.67 and 0.77 mm from their
+  thread bores. A band 3.8 mm long cannot tell an offset from a tilt, and the
+  scan locates one small feature against another to a few tenths of a
+  millimetre at best. A valve job needs the specimen on a bench.
+
+**Plugs, studs and register.**
+
+| Feature | Fitted on the scan |
+|---|---|
+| Plug thread bores | Ø11.49 mm (0.34° cone) and Ø11.28 mm, 29.19° and 28.61° from the bore axis, 57.76° from each other |
+| Plug chamber-side reliefs, wells | Ø14.26 and Ø14.39 mm; Ø24.7 mm (90 fitted vertices) and Ø25.4 mm (detected only) |
+| Plug seat faces | planes 1.41° and 1.58° off their thread-bore axes, both **confirmed** |
+| Stud passages | Ø10.50 (detected), Ø10.96 (0.74° cone), Ø10.51 (detected) and Ø10.51 mm (0.40° cone) |
+| Stud counterbores | Ø24.44, Ø25.22 (135° of arc), Ø24.27 and Ø24.26 mm (detected) |
+| Register recess | Ø113.36 mm on 212° of arc. The circle fit of P1 gave 113.88 mm with 0.29 mm RMS on every facet of the band |
+
+Found on the way:
+
+- **Seven features come back detected, not determined.** Their surface does
+  not hold one cylinder or cone inside the 0.12 mm band, so the tool reports
+  two rival models that share nearly every vertex and refuses both refits.
+  Two stud passages seen over 354° and 37 mm are in that state. The record
+  keeps the first estimate without any uncertainty.
+- **The deck's noise understates the noise in a bore.** That is the reading
+  of the check above; the fits were not rerun with another value.
+- **The windows were drawn twice.** The first pass had 39 windows about axes
+  read from plots. The second pass redrew the valve windows about the fitted
+  axes, narrowed the two seat windows to the 45° band and dropped seven
+  windows: four stud seat faces and the port end of the `valve_y_plus` guide,
+  which hold too few vertices, the chamber shoulder, whose window caught the
+  dome, and one duplicate. The check ran on the final table only, so its
+  acceptance could not steer the windows.
+
+**The v2 body, measured by a second tool** ([record](params/cloudcompare-v2-body.json)).
+CloudCompare on 200,000 scan facets drawn by area gives a median of
+0.0456 mm, a 95th percentile of 0.1571 mm and 97.36% within 0.2 mm. The Warp
+scorecard reads 0.0454 mm, 0.1572 mm and 97.37%. The scorecard's arithmetic
+is reproduced; the scan itself is not checked by this.
+
+What these fits do not change: no feature is cut into the v2 body, H02, H05
+and H06 keep their status in [hypotheses.json](hypotheses.json), and the
+port-flow audit below still fails its third gate.
+
+Not run on this head, each for a stated reason:
+
+- **Fatigue post-processing (pyLife).** There is no stress history, because
+  the only solve is a steady temperature field under a declared case, and no
+  S-N data is admitted for the alloy, which is itself unknown.
+- **Valve-train dynamics.** No tool is installed (Chrono is a candidate
+  only), and there is no valve, spring or cam.
+- **A dimensioned drawing.** No tool is assigned, and 28 of the 32 features
+  it would dimension are not confirmed.
 
 ### Port CFD: upstream audit, no solver run ([audit](params/port-cfd-audit.json))
 
@@ -740,22 +1010,28 @@ valve, seat and guide geometry (H05).
 | P1 datums | scan | [params/frame.json](params/frame.json) | plane/circle residuals recorded | done |
 | P1b occupancy | scan, frame | private winding-number grid; [summary](params/occupancy-summary.json) | ambiguous volume reported | done |
 | T1 surface | occupancy | private closed surface; [summary](params/t1-surface-summary.json) | watertight, winding, genus | done |
-| Scorecard T1 | scan, frame, T1 | [scorecard-t1.json](params/scorecard-t1.json) | Warp vs trimesh oracle | done: 99.4% within 0.2 mm |
+| Scorecard T1 | scan, frame, T1 | [scorecard-t1.json](params/scorecard-t1.json) | Warp vs trimesh oracle | done: 99.5% within 0.2 mm |
 | T1s snap | T1, scan | private snapped surface; [summary](params/t1s-snap-summary.json) | connectivity unchanged, watertight, 0 self-intersections | done: p95 0.015 mm ([scorecard](params/scorecard-t1s.json)) |
 | T2 B-rep v0 | occupancy | none | BRepCheck | measured negative result (see above) |
 | Simulation surface | occupancy at 0.75 mm | private; [summary](params/sim-surface-mc075-summary.json) | watertight, genus 21 | done |
-| T3 thermal | 1.0 mm surface | private deck and fields; [result](params/thermal-screen.json) | mesh quality, solver return, energy balance 0.28% | done at two levels; means agree, fin-tip minimum not converged |
+| T3 thermal | 1.0 mm surface | private deck and fields; [result](params/thermal-screen.json) | mesh quality, solver return, energy balance 0.28% | done at two levels; mean, p95 and minimum agree (minimum within 0.3 °C) |
 | Screenshots | T1, scan, thermal | private renders (observed/inferred, scan deviation, thermal field); public [scorecard chart](media/scorecard-t1-cdf.png) | visual review | done |
-| T4 USD | T1s, frame, hypotheses | private `.usdc`; [summary](params/usd-summary.json) | 30 OpenUSD validators, NVIDIA validator | done: 0 findings, NVIDIA pass |
+| T4 USD | T1s, frame, hypotheses | private `.usdc`; [summary](params/usd-summary.json) | 30 OpenUSD validators, NVIDIA validator | done: 0 OpenUSD findings; NVIDIA 0 failures, 1 warning (one non-manifold vertex) |
 | T5 print | T1s | private 3MF; [summary](params/print-summary.json) | streaming round trip | done, exact volume |
 | v1 features | frame, scan | deck plate: [features](params/deck-features.json) | zone scorecard | iteration 4: p95 2.72 mm (chamber, four passages, two-level outline); kept as the analytic B-rep part |
 | v1 body stack | occupancy, scan, fin faces, port sections, deck features | private compound of band solids and its outer shell; [run f summary](params/v1-body-stack-f-summary.json) | whole-scan scorecard on the shell, per run | closed at run f: p95 0.85 mm, 69.9% within 0.2 mm; superseded as the body by v2 |
-| v2 body | occupancy, datum faces | private closed solid; [summary](params/v2-loft-s025-summary.json) | manifold status, watertight, volume; whole-scan [scorecard](params/scorecard-v2-loft-s025.json) with oracle; three section steps | done: p95 0.158 mm, 97.3% within 0.2 mm; area 14% above T1s; no B-rep |
-| Thermal from CAD | v2 body occupancy at 1.0 mm | private deck and fields; [result](params/thermal-screen-cad.json) | energy balance 0.28%; comparison with T3 at the same pitch | done: mean −0.56 °C, heat −0.28% against T3 |
-| USD and 3MF from CAD | v2 body | private `.usdc` and 3MF; [USD](params/usd-cad-summary.json), [3MF](params/print-cad-summary.json) | 30 OpenUSD validators, NVIDIA validator; streaming round trip | done: 0 OpenUSD findings; NVIDIA 0 failures, 2 warnings (22 flat triangles, co-located points); 3MF exact |
+| v2 body | occupancy, datum faces | private closed solid; [summary](params/v2-loft-s025-summary.json) | manifold status, watertight, volume; whole-scan [scorecard](params/scorecard-v2-loft-s025.json) with oracle; three section steps | done: p95 0.157 mm, 97.4% within 0.2 mm; area 14% above T1s; no B-rep |
+| Thermal from CAD | v2 body occupancy at 1.0 mm | private deck and fields; [result](params/thermal-screen-cad.json) | energy balance 0.28%; comparison with T3 at the same pitch | done: mean −0.53 °C, heat −0.36% against T3 |
+| USD and 3MF from CAD | v2 body | private `.usdc` and 3MF; [USD](params/usd-cad-summary.json), [3MF](params/print-cad-summary.json) | 30 OpenUSD validators, NVIDIA validator; streaming round trip | done: 0 OpenUSD findings; NVIDIA 0 failures, 2 warnings (35 flat triangles, co-located points); 3MF exact |
 | Port CFD | port fit, hypotheses | [audit](params/port-cfd-audit.json) | three admissibility gates | closed by audit: no admissible domain, no solver run; reopens with H04 and H05 evidence |
 | SimReady tools | v1 deck plate STEP, two port loft STEPs, both stages | private stages; [deck](params/simready-deck-plate.json), [ports](params/simready-ports.json) | NVIDIA validator; independent bounding box and volume against the STEP | done for the three B-rep inputs (pass) and both stages; profile conformance, agents and RTX not attempted; no STEP of the v2 body |
 | AM screen | occupancy | [supports](params/am-supports.json), [cooldown](params/am-cooldown.json) | analytic witnesses within 2.5%; independent VTU reader, energy imbalance 1.5e-4 | done as a screen: six orientations, two cooldown levels; no orientation chosen, no support designed |
+| Feature fit | bare scan, frame, [32 windows](params/feature-rois.json) | [feature-fits.json](params/feature-fits.json); private vertex split | the tool's own `determined` flag and standard deviations; two-centre construction against a guide bore axis (0.42°) | done: 25 determined, 7 detected only; two valve axes, guide bore, seats, plug bores, stud passages |
+| Feature check | fits, held-out half of each window | [feature-check.json](params/feature-check.json); private clouds and receipts | CloudCompare distances; acceptance fixed beforehand (90% within 0.2 mm) | done: **4 of 32 confirmed**; the fits are nominal, not inspected |
+| Body check by a second tool | v2 body, 200,000 scan facets | [cloudcompare-v2-body.json](params/cloudcompare-v2-body.json) | CloudCompare against the Warp scorecard | done: 97.36% against 97.37% within 0.2 mm, p95 0.1571 against 0.1572 mm |
+| Asset package | CAD-body stage, 1.0 mm surface | private `part.usda`, `part.usdz` and two binary layers; [summary](params/simready-asset.json) | 30 OpenUSD validators and the NVIDIA validator on both forms; read-back of the package | done: 0 OpenUSD findings; NVIDIA 0 failures, the 2 inherited warnings; no mass, no physics run |
+| Visual check of the v2 body | double-precision 3MF | private six-view render; [record](params/v2-body-visual-check.json) | read by the agent; the renderer's strict watertight gate | done twice: the first reading found stud slivers up to 26 mm tall and led to the stud repair; after it, stubs of 5.5 mm and 5 non-manifold edges once vertices are welded |
+| Fatigue, valve-train dynamics, drawing | none | none | — | not run: no stress history or S-N data, no installed dynamics tool, no confirmed features to dimension |
 
 ## Limits
 
@@ -770,6 +1046,10 @@ valve, seat and guide geometry (H05).
 - The valve guides, seats and valves are not modelled. The bosses the scan
   shows in the spring pockets are in the v2 body as scanned, without bores
   beyond what was acquired.
+- The fitted features are numbers on scan vertices. CloudCompare confirms 4
+  of 32 within 0.2 mm; none is a dimension of the specimen, a tolerance, a
+  fit or a thread, and the valve named by a flange side is not identified as
+  intake or exhaust.
 - The AM numbers are geometric and thermal screens on generic constants.
   They establish no printability, orientation, support scheme or material.
 - No port-flow result exists. The audit found no admissible fluid domain.

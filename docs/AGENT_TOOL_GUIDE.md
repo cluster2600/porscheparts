@@ -219,6 +219,32 @@ neighbouring study's README for more before starting.
   gave 0.1° and 0.03 mm of axis uncertainty against 0.01° and 0.002 mm for its
   guide. Take the axis from the guide, and read the reported standard
   deviations before using an axis.
+- **On a real scan the fit's own residual is band-limited, and the noise of a
+  flat understates the noise in a bore.** On the 935 head (2026-11-11) the
+  detector ran with the deck's 0.040 mm and reported 0.03 to 0.06 mm RMS on 32
+  machined features. CloudCompare, on scan vertices kept out of the fit, found
+  a median of 0.03 to 0.13 mm and only 63% to 94% within 0.2 mm; 4 of 32
+  passed an acceptance of 90% fixed beforehand. Keep half of the vertices out
+  of the fit and measure them with another tool before quoting a feature.
+- **A surface whose form error exceeds the inlier band splits into rival
+  models, and both come back not determined.** Two stud passages of 10.5 mm,
+  each seen over at least 354° and 37 mm, were reported twice and shared nearly all
+  their points, so neither refit kept enough of its own. That is the tool
+  saying "not one cylinder at this noise", not a missing feature.
+- **A feature a few millimetres long fixes where its axis is, not where it
+  points.** Seven guide features 8 to 11 mm long lay 0.5° to 4.3° from their
+  valve axis while reporting 0.2° to 1.3°. The line through two
+  fitted centres 63 mm apart came within 0.42° of a guide bore seen at both
+  ends (0.02°). Take a direction from a long feature or from two centres.
+- **A fitted cylinder plus a margin does not remove a scanned rod, and a score
+  will not tell you.** The 935 head's studs are smeared shells up to 3.7 mm
+  off their fitted cylinder. A 0.8 mm margin left 8,881 stud facets in the
+  "bare" head, and the winding number closed them into slivers 26 mm tall
+  (2026-11-11). The body still scored 97.3% within 0.2 mm; a six-view render
+  showed them at once. They had also set the thermal minimum, recorded as
+  "not converged" (146.6 against 127.5 °C; 154.3 against 154.6 °C once
+  removed). Remove a rod by the extent of the cluster it was fitted on, and
+  look at a render of every body before running tiers on it.
 
 ### Laminate failure
 

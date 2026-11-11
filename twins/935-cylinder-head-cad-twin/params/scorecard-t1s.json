@@ -1,24 +1,24 @@
 {
   "schema": "935-cad-twin-scorecard/1",
   "label": "T1s",
-  "twin_surface_sha256": "909bc3f959d7b2200408d2e9babf5cb82f4ffd349c82b5f30f02b6447b1de2a4",
-  "twin_triangles": 7081318,
+  "twin_surface_sha256": "723e9b586bf90381776605610c0bd21785827000c20f3a0741ba50f46faac541",
+  "twin_triangles": 7050948,
   "scan_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
   "checker": "score_twin.py (independent of producers); NVIDIA Warp mesh_query_point_no_sign on CPU",
-  "hardware_scan_area_excluded_mm2": 6399.3,
+  "hardware_scan_area_excluded_mm2": 6896.2,
   "scan_to_twin": {
-    "area_mm2": 146967.4,
+    "area_mm2": 146470.4,
     "p50": 0.0009,
-    "p90": 0.0081,
-    "p95": 0.0154,
-    "p99": 0.0965,
-    "max_mm": 48.2005,
+    "p90": 0.008,
+    "p95": 0.0151,
+    "p99": 0.0893,
+    "max_mm": 4.521,
     "area_share_within_mm": {
-      "0.05": 0.98206,
-      "0.1": 0.9903,
-      "0.2": 0.9945,
-      "0.5": 0.99795,
-      "1.0": 0.99897
+      "0.05": 0.98292,
+      "0.1": 0.99099,
+      "0.2": 0.99503,
+      "0.5": 0.99841,
+      "1.0": 0.99941
     }
   },
   "scan_to_twin_by_zone": {
@@ -27,70 +27,70 @@
       "p50": 0.001,
       "p90": 0.0077,
       "p95": 0.0149,
-      "p99": 0.1508,
-      "max_mm": 4.4605,
+      "p99": 0.1501,
+      "max_mm": 4.4603,
       "area_share_within_mm": {
-        "0.05": 0.98054,
-        "0.1": 0.98742,
-        "0.2": 0.99139,
+        "0.05": 0.98055,
+        "0.1": 0.98743,
+        "0.2": 0.99138,
         "0.5": 0.99631,
         "1.0": 0.99868
       }
     },
     "fin_zone": {
-      "area_mm2": 93121.0,
+      "area_mm2": 93073.9,
       "p50": 0.0011,
-      "p90": 0.0088,
-      "p95": 0.017,
-      "p99": 0.1004,
-      "max_mm": 19.1952,
+      "p90": 0.0087,
+      "p95": 0.0168,
+      "p99": 0.096,
+      "max_mm": 4.521,
       "area_share_within_mm": {
-        "0.05": 0.98062,
-        "0.1": 0.98996,
-        "0.2": 0.99459,
-        "0.5": 0.99827,
-        "1.0": 0.99911
+        "0.05": 0.98103,
+        "0.1": 0.99037,
+        "0.2": 0.99499,
+        "0.5": 0.99865,
+        "1.0": 0.99948
       }
     },
     "cam_zone": {
-      "area_mm2": 25735.0,
+      "area_mm2": 25285.1,
       "p50": 0.0005,
-      "p90": 0.0058,
-      "p95": 0.0108,
-      "p99": 0.056,
-      "max_mm": 48.2005,
+      "p90": 0.0056,
+      "p95": 0.0101,
+      "p99": 0.0396,
+      "max_mm": 2.0112,
       "area_share_within_mm": {
-        "0.05": 0.98891,
-        "0.1": 0.99466,
-        "0.2": 0.99757,
-        "0.5": 0.99857,
-        "1.0": 0.99879
+        "0.05": 0.99248,
+        "0.1": 0.99726,
+        "0.2": 0.99928,
+        "0.5": 0.99986,
+        "1.0": 0.99998
       }
     }
   },
   "twin_to_scan": {
-    "area_mm2": 169097.3,
+    "area_mm2": 168407.6,
     "p50": 0.0046,
-    "p90": 0.5175,
-    "p95": 1.4201,
-    "p99": 4.2233,
-    "max_mm": 11.0478,
+    "p90": 0.5074,
+    "p95": 1.416,
+    "p99": 4.2291,
+    "max_mm": 11.0554,
     "area_share_within_mm": {
-      "0.05": 0.84548,
-      "0.1": 0.86034,
-      "0.2": 0.87367,
-      "0.5": 0.89873,
-      "1.0": 0.93025
+      "0.05": 0.84685,
+      "0.1": 0.86158,
+      "0.2": 0.87473,
+      "0.5": 0.89948,
+      "1.0": 0.93055
     }
   },
-  "twin_area_observed_supported_share": 0.87367,
-  "twin_area_inferred_mm2": 21361.8,
+  "twin_area_observed_supported_share": 0.87473,
+  "twin_area_inferred_mm2": 21096.3,
   "support_threshold_mm": 0.2,
   "oracle_check": {
     "samples": 5000,
-    "max_abs_difference_mm": 1.28e-05,
+    "max_abs_difference_mm": 1.27e-05,
     "passed": true
   },
-  "seconds": 285.8,
+  "seconds": 66.7,
   "limits": "distances to the acquired surface only; says nothing about unobserved geometry, physical calibration or function"
 }

@@ -16,17 +16,31 @@ cap "$PY" -I "$HERE/occupancy.py" "$PRIV" "$PARAMS" 0.25
 cap "$PY" -I "$HERE/surface_mesh.py" "$PRIV" "$PARAMS"
 cap "$PY" -I "$HERE/score_twin.py" "$SCAN" "$PARAMS/frame.json" "$PRIV/t1-bare-head.stl" "$PARAMS/scorecard-t1.json" T1
 
-docker run --rm --memory=10g -v "$PRIV:/p" -v "$HERE:/src:ro" --entrypoint /opt/venv/bin/python \
-  3dprinting993-recon:dev -I /src/decimate.py /p/t1-bare-head.stl /p/t1-sim-surface.stl 400000 /p/decimate.json
-cp "$PRIV/decimate.json" "$PARAMS/sim-surface-summary.json"
-MEM=12G cap "$PY" -I "$HERE/tetmesh.py" "$PRIV/t1-sim-surface.stl" "$PRIV/t1-tets.npz" 1.5 0.1 "$PRIV/tetmesh.json"
-cp "$PRIV/tetmesh.json" "$PARAMS/tetmesh-summary.json"
-docker run --rm --memory=10g -v "$PRIV:/p" -v "$HERE:/src:ro" --entrypoint /opt/venv/bin/python \
-  3dprinting993-cadsim:dev -I /src/sim_thermal.py /p/t1-tets.npz /p/thermal 1.5 T1-thermal
-cp "$PRIV/thermal/result.json" "$PARAMS/thermal-screen.json"
+# T1s: snap observed vertices onto the scan, then revert the few that fold (recon image).
+cap "$PY" -I "$HERE/snap_surface.py" "$PRIV" "$PARAMS"
+docker run --rm --memory=10g --user "$(id -u):$(id -g)" -v "$PRIV:/p" -v "$HERE:/src:ro" --entrypoint /opt/venv/bin/python \
+  3dprinting993-recon:dev -I /src/unsnap_intersections.py /p/t1-bare-head.ply /p/t1s-bare-head.ply /p/t1s-clean.ply /p/unsnap.json
+cap "$PY" -I "$HERE/assemble_records.py" t1s "$PRIV" "$PARAMS"
+cap "$PY" -I "$HERE/score_twin.py" "$SCAN" "$PARAMS/frame.json" "$PRIV/t1s-clean.stl" "$PARAMS/scorecard-t1s.json" T1s
 
-cap "$PY" -I "$HERE/export_print.py" "$PRIV/t1-bare-head.stl" "$PRIV/935-bare-head-twin-study.3mf" "$PARAMS/print-summary.json"
-cap "$PY" -I "$HERE/export_usd.py" "$PRIV" "$PARAMS" "$PRIV/t1-sim-surface.stl" "$PRIV/935-head-twin.usdc"
+# T3 thermal screen on marching-cubes surfaces of the occupancy at 1.0 and 0.75 mm
+# (cadsim image). The decimated surface and fTetWild were tried first and are
+# measured negative results: see README.
+for lv in 4:mc100 3:mc075; do
+  n=${lv#*:}
+  cap "$PY" -I "$HERE/sim_surface_mc.py" "$PRIV" "$PRIV/t1-sim-$n.stl" "$PRIV/t1-sim-$n.json" "${lv%:*}"
+  docker run --rm --memory=10g -v "$PRIV:/p" -v "$HERE:/src:ro" --entrypoint /opt/venv/bin/python \
+    3dprinting993-cadsim:dev -I /src/sim_thermal.py "/p/t1-sim-$n.stl" "/p/thermal-$n" 3.0 "T1-$n-thermal"
+  cap "$PY" -I "$HERE/check_thermal_balance.py" "$PRIV/thermal-$n" "$PRIV/balance-$n.json"
+done
+cp "$PRIV/t1-sim-mc075.json" "$PARAMS/sim-surface-mc075-summary.json"
+"$PY" -I "$HERE/assemble_records.py" thermal "$PRIV" "$PARAMS" surface_1p0mm=mc100 surface_0p75mm=mc075
+
+# T4 and T5 from T1s: a 600,000-triangle display surface for the stage, the full surface for the 3MF.
+docker run --rm --memory=10g --user "$(id -u):$(id -g)" -v "$PRIV:/p" -v "$HERE:/src:ro" --entrypoint /opt/venv/bin/python \
+  3dprinting993-recon:dev -I /src/decimate.py /p/t1s-clean.stl /p/t1s-display.stl 600000 /p/decimate-display.json
+cap "$PY" -I "$HERE/export_print.py" "$PRIV/t1s-clean.stl" "$PRIV/935-bare-head-twin-study.3mf" "$PARAMS/print-summary.json"
+cap "$PY" -I "$HERE/export_usd.py" "$PRIV" "$PARAMS" "$PRIV/t1s-display.stl" "$PRIV/935-head-twin.usdc"
 # T2 (build_brep.py) is a measured negative result on this host; see README.
 
 # v1 body stack: run d (fin faces, tilted tops), the port lofts checked against
@@ -73,6 +87,29 @@ cap "$PY" -I "$HERE/export_print.py" "$PRIV/v2-loft-s025.npz" "$PRIV/935-head-ca
 MEM=4G cap "$PY" -I "$HERE/am_supports.py" "$PRIV" "$PARAMS"
 "$PY" -I "$HERE/am_cooldown.py" all "$PRIV" "$PARAMS"
 
+# Revolved machined features, with the assigned fitting tool and its own environment
+# (docs/LOCAL_HOST_SETUP.md, "Tool environments under work/"), then CloudCompare on the
+# held-out half of each window and on the v2 body. FIT and CC_IMAGE are optional:
+#   FIT=work/scan-primitive-fitting-venv/bin/python  CC_IMAGE=free-tools-cloudcompare:local
+# check_features.py refuses an existing --work directory: name a new one for each run.
+REPO=$(cd "$TWIN/../.." && pwd); STAMP=$(date +%Y%m%d-%H%M%S)
+if [ -n "${FIT:-}" ] && [ -n "${CC_IMAGE:-}" ]; then
+  MEM=4G cap "$FIT" -I "$HERE/fit_features.py" --bare-scan "$PRIV/bare-scan-twin.npz" --rois "$PARAMS/feature-rois.json" \
+    --tool "$REPO/benchmarks/scan-primitive-fitting/primitive_fit.py" --frame "$PARAMS/frame.json" \
+    --private-out "$PRIV/feature-split.npz" --out "$PARAMS/feature-fits.json"
+  "$PY" -I "$HERE/check_features.py" --bare-scan "$PRIV/bare-scan-twin.npz" --image "$CC_IMAGE" \
+    --work "$PRIV/feature-check-$STAMP" --fits "$PARAMS/feature-fits.json" --split "$PRIV/feature-split.npz" \
+    --out "$PARAMS/feature-check.json"
+  "$PY" -I "$HERE/check_features.py" --bare-scan "$PRIV/bare-scan-twin.npz" --image "$CC_IMAGE" \
+    --work "$PRIV/body-cloudcompare-$STAMP" --body "$PRIV/v2-loft-s025.npz" \
+    --scorecard "$PARAMS/scorecard-v2-loft-s025.json" --out "$PARAMS/cloudcompare-v2-body.json"
+fi
+
+# The CAD-body stage packaged with a collider and a display material. The output
+# directory must be new. The NVIDIA validation of both forms follows below when SIM is set.
+"$PY" -I "$HERE/export_simready.py" "$PRIV/935-head-twin-cad.usdc" "$PRIV/v2-loft-sim-mc100.stl" \
+  "$PRIV/simready-asset-$STAMP" "$PARAMS/simready-asset.json"
+
 # NVIDIA tools live in two environments of their own, never in $PY:
 #   uv venv --python 3.12 "$SIM/convert";  uv pip install --python "$SIM/convert/bin/python" \
 #     --extra-index-url https://pypi.nvidia.com "usd-convert-cad==0.2.0"
@@ -90,6 +127,11 @@ if [ -n "${SIM:-}" ]; then
   MEM=4G cap "$SIM/validate/bin/python" -I "$HERE/simready_convert.py" --converter "$SIM/convert/bin/usd-convert-cad" \
     --out-dir "$PRIV/simready" --existing-stage "$PRIV/935-head-twin-cad.usdc" \
     --existing-stage-summary "$PARAMS/simready-validate-cad-stage.json" || [ $? -eq 3 ]
+  for form in usda usdz; do
+    MEM=4G cap "$SIM/validate/bin/python" -I "$HERE/simready_convert.py" --out-dir "$PRIV/simready-asset-$STAMP" \
+      --existing-stage "$PRIV/simready-asset-$STAMP/part.$form" \
+      --existing-stage-summary "$PARAMS/simready-validate-asset-$form.json" || [ $? -eq 3 ]
+  done
   for part in v1-deck-plate:v1_deck_plate:simready-deck-plate simready/step/v1-port_y_minus:v1_port_y_minus:simready-ports \
               simready/step/v1-port_y_plus:v1_port_y_plus:simready-ports; do
     IFS=: read -r step stage summary <<<"$part"
