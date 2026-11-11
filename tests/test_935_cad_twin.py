@@ -712,6 +712,24 @@ class AssemblyThermalTests(unittest.TestCase):
         self.assertEqual(heat["chamber_gas"]["area_mm2"], 0.0)
 
 
+class MediaTests(unittest.TestCase):
+    def test_public_images_match_their_provenance_and_stay_small(self):
+        import hashlib
+
+        media = TWIN / "media"
+        record = json.loads((media / "provenance.json").read_text())
+        self.assertEqual(record["scan_sha256"], SCAN_SHA256)
+        self.assertIn("#462", record["scan_licence"])
+        self.assertIn("no geometry file", record["kind"])
+        for name, entry in record["images"].items():
+            data = (media / name).read_bytes()
+            self.assertEqual(hashlib.sha256(data).hexdigest(), entry["sha256"], name)
+            self.assertLess(len(data), 1 << 20, name)
+        readme = (TWIN / "README.md").read_text()
+        for name in record["images"]:
+            self.assertIn(f"](media/{name})", readme)
+
+
 class AlloyRecordTests(unittest.TestCase):
     """The committed alloy candidates, both rankings and the surveys."""
 
