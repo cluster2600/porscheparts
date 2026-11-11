@@ -44,9 +44,12 @@ stated blocker. What the twin still does not have:
   an owner instruction. The 993 workshop manual does not contradict that
   scale, but it describes another head.
 - **An alloy and a machine for the print study.** Published conductivities
-  are [ranked on two thermal screens](#alloy-and-machine-for-a-simulated-lpbf-print-candidates-bare-head-ranking-assembly-case-assembly-ranking-literature-machines-993-comparison),
-  and every candidate runs above the published head-temperature limit at the
-  declared load. No Chinese maker publishes a complete data set. Nothing is
+  are [ranked on two thermal screens](#alloy-and-machine-for-a-simulated-lpbf-print-candidates-bare-head-ranking-assembly-case-assembly-ranking-strength-trade-off-literature-machines-993-comparison)
+  and set beside published strength. Every candidate runs above the published
+  head-temperature limit in each of the four load cases: 386 to 428 °C at the
+  published wall loading. Heat-treated AlSi10Mg is the documented middle
+  ground and Aheadd CP1 the candidate to verify. No Chinese maker publishes a
+  complete data set; the owner accepted the larger Eplus3D EP-M300. Nothing is
   selected.
 
 ## Why this directory exists
@@ -167,7 +170,7 @@ The feature fit is amber because CloudCompare confirms 4 of its 32 features.*
 | Independent deviation of each feature and of the v2 body | CloudCompare 2.13.2 in the `free-tools-cloudcompare` image, no network | [check_features.py](source/check_features.py) |
 | Asset package: collider, display material, `.usda` and `.usdz` | OpenUSD 26.11 (`UsdPhysics`, `UsdShade`, `UsdUtils`), then both validators | [export_simready.py](source/export_simready.py) |
 | Alloy ranking on the bare head | CalculiX 2.21 on the deck of the CAD-body screen, conductivity replaced (cadsim image) | [alloy_thermal.py](source/alloy_thermal.py) |
-| Alloy ranking in the assembly | hypothesis solids on the occupancy lattice, Gmsh HXT, CalculiX with four materials and five films | [assembly_thermal.py](source/assembly_thermal.py) |
+| Alloy ranking in the assembly | hypothesis solids on the occupancy lattice, Gmsh HXT, CalculiX with four materials and six films, four load cases | [assembly_thermal.py](source/assembly_thermal.py) |
 | Six-view render of the body, read by the agent | `preview.py` of the `cad-skill` skill (trimesh, pyrender, EGL under `xvfb-run`) | none: the script is the skill's |
 
 The private inputs and outputs live under `work/935-cad-twin/` (ignored by
@@ -1148,113 +1151,175 @@ Not run on this head, each for a stated reason:
 - **A dimensioned drawing.** No tool is assigned, and 28 of the 32 features
   it would dimension are not confirmed.
 
-### Alloy and machine for a simulated LPBF print ([candidates](params/alloy-candidates.json), [bare-head ranking](params/alloy-thermal.json), [assembly case](params/assembly-case.json), [assembly ranking](params/assembly-thermal.json), [literature](params/thermal-literature-bounds.json), [machines](params/lpbf-machine-survey.json), [993 comparison](params/published-993-comparison.json))
+### Alloy and machine for a simulated LPBF print ([candidates](params/alloy-candidates.json), [bare-head ranking](params/alloy-thermal.json), [assembly case](params/assembly-case.json), [assembly ranking](params/assembly-thermal.json), [strength](params/alloy-strength.json), [trade-off](params/alloy-tradeoff.json), [literature](params/thermal-literature-bounds.json), [machines](params/lpbf-machine-survey.json), [993 comparison](params/published-993-comparison.json))
 
 The owner's brief of 2026-11-11: a full-size study print, the alloy chosen by
-simulated heat dissipation, the machine from a maker in mainland China that
-publishes its data, and hypotheses wherever data is missing. This section
-records what public sources give and what two thermal screens say. No alloy
-and no machine is selected here.
+simulated heat dissipation as a middle ground with strength, the machine from
+a maker in mainland China that publishes its data, and hypotheses wherever
+data is missing. This section records what public sources give and what the
+thermal screens say. No alloy and no machine is selected here.
 
 ```mermaid
 flowchart LR
   D["datasheets:<br/>conductivity at room temperature"] --> B["bare head,<br/>wall held at 220 °C"]
-  D --> A["head in its assembly:<br/>valves, guides, plugs,<br/>five films"]
+  D --> A["head in its assembly:<br/>valves, guides, plugs,<br/>six films, four load cases"]
   F["fitted valve and plug axes"] --> A
   H["hypotheses H09 to H12"] --> A
-  B --> R1["heat rejected:<br/>13% spread"]
-  A --> R2["peak head temperature:<br/>38 °C spread"]
-  L["literature bounds"] --> V{"235 to 250 °C limit"}
-  R2 --> V
-  V --> N["every candidate above the limit<br/>at the declared load"]
+  L["literature:<br/>wall loadings, limits"] --> A
+  B --> R1["heat rejected:<br/>16% spread"]
+  A --> R2["peak head temperature:<br/>43 °C spread"]
+  R2 --> V{"235 to 250 °C limit"}
+  S["published strength<br/>at temperature"] --> T["trade-off"]
+  R2 --> T
+  V --> N["every alloy above the limit<br/>in every load case"]
   classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
   classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
   classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
-  class D,F,B,R1 ok;
-  class H,A,R2,L open;
+  class D,F,B,R1,S ok;
+  class H,A,R2,L,T open;
   class N stop;
 ```
 
-*Diagram: two screens on the same conductivities. The assembly screen is
-amber because every body and boundary it adds is a hypothesis.*
+*Diagram: two screens on the same conductivities, then strength beside
+temperature. The assembly screen is amber because every body and boundary it
+adds is a hypothesis.*
 
-**Published conductivities.** 18 entries on 12 distinct values, each with
-its source, its method (measured, or calculated from resistivity) and whether
-the value was re-read in the downloaded file. Rows marked * rest on the
-research pass alone. All are room-temperature values; none is published at
-150 to 250 °C. A20X publishes no conductivity and the CP1 datasheets give
-electrical conductivity only, so neither is ranked from a datasheet.
+**Published conductivities.** 20 entries on 14 distinct values, each with
+its source, its method and whether the value was re-read in the downloaded
+file. Rows marked * rest on the research pass alone. All are
+room-temperature values; none is published at 150 to 250 °C. The two CP1
+rows marked † are computed here from its published electrical conductivity
+by the Wiedemann-Franz law: a hypothesis, not a datasheet value. A20X
+publishes no conductivity and cannot be placed on a thermal screen.
 
 **Two screens.** The bare-head screen holds the chamber wall at 220 °C and
 asks how much heat leaves. The assembly screen adds two closed valves, two
-guides and two plugs as hypothesis solids about the fitted axes. It puts gas
-films on the chamber and the exhaust port, a cool film in the inlet port, a
-contact film in the register recess and air everywhere else, and asks how hot
-the head alloy gets. Its mesh has 4,755,655 tetrahedra in one watertight
-united body.
+guides and two plugs as hypothesis solids about the fitted axes, puts films
+on the chamber, the two ports, the register recess, the spring pockets and
+everything else, and asks how hot the head alloy gets. Its mesh has
+4,755,061 tetrahedra in one watertight united body.
 
-| W/(m·K) | Alloy and condition | Bare head: heat | Fin efficiency | Assembly: peak alloy | Valve bridge | Exhaust valve |
-|---|---|---|---|---|---|---|
-| 170 | AlSi10Mg stress relieved, high (3D Systems); AlSi7Mg, high (Eplus3D) | 1,674 W | 81.8% | **273 °C** | 258 °C | 498 °C |
-| 165 | AlSi10Mg T6, vertical (EOS) | 1,665 W | 81.3% | **275 °C** | 260 °C | 499 °C |
-| 160 | AlSi10Mg stress relieved (EOS)*; AlSi10Mg stress relieved, low (3D Systems); Aheadd CP1 (blog figure)* | 1,656 W | 80.9% | **276 °C** | 261 °C | 500 °C |
-| 155 | AlSi10Mg T6, horizontal (EOS)* | 1,646 W | 80.4% | **278 °C** | 263 °C | 501 °C |
-| 150 | AlSi7Mg T6 (EOS)*; AlSi7Mg, low (Eplus3D); generic value of the earlier screens | 1,636 W | 79.9% | **280 °C** | 264 °C | 502 °C |
-| 140 | AlSi7Mg as built (EOS) | 1,614 W | 78.8% | **284 °C** | 268 °C | 504 °C |
-| 132 | Al5X1 heat treated (EOS) | 1,594 W | 77.9% | **288 °C** | 272 °C | 507 °C |
-| 130 | AlSi10Mg as printed, high (3D Systems) | 1,589 W | 77.6% | **289 °C** | 272 °C | 507 °C |
-| 120 | AlSi10Mg as printed, low (3D Systems) | 1,562 W | 76.3% | **294 °C** | 277 °C | 510 °C |
-| 110 | AlSi10Mg as built, horizontal (EOS) | 1,530 W | 74.8% | **300 °C** | 283 °C | 514 °C |
-| 100 | AlSi10Mg as built, vertical (EOS); Al-Mg-Sc, high (3D Systems) | 1,495 W | 73.0% | **307 °C** | 289 °C | 517 °C |
-| 95 | Al-Mg-Sc, low (3D Systems) | 1,475 W | 72.1% | **311 °C** | 293 °C | 520 °C |
+**Four load cases of the assembly**, each a set of declared films:
 
+| Case | Gas side | Peak head alloy at 95 / 150 / 191 W/(m·K) | Heat in at 150 | Exhaust valve at 150 |
+|---|---|---|---|---|
+| Declared | gas 900 °C at 400 W/(m²·K) in the chamber, 700 °C in the exhaust port; no oil film | 311 / 280 / 267 °C | 3,290 W | 502 °C |
+| Declared, with oil | the same, with an oil film at 90 °C and 500 W/(m²·K) on the spring pockets | 309 / 277 / 264 °C | 3,306 W | 501 °C |
+| **Published loading, with oil** | chamber gas 621 °C, exhaust port 700 °C; both coefficients scaled to the published wall loadings; oil film; air at 150 W/(m²·K) | 428 / 399 / 386 °C | 5,327 W | 579 °C |
+| Published loading, more air | the same, with the air film at the published upper bound of 233 W/(m²·K) | 373 / 340 / 324 °C | 5,364 W | 551 °C |
+
+In the two published-loading cases the chamber gas is at the effective
+621 °C that NACA Report 612 measured on air-cooled aircraft cylinders, and the
+chamber and exhaust-port coefficients are scaled, at 150 W/(m·K), towards the
+465 and 145 kW/m² that Mackerle gives. After 5 scaling steps the walls
+carry 460 and 144 kW/m².
+
+![Peak head-alloy temperature against thermal conductivity for the four load cases of the assembly screen, all above the published 235 to 250 °C limit](media/alloy-ranking.png)
+
+**Every alloy, at the published wall loading with the oil film:**
+
+| W/(m·K) | Alloy and condition | Bare head: heat | Fin efficiency | Assembly: peak alloy | Valve bridge |
+|---|---|---|---|---|---|
+| 191 | Aheadd CP1 heat treated (computed)† | 1,707 W | 83.4% | **386 °C** | 371 °C |
+| 170 | AlSi10Mg stress relieved, high (3D Systems); AlSi7Mg, high (Eplus3D) | 1,674 W | 81.8% | **392 °C** | 376 °C |
+| 165 | AlSi10Mg T6, vertical (EOS) | 1,665 W | 81.3% | **394 °C** | 378 °C |
+| 160 | AlSi10Mg stress relieved (EOS)*; AlSi10Mg stress relieved, low (3D Systems); Aheadd CP1 (blog figure)* | 1,656 W | 80.9% | **396 °C** | 380 °C |
+| 155 | AlSi10Mg T6, horizontal (EOS)* | 1,646 W | 80.4% | **398 °C** | 381 °C |
+| 150 | AlSi7Mg T6 (EOS)*; AlSi7Mg, low (Eplus3D); generic value of the earlier screens | 1,636 W | 79.9% | **399 °C** | 383 °C |
+| 140 | AlSi7Mg as built (EOS) | 1,614 W | 78.8% | **404 °C** | 387 °C |
+| 132 | Al5X1 heat treated (EOS) | 1,594 W | 77.9% | **407 °C** | 390 °C |
+| 130 | AlSi10Mg as printed, high (3D Systems) | 1,589 W | 77.6% | **408 °C** | 391 °C |
+| 120 | AlSi10Mg as printed, low (3D Systems) | 1,562 W | 76.3% | **413 °C** | 396 °C |
+| 116 | Aheadd CP1 as built (computed)† | 1,550 W | 75.7% | **415 °C** | 398 °C |
+| 110 | AlSi10Mg as built, horizontal (EOS) | 1,530 W | 74.8% | **419 °C** | 401 °C |
+| 100 | AlSi10Mg as built, vertical (EOS); Al-Mg-Sc, high (3D Systems) | 1,495 W | 73.0% | **425 °C** | 407 °C |
+| 95 | Al-Mg-Sc, low (3D Systems) | 1,475 W | 72.1% | **428 °C** | 410 °C |
+
+- **Every alloy is above the published limit in every case.** The coolest
+  result of all is 264 °C: the declared case with the oil film, at the
+  highest conductivity. At the published loading the range is 386 to
+  428 °C, and with the air film at its upper bound 324 to 373 °C.
+  Mackerle's limit is 235 °C, with hot spots at 250 °C.
+- **The oil film on the spring pockets is worth 2 to 3 °C.** The pockets
+  are too far from the chamber to matter.
+- **Conductivity is worth 43 °C** between 95 and 191 W/(m·K) at
+  the published loading. On the bare head the same range moves the rejected
+  heat by 16%, because the air side limits it: an isothermal body
+  would reject 2,047 W.
 - **Heat treatment matters more than the alloy.** AlSi10Mg goes from 100 to
-  110 W/(m·K) as built to 155 to 165 after stress relief or T6. That is worth
-  11% more heat on the bare head and 32 °C on the peak in the
-  assembly.
-- **Conductivity counts for more in the assembly.** On the bare head the
-  whole range moves the heat by 13%, because the air side limits it:
-  an isothermal body would reject 2,047 W. In the assembly the same range
-  moves the peak by 38 °C, from 273 to 311 °C.
-- **The strongest alloy is the worst conductor.** Al-Mg-Sc sits last in both
-  screens.
-- **The peak is at the exhaust seat** for 130 W/(m·K) and above, and on the
-  chamber roof between the exhaust seat and a plug below that.
-- **Check.** The 150 W/(m·K) solve of the bare head reproduces the CAD-body
-  screen exactly (1,635.8 W).
+  110 W/(m·K) as built to 155 to 165 after stress relief or T6: 31 °C
+  on the peak.
+- **The hottest alloy moves with the load.** In the declared cases it is at
+  the exhaust seat. At the published loading it is in the alloy round a
+  plug bore.
+- **The model still lacks cooling a real head has.** There is no barrel, no
+  oil beyond the pockets and no cam housing. With the heat load the
+  literature gives, that is why nothing stays under the limit. The computed
+  exhaust valve (579 °C) is still below the textbook 700 °C.
+- **Reproducibility.** The assembly mesh is regenerated at each run and the
+  mesher is not deterministic: the declared case reproduced the first sweep's
+  peaks within 0.5 °C. The 150 W/(m·K) solve of the bare head reproduces the
+  CAD-body screen exactly (1,635.8 W).
+
+**Strength beside temperature.** For the alloys that publish a strength:
+
+| Alloy and condition | W/(m·K) | Peak at the published loading | Above the coolest candidate | Yield at room temperature | Yield at 250 °C | Strength published up to |
+|---|---|---|---|---|---|---|
+| AlSi10Mg, stress relieved 350 °C 2 h, 0° orientation | 160 to 170 | 392 to 396 °C | 7 to 10 °C | 166 MPa | 133 MPa | 250 °C |
+| AlSi10Mg, EOS T6 (530 °C 30 min, quench, 165 °C 6 h) | 155 to 165 | 394 to 398 °C | 8 to 12 °C | 250 MPa | not published | 20 °C |
+| AlSi7Mg (EOS AlF357), T6-like (540 °C 30 min, quench, 165 °C 6 h) | 150 | 399 °C | 14 °C | 265 MPa | not published | 20 °C |
+| Al-Mg-Sc (Scalmalloy class), direct aged 325 °C 4 h | 95 to 100 | 425 to 428 °C | 39 to 43 °C | 465 MPa | 146 MPa (interpolated) | 300 °C |
+| Aheadd CP1 (Al-Fe-Zr), heat treated 4 h at 400 °C | 160 to 191 | 386 to 396 °C | 0 to 10 °C | 300 MPa | not published | 20 °C |
+| EOS Al5X1, heat treated | 132 | 407 °C | 22 °C | 380 MPa | not published | 20 °C |
+| A20X / A205 (Al-Cu-TiB2), T7 | not published | not placed | not placed | not in the sheet read | 215 MPa | 250 °C |
+
+- **No computed peak lies inside any published strength range.** At the
+  published loading every peak is above 380 °C, and no source gives strength
+  beyond 300 °C. The table therefore compares the alloys at 250 °C, the
+  hot-spot limit.
+- **The strongest alloy at room temperature is not the strongest here.**
+  Al-Mg-Sc starts at 465 MPa, but it is the worst conductor: it runs about
+  40 °C hotter than the best candidate, its yield at 250 °C (146 MPa,
+  interpolated) is close to stress-relieved AlSi10Mg's (133 MPa), and it
+  falls to 60 MPa at 300 °C.
+- **The documented middle ground is heat-treated AlSi10Mg.** Its
+  conductivity is measured (155 to 165 W/(m·K)), its strength is published up
+  to 250 °C, and Eplus3D, Farsoon and BLT list it by name. Its conductivity and
+  strength sources are not for the same heat-treatment condition.
+- **CP1 is the candidate to verify.** Heat treated, its computed conductivity
+  is the highest of all and its room-temperature yield is 300 MPa, and one
+  maker's sheet claims stability up to 300 °C. No datasheet read gives it a
+  thermal conductivity or a strength above room temperature. Eplus3D lists it
+  for the EP-M300, the larger machine the owner accepted.
+- **A205 has the best published hot strength** (215 MPa at 250 °C) and no
+  published conductivity, so it cannot be placed.
+
+Nothing is selected. The two rows worth a data request are heat-treated
+AlSi10Mg, for its strength at the condition of its conductivity, and CP1, for
+a measured conductivity and its strength at 200 to 300 °C.
 
 **The declared load against the literature.** No factory or peer-reviewed
 head temperature, heat balance or fan power of the 911 engine could be
-opened. What is citable is generic. It bounds the case without calibrating
-it:
+opened, and the DDK forum dataset holds none either. What is citable is
+generic. It bounds the cases without calibrating them:
 
-| Quantity | Declared or computed, at 150 W/(m·K) | Published |
-|---|---|---|
-| Heat into the assembly | 3,290 W (2,080 chamber, 1,209 exhaust port) | cooling heat 0.6 to 0.8 × brake power, shared by head, barrel and oil (Mackerle); the 993 makes 33 kW per cylinder |
-| Heat out | 2,691 W to air, 479 W to the charge, 119 W to the cylinder | no split published for the 911 |
-| Chamber wall loading | 242 kW/m² | about 465 kW/m² (Mackerle) |
-| Exhaust port film | 700 °C | gas about 800 °C at the valve, 600 °C at the port exit (Heywood) |
-| Air-side coefficient | 150 W/(m²·K) | at most 116 to 233 W/(m²·K) (Mackerle) |
-| Exhaust valve | 502 °C | about 700 °C (Heywood) |
-| Peak head alloy, all candidates | 273 to 311 °C | limit 235 °C, hot spots 250 °C (Mackerle); under about 300 °C (Heywood) |
-
-- **Every candidate is above Mackerle's limit at the declared load.** At
-  half the gas-side coefficients the peak is 188 to 214 °C. At one and a
-  half times it is 336 to 381 °C, with 4,364 W entering.
-- **The chamber load is probably low, and the head still runs hot.** The
-  declared chamber loading is about half the published one, and the computed
-  exhaust valve is about 200 °C cooler than the textbook value. A higher load
-  makes the alloy hotter still. The model has no oil cooling and no barrel,
-  which a real air-cooled head relies on. That, not the alloy, is the first
-  thing the screen is missing.
-- **No strength is ranked.** Published strength at temperature exists for a
-  few of these alloys only, and none at the condition of its conductivity.
+| Quantity | Declared case, at 150 W/(m·K) | Published-loading case, at 150 W/(m·K) | Published |
+|---|---|---|---|
+| Heat into the assembly | 3,290 W | 5,327 W | cooling heat 0.6 to 0.8 × brake power, shared by head, barrel and oil (Mackerle); the 993 makes 33 kW per cylinder |
+| Heat out to air / charge / oil / cylinder | 2,691 / 479 / none / 119 W | 3,890 / 736 / 294 / 406 W | no split published for the 911 |
+| Chamber wall loading | 242 kW/m² | 460 kW/m² | about 465 kW/m² (Mackerle) |
+| Exhaust port loading | 127 kW/m² | 144 kW/m² | about 145 kW/m² (Mackerle) |
+| Gas temperature at the chamber | 900 °C | 621 °C | effective 621 °C on aircraft cylinders (NACA 612) |
+| Air-side coefficient | 150 W/(m²·K) | 150 W/(m²·K) | at most 116 to 233 W/(m²·K) (Mackerle) |
+| Exhaust valve | 502 °C | 579 °C | about 700 °C (Heywood) |
+| Peak head alloy | 280 °C | 399 °C | limit 235 °C, hot spots 250 °C (Mackerle); under about 300 °C (Heywood) |
 
 **Machine.** No maker read publishes everything a build simulation needs.
 
 | Maker, machine | Envelope (mm) | Lasers | Spot | Layer | Oxygen | Parameters |
 |---|---|---|---|---|---|---|
 | Eplus3D EP-M260 | 260 × 260 × 390 | 500 or 700 W, single or dual | 70–100 µm | 20–120 µm | ≤ 100 ppm | open stated on the EP-M300 sheet only |
+| Eplus3D EP-M300 | 300 × 300 × 450 | 1, 2 or 4 × 500 W | 70–120 µm | not published | not published | open: power, speed, scan direction, up and down facing surfaces |
 | Kings M280 | 250 × 250 × 320 | IPG 2 × 500 W, 1064 nm | not published | 20–100 µm | not published | packages supplied |
 | Farsoon FS273M | 275 × 275 × 355 | 1 or 2 × 500 W | not published | 20–100 µm | not published | "open machine key parameters" |
 | Laseradd DiMetal-280 | 250 × 250 × 300 | 500 W × 1 or 2 | not published | 20–100 µm | not published | not published |
@@ -1352,8 +1417,9 @@ valve, seat and guide geometry (H05).
 | Asset package | CAD-body stage, 1.0 mm surface | private `part.usda`, `part.usdz` and two binary layers; [summary](params/simready-asset.json) | 30 OpenUSD validators and the NVIDIA validator on both forms; read-back of the package | done: 0 OpenUSD findings; NVIDIA 0 failures, the 2 inherited warnings; no mass, no physics run |
 | Visual check of the v2 body | double-precision 3MF | private six-view render; [record](params/v2-body-visual-check.json) | read by the agent; the renderer's strict watertight gate | done twice: the first reading found stud slivers up to 26 mm tall and led to the stud repair; after it, stubs of 5.5 mm and 5 non-manifold edges once vertices are welded |
 | Alloy candidates and machine survey | public datasheets and pages read on 2026-11-11 | [candidates](params/alloy-candidates.json), [machines](params/lpbf-machine-survey.json), [literature](params/thermal-literature-bounds.json) | each value marked re-read or reported only; source URL and file hash | done as a survey: no alloy or machine selected; no maker publishes a complete data set |
-| Alloy ranking, bare head | CAD-body thermal deck, candidate conductivities | [alloy-thermal.json](params/alloy-thermal.json) | same mesh and case; 150 W/(m·K) reproduces the CAD screen; energy balance 0.3% | done: 1,475 W to 1,674 W, a 13% spread |
-| Alloy ranking, assembly | CAD body, fitted axes, [declared case](params/assembly-case.json), H09 to H12 | private occupancy, surface and decks; [assembly-thermal.json](params/assembly-thermal.json) | watertight union; film areas and heat by group; load at 0.5 and 1.5 | done as a hypothesis screen: peak head alloy 273 to 311 °C, above the 235 to 250 °C limit for every candidate |
+| Alloy ranking, bare head | CAD-body thermal deck, candidate conductivities | [alloy-thermal.json](params/alloy-thermal.json) | same mesh and case; 150 W/(m·K) reproduces the CAD screen; energy balance 0.3% | done: 1,475 W to 1,707 W, a 16% spread |
+| Alloy ranking, assembly | CAD body, fitted axes, [declared case](params/assembly-case.json), H09 to H12 | private occupancy, surface and decks; [assembly-thermal.json](params/assembly-thermal.json) | watertight union; film areas and heat by group; four load cases, two scaled to published wall loadings | done as a hypothesis screen: peak head alloy 386 to 428 °C at the published loading, above the 235 to 250 °C limit for every candidate in every case |
+| Strength beside temperature | [published strengths](params/alloy-strength.json), the assembly ranking | [alloy-tradeoff.json](params/alloy-tradeoff.json), [chart](media/alloy-ranking.png) | solved conductivities only; no extrapolation beyond a published range | done: no computed peak lies inside a published strength range; nothing selected |
 | 993 manual cross-check | fitted features, workshop-manual catalogue | [published-993-comparison.json](params/published-993-comparison.json) | same-dimension flag on each row | done: scale not contradicted; not a calibration |
 | Print body | v2 occupancy, fits, [declared stock](params/print-body-case.json) | private occupancy and 0.5 mm surface; [record](params/print-body.json) | welded watertight, no non-manifold edge, no enclosed void; the renderer's strict gate | done as a study object: passes the gate the twin body failed; stock amounts are hypotheses |
 | Print-body orientations | print-body occupancy | [print-body-supports.json](params/print-body-supports.json) | the AM screen's analytic witnesses | done as a screen: flange y− down and side x+ down kept for the build study; no support designed |
@@ -1383,9 +1449,10 @@ valve, seat and guide geometry (H05).
 - No port-flow result exists. The audit found no admissible fluid domain.
 - The alloy rankings are screens on room-temperature conductivities and
   declared boundaries. The assembly screen's valves, guides and plugs are
-  hypothesis solids in perfect contact, with no oil cooling and no barrel.
-  It selects no alloy, predicts no engine temperature and says nothing about
-  strength.
+  hypothesis solids in perfect contact, with an oil film on the spring
+  pockets only and no barrel. It selects no alloy and predicts no engine
+  temperature. The strengths beside it are published values, most of them
+  not re-read and none a design allowable.
 - The machine survey reads makers' own pages on one day. A datasheet is not
   a qualified process.
 - A validator pass, OpenUSD or NVIDIA, shows a well-formed stage only.

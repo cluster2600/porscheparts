@@ -1,15 +1,11 @@
 {
  "schema": "935-cad-twin-alloy-candidates/1",
  "date": "2026-11-11",
- "note": "Thermal conductivities of LPBF aluminium alloys as their publishers state them, at room temperature. None is given at 150 to 250 °C, and none is a property of a part printed for this study. Measured and calculated values are different quantities and are ranked side by side only because each row says which it is. The datasheets are not redistributed: each source is a URL and the SHA-256 of the file as downloaded.",
+ "note": "Thermal conductivities of LPBF aluminium alloys as their publishers state them, at room temperature. None is given at 150 to 250 °C, and none is a property of a part printed for this study. Measured and calculated values are different quantities and are ranked side by side only because each row says which it is. The datasheets are not redistributed: each source is a URL and the SHA-256 of the file as downloaded. Two CP1 rows are computed here from its published electrical conductivity and say so.",
  "excluded": [
   {
    "alloy": "A20X / A205 (Al-Cu-TiB2)",
-   "reason": "no thermal conductivity published in the sheets read"
-  },
-  {
-   "alloy": "Aheadd CP1, datasheet values",
-   "reason": "electrical conductivity only (28 %IACS as built, 46 to 48 %IACS after 400 °C 4 h); converting it is a calculation this record does not make"
+   "reason": "no thermal or electrical conductivity published in the sheets read; it is kept in params/alloy-strength.json for its strength at temperature"
   }
  ],
  "sources": {
@@ -54,6 +50,12 @@
    "publisher": "Velo3D",
    "url": "https://www.velo3d.com/blogs/cp1-revolutionizing-am-in-high-performance-applications",
    "file_sha256": null
+  },
+  "EOS-CP1": {
+   "title": "EOS Aluminium Constellium CP1 for EOS M 290 | 60 µm, process data sheet",
+   "publisher": "EOS GmbH",
+   "url": "https://www.eos.info/metal-solutions/data-sheets/aluminium/pds-eos-aluminium-constellium-cp1-eos-m-290-60um",
+   "file_sha256": "af87ae03f96993d9ed064b63071ac8b2d6c54fd8726e6b65cc5adec47f9ad5f1"
   }
  },
  "candidates": [
@@ -215,6 +217,24 @@
    "source": "Velo3D-CP1",
    "verification": "reported by the research pass of 2026-11-11 only; not re-read",
    "note": "a blog figure; no datasheet read on 2026-11-11 gives CP1 a value in W/(m K), only electrical conductivity in %IACS"
+  },
+  {
+   "id": "cp1-eos-as-built-wf",
+   "alloy": "Aheadd CP1 (Al-Fe-Zr)",
+   "condition": "as manufactured, 28 %IACS",
+   "conductivity_W_per_mK": 116.0,
+   "method": "computed here from the published electrical conductivity by the Wiedemann-Franz law, k = L sigma T with L = 2.44e-8 W Ohm/K2 and T = 293.15 K; 100 %IACS = 58.0 MS/m. A hypothesis, not a datasheet value: the lattice part of the conductivity is ignored and L is the Sommerfeld value",
+   "source": "EOS-CP1",
+   "verification": "electrical conductivity re-read in the downloaded source file on 2026-11-11; the thermal value is computed here"
+  },
+  {
+   "id": "cp1-eos-heat-treated-wf",
+   "alloy": "Aheadd CP1 (Al-Fe-Zr)",
+   "condition": "heat treated 4 h at 400 °C, 46 %IACS",
+   "conductivity_W_per_mK": 191.0,
+   "method": "computed here from the published electrical conductivity by the Wiedemann-Franz law, k = L sigma T with L = 2.44e-8 W Ohm/K2 and T = 293.15 K; 100 %IACS = 58.0 MS/m. A hypothesis, not a datasheet value: the lattice part of the conductivity is ignored and L is the Sommerfeld value",
+   "source": "EOS-CP1",
+   "verification": "electrical conductivity re-read in the downloaded source file on 2026-11-11; the thermal value is computed here"
   },
   {
    "id": "generic-reference",

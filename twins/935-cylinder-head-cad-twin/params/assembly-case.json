@@ -20,7 +20,8 @@
    "margin_thickness_mm": 1.0,
    "tulip_length_mm": 12.0,
    "stem_above_guide_mm": 5.0,
-   "status": "hypothesis, declared; no source"
+   "status": "hypothesis, declared; no source",
+   "spring_pocket_radius_mm": 18.0
   },
   "valve_y_plus": {
    "role": "exhaust",
@@ -38,7 +39,9 @@
    "margin_thickness_mm": 1.0,
    "tulip_length_mm": 12.0,
    "stem_above_guide_mm": 5.0,
-   "status": "hypothesis, declared; no source"
+   "status": "hypothesis, declared; no source",
+   "spring_pocket_radius_mm": 18.0,
+   "spring_pocket_note": "the fitted pocket of this valve is 34.3 mm in diameter; 18 mm also covers the pocket wall foot"
   }
  },
  "plugs": {
@@ -102,15 +105,16 @@
   "air": {
    "sink_temperature_C": 40.0,
    "coefficient_W_per_m2K": 150.0,
-   "what": "forced cooling air on every other face, cam side and plug wells included",
+   "what": "forced cooling air on every other face, cam side and plug wells included; 150 W/(m² K) lies inside Mackerle's bound of 116 to 233",
+   "status": "hypothesis, declared; no source"
+  },
+  "oil": {
+   "sink_temperature_C": 90.0,
+   "coefficient_W_per_m2K": 500.0,
+   "what": "oil splashed on the spring pockets, the guide tops and the stems above the spring seats; 90 °C is inside the 80 to 100 °C of the workshop manual and the DDK forum records, the coefficient is declared",
    "status": "hypothesis, declared; no source"
   }
  },
- "load_sensitivity_factors": [
-  0.5,
-  1.5
- ],
- "load_sensitivity_note": "the coefficients of the chamber and hot-port films are multiplied by each factor, for the lowest and the highest candidate conductivity",
  "regions": {
   "chamber_radius_mm": 46.4,
   "chamber_z_max_mm": 30.0,
@@ -124,7 +128,8 @@
   "deck_contact_z_max_mm": 3.0,
   "status": "hypothesis, declared; no source",
   "register_radius_mm": 56.68,
-  "register_source": "half the fitted register recess diameter (113.36 mm, params/feature-fits.json)"
+  "register_source": "half the fitted register recess diameter (113.36 mm, params/feature-fits.json)",
+  "oil_below_spring_seat_mm": 1.0
  },
  "zones": {
   "seat_half_length_mm": 3.0,
@@ -137,12 +142,68 @@
  "not_modelled": [
   "contact resistance at seats, guides, plug threads and the cylinder joint",
   "seat inserts as a separate material",
-  "oil cooling of the cam side and the valve stems",
   "the cylinder itself and its fins",
   "valve motion: both valves are closed",
   "radiation",
-  "temperature-dependent properties"
+  "temperature-dependent properties",
+  "oil cooling beyond the spring pockets: no oil jets, no oil in the cam housing floor, no oil return tubes"
  ],
  "material_skin_mm": 1.0,
- "material_skin_note": "the united surface is extracted at 1.0 mm; a tetrahedron outside the CAD body and within this distance of a valve or plug solid is that part, not head alloy"
+ "material_skin_note": "the united surface is extracted at 1.0 mm; a tetrahedron outside the CAD body and within this distance of a valve or plug solid is that part, not head alloy",
+ "reference_conductivity_W_per_mK": 150.0,
+ "calibration_steps": 5,
+ "calibration_rule": "at the reference conductivity each calibrated coefficient is multiplied by target over achieved wall loading, calibration_steps times; the coefficients then stay fixed for every alloy of the variant",
+ "ranking_variant": "published_loading_oil",
+ "variants": [
+  {
+   "id": "declared",
+   "what": "the first declared case: gas at 900 °C and 400 W/(m² K), no oil film",
+   "films": {
+    "oil": null
+   },
+   "sweep": "three",
+   "status": "hypothesis, declared; no source"
+  },
+  {
+   "id": "declared_oil",
+   "what": "the first declared case with the oil film added",
+   "sweep": "three",
+   "status": "hypothesis, declared; no source"
+  },
+  {
+   "id": "published_loading_oil",
+   "what": "gas at the effective 621 °C that NACA Report 612 measured on air-cooled aircraft cylinders; chamber and exhaust-port coefficients scaled until the walls carry the 465 and 145 kW/m² that Mackerle gives; oil film; air at 150 W/(m² K)",
+   "films": {
+    "chamber_gas": {
+     "sink_temperature_C": 621.0,
+     "coefficient_W_per_m2K": 1500.0
+    }
+   },
+   "calibrate_wall_loading_kW_per_m2": {
+    "chamber_gas": 465.0,
+    "hot_port": 145.0
+   },
+   "sweep": "all",
+   "status": "hypothesis: published generic values applied to this head; no source describes it"
+  },
+  {
+   "id": "published_loading_oil_air_233",
+   "what": "the same with the air film at Mackerle's upper bound of 233 W/(m² K)",
+   "films": {
+    "chamber_gas": {
+     "sink_temperature_C": 621.0,
+     "coefficient_W_per_m2K": 1500.0
+    },
+    "air": {
+     "coefficient_W_per_m2K": 233.0
+    }
+   },
+   "calibrate_wall_loading_kW_per_m2": {
+    "chamber_gas": 465.0,
+    "hot_port": 145.0
+   },
+   "sweep": "three",
+   "status": "hypothesis: published generic values applied to this head; no source describes it"
+  }
+ ]
 }

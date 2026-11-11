@@ -83,7 +83,9 @@ cap "$PY" -I "$HERE/export_print.py" "$PRIV/v2-loft-s025.npz" "$PRIV/935-head-ca
 
 # Alloy screens (cadsim image). Bare head: the deck of the CAD-body screen with each
 # candidate conductivity. Assembly: valves, guides and plugs as hypothesis solids
-# united with the body, then one solve per conductivity and the load sensitivity.
+# united with the body, then every variant of the case file (a variant may scale its
+# gas-side coefficients to a published wall loading). Last, published strength beside
+# the computed peaks, and the chart of the page.
 docker run --rm --memory=10g --user "$(id -u):$(id -g)" -v "$PRIV:/p" -v "$HERE:/src:ro" -v "$PARAMS:/params:ro" \
   --entrypoint /opt/venv/bin/python 3dprinting993-cadsim:dev -I /src/alloy_thermal.py /p/thermal-v2-loft-mc100 \
   /params/alloy-candidates.json "/p/alloy-thermal-$STAMP" /p/alloy-thermal-summary.json
@@ -94,6 +96,7 @@ docker run --rm --memory=8g --user "$(id -u):$(id -g)" -v "$PRIV:/p" -v "$HERE:/
   --entrypoint /opt/venv/bin/python 3dprinting993-cadsim:dev -I /src/assembly_thermal.py solve /p/assembly-sim-mc100.stl \
   /params /p/v2-loft-s025-occ "/p/assembly-thermal-$STAMP" /p/assembly-thermal-summary.json
 cp "$PRIV/assembly-thermal-summary.json" "$PARAMS/assembly-thermal.json"
+"$PY" -I "$HERE/alloy_tradeoff.py" "$PARAMS" "$TWIN/media"
 
 # Port CFD: the audit only. It finds no admissible fluid domain, so no solver runs.
 "$PY" -I "$HERE/audit_port_domain.py" "$PARAMS" "$TWIN/hypotheses.json" "$PARAMS/port-cfd-audit.json"

@@ -10,9 +10,29 @@
     "chamber_z_max_mm": 30.0,
     "status": "declared hypotheses; uncorrelated with any engine measurement"
   },
-  "distinct_conductivities_solved": 12,
+  "distinct_conductivities_solved": 14,
   "reference_deck": "the v2 CAD-body thermal screen at 1.0 mm (thermal-screen-cad.json); only the conductivity changes",
   "ranking_by_heat_rejected": [
+    {
+      "id": "cp1-eos-heat-treated-wf",
+      "alloy": "Aheadd CP1 (Al-Fe-Zr)",
+      "condition": "heat treated 4 h at 400 \u00b0C, 46 %IACS",
+      "conductivity_W_per_mK": 191.0,
+      "method": "computed here from the published electrical conductivity by the Wiedemann-Franz law, k = L sigma T with L = 2.44e-8 W Ohm/K2 and T = 293.15 K; 100 %IACS = 58.0 MS/m. A hypothesis, not a datasheet value: the lattice part of the conductivity is ignored and L is the Sommerfeld value",
+      "verification": "electrical conductivity re-read in the downloaded source file on 2026-11-11; the thermal value is computed here",
+      "temperature_C": {
+        "min": 166.295,
+        "mean_nodal": 194.262,
+        "p95": 215.682
+      },
+      "heat_W": 1706.64,
+      "convective_loss_W": 1711.2318,
+      "relative_imbalance": 0.002683,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.10547,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.83365
+    },
     {
       "id": "alsi10mg-3ds-stress-relieved-high",
       "alloy": "AlSi10Mg",
@@ -294,6 +314,26 @@
       "fin_efficiency": 0.7628
     },
     {
+      "id": "cp1-eos-as-built-wf",
+      "alloy": "Aheadd CP1 (Al-Fe-Zr)",
+      "condition": "as manufactured, 28 %IACS",
+      "conductivity_W_per_mK": 116.0,
+      "method": "computed here from the published electrical conductivity by the Wiedemann-Franz law, k = L sigma T with L = 2.44e-8 W Ohm/K2 and T = 293.15 K; 100 %IACS = 58.0 MS/m. A hypothesis, not a datasheet value: the lattice part of the conductivity is ignored and L is the Sommerfeld value",
+      "verification": "electrical conductivity re-read in the downloaded source file on 2026-11-11; the thermal value is computed here",
+      "temperature_C": {
+        "min": 143.155,
+        "mean_nodal": 182.172,
+        "p95": 213.513
+      },
+      "heat_W": 1549.578,
+      "convective_loss_W": 1554.1552,
+      "relative_imbalance": 0.002945,
+      "film_area_mm2": 142165.8,
+      "thermal_resistance_K_per_W": 0.116161,
+      "ideal_heat_W": 2047.19,
+      "fin_efficiency": 0.75693
+    },
+    {
       "id": "alsi10mg-eos-as-built-h",
       "alloy": "AlSi10Mg",
       "condition": "as manufactured, horizontal",
@@ -375,8 +415,8 @@
     }
   ],
   "spread": {
-    "heat_best_over_worst": 1.13464,
-    "conductivity_best_over_worst": 1.78947
+    "heat_best_over_worst": 1.15693,
+    "conductivity_best_over_worst": 2.01053
   },
   "claims": "a ranking under one declared hypothesis case, on conductivities quoted from the sources in alloy-candidates.json; not an engine prediction, not a material qualification, and strength at temperature is not considered"
 }
