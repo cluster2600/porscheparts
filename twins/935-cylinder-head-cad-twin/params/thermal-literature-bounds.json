@@ -10,7 +10,8 @@
   "fan power, and the share of the cooling air that reaches the heads",
   "contact conductance at a valve seat or at the cylinder joint as a number",
   "an inlet valve temperature",
-  "a single published chamber heat transfer coefficient (the correlations need a cylinder pressure trace)"
+  "a single published chamber heat transfer coefficient (the correlations need a cylinder pressure trace)",
+  "any cylinder head temperature or fan air delivery in the DDK forum dataset (5,916 records)"
  ],
  "rows": [
   {
@@ -121,6 +122,15 @@
    "source": "enthusiast forums",
    "class": "forum",
    "verification": "reported by the research pass from a search snippet only; the page was not opened"
+  },
+  {
+   "topic": "oil temperature in operation",
+   "quantity": "normal oil temperature of air-cooled 911 engines",
+   "value": "80 to 90 °C in the 993 workshop manual; forum reports of 80 to 100 °C in normal running and about 99 °C (210 °F) at a sustained 4,000 rpm",
+   "condition": "993 manual (catalog/manual); DDK forum records on early 911 and 3.2 engines, reported or read from the car's gauge",
+   "source": "993 workshop-manual catalogue of this repository; PorscheFanatics data/forum-measurements.json (SHA-256 8a288acd...), 45 temperature records",
+   "class": "factory manual; forum",
+   "verification": "read in both datasets on 2026-11-11"
   }
  ],
  "claims": "a reading of public sources on one day; book and forum values were not re-read here unless a row says so, and none describes the scanned head"

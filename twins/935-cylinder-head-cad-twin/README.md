@@ -1121,6 +1121,29 @@ diameters (49.0 and 43.1 mm at mid-band) fall on the manual's two valve heads
 reads 8.51 mm against 8.00 to 8.015 mm, and the plug bores (11.3 to 11.5 mm)
 are too small for the manual's M14 thread.
 
+**The DDK forum dataset as a second cross-check.** The PorscheFanatics
+repository holds 5,916 measurement records read from the DDK forum. It has
+no cylinder head temperature and no fan air delivery: its 45 temperature
+records are oil, heater-duct and thermostat temperatures, and its flow
+records are fuel flows. It does hold head dimensions that members reported
+for 3.2 Carrera and RSR-type engines, and they sit closer to the scan than
+the 993 manual does:
+
+| Quantity | Forum figure (basis) | Scan |
+|---|---|---|
+| Inlet port diameter, 3.2 head | 41.5 mm (quoted) | 40.8 to 44.2 mm equivalent, `port_y_minus` |
+| Exhaust port diameter, 3.2 head | 40 mm (measured) | 38.1 to 40.5 mm equivalent, `port_y_plus` |
+| Inlet valve, 3.2 and RSR-type | 49 to 50 mm (quoted, reported) | seat mid-band 49.0 mm |
+| Exhaust valve, RSR-type | 41.4 to 42.5 mm (reported) | seat mid-band 43.1 mm |
+| Valve guide, first oversize | 13.2 to 13.26 mm (quoted, measured) | 12.9 and 13.0 mm |
+| Valve stem, early 911 | 9 mm (wear limit 8.928 mm, reported) | guide bore 8.51 mm |
+
+Forum figures are leads, weaker than the manual, and none describes this
+head. They do not contradict the scale, they support the inlet role of
+`valve_y_minus`, and they leave the guide bore undecided between an 8 mm and
+a 9 mm stem. The oil temperatures (80 to 100 °C in normal running) are kept
+as a lead for an oil-cooling hypothesis.
+
 ### Port CFD: upstream audit, no solver run ([audit](params/port-cfd-audit.json))
 
 A port-flow number needs a closed duct from the flange to the chamber, walls
