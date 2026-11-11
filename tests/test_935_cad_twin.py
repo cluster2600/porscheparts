@@ -453,6 +453,138 @@ class ShellTests(unittest.TestCase):
 
 
 @unittest.skipUnless(has("numpy"), "numpy absent")
+class FeatureFitTests(unittest.TestCase):
+    """fit_features.py and check_features.py on synthetic geometry and on the committed records."""
+
+    def setUp(self):
+        sys.path.insert(0, str(SOURCE))
+        import check_features
+        import fit_features
+        import numpy as np
+
+        self.ff, self.cf, self.np = fit_features, check_features, np
+
+    def cone_points(self, radius, half_angle_deg, offset=(0.0, 0.0), n=4000, seed=3):
+        np = self.np
+        rng = np.random.default_rng(seed)
+        t = rng.uniform(-2.0, 2.0, n)
+        theta = rng.uniform(0, 2 * np.pi, n)
+        rho = radius + np.tan(np.radians(half_angle_deg)) * t
+        return np.column_stack((offset[0] + rho * np.cos(theta), offset[1] + rho * np.sin(theta), t))
+
+    def test_about_axis_recovers_angle_diameter_and_eccentricity(self):
+        points = self.cone_points(24.5, 45.0, offset=(0.3, -0.4))
+        got = self.ff.about_axis(points, [0, 0, 0], [0, 0, 1])
+        self.assertAlmostEqual(got["half_angle_deg"], 45.0, delta=0.05)
+        # The diameter is the one at the mean station of the points, on a 45 degree cone.
+        self.assertAlmostEqual(got["diameter_mm"], 49.0 + 2.0 * got["station_mm"], delta=0.02)
+        self.assertAlmostEqual(got["eccentricity_mm"], 0.5, delta=0.01)
+        # Read the other way along the axis, the same surface closes instead of opening.
+        self.assertAlmostEqual(self.ff.about_axis(points, [0, 0, 0], [0, 0, -1])["half_angle_deg"], -45.0, delta=0.05)
+
+    def test_window_selects_a_tube_by_position_only(self):
+        np = self.np
+        points = np.array([[4.0, 0, 1.0], [4.0, 0, 9.0], [7.0, 0, 1.0], [0, 4.0, -1.0], [0.5, 0, 1.0]])
+        roi = {"seed_point": [0, 0, 0], "seed_axis": [0, 0, 2.0], "t_mm": [0, 5], "rho_mm": [3, 5]}
+        self.assertEqual(self.ff.window(points, roi).tolist(), [0])
+
+    def test_split_is_deterministic_disjoint_and_about_half(self):
+        np = self.np
+        index = np.arange(100000, 140000)
+        fitted, held = self.ff.split_halves(index)
+        again, _ = self.ff.split_halves(index[::-1])
+        self.assertEqual(set(fitted.tolist()), set(again.tolist()))
+        self.assertFalse(set(fitted.tolist()) & set(held.tolist()))
+        self.assertEqual(len(fitted) + len(held), len(index))
+        self.assertAlmostEqual(len(fitted) / len(index), 0.5, delta=0.02)
+
+    def test_choose_keeps_the_stated_kind_and_prefers_a_determined_fit(self):
+        axis = {"axis_direction": [0, 0, 1], "side": "concave"}
+        bore = {**axis, "type": "cylinder", "determined": True, "points": 300}
+        rival = {**axis, "type": "cylinder", "determined": False, "points": 900}
+        seat = {**axis, "type": "cone", "half_angle_deg": 45.0, "determined": True, "points": 500}
+        boss = {**axis, "type": "cylinder", "side": "convex", "determined": True, "points": 800}
+        tilted = {**axis, "axis_direction": [0, 0.5, 0.866], "type": "cylinder", "determined": True, "points": 999}
+        face = {"type": "plane", "normal": [0, 0, -1], "determined": True, "points": 50}
+        found = [rival, seat, boss, tilted, face, bore]
+        roi = {"seed_axis": [0, 0, 1], "side": "concave"}
+        self.assertIs(self.ff.choose(found, {**roi, "kind": "bore"}), bore)
+        self.assertIs(self.ff.choose(found, {**roi, "kind": "seat"}), seat)
+        self.assertIs(self.ff.choose(found, {**roi, "kind": "boss", "side": "convex"}), boss)
+        self.assertIs(self.ff.choose(found, {**roi, "kind": "plane", "side": "plane"}), face)
+        self.assertIs(self.ff.choose([rival], {**roi, "kind": "bore"}), rival)
+        self.assertIsNone(self.ff.choose([face], {**roi, "kind": "bore"}))
+
+    def test_two_centre_datum_points_from_the_first_centre_to_the_second(self):
+        by_id = {"a": {"fit": {"axis_point": [0, 0, 0]}}, "b": {"fit": {"axis_point": [0, 30.0, 40.0]}}, "c": {"fit": None}}
+        got = self.ff.group_datums({"g": {"line_through": ["a", "b"]}, "h": {"line_through": ["a", "c"]}}, by_id)
+        self.assertEqual(list(got), ["g"])
+        self.assertEqual(got["g"]["span_mm"], 50.0)
+        self.np.testing.assert_allclose(got["g"]["axis_direction"], [0, 0.6, 0.8], atol=1e-6)
+
+    def test_primitive_mesh_lies_on_the_primitive(self):
+        np = self.np
+        fit = {"type": "cone", "axis_point": [1.0, 2.0, 3.0], "axis_direction": [0, 0, 1], "diameter_mm": 20.0,
+               "half_angle_deg": 45.0, "station_range_mm": [-1.0, 2.0]}
+        v, f = self.cf.primitive_mesh(fit)
+        t = v[:, 2] - 3.0
+        np.testing.assert_allclose(np.hypot(v[:, 0] - 1.0, v[:, 1] - 2.0), 10.0 + t, atol=1e-9)
+        self.assertEqual((float(t.min()), float(t.max())), (-1.0, 2.0))
+        self.assertEqual(len(f), 2 * self.cf.SEGMENTS)
+        flat, _ = self.cf.primitive_mesh({"type": "plane", "point": [0, 0, 5.0], "normal": [0, 0, 1]})
+        np.testing.assert_allclose(flat[:, 2], 5.0)
+
+    def test_verdict_applies_the_fixed_acceptance(self):
+        np = self.np
+        good = np.concatenate([np.full(95, 0.05), np.full(5, 0.3), np.full(40, 2.0)])
+        poor = np.concatenate([np.full(80, 0.05), np.full(20, 0.3)])
+        self.assertTrue(self.cf.verdict(good)["confirmed"])
+        self.assertEqual(self.cf.verdict(good)["check_vertices"], 100)
+        self.assertFalse(self.cf.verdict(poor)["confirmed"])
+        self.assertFalse(self.cf.verdict(np.full(50, 0.01))["confirmed"])
+
+    def test_committed_fits_and_check_are_bound_and_consistent(self):
+        import hashlib
+
+        params = TWIN / "params"
+        fits = json.loads((params / "feature-fits.json").read_text())
+        check = json.loads((params / "feature-check.json").read_text())
+        self.assertEqual(fits["scan_sha256"], SCAN_SHA256)
+        self.assertEqual(fits["rois_sha256"], hashlib.sha256((params / "feature-rois.json").read_bytes()).hexdigest())
+        self.assertEqual(check["fits_sha256"], hashlib.sha256((params / "feature-fits.json").read_bytes()).hexdigest())
+        self.assertEqual(fits["tool"]["noise_mm"],
+                         json.loads((params / "frame.json").read_text())["planes"][0]["residual"]["rms_mm"])
+        self.assertEqual(check["acceptance"], {"fixed_before_first_run": True, "band_mm": self.cf.BAND_MM,
+                                               "tolerance_mm": self.cf.TOLERANCE_MM, "min_share": self.cf.MIN_SHARE,
+                                               "min_vertices": self.cf.MIN_VERTICES})
+        self.assertEqual([r["id"] for r in fits["regions"]], [r["id"] for r in check["regions"]])
+        self.assertEqual(check["confirmed"], sum(r["confirmed"] for r in check["regions"]))
+        for region, row in zip(fits["regions"], check["regions"]):
+            fit = region["fit"]
+            if fit is None:
+                self.assertFalse(row["confirmed"])
+                continue
+            self.assertEqual(row["determined_by_the_fit"], fit["determined"])
+            if not fit["determined"] and fit["type"] != "plane":
+                # Detected, not measured: no uncertainty may be quoted for it.
+                self.assertIsNone(fit["radius_sigma_mm"])
+                self.assertIsNone(fit["axis_direction_sigma_deg"])
+            if row["confirmed"]:
+                self.assertGreaterEqual(row["share_within_tolerance"], self.cf.MIN_SHARE)
+        for group, datum in fits["group_datums"].items():
+            rule = datum["rule"]
+            if "axis_of" in rule:
+                self.assertTrue(next(r for r in fits["regions"] if r["id"] == rule["axis_of"])["fit"]["determined"], group)
+
+    def test_body_cloudcompare_agrees_with_the_scorecard(self):
+        body = json.loads((TWIN / "params" / "cloudcompare-v2-body.json").read_text())
+        for key in ("p50_mm", "p95_mm"):
+            self.assertAlmostEqual(body["cloudcompare"][key], body["scorecard_scan_to_twin"][key], delta=0.005)
+        for key in ("share_within_0p1_mm", "share_within_0p2_mm", "share_within_0p5_mm"):
+            self.assertAlmostEqual(body["cloudcompare"][key], body["scorecard_scan_to_twin"][key], delta=0.005)
+
+
+@unittest.skipUnless(has("numpy"), "numpy absent")
 class ScorecardTests(unittest.TestCase):
     @unittest.skipUnless(has("warp", "trimesh"), "warp/trimesh absent")
     def test_warp_distances_match_analytic_cube(self):

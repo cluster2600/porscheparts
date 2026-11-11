@@ -73,6 +73,24 @@ cap "$PY" -I "$HERE/export_print.py" "$PRIV/v2-loft-s025.npz" "$PRIV/935-head-ca
 MEM=4G cap "$PY" -I "$HERE/am_supports.py" "$PRIV" "$PARAMS"
 "$PY" -I "$HERE/am_cooldown.py" all "$PRIV" "$PARAMS"
 
+# Revolved machined features, with the assigned fitting tool and its own environment
+# (docs/LOCAL_HOST_SETUP.md, "Tool environments under work/"), then CloudCompare on the
+# held-out half of each window and on the v2 body. FIT and CC_IMAGE are optional:
+#   FIT=work/scan-primitive-fitting-venv/bin/python  CC_IMAGE=free-tools-cloudcompare:local
+# check_features.py refuses an existing --work directory: name a new one for each run.
+REPO=$(cd "$TWIN/../.." && pwd); STAMP=$(date +%Y%m%d-%H%M%S)
+if [ -n "${FIT:-}" ] && [ -n "${CC_IMAGE:-}" ]; then
+  MEM=4G cap "$FIT" -I "$HERE/fit_features.py" --bare-scan "$PRIV/bare-scan-twin.npz" --rois "$PARAMS/feature-rois.json" \
+    --tool "$REPO/benchmarks/scan-primitive-fitting/primitive_fit.py" --frame "$PARAMS/frame.json" \
+    --private-out "$PRIV/feature-split.npz" --out "$PARAMS/feature-fits.json"
+  "$PY" -I "$HERE/check_features.py" --bare-scan "$PRIV/bare-scan-twin.npz" --image "$CC_IMAGE" \
+    --work "$PRIV/feature-check-$STAMP" --fits "$PARAMS/feature-fits.json" --split "$PRIV/feature-split.npz" \
+    --out "$PARAMS/feature-check.json"
+  "$PY" -I "$HERE/check_features.py" --bare-scan "$PRIV/bare-scan-twin.npz" --image "$CC_IMAGE" \
+    --work "$PRIV/body-cloudcompare-$STAMP" --body "$PRIV/v2-loft-s025.npz" \
+    --scorecard "$PARAMS/scorecard-v2-loft-s025.json" --out "$PARAMS/cloudcompare-v2-body.json"
+fi
+
 # NVIDIA tools live in two environments of their own, never in $PY:
 #   uv venv --python 3.12 "$SIM/convert";  uv pip install --python "$SIM/convert/bin/python" \
 #     --extra-index-url https://pypi.nvidia.com "usd-convert-cad==0.2.0"

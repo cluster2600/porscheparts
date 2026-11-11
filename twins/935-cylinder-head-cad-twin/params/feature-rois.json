@@ -1,0 +1,828 @@
+{
+ "schema": "935-cad-twin-feature-rois/1",
+ "note": "Windows drawn by hand on radius-against-station plots of the acquired scan, twin frame, mm. Each is a tube about a seed axis: stations t_mm along it from seed_point, radii rho_mm from it. They select points by position only and are inputs to fit_features.py, not measurements. The valve windows were redrawn once, about the axes the first pass fitted.",
+ "datum_rule": "The datum axis of a valve is the axis of its guide bore when the bore is acquired at both ends. Otherwise it is the line through two fitted centres far apart, the throat and the guide outside diameter at the cam end, because a feature a few millimetres long fixes where its axis is, not where it points. The datum of a plug is its thread bore, of a stud its passage, when the fit is determined. The register recess is a ring 5.5 mm long and is given no datum axis.",
+ "pitch_mm": 0.5,
+ "pitch_source": "median scan edge 0.36 mm; every second vertex is fitted",
+ "min_points": 100,
+ "seed": 0,
+ "datums": {
+  "valve_y_minus": {
+   "axis_of": "valve_y_minus_guide_bore"
+  },
+  "valve_y_plus": {
+   "line_through": [
+    "valve_y_plus_throat",
+    "valve_y_plus_guide_od_cam"
+   ]
+  },
+  "plug_x_plus": {
+   "axis_of": "plug_x_plus_thread_bore"
+  },
+  "plug_x_minus": {
+   "axis_of": "plug_x_minus_thread_bore"
+  },
+  "stud_x_minus_y_minus": {
+   "axis_of": "stud_x_minus_y_minus_passage"
+  },
+  "stud_x_minus_y_plus": {
+   "axis_of": "stud_x_minus_y_plus_passage"
+  },
+  "stud_x_plus_y_minus": {
+   "axis_of": "stud_x_plus_y_minus_passage"
+  },
+  "stud_x_plus_y_plus": {
+   "axis_of": "stud_x_plus_y_plus_passage"
+  }
+ },
+ "datum_checks": [
+  {
+   "group": "valve_y_minus",
+   "line_through": [
+    "valve_y_minus_throat",
+    "valve_y_minus_guide_od_cam"
+   ],
+   "purpose": "the two-centre construction used for valve_y_plus, tried on the valve whose guide bore axis is measured"
+  }
+ ],
+ "datum_angles": [
+  [
+   "valve_y_minus",
+   "valve_y_plus"
+  ],
+  [
+   "plug_x_plus",
+   "plug_x_minus"
+  ]
+ ],
+ "regions": [
+  {
+   "id": "valve_y_minus_guide_bore",
+   "group": "valve_y_minus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    -4.474,
+    -40.039,
+    58.739
+   ],
+   "seed_axis": [
+    -0.0106,
+    -0.4365,
+    0.8996
+   ],
+   "t_mm": [
+    -22,
+    29
+   ],
+   "rho_mm": [
+    0,
+    5.2
+   ]
+  },
+  {
+   "id": "valve_y_minus_guide_bore_port_end",
+   "group": "valve_y_minus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    -4.474,
+    -40.039,
+    58.739
+   ],
+   "seed_axis": [
+    -0.0106,
+    -0.4365,
+    0.8996
+   ],
+   "t_mm": [
+    -22,
+    -8
+   ],
+   "rho_mm": [
+    0,
+    5.2
+   ]
+  },
+  {
+   "id": "valve_y_minus_guide_bore_cam_end",
+   "group": "valve_y_minus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    -4.474,
+    -40.039,
+    58.739
+   ],
+   "seed_axis": [
+    -0.0106,
+    -0.4365,
+    0.8996
+   ],
+   "t_mm": [
+    17,
+    29
+   ],
+   "rho_mm": [
+    0,
+    5.2
+   ]
+  },
+  {
+   "id": "valve_y_minus_guide_od_cam",
+   "group": "valve_y_minus",
+   "kind": "boss",
+   "side": "convex",
+   "seed_point": [
+    -4.474,
+    -40.039,
+    58.739
+   ],
+   "seed_axis": [
+    -0.0106,
+    -0.4365,
+    0.8996
+   ],
+   "t_mm": [
+    17.5,
+    28
+   ],
+   "rho_mm": [
+    5.4,
+    7.6
+   ]
+  },
+  {
+   "id": "valve_y_minus_guide_od_port",
+   "group": "valve_y_minus",
+   "kind": "boss",
+   "side": "convex",
+   "seed_point": [
+    -4.474,
+    -40.039,
+    58.739
+   ],
+   "seed_axis": [
+    -0.0106,
+    -0.4365,
+    0.8996
+   ],
+   "t_mm": [
+    -21.5,
+    -12.5
+   ],
+   "rho_mm": [
+    4.9,
+    7.2
+   ]
+  },
+  {
+   "id": "valve_y_minus_throat",
+   "group": "valve_y_minus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    -4.474,
+    -40.039,
+    58.739
+   ],
+   "seed_axis": [
+    -0.0106,
+    -0.4365,
+    0.8996
+   ],
+   "t_mm": [
+    -46,
+    -34
+   ],
+   "rho_mm": [
+    21.5,
+    24.5
+   ]
+  },
+  {
+   "id": "valve_y_minus_seat",
+   "group": "valve_y_minus",
+   "kind": "seat",
+   "side": "concave",
+   "seed_point": [
+    -4.474,
+    -40.039,
+    58.739
+   ],
+   "seed_axis": [
+    -0.0106,
+    -0.4365,
+    0.8996
+   ],
+   "t_mm": [
+    -49.2,
+    -46.5
+   ],
+   "rho_mm": [
+    23.6,
+    26.2
+   ]
+  },
+  {
+   "id": "valve_y_minus_spring_seat",
+   "group": "valve_y_minus",
+   "kind": "plane",
+   "side": "plane",
+   "seed_point": [
+    -4.474,
+    -40.039,
+    58.739
+   ],
+   "seed_axis": [
+    -0.0106,
+    -0.4365,
+    0.8996
+   ],
+   "t_mm": [
+    15.4,
+    18.4
+   ],
+   "rho_mm": [
+    7.5,
+    19
+   ]
+  },
+  {
+   "id": "valve_y_plus_guide_od_cam",
+   "group": "valve_y_plus",
+   "kind": "boss",
+   "side": "convex",
+   "seed_point": [
+    -3.8,
+    33.39,
+    21.98
+   ],
+   "seed_axis": [
+    -0.0127,
+    0.4977,
+    0.8673
+   ],
+   "t_mm": [
+    59,
+    70.5
+   ],
+   "rho_mm": [
+    5.6,
+    8.2
+   ]
+  },
+  {
+   "id": "valve_y_plus_guide_bore_cam_end",
+   "group": "valve_y_plus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    -3.8,
+    33.39,
+    21.98
+   ],
+   "seed_axis": [
+    -0.0127,
+    0.4977,
+    0.8673
+   ],
+   "t_mm": [
+    62,
+    70.5
+   ],
+   "rho_mm": [
+    0,
+    5.2
+   ]
+  },
+  {
+   "id": "valve_y_plus_guide_boss_port",
+   "group": "valve_y_plus",
+   "kind": "boss",
+   "side": "convex",
+   "seed_point": [
+    -3.8,
+    33.39,
+    21.98
+   ],
+   "seed_axis": [
+    -0.0127,
+    0.4977,
+    0.8673
+   ],
+   "t_mm": [
+    21.5,
+    28
+   ],
+   "rho_mm": [
+    4,
+    8.5
+   ]
+  },
+  {
+   "id": "valve_y_plus_throat",
+   "group": "valve_y_plus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    -3.8,
+    33.39,
+    21.98
+   ],
+   "seed_axis": [
+    -0.0127,
+    0.4977,
+    0.8673
+   ],
+   "t_mm": [
+    -4,
+    4
+   ],
+   "rho_mm": [
+    18,
+    20.5
+   ]
+  },
+  {
+   "id": "valve_y_plus_seat",
+   "group": "valve_y_plus",
+   "kind": "seat",
+   "side": "concave",
+   "seed_point": [
+    -3.8,
+    33.39,
+    21.98
+   ],
+   "seed_axis": [
+    -0.0127,
+    0.4977,
+    0.8673
+   ],
+   "t_mm": [
+    -9,
+    -4
+   ],
+   "rho_mm": [
+    19.5,
+    23.5
+   ]
+  },
+  {
+   "id": "valve_y_plus_spring_pocket",
+   "group": "valve_y_plus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    -3.8,
+    33.39,
+    21.98
+   ],
+   "seed_axis": [
+    -0.0127,
+    0.4977,
+    0.8673
+   ],
+   "t_mm": [
+    55.5,
+    63.5
+   ],
+   "rho_mm": [
+    16,
+    18.5
+   ]
+  },
+  {
+   "id": "valve_y_plus_spring_seat",
+   "group": "valve_y_plus",
+   "kind": "plane",
+   "side": "plane",
+   "seed_point": [
+    -3.8,
+    33.39,
+    21.98
+   ],
+   "seed_axis": [
+    -0.0127,
+    0.4977,
+    0.8673
+   ],
+   "t_mm": [
+    53.5,
+    56.5
+   ],
+   "rho_mm": [
+    8,
+    17
+   ]
+  },
+  {
+   "id": "plug_x_plus_thread_bore",
+   "group": "plug_x_plus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    23.3,
+    10.7,
+    31.5
+   ],
+   "seed_axis": [
+    0.199,
+    0.457,
+    0.867
+   ],
+   "t_mm": [
+    -8,
+    8
+   ],
+   "rho_mm": [
+    4.5,
+    6.6
+   ]
+  },
+  {
+   "id": "plug_x_plus_chamber_relief",
+   "group": "plug_x_plus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    23.3,
+    10.7,
+    31.5
+   ],
+   "seed_axis": [
+    0.199,
+    0.457,
+    0.867
+   ],
+   "t_mm": [
+    -16.5,
+    -8.5
+   ],
+   "rho_mm": [
+    6.3,
+    8.2
+   ]
+  },
+  {
+   "id": "plug_x_plus_well",
+   "group": "plug_x_plus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    23.3,
+    10.7,
+    31.5
+   ],
+   "seed_axis": [
+    0.199,
+    0.457,
+    0.867
+   ],
+   "t_mm": [
+    9,
+    29
+   ],
+   "rho_mm": [
+    11.3,
+    14.2
+   ]
+  },
+  {
+   "id": "plug_x_plus_seat_face",
+   "group": "plug_x_plus",
+   "kind": "plane",
+   "side": "plane",
+   "seed_point": [
+    23.3,
+    10.7,
+    31.5
+   ],
+   "seed_axis": [
+    0.199,
+    0.457,
+    0.867
+   ],
+   "t_mm": [
+    7,
+    11
+   ],
+   "rho_mm": [
+    6.2,
+    12.3
+   ]
+  },
+  {
+   "id": "plug_x_minus_thread_bore",
+   "group": "plug_x_minus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    -31.3,
+    4.0,
+    30.3
+   ],
+   "seed_axis": [
+    -0.196,
+    -0.431,
+    0.881
+   ],
+   "t_mm": [
+    -8,
+    8
+   ],
+   "rho_mm": [
+    4.5,
+    6.6
+   ]
+  },
+  {
+   "id": "plug_x_minus_chamber_relief",
+   "group": "plug_x_minus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    -31.3,
+    4.0,
+    30.3
+   ],
+   "seed_axis": [
+    -0.196,
+    -0.431,
+    0.881
+   ],
+   "t_mm": [
+    -16.5,
+    -8.5
+   ],
+   "rho_mm": [
+    6.3,
+    8.2
+   ]
+  },
+  {
+   "id": "plug_x_minus_well",
+   "group": "plug_x_minus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    -31.3,
+    4.0,
+    30.3
+   ],
+   "seed_axis": [
+    -0.196,
+    -0.431,
+    0.881
+   ],
+   "t_mm": [
+    9,
+    29
+   ],
+   "rho_mm": [
+    11.3,
+    14.2
+   ]
+  },
+  {
+   "id": "plug_x_minus_seat_face",
+   "group": "plug_x_minus",
+   "kind": "plane",
+   "side": "plane",
+   "seed_point": [
+    -31.3,
+    4.0,
+    30.3
+   ],
+   "seed_axis": [
+    -0.196,
+    -0.431,
+    0.881
+   ],
+   "t_mm": [
+    7,
+    11
+   ],
+   "rho_mm": [
+    6.2,
+    12.3
+   ]
+  },
+  {
+   "id": "stud_x_minus_y_minus_passage",
+   "group": "stud_x_minus_y_minus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    -47.29,
+    -39.82,
+    0.0
+   ],
+   "seed_axis": [
+    0,
+    0,
+    1
+   ],
+   "t_mm": [
+    0.5,
+    42
+   ],
+   "rho_mm": [
+    4,
+    6.6
+   ]
+  },
+  {
+   "id": "stud_x_minus_y_minus_counterbore",
+   "group": "stud_x_minus_y_minus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    -47.29,
+    -39.82,
+    0.0
+   ],
+   "seed_axis": [
+    0,
+    0,
+    1
+   ],
+   "t_mm": [
+    37,
+    51
+   ],
+   "rho_mm": [
+    11,
+    13.8
+   ]
+  },
+  {
+   "id": "stud_x_minus_y_plus_passage",
+   "group": "stud_x_minus_y_plus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    -46.84,
+    45.82,
+    0.0
+   ],
+   "seed_axis": [
+    0,
+    0,
+    1
+   ],
+   "t_mm": [
+    0.5,
+    42
+   ],
+   "rho_mm": [
+    4,
+    6.6
+   ]
+  },
+  {
+   "id": "stud_x_minus_y_plus_counterbore",
+   "group": "stud_x_minus_y_plus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    -46.84,
+    45.82,
+    0.0
+   ],
+   "seed_axis": [
+    0,
+    0,
+    1
+   ],
+   "t_mm": [
+    37,
+    51
+   ],
+   "rho_mm": [
+    11,
+    13.8
+   ]
+  },
+  {
+   "id": "stud_x_plus_y_minus_passage",
+   "group": "stud_x_plus_y_minus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    39.0,
+    -40.01,
+    0.0
+   ],
+   "seed_axis": [
+    0,
+    0,
+    1
+   ],
+   "t_mm": [
+    0.5,
+    42
+   ],
+   "rho_mm": [
+    4,
+    6.6
+   ]
+  },
+  {
+   "id": "stud_x_plus_y_minus_counterbore",
+   "group": "stud_x_plus_y_minus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    39.0,
+    -40.01,
+    0.0
+   ],
+   "seed_axis": [
+    0,
+    0,
+    1
+   ],
+   "t_mm": [
+    37,
+    51
+   ],
+   "rho_mm": [
+    11,
+    13.8
+   ]
+  },
+  {
+   "id": "stud_x_plus_y_plus_passage",
+   "group": "stud_x_plus_y_plus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    39.28,
+    45.44,
+    0.0
+   ],
+   "seed_axis": [
+    0,
+    0,
+    1
+   ],
+   "t_mm": [
+    0.5,
+    42
+   ],
+   "rho_mm": [
+    4,
+    6.6
+   ]
+  },
+  {
+   "id": "stud_x_plus_y_plus_counterbore",
+   "group": "stud_x_plus_y_plus",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    39.28,
+    45.44,
+    0.0
+   ],
+   "seed_axis": [
+    0,
+    0,
+    1
+   ],
+   "t_mm": [
+    37,
+    51
+   ],
+   "rho_mm": [
+    11,
+    13.8
+   ]
+  },
+  {
+   "id": "deck_register_recess",
+   "group": "deck",
+   "kind": "bore",
+   "side": "concave",
+   "seed_point": [
+    0,
+    0,
+    0
+   ],
+   "seed_axis": [
+    0,
+    0,
+    1
+   ],
+   "t_mm": [
+    0.15,
+    2.05
+   ],
+   "rho_mm": [
+    55.5,
+    58.5
+   ]
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+  "schema": "935-cad-twin-body-cloudcompare/1",
+  "tool": {
+    "name": "CloudCompare 2.13.2, C2M_DIST, unsigned",
+    "image": "free-tools-cloudcompare:local",
+    "image_id": "sha256:5b33bb63c14752060c96cc74f4871266908c672d0d495cee2edbed7bbae74f03"
+  },
+  "sample": {
+    "facets": 200000,
+    "rule": "centroids of acquired bare-scan facets drawn with probability proportional to area, with replacement",
+    "seed": 20261111
+  },
+  "body_triangles": 2272080,
+  "cloudcompare": {
+    "p50_mm": 0.0454,
+    "p95_mm": 0.1576,
+    "share_within_0p1_mm": 0.8442,
+    "share_within_0p2_mm": 0.9731,
+    "share_within_0p5_mm": 0.9952
+  },
+  "scorecard_sha256": "f1351ff976380d42f63a5775be02ebf4f7164a71d526639fd92b9040d01704f5",
+  "scorecard_scan_to_twin": {
+    "checker": "score_twin.py (independent of producers); NVIDIA Warp mesh_query_point_no_sign on CPU",
+    "p50_mm": 0.0455,
+    "p95_mm": 0.1579,
+    "share_within_0p1_mm": 0.84464,
+    "share_within_0p2_mm": 0.97311,
+    "share_within_0p5_mm": 0.99524
+  },
+  "claims": "a second distance tool on a sample; it checks the scorecard's arithmetic, not the scan"
+}

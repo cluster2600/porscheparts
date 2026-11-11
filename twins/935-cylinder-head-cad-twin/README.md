@@ -6,7 +6,7 @@
 > geometry is closed by declared hypotheses listed in
 > [hypotheses.json](hypotheses.json); none is a measurement.
 
-## State on 2026-11-10
+## State on 2026-11-11
 
 | Body | What it is | Scan within 0.2 mm | p95 | What runs on it |
 |---|---|---|---|---|
@@ -21,8 +21,13 @@ stated blocker. What the twin still does not have:
 
 - **A B-rep of the whole body.** v2 is a triangle solid; only the deck plate
   and the two port lofts are B-rep.
-- **A valve train.** Valves, seats and guides are hypotheses (H05), so no
-  port-flow domain is admissible and no port CFD was run.
+- **A valve train.** The guides, seats, throats, plug bores and stud passages
+  are now [fitted where the scanner reached them](#machined-features-fitted-with-the-assigned-tool-checked-with-cloudcompare-windows-fits-check):
+  two valve axes, 25.9° and 29.9° from the bore axis, a guide bore of 8.51 mm
+  and seats near 45° and 49°. CloudCompare confirms 4 of the 32 fits within
+  0.2 mm, so they are nominal sizes and axes, not inspected surfaces. No
+  valve, seat insert or guide is modelled in a body (H05), no port-flow domain
+  is admissible and no port CFD was run.
 - **Any physical calibration.** Every distance is to the scan, whose scale is
   an owner instruction.
 
@@ -105,17 +110,21 @@ flowchart LR
   U --> SR
   O --> AM["AM screen<br/>supports, Adamantine"]
   V1 --> PA["Port CFD audit<br/>no admissible domain"]
+  F --> FF["Feature fit<br/>primitive_fit.py"]
+  FF --> CC["CloudCompare check<br/>held-out vertices"]
+  V2 --> CC
   H["hypotheses.json"] -.-> U
   classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
   classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
   classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
   class F,O,T1,SC,V2,TH,U,P,SR,AM ok;
-  class V1 open;
+  class V1,FF,CC open;
   class PA stop;
 ```
 
 *Diagram: the chain as run. T1s is the reference surface; v2 is the CAD body
-and feeds the same tiers; v1 holds the analytic features and stops at 69.9%.*
+and feeds the same tiers; v1 holds the analytic features and stops at 69.9%.
+The feature fit is amber because CloudCompare confirms 4 of its 32 features.*
 
 | Role | Selected tool | Script |
 |---|---|---|
@@ -136,6 +145,8 @@ and feeds the same tiers; v1 holds the analytic features and stops at 69.9%.*
 | LPBF orientation screen | NumPy voxel columns on the occupancy grid | [am_supports.py](source/am_supports.py) |
 | Cooldown screen | Adamantine 1.1.9 (`rombur/adamantine:1.1`) with an independent VTU reader | [am_cooldown.py](source/am_cooldown.py) |
 | Port-flow admissibility | reads the port fit and the hypotheses register | [audit_port_domain.py](source/audit_port_domain.py) |
+| Revolved machined features | [`primitive_fit.py`](../../benchmarks/scan-primitive-fitting/primitive_fit.py), the assigned cylinder and cone fit, in its own locked environment | [fit_features.py](source/fit_features.py) |
+| Independent deviation of each feature and of the v2 body | CloudCompare 2.13.2 in the `free-tools-cloudcompare` image, no network | [check_features.py](source/check_features.py) |
 
 The private inputs and outputs live under `work/935-cad-twin/` (ignored by
 Git). Only code, fitted scalar parameters and statistics are committed, as
@@ -712,6 +723,128 @@ files only.
   build of the 2026-10-29 study, and that study's body still had its studs,
   so the two are not comparable like for like.
 
+### Machined features: fitted with the assigned tool, checked with CloudCompare ([windows](params/feature-rois.json), [fits](params/feature-fits.json), [check](params/feature-check.json))
+
+Until 2026-11-10 the repository had no assigned tool for fitting a bore or a
+valve seat to a scan, and the twin's own circle fits were the only numbers on
+its machined features. [fit_features.py](source/fit_features.py) now runs the
+assigned tool on 32 windows of the acquired scan: one tube per feature, drawn
+by hand on radius-against-station plots and selecting points by position
+only. The noise given to the tool is the RMS of the deck plane, 0.040 mm.
+Half of the vertices of each window are fitted. The other half goes to
+[check_features.py](source/check_features.py), where CloudCompare measures it
+against the fitted primitive.
+
+```mermaid
+flowchart LR
+  W["32 windows<br/>(tubes about seed axes)"] --> H{"hash of the<br/>vertex index"}
+  H -->|"half"| FIT["primitive_fit.py<br/>cylinder or cone, own sigma"]
+  H -->|"other half"| CC["CloudCompare<br/>distance to the primitive"]
+  FIT --> PRIM["fitted primitive"]
+  PRIM --> CC
+  FIT --> DET{"determined<br/>by the fit?"}
+  DET -->|"25"| M["fitted, with sigma"]
+  DET -->|"7"| D["detected,<br/>no sigma"]
+  CC --> ACC{"90% of held-out vertices<br/>within 0.2 mm?"}
+  ACC -->|"4"| OK["confirmed"]
+  ACC -->|"28"| NO["not confirmed"]
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  class OK,M ok;
+  class D open;
+  class NO stop;
+```
+
+*Diagram: every window is split before fitting, so the check never measures a
+vertex the fit saw. The acceptance was fixed before the first check run.*
+
+**The check, first.** A feature is confirmed when at least 90% of its
+held-out vertices within 0.5 mm of the primitive lie within 0.2 mm, the
+twin's tolerance. **4 of 32 pass**: the throat and the seat of `valve_y_plus`
+and the two plug seat faces. The other 28 hold between 63% and 90% within
+0.2 mm, with a median distance of 0.03 to 0.13 mm and a 95th percentile of
+0.29 to 0.46 mm. The fit's own residual, 0.03 to 0.06 mm RMS, does not show
+this: it only counts the vertices inside its 0.12 mm band. The numbers below
+are therefore nominal sizes and axes of the scanned features. None is an
+inspected surface, and the tool's standard deviations are lower bounds.
+
+**Valve train**, in the twin frame. The valves are named by flange side;
+which one is the intake is not established.
+
+| | `valve_y_minus` | `valve_y_plus` |
+|---|---|---|
+| Axis datum | guide bore, acquired at both ends, one cylinder over 48.8 mm | line through the throat centre and the cam-end guide centre, 65.9 mm apart |
+| Axis to the bore axis | 25.89° | 29.89° |
+| Guide bore | Ø8.51 mm (σ 0.008 mm) | Ø8.55 mm about the datum, cam end only |
+| Guide outside diameter, cam end | Ø12.89 mm | Ø13.02 mm about the datum |
+| Throat | Ø45.81 mm, detected only: a barrel profile that five rival cones share | Ø38.45 mm, 1.9° cone, **confirmed** |
+| Seat | cone of 45.5° ± 0.14° about its own axis, 46.6° about the guide axis, Ø49.0 mm at mid-band | 49.0°, Ø43.1 mm, detected only, **confirmed** |
+| Seat centre off the valve axis | 0.46 mm | 0.36 mm |
+| Spring seat normal to the valve axis | 0.30° | 1.61° |
+
+The two valve axes make 55.76° with each other.
+
+- **Only one guide bore is seen at both ends.** On `valve_y_plus` the port
+  end of the guide is not acquired, and its cam-end features, 8 to 11 mm
+  long, point 3.2° to 4.3° away from the line through the two centres while
+  reporting 0.4° to 1.3°. The same two-centre construction on `valve_y_minus`
+  lies 0.42° from its guide bore axis, so the `valve_y_plus` axis is good to
+  about half a degree, not to the 0.02° of the other valve.
+- **This scan does not give seat run-out.** The seat centres sit 0.36 and
+  0.46 mm from their valve axes, the plug wells 0.67 and 0.77 mm from their
+  thread bores. A band 3.8 mm long cannot tell an offset from a tilt, and the
+  scan locates one small feature against another to a few tenths of a
+  millimetre at best. A valve job needs the specimen on a bench.
+
+**Plugs, studs and register.**
+
+| Feature | Fitted on the scan |
+|---|---|
+| Plug thread bores | Ø11.49 mm (0.34° cone) and Ø11.28 mm, 29.19° and 28.61° from the bore axis, 57.76° from each other |
+| Plug chamber-side reliefs, wells | Ø14.26 and Ø14.39 mm; Ø24.7 mm (90 fitted vertices) and Ø25.4 mm (detected only) |
+| Plug seat faces | planes 1.41° and 1.58° off their thread-bore axes, both **confirmed** |
+| Stud passages | Ø10.50 (detected), Ø10.96 (0.74° cone), Ø10.51 (detected) and Ø10.51 mm (0.40° cone) |
+| Stud counterbores | Ø24.44, Ø25.22 (135° of arc), Ø24.27 and Ø24.26 mm (detected) |
+| Register recess | Ø113.36 mm on 212° of arc. The circle fit of P1 gave 113.88 mm with 0.29 mm RMS on every facet of the band |
+
+Found on the way:
+
+- **Seven features come back detected, not determined.** Their surface does
+  not hold one cylinder or cone inside the 0.12 mm band, so the tool reports
+  two rival models that share nearly every vertex and refuses both refits.
+  Two stud passages seen over 354° and 37 mm are in that state. The record
+  keeps the first estimate without any uncertainty.
+- **The deck's noise understates the noise in a bore.** That is the reading
+  of the check above; the fits were not rerun with another value.
+- **The windows were drawn twice.** The first pass had 39 windows about axes
+  read from plots. The second pass redrew the valve windows about the fitted
+  axes, narrowed the two seat windows to the 45° band and dropped seven
+  windows: four stud seat faces and the port end of the `valve_y_plus` guide,
+  which hold too few vertices, the chamber shoulder, whose window caught the
+  dome, and one duplicate. The check ran on the final table only, so its
+  acceptance could not steer the windows.
+
+**The v2 body, measured by a second tool** ([record](params/cloudcompare-v2-body.json)).
+CloudCompare on 200,000 scan facets drawn by area gives a median of
+0.0454 mm, a 95th percentile of 0.1576 mm and 97.31% within 0.2 mm. The Warp
+scorecard reads 0.0455 mm, 0.1579 mm and 97.31%. The scorecard's arithmetic
+is reproduced; the scan itself is not checked by this.
+
+What these fits do not change: no feature is cut into the v2 body, H02, H05
+and H06 keep their status in [hypotheses.json](hypotheses.json), and the
+port-flow audit below still fails its third gate.
+
+Not run on this head, each for a stated reason:
+
+- **Fatigue post-processing (pyLife).** There is no stress history, because
+  the only solve is a steady temperature field under a declared case, and no
+  S-N data is admitted for the alloy, which is itself unknown.
+- **Valve-train dynamics.** No tool is installed (Chrono is a candidate
+  only), and there is no valve, spring or cam.
+- **A dimensioned drawing.** No tool is assigned, and 28 of the 32 features
+  it would dimension are not confirmed.
+
 ### Port CFD: upstream audit, no solver run ([audit](params/port-cfd-audit.json))
 
 A port-flow number needs a closed duct from the flange to the chamber, walls
@@ -756,6 +889,10 @@ valve, seat and guide geometry (H05).
 | Port CFD | port fit, hypotheses | [audit](params/port-cfd-audit.json) | three admissibility gates | closed by audit: no admissible domain, no solver run; reopens with H04 and H05 evidence |
 | SimReady tools | v1 deck plate STEP, two port loft STEPs, both stages | private stages; [deck](params/simready-deck-plate.json), [ports](params/simready-ports.json) | NVIDIA validator; independent bounding box and volume against the STEP | done for the three B-rep inputs (pass) and both stages; profile conformance, agents and RTX not attempted; no STEP of the v2 body |
 | AM screen | occupancy | [supports](params/am-supports.json), [cooldown](params/am-cooldown.json) | analytic witnesses within 2.5%; independent VTU reader, energy imbalance 1.5e-4 | done as a screen: six orientations, two cooldown levels; no orientation chosen, no support designed |
+| Feature fit | bare scan, frame, [32 windows](params/feature-rois.json) | [feature-fits.json](params/feature-fits.json); private vertex split | the tool's own `determined` flag and standard deviations; two-centre construction against a guide bore axis (0.42°) | done: 25 determined, 7 detected only; two valve axes, guide bore, seats, plug bores, stud passages |
+| Feature check | fits, held-out half of each window | [feature-check.json](params/feature-check.json); private clouds and receipts | CloudCompare distances; acceptance fixed beforehand (90% within 0.2 mm) | done: **4 of 32 confirmed**; the fits are nominal, not inspected |
+| Body check by a second tool | v2 body, 200,000 scan facets | [cloudcompare-v2-body.json](params/cloudcompare-v2-body.json) | CloudCompare against the Warp scorecard | done: 97.31% within 0.2 mm from both, p95 0.1576 against 0.1579 mm |
+| Fatigue, valve-train dynamics, drawing | none | none | — | not run: no stress history or S-N data, no installed dynamics tool, no confirmed features to dimension |
 
 ## Limits
 
@@ -770,6 +907,10 @@ valve, seat and guide geometry (H05).
 - The valve guides, seats and valves are not modelled. The bosses the scan
   shows in the spring pockets are in the v2 body as scanned, without bores
   beyond what was acquired.
+- The fitted features are numbers on scan vertices. CloudCompare confirms 4
+  of 32 within 0.2 mm; none is a dimension of the specimen, a tolerance, a
+  fit or a thread, and the valve named by a flange side is not identified as
+  intake or exhaust.
 - The AM numbers are geometric and thermal screens on generic constants.
   They establish no printability, orientation, support scheme or material.
 - No port-flow result exists. The audit found no admissible fluid domain.
