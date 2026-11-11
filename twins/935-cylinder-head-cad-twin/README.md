@@ -11,7 +11,7 @@
 | Body | What it is | Scan within 0.2 mm | p95 | What runs on it |
 |---|---|---|---|---|
 | T1s | reference surface: marching cubes of the occupancy, snapped onto the scan | 99.5% | 0.015 mm | thermal screen, OpenUSD stage, 3MF, AM screen |
-| **v2** | **CAD body: a loft through sections, one closed solid, regenerated from code** | **97.3%** | **0.158 mm** | thermal screen, OpenUSD stage, 3MF, all rebuilt from it |
+| **v2** | **CAD body: a loft through sections, one closed solid, regenerated from code** | **97.3%** | **0.158 mm** | thermal screen, OpenUSD stage, 3MF, all rebuilt from it; packaged with a collider and a display material as `.usda` and `.usdz` |
 | v1 | analytic features: deck plate and two port lofts as B-rep, prism stack | 69.9% | 0.846 mm | STEP → OpenUSD with the NVIDIA converter |
 
 ![Share of the acquired scan area within 0.2 mm of each twin body, from 69.9% for the v1 prism stack to 97.3% for the v2 CAD body and 99.5% for the T1s reference surface](media/scorecard-bodies.png)
@@ -147,6 +147,8 @@ The feature fit is amber because CloudCompare confirms 4 of its 32 features.*
 | Port-flow admissibility | reads the port fit and the hypotheses register | [audit_port_domain.py](source/audit_port_domain.py) |
 | Revolved machined features | [`primitive_fit.py`](../../benchmarks/scan-primitive-fitting/primitive_fit.py), the assigned cylinder and cone fit, in its own locked environment | [fit_features.py](source/fit_features.py) |
 | Independent deviation of each feature and of the v2 body | CloudCompare 2.13.2 in the `free-tools-cloudcompare` image, no network | [check_features.py](source/check_features.py) |
+| Asset package: collider, display material, `.usda` and `.usdz` | OpenUSD 26.11 (`UsdPhysics`, `UsdShade`, `UsdUtils`), then both validators | [export_simready.py](source/export_simready.py) |
+| Six-view render of the body, read by the agent | `preview.py` of the `cad-skill` skill (trimesh, pyrender, EGL under `xvfb-run`) | none: the script is the skill's |
 
 The private inputs and outputs live under `work/935-cad-twin/` (ignored by
 Git). Only code, fitted scalar parameters and statistics are committed, as
@@ -576,6 +578,9 @@ Limits of the v2 body:
 - **88 detached pieces (81 mm³ in total) are dropped** and 77 enclosed voids
   (378 mm³) are kept. 0.18% of the scan area is farther than 1 mm from the
   body, against 0.10% for T1.
+- **It carries stud residue and touches itself at ten points.** See the
+  visual check under the package section: five slivers beside three removed
+  studs, and 23 non-manifold edges for any tool that welds vertices.
 - **It is a triangle solid, not a B-rep.** It regenerates from the code and
   the parameters in about three minutes. As a B-rep it would need one face
   per wall triangle, about 3 million for the reference body, so no STEP is
@@ -627,6 +632,63 @@ points that coincide in single precision
 measured: removing the triangles would open the surface. The 3MF is written
 from the double-precision body; written from its single-precision STL, the
 read-back was not watertight.
+
+### The CAD body as a simulation-ready package ([asset](params/simready-asset.json), [NVIDIA: usda](params/simready-validate-asset-usda.json), [usdz](params/simready-validate-asset-usdz.json), [visual check](params/v2-body-visual-check.json))
+
+The CAD-body stage is geometry with evidence colours. A physics or rendering
+application also expects a collider, a bound material and one file to load.
+[export_simready.py](source/export_simready.py) adds them in a text root layer
+and leaves the geometry layer byte for byte as it was:
+
+```mermaid
+flowchart LR
+  G["geometry.usdc<br/>CAD-body stage, unchanged"] --> R["part.usda<br/>metadata, material,<br/>collision schemas"]
+  C["collider.usdc<br/>1.0 mm closed surface"] --> R
+  R --> Z["part.usdz<br/>one package"]
+  R --> V1["30 OpenUSD validators"]
+  Z --> V1
+  R --> V2["NVIDIA validator<br/>42 rules"]
+  Z --> V2
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  class G,C,R,Z,V1 ok;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+  class V2 open;
+```
+
+*Diagram: the package is three layers. The NVIDIA box is amber for the two
+warnings the geometry layer already carried; the package adds none.*
+
+| Item | In the package |
+|---|---|
+| Stage | default prim `/Head935`, kind component, Z-up, 0.001 m per unit, 1 kg per unit |
+| Render mesh | `BareHead`, 2,272,080 triangles, one normal per face, evidence colours |
+| Material | `Looks/EvidenceDisplay`, a `UsdPreviewSurface` that reads the evidence colour; bound to the body and the 10 studs |
+| Collider | `Collision/BareHead`, guide purpose, 397,604 triangles (the 1.0 mm surface of the thermal screen), `UsdPhysics` collision with convex decomposition; volume 1.00012 of the render body |
+| OpenUSD validators (30) | no finding on `part.usda` or on `part.usdz` |
+| NVIDIA validator (42 rules) | 0 failures, 0 errors, 2 warnings on each: 22 triangles without area and co-located points, both on `BareHead` and both inherited |
+| Read back from the `.usdz` | identical to the layers |
+
+Not authored, on purpose: **no mass, density or rigid body**, because the
+alloy is unknown, and **no physical material**. The bound material displays
+the observed and inferred classes; it is not a material of the part. No
+physics was run on the package, and the NVIDIA skill named for this step
+(`omniverse-cad-to-sim-ready`) is not installed on the host, so its rules
+were not consulted.
+
+**Visual check.** The six-view render shows a recognisable head: fins, both
+ports, spring pockets with guide bosses, the chamber with two throats and
+two plug bores, four stud bosses. It also shows what the scores do not:
+
+- **Stud residue.** Five slivers 1.3 to 5.1 mm wide stand beside three of the
+  four long cam-side studs and reach z = 103.7 to 112.2 mm, 18 to 26 mm above
+  the cam face. They are what the stud exclusion left of the studs, not head
+  material. They are in the occupancy, so every body and tier carries them.
+- **The renderer's strict gate refuses the body.** Its loader welds vertices
+  and drops degenerate triangles before testing. As built the body is
+  watertight (2,272,080 triangles); after trimesh's default processing 10
+  vertices merge and 23 edges are shared by more than two faces. The solid
+  touches itself at those points. A slicer or mesher that welds will see the
+  same thing; the 3MF and the thermal surface were built without welding.
 
 ### SimReady tools: STEP → OpenUSD and NVIDIA validation ([deck plate](params/simready-deck-plate.json), [ports](params/simready-ports.json))
 
@@ -892,6 +954,8 @@ valve, seat and guide geometry (H05).
 | Feature fit | bare scan, frame, [32 windows](params/feature-rois.json) | [feature-fits.json](params/feature-fits.json); private vertex split | the tool's own `determined` flag and standard deviations; two-centre construction against a guide bore axis (0.42°) | done: 25 determined, 7 detected only; two valve axes, guide bore, seats, plug bores, stud passages |
 | Feature check | fits, held-out half of each window | [feature-check.json](params/feature-check.json); private clouds and receipts | CloudCompare distances; acceptance fixed beforehand (90% within 0.2 mm) | done: **4 of 32 confirmed**; the fits are nominal, not inspected |
 | Body check by a second tool | v2 body, 200,000 scan facets | [cloudcompare-v2-body.json](params/cloudcompare-v2-body.json) | CloudCompare against the Warp scorecard | done: 97.31% within 0.2 mm from both, p95 0.1576 against 0.1579 mm |
+| Asset package | CAD-body stage, 1.0 mm surface | private `part.usda`, `part.usdz` and two binary layers; [summary](params/simready-asset.json) | 30 OpenUSD validators and the NVIDIA validator on both forms; read-back of the package | done: 0 OpenUSD findings; NVIDIA 0 failures, the 2 inherited warnings; no mass, no physics run |
+| Visual check of the v2 body | double-precision 3MF | private six-view render; [record](params/v2-body-visual-check.json) | read by the agent; the renderer's strict watertight gate | done, with two defects recorded: stud residue slivers up to 26 mm tall, and 23 non-manifold edges once vertices are welded |
 | Fatigue, valve-train dynamics, drawing | none | none | — | not run: no stress history or S-N data, no installed dynamics tool, no confirmed features to dimension |
 
 ## Limits
