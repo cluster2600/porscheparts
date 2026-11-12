@@ -1,0 +1,130 @@
+{
+  "schema_version": "1.0.0",
+  "criterion_id": "993-INTERCOOLER-750-RIB-ROOT-FILLET-CRITERION-1",
+  "issue": 467,
+  "written_on": "2026-11-12",
+  "status": "fixed_before_the_source_search_and_before_the_evaluation",
+  "question": "Which of the two assumed rib-root fillet radii, 0.2 mm or 0.4 mm, does the next geometry of the four-rib hot-passage coupon carry?",
+  "candidates_mm": [0.2, 0.4],
+  "what_was_already_known_when_this_was_written": [
+    "The retained plane-strain root peaks (12.81 MPa at 0.2 mm, 9.31 MPa at 0.4 mm, nodal Richardson extrapolations) and the retained hydraulic proxy changes (+0.33 % and +1.47 %) were already published in the coupon README. This rule is therefore not blind to them.",
+    "The catalogue already held three process figures for one AlSi10Mg route (EOS M 290, 30 micrometre layers): layer thickness 0.03 mm, minimum wall 0.4 mm, laser focus diameter 0.1 mm.",
+    "The author recalled, without having re-read any of them for this task, that machine-maker data sheets quote a small-part accuracy of the order of 0.1 mm and that as-built LPBF aluminium roughness is of the order of tens of micrometres peak to valley.",
+    "No source search for this task had been made, no source record had been added and no evaluation script existed when this file was committed. The thresholds and the order of the tests below are what is fixed in advance."
+  ],
+  "assumed_route": {
+    "alloy": "AlSi10Mg, laser powder bed fusion, as stated by the coupon and the 750 hp sizing",
+    "machine": null,
+    "machine_note": "No machine is selected for the intercooler. Figures are taken first from the only AlSi10Mg process card in catalog/manufacturing/processes (EOS M 290, 30 micrometre layers). A figure from another machine, alloy or layer thickness is recorded with that condition and counts as indicative only.",
+    "orientation": null,
+    "orientation_note": "Build orientation is a separate gate and is not chosen here. A test below must hold whether the fillet is formed inside a layer or across layers."
+  },
+  "inputs_allowed": {
+    "retained_results": [
+      "twins/993-intercooler/750-hp/pressure-coupon/derived/fillet-convergence/fillet-convergence.json",
+      "twins/993-intercooler/750-hp/pressure-coupon/derived/fillet-hydraulics/fillet-hydraulics.json",
+      "twins/993-intercooler/750-hp/pressure-coupon/derived/channel-cfd/channel-cfd.json"
+    ],
+    "sourced_process_figures": "twins/993-intercooler/750-hp/pressure-coupon/fillet-radius/process-capability.json, every figure tied to a record in catalog/sources; a figure with no source is null",
+    "closed_forms": [
+      "s(r) = (sqrt(2) - 1) r",
+      "S_low(r) = S(r) (r / r_low)^(1 - lambda)"
+    ],
+    "nothing_else": "No new finite-element or CFD run, no measurement and no unsourced number enters the decision."
+  },
+  "definitions": {
+    "S": "Upper bound of the retained converged root peak under the assumed 0.375 MPa: the larger of the nodal and the integration-point Richardson extrapolations, each multiplied by (1 + its fine-grid GCI).",
+    "screen_mpa": "The 40 MPa exploratory screen of the coupon study, read from the retained report. It is an assumption of that study, not an allowable.",
+    "s": "s(r) = (sqrt(2) - 1) r, the greatest distance between the fillet arc and the sharp corner it replaces: 0.0828 mm at 0.2 mm and 0.1657 mm at 0.4 mm. It is the form the process must stand above its surface noise for the fillet to differ from a nominally sharp root.",
+    "noise_scales": {
+      "layer_thickness_mm": "sourced layer thickness of the route: the stair-step height when the fillet is built across layers",
+      "powder_upper_size_mm": "sourced upper particle size of the powder (D90 or the sieve cut): the size of a particle left fused to an as-built surface",
+      "as_built_roughness_rz_mm": "sourced as-built peak-to-valley roughness Rz of LPBF AlSi10Mg. Where a source gives only Ra, Ra is recorded and the Rz test is not evaluable; Ra is not converted."
+    },
+    "delta_offset_mm": "Sourced one-sided dimensional accuracy for small features on the route. A uniform surface offset of that size changes a concave root radius by the same amount, so r_low(r) = r - delta_offset.",
+    "lambda": "First symmetric Williams eigenvalue of a 270 degree solid corner, the root of sin(3 pi lambda / 2) = lambda: lambda = 0.5445, so 1 - lambda = 0.4555. The coupon README already uses this exponent for the sharp-root mesh divergence.",
+    "S_low": "S_low(r) = S(r) (r / r_low)^(1 - lambda): the asymptotic scaling of the peak with a small root radius in a re-entrant corner. It is an assumed extrapolation, valid for a radius small against the 0.8 mm rib and wall, and it is not a retained result.",
+    "scaling_validity_check": "The scaling must reproduce the ratio of the two retained nodal Richardson extrapolations, S(0.2)/S(0.4) against 2^(1 - lambda) = 1.3713, within 5 %, the convergence tolerance the fillet study already fixed. If it does not, S_low is void and test M2 is not evaluable.",
+    "hydraulic_penalty": "Change in pressure loss of the fully developed proxy against the sharp four-rib section, at the same total mass flow, read from the retained report.",
+    "hydraulic_limit": "5 % of the sharp four-rib loss. Rationale: the retained channel CFD differs from the proxy by 1.6 to 2.6 % and its meshes spread by up to 1.2 %, so a smaller penalty is not separable from model error; the limit sits at about twice that. It is a decision parameter of this criterion, not a requirement of the intercooler."
+  },
+  "tests": [
+    {
+      "id": "M1",
+      "name": "retained root peak converged and below the assumed screen",
+      "pass": "both retained Richardson records for the radius report converged_within_gci, and S(r) < screen_mpa",
+      "fail_class": "rejected"
+    },
+    {
+      "id": "H1",
+      "name": "hydraulic penalty within the limit",
+      "pass": "hydraulic_penalty(r) <= hydraulic_limit",
+      "fail_class": "rejected"
+    },
+    {
+      "id": "M2",
+      "name": "root peak still below the assumed screen if the as-built radius falls short by the sourced accuracy",
+      "pass": "r_low(r) > 0 and S_low(r) < screen_mpa",
+      "fail_class": "not_distinguishable",
+      "not_evaluable_when": "delta_offset_mm is null, or the scaling validity check fails"
+    },
+    {
+      "id": "P1",
+      "name": "no admitted source states a minimum internal radius or minimum feature size above the radius",
+      "pass": "every stated minimum internal radius or minimum detail size for the route is <= r",
+      "fail_class": "not_distinguishable",
+      "note": "A minimum wall thickness is a statement about free-standing walls, not about a fillet on a 0.8 mm section. It is recorded as context and does not decide this test.",
+      "not_evaluable_when": "no source states such a minimum for the route"
+    },
+    {
+      "id": "P2",
+      "name": "the fillet form stands above each sourced surface-noise scale",
+      "pass": "s(r) > layer_thickness_mm and s(r) > powder_upper_size_mm and s(r) > as_built_roughness_rz_mm, for each scale that is sourced",
+      "fail_class": "not_distinguishable",
+      "not_evaluable_when": "a scale is null; the test is then evaluated on the sourced scales only and the radius cannot be classed sourced"
+    },
+    {
+      "id": "P3",
+      "name": "a measurement of an as-built concave radius exists",
+      "pass": "at least one admitted source reports, with its uncertainty, the as-built value of a concave radius designed at or below r in LPBF AlSi10Mg",
+      "fail_class": null,
+      "note": "Absence does not reject a radius; it prevents the class sourced."
+    }
+  ],
+  "context_only_not_deciding": [
+    "laser focus diameter: a contour path is offset by the beam radius and can trace a concave solid fillet of any radius, so the focus diameter is reported and does not decide",
+    "minimum wall thickness of the route",
+    "added solid section area of the fillets",
+    "any thermal effect of the fillets: no retained thermal result exists; the 3D conjugate study decides it"
+  ],
+  "classes_best_first": {
+    "sourced": "passes M1, H1, M2, P1 and P2 with every figure sourced, and P3 is met",
+    "unsettled": "passes every test that is evaluable, but at least one test is not evaluable or P3 is not met",
+    "not_distinguishable": "fails M2, P1 or P2: on sourced evidence the as-built root cannot be told from a sharp one, or cannot be shown to stay below the screen",
+    "rejected": "fails M1 or H1"
+  },
+  "decision_rule": [
+    "R1. Classify each candidate radius with the tests above.",
+    "R2. If both radii are rejected or not_distinguishable, propose neither, and state that a larger radius has to be studied first.",
+    "R3. Otherwise propose the radius of the better class.",
+    "R4. On equal class, propose the larger radius. Reason fixed here: the difference in root peak between the two radii is resolved by the retained mesh study, whereas the difference in hydraulic penalty lies inside the mesh spread of the retained channel CFD.",
+    "R5. If the proposed radius is not classed sourced, it is a design assumption for the 3D study only. The decision record must say so and must name the contributed printed-coupon measurement that would settle it.",
+    "R6. The other radius stays in the 3D study as a comparison arm only if it is classed unsettled or better. A radius classed not_distinguishable returns only after an admitted contributed measurement of its as-built root."
+  ],
+  "what_overturns_the_outcome": [
+    "an admitted measurement that changes the class of either radius",
+    "a mesh-converged 3D result in which the proposed radius fails the predeclared acceptance of the 3D study plan",
+    "a conjugate heat-transfer or hydraulic result in which the proposed radius costs more than the predeclared limit against the other",
+    "a source that states a minimum internal radius for the selected machine above the proposed radius"
+  ],
+  "what_this_criterion_cannot_establish": [
+    "pressure strength: the pressure, the elastic card and the 40 MPa screen are study assumptions and no hot allowable is sourced",
+    "fatigue, thermal stress, creep or the effect of as-built surface notches at the root",
+    "that any LPBF machine holds either radius: only a printed and sectioned coupon shows that",
+    "build orientation, overhang, depowdering, sealing or the gyroid header",
+    "that 0.4 mm is the best radius: larger radii have no retained result"
+  ],
+  "pressure_qualified": false,
+  "manufacturing_authorized": false,
+  "lpbf_process_qualified": false
+}
