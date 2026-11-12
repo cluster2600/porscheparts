@@ -6,6 +6,7 @@ private scan never reaches CI.
 
 import importlib.util
 import json
+import re
 import sys
 import unittest
 from pathlib import Path
@@ -823,16 +824,48 @@ class PrintBodyTests(unittest.TestCase):
 
     def test_layer_screen_record_keeps_its_failed_attempts_and_its_closed_gates(self):
         record = json.loads((TWIN / "params" / "print-body-layer-screen.json").read_text())
-        self.assertEqual([a["outcome"].split(" ")[0] for a in record["attempts"]], ["killed", "killed", "completed"])
-        report = record["report"]
-        self.assertTrue(report["gates"]["full_piece_layer_slicing_completed"])
-        self.assertTrue(report["gates"]["bare_part_machine_envelope_fit"])
-        for gate in ("metal_print_authorized", "physical_coupon_qualified", "recoater_clearance_validated",
-                     "supplier_supports_validated", "supplier_machine_file_signed"):
-            self.assertFalse(report["gates"][gate], gate)
-        self.assertEqual(report["full_build_slicing"]["layer_count"], 4481)
-        self.assertEqual(report["powder_escape_screen"]["trapped_void_volume_mm3"], 0.0)
-        self.assertEqual(report["machine_candidate"]["model"], "EP-M300")
+        outcomes = [a["outcome"].split(" ")[0] for a in record["attempts"]]
+        self.assertEqual(outcomes, ["killed", "killed", "completed", "killed", "killed", "killed", "completed", "completed"])
+        self.assertIn("thickness probe", record["why_the_fine_surface_failed"])
+        self.assertTrue(record["driver_witness"]["same_hashes_as_the_run_without_the_driver"])
+        self.assertEqual(record["driver_witness"]["manifest"], record["coarser_surface"]["manifest"]["artifacts"])
+        for report, layers, triangles in ((record["report"], 4482, 1684604), (record["coarser_surface"]["report"], 4481, 398652)):
+            self.assertTrue(report["gates"]["full_piece_layer_slicing_completed"])
+            self.assertTrue(report["gates"]["bare_part_machine_envelope_fit"])
+            for gate in ("metal_print_authorized", "physical_coupon_qualified", "recoater_clearance_validated",
+                         "supplier_supports_validated", "supplier_machine_file_signed"):
+                self.assertFalse(report["gates"][gate], gate)
+            self.assertEqual(report["full_build_slicing"]["layer_count"], layers)
+            self.assertEqual(report["analysis_surface"]["triangles"], triangles)
+            self.assertEqual(report["selected_candidate_orientation"], "build_y")
+            self.assertEqual(report["powder_escape_screen"]["trapped_void_volume_mm3"], 0.0)
+            self.assertEqual(report["machine_candidate"]["model"], "EP-M300")
+
+    def test_wall_check_bounds_the_thickness_probe(self):
+        walls = json.loads((TWIN / "params" / "print-body-wall-check.json").read_text())["walls"]
+        shares = [walls[k]["share_of_surface_voxels"] for k in ("below_1_mm", "below_1.5_mm", "below_2_mm")]
+        self.assertEqual(shares, sorted(shares))
+        probe = json.loads((TWIN / "params" / "print-body-layer-screen.json").read_text())["comparison"]
+        # the grid sits near the smoother surface's probe and far below the rough one's
+        self.assertLess(abs(shares[1] - probe["surface_1p0_mm"]["thickness_probe_mm"]["share_below_1p5"]), 0.03)
+        self.assertGreater(probe["surface_0p5_mm"]["thickness_probe_mm"]["share_below_1p5"], 2 * shares[1])
+
+    @unittest.skipUnless(has("numpy", "scipy"), "numpy or scipy absent")
+    def test_opening_finds_a_thin_plate_and_keeps_a_thick_one(self):
+        sys.path.insert(0, str(SOURCE))
+        import numpy as np
+        import wall_check
+
+        solid = np.zeros((60, 60, 40), dtype=bool)
+        solid[5:55, 5:55, 4:16] = True                     # a plate 3 mm thick at 0.25 mm
+        solid[5:55, 28:32, 16:36] = True                   # a fin 1 mm thick standing on it
+        shares = wall_check.thin_shares(solid, 0.25, walls=(1.5, 2.0, 3.5))["walls"]
+        fin = 50 * 4 * 20 / solid.sum()
+        # the whole fin, plus the plate's own edges, which no ball reaches into
+        for key, edges in (("below_1.5_mm", 0.05), ("below_2_mm", 0.08)):
+            self.assertGreaterEqual(shares[key]["share_of_volume"], fin - 0.005)
+            self.assertLess(shares[key]["share_of_volume"], fin + edges)
+        self.assertGreater(shares["below_3.5_mm"]["share_of_volume"], 0.95)
 
 
 @unittest.skipUnless(has("numpy"), "numpy absent")
@@ -866,6 +899,19 @@ class BuildWitnessTests(unittest.TestCase):
         cold = [dict(r) for r in good]
         cold[3]["mean_temperature_K"] = 433.33  # the nominal value is not what a nodal solver gives
         self.assertFalse(self.ab.judge(cold, w)["passed"])
+        # a solver that stops after the substrate has validated no deposition
+        self.assertFalse(self.ab.judge(good[:1], w)["passed"])
+        self.assertFalse(self.ab.judge(good[:3], w)["passed"])
+        uneven = [dict(r) for r in good]
+        uneven[2]["min_temperature_K"], uneven[2]["max_temperature_K"] = 370.0, 380.0   # not settled before the next layer
+        self.assertFalse(self.ab.judge(uneven, w)["passed"])
+
+    def test_a_solver_that_exits_with_an_error_fails_the_witness(self):
+        held = {"verdict": {"passed": True}, "solver": {"returncode": 0}}
+        self.assertTrue(self.ab.passed({"a": held, "b": held}))
+        self.assertFalse(self.ab.passed({"a": held, "b": {"verdict": {"passed": True}, "solver": {"returncode": 1}}}))
+        self.assertFalse(self.ab.passed({"a": held, "b": {"verdict": {"passed": True}, "solver": {}}}))
+        self.assertFalse(self.ab.passed({}))
 
     def test_hex_mesh_of_a_block_counts_and_tags_the_base(self):
         import tempfile
@@ -891,6 +937,171 @@ class BuildWitnessTests(unittest.TestCase):
             self.assertEqual(case["solver"]["returncode"], 0)
         self.assertEqual(len(record["found_on_the_way"]), 3)
         self.assertIn("no laser", record["claims"])
+
+
+@unittest.skipUnless(has("numpy"), "numpy absent")
+class BuildSimTests(unittest.TestCase):
+    """The CalculiX build screen: its bookkeeping on synthetic input, then the committed records."""
+
+    def setUp(self):
+        sys.path.insert(0, str(SOURCE))
+        import build_sim
+        import numpy as np
+
+        self.bs, self.np = build_sim, np
+        self.case = json.loads((TWIN / "params" / "build-sim-case.json").read_text())
+
+    def test_a_lump_takes_its_exposure_plus_its_recoating_and_absorbs_its_share(self):
+        np = self.np
+        mesh = {"pitch": np.float64(4.0), "rows_per_lump": np.int64(2), "kind": np.array([1, 2, 2, 3, 2]),
+                "lump": np.array([-1, 0, 0, 0, 1])}
+        process, fraction = self.case["process"], self.case["supports"]["solid_fraction"]
+        first, second = self.bs.schedule(mesh, self.case)
+        melted = 2 * 64.0 + fraction * 64.0
+        self.assertAlmostEqual(first["melted_mm3"], melted)
+        self.assertAlmostEqual(first["real_layers"], 8.0 / process["layer_thickness_mm"])
+        exposure = melted * process["volumetric_energy_density_J_mm3"] / (process["laser_power_W"] * process["lasers"])
+        self.assertAlmostEqual(first["duration_s"], exposure + 160 * process["recoating_s_per_layer"])
+        self.assertAlmostEqual(first["absorbed_J"], process["absorptivity"] * process["volumetric_energy_density_J_mm3"] * melted)
+        self.assertAlmostEqual(second["melted_mm3"], 64.0)
+
+    def test_rigid_motion_is_removed_and_a_bend_is_kept(self):
+        np = self.np
+        rng = np.random.default_rng(3)
+        xyz = rng.uniform(-50.0, 50.0, (400, 3))
+        spin = np.cross(np.array([1e-4, -2e-4, 3e-4]), xyz) + np.array([0.3, -0.1, 0.2])
+        self.assertLess(np.abs(self.bs.remove_rigid(xyz, spin)).max(), 1e-9)
+        bend = np.zeros_like(xyz)
+        bend[:, 2] = 1e-4 * xyz[:, 0] ** 2
+        left = self.bs.remove_rigid(xyz, spin + bend)
+        self.assertGreater(np.abs(left).max(), 0.05)
+        self.assertLess(np.abs(left - self.bs.remove_rigid(xyz, bend)).max(), 1e-9)
+
+    def test_result_blocks_are_read_up_to_the_next_heading(self):
+        import tempfile
+
+        text = ("\n temperatures for set ALLN and time  0.1000000E+01\n\n         1  3.000000E+02\n         2  5.000000E+02\n"
+                "\n                        S T E P       2\n\n\n temperatures for set ALLN and time  0.6000000E+01\n\n"
+                "         1  3.750000E+02\n")
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "w.dat"
+            path.write_text(text)
+            blocks = self.bs.dat_blocks(path, "temperatures for set ALLN", 2)
+        self.assertEqual([t for t, _ in blocks], [1.0, 6.0])
+        self.assertEqual(blocks[0][1].tolist(), [[1.0, 300.0], [2.0, 500.0]])
+        self.assertEqual(blocks[1][1].tolist(), [[1.0, 375.0]])
+
+    @unittest.skipUnless(has("scipy"), "scipy absent")
+    def test_an_overhang_gets_columns_and_a_45_degree_step_does_not(self):
+        import tempfile
+
+        np = self.np
+        # Twin axes x, y, z at 0.25 mm; the build runs along -y, so the plate is at the high-y end.
+        # A post 8 x 8 mm, 24 mm tall, with a cap that steps out by one 4 mm cell (self-supporting)
+        # on one side and by three cells on the other (two of them need a column).
+        occ = np.zeros((128, 112, 64), dtype=np.float32)
+        y = lambda lo, hi: slice(112 - int(hi / 0.25), 112 - int(lo / 0.25))
+        occ[32:64, y(0, 24), 16:48] = 1.0                                   # the post: 2 x 2 cells, 6 cells tall
+        occ[16:112, y(24, 28), 16:48] = 1.0                                 # the cap: 1 cell out at low x, 3 at high x
+        case = json.loads(json.dumps(self.case))
+        case["levels"] = {"t": {"cell_mm": 4.0, "cell_rows_per_lump": 1, "plate_margin_cells": 1,
+                                "thermal_increments_per_lump": 2, "memory_cap": "1g"}}
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            np.save(tmp / "occupancy-wn.npy", occ)
+            (tmp / "occupancy-grid.json").write_text(json.dumps({"pitch_mm": 0.25, "x0": 0.125, "y0": 0.125, "z0": 0.125,
+                                                                   "shape": list(occ.shape), "array": "occupancy-wn.npy"}))
+            (tmp / "case.json").write_text(json.dumps(case))
+            self.bs.prepare(tmp, tmp / "case.json", "t", tmp / "run")
+            report = json.loads((tmp / "run" / "prepare.json").read_text())
+            mesh = np.load(tmp / "run" / "mesh.npz")
+            kind, lump = mesh["kind"], mesh["lump"]
+        self.assertEqual(report["lumps"], 7)
+        self.assertEqual(report["hexahedra"]["part"], 2 * 2 * 6 + 6 * 2)
+        # the two outer cells of the long side, 2 cells deep, on columns of 6 cells
+        self.assertEqual(report["cells_needing_support"], 2 * 2)
+        self.assertEqual(report["hexahedra"]["support"], 2 * 2 * 6)
+        self.assertEqual(int((kind == 3).sum()), 24)
+        self.assertEqual(sorted(set(lump[kind == 3].tolist())), [0, 1, 2, 3, 4, 5])
+        self.assertTrue((lump[kind == 1] == -1).all())
+
+    def test_witness_record_holds_the_closed_forms_and_keeps_the_pitfall(self):
+        record = json.loads((TWIN / "params" / "build-sim-witness.json").read_text())
+        self.assertTrue(record["passed"])
+        outputs = record["thermal_activation_and_body_flux"]["outputs"]
+        self.assertEqual([o["volume_mean_K"] for o in outputs[:3]], [300.0, 375.0, 406.25])
+        last = record["bar_elastic"]["steps"][-1]["sxx_MPa_by_cell_row"]
+        self.assertEqual([row[0] for row in last], [322.0, 322.0, 483.0, 805.0])
+        self.assertEqual(record["bar_perfectly_plastic"]["steps"][-1]["von_mises_MPa"], [200.0, 200.0])
+        # the bar whose new nodes were not prescribed is kept, and is wrong
+        wrong = record["bar_new_nodes_not_prescribed"]["steps"][-1]["sxx_MPa_by_cell_row"]
+        self.assertLess(wrong[-1][0], 200.0)
+        self.assertNotIn("passed", record["bar_new_nodes_not_prescribed"])
+
+    def test_record_is_the_committed_case_with_closed_gates_and_finished_solvers(self):
+        import hashlib
+
+        record = json.loads((TWIN / "params" / "build-sim.json").read_text())
+        self.assertEqual(record["case_sha256"], hashlib.sha256((TWIN / "params" / "build-sim-case.json").read_bytes()).hexdigest())
+        self.assertTrue(record["witnesses_passed"])
+        self.assertFalse(any(record["gates"].values()))
+        self.assertIn("qualifies no process", record["claims"])
+        levels = record["levels"]
+        self.assertIn("c4-l8", levels)
+        self.assertLessEqual(set(levels), set(self.case["levels"]))
+        process = self.case["process"]
+        for name, level in levels.items():
+            thermal, model = level["thermal"], level["model"]
+            self.assertTrue(thermal["solver"]["job_finished"], name)
+            self.assertEqual(thermal["solver"]["errors_in_log"], 0, name)
+            self.assertEqual(thermal["solver"]["threads"], 1, name)
+            self.assertLess(thermal["largest_energy_imbalance"], 0.01, name)
+            self.assertEqual(len(thermal["lumps"]), model["lumps"], name)
+            # the cells hold the volume of the occupancy they were made from, to the half-full rule:
+            # +0.04%, -0.24% and +0.66% on 4, 3 and 2 mm cells (the README table prints each)
+            self.assertLess(abs(model["part_volume_mm3"] / model["occupancy_volume_mm3"] - 1.0), 0.01, name)
+            # absorbed energy is absorptivity x energy density x melted volume, supports included at their fraction
+            melted = model["part_volume_mm3"] + self.case["supports"]["solid_fraction"] * model["support_envelope_mm3"]
+            self.assertAlmostEqual(thermal["absorbed_MJ"], process["absorptivity"] * process["volumetric_energy_density_J_mm3"] * melted / 1e6, places=2)
+            self.assertAlmostEqual(thermal["build_time_h"], thermal["exposure_h"] + thermal["recoating_h"], places=1)
+            if "thermal_only" in self.case["levels"][name]:
+                self.assertEqual(level["mechanics"], {}, name)
+        rises = [level["thermal"]["largest_rise_over_plate_K"] for level in levels.values()]
+        self.assertLess(max(rises) - min(rises), 5.0)
+
+    def test_replay_script_runs_every_level_and_run_of_the_record(self):
+        record = json.loads((TWIN / "params" / "build-sim.json").read_text())
+        script = (TWIN / "source" / "run_twin.sh").read_text()
+        loop = re.search(r"^for level in ([^;]+); do$", script, re.M).group(1).split()
+        self.assertEqual(loop, list(self.case["levels"]))
+        self.assertEqual(list(record["levels"]), list(self.case["levels"]))
+        for name, level in record["levels"].items():
+            for run in level["mechanics"]:
+                variant = run.removeprefix("mechanics").removeprefix("-")
+                line = f'mechanics "$BS/{name}"' + (f" --variant {variant}" if variant else "") + "\n"
+                self.assertIn(line, script, run)
+
+    def test_stress_stays_under_the_declared_yield_curve_and_variants_are_what_the_case_says(self):
+        record = json.loads((TWIN / "params" / "build-sim.json").read_text())
+        material, variants = self.case["material"], self.case["variants"]
+        runs = record["levels"]["c4-l8"]["mechanics"]
+        self.assertEqual(set(runs), {"mechanics"} | {"mechanics-" + name for name in variants})
+        self.assertEqual(runs["mechanics"]["yield_MPa_by_temperature_C"], material["yield_MPa_by_temperature_C"])
+        self.assertEqual(runs["mechanics-yield-stress-relieved"]["yield_MPa_by_temperature_C"],
+                         variants["yield-stress-relieved"]["yield_MPa_by_temperature_C"])
+        self.assertEqual(runs["mechanics-stress-free-673K"]["stress_free_temperature_K"], 673.15)
+        for level in record["levels"].values():
+            for name, run in level["mechanics"].items():
+                self.assertTrue(run["solver"]["job_finished"], name)
+                self.assertEqual(run["solver"]["errors_in_log"], 0, name)
+                top = max(y for _, y in run["yield_MPa_by_temperature_C"])
+                for state in run["states"].values():
+                    # cell means cannot pass the yield curve by more than the declared hardening allows
+                    self.assertLess(state["von_mises_MPa"]["cell_mean_p95"], top + 0.06 * material["hardening_modulus_MPa"], name)
+                spread = run["release"]["distortion_after_release_rigid_motion_and_uniform_shrinkage_removed_mm"]
+                self.assertLess(spread["median"], spread["p95"])
+                self.assertLess(spread["p95"], spread["largest"])
+                self.assertLess(run["release"]["best_fit_uniform_shrinkage"], 0.0)
 
 
 class MediaTests(unittest.TestCase):
