@@ -1024,6 +1024,71 @@ class BuildSimTests(unittest.TestCase):
         self.assertEqual(sorted(set(lump[kind == 3].tolist())), [0, 1, 2, 3, 4, 5])
         self.assertTrue((lump[kind == 1] == -1).all())
 
+    def test_witness_record_holds_the_closed_forms_and_keeps_the_pitfall(self):
+        record = json.loads((TWIN / "params" / "build-sim-witness.json").read_text())
+        self.assertTrue(record["passed"])
+        outputs = record["thermal_activation_and_body_flux"]["outputs"]
+        self.assertEqual([o["volume_mean_K"] for o in outputs[:3]], [300.0, 375.0, 406.25])
+        last = record["bar_elastic"]["steps"][-1]["sxx_MPa_by_cell_row"]
+        self.assertEqual([row[0] for row in last], [322.0, 322.0, 483.0, 805.0])
+        self.assertEqual(record["bar_perfectly_plastic"]["steps"][-1]["von_mises_MPa"], [200.0, 200.0])
+        # the bar whose new nodes were not prescribed is kept, and is wrong
+        wrong = record["bar_new_nodes_not_prescribed"]["steps"][-1]["sxx_MPa_by_cell_row"]
+        self.assertLess(wrong[-1][0], 200.0)
+        self.assertNotIn("passed", record["bar_new_nodes_not_prescribed"])
+
+    def test_record_is_the_committed_case_with_closed_gates_and_finished_solvers(self):
+        import hashlib
+
+        record = json.loads((TWIN / "params" / "build-sim.json").read_text())
+        self.assertEqual(record["case_sha256"], hashlib.sha256((TWIN / "params" / "build-sim-case.json").read_bytes()).hexdigest())
+        self.assertTrue(record["witnesses_passed"])
+        self.assertFalse(any(record["gates"].values()))
+        self.assertIn("qualifies no process", record["claims"])
+        levels = record["levels"]
+        self.assertIn("c4-l8", levels)
+        self.assertLessEqual(set(levels), set(self.case["levels"]))
+        process = self.case["process"]
+        for name, level in levels.items():
+            thermal, model = level["thermal"], level["model"]
+            self.assertTrue(thermal["solver"]["job_finished"], name)
+            self.assertEqual(thermal["solver"]["errors_in_log"], 0, name)
+            self.assertEqual(thermal["solver"]["threads"], 1, name)
+            self.assertLess(thermal["largest_energy_imbalance"], 0.01, name)
+            self.assertEqual(len(thermal["lumps"]), model["lumps"], name)
+            # the cells hold the volume of the occupancy they were made from
+            self.assertLess(abs(model["part_volume_mm3"] / model["occupancy_volume_mm3"] - 1.0), 0.005, name)
+            # absorbed energy is absorptivity x energy density x melted volume, supports included at their fraction
+            melted = model["part_volume_mm3"] + self.case["supports"]["solid_fraction"] * model["support_envelope_mm3"]
+            self.assertAlmostEqual(thermal["absorbed_MJ"], process["absorptivity"] * process["volumetric_energy_density_J_mm3"] * melted / 1e6, places=2)
+            self.assertAlmostEqual(thermal["build_time_h"], thermal["exposure_h"] + thermal["recoating_h"], places=1)
+            if "thermal_only" in self.case["levels"][name]:
+                self.assertEqual(level["mechanics"], {}, name)
+        rises = [level["thermal"]["largest_rise_over_plate_K"] for level in levels.values()]
+        self.assertLess(max(rises) - min(rises), 5.0)
+
+    def test_stress_stays_under_the_declared_yield_curve_and_variants_are_what_the_case_says(self):
+        record = json.loads((TWIN / "params" / "build-sim.json").read_text())
+        material, variants = self.case["material"], self.case["variants"]
+        runs = record["levels"]["c4-l8"]["mechanics"]
+        self.assertEqual(set(runs), {"mechanics"} | {"mechanics-" + name for name in variants})
+        self.assertEqual(runs["mechanics"]["yield_MPa_by_temperature_C"], material["yield_MPa_by_temperature_C"])
+        self.assertEqual(runs["mechanics-yield-stress-relieved"]["yield_MPa_by_temperature_C"],
+                         variants["yield-stress-relieved"]["yield_MPa_by_temperature_C"])
+        self.assertEqual(runs["mechanics-stress-free-673K"]["stress_free_temperature_K"], 673.15)
+        for level in record["levels"].values():
+            for name, run in level["mechanics"].items():
+                self.assertTrue(run["solver"]["job_finished"], name)
+                self.assertEqual(run["solver"]["errors_in_log"], 0, name)
+                top = max(y for _, y in run["yield_MPa_by_temperature_C"])
+                for state in run["states"].values():
+                    # cell means cannot pass the yield curve by more than the declared hardening allows
+                    self.assertLess(state["von_mises_MPa"]["cell_mean_p95"], top + 0.06 * material["hardening_modulus_MPa"], name)
+                spread = run["release"]["distortion_after_release_rigid_motion_and_uniform_shrinkage_removed_mm"]
+                self.assertLess(spread["median"], spread["p95"])
+                self.assertLess(spread["p95"], spread["largest"])
+                self.assertLess(run["release"]["best_fit_uniform_shrinkage"], 0.0)
+
 
 class MediaTests(unittest.TestCase):
     def test_public_images_match_their_provenance_and_stay_small(self):
