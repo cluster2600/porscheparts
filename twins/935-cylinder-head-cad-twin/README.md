@@ -54,8 +54,8 @@ stated blocker. What the twin still does not have:
 - **A qualified build.** The print body has a layer screen and a
   [build screen](#build-screen-the-print-body-grown-lump-by-lump-in-calculix-case-witnesses-record):
   43.4 hours on one laser, 60 to 64 K above the plate, and a distortion after
-  release of 0.24 to 0.30 mm at the median and 1.62 to 1.93 mm at the largest,
-  not converged in lump height.
+  release of 0.24 to 0.31 mm at the median and 1.62 to 2.16 mm at the largest,
+  not converged in lump height or cell size.
   Both run on declared process values: no maker's parameters, no designed
   support, nothing printed.
 
@@ -971,10 +971,11 @@ process value comes from the machine's maker and nothing was printed.*
 
 **The head's build now runs, as a screen.** Under the declared process values the
 print body takes 43.4 hours on one 350 W laser. Its time-averaged
-temperature stays 60 to 64 K above the plate at the three levels solved.
-After release the 4 mm model is out of shape by 0.24 to 0.30 mm at the
-median and 1.62 to 1.93 mm at its worst corner, depending on the lump
-height: the distortion is an order of magnitude, not a converged value.
+temperature stays 60 to 64 K above the plate at the four levels solved.
+After release the model is out of shape by 0.24 to 0.31 mm at the
+median and 1.62 to 2.16 mm at its worst corner, depending on the lump
+height and the cell size: the distortion is an order of magnitude, not a
+converged value.
 The stress sits on the declared yield curve, as this kind of model must
 give: what carries information is where the shape moves, not the stress
 level.
@@ -1023,7 +1024,11 @@ an upper bound for this heat input.
 |---|---|---|---|---|---|---|---|---|
 | c4-l8 | 4 mm | 8 mm, 160 layers | 28 | 17,336 | 3,550 | 35,299 | +0.04% | thermal, mechanics (3 variants) |
 | c4-l4 | 4 mm | 4 mm, 80 layers | 56 | 17,336 | 3,550 | 35,299 | +0.04% | thermal, mechanics |
-| c3-l9 | 3 mm | 9 mm, 180 layers | 25 | 40,978 | 8,744 | 81,438 | -0.24% | thermal |
+| c3-l9 | 3 mm | 9 mm, 180 layers | 25 | 40,978 | 8,744 | 81,438 | -0.24% | thermal, mechanics |
+| c2-l8 | 2 mm | 8 mm, 160 layers | 28 | 139,548 | 29,142 | 262,998 | +0.66% | thermal |
+
+The half-full rule does not keep the volume exactly: the models hold -0.24% to
++0.66% of the occupancy's volume, and the absorbed energy follows the cells.
 
 **Temperature during the build.**
 
@@ -1032,14 +1037,18 @@ an upper bound for this heat input.
 | c4-l8 | 43.4 h (28.1 h exposure, 15.2 h recoating) | 14.2 MJ | 62.0 K | 180 mm | 0.20% | 6 min |
 | c4-l4 | 43.4 h (28.1 h exposure, 15.2 h recoating) | 14.2 MJ | 63.5 K | 180 mm | 0.40% | 16 min |
 | c3-l9 | 43.4 h (28.1 h exposure, 15.3 h recoating) | 14.2 MJ | 60.2 K | 189 mm | 0.13% | 79 min |
+| c2-l8 | 43.6 h (28.3 h exposure, 15.2 h recoating) | 14.3 MJ | 60.6 K | 184 mm | 0.10% | 222 min |
 
 - **The part stays near the plate temperature:** 60 to 64 K above it, about
   160 to 164 °C with the plate at 100 °C. The mean absorbed power is
   91 W (14.2 MJ over the build), and the aluminium section carries it
   to the plate.
 - **Lump height and cell size move it by 2 K:** 62.0 K with lumps of
-  8 mm, 63.5 K with lumps of 4 mm, 60.2 K on 3 mm cells.
-- **The hottest region is the top of the build,** 180 mm above the plate,
+  8 mm, 63.5 K with lumps of 4 mm, 60.2 K on 3 mm cells, 60.6 K on 2 mm cells.
+  At the same lump height, halving the cells from 4 to 2 mm changes it by
+  -1.4 K: the temperature is settled in cell size at the scale of this
+  screen.
+- **The hottest region is the top of the build,** 180 to 189 mm above the plate,
   where the heat has the longest way down.
 - **The absorptivity decides the level.** 0.4 is declared; published values
   run from 0.13 to 0.58, and the rise scales with it: 20 to 90 K
@@ -1057,6 +1066,7 @@ motion and the best uniform shrinkage are taken out.
 | c4-l8, stress-relieved yield curve | 563 °C | 155.3 MPa | 142 / 161 MPa | 43% | 0.24 / 0.70 / 1.67 mm | 0.49% |
 | c4-l8, stress-free at 400 °C | 400 °C | 322 MPa | 170 / 305 MPa | 4% | 0.21 / 0.61 / 1.30 mm | 0.45% |
 | c4-l4, as built | 563 °C | 322 MPa | 216 / 310 MPa | 10% | 0.24 / 0.75 / 1.62 mm | 0.47% |
+| c3-l9, as built | 563 °C | 322 MPa | 230 / 311 MPa | 16% | 0.31 / 0.90 / 2.16 mm | 0.57% |
 
 - **The stress level is the yield curve, not a prediction.** As built, the
   median is 220 MPa and the 95th percentile 310 MPa against a yield
@@ -1082,6 +1092,16 @@ motion and the best uniform shrinkage are taken out.
   moves to another corner, 44 mm above the plate. The lumping weighs as
   much as the yield curve. A real layer is 0.05 mm; nothing here says
   where the trend ends.
+- **Nor is it shown to be converged in cell size.** On 3 mm cells with lumps
+  of 9 mm it is 0.31 mm at the median (+3% against the 4 mm cells with
+  8 mm lumps), 0.90 mm at the 95th percentile and 2.16 mm at the largest
+  (+12%). The lump is 1 mm thicker as well, so the two effects are not
+  separated. The largest value sits at the corner the 4 mm lumps pointed
+  to, 10 mm higher. The stress stays on the yield curve: 230 MPa at the median and
+  311 MPa at the 95th percentile.
+- **Across the 3 as-built runs the largest distortion is 1.62 to 2.16 mm**
+  and the median 0.24 to 0.31 mm. The 3 mm cells give the most and the 4 mm
+  lumps the least; no run has both finer cells and thinner lumps.
 
 **What this screen does not say.**
 
@@ -1589,7 +1609,7 @@ valve, seat and guide geometry (H05).
 | Print-body orientations | print-body occupancy | [print-body-supports.json](params/print-body-supports.json) | the AM screen's analytic witnesses | done as a screen: flange y− down and side x+ down kept for the build study; no support designed |
 | Print-body layer screen | 0.5 mm and 1.0 mm surfaces of the print body, EP-M300 card | [print-body-layer-screen.json](params/print-body-layer-screen.json); private per-layer tables and charts | hashes of master and surface; the tool's gates; the bounded-memory driver gives the same four files as the plain run on the 1.0 mm surface | done on both surfaces: build along Y, 4,482 layers, fits the envelope, no trapped powder at 1.0 mm; 563 islands on the fine surface, 216 on the smoother one; thin walls measured on the grid ([wall check](params/print-body-wall-check.json)) |
 | Build simulation witness | a block, two lumped layers from a deposition file | [am-build-witness.json](params/am-build-witness.json) | active volume and mean temperature against a closed form, on the solver's mesh and on an imported one | passed on both; the head's build runs in CalculiX instead (next row) |
-| Build screen | print-body occupancy, [declared case](params/build-sim-case.json) | [build-sim.json](params/build-sim.json); private decks, fields and two [pictures](media/build-sim-result.png) | three closed-form [witnesses](params/build-sim-witness.json); energy balance within 0.4%; 3 levels for temperature, 4 mechanical runs | done as a screen: 43.4 h, 60 to 64 K above the plate; distortion after release 0.24 to 0.30 mm median, 1.62 to 1.93 mm largest on 4 mm cells, not converged in lump height; stress at the declared yield curve; every gate false |
+| Build screen | print-body occupancy, [declared case](params/build-sim-case.json) | [build-sim.json](params/build-sim.json); private decks, fields and two [pictures](media/build-sim-result.png) | three closed-form [witnesses](params/build-sim-witness.json); energy balance within 0.4%; 4 levels for temperature, 5 mechanical runs | done as a screen: 43.4 h, 60 to 64 K above the plate; distortion after release 0.24 to 0.31 mm median, 1.62 to 2.16 mm largest on 3 and 4 mm cells, not converged in lump height or cell size; stress at the declared yield curve; every gate false |
 | Fatigue, valve-train dynamics, drawing | none | none | — | not run: no stress history or S-N data, no installed dynamics tool, no confirmed features to dimension |
 
 ## Limits
@@ -1612,9 +1632,10 @@ valve, seat and guide geometry (H05).
 - The AM numbers are geometric and thermal screens on generic constants.
   They establish no printability, orientation, support scheme or material.
 - The build screen spreads a declared heat input over lumps of 80 to 180
-  layers, on voxel cells of 3 and 4 mm with homogenised support columns. Its
-  temperatures are time averages, its stresses sit on a declared yield curve,
-  and its distortion is not a compensation field. No process value comes from
+  layers, on voxel cells of 2 to 4 mm (3 and 4 mm for the mechanics) with
+  homogenised support columns. Its temperatures are time averages, its
+  stresses sit on a declared yield curve, and its distortion moves with the
+  lump height and the cell size and is not a compensation field. No process value comes from
   the machine's maker and nothing was printed.
 - No port-flow result exists. The audit found no admissible fluid domain.
 - The alloy rankings are screens on room-temperature conductivities and

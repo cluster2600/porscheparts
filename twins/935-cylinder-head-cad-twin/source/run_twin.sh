@@ -125,10 +125,11 @@ MEM=10G cap "$PY" -I "$HERE/wall_check.py" "$PRIV/print-occ-$STAMP" "$PARAMS/pri
 
 # Build screen in CalculiX (cadsim image, one thread): witnesses, then each level of
 # params/build-sim-case.json. A level's thermal run comes before its mechanical run; the 2 mm
-# level is thermal only (its mechanical model is out of reach of a direct solver here).
+# level is thermal only (its mechanical model is out of reach of a direct solver here). Solver
+# time on this host: about 5 h of thermal runs (3.7 h for the 2 mm level) and 11 h of mechanics.
 BS="$PRIV/build-sim-$STAMP"; mkdir "$BS"
 "$PY" -I "$HERE/build_sim.py" witness "$BS/witness" "$PARAMS/build-sim-witness.json"
-for level in c4-l8 c4-l4 c2-l8; do
+for level in c4-l8 c4-l4 c3-l9 c2-l8; do
   MEM=8G cap "$PY" -I "$HERE/build_sim.py" prepare "$PRIV/print-occ-$STAMP" "$PARAMS/build-sim-case.json" "$level" "$BS/$level"
   "$PY" -I "$HERE/build_sim.py" thermal "$BS/$level"
 done
@@ -136,6 +137,7 @@ done
 "$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8" --variant yield-stress-relieved
 "$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8" --variant stress-free-673K
 "$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l4"
+"$PY" -I "$HERE/build_sim.py" mechanics "$BS/c3-l9"
 "$PY" -I "$HERE/build_sim.py" summarize "$BS" "$PARAMS/build-sim-case.json" "$PARAMS/build-sim-witness.json" "$PARAMS/build-sim.json"
 # Software OpenGL in a sandbox without /dev/dxg, on purpose: with GALLIUM_DRIVER=d3d12 this render
 # took the WSL VM down twice (docs/LOCAL_HOST_SETUP.md, section 3).
