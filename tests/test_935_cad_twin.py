@@ -652,6 +652,9 @@ class AssemblyThermalTests(unittest.TestCase):
             for name, item in self.case[block].items():
                 self.assertIn("hypothesis", item["status"], f"{block}/{name}")
         self.assertIn("hypothesis", self.case["regions"]["status"])
+        for variant in self.case["variants"]:
+            self.assertIn("hypothesis", variant["status"], variant["id"])
+        self.assertIn(self.case["ranking_variant"], [v["id"] for v in self.case["variants"]])
         self.assertEqual(set(self.case["films"]), set(self.at.GROUPS))
 
     def test_the_two_valve_faces_sit_at_the_same_height_and_the_inlet_is_larger(self):
@@ -679,7 +682,7 @@ class AssemblyThermalTests(unittest.TestCase):
         self.assertEqual(names, ["valve", "guide", "alloy", "valve", "alloy", "plug"])
         self.assertEqual(self.at.added_solid(points, self.comps).tolist(), [True, False, False, True, False, True])
 
-    def test_faces_are_sorted_into_the_five_film_groups(self):
+    def test_faces_are_sorted_into_the_film_groups(self):
         np = self.np
         v_in, v_ex = self.comps["valves"]["valve_y_minus"], self.comps["valves"]["valve_y_plus"]
         ports = {"inlet": [{"centre": [0.0, -90.0, 46.0], "radius_max_mm": 21.0}],
@@ -692,12 +695,14 @@ class AssemblyThermalTests(unittest.TestCase):
             [20.0, -90.0, 46.0],                                # same place, looking away: an outside face
             [50.0, 0.0, 2.2],                                   # floor of the register recess
             [60.0, 0.0, 0.0],                                   # deck plane outside the recess
-            [0.0, 0.0, 90.0],                                   # cam side
+            [50.0, 0.0, 90.0],                                  # cam side, away from the valves
+            self.point(v_in, v_in["t_spring_seat"] + 2.0, 10.0),   # floor of the inlet spring pocket
         ])
         normal = np.array([[0, 0, -1.0], [0, 0, 1.0], [0, 0, 1.0], [-1.0, 0, 0], [1.0, 0, 0], [0, 0, -1.0],
-                           [0, 0, -1.0], [0, 0, 1.0]])
+                           [0, 0, -1.0], [0, 0, 1.0], [0, 0, 1.0]])
         got = [self.at.GROUPS[i] for i in self.at.classify_faces(centroid, normal, self.comps, self.case, ports)]
-        self.assertEqual(got, ["chamber_gas", "cool_port", "hot_port", "cool_port", "air", "cylinder_contact", "air", "air"])
+        self.assertEqual(got, ["chamber_gas", "cool_port", "hot_port", "cool_port", "air", "cylinder_contact", "air", "air",
+                               "oil"])
 
     def test_heat_by_group_is_film_coefficient_times_area_times_excess(self):
         np = self.np
@@ -705,11 +710,57 @@ class AssemblyThermalTests(unittest.TestCase):
         xyz = np.array([[0, 0, 0], [10.0, 0, 0], [0, 10.0, 0]])
         faces = (np.array([0]), np.array([1]), np.array([[1, 2, 3]]))
         temps = np.array([200.0, 220.0, 240.0])
-        heat = self.at.heat_by_group(temps, tag, xyz, faces, np.array([self.at.GROUPS.index("air")]), self.case, 1.0)
+        films = self.at.variant_films(self.case, {"films": {"oil": None}})
+        heat = self.at.heat_by_group(temps, tag, xyz, faces, np.array([self.at.GROUPS.index("air")]), films)
         film = self.case["films"]["air"]
         expected = film["coefficient_W_per_m2K"] * 1e-6 * 50.0 * (220.0 - film["sink_temperature_C"])
         self.assertAlmostEqual(heat["air"]["heat_out_W"], expected, places=2)
         self.assertEqual(heat["chamber_gas"]["area_mm2"], 0.0)
+        # A group whose film a variant removes is in air.
+        self.assertEqual(self.at.film_of(films, "oil"), self.at.film_of(films, "air"))
+        hot = self.at.variant_films(self.case, {"films": {"chamber_gas": {"sink_temperature_C": 621.0}}})
+        self.assertEqual(hot["chamber_gas"]["sink_temperature_C"], 621.0)
+        self.assertEqual(hot["chamber_gas"]["coefficient_W_per_m2K"], self.case["films"]["chamber_gas"]["coefficient_W_per_m2K"])
+        self.assertEqual(self.case["films"]["chamber_gas"]["sink_temperature_C"], 900.0)   # the base case is not altered
+
+
+class AlloyTradeoffTests(unittest.TestCase):
+    def setUp(self):
+        sys.path.insert(0, str(SOURCE))
+        import alloy_tradeoff
+
+        self.tr = alloy_tradeoff
+
+    def test_hot_yield_is_interpolated_and_never_extrapolated(self):
+        points = {"20": 465, "150": 319, "300": 60}
+        self.assertEqual(self.tr.yield_at(points, 150.0), 319.0)
+        self.assertAlmostEqual(self.tr.yield_at(points, 225.0), 189.5)
+        self.assertIsNone(self.tr.yield_at(points, 301.0))          # beyond the last published point
+        self.assertIsNone(self.tr.yield_at({"20": 300}, 20.0))      # one point is not a curve
+        self.assertIsNone(self.tr.yield_at({"150": 354, "250": 215}, 100.0))
+
+    def test_rows_take_the_peak_at_solved_conductivities_only(self):
+        strength = {"rows": [
+            {"id": "a", "alloy": "A", "condition": "c", "conductivity_rows": ["a1", "a2"], "condition_match": "same",
+             "yield_MPa_by_temperature_C": {"20": 200, "300": 100}, "verification": "v"},
+            {"id": "b", "alloy": "B", "condition": "c", "conductivity_rows": [], "condition_match": "none",
+             "yield_MPa_by_temperature_C": {"150": 354, "250": 215}, "verification": "v"},
+            {"id": "c", "alloy": "C", "condition": "c", "conductivity_rows": ["c1"], "condition_match": "same",
+             "yield_MPa_by_temperature_C": {"20": 300}, "verification": "v"}]}
+        candidates = {"candidates": [{"id": "a1", "conductivity_W_per_mK": 100.0}, {"id": "a2", "conductivity_W_per_mK": 150.0},
+                                     {"id": "c1", "conductivity_W_per_mK": 150.0}]}
+        assembly = {"ranking_variant": "v", "variants": {"v": {"by_conductivity": [
+            {"alloy_conductivity_W_per_mK": 100.0, "peak_C": {"alloy": 300.0}},
+            {"alloy_conductivity_W_per_mK": 150.0, "peak_C": {"alloy": 160.0}}]}}}
+        a, b, c = self.tr.tradeoff(strength, candidates, assembly)
+        self.assertEqual(a["peak_head_alloy_C"], [160.0, 300.0])
+        self.assertEqual(a["peak_C_above_the_coolest_candidate"], [0.0, 140.0])
+        self.assertAlmostEqual(a["yield_MPa_at_reference_temperature"], 117.9, places=1)   # 250 C on the 20-300 C line
+        self.assertEqual(a["yield_MPa_at_the_computed_peak"], [100.0, 150.0])
+        self.assertIsNone(b["peak_head_alloy_C"])
+        self.assertIn("no conductivity", b["hot_yield_status"])
+        self.assertIsNone(c["yield_MPa_at_the_computed_peak"])
+        self.assertIn("not published", c["hot_yield_status"])
 
 
 @unittest.skipUnless(has("numpy", "scipy"), "numpy/scipy absent")
@@ -884,22 +935,72 @@ class AlloyRecordTests(unittest.TestCase):
         cad = self.load("thermal-screen-cad.json")["level"]["energy_balance"]["chamber_inflow_W"]
         self.assertAlmostEqual(next(h for k, h, _ in by_k if k == 150.0), cad, places=2)
 
-    def test_assembly_ranking_cools_with_conductivity_and_conserves_energy(self):
+    def test_assembly_variants_cool_with_conductivity_and_conserve_energy(self):
         asm = self.load("assembly-thermal.json")
-        self.assertFalse(asm["exploratory_single_solve"])
-        rank = asm["ranking_by_peak_alloy_temperature"]
-        by_k = sorted({(r["alloy_conductivity_W_per_mK"], r["peak_C"]["alloy"], r["peak_C"]["valve_bridge"]) for r in rank})
-        self.assertEqual([p for _, p, _ in by_k], sorted((p for _, p, _ in by_k), reverse=True))
-        self.assertEqual([b for _, _, b in by_k], sorted((b for _, _, b in by_k), reverse=True))
-        for r in rank + asm["load_sensitivity"]:
-            self.assertLess(r["energy_imbalance_relative"], 1e-3)
-            self.assertLess(r["heat_out_W_by_group"]["chamber_gas"], 0.0)       # gas heats the assembly
-            self.assertGreater(r["heat_out_W_by_group"]["air"], 0.0)            # air cools it
-            self.assertGreater(r["valve_peak_C"]["exhaust"], r["valve_peak_C"]["inlet"])
+        case = self.load("assembly-case.json")
+        self.assertFalse(asm["exploratory_single_variant"])
+        self.assertEqual(set(asm["variants"]), {v["id"] for v in case["variants"]})
+        solved = {c["conductivity_W_per_mK"] for c in self.load("alloy-candidates.json")["candidates"]}
+        for name, variant in asm["variants"].items():
+            rows = sorted(variant["by_conductivity"], key=lambda r: r["alloy_conductivity_W_per_mK"])
+            self.assertGreaterEqual(len(rows), 3, name)
+            self.assertLessEqual({r["alloy_conductivity_W_per_mK"] for r in rows}, solved, name)
+            for zone in ("alloy", "valve_bridge"):
+                peaks = [r["peak_C"][zone] for r in rows]
+                self.assertEqual(peaks, sorted(peaks, reverse=True), (name, zone))
+            for r in rows:
+                self.assertLess(r["energy_imbalance_relative"], 1e-3)
+                self.assertLess(r["heat_out_W_by_group"]["chamber_gas"], 0.0)       # gas heats the assembly
+                self.assertGreater(r["heat_out_W_by_group"]["air"], 0.0)            # air cools it
+                self.assertGreater(r["valve_peak_C"]["exhaust"], r["valve_peak_C"]["inlet"])
+        ranking = asm["variants"][asm["ranking_variant"]]
+        self.assertEqual({r["alloy_conductivity_W_per_mK"] for r in ranking["by_conductivity"]}, solved)
+        self.assertEqual({r["alloy_conductivity_W_per_mK"] for r in asm["ranking_by_peak_alloy_temperature"]}, solved)
         self.assertTrue(all(n > 100 for n in asm["zone_nodes"].values()))
         self.assertIn("hypothesis", asm["claims"])
         ids = {i["id"][:3] for i in json.loads((TWIN / "hypotheses.json").read_text())["items"]}
         self.assertTrue({"H09", "H10", "H11", "H12"} <= ids)
+
+    def test_a_calibrated_variant_carries_its_target_wall_loading_at_the_reference_conductivity(self):
+        asm = self.load("assembly-thermal.json")
+        reference = self.load("assembly-case.json")["reference_conductivity_W_per_mK"]
+        calibrated = {name: v for name, v in asm["variants"].items() if v["calibration"]}
+        self.assertTrue(calibrated)
+        for name, variant in calibrated.items():
+            row = next(r for r in variant["by_conductivity"] if r["alloy_conductivity_W_per_mK"] == reference)
+            for group in ("chamber_gas", "hot_port"):
+                target = variant["calibration"][-1][group]["target_kW_per_m2"]
+                self.assertAlmostEqual(row["wall_loading_kW_per_m2"][group] / target, 1.0, delta=0.02, msg=(name, group))
+                # the film the solves used is the last scaled one, not the declared start
+                self.assertGreater(variant["films"][group]["coefficient_W_per_m2K"],
+                                   variant["calibration"][0][group]["coefficient_W_per_m2K"])
+        # an uncalibrated variant keeps its declared films: no oil film means none
+        self.assertIsNone(asm["variants"]["declared"]["films"]["oil"])
+        self.assertEqual(asm["variants"]["declared"]["calibration"], [])
+
+    def test_strength_rows_name_their_source_and_the_tradeoff_selects_nothing(self):
+        strength = self.load("alloy-strength.json")
+        ids = {c["id"] for c in self.load("alloy-candidates.json")["candidates"]}
+        for row in strength["rows"]:
+            self.assertTrue(row["source"] and row["verification"] and row["condition_match"], row["id"])
+            self.assertLessEqual(set(row["conductivity_rows"]), ids, row["id"])
+            self.assertTrue(row["yield_MPa_by_temperature_C"], row["id"])
+        trade = self.load("alloy-tradeoff.json")
+        asm = self.load("assembly-thermal.json")
+        self.assertEqual(trade["ranking_variant"], asm["ranking_variant"])
+        self.assertEqual([r["id"] for r in trade["rows"]], [r["id"] for r in strength["rows"]])
+        peaks = [r["peak_C"]["alloy"] for r in asm["variants"][asm["ranking_variant"]]["by_conductivity"]]
+        for row in trade["rows"]:
+            if row["peak_head_alloy_C"] is None:
+                self.assertIn("no conductivity", row["hot_yield_status"])
+                continue
+            self.assertTrue(set(row["peak_head_alloy_C"]) <= set(peaks), row["id"])
+            # every computed peak lies beyond the published strength of its alloy: nothing is extrapolated
+            self.assertGreater(row["peak_head_alloy_C"][0], row["yield_MPa_published_up_to_C"], row["id"])
+            self.assertIsNone(row["yield_MPa_at_the_computed_peak"], row["id"])
+        self.assertIn("no alloy", trade["claims"])
+        self.assertIn("never extrapolated", trade["rule"])
+        self.assertTrue((TWIN / "media" / "alloy-ranking.png").stat().st_size < (1 << 20))
 
     def test_surveys_say_what_was_not_found(self):
         self.assertTrue(self.load("thermal-literature-bounds.json")["not_found"])
