@@ -107,7 +107,7 @@ its reasons**. That is the guard the earlier screenings lacked.
 The most instructive case remains `heat exchanger`, the best raw score of the
 triage: it falls on temperature. And `oil pipe`, the second-best consolidation
 case on the car, falls on fire and on fitting galling — examined separately in
-[`993_CIRCUIT_HUILE_TURBO_202-16.md`](993_CIRCUIT_HUILE_TURBO_202-16.md).
+[`993_TURBO_OIL_CIRCUIT_202-16.md`](993_TURBO_OIL_CIRCUIT_202-16.md).
 
 ## What this document is not
 

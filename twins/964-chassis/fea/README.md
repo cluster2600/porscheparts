@@ -196,7 +196,7 @@ equal stiffness for each.
 Short result: at iso-stiffness, monolithic carbon saves only **18 %** of areal
 mass and aramid **loses 30 %**, because this box section works in membrane shear
 and the criterion is `G/rho`, not `E/rho`. The full analysis and its caveats are
-in `docs/research/964-chassis-carbone-kevlar.md`.
+in `docs/research/964-carbon-kevlar-chassis.md`.
 
     pycad build_shell.py 0.8 1.0 && pycad composite_study.py
 

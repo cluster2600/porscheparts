@@ -127,7 +127,7 @@ Catalogue record: [`catalog/parts/993-eng-turbo-oil-return-line-in625-f0-0001.js
 
 ## Design dossiers
 
-- [993_CIRCUIT_HUILE_TURBO_202-16](../../docs/993/993_CIRCUIT_HUILE_TURBO_202-16.md)
+- [993_TURBO_OIL_CIRCUIT_202-16](../../docs/993/993_TURBO_OIL_CIRCUIT_202-16.md)
 - [993_TURBO_OIL_RETURN_LINE_IN625_F0](../../docs/993/993_TURBO_OIL_RETURN_LINE_IN625_F0.md)
 
 ---

@@ -116,7 +116,7 @@ Catalogue record: [`catalog/parts/993-int-switch-trim-ring-f1-0001.json`](../../
 
 ## Design dossiers
 
-- [993_SOURCING_CHINE_LPBF](../../docs/993/993_SOURCING_CHINE_LPBF.md)
+- [993_SOURCING_CHINA_LPBF](../../docs/993/993_SOURCING_CHINA_LPBF.md)
 - [993_SWITCH_TRIM_RING_F1](../../docs/993/993_SWITCH_TRIM_RING_F1.md)
 
 ---

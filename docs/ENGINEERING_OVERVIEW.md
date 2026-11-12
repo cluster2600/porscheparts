@@ -700,7 +700,7 @@ reference.
 
 **Bolt-on** panels (fenders, lids, spoiler, doors) are a legitimate target;
 the load-bearing structure is not. The factory catalogue draws the line in part
-numbers: [docs/research/993-964-panneaux-carbone.md](research/993-964-panneaux-carbone.md).
+numbers: [docs/research/993-964-carbon-panels.md](research/993-964-carbon-panels.md).
 
 Those panels can already be ordered from several tuners, so the part chosen is
 the one nobody sells: the **dashboard trim**, `993-INT-DASHBOARD-TRIM-0001`,
