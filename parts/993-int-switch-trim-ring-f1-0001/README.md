@@ -106,7 +106,7 @@ flowchart LR
 
 ## Read more
 
-- **Full description page**, with sources and evidence: [docs/pieces/993-int-switch-trim-ring-f1-0001.md](../../docs/pieces/993-int-switch-trim-ring-f1-0001.md)
+- **Full description page**, with sources and evidence: [docs/parts/993-int-switch-trim-ring-f1-0001.md](../../docs/parts/993-int-switch-trim-ring-f1-0001.md)
 - **Catalogue record** (source of truth): [`catalog/parts/993-int-switch-trim-ring-f1-0001.json`](../../catalog/parts/993-int-switch-trim-ring-f1-0001.json)
 - **Design dossier**: [993_SOURCING_CHINE_LPBF](../../docs/993/993_SOURCING_CHINE_LPBF.md)
 - **Design dossier**: [993_SWITCH_TRIM_RING_F1](../../docs/993/993_SWITCH_TRIM_RING_F1.md)

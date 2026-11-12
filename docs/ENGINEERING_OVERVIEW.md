@@ -317,7 +317,7 @@ flowchart LR
 | I want to… | go to |
 |---|---|
 | print something today | [the F1 switch trim ring](../parts/993-int-switch-trim-ring-f1-0001/print/README.md) · [the switch blank fit-test kit](../parts/993-int-switch-blank-0001/print/README.md) |
-| see which 993 parts exist and their status | [the parts table](#2-993-parts-for-additive-manufacturing) → one page per part in [`docs/pieces/`](pieces/) |
+| see which 993 parts exist and their status | [the parts table](#2-993-parts-for-additive-manufacturing) → one page per part in [`docs/parts/`](parts/) |
 | follow the carbon monocoque programme | [section 1](#1-the-964-body-shell-and-the-carbon-monocoque-programme) → [the programme](MONOCOQUE_964_993_PROGRAMME.md) |
 | see the engine cooling work | [section 3](#3-engine-cooling) → [the fan programmes](FAN_DEVELOPMENT_PROGRAMMES.md) |
 | watch an LPBF geometry preview | [F1 impeller build-up](../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif) · [all print screens](993/print-screen-status.json) |
@@ -568,94 +568,94 @@ flowchart LR
 
 | part | candidate material | process | status |
 |---|---|---|---|
-| [Console centrale moteur Turbo bionique — étud…](pieces/993-eng-bracket-0001.md) | undetermined | undecided | **prohibited pending engineering** |
-| [Turbo engine carrier (Motortraeger)](pieces/993-eng-carrier-0001.md) | unknown | undecided | **safety-critical** |
-| [993 timing chain case and its lids](pieces/993-eng-chain-case-0001.md) | unidentified | undecided | **prohibited pending engineering** |
-| [Left chain case lid 964 105 107 01](pieces/993-eng-chain-case-lid-ti-f0-0001.md) | Ti-6Al-4V Grade 5, plate — deliberate c… | CNC | functional |
-| [993/993 Turbo connecting rod](pieces/993-eng-connecting-rod-ti64-f0-0001.md) | Ti-6Al-4V Grade 5 LPBF for screening | LPBF | **prohibited pending engineering** |
-| [993 engine cooling fan — archived Carrera F0…](pieces/993-eng-cooling-impeller-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
-| [Engine cooling fan impeller](pieces/993-eng-cooling-impeller-we43-f1-0001.md) | WE43 LPBF, solutionized and aged, for c… | LPBF | **prohibited pending engineering** |
-| [M64 four-valve water-cooled cylinder head — c…](pieces/993-eng-cylinder-head-4v-f0-0001.md) | not selected | undecided | **prohibited pending engineering** |
-| [993 Turbo three-into-one exhaust manifold](pieces/993-eng-exhaust-manifold-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | **prohibited pending engineering** |
-| [993 exhaust valves - F1 proxies](pieces/993-eng-exhaust-valve-f1-0001.md) | INCONEL 751 / UNS N07751 candidate | CNC | **prohibited pending engineering** |
-| [Stationary engine fan housing](pieces/993-eng-fan-housing-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
-| [Engine cooling fan guide-vane ring (stator)](pieces/993-eng-fan-stator-alsi10mg-f1-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | LPBF | **prohibited pending engineering** |
-| [993 intake valve - F1 proxy and titanium vari…](pieces/993-eng-intake-valve-f1-0001.md) | Ti-6Al-4V Grade 5 | DMLS | **prohibited pending engineering** |
-| [993 hollow Ti64 intake valve](pieces/993-eng-intake-valve-ti64-hollow-f0-0001.md) | Ti-6Al-4V Grade 5 LPBF, screening | LPBF | **prohibited pending engineering** |
-| [993 Turbo/GT2 intercooler bracket](pieces/993-eng-intercooler-bracket-ti-f0-0001.md) | Ti-6Al-4V Grade 5 for screening | CNC | functional |
-| [993 Turbo/GT2 intercooler bracket](pieces/993-eng-intercooler-bracket-ti-f1-0001.md) | Ti-6Al-4V Grade 5 for screening | CNC | functional |
-| [993 Turbo intercooler end tank](pieces/993-eng-intercooler-end-tank-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg for screening | LPBF | **prohibited pending engineering** |
-| [K16 compressor wheel](pieces/993-eng-k16-compressor-wheel-al2139-f1-0001.md) | EOS Aluminium Al2139 AM, M290 60 µm, he… | LPBF | **prohibited pending engineering** |
-| [993 K16 compressor wheel](pieces/993-eng-k16-compressor-wheel-alsi10mg-f0-0001.md) | EOS AlSi10Mg, screening | LPBF | **prohibited pending engineering** |
-| [K16 turbine wheel](pieces/993-eng-k16-turbine-wheel-in718-f0-0001.md) | EOS NickelAlloy IN718 API, M290 40 µm… | undecided | **prohibited pending engineering** |
-| [Support moteur Turbo bionique — cage et envel…](pieces/993-eng-mounting-0001.md) | undetermined | undecided | **prohibited pending engineering** |
-| [Engine oil filter console with integrated gal…](pieces/993-eng-oil-filter-console-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
-| [M64/60 piston with cooling gallery](pieces/993-eng-piston-cp1-gallery-f0-0001.md) | Constellium Aheadd CP1, Velo3D Sapphire… | LPBF | **prohibited pending engineering** |
-| [993 three-runner intake manifold](pieces/993-eng-three-runner-intake-alsi10mg-f0-0001.md) | generic AlSi10Mg for screening | undecided | functional |
-| [993 left turbo heat shield cover](pieces/993-eng-turbo-heat-shield-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625, scr… | undecided | functional |
-| [Turbo oil line (feed or return unassigned)](pieces/993-eng-turbo-oil-return-line-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | **prohibited pending engineering** |
-| [Upper valve cover with COP towers](pieces/993-eng-upper-valve-cover-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6, for comparis… | undecided | **prohibited pending engineering** |
+| [Console centrale moteur Turbo bionique — étud…](parts/993-eng-bracket-0001.md) | undetermined | undecided | **prohibited pending engineering** |
+| [Turbo engine carrier (Motortraeger)](parts/993-eng-carrier-0001.md) | unknown | undecided | **safety-critical** |
+| [993 timing chain case and its lids](parts/993-eng-chain-case-0001.md) | unidentified | undecided | **prohibited pending engineering** |
+| [Left chain case lid 964 105 107 01](parts/993-eng-chain-case-lid-ti-f0-0001.md) | Ti-6Al-4V Grade 5, plate — deliberate c… | CNC | functional |
+| [993/993 Turbo connecting rod](parts/993-eng-connecting-rod-ti64-f0-0001.md) | Ti-6Al-4V Grade 5 LPBF for screening | LPBF | **prohibited pending engineering** |
+| [993 engine cooling fan — archived Carrera F0…](parts/993-eng-cooling-impeller-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
+| [Engine cooling fan impeller](parts/993-eng-cooling-impeller-we43-f1-0001.md) | WE43 LPBF, solutionized and aged, for c… | LPBF | **prohibited pending engineering** |
+| [M64 four-valve water-cooled cylinder head — c…](parts/993-eng-cylinder-head-4v-f0-0001.md) | not selected | undecided | **prohibited pending engineering** |
+| [993 Turbo three-into-one exhaust manifold](parts/993-eng-exhaust-manifold-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | **prohibited pending engineering** |
+| [993 exhaust valves - F1 proxies](parts/993-eng-exhaust-valve-f1-0001.md) | INCONEL 751 / UNS N07751 candidate | CNC | **prohibited pending engineering** |
+| [Stationary engine fan housing](parts/993-eng-fan-housing-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
+| [Engine cooling fan guide-vane ring (stator)](parts/993-eng-fan-stator-alsi10mg-f1-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | LPBF | **prohibited pending engineering** |
+| [993 intake valve - F1 proxy and titanium vari…](parts/993-eng-intake-valve-f1-0001.md) | Ti-6Al-4V Grade 5 | DMLS | **prohibited pending engineering** |
+| [993 hollow Ti64 intake valve](parts/993-eng-intake-valve-ti64-hollow-f0-0001.md) | Ti-6Al-4V Grade 5 LPBF, screening | LPBF | **prohibited pending engineering** |
+| [993 Turbo/GT2 intercooler bracket](parts/993-eng-intercooler-bracket-ti-f0-0001.md) | Ti-6Al-4V Grade 5 for screening | CNC | functional |
+| [993 Turbo/GT2 intercooler bracket](parts/993-eng-intercooler-bracket-ti-f1-0001.md) | Ti-6Al-4V Grade 5 for screening | CNC | functional |
+| [993 Turbo intercooler end tank](parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg for screening | LPBF | **prohibited pending engineering** |
+| [K16 compressor wheel](parts/993-eng-k16-compressor-wheel-al2139-f1-0001.md) | EOS Aluminium Al2139 AM, M290 60 µm, he… | LPBF | **prohibited pending engineering** |
+| [993 K16 compressor wheel](parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001.md) | EOS AlSi10Mg, screening | LPBF | **prohibited pending engineering** |
+| [K16 turbine wheel](parts/993-eng-k16-turbine-wheel-in718-f0-0001.md) | EOS NickelAlloy IN718 API, M290 40 µm… | undecided | **prohibited pending engineering** |
+| [Support moteur Turbo bionique — cage et envel…](parts/993-eng-mounting-0001.md) | undetermined | undecided | **prohibited pending engineering** |
+| [Engine oil filter console with integrated gal…](parts/993-eng-oil-filter-console-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
+| [M64/60 piston with cooling gallery](parts/993-eng-piston-cp1-gallery-f0-0001.md) | Constellium Aheadd CP1, Velo3D Sapphire… | LPBF | **prohibited pending engineering** |
+| [993 three-runner intake manifold](parts/993-eng-three-runner-intake-alsi10mg-f0-0001.md) | generic AlSi10Mg for screening | undecided | functional |
+| [993 left turbo heat shield cover](parts/993-eng-turbo-heat-shield-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625, scr… | undecided | functional |
+| [Turbo oil line (feed or return unassigned)](parts/993-eng-turbo-oil-return-line-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | **prohibited pending engineering** |
+| [Upper valve cover with COP towers](parts/993-eng-upper-valve-cover-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6, for comparis… | undecided | **prohibited pending engineering** |
 
 **Charge air**
 
 | part | candidate material | process | status |
 |---|---|---|---|
-| [993 Turbo charge-air tract transcribed parts…](pieces/993-ca-charge-pipe-set-pet-0001.md) | unknown per line item (hoses are rubber… | undecided | non-critical |
-| [993 Turbo turbocharging intake tract (group 1…](pieces/993-ca-turbo-intake-manifold-pet-0001.md) | unknown | undecided | non-critical |
+| [993 Turbo charge-air tract transcribed parts…](parts/993-ca-charge-pipe-set-pet-0001.md) | unknown per line item (hoses are rubber… | undecided | non-critical |
+| [993 Turbo turbocharging intake tract (group 1…](parts/993-ca-turbo-intake-manifold-pet-0001.md) | unknown | undecided | non-critical |
 
 **Turbocharger**
 
 | part | candidate material | process | status |
 |---|---|---|---|
-| [Pair of K16 turbochargers of the 993 Turbo](pieces/993-turbocharger-k16-pair-0001.md) | undetermined | undecided | **prohibited pending engineering** |
+| [Pair of K16 turbochargers of the 993 Turbo](parts/993-turbocharger-k16-pair-0001.md) | undetermined | undecided | **prohibited pending engineering** |
 
 **Exhaust**
 
 | part | candidate material | process | status |
 |---|---|---|---|
-| [993 Turbo catalytic converters (front muffler…](pieces/993-exh-cat-converter-pair-pet-0001.md) | unknown | undecided | **prohibited pending engineering** |
-| [993 Turbo exhaust heat exchangers (manifolds)](pieces/993-exh-heat-exchanger-pair-pet-0001.md) | unknown (an IN625 aftermarket offer exi… | undecided | **prohibited pending engineering** |
-| [993 oval exhaust tip](pieces/993-exh-oval-tip-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | functional |
-| [Oval exhaust tip](pieces/993-exh-oval-tip-ti-f1-0001.md) | Ti-6Al-4V if the actual temperature all… | LPBF | functional |
+| [993 Turbo catalytic converters (front muffler…](parts/993-exh-cat-converter-pair-pet-0001.md) | unknown | undecided | **prohibited pending engineering** |
+| [993 Turbo exhaust heat exchangers (manifolds)](parts/993-exh-heat-exchanger-pair-pet-0001.md) | unknown (an IN625 aftermarket offer exi… | undecided | **prohibited pending engineering** |
+| [993 oval exhaust tip](parts/993-exh-oval-tip-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | functional |
+| [Oval exhaust tip](parts/993-exh-oval-tip-ti-f1-0001.md) | Ti-6Al-4V if the actual temperature all… | LPBF | functional |
 
 **Body**
 
 | part | candidate material | process | status |
 |---|---|---|---|
-| [993 front impact support](pieces/993-body-front-impact-support-alsi10mg-f0-0001.md) | generic screening AlSi10Mg | undecided | **prohibited pending engineering** |
-| [Front lid](pieces/993-body-front-lid-0001.md) | fiber and resin to be determined | undecided | functional |
+| [993 front impact support](parts/993-body-front-impact-support-alsi10mg-f0-0001.md) | generic screening AlSi10Mg | undecided | **prohibited pending engineering** |
+| [Front lid](parts/993-body-front-lid-0001.md) | fiber and resin to be determined | undecided | functional |
 
 **Central cell studies**
 
 | part | candidate material | process | status |
 |---|---|---|---|
-| [964 central carbon cell](pieces/964-central-cell-assumed-f1.md) | undecided | undecided | **prohibited pending engineering** |
-| [Archived F2 sculpted central-cell study](pieces/964-central-cell-sculpted-f2.md) | undecided | undecided | **prohibited pending engineering** |
+| [964 central carbon cell](parts/964-central-cell-assumed-f1.md) | undecided | undecided | **prohibited pending engineering** |
+| [Archived F2 sculpted central-cell study](parts/964-central-cell-sculpted-f2.md) | undecided | undecided | **prohibited pending engineering** |
 
 **Interior**
 
 | part | candidate material | process | status |
 |---|---|---|---|
-| [Dashboard trim](pieces/993-int-dashboard-trim-0001.md) | fiber and resin to be determined | undecided | functional |
-| [993 interior door opener lever](pieces/993-int-door-opener-lever-f0-0001.md) | AlSi10Mg, screening | LPBF | functional |
-| [Interior door pull handle](pieces/993-int-door-pull-0001.md) | to_be_determined_after_load_test | undecided | functional |
-| [Seat rail cover](pieces/993-int-seat-rail-cover-0001.md) | to_be_determined_after_fit_test | FFF | non-critical |
-| [Switch blank](pieces/993-int-switch-blank-0001.md) | to_be_determined_after_fit_test | FFF | non-critical |
-| [Aluminum switch trim ring](pieces/993-int-switch-trim-ring-f1-0001.md) | EN AW-6063 T6 retained for bright anodi… | CNC | non-critical |
+| [Dashboard trim](parts/993-int-dashboard-trim-0001.md) | fiber and resin to be determined | undecided | functional |
+| [993 interior door opener lever](parts/993-int-door-opener-lever-f0-0001.md) | AlSi10Mg, screening | LPBF | functional |
+| [Interior door pull handle](parts/993-int-door-pull-0001.md) | to_be_determined_after_load_test | undecided | functional |
+| [Seat rail cover](parts/993-int-seat-rail-cover-0001.md) | to_be_determined_after_fit_test | FFF | non-critical |
+| [Switch blank](parts/993-int-switch-blank-0001.md) | to_be_determined_after_fit_test | FFF | non-critical |
+| [Aluminum switch trim ring](parts/993-int-switch-trim-ring-f1-0001.md) | EN AW-6063 T6 retained for bright anodi… | CNC | non-critical |
 
 **Lighting**
 
 | part | candidate material | process | status |
 |---|---|---|---|
-| [Headlamp spring hook repair](pieces/993-elec-headlamp-spring-hook-f0-0001.md) | EOS Aluminium AlSi10Mg / AlSi10Mg_FlexM… | LPBF | functional |
+| [Headlamp spring hook repair](parts/993-elec-headlamp-spring-hook-f0-0001.md) | EOS Aluminium AlSi10Mg / AlSi10Mg_FlexM… | LPBF | functional |
 
 **Wheels**
 
 | part | candidate material | process | status |
 |---|---|---|---|
-| [993 center cap](pieces/993-whl-center-cap-alsi10mg-f0-0001.md) | AlSi10Mg for screening | undecided | functional |
+| [993 center cap](parts/993-whl-center-cap-alsi10mg-f0-0001.md) | AlSi10Mg for screening | undecided | functional |
 
-*46 records, 27 of them prohibited pending engineering, none released. Each link opens the part's description page in [`docs/pieces/`](pieces/), generated from its `catalog/parts/*.json` record; the design dossiers are in [`docs/993/`](993/). Table generated by `scripts/render_parts_table.py`, checked by `make check`.*
+*46 records, 27 of them prohibited pending engineering, none released. Each link opens the part's description page in [`docs/parts/`](parts/), generated from its `catalog/parts/*.json` record; the design dossiers are in [`docs/993/`](993/). Table generated by `scripts/render_parts_table.py`, checked by `make check`.*
 
 <!-- parts:end -->
 
@@ -726,7 +726,7 @@ flowchart TB
       prt --- cmp["components/ · assemblies/"]
       prt --- mea["measurements/<br/>5 documentary records"]
     end
-    prt -- "render_part_pages.py" --> pages["docs/pieces/<br/>one page per part"]
+    prt -- "render_part_pages.py" --> pages["docs/parts/<br/>one page per part"]
     prt -- "render_parts_table.py" --> table["parts table on this page"]
     prt -- "render_readme_gallery.py" --> gallery["README picture gallery"]
     tw --> twins["twins/&lt;zone&gt;/<br/>CAD · analysis · evidence"]
@@ -837,7 +837,7 @@ twins/              digital twins, one folder per zone; see twins/README.md
 models/             reconstructions, e.g. the horizontal fan
 docs/               plans, quality criteria, software chain; see docs/README.md
   993/                the 34 design dossiers of the 993 parts
-  pieces/             one generated page per part record
+  parts/              one generated page per part record
   decisions/          numbered architecture decisions
   reports/            dated execution and audit reports, indexed by day
   research/           source research by topic

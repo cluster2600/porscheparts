@@ -109,7 +109,7 @@ flowchart LR
 
 ## Read more
 
-- **Full description page**, with sources and evidence: [docs/pieces/993-int-door-opener-lever-f0-0001.md](../../docs/pieces/993-int-door-opener-lever-f0-0001.md)
+- **Full description page**, with sources and evidence: [docs/parts/993-int-door-opener-lever-f0-0001.md](../../docs/parts/993-int-door-opener-lever-f0-0001.md)
 - **Catalogue record** (source of truth): [`catalog/parts/993-int-door-opener-lever-f0-0001.json`](../../catalog/parts/993-int-door-opener-lever-f0-0001.json)
 - **Design dossier**: [993_DOOR_OPENER_LEVER_ALSI10MG_F0](../../docs/993/993_DOOR_OPENER_LEVER_ALSI10MG_F0.md)
 - **Digital twin record**: [`twin-993-door-opener-lever-alsi10mg-f0.json`](../../catalog/twins/twin-993-door-opener-lever-alsi10mg-f0.json) — see [twins/README.md](../../twins/README.md)

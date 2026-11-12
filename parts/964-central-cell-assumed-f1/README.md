@@ -97,7 +97,7 @@ flowchart LR
 
 ## Read more
 
-- **Full description page**, with sources and evidence: [docs/pieces/964-central-cell-assumed-f1.md](../../docs/pieces/964-central-cell-assumed-f1.md)
+- **Full description page**, with sources and evidence: [docs/parts/964-central-cell-assumed-f1.md](../../docs/parts/964-central-cell-assumed-f1.md)
 - **Catalogue record** (source of truth): [`catalog/parts/964-central-cell-assumed-f1.json`](../../catalog/parts/964-central-cell-assumed-f1.json)
 - **Safety rules**: [SAFETY.md](../../docs/SAFETY.md)
 
