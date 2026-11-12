@@ -1,0 +1,568 @@
+{
+  "status": "criterion_applied_no_new_solver_run",
+  "criterion_id": "993-INTERCOOLER-750-RIB-ROOT-FILLET-CRITERION-1",
+  "candidates_mm": [
+    0.2,
+    0.4
+  ],
+  "assumed_pressure_mpa": 0.375,
+  "assumed_screen_mpa": 40,
+  "assumed_elastic_modulus_mpa": 50000.0,
+  "assumed_poisson_ratio": 0.33,
+  "scaling_validity_check": {
+    "williams_lambda": 0.544483736782464,
+    "exponent": 0.455516263217536,
+    "predicted_peak_ratio": 1.3712734224405683,
+    "retained_nodal_peak_ratio": 1.3755654877831718,
+    "relative_difference": 0.0031299850725354794,
+    "tolerance": 0.05,
+    "valid": true,
+    "note": "Two radii only: the check cannot show that the scaling holds below 0.2 mm."
+  },
+  "radii": {
+    "0.2": {
+      "tests": {
+        "M1": {
+          "result": "pass",
+          "upper_peak_mpa": 12.813727953705694,
+          "assumed_screen_mpa": 40,
+          "both_sequences_converged_within_gci": true
+        },
+        "H1": {
+          "result": "pass",
+          "hydraulic_penalty": 0.0033159182323911907,
+          "limit": 0.05
+        },
+        "M2": {
+          "result": "not_evaluable",
+          "on_route": [],
+          "indicative_not_deciding": [
+            {
+              "delta_offset_mm": 0.05,
+              "source_id": "SRC-KRASNIQI-2025-EUSPEN-ALSI10MG-GDT",
+              "condition": "DMG Mori Lasertec 30 against EOS M 300-4, PTB/BAM benchmark",
+              "low_radius_mm": 0.15000000000000002,
+              "low_radius_peak_mpa": 14.607877751721722,
+              "below_assumed_screen": true
+            },
+            {
+              "delta_offset_mm": 0.1,
+              "source_id": "SRC-XOMETRY-ASIA-SLM-ALSI10MG-DATASHEET",
+              "condition": "service sheet, machine and layer not stated, provenance unknown",
+              "low_radius_mm": 0.1,
+              "low_radius_peak_mpa": 17.571124585300385,
+              "below_assumed_screen": true
+            },
+            {
+              "delta_offset_mm": 0.2,
+              "source_id": "SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES",
+              "condition": "service bureau, 60 and 90 \u00b5m layers, machine not named",
+              "low_radius_mm": 0.0,
+              "low_radius_peak_mpa": null,
+              "below_assumed_screen": false
+            }
+          ]
+        },
+        "P1": {
+          "result": "not_evaluable",
+          "on_route": [],
+          "indicative_not_deciding": [
+            {
+              "stated_minimum_mm": 0.4,
+              "kind": "minimum detail size, specification table",
+              "source_id": "SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES",
+              "radius_at_or_above_minimum": false
+            },
+            {
+              "stated_minimum_mm": 0.5,
+              "kind": "smallest detail said to be possible, body text of the same page",
+              "source_id": "SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES",
+              "radius_at_or_above_minimum": false
+            },
+            {
+              "stated_minimum_mm": 0.5,
+              "kind": "minimum feature size achieved on pins, holes and staircase flats",
+              "source_id": "SRC-SILVA-2025-ALSI10MG-LAYER-THICKNESS",
+              "radius_at_or_above_minimum": false
+            }
+          ]
+        },
+        "P2": {
+          "result": "fail",
+          "form_mm": 0.08284271247461904,
+          "on_route": [
+            {
+              "scale": "layer_thickness_mm",
+              "value_mm": 0.03,
+              "kind": null,
+              "source_id": "SRC-EOS-ALSI10MG-M290-30UM",
+              "form_over_scale": 2.761423749153968,
+              "form_above_scale": true
+            },
+            {
+              "scale": "powder_upper_size_mm",
+              "value_mm": 0.09,
+              "kind": "sieve cut",
+              "source_id": "SRC-EOS-ALSI10MG-M290-30UM",
+              "form_over_scale": 0.9204745830513227,
+              "form_above_scale": false
+            },
+            {
+              "scale": "powder_upper_size_mm",
+              "value_mm": 0.07,
+              "kind": "upper bound of the stated generic particle size distribution",
+              "source_id": "SRC-EOS-ALSI10MG-MATERIAL-DATA",
+              "form_over_scale": 1.183467321065986,
+              "form_above_scale": true
+            }
+          ],
+          "scales_not_sourced_on_route": [
+            "as_built_roughness_rz_mm"
+          ],
+          "every_scale_sourced": false,
+          "indicative_not_deciding": [
+            {
+              "scale": "layer_thickness_mm",
+              "value_mm": 0.06,
+              "kind": null,
+              "source_id": "SRC-KRASNIQI-2025-EUSPEN-ALSI10MG-GDT",
+              "form_over_scale": 1.380711874576984,
+              "form_above_scale": true
+            },
+            {
+              "scale": "layer_thickness_mm",
+              "value_mm": 0.04,
+              "kind": null,
+              "source_id": "SRC-KRASNIQI-2025-EUSPEN-ALSI10MG-GDT",
+              "form_over_scale": 2.071067811865476,
+              "form_above_scale": true
+            },
+            {
+              "scale": "layer_thickness_mm",
+              "value_mm": 0.06,
+              "kind": null,
+              "source_id": "SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES",
+              "form_over_scale": 1.380711874576984,
+              "form_above_scale": true
+            },
+            {
+              "scale": "layer_thickness_mm",
+              "value_mm": 0.09,
+              "kind": null,
+              "source_id": "SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES",
+              "form_over_scale": 0.9204745830513227,
+              "form_above_scale": false
+            },
+            {
+              "scale": "powder_upper_size_mm",
+              "value_mm": 0.063,
+              "kind": "upper bound of the stated range 20 to 63 \u00b5m",
+              "source_id": "SRC-NIKON-SLM-ALSI10MG-MDS-2025-11",
+              "form_over_scale": 1.3149636900733181,
+              "form_above_scale": true
+            },
+            {
+              "scale": "powder_upper_size_mm",
+              "value_mm": 0.073,
+              "kind": "d90",
+              "source_id": "SRC-KRASNIQI-2025-EUSPEN-ALSI10MG-GDT",
+              "form_over_scale": 1.1348316777345073,
+              "form_above_scale": true
+            },
+            {
+              "scale": "powder_upper_size_mm",
+              "value_mm": 0.062,
+              "kind": "d90",
+              "source_id": "SRC-KRASNIQI-2025-EUSPEN-ALSI10MG-GDT",
+              "form_over_scale": 1.3361727818486941,
+              "form_above_scale": true
+            },
+            {
+              "scale": "powder_upper_size_mm",
+              "value_mm": 0.09,
+              "kind": "size above which 0.3 wt.% of the powder lies",
+              "source_id": "SRC-GRANGES-ALSI10MG-AM-DATASHEET-2022-09",
+              "form_over_scale": 0.9204745830513227,
+              "form_above_scale": false
+            },
+            {
+              "scale": "as_built_roughness_rz_mm",
+              "value_mm": 0.064,
+              "kind": "mean",
+              "source_id": "SRC-NIKON-SLM-ALSI10MG-MDS-2025-11",
+              "form_over_scale": 1.2944173824159224,
+              "form_above_scale": true
+            },
+            {
+              "scale": "as_built_roughness_rz_mm",
+              "value_mm": 0.12,
+              "kind": "maximum at 95 % coverage and 95 % confidence",
+              "source_id": "SRC-NIKON-SLM-ALSI10MG-MDS-2025-11",
+              "form_over_scale": 0.690355937288492,
+              "form_above_scale": false
+            },
+            {
+              "scale": "as_built_roughness_rz_mm",
+              "value_mm": 0.07,
+              "kind": "mean",
+              "source_id": "SRC-NIKON-SLM-ALSI10MG-MDS-2025-11",
+              "form_over_scale": 1.183467321065986,
+              "form_above_scale": true
+            },
+            {
+              "scale": "as_built_roughness_rz_mm",
+              "value_mm": 0.129,
+              "kind": "maximum at 95 % coverage and 95 % confidence",
+              "source_id": "SRC-NIKON-SLM-ALSI10MG-MDS-2025-11",
+              "form_over_scale": 0.6421915695706902,
+              "form_above_scale": false
+            },
+            {
+              "scale": "as_built_roughness_rz_mm",
+              "value_mm": 0.07,
+              "kind": "lower end of the stated range",
+              "source_id": "SRC-GRANGES-ALSI10MG-AM-DATASHEET-2022-09",
+              "form_over_scale": 1.183467321065986,
+              "form_above_scale": true
+            },
+            {
+              "scale": "as_built_roughness_rz_mm",
+              "value_mm": 0.17,
+              "kind": "upper end of the stated range",
+              "source_id": "SRC-GRANGES-ALSI10MG-AM-DATASHEET-2022-09",
+              "form_over_scale": 0.48731007338011195,
+              "form_above_scale": false
+            },
+            {
+              "scale": "as_built_roughness_rz_mm",
+              "value_mm": 0.03,
+              "kind": "lower end of the stated range",
+              "source_id": "SRC-XOMETRY-ASIA-SLM-ALSI10MG-DATASHEET",
+              "form_over_scale": 2.761423749153968,
+              "form_above_scale": true
+            },
+            {
+              "scale": "as_built_roughness_rz_mm",
+              "value_mm": 0.04,
+              "kind": "upper end of the stated range",
+              "source_id": "SRC-XOMETRY-ASIA-SLM-ALSI10MG-DATASHEET",
+              "form_over_scale": 2.071067811865476,
+              "form_above_scale": true
+            }
+          ]
+        },
+        "P3": {
+          "result": "not_met",
+          "measurements": []
+        }
+      },
+      "class": "not_distinguishable",
+      "context_not_deciding": {
+        "layers_across_the_radius": 6.666666666666667,
+        "form_over_laser_focus_diameter": 0.8284271247461903,
+        "radius_over_rib_thickness": 0.25,
+        "radius_over_passage_half_height": 0.13333333333333333,
+        "added_solid_area_fraction_of_quarter_section": 0.0032515429788264605,
+        "open_area_lost_fraction": 0.0029805810639242925,
+        "retained_cfd_over_proxy": 1.0236741583862028,
+        "nodal_richardson_peak_mpa": 12.812802541460343
+      }
+    },
+    "0.4": {
+      "tests": {
+        "M1": {
+          "result": "pass",
+          "upper_peak_mpa": 9.576491411375436,
+          "assumed_screen_mpa": 40,
+          "both_sequences_converged_within_gci": true
+        },
+        "H1": {
+          "result": "pass",
+          "hydraulic_penalty": 0.014713822090461903,
+          "limit": 0.05
+        },
+        "M2": {
+          "result": "not_evaluable",
+          "on_route": [],
+          "indicative_not_deciding": [
+            {
+              "delta_offset_mm": 0.05,
+              "source_id": "SRC-KRASNIQI-2025-EUSPEN-ALSI10MG-GDT",
+              "condition": "DMG Mori Lasertec 30 against EOS M 300-4, PTB/BAM benchmark",
+              "low_radius_mm": 0.35000000000000003,
+              "low_radius_peak_mpa": 10.177068518889527,
+              "below_assumed_screen": true
+            },
+            {
+              "delta_offset_mm": 0.1,
+              "source_id": "SRC-XOMETRY-ASIA-SLM-ALSI10MG-DATASHEET",
+              "condition": "service sheet, machine and layer not stated, provenance unknown",
+              "low_radius_mm": 0.30000000000000004,
+              "low_radius_peak_mpa": 10.917370521147122,
+              "below_assumed_screen": true
+            },
+            {
+              "delta_offset_mm": 0.2,
+              "source_id": "SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES",
+              "condition": "service bureau, 60 and 90 \u00b5m layers, machine not named",
+              "low_radius_mm": 0.2,
+              "low_radius_peak_mpa": 13.131988152649502,
+              "below_assumed_screen": true
+            }
+          ]
+        },
+        "P1": {
+          "result": "not_evaluable",
+          "on_route": [],
+          "indicative_not_deciding": [
+            {
+              "stated_minimum_mm": 0.4,
+              "kind": "minimum detail size, specification table",
+              "source_id": "SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES",
+              "radius_at_or_above_minimum": true
+            },
+            {
+              "stated_minimum_mm": 0.5,
+              "kind": "smallest detail said to be possible, body text of the same page",
+              "source_id": "SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES",
+              "radius_at_or_above_minimum": false
+            },
+            {
+              "stated_minimum_mm": 0.5,
+              "kind": "minimum feature size achieved on pins, holes and staircase flats",
+              "source_id": "SRC-SILVA-2025-ALSI10MG-LAYER-THICKNESS",
+              "radius_at_or_above_minimum": false
+            }
+          ]
+        },
+        "P2": {
+          "result": "pass",
+          "form_mm": 0.16568542494923807,
+          "on_route": [
+            {
+              "scale": "layer_thickness_mm",
+              "value_mm": 0.03,
+              "kind": null,
+              "source_id": "SRC-EOS-ALSI10MG-M290-30UM",
+              "form_over_scale": 5.522847498307936,
+              "form_above_scale": true
+            },
+            {
+              "scale": "powder_upper_size_mm",
+              "value_mm": 0.09,
+              "kind": "sieve cut",
+              "source_id": "SRC-EOS-ALSI10MG-M290-30UM",
+              "form_over_scale": 1.8409491661026454,
+              "form_above_scale": true
+            },
+            {
+              "scale": "powder_upper_size_mm",
+              "value_mm": 0.07,
+              "kind": "upper bound of the stated generic particle size distribution",
+              "source_id": "SRC-EOS-ALSI10MG-MATERIAL-DATA",
+              "form_over_scale": 2.366934642131972,
+              "form_above_scale": true
+            }
+          ],
+          "scales_not_sourced_on_route": [
+            "as_built_roughness_rz_mm"
+          ],
+          "every_scale_sourced": false,
+          "indicative_not_deciding": [
+            {
+              "scale": "layer_thickness_mm",
+              "value_mm": 0.06,
+              "kind": null,
+              "source_id": "SRC-KRASNIQI-2025-EUSPEN-ALSI10MG-GDT",
+              "form_over_scale": 2.761423749153968,
+              "form_above_scale": true
+            },
+            {
+              "scale": "layer_thickness_mm",
+              "value_mm": 0.04,
+              "kind": null,
+              "source_id": "SRC-KRASNIQI-2025-EUSPEN-ALSI10MG-GDT",
+              "form_over_scale": 4.142135623730952,
+              "form_above_scale": true
+            },
+            {
+              "scale": "layer_thickness_mm",
+              "value_mm": 0.06,
+              "kind": null,
+              "source_id": "SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES",
+              "form_over_scale": 2.761423749153968,
+              "form_above_scale": true
+            },
+            {
+              "scale": "layer_thickness_mm",
+              "value_mm": 0.09,
+              "kind": null,
+              "source_id": "SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES",
+              "form_over_scale": 1.8409491661026454,
+              "form_above_scale": true
+            },
+            {
+              "scale": "powder_upper_size_mm",
+              "value_mm": 0.063,
+              "kind": "upper bound of the stated range 20 to 63 \u00b5m",
+              "source_id": "SRC-NIKON-SLM-ALSI10MG-MDS-2025-11",
+              "form_over_scale": 2.6299273801466363,
+              "form_above_scale": true
+            },
+            {
+              "scale": "powder_upper_size_mm",
+              "value_mm": 0.073,
+              "kind": "d90",
+              "source_id": "SRC-KRASNIQI-2025-EUSPEN-ALSI10MG-GDT",
+              "form_over_scale": 2.2696633554690147,
+              "form_above_scale": true
+            },
+            {
+              "scale": "powder_upper_size_mm",
+              "value_mm": 0.062,
+              "kind": "d90",
+              "source_id": "SRC-KRASNIQI-2025-EUSPEN-ALSI10MG-GDT",
+              "form_over_scale": 2.6723455636973883,
+              "form_above_scale": true
+            },
+            {
+              "scale": "powder_upper_size_mm",
+              "value_mm": 0.09,
+              "kind": "size above which 0.3 wt.% of the powder lies",
+              "source_id": "SRC-GRANGES-ALSI10MG-AM-DATASHEET-2022-09",
+              "form_over_scale": 1.8409491661026454,
+              "form_above_scale": true
+            },
+            {
+              "scale": "as_built_roughness_rz_mm",
+              "value_mm": 0.064,
+              "kind": "mean",
+              "source_id": "SRC-NIKON-SLM-ALSI10MG-MDS-2025-11",
+              "form_over_scale": 2.588834764831845,
+              "form_above_scale": true
+            },
+            {
+              "scale": "as_built_roughness_rz_mm",
+              "value_mm": 0.12,
+              "kind": "maximum at 95 % coverage and 95 % confidence",
+              "source_id": "SRC-NIKON-SLM-ALSI10MG-MDS-2025-11",
+              "form_over_scale": 1.380711874576984,
+              "form_above_scale": true
+            },
+            {
+              "scale": "as_built_roughness_rz_mm",
+              "value_mm": 0.07,
+              "kind": "mean",
+              "source_id": "SRC-NIKON-SLM-ALSI10MG-MDS-2025-11",
+              "form_over_scale": 2.366934642131972,
+              "form_above_scale": true
+            },
+            {
+              "scale": "as_built_roughness_rz_mm",
+              "value_mm": 0.129,
+              "kind": "maximum at 95 % coverage and 95 % confidence",
+              "source_id": "SRC-NIKON-SLM-ALSI10MG-MDS-2025-11",
+              "form_over_scale": 1.2843831391413805,
+              "form_above_scale": true
+            },
+            {
+              "scale": "as_built_roughness_rz_mm",
+              "value_mm": 0.07,
+              "kind": "lower end of the stated range",
+              "source_id": "SRC-GRANGES-ALSI10MG-AM-DATASHEET-2022-09",
+              "form_over_scale": 2.366934642131972,
+              "form_above_scale": true
+            },
+            {
+              "scale": "as_built_roughness_rz_mm",
+              "value_mm": 0.17,
+              "kind": "upper end of the stated range",
+              "source_id": "SRC-GRANGES-ALSI10MG-AM-DATASHEET-2022-09",
+              "form_over_scale": 0.9746201467602239,
+              "form_above_scale": false
+            },
+            {
+              "scale": "as_built_roughness_rz_mm",
+              "value_mm": 0.03,
+              "kind": "lower end of the stated range",
+              "source_id": "SRC-XOMETRY-ASIA-SLM-ALSI10MG-DATASHEET",
+              "form_over_scale": 5.522847498307936,
+              "form_above_scale": true
+            },
+            {
+              "scale": "as_built_roughness_rz_mm",
+              "value_mm": 0.04,
+              "kind": "upper end of the stated range",
+              "source_id": "SRC-XOMETRY-ASIA-SLM-ALSI10MG-DATASHEET",
+              "form_over_scale": 4.142135623730952,
+              "form_above_scale": true
+            }
+          ]
+        },
+        "P3": {
+          "result": "not_met",
+          "measurements": []
+        }
+      },
+      "class": "unsettled",
+      "context_not_deciding": {
+        "layers_across_the_radius": 13.333333333333334,
+        "form_over_laser_focus_diameter": 1.6568542494923806,
+        "radius_over_rib_thickness": 0.5,
+        "radius_over_passage_half_height": 0.26666666666666666,
+        "added_solid_area_fraction_of_quarter_section": 0.013006171915306286,
+        "open_area_lost_fraction": 0.011922324255697392,
+        "retained_cfd_over_proxy": 1.0163513134358402,
+        "nodal_richardson_peak_mpa": 9.314571102033932
+      }
+    }
+  },
+  "classes": {
+    "0.2": "not_distinguishable",
+    "0.4": "unsettled"
+  },
+  "decision": {
+    "proposed_radius_mm": 0.4,
+    "rule": "R3",
+    "design_assumption_only": true,
+    "other_radius_mm": 0.2,
+    "other_radius_stays_in_3d_study": false
+  },
+  "criterion_ambiguity": {
+    "found_at_evaluation": true,
+    "text": "The criterion defines the powder scale as the upper particle size, \"D90 or the sieve cut\", and does not say which governs when both are sourced. Two on-route figures exist. The evaluation requires the fillet form to exceed both, because the scale is defined as the upper size. The criterion file is not amended after the fact.",
+    "on_route_powder_figures_mm": [
+      0.07,
+      0.09
+    ],
+    "classes_if_only_the_smaller_figure_counted": {
+      "0.2": "unsettled",
+      "0.4": "unsettled"
+    },
+    "decision_if_only_the_smaller_figure_counted": {
+      "proposed_radius_mm": 0.4,
+      "rule": "R4",
+      "design_assumption_only": true,
+      "other_radius_mm": 0.2,
+      "other_radius_stays_in_3d_study": true
+    }
+  },
+  "reading": [
+    "The proposed radius is a design assumption for the 3D study, not a radius shown to be held by any machine.",
+    "Indicative figures come from other machines, layer thicknesses or unnamed service routes. They are reported and never decide a test.",
+    "The low-radius peak is an asymptotic extrapolation checked on two radii; it is not a retained stress result.",
+    "The 40 MPa screen, the 0.375 MPa pressure and the elastic card are assumptions of the coupon study, not qualified values."
+  ],
+  "pressure_qualified": false,
+  "manufacturing_authorized": false,
+  "lpbf_process_qualified": false,
+  "new_finite_element_or_cfd_run": false,
+  "source_sha256": "3d9c859fd024e54bd0fbaacdbd9cd80fbe36ed26e8e5aeb786b9de9d4f72103f",
+  "input_hashes": {
+    "twins/993-intercooler/750-hp/pressure-coupon/fillet-radius/criterion.json": "03c00b96fb120dce3bfb5509c51f01f72f21aee8b4cc68ead3499f909cbd829b",
+    "twins/993-intercooler/750-hp/pressure-coupon/fillet-radius/process-capability.json": "3abdfcd7496d3f3ce58e891a459f7137c24906157b263e3ce349cbd3763e3325",
+    "twins/993-intercooler/750-hp/pressure-coupon/derived/fillet-convergence/fillet-convergence.json": "e638888586cf3fcb1d50b1f71c450898f9e5e80a7e40d97a78478f8ae97d371f",
+    "twins/993-intercooler/750-hp/pressure-coupon/derived/fillet-hydraulics/fillet-hydraulics.json": "64b1d9ea3545844837689617fd5089e4b052ae45ce900d37ef89ac16eddfa2a2",
+    "twins/993-intercooler/750-hp/pressure-coupon/derived/channel-cfd/channel-cfd.json": "13defccb22347fdec3235168c4cf24e32e5fbf6603d6f0b7d460c445ec3edd03"
+  }
+}
