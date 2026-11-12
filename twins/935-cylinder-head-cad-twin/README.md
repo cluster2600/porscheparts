@@ -53,7 +53,7 @@ stated blocker. What the twin still does not have:
   selected.
 - **A qualified build.** The print body has a layer screen and a
   [build screen](#build-screen-the-print-body-grown-lump-by-lump-in-calculix-case-witnesses-record):
-  43.4 hours on one laser, 60 to 64 K above the plate, and a distortion after
+  43.4 hours on one laser, a largest rise of 60 to 64 K above the plate, and a distortion after
   release of 0.24 to 0.31 mm at the median and 1.62 to 2.16 mm at the largest,
   not converged in lump height or cell size.
   Both run on declared process values: no maker's parameters, no designed
@@ -970,8 +970,8 @@ below:
 process value comes from the machine's maker and nothing was printed.*
 
 **The head's build now runs, as a screen.** Under the declared process values the
-print body takes 43.4 hours on one 350 W laser. Its time-averaged
-temperature stays 60 to 64 K above the plate at the four levels solved.
+print body takes 43.4 hours on one 350 W laser. Its hottest region runs
+60 to 64 K above the plate as a time average, at the four levels solved.
 After release the model is out of shape by 0.24 to 0.31 mm at the
 median and 1.62 to 2.16 mm at its worst corner, depending on the lump
 height and the cell size: the distortion is an order of magnitude, not a
@@ -1039,8 +1039,9 @@ The half-full rule does not keep the volume exactly: the models hold -0.24% to
 | c3-l9 | 43.4 h (28.1 h exposure, 15.3 h recoating) | 14.2 MJ | 60.2 K | 189 mm | 0.13% | 79 min |
 | c2-l8 | 43.6 h (28.3 h exposure, 15.2 h recoating) | 14.3 MJ | 60.6 K | 184 mm | 0.10% | 222 min |
 
-- **The part stays near the plate temperature:** 60 to 64 K above it, about
-  160 to 164 °C with the plate at 100 °C. The mean absorbed power is
+- **The part stays near the plate temperature:** its largest rise is 60 to 64 K, about
+  160 to 164 °C at the hottest region with the plate at 100 °C; the rest
+  is cooler. The mean absorbed power is
   91 W (14.2 MJ over the build), and the aluminium section carries it
   to the plate.
 - **Lump height and cell size move it by 2 K:** 62.0 K with lumps of
@@ -1609,7 +1610,7 @@ valve, seat and guide geometry (H05).
 | Print-body orientations | print-body occupancy | [print-body-supports.json](params/print-body-supports.json) | the AM screen's analytic witnesses | done as a screen: flange y− down and side x+ down kept for the build study; no support designed |
 | Print-body layer screen | 0.5 mm and 1.0 mm surfaces of the print body, EP-M300 card | [print-body-layer-screen.json](params/print-body-layer-screen.json); private per-layer tables and charts | hashes of master and surface; the tool's gates; the bounded-memory driver gives the same four files as the plain run on the 1.0 mm surface | done on both surfaces: build along Y, 4,482 layers, fits the envelope, no trapped powder at 1.0 mm; 563 islands on the fine surface, 216 on the smoother one; thin walls measured on the grid ([wall check](params/print-body-wall-check.json)) |
 | Build simulation witness | a block, two lumped layers from a deposition file | [am-build-witness.json](params/am-build-witness.json) | active volume and mean temperature against a closed form, on the solver's mesh and on an imported one | passed on both; the head's build runs in CalculiX instead (next row) |
-| Build screen | print-body occupancy, [declared case](params/build-sim-case.json) | [build-sim.json](params/build-sim.json); private decks, fields and two [pictures](media/build-sim-result.png) | three closed-form [witnesses](params/build-sim-witness.json); energy balance within 0.4%; 4 levels for temperature, 5 mechanical runs | done as a screen: 43.4 h, 60 to 64 K above the plate; distortion after release 0.24 to 0.31 mm median, 1.62 to 2.16 mm largest on 3 and 4 mm cells, not converged in lump height or cell size; stress at the declared yield curve; every gate false |
+| Build screen | print-body occupancy, [declared case](params/build-sim-case.json) | [build-sim.json](params/build-sim.json); private decks, fields and two [pictures](media/build-sim-result.png) | three closed-form [witnesses](params/build-sim-witness.json); energy balance within 0.4%; 4 levels for temperature, 5 mechanical runs | done as a screen: 43.4 h, largest rise 60 to 64 K above the plate; distortion after release 0.24 to 0.31 mm median, 1.62 to 2.16 mm largest on 3 and 4 mm cells, not converged in lump height or cell size; stress at the declared yield curve; every gate false |
 | Fatigue, valve-train dynamics, drawing | none | none | — | not run: no stress history or S-N data, no installed dynamics tool, no confirmed features to dimension |
 
 ## Limits
