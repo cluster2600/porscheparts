@@ -1,0 +1,170 @@
+{
+  "schema_version": "1.0.0",
+  "issue": 467,
+  "read_on": "2026-11-12",
+  "status": "sourced_process_figures_no_measurement_no_qualification",
+  "question": "What minimum internal radius, feature size and surface resolution do citable sources state for laser powder bed fusion of AlSi10Mg?",
+  "route": {
+    "alloy": "AlSi10Mg",
+    "process": "laser powder bed fusion",
+    "reference_card": "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json",
+    "reference_card_is": "assumed: the only AlSi10Mg process card in the catalogue; no machine is selected for the intercooler",
+    "on_route_means": "stated by EOS for EOS Aluminium AlSi10Mg, on the EOS M 290 at 30 micrometre layers or for the powder itself",
+    "indicative_means": "stated for another machine, layer thickness or alloy, or by a service bureau without a named machine; reported, never deciding"
+  },
+  "verdict": {
+    "does_any_source_state_a_minimum_internal_radius_for_lpbf_alsi10mg": false,
+    "does_any_source_measure_an_as_built_concave_radius_in_lpbf_alsi10mg": false,
+    "do_the_sources_settle_whether_0_2_mm_can_be_held": false,
+    "do_the_sources_settle_whether_0_4_mm_can_be_held": false,
+    "plain_statement": "No source found states the smallest internal fillet radius that LPBF holds in AlSi10Mg, and none reports a measured as-built concave radius. What is sourced are the scales against which a fillet has to stand: layer thickness, powder size, as-built roughness and dimensional accuracy. Several of those are not published for the reference route either. Neither radius is shown to be held; only a printed and sectioned coupon would show that. The comparison of the two radii against these scales is made by the evaluation, not here."
+  },
+  "scales": {
+    "layer_thickness_mm": {
+      "on_route": [
+        {
+          "value": 0.03,
+          "statement": "Layer Thickness 30 µm",
+          "machine": "EOS M 290",
+          "layer_thickness_mm": 0.03,
+          "uncertainty": null,
+          "uncertainty_note": "nominal setting; no tolerance stated",
+          "source_id": "SRC-EOS-ALSI10MG-M290-30UM",
+          "reread_on": "2026-11-12"
+        }
+      ],
+      "indicative": [
+        {"value": 0.06, "condition": "EOS M 300-4 parameter set of the PTB/BAM benchmark", "source_id": "SRC-KRASNIQI-2025-EUSPEN-ALSI10MG-GDT"},
+        {"value": 0.04, "condition": "DMG Mori Lasertec 30 parameter set of the PTB/BAM benchmark", "source_id": "SRC-KRASNIQI-2025-EUSPEN-ALSI10MG-GDT"},
+        {"value": 0.06, "condition": "service bureau, performance grade, machine not named", "source_id": "SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES"},
+        {"value": 0.09, "condition": "service bureau, standard grade, machine not named", "source_id": "SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES"}
+      ]
+    },
+    "powder_upper_size_mm": {
+      "on_route": [
+        {
+          "value": 0.09,
+          "kind": "sieve cut",
+          "statement": "Sieve 90 µm",
+          "machine": "EOS M 290",
+          "layer_thickness_mm": 0.03,
+          "uncertainty": null,
+          "uncertainty_note": "mesh size; the fraction of particles near the cut is not stated",
+          "source_id": "SRC-EOS-ALSI10MG-M290-30UM",
+          "reread_on": "2026-11-12"
+        },
+        {
+          "value": 0.07,
+          "kind": "upper bound of the stated generic particle size distribution",
+          "statement": "Generic Particle Size Distribution 25 - 70 µm",
+          "machine": "powder, not machine-specific",
+          "layer_thickness_mm": null,
+          "uncertainty": null,
+          "uncertainty_note": "a range without percentiles; whether 70 µm is a d90 or a maximum is not stated",
+          "source_id": "SRC-EOS-ALSI10MG-MATERIAL-DATA",
+          "reread_on": "2026-11-12"
+        }
+      ],
+      "indicative": [
+        {"value": 0.063, "kind": "upper bound of the stated range 20 to 63 µm", "condition": "Nikon SLM powder", "source_id": "SRC-NIKON-SLM-ALSI10MG-MDS-2025-11"},
+        {"value": 0.073, "kind": "d90", "condition": "EOS M 300-4 powder lot of the PTB/BAM benchmark", "source_id": "SRC-KRASNIQI-2025-EUSPEN-ALSI10MG-GDT"},
+        {"value": 0.062, "kind": "d90", "condition": "DMG Mori Lasertec 30 powder lot of the PTB/BAM benchmark", "source_id": "SRC-KRASNIQI-2025-EUSPEN-ALSI10MG-GDT"},
+        {"value": 0.09, "kind": "size above which 0.3 wt.% of the powder lies", "condition": "Granges powder for 50 µm layers", "source_id": "SRC-GRANGES-ALSI10MG-AM-DATASHEET-2022-09"}
+      ]
+    },
+    "as_built_roughness_rz_mm": {
+      "on_route": [],
+      "on_route_note": "The EOS M 290 30 µm sheet lists Sa and Ra fields with no value and gives no Rz. Its only roughness content is a diagram of down-skin Ra and Sa against build angle, recorded below as context.",
+      "indicative": [
+        {"value": 0.064, "kind": "mean", "condition": "Nikon SLM 280, 30 µm layers, vertical walls, cut-off 2.5 mm", "source_id": "SRC-NIKON-SLM-ALSI10MG-MDS-2025-11"},
+        {"value": 0.12, "kind": "maximum at 95 % coverage and 95 % confidence", "condition": "Nikon SLM 280, 30 µm layers, vertical walls, cut-off 2.5 mm", "source_id": "SRC-NIKON-SLM-ALSI10MG-MDS-2025-11"},
+        {"value": 0.07, "kind": "mean", "condition": "Nikon SLM 500, 30 µm layers, vertical walls", "source_id": "SRC-NIKON-SLM-ALSI10MG-MDS-2025-11"},
+        {"value": 0.129, "kind": "maximum at 95 % coverage and 95 % confidence", "condition": "Nikon SLM 500, 30 µm layers, vertical walls", "source_id": "SRC-NIKON-SLM-ALSI10MG-MDS-2025-11"},
+        {"value": 0.07, "kind": "lower end of the stated range", "condition": "Granges powder, 50 µm layers, vertical, machine not named", "source_id": "SRC-GRANGES-ALSI10MG-AM-DATASHEET-2022-09"},
+        {"value": 0.17, "kind": "upper end of the stated range", "condition": "Granges powder, 50 µm layers, vertical, machine not named", "source_id": "SRC-GRANGES-ALSI10MG-AM-DATASHEET-2022-09"},
+        {"value": 0.03, "kind": "lower end of the stated range", "condition": "service sheet, as built and cleaned, machine and layer not stated, provenance unknown", "source_id": "SRC-XOMETRY-ASIA-SLM-ALSI10MG-DATASHEET"},
+        {"value": 0.04, "kind": "upper end of the stated range", "condition": "service sheet, as built and cleaned, machine and layer not stated, provenance unknown", "source_id": "SRC-XOMETRY-ASIA-SLM-ALSI10MG-DATASHEET"}
+      ]
+    },
+    "delta_offset_mm": {
+      "on_route": [],
+      "on_route_note": "Neither EOS page read states a dimensional accuracy for the EOS M 290 30 µm route.",
+      "indicative": [
+        {"value": 0.05, "kind": "beam offset adjustment that brought a second machine to the tolerance grade of the first", "condition": "DMG Mori Lasertec 30 against EOS M 300-4, PTB/BAM benchmark", "source_id": "SRC-KRASNIQI-2025-EUSPEN-ALSI10MG-GDT"},
+        {"value": 0.1, "kind": "typical achievable part accuracy, plus or minus", "condition": "service sheet, machine and layer not stated, provenance unknown", "source_id": "SRC-XOMETRY-ASIA-SLM-ALSI10MG-DATASHEET"},
+        {"value": 0.2, "kind": "tolerance, plus or minus, for dimensions up to 30 mm", "condition": "service bureau, 60 and 90 µm layers, machine not named", "source_id": "SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES"}
+      ]
+    },
+    "minimum_internal_radius_or_detail_mm": {
+      "on_route": [],
+      "on_route_note": "No EOS page read states a minimum radius or a minimum detail size.",
+      "indicative": [
+        {"value": 0.4, "kind": "minimum detail size, specification table", "condition": "service bureau, 60 and 90 µm layers, machine not named", "source_id": "SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES"},
+        {"value": 0.5, "kind": "smallest detail said to be possible, body text of the same page", "condition": "service bureau, 60 and 90 µm layers, machine not named", "source_id": "SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES"},
+        {"value": 0.5, "kind": "minimum feature size achieved on pins, holes and staircase flats", "condition": "abstract only; 0.025, 0.050 and 0.075 mm layers; machine not named in the abstract", "source_id": "SRC-SILVA-2025-ALSI10MG-LAYER-THICKNESS"}
+      ],
+      "recommendations_that_are_not_capability_limits": [
+        {"value": 3.0, "kind": "advised minimum radius for rounding edges, against thermally induced build stresses", "condition": "service bureau, 60 and 90 µm layers", "source_id": "SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES", "note": "Larger than the 1.5 mm half-height of the hot passage; it cannot be applied to this rib root and is not a resolution limit."},
+        {"value": 0.2, "kind": "rule of thumb, a fillet of one quarter of the wall thickness of the feature, applied here to the 0.8 mm rib", "condition": "generic metal LPBF design guide; no alloy or machine", "source_id": "SRC-MAKERVERSE-LPBF-DESIGN-GUIDE", "note": "A design proportion for stress, not evidence that a process holds the radius. The multiplication by 0.8 mm is made here, not by the source."}
+      ]
+    }
+  },
+  "context_not_deciding": {
+    "minimum_wall_mm": {"value": 0.4, "statement": "Min. Wall Thickness 0.4 mm", "machine": "EOS M 290, 30 µm layers", "source_id": "SRC-EOS-ALSI10MG-M290-30UM", "note": "The coupon ribs and walls are 0.8 mm."},
+    "laser_focus_diameter_mm": {"value": 0.1, "machine": "EOS M 290", "record": "catalog/manufacturing/machines/eos-m290.json", "note": "Read from the catalogue machine record; the maker page behind it was not re-read for this task."},
+    "down_skin_ra_by_build_angle_mm": {
+      "machine": "EOS M 290, 30 µm layers",
+      "source_id": "SRC-EOS-ALSI10MG-M290-30UM",
+      "read_from": "the roughness diagram on the page, values read off the plotted points on 2026-11-12",
+      "reading_uncertainty_mm": 0.002,
+      "angle_deg_to_ra_mm": {"30": 0.066, "45": 0.056, "60": 0.021, "75": 0.012, "90": 0.007},
+      "note": "Ra, not Rz, and not converted. Down-skin Ra rises about eightfold between a vertical surface and one at 45 degrees, which matters for the upper rib roots if the passage is built on its side. The diagram itself is not copied."
+    },
+    "fillet_overhang": {
+      "statement": "A circular fillet built across the layers becomes an unsupported overhang past 45 degrees, and residual-stress deformation grows with the unsupported length.",
+      "condition": "Ti-6Al-4V, SLM 280, 60 µm layers, fillets 0.125 inch long, one print",
+      "source_id": "SRC-NASA-TM-20250010927-LPBF-FILLETING",
+      "note": "Another alloy and fillets about eight to sixteen times larger. Kept for the orientation gate only."
+    },
+    "channel_surface_texture": {
+      "statement": "LPBF AlSi10Mg channels carry dross and sintered particles whose severity depends on the angular position around the channel.",
+      "condition": "round channels of 1 to 9 mm; abstract only",
+      "source_id": "SRC-KLINGAA-2021-ALSI10MG-CHANNELS-XCT"
+    },
+    "achieved_tolerance_grades": {
+      "statement": "IT10 on one machine and IT11 on the other for features down to 0.8 mm pins and holes and 0.4 mm slots; IT5 to IT11 in a second study.",
+      "source_ids": ["SRC-KRASNIQI-2025-EUSPEN-ALSI10MG-GDT", "SRC-SILVA-2025-ALSI10MG-LAYER-THICKNESS"],
+      "note": "The grade widths are defined by ISO 286-1, which was not read; no width in millimetres is derived here."
+    }
+  },
+  "standards_cited_by_designation_only": [
+    {"source_id": "SRC-ISO-ASTM-52911-1-2019", "read": false, "note": "The current design standard for metal PBF-LB. Not read; whether it states a minimum internal radius is unknown here."},
+    {"source_id": "SRC-VDI-3405-BLATT-3-2015-12", "read": false, "note": "Withdrawn and replaced by the ISO/ASTM 52911 parts. Not read."}
+  ],
+  "as_built_concave_radius_measurements": [],
+  "claims_that_could_not_be_sourced": [
+    "a minimum internal fillet radius for LPBF AlSi10Mg, from any machine maker, standard read, or paper",
+    "a measured as-built radius of a designed concave fillet in LPBF AlSi10Mg, at any design radius",
+    "as-built Rz for the EOS M 290 at 30 µm layers",
+    "a dimensional accuracy for the EOS M 290 at 30 µm layers",
+    "melt-pool or track width for the route",
+    "any hot allowable or notch fatigue figure for an as-built AlSi10Mg root at 233 °C"
+  ],
+  "unavailable_channels": [
+    {"what": "Calignano et al., Investigation of accuracy and dimensional limits of part produced in aluminum alloy by selective laser melting, Int J Adv Manuf Technol 88, 451-458 (DOI 10.1007/s00170-016-8788-9)", "result": "not read: closed access, no abstract in the Crossref or OpenAlex record, and the institutional repository refused the request. A search snippet attributes to it a limit on sharp-edged geometries below 0.8 mm; that was not verified and is not used."},
+    {"what": "publisher full text of SRC-SILVA-2025-ALSI10MG-LAYER-THICKNESS", "result": "client challenge served to a scripted client; abstract read through the open metadata record instead"},
+    {"what": "publisher and repository full text of SRC-KLINGAA-2021-ALSI10MG-CHANNELS-XCT", "result": "refused (HTTP 403 and a client challenge); abstract read through the open metadata record instead"},
+    {"what": "ISO catalogue page and a reseller preview of ISO/ASTM 52911-1", "result": "refused (HTTP 403); bibliographic data read on another standards catalogue"},
+    {"what": "a third-party materials database entry for EOS Aluminium AlSi10Mg", "result": "refused (HTTP 403); not used"},
+    {"what": "a repository copy of a Materials and Design paper on AlSi10Mg lattice struts", "result": "refused by a bot-protection page; not used"},
+    {"what": "the former EOS PDF data sheet address returned by search", "result": "HTTP 404; the current EOS pages were read instead"}
+  ],
+  "rules_observed": [
+    "No protected text, table or figure is copied; short figures are quoted with their source record.",
+    "Requests carried a generic client identity and no project or personal detail. Refused channels were recorded and not bypassed.",
+    "Downloaded files were read and discarded; only their SHA-256 is kept in the source records."
+  ],
+  "measured_or_printed_by_this_project": false,
+  "lpbf_process_qualified": false,
+  "manufacturing_authorized": false
+}
