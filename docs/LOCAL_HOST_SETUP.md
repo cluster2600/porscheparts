@@ -419,6 +419,31 @@ down. Rules that have held:
   acquires the lock.
 - **Never run two capped heavy containers whose caps together exceed host
   memory.** Run one part at a time.
+- **Render off-screen pictures with software OpenGL.** Prefix a pyvista, VTK or
+  trimesh render with `GALLIUM_DRIVER=llvmpipe LIBGL_ALWAYS_SOFTWARE=1`. On
+  2026-11-12 the WSL VM stopped twice, 27 minutes apart, each time within
+  30 seconds of a kernel warning in the GPU driver
+  (`dxgkrnl/dxgvmbus.c ... dxgvmb_send_wait_sync_object_gpu`, `Comm: python`)
+  while a pyvista render ran with the `GALLIUM_DRIVER=d3d12` of section 4 in
+  the environment. Every solver running at the time was lost. Memory was not
+  the cause: the four solver containers held 1.3 GB together.
+  Windows recorded a GPU engine timeout (`LiveKernelEvent` 141) in the same
+  seconds. To put the driver out of reach while solvers run, render inside
+  `bwrap --dev-bind / / --dev /dev --proc /proc xvfb-run -a ...`: that sandbox
+  has no `/dev/dxg`, and the render of the 935 build screen completes in it.
+- **After a VM crash, read the last lines of the previous boot** before
+  blaming memory: `journalctl -b -1 --no-pager | tail -40`. A memory kill
+  leaves `Memory cgroup out of memory`; the GPU fault leaves the warning above.
+- **A stop that leaves nothing in the journal may be an upgrade of WSL.** The
+  same day the VM stopped a third time with no render running and 2.7 GB of
+  solvers: a `winget upgrade` on Windows was reinstalling WSL itself. The
+  journal simply ends (its last minutes are not flushed). Two checks from
+  inside WSL: `uname -r` against the `Linux version` line of
+  `journalctl -b -1 -k` (the kernel went from 6.18.33 to 6.18.58), and the
+  Windows Application log, where the installer and GPU-hang records
+  (`MsiInstaller`, `LiveKernelEvent` 141) carry the time of the stop:
+  `powershell.exe -NoProfile -Command "Get-WinEvent -FilterHashtable @{LogName='Application'; StartTime=(Get-Date).Date}"`.
+  Do not upgrade Windows packages while solvers run.
 - **Worktrees are full checkouts** (about 4 GB here). Remove those whose branch
   is merged (`git worktree remove`, then `git worktree prune`) before the disk
   fills. A full disk makes `git worktree add` fail half-way.
@@ -453,6 +478,9 @@ like this:
 4. **Graphics on WSLg:** `export GALLIUM_DRIVER=d3d12`. Without it Mesa falls
    back to llvmpipe: every step is about 3× slower, and the viewer dies with
    `GLX BadAccess`.
+   Set it for PicoGK only. An `env.sh` sourced from the shell profile puts it
+   in every shell, where it also drives off-screen Python renders
+   (section 3).
 5. **Headless use:** construct `new Library(voxelSizeMm)` and pass a log path
    (`new LogFile(path)` or `Library.Go(..., logPath)`). The default log goes to
    `~/Documents/PicoGK.log` and crashes if that folder does not exist.

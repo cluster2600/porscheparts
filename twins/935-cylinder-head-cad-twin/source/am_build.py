@@ -285,15 +285,24 @@ def judge(rows: list, w: dict) -> dict:
             settled.append({"interval_from_s": p["from_s"], "at_s": last[-1]["time_s"], "expected_nodal_K": p["nodal_mean_K"],
                             "nominal_K": p["nominal_mean_K"], "computed_K": last[-1]["mean_temperature_K"],
                             "spread_K": round(last[-1]["max_temperature_K"] - last[-1]["min_temperature_K"], 4)})
+    # Every planned interval must have left an output, and the field must be uniform at the end of
+    # each: a run that stops after the substrate would otherwise pass on its initial state alone.
     passed = (worst["volume_mm3"] <= w["tolerance_volume_mm3"]
               and worst["mean_temperature_K"] <= w["tolerance_mean_temperature_K"]
-              and bool(settled) and settled[-1]["spread_K"] <= w["tolerance_uniformity_K"])
+              and len(settled) == len(plan)
+              and all(s["spread_K"] <= w["tolerance_uniformity_K"] for s in settled))
     rows_per_layer = round(w["layer_height_mm"] / w["cell_mm"])
     return {"expected": plan, "largest_volume_error_mm3": round(worst["volume_mm3"], 6),
             "largest_mean_temperature_error_K": round(worst["mean_temperature_K"], 6),
             "field_at_the_end_of_each_interval": settled,
             "heat_carried_by_a_layer_over_nominal": round((rows_per_layer - 0.5) / rows_per_layer, 4),
             "passed": bool(passed)}
+
+
+def passed(cases: dict) -> bool:
+    """A case counts only when its outputs hold and the solver itself ended without an error."""
+
+    return bool(cases) and all(c["verdict"]["passed"] and c["solver"].get("returncode") == 0 for c in cases.values())
 
 
 def witness(study, summary) -> None:
@@ -317,7 +326,7 @@ def witness(study, summary) -> None:
                 "once on the solver's own mesh and once on an imported hexahedral mesh, as the head will be",
         "case": WITNESS, "material": am_cooldown.MATERIAL["label"], "image": image,
         "cases": cases,
-        "passed": all(c["verdict"]["passed"] for c in cases.values()),
+        "passed": passed(cases),
         "found_on_the_way": [
             "a deposition box whose face lies on a cell boundary also activates the cells beyond it: boxes are inset",
             "new nodes take the deposition temperature and interface nodes keep theirs: a layer of n cell rows carries "

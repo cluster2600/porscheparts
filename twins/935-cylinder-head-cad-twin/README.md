@@ -130,6 +130,9 @@ flowchart LR
   V1 --> SR["SimReady tools<br/>usd-convert-cad, NVIDIA validator"]
   U --> SR
   O --> AM["AM screen<br/>supports, Adamantine"]
+  V2 --> PB["Print body<br/>stock, closed bores"]
+  PB --> LS["Layer screen<br/>EP-M300 card"]
+  PB --> BS["Build screen<br/>CalculiX, lump by lump"]
   V1 --> PA["Port CFD audit<br/>no admissible domain"]
   F --> FF["Feature fit<br/>primitive_fit.py"]
   FF --> CC["CloudCompare check<br/>held-out vertices"]
@@ -138,14 +141,16 @@ flowchart LR
   classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
   classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
   classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
-  class F,O,T1,SC,V2,TH,U,P,SR,AM ok;
-  class V1,FF,CC open;
+  class F,O,T1,SC,V2,TH,U,P,SR,AM,PB ok;
+  class V1,FF,CC,LS,BS open;
   class PA stop;
 ```
 
 *Diagram: the chain as run. T1s is the reference surface; v2 is the CAD body
 and feeds the same tiers; v1 holds the analytic features and stops at 69.9%.
-The feature fit is amber because CloudCompare confirms 4 of its 32 features.*
+The feature fit is amber because CloudCompare confirms 4 of its 32 features;
+the layer screen and the build screen are amber because they run on declared
+process values, with every qualification gate closed.*
 
 | Role | Selected tool | Script |
 |---|---|---|
@@ -171,6 +176,9 @@ The feature fit is amber because CloudCompare confirms 4 of its 32 features.*
 | Asset package: collider, display material, `.usda` and `.usdz` | OpenUSD 26.11 (`UsdPhysics`, `UsdShade`, `UsdUtils`), then both validators | [export_simready.py](source/export_simready.py) |
 | Alloy ranking on the bare head | CalculiX 2.21 on the deck of the CAD-body screen, conductivity replaced (cadsim image) | [alloy_thermal.py](source/alloy_thermal.py) |
 | Alloy ranking in the assembly | hypothesis solids on the occupancy lattice, Gmsh HXT, CalculiX with four materials and six films, four load cases | [assembly_thermal.py](source/assembly_thermal.py) |
+| Thin walls of the print body | SciPy morphological opening of the 0.25 mm occupancy | [wall_check.py](source/wall_check.py) |
+| Layer screen in bounded memory | the repository's LPBF layer screen, unmodified, sliced 64 layers and probed 25 points at a time (cadsim image) | [layer_screen.py](source/layer_screen.py) |
+| Build screen: temperature, stress and distortion lump by lump | CalculiX 2.21 with element activation (`*MODEL CHANGE`), one thread (cadsim image) | [build_sim.py](source/build_sim.py), [render_build_sim.py](source/render_build_sim.py) |
 | Six-view render of the body, read by the agent | `preview.py` of the `cad-skill` skill (trimesh, pyrender, EGL under `xvfb-run`) | none: the script is the skill's |
 
 The private inputs and outputs live under `work/935-cad-twin/` (ignored by
@@ -852,30 +860,46 @@ print body:
   the installed tools designs one.
 
 **Layer screen**, with the repository's assigned tool on the Eplus3D EP-M300
-card ([record](params/print-body-layer-screen.json)). It slices the whole
-part at 0.05 mm and keeps every layer in memory, so on the 0.5 mm surface it
-was killed at a 6 GiB cap and again at 12 GiB. It completed on a 1.0 mm
-surface of the same body (398,652 triangles):
+card ([record](params/print-body-layer-screen.json)). It now runs on both
+surfaces of the print body, the 0.5 mm one (1,684,604 triangles) and
+the 1.0 mm one (398,652):
 
-| Quantity | Result |
-|---|---|
-| Orientation the tool selects | build along Y, the least downward-facing area (11,168 mm² against 19,131 along X and 32,249 along Z) |
-| Layers | 4,481 over 224.0 mm, none empty |
-| Fit in the 300 × 300 × 450 mm envelope | yes, bare part: margins 183, 205 and 226 mm |
-| Layers with unsupported area | 2,844; the largest unsupported area in one layer is 643 mm² |
-| New islands | 216 in 159 layers |
-| Support proxy (vertical columns) | 456,345 mm³ |
-| Trapped powder at 1.0 mm | none detected |
-| Local thickness, 2,000 probes | median 4.71 mm, 5th percentile 1.38 mm, 1st percentile 0.75 mm; 6.8% of probes below 1.5 mm |
+| Quantity | 0.5 mm surface | 1.0 mm surface |
+|---|---|---|
+| Orientation the tool selects | build along Y, flange y+ on the plate | the same |
+| Downward-facing area along Y / X / Z | 11,540 / 18,660 / 34,242 mm² | 11,168 / 19,131 / 32,249 mm² |
+| Layers of 0.05 mm | 4,482 over 224.1 mm, none empty | 4,481 over 224.0 mm, none empty |
+| Fit in the 300 × 300 × 450 mm envelope | yes, bare part: margins 182, 204 and 226 mm | yes: 183, 205 and 226 mm |
+| Layers with unsupported area | 3,181; the largest in one layer is 767 mm² | 2,844; 643 mm² |
+| New islands | 563 in 245 layers | 216 in 159 layers |
+| Support proxy (vertical columns) | 433,945 mm³ | 456,345 mm³ |
+| Trapped powder at 1.0 mm | none detected | none detected |
+| Thickness probe, 2,000 points | median 2.64 mm, 5th percentile 0.57 mm; 25.4% below 1.5 mm | median 4.71 mm, 5th percentile 1.38 mm; 6.8% below 1.5 mm |
 
-- **The tool's own choice agrees with the column screen:** building along Y,
-  on a flange, is the orientation with the least overhang.
-- **216 islands start in mid-air** and need a support each;
-  most layers carry some unsupported area. The support proxy is a
+- **Both surfaces give the same build:** along Y, on a flange, with the least
+  downward-facing area, the same envelope margins and no trapped powder. The
+  largest unsupported area sits 34 mm up, where the section jumps from 1,300
+  to 4,000 mm².
+- **The island count depends on the surface:** 216 on the smoother one,
+  563 on the finer one, which also carries its own steps. Each
+  island starts in mid-air and needs a support. The support proxy is a
   conservative column volume, not a design.
-- **About 7% of the surface is thinner than 1.5 mm:** the fin tips. The
-  smallest probe value (0.06 mm) is at a probe on an edge and
-  is not a wall thickness.
+- **The thickness probe does not measure walls on the 0.5 mm surface.** It
+  grows a sphere from the surface and is stopped by that surface's roughness:
+  25% of its probes read below 1.5 mm there, against
+  7% on the 1.0 mm surface. A second measurement on the 0.25 mm
+  occupancy grid ([wall_check.py](source/wall_check.py),
+  [record](params/print-body-wall-check.json)) puts 8.7% of the
+  surface in walls below 1.5 mm or at sharp edges, and 5.2% below
+  1.0 mm: the fin tips. That is 0.35% of the volume.
+- **Why the 0.5 mm run kept being killed, corrected.** It was first recorded
+  as the slicer keeping every layer in memory. Measured stage by stage, the
+  slicing ends at 4 GiB; it is the thickness probe that passed 6, 12 and
+  20 GiB, because trimesh grows all 2,000 spheres at once and looks up every
+  triangle near each. [layer_screen.py](source/layer_screen.py) runs the same
+  tool and kernel, unmodified, with the sections taken 64 layers at a time
+  and the probes 25 at a time: 3.4 GiB at the peak, 12 minutes. On the 1.0 mm
+  surface its four output files have the hashes of the run made without it.
 - Every qualification gate of the report is false: no engineering review of
   the orientation, no recoater check, no supplier supports, no machine file,
   no coupon, no process physics.
@@ -1423,7 +1447,7 @@ valve, seat and guide geometry (H05).
 | 993 manual cross-check | fitted features, workshop-manual catalogue | [published-993-comparison.json](params/published-993-comparison.json) | same-dimension flag on each row | done: scale not contradicted; not a calibration |
 | Print body | v2 occupancy, fits, [declared stock](params/print-body-case.json) | private occupancy and 0.5 mm surface; [record](params/print-body.json) | welded watertight, no non-manifold edge, no enclosed void; the renderer's strict gate | done as a study object: passes the gate the twin body failed; stock amounts are hypotheses |
 | Print-body orientations | print-body occupancy | [print-body-supports.json](params/print-body-supports.json) | the AM screen's analytic witnesses | done as a screen: flange y− down and side x+ down kept for the build study; no support designed |
-| Print-body layer screen | 1.0 mm surface of the print body, EP-M300 card | [print-body-layer-screen.json](params/print-body-layer-screen.json); private per-layer table and chart | hashes of master and surface; the tool's gates | done on the coarser surface: 4,481 layers, fits the envelope, 216 islands, no trapped powder at 1.0 mm; the 0.5 mm surface needs more than 12 GiB |
+| Print-body layer screen | 0.5 mm and 1.0 mm surfaces of the print body, EP-M300 card | [print-body-layer-screen.json](params/print-body-layer-screen.json); private per-layer tables and charts | hashes of master and surface; the tool's gates; the bounded-memory driver gives the same four files as the plain run on the 1.0 mm surface | done on both surfaces: build along Y, 4,482 layers, fits the envelope, no trapped powder at 1.0 mm; 563 islands on the fine surface, 216 on the smoother one; thin walls measured on the grid ([wall check](params/print-body-wall-check.json)) |
 | Build simulation witness | a block, two lumped layers from a deposition file | [am-build-witness.json](params/am-build-witness.json) | active volume and mean temperature against a closed form, on the solver's mesh and on an imported one | passed on both; no head build: heat input, time scale and plasticity each need a decision or a witness |
 | Fatigue, valve-train dynamics, drawing | none | none | — | not run: no stress history or S-N data, no installed dynamics tool, no confirmed features to dimension |
 
