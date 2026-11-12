@@ -785,6 +785,149 @@ figures below are from the body rebuilt after it.
   slicer or mesher that welds will see the same thing; the 3MF and the
   thermal surface were built without welding.
 
+### Print body: a study object derived from the twin ([case](params/print-body-case.json), [record](params/print-body.json), [orientations](params/print-body-supports.json))
+
+The v2 CAD body is the twin and is not changed. A body sent to a slicer needs
+three more things, and [print_body.py](source/print_body.py) adds them on the
+occupancy lattice, each amount a declared hypothesis:
+
+```mermaid
+flowchart LR
+  V2["v2 CAD body<br/>(the twin, unchanged)"] --> S["remove stud residue<br/>above each seat"]
+  S --> F["fill enclosed voids"]
+  F --> M["machining stock:<br/>deck 1.0 mm, seats 0.5 mm,<br/>guide and plug bores solid"]
+  M --> P["print body,<br/>0.5 mm surface"]
+  P --> G{"strict watertight gate"}
+  G -->|"passed"| O["six-orientation<br/>support screen"]
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+  class V2,S,F,P,G,O ok;
+  class M open;
+```
+
+*Diagram: the print body is derived, never edited back into the twin. The
+stock step is amber because no drawing of this head exists.*
+
+| Step | Volume |
+|---|---|
+| Stud residue removed above the ten seats | 429 mm³ |
+| Enclosed voids filled (before and after the stock) | 32 mm³ |
+| Stock under the deck and the register floor, 1.0 mm | 9,782 mm³ |
+| Stock on the two valve seats, 0.5 mm | 992 mm³ |
+| Guide bores printed solid | 885 mm³ |
+| Plug thread bores printed solid | 2,812 mm³ |
+| **Print body** | **1,109,068 mm³** against 1,094,993 mm³ for the twin |
+
+The 0.5 mm surface has 1,684,604 triangles in a box of
+117.6 × 224.1 × 95.6 mm. Once welded it is watertight, with no edge shared by
+more than two faces and no triangle without area. **It passes the strict
+gate that refused the twin body.** No stud stub is left, and no air is
+enclosed.
+
+**Orientations**, from the same column screen as the AM screen, run on the
+print body:
+
+| Build direction | Height | Overhang below 45° | Support envelope (÷ part volume) | Lands on the part |
+|---|---|---|---|---|
+| deck down (+Z) | 95.5 mm | 39,176 mm² | 448,910 mm³ (0.40) | 38% |
+| deck up (−Z) | 95.5 mm | 41,467 mm² | 516,070 mm³ (0.47) | 33% |
+| flange y− down (+Y) | 224.0 mm | 14,676 mm² | 389,082 mm³ (0.35) | 56% |
+| flange y+ down (−Y) | 224.0 mm | 14,104 mm² | 476,689 mm³ (0.43) | 47% |
+| side x− down (+X) | 117.5 mm | 23,225 mm² | 418,822 mm³ (0.38) | 60% |
+| side x+ down (−X) | 117.5 mm | 22,847 mm² | 417,815 mm³ (0.38) | 61% |
+
+- **The fins decide.** They are plates normal to the bore axis. Built deck
+  down or deck up, every fin underside is an overhang (39,000 to 41,000 mm²)
+  and the supports sit between fins, where they cannot be removed. Built on a
+  side or on a flange the fins stand vertical and the overhang falls to
+  14,000 to 23,000 mm².
+- **Two orientations are kept for the build study:** flange y− down, with the
+  smallest envelope and nearly the least overhang but 224 mm of height, and
+  side x+ down, at about half that height. Neither is chosen.
+- In both, more than half of the support envelope lands on the part itself.
+  An envelope is not a support design: no support is generated, and none of
+  the installed tools designs one.
+
+**Layer screen**, with the repository's assigned tool on the Eplus3D EP-M300
+card ([record](params/print-body-layer-screen.json)). It slices the whole
+part at 0.05 mm and keeps every layer in memory, so on the 0.5 mm surface it
+was killed at a 6 GiB cap and again at 12 GiB. It completed on a 1.0 mm
+surface of the same body (398,652 triangles):
+
+| Quantity | Result |
+|---|---|
+| Orientation the tool selects | build along Y, the least downward-facing area (11,168 mm² against 19,131 along X and 32,249 along Z) |
+| Layers | 4,481 over 224.0 mm, none empty |
+| Fit in the 300 × 300 × 450 mm envelope | yes, bare part: margins 183, 205 and 226 mm |
+| Layers with unsupported area | 2,844; the largest unsupported area in one layer is 643 mm² |
+| New islands | 216 in 159 layers |
+| Support proxy (vertical columns) | 456,345 mm³ |
+| Trapped powder at 1.0 mm | none detected |
+| Local thickness, 2,000 probes | median 4.71 mm, 5th percentile 1.38 mm, 1st percentile 0.75 mm; 6.8% of probes below 1.5 mm |
+
+- **The tool's own choice agrees with the column screen:** building along Y,
+  on a flange, is the orientation with the least overhang.
+- **216 islands start in mid-air** and need a support each;
+  most layers carry some unsupported area. The support proxy is a
+  conservative column volume, not a design.
+- **About 7% of the surface is thinner than 1.5 mm:** the fin tips. The
+  smallest probe value (0.06 mm) is at a probe on an edge and
+  is not a wall thickness.
+- Every qualification gate of the report is false: no engineering review of
+  the orientation, no recoater check, no supplier supports, no machine file,
+  no coupon, no process physics.
+
+Left open on purpose: stud passages, ports, plug wells and spring pockets.
+Not done: supports, a machining drawing, tolerances, shrinkage or distortion
+compensation. The print body is a study object, not a build file.
+
+### Build simulation: the deposition witness, and what blocks the head ([witness](params/am-build-witness.json))
+
+Every Adamantine case of this repository had run with material deposition
+switched off. A layer-by-layer build adds material over time, so that path
+needed its own witness before any run on the head.
+[am_build.py](source/am_build.py) runs the smallest case with a closed-form
+answer: a block of 20 × 8 mm in plan, a 4 mm substrate at 300 K, two lumped
+layers of 4 mm added at 500 K from a deposition file, every wall adiabatic.
+
+| Check, from the VTU files alone | Solver's own mesh | Imported hexahedral mesh |
+|---|---|---|
+| Active volume before, between and after the layers (640, 1,280, 1,920 mm³) | error 0.0001 mm³ | error 0.0001 mm³ |
+| Mean temperature against the nodal mixing value (300, 375, 406.25 K) | error 0.0 K | error 0.0 K |
+| Field uniform at the end of each interval | yes | yes |
+
+**The witness passes on both meshes**, and it found three things on the way:
+
+- **A layer carries less heat than its volume.** New nodes take the
+  deposition temperature and interface nodes keep theirs. A layer of n cell
+  rows carries (n − 0.5) / n of its nominal heat: 75% here. The nominal
+  mixing temperatures would have been 400 and 433.33 K; the solver gives 375
+  and 406.25 K, exactly.
+- **A box that ends on a cell boundary also activates the cells beyond it.**
+  The boxes are inset by 0.1 mm.
+- **This build's input validation refuses a deposition file** unless a
+  second, literal key names it.
+
+The witness shows that the solver adds material when and where the file says
+and conserves energy while doing so. It has no laser, no powder and no
+mechanics.
+
+**Not run: a build of the head.** Three things block it, and each is a
+decision or a further witness, not compute:
+
+- **The heat input.** Activating a lumped layer at the solidus puts in only
+  that layer's own heat content. A laser delivers several times more to each
+  layer, most of which leaves by conduction during the exposure. The ratio
+  depends on absorptivity and energy density, which no maker publishes, and a
+  source distributed over the exposure time needs its own witness.
+- **The time scale.** A 4 mm lump stands for 80 layers of 0.05 mm, each with
+  its own recoating and exposure time. The cooldown runs integrate explicitly
+  with steps of 0.02 s on 4 mm cells, so only a truncated interval after each
+  lump can be simulated. That is sound only if the plate holds its
+  temperature, which needs a heat-sink boundary the deck does not have yet.
+- **The mechanics.** Distortion and residual stress need plasticity. The
+  solver has the inputs for it; no case here has exercised them.
+
 ### SimReady tools: STEP → OpenUSD and NVIDIA validation ([deck plate](params/simready-deck-plate.json), [ports](params/simready-ports.json))
 
 The NVIDIA converter and validator run on this host from wheels, in two
@@ -1212,6 +1355,10 @@ valve, seat and guide geometry (H05).
 | Alloy ranking, bare head | CAD-body thermal deck, candidate conductivities | [alloy-thermal.json](params/alloy-thermal.json) | same mesh and case; 150 W/(m·K) reproduces the CAD screen; energy balance 0.3% | done: 1,475 W to 1,674 W, a 13% spread |
 | Alloy ranking, assembly | CAD body, fitted axes, [declared case](params/assembly-case.json), H09 to H12 | private occupancy, surface and decks; [assembly-thermal.json](params/assembly-thermal.json) | watertight union; film areas and heat by group; load at 0.5 and 1.5 | done as a hypothesis screen: peak head alloy 273 to 311 °C, above the 235 to 250 °C limit for every candidate |
 | 993 manual cross-check | fitted features, workshop-manual catalogue | [published-993-comparison.json](params/published-993-comparison.json) | same-dimension flag on each row | done: scale not contradicted; not a calibration |
+| Print body | v2 occupancy, fits, [declared stock](params/print-body-case.json) | private occupancy and 0.5 mm surface; [record](params/print-body.json) | welded watertight, no non-manifold edge, no enclosed void; the renderer's strict gate | done as a study object: passes the gate the twin body failed; stock amounts are hypotheses |
+| Print-body orientations | print-body occupancy | [print-body-supports.json](params/print-body-supports.json) | the AM screen's analytic witnesses | done as a screen: flange y− down and side x+ down kept for the build study; no support designed |
+| Print-body layer screen | 1.0 mm surface of the print body, EP-M300 card | [print-body-layer-screen.json](params/print-body-layer-screen.json); private per-layer table and chart | hashes of master and surface; the tool's gates | done on the coarser surface: 4,481 layers, fits the envelope, 216 islands, no trapped powder at 1.0 mm; the 0.5 mm surface needs more than 12 GiB |
+| Build simulation witness | a block, two lumped layers from a deposition file | [am-build-witness.json](params/am-build-witness.json) | active volume and mean temperature against a closed form, on the solver's mesh and on an imported one | passed on both; no head build: heat input, time scale and plasticity each need a decision or a witness |
 | Fatigue, valve-train dynamics, drawing | none | none | — | not run: no stress history or S-N data, no installed dynamics tool, no confirmed features to dimension |
 
 ## Limits

@@ -712,6 +712,136 @@ class AssemblyThermalTests(unittest.TestCase):
         self.assertEqual(heat["chamber_gas"]["area_mm2"], 0.0)
 
 
+@unittest.skipUnless(has("numpy", "scipy"), "numpy/scipy absent")
+class PrintBodyTests(unittest.TestCase):
+    def setUp(self):
+        sys.path.insert(0, str(SOURCE))
+        import numpy as np
+        import print_body
+
+        self.pb, self.np = print_body, np
+
+    def test_enclosed_air_is_found_and_open_air_is_not(self):
+        np = self.np
+        solid = np.zeros((12, 12, 12), dtype=bool)
+        solid[2:10, 2:10, 2:10] = True
+        solid[5:7, 5:7, 5:7] = False            # a closed pocket
+        solid[3, 3, 0:6] = False                # a blind hole open to the outside
+        air = self.pb.enclosed_air(solid)
+        self.assertEqual(int(air.sum()), 8)
+        self.assertFalse(air[3, 3, 4])
+        self.assertEqual(int(self.pb.enclosed_air(solid | air).sum()), 0)
+
+    def test_stock_grows_downward_only_under_low_faces(self):
+        np = self.np
+        z = 0.25 * np.arange(40)
+        solid = np.zeros((3, 1, 40), dtype=bool)
+        solid[0, 0, 8:20] = True                # lowest face at 2.0 mm: inside the deck zone
+        solid[1, 0, 20:30] = True               # lowest face at 5.0 mm: a dome, left alone
+        add = self.pb.stock_below(solid, z, z_max=3.0, stock=1.0, pitch=0.25)
+        self.assertEqual(np.flatnonzero(add[0, 0]).tolist(), [4, 5, 6, 7])
+        self.assertFalse(add[1].any() or add[2].any())
+
+    def test_each_accepted_stud_gets_its_cluster_radius(self):
+        frame = {"rods": {"a": [{"point_on_axis": [0, 0, 100.0], "radial_residual": {"max_mm": 3.0}},
+                                {"point_on_axis": [50.0, 0, 100.0], "radial_residual": {"max_mm": 1.0}}]}}
+        summary = {"studs": [
+            {"accepted": True, "point_on_axis": [50.0, 0, 100.0], "axis": [0, 0, 2.0], "radius_mm": 3.5, "seat_level_along_axis": -12.0},
+            {"accepted": False, "point_on_axis": [0, 0, 100.0], "axis": [0, 0, 1.0], "radius_mm": 2.0, "seat_level_along_axis": 0.0}]}
+        got = self.pb.stud_envelopes(frame, summary)
+        self.assertEqual(len(got), 1)
+        self.assertEqual((got[0]["radius"], got[0]["t_seat"], got[0]["direction"]), (4.5, -12.0, [0.0, 0.0, 1.0]))
+
+    def test_committed_print_body_is_closed_clean_and_only_a_study_object(self):
+        record = json.loads((TWIN / "params" / "print-body.json").read_text())
+        case = json.loads((TWIN / "params" / "print-body-case.json").read_text())
+        surface = record["surface"]
+        self.assertTrue(surface["watertight_after_welding"] and surface["winding_consistent"])
+        self.assertEqual((surface["edges_used_once"], surface["edges_used_by_more_than_two_faces"],
+                          surface["triangles_with_area_below_1e-8_mm2"]), (0, 0, 0))
+        self.assertEqual(record["enclosed_voids_remaining"], 0)
+        self.assertTrue(record["strict_gate"]["passed"])
+        self.assertGreater(record["print_body_volume_mm3"], record["twin_body_volume_mm3"])
+        self.assertGreater(record["stud_residue_removed_mm3"], 0.0)
+        self.assertIn("not a build file", record["claims"])
+        self.assertIn("hypothesis", case["stock"]["status"])
+        supports = json.loads((TWIN / "params" / "print-body-supports.json").read_text())
+        self.assertAlmostEqual(supports["inputs"]["inside_volume_mm3"], record["print_body_volume_mm3"], delta=5.0)
+        self.assertEqual(supports["voids"]["strict_flood_fill_fine"]["enclosed_void_volume_mm3"], 0.0)
+
+
+    def test_layer_screen_record_keeps_its_failed_attempts_and_its_closed_gates(self):
+        record = json.loads((TWIN / "params" / "print-body-layer-screen.json").read_text())
+        self.assertEqual([a["outcome"].split(" ")[0] for a in record["attempts"]], ["killed", "killed", "completed"])
+        report = record["report"]
+        self.assertTrue(report["gates"]["full_piece_layer_slicing_completed"])
+        self.assertTrue(report["gates"]["bare_part_machine_envelope_fit"])
+        for gate in ("metal_print_authorized", "physical_coupon_qualified", "recoater_clearance_validated",
+                     "supplier_supports_validated", "supplier_machine_file_signed"):
+            self.assertFalse(report["gates"][gate], gate)
+        self.assertEqual(report["full_build_slicing"]["layer_count"], 4481)
+        self.assertEqual(report["powder_escape_screen"]["trapped_void_volume_mm3"], 0.0)
+        self.assertEqual(report["machine_candidate"]["model"], "EP-M300")
+
+
+@unittest.skipUnless(has("numpy"), "numpy absent")
+class BuildWitnessTests(unittest.TestCase):
+    def setUp(self):
+        sys.path.insert(0, str(SOURCE))
+        import am_build
+        import numpy as np
+
+        self.ab, self.np = am_build, np
+
+    def test_closed_form_gives_nominal_and_nodal_mixing_temperatures(self):
+        rows = self.ab.expected(self.ab.WITNESS)
+        self.assertEqual([r["volume_mm3"] for r in rows], [640.0, 1280.0, 1920.0])
+        self.assertEqual([r["nominal_mean_K"] for r in rows], [300.0, 400.0, 433.333333])
+        # New nodes at 500 K, interface nodes unchanged: half a cell row per layer arrives cold.
+        self.assertEqual([r["nodal_mean_K"] for r in rows], [300.0, 375.0, 406.25])
+
+    def test_judge_holds_outputs_to_the_closed_form(self):
+        w = self.ab.WITNESS
+        good = [{"time_s": 0.5, "volume_mm3": 640.0, "mean_temperature_K": 300.0, "min_temperature_K": 300.0, "max_temperature_K": 300.0},
+                {"time_s": 1.0, "volume_mm3": 1280.0, "mean_temperature_K": 380.0, "min_temperature_K": 300.0, "max_temperature_K": 500.0},
+                {"time_s": 5.5, "volume_mm3": 1280.0, "mean_temperature_K": 375.0, "min_temperature_K": 375.0, "max_temperature_K": 375.0},
+                {"time_s": 11.0, "volume_mm3": 1920.0, "mean_temperature_K": 406.25, "min_temperature_K": 406.2, "max_temperature_K": 406.3}]
+        verdict = self.ab.judge(good, w)
+        self.assertTrue(verdict["passed"])
+        self.assertEqual(verdict["heat_carried_by_a_layer_over_nominal"], 0.75)
+        late = [dict(r) for r in good]
+        late[2]["volume_mm3"] = 1920.0          # a layer that arrived too early
+        self.assertFalse(self.ab.judge(late, w)["passed"])
+        cold = [dict(r) for r in good]
+        cold[3]["mean_temperature_K"] = 433.33  # the nominal value is not what a nodal solver gives
+        self.assertFalse(self.ab.judge(cold, w)["passed"])
+
+    def test_hex_mesh_of_a_block_counts_and_tags_the_base(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "mesh.msh"
+            got = self.ab.write_hex_mesh(path, self.np.ones((3, 2, 2), dtype=bool), (0.0, 0.0, 0.0), 2.0)
+            self.assertEqual(got, {"hexahedra": 12, "nodes": 36, "exterior_faces": 32})
+            lines = path.read_text().splitlines()
+            quads = [l.split() for l in lines if len(l.split()) == 9 and l.split()[1] == "3"]
+            self.assertEqual(sum(q[3] == "4" for q in quads), 6)        # the six faces of the lowest plane
+            self.assertEqual(len(quads), 32)
+
+    def test_committed_witness_passed_on_both_meshes(self):
+        record = json.loads((TWIN / "params" / "am-build-witness.json").read_text())
+        self.assertTrue(record["passed"])
+        self.assertEqual(set(record["cases"]), {"built_in_mesh", "imported_mesh"})
+        for case in record["cases"].values():
+            verdict = case["verdict"]
+            self.assertTrue(verdict["passed"])
+            self.assertLessEqual(verdict["largest_volume_error_mm3"], record["case"]["tolerance_volume_mm3"])
+            self.assertLessEqual(verdict["largest_mean_temperature_error_K"], record["case"]["tolerance_mean_temperature_K"])
+            self.assertEqual(case["solver"]["returncode"], 0)
+        self.assertEqual(len(record["found_on_the_way"]), 3)
+        self.assertIn("no laser", record["claims"])
+
+
 class MediaTests(unittest.TestCase):
     def test_public_images_match_their_provenance_and_stay_small(self):
         import hashlib

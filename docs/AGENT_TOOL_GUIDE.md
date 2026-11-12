@@ -258,6 +258,27 @@ neighbouring study's README for more before starting.
   an assembly, the same range moved the peak metal temperature by 38 °C. Rank
   materials on the quantity the part will be limited by.
 
+### Adamantine material deposition
+
+All four were measured on 2026-11-11 with `rombur/adamantine:1.1`, on the
+[deposition witness](../twins/935-cylinder-head-cad-twin/source/am_build.py)
+of the 935 head twin.
+
+- **A deposition box that ends on a cell boundary also activates the cells
+  beyond it.** A box from 4 to 8 mm on 2 mm cells brought in the row from 8 to
+  10 mm as well. Inset every box by a fraction of a cell.
+- **A deposited layer carries less heat than its volume.** New nodes take the
+  deposition temperature and the nodes of the interface keep theirs, so a
+  layer of n cell rows carries (n − 0.5) / n of its nominal heat: 75% for two
+  rows, 50% for one. Hold a witness to the nodal mixing temperature, and say
+  what the lumped layers really deposit.
+- **The input validation refuses `material_deposition_file` unless a second,
+  literal top-level key `geometry.material_deposition_file` names it.** The
+  solver itself reads the name from the `geometry` section.
+- **Not-yet-deposited cells are written to the VTU files with a temperature
+  of zero.** Compute volumes and means on the cells whose corners are all
+  above zero, or the mean comes out near 100 K.
+
 ### Laminate failure
 
 - **A reserve factor is only as good as its strengths.** `laminate_failure.py`

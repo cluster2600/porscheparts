@@ -1,0 +1,651 @@
+{
+  "schema": "935-cad-twin-am-supports/1",
+  "scope": "geometric LPBF orientation screen of the study twin body; no support design, no orientation choice, no build file, no material or process qualification",
+  "inputs": {
+    "occupancy_grid": "occupancy-wn.npy",
+    "grid_pitch_mm": 0.25,
+    "inside_rule": "winding number > 0.5",
+    "inside_volume_mm3": 1109067.0,
+    "body": "largest face-connected solid component",
+    "dropped_solid_components": {
+      "components": 39,
+      "volume_mm3": 1.547
+    },
+    "body_extent_mm": {
+      "x": [
+        -63.125,
+        54.375
+      ],
+      "y": [
+        -104.875,
+        119.125
+      ],
+      "z": [
+        -1.125,
+        94.375
+      ]
+    },
+    "surfaces_for_the_triangle_check": {}
+  },
+  "method": {
+    "overhang_angle_from_plate_deg": 45.0,
+    "working_pitch_mm": 0.25,
+    "sensitivity_pitch_mm": 0.5,
+    "normal": "gradient of the solid fraction after a Gaussian of 0.50 mm",
+    "overhang_area": "sum of pitch^2 / cos(angle to straight down) over solid-over-air column transitions within 45 deg of straight down, plate contact excluded",
+    "support_volume": "air column under each such transition, down to the next solid voxel or to the lowest solid level (the plate)",
+    "plate_contact": "transitions on the lowest solid level; the plate touches the lowest point, no stock or raft is added",
+    "enclosed_voids": "air components not face-connected to the grid boundary (orientation independent)",
+    "ball_probe": "pockets holding a 2 mm ball that cannot reach the grid boundary, on the 0.5 mm grid",
+    "triangle_check": "area of surface triangles whose normal is within 45 deg of straight down, centroids within 0.5 mm of the lowest vertex excluded"
+  },
+  "witness": {
+    "tolerance_relative": 0.05,
+    "applies_to": "the working pitch and the void checks; the sensitivity-pitch rows are information",
+    "all_within_tolerance": true,
+    "largest_relative_error_at_working_pitch": 0.02502,
+    "largest_relative_error_at_sensitivity_pitch": 0.05911,
+    "cases": [
+      {
+        "witness": "W1 T block, cap up",
+        "quantity": "overhang_area_mm2",
+        "pitch_mm": 0.25,
+        "expected": 1200.0,
+        "measured": 1227.53,
+        "relative_error": 0.02295,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, cap up",
+        "quantity": "overhang_projected_area_mm2",
+        "pitch_mm": 0.25,
+        "expected": 1200.0,
+        "measured": 1199.75,
+        "relative_error": -0.00021,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, cap up",
+        "quantity": "support_volume_mm3",
+        "pitch_mm": 0.25,
+        "expected": 36000.0,
+        "measured": 35992.5,
+        "relative_error": -0.00021,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, cap up",
+        "quantity": "build_height_mm",
+        "pitch_mm": 0.25,
+        "expected": 40.0,
+        "measured": 40.0,
+        "relative_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, cap down",
+        "quantity": "overhang_area_mm2",
+        "pitch_mm": 0.25,
+        "expected": 0.0,
+        "measured": 0.0,
+        "absolute_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, cap down",
+        "quantity": "overhang_projected_area_mm2",
+        "pitch_mm": 0.25,
+        "expected": 0.0,
+        "measured": 0.0,
+        "absolute_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, cap down",
+        "quantity": "support_volume_mm3",
+        "pitch_mm": 0.25,
+        "expected": 0.0,
+        "measured": 0.0,
+        "absolute_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, cap down",
+        "quantity": "build_height_mm",
+        "pitch_mm": 0.25,
+        "expected": 40.0,
+        "measured": 40.0,
+        "relative_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, on its side",
+        "quantity": "overhang_area_mm2",
+        "pitch_mm": 0.25,
+        "expected": 600.0,
+        "measured": 610.72,
+        "relative_error": 0.01787,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, on its side",
+        "quantity": "overhang_projected_area_mm2",
+        "pitch_mm": 0.25,
+        "expected": 600.0,
+        "measured": 599.25,
+        "relative_error": -0.00125,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, on its side",
+        "quantity": "support_volume_mm3",
+        "pitch_mm": 0.25,
+        "expected": 6000.0,
+        "measured": 5992.5,
+        "relative_error": -0.00125,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, on its side",
+        "quantity": "build_height_mm",
+        "pitch_mm": 0.25,
+        "expected": 40.0,
+        "measured": 40.0,
+        "relative_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, cap up",
+        "quantity": "overhang_area_mm2",
+        "pitch_mm": 0.5,
+        "expected": 1200.0,
+        "measured": 1229.41,
+        "relative_error": 0.02451,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, cap up",
+        "quantity": "overhang_projected_area_mm2",
+        "pitch_mm": 0.5,
+        "expected": 1200.0,
+        "measured": 1199.0,
+        "relative_error": -0.00083,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, cap up",
+        "quantity": "support_volume_mm3",
+        "pitch_mm": 0.5,
+        "expected": 36000.0,
+        "measured": 35970.0,
+        "relative_error": -0.00083,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, cap up",
+        "quantity": "build_height_mm",
+        "pitch_mm": 0.5,
+        "expected": 40.0,
+        "measured": 40.0,
+        "relative_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, cap down",
+        "quantity": "overhang_area_mm2",
+        "pitch_mm": 0.5,
+        "expected": 0.0,
+        "measured": 0.0,
+        "absolute_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, cap down",
+        "quantity": "overhang_projected_area_mm2",
+        "pitch_mm": 0.5,
+        "expected": 0.0,
+        "measured": 0.0,
+        "absolute_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, cap down",
+        "quantity": "support_volume_mm3",
+        "pitch_mm": 0.5,
+        "expected": 0.0,
+        "measured": 0.0,
+        "absolute_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, cap down",
+        "quantity": "build_height_mm",
+        "pitch_mm": 0.5,
+        "expected": 40.0,
+        "measured": 40.0,
+        "relative_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, on its side",
+        "quantity": "overhang_area_mm2",
+        "pitch_mm": 0.5,
+        "expected": 600.0,
+        "measured": 611.59,
+        "relative_error": 0.01931,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, on its side",
+        "quantity": "overhang_projected_area_mm2",
+        "pitch_mm": 0.5,
+        "expected": 600.0,
+        "measured": 599.0,
+        "relative_error": -0.00167,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, on its side",
+        "quantity": "support_volume_mm3",
+        "pitch_mm": 0.5,
+        "expected": 6000.0,
+        "measured": 5990.0,
+        "relative_error": -0.00167,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block, on its side",
+        "quantity": "build_height_mm",
+        "pitch_mm": 0.5,
+        "expected": 40.0,
+        "measured": 40.0,
+        "relative_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W1 T block",
+        "quantity": "enclosed_void_volume_mm3",
+        "pitch_mm": 0.25,
+        "expected": 0.0,
+        "measured": 0.0,
+        "absolute_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W2 holed cube, hole horizontal (+Z)",
+        "quantity": "overhang_area_mm2",
+        "pitch_mm": 0.25,
+        "expected": 548.66,
+        "measured": 554.79,
+        "relative_error": 0.01118,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W2 holed cube, hole horizontal (+Z)",
+        "quantity": "support_volume_mm3",
+        "pitch_mm": 0.25,
+        "expected": 6919.72,
+        "measured": 6963.88,
+        "relative_error": 0.00638,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W2 holed cube, hole horizontal (+Z)",
+        "quantity": "support_volume_landing_on_part_mm3",
+        "pitch_mm": 0.25,
+        "expected": 6919.72,
+        "measured": 6963.88,
+        "relative_error": 0.00638,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W2 holed cube, hole horizontal (+Z)",
+        "quantity": "build_height_mm",
+        "pitch_mm": 0.25,
+        "expected": 40.0,
+        "measured": 40.0,
+        "relative_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W2 holed cube, hole vertical (+Y)",
+        "quantity": "overhang_area_mm2",
+        "pitch_mm": 0.25,
+        "expected": 46.01,
+        "measured": 46.38,
+        "relative_error": 0.00809,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W2 holed cube, hole vertical (+Y)",
+        "quantity": "support_volume_mm3",
+        "pitch_mm": 0.25,
+        "expected": 338.48,
+        "measured": 340.25,
+        "relative_error": 0.00523,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W2 holed cube, hole vertical (+Y)",
+        "quantity": "support_volume_landing_on_part_mm3",
+        "pitch_mm": 0.25,
+        "expected": 338.48,
+        "measured": 340.25,
+        "relative_error": 0.00523,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W2 holed cube, hole vertical (+Y)",
+        "quantity": "build_height_mm",
+        "pitch_mm": 0.25,
+        "expected": 40.0,
+        "measured": 40.0,
+        "relative_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W2 holed cube, hole horizontal (+Z)",
+        "quantity": "overhang_area_mm2",
+        "pitch_mm": 0.5,
+        "expected": 548.66,
+        "measured": 531.46,
+        "relative_error": -0.03136,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W2 holed cube, hole horizontal (+Z)",
+        "quantity": "support_volume_mm3",
+        "pitch_mm": 0.5,
+        "expected": 6919.72,
+        "measured": 6655.0,
+        "relative_error": -0.03826,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W2 holed cube, hole horizontal (+Z)",
+        "quantity": "support_volume_landing_on_part_mm3",
+        "pitch_mm": 0.5,
+        "expected": 6919.72,
+        "measured": 6655.0,
+        "relative_error": -0.03826,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W2 holed cube, hole horizontal (+Z)",
+        "quantity": "build_height_mm",
+        "pitch_mm": 0.5,
+        "expected": 40.0,
+        "measured": 40.0,
+        "relative_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W2 holed cube, hole vertical (+Y)",
+        "quantity": "overhang_area_mm2",
+        "pitch_mm": 0.5,
+        "expected": 46.01,
+        "measured": 43.29,
+        "relative_error": -0.05911,
+        "within_tolerance": false
+      },
+      {
+        "witness": "W2 holed cube, hole vertical (+Y)",
+        "quantity": "support_volume_mm3",
+        "pitch_mm": 0.5,
+        "expected": 338.48,
+        "measured": 320.0,
+        "relative_error": -0.05459,
+        "within_tolerance": false
+      },
+      {
+        "witness": "W2 holed cube, hole vertical (+Y)",
+        "quantity": "support_volume_landing_on_part_mm3",
+        "pitch_mm": 0.5,
+        "expected": 338.48,
+        "measured": 320.0,
+        "relative_error": -0.05459,
+        "within_tolerance": false
+      },
+      {
+        "witness": "W2 holed cube, hole vertical (+Y)",
+        "quantity": "build_height_mm",
+        "pitch_mm": 0.5,
+        "expected": 40.0,
+        "measured": 40.0,
+        "relative_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W2 holed cube",
+        "quantity": "enclosed_void_volume_mm3",
+        "pitch_mm": 0.25,
+        "expected": 523.6,
+        "measured": 524.25,
+        "relative_error": 0.00124,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W3 vented sphere",
+        "quantity": "enclosed_void_volume_mm3",
+        "pitch_mm": 0.25,
+        "expected": 0.0,
+        "measured": 0.0,
+        "absolute_error": 0.0,
+        "within_tolerance": true
+      },
+      {
+        "witness": "W3 vented sphere",
+        "quantity": "pocket_volume_2mm_ball_mm3",
+        "pitch_mm": 0.5,
+        "expected": 523.6,
+        "measured": 510.5,
+        "relative_error": -0.02502,
+        "within_tolerance": true
+      }
+    ]
+  },
+  "voids": {
+    "strict_flood_fill_fine": {
+      "pitch_mm": 0.25,
+      "grid_boundary_all_air": true,
+      "enclosed_void_volume_mm3": 0.0,
+      "enclosed_voids": 0,
+      "enclosed_voids_of_1mm3_or_more": 0,
+      "largest_enclosed_void_mm3": 0.0,
+      "enclosed_void_volume_in_voids_of_1mm3_or_more_mm3": 0.0
+    },
+    "strict_flood_fill_coarse": {
+      "pitch_mm": 0.5,
+      "grid_boundary_all_air": true,
+      "enclosed_void_volume_mm3": 62.875,
+      "enclosed_voids": 241,
+      "enclosed_voids_of_1mm3_or_more": 6,
+      "largest_enclosed_void_mm3": 9.75,
+      "enclosed_void_volume_in_voids_of_1mm3_or_more_mm3": 18.875
+    },
+    "ball_probe_coarse": {
+      "pitch_mm": 0.5,
+      "ball_diameter_mm": 2.0,
+      "pockets": 11,
+      "pocket_volume_mm3": 52.125
+    }
+  },
+  "orientations": {
+    "deck_down": {
+      "definition": "build direction +Z (bore axis); the combustion-deck side faces the plate, cam side up",
+      "build_axis": "Z",
+      "build_sign": 1,
+      "named_face": "deck plane z = 0",
+      "named_face_above_lowest_point_mm": 1.12,
+      "plate_contact_area_mm2": 5.4,
+      "down_facing_projected_area_any_angle_mm2": 51901.6,
+      "overhang_area_mm2": 39176.0,
+      "overhang_projected_area_mm2": 35846.6,
+      "support_volume_mm3": 448910.5,
+      "support_volume_landing_on_plate_mm3": 276114.1,
+      "support_volume_landing_on_part_mm3": 172796.4,
+      "overhang_area_within_1mm_of_plate_mm2": 5517.6,
+      "support_volume_within_1mm_of_plate_mm3": 1359.5,
+      "build_height_mm": 95.5,
+      "support_height_max_mm": 83.0,
+      "support_volume_over_part_volume": 0.4048,
+      "enclosed_void_volume_mm3": 0.0,
+      "sensitivity_0p5mm": {
+        "overhang_area_mm2": 31518.4,
+        "support_volume_mm3": 436479.4,
+        "build_height_mm": 95.5,
+        "plate_contact_area_mm2": 5299.0,
+        "overhang_area_relative_to_working": -0.1955,
+        "support_volume_relative_to_working": -0.0277
+      },
+      "triangle_overhang_area_mm2": {},
+      "overhang_area_relative_to_triangles": {}
+    },
+    "deck_up": {
+      "definition": "build direction -Z; the cam-housing side faces the plate",
+      "build_axis": "Z",
+      "build_sign": -1,
+      "plate_contact_area_mm2": 19.2,
+      "down_facing_projected_area_any_angle_mm2": 51887.9,
+      "overhang_area_mm2": 41467.4,
+      "overhang_projected_area_mm2": 38944.3,
+      "support_volume_mm3": 516069.8,
+      "support_volume_landing_on_plate_mm3": 346609.3,
+      "support_volume_landing_on_part_mm3": 169460.4,
+      "overhang_area_within_1mm_of_plate_mm2": 11.3,
+      "support_volume_within_1mm_of_plate_mm3": 5.9,
+      "build_height_mm": 95.5,
+      "support_height_max_mm": 88.0,
+      "support_volume_over_part_volume": 0.4653,
+      "enclosed_void_volume_mm3": 0.0,
+      "sensitivity_0p5mm": {
+        "overhang_area_mm2": 39654.2,
+        "support_volume_mm3": 505342.2,
+        "build_height_mm": 95.5,
+        "plate_contact_area_mm2": 20.2,
+        "overhang_area_relative_to_working": -0.0437,
+        "support_volume_relative_to_working": -0.0208
+      },
+      "triangle_overhang_area_mm2": {},
+      "overhang_area_relative_to_triangles": {}
+    },
+    "flange_y_minus_down": {
+      "definition": "build direction +Y; the flange at y = -104.26 mm faces the plate",
+      "build_axis": "Y",
+      "build_sign": 1,
+      "named_face": "flange plane y = -104.26",
+      "named_face_above_lowest_point_mm": 0.62,
+      "plate_contact_area_mm2": 312.9,
+      "down_facing_projected_area_any_angle_mm2": 25288.4,
+      "overhang_area_mm2": 14676.3,
+      "overhang_projected_area_mm2": 13090.8,
+      "support_volume_mm3": 389081.6,
+      "support_volume_landing_on_plate_mm3": 171107.8,
+      "support_volume_landing_on_part_mm3": 217973.8,
+      "overhang_area_within_1mm_of_plate_mm2": 2128.0,
+      "support_volume_within_1mm_of_plate_mm3": 1144.5,
+      "build_height_mm": 224.0,
+      "support_height_max_mm": 217.25,
+      "support_volume_over_part_volume": 0.3508,
+      "enclosed_void_volume_mm3": 0.0,
+      "sensitivity_0p5mm": {
+        "overhang_area_mm2": 13098.6,
+        "support_volume_mm3": 377449.8,
+        "build_height_mm": 224.0,
+        "plate_contact_area_mm2": 943.2,
+        "overhang_area_relative_to_working": -0.1075,
+        "support_volume_relative_to_working": -0.0299
+      },
+      "triangle_overhang_area_mm2": {},
+      "overhang_area_relative_to_triangles": {}
+    },
+    "flange_y_plus_down": {
+      "definition": "build direction -Y; the flange at y = +85.39 mm faces the plate",
+      "build_axis": "Y",
+      "build_sign": -1,
+      "named_face": "flange plane y = 85.39",
+      "named_face_above_lowest_point_mm": 33.73,
+      "plate_contact_area_mm2": 46.2,
+      "down_facing_projected_area_any_angle_mm2": 25555.1,
+      "overhang_area_mm2": 14104.3,
+      "overhang_projected_area_mm2": 12538.4,
+      "support_volume_mm3": 476688.9,
+      "support_volume_landing_on_plate_mm3": 251309.9,
+      "support_volume_landing_on_part_mm3": 225379.0,
+      "overhang_area_within_1mm_of_plate_mm2": 90.3,
+      "support_volume_within_1mm_of_plate_mm3": 46.1,
+      "build_height_mm": 224.0,
+      "support_height_max_mm": 175.25,
+      "support_volume_over_part_volume": 0.4298,
+      "enclosed_void_volume_mm3": 0.0,
+      "sensitivity_0p5mm": {
+        "overhang_area_mm2": 13679.7,
+        "support_volume_mm3": 463598.6,
+        "build_height_mm": 224.0,
+        "plate_contact_area_mm2": 72.2,
+        "overhang_area_relative_to_working": -0.0301,
+        "support_volume_relative_to_working": -0.0275
+      },
+      "triangle_overhang_area_mm2": {},
+      "overhang_area_relative_to_triangles": {}
+    },
+    "side_x_minus_down": {
+      "definition": "build direction +X; the -X side faces the plate",
+      "build_axis": "X",
+      "build_sign": 1,
+      "plate_contact_area_mm2": 35.0,
+      "down_facing_projected_area_any_angle_mm2": 32951.4,
+      "overhang_area_mm2": 23224.9,
+      "overhang_projected_area_mm2": 21080.4,
+      "support_volume_mm3": 418822.1,
+      "support_volume_landing_on_plate_mm3": 166918.3,
+      "support_volume_landing_on_part_mm3": 251903.8,
+      "overhang_area_within_1mm_of_plate_mm2": 1949.2,
+      "support_volume_within_1mm_of_plate_mm3": 1571.9,
+      "build_height_mm": 117.5,
+      "support_height_max_mm": 113.5,
+      "support_volume_over_part_volume": 0.3776,
+      "enclosed_void_volume_mm3": 0.0,
+      "sensitivity_0p5mm": {
+        "overhang_area_mm2": 22481.4,
+        "support_volume_mm3": 415282.8,
+        "build_height_mm": 118.0,
+        "plate_contact_area_mm2": 32.2,
+        "overhang_area_relative_to_working": -0.032,
+        "support_volume_relative_to_working": -0.0085
+      },
+      "triangle_overhang_area_mm2": {},
+      "overhang_area_relative_to_triangles": {}
+    },
+    "side_x_plus_down": {
+      "definition": "build direction -X; the +X side faces the plate",
+      "build_axis": "X",
+      "build_sign": -1,
+      "plate_contact_area_mm2": 50.3,
+      "down_facing_projected_area_any_angle_mm2": 32936.1,
+      "overhang_area_mm2": 22847.1,
+      "overhang_projected_area_mm2": 20615.2,
+      "support_volume_mm3": 417814.7,
+      "support_volume_landing_on_plate_mm3": 162517.6,
+      "support_volume_landing_on_part_mm3": 255297.0,
+      "overhang_area_within_1mm_of_plate_mm2": 4546.6,
+      "support_volume_within_1mm_of_plate_mm3": 2269.3,
+      "build_height_mm": 117.5,
+      "support_height_max_mm": 113.5,
+      "support_volume_over_part_volume": 0.3767,
+      "enclosed_void_volume_mm3": 0.0,
+      "sensitivity_0p5mm": {
+        "overhang_area_mm2": 22544.3,
+        "support_volume_mm3": 413698.6,
+        "build_height_mm": 118.0,
+        "plate_contact_area_mm2": 27.8,
+        "overhang_area_relative_to_working": -0.0133,
+        "support_volume_relative_to_working": -0.0099
+      },
+      "triangle_overhang_area_mm2": {},
+      "overhang_area_relative_to_triangles": {}
+    }
+  },
+  "seconds": 223.1,
+  "limits": "Screen of the study twin (1 scan unit = 1 mm by owner instruction, no physical calibration; 12% of its area is hypothesis closure, and the enclosed voids and thin handles in the unobserved regions are winding-number artefacts as much as geometry). Only six axis-aligned orientations are measured; tilted orientations are not. The 45 degree rule and the air-column volume are conventions, not a support design: no support type, density, tooth, removal access, heat path, recoater load or distortion is considered, short bridges are not credited, and the plate touches the lowest point without machining stock. Column volumes are envelope volumes, not support material. The strict flood fill lets powder leave through a 0.25 mm opening; the ball probe is the sensitivity to that. Attached studs are excluded from the body. Nothing here establishes printability, an orientation choice, a material, dimensional accuracy or function."
+}

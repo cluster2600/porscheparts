@@ -1,0 +1,131 @@
+{
+  "schema": "935-cad-twin-print-body/1",
+  "case_file": "params/print-body-case.json",
+  "pitch_mm": 0.25,
+  "twin_body_volume_mm3": 1094992.9,
+  "print_body_volume_mm3": 1109068.5,
+  "stud_residue_removed_mm3": 428.9,
+  "enclosed_voids_remaining": 0,
+  "top_of_the_body_mm": 94.38,
+  "steps": [
+    {
+      "step": "stud residue 00",
+      "action": "removed",
+      "volume_mm3": 94.6
+    },
+    {
+      "step": "stud residue 01",
+      "action": "removed",
+      "volume_mm3": 81.3
+    },
+    {
+      "step": "stud residue 02",
+      "action": "removed",
+      "volume_mm3": 0.0
+    },
+    {
+      "step": "stud residue 03",
+      "action": "removed",
+      "volume_mm3": 0.2
+    },
+    {
+      "step": "stud residue 04",
+      "action": "removed",
+      "volume_mm3": 0.0
+    },
+    {
+      "step": "stud residue 05",
+      "action": "removed",
+      "volume_mm3": 78.1
+    },
+    {
+      "step": "stud residue 06",
+      "action": "removed",
+      "volume_mm3": 26.0
+    },
+    {
+      "step": "stud residue 07",
+      "action": "removed",
+      "volume_mm3": 5.5
+    },
+    {
+      "step": "stud residue 08",
+      "action": "removed",
+      "volume_mm3": 109.3
+    },
+    {
+      "step": "stud residue 09",
+      "action": "removed",
+      "volume_mm3": 33.9
+    },
+    {
+      "step": "enclosed voids filled",
+      "action": "added",
+      "volume_mm3": 7.4
+    },
+    {
+      "step": "stock under the deck and the register floor",
+      "action": "added",
+      "volume_mm3": 9782.2
+    },
+    {
+      "step": "stock on the seat of valve_y_minus",
+      "action": "added",
+      "volume_mm3": 534.2
+    },
+    {
+      "step": "guide bore of valve_y_minus printed solid",
+      "action": "added",
+      "volume_mm3": 452.3
+    },
+    {
+      "step": "stock on the seat of valve_y_plus",
+      "action": "added",
+      "volume_mm3": 458.3
+    },
+    {
+      "step": "guide bore of valve_y_plus printed solid",
+      "action": "added",
+      "volume_mm3": 433.1
+    },
+    {
+      "step": "thread bore of plug_x_plus printed solid",
+      "action": "added",
+      "volume_mm3": 1458.4
+    },
+    {
+      "step": "thread bore of plug_x_minus printed solid",
+      "action": "added",
+      "volume_mm3": 1353.5
+    },
+    {
+      "step": "voids enclosed by the stock, filled",
+      "action": "added",
+      "volume_mm3": 25.0
+    }
+  ],
+  "claims": "a study object derived from the twin with declared stock and fills; not a build file, no support, no machining drawing, and no dimension of the specimen",
+  "surface": {
+    "file": "print-body-mc050.stl",
+    "triangles": 1684604,
+    "watertight_after_welding": true,
+    "winding_consistent": true,
+    "edges_used_once": 0,
+    "edges_used_by_more_than_two_faces": 0,
+    "genus": 238,
+    "volume_mm3": 1116027.0,
+    "bounding_box_mm": [
+      117.62,
+      224.06,
+      95.56
+    ],
+    "triangles_with_area_below_1e-8_mm2": 0,
+    "volume_note": "the 0.5 mm surface is extracted at level 0.4375 of the block-averaged occupancy and encloses 0.6% more than the lattice volume"
+  },
+  "strict_gate": {
+    "tool": "cad-skill preview.py --strict (trimesh loader, welds vertices and drops degenerate triangles before its watertight test)",
+    "passed": true,
+    "triangles_after_the_loader": 1684604,
+    "recorded": "by hand from the tool's output on 2026-11-11; the six-view sheet it rendered stays private"
+  }
+}
