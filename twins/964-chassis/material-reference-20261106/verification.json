@@ -1,0 +1,63 @@
+{
+  "classification": "documentary_elastic_input_and_independent_math_verification_only",
+  "verification_date": "2026-11-07",
+  "requirement": "Verify the existing in-plane laminate implementation against a documented elastic vector before any body analysis.",
+  "existing_workflow": "docs/architecture/engineering-workflow.md",
+  "local_compute_policy": "docs/decisions/0012-local-compute-gpu-last.md",
+  "source_capture": {
+    "method": "Official PDF web-reader text independently checked; no visual table-layout or raw-PDF-byte verification claimed.",
+    "raw_pdf_sha256": null,
+    "normal_download_outcome": "TLS trust failure or HTML challenge; rejected as PDF. No bypass.",
+    "failed_acquisition_receipt": {
+      "private_path": "work/964-material-reference-20261106/im7-8552-ncamp-001/failed-acquisition.json",
+      "sha256": "ea6ebd3236a94ddfc868a65036e1a7d4fe242b43cf7a7eec927a0adaa20ad7a4"
+    },
+    "source_scope_review": {
+      "private_path": "work/964-material-reference-20261106/source-scope-independent-001/review.json",
+      "sha256": "003be56108afab2a038c6464692e1d211521f81e958a5a83b0d113b0344d737c"
+    },
+    "source_vector_scope_review_passed": true
+  },
+  "independent_math": {
+    "method": "60-digit Decimal with exact lbf/inch numerical conversion, reciprocal plane-stress compliance and explicit four-orientation invariant average. No author helper imported; no NumPy or FEA used. Independent nontrivial17deg transformedQ included for engineering-shear/sign inspection.",
+    "effective_E_MPa": 60848.53816334316,
+    "effective_G_MPa": 23133.280839204966,
+    "effective_nu": 0.31517311760250893,
+    "maximum_scalar_relative_difference": 2.964096638757966e-16,
+    "private_review": {
+      "path": "work/964-material-reference-20261106/independent-review-001/review.json",
+      "sha256": "41b6ff37009cea7988549ca73e95242aa38967b051de1e52133d24c9b0ad314c"
+    },
+    "existing_laminate_helper_changed": false
+  },
+  "published_artifacts": {
+    "check_elastic_reference.py": "98dbbeea8306f6e2e9c784bf85806312fd0c497d1324239ebdfae8a441e7443e",
+    "inputs.json": "5c79b4e15537cb8a76030d1cde4be08dd870e5a2dab781c649ef716a1fab1d36",
+    "media/elastic-reference.png": "0cde0d481601ef22d018edf347ace226d651de9c28c42250fbd2877188455669",
+    "media/elastic-reference.svg": "e89e6f6a7124ba4c779f28244eae4a18af6fdd1e002f5da9fc2717b36f4f8479",
+    "media/plot-receipt.json": "da5a87ca19c10904b1ee57cfd276472a8b14f12325c59e3ae9ce0f5274e3f029",
+    "plot_reference.py": "43dfe0fc60078db6c9b468ab8c9e01410d6ba46a0020559f9eb29ac2539c3d1f",
+    "result.json": "6998f4323ecc1d0710fad7fd032c3b8b3b24808effd34212201f83570e75a72f",
+    "runtime-receipt.json": "af5b89c9f58d884bf409d59a9ab14354a9881566a59c12e71fdbb72057132031"
+  },
+  "unselected": {
+    "physical_ply_thickness_mm": null,
+    "density_kg_m3": null,
+    "stacking_sequence": null,
+    "bending_and_coupling_B_D": null,
+    "out_of_plane_law": null,
+    "strength_and_damage_allowables": null,
+    "cure_kinetics_and_shrinkage": null,
+    "our_process_equivalency": null
+  },
+  "process_reference_scope": "The report historical process pedigree is retained in inputs.json. No later revision is assumed equivalent, and no partial cure excerpt is published as an executable schedule.",
+  "engineering_admission": {
+    "material_or_process_qualified": false,
+    "scan_registration": null,
+    "whole_body_torsion_strength_fatigue_crash": false,
+    "mould_validated": false,
+    "native_Omniverse_final_twin_validated": false,
+    "manufacturing_authorized": false
+  },
+  "media_scope": "Original computed scientific plot, not a vehicle photograph or native Omniverse capture."
+}

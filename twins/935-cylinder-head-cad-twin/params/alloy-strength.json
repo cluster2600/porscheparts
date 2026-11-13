@@ -1,0 +1,156 @@
+{
+ "schema": "935-cad-twin-alloy-strength/1",
+ "date": "2026-11-11",
+ "note": "Published strength of the candidate alloys, at room temperature and above where a source gives it. Yield is the 0.2% proof stress. Nothing here was tested for this study, no value is a design allowable, and a row's conductivity and strength are for the same condition only where condition_match says so.",
+ "rows": [
+  {
+   "id": "alsi10mg-stress-relieved",
+   "alloy": "AlSi10Mg",
+   "condition": "stress relieved 350 °C 2 h, 0° orientation",
+   "conductivity_rows": [
+    "alsi10mg-eos-stress-relieved-v",
+    "alsi10mg-3ds-stress-relieved-low",
+    "alsi10mg-3ds-stress-relieved-high"
+   ],
+   "condition_match": "the conductivities are for 270 °C 90 min (EOS) and about 285 °C 2 h (3D Systems); the strengths are for 350 °C 2 h. Not the same condition",
+   "yield_MPa_by_temperature_C": {
+    "20": 166,
+    "125": 155,
+    "250": 133
+   },
+   "tensile_MPa_by_temperature_C": {
+    "20": 280,
+    "125": 250,
+    "250": 163
+   },
+   "source": "Lehmhus et al., Materials 15(20):7386, 2022, doi 10.3390/ma15207386",
+   "class": "peer-reviewed",
+   "verification": "reported by the research pass of 2026-11-11 only; not re-read"
+  },
+  {
+   "id": "alsi10mg-t6",
+   "alloy": "AlSi10Mg",
+   "condition": "EOS T6 (530 °C 30 min, quench, 165 °C 6 h)",
+   "conductivity_rows": [
+    "alsi10mg-eos-t6-v",
+    "alsi10mg-eos-t6-h"
+   ],
+   "condition_match": "same sheet",
+   "yield_MPa_by_temperature_C": {
+    "20": 250
+   },
+   "tensile_MPa_by_temperature_C": {
+    "20": 310
+   },
+   "source": "EOS-AlSi10Mg (alloy-candidates.json)",
+   "class": "manufacturer datasheet",
+   "verification": "reported by the research pass of 2026-11-11 only; not re-read",
+   "note": "vertical values; no strength above room temperature published"
+  },
+  {
+   "id": "alsi7mg-t6",
+   "alloy": "AlSi7Mg (EOS AlF357)",
+   "condition": "T6-like (540 °C 30 min, quench, 165 °C 6 h)",
+   "conductivity_rows": [
+    "alsi7mg-eos-t6"
+   ],
+   "condition_match": "same sheet",
+   "yield_MPa_by_temperature_C": {
+    "20": 265
+   },
+   "tensile_MPa_by_temperature_C": {
+    "20": 330
+   },
+   "source": "EOS-AlF357 (alloy-candidates.json)",
+   "class": "manufacturer datasheet",
+   "verification": "reported by the research pass of 2026-11-11 only; not re-read",
+   "note": "vertical values; no strength above room temperature published. Eplus3D claims performance 'up to 200 °C' for its AlSi7Mg without figures"
+  },
+  {
+   "id": "al-mg-sc-aged",
+   "alloy": "Al-Mg-Sc (Scalmalloy class)",
+   "condition": "direct aged 325 °C 4 h",
+   "conductivity_rows": [
+    "scalmalloy-3ds-low",
+    "scalmalloy-3ds-high"
+   ],
+   "condition_match": "same heat treatment, different publishers",
+   "yield_MPa_by_temperature_C": {
+    "20": 465,
+    "150": 319,
+    "300": 60
+   },
+   "tensile_MPa_by_temperature_C": {
+    "20": 505,
+    "150": 376,
+    "300": 103
+   },
+   "source": "Colibrium Additive, M2 Series 5 Al-Mg-Sc material data sheet, Rev B, 2025-08-21",
+   "class": "manufacturer datasheet",
+   "file_sha256": "8cbb9af1f94dd81c7603a557d9818904f0a8cb3621d67de46e66bdc045000f89",
+   "verification": "reported by the research pass of 2026-11-11 only; not re-read",
+   "note": "room-temperature values vertical; the elevated values are for one direction"
+  },
+  {
+   "id": "cp1-heat-treated",
+   "alloy": "Aheadd CP1 (Al-Fe-Zr)",
+   "condition": "heat treated 4 h at 400 °C",
+   "conductivity_rows": [
+    "cp1-eos-heat-treated-wf",
+    "cp1-velo3d-blog"
+   ],
+   "condition_match": "same sheet for the computed conductivity",
+   "yield_MPa_by_temperature_C": {
+    "20": 300
+   },
+   "tensile_MPa_by_temperature_C": {
+    "20": 340
+   },
+   "source": "EOS-CP1 (alloy-candidates.json)",
+   "class": "manufacturer datasheet",
+   "verification": "re-read in the downloaded source file on 2026-11-11",
+   "note": "no strength above room temperature published; a second maker's sheet claims 'an outstanding thermal stability up to 300 °C' without figures"
+  },
+  {
+   "id": "al5x1-heat-treated",
+   "alloy": "EOS Al5X1",
+   "condition": "heat treated",
+   "conductivity_rows": [
+    "al5x1-eos-heat-treated-v"
+   ],
+   "condition_match": "same sheet",
+   "yield_MPa_by_temperature_C": {
+    "20": 380
+   },
+   "tensile_MPa_by_temperature_C": {
+    "20": 415
+   },
+   "source": "EOS-Al5X1 (alloy-candidates.json)",
+   "class": "manufacturer datasheet",
+   "verification": "reported by the research pass of 2026-11-11 only; not re-read",
+   "note": "no strength above room temperature published"
+  },
+  {
+   "id": "a205-t7",
+   "alloy": "A20X / A205 (Al-Cu-TiB2)",
+   "condition": "T7",
+   "conductivity_rows": [],
+   "condition_match": "no conductivity published: this alloy cannot be placed on the thermal screens",
+   "yield_MPa_by_temperature_C": {
+    "150": 354,
+    "200": 311,
+    "250": 215
+   },
+   "tensile_MPa_by_temperature_C": {
+    "150": 369,
+    "200": 331,
+    "250": 224
+   },
+   "source": "Eckart, Technical Information Sheet A205 Gas Atomised Powder, September 2020, https://www.eckart.net/download/document/view/id/216/",
+   "class": "manufacturer datasheet",
+   "file_sha256": "c4fbbeff0f7f4e5ee5baf8d7839d7f5555aa3e7ac741c10c94125413100cf71f",
+   "verification": "re-read in the downloaded source file on 2026-11-11",
+   "note": "the room-temperature range was reported by the research pass as 390 to 440 MPa yield"
+  }
+ ]
+}

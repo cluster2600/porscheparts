@@ -1,0 +1,25 @@
+#usda 1.0
+(
+    defaultPrim = "Scan_provisional"
+    doc = "Independent original scan provisional tyre/symmetry frame. Two unfilled fitted-plane crop-domain outlines; not physical panel perimeters or original interior floor. No inter-frame registration, physical geometry or engineering approval."
+    metersPerUnit = 0.001
+    upAxis = "Z"
+)
+
+def Xform "Scan_provisional"
+{
+    custom string reference:frame = "Scan_provisional"
+    custom bool reference:registrationAdmitted = 0
+
+    def BasisCurves "FittedPlaneCropDomains"
+    {
+        int[] curveVertexCounts = [5, 5]
+        point3f[] points = [(-1400, -450, 256.9452), (-700, -450, 271.95743), (-700, -200, 275.70908), (-1400, -200, 260.69687), (-1400, -450, 256.9452), (-1400, 200, 266.69952), (-700, 200, 281.71173), (-700, 450, 285.4634), (-1400, 450, 270.45117), (-1400, 200, 266.69952)]
+        custom double3[] reference:exactCornersMm = [(-1400, -450, 256.9452027836388), (-700, -450, 271.95741674543547), (-700, -200, 275.7090782079157), (-1400, -200, 260.69686424611905), (-1400, -450, 256.9452027836388), (-1400, 200, 266.6995225860874), (-700, 200, 281.71173654788413), (-700, 450, 285.46339801036436), (-1400, 450, 270.4511840485677), (-1400, 200, 266.6995225860874)]
+        custom double reference:planeD = -293.6220537485272
+        custom double3 reference:planeNormal = (-0.021438677049748125, -0.015001507729412, 0.9996576103307581)
+        custom string reference:sourceAuditSha256 = "13221b1f7c85f1a7416c8c6b706f04e48b311868d2274a34df0a04c5c568652f"
+        uniform token type = "linear"
+    }
+}
+

@@ -1,0 +1,74 @@
+{
+  "observation_rows": 210,
+  "implemented_comparisons": 0,
+  "unimplemented_or_unregistered": 210,
+  "numerical_comparisons_within_tolerance": 0,
+  "numerical_comparisons_outside_tolerance": 0,
+  "reconstruction_admitted": false,
+  "inventory_is_required_geometry_contract": false,
+  "standalone_CAD_or_future_generator_gate": false,
+  "admission_scope": "This inventory audit cannot grant reconstruction or physical approval; identities, angles, pressures and unsupported quantities are not all required geometric constraints.",
+  "verdict": "failed_F2_binding_coverage_no_implemented_comparisons",
+  "classification": "completed_source_extraction_vs_model_binding_audit",
+  "audit_source_sha256": "811c39d10fce12678fcd83fd846d861dde2c3dcbffae800baeabd638ca39da95",
+  "model_sha256": "1d323e7441c31ef8e5e5b26b895a2a0629bbf97402a274ccd416bc82a95444a2",
+  "parameters_sha256": "8da2540a3ee9099ab747dfe042ebb84c67bc994808f0bc0e35fb1a084af754d4",
+  "registry_sha256": {
+    "MEAS-MANUAL-964-BODY-CONTROL": "996dad29281c437a1e6c0389accb12c9dca1165363ae9b9ac5f30c40ce28627c",
+    "MEAS-MANUAL-964-SUSPENSION-ALIGNMENT": "0523b7ff6a329210b7213a9b6f09278969194dd322b969d134de0bd62af4033d",
+    "MEAS-OWNER-964-FRAME-20261105": "ecc7ff9e64b90e19545019e2e1a2ea67c8df47f966ac325783306c6af1976b7c",
+    "MEAS-MANUAL-993-FLOOR-CONTROL-20261104": "15421620c8e6cf6d76bd91f37efd4cb264cbe01b4bb819c666e2446f449b1628",
+    "MEAS-FIA-964-INTERIOR-20261105": "3cfe34be18cdec4cd39f3a15df36470a850df52015777193cb63b859bb05cca6",
+    "MEAS-MANUAL-964-INTERFACE-SPANS-20261030": "d99ab6717cc8326b627a22a369fb2f347da001743f1213f4e2579604667980be"
+  },
+  "catalogue_observation_counts": {
+    "MEAS-MANUAL-964-BODY-CONTROL": 50,
+    "MEAS-MANUAL-964-SUSPENSION-ALIGNMENT": 51,
+    "MEAS-OWNER-964-FRAME-20261105": 57,
+    "MEAS-MANUAL-993-FLOOR-CONTROL-20261104": 25,
+    "MEAS-FIA-964-INTERIOR-20261105": 7,
+    "MEAS-MANUAL-964-INTERFACE-SPANS-20261030": 19
+  },
+  "catalogue_observation_total": 209,
+  "inventory_scope": "Six named registries only; not exhaustive coverage of all Porsche data",
+  "source_amendment": {
+    "path": "twins/964-chassis/body-contact-alternatives-20261106/mi-b-width-correction.json",
+    "sha256": "0e31ae106af5a321e14975f9e834a2b80d86b8db1ff99947d6144afc0e18f604",
+    "effective_B_bolt_half_width_mm": 306,
+    "effective_combined_span_mm": 612,
+    "new_observations_added": 0
+  },
+  "legacy_aggregate_hypotheses": 1,
+  "observation_counts_are_not_unique_geometric_dimensions": true,
+  "body_datum_identity_rows_included": 18,
+  "interface_observations_and_identities": {
+    "observations": 19,
+    "documentary_identities": 18,
+    "contract_sha256": "f08fcea365a4030246f104a2d3d3b2476df2786dc717bc6554abc2348e4c4f5a",
+    "duplicate_family_observations_are_not_new_geometry": true
+  },
+  "legacy_hypothesis_input_sha256": {
+    "twins/964-chassis/derived/964-floor-assembly.json": "f120699fa9277d6393d883c1171a782123946220633d88137a1058c71f2f1a4c",
+    "twins/964-chassis/source/envelope.py": "eb37eeaaf7694c0b2e250e43544c16ab206680e05c8e144daee377bedf662cc2",
+    "twins/964-chassis/source/floor_assembly.py": "e420b108b5715c36b5f8114bf64b67a68057e1d03ef83d3a6e1285527f92bbb4"
+  },
+  "table": "traceability.csv",
+  "table_sha256": "354b18b2908d1695950b5b36fb07410259d32ddef5a280b839e531477346ef8f",
+  "source_feature_count_in_model": 0,
+  "source_extraction_validity": "Existing documentary transcriptions retain their own statuses; this audit does not re-verify raw pages or convert them into acquired surfaces.",
+  "source_to_F2_transform": null,
+  "CAD_and_media_success_grant_reconstruction_admission": false,
+  "ground_contact_heights": {
+    "front": "MNL-964SA-0001/0002: outer crossmember body bolt 165\u00b110 mm, US175",
+    "rear": "MNL-964SA-0024/0030: rear outer mount body-side 270\u00b15 mm, US280"
+  },
+  "floor_geometry_limit": "Named contacts and the legacy 271.7 mm histogram do not fix a bare inner floor or a 65 mm floor box. New exterior-candidate patch evidence is a separate source observation, still unbound to F2.",
+  "additional_scan_floor_diagnostic": {
+    "report_sha256": "13221b1f7c85f1a7416c8c6b706f04e48b311868d2274a34df0a04c5c568652f",
+    "status": "source_indexed_exterior_candidates_not_F2_binding",
+    "model_value_mm": null,
+    "delta_mm": null
+  },
+  "physical_validation": false,
+  "manufacturing_authorized": false
+}

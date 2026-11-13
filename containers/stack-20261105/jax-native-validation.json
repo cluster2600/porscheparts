@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "scope": "Native Linux AMD64 synthetic analytic Laplace and automatic differentiation controls",
+  "image_id": "sha256:f45b21ae27331ae5ebb3d73274dce67c5074815a30c6bfb7157005cc97043296",
+  "image_metadata": "sha256:f45b21ae27331ae5ebb3d73274dce67c5074815a30c6bfb7157005cc97043296 linux/amd64 7078577378",
+  "registry_published": false,
+  "started_at": "2026-11-07T07:19:08Z",
+  "finished_at": "2026-11-07T07:19:55Z",
+  "build_exit_code": 0,
+  "offline_smoke_exit_code": 0,
+  "smoke_limits": {
+    "network": "none",
+    "cpus": 2,
+    "memory": "4g",
+    "timeout_seconds": 300
+  },
+  "report": {
+    "status": "JAX_FEM_PETSC_ANALYTIC_LAPLACE_PASS",
+    "maximum_absolute_error": 0.0,
+    "petsc_version": [
+      3,
+      26,
+      1
+    ],
+    "versions": {
+      "jax": "0.12.0.1",
+      "jax-fem": "0.0.12",
+      "fenics-basix": "0.11.0",
+      "petsc4py": "3.26.1"
+    },
+    "gpu_tested": false,
+    "physical_qualification": false
+  },
+  "source_sha256": {
+    "containers/stack-20261105/jax-fem.Dockerfile": "fb5bf8972f3d102e7d864118f440baf1764b17ceefe717564b9561918327cf47",
+    "containers/stack-20261105/jax-fem.in": "3aaee779e6499dc16db151e1c64ae1711c8adf0d85518c66ea5545d1c818683b",
+    "containers/stack-20261105/jax-fem.requirements.txt": "f747a98e4bd178f19e0e9bacb5f8a9575284445cb477272baebb91a6e8a04484",
+    "containers/stack-20261105/jax-fem-smoke.py": "c995d1b96c64d2b19be3cd5443143df98404de53c61b5f96d5c61838e0a2e239"
+  },
+  "receipt_sha256": {
+    "build-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "build.log": "013597d26117cf04073b397e4cb71730bf808fd793c7ff0804945fa427ffc728",
+    "context.sha256": "7d3e819deec148c597184f87ae5af66382cb1956b88d3b4c7ec92478c7fa956c",
+    "environment.freeze.txt": "d612dfe846aee89d1a3978aed6b735c96445fb41b1670f314e6ffb15a4527801",
+    "finished.txt": "df3baeeba059676e2fd404f213fed04877671a9ea21a22409ccc3560ca0a3a97",
+    "image-id.txt": "719f3f65fe798ea88a3148716025ff449eacbc6a4e92a8b058f6614899f10d73",
+    "image.txt": "32da1bb714bac60fa7d65a645740121674e4bd1d9eb842ded1cfb831ee897d27",
+    "local-parent-images.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "recipe.sha256": "44cae38f7e8493d07058857d2d5ad384e7fe445f7287d94daf9c2eafd8eebbf2",
+    "smoke-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "smoke.log": "b2a2ca04d7a847c2947318d9360257743840977c6161aec3a61dbbf19063fa29",
+    "started.txt": "d611873826c97656fbb758249bfb78704c481c98d43021e53af95cf7ebf19648",
+    "tag.txt": "2121098e5614e1a6034dc0674cc6e915b399177ab1ca66532693612e3207ad30"
+  },
+  "retained_failed_attempts": [
+    {
+      "receipt": "jax-fem.lztK1H",
+      "cause": "PETSc installation required missing patchelf",
+      "build_log_sha256": "0e9abe8ac74bfd08919a6a39fbe2949d393f5d8ce3a5f5f1473df78f0c1d8366"
+    },
+    {
+      "receipt": "jax-fem.3Omt9n",
+      "cause": "Native Gmsh import lacked libXrender",
+      "build_log_sha256": "236775bf9cfe034a573dd887664e6073e1dba1b7ea51c3ba109df21b2728c3ee"
+    },
+    {
+      "receipt": "jax-fem.9XMJVz",
+      "cause": "Linker diagnostic identified six missing native Gmsh libraries",
+      "build_log_sha256": "f1494edaf8f236973ece9929c7dbea1d488b4ddb478f094d076427d88cc232b4"
+    }
+  ],
+  "gpu_tested": false,
+  "physical_qualification": false
+}

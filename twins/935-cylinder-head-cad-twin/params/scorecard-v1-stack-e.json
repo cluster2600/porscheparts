@@ -1,0 +1,96 @@
+{
+  "schema": "935-cad-twin-scorecard/1",
+  "label": "v1-stack-e",
+  "twin_surface_sha256": "459d558a0ed50e012d0d6f65e532ccc10ad400f0c3e8e65efa3be8a7a63558d3",
+  "twin_triangles": 514092,
+  "scan_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "checker": "score_twin.py (independent of producers); NVIDIA Warp mesh_query_point_no_sign on CPU",
+  "hardware_scan_area_excluded_mm2": 6399.3,
+  "scan_to_twin": {
+    "area_mm2": 146967.4,
+    "p50": 0.0963,
+    "p90": 0.5161,
+    "p95": 0.7412,
+    "p99": 1.4812,
+    "max_mm": 48.3925,
+    "area_share_within_mm": {
+      "0.05": 0.31234,
+      "0.1": 0.5116,
+      "0.2": 0.69827,
+      "0.5": 0.89479,
+      "1.0": 0.98115
+    }
+  },
+  "scan_to_twin_by_zone": {
+    "deck_zone": {
+      "area_mm2": 28111.3,
+      "p50": 0.0685,
+      "p90": 0.7706,
+      "p95": 0.9447,
+      "p99": 1.3021,
+      "max_mm": 4.3178,
+      "area_share_within_mm": {
+        "0.05": 0.41192,
+        "0.1": 0.59648,
+        "0.2": 0.70492,
+        "0.5": 0.82377,
+        "1.0": 0.97798
+      }
+    },
+    "fin_zone": {
+      "area_mm2": 93121.0,
+      "p50": 0.1165,
+      "p90": 0.4658,
+      "p95": 0.6166,
+      "p99": 0.9748,
+      "max_mm": 19.8762,
+      "area_share_within_mm": {
+        "0.05": 0.24526,
+        "0.1": 0.44821,
+        "0.2": 0.66641,
+        "0.5": 0.9139,
+        "1.0": 0.99113
+      }
+    },
+    "cam_zone": {
+      "area_mm2": 25735.0,
+      "p50": 0.0601,
+      "p90": 0.4772,
+      "p95": 1.0426,
+      "p99": 10.0835,
+      "max_mm": 48.3925,
+      "area_share_within_mm": {
+        "0.05": 0.44626,
+        "0.1": 0.64824,
+        "0.2": 0.80632,
+        "0.5": 0.90324,
+        "1.0": 0.94851
+      }
+    }
+  },
+  "twin_to_scan": {
+    "area_mm2": 1411845.2,
+    "p50": 2.8763,
+    "p90": 10.0841,
+    "p95": 11.599,
+    "p99": 15.6145,
+    "max_mm": 19.9529,
+    "area_share_within_mm": {
+      "0.05": 0.0353,
+      "0.1": 0.06024,
+      "0.2": 0.09178,
+      "0.5": 0.16029,
+      "1.0": 0.25516
+    }
+  },
+  "twin_area_observed_supported_share": 0.09178,
+  "twin_area_inferred_mm2": 1282266.2,
+  "support_threshold_mm": 0.2,
+  "oracle_check": {
+    "samples": 5000,
+    "max_abs_difference_mm": 0.0006288,
+    "passed": true
+  },
+  "seconds": 22.1,
+  "limits": "distances to the acquired surface only; says nothing about unobserved geometry, physical calibration or function"
+}

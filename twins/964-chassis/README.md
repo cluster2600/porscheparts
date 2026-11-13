@@ -452,7 +452,7 @@ What to survey on the vehicle, in what order and with what record, is in the
 
 `SRC-RENNLIST-993-BODY-DIMENSIONS-PDF` reports a table of points in
 millimetres, not obtained. The full state of the leads is in
-`docs/research/964-combler-le-gap-de-donnees.md`.
+`docs/research/964-closing-the-data-gap.md`.
 
 ## Composite lead
 

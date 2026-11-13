@@ -3,6 +3,14 @@
 > **Archived line.** The 935 scan is kept as a reference morphology, alongside
 > the retired 917 work, and is not pursued as a product. See
 > [ARCHIVE.md](../../docs/ARCHIVE.md).
+>
+> **Scan-repair line frozen on 2026-11-06 (owner decision).** The bottom-up
+> repair studies under `docs/research/935-*` (boundary walks, cavities, strip
+> caps, interwalk bands) are kept unchanged as a record. Do not open new ones.
+> The twin is now rebuilt top-down in
+> [935-cylinder-head-cad-twin](../935-cylinder-head-cad-twin/README.md): features
+> fitted to the scan, tagged hypotheses for unobserved geometry, and an
+> independent scan-to-twin scorecard as the measure of progress.
 
 ## Current scope
 

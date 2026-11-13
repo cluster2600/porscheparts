@@ -1,0 +1,153 @@
+{
+  "schema": "935-cad-twin-thermal-screen/1",
+  "levels": {
+    "surface_1p0mm": {
+      "schema": "935-cad-twin-thermal/1",
+      "label": "T1-mc100-thermal",
+      "case": {
+        "material": "generic cast aluminium alloy (hypothesis; specimen alloy unknown)",
+        "conductivity_W_per_mmK": 0.15,
+        "chamber_wall_temperature_C": 220.0,
+        "film_coefficient_W_per_mm2K": 8e-05,
+        "air_temperature_C": 40.0,
+        "chamber_radius_mm": 46.4,
+        "chamber_z_max_mm": 30.0,
+        "status": "declared hypotheses; uncorrelated with any engine measurement"
+      },
+      "mesh": {
+        "mesher": "Gmsh HXT",
+        "size_max_mm": 3.0,
+        "nodes": 889267,
+        "tets": 4928248,
+        "volume_mm3": 1096787.9,
+        "quality_measure": "minSICN",
+        "quality": {
+          "min": 0.0,
+          "p1": 0.2365,
+          "share_below_0p1": 0.004066,
+          "nonpositive": 0
+        },
+        "seconds": 28.1
+      },
+      "boundary": {
+        "chamber_nodes": 12967,
+        "film_faces": 374027
+      },
+      "solver": {
+        "returncode": 0,
+        "seconds": 161.9,
+        "ccx_version_line": "CalculiX Version 2.21, Copyright(C) 1998-2023 Guido Dhondt"
+      },
+      "temperature_C": {
+        "min": 154.336,
+        "max": 220.0,
+        "mean_nodal": 189.344,
+        "p95": 214.597
+      },
+      "claims": "numerical screen under declared hypotheses; not an engine temperature prediction",
+      "surface": {
+        "pitch_mm": 1.0,
+        "iso_level": 0.5,
+        "triangles": 399142,
+        "watertight": true,
+        "winding_consistent": true,
+        "genus": 10,
+        "volume_mm3": 1096787.9,
+        "discarded_components": 3
+      },
+      "energy_balance": {
+        "film_faces": 374027,
+        "film_area_mm2": 142663.6,
+        "convective_loss_W": 1646.2896,
+        "chamber_inflow_W": 1641.687,
+        "relative_imbalance": 0.002796
+      }
+    },
+    "surface_0p75mm": {
+      "schema": "935-cad-twin-thermal/1",
+      "label": "T1-mc075-thermal",
+      "case": {
+        "material": "generic cast aluminium alloy (hypothesis; specimen alloy unknown)",
+        "conductivity_W_per_mmK": 0.15,
+        "chamber_wall_temperature_C": 220.0,
+        "film_coefficient_W_per_mm2K": 8e-05,
+        "air_temperature_C": 40.0,
+        "chamber_radius_mm": 46.4,
+        "chamber_z_max_mm": 30.0,
+        "status": "declared hypotheses; uncorrelated with any engine measurement"
+      },
+      "mesh": {
+        "mesher": "Gmsh HXT",
+        "size_max_mm": 3.0,
+        "nodes": 1720334,
+        "tets": 9603449,
+        "volume_mm3": 1096995.5,
+        "quality_measure": "minSICN",
+        "quality": {
+          "min": 0.0,
+          "p1": 0.2499,
+          "share_below_0p1": 0.003648,
+          "nonpositive": 0
+        },
+        "seconds": 1142.5
+      },
+      "boundary": {
+        "chamber_nodes": 23102,
+        "film_faces": 683296
+      },
+      "solver": {
+        "returncode": 0,
+        "seconds": 358.3,
+        "ccx_version_line": "CalculiX Version 2.21, Copyright(C) 1998-2023 Guido Dhondt"
+      },
+      "temperature_C": {
+        "min": 154.621,
+        "max": 220.0,
+        "mean_nodal": 188.324,
+        "p95": 214.526
+      },
+      "claims": "numerical screen under declared hypotheses; not an engine temperature prediction",
+      "surface": {
+        "pitch_mm": 0.75,
+        "iso_level": 0.5,
+        "triangles": 728428,
+        "watertight": true,
+        "winding_consistent": true,
+        "genus": 26,
+        "volume_mm3": 1096995.5,
+        "discarded_components": 16
+      },
+      "energy_balance": {
+        "film_faces": 683296,
+        "film_area_mm2": 146759.6,
+        "convective_loss_W": 1682.5846,
+        "chamber_inflow_W": 1679.352,
+        "relative_imbalance": 0.001921
+      }
+    }
+  },
+  "mesh_sensitivity": {
+    "note": "both the surface (geometry resolution) and the mesh change between levels",
+    "mean_nodal_C": [
+      189.344,
+      188.324
+    ],
+    "p95_C": [
+      214.597,
+      214.526
+    ],
+    "min_C": [
+      154.336,
+      154.621
+    ],
+    "heat_W": [
+      1641.687,
+      1679.352
+    ],
+    "mean_relative_difference": -0.00539,
+    "p95_relative_difference": -0.00033,
+    "heat_relative_difference": 0.02294,
+    "min_difference_C": 0.285
+  },
+  "claims": "numerical screen under declared hypotheses; not an engine temperature prediction"
+}

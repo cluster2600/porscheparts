@@ -1,14 +1,36 @@
 <div align="center">
 
-[![F2 sculpted carbon central-cell study with shaped floors, an integrated tunnel, door-entry returns and upper structural paths](twins/964-chassis/sculpted-cell-f2-20261106/media/isometric.png)](twins/964-chassis/sculpted-cell-f2-20261106/media/turntable.mp4)
+![The 964 body shell traced from the workshop manual, turning, coloured by stress under a twisting load](docs/media/diagrams/964-hero.gif)
 
-**[▶ Watch the turntable (MP4)](twins/964-chassis/sculpted-cell-f2-20261106/media/turntable.mp4)** · [Interior, sections, editable CAD and engineering dossier](twins/964-chassis/sculpted-cell-f2-20261106/README.md)
+<sub><i>A computer simulation of a 964 body shell being twisted. Colours show where the stress goes. It is a calculation, not a product.</i></sub>
 
-<sub><i>Current F2 sculpted central-cell design. Images show the full native PicoGK wall surface. Geometry and carbon architecture are assumptions. The native mesh-quality screen rejects 36 collapsed faces, retained in these diagnostic views; vehicle fitment, strength and manufacture remain open.</i></sub>
+**964 monocoque: correcting the dimensional baseline**
+
+The F2 shape study was not constrained to the original body-dimension network.
+It is withdrawn as the current reconstruction baseline.
+
+[Source audit and correction requirements](twins/964-chassis/dimensional-correction-20261106/README.md) · [Original frame-data network](twins/964-chassis/owner-frame-data-20261105/README.md) · [Previous F2 diagnostic images and video](twins/964-chassis/sculpted-cell-f2-20261106/README.md)
+
+[Rear datum correspondence review](twins/964-chassis/rear-datum-readiness-20261106/README.md) · [Carbon elastic reference calculation](twins/964-chassis/material-reference-20261106/README.md)
+
+[Additional rear-layer inspection](twins/964-chassis/rear-bracket-depth-20261107/README.md) · [DDK coverage and 993 configuration constraints](twins/964-chassis/ddk-source-coverage-20261107/README.md)
 
 ![Layer-by-layer metal 3D printing preview of the 993 cooling-fan impeller, with hypothetical support regions](parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif)
 
 <sub><i>A layer-by-layer preview of how the 993 cooling-fan impeller would build up in a metal (LPBF) printer, with guessed support regions. It shows geometry only: it models no process physics, and it is neither a build file nor a release to print.</i></sub>
+
+**935 cylinder head: a metal print build, simulated lump by lump**
+
+<table>
+<tr>
+<td align="center" valign="middle"><a href="twins/935-cylinder-head-cad-twin/README.md#build-screen-the-print-body-grown-lump-by-lump-in-calculix-case-witnesses-record"><img src="twins/935-cylinder-head-cad-twin/media/build-sim.gif" alt="A study body derived from a scanned 935 cylinder head growing on its build plate in 28 steps, coloured by how far its time-averaged temperature sits above the plate; grey columns stand in for supports" width="270"></a></td>
+<td align="center" valign="middle"><a href="twins/935-cylinder-head-cad-twin/README.md#build-screen-the-print-body-grown-lump-by-lump-in-calculix-case-witnesses-record"><img src="twins/935-cylinder-head-cad-twin/media/build-sim-result.png" alt="Left, the finished body on its plate, coloured by the stress left in it at room temperature. Right, the body after release from the plate, its distortion exaggerated twenty times" width="520"></a></td>
+</tr>
+</table>
+
+<sub><i>A computer simulation of a study body, derived from a scanned 935 cylinder head, growing in a metal (LPBF) printer. The animation shows how warm each region runs above its 100 °C plate while the part grows; the grey columns stand in for supports. The still shows the stress left in the part, and its shape once cut from the plate, exaggerated twenty times. With process settings taken from published papers or declared as assumptions, the build takes 43 hours, the hottest region of the part runs 60 to 64 °C above the plate as a time average, and the worst corner ends 1.6 to 2.2 mm out of shape. That last figure still moves with the resolution of the model: it is an order of magnitude, not a prediction. No setting comes from the machine's maker, no support is designed and nothing was printed.</i></sub>
+
+[How the build screen works, and what it does not say](twins/935-cylinder-head-cad-twin/README.md#build-screen-the-print-body-grown-lump-by-lump-in-calculix-case-witnesses-record) · [The CAD twin of the scanned head](twins/935-cylinder-head-cad-twin/README.md)
 
 # porscheparts
 
@@ -89,9 +111,9 @@ For readers assessing the work, this is what the repository shows in practice:
 
 - **Computational design.** Parts are described as code and parameters, not
   drawn by hand, so a design change can be regenerated and compared.
-- **Engineering simulation.** Structural and airflow studies with open-source
-  solvers (CalculiX, OpenFOAM), including mesh checks and comparisons against
-  published reference cases.
+- **Engineering simulation.** Structural, airflow and print-build studies with
+  open-source solvers (CalculiX, OpenFOAM), including mesh checks and
+  comparisons against published reference cases.
 - **Evidence and data governance.** Every source carries its provenance and
   usage rights. Key files are fingerprinted (SHA-256 digests) so that results
   cannot be changed silently. Withdrawn claims stay on record.
@@ -124,7 +146,7 @@ links to the original part.
 <table>
 <tr>
 <td align="center" valign="top" width="33%"><a href="parts/964-central-cell-assumed-f1/README.md"><img src="parts/964-central-cell-assumed-f1/media/preview.png" alt="Concept render of 964 central carbon cell" width="240"></a><br><sub><i>Concept model — not the original part, not a print file</i></sub><br><a href="parts/964-central-cell-assumed-f1/README.md"><b>964 central carbon cell</b></a><br><sub>Design study: blocked until a professional engineering review</sub></td>
-<td align="center" valign="top" width="33%"><a href="parts/964-central-cell-sculpted-f2/README.md"><img src="parts/964-central-cell-sculpted-f2/media/preview.png" alt="Concept render of 964 sculpted central carbon cell" width="240"></a><br><sub><i>Concept model — not the original part, not a print file</i></sub><br><a href="parts/964-central-cell-sculpted-f2/README.md"><b>964 sculpted central carbon cell</b></a><br><sub>Design study: blocked until a professional engineering review</sub></td>
+<td align="center" valign="top" width="33%"><a href="parts/964-central-cell-sculpted-f2/README.md"><img src="parts/964-central-cell-sculpted-f2/media/preview.png" alt="Concept render of Archived F2 sculpted central-cell study" width="240"></a><br><sub><i>Concept model — not the original part, not a print file</i></sub><br><a href="parts/964-central-cell-sculpted-f2/README.md"><b>Archived F2 sculpted central-cell study</b></a><br><sub>Design study: blocked until a professional engineering review</sub></td>
 <td align="center" valign="top" width="33%"><a href="parts/993-body-front-impact-support-alsi10mg-f0-0001/README.md"><img src="parts/993-body-front-impact-support-alsi10mg-f0-0001/media/gyroid.png" alt="Concept render of 993 front impact support" width="240"></a><br><sub><i>Concept model — not the original part, not a print file</i></sub><br><a href="parts/993-body-front-impact-support-alsi10mg-f0-0001/README.md"><b>993 front impact support</b></a><br><sub>Design study: blocked until a professional engineering review</sub></td>
 </tr>
 <tr>
@@ -237,6 +259,7 @@ links to the original part.
 | how to contribute a part or a source | [CONTRIBUTING.md](docs/CONTRIBUTING.md) |
 | the carbon monocoque programme | [docs/MONOCOQUE_964_993_PROGRAMME.md](docs/MONOCOQUE_964_993_PROGRAMME.md) |
 | the engine cooling fan programme | [twins/993-engine-cooling-fan-system-f0/README.md](twins/993-engine-cooling-fan-system-f0/README.md) |
+| the 935 cylinder-head CAD twin and its simulated print build | [twins/935-cylinder-head-cad-twin/README.md](twins/935-cylinder-head-cad-twin/README.md) |
 | the horizontal 935 rotor correction and mesh status | [25 October continuation](docs/research/935-horizontal-cooling/ROOT_MESH_RESUME_20261025.md) |
 | the corrected 935 rotor analysis surface and new fluid input | [bounded analysis checkpoint](docs/research/935-horizontal-cooling/CORRECTED_ANALYSIS_20261025.md) |
 | the original-export-bounded 935 assembly and rotor sweep | [assembly checkpoint](docs/research/935-horizontal-cooling/ORIGINAL_BOUND_ASSEMBLY_20261028.md) |
@@ -280,9 +303,11 @@ lists every image recipe, its lock and its workflow.
 
 ## Repository map
 
-The top level stays flat on purpose: locked container recipes and frozen
-evidence files cite these paths, so folders are not moved
-([AGENTS.md](AGENTS.md)).
+Most top-level folders stay where they are on purpose: locked container
+recipes and frozen evidence files cite their paths, so they are not moved
+([AGENTS.md](AGENTS.md)). Only paths nothing pinned depends on were
+consolidated: the requirement sets into `requirements/` and the simulation
+case decks into `models/simulation/` (2026-11-09).
 
 | folder | what it holds |
 |---|---|
@@ -290,18 +315,21 @@ evidence files cite these paths, so folders are not moved
 | [`parts/`](parts/) | one folder per catalogued part: geometry, README and public media |
 | [`components/`](components/) | shared interface proxies (for example Fuchs wheel hubs) used by parts and images |
 | [`twins/`](twins/) | digital twins and their workstreams: code, contracts and evidence |
-| [`models/`](models/) | larger reconstruction models (917 engine, horizontal fan) |
+| [`models/`](models/) | larger reconstruction models (917 engine, horizontal fan) and the tracked simulation case decks in [`models/simulation/`](models/simulation/) |
 | [`manufacturing/`](manufacturing/) | manufacturing runtimes and process workflows |
 | [`benchmarks/`](benchmarks/) | solver and process benchmarks (LPBF, GPU geometry, free tools) |
 | [`outils/`](outils/README.md) | frozen: the F25 OpenFOAM verification benchmark, whose path is pinned by two CFD image recipes; new benchmarks go in `benchmarks/` |
 | [`containers/`](containers/) | reproducible, digest-locked images for heavy compute |
 | [`deploy/`](deploy/) | host and cloud deployment (Intel hosts, OpenBao secrets, Vast) |
 | [`training/`](training/) | local model training runs and their recorded evaluation |
-| [`work/`](work/) | in-progress engine and simulation workstreams |
 | [`scripts/`](scripts/) | generators, validators and audit scripts run by `make` |
 | [`tests/`](tests/) | the test suite run by `make check` |
+| [`requirements/`](requirements/) | the pinned requirement sets CI and `make check-setup` install |
 | [`docs/`](docs/) | documentation, research notes, architecture and media |
 | [`archive/`](archive/) | archived studies kept for provenance |
+
+`work/` is git-ignored local scratch for runs and private outputs; nothing in
+it is tracked.
 
 ## Disclaimer and licence
 

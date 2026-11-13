@@ -1,0 +1,160 @@
+{
+  "schema": "935-cad-twin-am-build-witness/1",
+  "what": "two lumped layers added from a deposition file onto a substrate, adiabatic, constant properties; once on the solver's own mesh and once on an imported hexahedral mesh, as the head will be",
+  "case": {
+    "length_mm": 20.0,
+    "width_mm": 8.0,
+    "height_mm": 12.0,
+    "cell_mm": 2.0,
+    "substrate_height_mm": 4.0,
+    "layer_height_mm": 4.0,
+    "deposition_times_s": [
+      1.0,
+      6.0
+    ],
+    "box_inset_mm": 0.1,
+    "substrate_temperature_K": 300.0,
+    "deposition_temperature_K": 500.0,
+    "duration_s": 11.0,
+    "time_step_s": 0.005,
+    "output_every_steps": 100,
+    "tolerance_volume_mm3": 0.001,
+    "tolerance_mean_temperature_K": 0.05,
+    "tolerance_uniformity_K": 0.5
+  },
+  "material": "generic AlSi10Mg-class solid (declared hypothesis; no alloy, powder lot or heat treatment is established)",
+  "image": {
+    "image": "rombur/adamantine:1.1",
+    "image_id": "sha256:ac735f9b6fec7626e79e91061cbd03b6274478fbafcaf2dcbe078c042affc9fa",
+    "source_commit_in_image": "a2e3a413d359c328510e14b6c545b448f9ce0c2f"
+  },
+  "cases": {
+    "built_in_mesh": {
+      "solver": {
+        "returncode": 0,
+        "wall_seconds": 1.3,
+        "mpi_ranks": 1
+      },
+      "outputs_read": 23,
+      "verdict": {
+        "expected": [
+          {
+            "from_s": 0.0,
+            "volume_mm3": 640.0,
+            "nominal_mean_K": 300.0,
+            "nodal_mean_K": 300.0
+          },
+          {
+            "from_s": 1.0,
+            "volume_mm3": 1280.0,
+            "nominal_mean_K": 400.0,
+            "nodal_mean_K": 375.0
+          },
+          {
+            "from_s": 6.0,
+            "volume_mm3": 1920.0,
+            "nominal_mean_K": 433.333333,
+            "nodal_mean_K": 406.25
+          }
+        ],
+        "largest_volume_error_mm3": 9.3e-05,
+        "largest_mean_temperature_error_K": 0.0,
+        "field_at_the_end_of_each_interval": [
+          {
+            "interval_from_s": 0.0,
+            "at_s": 0.5,
+            "expected_nodal_K": 300.0,
+            "nominal_K": 300.0,
+            "computed_K": 300.0,
+            "spread_K": 0.0
+          },
+          {
+            "interval_from_s": 1.0,
+            "at_s": 5.5,
+            "expected_nodal_K": 375.0,
+            "nominal_K": 400.0,
+            "computed_K": 375.0,
+            "spread_K": 0.0
+          },
+          {
+            "interval_from_s": 6.0,
+            "at_s": 11.0,
+            "expected_nodal_K": 406.25,
+            "nominal_K": 433.333333,
+            "computed_K": 406.25,
+            "spread_K": 0.0
+          }
+        ],
+        "heat_carried_by_a_layer_over_nominal": 0.75,
+        "passed": true
+      }
+    },
+    "imported_mesh": {
+      "solver": {
+        "returncode": 0,
+        "wall_seconds": 1.3,
+        "mpi_ranks": 1
+      },
+      "outputs_read": 23,
+      "verdict": {
+        "expected": [
+          {
+            "from_s": 0.0,
+            "volume_mm3": 640.0,
+            "nominal_mean_K": 300.0,
+            "nodal_mean_K": 300.0
+          },
+          {
+            "from_s": 1.0,
+            "volume_mm3": 1280.0,
+            "nominal_mean_K": 400.0,
+            "nodal_mean_K": 375.0
+          },
+          {
+            "from_s": 6.0,
+            "volume_mm3": 1920.0,
+            "nominal_mean_K": 433.333333,
+            "nodal_mean_K": 406.25
+          }
+        ],
+        "largest_volume_error_mm3": 9.3e-05,
+        "largest_mean_temperature_error_K": 0.0,
+        "field_at_the_end_of_each_interval": [
+          {
+            "interval_from_s": 0.0,
+            "at_s": 0.5,
+            "expected_nodal_K": 300.0,
+            "nominal_K": 300.0,
+            "computed_K": 300.0,
+            "spread_K": 0.0
+          },
+          {
+            "interval_from_s": 1.0,
+            "at_s": 5.5,
+            "expected_nodal_K": 375.0,
+            "nominal_K": 400.0,
+            "computed_K": 375.0,
+            "spread_K": 0.0
+          },
+          {
+            "interval_from_s": 6.0,
+            "at_s": 11.0,
+            "expected_nodal_K": 406.25,
+            "nominal_K": 433.333333,
+            "computed_K": 406.25,
+            "spread_K": 0.0
+          }
+        ],
+        "heat_carried_by_a_layer_over_nominal": 0.75,
+        "passed": true
+      }
+    }
+  },
+  "passed": true,
+  "found_on_the_way": [
+    "a deposition box whose face lies on a cell boundary also activates the cells beyond it: boxes are inset",
+    "new nodes take the deposition temperature and interface nodes keep theirs: a layer of n cell rows carries (n - 0.5) / n of its nominal heat",
+    "this build's input validation refuses a deposition file unless a second, literal key names it"
+  ],
+  "claims": "a software witness of material deposition and energy conservation on a block; no laser, powder, mechanics, process or part is qualified"
+}

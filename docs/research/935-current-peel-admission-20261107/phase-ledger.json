@@ -1,0 +1,63 @@
+{
+  "schema": "935-current-peel-phase-ledger-1",
+  "scope": "Four fully inspected numerical correction batches and a complete zero-successor census; functional faithful-head goal remains open",
+  "private_pre_execution_ledger_sha256": "8f96516578d50f6aa728e17c158043b1d1ed4d21b9db42cac790449238ba9d47",
+  "runtime": {
+    "scientific_python": "3.12.13",
+    "numpy": "2.5.4",
+    "gmsh": "4.12.1",
+    "gmsh_module_sha256": "fa69936fc45646eca8b29ab0fd9e32ebaf45216414cbc75c380b4c0db7b6f485",
+    "gmsh_binary_sha256": "0ad15c280dc81268f4d9b9612a210a6fb9121b09b83b3354cf58489743991603",
+    "native_scientific_site_explicitly_reused": true
+  },
+  "phases": [
+    {
+      "id": "P0",
+      "inputs": "Immutable kernel mesh, full condition/volume/native records and complete surface/curve/cap lineage",
+      "command": "Hash consumed payloads against published source-capsule manifests",
+      "expected_outputs": "Bound private jobs and source identities",
+      "checks": "Source hashes, units policy, failed absolute quality and diagnostic-only admission",
+      "state": "complete"
+    },
+    {
+      "id": "P1-P3",
+      "inputs": "Current exact parent and complete severe-cell census for each batch",
+      "commands": [
+        "python -B audit_current_peels.py --job PRIVATE_JOB --output NEW_ADMISSION",
+        "python -B verify_current_peels.py --job PRIVATE_JOB --output NEW_VERIFICATION",
+        "python -B validate_build_final.py CANDIDATE_SURFACE NEW_SURFACE_INSPECTION",
+        "python -B inspect_interval_volume.py --mesh CANDIDATE --surface SURFACE --surface-report INSPECTION --frozen-inspector PINNED_HELPER --output NEW_VOLUME_INSPECTION",
+        "Apply the published identity-only condition patch; run full census and exact deletion-prediction comparison",
+        "python -B export_native_mesh.py --mesh CANDIDATE --input-report VOLUME_INSPECTION --surface SURFACE --output NEW_NATIVE_READBACK"
+      ],
+      "expected_outputs": "Independent exact patches; actual candidate arrays; complete surface, volume, condition and native artifacts",
+      "checks": "Controls first; all points retained; all curves/caps constrained; full native intersections; every cell sign and face pair; exact readbacks; unchanged thresholds",
+      "state": "complete_four_batches",
+      "limits": "600 seconds per ledger; 4 or 12 GiB sampled direct child RSS; 4 GiB disk floor"
+    },
+    {
+      "id": "P3-C",
+      "inputs": "All four actual candidates, deltas, native MSH/3MF and source/report identities",
+      "command": "python -B check_peel_chain.py --job PRIVATE_CHAIN_JOB --output NEW_CHAIN_CHECK",
+      "expected_outputs": "Whole-chain parent-subset and exact cumulative volume-loss proof",
+      "checks": "Ancestry/refusal fixtures; exact source-bit and tuple identity; approved surface-change coverage; independently recomputed Fraction volume",
+      "state": "complete"
+    },
+    {
+      "id": "P3-F",
+      "inputs": "All 12811 remaining severe cells and final complete boundary",
+      "command": "Apply post-fourth-availability.diff; run the unchanged exact read-only audit",
+      "expected_outputs": "Zero-successor census with complete refusal counts",
+      "checks": "No empty candidate or identical native rerun; no physics admission inferred",
+      "state": "complete_zero_admissible_peels"
+    },
+    {
+      "id": "P4",
+      "inputs": "Terminal private evidence, source replay controls and source-preservation checks",
+      "command": "make check; publish English source, scalar outcomes and manifest hashes",
+      "expected_outputs": "Reviewable GitHub increment",
+      "checks": "5849 tests, 421 skips; raw/private data excluded; engine/manufacturing gates remain false",
+      "state": "local_checks_complete_github_publication_pending"
+    }
+  ]
+}

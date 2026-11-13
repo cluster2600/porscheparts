@@ -1,0 +1,167 @@
+{
+ "schema": "935-cad-twin-build-sim-case/1",
+ "date": "2026-11-12",
+ "rule": "Every value here is a declared hypothesis for a build screen. Where a value comes from a publication the source is named, with whether the number was read in the source itself; none was measured for this study, and no maker publishes the parameter set of the machine.",
+ "build": {
+  "direction": "-y",
+  "why": "flange y+ on the plate: the build the layer screen sliced, and the direction with the least downward-facing area in both geometric screens"
+ },
+ "process": {
+  "layer_thickness_mm": 0.05,
+  "laser_power_W": 350.0,
+  "volumetric_energy_density_J_mm3": 30.7,
+  "parameter_source": "Nur, Soni, Awd, Walther, Materials 16:6334 (2023): 350 W, 1200 mm/s, hatch 0.19 mm, layer 0.05 mm on an SLM 250 HL, density above 99.5%; read in the source. 350 / (1200 x 0.19 x 0.05) = 30.7 J/mm3. Not the parameter set of the EP-M300, which is not published",
+  "lasers": 1,
+  "lasers_note": "the EP-M300 is offered with 1, 2 or 4 lasers of 500 W; one laser at 350 W is the slowest build and the lowest mean power",
+  "absorptivity": 0.4,
+  "absorptivity_note": "declared. Published values: 0.53 (pure Al) and 0.58 (Al 6061) for static powder by calorimetry, Rubenchik et al., Applied Optics 2016, read; 0.13 to 0.38 for AlSi10Mg inferred from lack-of-fusion boundaries, Solyaev et al., arXiv:2507.23422, read. The temperature rise scales linearly with this number",
+  "recoating_s_per_layer": 12.25,
+  "recoating_source": "Sedlacek et al., Materials 16:5422 (2023), Table 4, simulation inputs for an EOS M290; read. No maker states a recoating time"
+ },
+ "plate": {
+  "temperature_K": 373.15,
+  "temperature_note": "declared. Published platform temperatures for AlSi10Mg run from 35 C (EOS, 30 um process) and 100 C (EOS, 60 um process) to 120-200 C in papers; the EP-M300 value is not published",
+  "thickness_mm": 24.0,
+  "thickness_note": "declared; the plate of the machine is not described on its datasheet",
+  "youngs_modulus_MPa": 70000.0,
+  "poisson_ratio": 0.33,
+  "thermal_expansion_per_K": 2.35e-05
+ },
+ "supports": {
+  "solid_fraction": 0.2,
+  "note": "declared. No support is designed. A support cell carries this share of the conductivity, density, stiffness and yield of the alloy, and is melted in this share"
+ },
+ "material": {
+  "label": "AlSi10Mg as built (the alloy the screens rank as the documented middle ground; not a selection of a powder lot or a heat treatment)",
+  "density_kg_m3": 2670.0,
+  "density_source": "EOS process data sheet AlSi10Mg, M 290 30 um: at least 2.67 g/cm3; read",
+  "specific_heat_J_kgK": 900.0,
+  "specific_heat_note": "declared; 900 to 922 J/(kg K) in the sources read (Sculpteo data sheet, Solyaev et al.); no table against temperature was found",
+  "conductivity_W_mK": 105.0,
+  "conductivity_source": "EOS process data sheet, as manufactured: 100 (vertical) and 110 (horizontal) W/(m K); read. Their mean",
+  "thermal_expansion_per_K": 2.35e-05,
+  "thermal_expansion_source": "Yang et al., J. Mater. Res. 33 (2018) 4040: mean 23.5 ppm/K from room temperature to 350 C; read",
+  "poisson_ratio": 0.33,
+  "youngs_modulus_MPa_by_temperature_C": [
+   [
+    20,
+    73300
+   ],
+   [
+    125,
+    67000
+   ],
+   [
+    250,
+    51100
+   ],
+   [
+    600,
+    51100
+   ]
+  ],
+  "youngs_modulus_source": "Lehmhus et al., Materials 15:7386 (2022), Table A2, mean of the three build angles at room temperature, 125 and 250 C; read. Held constant above 250 C, where the source could not determine it",
+  "yield_MPa_by_temperature_C": [
+   [
+    25,
+    322
+   ],
+   [
+    100,
+    298
+   ],
+   [
+    200,
+    236
+   ],
+   [
+    300,
+    143
+   ],
+   [
+    400,
+    25
+   ],
+   [
+    600,
+    25
+   ]
+  ],
+  "yield_source": "Cao et al., J. Mater. Eng. Perform. 2021, as built, as quoted by Lehmhus et al.; NOT read in the source (paywalled). Held at the 400 C value above 400 C",
+  "hardening_modulus_MPa": 700.0,
+  "hardening_note": "declared, about 1% of the modulus, for the solver; the yield curve itself is perfect plasticity",
+  "stress_free_temperature_K": 836.15,
+  "stress_free_source": "solidus 563 C by DSC on powder, Solyaev et al., arXiv:2507.23422; read"
+ },
+ "variants": {
+  "yield-stress-relieved": {
+   "yield_MPa_by_temperature_C": [
+    [
+     20,
+     155.3
+    ],
+    [
+     125,
+     154.0
+    ],
+    [
+     250,
+     134.8
+    ],
+    [
+     450,
+     29.0
+    ],
+    [
+     600,
+     29.0
+    ]
+   ],
+   "source": "Lehmhus et al., Table A2, stress relieved 2 h at 350 C, mean of the three build angles; read. The 450 C points rest on two samples each"
+  },
+  "stress-free-673K": {
+   "stress_free_temperature_K": 673.15,
+   "note": "declared: 400 C, where the yield curve reaches its floor; shows how much the result depends on the stress-free temperature"
+  }
+ },
+ "cooldown": {
+  "room_temperature_K": 293.15
+ },
+ "levels": {
+  "c4-l8": {
+   "cell_mm": 4.0,
+   "cell_rows_per_lump": 2,
+   "plate_margin_cells": 2,
+   "thermal_increments_per_lump": 8,
+   "memory_cap": "6g"
+  },
+  "c4-l4": {
+   "cell_mm": 4.0,
+   "cell_rows_per_lump": 1,
+   "plate_margin_cells": 2,
+   "thermal_increments_per_lump": 8,
+   "memory_cap": "6g"
+  },
+  "c3-l9": {
+   "cell_mm": 3.0,
+   "cell_rows_per_lump": 3,
+   "plate_margin_cells": 3,
+   "thermal_increments_per_lump": 8,
+   "memory_cap": "10g"
+  },
+  "c2-l8": {
+   "cell_mm": 2.0,
+   "cell_rows_per_lump": 4,
+   "plate_margin_cells": 4,
+   "thermal_increments_per_lump": 8,
+   "memory_cap": "8g",
+   "thermal_only": "its mechanical model has 790,000 unknowns, out of reach of the single-thread direct solver on this host"
+  }
+ },
+ "not_modelled": [
+  "the melt pool, the scan path and any peak temperature: the heat of a lump is spread over its volume and its real time",
+  "heat loss to powder and gas: all heat leaves through the plate, so the temperatures are an upper bound for this input",
+  "a designed support: columns of homogenised cells stand in for one",
+  "creep, stress relief during the build, phase change, and any calibration against a printed coupon"
+ ]
+}

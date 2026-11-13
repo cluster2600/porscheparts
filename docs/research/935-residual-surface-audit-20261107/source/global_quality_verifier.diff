@@ -1,0 +1,12 @@
+--- a/verify_surface_peels.py
++++ b/global_quality_verifier.py
+@@ -59,7 +59,8 @@
+     for tri, normal in zip(old+new, normals):
+         edge_sum = sum(inner(difference(points[tri[a]], points[tri[b]]), difference(points[tri[a]], points[tri[b]])) for a, b in ((0, 1), (1, 2), (2, 0)))
+         quality.append(12*inner(normal, normal)/(edge_sum*edge_sum))
+-    assert min(quality[2:]) >= min(quality[:2]) and min(quality[2:]) >= F.from_float(.01)**3
++    # The caller separately proves an unchanged cap witness below this threshold.
++    assert min(quality[2:]) >= F.from_float(.01)**2
+     return deviation, det/6, old, new
+ 
+ 

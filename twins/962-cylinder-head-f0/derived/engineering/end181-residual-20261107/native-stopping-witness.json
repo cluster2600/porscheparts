@@ -1,0 +1,176 @@
+{
+  "scope": "one-DOF synthetic PETSc stopping witness, not an END181 correction",
+  "phase_ids": [
+    "lpbf_build",
+    "lpbf_release"
+  ],
+  "source": "twins/962-cylinder-head-f0/source/physics_witness/petsc_linear_stopping.c",
+  "source_sha256": "9188d40d2465aabd645d95ce9055bfc6d8e472d0f4a71d39fb46fb4d17b68d29",
+  "binary_sha256": "9d1e4d21c713b3d2cb18be7cd7e6f8b2f23ce4874caba93dacd2adc7f82c7109",
+  "runner_sha256": "8603eda4f45439ce4afec89d8aaa903705ecf9a5abef3a11098a721db5caf610",
+  "compile_receipt_sha256": "f299acf95562a569a0a1f36e25e1213ca7e0546e74de1a0d5d50201762911995",
+  "upstream_sources": [
+    {
+      "file": "PetscSupport.C.exact",
+      "url": "https://github.com/idaholab/moose/blob/7c06bdcefd/framework/src/utils/PetscSupport.C",
+      "git_blob": "894e70e69f826e3f99053c3f07c4929b77f3eac1",
+      "sha256": "6971295c95080db5f4a583ff1485e9b26a9385ebe11fe83d1b2e568ba9af78f0",
+      "bytes": 47924
+    },
+    {
+      "file": "ksponly.c.exact",
+      "url": "https://github.com/petsc/petsc/blob/v3.25.4/src/snes/impls/ksponly/ksponly.c",
+      "git_blob": "a2023a1e9e4cfa3215ba7430cce1e89653f3a493",
+      "sha256": "3690304f4fbf0b2d373c2c118de75c11bc864b7af9278b6389b0703143106740",
+      "bytes": 4897
+    }
+  ],
+  "runtime_files": [
+    {
+      "path": "include/petscconf.h",
+      "exists": true,
+      "expected_sha256": "d94fb68c8c27ac0c5190039866fe34fd019ce4f7e77ba4ed51fc65c2328512bd",
+      "sha256": "d94fb68c8c27ac0c5190039866fe34fd019ce4f7e77ba4ed51fc65c2328512bd",
+      "bytes": 9305,
+      "matches": true
+    },
+    {
+      "path": "lib/libfabric.1.dylib",
+      "exists": true,
+      "expected_sha256": "2046a60ccbcf5dfc906251f0e08ca964c27b3499b7800d4de1edbbf238115aa3",
+      "sha256": "2046a60ccbcf5dfc906251f0e08ca964c27b3499b7800d4de1edbbf238115aa3",
+      "bytes": 965072,
+      "matches": true
+    },
+    {
+      "path": "lib/libmpi.12.dylib",
+      "exists": true,
+      "expected_sha256": "a61e0531bbd5e7ba81b2326004245b84b99fda8756a3f57580c03374f8353eb1",
+      "sha256": "a61e0531bbd5e7ba81b2326004245b84b99fda8756a3f57580c03374f8353eb1",
+      "bytes": 2093552,
+      "matches": true
+    },
+    {
+      "path": "lib/libpetsc.3.25.4.dylib",
+      "exists": true,
+      "expected_sha256": "5893a96e09b00eeb2cc724d4d2f9278756082dbfb101d3e892b90bc89f373e74",
+      "sha256": "5893a96e09b00eeb2cc724d4d2f9278756082dbfb101d3e892b90bc89f373e74",
+      "bytes": 27359296,
+      "matches": true
+    },
+    {
+      "path": "lib/libpmpi.12.dylib",
+      "exists": true,
+      "expected_sha256": "7626555b9c94e8870f702baf983cf4faedacfa80873c5878275bbebb09468d87",
+      "sha256": "7626555b9c94e8870f702baf983cf4faedacfa80873c5878275bbebb09468d87",
+      "bytes": 10983760,
+      "matches": true
+    }
+  ],
+  "runtime_file_identity_receipt_sha256": "dfec3a543700c5ae70091addca11651968a65b0486d50c36f43e9543c18ef224",
+  "environment": {
+    "FI_PROVIDER": "tcp",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "DYLD_PRINT_LIBRARIES": "1"
+  },
+  "isolated_options": "-skip_petscrc",
+  "matrix": [
+    [
+      2
+    ]
+  ],
+  "rhs": [
+    1
+  ],
+  "initial_solution": [
+    0
+  ],
+  "ksp": {
+    "type": "richardson",
+    "preconditioner": "none",
+    "scale": 0.25,
+    "convergence_test": "skip",
+    "maximum_iterations": 3
+  },
+  "snes_tolerances": {
+    "absolute": 1e-10,
+    "relative": 0,
+    "step": 0,
+    "maximum_iterations": 30
+  },
+  "cases": {
+    "ksponly": {
+      "execution_receipt_sha256": "4fc6af99eefd4a27dac335e836e7dba010bd16b83c6d082356b96dd90e3cf98d",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.7592090419493616,
+      "limit_seconds": 20,
+      "process_group_absent": true,
+      "stdout_sha256": "73f83896931f413c987edf797e13bae9d9a1967ccb51d750d0142fce4e12f7c1",
+      "stderr_sha256": "7af46d94976d50b6eef384d2cbcab594b91f8ebe892aa33a17a65d677333354d",
+      "result": {
+        "mode": "ksponly",
+        "reason": 5,
+        "iterations": 1,
+        "independent_residual": 0.125,
+        "absolute_target": 1e-10
+      }
+    },
+    "newtonls": {
+      "execution_receipt_sha256": "8293acc8ebffb7dab04682ab943fc57f12cd0f4b4682fc654454944b8151d9de",
+      "exit_code": 0,
+      "timed_out": false,
+      "elapsed_seconds": 0.21048341691493988,
+      "limit_seconds": 20,
+      "process_group_absent": true,
+      "stdout_sha256": "5fb04ce7e3bc9ef3cf8bd29b619b2f29abd77cb073e3807f42e90f5044e191c2",
+      "stderr_sha256": "46d7d9302c00069dc6d4f85ec43340e16c0782f50ef4072b154610e1dca668c6",
+      "result": {
+        "mode": "newtonls",
+        "reason": 2,
+        "iterations": 12,
+        "independent_residual": 1.4551915228366852e-11,
+        "absolute_target": 1e-10
+      }
+    }
+  },
+  "retained_failed_attempts": [
+    {
+      "attempt": "solver-witness",
+      "receipt_sha256": "486467acb3497f4167b1f35d37163bebb9f4cea5f3c6d5aebc727efb206c1d23",
+      "exit_code": -9,
+      "timed_out": true,
+      "process_group_absent": true
+    },
+    {
+      "attempt": "solver-witness-shutdown-trace",
+      "receipt_sha256": "30a2a6eac90f128894fa04ff782bcb7aa053d79429a9b582e57b66fb8f52d2a9",
+      "exit_code": -9,
+      "timed_out": true,
+      "process_group_absent": true
+    },
+    {
+      "attempt": "solver-witness-isolated-options",
+      "receipt_sha256": "5b51e6b1da4b7ed4cf323fd376c63c6bbfde89dd3dd1463b17ddb172e7423f87",
+      "exit_code": -9,
+      "timed_out": true,
+      "process_group_absent": true
+    },
+    {
+      "attempt": "solver-finalize-sample",
+      "receipt_sha256": "5ddde9cb43dbdbea1833c84db4664ec3708f659c127b0e536d5c1f2828b52e07",
+      "exit_code": -9,
+      "timed_out": true,
+      "process_group_absent": true
+    }
+  ],
+  "shutdown_stack_sample_sha256": "e1d8dcf333e00997f92be8180c73274fe6b91c8a51450290494707c009419ec8",
+  "shutdown_observation": "MPI_Finalize -> MPIDI_OFI_mpi_finalize_hook -> libfabric sock progress with default provider; explicit original FI_PROVIDER=tcp restores clean termination.",
+  "coupon_solver_rerun": false,
+  "coupon_root_cause_accepted": false,
+  "independent_engineering_review": false,
+  "physical_qualification": false,
+  "manufacturing_authorized": false
+}

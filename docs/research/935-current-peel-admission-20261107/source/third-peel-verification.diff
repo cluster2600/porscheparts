@@ -1,0 +1,11 @@
+--- verify_current_peels.py
++++ verify_round_003.py
+@@ -39,7 +39,7 @@
+     proposal = proposal_root/'private-admitted-peels.npz'
+     assert admission['source_sha256'] == job['audit_source_sha256']
+     assert sha(proposal) == admission['private_proposals_sha256']
+-    assert sha(job['mesh']) == admission['input_mesh_sha256'] == 'd618763474f2eeb7bf680ce18f6f2efce22795e538263b7dfc639ffb68be62c5'
++    assert sha(job['mesh']) == admission['input_mesh_sha256'] == 'be5364881b3960377f90ce7a5cbd17a150ebd660fe3aef185ecc56e123e91175'
+     with np.load(proposal, allow_pickle=False) as data:
+         ids, slots, rows = data['cell_ids'], data['boundary_slots'], data['source_surface_face_ids']
+     assert len(ids) == admission['vertex_disjoint_peels_admitted'] > 0

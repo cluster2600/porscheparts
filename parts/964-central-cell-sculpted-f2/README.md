@@ -2,7 +2,7 @@
 
 <div align="center">
 
-# 964 sculpted central carbon cell, F2 assumption-only study
+# Archived F2 sculpted central-cell study
 
 **`964-CENTRAL-CELL-SCULPTED-F2`** · Porsche 964 · 1989–1994
 
@@ -22,12 +22,12 @@
 <td width="50%" valign="top">
 <b>Original part</b><br><br>
 The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
-↗ <a href="https://github.com/cluster2600/porscheparts/tree/main/twins/964-chassis/sculpted-cell-f2-20261106">Owner-authorized sculpted central-cell study</a><br>
+↗ <a href="https://github.com/cluster2600/porscheparts/tree/main/twins/964-chassis/sculpted-cell-f2-20261106">Historical owner-authorised F2 sculpted central-cell study</a><br>
 ↗ <a href="https://de.scribd.com/document/610802441/Porsche-911-1990-DE">Original Porsche 911 German 1990 brochure, nominal technical table reproduced on Scribd</a><br>
 </td>
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
-<img src="media/preview.png" alt="Concept CAD block for 964 sculpted central carbon cell, F2 assumption-only study" width="340"><br>
+<img src="media/preview.png" alt="Concept CAD block for Archived F2 sculpted central-cell study" width="340"><br>
 <sub>Concept CAD block, 2432.1 × 1590.9 × 1155.4 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
@@ -37,11 +37,11 @@ The original part is documented — pictures, catalogue entries or published dat
 
 ## What it is
 
-Independently authored curved central-cell concept with paired floor bays, a changing service tunnel, stepped closed sills, scuttle and rear returns, pillar feet, seat-support regions and upper load-path members. Shape, material, module reservations and load introductions remain declared hypotheses; this is not a measured donor reconstruction or a commercial monocoque copy.
+Archived and withdrawn as the current reconstruction baseline on 6 November 2026. F2 generated free floor and sill profiles without binding them to the original body-dimension network. The retained curved central-cell geometry and diagnostic media document this rejected assumption study; they do not represent a corrected donor reconstruction, measured fitment or a commercial monocoque copy.
 
 ## What it does on the car
 
-Assumption-only central-cell architecture, native geometry and conditional structural studies; no vehicle fitment, manufacture or road/track release
+Archived diagnostic assumption study, withdrawn as the current reconstruction baseline; retained for traceability only. No vehicle fitment, manufacture or road/track release.
 
 ## At a glance
 

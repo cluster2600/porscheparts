@@ -1,0 +1,16 @@
+--- a/audit_surface_peels_v2.py
++++ b/global_quality_operator.py
+@@ -72,10 +72,9 @@
+         lengths = sum(dot(sub(p[tri[a]], p[tri[b]]), sub(p[tri[a]], p[tri[b]]))
+                       for a, b in ((0, 1), (1, 2), (2, 0)))
+         quality.append(Q(12*dot(normal, normal), lengths*lengths))
+-    if min(quality[2:]) < min(quality[:2]):
+-        return "triangle_quality_worsens", None
+-    if min(quality[2:]) < Q.from_float(.01)**3:
+-        return "new_forced_face", None
++    # Global minimum protection additionally requires the unchanged cap witness.
++    if min(quality[2:]) < Q.from_float(.01)**2:
++        return "new_warning_face", None
+     return "admitted_geometry", {"deviation": deviation,
+         "removed_volume": Q(determinant, 6*denominator**3), "old": old, "new": new}
+ 

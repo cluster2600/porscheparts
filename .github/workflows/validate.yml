@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   check:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # Cold checkout, the full test suite and pinned image pulls exceed 10 minutes.
     timeout-minutes: 20
     steps:
@@ -23,19 +23,261 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install native geometry and rendering libraries
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libgl1 libglu1-mesa libegl1 libegl-mesa0 g++ libcgal-dev=5.6-1build3 calculix-ccx=2.21-1
+
       - name: Install numerical test dependencies
-        run: python -m pip install --disable-pip-version-check -r requirements-check.txt
+        run: python -m pip install --disable-pip-version-check -r requirements/requirements-check.txt
 
       - name: Install pinned native geometry oracle
         run: >-
           python -m pip --isolated install --disable-pip-version-check
           --index-url https://pypi.org/simple --no-deps --only-binary=:all:
           --require-hashes --keyring-provider disabled
-          -r requirements-check-oracle.txt
+          -r requirements/requirements-check-oracle.txt
+
+      - name: Set up the .NET preflight runtime
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.319"
+
+      - name: Build the executables for input rejection tests
+        run: |
+          dotnet build twins/vehicle-911-917/picogk/Vehicle911917Packaging.csproj --nologo
+          test -f twins/vehicle-911-917/picogk/bin/Debug/net9.0/Vehicle911917Packaging.dll
+          dotnet build twins/bionic-turbo-f0/assembly/source/Assembly.csproj --configuration Release --nologo
+          test -f twins/bionic-turbo-f0/assembly/source/bin/Release/net9.0/Assembly.dll
+
+      - name: Run the legacy OpenUSD authoring controls in isolation
+        run: |
+          python -m venv "$RUNNER_TEMP/usd255"
+          "$RUNNER_TEMP/usd255/bin/python" -m pip install --only-binary=:all: --no-deps usd-core==25.5.1
+          "$RUNNER_TEMP/usd255/bin/python" -m pip check
+          "$RUNNER_TEMP/usd255/bin/python" -c 'from pxr import Usd; assert Usd.GetVersion() == (0, 25, 5)'
+          "$RUNNER_TEMP/usd255/bin/python" -m unittest discover -s tests -p 'test_m64_openusd.py' -v
+
+      - name: Check CPU triangle-area precision in isolation
+        run: |
+          python -m venv "$RUNNER_TEMP/torch-cpu"
+          "$RUNNER_TEMP/torch-cpu/bin/python" -m pip install --only-binary=:all: numpy==2.2.6
+          "$RUNNER_TEMP/torch-cpu/bin/python" -m pip install --only-binary=:all: --index-url https://download.pytorch.org/whl/cpu torch==2.10.0
+          "$RUNNER_TEMP/torch-cpu/bin/python" -m pip check
+          "$RUNNER_TEMP/torch-cpu/bin/python" -c 'import torch; assert torch.__version__ == "2.10.0+cpu"; assert torch.version.cuda is None'
+          "$RUNNER_TEMP/torch-cpu/bin/python" -m unittest discover -s tests -p 'test_m64_triangle_area_precision.py' -v
+
+      - name: Fetch the reviewed immutable DfAM script
+        run: |
+          curl --fail --silent --show-error --location --retry 3 https://raw.githubusercontent.com/earthtojake/text-to-cad/b10144ad98616fa7156f655cbd2aba0091216d40/skills/dfam-check/scripts/dfam_tool.py -o "$RUNNER_TEMP/dfam_tool.py"
+          echo "48b3cbcfe55f7f02d59bb7b8030d9384e04e032d012eed0af0203bb7989e44a6  $RUNNER_TEMP/dfam_tool.py" | sha256sum --check
+          echo "M64_DFAM_TOOL=$RUNNER_TEMP/dfam_tool.py" >> "$GITHUB_ENV"
+
+      - name: Build the retained CGAL intersection auditor
+        run: |
+          echo "476e056e35bb98f32d9d26ef8ba81f9c90ac7464f4af8ad5d76b92fa44f2689f  twins/m64-cylinder-head/source/wholebody/surface_intersections_cgal.cpp" | sha256sum --check
+          g++ -std=c++20 -O2 twins/m64-cylinder-head/source/wholebody/surface_intersections_cgal.cpp -o "$RUNNER_TEMP/surface-intersections" -lgmp -lmpfr
+          echo "M64_CGAL_INTERSECTIONS=$RUNNER_TEMP/surface-intersections" >> "$GITHUB_ENV"
 
       - name: Validate repository
         # The test runner writes skips per reason to the job summary and fails
         # when they exceed tests/skip-budget.json (issue #418).
         env:
           SKIP_BUDGET_ENFORCE: "1"
+          BIONIC_DOTNET: dotnet
         run: make check
+
+  cad-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install native libraries
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libgl1 libglu1-mesa
+      - name: Install isolated CAD dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements/requirements-check-cad.txt
+      - name: Check native CAD runtime
+        run: |
+          python -m pip check
+          python -c "import cadquery as cq; assert abs(cq.Workplane('XY').box(2, 3, 4).val().Volume() - 24) < 1e-10"
+      - name: Run CAD and STEP integrity regressions
+        run: |
+          python -m unittest discover -s tests -p 'test_m64_g*.py' -v
+          python -m unittest discover -s tests -p 'test_cad_recode_fresh.py' -v
+      - name: Run OCP 8 trimmed-surface flux control in isolation
+        run: |
+          python -m venv "$RUNNER_TEMP/ocp8-flux"
+          "$RUNNER_TEMP/ocp8-flux/bin/python" -m pip install --only-binary=:all: numpy==2.2.6 scipy==1.17.1 cadquery-ocp==8.0.1.0.0
+          "$RUNNER_TEMP/ocp8-flux/bin/python" -m pip check
+          "$RUNNER_TEMP/ocp8-flux/bin/python" -c 'import OCP, scipy; assert OCP.__version__ == "8.0.1.0"; assert scipy.__version__ == "1.17.1"'
+          PYTHONPATH=tests "$RUNNER_TEMP/ocp8-flux/bin/python" -m unittest -v test_m64_meshers_2026.FluxTests
+
+  usd-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install isolated native USD SDK
+        run: |
+          curl --fail --silent --show-error --location --retry 3 https://conda.anaconda.org/conda-forge/linux-64/micromamba-2.10.0-0.tar.bz2 -o "$RUNNER_TEMP/micromamba.tar.bz2"
+          echo "9a97976244929bbae28fb1fae504e74a3e7e6d1932870e3a03321f01b7fbd07b  $RUNNER_TEMP/micromamba.tar.bz2" | sha256sum --check
+          tar -xjf "$RUNNER_TEMP/micromamba.tar.bz2" -C "$RUNNER_TEMP" bin/micromamba
+          MAMBA_ROOT_PREFIX="$RUNNER_TEMP/mamba" "$RUNNER_TEMP/bin/micromamba" --no-rc create -y -p "$RUNNER_TEMP/usd" --file requirements/requirements-check-usd-linux-64.txt
+          echo "$RUNNER_TEMP/usd/bin" >> "$GITHUB_PATH"
+      - name: Add the shared surface inspection dependencies
+        run: |
+          python -m pip install --only-binary=:all: --no-deps trimesh==5.1.0 scipy==1.17.1
+          python -m pip check
+      - name: Check native USD and shader registry
+        run: |
+          usdchecker --help
+          python -c "import numpy, pyvista, trimesh, scipy; from pxr import Usd, Sdr; assert Usd.GetVersion() == (0, 26, 8); assert Sdr.Registry().GetShaderNodeByIdentifier('UsdPreviewSurface')"
+      - name: Run bundle and framing regressions
+        run: |
+          python -m unittest discover -s tests -p 'test_964_omniverse_bundle.py' -v
+          python -m unittest discover -s tests -p 'test_964_review_framing.py' -v
+          python -m unittest discover -s tests -p 'test_bionic_turbo_f1_surface.py' -v
+
+  carrier-pyslm:
+    runs-on: macos-15
+    timeout-minutes: 20
+    env:
+      OMP_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          architecture: arm64
+      - name: Install both pinned PySLM generations
+        run: |
+          python -c "import platform; assert platform.system() == 'Darwin' and platform.machine() == 'arm64'"
+          for generation in process-20261016 process-coverage-20261016; do
+            python "parts/993-eng-carrier-0001/source/$generation/setup_pyslm.py" "$RUNNER_TEMP/$generation"
+          done
+      - name: Run historical generation regressions
+        run: >-
+          "$RUNNER_TEMP/process-20261016/env/bin/python" -B -m unittest
+          discover -s tests -p 'test_carrier_process_20261016.py' -v
+      - name: Run carrier coverage regressions
+        # The historical generation above has a different pinned patch.
+        run: |
+          tests=()
+          for path in tests/test_carrier*.py; do
+            if [[ "$path" != tests/test_carrier_process_20261016.py ]]; then
+              module="${path##*/}"
+              tests+=("${module%.py}")
+            fi
+          done
+          PYTHONPATH="$PWD/tests" "$RUNNER_TEMP/process-coverage-20261016/env/bin/python" -B -m unittest -v "${tests[@]}"
+
+  free-tools-python:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      OPENMDAO_REPORTS: "0"
+      DVC_NO_ANALYTICS: "true"
+      DO_NOT_TRACK: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install the existing frozen free-tools environment
+        run: python -m pip install -r benchmarks/free-tools/requirements.lock.txt
+      - name: Check native Python dependencies
+        run: |
+          python -m pip check
+          python -c "import dvc, openmdao.api, openturns"
+      - name: Run synthetic storage and study controls
+        run: python -m unittest discover -s tests -p 'test_free_tools.py' -v
+
+  carrier-cad:
+    runs-on: macos-15
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          architecture: arm64
+      - name: Install and verify the frozen carrier CAD base
+        run: >-
+          python parts/993-eng-carrier-0001/source/design-20261016/setup_cad_base.py
+          --python "$(command -v python)" --output "$RUNNER_TEMP/carrier-cad"
+      - name: Add Gmsh and revalidate the pinned CAD base
+        run: |
+          "$RUNNER_TEMP/carrier-cad/bin/python" -m pip install --no-deps gmsh==4.15.2
+          "$RUNNER_TEMP/carrier-cad/bin/python" -m pip check
+          python parts/993-eng-carrier-0001/source/design-20261016/setup_cad_base.py --validate-only --python "$RUNNER_TEMP/carrier-cad/bin/python" --output "$RUNNER_TEMP/carrier-cad-post-gmsh"
+          "$RUNNER_TEMP/carrier-cad/bin/python" -c "import gmsh; assert gmsh.__version__ == '4.15.2'"
+      - name: Run native root-blend and CAD-section controls
+        run: >-
+          "$RUNNER_TEMP/carrier-cad/bin/python" -B -m unittest
+          discover -s tests -p 'test_carrier_root*.py' -v
+
+  warp-cpu:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install the retained hash-pinned Warp runtime
+        run: |
+          python -m pip install --only-binary=:all: --require-hashes --no-deps -r containers/warp-geometry.requirements.txt
+          python -m pip install --only-binary=:all: --no-deps trimesh==5.1.0
+          python -m pip check
+          python -c "from importlib.metadata import version; import warp, numpy, trimesh; assert version('warp-lang') == '1.18.0'; assert numpy.__version__ == '2.2.6'; assert trimesh.__version__ == '5.1.0'"
+      - name: Run native CPU dispatch and independent oracle tests
+        run: |
+          python -m unittest discover -s tests -p 'test_warp_geometry_pilot.py' -v
+          PYTHONPATH=tests python -m unittest -v test_fan_airflow_sweep.FanSweepTests.test_warp_ray_kernel_has_known_hit_and_miss
+
+  rear-panel-kicad:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Export and check the schematic with KiCad 9.0.2
+        # Keep KiCad's configured home writable for cache/theme initialization.
+        run: |
+          docker run --rm --platform linux/amd64 --network none \
+            --cpus 2 --memory 2g --pids-limit 128 \
+            --cap-drop ALL --security-opt no-new-privileges \
+            --tmpfs /tmp:rw,noexec,nosuid,size=512m \
+            --mount type=bind,src="${PWD}",dst=/repo,readonly -w /repo \
+            -e PYTHONDONTWRITEBYTECODE=1 --entrypoint /bin/sh \
+            kicad/kicad@sha256:8a43a0dd03e56d428cc516e2a1bd106260ef2c572288f995af67970d900cf607 \
+            -ec 'test "$(kicad-cli version)" = "9.0.2"; python3 -m unittest discover -s tests -p "test_993_rear_panel*.py" -v'
+
+  cycle-thermal-f33:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replay the exact F33 image
+        run: make 917-cycle-thermal-f33-test
+      - name: Run F34b cycle and seed controls in the exact image
+        # Seed output-path tests need a writable disposable project root.
+        run: |
+          docker run --rm --platform linux/amd64 --network none --read-only \
+            --cpus 2 --memory 2g --pids-limit 128 \
+            --cap-drop ALL --security-opt no-new-privileges \
+            --tmpfs /tmp:rw,noexec,nosuid,size=256m \
+            --mount type=bind,src="${PWD}",dst=/repo,readonly --entrypoint /bin/sh \
+            ghcr.io/cluster2600/3dprinting993-air-oil-cycle-f34b@sha256:369d51ee12c259e844d01817702d8debedcf400087ab9b289b8e59671d296664 \
+            -ec 'mkdir -p /tmp/repo/twins; cp -R /repo/scripts /repo/tests /tmp/repo/; cp -R /repo/twins/reference-917-engine /tmp/repo/twins/; cd /tmp/repo; python -m unittest discover -s tests -p "test_917_air_oil_*f34b.py" -v'
+      - name: Run F39 F40 and F40b controls in the exact Aeolus image
+        run: |
+          docker run --rm --platform linux/amd64 --network none --read-only \
+            --cpus 2 --memory 2g --pids-limit 128 \
+            --cap-drop ALL --security-opt no-new-privileges \
+            --tmpfs /tmp:rw,exec,nosuid,nodev,size=256m \
+            --mount type=bind,src="${PWD}",dst=/repo,readonly -w /repo \
+            -e PYTHONPATH=/repo/tests --entrypoint /bin/sh \
+            ghcr.io/cluster2600/3dprinting993-wave-action-f39@sha256:742569a45becdd00b9f8d32b057156e68d0bb0489cef1fa97d2e6543fce096a3 \
+            -ec 'python -c '\''from importlib.metadata import version; assert version("aeolus1d") == "0.3.3"'\''; python -m unittest -v test_917_unsteady_network_f39 test_917_unsteady_convergence_f40 test_917_extended_periodic_state_f40b'

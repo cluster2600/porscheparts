@@ -1,0 +1,73 @@
+{
+  "schema": "935-cad-twin-simready-asset/1",
+  "usd_version": "0.26.11",
+  "source_stage_sha256": "fa2b64b291cafb8afb98d9c5abfc2c5943d8f23014a327a2524b841bce27dc40",
+  "geometry_layer_is_source_stage": true,
+  "collider_source": "v2-loft-sim-mc100.stl",
+  "collider_source_sha256": "d5885c5c8052387a03bd7dd87be141b8fcc766329d366ef022706d1371ec348d",
+  "collider_volume_over_render_volume": 1.00017,
+  "files": {
+    "part.usda": {
+      "bytes": 4134,
+      "sha256": "a4a4674be19ad792180c1832faeb88b6070a5197ed25b12a824fe84105c4ce67"
+    },
+    "geometry.usdc": {
+      "bytes": 49116058,
+      "sha256": "fa2b64b291cafb8afb98d9c5abfc2c5943d8f23014a327a2524b841bce27dc40"
+    },
+    "collider.usdc": {
+      "bytes": 8445702,
+      "sha256": "f73aaa3b899f0b8d21cdc924803d42e09c76c735aceb85f882cda669c1e3f3fe"
+    },
+    "part.usdz": {
+      "bytes": 57566388,
+      "sha256": "938ec80947375af20ec7fce947286f0794aeaa74f6a4e644da57d5611b5e9708"
+    }
+  },
+  "stage": {
+    "default_prim": "/Head935",
+    "kind": "component",
+    "up_axis": "Z",
+    "meters_per_unit": 0.001,
+    "kilograms_per_unit": 1.0,
+    "render_triangles": 2262390,
+    "render_normals": "uniform",
+    "render_extent_mm": [
+      [
+        -63.098,
+        -109.72,
+        -0.246
+      ],
+      [
+        54.378,
+        119.118,
+        94.375
+      ]
+    ],
+    "gprims_with_bound_material": 11,
+    "collider_triangles": 396244,
+    "collider_volume_mm3": 1095610.3,
+    "collider_purpose": "guide",
+    "collider_has_collision_api": true,
+    "collider_approximation": "convexDecomposition",
+    "rigid_body_or_mass_authored": false
+  },
+  "package_reads_back_identically": true,
+  "openusd_validation": {
+    "part.usda": {
+      "validators_run": 30,
+      "findings_by_type": {},
+      "error_count": 0
+    },
+    "part.usdz": {
+      "validators_run": 30,
+      "findings_by_type": {},
+      "error_count": 0
+    }
+  },
+  "not_authored": [
+    "mass, density or rigid body: the alloy is unknown",
+    "a physical material: the bound material only displays the evidence classes"
+  ],
+  "claims": "a well-formed study asset; no physics was run on it, and it inherits every limit of the v2 body"
+}

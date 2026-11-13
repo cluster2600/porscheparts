@@ -371,7 +371,7 @@ the body shell, which pays off more? Where does the load go in torsion?
 
 A **corpus of 3,000 CalculiX cases** in quadratic shells is built to train a
 design surrogate later, its validation set frozen before any model exists:
-[docs/MONOCOQUE_964_993_CHAINE_CALCUL.md](MONOCOQUE_964_993_CHAINE_CALCUL.md).
+[docs/MONOCOQUE_964_993_COMPUTATION_CHAIN.md](MONOCOQUE_964_993_COMPUTATION_CHAIN.md).
 
 ### The shape: a 964 shell from the workshop manual
 
@@ -471,7 +471,7 @@ engineering** stays so until an engineering review lifts it.
 <table>
 <tr>
 <td align="center" width="16%"><a href="../parts/964-central-cell-assumed-f1/"><img src="../parts/964-central-cell-assumed-f1/media/preview.png" alt="964 central carbon cell" width="130"><br><sub>964 central carbon cell</sub></a></td>
-<td align="center" width="16%"><a href="../parts/964-central-cell-sculpted-f2/"><img src="../parts/964-central-cell-sculpted-f2/media/preview.png" alt="964 sculpted central carbon cell" width="130"><br><sub>964 sculpted central carbon cell</sub></a></td>
+<td align="center" width="16%"><a href="../parts/964-central-cell-sculpted-f2/"><img src="../parts/964-central-cell-sculpted-f2/media/preview.png" alt="Archived F2 sculpted central-cell…" width="130"><br><sub>Archived F2 sculpted central-cell…</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-body-front-impact-support-alsi10mg-f0-0001/"><img src="../parts/993-body-front-impact-support-alsi10mg-f0-0001/media/preview.png" alt="993 front impact support" width="130"><br><sub>993 front impact support</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-body-front-lid-0001/"><img src="../parts/993-body-front-lid-0001/media/preview.png" alt="Front lid" width="130"><br><sub>Front lid</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-ca-charge-pipe-set-pet-0001/"><img src="../parts/993-ca-charge-pipe-set-pet-0001/media/preview.png" alt="993 Turbo charge-air tract transc…" width="130"><br><sub>993 Turbo charge-air tract transc…</sub></a></td>
@@ -630,7 +630,7 @@ flowchart LR
 | part | candidate material | process | status |
 |---|---|---|---|
 | [964 central carbon cell](pieces/964-central-cell-assumed-f1.md) | undecided | undecided | **prohibited pending engineering** |
-| [964 sculpted central carbon cell](pieces/964-central-cell-sculpted-f2.md) | undecided | undecided | **prohibited pending engineering** |
+| [Archived F2 sculpted central-cell study](pieces/964-central-cell-sculpted-f2.md) | undecided | undecided | **prohibited pending engineering** |
 
 **Interior**
 

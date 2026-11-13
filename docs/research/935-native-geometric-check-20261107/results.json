@@ -1,0 +1,244 @@
+{
+  "schema": "935-native-geometric-check-result-1",
+  "status": "completed_native_check_rejected_no_physics_admission",
+  "historical_mesh_only": true,
+  "current_conditioning_candidate_superseded": false,
+  "geometric_findings_repeat_prior_extended_diagnostic": true,
+  "source_parent_commit": "09e33f19283c6fb321dd89ed0c2e28688a36837e",
+  "private_capsule": "935-native-geometric-check-20261107-001",
+  "private_manifest_sha256": "130307490fef825b255458fcd9a82a22ff6e6d5fb3583d76eaecd4a4a0d747ef",
+  "private_frozen_entries": 121,
+  "private_frozen_bytes": 528974323,
+  "all_frozen_files_rehashed": true,
+  "repository_checks": {
+    "command": "make check",
+    "exit_code": 0,
+    "main_tests": 5847,
+    "main_skips": 421,
+    "receipt_sha256": "9feed3e151bca0ce44878dddc22ad512687433a9832ee1aab7d16a1e4fb0ba7a"
+  },
+  "inputs": {
+    "schema": "935-native-check-preparation-1",
+    "source_main": "09e33f19283c6fb321dd89ed0c2e28688a36837e",
+    "input_manifest_sha256": "90a94f87e4e38798a80fecd80967ef7f6d0747f3fed4102fc012cd175c34a618",
+    "archive_sha256": "53583ab407ccd1aa59c2d2783ba12892f228e50ebb3ae561f0517fbf9af289e8",
+    "archive_bytes": 474522459,
+    "worker_source_sha256": "d8313bbc664308f2abcc23b48b9db6a57612a053d22db966ce187222a6e084ea",
+    "source_capsule_manifest_sha256": "91fbc0ecc6dfdeb2b95949676698f0ea9a1a8605d783efdfa61e2fe3722ed64d",
+    "exact_input_files_verified": 17,
+    "native_head_cells": 12981388,
+    "prior_check_seconds": 240,
+    "new_native_check_seconds": 1200,
+    "reason_for_changed_deadline": "The exact native mesh was recovered and independently read back; the prior geometric check was interrupted, not rejected. No import or mesh parameter sweep is repeated.",
+    "child_address_space_gib": 48,
+    "planned_attempt_cap_usd": 1.5,
+    "prior_conservative_allocation_usd": 15.342688367141704,
+    "combined_conservative_allocation_usd": 16.842688367141704,
+    "project_total_usd": 35,
+    "compute_cap_usd": 30,
+    "closeout_reserve_usd": 5,
+    "field_solve_permitted": false,
+    "manufacturing_qualified": false
+  },
+  "runtime": {
+    "image": "ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f",
+    "openfoam_version": 13,
+    "openfoam_setup_sha256": "dd62f167ea8928a76cf76af72627b50bd62788df10bf13d8d4e4c4f9d0ee9541",
+    "effective_cpu_allocation": 16,
+    "allocated_ram_mb": 256498,
+    "child_address_space_gib": 48,
+    "native_head_deadline_seconds": 1200,
+    "ssh_first_use_pin_is_independent_attestation": false
+  },
+  "native_verification": {
+    "source_sha256": "cc785e435b4e948538a8be1c1975f45535b007f91cb38c595fae5dd7807a857f",
+    "archive_sha256": "40de2e0478d0361c6bcb4ab4e0ac98e6c0cae7cb5ba03eceef8fbc0bf43979d4",
+    "instance_id": 59565622,
+    "recovered_files_verified": 14,
+    "omitted_original_files_verified": 19,
+    "all_recovered_bytes_match": true,
+    "all_original_inputs_unchanged": true,
+    "changed_input_files": 0,
+    "missing_input_files": 0,
+    "native_head_counts_match": true,
+    "native_head_check_completed": true,
+    "native_head_check_passed": false,
+    "native_execution": {
+      "exit_code": 0,
+      "timeout": false,
+      "seconds": 793.0319321861025,
+      "log_sha256": "2aebc0f0c987013d8953e00bda6b651a7d9fcb9bd05e2fd75bd1dfb8ef7ebc96",
+      "owned_child_reaped": true
+    },
+    "worker_terminal_receipt": {
+      "source_sha256": "d8313bbc664308f2abcc23b48b9db6a57612a053d22db966ce187222a6e084ea",
+      "input_manifest_sha256": "90a94f87e4e38798a80fecd80967ef7f6d0747f3fed4102fc012cd175c34a618",
+      "terminal": "native_geometric_check_finished",
+      "control_passed": true,
+      "native_head_check": {
+        "exit_code": 0,
+        "timeout": false,
+        "seconds": 793.0319321861025,
+        "log_sha256": "2aebc0f0c987013d8953e00bda6b651a7d9fcb9bd05e2fd75bd1dfb8ef7ebc96",
+        "owned_child_reaped": true
+      },
+      "native_head_check_completed": true,
+      "native_head_check_passed": false,
+      "input_files_unchanged": true,
+      "geometry_modified": false,
+      "field_solve_executed": false,
+      "upstream_shape_quality_passed": false,
+      "case_specific_operator_admission": false,
+      "physics_admitted": false,
+      "manufacturing_qualified": false,
+      "engine_qualified": false
+    },
+    "upstream_shape_quality_passed": false,
+    "case_specific_operator_admission": false,
+    "field_solve_executed": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "engine_qualified": false
+  },
+  "native_geometry_findings": {
+    "failed_checks": 5,
+    "high_aspect_ratio_cells": 39913,
+    "maximum_aspect_ratio": 1.0505536196303592e+102,
+    "zero_or_negative_computed_volume_cells": 4070,
+    "minimum_computed_volume_in_case_coordinates": -1.562181735243843e-15,
+    "maximum_non_orthogonality_degrees": 90.00000000022447,
+    "mean_non_orthogonality_degrees": 48.431008024506816,
+    "severely_non_orthogonal_faces_above_70_degrees": 3953359,
+    "non_orthogonality_error_faces": 1009,
+    "incorrectly_oriented_face_pyramids": 6851,
+    "highly_skew_faces": 63762,
+    "maximum_skewness": 1112.964604421563,
+    "native_topology_passed": true,
+    "closed_singly_connected_boundary_patch": true,
+    "face_area_magnitudes_passed": true
+  },
+  "independent_cell_region_audit": {
+    "source_sha256": "9e37e14a1de33f731611187495b659ac5f00e2694205071e7b5b99cb01d7527a",
+    "job_sha256": "d6b2be83ab2107ee4f69b52c85f374c8368c651e1baeff999bd53724cf16d3db",
+    "cells": 12981388,
+    "native_faces": 30072005,
+    "all_internal_face_edges_examined": 21853547,
+    "connected_cell_regions": 1,
+    "component_sizes_descending": [
+      12981388
+    ],
+    "every_cell_has_four_native_faces": true,
+    "all_native_owner_neighbour_indices_valid": true,
+    "all_cells_reachable_by_shared_internal_faces": true,
+    "connected_disconnected_and_isolated_controls_passed": true,
+    "native_face_geometric_orientation_checked": false,
+    "geometry_modified": false,
+    "field_solve_executed": false,
+    "physics_admitted": false,
+    "manufacturing_qualified": false,
+    "seconds": 4.815744834020734
+  },
+  "recovery": {
+    "pid": 1732,
+    "stage": "complete",
+    "started_epoch": 1794054172.0290956,
+    "source_sha256": "c2b2953443765fb5e9949d8f1d493519c1b002f52db1718e9e24f3c6762d4db8",
+    "archive": "private native-results.tar.gz",
+    "archive_sha256": "40de2e0478d0361c6bcb4ab4e0ac98e6c0cae7cb5ba03eceef8fbc0bf43979d4",
+    "archive_bytes": 7554,
+    "files": 14,
+    "omitted_inputs": 19,
+    "completed_epoch": 1794054173.7684045
+  },
+  "negative_recovery_controls": {
+    "source_sha256": "cc785e435b4e948538a8be1c1975f45535b007f91cb38c595fae5dd7807a857f",
+    "controls": [
+      {
+        "control": "corrupt-archive",
+        "rejected": true,
+        "exit_code": 1,
+        "no_outside_file_created": true
+      },
+      {
+        "control": "unsafe-member",
+        "rejected": true,
+        "exit_code": 1,
+        "no_outside_file_created": true
+      }
+    ]
+  },
+  "wrapper_fix": {
+    "before_sha256": "55a671032250ce07beb98a04df9995c54021abdacaaa356f3ff68b4f57d2f61d",
+    "default_listing_unchanged": true,
+    "only_selected_offer_lookup_limit_changes": true,
+    "bundle_filters_unchanged": true,
+    "secret_access_or_rental_permissions_changed": false,
+    "after_sha256": "e4e4a77c38498aa8192954cf5061f0850fd5287dea40961f81128f94ae6cd020",
+    "all_other_bytes_unchanged": true,
+    "only_selected_offer_lookup_limit_changed": true,
+    "mode_preserved": "0o755"
+  },
+  "resource_closeout": {
+    "instance_id": 59565622,
+    "destroy_command_exit_code": 0,
+    "controller_inventory_empty": true,
+    "independent_guard_absence_verified": true,
+    "independent_guard_exited": true,
+    "earliest_successful_creation_intent_epoch": 1794052448.366288,
+    "latest_absence_epoch": 1794054239.117093,
+    "conservative_billable_seconds": 1790.7508051395416,
+    "hourly_rate_including_120gb_storage_usd": 0.11288888888888889,
+    "compute_storage_upper_estimate_usd": 0.05615440796363501,
+    "network_allowance_usd": 0.28,
+    "attempt_upper_estimate_usd": 0.33615440796363505,
+    "attempt_cap_usd": 1.5,
+    "prior_conservative_allocation_usd": 15.342688367141704,
+    "combined_conservative_allocation_usd": 15.67884277510534,
+    "total_budget_usd": 35,
+    "compute_cap_usd": 30,
+    "reserve_usd": 5,
+    "provider_invoice_verified": false,
+    "no_foreign_resource_destroyed": true,
+    "no_field_solve_executed": true
+  },
+  "phase_ledger_sha256": "1c71f5cc02254713214877efba3ad2787375b166108e2fa02064f9ce35708dd9",
+  "source_files": [
+    {
+      "path": "source/check_recovered_mesh.py",
+      "sha256": "d8313bbc664308f2abcc23b48b9db6a57612a053d22db966ce187222a6e084ea",
+      "bytes": 4308
+    },
+    {
+      "path": "source/collect_native_check.py",
+      "sha256": "c2b2953443765fb5e9949d8f1d493519c1b002f52db1718e9e24f3c6762d4db8",
+      "bytes": 4401
+    },
+    {
+      "path": "source/inspect_cell_regions.py",
+      "sha256": "9e37e14a1de33f731611187495b659ac5f00e2694205071e7b5b99cb01d7527a",
+      "bytes": 3372
+    },
+    {
+      "path": "source/mesh-offer-lookup.diff",
+      "sha256": "fb802d772f363d5b6b4e77d82ba0e319eb46343f35383b5e73fa199a88d42a86",
+      "bytes": 263
+    },
+    {
+      "path": "source/verify_native_collection.py",
+      "sha256": "cc785e435b4e948538a8be1c1975f45535b007f91cb38c595fae5dd7807a857f",
+      "bytes": 5573
+    }
+  ],
+  "gates": {
+    "geometry_modified": false,
+    "supported_print_assembly_modified": false,
+    "native_geometric_mesh_quality_passed": false,
+    "field_solve_executed": false,
+    "physics_admitted": false,
+    "physical_scale_calibrated": false,
+    "manufacturing_qualified": false,
+    "engine_qualified": false,
+    "supplier_message_sent": false,
+    "functional_goal_complete": false
+  }
+}

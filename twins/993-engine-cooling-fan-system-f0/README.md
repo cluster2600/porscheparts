@@ -56,9 +56,13 @@ does not become the Turbo fan housing.
 The September 28 reconstruction targets **993 Turbo M64.60 / 96410601522**, with
 an assumed working diameter of 245 mm and eleven blades. Interfaces for the hub,
 fan housing 99310666750, rear cone, spacers, pulleys and alternator still require
-measurement. The user has selected no alternator: 175 A / 240 A remain research
-alternatives with different drive requirements. AS-PL alternator dimensions do
-not describe the PMB unit. No validated functional catalogue record exists for
+measurement. **Alternator target: 240 A** (owner decision 2026-11-09, issue
+#454), the custom large-case unit listed by PMB and WOSP (LMA339), whose makers
+recommend a serpentine belt with a tensioner. That drive is now the packaging
+assumption; the 175 A option, known only from the title of a Classic Retrofit
+assembly photo, is no longer pursued. No dimensioned drawing of the 240 A unit
+is sourced, so its mounting and envelope stay unmeasured. AS-PL alternator
+dimensions do not describe the PMB unit. No validated functional catalogue record exists for
 this reconstruction.
 
 The **“935” scan** is a third investigation branch. Visual resemblance does not

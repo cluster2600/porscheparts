@@ -1,0 +1,40 @@
+{
+  "schema": "935-cad-twin-port-cfd-audit/1",
+  "wall_observed_min": 0.95,
+  "hypothesis_h05_status": "not_modelled_in_v0",
+  "ports": [
+    {
+      "name": "port_y_minus",
+      "centreline_length_mm": 90.0,
+      "stations": 31,
+      "closed_stations": 21,
+      "lofted_length_mm": 51.0,
+      "lofted_share_of_centreline": 0.567,
+      "wall_points_observed_share_on_loft": 0.772,
+      "gates": {
+        "closed_sections_along_whole_centreline": false,
+        "wall_observed_share_at_least_min": false,
+        "valve_seat_guide_modelled": false
+      },
+      "admissible": false
+    },
+    {
+      "name": "port_y_plus",
+      "centreline_length_mm": 54.0,
+      "stations": 19,
+      "closed_stations": 10,
+      "lofted_length_mm": 24.0,
+      "lofted_share_of_centreline": 0.444,
+      "wall_points_observed_share_on_loft": 0.921,
+      "gates": {
+        "closed_sections_along_whole_centreline": false,
+        "wall_observed_share_at_least_min": false,
+        "valve_seat_guide_modelled": false
+      },
+      "admissible": false
+    }
+  ],
+  "verdict": "not_admissible",
+  "consequence": "no port-flow solver run: a flow number on this domain would record the closure hypotheses and the missing valve, not the port",
+  "retire_with": "registered sections of the port bend and valve pocket (CT, moulds or borescope, H04) and the valve, seat and guide geometry (H05)"
+}
