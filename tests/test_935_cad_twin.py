@@ -1229,6 +1229,17 @@ class SupportDesignTests(unittest.TestCase):
                 self.assertIn(key, case["sources"], key)
         for key in rules["block_support"]:
             self.assertIn(key, case["sources"]["block_support"], key)
+        # the orientation comparison holds this layout as one of its six rows, each checked against the screen
+        compare = json.loads((TWIN / "params" / "support-design-orientations.json").read_text())
+        self.assertEqual(compare["case_sha256"], record["case_sha256"])
+        self.assertEqual(len(compare["orientations"]), 6)
+        mine = compare["orientations"][compare["orientation_of_the_build_screen"]]
+        self.assertAlmostEqual(mine["envelope_volume_mm3"], sup["envelope_volume_mm3"], places=3)
+        self.assertAlmostEqual(mine["wall_line_on_the_part_mm"], block["wall_line_on_the_part_mm"], places=3)
+        for name, row in compare["orientations"].items():
+            self.assertLess(row["largest_difference_from_the_orientation_screen_before_exemption"], 1e-3, name)
+            self.assertLessEqual(row["envelope_landing_on_part_mm3"], row["envelope_volume_mm3"], name)
+        self.assertIn("no orientation is chosen", compare["scope"])
         # the occupancy is the one the build screen was prepared on
         build = json.loads((TWIN / "params" / "build-sim.json").read_text())
         self.assertEqual(record["occupancy_sha256"], build["levels"]["c4-l8"]["model"]["occupancy_sha256"])

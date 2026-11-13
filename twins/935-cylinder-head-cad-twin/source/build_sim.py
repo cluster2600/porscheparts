@@ -803,6 +803,7 @@ def mechanics_read(run_dir, tag="mechanics") -> None:
 
 
 USED_BY_A_RUN = ("build", "process", "plate", "supports", "material", "variants", "cooldown")
+NOTES_OF_A_LEVEL = ("thermal_only", "supports_note")           # words about a level, not values a run uses
 
 
 def summarize(study, case_file, witness_file, out) -> None:
@@ -814,7 +815,8 @@ def summarize(study, case_file, witness_file, out) -> None:
             continue
         # a run stands when every value it used is unchanged: the physical blocks of the case and its own level
         ran = json.loads((run / "case.json").read_text())
-        assert (all(ran[k] == case[k] for k in USED_BY_A_RUN) and ran["levels"][name] == case["levels"][name]), \
+        used = lambda level: {k: v for k, v in level.items() if k not in NOTES_OF_A_LEVEL}
+        assert (all(ran[k] == case[k] for k in USED_BY_A_RUN) and used(ran["levels"][name]) == used(case["levels"][name])), \
             f"{name} was run on another case"
         assert (run / "thermal.inp").stat().st_mtime >= (run / "mesh.npz").stat().st_mtime, f"{name}: thermal deck older than its mesh"
         thermal = json.loads((run / "thermal.json").read_text())

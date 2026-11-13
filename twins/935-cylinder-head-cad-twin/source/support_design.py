@@ -35,6 +35,7 @@ can be removed.
 
 Usage: support_design.py witness CASE.json OUT.json
        support_design.py layout OCC_DIR CASE.json ORIENTATION_SCREEN.json PRIVATE_OUT_DIR OUT.json
+       support_design.py orientations OCC_DIR CASE.json ORIENTATION_SCREEN.json OUT.json
 """
 
 from __future__ import annotations
@@ -438,5 +439,72 @@ def run_layout(occ_dir, case_file, screen_file, private_out, out) -> None:
                                              "block_support", "bodies", "lateral_access", "against_the_part", "seconds")}))
 
 
+# name in the orientation screen: (axis of the twin frame, sign of the build-up direction)
+ORIENTATIONS = {"deck_down": (2, +1), "deck_up": (2, -1), "flange_y_minus_down": (1, +1), "flange_y_plus_down": (1, -1),
+                "side_x_minus_down": (0, +1), "side_x_plus_down": (0, -1)}
+
+
+def run_orientations(occ_dir, case_file, screen_file, out) -> None:
+    """The same layout in the six axis-aligned orientations of the orientation screen, scalars only."""
+
+    occ_dir = Path(occ_dir)
+    started = time.time()
+    case = json.loads(Path(case_file).read_text())
+    rules = case["rules"]
+    grid = json.loads((occ_dir / "occupancy-grid.json").read_text())
+    pitch = float(grid["pitch_mm"])
+    inside = np.load(occ_dir / grid["array"], mmap_mode="r") > 0.5
+    labels, _ = ndimage.label(inside)
+    sizes = np.bincount(labels.ravel())
+    sizes[0] = 0
+    inside = labels == int(sizes.argmax())
+    del labels
+    screen = json.loads(Path(screen_file).read_text())
+    assert rules["critical_angle_from_plate_deg"] == screen["method"]["overhang_angle_from_plate_deg"]
+    part_volume = float(inside.sum()) * pitch ** 3
+    rows = {}
+    for name, (axis, sign) in ORIENTATIONS.items():
+        solid = np.moveaxis(inside, axis, 2)
+        solid = np.ascontiguousarray(solid if sign > 0 else solid[:, :, ::-1])
+        rep, _ = layout(solid, pitch, rules)
+        ref = screen["orientations"][name]
+        agree = max(abs(rep["before_exemption"]["overhang_projected_area_mm2"] / ref["overhang_projected_area_mm2"] - 1.0),
+                    abs(rep["before_exemption"]["air_column_volume_mm3"] / ref["support_volume_mm3"] - 1.0))
+        assert agree < 1e-3, (name, agree)
+        sup, block, access = rep["supported"], rep["block_support"], rep["lateral_access"]
+        rows[name] = {
+            "definition": ref["definition"], "build_height_mm": ref["build_height_mm"],
+            "plate_contact_area_mm2": rep["plate_contact_area_mm2"],
+            "supported_projected_area_mm2": sup["projected_area_mm2"],
+            "envelope_volume_mm3": sup["envelope_volume_mm3"],
+            "envelope_over_part_volume": sup["envelope_volume_mm3"] / part_volume,
+            "envelope_landing_on_part_mm3": sup["envelope_landing_on_part_mm3"],
+            "share_of_the_envelope_landing_on_the_part": sup["envelope_landing_on_part_mm3"] / sup["envelope_volume_mm3"],
+            "landing_area_on_part_mm2": sup["landing_area_on_part_mm2"],
+            "melted_volume_mm3": block["melted_volume_mm3"],
+            "wall_line_on_the_part_mm": block["wall_line_on_the_part_mm"],
+            "bodies": rep["bodies"]["count"], "tallest_support_mm": rep["bodies"]["tallest_mm"],
+            "largest_height_over_inscribed_width": rep["bodies"]["height_over_inscribed_width"]["largest"],
+            "hidden_envelope_volume_mm3": access["hidden_envelope_volume_mm3"],
+            "hidden_supported_projected_area_mm2": access["hidden_supported_projected_area_mm2"],
+            "hidden_share_of_the_supported_area": access["hidden_share_of_the_supported_area"],
+            "patches_left_bare": rep["exemption"]["patches_left_bare"],
+            "largest_difference_from_the_orientation_screen_before_exemption": round(agree, 6)}
+        print(name, json.dumps({k: (round(v, 3) if isinstance(v, float) else v) for k, v in rows[name].items() if k != "definition"}), flush=True)
+    record = {
+        "schema": "935-cad-twin-support-design-orientations/1", "date": time.strftime("%Y-%m-%d"),
+        "scope": "the support layout by declared rules in the six axis-aligned orientations of the orientation screen. Scalars for a "
+                 "comparison: no orientation is chosen, no envelope is kept, and the build screen ran in one orientation only",
+        "case_file": "params/" + Path(case_file).name, "case_sha256": sha256(Path(case_file)),
+        "orientation_screen_file": "params/" + Path(screen_file).name,
+        "occupancy_sha256": sha256(occ_dir / grid["array"]), "grid_pitch_mm": pitch, "part_volume_mm3": part_volume,
+        "orientation_of_the_build_screen": case["build"]["orientation_in_the_screen"],
+        "orientations": rows,
+        "not_compared": ["build time and recoating: they follow the build height", "distortion: one orientation was solved",
+                         "surface finish of the machined faces", "oblique orientations"],
+        "seconds": round(time.time() - started, 1)}
+    Path(out).write_text(json.dumps(record, indent=1) + "\n")
+
+
 if __name__ == "__main__":
-    {"witness": witness, "layout": run_layout}[sys.argv[1]](*sys.argv[2:])
+    {"witness": witness, "layout": run_layout, "orientations": run_orientations}[sys.argv[1]](*sys.argv[2:])

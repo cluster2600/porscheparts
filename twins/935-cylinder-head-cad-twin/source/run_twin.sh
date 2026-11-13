@@ -129,6 +129,8 @@ SD="$PRIV/support-design-$STAMP"
 "$PY" -I "$HERE/support_design.py" witness "$PARAMS/support-design-case.json" "$PARAMS/support-design-witness.json"
 MEM=10G cap "$PY" -I "$HERE/support_design.py" layout "$PRIV/print-occ-$STAMP" "$PARAMS/support-design-case.json" \
   "$PARAMS/print-body-supports.json" "$SD" "$PARAMS/support-design.json"
+MEM=10G cap "$PY" -I "$HERE/support_design.py" orientations "$PRIV/print-occ-$STAMP" "$PARAMS/support-design-case.json" \
+  "$PARAMS/print-body-supports.json" "$PARAMS/support-design-orientations.json"
 
 # Witness of a drawing tool on a known solid (build123d projection, DXF read back with ezdxf).
 "$PY" -I "$HERE/drawing_witness.py" "$PRIV/drawing-witness-$STAMP" "$PARAMS/drawing-witness.json"

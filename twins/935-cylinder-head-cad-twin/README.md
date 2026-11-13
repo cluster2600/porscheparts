@@ -1229,6 +1229,31 @@ the [orientation screen](params/print-body-supports.json) to 0.0003%: 476,689 mm
 - **The build screen does not use this layout yet.** `build_sim.py` can take
   the envelope in place of its columns; that run is not in the record.
 
+**The same rules in the six orientations of the [orientation screen](params/print-body-supports.json)** ([record](params/support-design-orientations.json)).
+
+| Orientation | Build height | On the plate | Envelope | Standing on the part | Wall line against the part | Supported surface with no lateral access | Tallest support |
+|---|---|---|---|---|---|---|---|
+| deck down | 95.5 mm | 5 mm² | 448,300 mm³, 40% of the part | 38% | 106.1 m | 9,721 mm² (27%) | 84 mm |
+| deck up | 95.5 mm | 19 mm² | 514,400 mm³, 46% of the part | 33% | 116.4 m | 6,697 mm² (17%) | 90 mm |
+| flange y− down | 224.0 mm | 313 mm² | 386,200 mm³, 35% of the part | 56% | 39.0 m | 2,681 mm² (21%) | 217 mm |
+| flange y+ down (the build screen) | 224.0 mm | 46 mm² | 470,700 mm³, 42% of the part | 48% | 36.6 m | 3,174 mm² (26%) | 176 mm |
+| side x− down | 117.5 mm | 35 mm² | 417,100 mm³, 38% of the part | 60% | 59.4 m | 10,323 mm² (49%) | 114 mm |
+| side x+ down | 117.5 mm | 50 mm² | 414,700 mm³, 37% of the part | 61% | 57.3 m | 8,816 mm² (43%) | 114 mm |
+
+- **The two flange-down builds touch the part least:** 37 to 39 m of wall line
+  against 57 to 116 m for the four others, and 2,700 to 3,200 mm² of
+  supported surface without lateral access against 6,700 to 10,300 mm².
+- **The other flange down needs the least support of the six:** 386,200 mm³,
+  18% less than the orientation the build screen ran, and it sits on
+  313 mm² of plate instead of 46. Its supports are taller
+  (217 mm) and more of them stand on the part (56%).
+- **Deck up or down is less than half as tall** (95.5 mm against 224 mm), and recoating
+  follows the height. It pays with about three times the wall line against
+  the part (106 to 116 m).
+- **No orientation is chosen here.** The build screen solved one of them;
+  build time, distortion and the finish of the machined faces were not
+  compared across orientations.
+
 **What this layout does not say.**
 
 - It is not a build file and was not prepared in a build processor.
