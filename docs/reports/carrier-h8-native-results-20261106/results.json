@@ -1,0 +1,708 @@
+{
+  "status": "complete_H7_to_H8_two_case_numerical_comparisons_measured",
+  "scope": "Numerical study; stabilization and pointwise stress resolution not established; no manufacturing release",
+  "nominal_mass_kg": 1.2941382,
+  "active_mass_ceiling_kg": null,
+  "weight_limit_removed_by_owner": true,
+  "source_nodes": 4788172,
+  "source_cells": 18670283,
+  "refined_nodes": 4793222,
+  "refined_cells": 18698908,
+  "criterion": {
+    "metric": "complete same-load normalized energy-norm increment",
+    "strict_upper_limit": 0.01,
+    "required_successive_increments_per_case": 2,
+    "met": false
+  },
+  "cases": {
+    "gravity": {
+      "lane": "carrier-high-memory-direct-039",
+      "comparison_receipt_sha256": "a93ab4e34e25314c8d6e0bd3d757d74f7f0edc8b2cbccb17a4fe466bb8151586",
+      "comparison_sha256": "7e65709254ae4a1394fb354f87efb5ff9635839d279e014608ad1fda60962410",
+      "comparison": {
+        "load_case": "gravity",
+        "status": "complete_same_load_nested_P1_increment_measured",
+        "controls": {
+          "Galerkin_energy_increment_identity": true,
+          "six_independent_compliance_components": true,
+          "zero_increment": true,
+          "actual_parent_child_valid_case": true,
+          "foreign_edge_refused": true,
+          "different_midpoint_refused": true,
+          "missing_parent_vertex_refused": true,
+          "valid_third": true,
+          "rejections": [
+            "wrong_fraction_point",
+            "noncanonical_fraction",
+            "rounded_midpoint_rejected",
+            "midpoint_underflow_rejected"
+          ],
+          "TwoSum_acceptance_matches_independent_Fraction_pairs": 1036
+        },
+        "nested_connectivity_binding": {
+          "all_unchanged_cells_bitwise_identical": true,
+          "all_child_pairs_bound_to_actual_parent_connectivity": true,
+          "all_midpoint_edges_used": true,
+          "split_parents": 28625,
+          "new_interior_nodes": 5050
+        },
+        "exact_edge_point_binding": {
+          "exact_midpoint_nodes": 3983,
+          "exact_nonmidpoint_nodes": 1067,
+          "all_points_exact_in_parent_edges": true,
+          "all_original_vertex_bytes_unchanged": true
+        },
+        "source_sha256": {
+          "private-evidence/carrier-h6-recovery-20261105/h8-full-comparison-gravity-002/coarse/result/assessment.json": "811aa491e9e453c64afff34d1b25474e6191aa91fe7abcafe633332e72657604",
+          "private-evidence/carrier-h6-recovery-20261105/h8-full-comparison-gravity-002/fine/result/assessment.json": "4417f0edb018c7a74cf7a9ce155fdc0059ab398858b834ac79c15a2b4bdb84da",
+          "work/carrier-nested-comparison-h8-rational-001/h7-to-h8-map.npz": "0340640278157513f92728b2ed8c0a2d119cae7568a2560d2ccc74f0c30c4f25",
+          "work/carrier-nested-comparison-h8-rational-001/compare.py": "0c301331c447a4735dfe82c93103a74f796b90935151c2930cc37cafff7e6d18",
+          "work/carrier-nested-comparison-h8-rational-001/edge_fraction_points.py": "c9bce02428963df5a54dd33d53d6b92e9dac2e5c58505adf8d93289b54555328"
+        },
+        "source_cells": 18670283,
+        "refined_cells": 18698908,
+        "added_free_interior_nodes": 5050,
+        "all_original_vertex_bytes_unchanged": true,
+        "same_load_and_boundary_binding_checked_by_both_assessors": true,
+        "metrics": {
+          "external_work_Nmm": {
+            "source": 1469.7707262094282,
+            "refined": 1469.8675036616294,
+            "relative_change": 6.58452712898877e-05
+          },
+          "displacement_max_mm": {
+            "source": 0.8156805570064245,
+            "refined": 0.81573385442169,
+            "relative_change": 6.534103921895564e-05
+          },
+          "VM_volume_weighted_p95_MPa": {
+            "source": 45.46217471261298,
+            "refined": 45.46617365628406,
+            "relative_change": 8.796199689884125e-05
+          },
+          "VM_peak_MPa": {
+            "source": 28909.857706832565,
+            "refined": 29308.727412687047,
+            "relative_change": 0.013797013804056641
+          }
+        },
+        "prolongated_displacement_max_difference_mm": 0.00016223767074396815,
+        "original_node_displacement_l2_relative": 7.103846621518887e-05,
+        "stress_difference_compliance_energy_Nmm": 0.048419843538988816,
+        "normalized_energy_difference": 0.008116851387253933,
+        "compliance_increment_Nmm": 0.09677745220119505,
+        "Galerkin_identity_defect_Nmm": -6.223487678258532e-05,
+        "Galerkin_identity_defect_relative_to_work": 4.234046716969402e-08,
+        "monotonic_work_observed": true,
+        "spatial_convergence_demonstrated": false,
+        "strength_qualified": false,
+        "scope": "One complete nested same-load increment. Printed-field and numerical errors remain visible; at least another admitted increment is needed for stabilization assessment."
+      },
+      "previous_h6_to_h7_normalized_energy_difference": 0.026538280699076603,
+      "complete_field_replay": {
+        "elapsed_seconds": 271.488090666011,
+        "native_numeric_fields_in_views_unchanged": true,
+        "replays": {
+          "coarse": {
+            "status": "complete_lossless_field_replay_passed_original_force_moment_and_energy_limits",
+            "counts": {
+              "u": 4788172,
+              "rf": 14064,
+              "s": 18670283,
+              "ener": 18670283
+            },
+            "memory_field_bytes": 1459514040,
+            "native_comparison": {
+              "external_work_Nmm": {
+                "local": 1469.7707262094282,
+                "native": 1469.7707262094282,
+                "difference": 0.0
+              },
+              "displacement_max_mm": {
+                "local": 0.8156805570064245,
+                "native": 0.8156805570064245,
+                "difference": 0.0
+              },
+              "VM_peak_MPa": {
+                "local": 28909.857706832565,
+                "native": 28909.857706832565,
+                "difference": 0.0
+              },
+              "VM_volume_weighted_p95_MPa": {
+                "local": 45.46217471261298,
+                "native": 45.46217471261298,
+                "difference": 0.0
+              },
+              "independent_stress_compliance_energy_Nmm": {
+                "local": 734.8853276688457,
+                "native": 734.8853276688457,
+                "difference": 0.0
+              },
+              "native_energy_density_integral_Nmm": {
+                "local": 734.8853274199258,
+                "native": 734.8853274199258,
+                "difference": 0.0
+              }
+            },
+            "energy_relative_residual": 4.821958662578321e-08,
+            "native_energy_relative_residual": 4.8558305893847385e-08,
+            "integrated_volume_mm3": 292791.4496688452,
+            "native_assessment_sha256": "1d16dae90a95b42713f4afa65df14fb1a9dd3883bfdef907c9c051b266699217",
+            "view_sha256": "811aa491e9e453c64afff34d1b25474e6191aa91fe7abcafe633332e72657604",
+            "uncompressed_DAT_created": false,
+            "field_arrays_persisted": false
+          },
+          "fine": {
+            "status": "complete_lossless_field_replay_passed_original_force_moment_and_energy_limits",
+            "counts": {
+              "u": 4793222,
+              "rf": 14064,
+              "s": 18698908,
+              "ener": 18698908
+            },
+            "memory_field_bytes": 1461696240,
+            "native_comparison": {
+              "external_work_Nmm": {
+                "local": 1469.8675036616291,
+                "native": 1469.8675036616294,
+                "difference": -2.2737367544323206e-13
+              },
+              "displacement_max_mm": {
+                "local": 0.81573385442169,
+                "native": 0.81573385442169,
+                "difference": 0.0
+              },
+              "VM_peak_MPa": {
+                "local": 29308.727412687047,
+                "native": 29308.727412687047,
+                "difference": 0.0
+              },
+              "VM_volume_weighted_p95_MPa": {
+                "local": 45.46617365628406,
+                "native": 45.46617365628406,
+                "difference": 0.0
+              },
+              "independent_stress_compliance_energy_Nmm": {
+                "local": 734.9336845881295,
+                "native": 734.9336845881295,
+                "difference": 0.0
+              },
+              "native_energy_density_integral_Nmm": {
+                "local": 734.9336843800575,
+                "native": 734.9336843800575,
+                "difference": 0.0
+              }
+            },
+            "energy_relative_residual": 9.149489312397523e-08,
+            "native_energy_relative_residual": 9.177800985021533e-08,
+            "integrated_volume_mm3": 292791.4496688452,
+            "native_assessment_sha256": "d8ee110a7bffda50ff62a0c8250524b8424329de9eead43565b09cf0a1bd3788",
+            "view_sha256": "4417f0edb018c7a74cf7a9ce155fdc0059ab398858b834ac79c15a2b4bdb84da",
+            "uncompressed_DAT_created": false,
+            "field_arrays_persisted": false
+          }
+        }
+      },
+      "native": {
+        "assessment_sha256": "d8ee110a7bffda50ff62a0c8250524b8424329de9eead43565b09cf0a1bd3788",
+        "terminal_sha256": "8c97fcc843464283bd1125930cdf7ccd5f455062916cf29f7eb95b66251e6eba",
+        "terminal": {
+          "actual_returncode": 0,
+          "outer_timeout": false,
+          "elapsed_seconds": 594.1760552970227,
+          "process_reaped": true,
+          "inputs_unchanged": true,
+          "solver_finished_marker": true,
+          "solver_error_marker": false,
+          "native_binary_sha256": "93181a8340dac42f2e76fb9159edcdcebc536c5f29cc25dfa4689413e83582ac",
+          "output_sha256": {
+            "job.inp": "627d80ca343f230ecd8fd216b45d384236773f91213827b38671bdff3a58c207",
+            "mesh.inp": "1d1a847ed191de782556ffc321b62b984bf684cbd0ae5cc4dc364d6770246d3f",
+            "job.dat": "7fe64e121b2c8f5075f5a070a393f593234c9ae1f2498ebe112fd0024f7a0af9",
+            "job.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d",
+            "job.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+            "job.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "job.frd": "72f22a7b205d51f024b538faf089333e2120ac3846fd229694f8c98367349ea3"
+          }
+        },
+        "counts": {
+          "u": 4793222,
+          "rf": 14064,
+          "s": 18698908,
+          "ener": 18698908
+        },
+        "assessment_status": "complete_current_P1_equilibrium_and_energy_passed",
+        "controls": {
+          "control-traction-P1": {
+            "native_terminal_sha256": "bc00c5d52df8ac2b63b4681b86816574d99f7b20393d804653aa6cab50be5f60",
+            "independent_comparison_sha256": "77a87cc5441632d3d2bd91f1b42533550f6878166ee5f4860a0f5e37e8a796a7",
+            "comparison_status": "complete_reference_component_comparison_passed",
+            "actual_returncode": 0
+          },
+          "control-traction-P2": {
+            "native_terminal_sha256": "92c8a7fd2df8136e3cb6bc14ff27a2ffd7b016ae92881a4506ff8ea9970544c8",
+            "independent_comparison_sha256": "ea6cf7d4566eb98ee2063d3ddca959dba2dbf90f52b8766126ebab55dcd4e984",
+            "comparison_status": "complete_reference_component_comparison_passed",
+            "actual_returncode": 0
+          },
+          "control-quadratic": {
+            "native_terminal_sha256": "a6cd7d16adf65bafd419cbb465db55533ded279bd8bc1cb98e1333232f28b667",
+            "independent_comparison_sha256": "a3b16f1ae435fd450bd21ebd06efec0dbd7b82092c6949425746b75f590c348a",
+            "comparison_status": "complete_reference_component_comparison_passed",
+            "actual_returncode": 0
+          },
+          "reference-1": {
+            "native_terminal_sha256": "7db22866449241cbaa0a5b7511d34cab5656a994499115c20e1277b2168122d0",
+            "independent_comparison_sha256": "50814a630f3d51f55e50c6da498a516375d989aa0faa7e7dad83d4c52256ddc1",
+            "comparison_status": "complete_reference_component_comparison_passed",
+            "actual_returncode": 0
+          },
+          "reference-2": {
+            "native_terminal_sha256": "bc5ca5a5cbcf9947a543d88064ec147e1cff78e962a4e37f47e57a41f6578e08",
+            "independent_comparison_sha256": "50814a630f3d51f55e50c6da498a516375d989aa0faa7e7dad83d4c52256ddc1",
+            "comparison_status": "complete_reference_component_comparison_passed",
+            "actual_returncode": 0
+          }
+        },
+        "equilibrium_and_energy": {
+          "relative_independent_energy_residual": 9.149489327866513e-08,
+          "relative_native_energy_residual": 9.177801000490523e-08,
+          "energy_relative_limit": 0.0001,
+          "force_residual_N": [
+            2.6869198399559475e-06,
+            -0.0004180966028554667,
+            -0.00012881659358754405
+          ],
+          "moment_residual_Nmm": [
+            0.015566617626370516,
+            0.013747973580123252,
+            0.007731380607808091
+          ],
+          "force_limit_N": 7.777342590743711,
+          "moment_limit_Nmm": 2333.202777223113
+        }
+      },
+      "scientific_retention": {
+        "receipt_sha256": "9a5db9bc7f3e99c87bf0761999580913172430bae713b55968f9e780c64b8830",
+        "files": [
+          {
+            "phase": "current-gravity",
+            "path": "private-evidence/carrier-h6-recovery-20261105/h8-gravity-039/current-gravity.dat.xz",
+            "bytes": 814464180,
+            "sha256": "18c4fd35a559ab7cdae6290c89b435c12eec24ba06a9ccabb7e258e2a6f9d6f1",
+            "representation": "lossless_XZ",
+            "raw_bytes": 2648246780,
+            "raw_sha256": "7fe64e121b2c8f5075f5a070a393f593234c9ae1f2498ebe112fd0024f7a0af9",
+            "complete_raw_SHA256_verified": true,
+            "uncompressed_raw_file_retained": false,
+            "complete": true
+          }
+        ]
+      },
+      "gpu": {
+        "status": "actual_CUDA_FP64_complete_admitted_field_compliance_crosscheck_passed",
+        "case": "gravity",
+        "device_name": "NVIDIA RTX 4000 Ada Generation",
+        "device_alias": "cuda:0",
+        "warp_version": "1.18.0",
+        "numpy_version": "2.2.6",
+        "cells_checked": 18698908,
+        "batch_cells": 65536,
+        "independent_basis_and_hydrostatic_controls_passed": true,
+        "all_cell_values_compared": true,
+        "maximum_cell_absolute_energy_error_Nmm": 5.204170427930421e-18,
+        "maximum_fraction_of_cell_tolerance": 0.00027146230732437166,
+        "GPU_energy_Nmm": 734.9336845881295,
+        "independent_CPU_reference_energy_Nmm": 734.9336845881295,
+        "native_assessor_energy_Nmm": 734.9336845881295,
+        "GPU_native_relative_difference": 0.0,
+        "source_sha256": {
+          "native-workspace/independent-assessment/result/assessment.json": "d8ee110a7bffda50ff62a0c8250524b8424329de9eead43565b09cf0a1bd3788",
+          "native-workspace/run/current-gravity/actual-terminal.json": "8c97fcc843464283bd1125930cdf7ccd5f455062916cf29f7eb95b66251e6eba",
+          "native-workspace/independent-assessment/report.json": "4a643600bb38e0cf76d06a7870acbfd6b70bede3de3e3a4821c874ffc5a54f82",
+          "native-workspace/independent-assessment/result/fields/s.npy": "60ac80b2098b76605f7265ad0a6c71c255cf423873f022342d7845af5579c180",
+          "native-workspace/independent-assessment/result/fields/volumes.npy": "e22dbf43c2e588734cb9433a9341385f11515c7eb5c5f96780c50ebbdc9d3d64"
+        },
+        "kernel_source_sha256": "c2c4dce5811540b39086191de3683023b0ae557c46ef6c95f82e93b2edd38e11",
+        "elapsed_seconds": 14.355263432022184,
+        "new_solver_execution": false,
+        "geometry_or_loads_modified": false,
+        "spatial_stabilization_claimed": false
+      },
+      "gpu_receipt_sha256": "18cb923cc3fdc5641c03b18f6f34f800cddd8d1da874a1b271ae6bc478e9df9e",
+      "gpu_terminal": {
+        "actual_returncode": 0,
+        "child_reaped": true,
+        "reason": "complete",
+        "peak_aggregate_RSS_bytes": 1381928960,
+        "elapsed_seconds": 15.123588323011063
+      },
+      "gpu_terminal_sha256": "52da05b46ec57504a66bde1ca2320fad4e0523442686179603f07dfb2772aa94",
+      "cleanup": {
+        "destroyed": true,
+        "instance_id": 59470533,
+        "verified_absent": true
+      },
+      "cleanup_receipt_sha256": "1ad4e7804fa5d17a6dd30d21ba942303ff4313221ff8132c028b9195cd1351ba"
+    },
+    "combined": {
+      "lane": "carrier-high-memory-direct-040",
+      "comparison_receipt_sha256": "3781dec3106cc06c466a8de509409a32ec74b3bc33736e4af4863a454e033b00",
+      "comparison_sha256": "2277b9c7fbc24fa7d3b0b4751b63b1d3712407d10c366d71ddab323b1545a755",
+      "comparison": {
+        "load_case": "combined",
+        "status": "complete_same_load_nested_P1_increment_measured",
+        "controls": {
+          "Galerkin_energy_increment_identity": true,
+          "six_independent_compliance_components": true,
+          "zero_increment": true,
+          "actual_parent_child_valid_case": true,
+          "foreign_edge_refused": true,
+          "different_midpoint_refused": true,
+          "missing_parent_vertex_refused": true,
+          "valid_third": true,
+          "rejections": [
+            "wrong_fraction_point",
+            "noncanonical_fraction",
+            "rounded_midpoint_rejected",
+            "midpoint_underflow_rejected"
+          ],
+          "TwoSum_acceptance_matches_independent_Fraction_pairs": 1036
+        },
+        "nested_connectivity_binding": {
+          "all_unchanged_cells_bitwise_identical": true,
+          "all_child_pairs_bound_to_actual_parent_connectivity": true,
+          "all_midpoint_edges_used": true,
+          "split_parents": 28625,
+          "new_interior_nodes": 5050
+        },
+        "exact_edge_point_binding": {
+          "exact_midpoint_nodes": 3983,
+          "exact_nonmidpoint_nodes": 1067,
+          "all_points_exact_in_parent_edges": true,
+          "all_original_vertex_bytes_unchanged": true
+        },
+        "source_sha256": {
+          "private-evidence/carrier-h6-recovery-20261105/h8-full-comparison-combined-002/coarse/result/assessment.json": "ffcaef85f1b5fb03d2ed6956537f80e9a11619d9461b35615df8ec2cae145663",
+          "private-evidence/carrier-h6-recovery-20261105/h8-full-comparison-combined-002/fine/result/assessment.json": "29b23b2a6f168d05dffacb6ddb938016d5eb184090cf9d39c6ee4a309075c87c",
+          "work/carrier-nested-comparison-h8-rational-001/h7-to-h8-map.npz": "0340640278157513f92728b2ed8c0a2d119cae7568a2560d2ccc74f0c30c4f25",
+          "work/carrier-nested-comparison-h8-rational-001/compare.py": "0c301331c447a4735dfe82c93103a74f796b90935151c2930cc37cafff7e6d18",
+          "work/carrier-nested-comparison-h8-rational-001/edge_fraction_points.py": "c9bce02428963df5a54dd33d53d6b92e9dac2e5c58505adf8d93289b54555328"
+        },
+        "source_cells": 18670283,
+        "refined_cells": 18698908,
+        "added_free_interior_nodes": 5050,
+        "all_original_vertex_bytes_unchanged": true,
+        "same_load_and_boundary_binding_checked_by_both_assessors": true,
+        "metrics": {
+          "external_work_Nmm": {
+            "source": 19131.402057503263,
+            "refined": 19135.569236027604,
+            "relative_change": 0.00021781877312579024
+          },
+          "displacement_max_mm": {
+            "source": 2.361464027517596,
+            "refined": 2.3619344546489924,
+            "relative_change": 0.00019920995023200262
+          },
+          "VM_volume_weighted_p95_MPa": {
+            "source": 171.67011991863345,
+            "refined": 171.6945470278234,
+            "relative_change": 0.00014229097761180249
+          },
+          "VM_peak_MPa": {
+            "source": 173961.77057018274,
+            "refined": 216191.8477127963,
+            "relative_change": 0.2427549283052184
+          }
+        },
+        "prolongated_displacement_max_difference_mm": 0.0011860902080371735,
+        "original_node_displacement_l2_relative": 0.0001890148761634461,
+        "stress_difference_compliance_energy_Nmm": 2.0839511106750095,
+        "normalized_energy_difference": 0.014758358916422307,
+        "compliance_increment_Nmm": 4.16717852434158,
+        "Galerkin_identity_defect_Nmm": -0.0007236970084392169,
+        "Galerkin_identity_defect_relative_to_work": 3.7819465912551596e-08,
+        "monotonic_work_observed": true,
+        "spatial_convergence_demonstrated": false,
+        "strength_qualified": false,
+        "scope": "One complete nested same-load increment. Printed-field and numerical errors remain visible; at least another admitted increment is needed for stabilization assessment."
+      },
+      "previous_h6_to_h7_normalized_energy_difference": 0.032572343652694284,
+      "complete_field_replay": {
+        "elapsed_seconds": 271.36162762506865,
+        "native_numeric_fields_in_views_unchanged": true,
+        "replays": {
+          "coarse": {
+            "status": "complete_lossless_field_replay_passed_original_force_moment_and_energy_limits",
+            "counts": {
+              "u": 4788172,
+              "rf": 14064,
+              "s": 18670283,
+              "ener": 18670283
+            },
+            "memory_field_bytes": 1459514040,
+            "native_comparison": {
+              "external_work_Nmm": {
+                "local": 19131.402057503266,
+                "native": 19131.402057503263,
+                "difference": 3.637978807091713e-12
+              },
+              "displacement_max_mm": {
+                "local": 2.361464027517596,
+                "native": 2.361464027517596,
+                "difference": 0.0
+              },
+              "VM_peak_MPa": {
+                "local": 173961.77057018274,
+                "native": 173961.77057018274,
+                "difference": 0.0
+              },
+              "VM_volume_weighted_p95_MPa": {
+                "local": 171.67011991863345,
+                "native": 171.67011991863345,
+                "difference": 0.0
+              },
+              "independent_stress_compliance_energy_Nmm": {
+                "local": 9565.70107578749,
+                "native": 9565.70107578749,
+                "difference": 0.0
+              },
+              "native_energy_density_integral_Nmm": {
+                "local": 9565.701073282957,
+                "native": 9565.701073282957,
+                "difference": 0.0
+              }
+            },
+            "energy_relative_residual": 4.917136458374801e-09,
+            "native_energy_relative_residual": 4.65531207557158e-09,
+            "integrated_volume_mm3": 292791.4496688452,
+            "native_assessment_sha256": "d74b161c4165ed7987e9d38be0e6db3e1f785b3787eb809f16e12d83f810d069",
+            "view_sha256": "ffcaef85f1b5fb03d2ed6956537f80e9a11619d9461b35615df8ec2cae145663",
+            "uncompressed_DAT_created": false,
+            "field_arrays_persisted": false
+          },
+          "fine": {
+            "status": "complete_lossless_field_replay_passed_original_force_moment_and_energy_limits",
+            "counts": {
+              "u": 4793222,
+              "rf": 14064,
+              "s": 18698908,
+              "ener": 18698908
+            },
+            "memory_field_bytes": 1461696240,
+            "native_comparison": {
+              "external_work_Nmm": {
+                "local": 19135.5692360276,
+                "native": 19135.569236027604,
+                "difference": -3.637978807091713e-12
+              },
+              "displacement_max_mm": {
+                "local": 2.3619344546489924,
+                "native": 2.3619344546489924,
+                "difference": 0.0
+              },
+              "VM_peak_MPa": {
+                "local": 216191.8477127963,
+                "native": 216191.8477127963,
+                "difference": 0.0
+              },
+              "VM_volume_weighted_p95_MPa": {
+                "local": 171.6945470278234,
+                "native": 171.6945470278234,
+                "difference": 0.0
+              },
+              "independent_stress_compliance_energy_Nmm": {
+                "local": 9567.784314262764,
+                "native": 9567.784314262764,
+                "difference": 0.0
+              },
+              "native_energy_density_integral_Nmm": {
+                "local": 9567.784309991588,
+                "native": 9567.784309991588,
+                "difference": 0.0
+              }
+            },
+            "energy_relative_residual": 3.1747269414897876e-08,
+            "native_energy_relative_residual": 3.219368166861668e-08,
+            "integrated_volume_mm3": 292791.4496688452,
+            "native_assessment_sha256": "dd29709c7a679bb6be1603e5d612acf7debc66eeeb3fcf8ff3e40ada4587b412",
+            "view_sha256": "29b23b2a6f168d05dffacb6ddb938016d5eb184090cf9d39c6ee4a309075c87c",
+            "uncompressed_DAT_created": false,
+            "field_arrays_persisted": false
+          }
+        }
+      },
+      "native": {
+        "assessment_sha256": "dd29709c7a679bb6be1603e5d612acf7debc66eeeb3fcf8ff3e40ada4587b412",
+        "terminal_sha256": "8b1459d618dbcdaa1247f2b008b5ea09eab5179f17a6e2b43ed401c17d4c7ef0",
+        "terminal": {
+          "actual_returncode": 0,
+          "outer_timeout": false,
+          "elapsed_seconds": 414.0421422889922,
+          "process_reaped": true,
+          "inputs_unchanged": true,
+          "solver_finished_marker": true,
+          "solver_error_marker": false,
+          "native_binary_sha256": "93181a8340dac42f2e76fb9159edcdcebc536c5f29cc25dfa4689413e83582ac",
+          "output_sha256": {
+            "job.inp": "b8fdec95b7c9aa7dcfb9158e462366796f4e2a7ee4cada032095f774e5a7269c",
+            "mesh.inp": "1d1a847ed191de782556ffc321b62b984bf684cbd0ae5cc4dc364d6770246d3f",
+            "job.dat": "51f85e947fe897450197bdafe9c439a5a7e61454e0cfaedb502ff3509c50b143",
+            "job.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d",
+            "job.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+            "job.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "job.frd": "e784c5323be0ce4035abde1378ceec9086f438c8e15d347aa1b2cdb1d0f23c95"
+          }
+        },
+        "counts": {
+          "u": 4793222,
+          "rf": 14064,
+          "s": 18698908,
+          "ener": 18698908
+        },
+        "assessment_status": "complete_current_P1_equilibrium_and_energy_passed",
+        "controls": {
+          "control-traction-P1": {
+            "native_terminal_sha256": "351223c4e9aa23505acb5489452654906224014c1fde0e720b0b9bdb07deae4d",
+            "independent_comparison_sha256": "302d2ea873a2a58dc45cac4bc3978a5fc746fd8d39b30a33e54dc625f7aff5db",
+            "comparison_status": "complete_reference_component_comparison_passed",
+            "actual_returncode": 0
+          },
+          "control-traction-P2": {
+            "native_terminal_sha256": "f5386559928754fe2f4349e518eafdf502f687ebd16f4b085668421ed1b3abe4",
+            "independent_comparison_sha256": "c1a7ccfb1876aa6b9722d9e42da699a90c00c13d18b3d99f4de3cb34029d5112",
+            "comparison_status": "complete_reference_component_comparison_passed",
+            "actual_returncode": 0
+          },
+          "control-quadratic": {
+            "native_terminal_sha256": "3ef23be59cec235a9a1a32830adda0aa38c6ca966de50068047959a6644971c6",
+            "independent_comparison_sha256": "f8a82aedd86c18dacddaf211a46357154f9fd29cfa759dcd13095b082ab21d10",
+            "comparison_status": "complete_reference_component_comparison_passed",
+            "actual_returncode": 0
+          },
+          "reference-1": {
+            "native_terminal_sha256": "2455f444e24cc3999e6ccb585d40c1e53410e321bc044381123dd9495918ec95",
+            "independent_comparison_sha256": "ea809c7c09aa5d2adea0e5f7ebe8cc1e8bc8ec6c014bdadf4395ed4e2bd83090",
+            "comparison_status": "complete_reference_component_comparison_passed",
+            "actual_returncode": 0
+          },
+          "reference-2": {
+            "native_terminal_sha256": "42ae37569f6b0b5ae24d17d9a2200ea476e6c042eba594193598764b4c4d26db",
+            "independent_comparison_sha256": "ea809c7c09aa5d2adea0e5f7ebe8cc1e8bc8ec6c014bdadf4395ed4e2bd83090",
+            "comparison_status": "complete_reference_component_comparison_passed",
+            "actual_returncode": 0
+          }
+        },
+        "equilibrium_and_energy": {
+          "relative_independent_energy_residual": 3.174726960501392e-08,
+          "relative_native_energy_residual": 3.219368185873272e-08,
+          "energy_relative_limit": 0.0001,
+          "force_residual_N": [
+            -5.3936755110401175e-05,
+            -0.0008196819128892874,
+            -0.00019245496832809295
+          ],
+          "moment_residual_Nmm": [
+            0.027564064758845763,
+            0.06426130060572177,
+            0.009422013581654821
+          ],
+          "force_limit_N": 15.540118380473013,
+          "moment_limit_Nmm": 4662.035514141904
+        }
+      },
+      "scientific_retention": {
+        "receipt_sha256": "ed447732c4c3deb18f69aeba31127cf98160137e96bc6e88ec7ef8d6f83f1407",
+        "files": [
+          {
+            "phase": "current-combined",
+            "path": "private-evidence/carrier-h6-recovery-20261105/h8-combined-040/current-combined.dat.xz",
+            "bytes": 816988004,
+            "sha256": "0dbe6ef320ba491a9995d107713c4fcaae6e37f337043b4c47c1c17231e21456",
+            "representation": "lossless_XZ",
+            "raw_bytes": 2648246780,
+            "raw_sha256": "51f85e947fe897450197bdafe9c439a5a7e61454e0cfaedb502ff3509c50b143",
+            "complete_raw_SHA256_verified": true,
+            "uncompressed_raw_file_retained": false,
+            "complete": true
+          }
+        ]
+      },
+      "gpu": {
+        "status": "actual_CUDA_FP64_complete_admitted_field_compliance_crosscheck_passed",
+        "case": "combined",
+        "device_name": "NVIDIA GeForce RTX 3090",
+        "device_alias": "cuda:0",
+        "warp_version": "1.18.0",
+        "numpy_version": "2.2.6",
+        "cells_checked": 18698908,
+        "batch_cells": 65536,
+        "independent_basis_and_hydrostatic_controls_passed": true,
+        "all_cell_values_compared": true,
+        "maximum_cell_absolute_energy_error_Nmm": 8.326672684688674e-17,
+        "maximum_fraction_of_cell_tolerance": 0.0006963212697110258,
+        "GPU_energy_Nmm": 9567.784314262764,
+        "independent_CPU_reference_energy_Nmm": 9567.784314262764,
+        "native_assessor_energy_Nmm": 9567.784314262764,
+        "GPU_native_relative_difference": 0.0,
+        "source_sha256": {
+          "native-workspace/independent-assessment/result/assessment.json": "dd29709c7a679bb6be1603e5d612acf7debc66eeeb3fcf8ff3e40ada4587b412",
+          "native-workspace/run/current-combined/actual-terminal.json": "8b1459d618dbcdaa1247f2b008b5ea09eab5179f17a6e2b43ed401c17d4c7ef0",
+          "native-workspace/independent-assessment/report.json": "4a643600bb38e0cf76d06a7870acbfd6b70bede3de3e3a4821c874ffc5a54f82",
+          "native-workspace/independent-assessment/result/fields/s.npy": "e4caaaf7c03f0e27c456b82edc3c27c81c47f3a4b002f3be2ab528d24fdcac18",
+          "native-workspace/independent-assessment/result/fields/volumes.npy": "e22dbf43c2e588734cb9433a9341385f11515c7eb5c5f96780c50ebbdc9d3d64"
+        },
+        "kernel_source_sha256": "c2c4dce5811540b39086191de3683023b0ae557c46ef6c95f82e93b2edd38e11",
+        "elapsed_seconds": 5.843284298025537,
+        "new_solver_execution": false,
+        "geometry_or_loads_modified": false,
+        "spatial_stabilization_claimed": false
+      },
+      "gpu_receipt_sha256": "33e0c478abc1ad90f3247f2886ad1cecb7a27030ed1d7651665d1cc3b497d89e",
+      "gpu_terminal": {
+        "actual_returncode": 0,
+        "child_reaped": true,
+        "reason": "complete",
+        "peak_aggregate_RSS_bytes": 1292447744,
+        "elapsed_seconds": 7.028208725969307
+      },
+      "gpu_terminal_sha256": "d0875228631cbc6eaecc6dd3ff334eafb5517f8e9da4106033682a5d92ac26ba",
+      "cleanup": {
+        "destroyed": true,
+        "instance_id": 59471489,
+        "verified_absent": true
+      },
+      "cleanup_receipt_sha256": "86b7f9aacb4efeb2002f4400828e13923ea3d245a607e4045875e5777fc409da"
+    }
+  },
+  "source_sha256": {
+    "work/carrier-h8-comparison-002/gravity-complete.json": "ea18a9f2d884147f194557992bdfa9a02d34f2193b69e924eec2b135f75c0b31",
+    "private-evidence/carrier-h6-recovery-20261105/h8-full-comparison-gravity-002/complete.json": "a93ab4e34e25314c8d6e0bd3d757d74f7f0edc8b2cbccb17a4fe466bb8151586",
+    "private-evidence/carrier-h6-recovery-20261105/h8-full-comparison-gravity-002/h7-to-h8-comparison.json": "7e65709254ae4a1394fb354f87efb5ff9635839d279e014608ad1fda60962410",
+    "work/carrier-high-memory-direct-039/native-restored/independent-assessment/result/assessment.json": "d8ee110a7bffda50ff62a0c8250524b8424329de9eead43565b09cf0a1bd3788",
+    "work/carrier-high-memory-direct-039/native-restored/run/current-gravity/actual-terminal.json": "8c97fcc843464283bd1125930cdf7ccd5f455062916cf29f7eb95b66251e6eba",
+    "work/carrier-high-memory-direct-039/scientific-complete.json": "9a5db9bc7f3e99c87bf0761999580913172430bae713b55968f9e780c64b8830",
+    "work/carrier-high-memory-direct-039/gpu-h8/recovered/result.json": "18cb923cc3fdc5641c03b18f6f34f800cddd8d1da874a1b271ae6bc478e9df9e",
+    "work/carrier-high-memory-direct-039/gpu-h8/recovered/terminal.json": "52da05b46ec57504a66bde1ca2320fad4e0523442686179603f07dfb2772aa94",
+    "work/carrier-high-memory-direct-039/complete-cleanup.json": "1ad4e7804fa5d17a6dd30d21ba942303ff4313221ff8132c028b9195cd1351ba",
+    "work/carrier-h8-comparison-002/compare_case.py": "674a3a6a8b4fe15af63e7d31d375957afed5a69cc54fa27b6b2d6a4e08cb6f05",
+    "work/carrier-nested-comparison-h8-rational-001/compare.py": "0c301331c447a4735dfe82c93103a74f796b90935151c2930cc37cafff7e6d18",
+    "work/carrier-nested-comparison-h8-rational-001/h7-to-h8-map.npz": "0340640278157513f92728b2ed8c0a2d119cae7568a2560d2ccc74f0c30c4f25",
+    "scripts/calculix_lossless_source.py": "3d755b9a8c51fa780ccce2d70101047ebf24b9f9c88d6a384af5ba3ce33fcb27",
+    "scripts/calculix_stream_decode.py": "aa09782c60dc4bdfe12952d2142b77fb0a3aa3d0446244192a943f55b27735d9",
+    "work/carrier-rational-comparator-controls-001/controls.json": "b4610961c091b87ad0fd853f901da8763dca7bac7a4370bbb3fe2939b6c6b411",
+    "work/carrier-h8-comparison-002/combined-complete.json": "59150b16f7ad1d24c401254c0d06ed7fcbd9ce000ca6a45c48980d59f2f4a58d",
+    "private-evidence/carrier-h6-recovery-20261105/h8-full-comparison-combined-002/complete.json": "3781dec3106cc06c466a8de509409a32ec74b3bc33736e4af4863a454e033b00",
+    "private-evidence/carrier-h6-recovery-20261105/h8-full-comparison-combined-002/h7-to-h8-comparison.json": "2277b9c7fbc24fa7d3b0b4751b63b1d3712407d10c366d71ddab323b1545a755",
+    "work/carrier-high-memory-direct-040/native-restored/independent-assessment/result/assessment.json": "dd29709c7a679bb6be1603e5d612acf7debc66eeeb3fcf8ff3e40ada4587b412",
+    "work/carrier-high-memory-direct-040/native-restored/run/current-combined/actual-terminal.json": "8b1459d618dbcdaa1247f2b008b5ea09eab5179f17a6e2b43ed401c17d4c7ef0",
+    "work/carrier-high-memory-direct-040/scientific-complete.json": "ed447732c4c3deb18f69aeba31127cf98160137e96bc6e88ec7ef8d6f83f1407",
+    "work/carrier-high-memory-direct-040/gpu-h8/recovered/result.json": "33e0c478abc1ad90f3247f2886ad1cecb7a27030ed1d7651665d1cc3b497d89e",
+    "work/carrier-high-memory-direct-040/gpu-h8/recovered/terminal.json": "d0875228631cbc6eaecc6dd3ff334eafb5517f8e9da4106033682a5d92ac26ba",
+    "work/carrier-high-memory-direct-040/complete-cleanup.json": "86b7f9aacb4efeb2002f4400828e13923ea3d245a607e4045875e5777fc409da"
+  },
+  "spatial_stabilization_claimed": false,
+  "strength_qualified": false,
+  "manufacturing_authorized": false
+}

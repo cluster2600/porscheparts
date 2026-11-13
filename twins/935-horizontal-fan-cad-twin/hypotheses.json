@@ -1,0 +1,86 @@
+{
+ "schema": "935-horizontal-fan-cad-twin/hypotheses/1",
+ "recorded_on": "2026-11-09",
+ "rule": "Every entry is an assumption, not a measurement. Geometry built from an entry must carry its id and be colour-coded as hypothesis in renders.",
+ "hypotheses": [
+  {
+   "id": "H-SCALE",
+   "statement": "One scan source unit is one millimetre.",
+   "basis": "Declared by the project owner on 2026-11-06. Consistent with the fitted bore (22.62 mm) and a tip diameter of about 271 mm, but neither is an independent calibration.",
+   "affects": [
+    "all dimensions"
+   ],
+   "clears_when": "two independently measured dimensions of the same specimen agree through check_scan_calibration.py"
+  },
+  {
+   "id": "H-BACK-REGISTRATION",
+   "statement": "The back acquisition pass is treated as rigidly registered to the front for version 1.",
+   "basis": "Measured offset of back faces: 0.27-0.69 degree tilt, 0.44 mm drum-centre shift (params/frame.json). The scan file name says the back was not lined up with the centre.",
+   "affects": [
+    "back-facing surfaces: flange back face, lugs, lower bowl, blade pressure sides"
+   ],
+   "clears_when": "a separate rigid fit of the back faces is applied and the scorecard of back-facing regions improves"
+  },
+  {
+   "id": "H-HUB-INTERIOR",
+   "statement": "The volume enclosed by the inner cone, the rolled lip and the outer drum/bowl is unobserved; version 1 revolves the observed outer loop as a closed section.",
+   "basis": "The scanner sees only the outside of this section. The rolled lip is about 2.7 mm across, which suggests a formed or spun wall rather than a solid casting, but the wall thickness is not observed.",
+   "affects": [
+    "mass",
+    "inertia",
+    "structural results"
+   ],
+   "does_not_affect": "aerodynamic surfaces, which are all observed",
+   "clears_when": "a section, a photograph of a cut or damaged hub, or a measured mass of the specimen"
+  },
+  {
+   "id": "H-DATUM-A-FUNCTION",
+   "statement": "The front flange face carrying the bolt circle is used as datum A.",
+   "basis": "Flattest large face of the hub (0.10 mm RMS). Its role as the mounting face to the drive output is not established.",
+   "affects": [
+    "frame origin",
+    "interface contract with the drive"
+   ],
+   "clears_when": "the drive output flange is identified on the drive scan or from a document"
+  },
+  {
+   "id": "H-FLOW-DIRECTION",
+   "statement": "The leading edge is the low-z end of each blade section; the rotor turns towards -s (clockwise seen from +Z) and pushes air towards +Z, from the bowl side to the lip side.",
+   "basis": "The blade angle from the tangential direction increases from the low-z end to the high-z end at every fitted station, as for a rotor whose relative flow is turned towards the axial direction.",
+   "affects": [
+    "the 1-D comparison of params/blade.json with new designs",
+    "installation orientation"
+   ],
+   "clears_when": "a photograph of the installed fan, its drive rotation sense, or its housing"
+  },
+  {
+   "id": "H-FASTENERS",
+   "statement": "The 8 front heads, 8 back tails and 4 step bosses are modelled as plain cylinders on their base faces.",
+   "basis": "Footprints and heights fitted from the scan (params/features.json). Whether they are rivets, bolts or cast bosses, and what they clamp, is not observed.",
+   "affects": [
+    "hub assembly",
+    "mass"
+   ],
+   "clears_when": "a close photograph or a section of the hub"
+  },
+  {
+   "id": "H-DRIVE-DOGS",
+   "statement": "The two crescent pads on the back of the hub are the coupling to the drive output.",
+   "basis": "Their position on the back face around the bore, their height (16.7-17.3 mm) and their holes. Dog 2's holes are not resolved as closed gaps in the scan; dog 1 shows two partial holes (gap diameters 3.5 and 2.8 mm, real size not observed). The dogs sit 176 degrees apart, not 180.",
+   "affects": [
+    "interface to the drive",
+    "the 993 flat-fan rotor, which copies these dogs"
+   ],
+   "clears_when": "the mating part is found on the drive scan or in a document"
+  },
+  {
+   "id": "H-TIP-GAP",
+   "statement": "Aerodynamic comparisons assume a 2 mm radial tip gap and a bellmouth inlet for both the 935 rotor and new designs.",
+   "basis": "The 935 housing (inlet funnel) is not scanned in this repository.",
+   "affects": [
+    "1-D performance figures"
+   ],
+   "clears_when": "the housing is measured"
+  }
+ ]
+}

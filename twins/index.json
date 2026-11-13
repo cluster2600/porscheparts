@@ -112,6 +112,37 @@
       ]
     },
     {
+      "directory": "935-horizontal-fan-cad-twin",
+      "kind": "design_programme",
+      "status": "study",
+      "scope": "935 horizontal fan rotor rebuilt top-down as feature-based CAD fitted to the private rotor scan: frame, revolved hub, local features, one blade pooled from nine, build123d model and an independent scan-to-CAD scorecard; baseline of the 993 flat-fan part",
+      "fidelity": "none_declared",
+      "fidelity_note": "fitted numbers on an owner-declared 1 mm scale; specimen CAD within 0.5 mm of 71 % and within 1 mm of 90 % of the scan area; STEP and meshes private",
+      "physical_correlation": "none",
+      "records": [],
+      "part_ids": [
+        "993-ENG-FLAT-FAN-ROTOR-WE43-F0-0001"
+      ],
+      "no_record_reason": "The catalogue and twin schemas cover 964 and 993 vehicles only; this 935 reconstruction is the baseline of part 993-ENG-FLAT-FAN-ROTOR-WE43-F0-0001.",
+      "independent_evidence": "score_twin.py, which imports nothing from the fitting code, measures every scan facet against the CAD (params/scorecard-specimen.json)",
+      "blockers": [
+        "back scan pass misregistered (H-BACK-REGISTRATION)",
+        "hub interior unobserved (H-HUB-INTERIOR)",
+        "blade-to-drum fillet not fitted",
+        "drive scan not yet fitted (mating part of the drive dogs)"
+      ],
+      "owner_artefact": "twins/935-horizontal-fan-cad-twin/README.md",
+      "evidence": [
+        "twins/935-horizontal-fan-cad-twin/params/frame.json",
+        "twins/935-horizontal-fan-cad-twin/params/hub-profile.json",
+        "twins/935-horizontal-fan-cad-twin/params/features.json",
+        "twins/935-horizontal-fan-cad-twin/params/blade.json",
+        "twins/935-horizontal-fan-cad-twin/params/scorecard-specimen.json",
+        "twins/935-horizontal-fan-cad-twin/hypotheses.json"
+      ],
+      "issues": []
+    },
+    {
       "directory": "962-cylinder-head-f0",
       "kind": "design_programme",
       "status": "active",

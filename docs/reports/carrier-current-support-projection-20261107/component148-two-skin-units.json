@@ -1,0 +1,127 @@
+{
+  "schema": "carrier-current148-two-skin-units-v1",
+  "status": "two_current_skin_planar_units_and_mapping_independent_readback_passed",
+  "source_component": 148,
+  "scope": "Both intrinsic planar skin units, all original mapping predicates with their retained numerical bounds, complete source/array identity and local contact predicates. The first complete unit is reused; the second exact band overlay is newly executed.",
+  "skins": [
+    {
+      "index": 0,
+      "source_faces": 4254,
+      "faces": 4270,
+      "material_WKB_sha256": "9d3425973de332e5a9d529577a30de9b69633073f2431d0220f3303d5a150af7",
+      "unit_receipt_sha256": "c3aeab9938d3e102c5ac59f4f93980809a8239f513ac6fb869f09648d2823596",
+      "native_receipt_sha256": "e457c2ee984e1f15d6d34edcdf66a87e41750b3d0c2fc24325a3124f27567bd2",
+      "native_candidate_area_mm2_exact": "48765932672167481917494544969388763/40564819207303340847894502572032",
+      "candidate_minus_authority_empty": true,
+      "authority_minus_candidate_empty": false,
+      "reused_complete_first_unit": true,
+      "original_mapping_bounds": {
+        "original_three_seal_mapping_predicates_passed": true,
+        "original_remap_material_area_gates_passed": true,
+        "original_unfolding_area_bound_mm2": 1.4015897772208643e-07,
+        "original_source_roundtrip_mm": 4.0194366942304644e-14,
+        "original_source_coordinate_bound_mm": 3.637978807091713e-12,
+        "original_remap_area_bound_mm2": 1.6732989896750216e-07,
+        "bound_components": {
+          "summation_area_bound_mm2": 1.4593073052929237e-07,
+          "intrinsic_mapping_area_deviation_bound_mm2": 1.1246242328811244e-11,
+          "IEEE_vertex_encoding_area_bound_mm2": 2.1387922195880982e-08
+        },
+        "no_new_tolerance": true,
+        "exact_inverse_of_rounded_mapping_claimed": false
+      },
+      "original_zero_only_cleanup": {
+        "exact_zero_cleanup_reference_sha256": "0ed7a47906794a5fd07c8e4d8437376f42f15df6af682858ce3e4f165948b01c",
+        "removed_original_local_faces": [
+          3831
+        ],
+        "positive_area_removed": 0,
+        "coordinate_displacement_mm": 0.0,
+        "original_exact_segment_coverage_preserved": true,
+        "independent_new_cleanup_not_executed": true
+      },
+      "legacy_overlay_outside_area_mm2": 0.0
+    },
+    {
+      "index": 1,
+      "source_faces": 3674,
+      "faces": 3766,
+      "material_WKB_sha256": "d40ccf62a7107db3d891dafd8fb083d864d965351d1eb80d0081d903df532c02",
+      "unit_receipt_sha256": "8116086234b021a26da0b99f9411bc3f89053edeb387388ca0b65fc6c6da90f6",
+      "native_receipt_sha256": "6e782f3065b1aa2b2e97afcdde47ce3f6b0bfdcee03c92773bf83353ca608740",
+      "native_candidate_area_mm2_exact": "582472547875594017606287641975658863/324518553658426726783156020576256",
+      "candidate_minus_authority_empty": true,
+      "authority_minus_candidate_empty": true,
+      "reused_complete_first_unit": false,
+      "original_mapping_bounds": {
+        "original_three_seal_mapping_predicates_passed": true,
+        "original_remap_material_area_gates_passed": true,
+        "original_unfolding_area_bound_mm2": 1.8518245181038696e-07,
+        "original_source_roundtrip_mm": 4.0194366942304644e-14,
+        "original_source_coordinate_bound_mm": 3.637978807091713e-12,
+        "original_remap_area_bound_mm2": 2.2629957745594704e-07,
+        "bound_components": {
+          "summation_area_bound_mm2": 1.9211728511718555e-07,
+          "intrinsic_mapping_area_deviation_bound_mm2": 1.2234504517056159e-11,
+          "IEEE_vertex_encoding_area_bound_mm2": 3.417005783424443e-08
+        },
+        "no_new_tolerance": true,
+        "exact_inverse_of_rounded_mapping_claimed": false
+      },
+      "original_zero_only_cleanup": {
+        "exact_zero_cleanup_reference_sha256": "adb49f3fd293ca4eeda8a59cd16b690626fa6a860da387a7539b301cc7095165",
+        "removed_original_local_faces": [],
+        "positive_area_removed": 0,
+        "coordinate_displacement_mm": 0.0,
+        "original_exact_segment_coverage_preserved": true,
+        "independent_new_cleanup_not_executed": true
+      },
+      "legacy_overlay_outside_area_mm2": 0.0
+    }
+  ],
+  "counts": {
+    "source_face_occurrences": 7928,
+    "skin_triangles": 8036,
+    "whole_component_native_groups": 30
+  },
+  "checks": {
+    "all_four_original_arrays_byte_identical": true,
+    "all7928_source_occurrences_verified": true,
+    "all30_recovered_groups_bound": true,
+    "chart1_candidate_all_coordinates_and_holes_verified": true,
+    "chart1_authority_all3674_positive_primitives_and_retained_input_bytes_verified": true,
+    "original_source_mapping_not_an_exact_inverse": true
+  },
+  "execution": {
+    "actual_returncode": 0,
+    "child_reaped": true,
+    "all_owned_ids_freshly_absent": true,
+    "elapsed_seconds": 76.19370191683993,
+    "peak_group_RSS_bytes": 2226880512,
+    "readback_seconds": 2.0196164168883115,
+    "source_pins_verified": 3486,
+    "prepared_artifacts_verified": 11,
+    "scientific_artifacts_verified": 6
+  },
+  "current_run_new_chart1_overlay": true,
+  "current_run_reused_complete_chart0_unit": true,
+  "independent_reader_reran_geometry": false,
+  "original_unused_vertex9615_retained": true,
+  "retained_failure": "The first attempt completed skin0, then stopped before the skin1 overlay when serializing the unused exact sum of overlapping primitive areas at the original4300-digit Python limit. Only that non-union aggregate was omitted. All primitive positive-area checks, ring bytes, candidate/domain areas and native union/containment checks remain; the integer limit is unchanged.",
+  "geometry_changed": false,
+  "new_mapping_tolerance": false,
+  "old_global_seal": false,
+  "full_component_process_admission": false,
+  "exposure_admission": false,
+  "evidence_sha256": {
+    "independent_readback": "c9d2d3d4b6f9a3ed51b844883b7e23bddd8ca72002271d948b9c231387985178",
+    "result": "dad9e7b6ae81211aab7c9b232eb3d7878867bd2a7d92aee82a605b1306db1a53",
+    "terminal": "9222a73c29bd40541fd22531a4c3afaaf0da124ea4ddcd179175a0613d5b1434",
+    "contract": "211c349e1501b1de58e43275237fa70205e499bea3538a78e66f4f59aee0cd7e",
+    "controls_readback": "db12209521873515b28ca72705433a518f56c3b2284f34638b9320714e748eb4",
+    "preserved_failed_attempt_readback": "9a73f0c00a06340f806b0fcd51eda28505c7d77c753fbfd5ae56e350d134a08a",
+    "original_support_npz": "7bd0d7efbf94e45bc8655a84b343fc5841c7c408c63d861972f9675ccf280d7b",
+    "recovered_native_groups": "c21209501eccfb84b49b0de3e6e07955b4b30b42558bd403a52a964781b42364"
+  },
+  "raw_geometry_published": false
+}

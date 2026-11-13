@@ -1,0 +1,221 @@
+{
+  "schema": "carrier-h9-print17-gravity-recovery-v1",
+  "checkpoint_utc": "2026-11-07T07:51:05.916664+00:00",
+  "status": "complete_print17_gravity_native_GPU_lossless_local_recovery_and_provider_cleanup",
+  "scope": "Complete gravity-labelled H9 native response at 17 significant digits, every-cell GPU crosscheck, full encoded and raw SHA verification with strict XZ EOF, and exact provider cleanup. Combined precision execution and the higher-precision algebraic reassessment remain pending.",
+  "native": {
+    "actual_returncode": 0,
+    "elapsed_seconds": 630.3846430049744,
+    "process_reaped": true,
+    "inputs_unchanged": true,
+    "outer_timeout": false,
+    "native_binary_sha256": "4c9db4806c2034d2b2f52b4baac3188c3f57cc66381566f9077d686f4f03db18"
+  },
+  "native_assessment": {
+    "status": "complete_current_P1_equilibrium_and_energy_passed",
+    "counts": {
+      "u": 4881980,
+      "rf": 14064,
+      "s": 19199981,
+      "ener": 19199981
+    },
+    "relative_independent_energy_residual": 4.445167583518372e-08,
+    "energy_relative_limit": 0.0001,
+    "independent_stress_compliance_energy_Nmm": 735.459087285253,
+    "true_free_node_residual_certified": false
+  },
+  "recovered_metadata": {
+    "status": "every_bounded_member_SHA256_verified",
+    "members_verified": 84,
+    "archive_sha256": "de6b36abf53d70458887b0d9b7c7f1e67fcd6b5c06f7375f3213142cc3a1f382",
+    "all_members_rehashed_during_public_summary": true
+  },
+  "GPU": {
+    "status": "actual_CUDA_FP64_complete_admitted_field_compliance_crosscheck_passed",
+    "case": "gravity",
+    "device_name": "NVIDIA RTX 4000 Ada Generation",
+    "warp_version": "1.18.0",
+    "numpy_version": "2.2.6",
+    "cells_checked": 19199981,
+    "all_cell_values_compared": true,
+    "maximum_cell_absolute_energy_error_Nmm": 5.204170427930421e-18,
+    "maximum_fraction_of_cell_tolerance": 0.0002464039519416257,
+    "GPU_energy_Nmm": 735.459087285253,
+    "independent_CPU_reference_energy_Nmm": 735.459087285253,
+    "GPU_native_relative_difference": 0.0,
+    "elapsed_seconds": 18.612816814915277,
+    "kernel_source_sha256": "c2c4dce5811540b39086191de3683023b0ae557c46ef6c95f82e93b2edd38e11"
+  },
+  "GPU_cleanup": {
+    "actual_returncode": 0,
+    "child_reaped": true,
+    "owned_group_absent": true,
+    "reason": "complete"
+  },
+  "first_encoder_observation": {
+    "partial_bytes": 841166127,
+    "process_observed_absent": true,
+    "closed_DAT_bytes": 4506144286,
+    "exit_cause_established": false,
+    "failed_partial_preserved": "Retained on the owned instance throughout recovery, then deleted with that instance; no local failed-partial retention is claimed."
+  },
+  "isolated_XZ_runtime": {
+    "status": "exact_official_xz_binary_extracted_isolated_runtime_matched",
+    "package_url": "https://deb.debian.org/debian/pool/main/x/xz-utils/xz-utils_5.4.1-1+deb12u1_amd64.deb",
+    "package_bytes": 471212,
+    "package_sha256": "cc6dc501e0c06be3f89e9a7f8dfd7a97f92aadfd9daa60fad19b90d6a5558b80",
+    "runtime_sha256": {
+      "/usr/lib/x86_64-linux-gnu/liblzma.so.5.4.1": "983464a4e0e840f85b519cb7b6153b60c75d6473f4d4c32a5a37b3f9894c52c3",
+      "/usr/lib/x86_64-linux-gnu/libc.so.6": "6b4a45352fd0c540a9c7c718f35ce8c8e46a4e482f9d3885a910c32d1a0e1421",
+      "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2": "02bcda52c1a5dfc236f94d9e5255b4a0e26347d8a372a5223b650e31f291ce3c",
+      "/workspace/carrier/xz-runtime-001/xz": "57a4229aa1c6d96fc0450f4eb75791fb3f47e1abec4cee1efe0e1ab9ac8801aa"
+    },
+    "only_binary_extracted": true,
+    "system_packages_changed": false,
+    "new_external_input_bytes": 471212
+  },
+  "Linux_runtime_qualification": {
+    "status": "native17_MT_single_stream_multiblock_strict_decoder_controls_passed",
+    "system": "Linux",
+    "checks_passed": 6,
+    "fixture_original_sha256": "b3f02a0e7175de41a0944b44abd27211f382ca008f519f6fa434b17595ecc93c",
+    "streams": 1,
+    "blocks": 9,
+    "raw_bytes": 536873661,
+    "encoded_bytes": 84608,
+    "strict_refusals": [
+      "corrupt",
+      "truncated",
+      "trailing",
+      "concatenated"
+    ],
+    "actual_timeout_reaped": true,
+    "original_decoder_unchanged": true,
+    "elapsed_seconds": 18.138150805956684
+  },
+  "complete_remote_encoding": {
+    "status": "complete_new_current_scientific_DAT_encoded",
+    "raw_bytes": 4506144286,
+    "encoded_bytes": 1357446628,
+    "compression_seconds": 504.27351143199485,
+    "streams": 1,
+    "blocks": 68,
+    "preset": 6,
+    "requested_threads": 8,
+    "actual_thread_count_claimed": false,
+    "block_bytes": 67108864,
+    "check": "CRC64",
+    "scientific_XZ_limit_bytes": 1600000000,
+    "headroom_bytes": 242553372,
+    "reported_encoded_sha256": "7d42446b88d3ddb4f24aaade37d57623c2ad4de01ce311fe9733967973c48d7e",
+    "reported_raw_sha256": "a6cce2b249be063c067bb4686e6b25ccc1630397b102f15af4104a02d47abd2f",
+    "field_removal": false,
+    "precision_change": false,
+    "native_child_returncode": 0,
+    "native_child_reaped": true,
+    "owned_codec_group_absent": true,
+    "peak_parent_and_child_group_RSS_bytes": 1578029056,
+    "child_address_space_limit_bytes": 3221225472,
+    "aggregate_RSS_limit_bytes": 4294967296,
+    "original_raw_DAT_retention": "Retained on the owned instance throughout recovery, then deleted with that instance; the complete encoded representation is retained locally."
+  },
+  "field_transfer_continuation": {
+    "inspection": "The preceding consumer requested the 5 GB option for scientific-recovery-002, but the inherited transport allows that option only for scientific-recovery-001. No traceback was retained; the stop cause is not established. The fresh continuation uses the 2 GB option and unchanged 1.6 GB index gate.",
+    "fresh_field_target_absent_at_admission": true,
+    "maximum_transfer_file_bytes": 2000000000,
+    "scientific_index_limit_bytes": 1600000000,
+    "one_application_attempt": true,
+    "automatic_retry": false,
+    "complete_encoded_SHA_required": true,
+    "complete_raw_SHA_and_strict_EOF_required": true,
+    "uncompressed_raw_duplicate_planned": false
+  },
+  "lease": {
+    "original_deadline_utc": "2026-11-07T07:51:30Z",
+    "deadline_epoch": 1794037890,
+    "original_wall_seconds": 7200,
+    "budget_USD": 3.2,
+    "image_download_GB": 1.2,
+    "application_input_GB": 2,
+    "application_output_GB": 2,
+    "extended": false,
+    "new_rental_for_recovery": false,
+    "native_solver_replayed_for_recovery": false
+  },
+  "pending": {
+    "complete_local_encoded_SHA256": false,
+    "complete_local_raw_SHA256_and_strict_EOF": false,
+    "provider_cleanup": false,
+    "combined_precision_case": true,
+    "higher_precision_algebraic_reassessment": true
+  },
+  "source_receipts_sha256": {
+    "work/carrier-high-memory-direct-046/native-restored/run/current-gravity/actual-terminal.json": "580e6b1bb6f60f94991b4330ef572b336fd3c4f49efd00db48032df610e974a3",
+    "work/carrier-high-memory-direct-046/native-restored/independent-assessment/result/assessment.json": "ad9782fae062bd863948231c1e85879ab9cde73bf3b20224049e4fd89b666452",
+    "work/carrier-high-memory-direct-046/metadata-verification.json": "d156ba9c46e145cb86d66150af972326ba66a9019fad6150fc8324ca5bfe3963",
+    "work/carrier-high-memory-direct-046/gpu-h9/recovered/result.json": "e2db0994df42091f10cc2a5bc1c114d574ccaab8007c09ec37b89ca3e6713216",
+    "work/carrier-high-memory-direct-046/gpu-h9/recovered/terminal.json": "50f444ced921eae7e472e454f2292e040316992c42aa1058afd0af657ebca8d1",
+    "work/carrier-high-memory-direct-046/gpu-h9/recovery.json": "ecdd05839d57815055ff0cb03e6aa433072d9473eba9accc6046e1a3fb6c04f0",
+    "work/carrier-high-memory-direct-046/codec-health-after-budget-002.json": "3d85f89813ac1415e680ce47b386367b1371e419fd3571e4b27b3d49977c2d96",
+    "work/carrier-high-memory-direct-046/native-xz-isolated-install-001.json": "9df722e99a04416b6f8bfaea25b032c795c63b6bf18b26518f87b5e5b0a27111",
+    "work/carrier-h9-print17-scientific-resume-002/actual-native-xz-controls.json": "5f82858756aecdff054595833634ea7e829cacb40ffc94fcc1b5f1dc39de3525",
+    "work/carrier-h9-print17-scientific-resume-002/codec-observation.json": "206bcdd49efacd0b575bedcbd1355b51d90d52a00f14d97abe6ae8ce88d72b00",
+    "work/carrier-h9-print17-scientific-resume-002/preparation.json": "6354260526c16414e7b0a8aabf89a35cd736b5bc208a0781e3b78b2c2b9f9e01",
+    "work/carrier-h9-print17-scientific-resume-002/science_resume.py": "a82dde389974593d31bb16635102984cff19d4aaaec01ee27d0dc522ad129027",
+    "work/carrier-high-memory-direct-046/transport.py": "d5743d69f36ac3b88b73e0a77234ad8ec20511ab960e3d510c806f109f7fc490",
+    "work/carrier-high-memory-direct-046/lease.json": "825b9e533547a21d7b514ec7ec80a6abd98aed8b28377458ecc82400e9812ba1",
+    "work/carrier-h9-print17-field-continuation-001/preparation.json": "329aca2c20beda0125bdebe06454c09546cbf740a5ec7ca622e238be14b3d62c",
+    "work/carrier-h9-print17-field-continuation-001/selfcheck.json": "10ac0221f396d6452cc97c2edffffb2408870073c9864ace4cc2dfd53d29cb05",
+    "work/carrier-h9-print17-field-continuation-001/start-intent.json": "37b5b1bc0ddf5f0f6ade5cf7c407f89ee4c6415bc6a9adfbf1c2062012625aec",
+    "work/carrier-h9-print17-field-continuation-001/continue_field.py": "b71fb1ae7f83057a12a1c02c6c1d3d3d4208b48646e3ea3546035ed37dd2343a",
+    "work/carrier-h9-print17-field-continuation-001/transport_field.py": "b153b9b4687e17ca9498d71fc3746f24c7c7ab29ff6d03fef1fec7d26834bb08",
+    "work/carrier-h9-print17-field-continuation-001/encoded-complete.json": "9e5fd5544260fedcf6f4af903c46c9a3157fb0f89442f92c1867281d2a75dc2e",
+    "work/carrier-high-memory-direct-046/complete-cleanup.json": "ebd5a2d475577da4f95b7f4a611fd3a59d99334e3af5a9cc302a2a98b53af2b7",
+    "work/carrier-high-memory-direct-046/scientific-complete.json": "f0ca3d7b87ec898058edf81fe8ac5dac4425019f361d177701da139ac3413845",
+    "work/carrier-h9-print17-field-continuation-001/complete.json": "5b5963f42ab0d541fc5751033fe471f2a19cbe547da158f7f1ab5041e21ece3d",
+    "work/carrier-h9-print17-algebraic-external-002/gravity-execution/algebraic-terminals.json": "38a524baeaabbe16b14245ff4299dd1f0d23ba29d3ed38f71238556da4ff7864",
+    "work/carrier-h9-print17-algebraic-external-002/gravity-execution/audit_case.phase.stderr.log": "046b3bd6bc39797880bd6e99a87b28737832b64bcaae9f2b8037010c3871f1ed",
+    "work/carrier-h9-print17-algebraic-external-002/gravity-execution/algebraic-failed.json": "db115a2f86986c3927b262c55130859d47eed010088278612b2682fce62e73b8"
+  },
+  "publication": "Scalar/hash receipt only. No raw DAT, field arrays, provider connection data or proprietary geometry are included.",
+  "local_encoded_recovery": {
+    "status": "complete_encoded_SHA_metadata_and_GPU_retained_local_raw_decode_pending",
+    "encoded_bytes": 1357446628,
+    "encoded_sha256": "7d42446b88d3ddb4f24aaade37d57623c2ad4de01ce311fe9733967973c48d7e",
+    "whole_SHA256_verified": true,
+    "transfer_returncode": 0,
+    "transfer_elapsed_seconds": 380.7086334170308
+  },
+  "provider_cleanup": {
+    "destroyed": true,
+    "instance_id": 59530125,
+    "verified_absent": true
+  },
+  "local_raw_verification": {
+    "status": "complete_new_current_scientific_DAT_lossless_XZ_and_all_raw_bytes_locally_SHA256_verified",
+    "decoded": {
+      "raw_bytes": 4506144286,
+      "raw_sha256": "a6cce2b249be063c067bb4686e6b25ccc1630397b102f15af4104a02d47abd2f",
+      "maximum_decoded_chunk_bytes": 1048576,
+      "complete_source_SHA256_verified": true
+    },
+    "strict_single_stream_EOF_verified": true,
+    "uncompressed_raw_file_retained": false,
+    "large_auxiliary_FRD_retained": false,
+    "reference_control_cache_binding_pending": true,
+    "native_solver_replayed": false,
+    "lease_extended": false
+  },
+  "first_local_algebraic_attempt": {
+    "status": "complete_field_algebraic_diagnostic_not_admitted",
+    "actual_returncode": 1,
+    "elapsed_seconds": 2.188723542029038,
+    "child_reaped": true,
+    "owned_group_absent": true,
+    "full_field_replay_started": false,
+    "reason": "The preserved decoded-geometry cache helper requires same-filesystem hard links; source geometry is on the internal volume and the fresh output is on the external SSD. Its device-identity assertion refused before the field reader.",
+    "remedy_status": "A fresh exclusive-copy adapter with full source/destination SHA verification is being prepared; replacement full audit not executed.",
+    "terminal_sha256": "38a524baeaabbe16b14245ff4299dd1f0d23ba29d3ed38f71238556da4ff7864",
+    "stderr_sha256": "046b3bd6bc39797880bd6e99a87b28737832b64bcaae9f2b8037010c3871f1ed"
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "status": "portable_existing_synthetic_snap51_5_chain_qualified",
+  "scope": "Original synthetic prism-free witness only. Current-carrier support geometry, contact coverage and manufacturing admission are not established.",
+  "exact_native_input": {
+    "vertices": 42,
+    "faces": 76,
+    "exact_volume_mm3": "3200",
+    "exact_parent_CSR_source_faces": 52,
+    "exact_parent_CSR_references": 98,
+    "raw_float_export_admitted": false,
+    "raw_float_collinear_triangles": 4
+  },
+  "qualified_snap_output": {
+    "vertices": 40,
+    "faces": 72,
+    "exact_double_coordinates": true,
+    "collinear_triangles": 0,
+    "post_double_self_intersection_free": true,
+    "closed_oriented_manifold": true,
+    "exact_signed_volume_mm3": "23768448754279301475095668798259/7427640235712281649394745344",
+    "exact_volume_difference_from_3200_mm3": "197032483697459/7427640235712281649394745344",
+    "volume_difference_approx_mm3": 2.652692880171038e-14,
+    "grid_bits": 51,
+    "iterations": 5,
+    "historical_complete_NPZ_sha256": "9512fcc34070dcc66979f862a0d51c280178da8d61415a3c4d7499effdf38e2e"
+  },
+  "lineage_scope": {
+    "exact_stage_full_52_parent_CSR_preserved_unchanged": true,
+    "snap_primary_autorefine_parent_indices": 72,
+    "snap_parent_index_domain": "76 raw float source faces",
+    "historical_selected_source_attributes_reproduced": true,
+    "full_52_parent_geometric_CSR_recomputed_for_snap_faces": false,
+    "source_ancestry_not_new_geometric_contact_certificate": true
+  },
+  "finite_drift": {
+    "directions": {
+      "input_to_output": {
+        "exact_distance_upper_bound_squared": "0",
+        "exact_conversion_upper_bound_squared": "16/5070602400912922109586440192001",
+        "composed_upper_bound_mm": 1.7763568394002497e-15,
+        "finite_samples": 118,
+        "pass_under_unchanged_limit": true
+      },
+      "output_to_input": {
+        "exact_distance_upper_bound_squared": "0",
+        "exact_conversion_upper_bound_squared": "16/5070602400912922109586440192001",
+        "composed_upper_bound_mm": 1.7763568394002497e-15,
+        "finite_samples": 112,
+        "pass_under_unchanged_limit": true
+      }
+    },
+    "unchanged_limit_mm": 1.2306961192854808e-13,
+    "all_declared_vertices_and_rational_face_centroids": true,
+    "continuous_Hausdorff_certificate": false
+  },
+  "runtime": {
+    "native_binaries": [
+      {
+        "path": "bundle/bin/carrier_autorefine",
+        "sha256": "1101b7ef326027a029029cb9f242042c2e561abd699df544350500751dee9db2",
+        "bytes": 940680
+      },
+      {
+        "path": "bundle/bin/carrier_exact_distance",
+        "sha256": "e33edfca76eb9859351786e9beef0dbd4be8ce19c0ed92001ebe4d0f79338a3a",
+        "bytes": 682960
+      }
+    ],
+    "shared_library_union_count": 8,
+    "bundle_file_count": 10,
+    "bundle_bytes": 9364752,
+    "image": "sha256:a3407976d949b7a93d091b57b47dee5c55da5a8a53a49375a8e0d8fb7e57dc94",
+    "per_stage_limits": {
+      "native_seconds_each": 300,
+      "native_container_count": 7,
+      "maximum_sum_of_native_stage_budgets_seconds": 2100,
+      "memory_bytes": 4294967296,
+      "cpu": 2,
+      "pids": 128,
+      "per_file_bytes": 4194304,
+      "native_serialized_output_bytes": 67108864,
+      "complete_local_root_bytes": 134217728,
+      "reserve_bytes": 8589934592
+    },
+    "per_stage_outcomes": [
+      {
+        "stage": "loader-snap",
+        "actual_returncode": 0,
+        "expected_refusal": false,
+        "controller_wall_seconds": 0.5651334580034018,
+        "native_OOM": false,
+        "owned_container_removed": true,
+        "client_reaped": true
+      },
+      {
+        "stage": "loader-distance",
+        "actual_returncode": 0,
+        "expected_refusal": false,
+        "controller_wall_seconds": 0.8095432909904048,
+        "native_OOM": false,
+        "owned_container_removed": true,
+        "client_reaped": true
+      },
+      {
+        "stage": "snap-control",
+        "actual_returncode": 0,
+        "expected_refusal": false,
+        "controller_wall_seconds": 0.825237917015329,
+        "native_OOM": false,
+        "owned_container_removed": true,
+        "client_reaped": true
+      },
+      {
+        "stage": "distance-control",
+        "actual_returncode": 0,
+        "expected_refusal": false,
+        "controller_wall_seconds": 0.828008666052483,
+        "native_OOM": false,
+        "owned_container_removed": true,
+        "client_reaped": true
+      },
+      {
+        "stage": "distance-refusal",
+        "actual_returncode": 2,
+        "expected_refusal": true,
+        "controller_wall_seconds": 0.8413297079969198,
+        "native_OOM": false,
+        "owned_container_removed": true,
+        "client_reaped": true
+      },
+      {
+        "stage": "snap-witness",
+        "actual_returncode": 0,
+        "expected_refusal": false,
+        "controller_wall_seconds": 0.8460502499947324,
+        "native_OOM": false,
+        "owned_container_removed": true,
+        "client_reaped": true
+      },
+      {
+        "stage": "distance-witness",
+        "actual_returncode": 0,
+        "expected_refusal": false,
+        "controller_wall_seconds": 0.781973792007193,
+        "native_OOM": false,
+        "owned_container_removed": true,
+        "client_reaped": true
+      }
+    ],
+    "actual_native_snap_seconds": 0.036927584,
+    "actual_native_distance_seconds": 0.048338583,
+    "all_seven_containers_freshly_verified_absent": true
+  },
+  "controls": {
+    "existing_exact_radical_tests": 5,
+    "positive_snap_control": true,
+    "exact_distance_triangle_segment_point_control": true,
+    "native_distance_exceedance_refused": true,
+    "existing_topology_gate_controlled": true
+  },
+  "preserved_refusal": {
+    "reason": "An extra zero-displacement analytic-prism check was stricter than the existing nonzero-drift snap contract. Its refusal was retained; only the existing topology readback and previously unrun exact-distance stage continued.",
+    "native_snap_executed_once": true,
+    "thresholds_changed": false,
+    "native_algorithms_changed": false
+  },
+  "source_sha256": {
+    "work/carrier-cgal-portable-snap-20261107-001/result.json": "e440ffee8fcd7ba1be1e2f525a841c495a2bb6b7947126d31872628fdaab4e25",
+    "work/carrier-cgal-portable-snap-20261107-001/independent-readback.json": "f0986dde9e581167095e9b8ea0f8c1cb2f3fd44d4a0378bc80cfe632c37afd32",
+    "work/carrier-cgal-portable-snap-20261107-001/contract.json": "c6fdf1db9202483a0cae5a5e2082cce6dcb55d98d0a2a73b35c5d797f7c9fdfd",
+    "work/carrier-cgal-portable-snap-20261107-001/contract-resume.json": "5c55ae6a9fbf73c2e2687f2ed5649513a2825ad6a9bb9f3407b04de188c2b893",
+    "work/carrier-cgal-portable-snap-20261107-001/run.py": "67dee55c9c84adc6b9c57088bd191650de5809c3b0240dc829a1944d25122d44",
+    "work/carrier-cgal-portable-snap-20261107-001/resume.py": "095e9d7832c367e17c9ee4d1dce14935d90a0b5d34e94895c68f9ba00aaf923e",
+    "work/carrier-cgal-portable-snap-20261107-001/readback.py": "4b1bc30c77c8be7a1125e3c3be77f7589dc20ba4d93041a574840fb7d348a54e",
+    "work/carrier-cgal-portable-snap-20261107-001/controls.json": "40958e6733e4535a42876bcb284c032cf4277da6f655412fe80722e3e911e585",
+    "work/carrier-cgal-portable-snap-20261107-001/topology.json": "cfce9545e47aef8a2af0d9dd23dca487a75504c34238712a95ad1a34ab47592e",
+    "work/carrier-cgal-portable-snap-20261107-001/topology-runtime.json": "aadc707937d06c80b8dd8b5cab0557180ef4cc4a43f04e438efb685abc3aec21",
+    "work/carrier-cgal-portable-snap-20261107-001/check_topology.py": "3086a8e315e87cbea869a2b95dd3a3c1ed00bfccf32dbc0f8d9f370d46595c8a",
+    "work/carrier-cgal-portable-snap-20261107-001/failure.json": "31c0f07249ed390187c94e21752f11864b4ef34dc1d42b27f9dbcac024e05f0d",
+    "work/carrier-cgal-portable-snap-20261107-001/transfer.json": "12a5c4b3bc9dd8e125987b6b0e7aa60035aff55549d4f391b20d2b431e460e4d",
+    "work/carrier-cgal-portable-linux-20261107-001/independent-readback.json": "1164006e905cae6604b3367c44a76cb5fcc317b7a72589f0e90d7e2209779043",
+    "parts/993-eng-carrier-0001/source/native-cgal-20261016/autorefine.cpp": "34a610292dc8c1f51c74367fee7cc08967316f29792d1bd3b2ec8858542509b2",
+    "parts/993-eng-carrier-0001/source/native-cgal-distance-20261016-v3/distance.cpp": "ea4029186361e5d51d12cb1104f0ca0501fa4c04d266061a71b73c1bb7d1ee79",
+    "parts/993-eng-carrier-0001/source/native-cgal-prism-free-20261016-v4/audit_composed_drift.py": "3f028754c67e665405747c08035d3983dc4aefe6331b4df60dead747ecd18498",
+    "work/carrier-cgal-portable-snap-20261107-001/witness-output/snap.mesh64": "024779cde4783566728864bb2cb3d976ab00ba39444113fc6dca96a25059f09a",
+    "work/carrier-cgal-portable-snap-20261107-001/witness-output/snap.mesh64.source_faces": "bd35637550e010e439ec3e0e239ba21ac1a4297c443e95ca4bd8996e8d709dc1",
+    "work/carrier-cgal-portable-snap-20261107-001/witness-output/snap.json": "3e102613bb5b614334d7e3a8115b584fb6dbf67549a1e77c17c2f0f2e6e7586e",
+    "work/carrier-cgal-portable-snap-20261107-001/witness-output/distance.json": "175f888a5cc98fcd3ddf732bb12a293d5b44f616f8bc163c8224ab84ecd198e4"
+  }
+}

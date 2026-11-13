@@ -1,0 +1,118 @@
+{
+  "status": "bounded_H10_selector_retained_complete_checkpoint_before_target",
+  "independent_recount_sha256": "daa1b5973595bdd25e23ea87ecc89ff6f414b57dbe6aba55271096acfb298529",
+  "source_sha256": {
+    "selection-000029.json": "07b33a1afaf969051e82b3896d6694a6a457b5d2355486d2cbae844e835f0cf6",
+    "latest.json": "a36de48a89ffd85f7d3830309f3dac9001a85778c519d1d2aee9cb1c9e2e7119",
+    "check.py": "d49a19856f25bb1c5bcd4934dcf95853e5e2d0ec3f9bc0f706bb460f797e3ee9",
+    "prepare.py": "7c8b1d02c4d50f9ab045baa5a3792da732ea5c3fa7ad8b064f9471c0d092af29",
+    "run_prepare.py": "836f1ae842dd7b34d0be8577b7a66ad37daedfc3f1912bf04d127f4298060d18",
+    "runtime-paths.json": "27fbf285a486265303f6650741a4044d780ab020c8f15e8df29ddb42fbf1d7cc",
+    "execution-preparation.json": "65e3cd161d065b50b56fd07501919c7e002bacc2e5abde05eb40f14b6718b119",
+    "terminal.json": "49f8dec18a795c16aade4e29ba49f47f51fc5a26a895490c7ec5b977ccf4973c",
+    "admission.json": "934dc348d31e84d03c059095ccf103f380780d82be0a507b5a9bdd5853fad0de"
+  },
+  "checkpoint": {
+    "status": "complete_independent_H10_checkpoint_recount_without_proposal",
+    "selected_edges": 84570,
+    "split_source_cells": 483116,
+    "exact_nonmidpoint_stars": 7870,
+    "initial_state_was_empty": true,
+    "inherited_stars": 0,
+    "final_refusals": 534685,
+    "case_coverage": {
+      "gravity": {
+        "independent_total": 7398.8069102330755,
+        "independent_selected": 3584.17278285559,
+        "coverage": 0.48442577652599966,
+        "checkpoint_selected": 3584.17278285563,
+        "relative_accumulation_difference": 5.408678367138008e-15
+      },
+      "combined": {
+        "independent_total": 137196.74801767664,
+        "independent_selected": 66461.65127012931,
+        "coverage": 0.4844258499594049,
+        "checkpoint_selected": 66461.65127013106,
+        "relative_accumulation_difference": 1.2727924332281078e-14
+      }
+    },
+    "joint_coverage": 0.48442581966258386,
+    "joint_relative_accumulation_difference": 7.722115923727811e-15,
+    "protected_cells_untouched": 135,
+    "all_parents_disjoint": true,
+    "source_identities_unchanged": true,
+    "both_owned_processes_absent": true,
+    "proposal_exists": false,
+    "assembly_executed": false,
+    "actual_terminal": {
+      "actual_returncode": 75,
+      "child_reaped": true,
+      "reason": "bounded_guard_graceful_checkpoint_requested",
+      "error": null,
+      "peak_group_RSS_bytes": 2437447680,
+      "elapsed_seconds": 1803.8727201670408,
+      "telemetry_events": [],
+      "owned_group_cleanup": {
+        "status": "owned_group_absent_and_direct_child_reaped",
+        "pgid": 65593,
+        "direct_child_pid": 65593,
+        "initial_returncode": 75,
+        "direct_child_returncode": 75,
+        "direct_child_reaped": true,
+        "group_absent": true,
+        "all_owned_group_members_absent": true,
+        "initial_members": [],
+        "final_members": [],
+        "signals": [],
+        "observations": [
+          {
+            "elapsed_seconds": 0.0035885830875486135,
+            "members": []
+          },
+          {
+            "elapsed_seconds": 0.0066835409961640835,
+            "members": []
+          }
+        ],
+        "term_seconds": 5,
+        "kill_seconds": 5,
+        "elapsed_seconds": 0.006698958110064268,
+        "only_exact_owned_group_signaled": true
+      },
+      "new_paid_action": false
+    },
+    "retained_checkpoint_sha256": "07b33a1afaf969051e82b3896d6694a6a457b5d2355486d2cbae844e835f0cf6",
+    "retained_checkpoint_bytes": 79175711,
+    "terminal_cursor_positions": {
+      "combined": 380887,
+      "gravity": 92527
+    },
+    "terminal_seen_seed_cells": 259385,
+    "snapshot_size_refusal": false,
+    "later_unsaved_state_not_recovered": false,
+    "elapsed_seconds": 6.506419165991247
+  },
+  "qualification": {
+    "domain_sha256": "4271cf7f6fd5440aaa5fa0e63aca52a9d2abacc5dcb9f8050abcafc513b10ff0",
+    "evaluator_sha256": "cef1012afb3be61671152ba92b68ce7882ef26e9295aa6c176f799c87bf3d134",
+    "domain_status": "actual_H10_candidate_seed_domain_measured_no_selection_admitted",
+    "seeds_per_case": 524288,
+    "distinct_seed_cells": 756943,
+    "candidate_edges": 1857970,
+    "coverage_attainability_proved": false,
+    "evaluator_status": "actual_H9_production_evaluator_matches_fresh_source_probe_outcomes",
+    "matched": 117,
+    "accepted": 14,
+    "exact_both_frame_values_match": true,
+    "negative_controls_passed": true,
+    "terminal_sha256": {
+      "screen-terminal.json": "f3d1ac29bd8f8955f012a09c13daaa357edc8a10583190142a8f9f40de7b20db",
+      "probe-terminal.json": "f19d69dbccad82646d4b3b7dd069fb342331ce9d0f91378c7f3e28211bee86fb",
+      "evaluator-terminal.json": "c32cb4d29bcd306055835c9721c3909ff87190ae6fb9245ee8c6e7488486056a"
+    }
+  },
+  "unchanged_selection_target_per_case": 0.5,
+  "unchanged_spatial_convergence_criterion": "Two successive complete-field energy increments below1% for both loads",
+  "new_residual_gate": false,
+  "mass_ceiling_kg": null
+}

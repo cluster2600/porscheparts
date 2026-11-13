@@ -1,0 +1,123 @@
+{
+  "status": "bounded_ti64_nonlinear_refinement_completed",
+  "kernel_sha256": "cf1889dfb41e11591e4245a9199262e66ae972e3a75e2c00baddd30f32851176",
+  "script_sha256": "9c182fa488a6aa6cd5b0b1d321a14a7fc12927346d89c1df0b3878d63d0c6540",
+  "material_sha256": "485d3fba6265509bf033c53f4a8ce3f77cafdf785635b1a0c9fd0294748a49d5",
+  "adapter_sha256": "416372c3d39e0d1b01cf8f085232408726c647cf19c019cac9071d8d21e48c81",
+  "scenario": "Sourced solid comparison with variable properties; no activation, phase change or heat loss.",
+  "energy_criterion": 0.001,
+  "energy_criterion_passed": true,
+  "rows": [
+    {
+      "nxy": 8,
+      "nz": 4,
+      "time_steps": 128,
+      "dt_seconds": 1.5625e-05,
+      "conservative_stability_limit_seconds": 0.00017005011792452834,
+      "input_energy_J": 0.0011278001502969153,
+      "stored_energy_J": 0.0011287285253164638,
+      "maximum_balance_defect_J": 1.3177717994980378e-06,
+      "peak_final_rise_K": 83.53975571985472,
+      "minimum_final_rise_K": 0.03021318446855048,
+      "seconds": 1.1619433329906315,
+      "independent_Q1_step_agrees": true,
+      "relative_energy_defect": 0.001168444426214262
+    },
+    {
+      "nxy": 8,
+      "nz": 4,
+      "time_steps": 256,
+      "dt_seconds": 7.8125e-06,
+      "conservative_stability_limit_seconds": 0.00017005011792452834,
+      "input_energy_J": 0.0011277979903009732,
+      "stored_energy_J": 0.0011286186706876487,
+      "maximum_balance_defect_J": 1.2148896772490054e-06,
+      "peak_final_rise_K": 83.4020848289993,
+      "minimum_final_rise_K": 0.03155597062078641,
+      "seconds": 0.1479755420004949,
+      "independent_Q1_step_agrees": true,
+      "relative_energy_defect": 0.0010772227718944508
+    },
+    {
+      "nxy": 16,
+      "nz": 8,
+      "time_steps": 256,
+      "dt_seconds": 7.8125e-06,
+      "conservative_stability_limit_seconds": 4.2512529481132084e-05,
+      "input_energy_J": 0.0011246447745673909,
+      "stored_energy_J": 0.0011250571989800055,
+      "maximum_balance_defect_J": 5.556076803599815e-07,
+      "peak_final_rise_K": 86.58542078651845,
+      "minimum_final_rise_K": 0.0018044996916160017,
+      "seconds": 1.454295124975033,
+      "independent_Q1_step_agrees": true,
+      "relative_energy_defect": 0.0004940294863982302
+    },
+    {
+      "nxy": 16,
+      "nz": 8,
+      "time_steps": 512,
+      "dt_seconds": 3.90625e-06,
+      "conservative_stability_limit_seconds": 4.2512529481132084e-05,
+      "input_energy_J": 0.001124644218849523,
+      "stored_energy_J": 0.001124947096654445,
+      "maximum_balance_defect_J": 4.5725574236536726e-07,
+      "peak_final_rise_K": 86.57988674689625,
+      "minimum_final_rise_K": 0.0019425161178787675,
+      "seconds": 0.7893558338982984,
+      "independent_Q1_step_agrees": true,
+      "relative_energy_defect": 0.0004065781290665647
+    },
+    {
+      "nxy": 32,
+      "nz": 16,
+      "time_steps": 1024,
+      "dt_seconds": 1.953125e-06,
+      "conservative_stability_limit_seconds": 1.0628132370283021e-05,
+      "input_energy_J": 0.0011246417936488882,
+      "stored_energy_J": 0.0011247612633860705,
+      "maximum_balance_defect_J": 1.6001231747291358e-07,
+      "peak_final_rise_K": 85.30998100381811,
+      "minimum_final_rise_K": 0.00021747441400066236,
+      "seconds": 7.107252374989912,
+      "independent_Q1_step_agrees": true,
+      "relative_energy_defect": 0.00014227847335617446
+    },
+    {
+      "nxy": 32,
+      "nz": 16,
+      "time_steps": 2048,
+      "dt_seconds": 9.765625e-07,
+      "conservative_stability_limit_seconds": 1.0628132370283021e-05,
+      "input_energy_J": 0.0011246417588537123,
+      "stored_energy_J": 0.0011247264643684514,
+      "maximum_balance_defect_J": 1.2907527320300642e-07,
+      "peak_final_rise_K": 85.3274931973769,
+      "minimum_final_rise_K": 0.0002262524055254289,
+      "seconds": 11.572895416989923,
+      "independent_Q1_step_agrees": true,
+      "relative_energy_defect": 0.00011477012318532971
+    }
+  ],
+  "time_comparisons": [
+    {
+      "nxy": 8,
+      "relative_peak_rise_change": 0.001650688842343531
+    },
+    {
+      "nxy": 16,
+      "relative_peak_rise_change": 6.391830516460437e-05
+    },
+    {
+      "nxy": 32,
+      "relative_peak_rise_change": 0.00020523506436873857
+    }
+  ],
+  "space_peak_rise_changes": [
+    0.03670369686653421,
+    0.014677491422633927
+  ],
+  "temperature_convergence_under_5_percent": true,
+  "carrier_thermal_run": false,
+  "multilevel_driver_validated": false
+}
