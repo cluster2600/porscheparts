@@ -1,0 +1,9 @@
+--- mesh_offer_query.before
++++ mesh_offer_query.after
+@@ -12,4 +12,6 @@
+         "limit": 50,
+     }
+     # Preserve the listing query: changing its scope can change provider bundles.
++    if offer_id is not None:
++        query["limit"] = 1000
+     return query

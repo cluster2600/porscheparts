@@ -1,0 +1,367 @@
+{
+  "schema": "935-cap-graph-admission-public-1",
+  "parent_commit": "9787cd9b152519561cbff7e98787e7a32737b6ca",
+  "source_sha256": {
+    "source/audit_bounded_cap.py": "ec3dc3653e0b6de29dbe99d6ae3d72c25730f276783d69aac6c20caed890ece9",
+    "source/certify_cap_fixed_point.py": "61e3601df49420d8f79339def3721f2ad61acb271239fe5d37c659963625ebb9",
+    "source/check_cap_msh.py": "9b2585f4a3b912d053adcefddfd91c5276bffcedf91557c3f4f61ec2b658d0f1",
+    "source/check_refined_cap.py": "c98b1061cdba36836d7aa7ac2bb5e6fc72dfff86eaa73a5c652cb87144b75555",
+    "source/refine-cap-v1.diff": "3c71040d3fa7e034c44011b26f9b28f45ba5fe9a88120ad546ea51ab09656e68",
+    "source/refine-cap-v2.diff": "4145fefd8ad72e72ed10eb5e31c40ad6ab73a9374f24792e168c065fcb532a8a",
+    "source/refine_cap.py": "a3fca5f7f9d3bdf27cc80391e574f8361da55df870761e80cafbdbe5b191a04e",
+    "source/retessellate_cap.py": "752263a55106e62184df0eb885047935b65d19d3a4fd051f36394473d6e92198"
+  },
+  "private_capsule": {
+    "name": "935-cap-graph-admission-20261107-001",
+    "manifest_sha256": "f24e7730feaafd11f73865e5961d91e1592231e81184b86cc52a120137d25eac",
+    "frozen": true,
+    "payload_files": 77,
+    "payload_bytes": 3672404,
+    "all_payloads_rehashed_after_freeze": true
+  },
+  "reports": {
+    "local_diagonals": {
+      "schema": "935-bounded-cap-diagonal-diagnostic-1",
+      "source_sha256": "ec3dc3653e0b6de29dbe99d6ae3d72c25730f276783d69aac6c20caed890ece9",
+      "job_sha256": "edba5ed15ef4173ca4c6bfb9170391137a3abd28bbc8f84634fbd2a298c8ce7d",
+      "controls": {
+        "square_exact_quality_and_zero_bound": true,
+        "dyadic_lift_exact_bound": true,
+        "concave_projection_refused": true,
+        "large_normal_change_refused": true
+      },
+      "input_mesh_sha256": "d00f2807ed32f4fd3c92f9e825fe691ef57a42b449f9dda020326ecdfc817aaa",
+      "input_surface_sha256": "627dc5d2a6679475d7807b7b4f3113daf254f58049a17fc620ecb7f762908c9c",
+      "profiles": [
+        {
+          "edge_profile": 0,
+          "source_cap_tag": 1,
+          "source_fit": "back_face_candidate",
+          "stock_nominal_mm": 0.75,
+          "physical_datum_accepted": false,
+          "unique_bitwise_source_ancestors": true,
+          "old_edge_unmarked": true,
+          "alternate_edge_globally_absent": true,
+          "strictly_convex_projection": true,
+          "max_source_plane_l1_residual_nominal_mm_upper": 1.2847241561160823e-14,
+          "exactly_coplanar": false,
+          "max_graph_deviation_nominal_mm_upper": 1.924640981655253e-14,
+          "signed_quad_volume_nominal_mm3": 3.1250755491636114e-17,
+          "graph_bound_passed": true,
+          "normal_cosine_contract": true,
+          "old_min_face_q_squared": 2.618505769423931e-07,
+          "new_min_face_q_squared": 5.1437369214017215e-08,
+          "new_faces_clear_warning": false,
+          "composed_bound_below_limit": true,
+          "two_tet_pyramid": false,
+          "local_metric_candidate_only": false
+        },
+        {
+          "edge_profile": 1,
+          "source_cap_tag": 1,
+          "source_fit": "back_face_candidate",
+          "stock_nominal_mm": 0.75,
+          "physical_datum_accepted": false,
+          "unique_bitwise_source_ancestors": true,
+          "old_edge_unmarked": true,
+          "alternate_edge_globally_absent": true,
+          "strictly_convex_projection": true,
+          "max_source_plane_l1_residual_nominal_mm_upper": 1.2847241561160823e-14,
+          "exactly_coplanar": false,
+          "max_graph_deviation_nominal_mm_upper": 2.495284619028252e-12,
+          "signed_quad_volume_nominal_mm3": -4.051640293153656e-15,
+          "graph_bound_passed": true,
+          "normal_cosine_contract": true,
+          "old_min_face_q_squared": 2.618505769423931e-07,
+          "new_min_face_q_squared": 2.3695135389890958e-07,
+          "new_faces_clear_warning": false,
+          "composed_bound_below_limit": true,
+          "two_tet_pyramid": true,
+          "new_cells_positive_orientation": true,
+          "new_cells_clear_mean_ratio_floor": false,
+          "old_min_tet_q_cubed": 5.165478380606468e-12,
+          "new_min_tet_q_cubed": 6.816038549307761e-14,
+          "local_metric_candidate_only": false
+        },
+        {
+          "edge_profile": 2,
+          "source_cap_tag": 1,
+          "source_fit": "back_face_candidate",
+          "stock_nominal_mm": 0.75,
+          "physical_datum_accepted": false,
+          "unique_bitwise_source_ancestors": true,
+          "old_edge_unmarked": true,
+          "alternate_edge_globally_absent": true,
+          "strictly_convex_projection": true,
+          "max_source_plane_l1_residual_nominal_mm_upper": 1.8469844907327876e-14,
+          "exactly_coplanar": false,
+          "max_graph_deviation_nominal_mm_upper": 9.031987068252937e-13,
+          "signed_quad_volume_nominal_mm3": 1.466540628428489e-15,
+          "graph_bound_passed": true,
+          "normal_cosine_contract": true,
+          "old_min_face_q_squared": 2.618505769423931e-07,
+          "new_min_face_q_squared": 2.6077691652152e-07,
+          "new_faces_clear_warning": false,
+          "composed_bound_below_limit": true,
+          "two_tet_pyramid": true,
+          "new_cells_positive_orientation": true,
+          "new_cells_clear_mean_ratio_floor": false,
+          "old_min_tet_q_cubed": 5.165478380606468e-12,
+          "new_min_tet_q_cubed": 5.435931810189437e-12,
+          "local_metric_candidate_only": false
+        }
+      ],
+      "profiles_examined": 3,
+      "local_metric_candidates": 0,
+      "measured_transform_recompute_max_nominal_mm": 0.0,
+      "graph_deviation_limit_nominal_mm_upper": 2.5484154254307505e-11,
+      "private_diagnostics_sha256": "f211b74c013e8c1517d2dbfc7a84e074f5068d40244d6b4a7c29ef5e6c276e74",
+      "geometry_modified": false,
+      "candidate_exported": false,
+      "independent_volume_partition_verified": false,
+      "complete_new_boundary_admitted": false,
+      "physics_admitted": false,
+      "manufacturing_qualified": false,
+      "new_paid_compute_usd": 0,
+      "seconds": 2.4891113750636578
+    },
+    "lawson": {
+      "schema": "935-cap-lawson-proposal-1",
+      "source_sha256": "752263a55106e62184df0eb885047935b65d19d3a4fd051f36394473d6e92198",
+      "job_sha256": "094f6c473a18acb9e73f539232a907c9d987bd45a1ed3b5a28c3db7c6d95e556",
+      "controls": {
+        "literal_illegal_diagonal_replaced": true,
+        "protected_diagonal_preserved": true,
+        "fixed_point_control": true
+      },
+      "cap_tag": 1,
+      "cap_component_triangles": 275,
+      "cap_component_vertices": 277,
+      "constrained_edges": 277,
+      "exact_strict_flips": 0,
+      "old_forcing_face_count": 1,
+      "new_forcing_face_count": 1,
+      "old_warning_face_count": 35,
+      "new_warning_face_count": 35,
+      "old_min_q_squared": 2.618505769423931e-07,
+      "new_min_q_squared": 2.618505769423931e-07,
+      "private_cap_proposal_sha256": "6672e7869a6769d92e360c7edba969b30d40e75a2bc5d1a38cf8bb30498bc8c8",
+      "source_surface_sha256": "627dc5d2a6679475d7807b7b4f3113daf254f58049a17fc620ecb7f762908c9c",
+      "complete_head_mesh_modified": false,
+      "independent_surface_check_pending": true,
+      "volume_remesh_admitted": false,
+      "physics_admitted": false,
+      "manufacturing_qualified": false,
+      "new_paid_compute_usd": 0,
+      "seconds": 1.4399932501837611
+    },
+    "fixed_point_certificate": {
+      "schema": "935-cap-fixed-point-certificate-1",
+      "source_sha256": "61e3601df49420d8f79339def3721f2ad61acb271239fe5d37c659963625ebb9",
+      "job_sha256": "f4565892fbdbbb5163a77dc333b59d3e2b2cd01e791cb8aa4dbfa0c62f8911b5",
+      "controls": {
+        "literal_cocircular_zero": true,
+        "literal_inside_positive": true,
+        "row_swap_sign": true
+      },
+      "edge_census": {
+        "boundary": 277,
+        "constrained_interior": 0,
+        "nonconvex_interior": 28,
+        "convex_strictly_legal": 246,
+        "convex_cocircular": 0,
+        "strict_flips_available": 0
+      },
+      "cap_vertices": 277,
+      "cap_triangles": 275,
+      "edges": 551,
+      "every_source_coordinate_bit_preserved": true,
+      "every_source_triangle_preserved": true,
+      "mapped_feature_edges_independently_reconstructed": true,
+      "exact_graph_change_nominal_mm": 0,
+      "private_edge_certificate_sha256": "5fa9be38382b5c3b00fe0ba1bc5c9364c2dc6307c9e38edc11d5bf3140147518",
+      "triangulations_with_additional_points_excluded": false,
+      "other_flip_criteria_excluded": false,
+      "complete_head_modified": false,
+      "physics_admitted": false,
+      "manufacturing_qualified": false,
+      "new_paid_compute_usd": 0,
+      "seconds": 1.0366794168949127
+    },
+    "refinement": {
+      "schema": "935-refined-cap-proposal-1",
+      "source_sha256": "a3fca5f7f9d3bdf27cc80391e574f8361da55df870761e80cafbdbe5b191a04e",
+      "job_sha256": "c9717eeac509cb1eb3977bce60b6766ddcdae630c65e4c30d3e1e6823a8b8795",
+      "gmsh_version": "4.12.1",
+      "controls": {
+        "literal_square_refined_with_fixed_corner_bits": true,
+        "literal_square_area_and_positive_triangles": true
+      },
+      "old_vertices": 277,
+      "old_triangles": 275,
+      "new_vertices": 8402,
+      "new_triangles": 16525,
+      "added_vertices": 8125,
+      "contour_point_bits_preserved": true,
+      "native_msh_sha256": "51b86def5282a7baf04d2b6c0e20278a46320f5e860dc5d72001cb86afb3aa01",
+      "private_refined_cap_sha256": "662b86fbab7b30499c4fa4d50508a9a52ef995cf66eb9a6e3bbdb1d4a6db6036",
+      "complete_head_modified": false,
+      "independent_check_pending": true,
+      "physics_admitted": false,
+      "manufacturing_qualified": false,
+      "new_paid_compute_usd": 0,
+      "seconds": 0.18651050003245473
+    },
+    "independent_surface": {
+      "schema": "935-refined-cap-independent-check-1",
+      "source_sha256": "c98b1061cdba36836d7aa7ac2bb5e6fc72dfff86eaa73a5c652cb87144b75555",
+      "job_sha256": "408c04d5cc01f2ca6e90b8fe6bca1b10df789db3afd9ffb14693658a825f0dac",
+      "controls": {
+        "shared_diagonal_square_not_intersection": true,
+        "coplanar_crossed_triangles_detected": true
+      },
+      "old_vertices": 277,
+      "new_vertices": 8402,
+      "old_triangles": 275,
+      "new_triangles": 16525,
+      "boundary_edges": 277,
+      "all_original_point_bits_preserved": true,
+      "literal_oriented_contour_preserved": true,
+      "every_mapped_protected_cap_edge_preserved": true,
+      "connected_components": 1,
+      "vertex_manifold": true,
+      "euler_characteristic": 1,
+      "projected_intersection_pairs": 0,
+      "all_projected_triangles_exactly_positive": true,
+      "complete_graph_deviation_nominal_mm_upper": 1.1275324656258362e-13,
+      "composed_hypothesis_correspondence_nominal_mm_upper": 0.00964321537478613,
+      "old_min_face_q_squared": 2.618505769423931e-07,
+      "new_min_face_q_squared": 0.0001598074406390039,
+      "old_forcing_face_count": 1,
+      "new_forcing_face_count": 0,
+      "old_warning_face_count": 35,
+      "new_warning_face_count": 0,
+      "cap_surface_graph_checks_passed": true,
+      "all_cap_faces_clear_warning": true,
+      "private_exact_certificate_sha256": "eeeac66bc6f4f0cba918c96a4cda8deb1e9d315a7818191a89350e3c6d1c7ce2",
+      "new_cap_sha256": "662b86fbab7b30499c4fa4d50508a9a52ef995cf66eb9a6e3bbdb1d4a6db6036",
+      "full_head_modified": false,
+      "full_head_intersections_checked": false,
+      "volume_remesh_admitted": false,
+      "native_msh_readback_verified": false,
+      "physics_admitted": false,
+      "manufacturing_qualified": false,
+      "new_paid_compute_usd": 0,
+      "seconds": 2.4473122500348836
+    },
+    "native_readback": {
+      "schema": "935-cap-native-readback-1",
+      "source_sha256": "9b2585f4a3b912d053adcefddfd91c5276bffcedf91557c3f4f61ec2b658d0f1",
+      "job_sha256": "e7c6701888075bdcf5bd532a39444994f5004550a9c52549383f83c4e9193c36",
+      "controls": {
+        "cyclic_order_and_row_permutation_match": true,
+        "reversed_orientation_refused": true
+      },
+      "nodes": 8402,
+      "triangles": 16525,
+      "native_msh_sha256": "51b86def5282a7baf04d2b6c0e20278a46320f5e860dc5d72001cb86afb3aa01",
+      "cap_sha256": "662b86fbab7b30499c4fa4d50508a9a52ef995cf66eb9a6e3bbdb1d4a6db6036",
+      "all_native_node_coordinate_bits_joined": true,
+      "every_oriented_triangle_joined": true,
+      "full_head_modified": false,
+      "volume_remesh_admitted": false,
+      "physics_admitted": false,
+      "manufacturing_qualified": false,
+      "new_paid_compute_usd": 0,
+      "seconds": 0.035715249832719564
+    }
+  },
+  "controller_ledgers": [
+    {
+      "path": "certificate-execution/execution.json",
+      "sha256": "2f948ff02bab557f57bd1be0531bc470b7376115a5831b9234b9d17d49b43dd5",
+      "success": true
+    },
+    {
+      "path": "check-refined-execution/execution.json",
+      "sha256": "ca09b5759d47efc05e759caa9cd9955a485030d6066815b8f5eec9367bed1d3b",
+      "success": true
+    },
+    {
+      "path": "execution/execution.json",
+      "sha256": "3b67fb834ab1864d2af60a3bc625b4563eccdb57ae3539dd5b05d03dd6333471",
+      "success": true
+    },
+    {
+      "path": "full-cap-execution/execution.json",
+      "sha256": "53a2cc67b4da3d3ef3e6ee449040d79dc547d13145241a22b19cbd9f601f43a8",
+      "success": true
+    },
+    {
+      "path": "native-execution/execution.json",
+      "sha256": "9b2a22daa06dda55067915b38daa6bdcfbb20834b69ebdae0c507d7d151e3dc7",
+      "success": false
+    },
+    {
+      "path": "native-execution-v3/execution.json",
+      "sha256": "d4deadc544a1356bee2201253d7c18f927371ca3bbe74fc1710c8ab240da1b29",
+      "success": true
+    },
+    {
+      "path": "refine-execution/execution.json",
+      "sha256": "ff1132fba0d3b498e2f4b55cfaaf7302d3070c3ee710d0a931c461d5c1fe6ba9",
+      "success": false
+    },
+    {
+      "path": "refine-execution-v2/execution.json",
+      "sha256": "27097a74cfef0249cd17e2af8eb5c17af8a764887e5e63adeaaae5476673ddd8",
+      "success": true
+    },
+    {
+      "path": "refine-execution-v3/execution.json",
+      "sha256": "410e30c8612b41e5810162f09009db28fb50e7d6e99435d8d9d4dffb26f719b0",
+      "success": true
+    }
+  ],
+  "source_preservation": {
+    "original_scan_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+    "original_scan_matches_contract": true,
+    "supported_printing_master_sha256": "217b0997f897ecf5dc84fc5da13adb0c069acc48806deb56fe166ab71998da14",
+    "bare_head_volume_sha256": "d00f2807ed32f4fd3c92f9e825fe691ef57a42b449f9dda020326ecdfc817aaa"
+  },
+  "new_paid_compute_usd": 0,
+  "full_head_modified": false,
+  "faithful_editable_cad_complete": false,
+  "physics_admitted": false,
+  "manufacturing_qualified": false,
+  "engine_qualified": false,
+  "failed_runs": [
+    {
+      "phase": "preparation",
+      "cause": "System Python lacks hashlib.file_digest; switched to existing Python 3.12 before any numerical job"
+    },
+    {
+      "phase": "native square control",
+      "cause": "NumPy 2.5 refuses 2D np.cross; explicit 2x2 determinant replaces it; head was not started"
+    },
+    {
+      "phase": "ASCII native readback",
+      "cause": "Actual MSH failed full coordinate-bit join; binary export passes; geometric cap NPZ unchanged"
+    },
+    {
+      "phase": "binary identity preparation",
+      "cause": "0D byte view rejected; compared shape/dtype/bytes instead; no numerical job started"
+    }
+  ],
+  "validation": {
+    "make_check_exit_code": 0,
+    "main_tests": 5860,
+    "main_skipped": 421,
+    "main_seconds": 272.913,
+    "portable_cap_tests": 4,
+    "actual_gmsh_and_libigl_paths_passed": true,
+    "historical_patches_replay_byte_exactly": true,
+    "final_public_sources_equal_executed_bytes": true,
+    "cap_native_and_independent_geometry_hash_join": true
+  }
+}

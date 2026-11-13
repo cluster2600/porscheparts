@@ -371,7 +371,7 @@ the body shell, which pays off more? Where does the load go in torsion?
 
 A **corpus of 3,000 CalculiX cases** in quadratic shells is built to train a
 design surrogate later, its validation set frozen before any model exists:
-[docs/MONOCOQUE_964_993_CHAINE_CALCUL.md](MONOCOQUE_964_993_CHAINE_CALCUL.md).
+[docs/MONOCOQUE_964_993_COMPUTATION_CHAIN.md](MONOCOQUE_964_993_COMPUTATION_CHAIN.md).
 
 ### The shape: a 964 shell from the workshop manual
 

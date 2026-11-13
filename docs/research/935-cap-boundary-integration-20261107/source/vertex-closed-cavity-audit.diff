@@ -1,0 +1,44 @@
+--- audit_cap_cavity.py
++++ audit_vertex_closed_cavity.py
+@@ -61 +61,37 @@
+-    ids = np.flatnonzero(selected); local_cells = cells[ids]
++    initial_ids = np.flatnonzero(selected)
++    with np.load(job['pre_closure_cavity'], allow_pickle=False) as data:
++        assert np.array_equal(data['source_cell_ids'], initial_ids)
++        old_shell, old_nodes = data['new_boundary'], data['source_node_ids']
++    pairs = np.sort(old_shell[:, [[0, 1], [1, 2], [2, 0]]].reshape(-1, 2), axis=1)
++    edges, edge_counts = np.unique(pairs, axis=0, return_counts=True)
++    pinched = edges[edge_counts > 2]
++    assert len(pinched) == 2 and pinched.max() < len(old_nodes)
++    extra = np.zeros(len(cells), dtype=bool)
++    for a, b in old_nodes[pinched]:
++        for start in range(0, len(cells), 200000):
++            part = cells[start:start+200000]
++            extra[start:start+len(part)] |= np.any(part == a, axis=1) & np.any(part == b, axis=1)
++    expected = np.flatnonzero(selected | extra)
++    with np.load(job['closed_selection'], allow_pickle=False) as data:
++        ids = data['cell_ids']
++    assert np.array_equal(ids, expected) and len(ids) > len(initial_ids)
++    with np.load(job['vertex_base_cavity'], allow_pickle=False) as data:
++        assert np.array_equal(data['source_cell_ids'], ids)
++        shell, shell_nodes = data['new_boundary'], data['source_node_ids']
++    topology = load('topology')
++    shell_used = np.unique(shell)
++    fans, border = topology.vertex_fans(np.searchsorted(shell_used, shell), len(shell_used))
++    assert len(border) == 0
++    bad = shell_used[np.flatnonzero(fans > 1)]
++    assert len(bad) == 2 and bad.max() < len(shell_nodes)
++    mark = np.zeros(len(nodes), dtype=bool); mark[shell_nodes[bad]] = True
++    expected_selected = np.zeros(len(cells), dtype=bool); expected_selected[ids] = True
++    for start in range(0, len(cells), 200000):
++        part = cells[start:start+200000]
++        expected_selected[start:start+len(part)] |= mark[part].any(axis=1)
++    with np.load(job['vertex_selection'], allow_pickle=False) as data:
++        closed_ids = data['cell_ids']
++    assert np.array_equal(closed_ids, np.flatnonzero(expected_selected)) and len(closed_ids) > len(ids)
++    ids = closed_ids
++    selected[:] = False; selected[ids] = True
++    local_cells = cells[ids]
+@@ -128 +164 @@
+-    report = dict(schema='935-cap-vertex-star-cavity-audit-1', source_sha256=io.sha(__file__),
++    report = dict(schema='935-cap-vertex-closed-cavity-audit-1', source_sha256=io.sha(__file__),

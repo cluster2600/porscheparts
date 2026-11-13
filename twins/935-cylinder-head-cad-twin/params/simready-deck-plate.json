@@ -1,0 +1,192 @@
+{
+  "schema": "935-cad-twin-simready/1",
+  "claims": "study twin; a validator pass shows a well-formed stage only: not SimReady-certified, not measured, not fitted, not functional, not released",
+  "kind": "STEP to OpenUSD conversion and validation",
+  "status": "passed",
+  "tools": {
+    "python": "3.12.3",
+    "usd_validation_nvidia": "1.21.0",
+    "validator_openusd": "0.26.8",
+    "validator_rules_initialized": 42,
+    "validator_rule_names": "ArticulationChecker ColliderChecker DanglingOverPrimChecker DefaultPrimChecker ExtentsChecker IndexedPrimvarChecker KindChecker LayerSpecChecker ManifoldChecker MassChecker MaterialOldMdlSchemaChecker MaterialOutOfScopeChecker MaterialPathChecker MaterialUsdPreviewSurfaceChecker MissingReferenceChecker NormalMapTextureChecker NormalsExistChecker NormalsValidChecker NormalsWindingsChecker PhysicsJointChecker PrimEncapsulationChecker RigidBodyChecker ShaderImplementationSourceChecker SkelBindingAPIAppliedChecker StageMetadataChecker SubdivisionSchemeChecker TextureChecker TypeChecker UnicodeNameChecker UnusedMeshTopologyChecker UnusedPrimvarChecker UsdAsciiPerformanceChecker UsdDanglingMaterialBinding UsdGeomSubsetChecker UsdGeomSubsetFamiliesChecker UsdGeomSubsetParentIsImageableChecker UsdLuxSchemaChecker UsdMaterialBindingApi UsdzPackageValidator ValidateTopologyChecker WeldChecker ZeroAreaFaceChecker",
+    "usd_convert_cad": "0.2.0"
+  },
+  "converter_options": [
+    "--up-axis",
+    "file",
+    "--instancing-style",
+    "reference",
+    "--composition-style",
+    "none",
+    "--filter-style",
+    "deactivate",
+    "--creator",
+    "porscheparts-935-cad-twin"
+  ],
+  "inputs": [
+    {
+      "name": "v1-deck-plate.step",
+      "sha256": "d5a86e56279ad7dd5163f247bafe477a76ba9df049c518edee2a056bdd79b84a",
+      "bytes": 136478,
+      "conversion": {
+        "status": "passed",
+        "returncode": 0,
+        "wall_seconds": 5.13,
+        "output": "v1_deck_plate.usdc",
+        "output_sha256": "2f2081a0d44f857b8c2bfc0a2ace429469041a10c585e332a7af7a20ac6a115d",
+        "output_bytes": 32321
+      },
+      "stage": {
+        "default_prim": "/v1_deck_plate",
+        "root_prims": [
+          "/v1_deck_plate"
+        ],
+        "meters_per_unit": 0.001,
+        "meters_per_unit_authored": true,
+        "up_axis": "Z",
+        "up_axis_authored": true,
+        "kilograms_per_unit": 1.0,
+        "layer_creator": "porscheparts-935-cad-twin",
+        "prims": 9,
+        "prims_including_abstract": 15,
+        "prims_by_type": {
+          "Material": 2,
+          "Mesh": 1,
+          "Scope": 2,
+          "Shader": 2,
+          "Xform": 2
+        },
+        "meshes": 1,
+        "mesh_faces": 1632,
+        "triangles": 1632,
+        "non_triangle_faces": 0,
+        "mesh_points": 1488,
+        "world_bound_from_authored_extents_stage_units": [
+          [
+            -61.7563,
+            -80.511,
+            0.0
+          ],
+          [
+            54.0694,
+            85.3658,
+            16.59
+          ]
+        ]
+      },
+      "validation": {
+        "status": "PASS",
+        "returncode": 0,
+        "wall_seconds": 0.94,
+        "issues_by_severity": {
+          "FAILURE": 0,
+          "ERROR": 0,
+          "WARNING": 0,
+          "INFO": 0
+        },
+        "rules_with_issues": [],
+        "raw_report_sha256": "fdb36636e75946975b0e4039ea3ba649570f65388d4497b411fcaa28fd97403f"
+      },
+      "independent_check": {
+        "step_sha256": "d5a86e56279ad7dd5163f247bafe477a76ba9df049c518edee2a056bdd79b84a",
+        "stage_sha256": "2f2081a0d44f857b8c2bfc0a2ace429469041a10c585e332a7af7a20ac6a115d",
+        "step_length_unit_declared": "millimetre",
+        "gates": {
+          "bbox_corner_mm": 0.1,
+          "volume_relative": 0.01,
+          "encloses_a_volume": true,
+          "step_solid_valid": true,
+          "meaning": "screen for unit, axis or gross conversion errors; not a tessellation accuracy claim"
+        },
+        "tools": {
+          "build123d": "0.13.0",
+          "numpy": "2.5.4",
+          "openusd": "0.26.11"
+        },
+        "step": {
+          "solids": 1,
+          "faces": 33,
+          "valid": true,
+          "integration_relative_tolerance": 1e-07,
+          "volume_mm3": 202875.2633,
+          "volume_integration_error_reported": 2.7e-15,
+          "volume_default_integration_mm3": 202875.2724,
+          "area_mm2": 44387.5454,
+          "area_integration_error_reported": 1.4e-15,
+          "bbox_min_mm": [
+            -61.7563,
+            -80.511,
+            0.0
+          ],
+          "bbox_max_mm": [
+            54.0694,
+            85.3658,
+            16.59
+          ]
+        },
+        "stage": {
+          "meters_per_unit_authored": 0.001,
+          "up_axis_authored": "Z",
+          "scale_to_mm_applied": 1.0,
+          "axis_mapping_applied": "identity (stage is Z-up like the STEP)",
+          "meshes": 1,
+          "triangles": 1632,
+          "degenerate_triangles": 0,
+          "weld_tolerance_mm": 0.0001,
+          "open_edges_after_weld": 50,
+          "open_edge_length_mm": 139.8761,
+          "t_junction_vertices_on_open_edges": 20,
+          "t_junction_gap_max_mm": 3.79e-06,
+          "open_edges_after_t_junction_split": 0,
+          "miswound_edges_after_weld": 0,
+          "pinched_vertices_after_weld": 12,
+          "conforming_as_converted": false,
+          "non_manifold_edges_after_weld": 0,
+          "encloses_a_volume": true,
+          "volume_mm3": 203216.9175,
+          "area_mm2": 44394.7016,
+          "bbox_min_mm": [
+            -61.7563,
+            -80.511,
+            0.0
+          ],
+          "bbox_max_mm": [
+            54.0694,
+            85.3658,
+            16.59
+          ]
+        },
+        "bbox_corner_difference_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "bbox_corner_difference_max_mm": 0.0,
+        "bbox_corner_difference_max_relative_to_extent": 9.67e-09,
+        "volume_relative_difference": 0.001684,
+        "area_relative_difference": 0.0001612,
+        "observations": [
+          "non-conforming tessellation: 50 edges are used once and close only through 20 T-junction vertices (largest gap 3.8e-06 mm)",
+          "12 welded vertices carry more than one fan"
+        ],
+        "failures": [],
+        "passed": true,
+        "wall_seconds": 2.69
+      }
+    }
+  ],
+  "existing_stage": {
+    "name": "935-head-twin.usdc",
+    "sha256": "6837bc0571524872d074d8e0a9d5c0b862ab3012393c605fef712db0022e9424",
+    "status": "validator_findings",
+    "summary": "simready-validate-t4-stage.json"
+  },
+  "wall_seconds_total": 18.64
+}

@@ -1,0 +1,1864 @@
+{
+  "schema": "935-cad-twin-assembly-thermal/1",
+  "exploratory_single_variant": false,
+  "case_file": "params/assembly-case.json",
+  "mesh": {
+    "mesher": "Gmsh HXT",
+    "size_max_mm": 3.0,
+    "nodes": 866642,
+    "tets": 4755061,
+    "share_with_minSICN_below_0p1": 0.005772,
+    "volume_mm3_by_material": {
+      "alloy": 1082749.3,
+      "valve": 33797.1,
+      "guide": 6956.3,
+      "plug": 13819.5
+    },
+    "tets_by_material": {
+      "alloy": 4503260,
+      "valve": 152967,
+      "guide": 30944,
+      "plug": 67890
+    }
+  },
+  "film_area_mm2_by_group": {
+    "chamber_gas": 8588.5,
+    "hot_port": 9530.3,
+    "cool_port": 16277.6,
+    "cylinder_contact": 1519.3,
+    "air": 118060.0,
+    "oil": 4153.6
+  },
+  "zone_nodes": {
+    "alloy": 812603,
+    "inlet_seat": 2086,
+    "exhaust_seat": 2109,
+    "valve_bridge": 138,
+    "plug_bosses": 2871
+  },
+  "variants": {
+    "declared": {
+      "what": "the first declared case: gas at 900 \u00b0C and 400 W/(m\u00b2 K), no oil film",
+      "films": {
+        "chamber_gas": {
+          "sink_temperature_C": 900.0,
+          "coefficient_W_per_m2K": 400.0
+        },
+        "hot_port": {
+          "sink_temperature_C": 700.0,
+          "coefficient_W_per_m2K": 300.0
+        },
+        "cool_port": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 200.0
+        },
+        "cylinder_contact": {
+          "sink_temperature_C": 180.0,
+          "coefficient_W_per_m2K": 2000.0
+        },
+        "air": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 150.0
+        },
+        "oil": null
+      },
+      "calibration": [],
+      "by_conductivity": [
+        {
+          "alloy_conductivity_W_per_mK": 95.0,
+          "peak_C": {
+            "alloy": 311.09,
+            "inlet_seat": 289.72,
+            "exhaust_seat": 309.37,
+            "valve_bridge": 293.0,
+            "plug_bosses": 300.1
+          },
+          "peak_alloy_at_mm": [
+            12.6,
+            22.7,
+            23.9
+          ],
+          "mean_alloy_C": 193.45,
+          "valve_peak_C": {
+            "inlet": 419.6,
+            "exhaust": 519.6
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -2014.83,
+            "hot_port": -1165.84,
+            "cool_port": 460.01,
+            "cylinder_contact": 140.21,
+            "air": 2497.93,
+            "oil": 82.53
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 234.6,
+            "hot_port": 122.3
+          },
+          "heat_into_the_assembly_W": 3180.67,
+          "energy_imbalance_relative": 3e-06
+        },
+        {
+          "alloy_conductivity_W_per_mK": 150.0,
+          "peak_C": {
+            "alloy": 279.72,
+            "inlet_seat": 262.46,
+            "exhaust_seat": 279.72,
+            "valve_bridge": 264.65,
+            "plug_bosses": 271.95
+          },
+          "peak_alloy_at_mm": [
+            12.6,
+            39.8,
+            13.9
+          ],
+          "mean_alloy_C": 195.68,
+          "valve_peak_C": {
+            "inlet": 409.58,
+            "exhaust": 502.04
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -2080.28,
+            "hot_port": -1209.48,
+            "cool_port": 479.0,
+            "cylinder_contact": 119.37,
+            "air": 2604.36,
+            "oil": 87.02
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 242.2,
+            "hot_port": 126.9
+          },
+          "heat_into_the_assembly_W": 3289.76,
+          "energy_imbalance_relative": 3e-06
+        },
+        {
+          "alloy_conductivity_W_per_mK": 191.0,
+          "peak_C": {
+            "alloy": 266.75,
+            "inlet_seat": 251.1,
+            "exhaust_seat": 266.75,
+            "valve_bridge": 252.87,
+            "plug_bosses": 259.72
+          },
+          "peak_alloy_at_mm": [
+            12.6,
+            39.8,
+            13.9
+          ],
+          "mean_alloy_C": 196.62,
+          "valve_peak_C": {
+            "inlet": 405.64,
+            "exhaust": 494.36
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -2107.47,
+            "hot_port": -1228.88,
+            "cool_port": 488.83,
+            "cylinder_contact": 109.84,
+            "air": 2648.68,
+            "oil": 89.0
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 245.4,
+            "hot_port": 128.9
+          },
+          "heat_into_the_assembly_W": 3336.35,
+          "energy_imbalance_relative": 0.0
+        }
+      ]
+    },
+    "declared_oil": {
+      "what": "the first declared case with the oil film added",
+      "films": {
+        "chamber_gas": {
+          "sink_temperature_C": 900.0,
+          "coefficient_W_per_m2K": 400.0
+        },
+        "hot_port": {
+          "sink_temperature_C": 700.0,
+          "coefficient_W_per_m2K": 300.0
+        },
+        "cool_port": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 200.0
+        },
+        "cylinder_contact": {
+          "sink_temperature_C": 180.0,
+          "coefficient_W_per_m2K": 2000.0
+        },
+        "air": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 150.0
+        },
+        "oil": {
+          "sink_temperature_C": 90.0,
+          "coefficient_W_per_m2K": 500.0
+        }
+      },
+      "calibration": [],
+      "by_conductivity": [
+        {
+          "alloy_conductivity_W_per_mK": 95.0,
+          "peak_C": {
+            "alloy": 308.99,
+            "inlet_seat": 287.42,
+            "exhaust_seat": 307.3,
+            "valve_bridge": 290.69,
+            "plug_bosses": 298.06
+          },
+          "peak_alloy_at_mm": [
+            12.6,
+            22.7,
+            23.9
+          ],
+          "mean_alloy_C": 190.82,
+          "valve_peak_C": {
+            "inlet": 418.72,
+            "exhaust": 518.32
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -2020.17,
+            "hot_port": -1174.83,
+            "cool_port": 454.64,
+            "cylinder_contact": 135.72,
+            "air": 2452.49,
+            "oil": 152.14
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 235.2,
+            "hot_port": 123.3
+          },
+          "heat_into_the_assembly_W": 3195.0,
+          "energy_imbalance_relative": 3e-06
+        },
+        {
+          "alloy_conductivity_W_per_mK": 150.0,
+          "peak_C": {
+            "alloy": 277.28,
+            "inlet_seat": 259.75,
+            "exhaust_seat": 277.28,
+            "valve_bridge": 261.94,
+            "plug_bosses": 269.46
+          },
+          "peak_alloy_at_mm": [
+            12.6,
+            39.8,
+            13.9
+          ],
+          "mean_alloy_C": 192.73,
+          "valve_peak_C": {
+            "inlet": 408.42,
+            "exhaust": 500.52
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -2087.12,
+            "hot_port": -1218.77,
+            "cool_port": 471.85,
+            "cylinder_contact": 113.29,
+            "air": 2552.84,
+            "oil": 167.91
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 243.0,
+            "hot_port": 127.9
+          },
+          "heat_into_the_assembly_W": 3305.89,
+          "energy_imbalance_relative": 0.0
+        },
+        {
+          "alloy_conductivity_W_per_mK": 191.0,
+          "peak_C": {
+            "alloy": 264.1,
+            "inlet_seat": 248.21,
+            "exhaust_seat": 264.1,
+            "valve_bridge": 249.98,
+            "plug_bosses": 257.02
+          },
+          "peak_alloy_at_mm": [
+            12.6,
+            39.8,
+            13.9
+          ],
+          "mean_alloy_C": 193.53,
+          "valve_peak_C": {
+            "inlet": 404.37,
+            "exhaust": 492.73
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -2115.05,
+            "hot_port": -1238.3,
+            "cool_port": 480.88,
+            "cylinder_contact": 102.96,
+            "air": 2594.48,
+            "oil": 175.03
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 246.3,
+            "hot_port": 129.9
+          },
+          "heat_into_the_assembly_W": 3353.35,
+          "energy_imbalance_relative": 0.0
+        }
+      ]
+    },
+    "published_loading_oil": {
+      "what": "gas at the effective 621 \u00b0C that NACA Report 612 measured on air-cooled aircraft cylinders; chamber and exhaust-port coefficients scaled until the walls carry the 465 and 145 kW/m\u00b2 that Mackerle gives; oil film; air at 150 W/(m\u00b2 K)",
+      "films": {
+        "chamber_gas": {
+          "sink_temperature_C": 621.0,
+          "coefficient_W_per_m2K": 2259.02
+        },
+        "hot_port": {
+          "sink_temperature_C": 700.0,
+          "coefficient_W_per_m2K": 428.15
+        },
+        "cool_port": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 200.0
+        },
+        "cylinder_contact": {
+          "sink_temperature_C": 180.0,
+          "coefficient_W_per_m2K": 2000.0
+        },
+        "air": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 150.0
+        },
+        "oil": {
+          "sink_temperature_C": 90.0,
+          "coefficient_W_per_m2K": 500.0
+        }
+      },
+      "calibration": [
+        {
+          "step": 0,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 1500.0,
+            "loading_kW_per_m2": 384.2,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 300.0,
+            "loading_kW_per_m2": 115.3,
+            "target_kW_per_m2": 145.0
+          }
+        },
+        {
+          "step": 1,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 1815.46,
+            "loading_kW_per_m2": 417.4,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 377.28,
+            "loading_kW_per_m2": 135.2,
+            "target_kW_per_m2": 145.0
+          }
+        },
+        {
+          "step": 2,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 2022.49,
+            "loading_kW_per_m2": 438.2,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 404.62,
+            "loading_kW_per_m2": 140.5,
+            "target_kW_per_m2": 145.0
+          }
+        },
+        {
+          "step": 3,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 2146.19,
+            "loading_kW_per_m2": 450.0,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 417.58,
+            "loading_kW_per_m2": 142.7,
+            "target_kW_per_m2": 145.0
+          }
+        },
+        {
+          "step": 4,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 2217.73,
+            "loading_kW_per_m2": 456.5,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 424.31,
+            "loading_kW_per_m2": 143.7,
+            "target_kW_per_m2": 145.0
+          }
+        }
+      ],
+      "by_conductivity": [
+        {
+          "alloy_conductivity_W_per_mK": 95.0,
+          "peak_C": {
+            "alloy": 428.16,
+            "inlet_seat": 408.96,
+            "exhaust_seat": 427.93,
+            "valve_bridge": 410.2,
+            "plug_bosses": 428.16
+          },
+          "peak_alloy_at_mm": [
+            17.6,
+            12.6,
+            21.5
+          ],
+          "mean_alloy_C": 262.11,
+          "valve_peak_C": {
+            "inlet": 536.21,
+            "exhaust": 584.57
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -3608.52,
+            "hot_port": -1342.38,
+            "cool_port": 688.25,
+            "cylinder_contact": 409.95,
+            "air": 3598.7,
+            "oil": 254.0
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 420.2,
+            "hot_port": 140.9
+          },
+          "heat_into_the_assembly_W": 4950.9,
+          "energy_imbalance_relative": 0.0
+        },
+        {
+          "alloy_conductivity_W_per_mK": 100.0,
+          "peak_C": {
+            "alloy": 424.81,
+            "inlet_seat": 405.8,
+            "exhaust_seat": 424.43,
+            "valve_bridge": 406.95,
+            "plug_bosses": 424.81
+          },
+          "peak_alloy_at_mm": [
+            17.6,
+            12.6,
+            21.5
+          ],
+          "mean_alloy_C": 263.49,
+          "valve_peak_C": {
+            "inlet": 535.82,
+            "exhaust": 583.89
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -3650.16,
+            "hot_port": -1346.43,
+            "cool_port": 693.89,
+            "cylinder_contact": 409.75,
+            "air": 3634.25,
+            "oil": 258.7
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 425.0,
+            "hot_port": 141.3
+          },
+          "heat_into_the_assembly_W": 4996.59,
+          "energy_imbalance_relative": 0.0
+        },
+        {
+          "alloy_conductivity_W_per_mK": 110.0,
+          "peak_C": {
+            "alloy": 418.65,
+            "inlet_seat": 400.05,
+            "exhaust_seat": 418.03,
+            "valve_bridge": 401.05,
+            "plug_bosses": 418.65
+          },
+          "peak_alloy_at_mm": [
+            17.6,
+            12.6,
+            21.5
+          ],
+          "mean_alloy_C": 265.99,
+          "valve_peak_C": {
+            "inlet": 535.12,
+            "exhaust": 582.65
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -3725.61,
+            "hot_port": -1353.66,
+            "cool_port": 704.24,
+            "cylinder_contact": 409.2,
+            "air": 3698.49,
+            "oil": 267.33
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 433.8,
+            "hot_port": 142.0
+          },
+          "heat_into_the_assembly_W": 5079.27,
+          "energy_imbalance_relative": 2e-06
+        },
+        {
+          "alloy_conductivity_W_per_mK": 116.0,
+          "peak_C": {
+            "alloy": 415.26,
+            "inlet_seat": 396.91,
+            "exhaust_seat": 414.51,
+            "valve_bridge": 397.83,
+            "plug_bosses": 415.26
+          },
+          "peak_alloy_at_mm": [
+            17.6,
+            12.6,
+            21.5
+          ],
+          "mean_alloy_C": 267.35,
+          "valve_peak_C": {
+            "inlet": 534.74,
+            "exhaust": 581.97
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -3766.52,
+            "hot_port": -1357.52,
+            "cool_port": 709.92,
+            "cylinder_contact": 408.8,
+            "air": 3733.23,
+            "oil": 272.08
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 438.6,
+            "hot_port": 142.4
+          },
+          "heat_into_the_assembly_W": 5124.04,
+          "energy_imbalance_relative": 2e-06
+        },
+        {
+          "alloy_conductivity_W_per_mK": 120.0,
+          "peak_C": {
+            "alloy": 413.11,
+            "inlet_seat": 394.93,
+            "exhaust_seat": 412.3,
+            "valve_bridge": 395.81,
+            "plug_bosses": 413.11
+          },
+          "peak_alloy_at_mm": [
+            17.6,
+            12.6,
+            21.5
+          ],
+          "mean_alloy_C": 268.2,
+          "valve_peak_C": {
+            "inlet": 534.5,
+            "exhaust": 581.55
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -3792.19,
+            "hot_port": -1359.94,
+            "cool_port": 713.52,
+            "cylinder_contact": 408.51,
+            "air": 3755.01,
+            "oil": 275.08
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 441.5,
+            "hot_port": 142.7
+          },
+          "heat_into_the_assembly_W": 5152.13,
+          "energy_imbalance_relative": 2e-06
+        },
+        {
+          "alloy_conductivity_W_per_mK": 130.0,
+          "peak_C": {
+            "alloy": 408.13,
+            "inlet_seat": 390.34,
+            "exhaust_seat": 407.14,
+            "valve_bridge": 391.12,
+            "plug_bosses": 408.13
+          },
+          "peak_alloy_at_mm": [
+            19.6,
+            12.9,
+            20.9
+          ],
+          "mean_alloy_C": 270.16,
+          "valve_peak_C": {
+            "inlet": 533.96,
+            "exhaust": 580.56
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -3851.41,
+            "hot_port": -1365.47,
+            "cool_port": 721.89,
+            "cylinder_contact": 407.74,
+            "air": 3805.15,
+            "oil": 282.09
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 448.4,
+            "hot_port": 143.3
+          },
+          "heat_into_the_assembly_W": 5216.88,
+          "energy_imbalance_relative": 2e-06
+        },
+        {
+          "alloy_conductivity_W_per_mK": 132.0,
+          "peak_C": {
+            "alloy": 407.19,
+            "inlet_seat": 389.48,
+            "exhaust_seat": 406.17,
+            "valve_bridge": 390.24,
+            "plug_bosses": 407.19
+          },
+          "peak_alloy_at_mm": [
+            19.6,
+            12.9,
+            20.9
+          ],
+          "mean_alloy_C": 270.53,
+          "valve_peak_C": {
+            "inlet": 533.86,
+            "exhaust": 580.38
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -3862.48,
+            "hot_port": -1366.5,
+            "cool_port": 723.47,
+            "cylinder_contact": 407.58,
+            "air": 3814.51,
+            "oil": 283.41
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 449.7,
+            "hot_port": 143.4
+          },
+          "heat_into_the_assembly_W": 5228.98,
+          "energy_imbalance_relative": 2e-06
+        },
+        {
+          "alloy_conductivity_W_per_mK": 140.0,
+          "peak_C": {
+            "alloy": 403.61,
+            "inlet_seat": 386.2,
+            "exhaust_seat": 402.47,
+            "valve_bridge": 386.9,
+            "plug_bosses": 403.61
+          },
+          "peak_alloy_at_mm": [
+            19.6,
+            12.9,
+            20.9
+          ],
+          "mean_alloy_C": 271.91,
+          "valve_peak_C": {
+            "inlet": 533.5,
+            "exhaust": 579.67
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -3904.45,
+            "hot_port": -1370.39,
+            "cool_port": 729.5,
+            "cylinder_contact": 406.93,
+            "air": 3849.96,
+            "oil": 288.45
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 454.6,
+            "hot_port": 143.8
+          },
+          "heat_into_the_assembly_W": 5274.84,
+          "energy_imbalance_relative": 0.0
+        },
+        {
+          "alloy_conductivity_W_per_mK": 150.0,
+          "peak_C": {
+            "alloy": 399.47,
+            "inlet_seat": 382.45,
+            "exhaust_seat": 398.22,
+            "valve_bridge": 383.08,
+            "plug_bosses": 399.47
+          },
+          "peak_alloy_at_mm": [
+            19.6,
+            12.9,
+            20.9
+          ],
+          "mean_alloy_C": 273.49,
+          "valve_peak_C": {
+            "inlet": 533.09,
+            "exhaust": 578.87
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -3952.25,
+            "hot_port": -1374.81,
+            "cool_port": 736.45,
+            "cylinder_contact": 406.11,
+            "air": 3890.25,
+            "oil": 294.24
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 460.2,
+            "hot_port": 144.3
+          },
+          "heat_into_the_assembly_W": 5327.06,
+          "energy_imbalance_relative": 2e-06
+        },
+        {
+          "alloy_conductivity_W_per_mK": 155.0,
+          "peak_C": {
+            "alloy": 397.53,
+            "inlet_seat": 380.7,
+            "exhaust_seat": 396.24,
+            "valve_bridge": 381.31,
+            "plug_bosses": 397.53
+          },
+          "peak_alloy_at_mm": [
+            19.6,
+            12.9,
+            20.9
+          ],
+          "mean_alloy_C": 274.22,
+          "valve_peak_C": {
+            "inlet": 532.9,
+            "exhaust": 578.5
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -3974.42,
+            "hot_port": -1376.85,
+            "cool_port": 739.7,
+            "cylinder_contact": 405.7,
+            "air": 3908.92,
+            "oil": 296.95
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 462.8,
+            "hot_port": 144.5
+          },
+          "heat_into_the_assembly_W": 5351.27,
+          "energy_imbalance_relative": 0.0
+        },
+        {
+          "alloy_conductivity_W_per_mK": 160.0,
+          "peak_C": {
+            "alloy": 395.67,
+            "inlet_seat": 379.03,
+            "exhaust_seat": 394.34,
+            "valve_bridge": 379.61,
+            "plug_bosses": 395.67
+          },
+          "peak_alloy_at_mm": [
+            19.6,
+            12.9,
+            20.9
+          ],
+          "mean_alloy_C": 274.91,
+          "valve_peak_C": {
+            "inlet": 532.72,
+            "exhaust": 578.14
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -3995.55,
+            "hot_port": -1378.8,
+            "cool_port": 742.81,
+            "cylinder_contact": 405.29,
+            "air": 3926.7,
+            "oil": 299.55
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 465.2,
+            "hot_port": 144.7
+          },
+          "heat_into_the_assembly_W": 5374.35,
+          "energy_imbalance_relative": 0.0
+        },
+        {
+          "alloy_conductivity_W_per_mK": 165.0,
+          "peak_C": {
+            "alloy": 393.88,
+            "inlet_seat": 377.44,
+            "exhaust_seat": 392.52,
+            "valve_bridge": 377.99,
+            "plug_bosses": 393.88
+          },
+          "peak_alloy_at_mm": [
+            19.6,
+            12.9,
+            20.9
+          ],
+          "mean_alloy_C": 275.58,
+          "valve_peak_C": {
+            "inlet": 532.54,
+            "exhaust": 577.8
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -4015.72,
+            "hot_port": -1380.67,
+            "cool_port": 745.8,
+            "cylinder_contact": 404.89,
+            "air": 3943.65,
+            "oil": 302.04
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 467.6,
+            "hot_port": 144.9
+          },
+          "heat_into_the_assembly_W": 5396.39,
+          "energy_imbalance_relative": 2e-06
+        },
+        {
+          "alloy_conductivity_W_per_mK": 170.0,
+          "peak_C": {
+            "alloy": 392.17,
+            "inlet_seat": 375.91,
+            "exhaust_seat": 390.77,
+            "valve_bridge": 376.44,
+            "plug_bosses": 392.17
+          },
+          "peak_alloy_at_mm": [
+            19.6,
+            12.9,
+            20.9
+          ],
+          "mean_alloy_C": 276.21,
+          "valve_peak_C": {
+            "inlet": 532.38,
+            "exhaust": 577.47
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -4034.98,
+            "hot_port": -1382.44,
+            "cool_port": 748.68,
+            "cylinder_contact": 404.49,
+            "air": 3959.83,
+            "oil": 304.43
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 469.8,
+            "hot_port": 145.1
+          },
+          "heat_into_the_assembly_W": 5417.42,
+          "energy_imbalance_relative": 2e-06
+        },
+        {
+          "alloy_conductivity_W_per_mK": 191.0,
+          "peak_C": {
+            "alloy": 385.64,
+            "inlet_seat": 370.14,
+            "exhaust_seat": 384.18,
+            "valve_bridge": 370.59,
+            "plug_bosses": 385.64
+          },
+          "peak_alloy_at_mm": [
+            19.6,
+            12.9,
+            20.9
+          ],
+          "mean_alloy_C": 278.59,
+          "valve_peak_C": {
+            "inlet": 531.77,
+            "exhaust": 576.23
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -4107.3,
+            "hot_port": -1389.14,
+            "cool_port": 759.6,
+            "cylinder_contact": 402.89,
+            "air": 4020.47,
+            "oil": 313.48
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 478.2,
+            "hot_port": 145.8
+          },
+          "heat_into_the_assembly_W": 5496.44,
+          "energy_imbalance_relative": 0.0
+        }
+      ]
+    },
+    "published_loading_oil_air_233": {
+      "what": "the same with the air film at Mackerle's upper bound of 233 W/(m\u00b2 K)",
+      "films": {
+        "chamber_gas": {
+          "sink_temperature_C": 621.0,
+          "coefficient_W_per_m2K": 1812.88
+        },
+        "hot_port": {
+          "sink_temperature_C": 700.0,
+          "coefficient_W_per_m2K": 365.39
+        },
+        "cool_port": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 200.0
+        },
+        "cylinder_contact": {
+          "sink_temperature_C": 180.0,
+          "coefficient_W_per_m2K": 2000.0
+        },
+        "air": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 233.0
+        },
+        "oil": {
+          "sink_temperature_C": 90.0,
+          "coefficient_W_per_m2K": 500.0
+        }
+      },
+      "calibration": [
+        {
+          "step": 0,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 1500.0,
+            "loading_kW_per_m2": 421.9,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 300.0,
+            "loading_kW_per_m2": 125.8,
+            "target_kW_per_m2": 145.0
+          }
+        },
+        {
+          "step": 1,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 1653.24,
+            "loading_kW_per_m2": 442.0,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 345.79,
+            "loading_kW_per_m2": 140.2,
+            "target_kW_per_m2": 145.0
+          }
+        },
+        {
+          "step": 2,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 1739.26,
+            "loading_kW_per_m2": 453.8,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 357.63,
+            "loading_kW_per_m2": 143.1,
+            "target_kW_per_m2": 145.0
+          }
+        },
+        {
+          "step": 3,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 1782.19,
+            "loading_kW_per_m2": 459.6,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 362.37,
+            "loading_kW_per_m2": 144.2,
+            "target_kW_per_m2": 145.0
+          }
+        },
+        {
+          "step": 4,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 1803.13,
+            "loading_kW_per_m2": 462.5,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 364.38,
+            "loading_kW_per_m2": 144.6,
+            "target_kW_per_m2": 145.0
+          }
+        }
+      ],
+      "by_conductivity": [
+        {
+          "alloy_conductivity_W_per_mK": 95.0,
+          "peak_C": {
+            "alloy": 373.19,
+            "inlet_seat": 356.65,
+            "exhaust_seat": 373.19,
+            "valve_bridge": 356.74,
+            "plug_bosses": 372.79
+          },
+          "peak_alloy_at_mm": [
+            14.6,
+            17.2,
+            21.9
+          ],
+          "mean_alloy_C": 206.55,
+          "valve_peak_C": {
+            "inlet": 509.09,
+            "exhaust": 559.42
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -3646.81,
+            "hot_port": -1342.92,
+            "cool_port": 541.27,
+            "cylinder_contact": 251.03,
+            "air": 4039.39,
+            "oil": 158.04
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 424.6,
+            "hot_port": 140.9
+          },
+          "heat_into_the_assembly_W": 4989.73,
+          "energy_imbalance_relative": 0.0
+        },
+        {
+          "alloy_conductivity_W_per_mK": 150.0,
+          "peak_C": {
+            "alloy": 339.5,
+            "inlet_seat": 324.97,
+            "exhaust_seat": 338.77,
+            "valve_bridge": 324.54,
+            "plug_bosses": 339.5
+          },
+          "peak_alloy_at_mm": [
+            17.6,
+            12.6,
+            21.5
+          ],
+          "mean_alloy_C": 213.62,
+          "valve_peak_C": {
+            "inlet": 504.11,
+            "exhaust": 551.14
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -3983.04,
+            "hot_port": -1380.65,
+            "cool_port": 569.5,
+            "cylinder_contact": 233.13,
+            "air": 4374.96,
+            "oil": 186.1
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 463.8,
+            "hot_port": 144.9
+          },
+          "heat_into_the_assembly_W": 5363.69,
+          "energy_imbalance_relative": 0.0
+        },
+        {
+          "alloy_conductivity_W_per_mK": 191.0,
+          "peak_C": {
+            "alloy": 323.6,
+            "inlet_seat": 310.36,
+            "exhaust_seat": 322.65,
+            "valve_bridge": 309.89,
+            "plug_bosses": 323.6
+          },
+          "peak_alloy_at_mm": [
+            17.6,
+            12.6,
+            21.5
+          ],
+          "mean_alloy_C": 216.8,
+          "valve_peak_C": {
+            "inlet": 501.91,
+            "exhaust": 547.32
+          },
+          "heat_out_W_by_group": {
+            "chamber_gas": -4135.14,
+            "hot_port": -1397.39,
+            "cool_port": 583.55,
+            "cylinder_contact": 223.31,
+            "air": 4525.76,
+            "oil": 199.92
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 481.5,
+            "hot_port": 146.6
+          },
+          "heat_into_the_assembly_W": 5532.53,
+          "energy_imbalance_relative": 2e-06
+        }
+      ]
+    }
+  },
+  "ranking_variant": "published_loading_oil",
+  "ranking_by_peak_alloy_temperature": [
+    {
+      "id": "cp1-eos-heat-treated-wf",
+      "alloy": "Aheadd CP1 (Al-Fe-Zr)",
+      "condition": "heat treated 4 h at 400 \u00b0C, 46 %IACS",
+      "method": "computed here from the published electrical conductivity by the Wiedemann-Franz law, k = L sigma T with L = 2.44e-8 W Ohm/K2 and T = 293.15 K; 100 %IACS = 58.0 MS/m. A hypothesis, not a datasheet value: the lattice part of the conductivity is ignored and L is the Sommerfeld value",
+      "verification": "electrical conductivity re-read in the downloaded source file on 2026-11-11; the thermal value is computed here",
+      "alloy_conductivity_W_per_mK": 191.0,
+      "peak_C": {
+        "alloy": 385.64,
+        "inlet_seat": 370.14,
+        "exhaust_seat": 384.18,
+        "valve_bridge": 370.59,
+        "plug_bosses": 385.64
+      },
+      "peak_alloy_at_mm": [
+        19.6,
+        12.9,
+        20.9
+      ],
+      "mean_alloy_C": 278.59,
+      "valve_peak_C": {
+        "inlet": 531.77,
+        "exhaust": 576.23
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -4107.3,
+        "hot_port": -1389.14,
+        "cool_port": 759.6,
+        "cylinder_contact": 402.89,
+        "air": 4020.47,
+        "oil": 313.48
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 478.2,
+        "hot_port": 145.8
+      },
+      "heat_into_the_assembly_W": 5496.44,
+      "energy_imbalance_relative": 0.0
+    },
+    {
+      "id": "alsi10mg-3ds-stress-relieved-high",
+      "alloy": "AlSi10Mg",
+      "condition": "after stress relief, upper end (160-170)",
+      "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 \u00b0C",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "alloy_conductivity_W_per_mK": 170.0,
+      "peak_C": {
+        "alloy": 392.17,
+        "inlet_seat": 375.91,
+        "exhaust_seat": 390.77,
+        "valve_bridge": 376.44,
+        "plug_bosses": 392.17
+      },
+      "peak_alloy_at_mm": [
+        19.6,
+        12.9,
+        20.9
+      ],
+      "mean_alloy_C": 276.21,
+      "valve_peak_C": {
+        "inlet": 532.38,
+        "exhaust": 577.47
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -4034.98,
+        "hot_port": -1382.44,
+        "cool_port": 748.68,
+        "cylinder_contact": 404.49,
+        "air": 3959.83,
+        "oil": 304.43
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 469.8,
+        "hot_port": 145.1
+      },
+      "heat_into_the_assembly_W": 5417.42,
+      "energy_imbalance_relative": 2e-06
+    },
+    {
+      "id": "alsi7mg-eplus3d-high",
+      "alloy": "AlSi7Mg (Eplus3D)",
+      "condition": "condition not stated, upper end of 150-170",
+      "method": "not stated",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "alloy_conductivity_W_per_mK": 170.0,
+      "peak_C": {
+        "alloy": 392.17,
+        "inlet_seat": 375.91,
+        "exhaust_seat": 390.77,
+        "valve_bridge": 376.44,
+        "plug_bosses": 392.17
+      },
+      "peak_alloy_at_mm": [
+        19.6,
+        12.9,
+        20.9
+      ],
+      "mean_alloy_C": 276.21,
+      "valve_peak_C": {
+        "inlet": 532.38,
+        "exhaust": 577.47
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -4034.98,
+        "hot_port": -1382.44,
+        "cool_port": 748.68,
+        "cylinder_contact": 404.49,
+        "air": 3959.83,
+        "oil": 304.43
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 469.8,
+        "hot_port": 145.1
+      },
+      "heat_into_the_assembly_W": 5417.42,
+      "energy_imbalance_relative": 2e-06
+    },
+    {
+      "id": "alsi10mg-eos-t6-v",
+      "alloy": "AlSi10Mg",
+      "condition": "EOS T6 (530 \u00b0C 30 min, water quench, 165 \u00b0C 6 h), vertical",
+      "method": "measured, EN ISO 22007-2 (hot disk)",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "alloy_conductivity_W_per_mK": 165.0,
+      "peak_C": {
+        "alloy": 393.88,
+        "inlet_seat": 377.44,
+        "exhaust_seat": 392.52,
+        "valve_bridge": 377.99,
+        "plug_bosses": 393.88
+      },
+      "peak_alloy_at_mm": [
+        19.6,
+        12.9,
+        20.9
+      ],
+      "mean_alloy_C": 275.58,
+      "valve_peak_C": {
+        "inlet": 532.54,
+        "exhaust": 577.8
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -4015.72,
+        "hot_port": -1380.67,
+        "cool_port": 745.8,
+        "cylinder_contact": 404.89,
+        "air": 3943.65,
+        "oil": 302.04
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 467.6,
+        "hot_port": 144.9
+      },
+      "heat_into_the_assembly_W": 5396.39,
+      "energy_imbalance_relative": 2e-06
+    },
+    {
+      "id": "alsi10mg-3ds-stress-relieved-low",
+      "alloy": "AlSi10Mg",
+      "condition": "after stress relief, lower end (160-170)",
+      "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 \u00b0C",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "alloy_conductivity_W_per_mK": 160.0,
+      "peak_C": {
+        "alloy": 395.67,
+        "inlet_seat": 379.03,
+        "exhaust_seat": 394.34,
+        "valve_bridge": 379.61,
+        "plug_bosses": 395.67
+      },
+      "peak_alloy_at_mm": [
+        19.6,
+        12.9,
+        20.9
+      ],
+      "mean_alloy_C": 274.91,
+      "valve_peak_C": {
+        "inlet": 532.72,
+        "exhaust": 578.14
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -3995.55,
+        "hot_port": -1378.8,
+        "cool_port": 742.81,
+        "cylinder_contact": 405.29,
+        "air": 3926.7,
+        "oil": 299.55
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 465.2,
+        "hot_port": 144.7
+      },
+      "heat_into_the_assembly_W": 5374.35,
+      "energy_imbalance_relative": 0.0
+    },
+    {
+      "id": "alsi10mg-eos-stress-relieved-v",
+      "alloy": "AlSi10Mg",
+      "condition": "stress relieved (270 \u00b0C 90 min), vertical",
+      "method": "measured, EN ISO 22007-2 (hot disk)",
+      "verification": "reported by the research pass of 2026-11-11 only; not re-read",
+      "alloy_conductivity_W_per_mK": 160.0,
+      "peak_C": {
+        "alloy": 395.67,
+        "inlet_seat": 379.03,
+        "exhaust_seat": 394.34,
+        "valve_bridge": 379.61,
+        "plug_bosses": 395.67
+      },
+      "peak_alloy_at_mm": [
+        19.6,
+        12.9,
+        20.9
+      ],
+      "mean_alloy_C": 274.91,
+      "valve_peak_C": {
+        "inlet": 532.72,
+        "exhaust": 578.14
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -3995.55,
+        "hot_port": -1378.8,
+        "cool_port": 742.81,
+        "cylinder_contact": 405.29,
+        "air": 3926.7,
+        "oil": 299.55
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 465.2,
+        "hot_port": 144.7
+      },
+      "heat_into_the_assembly_W": 5374.35,
+      "energy_imbalance_relative": 0.0
+    },
+    {
+      "id": "cp1-velo3d-blog",
+      "alloy": "Aheadd CP1 (Al-Fe-Zr)",
+      "condition": "condition unclear",
+      "method": "not stated",
+      "verification": "reported by the research pass of 2026-11-11 only; not re-read",
+      "alloy_conductivity_W_per_mK": 160.0,
+      "peak_C": {
+        "alloy": 395.67,
+        "inlet_seat": 379.03,
+        "exhaust_seat": 394.34,
+        "valve_bridge": 379.61,
+        "plug_bosses": 395.67
+      },
+      "peak_alloy_at_mm": [
+        19.6,
+        12.9,
+        20.9
+      ],
+      "mean_alloy_C": 274.91,
+      "valve_peak_C": {
+        "inlet": 532.72,
+        "exhaust": 578.14
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -3995.55,
+        "hot_port": -1378.8,
+        "cool_port": 742.81,
+        "cylinder_contact": 405.29,
+        "air": 3926.7,
+        "oil": 299.55
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 465.2,
+        "hot_port": 144.7
+      },
+      "heat_into_the_assembly_W": 5374.35,
+      "energy_imbalance_relative": 0.0
+    },
+    {
+      "id": "alsi10mg-eos-t6-h",
+      "alloy": "AlSi10Mg",
+      "condition": "EOS T6, horizontal",
+      "method": "measured, EN ISO 22007-2 (hot disk)",
+      "verification": "reported by the research pass of 2026-11-11 only; not re-read",
+      "alloy_conductivity_W_per_mK": 155.0,
+      "peak_C": {
+        "alloy": 397.53,
+        "inlet_seat": 380.7,
+        "exhaust_seat": 396.24,
+        "valve_bridge": 381.31,
+        "plug_bosses": 397.53
+      },
+      "peak_alloy_at_mm": [
+        19.6,
+        12.9,
+        20.9
+      ],
+      "mean_alloy_C": 274.22,
+      "valve_peak_C": {
+        "inlet": 532.9,
+        "exhaust": 578.5
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -3974.42,
+        "hot_port": -1376.85,
+        "cool_port": 739.7,
+        "cylinder_contact": 405.7,
+        "air": 3908.92,
+        "oil": 296.95
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 462.8,
+        "hot_port": 144.5
+      },
+      "heat_into_the_assembly_W": 5351.27,
+      "energy_imbalance_relative": 0.0
+    },
+    {
+      "id": "alsi7mg-eos-t6",
+      "alloy": "AlSi7Mg (EOS AlF357)",
+      "condition": "T6-like (540 \u00b0C 30 min, quench, 165 \u00b0C 6 h), vertical and horizontal",
+      "method": "measured, EN ISO 22007-2 (hot disk)",
+      "verification": "reported by the research pass of 2026-11-11 only; not re-read",
+      "alloy_conductivity_W_per_mK": 150.0,
+      "peak_C": {
+        "alloy": 399.47,
+        "inlet_seat": 382.45,
+        "exhaust_seat": 398.22,
+        "valve_bridge": 383.08,
+        "plug_bosses": 399.47
+      },
+      "peak_alloy_at_mm": [
+        19.6,
+        12.9,
+        20.9
+      ],
+      "mean_alloy_C": 273.49,
+      "valve_peak_C": {
+        "inlet": 533.09,
+        "exhaust": 578.87
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -3952.25,
+        "hot_port": -1374.81,
+        "cool_port": 736.45,
+        "cylinder_contact": 406.11,
+        "air": 3890.25,
+        "oil": 294.24
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 460.2,
+        "hot_port": 144.3
+      },
+      "heat_into_the_assembly_W": 5327.06,
+      "energy_imbalance_relative": 2e-06
+    },
+    {
+      "id": "alsi7mg-eplus3d-low",
+      "alloy": "AlSi7Mg (Eplus3D)",
+      "condition": "condition not stated, lower end of 150-170",
+      "method": "not stated",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "alloy_conductivity_W_per_mK": 150.0,
+      "peak_C": {
+        "alloy": 399.47,
+        "inlet_seat": 382.45,
+        "exhaust_seat": 398.22,
+        "valve_bridge": 383.08,
+        "plug_bosses": 399.47
+      },
+      "peak_alloy_at_mm": [
+        19.6,
+        12.9,
+        20.9
+      ],
+      "mean_alloy_C": 273.49,
+      "valve_peak_C": {
+        "inlet": 533.09,
+        "exhaust": 578.87
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -3952.25,
+        "hot_port": -1374.81,
+        "cool_port": 736.45,
+        "cylinder_contact": 406.11,
+        "air": 3890.25,
+        "oil": 294.24
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 460.2,
+        "hot_port": 144.3
+      },
+      "heat_into_the_assembly_W": 5327.06,
+      "energy_imbalance_relative": 2e-06
+    },
+    {
+      "id": "generic-reference",
+      "alloy": "generic cast aluminium of the thermal screen",
+      "condition": "declared hypothesis, no source",
+      "method": "declared",
+      "verification": "the value of sim_thermal.py",
+      "alloy_conductivity_W_per_mK": 150.0,
+      "peak_C": {
+        "alloy": 399.47,
+        "inlet_seat": 382.45,
+        "exhaust_seat": 398.22,
+        "valve_bridge": 383.08,
+        "plug_bosses": 399.47
+      },
+      "peak_alloy_at_mm": [
+        19.6,
+        12.9,
+        20.9
+      ],
+      "mean_alloy_C": 273.49,
+      "valve_peak_C": {
+        "inlet": 533.09,
+        "exhaust": 578.87
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -3952.25,
+        "hot_port": -1374.81,
+        "cool_port": 736.45,
+        "cylinder_contact": 406.11,
+        "air": 3890.25,
+        "oil": 294.24
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 460.2,
+        "hot_port": 144.3
+      },
+      "heat_into_the_assembly_W": 5327.06,
+      "energy_imbalance_relative": 2e-06
+    },
+    {
+      "id": "alsi7mg-eos-as-built",
+      "alloy": "AlSi7Mg (EOS AlF357)",
+      "condition": "as manufactured, vertical and horizontal",
+      "method": "measured, EN ISO 22007-2 (hot disk)",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "alloy_conductivity_W_per_mK": 140.0,
+      "peak_C": {
+        "alloy": 403.61,
+        "inlet_seat": 386.2,
+        "exhaust_seat": 402.47,
+        "valve_bridge": 386.9,
+        "plug_bosses": 403.61
+      },
+      "peak_alloy_at_mm": [
+        19.6,
+        12.9,
+        20.9
+      ],
+      "mean_alloy_C": 271.91,
+      "valve_peak_C": {
+        "inlet": 533.5,
+        "exhaust": 579.67
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -3904.45,
+        "hot_port": -1370.39,
+        "cool_port": 729.5,
+        "cylinder_contact": 406.93,
+        "air": 3849.96,
+        "oil": 288.45
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 454.6,
+        "hot_port": 143.8
+      },
+      "heat_into_the_assembly_W": 5274.84,
+      "energy_imbalance_relative": 0.0
+    },
+    {
+      "id": "al5x1-eos-heat-treated-v",
+      "alloy": "EOS Al5X1",
+      "condition": "heat treated, vertical",
+      "method": "measured, ASTM E1461 (laser flash)",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "alloy_conductivity_W_per_mK": 132.0,
+      "peak_C": {
+        "alloy": 407.19,
+        "inlet_seat": 389.48,
+        "exhaust_seat": 406.17,
+        "valve_bridge": 390.24,
+        "plug_bosses": 407.19
+      },
+      "peak_alloy_at_mm": [
+        19.6,
+        12.9,
+        20.9
+      ],
+      "mean_alloy_C": 270.53,
+      "valve_peak_C": {
+        "inlet": 533.86,
+        "exhaust": 580.38
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -3862.48,
+        "hot_port": -1366.5,
+        "cool_port": 723.47,
+        "cylinder_contact": 407.58,
+        "air": 3814.51,
+        "oil": 283.41
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 449.7,
+        "hot_port": 143.4
+      },
+      "heat_into_the_assembly_W": 5228.98,
+      "energy_imbalance_relative": 2e-06
+    },
+    {
+      "id": "alsi10mg-3ds-as-printed-high",
+      "alloy": "AlSi10Mg",
+      "condition": "as printed, upper end of the published range",
+      "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 \u00b0C",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "alloy_conductivity_W_per_mK": 130.0,
+      "peak_C": {
+        "alloy": 408.13,
+        "inlet_seat": 390.34,
+        "exhaust_seat": 407.14,
+        "valve_bridge": 391.12,
+        "plug_bosses": 408.13
+      },
+      "peak_alloy_at_mm": [
+        19.6,
+        12.9,
+        20.9
+      ],
+      "mean_alloy_C": 270.16,
+      "valve_peak_C": {
+        "inlet": 533.96,
+        "exhaust": 580.56
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -3851.41,
+        "hot_port": -1365.47,
+        "cool_port": 721.89,
+        "cylinder_contact": 407.74,
+        "air": 3805.15,
+        "oil": 282.09
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 448.4,
+        "hot_port": 143.3
+      },
+      "heat_into_the_assembly_W": 5216.88,
+      "energy_imbalance_relative": 2e-06
+    },
+    {
+      "id": "alsi10mg-3ds-as-printed-low",
+      "alloy": "AlSi10Mg",
+      "condition": "as printed, lower end of the published range",
+      "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 \u00b0C",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "alloy_conductivity_W_per_mK": 120.0,
+      "peak_C": {
+        "alloy": 413.11,
+        "inlet_seat": 394.93,
+        "exhaust_seat": 412.3,
+        "valve_bridge": 395.81,
+        "plug_bosses": 413.11
+      },
+      "peak_alloy_at_mm": [
+        17.6,
+        12.6,
+        21.5
+      ],
+      "mean_alloy_C": 268.2,
+      "valve_peak_C": {
+        "inlet": 534.5,
+        "exhaust": 581.55
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -3792.19,
+        "hot_port": -1359.94,
+        "cool_port": 713.52,
+        "cylinder_contact": 408.51,
+        "air": 3755.01,
+        "oil": 275.08
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 441.5,
+        "hot_port": 142.7
+      },
+      "heat_into_the_assembly_W": 5152.13,
+      "energy_imbalance_relative": 2e-06
+    },
+    {
+      "id": "cp1-eos-as-built-wf",
+      "alloy": "Aheadd CP1 (Al-Fe-Zr)",
+      "condition": "as manufactured, 28 %IACS",
+      "method": "computed here from the published electrical conductivity by the Wiedemann-Franz law, k = L sigma T with L = 2.44e-8 W Ohm/K2 and T = 293.15 K; 100 %IACS = 58.0 MS/m. A hypothesis, not a datasheet value: the lattice part of the conductivity is ignored and L is the Sommerfeld value",
+      "verification": "electrical conductivity re-read in the downloaded source file on 2026-11-11; the thermal value is computed here",
+      "alloy_conductivity_W_per_mK": 116.0,
+      "peak_C": {
+        "alloy": 415.26,
+        "inlet_seat": 396.91,
+        "exhaust_seat": 414.51,
+        "valve_bridge": 397.83,
+        "plug_bosses": 415.26
+      },
+      "peak_alloy_at_mm": [
+        17.6,
+        12.6,
+        21.5
+      ],
+      "mean_alloy_C": 267.35,
+      "valve_peak_C": {
+        "inlet": 534.74,
+        "exhaust": 581.97
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -3766.52,
+        "hot_port": -1357.52,
+        "cool_port": 709.92,
+        "cylinder_contact": 408.8,
+        "air": 3733.23,
+        "oil": 272.08
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 438.6,
+        "hot_port": 142.4
+      },
+      "heat_into_the_assembly_W": 5124.04,
+      "energy_imbalance_relative": 2e-06
+    },
+    {
+      "id": "alsi10mg-eos-as-built-h",
+      "alloy": "AlSi10Mg",
+      "condition": "as manufactured, horizontal",
+      "method": "measured, EN ISO 22007-2 (hot disk)",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "alloy_conductivity_W_per_mK": 110.0,
+      "peak_C": {
+        "alloy": 418.65,
+        "inlet_seat": 400.05,
+        "exhaust_seat": 418.03,
+        "valve_bridge": 401.05,
+        "plug_bosses": 418.65
+      },
+      "peak_alloy_at_mm": [
+        17.6,
+        12.6,
+        21.5
+      ],
+      "mean_alloy_C": 265.99,
+      "valve_peak_C": {
+        "inlet": 535.12,
+        "exhaust": 582.65
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -3725.61,
+        "hot_port": -1353.66,
+        "cool_port": 704.24,
+        "cylinder_contact": 409.2,
+        "air": 3698.49,
+        "oil": 267.33
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 433.8,
+        "hot_port": 142.0
+      },
+      "heat_into_the_assembly_W": 5079.27,
+      "energy_imbalance_relative": 2e-06
+    },
+    {
+      "id": "alsi10mg-eos-as-built-v",
+      "alloy": "AlSi10Mg",
+      "condition": "as manufactured, vertical",
+      "method": "measured, EN ISO 22007-2 (hot disk)",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "alloy_conductivity_W_per_mK": 100.0,
+      "peak_C": {
+        "alloy": 424.81,
+        "inlet_seat": 405.8,
+        "exhaust_seat": 424.43,
+        "valve_bridge": 406.95,
+        "plug_bosses": 424.81
+      },
+      "peak_alloy_at_mm": [
+        17.6,
+        12.6,
+        21.5
+      ],
+      "mean_alloy_C": 263.49,
+      "valve_peak_C": {
+        "inlet": 535.82,
+        "exhaust": 583.89
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -3650.16,
+        "hot_port": -1346.43,
+        "cool_port": 693.89,
+        "cylinder_contact": 409.75,
+        "air": 3634.25,
+        "oil": 258.7
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 425.0,
+        "hot_port": 141.3
+      },
+      "heat_into_the_assembly_W": 4996.59,
+      "energy_imbalance_relative": 0.0
+    },
+    {
+      "id": "scalmalloy-3ds-high",
+      "alloy": "Al-Mg-Sc (Scalmalloy)",
+      "condition": "heat treated, upper end of 95-100",
+      "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 \u00b0C",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "alloy_conductivity_W_per_mK": 100.0,
+      "peak_C": {
+        "alloy": 424.81,
+        "inlet_seat": 405.8,
+        "exhaust_seat": 424.43,
+        "valve_bridge": 406.95,
+        "plug_bosses": 424.81
+      },
+      "peak_alloy_at_mm": [
+        17.6,
+        12.6,
+        21.5
+      ],
+      "mean_alloy_C": 263.49,
+      "valve_peak_C": {
+        "inlet": 535.82,
+        "exhaust": 583.89
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -3650.16,
+        "hot_port": -1346.43,
+        "cool_port": 693.89,
+        "cylinder_contact": 409.75,
+        "air": 3634.25,
+        "oil": 258.7
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 425.0,
+        "hot_port": 141.3
+      },
+      "heat_into_the_assembly_W": 4996.59,
+      "energy_imbalance_relative": 0.0
+    },
+    {
+      "id": "scalmalloy-3ds-low",
+      "alloy": "Al-Mg-Sc (Scalmalloy)",
+      "condition": "heat treated, lower end of 95-100",
+      "method": "calculated by the publisher from electrical resistivity (Wiedemann-Franz), at 20 \u00b0C",
+      "verification": "value re-read in the downloaded source file on 2026-11-11",
+      "alloy_conductivity_W_per_mK": 95.0,
+      "peak_C": {
+        "alloy": 428.16,
+        "inlet_seat": 408.96,
+        "exhaust_seat": 427.93,
+        "valve_bridge": 410.2,
+        "plug_bosses": 428.16
+      },
+      "peak_alloy_at_mm": [
+        17.6,
+        12.6,
+        21.5
+      ],
+      "mean_alloy_C": 262.11,
+      "valve_peak_C": {
+        "inlet": 536.21,
+        "exhaust": 584.57
+      },
+      "heat_out_W_by_group": {
+        "chamber_gas": -3608.52,
+        "hot_port": -1342.38,
+        "cool_port": 688.25,
+        "cylinder_contact": 409.95,
+        "air": 3598.7,
+        "oil": 254.0
+      },
+      "wall_loading_kW_per_m2": {
+        "chamber_gas": 420.2,
+        "hot_port": 140.9
+      },
+      "heat_into_the_assembly_W": 4950.9,
+      "energy_imbalance_relative": 0.0
+    }
+  ],
+  "claims": "rankings under declared hypothesis cases: hypothetical valves, guides and plugs in perfect contact, films uncorrelated with any engine, room-temperature conductivities. Not an engine temperature, not a material qualification"
+}

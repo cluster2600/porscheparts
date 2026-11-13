@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-"""Refuse solver output tracked under the git-ignored ``work/`` directory.
+"""Refuse solver output tracked under ``work/`` or ``models/simulation/``.
 
-``work/`` is ignored because it holds local runs. A few case decks are tracked
-there deliberately (dictionaries, initial conditions, scripts, run records and
-metrics), but solver output is not: AGENTS.md keeps solver dumps out of Git and
+``work/`` is git-ignored because it holds local runs. The tracked case decks
+(dictionaries, initial conditions, scripts, run records and metrics) moved from
+``work/simulation/`` to ``models/simulation/`` on 2026-11-09, but solver output
+is not tracked in either place: AGENTS.md keeps solver dumps out of Git and
 records only their hashes, settings and numerical results. Output that was
 tracked before this gate is listed, with its digest and a recovery commit, in
-``catalog/registers/untracked-solver-output.json``.
+``catalog/registers/untracked-solver-output.json``; those entries keep their
+original ``work/`` paths so that ``git show <recovery_commit>:<path>`` works.
 
-A tracked path under ``work/`` is refused when it is:
+A tracked path under either directory is refused when it is:
 
 - inside a numeric time directory other than ``0`` (``100/``, ``0.5/``, ...);
 - inside ``postProcessing/``, ``processor*/`` or a ``polyMesh/`` directory;
@@ -25,13 +27,14 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REGISTER = ROOT / "catalog" / "registers" / "untracked-solver-output.json"
+GUARDED = ("work", "models/simulation")
 TIME_DIR = re.compile(r"^\d+(\.\d+)?(e[+-]?\d+)?$")
 
 
 def solver_output_reason(path: str) -> str | None:
     """Return why ``path`` counts as solver output, or None if it does not."""
     parts = path.split("/")
-    if not parts or parts[0] != "work":
+    if not parts or not (parts[0] == "work" or parts[:2] == ["models", "simulation"]):
         return None
     for directory in parts[:-1]:
         if TIME_DIR.match(directory) and float(directory) != 0.0:
@@ -50,7 +53,7 @@ def solver_output_reason(path: str) -> str | None:
 
 def tracked_paths() -> list[str]:
     out = subprocess.run(
-        ["git", "ls-files", "-z", "--", "work"],
+        ["git", "ls-files", "-z", "--", *GUARDED],
         cwd=ROOT, check=True, capture_output=True, text=True,
     ).stdout
     return [p for p in out.split("\0") if p]
@@ -78,12 +81,12 @@ def main() -> int:
     for path in tracked_paths():
         reason = solver_output_reason(path)
         if reason:
-            errors.append(f"tracked solver output under work/ ({reason}): {path}")
+            errors.append(f"tracked solver output ({reason}): {path}")
     for error in errors:
         print(f"ERROR {error}")
     if errors:
         return 1
-    print("work/ holds no tracked solver output")
+    print("work/ and models/simulation/ hold no tracked solver output")
     return 0
 
 

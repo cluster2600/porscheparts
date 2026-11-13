@@ -1,0 +1,965 @@
+{
+  "cap_neighborhood_source_audit": {
+    "source_sha256": "da2c9d9eebbf571a5d8cb443e48d3e9feaa1a6ff63277ed3b2714513279c2dee",
+    "input_mesh_sha256": "d00f2807ed32f4fd3c92f9e825fe691ef57a42b449f9dda020326ecdfc817aaa",
+    "input_surface_sha256": "627dc5d2a6679475d7807b7b4f3113daf254f58049a17fc620ecb7f762908c9c",
+    "source_cap_tag": 1,
+    "witness_edges_examined": 3,
+    "geometry_modified": false,
+    "candidate_exported": false,
+    "volume_partition_independently_verified": false,
+    "current_literal_cap_face_contract_would_require_separate_change": true,
+    "profiles": [
+      {
+        "edge_profile": 0,
+        "same_cap_tag": true,
+        "old_edge_unmarked": true,
+        "exactly_coplanar": false,
+        "strictly_convex_common_quad": false,
+        "alternate_edge_globally_absent": true,
+        "old_edge_tet_valence": 4,
+        "two_tet_pyramid": false,
+        "surface_candidate_only": false,
+        "new_face_quality_evaluated": false,
+        "new_tet_quality_evaluated": false
+      },
+      {
+        "edge_profile": 1,
+        "same_cap_tag": true,
+        "old_edge_unmarked": true,
+        "exactly_coplanar": false,
+        "strictly_convex_common_quad": false,
+        "alternate_edge_globally_absent": true,
+        "old_edge_tet_valence": 2,
+        "two_tet_pyramid": true,
+        "surface_candidate_only": false,
+        "new_face_quality_evaluated": false,
+        "new_tet_quality_evaluated": false
+      },
+      {
+        "edge_profile": 2,
+        "same_cap_tag": true,
+        "old_edge_unmarked": true,
+        "exactly_coplanar": false,
+        "strictly_convex_common_quad": false,
+        "alternate_edge_globally_absent": true,
+        "old_edge_tet_valence": 2,
+        "two_tet_pyramid": true,
+        "surface_candidate_only": false,
+        "new_face_quality_evaluated": false,
+        "new_tet_quality_evaluated": false
+      }
+    ],
+    "geometry_refusals": 3,
+    "surface_candidates": 0,
+    "raw_report_sha256": "b17d95c159123d0f974669aa789b0d534b2c7951e3d471b7354888a619d2d75f"
+  },
+  "inherited_boundary_context": {
+    "source_path": "docs/research/935-corner-provenance-20261105/README.md",
+    "source_sha256": "9ac4c60992c6c08613f2c7f0806625435a61c91e25d98a76e39b42898e8157cb",
+    "predecessor_forcing_faces_recorded": 60,
+    "current_certificate_is_revalidation_on_current_geometry": true,
+    "new_count_of_all_forcing_faces_claimed": false,
+    "cause_of_current_noncoplanarity_established": false
+  },
+  "private_manifest_sha256": "5ae4030201035dce3b6a972f7cfee99ab98dee092454634608394eae6b0e96ec",
+  "private_frozen_payload_files": 242,
+  "private_frozen_payload_bytes": 4686423390,
+  "all_private_payloads_rehashed_after_freeze": true,
+  "phase_ledger_sha256": "ab0268c8c325bf38cf65446ee204fae784e8b317a593c3d245488590c2470efc",
+  "schema": "935-global-quality-continuation-1",
+  "status": "three_batches_verified_peel_fixed_point_fixed_cap_triangle_incompatible_with_current_tet_floor",
+  "requirement": "R935-GQC-1",
+  "source_parent_commit": "a1bc33442881b0559ea497a79541a08594ecf2df",
+  "private_capsule": "935-global-quality-continuation-20261107-001",
+  "predecessor_manifest_sha256": "3529958f01a36c1f5578b2faa1255c4f6c91c9fef30caca5a69db65bc95528be",
+  "initial_parent_volume_sha256": "d7609b83b208930b2e2792f9e30eac85025af6dda60e71ac3c72e6731886f0e3",
+  "initial_severe_cells": 716,
+  "initial_native_nonpositive_shape_cells": 108,
+  "rounds": [
+    {
+      "round": "round-001",
+      "parent_volume_sha256": "d7609b83b208930b2e2792f9e30eac85025af6dda60e71ac3c72e6731886f0e3",
+      "candidate_volume_sha256": "718807830960d58fe87fce28bfb601024e3e7a0cd1e68f8c73dd9e4debacddac",
+      "candidate_surface_sha256": "e23a4b8dcee5d51de204fd60244d225f573b2bf54a1327d1e8b2fae00bd15c22",
+      "actual_native_msh_sha256": "2248b64279e4c518e615a3bf020241dfb3de1eb95c49da7c8d289213dbd147cb",
+      "actual_checker_three_mf_sha256": "3e4e8eeb5a900b2667d5ae8f59c02d52addd898e88c84e9ffed1f710daa68a7e",
+      "removed_cells": 228,
+      "retained_cells": 12952906,
+      "condition_counts_kappa_F_at_least": {
+        "1e3": 277191,
+        "1e6": 799,
+        "1e9": 488,
+        "1e12": 488,
+        "1e15": 17,
+        "eps_inverse": 2,
+        "1e16": 0,
+        "3_eps_inverse": 0
+      },
+      "approximate_global_maximum_kappa_F": 6047921275675588,
+      "native_metrics": {
+        "minDetJac": {
+          "minimum": 1.5317399711011945e-19,
+          "maximum": 83.74388035448389,
+          "nonpositive_or_nonfinite_cells": 0,
+          "nonfinite_cells": 0,
+          "private_indices_sha256": "a8da70c43385448cb26d759127b4824e201bfd34259c984336aba26481355b61"
+        },
+        "minSICN": {
+          "minimum": -1.8944115336367531e-13,
+          "maximum": 0.9992901108475222,
+          "nonpositive_or_nonfinite_cells": 88,
+          "nonfinite_cells": 0,
+          "private_indices_sha256": "9bc4b9a3bd6992094d72827b1d9ca82e7518379f3e7742098c9e7b06df55ad31"
+        },
+        "volume": {
+          "minimum": 2.5528999518353243e-20,
+          "maximum": 13.957313392413981,
+          "nonpositive_or_nonfinite_cells": 0,
+          "nonfinite_cells": 0,
+          "private_indices_sha256": "a8da70c43385448cb26d759127b4824e201bfd34259c984336aba26481355b61"
+        }
+      },
+      "minimum_mean_ratio": 1.291009351665788e-11,
+      "mean_ratio_below": {
+        "0.0001": 758,
+        "0.001": 20329,
+        "0.01": 218273,
+        "0.05": 1978350,
+        "0.1": 4391463
+      },
+      "absolute_quality_gate_passed": false,
+      "complete_correspondence_bound_nominal_mm": 0.009643215374546092,
+      "independent_exact_local_proofs": 228,
+      "global_minimum_surface_quality_non_decreasing": true,
+      "cap_witness_unchanged": true,
+      "whole_surface_volume_condition_and_native_checks_passed": true,
+      "reports": [
+        {
+          "path": "round-001/verification/report.json",
+          "sha256": "846cc3c85801e7e41f221ce52d05f560dd1237c78f9a36bd078261021c5fedf5"
+        },
+        {
+          "path": "round-001/native-surface/report.json",
+          "sha256": "418d61c05981bc0ee3033ab777638ab5143e052ee3105c9552573849804d13d0"
+        },
+        {
+          "path": "round-001/whole-volume/report.json",
+          "sha256": "ccd746918ad5e2c9a6dd7ccf84923b11fef165e226026df032c073d7f75ffafb"
+        },
+        {
+          "path": "round-001/whole-condition/report.json",
+          "sha256": "b2d3a5e20a31d6106a349e67f7c9c28d8e4585b0cc2fc4423a6f66be0c0809d9"
+        },
+        {
+          "path": "round-001/native-readback/report.json",
+          "sha256": "5d8018d3e9b163917dfe23e1dd93dc6eb21332584bd3e83ddc860812eca0e89f"
+        },
+        {
+          "path": "round-001/availability/audit/report.json",
+          "sha256": "68a1e1542aa7f0e66057c931ce15b850c7c4d336679fa1171b1cfccfadbb0900"
+        }
+      ]
+    },
+    {
+      "round": "round-002",
+      "parent_volume_sha256": "718807830960d58fe87fce28bfb601024e3e7a0cd1e68f8c73dd9e4debacddac",
+      "candidate_volume_sha256": "0e2e7933173dae86d2a0af8479fa244220aa89000787040e5defb7ba11fd88d6",
+      "candidate_surface_sha256": "56c4e19e5125ddd067321602e5d6a08962df15deefeab02b6b2571f275ca07b0",
+      "actual_native_msh_sha256": "183ac652c511db964bcc0a8616d7480d9dc706bbf680a7970f38aa557367f49e",
+      "actual_checker_three_mf_sha256": "86ffc332f619fcc395c3fef69e4df3c9d22066209e94cffa4c672f0c025e3e76",
+      "removed_cells": 45,
+      "retained_cells": 12952861,
+      "condition_counts_kappa_F_at_least": {
+        "1e3": 277146,
+        "1e6": 754,
+        "1e9": 443,
+        "1e12": 443,
+        "1e15": 17,
+        "eps_inverse": 2,
+        "1e16": 0,
+        "3_eps_inverse": 0
+      },
+      "approximate_global_maximum_kappa_F": 6047921275675588,
+      "native_metrics": {
+        "minDetJac": {
+          "minimum": 1.5317399711011945e-19,
+          "maximum": 83.74388035448389,
+          "nonpositive_or_nonfinite_cells": 0,
+          "nonfinite_cells": 0,
+          "private_indices_sha256": "a8da70c43385448cb26d759127b4824e201bfd34259c984336aba26481355b61"
+        },
+        "minSICN": {
+          "minimum": -1.8944115336367531e-13,
+          "maximum": 0.9992901108475222,
+          "nonpositive_or_nonfinite_cells": 84,
+          "nonfinite_cells": 0,
+          "private_indices_sha256": "8d0d730cd29e75a25a94c5894c6636639434a3fb03bd08d752f0718a0c343575"
+        },
+        "volume": {
+          "minimum": 2.5528999518353243e-20,
+          "maximum": 13.957313392413981,
+          "nonpositive_or_nonfinite_cells": 0,
+          "nonfinite_cells": 0,
+          "private_indices_sha256": "a8da70c43385448cb26d759127b4824e201bfd34259c984336aba26481355b61"
+        }
+      },
+      "minimum_mean_ratio": 1.291009351665788e-11,
+      "mean_ratio_below": {
+        "0.0001": 713,
+        "0.001": 20284,
+        "0.01": 218228,
+        "0.05": 1978305,
+        "0.1": 4391418
+      },
+      "absolute_quality_gate_passed": false,
+      "complete_correspondence_bound_nominal_mm": 0.009643215374611403,
+      "independent_exact_local_proofs": 45,
+      "global_minimum_surface_quality_non_decreasing": true,
+      "cap_witness_unchanged": true,
+      "whole_surface_volume_condition_and_native_checks_passed": true,
+      "reports": [
+        {
+          "path": "round-002/verification/report.json",
+          "sha256": "3d6ed444b8d961f547b7b39b4cdc0c2eed66a644dfa43092b48a889291022903"
+        },
+        {
+          "path": "round-002/native-surface/report.json",
+          "sha256": "84a422dfa07f39265e7188c74a65ccccf3d0273c50213f7bda1501decb3e7727"
+        },
+        {
+          "path": "round-002/whole-volume/report.json",
+          "sha256": "16f3660b594f5eaec270fa5f175dbc54a8b57fa37b4e1284e3cbedf8513e7748"
+        },
+        {
+          "path": "round-002/whole-condition/report.json",
+          "sha256": "9f9227df126b35c83560b0ad287117a3cf7a28f302098d74f22c7c7a343f3cca"
+        },
+        {
+          "path": "round-002/native-readback/report.json",
+          "sha256": "d3f4185d8e8a4903aaddacd43586d43abcb5396389fa6d270391356c26eff723"
+        },
+        {
+          "path": "round-002/availability/audit/report.json",
+          "sha256": "38eb3042797c4603ff3c83d311e3686841adde01602e39850098fcb038a09968"
+        }
+      ]
+    },
+    {
+      "round": "round-003",
+      "parent_volume_sha256": "0e2e7933173dae86d2a0af8479fa244220aa89000787040e5defb7ba11fd88d6",
+      "candidate_volume_sha256": "d00f2807ed32f4fd3c92f9e825fe691ef57a42b449f9dda020326ecdfc817aaa",
+      "candidate_surface_sha256": "627dc5d2a6679475d7807b7b4f3113daf254f58049a17fc620ecb7f762908c9c",
+      "actual_native_msh_sha256": "7c4b9e017a956e708319d6098f8ebceb6454992fd24bcf71fc852bff8f76e677",
+      "actual_checker_three_mf_sha256": "75b9db0ee9857efa30fbc23d77c37e7bebeb604e0750e38b1743b7cd264c4480",
+      "removed_cells": 4,
+      "retained_cells": 12952857,
+      "condition_counts_kappa_F_at_least": {
+        "1e3": 277142,
+        "1e6": 750,
+        "1e9": 439,
+        "1e12": 439,
+        "1e15": 17,
+        "eps_inverse": 2,
+        "1e16": 0,
+        "3_eps_inverse": 0
+      },
+      "approximate_global_maximum_kappa_F": 6047921275675588,
+      "native_metrics": {
+        "minDetJac": {
+          "minimum": 1.5317399711011945e-19,
+          "maximum": 83.74388035448389,
+          "nonpositive_or_nonfinite_cells": 0,
+          "nonfinite_cells": 0,
+          "private_indices_sha256": "a8da70c43385448cb26d759127b4824e201bfd34259c984336aba26481355b61"
+        },
+        "minSICN": {
+          "minimum": -1.8944115336367531e-13,
+          "maximum": 0.9992901108475222,
+          "nonpositive_or_nonfinite_cells": 83,
+          "nonfinite_cells": 0,
+          "private_indices_sha256": "516083c5e12d76d6245deba78ce2787bc1b3ee3d83dc148d616f6ab77768958c"
+        },
+        "volume": {
+          "minimum": 2.5528999518353243e-20,
+          "maximum": 13.957313392413981,
+          "nonpositive_or_nonfinite_cells": 0,
+          "nonfinite_cells": 0,
+          "private_indices_sha256": "a8da70c43385448cb26d759127b4824e201bfd34259c984336aba26481355b61"
+        }
+      },
+      "minimum_mean_ratio": 1.291009351665788e-11,
+      "mean_ratio_below": {
+        "0.0001": 709,
+        "0.001": 20280,
+        "0.01": 218224,
+        "0.05": 1978301,
+        "0.1": 4391414
+      },
+      "absolute_quality_gate_passed": false,
+      "complete_correspondence_bound_nominal_mm": 0.009643215374673374,
+      "independent_exact_local_proofs": 4,
+      "global_minimum_surface_quality_non_decreasing": true,
+      "cap_witness_unchanged": true,
+      "whole_surface_volume_condition_and_native_checks_passed": true,
+      "reports": [
+        {
+          "path": "round-003/verification/report.json",
+          "sha256": "898e993b9a9bd05db0e920583837c0e0113ad17339d1dc745f7f4a5fe229d888"
+        },
+        {
+          "path": "round-003/native-surface/report.json",
+          "sha256": "f69e237acf11ce11eb9e8fae6a56ff611aa31876755d33ea24c72633cdaeb2e4"
+        },
+        {
+          "path": "round-003/whole-volume/report.json",
+          "sha256": "fbefd3e76382a889b93359a427f1fce9c3881e337b624628b92e99a4e870f9d2"
+        },
+        {
+          "path": "round-003/whole-condition/report.json",
+          "sha256": "4962c5908c1bca76dd7905e29589f00c6dd6ce7e444bb2544e7c4d021ce71c49"
+        },
+        {
+          "path": "round-003/native-readback/report.json",
+          "sha256": "a4c0bd52db172fede21ef240ffbccb0b3d0c2ed45df365ae210056a9ac6277bf"
+        },
+        {
+          "path": "round-003/availability/audit/report.json",
+          "sha256": "3ac2fda72f705dc421bccfad48fda4d3cb5d6ade24061b32b40804bef9f55c6a"
+        }
+      ]
+    }
+  ],
+  "new_removed_cells": 277,
+  "final_source_audit": {
+    "input_mesh_sha256": "d00f2807ed32f4fd3c92f9e825fe691ef57a42b449f9dda020326ecdfc817aaa",
+    "severe_cells_examined": 439,
+    "source_surface_faces_scanned": 8218458,
+    "exact_geometry_and_global_incidence_admitted": 0,
+    "vertex_disjoint_peels_admitted": 0,
+    "reasons": {
+      "not_two_boundary_faces": 227,
+      "construction_cap_constraint": 211,
+      "nonconvex_projected_patch": 1
+    },
+    "geometry_modified": false,
+    "independent_proposal_verification_pending": false
+  },
+  "final_source_audit_sha256": "3ac2fda72f705dc421bccfad48fda4d3cb5d6ade24061b32b40804bef9f55c6a",
+  "face_floor_certificate": {
+    "schema": "935-fixed-face-quality-bound-1",
+    "source_sha256": "1cb76fa87e91a30f6b465566ec4174cc0877c7e1e408b13e6cc73be407f96f1d",
+    "job_sha256": "24ab4f972ca140d2fac3e4cf9b139d13e8534d8c064578d0e885c2ae5c3ddbc9",
+    "controls": {
+      "literal_regular_tet_sharp_bound": true,
+      "scale_translation_invariant": true,
+      "literal_right_tet_fraction": true,
+      "collinear_base_refused": true
+    },
+    "input_mesh_sha256": "d00f2807ed32f4fd3c92f9e825fe691ef57a42b449f9dda020326ecdfc817aaa",
+    "input_surface_sha256": "627dc5d2a6679475d7807b7b4f3113daf254f58049a17fc620ecb7f762908c9c",
+    "source_cap_tag": 1,
+    "all_source_cells_scanned": 12952857,
+    "complete_boundary_incidence_count": 1,
+    "exact_face_q_squared": [
+      "436400644550091316541909638666595372535057081965118",
+      "1666601806442072837586130332773485716597513512341749390625"
+    ],
+    "exact_actual_incident_tet_q_cubed": [
+      "109497261004911879440614703379843723329266751449807782213570531228686745324367872",
+      "21197893580585666872766312568220471806904368679255747866307234970985048914221271686103628767"
+    ],
+    "approximate_sharp_upper_bound_q_tet": 0.006397611225554622,
+    "current_absolute_mean_ratio_floor": 0.01,
+    "fixed_triangle_incompatible_with_current_tet_floor": true,
+    "proof_scope": "Any tetrahedral partition retaining this literal boundary triangle; no claim about retessellated surfaces or polyhedral cells",
+    "does_not_prove_cap_vertices_coplanar": true,
+    "physical_interface_identity_established": false,
+    "private_incidence_sha256": "15877052596d1628e7784dd619486cd78c3084e9feef578ea8f292c6cdfec889",
+    "geometry_modified": false,
+    "threshold_changed": false,
+    "field_solve_executed": false,
+    "manufacturing_qualified": false,
+    "new_paid_compute_usd": 0,
+    "seconds": 2.016837709117681
+  },
+  "face_floor_certificate_sha256": "65d061bd0ec5c14f99018ef84b46b97220c72b1ffeb8102a4f45f9a05b98becc",
+  "source_attribution": {
+    "severe": {
+      "input_cohort": "severe",
+      "native_cohort_is_subset_of_complete_severe_set": true,
+      "source_sha256": "fba85cca1d467fcb35bce111a98fd2011030a83c322bcc2ed48a8fa7de1a949c",
+      "input_mesh_sha256": "d00f2807ed32f4fd3c92f9e825fe691ef57a42b449f9dda020326ecdfc817aaa",
+      "selected_ids_sha256": "a7512d29a0edc5fde8be8ebf512f46e9232295c0b386b0d31572ff57da776799",
+      "selected_cells_checked": 439,
+      "source_surface_faces_scanned": 8218458,
+      "source_surface_sha256": "627dc5d2a6679475d7807b7b4f3113daf254f58049a17fc620ecb7f762908c9c",
+      "source_tags_sha256": "716a7c0f155551ec42db10527b4c53ea2ed95948d0cc027e7b786f3b9f4ce0b5",
+      "cells_by_actual_boundary_face_count_0_to_4": [
+        206,
+        21,
+        212,
+        0,
+        0
+      ],
+      "cells_by_interior_vertex_count_0_to_4": [
+        436,
+        3,
+        0,
+        0,
+        0
+      ],
+      "cells_by_cap_incident_vertex_count_0_to_4": [
+        224,
+        4,
+        204,
+        0,
+        7
+      ],
+      "matched_boundary_faces_by_construction_tag": {
+        "0": 432,
+        "1": 11,
+        "2": 2
+      },
+      "cells_with_any_cap_face": 7,
+      "cells_with_any_parent_skin_face": 226,
+      "cells_all_four_vertices_incident_to_one_common_cap_tag": 7,
+      "common_cap_cell_counts_by_tag": {
+        "1": 6,
+        "2": 1,
+        "3": 0
+      },
+      "cells_all_vertices_incident_to_parent_skin": 436,
+      "tag_zero_is_parent_envelope_not_acquired_scan_identity": true,
+      "cap_membership_does_not_prove_exact_coplanarity_or_physical_interface_identity": true,
+      "controls": {
+        "literal_face_to_tag_join_passed": true,
+        "tag_incidence_not_assumed_coplanarity": true,
+        "absent_faces_not_assigned": true
+      },
+      "private_attribution_sha256": "b0cc5f69bcc05098b5ea44146250b448d04a7985713c4ed5b908677173ed81bd",
+      "geometry_or_connectivity_modified": false,
+      "field_solve_executed": false,
+      "physics_admitted": false,
+      "manufacturing_qualified": false,
+      "new_paid_compute_usd": 0,
+      "seconds": 3.7139036250300705
+    },
+    "native": {
+      "input_cohort": "native",
+      "native_cohort_is_subset_of_complete_severe_set": true,
+      "source_sha256": "0b4ab4b0df79f73a524260c31881114550a97a7ba39bc54e21b5c0758e4e51ba",
+      "input_mesh_sha256": "d00f2807ed32f4fd3c92f9e825fe691ef57a42b449f9dda020326ecdfc817aaa",
+      "selected_ids_sha256": "516083c5e12d76d6245deba78ce2787bc1b3ee3d83dc148d616f6ab77768958c",
+      "selected_cells_checked": 83,
+      "source_surface_faces_scanned": 8218458,
+      "source_surface_sha256": "627dc5d2a6679475d7807b7b4f3113daf254f58049a17fc620ecb7f762908c9c",
+      "source_tags_sha256": "716a7c0f155551ec42db10527b4c53ea2ed95948d0cc027e7b786f3b9f4ce0b5",
+      "cells_by_actual_boundary_face_count_0_to_4": [
+        47,
+        3,
+        33,
+        0,
+        0
+      ],
+      "cells_by_interior_vertex_count_0_to_4": [
+        83,
+        0,
+        0,
+        0,
+        0
+      ],
+      "cells_by_cap_incident_vertex_count_0_to_4": [
+        50,
+        1,
+        31,
+        0,
+        1
+      ],
+      "matched_boundary_faces_by_construction_tag": {
+        "0": 68,
+        "1": 1
+      },
+      "cells_with_any_cap_face": 1,
+      "cells_with_any_parent_skin_face": 35,
+      "cells_all_four_vertices_incident_to_one_common_cap_tag": 1,
+      "common_cap_cell_counts_by_tag": {
+        "1": 1,
+        "2": 0,
+        "3": 0
+      },
+      "cells_all_vertices_incident_to_parent_skin": 83,
+      "tag_zero_is_parent_envelope_not_acquired_scan_identity": true,
+      "cap_membership_does_not_prove_exact_coplanarity_or_physical_interface_identity": true,
+      "controls": {
+        "literal_face_to_tag_join_passed": true,
+        "tag_incidence_not_assumed_coplanarity": true,
+        "absent_faces_not_assigned": true
+      },
+      "private_attribution_sha256": "1621a6440908d3b279f06cb36a0f0f3a903cc009545c4c0b27f087c110753850",
+      "geometry_or_connectivity_modified": false,
+      "field_solve_executed": false,
+      "physics_admitted": false,
+      "manufacturing_qualified": false,
+      "new_paid_compute_usd": 0,
+      "seconds": 3.3482689580414444
+    }
+  },
+  "source_attribution_report_hashes": {
+    "severe": "d0e269ecab1b9ba00bc9f7615a692c3fdda4264dce0d85b78d05d13c4be03062",
+    "native": "09a3ff1f0f9decc5f470c9d8b4999edb515bf8ce5300aaba0e2f8fc658271e33"
+  },
+  "all_native_bad_cells_have_zero_strictly_interior_vertices": true,
+  "interior_node_only_moves_with_same_connectivity_cannot_change_these_cell_geometries": true,
+  "cumulative_chain": {
+    "cumulative_removed_cells": 14812,
+    "original_cells": 12967669,
+    "final_cells": 12952857,
+    "every_coordinate_bit_matches_one_immutable_parent": true,
+    "every_final_tetrahedron_tuple_matches_parent_subset": true,
+    "each_surface_change_confined_to_certified_rows": true,
+    "all_report_and_actual_artifact_identities_cross_checked": true,
+    "exact_cumulative_loss_independently_recomputed": true,
+    "literal_mapping_and_duplicate_range_dtype_refusal_controls_passed": true
+  },
+  "unchanged_cumulative_checker_sha256": "54726b8eb305f88becfa3a16b083bbc1490c248b6d6dad750d9b560e540abf8e",
+  "cumulative_chain_report_sha256": "4c41ad0831027c23c0580eb9e683c14015c04994712cd06d57c209f49d9cc75a",
+  "controllers": [
+    {
+      "path": "cap-neighborhood/execution/execution.json",
+      "sha256": "1f6affee0b8f11e4c22724b1a72da2e13e45e6e6a1b83cb39e3848c240d8bb49",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 4.009246541885659,
+      "phases": [
+        {
+          "phase": "read-only-exact-cap-witness-neighborhood",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 892992
+        }
+      ]
+    },
+    {
+      "path": "chain-execution/execution.json",
+      "sha256": "2eddc13b5d9db423176937307cd42e55bbb1e8e08ae938e4a6b717715453eef6",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 55.773681707913056,
+      "phases": [
+        {
+          "phase": "nine-generation-immutable-parent-proof",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 2140944
+        }
+      ]
+    },
+    {
+      "path": "constraint-execution/execution.json",
+      "sha256": "973afd6f560b0e30a77e22499566fe8b3c9c485d8b0ff0d627a35c2203f1ac43",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 7.585646291030571,
+      "phases": [
+        {
+          "phase": "current-severe-complete-source-attribution",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 655264
+        },
+        {
+          "phase": "current-native-complete-source-attribution",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 665152
+        }
+      ]
+    },
+    {
+      "path": "face-floor-proof/execution/execution.json",
+      "sha256": "ee577f6d264d856e56dcd77cc0c234acb878d2c76338bfd7f3e398d04b8706e1",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 2.72722224984318,
+      "phases": [
+        {
+          "phase": "sharp-fixed-face-quality-bound",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 856224
+        }
+      ]
+    },
+    {
+      "path": "round-001/availability/execution/execution.json",
+      "sha256": "4c7f627141341012d8107b16cb5f6bd755ee6e2292f895075b41e0818a6006fd",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 6.543917917180806,
+      "phases": [
+        {
+          "phase": "round-001-complete-source-availability",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 926912
+        }
+      ]
+    },
+    {
+      "path": "round-001/availability/witness-execution/execution.json",
+      "sha256": "7c2def8f204e91e5ef4f77c21bb28475986f2b951567e6ad0df9ed35aa616369",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 1.1398943332023919,
+      "phases": [
+        {
+          "phase": "round-001-fresh-cap-witness",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 273552
+        }
+      ]
+    },
+    {
+      "path": "round-001/verification-execution/execution.json",
+      "sha256": "e357c32382f52923c90f403d940782fc8d2529d804851cb7c803493aef35afe9",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 36.19141654111445,
+      "phases": [
+        {
+          "phase": "round-001-independent-exact-verification",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 1601456
+        }
+      ]
+    },
+    {
+      "path": "round-001/whole-validation-execution/execution.json",
+      "sha256": "f93d2c58ac188e1e6a338f4455c0c1aab93e59a24dbb50da2acef5ba6621f329",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 162.9586252500303,
+      "phases": [
+        {
+          "phase": "complete-native-surface",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 5149776
+        },
+        {
+          "phase": "complete-independent-positive-volume-and-boundary",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 4313072
+        },
+        {
+          "phase": "complete-successor-condition-census",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 1072784
+        },
+        {
+          "phase": "complete-current-native-gmsh-readback-and-shape-census",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 5900688
+        }
+      ]
+    },
+    {
+      "path": "round-002/availability/execution/execution.json",
+      "sha256": "9db5f30f4a5e07af8153e735743ecfb3e8a658fadde5c90bf73ace04ef90fded",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 6.152483541984111,
+      "phases": [
+        {
+          "phase": "round-002-complete-source-availability",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 926816
+        }
+      ]
+    },
+    {
+      "path": "round-002/availability/witness-execution/execution.json",
+      "sha256": "7508929cfe0002bce65e525377fd7b2bda9800776f047cc868a427777e261321",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 0.9032020410522819,
+      "phases": [
+        {
+          "phase": "round-002-fresh-cap-witness",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 277440
+        }
+      ]
+    },
+    {
+      "path": "round-002/verification-execution/execution.json",
+      "sha256": "3a10436193487915858c03852c7cd7876a1375f28b13233b35098bd41c5ac41a",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 35.083200958091766,
+      "phases": [
+        {
+          "phase": "round-002-independent-exact-verification",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 1638048
+        }
+      ]
+    },
+    {
+      "path": "round-002/whole-validation-execution/execution.json",
+      "sha256": "2d08ae75cb370d32328994f1615020e1c1f184f4a25a3bf294d56d6056bb79f6",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 157.332959667081,
+      "phases": [
+        {
+          "phase": "complete-native-surface",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 5154928
+        },
+        {
+          "phase": "complete-independent-positive-volume-and-boundary",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 4314976
+        },
+        {
+          "phase": "complete-successor-condition-census",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 1073136
+        },
+        {
+          "phase": "complete-current-native-gmsh-readback-and-shape-census",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 6027248
+        }
+      ]
+    },
+    {
+      "path": "round-003/availability/execution/execution.json",
+      "sha256": "aa131e7581557adc053b86e22f55ecfad0c7c3c1f9b144ade40355427553e5ea",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 5.287730667041615,
+      "phases": [
+        {
+          "phase": "round-003-complete-source-availability",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 911600
+        }
+      ]
+    },
+    {
+      "path": "round-003/availability/witness-execution/execution.json",
+      "sha256": "cd38297fa525071804282354cf9a82a06b6eb2177c5add1a6571ab817ae4cd30",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 1.1406982920598239,
+      "phases": [
+        {
+          "phase": "round-003-fresh-cap-witness",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 267008
+        }
+      ]
+    },
+    {
+      "path": "round-003/verification-execution/execution.json",
+      "sha256": "e18698f49bcdac2af9ae4afbf454ca4c655f9a88ba44ba489ca673cdab346e85",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 34.32630666694604,
+      "phases": [
+        {
+          "phase": "round-003-independent-exact-verification",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 1655504
+        }
+      ]
+    },
+    {
+      "path": "round-003/whole-validation-execution/execution.json",
+      "sha256": "b9e10a1bbee8a8877db5b1acf28136514725426dcefb8e3f7b559e4afc0ab6b1",
+      "complete": true,
+      "all_owned_children_reaped": true,
+      "seconds": 164.42120866687037,
+      "phases": [
+        {
+          "phase": "complete-native-surface",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 5571936
+        },
+        {
+          "phase": "complete-independent-positive-volume-and-boundary",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 4311120
+        },
+        {
+          "phase": "complete-successor-condition-census",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 1075808
+        },
+        {
+          "phase": "complete-current-native-gmsh-readback-and-shape-census",
+          "exit_code": 0,
+          "successful": true,
+          "peak_sampled_direct_child_rss_kib": 6023136
+        }
+      ]
+    }
+  ],
+  "source_files": [
+    {
+      "path": "source/audit_cap_witness.py",
+      "sha256": "da2c9d9eebbf571a5d8cb443e48d3e9feaa1a6ff63277ed3b2714513279c2dee",
+      "bytes": 8657
+    },
+    {
+      "path": "source/certify_face_floor.py",
+      "sha256": "1cb76fa87e91a30f6b465566ec4174cc0877c7e1e408b13e6cc73be407f96f1d",
+      "bytes": 7588
+    },
+    {
+      "path": "source/current-native-attribution.diff",
+      "sha256": "89a93a1cde70198363d5d7451f023df4c14bab7787a8e9c6330804e80f3524d3",
+      "bytes": 3896
+    },
+    {
+      "path": "source/current-severe-attribution.diff",
+      "sha256": "c75689614f80bcd5aa33b33b3a032089929f40f47bbc36b682d24f4b484d94b5",
+      "bytes": 3281
+    },
+    {
+      "path": "source/round-001-availability.diff",
+      "sha256": "aa2f1cfbe30b70de91c9b265547f061d94698a3ec92c5e794789c9d6e27f7f05",
+      "bytes": 638
+    },
+    {
+      "path": "source/round-001-condition.diff",
+      "sha256": "59f03533f134bc17da8c7febc4b207c06d6e9497e52268a7aa90718a7fc8b96a",
+      "bytes": 1089
+    },
+    {
+      "path": "source/round-001-verification.diff",
+      "sha256": "9ff12bafd6f1f5fe47fef819bb95e4934c7d0d1a36102033f310646c9e046e9a",
+      "bytes": 341
+    },
+    {
+      "path": "source/round-001-witness.diff",
+      "sha256": "d46eaca0a7c9c87c8297c0d1cd35cc342adb054999d3c88ef5a2561b21969d41",
+      "bytes": 286
+    },
+    {
+      "path": "source/round-002-availability.diff",
+      "sha256": "1e952b144cde725d85da61c5bdad1058a066664234f8e17b8a00fdddc8d34100",
+      "bytes": 638
+    },
+    {
+      "path": "source/round-002-condition.diff",
+      "sha256": "fa7e5fbd289ef425522fca8dc65b3f4fcab77f32a254ed1a1f6fcc887b7b71cd",
+      "bytes": 1089
+    },
+    {
+      "path": "source/round-002-verification.diff",
+      "sha256": "f81a0a91d1c8307ade9cc65b0e0d3ed9cce46bfe4d1cdccff5bc16f84c016f37",
+      "bytes": 341
+    },
+    {
+      "path": "source/round-002-witness.diff",
+      "sha256": "a88cfcff609f3ff14ad4f68ef76011d7c4b428f976e6fca914189b2d52980f28",
+      "bytes": 286
+    },
+    {
+      "path": "source/round-003-availability.diff",
+      "sha256": "0da64dd7b1aedb1e8ce88793f431d729bb8091abf94fe4af0c731940fd559434",
+      "bytes": 638
+    },
+    {
+      "path": "source/round-003-condition.diff",
+      "sha256": "2860860b627ae55fd7ef027ba77fca921f4cf49f3a0bc21c75235ceb36e0eef6",
+      "bytes": 1089
+    },
+    {
+      "path": "source/round-003-verification.diff",
+      "sha256": "9663c228512549274a80909f0748c0f20ae62e3aad2672208484cc1ff76937f8",
+      "bytes": 341
+    },
+    {
+      "path": "source/round-003-witness.diff",
+      "sha256": "a7e81dda91c2078aae621bb11c7232c81f713023596d34c511a6bd456202640f",
+      "bytes": 286
+    }
+  ],
+  "new_unit_test_source_sha256": "a86f18a223d356f62e417dc71ff8641bcb6315d4f163b9594835332827d0c1e7",
+  "runtime": {
+    "python": "3.12.13",
+    "numpy": "2.5.4",
+    "gmsh": "4.12.1",
+    "new_packages_installed": false,
+    "new_vast_resources_created": 0
+  },
+  "source_preservation": {
+    "original_scan_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+    "supported_printing_master_sha256": "217b0997f897ecf5dc84fc5da13adb0c069acc48806deb56fe166ab71998da14",
+    "both_rehashed_unchanged": true,
+    "catalogue_part_geometry_changed": false,
+    "new_paid_compute_usd": 0,
+    "supplier_message_sent": false
+  },
+  "repository_checks": {
+    "full_make_check_passed": true,
+    "make_check_exit_code": 0,
+    "main_tests": 5856,
+    "main_skips": 421,
+    "new_literal_unit_tests_passed": 2,
+    "make_check_log_sha256": "1237bda1d37e5be160310cffcbb48f625d8b70fe8445c755e43d13054015a717",
+    "post_make_read_only_cap_probe_literal_controls_passed": true,
+    "post_make_read_only_cap_probe_head_execution_passed": true,
+    "all_14_patches_replayed_exactly": true,
+    "both_actual_public_probe_sources_equal_executed_copies": true
+  },
+  "budget": {
+    "new_paid_compute_usd": 0,
+    "new_vast_resources_created": 0,
+    "original_total_usd": 35,
+    "compute_cap_usd": 30,
+    "reserve_usd": 5,
+    "prior_conservative_allocation_usd": 15.67884277510534,
+    "provider_invoice_claimed": false
+  },
+  "remaining": {
+    "current_absolute_quality_gate_passed": false,
+    "literal_fixed_cap_faces_can_meet_current_tet_floor": false,
+    "admitted_cap_source_retessellation_complete": false,
+    "case_specific_engine_operator_admitted": false,
+    "new_head_field_solve_executed": false,
+    "acquired_surface_closure_complete": false,
+    "faithful_editable_CAD_complete": false,
+    "same_specimen_metrology_complete": false,
+    "hidden_passages_observed": false,
+    "qualified_material_machine_exposure_recipe": false,
+    "functional_metal_build_job_released": false,
+    "physical_inspection_complete": false,
+    "professional_engine_validation_complete": false,
+    "full_goal_complete": false
+  },
+  "next_action": "Trace the nominal construction planes and broader cap charts/frontier/marked curves for the forcing witness. All three immediate same-tag patches are noncoplanar in stored coordinates. Admit a geometric-support/correspondence contract and a new volume partition before changing literal cap faces. Keep the existing quality criterion; never rerun the zero-successor peel or assume tag membership proves exact planarity."
+}

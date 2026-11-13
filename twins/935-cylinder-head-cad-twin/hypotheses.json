@@ -1,0 +1,129 @@
+{
+  "schema": "935-cad-twin-hypotheses/1",
+  "register_id": "935-CAD-TWIN-HYPOTHESES-0001",
+  "created_on": "2026-11-06",
+  "owner_decision": "On 2026-11-06 the owner accepted declared hypotheses for unobserved geometry, provided each one is tagged, shown in a distinct colour and never claimed as measured.",
+  "rule": "Nothing in this register is a measurement. A hypothesis is retired only by the evidence named in 'retire_with'. The scorecard's twin->scan 'inferred' area is the geometric footprint of these entries.",
+  "display_colours": {
+    "observed": [0.72, 0.72, 0.74],
+    "inferred_closure": [0.95, 0.55, 0.15],
+    "analytic_hypothesis": [0.85, 0.2, 0.75],
+    "hardware": [0.25, 0.45, 0.85]
+  },
+  "items": [
+    {
+      "id": "H01-fin-root-closure",
+      "region": "fin roots and the deep floor of every fin gap",
+      "status": "modelled_as_inferred_closure",
+      "how": "winding-number 0.5 iso-surface of the open scan; the scanner never saw these surfaces (the 87 boundary loops of 20 mm or more hold 67% of open edges, mostly here)",
+      "colour": "inferred_closure",
+      "retire_with": "CT of the specimen, a rescan with fin-gap coverage, or a supplier drawing of the fin roots"
+    },
+    {
+      "id": "H02-stud-passages",
+      "region": "four head-stud through passages parallel to the bore axis",
+      "status": "modelled_as_inferred_closure",
+      "how": "interior walls are mostly unobserved; v0 keeps the winding-number closure; v1 replaces it with straight analytic bores fitted on the observed deck notches and cam-side openings",
+      "colour": "analytic_hypothesis",
+      "retire_with": "measured passage diameter and axis at both ends on the specimen or a drawing",
+      "fitted_on_2026_11_11": {
+        "what": "four passages fitted on their acquired walls: diameter 10.50 to 10.96 mm, two of the four determined by the fit, none confirmed by the CloudCompare check (63% to 87% of held-out vertices within 0.2 mm). The unobserved middle of each passage is still closure",
+        "record": "params/feature-fits.json",
+        "independent_check": "params/feature-check.json",
+        "claim": "fitted numbers on scan data whose scale is an owner instruction; not a dimension of the specimen and not evidence that retires this hypothesis"
+      }
+    },
+    {
+      "id": "H03-stud-tapped-holes",
+      "region": "threaded holes under the 10 removed studs (6 cam-side, 2 per flange)",
+      "status": "not_modelled_in_v0",
+      "how": "studs are hardware and are removed; their seats are capped by the closure. A tapped hole (thread class, depth) is not observable from the surface",
+      "colour": "analytic_hypothesis",
+      "retire_with": "stud specification and tapped-hole depth from a drawing or measurement"
+    },
+    {
+      "id": "H04-port-interiors",
+      "region": "intake and exhaust port walls beyond the depth the scanner reached, valve-guide bosses inside the ports",
+      "status": "modelled_as_inferred_closure",
+      "how": "winding-number closure; v1 lofts the ports through observed cross-sections only and marks the interpolated span",
+      "colour": "inferred_closure",
+      "retire_with": "port moulds, CT, or a borescope survey with registered sections"
+    },
+    {
+      "id": "H05-valve-seats-guides",
+      "region": "valve seat inserts, guide bores and their interference fits",
+      "status": "not_modelled_in_v0",
+      "how": "the twin is the head body only; seat/guide geometry, materials and fits are unknown",
+      "colour": "analytic_hypothesis",
+      "retire_with": "supplier valvetrain specification for this head variant",
+      "fitted_on_2026_11_11": {
+        "what": "guide bores, guide outside diameters, throats, seats and spring seats fitted where the scanner reached them: guide bore 8.51 mm seen over 48.8 mm on valve_y_minus, seats near 45 and 49 degrees, valve axes 25.9 and 29.9 degrees from the bore axis. Of these fits CloudCompare confirms the valve_y_plus throat and seat only. Nothing is modelled in a body: the status stays as it was, and inserts, materials, interference fits and the valves themselves remain unknown",
+        "record": "params/feature-fits.json",
+        "independent_check": "params/feature-check.json",
+        "claim": "fitted numbers on scan data whose scale is an owner instruction; not a dimension of the specimen and not evidence that retires this hypothesis"
+      }
+    },
+    {
+      "id": "H06-spark-plug-threads",
+      "region": "spark-plug bores",
+      "status": "not_modelled_in_v0",
+      "how": "observed bore openings are kept as scanned; thread form and depth are not modelled",
+      "colour": "analytic_hypothesis",
+      "retire_with": "plug thread specification and reach",
+      "fitted_on_2026_11_11": {
+        "what": "both thread bores fitted as scanned: 11.49 and 11.28 mm, 29.2 and 28.6 degrees from the bore axis, with a chamber-side relief of 14.3 mm and a well of about 25 mm. Neither bore is confirmed by the CloudCompare check; both seat faces are. Thread form, pitch and reach are not observable at this scan pitch",
+        "record": "params/feature-fits.json",
+        "independent_check": "params/feature-check.json",
+        "claim": "fitted numbers on scan data whose scale is an owner instruction; not a dimension of the specimen and not evidence that retires this hypothesis"
+      }
+    },
+    {
+      "id": "H07-internal-galleries",
+      "region": "any oil or breather passage not open to the scanned surface",
+      "status": "not_modelled",
+      "how": "none is invented; the twin contains no internal gallery",
+      "colour": "analytic_hypothesis",
+      "retire_with": "CT or drawing"
+    },
+    {
+      "id": "H08-unclassified-cam-side-protrusion",
+      "region": "4 mm inclined rod-like protrusion on the cam side (about x=-19, y=-88)",
+      "status": "kept_as_body_unclassified",
+      "how": "it does not pass the stud test (axis inclined 36 degrees to the bore axis, protrudes 10 mm), so it is kept as head body and flagged",
+      "colour": "hardware",
+      "retire_with": "photograph or drawing identifying the feature"
+    },
+    {
+      "id": "H09-valve-roles",
+      "region": "which valve is the inlet and which the exhaust",
+      "status": "assumed_for_the_assembly_thermal_screen",
+      "how": "the valve with the larger seat (valve_y_minus, 49.0 mm at mid-band) is taken as the inlet and the other as the exhaust; the 993 manual gives 49 mm and 42.5 mm valve heads, but describes another head",
+      "colour": "analytic_hypothesis",
+      "retire_with": "supplier documentation of this head, or an inspection of the ports and valves of the specimen"
+    },
+    {
+      "id": "H10-valves-guides-plugs-as-solids",
+      "region": "two closed valves, two guides and two spark plugs in the assembly thermal screen",
+      "status": "modelled_as_hypothesis_solids_for_one_screen",
+      "how": "solids of revolution about the fitted axes: valve heads on the fitted seat cones, stems filling the fitted guide bores, guides as tubes of the fitted outside diameter, plugs filling the thread bores; every other length comes from params/assembly-case.json. They exist only in the united thermal domain, not in the CAD body, the USD stages or the 3MF",
+      "colour": "analytic_hypothesis",
+      "retire_with": "valve, guide and plug drawings or the parts themselves"
+    },
+    {
+      "id": "H11-assembly-materials-and-contacts",
+      "region": "conductivities of valve, guide and plug; contact at seats, guides, threads and the cylinder joint",
+      "status": "declared_values_no_source",
+      "how": "valve steel 20, bronze guide 60 and plug steel 45 W/(m K); seat inserts keep the head alloy's conductivity; every contact is perfect, with no gap and no contact resistance",
+      "colour": "analytic_hypothesis",
+      "retire_with": "material specifications of the fitted parts and a contact conductance from test or literature for each joint"
+    },
+    {
+      "id": "H12-assembly-thermal-boundaries",
+      "region": "gas, port, air and cylinder boundary conditions of the assembly thermal screen",
+      "status": "declared_values_no_source",
+      "how": "six films with one sink temperature and one coefficient each, and four variants of them (params/assembly-case.json): two declared, two with the gas side scaled to published generic wall loadings; the cylinder is a contact condition in the register recess at one temperature, not a modelled part; oil only as a film on the spring pockets; no radiation, both valves closed",
+      "colour": "analytic_hypothesis",
+      "retire_with": "an engine heat balance and measured head temperatures for one operating point"
+    }
+  ]
+}

@@ -11,7 +11,7 @@ repository created**, printable as such.
 Of the designed parts, `993-INT-SWITCH-TRIM-RING-F1-0001` is the most complete
 and the only `non_critical` one with a real master: a parametric F1 design
 whose four main dimensions come from a supplier sheet, taken through the whole
-CAD, LPBF-screening and route chain. [Decision 0006](0006-bague-tournee-6063-t6.md)
+CAD, LPBF-screening and route chain. [Decision 0006](0006-turned-6063-t6-ring.md)
 chose turned 6063 T6 as its manufacturing route.
 
 ## Decision

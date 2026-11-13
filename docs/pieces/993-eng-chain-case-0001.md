@@ -112,7 +112,7 @@ Catalogue record: [`catalog/parts/993-eng-chain-case-0001.json`](../../catalog/p
 **Evidence**
 
 - [`catalog/sources/src-pet-993-103-05-chain-case.json`](../../catalog/sources/src-pet-993-103-05-chain-case.json)
-- [`docs/993/993_CACHE_DE_CHAINE_103-05.md`](../../docs/993/993_CACHE_DE_CHAINE_103-05.md)
+- [`docs/993/993_CHAIN_COVER_103-05.md`](../../docs/993/993_CHAIN_COVER_103-05.md)
 
 ---
 

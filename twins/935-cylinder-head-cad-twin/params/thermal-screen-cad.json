@@ -1,0 +1,87 @@
+{
+  "schema": "935-cad-twin-thermal-screen/1",
+  "level": {
+    "schema": "935-cad-twin-thermal/1",
+    "label": "v2-loft-mc100-thermal",
+    "case": {
+      "material": "generic cast aluminium alloy (hypothesis; specimen alloy unknown)",
+      "conductivity_W_per_mmK": 0.15,
+      "chamber_wall_temperature_C": 220.0,
+      "film_coefficient_W_per_mm2K": 8e-05,
+      "air_temperature_C": 40.0,
+      "chamber_radius_mm": 46.4,
+      "chamber_z_max_mm": 30.0,
+      "status": "declared hypotheses; uncorrelated with any engine measurement"
+    },
+    "mesh": {
+      "mesher": "Gmsh HXT",
+      "size_max_mm": 3.0,
+      "nodes": 827179,
+      "tets": 4542800,
+      "volume_mm3": 1095610.3,
+      "quality_measure": "minSICN",
+      "quality": {
+        "min": 0.0151,
+        "p1": 0.2032,
+        "share_below_0p1": 0.00558,
+        "nonpositive": 0
+      },
+      "seconds": 26.4
+    },
+    "boundary": {
+      "chamber_nodes": 12923,
+      "film_faces": 371215
+    },
+    "solver": {
+      "returncode": 0,
+      "seconds": 91.4,
+      "ccx_version_line": "CalculiX Version 2.21, Copyright(C) 1998-2023 Guido Dhondt"
+    },
+    "temperature_C": {
+      "min": 155.687,
+      "max": 220.0,
+      "mean_nodal": 188.817,
+      "p95": 214.719
+    },
+    "claims": "numerical screen under declared hypotheses; not an engine temperature prediction",
+    "surface": {
+      "pitch_mm": 1.0,
+      "iso_level": 0.4921875,
+      "triangles": 396244,
+      "watertight": true,
+      "winding_consistent": true,
+      "genus": 8,
+      "volume_mm3": 1095610.3,
+      "discarded_components": 0
+    },
+    "energy_balance": {
+      "film_faces": 371215,
+      "film_area_mm2": 142165.8,
+      "convective_loss_W": 1640.4208,
+      "chamber_inflow_W": 1635.835,
+      "relative_imbalance": 0.002795
+    }
+  },
+  "claims": "numerical screen under declared hypotheses; not an engine temperature prediction",
+  "against_reference": {
+    "reference_label": "T1-mc100-thermal",
+    "mean_nodal_C": [
+      188.817,
+      189.344
+    ],
+    "mean_nodal_difference_C": -0.527,
+    "p95_difference_C": 0.122,
+    "min_difference_C": 1.351,
+    "heat_W": [
+      1635.835,
+      1641.687
+    ],
+    "heat_relative_difference": -0.00356,
+    "film_area_mm2": [
+      142165.8,
+      142663.6
+    ],
+    "film_area_relative_difference": -0.00349,
+    "volume_relative_difference": -0.00107
+  }
+}

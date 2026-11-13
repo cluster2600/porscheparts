@@ -1,0 +1,65 @@
+--- a/verify_current_peels.py
++++ b/verify_global_quality_peels.py
+@@ -28,7 +28,7 @@
+     signal.signal(signal.SIGALRM, signal.SIG_DFL)
+     signal.alarm(600)
+     args.output.mkdir(mode=0o700, exist_ok=False)
+-    assert sha(job['verifier']) == '986bae3440420f1220b790f5ae8d54a92ebd427fb0c4a2c706712733317ddaf6'
++    assert sha(job['verifier']) == 'b10ff15b1db16e8c4cd9148a08b541368c78920e8788ee2b62fd37ac3fa73b55'
+     spec = importlib.util.spec_from_file_location('independent_fraction_peel', job['verifier'])
+     helper = importlib.util.module_from_spec(spec)
+     spec.loader.exec_module(helper)
+@@ -39,7 +39,7 @@
+     proposal = proposal_root/'private-admitted-peels.npz'
+     assert admission['source_sha256'] == job['audit_source_sha256']
+     assert sha(proposal) == admission['private_proposals_sha256']
+-    assert sha(job['mesh']) == admission['input_mesh_sha256'] == 'd618763474f2eeb7bf680ce18f6f2efce22795e538263b7dfc639ffb68be62c5'
++    assert sha(job['mesh']) == admission['input_mesh_sha256'] == 'fdce160bc7ec2456ab339de09733d00cd2f3cd4c6a1327e03b44c838000e0db6'
+     with np.load(proposal, allow_pickle=False) as data:
+         ids, slots, rows = data['cell_ids'], data['boundary_slots'], data['source_surface_face_ids']
+     assert len(ids) == admission['vertex_disjoint_peels_admitted'] > 0
+@@ -56,6 +56,20 @@
+     assert np.all((rows >= 0) & (rows < len(faces))) and np.all(rows[:, 0] != rows[:, 1])
+     assert len(np.unique(cells[ids])) == 4*len(ids), 'Proposed patches share vertices'
+     tags = np.load(job['tags'], allow_pickle=False)
++    witness = json.loads(Path(job['witness']).read_text())
++    witness_report = json.loads(Path(job['witness_report']).read_text())
++    witness_row = witness['row']
++    assert witness_report['input_surface_sha256'] == sha(job['surface'])
++    assert witness_report['input_tags_sha256'] == sha(job['tags'])
++    assert witness_report['private_witness_sha256'] == sha(job['witness'])
++    assert isinstance(witness_row, int) and 0 <= witness_row < len(faces)
++    assert tags[witness_row] > 0 and np.array_equal(faces[witness_row], witness['vertices'])
++    wp = [tuple(Fraction.from_float(float(x)) for x in p) for p in vertices[faces[witness_row]]]
++    normal = helper.product(helper.difference(wp[1], wp[0]), helper.difference(wp[2], wp[0]))
++    edge_sum = sum(helper.inner(helper.difference(wp[a], wp[b]), helper.difference(wp[a], wp[b])) for a, b in ((0, 1), (1, 2), (2, 0)))
++    witness_quality = 12*helper.inner(normal, normal)/edge_sum**2
++    assert witness_quality == Fraction(*map(int, witness_report['exact_witness_q_squared']))
++    assert 0 < witness_quality < Fraction.from_float(.01)**2
+     assert np.all(tags[rows] == 0)
+     assert not np.isin(cells[ids], np.unique(faces[tags > 0])).any()
+     with np.load(job['mapping'], allow_pickle=False) as data:
+@@ -93,6 +107,7 @@
+     changed = faces.copy()
+     changed[rows.reshape(-1)] = np.asarray(replacement_faces).reshape(-1, 3)
+     assert np.array_equal(changed[tags > 0], faces[tags > 0])
++    assert np.array_equal(changed[witness_row], faces[witness_row])
+     retained = np.ones(len(cells), dtype=bool)
+     retained[ids] = False
+     kept = cells[retained]
+@@ -109,9 +124,14 @@
+         assert np.array_equal(data['triangles'], changed)
+     for item in job['inputs']:
+         assert sha(item['path']) == item['sha256']
+-    report = dict(source_sha256=sha(__file__), frozen_fraction_verifier_sha256=sha(job['verifier']),
++    report = dict(source_sha256=sha(__file__), versioned_fraction_verifier_sha256=sha(job['verifier']),
+                   job_sha256=sha(args.job), controls=tested, input_mesh_sha256=sha(job['mesh']),
+                   independent_exact_local_proofs=len(ids), removed_tetrahedra=len(ids), retained_tetrahedra=len(kept),
++                  unchanged_cap_witness_verified=True, witness_report_sha256=sha(job['witness_report']),
++                  every_new_face_at_or_above_existing_warning=True,
++                  global_minimum_surface_quality_non_decreasing=True,
++                  surface_faces_below_existing_warning_count_non_increasing=True,
++                  local_patch_minimum_monotonicity_not_required=True,
+                   changed_surface_faces=2*len(ids), every_source_coordinate_bit_retained=True,
+                   all_retained_tetrahedron_tuples_exact=True, every_cap_face_exact=True,
+                   marked_curve_images_preserved=True, patches_pairwise_vertex_disjoint=True,

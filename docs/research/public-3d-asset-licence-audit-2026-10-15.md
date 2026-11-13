@@ -149,7 +149,7 @@ but the two records name different authors.
   215.2 × 143.8 × 25.4 mm, the right order of magnitude for a frame around a
   4×6 in speaker, but that is an untested hypothesis. **Scale unresolved;
   excluded from use until checked.** Row 5 of
-  [phase-1-recherche-allemande.md](phase-1-recherche-allemande.md) stays
+  [phase-1-german-research.md](phase-1-german-research.md) stays
   `Blocked`.
 - **Door scan**, `SRC-CULTS-993-DOOR-SCAN`. The declared 2266.18 mm length is
   more than half the 4,245 mm overall length and almost the 2,272 mm wheelbase

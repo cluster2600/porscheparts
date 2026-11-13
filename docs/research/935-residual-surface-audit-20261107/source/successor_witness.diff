@@ -1,0 +1,11 @@
+--- a/audit_quality_witness.py
++++ b/audit_successor_witness.py
+@@ -24,7 +24,7 @@
+     started = time.monotonic()
+     tested = helper.controls()
+     args.output.mkdir(mode=0o700, exist_ok=False)
+-    assert helper.sha(job['surface']) == 'aaaa18f894d609d4c265835d97f3d191cbfad40e7be32c69e5f83437dbafacf2'
++    assert helper.sha(job['surface']) == '68d3e97cadb00736eabfa823dd79f8e40abc57c30fc87bc5f263dcfce9c4c4f5'
+     with np.load(job['surface'], allow_pickle=False) as data:
+         vertices, faces = data['vertices'], data['triangles']
+     tags = np.load(job['tags'], allow_pickle=False)

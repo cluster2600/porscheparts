@@ -5,6 +5,10 @@ parts for additive and conventional manufacturing.
 
 ## Working rules
 
+For which tool to use, how to run it, where it runs, what its output can claim
+and the solver pitfalls already paid for, read
+[docs/AGENT_TOOL_GUIDE.md](docs/AGENT_TOOL_GUIDE.md) before engineering work.
+
 - Treat `catalog/parts/*.json` as the catalogue source of truth.
 - Prefer editable source geometry (`.FCStd`, `.scad`, `.step`) over derived
   meshes (`.3mf`, `.stl`).

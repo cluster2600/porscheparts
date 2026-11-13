@@ -1,0 +1,626 @@
+{
+ "schema": "935-cad-twin-print-body-layer-screen/2",
+ "date": "2026-11-12",
+ "tool": "scripts/run_metal_am_geometry_screen.py (the repository's layer screen) in the cadsim image, with shapely 2.2.0, rtree 1.4.1 and networkx 3.7 in a mounted folder; from 2026-11-12 through twins/935-cylinder-head-cad-twin/source/layer_screen.py, which runs the same tool and kernel in bounded memory",
+ "attempts": [
+  {
+   "date": "2026-11-11",
+   "surface": "0.5 mm surface of the print body, 1,684,604 triangles",
+   "memory_cap": "6 GiB",
+   "driver": "none",
+   "outcome": "killed at the cap (exit 137)"
+  },
+  {
+   "date": "2026-11-11",
+   "surface": "0.5 mm surface of the print body, 1,684,604 triangles",
+   "memory_cap": "12 GiB",
+   "driver": "none",
+   "outcome": "killed at the cap (exit 137); the kernel log shows 12.5 GiB resident"
+  },
+  {
+   "date": "2026-11-11",
+   "surface": "1.0 mm surface of the print body, 398,652 triangles",
+   "memory_cap": "12 GiB",
+   "driver": "none",
+   "outcome": "completed"
+  },
+  {
+   "date": "2026-11-12",
+   "surface": "0.5 mm surface of the print body, 1,684,604 triangles",
+   "memory_cap": "20 GiB",
+   "driver": "none",
+   "outcome": "killed at the cap (exit 137) after six minutes; 4 GiB when the slicing ended, 17 GiB one minute later"
+  },
+  {
+   "date": "2026-11-12",
+   "surface": "0.5 mm surface of the print body, 1,684,604 triangles",
+   "memory_cap": "12 GiB",
+   "driver": "sections 64 layers at a time",
+   "outcome": "killed at the cap (exit 137) in the thickness probe; the slicing had ended at 1.4 GiB"
+  },
+  {
+   "date": "2026-11-12",
+   "surface": "0.5 mm surface of the print body, 1,684,604 triangles",
+   "memory_cap": "14 GiB",
+   "driver": "sections 64 layers at a time, with a report of each stage",
+   "outcome": "killed at the cap (exit 137): slicing done in 303 s at 2.65 GiB peak, then the thickness probe"
+  },
+  {
+   "date": "2026-11-12",
+   "surface": "1.0 mm surface of the print body, 398,652 triangles",
+   "memory_cap": "12 GiB",
+   "driver": "sections 64 layers at a time, thickness probes 25 at a time",
+   "outcome": "completed with a 1.1 GiB peak; the four output files have the hashes of the run of 2026-11-11 made without the driver"
+  },
+  {
+   "date": "2026-11-12",
+   "surface": "0.5 mm surface of the print body, 1,684,604 triangles",
+   "memory_cap": "14 GiB",
+   "driver": "sections 64 layers at a time, thickness probes 25 at a time",
+   "outcome": "completed in 12 minutes; peak 3.39 GiB (slicing 307 s, thickness probe 419 s)"
+  }
+ ],
+ "why_the_fine_surface_failed": "not the slicing, as first recorded: the wall-thickness probe. trimesh grows a tangent sphere at 2,000 probe points at once and looks up every triangle near every sphere; on 1.68 million triangles that passed 14 GiB within half a minute. Giving it the probes 25 at a time keeps the whole run under 3.4 GiB",
+ "driver_witness": {
+  "surface": "1.0 mm surface of the print body, 398,652 triangles",
+  "same_hashes_as_the_run_without_the_driver": true,
+  "manifest": {
+   "image": {
+    "path": "935-head-print-body-f0-lpbf-geometry-screen.png",
+    "sha256": "256f40f82882da7632eb79eaf20955a19ff37da50c99c88eaada8a4b67669f0d"
+   },
+   "layer_metrics": {
+    "path": "935-head-print-body-f0-layer-metrics.csv",
+    "sha256": "0f3008c0d526693662a1f2ac0ab6d746588cf9aae161480a9aff954419a786ad"
+   },
+   "report": {
+    "path": "935-head-print-body-f0-lpbf-geometry-report.json",
+    "sha256": "b585b7ec3cc1594764de31ba37ba2511eac5300e7d4c57f08f798b02f9883b49"
+   }
+  }
+ },
+ "comparison": {
+  "surface_0p5_mm": {
+   "triangles": 1684604,
+   "layers": 4482,
+   "build_height_mm": 224.0625,
+   "selected_orientation": "build_y",
+   "downward_projected_area_mm2": {
+    "build_x": 18660.3,
+    "build_y": 11539.6,
+    "build_z": 34241.7,
+    "roll_y_25": 34297.6,
+    "roll_y_35": 31929.0,
+    "roll_y_45": 21292.4
+   },
+   "layers_with_unsupported_area": 3181,
+   "maximum_unsupported_area_mm2": 766.7,
+   "new_islands": 563,
+   "layers_with_new_islands": 245,
+   "support_proxy_volume_mm3": 433945,
+   "trapped_void_volume_mm3": 0.0,
+   "thickness_probe_mm": {
+    "median": 2.64,
+    "p05": 0.57,
+    "p01": 0.21,
+    "share_below_1p5": 0.2545
+   }
+  },
+  "surface_1p0_mm": {
+   "triangles": 398652,
+   "layers": 4481,
+   "build_height_mm": 224.015625,
+   "selected_orientation": "build_y",
+   "downward_projected_area_mm2": {
+    "build_x": 19131.0,
+    "build_y": 11168.4,
+    "build_z": 32249.0,
+    "roll_y_25": 31062.5,
+    "roll_y_35": 29170.6,
+    "roll_y_45": 21993.5
+   },
+   "layers_with_unsupported_area": 2844,
+   "maximum_unsupported_area_mm2": 643.0,
+   "new_islands": 216,
+   "layers_with_new_islands": 159,
+   "support_proxy_volume_mm3": 456345,
+   "trapped_void_volume_mm3": 0.0,
+   "thickness_probe_mm": {
+    "median": 4.71,
+    "p05": 1.38,
+    "p01": 0.75,
+    "share_below_1p5": 0.068
+   }
+  }
+ },
+ "reading_of_the_thickness_probe": "the probe is stopped by the roughness of the surface it runs on. It reports 25.5% of its probes below 1.5 mm on the 0.5 mm surface and 6.8% on the 1.0 mm surface; the occupancy grid itself has 8.7% of its surface in walls below 1.5 mm or at sharp edges (print-body-wall-check.json). The 0.5 mm figure is not a wall thickness",
+ "manifest": {
+  "artifacts": {
+   "image": {
+    "path": "935-head-print-body-f0-lpbf-geometry-screen.png",
+    "sha256": "9abde9c935691650af59a25333f7b6eedf0bf056906bfcbbdca96d4c43fe55a8"
+   },
+   "layer_metrics": {
+    "path": "935-head-print-body-f0-layer-metrics.csv",
+    "sha256": "7edb1230b1db96f70c1337b78759de5c6ae09f657d51530bef57584faaed87b2"
+   },
+   "report": {
+    "path": "935-head-print-body-f0-lpbf-geometry-report.json",
+    "sha256": "70e6ad556a8275d14a454f1b1923ff5831c322fdf43dec6d54a170f8369c8922"
+   }
+  },
+  "gates": {
+   "contains_machine_file": false,
+   "contains_supplier_support_geometry": false,
+   "metal_print_authorized": false
+  },
+  "part_id": "935-HEAD-PRINT-BODY-F0",
+  "schema_version": "1.0.0"
+ },
+ "report": {
+  "analysis_surface": {
+   "envelope_mm": [
+    117.625,
+    224.0625,
+    95.5625
+   ],
+   "envelope_tolerance_mm": 0.1,
+   "format": ".stl",
+   "sha256": "61ea373d0eed9831fded46394c9bb485a9e41dbb07074f7cd31fd869e0cf5c22",
+   "single_component": true,
+   "triangles": 1684604,
+   "vertices": 841828,
+   "watertight": true
+  },
+  "classification": "actual_full_layer_geometric_slicing_and_support_proxy_not_process_qualification",
+  "full_build_slicing": {
+   "bare_part_nominal_fit": true,
+   "build_envelope_type": "rectangular_prism",
+   "build_height_mm": 224.0625,
+   "depth_margin_mm": 204.4375,
+   "empty_internal_layers": 0,
+   "height_margin_mm": 225.9375,
+   "layer_count": 4482,
+   "layer_thickness_mm": 0.05,
+   "layers_with_new_islands": 245,
+   "layers_with_unsupported_area": 3181,
+   "maximum_unsupported_area_mm2": 766.73059971,
+   "new_island_count": 563,
+   "orientation": "build_y",
+   "part_extents_mm": [
+    117.625,
+    95.5625,
+    224.0625
+   ],
+   "rigid_transform_only": true,
+   "support_classification": "conservative vertical-column proxy; no supplier support topology",
+   "support_proxy_side_area_mm2": 498237.10000000126,
+   "support_proxy_volume_cm3": 433.9450625000026,
+   "support_proxy_volume_mm3": 433945.0625000026,
+   "support_raster_pitch_mm": 0.5,
+   "width_margin_mm": 182.375
+  },
+  "gates": {
+   "bare_part_machine_envelope_fit": true,
+   "candidate_orientation_engineering_reviewed": false,
+   "full_piece_layer_slicing_completed": true,
+   "master_hash_verified": true,
+   "metal_print_authorized": false,
+   "physical_coupon_qualified": false,
+   "recoater_clearance_validated": false,
+   "single_watertight_surface_mesh": true,
+   "supplier_machine_file_signed": false,
+   "supplier_supports_validated": false,
+   "target_material_process_physics_correlated": false
+  },
+  "machine_candidate": {
+   "build_depth_mm": 300.0,
+   "build_height_mm": 450.0,
+   "build_width_mm": 300.0,
+   "focus_diameter_note": "the datasheet gives a range of 70 to 120 um; 95 is its middle, kept only because this field takes one number",
+   "focus_diameter_um": 95.0,
+   "laser_configuration": "1, 2 or 4 x 500 W fibre laser (the count is as reported on 2026-11-11, not re-read)",
+   "manufacturer": "Eplus3D",
+   "model": "EP-M300",
+   "schema_version": "1.0.0",
+   "scope": "Nominal envelope of a candidate machine, read from the maker's datasheet on 2026-11-11; the height includes the build plate. Maximum scan speed, layer thickness, preheat and oxygen level are not published on this sheet. No build project, parameter set or machine file is included, and the datasheet does not qualify a process. Survey: twins/935-cylinder-head-cad-twin/params/lpbf-machine-survey.json.",
+   "source": "https://oss-usa-client.1t2.us/eplus3dcom/uploads/pdf-2026/300.pdf",
+   "source_file_sha256": "71ca9f8f3d818430735dd21e66eedc87e4d0302cb931dd8ad10301e7b9ad0a9b"
+  },
+  "master": {
+   "format": ".npy",
+   "sha256": "5faadb782b822f1a974ab562b53a2f88bdbfce08fe2324fdc66c6ade55c006a7"
+  },
+  "orientation_screen": [
+   {
+    "bare_part_nominal_fit": true,
+    "build_envelope_type": "rectangular_prism",
+    "depth_margin_mm": 75.9375,
+    "downward_projected_area_mm2": 18660.26818045987,
+    "downward_surface_area_mm2": 20401.84868967747,
+    "downward_surface_fraction": 0.12569711116942445,
+    "height_margin_mm": 332.375,
+    "orientation": "build_x",
+    "part_extents_mm": [
+     95.5625,
+     224.0625,
+     117.625
+    ],
+    "width_margin_mm": 204.4375
+   },
+   {
+    "bare_part_nominal_fit": true,
+    "build_envelope_type": "rectangular_prism",
+    "depth_margin_mm": 204.4375,
+    "downward_projected_area_mm2": 11539.635700171817,
+    "downward_surface_area_mm2": 12779.830644541373,
+    "downward_surface_fraction": 0.07873736432846418,
+    "height_margin_mm": 225.9375,
+    "orientation": "build_y",
+    "part_extents_mm": [
+     117.625,
+     95.5625,
+     224.0625
+    ],
+    "width_margin_mm": 182.375
+   },
+   {
+    "bare_part_nominal_fit": true,
+    "build_envelope_type": "rectangular_prism",
+    "depth_margin_mm": 75.9375,
+    "downward_projected_area_mm2": 34241.6795831155,
+    "downward_surface_area_mm2": 36638.590047325124,
+    "downward_surface_fraction": 0.22573272629944205,
+    "height_margin_mm": 354.4375,
+    "orientation": "build_z",
+    "part_extents_mm": [
+     117.625,
+     224.0625,
+     95.5625
+    ],
+    "width_margin_mm": 182.375
+   },
+   {
+    "bare_part_nominal_fit": true,
+    "build_envelope_type": "rectangular_prism",
+    "depth_margin_mm": 75.9375,
+    "downward_projected_area_mm2": 34297.64487936752,
+    "downward_surface_area_mm2": 38872.800980995125,
+    "downward_surface_fraction": 0.23949784456774645,
+    "height_margin_mm": 321.8159608640965,
+    "orientation": "roll_y_25",
+    "part_extents_mm": [
+     142.11441364247378,
+     224.0625,
+     128.18403913590353
+    ],
+    "width_margin_mm": 157.88558635752622
+   },
+   {
+    "bare_part_nominal_fit": true,
+    "build_envelope_type": "rectangular_prism",
+    "depth_margin_mm": 75.9375,
+    "downward_projected_area_mm2": 31929.04209495373,
+    "downward_surface_area_mm2": 37781.37989435755,
+    "downward_surface_fraction": 0.23277352856352332,
+    "height_margin_mm": 311.86909864163044,
+    "orientation": "roll_y_35",
+    "part_extents_mm": [
+     145.30864015132653,
+     224.0625,
+     138.13090135836958
+    ],
+    "width_margin_mm": 154.69135984867347
+   },
+   {
+    "bare_part_nominal_fit": true,
+    "build_envelope_type": "rectangular_prism",
+    "depth_margin_mm": 75.9375,
+    "downward_projected_area_mm2": 21292.413180710886,
+    "downward_surface_area_mm2": 25554.674411236938,
+    "downward_surface_fraction": 0.1574440041795289,
+    "height_margin_mm": 306.0507364804689,
+    "orientation": "roll_y_45",
+    "part_extents_mm": [
+     144.08773808613168,
+     224.0625,
+     143.9492635195311
+    ],
+    "width_margin_mm": 155.91226191386832
+   }
+  ],
+  "orientation_selection_rule": "minimum downward projected area among bare-part envelope-fitting kernel candidates",
+  "part_id": "935-HEAD-PRINT-BODY-F0",
+  "powder_escape_screen": {
+   "classification": "resolution-limited depowdering screen; CT and endoscopy still required",
+   "connected_void_labels_including_outside": 1,
+   "method": "surface voxelisation, solid fill and 6-connected exterior flood-fill",
+   "no_trapped_volume_detected_at_screen_resolution": true,
+   "pitch_mm": 1.0,
+   "trapped_void_volume_mm3": 0.0,
+   "trapped_void_voxel_count": 0,
+   "voxel_grid_shape": [
+    118,
+    225,
+    96
+   ]
+  },
+  "process_physics": {
+   "additivefoam_executed": false,
+   "reason": "No complete temperature-dependent and machine-calibrated material/process card is available for this exact route.",
+   "target_material_card": "AlSi10Mg (declared, not selected)",
+   "target_material_card_complete_and_calibrated": false
+  },
+  "recoater_screen": {
+   "blade_clearance_and_compliance_known": false,
+   "collision_simulation_executed": false,
+   "distortion_field_available": false,
+   "pass": false
+  },
+  "schema_version": "1.0.0",
+  "selected_candidate_orientation": "build_y",
+  "software": {
+   "kernel": "twins/reference-917-engine/source/run_f50_lpbf_geometry_audit.py",
+   "trimesh": "5.0.0"
+  },
+  "thickness_screen": {
+   "analysis_normals_repaired_without_vertex_motion": false,
+   "classification": "screening_only_not_a_certified_minimum_wall_map",
+   "median_mm": 2.6374490723830224,
+   "method": "trimesh max_sphere local thickness on deterministic area-weighted face-centre probes",
+   "minimum_mm": 0.05735289516089898,
+   "p01_mm": 0.21293428021502633,
+   "p05_mm": 0.5689912008493238,
+   "p95_mm": 15.686555637369803,
+   "sample_count": 2000,
+   "sample_fraction_below_1p5_mm": 0.2545
+  },
+  "verdict": "geometric_print_simulation_completed_process_and_print_release_blocked"
+ },
+ "coarser_surface": {
+  "surface": "1.0 mm surface of the print body, 398,652 triangles",
+  "manifest": {
+   "artifacts": {
+    "image": {
+     "path": "935-head-print-body-f0-lpbf-geometry-screen.png",
+     "sha256": "256f40f82882da7632eb79eaf20955a19ff37da50c99c88eaada8a4b67669f0d"
+    },
+    "layer_metrics": {
+     "path": "935-head-print-body-f0-layer-metrics.csv",
+     "sha256": "0f3008c0d526693662a1f2ac0ab6d746588cf9aae161480a9aff954419a786ad"
+    },
+    "report": {
+     "path": "935-head-print-body-f0-lpbf-geometry-report.json",
+     "sha256": "b585b7ec3cc1594764de31ba37ba2511eac5300e7d4c57f08f798b02f9883b49"
+    }
+   },
+   "gates": {
+    "contains_machine_file": false,
+    "contains_supplier_support_geometry": false,
+    "metal_print_authorized": false
+   },
+   "part_id": "935-HEAD-PRINT-BODY-F0",
+   "schema_version": "1.0.0"
+  },
+  "report": {
+   "analysis_surface": {
+    "envelope_mm": [
+     117.35416793823242,
+     224.015625,
+     95.4926609992981
+    ],
+    "envelope_tolerance_mm": 0.1,
+    "format": ".stl",
+    "sha256": "02a2cfb3714423eb0c4d864a7d0c6f6a07534a0c0a9592436d98eda2ed19f117",
+    "single_component": true,
+    "triangles": 398652,
+    "vertices": 199318,
+    "watertight": true
+   },
+   "classification": "actual_full_layer_geometric_slicing_and_support_proxy_not_process_qualification",
+   "full_build_slicing": {
+    "bare_part_nominal_fit": true,
+    "build_envelope_type": "rectangular_prism",
+    "build_height_mm": 224.015625,
+    "depth_margin_mm": 204.5073390007019,
+    "empty_internal_layers": 0,
+    "height_margin_mm": 225.984375,
+    "layer_count": 4481,
+    "layer_thickness_mm": 0.05,
+    "layers_with_new_islands": 159,
+    "layers_with_unsupported_area": 2844,
+    "maximum_unsupported_area_mm2": 642.97784298,
+    "new_island_count": 216,
+    "orientation": "build_y",
+    "part_extents_mm": [
+     117.35416793823242,
+     95.4926609992981,
+     224.015625
+    ],
+    "rigid_transform_only": true,
+    "support_classification": "conservative vertical-column proxy; no supplier support topology",
+    "support_proxy_side_area_mm2": 409709.2000000034,
+    "support_proxy_volume_cm3": 456.3447124999978,
+    "support_proxy_volume_mm3": 456344.7124999978,
+    "support_raster_pitch_mm": 0.5,
+    "width_margin_mm": 182.64583206176758
+   },
+   "gates": {
+    "bare_part_machine_envelope_fit": true,
+    "candidate_orientation_engineering_reviewed": false,
+    "full_piece_layer_slicing_completed": true,
+    "master_hash_verified": true,
+    "metal_print_authorized": false,
+    "physical_coupon_qualified": false,
+    "recoater_clearance_validated": false,
+    "single_watertight_surface_mesh": true,
+    "supplier_machine_file_signed": false,
+    "supplier_supports_validated": false,
+    "target_material_process_physics_correlated": false
+   },
+   "machine_candidate": {
+    "build_depth_mm": 300.0,
+    "build_height_mm": 450.0,
+    "build_width_mm": 300.0,
+    "focus_diameter_note": "the datasheet gives a range of 70 to 120 um; 95 is its middle, kept only because this field takes one number",
+    "focus_diameter_um": 95.0,
+    "laser_configuration": "1, 2 or 4 x 500 W fibre laser (the count is as reported on 2026-11-11, not re-read)",
+    "manufacturer": "Eplus3D",
+    "model": "EP-M300",
+    "schema_version": "1.0.0",
+    "scope": "Nominal envelope of a candidate machine, read from the maker's datasheet on 2026-11-11; the height includes the build plate. Maximum scan speed, layer thickness, preheat and oxygen level are not published on this sheet. No build project, parameter set or machine file is included, and the datasheet does not qualify a process. Survey: twins/935-cylinder-head-cad-twin/params/lpbf-machine-survey.json.",
+    "source": "https://oss-usa-client.1t2.us/eplus3dcom/uploads/pdf-2026/300.pdf",
+    "source_file_sha256": "71ca9f8f3d818430735dd21e66eedc87e4d0302cb931dd8ad10301e7b9ad0a9b"
+   },
+   "master": {
+    "format": ".npy",
+    "sha256": "5faadb782b822f1a974ab562b53a2f88bdbfce08fe2324fdc66c6ade55c006a7"
+   },
+   "orientation_screen": [
+    {
+     "bare_part_nominal_fit": true,
+     "build_envelope_type": "rectangular_prism",
+     "depth_margin_mm": 75.984375,
+     "downward_projected_area_mm2": 19130.979319987375,
+     "downward_surface_area_mm2": 21210.273572994964,
+     "downward_surface_fraction": 0.14030804243927908,
+     "height_margin_mm": 332.6458320617676,
+     "orientation": "build_x",
+     "part_extents_mm": [
+      95.4926609992981,
+      224.015625,
+      117.35416793823242
+     ],
+     "width_margin_mm": 204.5073390007019
+    },
+    {
+     "bare_part_nominal_fit": true,
+     "build_envelope_type": "rectangular_prism",
+     "depth_margin_mm": 204.5073390007019,
+     "downward_projected_area_mm2": 11168.378462278539,
+     "downward_surface_area_mm2": 12534.180217594838,
+     "downward_surface_fraction": 0.08291483293977815,
+     "height_margin_mm": 225.984375,
+     "orientation": "build_y",
+     "part_extents_mm": [
+      117.35416793823242,
+      95.4926609992981,
+      224.015625
+     ],
+     "width_margin_mm": 182.64583206176758
+    },
+    {
+     "bare_part_nominal_fit": true,
+     "build_envelope_type": "rectangular_prism",
+     "depth_margin_mm": 75.984375,
+     "downward_projected_area_mm2": 32249.049273279816,
+     "downward_surface_area_mm2": 35057.26362171081,
+     "downward_surface_fraction": 0.23190724132397134,
+     "height_margin_mm": 354.5073390007019,
+     "orientation": "build_z",
+     "part_extents_mm": [
+      117.35416793823242,
+      224.015625,
+      95.4926609992981
+     ],
+     "width_margin_mm": 182.64583206176758
+    },
+    {
+     "bare_part_nominal_fit": true,
+     "build_envelope_type": "rectangular_prism",
+     "depth_margin_mm": 75.984375,
+     "downward_projected_area_mm2": 31062.460346507054,
+     "downward_surface_area_mm2": 35289.846922839766,
+     "downward_surface_fraction": 0.23344580269957846,
+     "height_margin_mm": 322.14827102553824,
+     "orientation": "roll_y_25",
+     "part_extents_mm": [
+      141.63043194341574,
+      224.015625,
+      127.85172897446176
+     ],
+     "width_margin_mm": 158.36956805658426
+    },
+    {
+     "bare_part_nominal_fit": true,
+     "build_envelope_type": "rectangular_prism",
+     "depth_margin_mm": 75.984375,
+     "downward_projected_area_mm2": 29170.60317302701,
+     "downward_surface_area_mm2": 34541.0908946114,
+     "downward_surface_fraction": 0.22849270804835758,
+     "height_margin_mm": 312.2176753297314,
+     "orientation": "roll_y_35",
+     "part_extents_mm": [
+      144.6804586159459,
+      224.015625,
+      137.78232467026862
+     ],
+     "width_margin_mm": 155.3195413840541
+    },
+    {
+     "bare_part_nominal_fit": true,
+     "build_envelope_type": "rectangular_prism",
+     "depth_margin_mm": 75.984375,
+     "downward_projected_area_mm2": 21993.453666737463,
+     "downward_surface_area_mm2": 26524.70431508701,
+     "downward_surface_fraction": 0.1754635236515269,
+     "height_margin_mm": 306.47352399334886,
+     "orientation": "roll_y_45",
+     "part_extents_mm": [
+      143.3385415232671,
+      224.015625,
+      143.52647600665114
+     ],
+     "width_margin_mm": 156.6614584767329
+    }
+   ],
+   "orientation_selection_rule": "minimum downward projected area among bare-part envelope-fitting kernel candidates",
+   "part_id": "935-HEAD-PRINT-BODY-F0",
+   "powder_escape_screen": {
+    "classification": "resolution-limited depowdering screen; CT and endoscopy still required",
+    "connected_void_labels_including_outside": 1,
+    "method": "surface voxelisation, solid fill and 6-connected exterior flood-fill",
+    "no_trapped_volume_detected_at_screen_resolution": true,
+    "pitch_mm": 1.0,
+    "trapped_void_volume_mm3": 0.0,
+    "trapped_void_voxel_count": 0,
+    "voxel_grid_shape": [
+     118,
+     225,
+     96
+    ]
+   },
+   "process_physics": {
+    "additivefoam_executed": false,
+    "reason": "No complete temperature-dependent and machine-calibrated material/process card is available for this exact route.",
+    "target_material_card": "AlSi10Mg (declared, not selected)",
+    "target_material_card_complete_and_calibrated": false
+   },
+   "recoater_screen": {
+    "blade_clearance_and_compliance_known": false,
+    "collision_simulation_executed": false,
+    "distortion_field_available": false,
+    "pass": false
+   },
+   "schema_version": "1.0.0",
+   "selected_candidate_orientation": "build_y",
+   "software": {
+    "kernel": "twins/reference-917-engine/source/run_f50_lpbf_geometry_audit.py",
+    "trimesh": "5.0.0"
+   },
+   "thickness_screen": {
+    "analysis_normals_repaired_without_vertex_motion": false,
+    "classification": "screening_only_not_a_certified_minimum_wall_map",
+    "median_mm": 4.707588363055618,
+    "method": "trimesh max_sphere local thickness on deterministic area-weighted face-centre probes",
+    "minimum_mm": 0.061755556100383156,
+    "p01_mm": 0.7517101165326927,
+    "p05_mm": 1.3755499680820429,
+    "p95_mm": 19.405546482297474,
+    "sample_count": 2000,
+    "sample_fraction_below_1p5_mm": 0.068
+   },
+   "verdict": "geometric_print_simulation_completed_process_and_print_release_blocked"
+  }
+ }
+}
