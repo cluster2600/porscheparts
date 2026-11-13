@@ -13,6 +13,7 @@ import time
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
+CARRIER_BASELINE = HERE / "baseline-20261106.json"
 CARRIER_RECORD = "catalog/parts/993-eng-carrier-0001.json"
 CARRIER_CONVERGENCE = "docs/reports/carrier-resume-20261020/CONVERGENCE.md"
 

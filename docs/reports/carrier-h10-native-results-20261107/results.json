@@ -1,0 +1,396 @@
+{
+  "status": "complete_two_case_H9_print17_to_H10_native_comparison_with_retained_scientific_outputs",
+  "geometry": {
+    "source_nodes": 4881980,
+    "source_cells": 19199981,
+    "refined_nodes": 5039930,
+    "refined_cells": 20083501,
+    "split_parents": 883520,
+    "added_free_interior_nodes": 157950,
+    "exact_midpoints": 136517,
+    "exact_nonmidpoints": 21433,
+    "protected_extreme_cells_retained": 135,
+    "external_geometry_unchanged": true
+  },
+  "criterion": {
+    "two_successive_complete_same_load_increments_strictly_below": 0.01,
+    "met": false,
+    "latest_increment_met": {
+      "gravity": false,
+      "combined": false
+    },
+    "historical_comparison_digits": 7,
+    "current_comparison_digits": 17,
+    "shared_H9_scalar_bitwise_identity_assumed": false
+  },
+  "cases": {
+    "gravity": {
+      "normalized_energy_difference": 0.0170005263667037,
+      "increment_percent": 1.70005263667037,
+      "Galerkin_relative_defect": 7.347039274761541e-08,
+      "Galerkin_identity_defect_Nmm": 0.00010810019162132978,
+      "stress_difference_compliance_energy_Nmm": 0.21262231527366454,
+      "compliance_increment_Nmm": 0.4253527307389504,
+      "metrics": {
+        "external_work_Nmm": {
+          "source": 1470.9182399552867,
+          "refined": 1471.3435926860257,
+          "relative_change": 0.000289174965123745
+        },
+        "displacement_max_mm": {
+          "source": 0.8163037575810178,
+          "refined": 0.8165350334644818,
+          "relative_change": 0.00028332086103498045
+        },
+        "VM_volume_weighted_p95_MPa": {
+          "source": 45.49482988844318,
+          "refined": 45.50445225624166,
+          "relative_change": 0.00021150464397998693
+        },
+        "VM_peak_MPa": {
+          "source": 38389.5876814199,
+          "refined": 44955.39942004027,
+          "relative_change": 0.17103105647050595
+        }
+      },
+      "native": {
+        "actual_returncode": 0,
+        "elapsed_seconds": 651.2031732889591,
+        "reaped": true,
+        "inputs_unchanged": true,
+        "field_counts": {
+          "u": 5039930,
+          "rf": 14064,
+          "s": 20083501,
+          "ener": 20083501
+        },
+        "binary_sha256": "4c9db4806c2034d2b2f52b4baac3188c3f57cc66381566f9077d686f4f03db18"
+      },
+      "recovery": {
+        "encoded_bytes": 1419099512,
+        "encoded_sha256": "12d85ad5de5dac2fc048e61a915f8f4296e8691f9573b6205e7f91c1fc3546b1",
+        "raw_bytes": 4707508076,
+        "raw_sha256": "90eb69de6518f17b13aa7bd373ee52e8b096683831ec835ed8990d103650dd09",
+        "complete_raw_SHA256_verified": true,
+        "all_field_sections_retained": true,
+        "raw_DAT_duplicate_retained": false,
+        "encoding": "XZ CRC64, single stream, multiblock, preset6"
+      },
+      "GPU": {
+        "status": "actual_CUDA_FP64_complete_admitted_field_compliance_crosscheck_passed",
+        "device": "NVIDIA RTX 4000 Ada Generation",
+        "warp_version": "1.18.0",
+        "numpy_version": "2.2.6",
+        "cells_checked": 20083501,
+        "all_cell_values_compared": true,
+        "GPU_native_relative_difference": 1.545347191304338e-16,
+        "maximum_cell_absolute_energy_error_Nmm": 3.469446951953614e-18,
+        "maximum_fraction_of_cell_tolerance": 0.0002042658768752366,
+        "elapsed_seconds": 19.436382999061607,
+        "owned_group_reaped_and_absent": true
+      },
+      "provider_cleanup": {
+        "destroyed": true,
+        "verified_absent": true
+      },
+      "comparison": {
+        "actual_returncode": 0,
+        "elapsed_seconds": 579.8861442920752,
+        "peak_aggregate_RSS_bytes": 5359190016,
+        "owned_group_reaped_and_absent": true,
+        "full_field_replay": true,
+        "independent_readback_passed": true,
+        "independent_readback_is_another_field_replay": false
+      },
+      "native_replay_scalar_diagnostics": {
+        "coarse": {
+          "external_work_Nmm": {
+            "local": 1470.9182399552867,
+            "native": 1470.9182399552867,
+            "difference": 0.0
+          },
+          "displacement_max_mm": {
+            "local": 0.8163037575810178,
+            "native": 0.8163037575810178,
+            "difference": 0.0
+          },
+          "VM_peak_MPa": {
+            "local": 38389.5876814199,
+            "native": 38389.5876814199,
+            "difference": 0.0
+          },
+          "VM_volume_weighted_p95_MPa": {
+            "local": 45.49482988844318,
+            "native": 45.49482988844318,
+            "difference": 0.0
+          },
+          "independent_stress_compliance_energy_Nmm": {
+            "local": 735.459087285253,
+            "native": 735.459087285253,
+            "difference": 0.0
+          },
+          "native_energy_density_integral_Nmm": {
+            "local": 735.459087285253,
+            "native": 735.459087285253,
+            "difference": 0.0
+          }
+        },
+        "fine": {
+          "external_work_Nmm": {
+            "local": 1471.3435926860257,
+            "native": 1471.3435926860257,
+            "difference": 0.0
+          },
+          "displacement_max_mm": {
+            "local": 0.8165350334644818,
+            "native": 0.8165350334644818,
+            "difference": 0.0
+          },
+          "VM_peak_MPa": {
+            "local": 44955.39942004027,
+            "native": 44955.39942004027,
+            "difference": 0.0
+          },
+          "VM_volume_weighted_p95_MPa": {
+            "local": 45.50445225624166,
+            "native": 45.50445225624166,
+            "difference": 0.0
+          },
+          "independent_stress_compliance_energy_Nmm": {
+            "local": 735.6718177075765,
+            "native": 735.6718177075765,
+            "difference": 0.0
+          },
+          "native_energy_density_integral_Nmm": {
+            "local": 735.6718177075765,
+            "native": 735.6718177075765,
+            "difference": 0.0
+          }
+        }
+      }
+    },
+    "combined": {
+      "normalized_energy_difference": 0.020089858809217178,
+      "increment_percent": 2.008985880921718,
+      "Galerkin_relative_defect": 3.1309019105276265e-08,
+      "Galerkin_identity_defect_Nmm": -0.0006000213920103192,
+      "stress_difference_compliance_energy_Nmm": 3.867417392374332,
+      "compliance_increment_Nmm": 7.734234763356653,
+      "metrics": {
+        "external_work_Nmm": {
+          "source": 19156.756035364662,
+          "refined": 19164.49027012802,
+          "relative_change": 0.00040373405335844624
+        },
+        "displacement_max_mm": {
+          "source": 2.3643488391376812,
+          "refined": 2.365252085510025,
+          "relative_change": 0.00038202754068785685
+        },
+        "VM_volume_weighted_p95_MPa": {
+          "source": 171.82159356040688,
+          "refined": 171.86158713410867,
+          "relative_change": 0.00023276220917909393
+        },
+        "VM_peak_MPa": {
+          "source": 215084.45047578035,
+          "refined": 216601.6242493057,
+          "relative_change": 0.007053851499581941
+        }
+      },
+      "native": {
+        "actual_returncode": 0,
+        "elapsed_seconds": 759.5677683597896,
+        "reaped": true,
+        "inputs_unchanged": true,
+        "field_counts": {
+          "u": 5039930,
+          "rf": 14064,
+          "s": 20083501,
+          "ener": 20083501
+        },
+        "binary_sha256": "4c9db4806c2034d2b2f52b4baac3188c3f57cc66381566f9077d686f4f03db18"
+      },
+      "recovery": {
+        "encoded_bytes": 1421414032,
+        "encoded_sha256": "18212367942fc304cb1f50d90edee00367c96bc29c94f0858c4c5b8a6a37ef51",
+        "raw_bytes": 4707508076,
+        "raw_sha256": "c194e7bb219b220b4bd0d0a77d7453ecb364e6e578ebaf74dc0e48b13cde324f",
+        "complete_raw_SHA256_verified": true,
+        "all_field_sections_retained": true,
+        "raw_DAT_duplicate_retained": false,
+        "encoding": "XZ CRC64, single stream, multiblock, preset6"
+      },
+      "GPU": {
+        "status": "actual_CUDA_FP64_complete_admitted_field_compliance_crosscheck_passed",
+        "device": "NVIDIA GeForce RTX 5070",
+        "warp_version": "1.18.0",
+        "numpy_version": "2.2.6",
+        "cells_checked": 20083501,
+        "all_cell_values_compared": true,
+        "GPU_native_relative_difference": 1.8982914963617513e-16,
+        "maximum_cell_absolute_energy_error_Nmm": 5.551115123125783e-17,
+        "maximum_fraction_of_cell_tolerance": 0.0007320582889836522,
+        "elapsed_seconds": 10.183620955096558,
+        "owned_group_reaped_and_absent": true
+      },
+      "provider_cleanup": {
+        "destroyed": true,
+        "verified_absent": true
+      },
+      "comparison": {
+        "actual_returncode": 0,
+        "elapsed_seconds": 584.0853895840701,
+        "peak_aggregate_RSS_bytes": 5272846336,
+        "owned_group_reaped_and_absent": true,
+        "full_field_replay": true,
+        "independent_readback_passed": true,
+        "independent_readback_is_another_field_replay": false
+      },
+      "native_replay_scalar_diagnostics": {
+        "coarse": {
+          "external_work_Nmm": {
+            "local": 19156.75603536466,
+            "native": 19156.756035364662,
+            "difference": -3.637978807091713e-12
+          },
+          "displacement_max_mm": {
+            "local": 2.3643488391376812,
+            "native": 2.3643488391376812,
+            "difference": 0.0
+          },
+          "VM_peak_MPa": {
+            "local": 215084.45047578035,
+            "native": 215084.45047578035,
+            "difference": 0.0
+          },
+          "VM_volume_weighted_p95_MPa": {
+            "local": 171.82159356040688,
+            "native": 171.82159356040688,
+            "difference": 0.0
+          },
+          "independent_stress_compliance_energy_Nmm": {
+            "local": 9578.378096377384,
+            "native": 9578.378096377384,
+            "difference": 0.0
+          },
+          "native_energy_density_integral_Nmm": {
+            "local": 9578.378096377384,
+            "native": 9578.378096377384,
+            "difference": 0.0
+          }
+        },
+        "fine": {
+          "external_work_Nmm": {
+            "local": 19164.490270128015,
+            "native": 19164.49027012802,
+            "difference": -3.637978807091713e-12
+          },
+          "displacement_max_mm": {
+            "local": 2.365252085510025,
+            "native": 2.365252085510025,
+            "difference": 0.0
+          },
+          "VM_peak_MPa": {
+            "local": 216601.6242493057,
+            "native": 216601.6242493057,
+            "difference": 0.0
+          },
+          "VM_volume_weighted_p95_MPa": {
+            "local": 171.86158713410867,
+            "native": 171.86158713410867,
+            "difference": 0.0
+          },
+          "independent_stress_compliance_energy_Nmm": {
+            "local": 9582.24491355577,
+            "native": 9582.24491355577,
+            "difference": 0.0
+          },
+          "native_energy_density_integral_Nmm": {
+            "local": 9582.24491355577,
+            "native": 9582.24491355577,
+            "difference": 0.0
+          }
+        }
+      }
+    }
+  },
+  "publication_scope": {
+    "raw_fields_or_coordinates_included": false,
+    "unresolved_peaks_retained": true,
+    "strength_qualified": false,
+    "true_unprinted_solver_residual_certified": false,
+    "new_residual_acceptance_veto": false,
+    "mass_ceiling_applied": false
+  },
+  "readback_correction": {
+    "original_extra_bitwise_equality_refused": true,
+    "original_refusal_preserved": true,
+    "combined_work_deltas_Nmm": {
+      "coarse": -3.637978807091713e-12,
+      "fine": -3.637978807091713e-12
+    },
+    "fresh_readback_checks_native_identity_and_exact_recorded_delta": true,
+    "new_tolerance_introduced": false,
+    "all_combined_native_replay_scalars_bitwise_equal": false
+  },
+  "future_capacity": {
+    "H10_face_buffer_bytes": 1285344064,
+    "three_complete_indicator_vectors_bytes": 482004024,
+    "new_complete_DAT_XZ_receiver_sizes_must_be_admitted_before_a_new_lease": true
+  },
+  "images": {
+    "carrier-h10-full-field-comparison.png": {
+      "bytes": 108186,
+      "sha256": "bd7f2b54431cb8b0e9c50468d0a4031ec122b0e4bc0b9accd7fb0df8acccd231"
+    },
+    "carrier-h10-stress-trend.png": {
+      "bytes": 104552,
+      "sha256": "23589896384d7de4c1029c646d1583bf6b36d3884461b7d5ac1cde15b5b71e8b"
+    }
+  },
+  "source_sha256": {
+    "work/carrier-h10-comparison-figures-002/figure.json": "d0dcf66041d2fbcf00f80fb8c5d20f98e7b2a3184c55814d6a06c233b5cb8226",
+    "work/carrier-h10-comparison-figures-002/bounded-run.json": "6593c5fb9d554efbf019836c5a6a9f975ce4205be30c4dfdec165aac06bdcb6a",
+    "work/carrier-h10-comparison-001/gravity-complete.json": "2119757e2509e66c556f288c6e7478abb20b0fd94c31440e1a8159313c40eddb",
+    "private-evidence/h10-full-comparison-gravity-001/complete.json": "65fccf961f325776da2e1d13beb79e73c68bfa3b0ab814107050a4eb296ca2e1",
+    "private-evidence/h10-full-comparison-gravity-001/h9-to-h10-comparison.json": "4f71e727fc122a6611fd6e9ce49f56a9f7d52384e022980b43b2e4ad8bee19ce",
+    "work/carrier-h10-comparison-readback-001/gravity.json": "1593fc1c92f3a593df980de77306059fb0fcd96e628367f1bb2bfa0c5dbef727",
+    "work/carrier-h10-comparison-001/gravity-execution/comparison-complete.json": "5a6fd090dbb24d7278e231b29ce8a1eaed45187f56fe9470ad4b6517a1c27560",
+    "work/carrier-high-memory-direct-048/native-restored/run/current-gravity/actual-terminal.json": "f488314dd1f851868009a4525d7114dfa8bbd855bdafd34a204f53abf27c86b1",
+    "work/carrier-high-memory-direct-048/native-restored/independent-assessment/result/assessment.json": "d8a1f18c06c3bc74ed9e370b3b78eef6fd3b20f591f84277bf675ab2dc2a7365",
+    "work/carrier-high-memory-direct-048/scientific-complete.json": "51a4270ed613addca56ed5eb86994c84dfac6d7b9a7ea0b81a49cbdc88036033",
+    "work/carrier-high-memory-direct-048/complete-cleanup.json": "bd7cca4e7795196e50304f4d3515bdf46ab6b05fff479a4a4e3f054d9356cfd4",
+    "work/carrier-high-memory-direct-048/gpu-h10/recovery.json": "4e132774681e60d314c782dec0dd138a958084887c6293c312a532a9fa689ada",
+    "work/carrier-high-memory-direct-048/gpu-h10/recovered/result.json": "6d4ae69e4f7211e0c1666a38eb916c78dd8d4e0d2def3234f3f4934f3d99be72",
+    "work/carrier-high-memory-direct-048/gpu-h10/recovered/terminal.json": "073119a6c2db14d8b9d608198414f31d6b804e3e285cc1d32bb5691402616678",
+    "work/carrier-h9-comparison-001/gravity-complete.json": "befc9d381231b0ae97249d4d8ff65d147d17e59e922deba79eb2b49bc9544055",
+    "private-historical-evidence/h9-full-comparison-gravity-001/h8-to-h9-comparison.json": "a62ccdbaa5266733052a61f714065663adac0200fcadc2bddc549000d1e60ed5",
+    "private-evidence/h10-full-comparison-gravity-001/coarse-replay.json": "0b45d81559ae69db74fbebe3018058f6a709639482e6a282a77ce2b0b37a3759",
+    "private-evidence/h10-full-comparison-gravity-001/fine-replay.json": "ffb07e5218bb9e585c958e14a38619770842749a119cfcdcfd9cb4675c1d4ae5",
+    "work/carrier-h10-comparison-001/combined-complete.json": "3229b58cd1a5d2eb9996aa6923be8114288e9ed0740339fcc6a393908727b51f",
+    "private-evidence/h10-full-comparison-combined-001/complete.json": "37f8f813d23558786fa7fb5e1f2d92f5deba928441c72f64eceb407f2988f52e",
+    "private-evidence/h10-full-comparison-combined-001/h9-to-h10-comparison.json": "a1a8bdbf7edc59ad4a5f5d7c2548ea160e3f976ecdd69bc586b22586facce223",
+    "work/carrier-h10-comparison-readback-002/combined.json": "c921d44e135a63ad2f4d04ab49801fd835a931ee9e52b3cf556388093f4eaa60",
+    "work/carrier-h10-comparison-001/combined-execution/comparison-complete.json": "d5a61efb84c4e9c1b6a749717d5bdc25633754d3d394623231af651f2cf9ca26",
+    "work/carrier-high-memory-direct-049/native-restored/run/current-combined/actual-terminal.json": "3771729e1795d962215773d3f426238f00b4251b899e292812b6da1c26567d8a",
+    "work/carrier-high-memory-direct-049/native-restored/independent-assessment/result/assessment.json": "93fe2dd049e598aea434431ef22a860b4e42399d9dedd48d2009a82825f4b9bb",
+    "work/carrier-high-memory-direct-049/scientific-complete.json": "3e8f7e5a848dd7a527d33d33314a9fa88ff9d4939d3cfdc991be430b69b45875",
+    "work/carrier-high-memory-direct-049/complete-cleanup.json": "4028bc3973d07fdfbd5119a381c61a639eac3909bb167a82683c992d38ff0897",
+    "work/carrier-high-memory-direct-049/gpu-h10/recovery.json": "9289202279c35bbeec4121457ae365e90f45d13de8a39d2ea24d635f27d27081",
+    "work/carrier-high-memory-direct-049/gpu-h10/recovered/result.json": "c66b647eb0bc95ce0b227d2fe0e54b3f011ffa73122725d5014efad1668ae3e0",
+    "work/carrier-high-memory-direct-049/gpu-h10/recovered/terminal.json": "5141ed30a08ef5b77d0b5bdacf48f9b6b6d0f32ca97c48918ceb63678478cc44",
+    "work/carrier-h9-comparison-001/combined-complete.json": "451bc0cda8871f4c04ea9b68621f491be18db646f1c2124453705dc1dd342387",
+    "private-historical-evidence/h9-full-comparison-combined-001/h8-to-h9-comparison.json": "c38f08e493cf8cc1d6e5e5757e2072929bc1d8e5a22d33ab062859cbbb70171a",
+    "private-evidence/h10-full-comparison-combined-001/coarse-replay.json": "ee9a427883732f0dad0df016e1512538bfd2c6edce0b3d7e85b5960fc75a99de",
+    "private-evidence/h10-full-comparison-combined-001/fine-replay.json": "f05821bdf3cd7a3193cc968018c7513b24d738ffc2596dec6687b4b3bbacfec3",
+    "work/carrier-h10-comparison-readback-001/combined-refusal-001.json": "d86e44734120ce8856f2708be23749e66c82d216e71e4377dc577b5f381a4aeb",
+    "work/carrier-h10-comparison-readback-002/scalar-controls.json": "4b61e71783d2e0102f791635b769d994f169fd98919fbd62bf15f27447e620a9",
+    "work/carrier-h10-comparison-readback-002/bounded-run.json": "97a58f335a67347b910226bf7a01c21aa43ef629438f78dfb6ac356516bfbd5f",
+    "work/carrier-h10-comparison-001/compare_case.py": "24d9b9f4c93465195f75ffad8311e8e5f697db135a26da2a86a42d39e955b504",
+    "work/carrier-h10-comparison-readback-001/verify.py": "f694560804b20cbd2057cbc99a009cd40a0c041ccc3e7c2cf783ab8ecccd3884",
+    "work/carrier-h10-comparison-readback-002/verify.py": "4f3f211f9715ada3fabd746b9595a55efc267ceef921e50c010fc75f06fb287a",
+    "work/carrier-h10-comparison-figures-002/render.py": "dddcb8303039f51b86d069cd7d1e10cc9195043a00755dde9b565c09be1a5c60",
+    "work/carrier-h10-comparison-figures-002/run_plot.py": "5cca7c14efa30c8c6d405afb93fbbc74bebafac310a635d3e3cfcf859b2c14c9"
+  }
+}

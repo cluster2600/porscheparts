@@ -7,6 +7,7 @@ from pathlib import Path
 import subprocess
 
 from ft_common import (
+    CARRIER_BASELINE,
     HERE,
     ROOT,
     load,
@@ -58,8 +59,8 @@ def replay(manifest_path, root, output):
     } != set(INPUTS):
         raise ValueError("wrong carrier input contract")
     # Bind the gate to reviewed inputs, not to caller-supplied status booleans.
-    registered = load(HERE / "baseline.json")
-    if manifest["inputs"] != registered["inputs"]:
+    registered = [load(path)["inputs"] for path in (HERE / "baseline.json", CARRIER_BASELINE)]
+    if manifest["inputs"] not in registered:
         raise ValueError("carrier baseline differs from registered hashes")
     contract = load(Path(root) / INTERFACES)
     blockers = []
@@ -100,7 +101,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=["freeze", "replay"])
     parser.add_argument("--root", type=Path, default=ROOT)
-    parser.add_argument("--manifest", type=Path, default=HERE / "baseline.json")
+    parser.add_argument("--manifest", type=Path, default=CARRIER_BASELINE)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     result = (
