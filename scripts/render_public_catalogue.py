@@ -106,7 +106,7 @@ def catalogue(fiches) -> str:
         info = media_info(pid) or {}
         imgs = ", ".join(f"[{n}](../../parts/{pid.lower()}/media/{n}) `{h[:12]}`"
                          for n, h in sorted(info.get("image_sha256", {}).items()))
-        out.append(f"| [{pid}](../pieces/{pid.lower()}.md) | {cell(nom(f))} | "
+        out.append(f"| [{pid}](../parts/{pid.lower()}.md) | {cell(nom(f))} | "
                    f"{f['classification'].get('safety_class')} | `{sha(c)[:12]}` | {imgs} | "
                    f"{cell(', '.join(f['validation']['evidence']))} |")
     out += ["", f"{len(publiees)} of {len(fiches)} records published.", ""]
@@ -126,7 +126,7 @@ def statut(fiches) -> str:
            "|---|---|---|---|---|"]
     for _, f, raisons in refusees:
         pid = f["part_id"]
-        out.append(f"| [{pid}](../pieces/{pid.lower()}.md) | **Not ready to print.** "
+        out.append(f"| [{pid}](../parts/{pid.lower()}.md) | **Not ready to print.** "
                    f"{cell(nom(f))} | `{f['validation'].get('status')}` | "
                    f"{f['classification'].get('safety_class')} | {cell('; '.join(raisons))} |")
     return "\n".join(out + [""])

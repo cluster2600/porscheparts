@@ -126,7 +126,7 @@ flowchart LR
 
 ## Read more
 
-- **Full description page**, with sources and evidence: [docs/pieces/993-eng-cooling-impeller-we43-f1-0001.md](../../docs/pieces/993-eng-cooling-impeller-we43-f1-0001.md)
+- **Full description page**, with sources and evidence: [docs/parts/993-eng-cooling-impeller-we43-f1-0001.md](../../docs/parts/993-eng-cooling-impeller-we43-f1-0001.md)
 - **Catalogue record** (source of truth): [`catalog/parts/993-eng-cooling-impeller-we43-f1-0001.json`](../../catalog/parts/993-eng-cooling-impeller-we43-f1-0001.json)
 - **Design dossier**: [993_COOLING_IMPELLER_WE43_F1](../../docs/993/993_COOLING_IMPELLER_WE43_F1.md)
 - **Design dossier**: [993_FAN_STATOR_ALSI10MG_F1](../../docs/993/993_FAN_STATOR_ALSI10MG_F1.md)

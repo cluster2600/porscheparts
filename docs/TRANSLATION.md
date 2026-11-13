@@ -17,14 +17,14 @@ make translation-status      # lists Markdown files still written in French
 |---|---|
 | top-level documents (`README.md`, `SAFETY.md`, …) | translated |
 | `docs/**` outside `docs/reports/` | translated, phase by phase |
-| generated pages (`docs/pieces/`, the README parts table, `make help`) | translated **in the generator**, then regenerated — never by hand |
+| generated pages (`docs/parts/`, the README parts table, `make help`) | translated **in the generator**, then regenerated — never by hand |
 | catalogue prose (`name`, `description`, limitations) | translated in the record; schema field names were already English |
 | code comments, docstrings, identifiers | later phase; identifiers stay stable until then |
 | `docs/reports/**` | dated execution reports — translated last, content unchanged |
 | **`**/evidence/**`** | **never edited.** Evidence files are pinned by digest; a translation would break provenance and `make check` would fail |
 | **`archive/**`** | **never edited.** 2,014 digests pin the archived 917 line (see [ARCHIVE.md](ARCHIVE.md)) |
 | `containers/*.lock.json` and their recipe inputs | **never edited**, same reason |
-| file and directory names (`docs/pieces/`, `964-chemin-effort.svg`, …) | kept for now: renaming breaks inbound links and pinned paths. A later phase renames with redirects |
+| file and directory names (`964-chemin-effort.svg`, …) | renamed in phase 5, group by group, each with a redirect stub left at the old path. A name not yet renamed is kept: renaming breaks inbound links and pinned paths |
 
 Before editing any file, check that its digest is not pinned:
 
@@ -141,6 +141,16 @@ flow, a hierarchy, a sequence of gates, a timeline, a comparison.
 | 3 | `docs/reports/`, twin, container, deploy and simulation READMEs outside `evidence/`, catalogue twin records; diagrams and images across the docs | done |
 | 4 | code comments, docstrings and command-line messages in `scripts/` and `tests/` | done (exceptions below) |
 | 5 | file and directory renames, with redirects | open |
+
+Phase 5 progress ([#430](https://github.com/cluster2600/porscheparts/issues/430)).
+Renamed so far, each with a redirect stub at the old path:
+
+- 2026-11-06: decisions 0005 to 0008, four `docs/993/` pages (chain cover,
+  chain case lid, titanium exhaust tip, titanium backlog),
+  `docs/MONOCOQUE_964_993_COMPUTATION_CHAIN.md` and three `docs/research/` pages.
+- 2026-11-12: `docs/pieces/` became `docs/parts/`, through the generator. Each
+  page kept its file name; one stub, `docs/pieces/README.md`, redirects the
+  directory.
 
 Phase 4 exceptions (2026-11-06, issue #429). These stay French on purpose:
 

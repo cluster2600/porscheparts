@@ -49,7 +49,7 @@ flowchart LR
 
 | document | what it answers |
 |---|---|
-| [pieces/](pieces/) | one generated page per part record: status, material, sources, evidence |
+| [parts/](parts/) | one generated page per part record: status, material, sources, evidence |
 | [993/](993/) | the design dossiers of the 993 parts (`*_F0`, `*_F1`) |
 | [TITANIUM.md](TITANIUM.md) | when titanium is justified, and when it is not |
 | [COMPONENT_INVENTORY.md](COMPONENT_INVENTORY.md) | the twin's physical components |

@@ -121,7 +121,7 @@ flowchart LR
 
 ## Read more
 
-- **Full description page**, with sources and evidence: [docs/pieces/993-int-switch-blank-0001.md](../../docs/pieces/993-int-switch-blank-0001.md)
+- **Full description page**, with sources and evidence: [docs/parts/993-int-switch-blank-0001.md](../../docs/parts/993-int-switch-blank-0001.md)
 - **Catalogue record** (source of truth): [`catalog/parts/993-int-switch-blank-0001.json`](../../catalog/parts/993-int-switch-blank-0001.json)
 - **Digital twin record**: [`twin-993-cabin-dashboard-switch-0001.json`](../../catalog/twins/twin-993-cabin-dashboard-switch-0001.json) — see [twins/README.md](../../twins/README.md)
 - **Safety rules**: [SAFETY.md](../../docs/SAFETY.md)

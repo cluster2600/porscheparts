@@ -16,7 +16,7 @@ FICHES = sorted((ROOT / "catalog" / "parts").glob("*.json"))
 class PartPageTests(unittest.TestCase):
     def test_studio_illustrations_are_labelled_separately_from_cad_views(self):
         result = "\n".join(pages.images("993-ENG-K16-COMPRESSOR-WHEEL-ALSI10MG-F0-0001",
-                                        ROOT / "docs/pieces/fixture.md"))
+                                        ROOT / "docs/parts/fixture.md"))
         self.assertIn("photo-concept.png", result)
         self.assertIn("AI-generated studio illustration", result)
         self.assertIn("Not a photograph", result)
@@ -24,7 +24,7 @@ class PartPageTests(unittest.TestCase):
 
     def test_studio_illustration_does_not_displace_technical_views(self):
         result = "\n".join(pages.images("993-ENG-COOLING-IMPELLER-WE43-F1-0001",
-                                        ROOT / "docs/pieces/fixture.md"))
+                                        ROOT / "docs/parts/fixture.md"))
         self.assertIn("photo-concept.png", result)
         self.assertIn("media/print-simulation/build-plate.png", result)
         self.assertEqual(result.count("!["), 9)
@@ -88,7 +88,7 @@ class PartPageTests(unittest.TestCase):
 
     def test_one_page_per_catalogue_record(self):
         attendues = pages.attendues()
-        descriptions = [c for c in attendues if c.parent.name == "pieces"]
+        descriptions = [c for c in attendues if c.parent == pages.PAGES]
         self.assertEqual(len(descriptions), len(FICHES))
         for chemin in attendues:
             self.assertTrue(chemin.exists(), f"missing page: {chemin.relative_to(ROOT)}")
@@ -102,7 +102,7 @@ class PartPageTests(unittest.TestCase):
             texte = (dossier / "README.md").read_text(encoding="utf-8")
             self.assertIn(fiche["part_id"], texte)
             self.assertIn("SAFETY.md", texte)
-            self.assertIn(f"docs/pieces/{fiche['part_id'].lower()}.md", texte)
+            self.assertIn(f"docs/parts/{fiche['part_id'].lower()}.md", texte)
             tete = texte.split("## What it is")[0]
             self.assertIn("[!CAUTION]", tete)
             genre = (json.loads((dossier / "print" / "print.json").read_text(encoding="utf-8")).get("kind")
@@ -140,7 +140,7 @@ class PartPageTests(unittest.TestCase):
     def test_each_page_cites_its_record_identifier_and_safety(self):
         for chemin in FICHES:
             fiche = json.loads(chemin.read_text(encoding="utf-8"))
-            page = ROOT / "docs" / "pieces" / f"{fiche['part_id'].lower()}.md"
+            page = ROOT / "docs" / "parts" / f"{fiche['part_id'].lower()}.md"
             texte = page.read_text(encoding="utf-8")
             self.assertIn(fiche["part_id"], texte)
             self.assertIn(chemin.name, texte, "the page must cite its record")
@@ -166,7 +166,7 @@ class PartPageTests(unittest.TestCase):
         for chemin in FICHES:
             fiche = json.loads(chemin.read_text(encoding="utf-8"))
             # The table lives in docs/ENGINEERING_OVERVIEW.md: links are relative to it.
-            page = table.lien(f"docs/pieces/{fiche['part_id'].lower()}.md")
+            page = table.lien(f"docs/parts/{fiche['part_id'].lower()}.md")
             self.assertIn(f"]({page})", bloc)
             self.assertTrue((table.README.parent / page).is_file(), page)
 

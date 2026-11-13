@@ -108,7 +108,7 @@ flowchart LR
 
 ## Read more
 
-- **Full description page**, with sources and evidence: [docs/pieces/993-eng-piston-cp1-gallery-f0-0001.md](../../docs/pieces/993-eng-piston-cp1-gallery-f0-0001.md)
+- **Full description page**, with sources and evidence: [docs/parts/993-eng-piston-cp1-gallery-f0-0001.md](../../docs/parts/993-eng-piston-cp1-gallery-f0-0001.md)
 - **Catalogue record** (source of truth): [`catalog/parts/993-eng-piston-cp1-gallery-f0-0001.json`](../../catalog/parts/993-eng-piston-cp1-gallery-f0-0001.json)
 - **Design dossier**: [993_PISTON_CP1_COOLING_GALLERY_F0](../../docs/993/993_PISTON_CP1_COOLING_GALLERY_F0.md)
 - **Digital twin record**: [`twin-993-m64-60-piston-gallery-f0.json`](../../catalog/twins/twin-993-m64-60-piston-gallery-f0.json) — see [twins/README.md](../../twins/README.md)

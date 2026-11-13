@@ -130,7 +130,7 @@ Source photographs and catalogue illustrations remain on their rights holders' s
 
 - [Porsche Classic parts catalogue](https://www.porsche.com/australia/accessoriesandservice/classic/originalpartscatalogue/)
 - [Catalogue source of truth](../../catalog/parts/993-eng-carrier-0001.json), including reference provenance and known limits
-- [Carrier description page](../../docs/pieces/993-eng-carrier-0001.md)
+- [Carrier description page](../../docs/parts/993-eng-carrier-0001.md)
 - [Carrier folder presentation](../../parts/993-eng-carrier-0001/README.md)
 - [Safety rules](../../docs/SAFETY.md)
 
