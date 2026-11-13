@@ -156,12 +156,34 @@
    "thermal_increments_per_lump": 8,
    "memory_cap": "8g",
    "thermal_only": "its mechanical model has 790,000 unknowns, out of reach of the single-thread direct solver on this host"
+  },
+  "c4-l8-2-lasers": {
+   "cell_mm": 4.0,
+   "cell_rows_per_lump": 2,
+   "plate_margin_cells": 2,
+   "thermal_increments_per_lump": 8,
+   "memory_cap": "6g",
+   "process": {
+    "lasers": 2
+   },
+   "thermal_only": "the mechanical model was not run for this case: the question is the temperature"
+  },
+  "c4-l8-4-lasers": {
+   "cell_mm": 4.0,
+   "cell_rows_per_lump": 2,
+   "plate_margin_cells": 2,
+   "thermal_increments_per_lump": 8,
+   "memory_cap": "6g",
+   "process": {
+    "lasers": 4
+   },
+   "thermal_only": "the mechanical model was not run for this case: the question is the temperature"
   }
  },
  "not_modelled": [
   "the melt pool, the scan path and any peak temperature: the heat of a lump is spread over its volume and its real time",
   "heat loss to powder and gas: all heat leaves through the plate, so the temperatures are an upper bound for this input",
-  "a designed support: columns of homogenised cells stand in for one",
+  "a support prepared in a build processor: the supports of the build screen are columns of homogenised cells under a 45 degree rule",
   "creep, stress relief during the build, phase change, and any calibration against a printed coupon"
  ]
 }

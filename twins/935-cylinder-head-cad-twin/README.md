@@ -18,7 +18,7 @@ geometry file is published ([provenance](media/provenance.json)).*
 
 ![The v2 CAD body from four sides: cam side, chamber and deck, the port of the y-minus flange, and the fins of the x-plus side](media/views.png)
 
-## State on 2026-11-12
+## State on 2026-11-13
 
 | Body | What it is | Scan within 0.2 mm | p95 | What runs on it |
 |---|---|---|---|---|
@@ -56,8 +56,11 @@ stated blocker. What the twin still does not have:
   43.4 hours on one laser, a largest rise of 60 to 64 K above the plate, and a distortion after
   release of 0.24 to 0.31 mm at the median and 1.62 to 2.16 mm at the largest,
   not converged in lump height or cell size.
-  Both run on declared process values: no maker's parameters, no designed
-  support, nothing printed.
+  Both run on declared process values: no maker's parameters, nothing
+  printed. With two or four lasers the hottest region runs
+  98 or 138 K above the plate. A
+  [support layout](#support-layout-block-supports-laid-out-by-rule-case-witnesses-record)
+  by rule exists; no build processor has prepared one.
 
 ## Why this directory exists
 
@@ -140,6 +143,8 @@ flowchart LR
   V2 --> PB["Print body<br/>stock, closed bores"]
   PB --> LS["Layer screen<br/>EP-M300 card"]
   PB --> BS["Build screen<br/>CalculiX, lump by lump"]
+  PB --> SD["Support layout<br/>by declared rules"]
+  SD --> BS
   V1 --> PA["Port CFD audit<br/>no admissible domain"]
   F --> FF["Feature fit<br/>primitive_fit.py"]
   FF --> CC["CloudCompare check<br/>held-out vertices"]
@@ -149,7 +154,7 @@ flowchart LR
   classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
   classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
   class F,O,T1,SC,V2,TH,U,P,SR,AM,PB ok;
-  class V1,FF,CC,LS,BS open;
+  class V1,FF,CC,LS,BS,SD open;
   class PA stop;
 ```
 
@@ -186,6 +191,8 @@ process values, with every qualification gate closed.*
 | Thin walls of the print body | SciPy morphological opening of the 0.25 mm occupancy | [wall_check.py](source/wall_check.py) |
 | Layer screen in bounded memory | the repository's LPBF layer screen, unmodified, sliced 64 layers and probed 25 points at a time (cadsim image) | [layer_screen.py](source/layer_screen.py) |
 | Build screen: temperature, stress and distortion lump by lump | CalculiX 2.21 with element activation (`*MODEL CHANGE`), one thread (cadsim image) | [build_sim.py](source/build_sim.py), [render_build_sim.py](source/render_build_sim.py) |
+| Support layout by declared rules | NumPy and SciPy on the 0.25 mm occupancy: overhang normals, air columns, labelled bodies, lines of sight | [support_design.py](source/support_design.py), [render_support_design.py](source/render_support_design.py) |
+| Witness of a drawing tool | build123d projection and DXF export, read back with ezdxf | [drawing_witness.py](source/drawing_witness.py) |
 | Six-view render of the body, read by the agent | `preview.py` of the `cad-skill` skill (trimesh, pyrender, EGL under `xvfb-run`) | none: the script is the skill's |
 
 The private inputs and outputs live under `work/935-cad-twin/` (ignored by
@@ -1020,12 +1027,14 @@ stiffness and yield. All heat leaves through the plate, held at
 100 °C underneath; powder and gas are adiabatic, so the temperatures are
 an upper bound for this heat input.
 
-| Level | Cells | Lump | Lumps | Part cells | Support cells | Nodes | Part volume against the occupancy | Runs |
-|---|---|---|---|---|---|---|---|---|
-| c4-l8 | 4 mm | 8 mm, 160 layers | 28 | 17,336 | 3,550 | 35,299 | +0.04% | thermal, mechanics (3 variants) |
-| c4-l4 | 4 mm | 4 mm, 80 layers | 56 | 17,336 | 3,550 | 35,299 | +0.04% | thermal, mechanics |
-| c3-l9 | 3 mm | 9 mm, 180 layers | 25 | 40,978 | 8,744 | 81,438 | -0.24% | thermal, mechanics |
-| c2-l8 | 2 mm | 8 mm, 160 layers | 28 | 139,548 | 29,142 | 262,998 | +0.66% | thermal |
+| Level | Cells | Lump | Lumps | Lasers | Part cells | Support cells | Nodes | Part volume against the occupancy | Runs |
+|---|---|---|---|---|---|---|---|---|---|
+| c4-l8 | 4 mm | 8 mm, 160 layers | 28 | 1 | 17,336 | 3,550 | 35,299 | +0.04% | thermal, mechanics (3 variants) |
+| c4-l4 | 4 mm | 4 mm, 80 layers | 56 | 1 | 17,336 | 3,550 | 35,299 | +0.04% | thermal, mechanics |
+| c3-l9 | 3 mm | 9 mm, 180 layers | 25 | 1 | 40,978 | 8,744 | 81,438 | -0.24% | thermal, mechanics |
+| c2-l8 | 2 mm | 8 mm, 160 layers | 28 | 1 | 139,548 | 29,142 | 262,998 | +0.66% | thermal |
+| c4-l8-2-lasers | 4 mm | 8 mm, 160 layers | 28 | 2 | 17,336 | 3,550 | 35,299 | +0.04% | thermal |
+| c4-l8-4-lasers | 4 mm | 8 mm, 160 layers | 28 | 4 | 17,336 | 3,550 | 35,299 | +0.04% | thermal |
 
 The half-full rule does not keep the volume exactly: the models hold -0.24% to
 +0.66% of the occupancy's volume, and the absorbed energy follows the cells.
@@ -1038,6 +1047,8 @@ The half-full rule does not keep the volume exactly: the models hold -0.24% to
 | c4-l4 | 43.4 h (28.1 h exposure, 15.2 h recoating) | 14.2 MJ | 63.5 K | 180 mm | 0.40% | 16 min |
 | c3-l9 | 43.4 h (28.1 h exposure, 15.3 h recoating) | 14.2 MJ | 60.2 K | 189 mm | 0.13% | 79 min |
 | c2-l8 | 43.6 h (28.3 h exposure, 15.2 h recoating) | 14.3 MJ | 60.6 K | 184 mm | 0.10% | 222 min |
+| c4-l8-2-lasers | 29.3 h (14.1 h exposure, 15.2 h recoating) | 14.2 MJ | 98.1 K | 180 mm | 0.30% | 9 min |
+| c4-l8-4-lasers | 22.3 h (7.0 h exposure, 15.2 h recoating) | 14.2 MJ | 138.2 K | 180 mm | 0.41% | 9 min |
 
 - **The part stays near the plate temperature:** its largest rise is 60 to 64 K, about
   160 to 164 °C at the hottest region with the plate at 100 °C; the rest
@@ -1053,8 +1064,16 @@ The half-full rule does not keep the volume exactly: the models hold -0.24% to
   where the heat has the longest way down.
 - **The absorptivity decides the level.** 0.4 is declared; published values
   run from 0.13 to 0.58, and the rise scales with it: 20 to 90 K
-  on this model. More lasers shorten the build and raise the mean power;
-  that case was not run.
+  on this model.
+- **More lasers shorten the build and heat the part.** With two lasers at 350 W
+  each the build takes 29.3 hours and the hottest region runs 98 K above the
+  plate; with four, 22.3 hours and 138 K, about 238 °C. Only the
+  exposure shrinks: the 15.2 hours of recoating stay, so four lasers save
+  49% of the time, not three quarters. The energy is the same; it arrives in less time.
+- **At that temperature the declared yield curve has dropped.** It gives 236 MPa
+  at 200 °C against 322 MPa at room temperature. The mechanical run was not
+  made for the laser cases, and the machine's lasers are 500 W, not the
+  declared 350 W: these two rows are a sensitivity to the mean power.
 
 **Stress and distortion.** Three states are read: the end of the build, room
 temperature on the plate, and after plate and supports are removed with the
@@ -1109,12 +1128,116 @@ motion and the best uniform shrinkage are taken out.
 - No melt pool, scan path or peak temperature: the heat of a lump is spread
   over its volume and its real time.
 - No heat loss to powder or gas.
-- No designed support: columns of homogenised cells stand in for one.
+- No support prepared in a build processor: columns of homogenised cells
+  stand in for one. A [layout by rule](#support-layout-block-supports-laid-out-by-rule-case-witnesses-record)
+  exists; the build screen does not use it yet.
 - No creep, stress relief during the build or phase change, and no
   calibration against a printed coupon.
 - Every gate of the record is false: no process parameters from the maker,
-  no calibrated heat input, no designed support, no comparison with a
-  printed part. The distortion is not a compensation field.
+  no calibrated heat input, no support prepared in a build processor, no
+  comparison with a printed part. The distortion is not a compensation field.
+
+### Support layout: block supports laid out by rule ([case](params/support-design-case.json), [witnesses](params/support-design-witness.json), [record](params/support-design.json))
+
+![The print body in grey on its plate, seen through, from two sides. Blue blocks fill the space under the body down to the plate; orange blocks fill pockets and openings of the body where a support stands on the part itself; a few red patches inside mark supports with no straight way out to the side](media/support-layout.png)
+
+*The support envelope on 1 mm blocks: the air columns that hold a block
+support, not the thin walls. A layout by rule on a study body, not a build
+file.*
+
+**The print body now has a support layout, by rule.** With the flange down and a
+45° rule, 12,376 mm² of down-facing surface gets a block support. The
+supports fill 470,700 mm³ of envelope, 42% of the part's volume, and melt
+169,400 mm³, 15% of the part. About half of the envelope stands on the part
+itself, and a quarter of the supported surface has no straight way out to
+the side. No person has judged whether these supports can be removed.
+
+**Rules** ([support_design.py](source/support_design.py)). Each value is declared, with the publication it leans on.
+The sources were read by an automated research pass on 2026-11-13: *read*
+means the document was opened and the passage read in it, *read by an
+automated reader* that a summarising tool extracted the passage. No person
+has re-read them.
+
+| Rule | Value | Leans on | How it was read |
+|---|---|---|---|
+| Surface that needs a support | 45 degrees from the plate | Materialise aluminium guideline; Renishaw guide 2017; Protolabs guide 2019 | read by an automated reader; read; read |
+| Attached overhang left bare | an attached overhang up to 1.0 mm wide is left bare | Renishaw guide 2017 | read |
+| Distance between support walls | 1.0 mm between walls, both ways | Piscopo et al. 2024; Yue et al. 2022 | read by an automated reader; abstract only |
+| Wall thickness | 0.2 mm: one scan track | Klanjšček and Kalin 2025; Van Cauwenbergh et al. 2021; Charan et al. 2023 (preprint) | read; read by an automated reader; read; a preprint, not peer reviewed |
+| Teeth: share of the wall line that touches the part | 0.5: half of each wall's top line touches the part | Poyraz et al. 2015 (IN625); Li et al. 2026 (IN625) | read; read |
+| Slenderness of a support | none: the height over inscribed width of each support body is reported, not judged | nothing published was found | — |
+
+- **Walls of 0.2 mm every 1 mm melt 36% of the envelope** (2t/s − (t/s)²). The
+  build screen had declared 20% for its support columns.
+- **An island always gets a support.** A narrow overhang is left bare only
+  when it hangs from material already built; where a region of a layer
+  starts with nothing under it, the support stays whatever its width.
+- **Two values have no aluminium source.** The teeth come from two nickel
+  alloy studies, and no published limit for the slenderness of a block
+  support was found, so slenderness is reported and not judged.
+- **Not opened:** Calignano, Materials and Design 64 (2014) 203, the usual reference for aluminium supports; ISO/ASTM 52911-1; any design guide
+  of EOS or Eplus3D; the default values of a build processor.
+
+**Witnesses** (sub-command `witness`, 0.25 mm grid):
+
+| Shape | Quantity | By hand | Measured |
+|---|---|---|---|
+| A cap 40 × 40 mm on a stem 20 × 20 × 30 mm | envelope, all on the plate | 36,000 mm³ | 35,992 mm³ |
+|  | height over inscribed width of the ring | 2.56 | 2.50 |
+| A closed cavity 20 × 20 × 10 mm with a 4 mm chimney | envelope standing on the part | 3,840 mm³ | 3,838 mm³ |
+|  | of which hidden from the side | 3,840 mm³ | 3,838 mm³ |
+| A wall with a ledge of 1 mm and one of 3 mm | supported area: the wide ledge only | 120 mm² | 119 mm² |
+| A blade 1.5 mm thick hanging under a slab | narrow patches kept because an island starts there | 1 | 1 |
+
+All 21 checks pass within 5%; the largest error is 2.4%. Before any
+exemption the layout finds the overhang area and the air-column volume of
+the [orientation screen](params/print-body-supports.json) to 0.0003%: 476,689 mm³.
+
+**Layout of the print body.**
+
+| Quantity | Value |
+|---|---|
+| Down-facing surface below 45°, projected | 12,538 mm² |
+| Left bare: narrow attached overhangs | 226 patches, 163 mm² (1.3%) |
+| Narrow patches kept because an island starts there | 3 |
+| Supported surface, projected | 12,376 mm² |
+| Support envelope | 470,685 mm³, 42% of the part |
+| … standing on the plate | 246,716 mm³ (52%) |
+| … standing on the part | 223,970 mm³ (48%), on 5,911 mm² of the part |
+| Melted in the walls | 169,447 mm³, 15% of the part |
+| Exposure added, at the part's energy density | 4.1 h on 27.0 h |
+| Tooth contact on the part | 18.3 m of wall line out of 36.6 m |
+| Support bodies | 149, 142 of 1 mm³ or more |
+| Tallest support | 176 mm |
+| Height over inscribed width | median 16, largest 152 |
+| No straight lateral access | 21,248 mm³ of envelope (4.5%); 3,174 mm² of supported surface (26%) |
+
+- **The body stands on its supports.** It touches the plate on 46 mm² only,
+  and the flange face lies 34 mm above its lowest point: the blue bed under the
+  body is 52% of the envelope.
+- **The other half stands on the part.** Those supports fill pockets and
+  openings of the body and leave a second mark where they land, on
+  5,911 mm².
+- **26% of the supported surface has no straight way out to the side,** in
+  only 4.5% of the envelope: short supports under internal surfaces. The test is
+  crude: two horizontal axes, no oblique line, no tool.
+- **Some supports are tall and thin:** up to 176 mm, and up to 152 times
+  taller than the largest disc that fits in their footprint. Whether such a
+  support survives the recoater is not judged here.
+- **The supports cost 15% more melted volume** and 4.1 hours of exposure.
+- **The build screen does not use this layout yet.** `build_sim.py` can take
+  the envelope in place of its columns; that run is not in the record.
+
+**What this layout does not say.**
+
+- It is not a build file and was not prepared in a build processor.
+- No person has judged whether a support can be removed; the access test is
+  two straight lines.
+- Round holes get a support on their top arc like any other surface,
+  although guides let holes under 8 to 10 mm print bare.
+- One block pattern everywhere: no solid support under a large overhang,
+  no powder escape from the support cells.
+- Every gate of the record is false.
 
 ### SimReady tools: STEP → OpenUSD and NVIDIA validation ([deck plate](params/simready-deck-plate.json), [ports](params/simready-ports.json))
 
@@ -1572,6 +1695,58 @@ hypotheses and the missing valve, not the port, so no solver was run. The
 row reopens with registered sections of the bend and pocket (H04) and the
 valve, seat and guide geometry (H05).
 
+### Prepared work: what the four parts that never ran need ([register](params/prepared-work.json))
+
+Four parts of this twin never ran: port flow, fatigue, valve-train dynamics
+and a drawing. None can run on what the twin holds today. The register says,
+for each, which tool would do it and whether that tool has passed a witness,
+what is held, what is missing, and what a contribution would have to hold
+for the part to reopen. **Nothing in this section is a result.**
+
+| Part | State | Tool | Witness of the tool |
+|---|---|---|---|
+| Port flow | blocked on geometry | OpenFOAM with foamlib ([TOOLCHAIN.md](../../docs/TOOLCHAIN.md)); Gmsh for meshing ([AGENT_TOOL_GUIDE.md](../../docs/AGENT_TOOL_GUIDE.md)) | [openfoam-poiseuille-f25](../../outils/benchmarks/openfoam-poiseuille-f25): exists with its test ([test_openfoam_poiseuille_f25.py](../../tests/test_openfoam_poiseuille_f25.py)); to be rerun on the image used before any port case |
+| Fatigue | blocked on a stress history and on material data | pyLife 2.3 ([TOOLCHAIN.md](../../docs/TOOLCHAIN.md)): rainflow counting, Wöhler curves, Miner damage | [witness_rainflow_miner.py](../../benchmarks/fatigue-postprocessor/witness_rainflow_miner.py): passed on 2026-11-10 ([results-20261110.json](../../benchmarks/fatigue-postprocessor/results-20261110.json)): rainflow against the ASTM E1049 table, Basquin and Miner against a closed form |
+| Valve-train dynamics | blocked on kinematics and on a dynamics tool | none. Chrono is a candidate, not installed: no image, lock or witness ([AGENT_TOOL_GUIDE.md](../../docs/AGENT_TOOL_GUIDE.md)) | [test_m64_valvetrain_v1.py](../../tests/test_m64_valvetrain_v1.py): analytic checks of that model (derivatives, spring rate, harmonic limit, energy); a sensitivity study, no cam data and no bench correlation |
+| Drawing | tool witnessed; too few confirmed features | none ([AGENT_TOOL_GUIDE.md](../../docs/AGENT_TOOL_GUIDE.md): no tool is assigned or witnessed) | [drawing_witness.py](source/drawing_witness.py): passed on 2026-11-13 ([drawing-witness.json](params/drawing-witness.json)): three views of a known solid, extents, a hole and hidden lines read back from DXF; annotations, sections and a title block not checked |
+
+**Port flow:** the flow through each port at stated valve lifts and pressure difference.
+
+- Held: port centrelines and section lofts ([port-fit.json](params/port-fit.json): lofted over 57% and 44% of the centreline; 8% to 23% of the lofted wall is closure, not scan); the admissibility audit and its three gates ([port-cfd-audit.json](params/port-cfd-audit.json): both ports fail all three gates); two valve axes, seats and throats fitted on the scan ([feature-fits.json](params/feature-fits.json): nominal; one throat and one seat confirmed on held-out vertices ([feature-check.json](params/feature-check.json))); the load-case contract ([load-cases-f1.json](../../twins/engine-simulation-contracts/load-cases-f1.json): LC-935-PORT-COLD-FLOW, 9 of 9 inputs empty).
+- Missing: registered sections of the port bend and of the valve pocket (retires H04); valve, seat and guide geometry of this head (retires H05); which port is inlet and which is exhaust (retires H09); valve lifts, pressure difference, air state and wall roughness for the cases; a measured flow number to compare with.
+- A contribution must hold: the specimen: head type, part number or casting marks; the instrument, its resolution and a stated uncertainty; reference marks that tie the sections to the flange face and the valve axis; at least three dimensions that the twin already holds, for a scale check (the flange, the seat, the guide bore); an explicit licence to use and redistribute the files.
+- First steps once the inputs exist: rebuild the port lofts through the new sections and rerun source/audit_port_domain.py: the three gates must pass; rerun the Poiseuille witness on the image used; mesh one port with the valve at one lift, checkMesh first, three mesh levels; report the discharge coefficient with its mesh sensitivity, beside the measured number if one exists.
+- Runnable today: nothing beyond the audit: a solver run on the present domain would measure the closure hypotheses and the missing valve.
+
+**Fatigue:** damage of the head under a stated duty, for a stated alloy and process.
+
+- Held: temperature fields of the head in an assembly, four load cases ([assembly-thermal.json](params/assembly-thermal.json): a hypothesis screen: declared films and conductivities, no engine correlation); residual stress after the build, on voxel cells ([build-sim.json](params/build-sim.json): a screen: the stress sits on the declared yield curve and is not a prediction); published static strengths of the candidate alloys ([alloy-strength.json](params/alloy-strength.json): published values, most not re-read, none a design allowable); one fatigue number for AlSi10Mg ([eos-m290-alsi10mg-30um.json](../../catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json): one point, fully reversed, room temperature, turned coupons, another machine: not a curve and not a part allowable).
+- Missing: a mechanical load case of the head: stud preload, gas pressure on the chamber, seat and guide press fits (retires H03 for the studs); a converged stress field under that load case, cold and hot; an S-N curve for the alloy as printed, in the build direction, at the head's temperature; the duty: how many cycles at which load.
+- A contribution must hold: alloy, powder lot, machine, layer thickness, build orientation and heat treatment of the coupons; surface state (as built or machined), stress ratio, test temperature and run-out definition; the raw points, not only a fitted curve; an explicit licence to use and redistribute the data.
+- First steps once the inputs exist: write the load case beside the assembly thermal case, every value with its source; solve cold assembly and hot firing on the same mesh; mesh sensitivity at the three highest locations; rerun the pyLife witness, then count damage with the stated curve; report the sensitivity to the curve before any life; keep the result a screen: no life is stated for a part without process-specific data (docs/SAFETY.md).
+- Runnable today: the tool witness only.
+
+**Valve-train dynamics:** valve motion, spring margin and seating at stated engine speeds.
+
+- Held: two valve axes, 55.8 degrees apart, a guide bore, seats and spring seats fitted on the scan ([feature-fits.json](params/feature-fits.json): nominal; 4 of 32 features confirmed, the valve of each flange side not identified as inlet or exhaust); the load-case contract for a valve cycle ([load-cases-f1.json](../../twins/engine-simulation-contracts/load-cases-f1.json): LC-993-VALVE-DYNAMIC-CYCLE, written for the 993: 8 of 8 inputs empty); catalogue ranges for 935 valves and aftermarket cam timing cards ([README.md](../../docs/research/935-faithful-replica-20261028/README.md): not measurements of this specimen; aftermarket declarations).
+- Missing: cam lift curve, rocker geometry and ratio (retires H05 in part); spring rate, installed height, coil-bind height; masses of valve, retainer, rocker (retires H05 in part); valve head diameters, stem diameter, seat angle and width of this head (retires H05); a dynamics tool with a witness, if more than one mass is needed.
+- A contribution must hold: the specimen and the parts measured, with part numbers; instrument and uncertainty for each length, mass and spring force; the cam card with its reference lift and lash; an explicit licence to use and redistribute the data.
+- First steps once the inputs exist: write a parameter set for this head in the model's own format, every entry with its status and source; rerun the model's analytic checks, then spring margin and float speed over the stated speed range; check the valve-to-valve and valve-to-plug clearances on the fitted axes at full lift; state the result as a sensitivity study until a bench trace exists.
+- Runnable today: the model's own tests; no run for this head, whose cam, spring and masses are unknown.
+
+**Drawing:** a dimensioned drawing of the head's machined features.
+
+- Held: 4 features confirmed on held-out vertices: valve_y_plus_throat, valve_y_plus_seat, plug_x_plus_seat_face, plug_x_minus_seat_face ([feature-check.json](params/feature-check.json): confirmed against the scan within 0.2 mm, at 1 scan unit = 1 mm by owner instruction; not dimensions of the specimen); 28 features fitted and not confirmed ([feature-fits.json](params/feature-fits.json): 63% to 90% of held-out vertices within 0.2 mm, against the 90% fixed beforehand); analytic B-rep of the deck plate and of two port lofts ([deck-features.json](params/deck-features.json): the v1 parts; the v2 body is a triangle solid with no B-rep to project).
+- Missing: a physical scale: one calibrated length on the specimen (retires the owner's instruction that 1 unit is 1 mm); confirmation of the other features; tolerances, fits and threads (retires H03 for the studs, H05 for seats and guides); a B-rep of the body, if outline views are wanted.
+- A contribution must hold: the specimen and the feature measured, with the datum it was measured from; instrument, resolution and uncertainty; an explicit licence to use and redistribute the values.
+- First steps once the inputs exist: a reference sheet of the confirmed features on the fitted datums, each value marked as fitted on a scan; annotation and title-block checks added to the tool witness before any dimension is drawn; a tool assignment recorded in docs/TOOLCHAIN.md.
+- Runnable today: the tool witness; a sheet of four reference values would be a table, not a drawing.
+
+The project measures nothing itself and pays nobody to measure
+([decision 0019](../../docs/decisions/0019-accept-contributed-measurements.md)). A contribution needs its capture protocol,
+an explicit licence, an identified specimen and a review independent of the
+contributor. No contributor is named here, and none has been asked.
+
 ## Phase ledger
 
 | Phase | Inputs | Output | Check | State |
@@ -1593,7 +1768,7 @@ valve, seat and guide geometry (H05).
 | v2 body | occupancy, datum faces | private closed solid; [summary](params/v2-loft-s025-summary.json) | manifold status, watertight, volume; whole-scan [scorecard](params/scorecard-v2-loft-s025.json) with oracle; three section steps | done: p95 0.157 mm, 97.4% within 0.2 mm; area 14% above T1s; no B-rep |
 | Thermal from CAD | v2 body occupancy at 1.0 mm | private deck and fields; [result](params/thermal-screen-cad.json) | energy balance 0.28%; comparison with T3 at the same pitch | done: mean −0.53 °C, heat −0.36% against T3 |
 | USD and 3MF from CAD | v2 body | private `.usdc` and 3MF; [USD](params/usd-cad-summary.json), [3MF](params/print-cad-summary.json) | 30 OpenUSD validators, NVIDIA validator; streaming round trip | done: 0 OpenUSD findings; NVIDIA 0 failures, 2 warnings (35 flat triangles, co-located points); 3MF exact |
-| Port CFD | port fit, hypotheses | [audit](params/port-cfd-audit.json) | three admissibility gates | closed by audit: no admissible domain, no solver run; reopens with H04 and H05 evidence |
+| Port CFD | port fit, hypotheses | [audit](params/port-cfd-audit.json) | three admissibility gates | closed by audit: no admissible domain, no solver run; reopens with H04 and H05 evidence; [prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register); [prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register) |
 | SimReady tools | v1 deck plate STEP, two port loft STEPs, both stages | private stages; [deck](params/simready-deck-plate.json), [ports](params/simready-ports.json) | NVIDIA validator; independent bounding box and volume against the STEP | done for the three B-rep inputs (pass) and both stages; profile conformance, agents and RTX not attempted; no STEP of the v2 body |
 | AM screen | occupancy | [supports](params/am-supports.json), [cooldown](params/am-cooldown.json) | analytic witnesses within 2.5%; independent VTU reader, energy imbalance 1.5e-4 | done as a screen: six orientations, two cooldown levels; no orientation chosen, no support designed |
 | Feature fit | bare scan, frame, [32 windows](params/feature-rois.json) | [feature-fits.json](params/feature-fits.json); private vertex split | the tool's own `determined` flag and standard deviations; two-centre construction against a guide bore axis (0.42°) | done: 25 determined, 7 detected only; two valve axes, guide bore, seats, plug bores, stud passages |
@@ -1610,8 +1785,9 @@ valve, seat and guide geometry (H05).
 | Print-body orientations | print-body occupancy | [print-body-supports.json](params/print-body-supports.json) | the AM screen's analytic witnesses | done as a screen: flange y− down and side x+ down kept for the build study; no support designed |
 | Print-body layer screen | 0.5 mm and 1.0 mm surfaces of the print body, EP-M300 card | [print-body-layer-screen.json](params/print-body-layer-screen.json); private per-layer tables and charts | hashes of master and surface; the tool's gates; the bounded-memory driver gives the same four files as the plain run on the 1.0 mm surface | done on both surfaces: build along Y, 4,482 layers, fits the envelope, no trapped powder at 1.0 mm; 563 islands on the fine surface, 216 on the smoother one; thin walls measured on the grid ([wall check](params/print-body-wall-check.json)) |
 | Build simulation witness | a block, two lumped layers from a deposition file | [am-build-witness.json](params/am-build-witness.json) | active volume and mean temperature against a closed form, on the solver's mesh and on an imported one | passed on both; the head's build runs in CalculiX instead (next row) |
-| Build screen | print-body occupancy, [declared case](params/build-sim-case.json) | [build-sim.json](params/build-sim.json); private decks, fields and two [pictures](media/build-sim-result.png) | three closed-form [witnesses](params/build-sim-witness.json); energy balance within 0.4%; 4 levels for temperature, 5 mechanical runs | done as a screen: 43.4 h, largest rise 60 to 64 K above the plate; distortion after release 0.24 to 0.31 mm median, 1.62 to 2.16 mm largest on 3 and 4 mm cells, not converged in lump height or cell size; stress at the declared yield curve; every gate false |
-| Fatigue, valve-train dynamics, drawing | none | none | — | not run: no stress history or S-N data, no installed dynamics tool, no confirmed features to dimension |
+| Build screen | print-body occupancy, [declared case](params/build-sim-case.json) | [build-sim.json](params/build-sim.json); private decks, fields and two [pictures](media/build-sim-result.png) | three closed-form [witnesses](params/build-sim-witness.json); energy balance within 0.4%; 4 levels for temperature and 2 laser cases, 5 mechanical runs | done as a screen: 43.4 h, largest rise 60 to 64 K above the plate (98 and 138 K with two and four lasers); distortion after release 0.24 to 0.31 mm median, 1.62 to 2.16 mm largest on 3 and 4 mm cells, not converged in lump height or cell size; stress at the declared yield curve; every gate false |
+| Support layout | print-body occupancy, [declared rules](params/support-design-case.json) | [support-design.json](params/support-design.json); private envelope and a [picture](media/support-layout.png) | four shapes with hand-computed answers ([witnesses](params/support-design-witness.json)); the totals before exemption equal the orientation screen's | done as a layout by rule: 470,700 mm³ of envelope, 15% of the part melted in walls, 48% standing on the part, 26% of the supported surface without straight lateral access; no build processor, removal not judged |
+| Fatigue, valve-train dynamics, drawing | none | [prepared-work.json](params/prepared-work.json); [drawing-tool witness](params/drawing-witness.json) | every path of the register exists; the drawing tool reads back three views of a known solid | not run: no stress history or S-N data, no cam, spring or masses, 4 of 32 features confirmed. [Prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register): tool, witness, held and missing inputs for each |
 
 ## Limits
 
@@ -1636,8 +1812,14 @@ valve, seat and guide geometry (H05).
   layers, on voxel cells of 2 to 4 mm (3 and 4 mm for the mechanics) with
   homogenised support columns. Its temperatures are time averages, its
   stresses sit on a declared yield curve, and its distortion moves with the
-  lump height and the cell size and is not a compensation field. No process value comes from
-  the machine's maker and nothing was printed.
+  lump height and the cell size and is not a compensation field. The two
+  laser cases are thermal only. No process value comes from the machine's
+  maker and nothing was printed.
+- The support layout follows declared rules on the 0.25 mm grid. Its teeth
+  and its slenderness have no aluminium source, its access test is two
+  straight lines, and no build processor or person has prepared or judged it.
+- The prepared work is a register of what is missing. It holds no result, and
+  it names no contributor.
 - No port-flow result exists. The audit found no admissible fluid domain.
 - The alloy rankings are screens on room-temperature conductivities and
   declared boundaries. The assembly screen's valves, guides and plugs are

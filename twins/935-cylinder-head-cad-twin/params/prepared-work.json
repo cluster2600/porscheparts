@@ -1,0 +1,283 @@
+{
+ "schema": "935-cad-twin-prepared-work/1",
+ "date": "2026-11-13",
+ "scope": "what each part of the twin that never ran needs before it can run: the tool and its witness, the inputs held and missing, what a contribution would have to hold, and the first steps once the inputs exist. A preparation: nothing here is a result",
+ "rules": {
+  "contributed_measurements": "docs/decisions/0019-accept-contributed-measurements.md",
+  "what_a_ct_request_must_require": "docs/MEASUREMENT_CAMPAIGN.md",
+  "safety": "docs/SAFETY.md",
+  "note": "the project measures nothing itself and pays nobody to measure; a contribution needs its capture protocol with instrument and uncertainty, an explicit licence grant, an identified specimen and a review independent of the contributor; no contributor is named here"
+ },
+ "parts": [
+  {
+   "id": "port-flow",
+   "ledger_row": "Port CFD",
+   "state": "blocked on geometry",
+   "question": "the flow through each port at stated valve lifts and pressure difference",
+   "tool": {
+    "assigned": "OpenFOAM with foamlib (docs/TOOLCHAIN.md); Gmsh for meshing (docs/AGENT_TOOL_GUIDE.md)",
+    "on_this_host": "OpenFOAM 13 in the cadsim image (3dprinting993-cadsim:dev)",
+    "witness": "outils/benchmarks/openfoam-poiseuille-f25",
+    "witness_state": "exists with its test (tests/test_openfoam_poiseuille_f25.py); to be rerun on the image used before any port case"
+   },
+   "held": [
+    {
+     "what": "port centrelines and section lofts",
+     "where": "twins/935-cylinder-head-cad-twin/params/port-fit.json",
+     "standing": "lofted over 57% and 44% of the centreline; 8% to 23% of the lofted wall is closure, not scan"
+    },
+    {
+     "what": "the admissibility audit and its three gates",
+     "where": "twins/935-cylinder-head-cad-twin/params/port-cfd-audit.json",
+     "standing": "both ports fail all three gates"
+    },
+    {
+     "what": "two valve axes, seats and throats fitted on the scan",
+     "where": "twins/935-cylinder-head-cad-twin/params/feature-fits.json",
+     "standing": "nominal; one throat and one seat confirmed on held-out vertices (twins/935-cylinder-head-cad-twin/params/feature-check.json)"
+    },
+    {
+     "what": "the load-case contract",
+     "where": "twins/engine-simulation-contracts/load-cases-f1.json",
+     "standing": "LC-935-PORT-COLD-FLOW, 9 of 9 inputs empty"
+    }
+   ],
+   "missing": [
+    {
+     "what": "registered sections of the port bend and of the valve pocket",
+     "retires": "H04",
+     "could_arrive_as": "port moulds, a CT volume, or a borescope survey with sections registered to the flange face"
+    },
+    {
+     "what": "valve, seat and guide geometry of this head",
+     "retires": "H05",
+     "could_arrive_as": "the supplier's valve-train specification"
+    },
+    {
+     "what": "which port is inlet and which is exhaust",
+     "retires": "H09",
+     "could_arrive_as": "the same specification, or a marked photograph of the specimen"
+    },
+    {
+     "what": "valve lifts, pressure difference, air state and wall roughness for the cases",
+     "retires": null,
+     "could_arrive_as": "a flow-bench protocol; a declared set makes a screen, not a comparison"
+    },
+    {
+     "what": "a measured flow number to compare with",
+     "retires": null,
+     "could_arrive_as": "a flow-bench sheet of this head type; none is held"
+    }
+   ],
+   "a_contribution_must_hold": [
+    "the specimen: head type, part number or casting marks",
+    "the instrument, its resolution and a stated uncertainty",
+    "reference marks that tie the sections to the flange face and the valve axis",
+    "at least three dimensions that the twin already holds, for a scale check (the flange, the seat, the guide bore)",
+    "an explicit licence to use and redistribute the files"
+   ],
+   "first_steps_once_unblocked": [
+    "rebuild the port lofts through the new sections and rerun source/audit_port_domain.py: the three gates must pass",
+    "rerun the Poiseuille witness on the image used",
+    "mesh one port with the valve at one lift, checkMesh first, three mesh levels",
+    "report the discharge coefficient with its mesh sensitivity, beside the measured number if one exists"
+   ],
+   "runnable_today": "nothing beyond the audit: a solver run on the present domain would measure the closure hypotheses and the missing valve"
+  },
+  {
+   "id": "fatigue",
+   "ledger_row": "Fatigue, valve-train dynamics, drawing",
+   "state": "blocked on a stress history and on material data",
+   "question": "damage of the head under a stated duty, for a stated alloy and process",
+   "tool": {
+    "assigned": "pyLife 2.3 (docs/TOOLCHAIN.md): rainflow counting, Wöhler curves, Miner damage",
+    "on_this_host": "pylife 2.3.1 in work/fatigue-venv of the main checkout, built from the hash lock",
+    "witness": "benchmarks/fatigue-postprocessor/witness_rainflow_miner.py",
+    "witness_state": "passed on 2026-11-10 (benchmarks/fatigue-postprocessor/results-20261110.json): rainflow against the ASTM E1049 table, Basquin and Miner against a closed form"
+   },
+   "held": [
+    {
+     "what": "temperature fields of the head in an assembly, four load cases",
+     "where": "twins/935-cylinder-head-cad-twin/params/assembly-thermal.json",
+     "standing": "a hypothesis screen: declared films and conductivities, no engine correlation"
+    },
+    {
+     "what": "residual stress after the build, on voxel cells",
+     "where": "twins/935-cylinder-head-cad-twin/params/build-sim.json",
+     "standing": "a screen: the stress sits on the declared yield curve and is not a prediction"
+    },
+    {
+     "what": "published static strengths of the candidate alloys",
+     "where": "twins/935-cylinder-head-cad-twin/params/alloy-strength.json",
+     "standing": "published values, most not re-read, none a design allowable"
+    },
+    {
+     "what": "one fatigue number for AlSi10Mg",
+     "where": "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json",
+     "standing": "one point, fully reversed, room temperature, turned coupons, another machine: not a curve and not a part allowable"
+    }
+   ],
+   "missing": [
+    {
+     "what": "a mechanical load case of the head: stud preload, gas pressure on the chamber, seat and guide press fits",
+     "retires": "H03 for the studs",
+     "could_arrive_as": "the stud specification and tightening procedure; peak cylinder pressure of a stated engine"
+    },
+    {
+     "what": "a converged stress field under that load case, cold and hot",
+     "retires": null,
+     "could_arrive_as": "a CalculiX run on the assembly mesh with the thermal fields above, once the loads are stated"
+    },
+    {
+     "what": "an S-N curve for the alloy as printed, in the build direction, at the head's temperature",
+     "retires": null,
+     "could_arrive_as": "a published curve read in its source, or coupon tests by a contributor; the repository admits no fatigue data today (docs/AGENT_TOOL_GUIDE.md)"
+    },
+    {
+     "what": "the duty: how many cycles at which load",
+     "retires": null,
+     "could_arrive_as": "a declared duty makes a screen"
+    }
+   ],
+   "a_contribution_must_hold": [
+    "alloy, powder lot, machine, layer thickness, build orientation and heat treatment of the coupons",
+    "surface state (as built or machined), stress ratio, test temperature and run-out definition",
+    "the raw points, not only a fitted curve",
+    "an explicit licence to use and redistribute the data"
+   ],
+   "first_steps_once_unblocked": [
+    "write the load case beside the assembly thermal case, every value with its source",
+    "solve cold assembly and hot firing on the same mesh; mesh sensitivity at the three highest locations",
+    "rerun the pyLife witness, then count damage with the stated curve; report the sensitivity to the curve before any life",
+    "keep the result a screen: no life is stated for a part without process-specific data (docs/SAFETY.md)"
+   ],
+   "runnable_today": "the tool witness only"
+  },
+  {
+   "id": "valve-train",
+   "ledger_row": "Fatigue, valve-train dynamics, drawing",
+   "state": "blocked on kinematics and on a dynamics tool",
+   "question": "valve motion, spring margin and seating at stated engine speeds",
+   "tool": {
+    "assigned": "none. Chrono is a candidate, not installed: no image, lock or witness (docs/AGENT_TOOL_GUIDE.md)",
+    "on_this_host": "a one-mass model with a cam law, spring margin and seat contact exists for the M64 head (twins/m64-cylinder-head/source/valvetrain/valvetrain.py)",
+    "witness": "tests/test_m64_valvetrain_v1.py",
+    "witness_state": "analytic checks of that model (derivatives, spring rate, harmonic limit, energy); a sensitivity study, no cam data and no bench correlation"
+   },
+   "held": [
+    {
+     "what": "two valve axes, 55.8 degrees apart, a guide bore, seats and spring seats fitted on the scan",
+     "where": "twins/935-cylinder-head-cad-twin/params/feature-fits.json",
+     "standing": "nominal; 4 of 32 features confirmed, the valve of each flange side not identified as inlet or exhaust"
+    },
+    {
+     "what": "the load-case contract for a valve cycle",
+     "where": "twins/engine-simulation-contracts/load-cases-f1.json",
+     "standing": "LC-993-VALVE-DYNAMIC-CYCLE, written for the 993: 8 of 8 inputs empty"
+    },
+    {
+     "what": "catalogue ranges for 935 valves and aftermarket cam timing cards",
+     "where": "docs/research/935-faithful-replica-20261028/README.md",
+     "standing": "not measurements of this specimen; aftermarket declarations"
+    }
+   ],
+   "missing": [
+    {
+     "what": "cam lift curve, rocker geometry and ratio",
+     "retires": "H05 in part",
+     "could_arrive_as": "the supplier's valve-train specification or a measured cam card"
+    },
+    {
+     "what": "spring rate, installed height, coil-bind height; masses of valve, retainer, rocker",
+     "retires": "H05 in part",
+     "could_arrive_as": "the same specification, or weighed and measured parts by a contributor"
+    },
+    {
+     "what": "valve head diameters, stem diameter, seat angle and width of this head",
+     "retires": "H05",
+     "could_arrive_as": "the same specification"
+    },
+    {
+     "what": "a dynamics tool with a witness, if more than one mass is needed",
+     "retires": null,
+     "could_arrive_as": "a repository decision; the one-mass model above answers spring margin and float speed without it"
+    }
+   ],
+   "a_contribution_must_hold": [
+    "the specimen and the parts measured, with part numbers",
+    "instrument and uncertainty for each length, mass and spring force",
+    "the cam card with its reference lift and lash",
+    "an explicit licence to use and redistribute the data"
+   ],
+   "first_steps_once_unblocked": [
+    "write a parameter set for this head in the model's own format, every entry with its status and source",
+    "rerun the model's analytic checks, then spring margin and float speed over the stated speed range",
+    "check the valve-to-valve and valve-to-plug clearances on the fitted axes at full lift",
+    "state the result as a sensitivity study until a bench trace exists"
+   ],
+   "runnable_today": "the model's own tests; no run for this head, whose cam, spring and masses are unknown"
+  },
+  {
+   "id": "drawing",
+   "ledger_row": "Fatigue, valve-train dynamics, drawing",
+   "state": "tool witnessed; too few confirmed features",
+   "question": "a dimensioned drawing of the head's machined features",
+   "tool": {
+    "assigned": "none (docs/AGENT_TOOL_GUIDE.md: no tool is assigned or witnessed)",
+    "on_this_host": "build123d 0.13.0 and ezdxf 1.4.5 in the twin's environment",
+    "witness": "twins/935-cylinder-head-cad-twin/source/drawing_witness.py",
+    "witness_state": "passed on 2026-11-13 (twins/935-cylinder-head-cad-twin/params/drawing-witness.json): three views of a known solid, extents, a hole and hidden lines read back from DXF; annotations, sections and a title block not checked"
+   },
+   "held": [
+    {
+     "what": "4 features confirmed on held-out vertices: valve_y_plus_throat, valve_y_plus_seat, plug_x_plus_seat_face, plug_x_minus_seat_face",
+     "where": "twins/935-cylinder-head-cad-twin/params/feature-check.json",
+     "standing": "confirmed against the scan within 0.2 mm, at 1 scan unit = 1 mm by owner instruction; not dimensions of the specimen"
+    },
+    {
+     "what": "28 features fitted and not confirmed",
+     "where": "twins/935-cylinder-head-cad-twin/params/feature-fits.json",
+     "standing": "63% to 90% of held-out vertices within 0.2 mm, against the 90% fixed beforehand"
+    },
+    {
+     "what": "analytic B-rep of the deck plate and of two port lofts",
+     "where": "twins/935-cylinder-head-cad-twin/params/deck-features.json",
+     "standing": "the v1 parts; the v2 body is a triangle solid with no B-rep to project"
+    }
+   ],
+   "missing": [
+    {
+     "what": "a physical scale: one calibrated length on the specimen",
+     "retires": "the owner's instruction that 1 unit is 1 mm",
+     "could_arrive_as": "one caliper or gauge measurement of a named feature by a contributor"
+    },
+    {
+     "what": "confirmation of the other features",
+     "retires": null,
+     "could_arrive_as": "a denser or cleaner scan of the bores, or gauge measurements of bores and seats"
+    },
+    {
+     "what": "tolerances, fits and threads",
+     "retires": "H03 for the studs, H05 for seats and guides",
+     "could_arrive_as": "the supplier's drawing or specification; none can be read from a scan"
+    },
+    {
+     "what": "a B-rep of the body, if outline views are wanted",
+     "retires": null,
+     "could_arrive_as": "the T2 path of this twin, a measured negative result so far"
+    }
+   ],
+   "a_contribution_must_hold": [
+    "the specimen and the feature measured, with the datum it was measured from",
+    "instrument, resolution and uncertainty",
+    "an explicit licence to use and redistribute the values"
+   ],
+   "first_steps_once_unblocked": [
+    "a reference sheet of the confirmed features on the fitted datums, each value marked as fitted on a scan",
+    "annotation and title-block checks added to the tool witness before any dimension is drawn",
+    "a tool assignment recorded in docs/TOOLCHAIN.md"
+   ],
+   "runnable_today": "the tool witness; a sheet of four reference values would be a table, not a drawing"
+  }
+ ]
+}

@@ -1,0 +1,79 @@
+{
+ "schema": "935-cad-twin-support-design/1",
+ "date": "2026-11-13",
+ "scope": "support layout of the print body by declared rules, on the 0.25 mm occupancy grid, flange y+ on the plate. Geometry only: no build file, no build processor, no judgement of removal by a person",
+ "case_file": "params/support-design-case.json",
+ "case_sha256": "57fd71e49dd19c9920d26d6df1589904ebbdd6120b89c9965195081ef43fa3c5",
+ "occupancy_sha256": "5faadb782b822f1a974ab562b53a2f88bdbfce08fe2324fdc66c6ade55c006a7",
+ "grid_pitch_mm": 0.25,
+ "dropped_solid_components": 39,
+ "check_against_the_orientation_screen": {
+  "orientation_screen_file": "params/print-body-supports.json",
+  "orientation": "flange_y_plus_down",
+  "relative_difference": {
+   "overhang_projected_area_mm2": 3e-06,
+   "overhang_area_mm2": 1e-06,
+   "air_column_volume_mm3": -0.0
+  },
+  "agrees_within_0p1_percent": true
+ },
+ "plate_contact_area_mm2": 46.25,
+ "before_exemption": {
+  "overhang_projected_area_mm2": 12538.4375,
+  "overhang_area_mm2": 14104.31093782586,
+  "air_column_volume_mm3": 476688.890625
+ },
+ "exemption": {
+  "rule_width_mm": 1.0,
+  "patches": 380,
+  "patches_left_bare": 226,
+  "narrow_patches_kept_as_island_starts": 3,
+  "projected_area_left_bare_mm2": 162.5625
+ },
+ "supported": {
+  "projected_area_mm2": 12375.875,
+  "surface_area_mm2": 13905.188448338584,
+  "envelope_volume_mm3": 470685.3125,
+  "envelope_landing_on_plate_mm3": 246715.65625,
+  "envelope_landing_on_part_mm3": 223969.65625,
+  "landing_area_on_part_mm2": 5911.25,
+  "largest_height_mm": 175.25
+ },
+ "block_support": {
+  "melted_share_of_the_envelope": 0.36,
+  "melted_volume_mm3": 169446.7125,
+  "wall_line_on_the_part_mm": 36574.25,
+  "tooth_contact_line_on_the_part_mm": 18287.125
+ },
+ "bodies": {
+  "count": 149,
+  "of_1_mm3_or_more": 142,
+  "largest_volume_mm3": 101096.1875,
+  "tallest_mm": 176.25,
+  "height_over_inscribed_width": {
+   "median": 16.1,
+   "largest": 152.5
+  }
+ },
+ "lateral_access": {
+  "rule": "hidden: the part stands between the voxel and the outside along both horizontal grid axes, in both senses; oblique and vertical access are not tested",
+  "hidden_envelope_volume_mm3": 21248.25,
+  "hidden_share_of_the_envelope": 0.04514321869773661,
+  "hidden_supported_projected_area_mm2": 3173.625,
+  "hidden_share_of_the_supported_area": 0.2564364135869181
+ },
+ "against_the_part": {
+  "part_volume_mm3": 1109067.0,
+  "envelope_over_part_volume": 0.4243975454142987,
+  "melted_support_over_part_volume": 0.1527831163491475,
+  "added_exposure_h": 4.128582598214285,
+  "part_exposure_h": 27.022505476190474
+ },
+ "gates": {
+  "layout_prepared_in_a_build_processor": false,
+  "removal_judged_by_a_person": false,
+  "support_parameters_from_the_machine_maker": false,
+  "metal_print_authorized": false
+ },
+ "seconds": 20.6
+}

@@ -1,0 +1,171 @@
+{
+ "schema": "935-cad-twin-support-design-case/1",
+ "date": "2026-11-13",
+ "rule": "Every rule value is declared for a layout study, with the publication it leans on and how that publication was read. The reading was done by an automated research pass on 2026-11-13; no person has re-read the passages. 'read' means the document itself was opened and the passage read in it; 'read by an automated reader' means the page was opened and the passage was extracted by a summarising tool; 'abstract only' and 'quoted by another' say so. No value comes from the maker of the machine or from a build processor.",
+ "build": {
+  "direction": "-y",
+  "orientation_in_the_screen": "flange_y_plus_down",
+  "why": "the build of the layer screen and of the build screen (params/build-sim-case.json)"
+ },
+ "rules": {
+  "critical_angle_from_plate_deg": 45.0,
+  "self_supporting_width_mm": 1.0,
+  "slenderness_limit": null,
+  "block_support": {
+   "hatch_mm": 1.0,
+   "wall_thickness_mm": 0.2,
+   "tooth_contact_share_of_the_wall_line": 0.5
+  }
+ },
+ "sources": {
+  "critical_angle_from_plate_deg": {
+   "value": "45 degrees from the plate",
+   "basis": [
+    {
+     "source": "Materialise, Design Guidelines for Aluminum (AlSi10Mg), https://www.materialise.com/en/academy/industrial/design-am/aluminum",
+     "says": "walls or overhangs below 45 degrees from the build platform typically need to be supported",
+     "how_read": "read by an automated reader",
+     "short": "Materialise aluminium guideline"
+    },
+    {
+     "source": "Saunders, Design for metal AM - a beginner's guide, Renishaw, 2017",
+     "says": "overhangs of less than 45 degrees to the build plate require support (metals in general)",
+     "how_read": "read",
+     "short": "Renishaw guide 2017"
+    },
+    {
+     "source": "Protolabs, Designing for Metal 3D Printing, 2019",
+     "says": "self-supported features no less than 45 degrees from the build plate (metals in general)",
+     "how_read": "read",
+     "short": "Protolabs guide 2019"
+    }
+   ],
+   "not_used": [
+    {
+     "source": "El Hassanin and Squillace, Metals 12 (2022) 2083, doi:10.3390/met12122083",
+     "says": "AlSi10Mg walls print down to 30 degrees, with the roughest down-skin; 15 and 0 degrees fail",
+     "how_read": "read",
+     "why_not": "45 degrees is the more cautious rule and the one of the orientation screen",
+     "short": "El Hassanin and Squillace 2022"
+    },
+    {
+     "source": "Quickparts (3D Systems), Direct Metal Printing Design Guide, 2019, p. 20 and p. 14",
+     "says": "aluminium: 35 to 50 degrees by surface size on p. 20, 50 to 55 degrees on p. 14",
+     "how_read": "read",
+     "why_not": "the two pages disagree",
+     "short": "Quickparts guide 2019"
+    }
+   ]
+  },
+  "self_supporting_width_mm": {
+   "value": "an attached overhang up to 1.0 mm wide is left bare",
+   "basis": [
+    {
+     "source": "Saunders, Design for metal AM - a beginner's guide, Renishaw, 2017",
+     "says": "a horizontal overhang of 0.3 to 1 mm can self-support, though not recommended; more than 1 mm needs redesign or support",
+     "how_read": "read",
+     "short": "Renishaw guide 2017"
+    }
+   ],
+   "not_used": [
+    {
+     "source": "Lin et al., Applied Sciences 13 (2023) 3460, doi:10.3390/app13063460",
+     "says": "AlSi10Mg cantilevers under 3.0 mm formed, with dross under all of them; 4.5 mm and more were stopped",
+     "how_read": "read",
+     "why_not": "formed is not to size; 1 mm is the cautious value",
+     "short": "Lin et al. 2023"
+    },
+    {
+     "source": "Quickparts guide, 2019, p. 20",
+     "says": "bridges under 1.2 mm supportless, flanges under 0.75 mm",
+     "how_read": "read",
+     "why_not": "the pictograms and labels of that page look swapped",
+     "short": "Quickparts guide 2019"
+    }
+   ],
+   "note": "the screen takes the surface normal from a 0.5 mm Gaussian of the 0.25 mm grid and does not see a ledge much narrower than 1 mm as an overhang at all; the rule matters between that and 1.0 mm"
+  },
+  "slenderness_limit": {
+   "value": "none: the height over inscribed width of each support body is reported, not judged",
+   "basis": [],
+   "note": "no published limit for a block support was found"
+  },
+  "block_support": {
+   "hatch_mm": {
+    "value": "1.0 mm between walls, both ways",
+    "basis": [
+     {
+      "source": "Piscopo, Atzeni, Salmi, J. Mater. Eng. Perform. 33 (2024) 3978, doi:10.1007/s11665-023-09108-5",
+      "says": "AlSi10Mg block supports in Magics: hatching 0.68 x 1 mm, and 1 x 1 mm on a solid base; supports 5 mm high",
+      "how_read": "read by an automated reader",
+      "short": "Piscopo et al. 2024"
+     },
+     {
+      "source": "Yue et al., Results in Physics 44 (2022) 106204, doi:10.1016/j.rinp.2022.106204",
+      "says": "least porosity above AlSi10Mg block supports at 1.0 mm distance and 0.15 mm thickness",
+      "how_read": "abstract only",
+      "short": "Yue et al. 2022"
+     }
+    ]
+   },
+   "wall_thickness_mm": {
+    "value": "0.2 mm: one scan track",
+    "basis": [
+     {
+      "source": "Klanjscek and Kalin, J. Manuf. Mater. Process. 9 (2025) 200, doi:10.3390/jmmp9060200",
+      "says": "AlSi10Mg melt pools about 150 to 200 um wide on an EOS M290",
+      "how_read": "read",
+      "short": "Klanjšček and Kalin 2025"
+     },
+     {
+      "source": "Van Cauwenbergh et al., Scientific Reports 11 (2021) 6423, doi:10.1038/s41598-021-85047-2",
+      "says": "AlSi10Mg melt pool width 189 +/- 15 um; power and speed not given",
+      "how_read": "read by an automated reader",
+      "short": "Van Cauwenbergh et al. 2021"
+     },
+     {
+      "source": "Charan et al., EasyChair Preprint 10023 (2023), Fig. 6",
+      "says": "about 230 um at 350 W and 1100 mm/s, about 215 um at 1300 mm/s, read off a graph",
+      "how_read": "read; a preprint, not peer reviewed",
+      "short": "Charan et al. 2023 (preprint)"
+     }
+    ]
+   },
+   "tooth_contact_share_of_the_wall_line": {
+    "value": "0.5: half of each wall's top line touches the part",
+    "basis": [
+     {
+      "source": "Poyraz et al., Solid Freeform Fabrication Symposium 2015, IN625 in Magics",
+      "says": "tooth top length = hatch / 2, base length = hatch",
+      "how_read": "read",
+      "short": "Poyraz et al. 2015 (IN625)"
+     },
+     {
+      "source": "Li et al., Materials 19 (2026) 1480, doi:10.3390/ma19081480, IN625",
+      "says": "best teeth: top length 0.7 mm, base length 1.0 mm, base spacing 0.3 mm (0.54 of the line)",
+      "how_read": "read",
+      "short": "Li et al. 2026 (IN625)"
+     }
+    ],
+    "note": "no source for aluminium was found: both are nickel alloy studies"
+   }
+  }
+ },
+ "could_not_open": [
+  "Calignano, Materials and Design 64 (2014) 203, the usual reference for aluminium supports: closed access",
+  "Han et al., Materials and Design 160 (2018) 1080: abstract only",
+  "ISO/ASTM 52911-1 and any design guide of EOS or Eplus3D: not opened",
+  "default support values of Materialise Magics or Autodesk Netfabb: no source found"
+ ],
+ "not_applied": [
+  "horizontal round holes: guides let holes under 8 to 10 mm print without support (Renishaw 2017, Protolabs 2019, read); here the top arc of every hole is supported like any other surface",
+  "solid or denser supports under large overhangs for heat (Quickparts guide, read): one block pattern everywhere",
+  "an access gap for removal tools: no published value found; only straight lateral lines of sight are tested",
+  "powder escape from the support cells"
+ ],
+ "process_for_the_time_estimate": {
+  "volumetric_energy_density_J_mm3": 30.7,
+  "laser_power_W": 350.0,
+  "note": "the declared values of params/build-sim-case.json; the supports are assumed to melt at the energy density of the part"
+ }
+}
