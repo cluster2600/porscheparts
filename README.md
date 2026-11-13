@@ -19,6 +19,19 @@ It is withdrawn as the current reconstruction baseline.
 
 <sub><i>A layer-by-layer preview of how the 993 cooling-fan impeller would build up in a metal (LPBF) printer, with guessed support regions. It shows geometry only: it models no process physics, and it is neither a build file nor a release to print.</i></sub>
 
+**935 cylinder head: a metal print build, simulated lump by lump**
+
+<table>
+<tr>
+<td align="center" valign="middle"><a href="twins/935-cylinder-head-cad-twin/README.md#build-screen-the-print-body-grown-lump-by-lump-in-calculix-case-witnesses-record"><img src="twins/935-cylinder-head-cad-twin/media/build-sim.gif" alt="A study body derived from a scanned 935 cylinder head growing on its build plate in 28 steps, coloured by how far its time-averaged temperature sits above the plate; grey columns stand in for supports" width="270"></a></td>
+<td align="center" valign="middle"><a href="twins/935-cylinder-head-cad-twin/README.md#build-screen-the-print-body-grown-lump-by-lump-in-calculix-case-witnesses-record"><img src="twins/935-cylinder-head-cad-twin/media/build-sim-result.png" alt="Left, the finished body on its plate, coloured by the stress left in it at room temperature. Right, the body after release from the plate, its distortion exaggerated twenty times" width="520"></a></td>
+</tr>
+</table>
+
+<sub><i>A computer simulation of a study body, derived from a scanned 935 cylinder head, growing in a metal (LPBF) printer. The animation shows how warm each region runs above its 100 °C plate while the part grows; the grey columns stand in for supports. The still shows the stress left in the part, and its shape once cut from the plate, exaggerated twenty times. With process settings taken from published papers or declared as assumptions, the build takes 43 hours, the hottest region of the part runs 60 to 64 °C above the plate as a time average, and the worst corner ends 1.6 to 2.2 mm out of shape. That last figure still moves with the resolution of the model: it is an order of magnitude, not a prediction. No setting comes from the machine's maker, no support is designed and nothing was printed.</i></sub>
+
+[How the build screen works, and what it does not say](twins/935-cylinder-head-cad-twin/README.md#build-screen-the-print-body-grown-lump-by-lump-in-calculix-case-witnesses-record) · [The CAD twin of the scanned head](twins/935-cylinder-head-cad-twin/README.md)
+
 # porscheparts
 
 **Studying and redesigning parts of the Porsche 911 (964 and 993 generations) on a computer,
@@ -98,9 +111,9 @@ For readers assessing the work, this is what the repository shows in practice:
 
 - **Computational design.** Parts are described as code and parameters, not
   drawn by hand, so a design change can be regenerated and compared.
-- **Engineering simulation.** Structural and airflow studies with open-source
-  solvers (CalculiX, OpenFOAM), including mesh checks and comparisons against
-  published reference cases.
+- **Engineering simulation.** Structural, airflow and print-build studies with
+  open-source solvers (CalculiX, OpenFOAM), including mesh checks and
+  comparisons against published reference cases.
 - **Evidence and data governance.** Every source carries its provenance and
   usage rights. Key files are fingerprinted (SHA-256 digests) so that results
   cannot be changed silently. Withdrawn claims stay on record.
@@ -246,6 +259,7 @@ links to the original part.
 | how to contribute a part or a source | [CONTRIBUTING.md](docs/CONTRIBUTING.md) |
 | the carbon monocoque programme | [docs/MONOCOQUE_964_993_PROGRAMME.md](docs/MONOCOQUE_964_993_PROGRAMME.md) |
 | the engine cooling fan programme | [twins/993-engine-cooling-fan-system-f0/README.md](twins/993-engine-cooling-fan-system-f0/README.md) |
+| the 935 cylinder-head CAD twin and its simulated print build | [twins/935-cylinder-head-cad-twin/README.md](twins/935-cylinder-head-cad-twin/README.md) |
 | the horizontal 935 rotor correction and mesh status | [25 October continuation](docs/research/935-horizontal-cooling/ROOT_MESH_RESUME_20261025.md) |
 | the corrected 935 rotor analysis surface and new fluid input | [bounded analysis checkpoint](docs/research/935-horizontal-cooling/CORRECTED_ANALYSIS_20261025.md) |
 | the original-export-bounded 935 assembly and rotor sweep | [assembly checkpoint](docs/research/935-horizontal-cooling/ORIGINAL_BOUND_ASSEMBLY_20261028.md) |

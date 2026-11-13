@@ -168,6 +168,20 @@ neighbouring study's README for more before starting.
 - Validate a new element type on a benchmark with a known answer before the
   real study. A value that "converges from above" while still falling is a
   locking warning, not a result.
+- **A node of elements not yet activated does not keep its initial
+  temperature.** With `*MODEL CHANGE`, such a node holds 0 until a
+  `*TEMPERATURE` card names it, then the value last prescribed. A strain-free
+  birth takes that value as its reference: with nothing prescribed, a bar born
+  "at 800 K" came out in compression when it cooled (935 head build screen,
+  2026-11-12, ccx 2.21). Prescribe the new nodes' temperature in the birth
+  step, change temperatures only in the step after it, and hold the deck to a
+  bar with a closed-form answer
+  ([build_sim.py](../twins/935-cylinder-head-cad-twin/source/build_sim.py)).
+- **`ADD=STRAIN FREE` is refused in a linear calculation.** Give an elastic
+  witness a yield stress it never reaches.
+- **One output frequency per step.** A `*NODE PRINT,FREQUENCY=1` for a heat
+  flow also writes the `*NODE FILE` field at every increment, whatever its own
+  frequency says. Select the end-of-step blocks by time when reading.
 
 ### Stress peaks and mesh studies
 
@@ -260,6 +274,11 @@ neighbouring study's README for more before starting.
 
 ### Adamantine material deposition
 
+The build in `rombur/adamantine:1.1` integrates explicitly only (forward
+Euler, RK3, RK4). On 4 mm cells of aluminium the stable step is about 0.02 s,
+so a build of 40 hours is out of reach; the 935 head's build screen runs in
+CalculiX for that reason.
+
 All four were measured on 2026-11-11 with `rombur/adamantine:1.1`, on the
 [deposition witness](../twins/935-cylinder-head-cad-twin/source/am_build.py)
 of the 935 head twin.
@@ -344,8 +363,25 @@ All measured on the 935 head twin on 2026-11-10.
 - A heavy job that outgrows memory can take WSL down. Cap it; exit 137 is the
   cap, not a verdict. Keep the sum of concurrent caps below about 12 GB on the
   15 GB host, and write results after each case, not at the end.
-- The LPBF slicer keeps every layer in memory. Tall parts exceed 6 GB, so run
-  one part at a time and rerun only killed parts at 10 GB.
+- The LPBF layer screen keeps every layer in memory, so run one part at a
+  time and rerun only killed parts at 10 GB. On a fine surface the slicing is
+  not what kills it: on the 935 print body (1.68 million triangles) the
+  slicing ended at 4 GiB and the wall-thickness probe then passed 20 GiB,
+  because trimesh grows all its spheres at once. Find the stage before adding
+  memory; `layer_screen.py` of the 935 twin runs the same tool in 3.4 GiB and
+  reports each stage.
+- **A sphere-growing thickness probe measures the roughness of a rough
+  surface.** On the 0.5 mm marching-cubes surface of that body 25% of the
+  probes read below 1.5 mm; on the 1.0 mm surface 7%; an opening of the
+  0.25 mm occupancy grid gives 8.7%. Check a thin-wall share on the grid.
+- **An off-screen render can take WSL down too.** With `GALLIUM_DRIVER=d3d12`
+  in the environment (the PicoGK setting) a pyvista render faulted in the WSL
+  GPU driver and the VM stopped, twice on 2026-11-12, with solvers in flight.
+  Render with `GALLIUM_DRIVER=llvmpipe LIBGL_ALWAYS_SOFTWARE=1`, and after a
+  crash read `journalctl -b -1` before blaming memory. A third stop that day
+  left nothing in the journal: Windows was upgrading WSL
+  ([LOCAL_HOST_SETUP.md §3](LOCAL_HOST_SETUP.md#3-heavy-jobs-on-a-shared-or-wsl-host)
+  says how to tell).
 - One `make check` at a time, with a unique log per run
   ([LOCAL_HOST_SETUP.md §3](LOCAL_HOST_SETUP.md#3-heavy-jobs-on-a-shared-or-wsl-host)).
 

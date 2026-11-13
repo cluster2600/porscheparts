@@ -115,6 +115,35 @@ MEM=4G cap "$PY" -I "$HERE/am_supports.py" "$PRIV/print-occ-$STAMP" "$PRIV/print
 cp "$PRIV/print-supports-$STAMP/am-supports.json" "$PARAMS/print-body-supports.json"
 "$PY" -I "$HERE/am_build.py" witness "$PRIV/am-build-witness-$STAMP" "$PARAMS/am-build-witness.json"
 
+# Thin walls of the print body on the occupancy grid (beside the layer screen's thickness probe).
+MEM=10G cap "$PY" -I "$HERE/wall_check.py" "$PRIV/print-occ-$STAMP" "$PARAMS/print-body-wall-check.json"
+# Layer screen in bounded memory (cadsim image; PYLIB holds shapely, rtree and networkx). The
+# committed record params/print-body-layer-screen.json is assembled from its output folder:
+#   docker run --rm --memory=14g --memory-swap=14g -e PYTHONPATH=/pylib -v "$REPO:/repo" -v "$PYLIB:/pylib:ro" -w /repo \
+#     --entrypoint python3 3dprinting993-cadsim:dev twins/935-cylinder-head-cad-twin/source/layer_screen.py \
+#     --slice-chunk 64 --thickness-batch 25 --part-id 935-HEAD-PRINT-BODY-F0 --master ... --surface ... --output ...
+
+# Build screen in CalculiX (cadsim image, one thread): witnesses, then each level of
+# params/build-sim-case.json. A level's thermal run comes before its mechanical run; the 2 mm
+# level is thermal only (its mechanical model is out of reach of a direct solver here). Solver
+# time on this host: about 5 h of thermal runs (3.7 h for the 2 mm level) and 11 h of mechanics.
+BS="$PRIV/build-sim-$STAMP"; mkdir "$BS"
+"$PY" -I "$HERE/build_sim.py" witness "$BS/witness" "$PARAMS/build-sim-witness.json"
+for level in c4-l8 c4-l4 c3-l9 c2-l8; do
+  MEM=8G cap "$PY" -I "$HERE/build_sim.py" prepare "$PRIV/print-occ-$STAMP" "$PARAMS/build-sim-case.json" "$level" "$BS/$level"
+  "$PY" -I "$HERE/build_sim.py" thermal "$BS/$level"
+done
+"$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8"
+"$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8" --variant yield-stress-relieved
+"$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8" --variant stress-free-673K
+"$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l4"
+"$PY" -I "$HERE/build_sim.py" mechanics "$BS/c3-l9"
+"$PY" -I "$HERE/build_sim.py" summarize "$BS" "$PARAMS/build-sim-case.json" "$PARAMS/build-sim-witness.json" "$PARAMS/build-sim.json"
+# Software OpenGL in a sandbox without /dev/dxg, on purpose: with GALLIUM_DRIVER=d3d12 this render
+# took the WSL VM down twice (docs/LOCAL_HOST_SETUP.md, section 3).
+GALLIUM_DRIVER=llvmpipe LIBGL_ALWAYS_SOFTWARE=1 bwrap --dev-bind / / --dev /dev --proc /proc \
+  xvfb-run -a "$PY" -I "$HERE/render_build_sim.py" "$BS/c4-l8" "$TWIN/media"
+
 # Revolved machined features, with the assigned fitting tool and its own environment
 # (docs/LOCAL_HOST_SETUP.md, "Tool environments under work/"), then CloudCompare on the
 # held-out half of each window and on the v2 body. FIT and CC_IMAGE are optional:
