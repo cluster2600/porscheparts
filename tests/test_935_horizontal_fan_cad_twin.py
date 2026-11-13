@@ -3,6 +3,7 @@ blade-angle conversion. No scan is needed: every case has a known answer."""
 
 from __future__ import annotations
 
+import importlib.util
 import json
 import math
 import sys
@@ -12,12 +13,32 @@ from pathlib import Path
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "twins/935-horizontal-fan-cad-twin/source"))
+FAN_SOURCE = ROOT / "twins/935-horizontal-fan-cad-twin/source"
 sys.path.insert(0, str(ROOT / "parts/993-eng-flat-fan-rotor-we43-f0-0001/source"))
 
-import fit_frame  # noqa: E402
-import fit_blades  # noqa: E402
-import score_twin  # noqa: E402
+
+def load_fan_module(name: str):
+    """Load a module of the fan twin under a name of its own.
+
+    fit_frame.py and score_twin.py also exist in the cylinder-head twin. Imported by their bare
+    names they stay in sys.modules, and the other twin's tests then receive the wrong module.
+    """
+
+    spec = importlib.util.spec_from_file_location(f"flat_fan_twin_{name}", FAN_SOURCE / f"{name}.py")
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+sys.path.insert(0, str(FAN_SOURCE))           # for fan_common, which the fan modules import by name
+try:
+    fit_frame = load_fan_module("fit_frame")
+    fit_blades = load_fan_module("fit_blades")
+    score_twin = load_fan_module("score_twin")
+finally:
+    sys.path.remove(str(FAN_SOURCE))
+
 import flat_fan_993_f0  # noqa: E402
 
 
