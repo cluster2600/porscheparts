@@ -3,7 +3,9 @@
 
 Records without geometry receive a labelled status card, never invented CAD.
 The withdrawn synthetic Carrera F0 impeller also gets a status card. Catalogue
-CAD held in a digital-twin directory is supported. Every manifest records the
+CAD held in a digital-twin directory is supported, and so is CAD a record
+declares private (geometry.private_derived_files): it is rendered from local
+bytes whose SHA-256 must match, and never committed. Every manifest records the
 image kind, publication terms, caption, source CAD and catalogue/image hashes.
 
 Render a product view of every modelled part from its own CAD.
@@ -171,8 +173,9 @@ def private_cad_source(record: dict, path: Path | None) -> Path | None:
     """Require exact artifact bytes before the normal renderer can consume them."""
     private = private_preview(record)
     if private is None:
-        if path is not None:
-            raise ValueError("--private-cad requires a catalogue private_preview_receipt")
+        if path is not None and not private_sources(record):
+            raise ValueError("--private-cad requires a catalogue private_preview_receipt"
+                             " or geometry.private_derived_files")
         return None
     if path is None:
         raise ValueError("Native preview requires --write --only PART_ID --private-cad PATH")
@@ -181,6 +184,37 @@ def private_cad_source(record: dict, path: Path | None) -> Path | None:
             or path.stat().st_size != artifact["size_bytes"] or sha256(path) != artifact["sha256"]):
         raise ValueError("Private CAD bytes do not match the public artifact receipt")
     return path
+
+
+def private_sources(record: dict) -> list[dict]:
+    """CAD held privately (scan-derived geometry that must not be published).
+
+    Separate from the PicoGK private_preview_receipt above: the record declares
+    each file's name and SHA-256 under geometry.private_derived_files; images
+    are rendered locally from the private bytes (``--private-cad``) and the
+    manifest cites the hash with a ``private:`` path, so the check can tie the
+    images to the declared CAD without the CAD itself entering Git.
+    """
+    return [{"path": "private:" + str(f["name"]), "sha256": str(f["sha256"])}
+            for f in record.get("geometry", {}).get("private_derived_files", [])]
+
+
+def private_derived_paths(record: dict, path: Path | None) -> list[Path]:
+    """Local files for geometry.private_derived_files, checked against their SHA-256."""
+    declared = private_sources(record)
+    names = [e["path"][len("private:"):] for e in declared]
+    if path is None:
+        raise SystemExit(f"{record['part_id']}: its CAD is private; pass --write --only PART_ID"
+                         " --private-cad PATH (the file, or a directory holding " + ", ".join(names) + ")")
+    if not path.is_dir() and len(declared) != 1:
+        raise SystemExit(f"{record['part_id']}: several private files are declared; --private-cad must be a directory")
+    files = []
+    for name, e in zip(names, declared):
+        candidate = path / name if path.is_dir() else path
+        if not candidate.is_file() or sha256(candidate) != e["sha256"]:
+            raise SystemExit(f"{record['part_id']}: {candidate} does not match the declared SHA-256 of {name}")
+        files.append(candidate)
+    return files
 
 
 def private_artifact_metadata(receipt: dict) -> dict:
@@ -353,6 +387,9 @@ def render(record: dict, private_cad: Path | None = None) -> dict:
     files = sources(part_id)
     private = private_preview(record)
     native_path = private_cad_source(record, private_cad)
+    withheld = private_sources(record) if not files else []
+    if withheld:
+        files = private_derived_paths(record, private_cad)
     if not files or part_id == "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001":
         return status_card(record, files)
     import pyvista as pv
@@ -422,9 +459,10 @@ def render(record: dict, private_cad: Path | None = None) -> dict:
     info = {
         "part_id": part_id,
         "kind": "geometry_render",
-        "note": geometry_note(record, picogk_model, rotation_x_deg),
+        "note": geometry_note(record, picogk_model, rotation_x_deg)
+        + (" Rendered from private CAD whose SHA-256 is recorded; the CAD itself is not published." if withheld else ""),
         "display_rotation_x_deg": rotation_x_deg,
-        "sources": [{"path": f.relative_to(ROOT).as_posix(), "sha256": sha256(f)} for f in files],
+        "sources": withheld or [{"path": f.relative_to(ROOT).as_posix(), "sha256": sha256(f)} for f in files],
         "bounding_box_mm": dims,
         "images": ["preview.png", "views.png"],
         "generator": "scripts/render_part_previews.py",
@@ -447,7 +485,10 @@ def check() -> int:
             private = private_preview(record)
             info = json.loads(info_path.read_text(encoding="utf-8"))
             expected = [{"path": f.relative_to(ROOT).as_posix(), "sha256": sha256(f)} for f in files]
-            card = not files or part_id == "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001"
+            withheld = private_sources(record) if not files else []
+            if withheld:
+                expected = withheld
+            card = (not files and not withheld) or part_id == "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001"
             names = ["preview.png"] if card else ["preview.png", "views.png"]
             if info.get("kind") != ("status_card" if card else "geometry_render"):
                 raise ValueError("incorrect image kind")
@@ -511,7 +552,9 @@ def main() -> int:
     g.add_argument("--write", action="store_true")
     g.add_argument("--check", action="store_true")
     ap.add_argument("--only", help="render a single part_id")
-    ap.add_argument("--private-cad", type=Path, help="private STL/VTP matching the selected part's public receipt")
+    ap.add_argument("--private-cad", type=Path,
+                    help="private CAD for the selected part: the STL/VTP matching its native preview receipt,"
+                         " or the file or directory holding its geometry.private_derived_files")
     ap.add_argument("--list", action="store_true", help="print all catalogue part_ids")
     a = ap.parse_args()
     if a.private_cad and (not a.write or not a.only or a.list):

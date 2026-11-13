@@ -1,0 +1,197 @@
+{
+  "issue": 452,
+  "mesh_admitted": false,
+  "solver_started": false,
+  "receipts": {
+    "installed-cooling-netgen-live-control-20261107/topology-verification.json": "22bcda3cc2b848160920119bc03ff56d2272d1b3a98d1e2099117e5268cd5871",
+    "installed-cooling-hxt-netgen-live-20261107/execution.json": "d8085e01e0a1f1e7afadf84a320a25eda2a894c00b6234925670f265099dfff5",
+    "installed-cooling-hxt-netgen-live-8g-20261107/execution.json": "7a9860445bfc2d89395fa84142792cb8e47a24033c6cc0426f62abaee2f9822e",
+    "installed-cooling-hxt-netgen-live-8g-20261107/export-chain-verification.json": "372c11a65a4001ce7c94d59239ea4cb959570705550f6da1d515c24b49b1c930",
+    "installed-cooling-hxt-netgen-converter-20261107/assessment.json": "50c6ec193d5a5ea2570fcd607752fb4d72b6b5f4a51f679750688c3cf7a857d4",
+    "installed-cooling-hxt-netgen-converter-20261107/failure-classification.json": "40bb5a78ea983816684e59626c889cba50d733bc51c5f208df5ee0932b1bf2fc",
+    "installed-cooling-hxt-netgen-live-8g-20261107/execution-plan.json": "b77d9fe1142fec839fca09569dd8654331ce8bb1003b0841772ed8652464c009",
+    "installed-cooling-hxt-netgen-converter-20261107/plan.json": "62bce6811120ff4974a8764b5a0be07d0b6811e83094c5fafce0b95dd09074e9",
+    "installed-cooling-hxt-netgen-live-8g-20261107/resource-basis.json": "079a2f60dbd579a8eec6f2396fe0828c6607f88f530d33e18e68003eb1dbbfca",
+    "installed-cooling-hxt-netgen-live-8g-20261107/verify_export_chain.py": "23097b63f35092c921452a9286b84a4f45c92eb5a7a7d4d566cecc458d70db49",
+    "installed-cooling-hxt-netgen-converter-20261107/classify_failures.py": "d0d2cd7e0ef56adf23b16af21482c75dec707b339007114e06e153995a250994",
+    "installed-cooling-hxt-netgen-converter-20261107/run.sh": "d038e366ef543902154d84b8290e569a34ec896a1f959f139203ee57e1a27b66"
+  },
+  "controls": {
+    "installed-cooling-netgen-control-20261107": {
+      "passed": false,
+      "reason": "duplicate tetrahedron"
+    },
+    "installed-cooling-netgen-topology-control-20261107": {
+      "passed": false,
+      "reason": "interior face does not cancel"
+    },
+    "installed-cooling-netgen-live-control-20261107": {
+      "passed": true,
+      "tetrahedra": 12,
+      "exact_volume_m3": "1",
+      "boundary_faces": 12,
+      "all_internal_faces_cancel": true,
+      "duplicate_tetrahedra": false,
+      "mesh_sha256": "93707980524b4a988725a720b89dfa6b9de01f2df5efe8b0797f361d87af8aed"
+    }
+  },
+  "resource_failure": {
+    "exit_code": -15,
+    "elapsed_seconds": 408.85848779114895,
+    "peak_sampled_rss_bytes": 4307632128,
+    "stop_reason": "rss_limit",
+    "native_mesh_admitted": false,
+    "solver_started": false
+  },
+  "execution": {
+    "exit_code": 0,
+    "elapsed_seconds": 542.8470992911607,
+    "peak_sampled_rss_bytes": 4421500928,
+    "stop_reason": null,
+    "native_mesh_admitted": false,
+    "solver_started": false
+  },
+  "export": {
+    "internal_faces": 3275152,
+    "boundary_faces": 918136,
+    "tetrahedra": 1867110,
+    "source_coordinates_exact": true,
+    "source_patch_triangles_exact": true,
+    "all_internal_faces_cancel": true,
+    "duplicate_tetrahedra": false,
+    "all_float64_volumes_positive": true,
+    "float64_volume_sum_m3": 0.031980383314595046,
+    "minimum_float64_cell_volume_m3": 9.969454367796426e-12,
+    "mesh_admitted": false,
+    "mesh_sha256": "a2c2d07e3180f5ba6f06986c9c0c21190856227bc2cc74666a54077b156ee211"
+  },
+  "native_checks": {
+    "state": {
+      "Status": "exited",
+      "Running": false,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 0,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-11-07T15:16:35.120802125Z",
+      "FinishedAt": "2026-11-07T15:17:32.44331793Z"
+    },
+    "standard_mesh_ok": true,
+    "extended_failed_checks": 2,
+    "low_determinant_cells": 26005,
+    "low_interpolation_weight_faces": 15,
+    "severe_nonorthogonal_faces_warning": 1026,
+    "minimum_determinant": 1.2430106220918849e-05,
+    "minimum_interpolation_weight": 0.03485735581655538,
+    "mesh_admitted": false,
+    "solver_started": false,
+    "raw_case_volume": "porscheparts-452-hxt-netgen-converter-20261107",
+    "logs": {
+      "log.checkMesh-extended": "b4710d72cc58d535847dacce7dece089dbe8d77bd8b6b72f6f6771f4700a376a",
+      "log.checkMesh-standard": "f49620b35e84de3efea008840c13e2c9bfa24152ba57135fcd99e6f1bb514906",
+      "log.gmshToFoam": "81a61f42a790146dbc51d9b5fd6fc462a5144d3270dece3d3b5819d90a0cf53d"
+    }
+  },
+  "failure_locations": {
+    "cells": 1867110,
+    "bad_determinant_cells": 26005,
+    "bad_cells_by_internal_face_count": {
+      "3": 25377,
+      "4": 628
+    },
+    "all_cells_by_internal_face_count": {
+      "3": 918136,
+      "4": 948974
+    },
+    "bad_cells_with_no_boundary_faces": 628,
+    "patches": {
+      "walls": {
+        "faces": 861690,
+        "bad_cells_touching_patch": 25078
+      },
+      "left1": {
+        "faces": 4633,
+        "bad_cells_touching_patch": 24
+      },
+      "inlet": {
+        "faces": 28648,
+        "bad_cells_touching_patch": 139
+      },
+      "left2": {
+        "faces": 4633,
+        "bad_cells_touching_patch": 32
+      },
+      "left3": {
+        "faces": 4633,
+        "bad_cells_touching_patch": 22
+      },
+      "right1": {
+        "faces": 4633,
+        "bad_cells_touching_patch": 26
+      },
+      "right2": {
+        "faces": 4633,
+        "bad_cells_touching_patch": 31
+      },
+      "right3": {
+        "faces": 4633,
+        "bad_cells_touching_patch": 25
+      }
+    },
+    "low_weight_faces_internal": 15,
+    "low_weight_faces_boundary": 0,
+    "low_weight_owner_internal_face_count": {
+      "3": 5,
+      "4": 10
+    },
+    "mesh_admitted": false,
+    "inputs": {
+      "mesh/owner": "58e8cab79644ad69b18b9370a952d5289e99c576e9a3a19bd59dcb303d01cd85",
+      "mesh/neighbour": "c193484def1f81a3984686a981d7040cfa5f452ba236b4233a4d17a23277031d",
+      "mesh/boundary": "7aae29cfec69351e38b700a88bb2a4bc9c4f7dbe06da38e848491514f6250178",
+      "mesh/sets/underdeterminedCells": "1f8a8e9e19b595b9ec58d4390d81c0b4813fd033f5e04261c8f6534c5fb21798",
+      "mesh/sets/lowWeightFaces": "2e2a7eeb4d81a773103a8233dfc943011947d5c514c8d567d357407957036267"
+    }
+  },
+  "meshing_plan": {
+    "timeout_seconds": 900,
+    "rss_limit_bytes": 8589934592,
+    "threads": 2,
+    "worker_sha256": "49c4f282bf0a4b99efc3e9a1ac444a70c9eb817a69d267de81b8c9dc274e60f7",
+    "change_from_prior_trial": "Fresh retry after the prior 4 GiB resource rejection; only RSS cap increases to 8 GiB, all numerical settings unchanged. HXT followed by one Netgen optimization on the live GEO volume, matching the independently verified unit cube. Imported discrete-volume Netgen controls failed and are not used. Same source, boundary, size and quality thresholds; two threads, 8 GiB sampled RSS, 900-second total bound; exact 17-digit export with typed node lookup.",
+    "acceptance": "All full-resolution native boundary triangles, coordinates and patch names preserved; positive tetrahedra; unchanged native standard and extended mesh checks required before any solver."
+  },
+  "converter_plan": {
+    "input_sha256": "a2c2d07e3180f5ba6f06986c9c0c21190856227bc2cc74666a54077b156ee211",
+    "cells": 1867110,
+    "cpu_limit": 2,
+    "memory_gib": 4,
+    "timeout_seconds": 300,
+    "write_precision": 17,
+    "acceptance": "Native standard and extended checks and independent exported boundary/coordinate/volume checks. No solver.",
+    "optimization": "HXT followed by Netgen on live GEO volume",
+    "independent_export_chain_verified": true
+  },
+  "resource_basis": {
+    "prior_execution": {
+      "exit_code": -15,
+      "elapsed_seconds": 408.85848779114895,
+      "peak_sampled_rss_bytes": 4307632128,
+      "stop_reason": "rss_limit",
+      "native_mesh_admitted": false,
+      "solver_started": false
+    },
+    "prior_execution_sha256": "d8085e01e0a1f1e7afadf84a320a25eda2a894c00b6234925670f265099dfff5",
+    "host_memory_bytes": 68719476736,
+    "host_memory_pressure_query": "The system has 68719476736 (4194304 pages with a page size of 16384).\nSystem-wide memory free percentage: 44%\n",
+    "disk_free_bytes": 18946400256,
+    "numerical_settings_changed": false,
+    "new_sampled_rss_limit_bytes": 8589934592,
+    "timeout_seconds": 900,
+    "threads": 2
+  },
+  "native_runtime": "opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532"
+}

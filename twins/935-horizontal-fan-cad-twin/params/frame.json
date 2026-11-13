@@ -1,0 +1,114 @@
+{
+ "schema": "935-horizontal-fan-cad-twin/frame/1",
+ "scan_sha256": "244d4caeb2c4ac4a692b650ec9d766bee2a8124335a0236a55a1d30c1b2b98ba",
+ "scale_mm_per_unit": 1.0,
+ "scale_basis": "owner_declared_2026-11-06",
+ "definition": {
+  "datum_A": "front flange face carrying the bolt circle; z = 0, +Z towards the open drum lip",
+  "datum_B": "hub bore axis, fitted as a circle perpendicular to datum A",
+  "clocking": "blade 0 centred on +X (ninefold mean of blade points at r 105-125 mm)"
+ },
+ "rotation": [
+  [
+   0.735089982,
+   -0.1425319762,
+   0.6628177382
+  ],
+  [
+   0.04138531,
+   0.9852616223,
+   0.1659722619
+  ],
+  [
+   -0.6767052345,
+   -0.0945736295,
+   0.7301546782
+  ]
+ ],
+ "translation_mm": [
+  -334.359784,
+  -67.153719,
+  -491.935961
+ ],
+ "datum_A": {
+  "rms_mm": 0.104,
+  "points": 12877
+ },
+ "bore": {
+  "radius_mm": 11.31,
+  "diameter_mm": 22.62,
+  "rms_mm": 0.164,
+  "inliers": 3020,
+  "centre_residual_xy_mm": [
+   -0.0,
+   0.0
+  ]
+ },
+ "front_faces": {
+  "flange_front_face_inner": {
+   "z_mm": -0.08,
+   "tilt_vs_datum_A_deg": 0.161,
+   "rms_mm": 0.191,
+   "points": 1500
+  },
+  "step_front": {
+   "z_mm": -9.233,
+   "tilt_vs_datum_A_deg": 0.059,
+   "rms_mm": 0.225,
+   "points": 6158
+  },
+  "drum_lip": {
+   "z_mm": 32.557,
+   "tilt_vs_datum_A_deg": 0.096,
+   "rms_mm": 0.712,
+   "points": 7965
+  }
+ },
+ "back_faces": {
+  "flange_back_face": {
+   "z_mm": -26.428,
+   "tilt_vs_datum_A_deg": 0.271,
+   "normal_xy": [
+    0.00442,
+    0.00166
+   ],
+   "rms_mm": 0.347,
+   "points": 7817
+  },
+  "boss_back_face": {
+   "z_mm": -40.297,
+   "tilt_vs_datum_A_deg": 0.694,
+   "normal_xy": [
+    0.01097,
+    0.00516
+   ],
+   "rms_mm": 0.291,
+   "points": 3402
+  }
+ },
+ "drum_circles": {
+  "drum_upper_band": {
+   "centre_xy_mm": [
+    0.282,
+    0.34
+   ],
+   "radius_mm": 89.289,
+   "rms_mm": 0.137,
+   "inliers": 33757
+  },
+  "drum_lower_band": {
+   "centre_xy_mm": [
+    -0.094,
+    0.105
+   ],
+   "radius_mm": 88.447,
+   "rms_mm": 0.135,
+   "inliers": 10068
+  }
+ },
+ "back_misregistration": {
+  "tilt_deg": 0.271,
+  "drum_centre_shift_mm": 0.443,
+  "note": "Back-facing faces tilt relative to datum A and the lower drum circle is offset from the upper one. Read as acquisition misregistration of the back pass (the scan file name says so), not as part geometry."
+ }
+}

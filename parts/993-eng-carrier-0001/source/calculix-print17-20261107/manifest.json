@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "status": "portable_four_WRITE_site_patch_verified_Mac_candidate_Linux_pending",
+  "upstream": {
+    "project": "CalculiX",
+    "version": "2.21",
+    "license": "GPL-2.0-only",
+    "archive": "calculix-ccx_2.21.orig.tar.bz2",
+    "archive_sha256": "51d229aee320cf685216d360f7c04f9a57af0148fbe840483a964c86c315da82"
+  },
+  "files": {
+    "calculix-2.21-print17.patch": {
+      "sha256": "13c645a43bc20c60d2aa2fff57782d7ae0a1126eba1f991f1bc9425bc481dd23",
+      "bytes": 1510
+    },
+    "README.md": {
+      "sha256": "dc34595f201f0cc03fc62e0b2faee3c058e2673107fc8c488c62a3951848287b",
+      "bytes": 3433
+    },
+    "apply-verification.json": {
+      "sha256": "2c141139f44615c18c50c7e1a00f60ccf94440a4ce226a0b5b09e4809a96e6a3",
+      "bytes": 1204
+    }
+  },
+  "sources": {
+    "src/printoutnode.f": {
+      "archive_member": "CalculiX/ccx_2.21/src/printoutnode.f",
+      "original_sha256": "c0bbe37ece5ae10faf2ba93113767361fb3dd4f1225e5c2f082cdfad85889141",
+      "candidate_sha256": "1aff91853fa80418a70e8004241ea499546accdc61f24f477599ec36617f3192",
+      "changed_one_based_lines": [
+        38,
+        100
+      ]
+    },
+    "src/printoutint.f": {
+      "archive_member": "CalculiX/ccx_2.21/src/printoutint.f",
+      "original_sha256": "09e10433befe43b334ecac6a7ead6ac753eea64da6caa0669848f179d1fd05ea",
+      "candidate_sha256": "a630526a98877a19efd517ce9f43d22f9de65ba437840c650865b02942f2cc22",
+      "changed_one_based_lines": [
+        400,
+        553
+      ]
+    }
+  },
+  "format": {
+    "previous": "1P,E13.6",
+    "candidate": "1P,E25.16E3",
+    "changed_WRITE_sites": 4
+  },
+  "existing_evidence": {
+    "Mac_candidate": {
+      "path": "work/carrier-native-print17-local-003/candidate/result.json",
+      "sha256": "a41abcc6b0513c45da3e459159b6a9058c8254d63c54108ed2143902206c4fad",
+      "binary_sha256": "1a9ab0aa7ca197a1509bd93e0bcc38200d87cfc6d25c4c6ea6105a471b08b8b2"
+    },
+    "Mac_independent_readback": {
+      "path": "work/carrier-native-print17-local-003/readback-v2.json",
+      "sha256": "ba028acf0bdd9ab17113471011401544a3923da3b4599d37e103adae3c6b42e8"
+    },
+    "four_field_ENER": {
+      "path": "work/carrier-native-print17-ener-001/candidate/result.json",
+      "sha256": "d160e4724968daf4cec793a6f9e9e6c5a2884d13a3a716c5a7f755fa342c50d7"
+    },
+    "formatter_roundtrips": {
+      "status": "all_finite_fixture_binary64_values_roundtrip_exactly",
+      "count": 16378,
+      "all_2047_finite_exponent_fields": true,
+      "signed_zero": true,
+      "subnormal_boundaries": true,
+      "finite_extremes": true,
+      "format": "1P,E25.16E3",
+      "input_bits_sha256": "79d6fc8bb8bb26895d21eda55b4ff4aa317fd57bd6da0192a3f2fd80226a0097",
+      "actual_text_sha256": "dff4aca283fa58210b4053a7d50ead4e69bbc405a19222d18a72de3a55df0452"
+    },
+    "archive_unchanged_other_object_members": 1145,
+    "analytic_controls": {
+      "quadratic": {
+        "status": "complete_quadratic_patch_control_passed",
+        "assessment_sha256": "a0d8c48a6c6650c3238a8657677f30e1deecbb0711e8a196dfc21eeeab107edb",
+        "actual_dat_sha256": "deda1bb7efa1c1fe04be0122d895f1c211d7155e4e8d1377c1f24a0da2e4c482"
+      },
+      "traction-P1": {
+        "status": "consistent_traction_patch_passed",
+        "assessment_sha256": "a5de6c955c8989fe030ee5a68bdaeac8996ef718459637b4d0a4667b0035ca06",
+        "actual_dat_sha256": "b1beebffa632d01a4a0b5a6800339dbfed9e2c458bc1c5a07fdc87c0c9ddbbe6"
+      },
+      "traction-P2": {
+        "status": "consistent_traction_patch_passed",
+        "assessment_sha256": "0f43addb265996b7d88caba7bf73a2341f235856e23445d2ead3f269881da49e",
+        "actual_dat_sha256": "cc99c6131d479e64ca6551cb042f4799f9e3d077af18c5b563965b7715e8f019"
+      }
+    },
+    "four_field_rows": {
+      "U": 8,
+      "RF": 8,
+      "S": 6,
+      "ENER": 6
+    },
+    "ENER_relative_error": 3.9789e-15,
+    "ENER_existing_relative_limit": 0.0001
+  },
+  "qualification_scope": {
+    "Mac_candidate_and_small_controls_passed": true,
+    "Linux_PARDISO_qualification": "pending",
+    "full_H9_17_digit_replay": "pending",
+    "new_build_or_solve_for_this_patch": false
+  }
+}

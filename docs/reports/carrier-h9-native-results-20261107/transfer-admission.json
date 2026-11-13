@@ -1,0 +1,117 @@
+{
+  "schema": "carrier-h9-print17-transfer-admission-v1",
+  "checkpoint_utc": "2026-11-07T06:02:04.537844+00:00",
+  "status": "bounded_transfer_admitted_actual_network_and_offline_setup_passed_native_fields_pending",
+  "scope": "Gravity lane 046 is active; combined lane 047 remains held for complete retained gravity science and exact predecessor cleanup.",
+  "budgets": {
+    "GB_definition_bytes": 1000000000,
+    "image_download_bytes": 1200000000,
+    "application_ingress_bytes": 2000000000,
+    "application_egress_bytes": 2000000000,
+    "planned_ingress_bytes": 1108340378,
+    "planned_egress_bytes": 1888435456,
+    "ingress_margin_bytes": 891659622,
+    "egress_protocol_margin_bytes": 111564544,
+    "RPC_and_bulk_diagnostic_bytes": 134217728,
+    "fixed_bulk_diagnostic_reservation_bytes": 32000000,
+    "enforced_RPC_response_bytes": 102217728,
+    "cost_cap_USD_per_case": 3.2,
+    "cost_cap_USD_two_cases": 6.4,
+    "financial_contingency_USD_per_case": 1.0,
+    "wall_seconds_per_case": 7200,
+    "simultaneous_precision_cases": 1,
+    "interpretation": "Conservative application-transfer allowances and protocol margin, not provider wire-byte measurements or a compression guarantee."
+  },
+  "image": {
+    "digest": "sha256:7c7048431256c455d1396c2e71e38be15b6d0d5d035f41fdde03de47a9025ccd",
+    "compressed_layer_count": 33,
+    "compressed_layer_bytes": 1099287405,
+    "config_bytes": 14855,
+    "manifest_bytes": 6584,
+    "compressed_layers_config_manifest_bytes": 1099308844,
+    "remaining_declared_image_bytes": 100691156,
+    "registry_readback_receipt": "work/carrier-h9-print17-transfer-cap-001/image-download-allowance.json",
+    "registry_readback_sha256": "95e267e3f5920be2fcb1e971b2012dc195a381e5abdd263cc13e7d370b218c0a"
+  },
+  "wheels": {
+    "actual_total_bytes": 165632756,
+    "fetch_receipt_sha256": "45a9ca923b15f25da2848322c8b6fb73747f1bbcca20cbb8ef02c23466cd979a",
+    "manifest_sha256": "41812016a29870916a3193d8d47f33d1fe74560396cb147e3f789454c0e7a704",
+    "packages": [
+      {
+        "name": "warp-lang",
+        "version": "1.18.0",
+        "bytes": 148811186,
+        "sha256": "090962bfae7dd22ade0d8e0258f41635e0e58980f15bcc9e7a7d312819dfe440"
+      },
+      {
+        "name": "numpy",
+        "version": "2.2.6",
+        "bytes": 16821570,
+        "sha256": "ba10f8411898fc418a521833e014a77d3ca01c15b0c6cdcce6a0d2897e6dbbdf"
+      }
+    ],
+    "installation": "Exact staged wheels; isolated pip with --no-index, --no-deps and --require-hashes. No remote package-index downloads."
+  },
+  "scientific_recovery": {
+    "expected_complete_DAT_bytes": 4506144286,
+    "local_XZ_download_allowance_bytes": 1600000000,
+    "encoder": "FORMAT_XZ / CHECK_CRC64 / preset 6",
+    "encoding_attempts": 1,
+    "codec_wall_seconds": 1800,
+    "codec_memory_bytes": 4294967296,
+    "encoding_resource_cap_bytes": 5000000000,
+    "oversize_action": "Retain the exact observed index, size and hashes; refuse before scientific download. No automatic paid replay or codec fallback.",
+    "verification": "Mandatory full compressed SHA256, complete streamed raw SHA256, exact raw byte count and strict XZ EOF; no uncompressed raw-file copy.",
+    "full_precision_fields_available": false,
+    "full_carrier_compression_fit_demonstrated": false
+  },
+  "transfer_policy": {
+    "outer_attempts_per_file": 1,
+    "fresh_targets_only": true,
+    "resume": false,
+    "rsync_flags": [
+      "--checksum-choice=none",
+      "--whole-file",
+      "--inplace",
+      "--partial"
+    ],
+    "native_transfer_checksum_redo_disabled": true,
+    "independent_whole_file_SHA256_mandatory": true,
+    "partial_files_preserved_on_refusal": true,
+    "qualification": "Actual 1 MiB local whole-file transfer and corrupted-destination SHA refusal; fresh-target upload/download refusals. No provider wire-byte certification."
+  },
+  "actual_gravity_prerequisites": {
+    "network_status": "bidirectional_bandwidth_and_SHA256_passed_before_private_input",
+    "network_receipt_sha256": "31c22abdcfdab478283cbf4e9e3cd255d6a4363a462f978f0fbe2843292f5901",
+    "probe_bytes_each_direction": 134217728,
+    "upload_seconds": 55.20126912498381,
+    "download_seconds": 54.65245895902626,
+    "offline_setup_status": "isolated_pinned_dependencies_staged",
+    "offline_setup_receipt_sha256": "cc695786a33c61873b9b464193fd5cdc0b8e5213cfc6987999d1f4f49ecf5fda",
+    "offline_setup_returncode": 0,
+    "offline_setup_process_reaped": true,
+    "complete_field_GPU_energy_audit_passed": false
+  },
+  "sequential_gate": {
+    "combined_admitted_at_checkpoint": false,
+    "requirements": [
+      "Four immutable predecessor receipts: scientific-complete, complete-cleanup, launch and controller-state.",
+      "Retained gravity XZ rehashed in full, actual encoded bytes at most 1.6 GB, complete 4,506,144,286-byte raw verification.",
+      "Matching owned predecessor instance identity and verified exact provider absence.",
+      "Fresh receiver capacity and root-reviewed combined readiness."
+    ]
+  },
+  "source_and_control_sha256": {
+    "work/carrier-h9-print17-lanes-002/final-preparation.json": "1a47ca239a2e7c1858a909a320902e25ed99e8f446953febcec6c480de66afb8",
+    "work/carrier-h9-print17-lanes-002/integration-controls.json": "b0eb2905c282135e41e720c02dca97c603552fcee0bcb16eddf67b4ba7437463",
+    "work/carrier-h9-print17-lanes-002/deploy-controls.json": "b5561682f5819908d1699bdc9b70ab492fdde347581524ffd44abd00a3bf0f38",
+    "work/carrier-h9-print17-transfer-cap-002/controls.json": "6e7560de7ed6b4c9fa1dfa0225535880711697c80e1f8f402e6005f408af55f7",
+    "work/carrier-h9-print17-transfer-cap-002/monitor-codec-controls.json": "8c38bb0946978242617bdcd0d1f15f76ee530087074ffacbcc28f64d5bd11765",
+    "work/carrier-h9-print17-transfer-cap-003/controls.json": "521ecf88180e20798e6efedb8c4a84e48b8021cd7032b6e2456ae85092431a78",
+    "work/carrier-h9-print17-transfer-cap-003/transport.py": "d5743d69f36ac3b88b73e0a77234ad8ec20511ab960e3d510c806f109f7fc490",
+    "work/carrier-h9-print17-transfer-cap-002/candidate/native_codec.py": "8dcffa0e942056ba35d8b474ba7598928c4fbfea2efe90addd2040cf4805826a",
+    "work/carrier-h9-gpu-audit-002/setup_v2.py": "a4d02635c891de40cced88c43eac89470d3426ba8da7dd68bc0f0cf09c4799d7"
+  },
+  "numerical_scope": "No change to H9 geometry, loads, material, native solve, complete-field GPU kernel or convergence criterion; native 17-digit field results remain pending at this checkpoint."
+}
