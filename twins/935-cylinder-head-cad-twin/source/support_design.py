@@ -205,10 +205,16 @@ def layout(solid: np.ndarray, pitch: float, rules: dict) -> tuple[dict, np.ndarr
         "envelope_landing_on_part_mm3": float(gap[~on_plate].sum() * v),
         "landing_area_on_part_mm2": float((~on_plate).sum() * a),
         "largest_height_mm": float(gap.max() * pitch) if len(gap) else 0.0}
+    # Every support touches the part at its top, under the surface it holds; one that stands on the
+    # part touches it a second time at its foot. One that stands on the plate has no second contact.
+    top_line = len(i) * a * wall_line_per_area
+    foot_line = float((~on_plate).sum()) * a * wall_line_per_area
     rep["block_support"] = {
         "melted_share_of_the_envelope": round(f, 4), "melted_volume_mm3": float(gap.sum() * v * f),
-        "wall_line_on_the_part_mm": float((len(i) + (~on_plate).sum()) * a * wall_line_per_area),
-        "tooth_contact_line_on_the_part_mm": float((len(i) + (~on_plate).sum()) * a * wall_line_per_area * teeth)}
+        "wall_line_under_the_supported_surface_mm": float(top_line),
+        "wall_line_at_the_foot_of_supports_standing_on_the_part_mm": foot_line,
+        "wall_line_on_the_part_mm": float(top_line + foot_line),
+        "tooth_contact_line_on_the_part_mm": float((top_line + foot_line) * teeth)}
 
     # Support bodies.
     labels, bodies = ndimage.label(envelope)

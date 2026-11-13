@@ -1206,7 +1206,8 @@ the [orientation screen](params/print-body-supports.json) to 0.0003%: 476,689 mm
 | … standing on the part | 223,970 mm³ (48%), on 5,911 mm² of the part |
 | Melted in the walls | 169,447 mm³, 15% of the part |
 | Exposure added, at the part's energy density | 4.1 h on 27.0 h |
-| Tooth contact on the part | 18.3 m of wall line out of 36.6 m |
+| Wall line against the part | 36.6 m: 24.8 m under the supported surface, 11.8 m at the foot of the supports that stand on the part |
+| … of which teeth touch | 18.3 m |
 | Support bodies | 149, 142 of 1 mm³ or more |
 | Tallest support | 176 mm |
 | Height over inscribed width | median 16, largest 152 |

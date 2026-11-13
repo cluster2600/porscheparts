@@ -1217,6 +1217,12 @@ class SupportDesignTests(unittest.TestCase):
         self.assertAlmostEqual(block["melted_share_of_the_envelope"], self.sd.block_fraction(rules), places=4)
         self.assertAlmostEqual(block["melted_volume_mm3"], self.sd.block_fraction(rules) * sup["envelope_volume_mm3"], delta=1.0)
         self.assertLessEqual(record["lateral_access"]["hidden_envelope_volume_mm3"], sup["envelope_volume_mm3"])
+        # every support touches the part at its top; only those standing on the part touch it at their foot
+        per_area = 2.0 / rules["block_support"]["hatch_mm"]
+        self.assertAlmostEqual(block["wall_line_under_the_supported_surface_mm"], sup["projected_area_mm2"] * per_area, places=3)
+        self.assertAlmostEqual(block["wall_line_at_the_foot_of_supports_standing_on_the_part_mm"], sup["landing_area_on_part_mm2"] * per_area, places=3)
+        self.assertAlmostEqual(block["tooth_contact_line_on_the_part_mm"],
+                               rules["block_support"]["tooth_contact_share_of_the_wall_line"] * block["wall_line_on_the_part_mm"], places=3)
         # every rule names where its value comes from
         for key, value in rules.items():
             if key != "block_support":
