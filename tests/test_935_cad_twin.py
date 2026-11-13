@@ -4,6 +4,7 @@ They run on synthetic geometry and the committed scalar parameters only; the
 private scan never reaches CI.
 """
 
+import hashlib
 import importlib.util
 import json
 import re
@@ -954,7 +955,8 @@ class BuildSimTests(unittest.TestCase):
     def test_a_lump_takes_its_exposure_plus_its_recoating_and_absorbs_its_share(self):
         np = self.np
         mesh = {"pitch": np.float64(4.0), "rows_per_lump": np.int64(2), "kind": np.array([1, 2, 2, 3, 2]),
-                "lump": np.array([-1, 0, 0, 0, 1])}
+                "lump": np.array([-1, 0, 0, 0, 1]), "plate_rows": np.int64(1),
+                "cells": np.array([[0, 0, 0], [0, 0, 1], [0, 0, 2], [1, 0, 1], [0, 0, 4]])}
         process, fraction = self.case["process"], self.case["supports"]["solid_fraction"]
         first, second = self.bs.schedule(mesh, self.case)
         melted = 2 * 64.0 + fraction * 64.0
@@ -1061,13 +1063,43 @@ class BuildSimTests(unittest.TestCase):
             # +0.04%, -0.24% and +0.66% on 4, 3 and 2 mm cells (the README table prints each)
             self.assertLess(abs(model["part_volume_mm3"] / model["occupancy_volume_mm3"] - 1.0), 0.01, name)
             # absorbed energy is absorptivity x energy density x melted volume, supports included at their fraction
-            melted = model["part_volume_mm3"] + self.case["supports"]["solid_fraction"] * model["support_envelope_mm3"]
+            fraction = model.get("support_solid_fraction", self.case["supports"]["solid_fraction"])
+            melted = model["part_volume_mm3"] + fraction * model["support_envelope_mm3"]
             self.assertAlmostEqual(thermal["absorbed_MJ"], process["absorptivity"] * process["volumetric_energy_density_J_mm3"] * melted / 1e6, places=2)
             self.assertAlmostEqual(thermal["build_time_h"], thermal["exposure_h"] + thermal["recoating_h"], places=1)
             if "thermal_only" in self.case["levels"][name]:
                 self.assertEqual(level["mechanics"], {}, name)
-        rises = [level["thermal"]["largest_rise_over_plate_K"] for level in levels.values()]
+        # at the declared single laser the rise barely moves with the level; more lasers raise it and shorten the build
+        one = [name for name in levels if "process" not in self.case["levels"][name]]
+        rises = [levels[name]["thermal"]["largest_rise_over_plate_K"] for name in one]
         self.assertLess(max(rises) - min(rises), 5.0)
+        base = levels["c4-l8"]["thermal"]
+        previous = base
+        for name in sorted((n for n in levels if "process" in self.case["levels"][n]), key=lambda n: self.case["levels"][n]["process"]["lasers"]):
+            thermal = levels[name]["thermal"]
+            lasers = self.case["levels"][name]["process"]["lasers"]
+            self.assertAlmostEqual(thermal["exposure_h"], base["exposure_h"] / lasers, delta=0.02, msg=name)
+            self.assertAlmostEqual(thermal["recoating_h"], base["recoating_h"], places=2, msg=name)
+            self.assertGreater(thermal["largest_rise_over_plate_K"], previous["largest_rise_over_plate_K"], name)
+            previous = thermal
+
+    def test_a_short_last_lump_recoats_its_own_rows_and_a_level_may_declare_its_lasers(self):
+        np = self.np
+        # three cell rows above one plate row, two rows per lump: the second lump holds one row
+        mesh = {"pitch": np.float64(4.0), "rows_per_lump": np.int64(2), "plate_rows": np.int64(1),
+                "kind": np.array([1, 2, 2, 2]), "lump": np.array([-1, 0, 0, 1]),
+                "cells": np.array([[0, 0, 0], [0, 0, 1], [0, 0, 2], [0, 0, 3]])}
+        first, second = self.bs.schedule(mesh, self.case)
+        self.assertAlmostEqual(first["real_layers"], 8.0 / self.case["process"]["layer_thickness_mm"])
+        self.assertAlmostEqual(second["real_layers"], 4.0 / self.case["process"]["layer_thickness_mm"])
+        two = {**self.case, "process": {**self.case["process"], "lasers": 2}}
+        self.assertAlmostEqual(self.bs.schedule(mesh, two)[0]["exposure_s"], first["exposure_s"] / 2)
+        self.assertAlmostEqual(self.bs.schedule(mesh, two)[0]["recoating_s"], first["recoating_s"])
+        self.assertAlmostEqual(self.bs.schedule(mesh, two)[0]["absorbed_J"], first["absorbed_J"])
+        for name, level in self.case["levels"].items():
+            if "process" in level:
+                self.assertEqual(set(level["process"]), {"lasers"}, name)
+                self.assertIn(level["process"]["lasers"], (2, 4), name)
 
     def test_replay_script_runs_every_level_and_run_of_the_record(self):
         record = json.loads((TWIN / "params" / "build-sim.json").read_text())
@@ -1102,6 +1134,156 @@ class BuildSimTests(unittest.TestCase):
                 self.assertLess(spread["median"], spread["p95"])
                 self.assertLess(spread["p95"], spread["largest"])
                 self.assertLess(run["release"]["best_fit_uniform_shrinkage"], 0.0)
+
+
+@unittest.skipUnless(has("numpy", "scipy"), "numpy or scipy absent")
+class SupportDesignTests(unittest.TestCase):
+    """The support layout: its rules on small shapes, then the committed records."""
+
+    RULES = {"critical_angle_from_plate_deg": 45.0, "self_supporting_width_mm": 2.0, "slenderness_limit": 20.0,
+             "block_support": {"hatch_mm": 1.5, "wall_thickness_mm": 0.2, "tooth_contact_share_of_the_wall_line": 0.25}}
+
+    def setUp(self):
+        sys.path.insert(0, str(SOURCE))
+        import numpy as np
+        import support_design
+
+        self.sd, self.np = support_design, np
+
+    def grid(self, lo, hi, pitch=0.5):
+        np = self.np
+        return np.meshgrid(*[np.arange(a + pitch / 2, b, pitch) for a, b in zip(lo, hi)], indexing="ij")
+
+    def test_a_cap_is_supported_from_the_plate_and_a_closed_cavity_is_hidden(self):
+        x, y, z = self.grid((-22, -22, 0), (22, 22, 42))
+        tee = ((abs(x) < 10) & (abs(y) < 10) & (z < 30)) | ((abs(x) < 20) & (abs(y) < 20) & (z > 30) & (z < 40))
+        rep, kind = self.sd.layout(tee, 0.5, self.RULES)
+        self.assertAlmostEqual(rep["supported"]["envelope_volume_mm3"], 36000.0, delta=0.03 * 36000.0)
+        self.assertEqual(rep["supported"]["envelope_landing_on_part_mm3"], 0.0)
+        self.assertEqual(rep["lateral_access"]["hidden_envelope_volume_mm3"], 0.0)
+        self.assertEqual(rep["bodies"]["count"], 1)
+        self.assertEqual(set(self.np.unique(kind)), {0, 1})
+        share = 2 * 0.2 / 1.5 - (0.2 / 1.5) ** 2
+        self.assertAlmostEqual(rep["block_support"]["melted_volume_mm3"], share * rep["supported"]["envelope_volume_mm3"])
+        # walls every 1.5 mm in both directions: 2 / 1.5 mm of wall line per mm2, a quarter of it in contact
+        self.assertAlmostEqual(rep["block_support"]["tooth_contact_line_on_the_part_mm"],
+                               0.25 * rep["supported"]["projected_area_mm2"] * 2 / 1.5)
+
+        box = (abs(x) < 20) & (abs(y) < 20) & (z < 40)
+        box &= ~((abs(x) < 10) & (abs(y) < 10) & (z > 10) & (z < 20))
+        box &= ~((abs(x) < 2) & (abs(y) < 2) & (z > 15))
+        rep, kind = self.sd.layout(box, 0.5, self.RULES)
+        self.assertAlmostEqual(rep["supported"]["envelope_volume_mm3"], 3840.0, delta=0.03 * 3840.0)
+        self.assertEqual(rep["supported"]["envelope_landing_on_plate_mm3"], 0.0)
+        self.assertEqual(rep["lateral_access"]["hidden_share_of_the_envelope"], 1.0)
+        self.assertEqual(set(self.np.unique(kind)), {0, 6})
+
+    def test_a_narrow_ledge_is_left_bare_and_a_narrow_island_keeps_its_support(self):
+        x, y, z = self.grid((-12, 0, 0), (12, 40, 32))
+        wall = (abs(x) < 5) & (z < 30)
+        wall |= (x > 0) & (x < 6.5) & (z > 20) & (z < 24)        # a ledge of 1.5 mm, under the 2 mm of the rule
+        wall |= (x < 0) & (x > -9) & (z > 20) & (z < 24)         # a ledge of 4 mm
+        rep, _ = self.sd.layout(wall, 0.5, self.RULES)
+        self.assertEqual(rep["exemption"]["patches_left_bare"], 1)
+        self.assertAlmostEqual(rep["supported"]["projected_area_mm2"], 160.0, delta=8.0)
+        without = {**self.RULES, "self_supporting_width_mm": None}
+        self.assertGreater(self.sd.layout(wall, 0.5, without)[0]["supported"]["projected_area_mm2"],
+                           rep["supported"]["projected_area_mm2"] + 40.0)
+
+        x, y, z = self.grid((-20, 0, 0), (20, 40, 36))
+        hung = (abs(x) < 20) & (z > 30) & (z < 34)
+        hung |= (abs(x) > 16) & (z < 34)
+        hung |= (abs(x) < 0.75) & (z > 20) & (z < 34)            # a blade 1.5 mm thick hanging under the slab
+        rep, _ = self.sd.layout(hung, 0.5, self.RULES)
+        self.assertEqual(rep["exemption"]["narrow_patches_kept_as_island_starts"], 1)
+        self.assertEqual(rep["exemption"]["patches_left_bare"], 0)
+
+    def test_committed_layout_follows_its_case_and_the_orientation_screen(self):
+        case = json.loads((TWIN / "params" / "support-design-case.json").read_text())
+        witness = json.loads((TWIN / "params" / "support-design-witness.json").read_text())
+        record = json.loads((TWIN / "params" / "support-design.json").read_text())
+        rules = case["rules"]
+        self.assertTrue(witness["passed"])
+        self.assertLessEqual(witness["largest_relative_error"], witness["tolerance_relative"])
+        digest = hashlib.sha256(json.dumps(rules, sort_keys=True).encode()).hexdigest()
+        self.assertEqual(witness["rules_sha256"], digest)
+        self.assertEqual(record["case_sha256"], hashlib.sha256((TWIN / "params" / "support-design-case.json").read_bytes()).hexdigest())
+        self.assertFalse(any(record["gates"].values()))
+        check = record["check_against_the_orientation_screen"]
+        self.assertTrue(check["agrees_within_0p1_percent"])
+        sup, block = record["supported"], record["block_support"]
+        self.assertAlmostEqual(sup["envelope_landing_on_plate_mm3"] + sup["envelope_landing_on_part_mm3"], sup["envelope_volume_mm3"], places=3)
+        self.assertLessEqual(sup["envelope_volume_mm3"], record["before_exemption"]["air_column_volume_mm3"])
+        self.assertAlmostEqual(block["melted_share_of_the_envelope"], self.sd.block_fraction(rules), places=4)
+        self.assertAlmostEqual(block["melted_volume_mm3"], self.sd.block_fraction(rules) * sup["envelope_volume_mm3"], delta=1.0)
+        self.assertLessEqual(record["lateral_access"]["hidden_envelope_volume_mm3"], sup["envelope_volume_mm3"])
+        # every support touches the part at its top; only those standing on the part touch it at their foot
+        per_area = 2.0 / rules["block_support"]["hatch_mm"]
+        self.assertAlmostEqual(block["wall_line_under_the_supported_surface_mm"], sup["projected_area_mm2"] * per_area, places=3)
+        self.assertAlmostEqual(block["wall_line_at_the_foot_of_supports_standing_on_the_part_mm"], sup["landing_area_on_part_mm2"] * per_area, places=3)
+        self.assertAlmostEqual(block["tooth_contact_line_on_the_part_mm"],
+                               rules["block_support"]["tooth_contact_share_of_the_wall_line"] * block["wall_line_on_the_part_mm"], places=3)
+        # every rule names where its value comes from
+        for key, value in rules.items():
+            if key != "block_support":
+                self.assertIn(key, case["sources"], key)
+        for key in rules["block_support"]:
+            self.assertIn(key, case["sources"]["block_support"], key)
+        # the occupancy is the one the build screen was prepared on
+        build = json.loads((TWIN / "params" / "build-sim.json").read_text())
+        self.assertEqual(record["occupancy_sha256"], build["levels"]["c4-l8"]["model"]["occupancy_sha256"])
+
+
+class PreparedWorkTests(unittest.TestCase):
+    """The register of the parts that never ran, and the witness of the drawing tool."""
+
+    def test_register_names_four_parts_and_only_files_that_exist(self):
+        register = json.loads((TWIN / "params" / "prepared-work.json").read_text())
+        parts = {part["id"]: part for part in register["parts"]}
+        self.assertEqual(set(parts), {"port-flow", "fatigue", "valve-train", "drawing"})
+        self.assertIn("nothing here is a result", register["scope"])
+        for rule in ("contributed_measurements", "what_a_ct_request_must_require", "safety"):
+            self.assertTrue((ROOT / register["rules"][rule]).exists(), rule)
+        for name, part in parts.items():
+            self.assertTrue(part["missing"] and part["held"] and part["first_steps_once_unblocked"], name)
+            self.assertTrue(part["a_contribution_must_hold"], name)
+            self.assertTrue(any("licence" in item for item in part["a_contribution_must_hold"]), name)
+            self.assertTrue((ROOT / part["tool"]["witness"]).exists(), name)
+            for held in part["held"]:
+                self.assertTrue((ROOT / held["where"]).exists(), held["where"])
+        # the count of confirmed features is the feature check's
+        check = json.loads((TWIN / "params" / "feature-check.json").read_text())
+        confirmed = [row["id"] for row in check["regions"] if row["confirmed"]]
+        self.assertIn(f"{len(confirmed)} features confirmed", parts["drawing"]["held"][0]["what"])
+        for name in confirmed:
+            self.assertIn(name, parts["drawing"]["held"][0]["what"])
+        # the load-case contracts it points to still have empty inputs
+        contracts = json.loads((ROOT / "twins/engine-simulation-contracts/load-cases-f1.json").read_text())
+        cases = {case["load_case_id"]: case for case in contracts["load_cases"]}
+        for case_id in ("LC-935-PORT-COLD-FLOW", "LC-993-VALVE-DYNAMIC-CYCLE"):
+            self.assertTrue(any(value is None for value in cases[case_id]["required_inputs"].values()), case_id)
+
+    def test_drawing_witness_read_back_every_view(self):
+        witness = json.loads((TWIN / "params" / "drawing-witness.json").read_text())
+        self.assertTrue(witness["passed"])
+        self.assertTrue(all(check["passed"] for check in witness["checks"]))
+        self.assertEqual({name: view["size_mm"] for name, view in witness["views"].items()},
+                         {"top": [60.0, 40.0], "front": [60.0, 20.0], "side": [40.0, 20.0]})
+        self.assertIn("no tool assignment", witness["scope"])
+        self.assertIn("dimension and tolerance annotations", witness["not_checked"])
+        # hidden edges are kept on their own layer in every view
+        for name, view in witness["views"].items():
+            self.assertTrue(any(key.startswith("hidden:") for key in view["entities"]), name)
+
+    def test_a_segment_is_found_only_when_collinear_pieces_cover_it(self):
+        sys.path.insert(0, str(SOURCE))
+        import drawing_witness as dw
+
+        lines = [(4.0, 0.0, 4.0, 8.0), (4.0, 8.0, 4.0, 20.0), (0.0, 12.0, 30.0, 12.0)]
+        self.assertTrue(dw.has_line(lines, 4, 0, 4, 20))
+        self.assertTrue(dw.has_line(lines, 5, 12, 25, 12))
+        self.assertFalse(dw.has_line(lines[:1], 4, 0, 4, 20))
+        self.assertFalse(dw.has_line(lines, 16, 0, 16, 20))
 
 
 class MediaTests(unittest.TestCase):

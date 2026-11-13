@@ -123,14 +123,25 @@ MEM=10G cap "$PY" -I "$HERE/wall_check.py" "$PRIV/print-occ-$STAMP" "$PARAMS/pri
 #     --entrypoint python3 3dprinting993-cadsim:dev twins/935-cylinder-head-cad-twin/source/layer_screen.py \
 #     --slice-chunk 64 --thickness-batch 25 --part-id 935-HEAD-PRINT-BODY-F0 --master ... --surface ... --output ...
 
+# Support layout of the print body by declared rules (params/support-design-case.json): witnesses,
+# then the layout on the 0.25 mm occupancy, checked against the orientation screen above.
+SD="$PRIV/support-design-$STAMP"
+"$PY" -I "$HERE/support_design.py" witness "$PARAMS/support-design-case.json" "$PARAMS/support-design-witness.json"
+MEM=10G cap "$PY" -I "$HERE/support_design.py" layout "$PRIV/print-occ-$STAMP" "$PARAMS/support-design-case.json" \
+  "$PARAMS/print-body-supports.json" "$SD" "$PARAMS/support-design.json"
+
+# Witness of a drawing tool on a known solid (build123d projection, DXF read back with ezdxf).
+"$PY" -I "$HERE/drawing_witness.py" "$PRIV/drawing-witness-$STAMP" "$PARAMS/drawing-witness.json"
+
 # Build screen in CalculiX (cadsim image, one thread): witnesses, then each level of
 # params/build-sim-case.json. A level's thermal run comes before its mechanical run; the 2 mm
-# level is thermal only (its mechanical model is out of reach of a direct solver here). Solver
-# time on this host: about 5 h of thermal runs (3.7 h for the 2 mm level) and 11 h of mechanics.
+# level and the two laser levels are thermal only. A level with "supports": "designed" would take
+# the envelope of the layout above ($SD); none is declared yet. Solver time on this host: about
+# 5.5 h of thermal runs (3.7 h for the 2 mm level) and 11 h of mechanics, one thread each.
 BS="$PRIV/build-sim-$STAMP"; mkdir "$BS"
 "$PY" -I "$HERE/build_sim.py" witness "$BS/witness" "$PARAMS/build-sim-witness.json"
-for level in c4-l8 c4-l4 c3-l9 c2-l8; do
-  MEM=8G cap "$PY" -I "$HERE/build_sim.py" prepare "$PRIV/print-occ-$STAMP" "$PARAMS/build-sim-case.json" "$level" "$BS/$level"
+for level in c4-l8 c4-l4 c3-l9 c2-l8 c4-l8-2-lasers c4-l8-4-lasers; do
+  MEM=8G cap "$PY" -I "$HERE/build_sim.py" prepare "$PRIV/print-occ-$STAMP" "$PARAMS/build-sim-case.json" "$level" "$BS/$level" "$SD"
   "$PY" -I "$HERE/build_sim.py" thermal "$BS/$level"
 done
 "$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8"
@@ -143,6 +154,8 @@ done
 # took the WSL VM down twice (docs/LOCAL_HOST_SETUP.md, section 3).
 GALLIUM_DRIVER=llvmpipe LIBGL_ALWAYS_SOFTWARE=1 bwrap --dev-bind / / --dev /dev --proc /proc \
   xvfb-run -a "$PY" -I "$HERE/render_build_sim.py" "$BS/c4-l8" "$TWIN/media"
+GALLIUM_DRIVER=llvmpipe LIBGL_ALWAYS_SOFTWARE=1 bwrap --dev-bind / / --dev /dev --proc /proc \
+  xvfb-run -a "$PY" -I "$HERE/render_support_design.py" "$PRIV/print-occ-$STAMP" "$SD" "$TWIN/media"
 
 # Revolved machined features, with the assigned fitting tool and its own environment
 # (docs/LOCAL_HOST_SETUP.md, "Tool environments under work/"), then CloudCompare on the

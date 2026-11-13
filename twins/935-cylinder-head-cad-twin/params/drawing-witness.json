@@ -1,0 +1,118 @@
+{
+ "schema": "935-cad-twin-drawing-witness/1",
+ "date": "2026-11-13",
+ "scope": "three orthographic views of a block with a hole and a step, projected by build123d, exported to DXF and read back with ezdxf. A witness of the tool on a known solid: not a drawing of the head, and no tool assignment",
+ "tools": {
+  "build123d": "0.13.0",
+  "ezdxf": "1.4.5"
+ },
+ "tolerance_mm": 0.0001,
+ "views": {
+  "top": {
+   "entities": {
+    "visible:LINE": 7,
+    "visible:CIRCLE": 1,
+    "hidden:LINE": 5,
+    "hidden:CIRCLE": 1
+   },
+   "size_mm": [
+    60.0,
+    40.0
+   ]
+  },
+  "front": {
+   "entities": {
+    "visible:LINE": 6,
+    "hidden:LINE": 8,
+    "hidden:SPLINE": 4
+   },
+   "size_mm": [
+    60.0,
+    20.0
+   ]
+  },
+  "side": {
+   "entities": {
+    "visible:LINE": 7,
+    "hidden:LINE": 7,
+    "hidden:SPLINE": 6
+   },
+   "size_mm": [
+    40.0,
+    20.0
+   ]
+  }
+ },
+ "checks": [
+  {
+   "check": "volume of the solid, mm3",
+   "expected": 39338.053,
+   "measured": 39338.053,
+   "passed": true
+  },
+  {
+   "check": "top: outline 60 x 40 mm",
+   "passed": true,
+   "detail": [
+    60.0,
+    40.0
+   ]
+  },
+  {
+   "check": "front: outline 60 x 20 mm",
+   "passed": true,
+   "detail": [
+    60.0,
+    20.0
+   ]
+  },
+  {
+   "check": "side: outline 40 x 20 mm",
+   "passed": true,
+   "detail": [
+    40.0,
+    20.0
+   ]
+  },
+  {
+   "check": "top: the hole is a visible circle of radius 6 at (10, 12)",
+   "passed": true,
+   "detail": [
+    10.0,
+    12.0,
+    6.0
+   ]
+  },
+  {
+   "check": "top: the step is a visible line at x = 40",
+   "passed": true
+  },
+  {
+   "check": "front: the step is visible at x = 40 from z = 12 to 20 and at z = 12 from x = 40 to 60",
+   "passed": true
+  },
+  {
+   "check": "front: the hole is two hidden lines at x = 4 and x = 16 over the full height",
+   "passed": true
+  },
+  {
+   "check": "front: no visible line stands at x = 4 or x = 16",
+   "passed": true
+  },
+  {
+   "check": "side: the step is a visible line at z = 12",
+   "passed": true
+  },
+  {
+   "check": "side: the hole is two hidden lines at y = 6 and y = 18",
+   "passed": true
+  }
+ ],
+ "passed": true,
+ "not_checked": [
+  "dimension and tolerance annotations",
+  "section views",
+  "a title block",
+  "a mesh body: the v2 body has no B-rep"
+ ]
+}

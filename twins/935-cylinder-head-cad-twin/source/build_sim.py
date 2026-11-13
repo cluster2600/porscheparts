@@ -16,11 +16,14 @@ What is modelled (every number is in params/build-sim-case.json):
   supports  columns of homogenised hexahedra under every voxel that has no
             solid voxel in the 3 x 3 cells below it (the 45 degree rule on a
             voxel grid), plus columns under any group of voxels that would
-            otherwise hang free at some stage of the build;
+            otherwise hang free at some stage of the build. A level with
+            "supports": "designed" takes instead the envelope laid out by
+            support_design.py, at the melted share of its block supports;
   plate     a slab under the part, its lower face held at the plate
             temperature and kept plane;
   lumps     the real layers are grouped in lumps of a few cell rows; a lump
-            is activated at once.
+            is activated at once. A level may declare its own process
+            value (the number of lasers);
 
   thermal   transient heat transfer. A lump arrives at the plate temperature
             and receives the absorbed laser energy of its real layers as a
@@ -49,7 +52,7 @@ prescribe the temperature of the new nodes.
 Sub-commands (CASE_DIR must be under /home; ccx runs in the cadsim image):
 
   witness  STUDY_DIR OUT.json
-  prepare  OCC_DIR CASE.json LEVEL RUN_DIR      mesh, supports, plate, lumps
+  prepare  OCC_DIR CASE.json LEVEL RUN_DIR [SUPPORT_DIR]   mesh, supports, plate, lumps
   thermal  RUN_DIR                              deck, run, read, energy audit
   mechanics RUN_DIR [--variant NAME] [--relax K]   deck, run, read
   summarize STUDY_DIR CASE.json WITNESS.json OUT.json
@@ -300,7 +303,7 @@ def witness(study, summary) -> None:
 # prepare: voxels, supports, plate, lumps
 
 
-def prepare(occ_dir, case_file, level, run_dir) -> None:
+def prepare(occ_dir, case_file, level, run_dir, support_dir=None) -> None:
     from scipy import ndimage
 
     occ_dir, run = Path(occ_dir), Path(run_dir)
@@ -319,11 +322,26 @@ def prepare(occ_dir, case_file, level, run_dir) -> None:
     where = np.argwhere(fine.any(axis=(1, 2))).ravel(), np.argwhere(fine.any(axis=(0, 2))).ravel(), \
         np.argwhere(fine.any(axis=(0, 1))).ravel()
     lo = [int(w[0]) for w in where]
+    uncropped = list(fine.shape)
     fine = fine[lo[0]:, lo[1]:, lo[2]:]
     pad = [(-s) % k for s in fine.shape]
     fine = np.pad(fine, [(0, q) for q in pad])
     n = [s // k for s in fine.shape]
     frac = fine.reshape(n[0], k, n[1], k, n[2], k).mean(axis=(1, 3, 5), dtype=np.float32)
+    designed = lv.get("supports") == "designed"
+    assert designed or "supports" not in lv
+    if designed:
+        # The envelope of support_design.py, in this frame before the crop; a cell is a support cell
+        # when at least half of it is envelope, the rule of the part.
+        support_dir = Path(support_dir)
+        laid = json.loads((support_dir / "support-envelope.json").read_text())
+        assert laid["occupancy_sha256"] == sha256(occ_dir / grid["array"]), "the layout was made on another occupancy"
+        assert laid["shape"] == uncropped and laid["pitch_mm"] == p
+        env = np.load(support_dir / "support-envelope.npy", mmap_mode="r")[lo[0]:, lo[1]:, lo[2]:]
+        designed_volume = float(env.sum()) * p ** 3
+        env = np.pad(env, [(0, q) for q in pad])
+        env_frac = env.reshape(n[0], k, n[1], k, n[2], k).mean(axis=(1, 3, 5), dtype=np.float32)
+        del env
     fine_volume = float(fine.sum()) * p ** 3
     del fine
     solid = frac >= 0.5
@@ -347,7 +365,11 @@ def prepare(occ_dir, case_file, level, run_dir) -> None:
         for c in range(nz - 1, 0, -1):
             carry = (carry | seed[:, :, c]) & ~part[:, :, c - 1]
             support[:, :, c - 1] |= carry
-    drop_columns(need)
+    if designed:
+        support |= (env_frac[:, :, :nz] >= 0.5) & ~part
+        laid_cells = int(support.sum())
+    else:
+        drop_columns(need)
     # No group of cells may hang free at any stage of the build: every stage must be
     # face-connected to the plate.
     added_for_connection = 0
@@ -427,9 +449,16 @@ def prepare(occ_dir, case_file, level, run_dir) -> None:
         "support_envelope_mm3": n_sup * pitch ** 3,
         "support_cells_added_for_connection": added_for_connection,
         "cells_needing_support": int(need.sum()),
+        "supports": "the envelope of the support layout, a cell at half or more" if designed
+                    else "a column under every cell with no solid cell among the nine below it",
+        "support_solid_fraction": laid["melted_share_of_the_envelope"] if designed else case["supports"]["solid_fraction"],
         "plate_mm": [shape[0] * pitch, shape[1] * pitch, plate_rows * pitch],
         "occupancy_sha256": sha256(occ_dir / grid["array"]),
     }
+    if designed:
+        rep["support_layout"] = {"rules_sha256": laid["rules_sha256"], "envelope_mm3": designed_volume,
+                                 "envelope_kept_in_cells_mm3": laid_cells * pitch ** 3,
+                                 "share_kept_in_cells": laid_cells * pitch ** 3 / designed_volume}
     (run / "prepare.json").write_text(json.dumps(rep, indent=2) + "\n")
     (run / "case.json").write_text(json.dumps(case, indent=2) + "\n")
     (run / "level.txt").write_text(level)
@@ -439,7 +468,14 @@ def prepare(occ_dir, case_file, level, run_dir) -> None:
 def load(run: Path):
     m = np.load(run / "mesh.npz")
     case = json.loads((run / "case.json").read_text())
-    return m, case, case["levels"][(run / "level.txt").read_text().strip()]
+    lv = case["levels"][(run / "level.txt").read_text().strip()]
+    if "process" in lv:                                # a level may declare its own process values (number of lasers)
+        assert set(lv["process"]) <= set(case["process"]), "a level can only change a declared process value"
+        case["process"] = {**case["process"], **lv["process"]}
+    if lv.get("supports") == "designed":               # the solid fraction of the layout, not the declared one
+        case["supports"] = {**case["supports"],
+                            "solid_fraction": json.loads((run / "prepare.json").read_text())["support_solid_fraction"]}
+    return m, case, lv
 
 
 def mesh_lines(m) -> list:
@@ -472,12 +508,16 @@ def schedule(m, case) -> list:
     pr, pitch = case["process"], float(m["pitch"])
     kind, lump = m["kind"], m["lump"]
     f = case["supports"]["solid_fraction"]
+    built_rows = int(m["cells"][:, 2].max()) + 1 - int(m["plate_rows"])
     rows = []
     for j in range(int(lump.max()) + 1):
         v_part = float(((kind == 2) & (lump == j)).sum()) * pitch ** 3
         v_sup = float(((kind == 3) & (lump == j)).sum()) * pitch ** 3
         melted = v_part + f * v_sup
-        layers = int(m["rows_per_lump"]) * pitch / pr["layer_thickness_mm"]
+        # the last lump holds fewer rows when the build height is not a whole number of lumps
+        lump_rows = min(int(m["rows_per_lump"]), built_rows - j * int(m["rows_per_lump"]))
+        assert lump_rows >= 1
+        layers = lump_rows * pitch / pr["layer_thickness_mm"]
         exposure = melted * pr["volumetric_energy_density_J_mm3"] / (pr["laser_power_W"] * pr["lasers"])
         rows.append({"lump": j, "part_mm3": v_part, "support_envelope_mm3": v_sup, "melted_mm3": melted,
                      "real_layers": layers, "exposure_s": exposure, "recoating_s": layers * pr["recoating_s_per_layer"],
@@ -519,7 +559,7 @@ def thermal(run_dir) -> None:
             lines.append(f"{s},BF,{q * (1.0 if s[0] == 'P' else f):.9g}")
         lines += out
     (run / "thermal.inp").write_text("\n".join(lines) + "\n")
-    rep = {"solver": ccx(run, "thermal", lv["memory_cap"], 6 * 3600)}
+    rep = {"solver": ccx(run, "thermal", lv["memory_cap"], 24 * 3600)}
     (run / "thermal-run.json").write_text(json.dumps(rep, indent=2) + "\n")
     assert rep["solver"]["returncode"] == 0 and rep["solver"]["job_finished"], rep
     thermal_read(run)
@@ -762,6 +802,9 @@ def mechanics_read(run_dir, tag="mechanics") -> None:
 # summarize
 
 
+USED_BY_A_RUN = ("build", "process", "plate", "supports", "material", "variants", "cooldown")
+
+
 def summarize(study, case_file, witness_file, out) -> None:
     study, case = Path(study), json.loads(Path(case_file).read_text())
     levels = {}
@@ -769,7 +812,10 @@ def summarize(study, case_file, witness_file, out) -> None:
         run = study / name
         if not (run / "thermal.json").exists():
             continue
-        assert json.loads((run / "case.json").read_text()) == case, f"{name} was run on another case"
+        # a run stands when every value it used is unchanged: the physical blocks of the case and its own level
+        ran = json.loads((run / "case.json").read_text())
+        assert (all(ran[k] == case[k] for k in USED_BY_A_RUN) and ran["levels"][name] == case["levels"][name]), \
+            f"{name} was run on another case"
         assert (run / "thermal.inp").stat().st_mtime >= (run / "mesh.npz").stat().st_mtime, f"{name}: thermal deck older than its mesh"
         thermal = json.loads((run / "thermal.json").read_text())
         thermal["solver"] = json.loads((run / "thermal-run.json").read_text())["solver"]
@@ -791,13 +837,14 @@ def summarize(study, case_file, witness_file, out) -> None:
         "schema": "935-cad-twin-build-sim/1", "date": time.strftime("%Y-%m-%d"),
         "scope": "layer-by-layer build screen of the print body under declared hypotheses: time-averaged temperature during "
                  "the build, then stress and distortion from strain-free birth and cooling, on voxel cells with homogenised "
-                 "support columns. No melt pool, scan path, designed support, creep or calibration against a printed coupon",
+                 "supports (columns under a 45 degree rule, or the envelope of a layout by rule). No melt pool, scan path, "
+                 "support prepared in a build processor, creep or calibration against a printed coupon",
         "case_file": "params/build-sim-case.json", "case_sha256": sha256(Path(case_file)),
         "witness_file": "params/build-sim-witness.json", "witnesses_passed": True,
         "tool": "CalculiX 2.21 in the cadsim image, one thread, SPOOLES; element activation with *MODEL CHANGE",
         "levels": levels,
         "gates": {"process_parameters_published_by_the_machine_maker": False, "heat_input_calibrated": False,
-                  "supports_designed": False, "distortion_compared_with_a_printed_part": False,
+                  "supports_prepared_in_a_build_processor": False, "distortion_compared_with_a_printed_part": False,
                   "metal_print_authorized": False},
         "claims": "a screen. It qualifies no process, orientation, support scheme, material or part, and its distortion is "
                   "not a compensation field",
