@@ -1,0 +1,627 @@
+{
+  "schema": "935-cad-twin-am-cooldown/1",
+  "scope": "declared-hypothesis screen: first 20 s of convective cooldown of an assumed fully solid, initially stress-free and isothermal twin body on voxel hexahedra; no laser, deposition, powder, plasticity or build simulation; no material or process qualification",
+  "solver": "Adamantine (thermal: explicit RK4, matrix-free; mechanical: linear thermo-elastic, CG)",
+  "material": {
+    "label": "generic AlSi10Mg-class solid (declared hypothesis; no alloy, powder lot or heat treatment is established)",
+    "density_kg_m3": 2670.0,
+    "specific_heat_J_kgK": 900.0,
+    "conductivity_W_mK": 150.0,
+    "youngs_modulus_Pa": 70000000000.0,
+    "poisson_ratio": 0.33,
+    "thermal_expansion_per_K": 2.3e-05,
+    "solidus_K": 843.0
+  },
+  "case": {
+    "initial_temperature_K": 500.0,
+    "ambient_temperature_K": 300.0,
+    "film_coefficient_W_m2K": 20.0,
+    "duration_s": 20.0,
+    "output_interval_s": 5.0,
+    "time_integrator": "rk_fourth_order (explicit)",
+    "thermal_fe_degree": 1,
+    "mechanical_fe_degree": 1,
+    "thermal_boundary": "convection on every exterior face, including the clamped one",
+    "mechanical_boundary": "exterior faces on the lowest z plane of the voxel body clamped (deck side, provisional fixture); all others traction-free",
+    "mechanical_reference": "strain-free at the initial temperature (Adamantine: unmelted substrate)"
+  },
+  "levels": {
+    "hex_4mm": {
+      "mesh_as_written": {
+        "source": "occupancy-wn.npy (winding number > 0.5)",
+        "witness": false,
+        "pitch_mm": 4.0,
+        "fine_voxels_per_block_edge": 16,
+        "solid_rule": "block solid when at least half of its fine voxels have w > 0.5; largest face-connected component kept",
+        "lattice_anchor_z_mm": -0.125,
+        "hexahedra": 16944,
+        "nodes": 22078,
+        "components": 1,
+        "excluded_hexahedra": 0,
+        "exterior_faces": 10128,
+        "clamped_faces": 389,
+        "clamped_plane_z_mm": -0.125,
+        "volume_mm3": 1084416.0,
+        "exterior_area_mm2": 162048.0,
+        "clamped_area_mm2": 6224.0,
+        "fine_grid_inside_volume_mm3": 1094498.0,
+        "bounds_mm": [
+          [
+            -60.875,
+            -107.875,
+            -0.125
+          ],
+          [
+            55.125,
+            120.125,
+            91.875
+          ]
+        ],
+        "time_step_s": 0.02,
+        "steps_between_outputs_and_mechanical_solves": 250,
+        "explicit_step_over_fourier_limit": 0.4681647940074907
+      },
+      "solver": {
+        "returncode": 0,
+        "wall_seconds": 22.5,
+        "mpi_ranks": 4,
+        "threads_per_rank": 1,
+        "memory_cap": "4g",
+        "log_tail": [
+          "60% completed",
+          "70% completed",
+          "80% completed",
+          "90% completed",
+          "100% completed",
+          "Simulation done"
+        ]
+      },
+      "independent_check": {
+        "output_steps": [
+          0,
+          250,
+          500,
+          750,
+          1000
+        ],
+        "rows": [
+          {
+            "time_s": 0.0,
+            "cells": 16944,
+            "welded_nodes": 22078,
+            "cell_edge_mm": 4.0000006556510925,
+            "volume_mm3": 1084415.9952883432,
+            "exterior_faces": 10128,
+            "exterior_area_mm2": 162047.99891526168,
+            "temperature_K_min": 500.0,
+            "temperature_K_max": 500.0,
+            "temperature_K_mean": 500.00000000000057,
+            "thermal_energy_change_J": 0.0,
+            "convective_loss_W": 648.1919956610465,
+            "displacement_mm_max": 2.395983039656926e-16,
+            "native_von_mises_cell_mean_MPa_max": 3.331858172608143e-13,
+            "native_von_mises_cell_mean_MPa_p99": 1.839072649592946e-13
+          },
+          {
+            "time_s": 5.0,
+            "cells": 16944,
+            "welded_nodes": 22078,
+            "cell_edge_mm": 4.0000006556510925,
+            "volume_mm3": 1084415.9952883432,
+            "exterior_faces": 10128,
+            "exterior_area_mm2": 162047.99891526168,
+            "temperature_K_min": 496.813720703125,
+            "temperature_K_max": 499.383544921875,
+            "temperature_K_mean": 498.7614324820013,
+            "thermal_energy_change_J": -3227.5231939131727,
+            "convective_loss_W": 643.3344333920611,
+            "displacement_mm_max": 0.004828134551644325,
+            "native_von_mises_cell_mean_MPa_max": 7.175278663635254,
+            "native_von_mises_cell_mean_MPa_p99": 3.6682262420654297
+          },
+          {
+            "time_s": 10.0,
+            "cells": 16944,
+            "welded_nodes": 22078,
+            "cell_edge_mm": 4.0000006556510925,
+            "volume_mm3": 1084415.9952883432,
+            "exterior_faces": 10128,
+            "exterior_area_mm2": 162047.99891526168,
+            "temperature_K_min": 494.7453918457031,
+            "temperature_K_max": 498.3771057128906,
+            "temperature_K_mean": 497.53098359689614,
+            "thermal_energy_change_J": -6433.890435012373,
+            "convective_loss_W": 639.2295922541865,
+            "displacement_mm_max": 0.009299291297793388,
+            "native_von_mises_cell_mean_MPa_max": 13.54411792755127,
+            "native_von_mises_cell_mean_MPa_p99": 7.022830486297607
+          },
+          {
+            "time_s": 15.0,
+            "cells": 16944,
+            "welded_nodes": 22078,
+            "cell_edge_mm": 4.0000006556510925,
+            "volume_mm3": 1084415.9952883432,
+            "exterior_faces": 10128,
+            "exterior_area_mm2": 162047.99891526168,
+            "temperature_K_min": 493.0569152832031,
+            "temperature_K_max": 497.2919921875,
+            "temperature_K_mean": 496.3083315067925,
+            "thermal_energy_change_J": -9619.940385096903,
+            "convective_loss_W": 635.1996968179188,
+            "displacement_mm_max": 0.013753119856119156,
+            "native_von_mises_cell_mean_MPa_max": 19.727190017700195,
+            "native_von_mises_cell_mean_MPa_p99": 10.44912338256836
+          },
+          {
+            "time_s": 20.0,
+            "cells": 16944,
+            "welded_nodes": 22078,
+            "cell_edge_mm": 4.0000006556510925,
+            "volume_mm3": 1084415.9952883432,
+            "exterior_faces": 10128,
+            "exterior_area_mm2": 162047.99891526168,
+            "temperature_K_min": 491.55926513671875,
+            "temperature_K_max": 496.170166015625,
+            "temperature_K_mean": 495.09336313798826,
+            "thermal_energy_change_J": -12785.967697457208,
+            "convective_loss_W": 631.2183939606133,
+            "displacement_mm_max": 0.0180924404412508,
+            "native_von_mises_cell_mean_MPa_max": 25.823511123657227,
+            "native_von_mises_cell_mean_MPa_p99": 13.861763000488281
+          }
+        ],
+        "completed_requested_duration": true,
+        "geometry_constant_over_outputs": true,
+        "integrated_convective_loss_J_trapezoid": 12787.34458637498,
+        "thermal_energy_change_J": -12785.967697457208,
+        "energy_imbalance_relative_trapezoid": 0.0001076759063206039,
+        "integrated_convective_loss_J_simpson": 12786.676824949924,
+        "energy_imbalance_relative_simpson": 5.545831042914266e-05,
+        "lumped_capacitance": {
+          "biot_number": 0.0008922590858242419,
+          "time_constant_s": 804.0369687133699,
+          "mean_temperature_K_at_end": 495.0864684857387,
+          "solver_minus_lumped_K": 0.006894652249570754,
+          "relative_difference_of_mean_drop": -0.0014051686406529632
+        }
+      },
+      "reread_vs_written": {
+        "cells_match": true,
+        "nodes_match": true,
+        "exterior_faces_match": true,
+        "volume_relative_difference": -4.34487945621953e-09,
+        "area_relative_difference": -6.693932186330187e-09
+      },
+      "at_end": {
+        "time_s": 20.0,
+        "cell_edge_mm": 4.0000006556510925,
+        "volume_mm3": 1084415.9952883432,
+        "exterior_area_mm2": 162047.99891526168,
+        "temperature_K_min": 491.55926513671875,
+        "temperature_K_max": 496.170166015625,
+        "temperature_K_mean": 495.09336313798826,
+        "thermal_energy_change_J": -12785.967697457208,
+        "convective_loss_W": 631.2183939606133,
+        "displacement_mm_max": 0.0180924404412508,
+        "native_von_mises_cell_mean_MPa_max": 25.823511123657227,
+        "native_von_mises_cell_mean_MPa_p99": 13.861763000488281
+      },
+      "hex_vs_t1s_surface": {
+        "volume_relative_difference": -0.009308561662232151,
+        "exterior_area_relative_difference": -0.03776314133091385
+      }
+    },
+    "hex_2mm": {
+      "mesh_as_written": {
+        "source": "occupancy-wn.npy (winding number > 0.5)",
+        "witness": false,
+        "pitch_mm": 2.0,
+        "fine_voxels_per_block_edge": 8,
+        "solid_rule": "block solid when at least half of its fine voxels have w > 0.5; largest face-connected component kept",
+        "lattice_anchor_z_mm": -0.125,
+        "hexahedra": 137344,
+        "nodes": 160912,
+        "components": 2,
+        "excluded_hexahedra": 1,
+        "exterior_faces": 46958,
+        "clamped_faces": 1319,
+        "clamped_plane_z_mm": -0.125,
+        "volume_mm3": 1098752.0,
+        "exterior_area_mm2": 187832.0,
+        "clamped_area_mm2": 5276.0,
+        "fine_grid_inside_volume_mm3": 1094498.0,
+        "bounds_mm": [
+          [
+            -62.875,
+            -109.875,
+            -0.125
+          ],
+          [
+            55.125,
+            120.125,
+            93.875
+          ]
+        ],
+        "time_step_s": 0.005,
+        "steps_between_outputs_and_mechanical_solves": 1000,
+        "explicit_step_over_fourier_limit": 0.4681647940074907
+      },
+      "solver": {
+        "returncode": 0,
+        "wall_seconds": 487.2,
+        "mpi_ranks": 4,
+        "threads_per_rank": 1,
+        "memory_cap": "4g",
+        "log_tail": [
+          "60% completed",
+          "70% completed",
+          "80% completed",
+          "90% completed",
+          "100% completed",
+          "Simulation done"
+        ]
+      },
+      "independent_check": {
+        "output_steps": [
+          0,
+          1000,
+          2000,
+          3000,
+          4000
+        ],
+        "rows": [
+          {
+            "time_s": 0.0,
+            "cells": 137344,
+            "welded_nodes": 160912,
+            "cell_edge_mm": 2.0000003278255463,
+            "volume_mm3": 1098751.9880451881,
+            "exterior_faces": 46958,
+            "exterior_area_mm2": 187832.00036198407,
+            "temperature_K_min": 500.0,
+            "temperature_K_max": 500.0,
+            "temperature_K_mean": 499.9999999999936,
+            "thermal_energy_change_J": 0.0,
+            "convective_loss_W": 751.3280014479363,
+            "displacement_mm_max": 2.519522000920578e-16,
+            "native_von_mises_cell_mean_MPa_max": 4.3500993822734313e-13,
+            "native_von_mises_cell_mean_MPa_p99": 1.7257374728459757e-13
+          },
+          {
+            "time_s": 5.0,
+            "cells": 137344,
+            "welded_nodes": 160912,
+            "cell_edge_mm": 2.0000003278255463,
+            "volume_mm3": 1098751.9880451881,
+            "exterior_faces": 46958,
+            "exterior_area_mm2": 187832.00036198407,
+            "temperature_K_min": 494.3092346191406,
+            "temperature_K_max": 499.3539733886719,
+            "temperature_K_mean": 498.58432769387656,
+            "thermal_energy_change_J": -3737.8010441392234,
+            "convective_loss_W": 744.5869076174201,
+            "displacement_mm_max": 0.005720319226384163,
+            "native_von_mises_cell_mean_MPa_max": 8.16186237335205,
+            "native_von_mises_cell_mean_MPa_p99": 3.8295280933380127
+          },
+          {
+            "time_s": 10.0,
+            "cells": 137344,
+            "welded_nodes": 160912,
+            "cell_edge_mm": 2.0000003278255463,
+            "volume_mm3": 1098751.9880451881,
+            "exterior_faces": 46958,
+            "exterior_area_mm2": 187832.00036198407,
+            "temperature_K_min": 492.22808837890625,
+            "temperature_K_max": 498.2662658691406,
+            "temperature_K_mean": 497.17954406442334,
+            "thermal_energy_change_J": -7446.852704080305,
+            "convective_loss_W": 739.0676407852641,
+            "displacement_mm_max": 0.010951988399028778,
+            "native_von_mises_cell_mean_MPa_max": 17.099773406982422,
+            "native_von_mises_cell_mean_MPa_p99": 7.412500381469727
+          },
+          {
+            "time_s": 15.0,
+            "cells": 137344,
+            "welded_nodes": 160912,
+            "cell_edge_mm": 2.0000003278255463,
+            "volume_mm3": 1098751.9880451881,
+            "exterior_faces": 46958,
+            "exterior_area_mm2": 187832.00036198407,
+            "temperature_K_min": 490.3350524902344,
+            "temperature_K_max": 497.0617980957031,
+            "temperature_K_mean": 495.7850604825038,
+            "thermal_energy_change_J": -11128.709137937363,
+            "convective_loss_W": 733.6923819663511,
+            "displacement_mm_max": 0.016262205317616463,
+            "native_von_mises_cell_mean_MPa_max": 26.59375762939453,
+            "native_von_mises_cell_mean_MPa_p99": 11.027194023132324
+          },
+          {
+            "time_s": 20.0,
+            "cells": 137344,
+            "welded_nodes": 160912,
+            "cell_edge_mm": 2.0000003278255463,
+            "volume_mm3": 1098751.9880451881,
+            "exterior_faces": 46958,
+            "exterior_area_mm2": 187832.00036198407,
+            "temperature_K_min": 488.548095703125,
+            "temperature_K_max": 495.79937744140625,
+            "temperature_K_mean": 494.4006684548735,
+            "thermal_energy_change_J": -14783.920830637519,
+            "convective_loss_W": 728.4046843682893,
+            "displacement_mm_max": 0.021419459953904152,
+            "native_von_mises_cell_mean_MPa_max": 36.178199768066406,
+            "native_von_mises_cell_mean_MPa_p99": 14.635202407836914
+          }
+        ],
+        "completed_requested_duration": true,
+        "geometry_constant_over_outputs": true,
+        "integrated_convective_loss_J_trapezoid": 14786.066366385741,
+        "thermal_energy_change_J": -14783.920830637519,
+        "energy_imbalance_relative_trapezoid": 0.000145105242669569,
+        "integrated_convective_loss_J_simpson": 14784.9752095364,
+        "energy_imbalance_relative_simpson": 7.131421486601765e-05,
+        "lumped_capacitance": {
+          "biot_number": 0.0007799537075171481,
+          "time_constant_s": 702.8357846863901,
+          "mean_temperature_K_at_end": 494.38898274150205,
+          "solver_minus_lumped_K": 0.011685713371434758,
+          "relative_difference_of_mean_drop": -0.002086983647468712
+        }
+      },
+      "reread_vs_written": {
+        "cells_match": true,
+        "nodes_match": true,
+        "exterior_faces_match": true,
+        "volume_relative_difference": -1.0880355061360092e-08,
+        "area_relative_difference": 1.927169313020727e-09
+      },
+      "at_end": {
+        "time_s": 20.0,
+        "cell_edge_mm": 2.0000003278255463,
+        "volume_mm3": 1098751.9880451881,
+        "exterior_area_mm2": 187832.00036198407,
+        "temperature_K_min": 488.548095703125,
+        "temperature_K_max": 495.79937744140625,
+        "temperature_K_mean": 494.4006684548735,
+        "thermal_energy_change_J": -14783.920830637519,
+        "convective_loss_W": 728.4046843682893,
+        "displacement_mm_max": 0.021419459953904152,
+        "native_von_mises_cell_mean_MPa_max": 36.178199768066406,
+        "native_von_mises_cell_mean_MPa_p99": 14.635202407836914
+      },
+      "hex_vs_t1s_surface": {
+        "volume_relative_difference": 0.0037883978625352643,
+        "exterior_area_relative_difference": 0.11534158790933424
+      }
+    },
+    "witness_block": {
+      "mesh_as_written": {
+        "source": "analytic block 20 x 12 x 8 mm",
+        "witness": true,
+        "pitch_mm": 4.0,
+        "fine_voxels_per_block_edge": 16,
+        "solid_rule": "block solid when at least half of its fine voxels have w > 0.5; largest face-connected component kept",
+        "lattice_anchor_z_mm": 0.0,
+        "hexahedra": 30,
+        "nodes": 72,
+        "components": 1,
+        "excluded_hexahedra": 0,
+        "exterior_faces": 62,
+        "clamped_faces": 15,
+        "clamped_plane_z_mm": 0.0,
+        "volume_mm3": 1920.0,
+        "exterior_area_mm2": 992.0,
+        "clamped_area_mm2": 240.0,
+        "fine_grid_inside_volume_mm3": 1920.0,
+        "bounds_mm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            20.0,
+            12.0,
+            8.0
+          ]
+        ],
+        "time_step_s": 0.02,
+        "steps_between_outputs_and_mechanical_solves": 250,
+        "explicit_step_over_fourier_limit": 0.4681647940074907,
+        "exact": {
+          "volume_mm3": 1920.0,
+          "area_mm2": 992.0
+        }
+      },
+      "solver": {
+        "returncode": 0,
+        "wall_seconds": 1.4,
+        "mpi_ranks": 1,
+        "threads_per_rank": 1,
+        "memory_cap": "4g",
+        "log_tail": [
+          "60% completed",
+          "70% completed",
+          "80% completed",
+          "90% completed",
+          "100% completed",
+          "Simulation done"
+        ]
+      },
+      "independent_check": {
+        "output_steps": [
+          0,
+          250,
+          500,
+          750,
+          1000
+        ],
+        "rows": [
+          {
+            "time_s": 0.0,
+            "cells": 30,
+            "welded_nodes": 72,
+            "cell_edge_mm": 4.000000189989805,
+            "volume_mm3": 1920.0000649690608,
+            "exterior_faces": 62,
+            "exterior_area_mm2": 992.0000122785565,
+            "temperature_K_min": 500.0,
+            "temperature_K_max": 500.0,
+            "temperature_K_mean": 500.0000000000001,
+            "thermal_energy_change_J": 0.0,
+            "convective_loss_W": 3.9680000491142255,
+            "displacement_mm_max": 2.4938717918697985e-17,
+            "native_von_mises_cell_mean_MPa_max": 1.4966887863614164e-13,
+            "native_von_mises_cell_mean_MPa_p99": 1.4966887863614164e-13
+          },
+          {
+            "time_s": 5.0,
+            "cells": 30,
+            "welded_nodes": 72,
+            "cell_edge_mm": 4.000000189989805,
+            "volume_mm3": 1920.0000649690608,
+            "exterior_faces": 62,
+            "exterior_area_mm2": 992.0000122785565,
+            "temperature_K_min": 495.5906677246094,
+            "temperature_K_max": 495.83770751953125,
+            "temperature_K_mean": 495.7466410347815,
+            "thermal_energy_change_J": -19.62397812340379,
+            "convective_loss_W": 3.882745223873842,
+            "displacement_mm_max": 0.0013628655578941107,
+            "native_von_mises_cell_mean_MPa_max": 8.450285911560059,
+            "native_von_mises_cell_mean_MPa_p99": 8.450285911560059
+          },
+          {
+            "time_s": 10.0,
+            "cells": 30,
+            "welded_nodes": 72,
+            "cell_edge_mm": 4.000000189989805,
+            "volume_mm3": 1920.0000649690608,
+            "exterior_faces": 62,
+            "exterior_area_mm2": 992.0000122785565,
+            "temperature_K_min": 491.43109130859375,
+            "temperature_K_max": 491.6728820800781,
+            "temperature_K_mean": 491.58374939246784,
+            "thermal_energy_change_J": -38.83056171695887,
+            "convective_loss_W": 3.800171843944816,
+            "displacement_mm_max": 0.002685323590412736,
+            "native_von_mises_cell_mean_MPa_max": 16.778934478759766,
+            "native_von_mises_cell_mean_MPa_p99": 16.778934478759766
+          },
+          {
+            "time_s": 15.0,
+            "cells": 30,
+            "welded_nodes": 72,
+            "cell_edge_mm": 4.000000189989805,
+            "volume_mm3": 1920.0000649690608,
+            "exterior_faces": 62,
+            "exterior_area_mm2": 992.0000122785565,
+            "temperature_K_min": 487.3599853515625,
+            "temperature_K_max": 487.5966491699219,
+            "temperature_K_mean": 487.50940348583237,
+            "thermal_energy_change_J": -57.628616523247125,
+            "convective_loss_W": 3.7193548898187982,
+            "displacement_mm_max": 0.0039796908386051655,
+            "native_von_mises_cell_mean_MPa_max": 24.930479049682617,
+            "native_von_mises_cell_mean_MPa_p99": 24.930479049682617
+          },
+          {
+            "time_s": 20.0,
+            "cells": 30,
+            "welded_nodes": 72,
+            "cell_edge_mm": 4.000000189989805,
+            "volume_mm3": 1920.0000649690608,
+            "exterior_faces": 62,
+            "exterior_area_mm2": 992.0000122785565,
+            "temperature_K_min": 483.3754577636719,
+            "temperature_K_max": 483.6070861816406,
+            "temperature_K_mean": 483.5216990180003,
+            "thermal_energy_change_J": -76.02692851131484,
+            "convective_loss_W": 3.640256509932818,
+            "displacement_mm_max": 0.0052465396001935005,
+            "native_von_mises_cell_mean_MPa_max": 32.90867614746094,
+            "native_von_mises_cell_mean_MPa_p99": 32.90867614746094
+          }
+        ],
+        "completed_requested_duration": true,
+        "geometry_constant_over_outputs": true,
+        "integrated_convective_loss_J_trapezoid": 76.03200118580489,
+        "thermal_energy_change_J": -76.02692851131484,
+        "energy_imbalance_relative_trapezoid": 6.671762430210265e-05,
+        "integrated_convective_loss_J_simpson": 76.02833450284541,
+        "energy_imbalance_relative_simpson": 1.8492993957699535e-05,
+        "lumped_capacitance": {
+          "biot_number": 0.0002580645216672194,
+          "time_constant_s": 232.5483920873731,
+          "mean_temperature_K_at_end": 483.518184704344,
+          "solver_minus_lumped_K": 0.0035143136562965083,
+          "relative_difference_of_mean_drop": -0.0002132691750281423
+        }
+      },
+      "reread_vs_written": {
+        "cells_match": true,
+        "nodes_match": true,
+        "exterior_faces_match": true,
+        "volume_relative_difference": 3.38380525821691e-08,
+        "area_relative_difference": 1.2377577185418431e-08
+      },
+      "reread_vs_exact": {
+        "volume_relative_difference": 3.38380525821691e-08,
+        "area_relative_difference": 1.2377577185418431e-08
+      },
+      "at_end": {
+        "time_s": 20.0,
+        "cell_edge_mm": 4.000000189989805,
+        "volume_mm3": 1920.0000649690608,
+        "exterior_area_mm2": 992.0000122785565,
+        "temperature_K_min": 483.3754577636719,
+        "temperature_K_max": 483.6070861816406,
+        "temperature_K_mean": 483.5216990180003,
+        "thermal_energy_change_J": -76.02692851131484,
+        "convective_loss_W": 3.640256509932818,
+        "displacement_mm_max": 0.0052465396001935005,
+        "native_von_mises_cell_mean_MPa_max": 32.90867614746094,
+        "native_von_mises_cell_mean_MPa_p99": 32.90867614746094
+      }
+    }
+  },
+  "runtime": {
+    "image": "rombur/adamantine:1.1",
+    "image_id": "sha256:ac735f9b6fec7626e79e91061cbd03b6274478fbafcaf2dcbe078c042affc9fa",
+    "repo_digests": "rombur/adamantine@sha256:ac735f9b6fec7626e79e91061cbd03b6274478fbafcaf2dcbe078c042affc9fa",
+    "source_commit_in_image": "a2e3a413d359c328510e14b6c545b448f9ce0c2f",
+    "cmake_project_line": "project(Adamantine LANGUAGES CXX VERSION 1.1.9)",
+    "executable_sha256": "822430451bf6d24e28b26881a5bf0d705e0507f0b1bc9781a45bb0431f56879f",
+    "mpi": "mpirun (Open MPI) 5.0.5",
+    "command": "docker run --rm --memory 4g --memory-swap 4g --cpus 4 --user UID:GID -e HOME=/case -e OMP_NUM_THREADS=1 -e OMP_PROC_BIND=false -e OPENBLAS_NUM_THREADS=1 -e DEAL_II_NUM_THREADS=1 -v CASE_DIR:/case -w /case --entrypoint mpirun rombur/adamantine:1.1 -np 4 adamantine --input-file /case/cooldown.info"
+  },
+  "difference_2mm_vs_4mm": {
+    "volume_relative": 0.013220012263866565,
+    "exterior_area_relative": 0.15911335912395558,
+    "mean_temperature_K": -0.6926946831147802,
+    "mean_temperature_drop_relative": 0.1411750456769636,
+    "minimum_temperature_K": -3.01116943359375,
+    "thermal_energy_change_relative": 0.15626139377605733,
+    "displacement_max_relative": 0.18389003536901188,
+    "native_von_mises_max_relative": 0.4009791153040814
+  },
+  "reference_surfaces": {
+    "t1s_clean": {
+      "area_mm2": 168407.6,
+      "volume_mm3": 1094605.2
+    },
+    "mc_1p0mm": {
+      "area_mm2": 151077.1,
+      "volume_mm3": 1096787.9
+    }
+  },
+  "lumped_capacitance_on_t1s_surface": {
+    "time_constant_s": 780.9434656155661,
+    "mean_temperature_K_at_end": 494.9430214330979
+  },
+  "limits": "Numerical screen under declared hypotheses, uncorrelated with any build or measurement. The body is the study twin (1 scan unit = 1 mm by owner instruction; unobserved geometry closed by hypotheses), blocked into cubes: walls and gaps thinner than the pitch are merged or lost, and the stair-step exterior area does not converge to the surface area. With a Biot number near 1e-3 the mean temperature follows h*A/(rho*cp*V), so the difference between the two pitches is a difference of discrete area and volume, not a discretisation error estimate. Cell-mean von Mises values sit at re-entrant voxel corners where the elastic solution is singular; they are reported as solver output, not as stresses, and their maximum must not be quoted as a margin. Uniform 500 K start, h = 20 W/m2K, clamped lowest face, elastic constants and the AlSi10Mg-class properties are assumptions. No laser, layer deposition, powder bed, residual-stress build-up, support, distortion compensation, porosity or microstructure is modelled. Nothing here establishes printability, material, dimensional accuracy or function."
+}

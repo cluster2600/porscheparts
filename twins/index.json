@@ -25,6 +25,32 @@
   "fidelity_rule": "fidelity is copied from the linked twin record; a directory without a twin record has fidelity none_declared, whatever its directory suffix. Suffixes such as -f0, -f1 or F15 are iteration labels, not levels of the fidelity ladder.",
   "directories": [
     {
+      "directory": "935-cylinder-head-cad-twin",
+      "kind": "numerical_study",
+      "status": "study",
+      "scope": "Top-down CAD twin of the Wolfe Classics 935 Xtreme head scan: fitted datums, bare-head occupancy, reference surface, section-loft CAD body as one closed solid, scorecards, thermal screens, OpenUSD stages, 3MF studies, AM screen, port-flow audit, fitted machined features (valve axes, guides, seats, plug bores, stud passages) a .usda/.usdz package with a collider, two alloy thermal screens (bare head and hypothesis assembly) with a machine survey, a print body with declared machining stock, and a deposition witness for the build simulation",
+      "fidelity": "none_declared",
+      "physical_correlation": "none",
+      "records": [],
+      "part_ids": [],
+      "no_record_reason": "Study reconstruction of a scanned specimen; unobserved geometry is declared hypothesis and no part is proposed.",
+      "independent_evidence": "independent Warp scan-to-twin scorecard against the acquired surface only, reproduced by CloudCompare; CloudCompare on held-out scan vertices confirms 4 of 32 fitted features within 0.2 mm; no physical measurement",
+      "blockers": [
+        "no physical calibration or same-specimen measurement",
+        "unobserved fin roots, passages and port interiors are hypotheses (hypotheses.json)",
+        "no B-rep of the whole body: the CAD body is a triangle solid that keeps stubs up to 5.5 mm tall of three removed studs",
+        "valves, seats and guides are fitted as nominal numbers only and not modelled, so no port-flow domain is admissible"
+      ],
+      "owner_artefact": "twins/935-cylinder-head-cad-twin/README.md",
+      "evidence": [
+        "twins/935-cylinder-head-cad-twin/params/frame.json",
+        "twins/935-cylinder-head-cad-twin/params/scorecard-t1.json",
+        "twins/935-cylinder-head-cad-twin/params/scorecard-v2-loft-s025.json",
+        "twins/935-cylinder-head-cad-twin/params/thermal-screen-cad.json"
+      ],
+      "issues": []
+    },
+    {
       "directory": "935-horizontal-cooling-system",
       "kind": "research_register",
       "status": "active",
@@ -372,7 +398,7 @@
         "first titanium candidate not selected",
         "LPBF titanium supplier dossier not qualified"
       ],
-      "owner_artefact": "docs/993/993_EMBOUT_TITANE_F1.md",
+      "owner_artefact": "docs/993/993_TITANIUM_EXHAUST_TIP_F1.md",
       "evidence": [
         "twins/993-exhaust-tip-ti-f0/evidence/selection/pet-candidate-verdict.json",
         "twins/993-exhaust-tip-ti-f0/evidence/route-ti64/993-exh-oval-tip-ti-f1-0001-process-route-card.json"
@@ -584,7 +610,7 @@
       "owner_artefact": "docs/993/993_SWITCH_TRIM_RING_F1.md",
       "evidence": [
         "twins/993-switch-trim-ring-f1/evidence/turning-f1/993-int-switch-trim-ring-f1-0001-turning-route-card.json",
-        "docs/decisions/0006-bague-tournee-6063-t6.md"
+        "docs/decisions/0006-turned-6063-t6-ring.md"
       ],
       "issues": [
         480

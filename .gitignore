@@ -68,3 +68,12 @@ parts/*/source/bionic-keepins/
 # Gyroid-core variants: tens of MB per part, regenerated from source/gyroid.json
 # (provenance and SHA-256 in derived/*-picogk-gyroid.json).
 parts/*/derived/*-picogk-gyroid.stl
+
+# Tracked simulation case decks live in models/simulation/ (moved from
+# work/simulation/ on 2026-11-09); solver output stays out of Git there too.
+# scripts/validate_work_tree_outputs.py refuses any that is committed anyway.
+models/simulation/**/postProcessing/
+models/simulation/**/processor*/
+models/simulation/**/polyMesh/
+models/simulation/**/log.*
+models/simulation/**/*.log

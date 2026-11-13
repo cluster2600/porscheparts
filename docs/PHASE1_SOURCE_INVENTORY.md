@@ -106,7 +106,7 @@ under licences declared per record (CC-BY, CC-BY-SA, CC-BY-NC, CC-BY-NC-SA or
 public domain). These part meshes are neither a vehicle scan nor evidence of
 interface accuracy; the primary licence and the units must be confirmed before
 redistribution. The
-[supplementary German-language search](research/phase-1-recherche-allemande.md)
+[supplementary German-language search](research/phase-1-german-research.md)
 listed other community assets with declared licences, to be confirmed on their
 original publications. None of these assets is dimensionally qualified. The two
 commercial body scans therefore remain leads for purchase and comparison, not

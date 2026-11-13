@@ -1,0 +1,1165 @@
+{
+  "schema": "scan-primitive-fitting-witness/2",
+  "witness": "synthetic bores, valve seats, drafted bosses and fillets; ground truth generated independently of any detector",
+  "script_sha256": "d2bb1e802ba326160cf9703ccb92724d412fe85f31953ceaa1caac29250da8ac",
+  "detector_sha256": "2f5b4f564365a209b58b9f63d2fd2ee767d7dac8999dad8be6c8477a67c7a9dc",
+  "lock_sha256": "44d0b821a86e4093b667e61e21e4dc030fb69fd0febb8f65b2c06d8ddc482982",
+  "open3d": "0.19.0",
+  "numpy": "2.2.6",
+  "scipy": "1.18.1",
+  "geometry": {
+    "seed": 20261110,
+    "development_seeds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "pitch_mm": 1.0,
+    "noise_mm": 0.03,
+    "features": 19,
+    "points": 69487,
+    "kinds": {
+      "plane": 5,
+      "cylinder": 8,
+      "cone": 6
+    },
+    "fillets": 2
+  },
+  "settings": {
+    "noise_mm": 0.03,
+    "pitch_mm": 1.0,
+    "distance_mm": 0.09,
+    "normal_deg": 15.0,
+    "score_distance_mm": 0.27,
+    "score_normal_deg": 25.0,
+    "capture": [
+      [
+        0.8999999999999999,
+        30.0
+      ],
+      [
+        0.27,
+        20.0
+      ]
+    ],
+    "patch_radii_mm": [
+      5.0,
+      12.0
+    ],
+    "patch_normal_deg": 35.0,
+    "patch_min_points": 12,
+    "seeds_per_round": 150,
+    "score_sample": 10000,
+    "refine_per_kind": 3,
+    "min_points": 150,
+    "shared_zone_mm": 0.18,
+    "refit_min_points": 50,
+    "refit_min_inlier_fraction": 0.9,
+    "max_radius_mm": 500.0,
+    "max_half_angle_deg": 80.0,
+    "cylinder_max_half_angle_deg": 0.1,
+    "plane_preference": 0.95,
+    "allow_cones": true,
+    "empty_rounds_to_stop": 2
+  },
+  "acceptance": {
+    "match_window": {
+      "axis_deg": 3.0,
+      "position_mm": 2.0,
+      "radius_mm": 2.0,
+      "plane_deg": 1.0,
+      "plane_offset_mm": 0.5
+    },
+    "limits": {
+      "axial": {
+        "axis_deg": 0.2,
+        "position_mm": 0.05,
+        "radius_mm": 0.05,
+        "half_angle_deg": 0.25
+      },
+      "narrow-seat": {
+        "axis_deg": 0.5,
+        "position_mm": 0.15,
+        "radius_mm": 0.05,
+        "half_angle_deg": 0.25
+      },
+      "fillet": {
+        "axis_deg": 0.5,
+        "position_mm": 0.3,
+        "radius_mm": 0.2,
+        "half_angle_deg": 0.25
+      },
+      "plane": {
+        "tilt_deg": 0.1,
+        "offset_mm": 0.05
+      }
+    },
+    "max_sigmas": 5.0,
+    "limit_probes": [
+      "fillet-3"
+    ],
+    "rule": "every feature except the limit probes is determined, of the right type, within its limits and within max_sigmas of the reported uncertainty; nothing is reported as determined outside its acceptance; no unmatched detection"
+  },
+  "detector": {
+    "features": 19,
+    "required": 18,
+    "found": 19,
+    "within_acceptance": 18,
+    "required_within_acceptance": 18,
+    "within_acceptance_by_kind": {
+      "cone": "6/6",
+      "cylinder": "6/6",
+      "fillet": "1/2",
+      "plane": "5/5"
+    },
+    "limit_probes": {
+      "fillet-3": "found, reported as not determined"
+    },
+    "determined_outside_acceptance": [],
+    "unmatched_detections": 0,
+    "passed": true,
+    "rows": [
+      {
+        "name": "bore-50",
+        "class": "axial",
+        "type": "cylinder",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 1.13,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.00287,
+          "position_mm": 0.00059,
+          "radius_mm": 0.00016,
+          "half_angle_deg": 0.0
+        },
+        "points": 12829,
+        "fit_points": 12829,
+        "rms_mm": 0.02971,
+        "reported_sigma": {
+          "axis_deg": 0.00254,
+          "position_mm": 0.00052,
+          "radius_mm": 0.00026
+        }
+      },
+      {
+        "name": "port-15-arc120",
+        "class": "axial",
+        "type": "cylinder",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 1.27,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.00738,
+          "position_mm": 0.0067,
+          "radius_mm": 0.00389,
+          "half_angle_deg": 0.0
+        },
+        "points": 1308,
+        "fit_points": 1308,
+        "rms_mm": 0.02939,
+        "reported_sigma": {
+          "axis_deg": 0.00855,
+          "position_mm": 0.00529,
+          "radius_mm": 0.00423
+        }
+      },
+      {
+        "name": "boss-9",
+        "class": "axial",
+        "type": "cylinder",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 0.92,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.01088,
+          "position_mm": 0.00109,
+          "radius_mm": 0.00056,
+          "half_angle_deg": 0.0
+        },
+        "points": 1477,
+        "fit_points": 1477,
+        "rms_mm": 0.02959,
+        "reported_sigma": {
+          "axis_deg": 0.01179,
+          "position_mm": 0.00154,
+          "radius_mm": 0.00077
+        }
+      },
+      {
+        "name": "saddle-25-arc180",
+        "class": "axial",
+        "type": "cylinder",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 1.05,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.00067,
+          "position_mm": 0.00213,
+          "radius_mm": 0.00061,
+          "half_angle_deg": 0.0
+        },
+        "points": 2475,
+        "fit_points": 2475,
+        "rms_mm": 0.02897,
+        "reported_sigma": {
+          "axis_deg": 0.00747,
+          "position_mm": 0.00203,
+          "radius_mm": 0.0013
+        }
+      },
+      {
+        "name": "seat-30deg",
+        "class": "axial",
+        "type": "cone",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cone",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 1.24,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.05209,
+          "position_mm": 0.00546,
+          "radius_mm": 0.00073,
+          "half_angle_deg": 0.01069,
+          "apex_mm": 0.03332
+        },
+        "points": 906,
+        "fit_points": 906,
+        "rms_mm": 0.02837,
+        "reported_sigma": {
+          "axis_deg": 0.04202,
+          "position_mm": 0.00711,
+          "radius_mm": 0.00109
+        }
+      },
+      {
+        "name": "drafted-boss-1deg",
+        "class": "axial",
+        "type": "cone",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cone",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 0.86,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.00123,
+          "position_mm": 0.00054,
+          "radius_mm": 0.00052,
+          "half_angle_deg": 0.00051,
+          "apex_mm": 0.38129
+        },
+        "points": 2316,
+        "fit_points": 2316,
+        "rms_mm": 0.02891,
+        "reported_sigma": {
+          "axis_deg": 0.00771,
+          "position_mm": 0.0012,
+          "radius_mm": 0.0006
+        }
+      },
+      {
+        "name": "drafted-boss-2deg",
+        "class": "axial",
+        "type": "cone",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cone",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 1.47,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.00561,
+          "position_mm": 0.00063,
+          "radius_mm": 0.00071,
+          "half_angle_deg": 0.00086,
+          "apex_mm": 0.27121
+        },
+        "points": 3893,
+        "fit_points": 3893,
+        "rms_mm": 0.02982,
+        "reported_sigma": {
+          "axis_deg": 0.00612,
+          "position_mm": 0.00096,
+          "radius_mm": 0.00048
+        }
+      },
+      {
+        "name": "drafted-bore-0.5deg",
+        "class": "axial",
+        "type": "cone",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cone",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 1.4,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.00458,
+          "position_mm": 0.00076,
+          "radius_mm": 3e-05,
+          "half_angle_deg": 0.00114,
+          "apex_mm": 7.81077
+        },
+        "points": 7674,
+        "fit_points": 7674,
+        "rms_mm": 0.02944,
+        "reported_sigma": {
+          "axis_deg": 0.00326,
+          "position_mm": 0.00067,
+          "radius_mm": 0.00034
+        }
+      },
+      {
+        "name": "guide-a",
+        "class": "axial",
+        "type": "cylinder",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 1.2,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.00771,
+          "position_mm": 0.0025,
+          "radius_mm": 0.00011,
+          "half_angle_deg": 0.0
+        },
+        "points": 773,
+        "fit_points": 768,
+        "rms_mm": 0.02882,
+        "reported_sigma": {
+          "axis_deg": 0.01335,
+          "position_mm": 0.00209,
+          "radius_mm": 0.00104
+        }
+      },
+      {
+        "name": "seat-45deg-a",
+        "class": "narrow-seat",
+        "type": "cone",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cone",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 0.49,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.03596,
+          "position_mm": 0.01435,
+          "radius_mm": 4e-05,
+          "half_angle_deg": 0.02791,
+          "apex_mm": 0.03158
+        },
+        "points": 580,
+        "fit_points": 580,
+        "rms_mm": 0.02849,
+        "reported_sigma": {
+          "axis_deg": 0.09084,
+          "position_mm": 0.02955,
+          "radius_mm": 0.00168
+        }
+      },
+      {
+        "name": "guide-b",
+        "class": "axial",
+        "type": "cylinder",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 1.91,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.01102,
+          "position_mm": 0.00401,
+          "radius_mm": 0.00061,
+          "half_angle_deg": 0.0
+        },
+        "points": 774,
+        "fit_points": 770,
+        "rms_mm": 0.02907,
+        "reported_sigma": {
+          "axis_deg": 0.0134,
+          "position_mm": 0.0021,
+          "radius_mm": 0.00105
+        }
+      },
+      {
+        "name": "seat-45deg-b",
+        "class": "narrow-seat",
+        "type": "cone",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cone",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 0.85,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.06155,
+          "position_mm": 0.02639,
+          "radius_mm": 0.001,
+          "half_angle_deg": 0.09234,
+          "apex_mm": 0.07452
+        },
+        "points": 580,
+        "fit_points": 580,
+        "rms_mm": 0.02982,
+        "reported_sigma": {
+          "axis_deg": 0.09507,
+          "position_mm": 0.031,
+          "radius_mm": 0.00176
+        }
+      },
+      {
+        "name": "fillet-3",
+        "class": "fillet",
+        "type": "cylinder",
+        "limit_probe": true,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": false,
+        "within_limits": true,
+        "max_sigmas": null,
+        "within_acceptance": false,
+        "errors": {
+          "axis_deg": 0.00781,
+          "position_mm": 0.01861,
+          "radius_mm": 0.01948,
+          "half_angle_deg": 0.0
+        },
+        "points": 353,
+        "fit_points": 122,
+        "rms_mm": 0.02791
+      },
+      {
+        "name": "fillet-3-flank-a",
+        "class": "plane",
+        "type": "plane",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "plane",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": null,
+        "within_acceptance": true,
+        "errors": {
+          "tilt_deg": 0.00272,
+          "offset_mm": 0.00015
+        },
+        "points": 2504,
+        "fit_points": 2367,
+        "rms_mm": 0.02994
+      },
+      {
+        "name": "fillet-3-flank-b",
+        "class": "plane",
+        "type": "plane",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "plane",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": null,
+        "within_acceptance": true,
+        "errors": {
+          "tilt_deg": 0.00502,
+          "offset_mm": 0.00018
+        },
+        "points": 2493,
+        "fit_points": 2370,
+        "rms_mm": 0.02966
+      },
+      {
+        "name": "fillet-6",
+        "class": "fillet",
+        "type": "cylinder",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 2.84,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.05187,
+          "position_mm": 0.04078,
+          "radius_mm": 0.03958,
+          "half_angle_deg": 0.0
+        },
+        "points": 608,
+        "fit_points": 366,
+        "rms_mm": 0.02866,
+        "reported_sigma": {
+          "axis_deg": 0.01825,
+          "position_mm": 0.04237,
+          "radius_mm": 0.04024
+        }
+      },
+      {
+        "name": "fillet-6-flank-a",
+        "class": "plane",
+        "type": "plane",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "plane",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": null,
+        "within_acceptance": true,
+        "errors": {
+          "tilt_deg": 0.00452,
+          "offset_mm": 0.00045
+        },
+        "points": 2497,
+        "fit_points": 2373,
+        "rms_mm": 0.02952
+      },
+      {
+        "name": "fillet-6-flank-b",
+        "class": "plane",
+        "type": "plane",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "plane",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": null,
+        "within_acceptance": true,
+        "errors": {
+          "tilt_deg": 0.00572,
+          "offset_mm": 0.00053
+        },
+        "points": 2496,
+        "fit_points": 2374,
+        "rms_mm": 0.02944
+      },
+      {
+        "name": "deck",
+        "class": "plane",
+        "type": "plane",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "plane",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": null,
+        "within_acceptance": true,
+        "errors": {
+          "tilt_deg": 0.00043,
+          "offset_mm": 1e-05
+        },
+        "points": 22736,
+        "fit_points": 22736,
+        "rms_mm": 0.02946
+      }
+    ],
+    "unassigned_points": 215
+  },
+  "cylinder_only_negative_control": {
+    "features": 19,
+    "required": 18,
+    "found": 16,
+    "within_acceptance": 12,
+    "required_within_acceptance": 12,
+    "within_acceptance_by_kind": {
+      "cone": "0/6",
+      "cylinder": "6/6",
+      "fillet": "1/2",
+      "plane": "5/5"
+    },
+    "limit_probes": {
+      "fillet-3": "found, reported as not determined"
+    },
+    "determined_outside_acceptance": [
+      "drafted-boss-1deg",
+      "drafted-boss-2deg",
+      "drafted-bore-0.5deg"
+    ],
+    "unmatched_detections": 10,
+    "passed": false,
+    "rows": [
+      {
+        "name": "bore-50",
+        "class": "axial",
+        "type": "cylinder",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 1.13,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.00287,
+          "position_mm": 0.00059,
+          "radius_mm": 0.00016,
+          "half_angle_deg": 0.0
+        },
+        "points": 12829,
+        "fit_points": 12829,
+        "rms_mm": 0.02971,
+        "reported_sigma": {
+          "axis_deg": 0.00254,
+          "position_mm": 0.00052,
+          "radius_mm": 0.00026
+        }
+      },
+      {
+        "name": "port-15-arc120",
+        "class": "axial",
+        "type": "cylinder",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 1.27,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.00738,
+          "position_mm": 0.0067,
+          "radius_mm": 0.00389,
+          "half_angle_deg": 0.0
+        },
+        "points": 1308,
+        "fit_points": 1308,
+        "rms_mm": 0.02939,
+        "reported_sigma": {
+          "axis_deg": 0.00855,
+          "position_mm": 0.00529,
+          "radius_mm": 0.00423
+        }
+      },
+      {
+        "name": "boss-9",
+        "class": "axial",
+        "type": "cylinder",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 0.92,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.01088,
+          "position_mm": 0.00109,
+          "radius_mm": 0.00056,
+          "half_angle_deg": 0.0
+        },
+        "points": 1477,
+        "fit_points": 1477,
+        "rms_mm": 0.02959,
+        "reported_sigma": {
+          "axis_deg": 0.01179,
+          "position_mm": 0.00154,
+          "radius_mm": 0.00077
+        }
+      },
+      {
+        "name": "saddle-25-arc180",
+        "class": "axial",
+        "type": "cylinder",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 1.03,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.00066,
+          "position_mm": 0.00208,
+          "radius_mm": 0.00061,
+          "half_angle_deg": 0.0
+        },
+        "points": 2476,
+        "fit_points": 2476,
+        "rms_mm": 0.02902,
+        "reported_sigma": {
+          "axis_deg": 0.00748,
+          "position_mm": 0.00203,
+          "radius_mm": 0.00131
+        }
+      },
+      {
+        "name": "seat-30deg",
+        "class": "axial",
+        "type": "cone",
+        "limit_probe": false,
+        "found": false,
+        "found_type": null,
+        "determined": false,
+        "within_limits": false,
+        "max_sigmas": null,
+        "within_acceptance": false,
+        "errors": null
+      },
+      {
+        "name": "drafted-boss-1deg",
+        "class": "axial",
+        "type": "cone",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": true,
+        "within_limits": false,
+        "max_sigmas": 14.24,
+        "within_acceptance": false,
+        "errors": {
+          "axis_deg": 1.03702,
+          "position_mm": 0.03458,
+          "radius_mm": 0.0245,
+          "half_angle_deg": 1.0
+        },
+        "points": 743,
+        "fit_points": 59,
+        "rms_mm": 0.03197,
+        "reported_sigma": {
+          "axis_deg": 0.07281,
+          "position_mm": 0.0187,
+          "radius_mm": 0.01624
+        }
+      },
+      {
+        "name": "drafted-boss-2deg",
+        "class": "axial",
+        "type": "cone",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": true,
+        "within_limits": false,
+        "max_sigmas": 21.46,
+        "within_acceptance": false,
+        "errors": {
+          "axis_deg": 2.09757,
+          "position_mm": 0.03775,
+          "radius_mm": 0.02202,
+          "half_angle_deg": 2.0
+        },
+        "points": 908,
+        "fit_points": 127,
+        "rms_mm": 0.03246,
+        "reported_sigma": {
+          "axis_deg": 0.09776,
+          "position_mm": 0.05588,
+          "radius_mm": 0.05312
+        }
+      },
+      {
+        "name": "drafted-bore-0.5deg",
+        "class": "axial",
+        "type": "cone",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": true,
+        "within_limits": false,
+        "max_sigmas": 26.6,
+        "within_acceptance": false,
+        "errors": {
+          "axis_deg": 0.59424,
+          "position_mm": 0.0091,
+          "radius_mm": 0.00743,
+          "half_angle_deg": 0.5
+        },
+        "points": 3481,
+        "fit_points": 1277,
+        "rms_mm": 0.03386,
+        "reported_sigma": {
+          "axis_deg": 0.02234,
+          "position_mm": 0.0039,
+          "radius_mm": 0.00284
+        }
+      },
+      {
+        "name": "guide-a",
+        "class": "axial",
+        "type": "cylinder",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 1.2,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.00771,
+          "position_mm": 0.0025,
+          "radius_mm": 0.00011,
+          "half_angle_deg": 0.0
+        },
+        "points": 773,
+        "fit_points": 768,
+        "rms_mm": 0.02882,
+        "reported_sigma": {
+          "axis_deg": 0.01335,
+          "position_mm": 0.00209,
+          "radius_mm": 0.00104
+        }
+      },
+      {
+        "name": "seat-45deg-a",
+        "class": "narrow-seat",
+        "type": "cone",
+        "limit_probe": false,
+        "found": false,
+        "found_type": null,
+        "determined": false,
+        "within_limits": false,
+        "max_sigmas": null,
+        "within_acceptance": false,
+        "errors": null
+      },
+      {
+        "name": "guide-b",
+        "class": "axial",
+        "type": "cylinder",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 1.91,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.01102,
+          "position_mm": 0.00401,
+          "radius_mm": 0.00061,
+          "half_angle_deg": 0.0
+        },
+        "points": 774,
+        "fit_points": 770,
+        "rms_mm": 0.02907,
+        "reported_sigma": {
+          "axis_deg": 0.0134,
+          "position_mm": 0.0021,
+          "radius_mm": 0.00105
+        }
+      },
+      {
+        "name": "seat-45deg-b",
+        "class": "narrow-seat",
+        "type": "cone",
+        "limit_probe": false,
+        "found": false,
+        "found_type": null,
+        "determined": false,
+        "within_limits": false,
+        "max_sigmas": null,
+        "within_acceptance": false,
+        "errors": null
+      },
+      {
+        "name": "fillet-3",
+        "class": "fillet",
+        "type": "cylinder",
+        "limit_probe": true,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": false,
+        "within_limits": true,
+        "max_sigmas": null,
+        "within_acceptance": false,
+        "errors": {
+          "axis_deg": 0.00781,
+          "position_mm": 0.01861,
+          "radius_mm": 0.01948,
+          "half_angle_deg": 0.0
+        },
+        "points": 353,
+        "fit_points": 122,
+        "rms_mm": 0.02791
+      },
+      {
+        "name": "fillet-3-flank-a",
+        "class": "plane",
+        "type": "plane",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "plane",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": null,
+        "within_acceptance": true,
+        "errors": {
+          "tilt_deg": 0.00272,
+          "offset_mm": 0.00015
+        },
+        "points": 2504,
+        "fit_points": 2367,
+        "rms_mm": 0.02994
+      },
+      {
+        "name": "fillet-3-flank-b",
+        "class": "plane",
+        "type": "plane",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "plane",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": null,
+        "within_acceptance": true,
+        "errors": {
+          "tilt_deg": 0.00502,
+          "offset_mm": 0.00018
+        },
+        "points": 2493,
+        "fit_points": 2370,
+        "rms_mm": 0.02966
+      },
+      {
+        "name": "fillet-6",
+        "class": "fillet",
+        "type": "cylinder",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "cylinder",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": 2.84,
+        "within_acceptance": true,
+        "errors": {
+          "axis_deg": 0.05187,
+          "position_mm": 0.04078,
+          "radius_mm": 0.03958,
+          "half_angle_deg": 0.0
+        },
+        "points": 608,
+        "fit_points": 366,
+        "rms_mm": 0.02866,
+        "reported_sigma": {
+          "axis_deg": 0.01825,
+          "position_mm": 0.04237,
+          "radius_mm": 0.04024
+        }
+      },
+      {
+        "name": "fillet-6-flank-a",
+        "class": "plane",
+        "type": "plane",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "plane",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": null,
+        "within_acceptance": true,
+        "errors": {
+          "tilt_deg": 0.00452,
+          "offset_mm": 0.00045
+        },
+        "points": 2497,
+        "fit_points": 2373,
+        "rms_mm": 0.02952
+      },
+      {
+        "name": "fillet-6-flank-b",
+        "class": "plane",
+        "type": "plane",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "plane",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": null,
+        "within_acceptance": true,
+        "errors": {
+          "tilt_deg": 0.00572,
+          "offset_mm": 0.00053
+        },
+        "points": 2496,
+        "fit_points": 2374,
+        "rms_mm": 0.02944
+      },
+      {
+        "name": "deck",
+        "class": "plane",
+        "type": "plane",
+        "limit_probe": false,
+        "found": true,
+        "found_type": "plane",
+        "determined": true,
+        "within_limits": true,
+        "max_sigmas": null,
+        "within_acceptance": true,
+        "errors": {
+          "tilt_deg": 0.00043,
+          "offset_mm": 1e-05
+        },
+        "points": 22736,
+        "fit_points": 22736,
+        "rms_mm": 0.02946
+      }
+    ]
+  },
+  "further_seeds": {
+    "passed": 10,
+    "run": 10,
+    "scenes": [
+      {
+        "seed": 20261111,
+        "required_within_acceptance": 18,
+        "required": 18,
+        "limit_probes": {
+          "fillet-3": "found, reported as not determined"
+        },
+        "unmatched_detections": 0,
+        "passed": true,
+        "outside_acceptance": [],
+        "determined_outside_acceptance": []
+      },
+      {
+        "seed": 20261112,
+        "required_within_acceptance": 18,
+        "required": 18,
+        "limit_probes": {
+          "fillet-3": "found, reported as not determined"
+        },
+        "unmatched_detections": 0,
+        "passed": true,
+        "outside_acceptance": [],
+        "determined_outside_acceptance": []
+      },
+      {
+        "seed": 20261113,
+        "required_within_acceptance": 18,
+        "required": 18,
+        "limit_probes": {
+          "fillet-3": "found, reported as not determined"
+        },
+        "unmatched_detections": 0,
+        "passed": true,
+        "outside_acceptance": [],
+        "determined_outside_acceptance": []
+      },
+      {
+        "seed": 20261114,
+        "required_within_acceptance": 18,
+        "required": 18,
+        "limit_probes": {
+          "fillet-3": "found, reported as not determined"
+        },
+        "unmatched_detections": 0,
+        "passed": true,
+        "outside_acceptance": [],
+        "determined_outside_acceptance": []
+      },
+      {
+        "seed": 20261115,
+        "required_within_acceptance": 18,
+        "required": 18,
+        "limit_probes": {
+          "fillet-3": "found, reported as not determined"
+        },
+        "unmatched_detections": 0,
+        "passed": true,
+        "outside_acceptance": [],
+        "determined_outside_acceptance": []
+      },
+      {
+        "seed": 20261116,
+        "required_within_acceptance": 18,
+        "required": 18,
+        "limit_probes": {
+          "fillet-3": "found, reported as not determined"
+        },
+        "unmatched_detections": 0,
+        "passed": true,
+        "outside_acceptance": [],
+        "determined_outside_acceptance": []
+      },
+      {
+        "seed": 20261117,
+        "required_within_acceptance": 18,
+        "required": 18,
+        "limit_probes": {
+          "fillet-3": "found, reported as not determined"
+        },
+        "unmatched_detections": 0,
+        "passed": true,
+        "outside_acceptance": [],
+        "determined_outside_acceptance": []
+      },
+      {
+        "seed": 20261118,
+        "required_within_acceptance": 18,
+        "required": 18,
+        "limit_probes": {
+          "fillet-3": "found, reported as not determined"
+        },
+        "unmatched_detections": 0,
+        "passed": true,
+        "outside_acceptance": [],
+        "determined_outside_acceptance": []
+      },
+      {
+        "seed": 20261119,
+        "required_within_acceptance": 18,
+        "required": 18,
+        "limit_probes": {
+          "fillet-3": "found, reported as not determined"
+        },
+        "unmatched_detections": 0,
+        "passed": true,
+        "outside_acceptance": [],
+        "determined_outside_acceptance": []
+      },
+      {
+        "seed": 20261120,
+        "required_within_acceptance": 18,
+        "required": 18,
+        "limit_probes": {
+          "fillet-3": "found, reported as not determined"
+        },
+        "unmatched_detections": 0,
+        "passed": true,
+        "outside_acceptance": [],
+        "determined_outside_acceptance": []
+      }
+    ]
+  },
+  "passed": {
+    "primitive_fit": true,
+    "cylinder_only_negative_control": false
+  },
+  "claims": "software witness on synthetic, isolated features only; no real part, scan or fit is qualified"
+}

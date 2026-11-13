@@ -36,7 +36,7 @@ Exit criterion: `make check` passes on a clean repository.
 
 Detailed log: [docs/PHASE1_SOURCE_INVENTORY.md](PHASE1_SOURCE_INVENTORY.md).
 
-Additional research: [German-language batch of twenty candidates](research/phase-1-recherche-allemande.md).
+Additional research: [German-language batch of twenty candidates](research/phase-1-german-research.md).
 
 - [x] Survey official catalogues, legally accessible manuals and measurements
 - [x] Survey 3D models with a verifiable licence
@@ -161,11 +161,11 @@ refuses to build until the seven dimensions it requires are measured.
 ## Phase 3 — Titanium engineering twin, no manufacturing
 
 Candidate under study: **oval exhaust tip `993-EXH-OVAL-TIP-TI-F1-0001`**,
-retained by [decision 0007](decisions/0007-premier-titane-embout-echappement.md)
+retained by [decision 0007](decisions/0007-first-titanium-exhaust-tip.md)
 and kept by [decision 0014](decisions/0014-exhaust-tip-route-matrix-conditional-titanium.md)
 behind a conditional go/no-go that is closed today. The record is `functional`,
-not `non_critical`; accepting it as the first titanium part and sourcing the
-deciding temperature remain owner decisions (see 0014).
+not `non_critical`; the owner accepted it as the first titanium candidate on
+2026-11-09 (0014, issue #5). Sourcing the deciding temperature remains open.
 
 The engine carrier `993-ENG-CARRIER-0001` (993 115 021 53) is no longer the
 Phase 3 candidate. It stays a safety-critical study: at identical geometry it
@@ -174,8 +174,8 @@ would be roughly twice as flexible in titanium as in steel, and
 gain from being printed. Its load cases stay in
 `parts/993-eng-carrier-0001/evidence/load-cases.md`.
 
-- [ ] Choose a part where Ti-6Al-4V brings a real benefit
-- [ ] Compare LPBF, CNC, sheet metal and casting
+- [x] Choose a part where Ti-6Al-4V brings a real benefit (decision 0014, accepted 2026-11-09)
+- [x] Compare LPBF, CNC, sheet metal and casting ([route matrix](../catalog/manufacturing/exhaust-tip-route-matrix.json))
 - [ ] Define loads, interfaces, environment and service life
 - [ ] Perform FEA and a manufacturability review with a supplier
 - [ ] Integrate geometry, loads and results at the `F3_engineering` level
@@ -185,7 +185,10 @@ gain from being printed. Its load cases stay in
 
 Exit criterion: a digital material, mass, stiffness, fatigue and
 manufacturability report available. All manufacturing remains outside the active
-phase.
+phase. The conditional report is
+[993_EXHAUST_TIP_PHASE3_REPORT.md](993/993_EXHAUST_TIP_PHASE3_REPORT.md):
+mass and the geometric manufacturability screen are established; material,
+stiffness and fatigue stop at named blockers.
 
 ## Cross-cutting goal — digital twin coverage
 

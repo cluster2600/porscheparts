@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PART = ROOT / "catalog/parts/993-eng-chain-case-lid-ti-f0-0001.json"
 SCREEN = ROOT / "parts/993-eng-chain-case-lid-ti-f0-0001/evidence/parametric-screen.json"
 SCRIPT = ROOT / "parts/993-eng-chain-case-lid-ti-f0-0001/source/chain_case_lid_screen.py"
-DOC = ROOT / "docs/993/993_COUVERCLE_CARTER_CHAINE_TI.md"
+DOC = ROOT / "docs/993/993_CHAIN_CASE_LID_TI.md"
 
 
 def load(path: Path):

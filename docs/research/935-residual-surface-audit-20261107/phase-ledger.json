@@ -1,0 +1,95 @@
+{
+  "schema": "935-residual-global-quality-phase-ledger-1",
+  "requirement": "R935-GLOBAL-QUALITY-1",
+  "scope": "Two diagnostic numerical corrections, independent global checks and prepared next source proposals; full faithful CAD / functional metal objective remains open",
+  "runtime": {
+    "python": "3.12.13",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "gmsh": "4.12.1",
+    "host": "Darwin arm64",
+    "new_installations": false
+  },
+  "phases": [
+    {
+      "id": "P0",
+      "inputs": "Frozen fdce160b parent, full condition/volume/native records, complete surface/cap/curve lineage",
+      "command": "Rehash consumed payloads against frozen manifests",
+      "outputs": "Bound private jobs and diagnostic-only source admission",
+      "checks": "Actual source identity; fields remain rejected",
+      "state": "complete"
+    },
+    {
+      "id": "P1",
+      "inputs": "All 12811 severe cells, all 8218458 boundary triangles and 868 native bad IDs",
+      "command": "python -B audit_residual_surface.py --job PRIVATE_JOB --output NEW_AUDIT",
+      "outputs": "Exact quality/cap/native cross-census",
+      "checks": "Full attribution repeated; unchanged refusal counts; Gram/Heron controls and every local quality comparison",
+      "state": "complete"
+    },
+    {
+      "id": "P2",
+      "inputs": "Complete census, protected source cap face, old constructor and Fraction verifier",
+      "commands": [
+        "python -B audit_quality_witness.py --job PRIVATE_JOB --output NEW_WITNESS",
+        "Replay versioned policy patches; run literal and refusal controls"
+      ],
+      "outputs": "Exact below-warning cap witness and explicit new contract",
+      "checks": "Decreasing local minimum is permitted; absolute new-face threshold strengthened; global minimum proof; forged witness refused despite recomputed hashes",
+      "state": "complete"
+    },
+    {
+      "id": "P3",
+      "inputs": "Fresh source audit and exact witness on each current parent",
+      "commands": [
+        "python -B PATCHED_AUDIT --job PRIVATE_JOB --output NEW_ADMISSION",
+        "python -B PATCHED_FRACTION_VERIFIER --job PRIVATE_JOB --output NEW_VERIFICATION",
+        "python -B validate_build_final.py CANDIDATE_SURFACE NEW_SURFACE_INSPECTION",
+        "python -B inspect_interval_volume.py --mesh CANDIDATE --surface SURFACE --surface-report NATIVE_SURFACE_REPORT --frozen-inspector PINNED_HELPER --output NEW_VOLUME_INSPECTION",
+        "python -B PATCHED_CONDITION_CENSUS --repository REPO --parent-mesh PARENT --proof-root VERIFICATION --condition-root PARENT_CENSUS --output NEW_CENSUS",
+        "python -B export_native_mesh.py --mesh CANDIDATE --input-report VOLUME_REPORT --surface SURFACE --output NEW_NATIVE_READBACK"
+      ],
+      "outputs": "Two separately certified actual meshes and complete reports",
+      "checks": "Exact local and all-incidence proofs; protected cap/curve constraints; witness unchanged; full native intersections and 3MF readback; every cell sign/face pairing; fresh census equals exact deletion prediction; actual Gmsh readbacks",
+      "state": "complete_two_batches_absolute_quality_still_rejected",
+      "limits": "600 seconds per ledger; 4/12 GiB sampled direct-child RSS; 4 GiB disk floor"
+    },
+    {
+      "id": "P4-C",
+      "inputs": "Four historical batches and both actual new candidates / native artifacts",
+      "command": "python -B UNCHANGED_check_peel_chain.py --job PRIVATE_CHAIN_JOB --output NEW_CHAIN_CHECK",
+      "outputs": "Six-generation exact parent ancestry and removed volume",
+      "checks": "14535 cumulative removals; all node bits and retained tuples; approved surface-row coverage; exact original-coordinate volume independently recomputed",
+      "state": "complete"
+    },
+    {
+      "id": "P4-N",
+      "inputs": "All 716 final severe cells and complete current surface",
+      "commands": [
+        "Replay post-second witness identity patch; certify actual current cap witness",
+        "Replay post-second admission identity patch; run complete source census"
+      ],
+      "outputs": "248 locally/topologically eligible exchanges, 228 vertex-disjoint proposals",
+      "checks": "Policy unchanged; no third corrected candidate or field solve",
+      "state": "source_audit_complete_independent_proposal_verification_pending"
+    },
+    {
+      "id": "P5",
+      "inputs": "Terminal numerical evidence and English source/records",
+      "command": "make check; verify file sizes, source replays, frozen capsule and GitHub CI",
+      "outputs": "results.json and reviewable English GitHub increment",
+      "checks": "Full repository checks; private data excluded; exact commit/tree/blob identity; physical gates remain false",
+      "state": "publication_checks_recorded_separately_in_results_and_PR",
+      "note": "This ledger records numerical phase coverage. Current repository and CI outcomes are supplied by results.json and the PR receipts."
+    }
+  ],
+  "full_goal_gates": {
+    "G0_specimen_metrology": false,
+    "G1_faithful_editable_CAD": false,
+    "G2_correlated_engine_physics": false,
+    "G3_qualified_metal_process": false,
+    "G4_physical_inspection": false,
+    "G5_professional_engine_validation": false
+  },
+  "new_paid_compute_usd": 0
+}

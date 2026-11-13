@@ -1,0 +1,280 @@
+{
+  "schema": "935-single-volume-study-1",
+  "date": "2026-11-07",
+  "scope": "Supported digital hypothesis delivery; no functional/manufacturing release",
+  "requirement_id": "R935-DIGITAL-UNION-1",
+  "application_element_id": "A935-MESH64",
+  "source_main_commit": "429deaef606277ba81f5e895ff26aebc088cb4a6",
+  "upstream_native_runtime_receipt_commit": "5b2ed10228601db86e4abccd87c5efc6143fcff1",
+  "source_scan": {
+    "original_scan_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+    "bytes": 104598077,
+    "original_file_currently_matches_frozen_baseline": true,
+    "scan_modified_by_this_increment": false,
+    "units_basis": "owner-declared 1 OBJ unit = 1 mm; independent physical calibration not established"
+  },
+  "input_admission": {
+    "source_sha256": "374f8f84a4a63b6e2e14badbacc822863ec8404675da4db058803adef1df4307",
+    "job_sha256": "d923eefd6eafbe5f19d6f31e3f173b8f0f307e812b6e4e465c76394fdc4feead",
+    "head_sha256": "05159cdbf903729da5b8556d2ff2c2d29680a45c2b4bd42b34e031a122205594",
+    "composite_sha256": "cf91e8a31790328e7e32acb6774b2c14f3015dc6ebf8a77b621b13ccc3d1601b",
+    "supports_sha256": "221923ce284c01df70a63d32cfed01b24102c7b828967331daad64506994680e",
+    "actual_mesh_resources": 1120,
+    "auxiliary_mesh_resources": 1119,
+    "every_resource_coordinate_and_index_verified": true,
+    "assembly_and_units_verified": true,
+    "geometry_changed": false,
+    "manufacturing_qualified": false
+  },
+  "native_union": {
+    "source_sha256": "fc4010f69e470792447848dc2604e6ff59109fa67b07d7f68c5931763dd371bc",
+    "candidate_sha256": "74bc9956be93abe24fc09d8b7ab6661f20aaff73a0007747127ecf6ae5a319bf",
+    "manifold_version": "3.5.4",
+    "mesh64_only": true,
+    "source_resources": 1120,
+    "vertices": 4374192,
+    "triangles": 8759012,
+    "native_components": 18,
+    "native_volume_mm3": 1380195.7498193223,
+    "controls": {
+      "analytic_overlap_union": true,
+      "disjoint_components_preserved": true,
+      "exact_source_triangle_roundtrip": true,
+      "float64_thin_box_preserved": true,
+      "float32_thin_box_collapse_demonstrated": true
+    },
+    "every_input_triangle_roundtrip_verified": true,
+    "seconds": 30.368493017274886
+  },
+  "runtime_image_id": "sha256:3fc08a038193fd6f7a611111e88909baad09354fe2d0ce09a77c45da991f9a1d",
+  "independent_geometry": {
+    "input_sha256": "74bc9956be93abe24fc09d8b7ab6661f20aaff73a0007747127ecf6ae5a319bf",
+    "vertices": 4374192,
+    "triangles": 8759012,
+    "zero_area_triangles": 0,
+    "open_edges": 0,
+    "nonmanifold_edges": 0,
+    "inconsistently_oriented_edges": 0,
+    "connected_components": 18,
+    "signed_volume_mm3": 1380195.7498193237,
+    "vertex_manifold": true,
+    "intersection_pairs": 1,
+    "geometry_export_gate_passed": false
+  },
+  "exact_contact_admission": {
+    "raw_pairs": 1,
+    "proved_indexed_shared_simplex_contacts": 1,
+    "proper_nonadjacent_intersection_pairs": 0,
+    "proof_uses_distance_tolerance": false,
+    "report_sha256": "6208edd236648fa1919b1f138d292150e7af4f8f3636fecf94dad83462d56878",
+    "raw_failed_export_verdict_retained": true
+  },
+  "material_body": {
+    "positive_material_shells": 1,
+    "negative_cavity_shells": 17,
+    "one_material_body": true,
+    "enclosed_cavity_volume_mm3": 0.0194384240577526,
+    "cavities_filled": false
+  },
+  "source_provenance": {
+    "all_output_triangles_checked": 8759012,
+    "exact_unchanged_triangles": 7921217,
+    "clipped_or_retriangulated_triangles": 837795,
+    "numerical_whole_triangle_containment_bound_mm": 1.3529307862578282e-10,
+    "containment_limit_mm": 1e-08,
+    "containment_passed": true,
+    "minimum_source_normal_cosine": 0.9999999999998592,
+    "claimed_source_indices_valid": true,
+    "floating_point_containment_is_not_an_exact_rational_proof": true
+  },
+  "three_mf": {
+    "sha256": "217b0997f897ecf5dc84fc5da13adb0c069acc48806deb56fe166ab71998da14",
+    "bytes": 192517580,
+    "every_coordinate_index_and_unit_roundtrips_exact": true,
+    "single_mesh_resource": true,
+    "digital_geometry_and_export_gate_passed": true
+  },
+  "neutral_contours": {
+    "sha256": "2649f5f581d251a9d02581647fa407fc2baa1bbb56cd909e2a83b3c1181b83f0",
+    "bytes": 2705626939,
+    "layer_mm": 0.05,
+    "layers": 2074,
+    "all_final_layers_valid": true,
+    "failed_layers": 0,
+    "all_layers_match_independent_composite": true,
+    "maximum_layer_symmetric_difference_mm2": 5.4729477973107205e-11,
+    "slice_volume_mm3": 1380130.1003667836,
+    "surface_slice_relative_volume_difference": 4.756532002601021e-05,
+    "surface_slice_volume_difference_limit": 0.002,
+    "hatch_or_exposure_present": false,
+    "machine_job": false
+  },
+  "coplanar_section_union": {
+    "selected_plane_mm": 5.0,
+    "input_rings": 564,
+    "output_rings": 1,
+    "every_input_ring_positive_simple_and_inside_actual_plate": true,
+    "actual_plate_outer_ring_present": true,
+    "exact_other_layer_bytes_sha256": "aaa394cd9d717ad0c237f12061e59da6167bc6db28c8fde69aca325fd599e17c",
+    "all_other_serialized_bytes_unchanged": true,
+    "independent_reference_symmetric_difference_mm2": 0.0,
+    "actual_plate_symmetric_difference_mm2": 0.0,
+    "mesh_modified": false,
+    "layer_height_changed": false,
+    "tolerance_relaxed": false
+  },
+  "retained_failures": {
+    "first_controls": "Mesh64 requires writable arrays; constructor rejected read-only native views. The final worker uses np.require C/W without losing float64 coordinates.",
+    "second_controls": "Exact thin-box scalar volume equality failed from translation cancellation. Exact triangle roundtrip remains mandatory; scalar-volume control uses one ULP at the 100 mm translation.",
+    "first_full_audit": "4 GiB RSS guard stopped the full independent audit. The 12 GiB companion completed with unchanged geometric predicates and acceptance thresholds.",
+    "raw_contact": "One libigl finding was proved exactly to be only the indexed shared simplex.",
+    "raw_cli": "Both complete raw comparisons/readback rejected only the nested-positive section at the 5 mm plate top. The single-plane material union is independently proved and the final whole-file comparison passes."
+  },
+  "controller_resource_amendment": {
+    "base_sha256": "d360d536eede6b2e2cb6db3a93cb81acd5821142a9d3f6140edaee2627930a8b",
+    "derived_sha256": "a6ef265c809607eb4f0d248ded48340f4a5e8aa2429ba9a77b85ebd8060275e9",
+    "only_changes": [
+      "RSS cap 4 to 12 GiB",
+      "matching stop reason label"
+    ],
+    "reason": "The 8,759,012-face full libigl audit exceeded the original 4 GiB cap after edge/component checks. Host physical RAM is 64 GiB; geometry, validation predicates and numerical acceptance are unchanged. Wall 600 seconds and disk floor 4 GiB remain."
+  },
+  "recovery": {
+    "recovered_files_verified": 11,
+    "owned_container_absent": true,
+    "owned_staging_removed_after_verified_recovery": true,
+    "new_paid_compute_usd": 0
+  },
+  "repository_checks": {
+    "exit_code": 0,
+    "main_suite_tests": 5844,
+    "main_suite_skips": 421,
+    "log_sha256": "9b49b2dd544a3bd0677834c435d53245157fdcf6d1a45d8e7dfc6d6c0f8c0c94",
+    "python": "3.12.13",
+    "numpy": "2.2.6",
+    "scipy": "1.17.1",
+    "matplotlib": "3.10.8",
+    "initial_wrong_environment_errors": 9,
+    "initial_wrong_environment_log_sha256": "e9a9107dac2cc2f3801f6da0f63e20c7d2466c8aabac8fbc19f3536ae0d9bd6c",
+    "project_check_environment_created_via_existing_make_check_setup": true,
+    "docs_links_broken": 0,
+    "docs_links_checked_markdown_files": 2090,
+    "docs_links_log_sha256": "c8552ea55de1c2ccbea833cdc4a98fbd545cb05d18e8209029c703139d3a7276"
+  },
+  "phase_ledger": [
+    {
+      "id": "A0",
+      "action": "Input hashes, exact streamed 3MF readback, declared hypothesis admission",
+      "expected_output": "prepared arrays/report",
+      "state": "complete",
+      "receipt": "prepared/report.json"
+    },
+    {
+      "id": "A1",
+      "action": "Literal Mesh64 overlap, disjoint and thin-box native controls",
+      "expected_output": "controls.json",
+      "state": "complete",
+      "receipt": "native-controls-v3/stdout.log"
+    },
+    {
+      "id": "A2",
+      "action": "Complete actual 8,219,310-face head Mesh64 roundtrip",
+      "expected_output": "head-admission.json",
+      "state": "complete",
+      "receipt": "kali-union/recovered/result/head-admission.json"
+    },
+    {
+      "id": "A3",
+      "action": "Every auxiliary input triangle roundtrip",
+      "expected_output": "worker checks",
+      "state": "complete",
+      "receipt": "kali-union/recovered/result/report.json"
+    },
+    {
+      "id": "A4",
+      "action": "One complete auxiliary union",
+      "expected_output": "native intermediate",
+      "state": "complete",
+      "receipt": "kali-union/recovered/result/report.json"
+    },
+    {
+      "id": "A5",
+      "action": "One head/auxiliary union",
+      "expected_output": "candidate NPZ/provenance",
+      "state": "complete",
+      "receipt": "kali-union/recovered/result/report.json"
+    },
+    {
+      "id": "A6",
+      "action": "Recover results, hash every payload, remove only owned container/staging",
+      "expected_output": "recovery receipt",
+      "state": "complete",
+      "receipt": "kali-union/report.json"
+    },
+    {
+      "id": "A7",
+      "action": "Independent full geometry and source-provenance checks",
+      "expected_output": "acceptance/refusal report",
+      "state": "complete",
+      "receipt": "provenance/report.json; single-volume-export/report.json"
+    },
+    {
+      "id": "A8",
+      "action": "Single-volume 3MF export and complete readback",
+      "expected_output": "new private 3MF",
+      "state": "complete",
+      "receipt": "single-volume-export/report.json"
+    },
+    {
+      "id": "A9",
+      "action": "Complete layer comparison with fixed source union contours",
+      "expected_output": "layer report",
+      "state": "complete",
+      "receipt": "final-layer-comparison/report.json"
+    },
+    {
+      "id": "A10",
+      "action": "Exact machine/material/exposure and process/functional qualification",
+      "expected_output": "supplier process evidence and physical validation",
+      "state": "missing_process_and_physical_evidence",
+      "receipt": null
+    }
+  ],
+  "cost_and_closeout": {
+    "new_paid_compute_usd": 0,
+    "new_vast_instances": 0,
+    "strict_live_vast_instance_count": 0,
+    "vast_inventory_receipt_sha256": "8549e143cc97cd2d8414ed6a6ad2eb59c3f6c52c327f4f5c28d6621840d320f1",
+    "historical_budget_total_usd": 35,
+    "historical_compute_cap_usd": 30,
+    "historical_closeout_reserve_usd": 5,
+    "historical_budget_reset": false,
+    "account_balance_queried": false
+  },
+  "source_hashes": {
+    "canonicalize_plate_section.py": "8ee11bc8d271ac3da3946c5a44e8f1818bff7b317ed22ea729e1692c41e07bb4",
+    "check_union_provenance.py": "13372160709a70febfccc025f039bfdb66f704af43400fe68c352e6dba99cefe",
+    "compare_all_layers.py": "fd95aaf754f6f20124113bce8472d925a36867b68fbe16e8ccc0f6eb030bc264",
+    "export_union.py": "c15de40c790110e831282ad7766cf83910e13db27b3373721ac33be5ee170ae4",
+    "prepare_composite.py": "374f8f84a4a63b6e2e14badbacc822863ec8404675da4db058803adef1df4307",
+    "run_kali_union.py": "0e829e3bcf2abf8601fbe3951c56bbc8d88d6d4f81d70ad9faca39251a5b8c29",
+    "union_composite.py": "fc4010f69e470792447848dc2604e6ff59109fa67b07d7f68c5931763dd371bc"
+  },
+  "private_capsule": {
+    "manifest_sha256": "34ef8087ea7b36030be65dd1e134c4c7aa07daccb77019fd972e4b38f11026f0",
+    "files": 171,
+    "bytes": 9806406160,
+    "raw_and_derived_geometry_published": false
+  },
+  "gates": {
+    "digital_supported_geometry_and_contour_delivery": true,
+    "independent_specimen_metrology": false,
+    "complete_faithful_analytic_cad": false,
+    "new_head_cfd_cht_mechanical_or_adamantine_validation": false,
+    "qualified_machine_material_and_exposure": false,
+    "manufacturing_qualified": false,
+    "physical_build_inspected": false,
+    "engine_qualified": false,
+    "functional_head_goal_complete": false
+  }
+}

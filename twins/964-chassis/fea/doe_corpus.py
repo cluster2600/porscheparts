@@ -1,6 +1,6 @@
 """Plan d'experiences CalculiX : le corpus dont PhysicsNeMo a besoin avant d'exister.
 
-`docs/MONOCOQUE_964_993_CHAINE_CALCUL.md` pose la regle : un substitut n'a de sens
+`docs/MONOCOQUE_964_993_COMPUTATION_CHAIN.md` pose la regle : un substitut n'a de sens
 qu'apres un corpus coherent, et `ROADMAP.md` en fait une condition ecrite. Ce
 script produit ce corpus. Il ne demande **ni GPU ni SSH** : un plan d'experiences
 CalculiX est du calcul CPU, et c'est precisement ce qui peut etre prepare

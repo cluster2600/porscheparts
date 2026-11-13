@@ -1,0 +1,22 @@
+--- a/audit_peeled_conditions.py
++++ b/audit_global_quality_conditions.py
+@@ -37,15 +37,15 @@
+     oracle = load(base/"935-native-solver-admission-20261105/source/inspect_metric_disagreement.py", "peeled_condition_fractions", "df44407d6d808729fc9cf00f079a6b21ff30260b584b5dec1d9dec064416d64e")
+     tested = helper.controls(exact, oracle)
+     proof = json.loads((args.proof_root/"report.json").read_text())
+-    assert proof["source_sha256"] == "986bae3440420f1220b790f5ae8d54a92ebd427fb0c4a2c706712733317ddaf6"
+-    assert sha(args.parent_mesh) == proof["parent_mesh_sha256"] == "62717026bdfc3dc9c1a6cde682b32db12900cad8460f158a7319c41d001e2462"
++    assert proof["source_sha256"] == "f1bfa9416d8260882994fa9ef065a1a5879a9a73f453cea5a376c76afd57c87b"
++    assert sha(args.parent_mesh) == proof["input_mesh_sha256"] == "fdce160bc7ec2456ab339de09733d00cd2f3cd4c6a1327e03b44c838000e0db6"
+     mesh = args.proof_root/"candidate-volume.npz"
+     assert sha(mesh) == proof["candidate_volume_sha256"]
+     before = json.loads((args.condition_root/"report.json").read_text())
+-    assert before["source_sha256"] == helper.sha(base/"935-condition-directed-20261105/source/audit_all_conditions.py")
++    assert before["source_sha256"] == 'bb553aca176a76d856c6cdea9515924c3cfcc4ab330f1c0e1ec0b2948be8f6d9'
+     assert before["input_mesh_sha256"] == sha(args.parent_mesh)
+     exact_path = args.condition_root/"private-exact-severe-values.json"
+-    assert sha(exact_path) == before["private_exact_values_sha256"] == "f4b54a89ce2506228c99abd37e8bce3d7ac9db7b1f2c4c188f4bb76cc499a87b"
++    assert sha(exact_path) == before["private_exact_values_sha256"] == "68fe7b7722da8a879d89f02408d76e0a813a0f1a8832122cf0bae0333e04d6eb"
+     parent_severe = json.loads(exact_path.read_text())
+     with np.load(args.parent_mesh, allow_pickle=False) as data:
+         old_nodes, old_cells = data["nodes"], data["tets"]

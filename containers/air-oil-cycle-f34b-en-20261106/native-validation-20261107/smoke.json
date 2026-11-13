@@ -1,0 +1,207 @@
+{
+  "bundled_content_audit": {
+    "contains_model_weights": false,
+    "contains_scan_or_print_geometry": false,
+    "file_count": 7,
+    "files_sha256": {
+      "requirements.txt": "1da2fe643628655b2468ad1f16d562b274c2bea0653542ed7eebddd99145ab15",
+      "scripts/run_917_air_oil_cycle_f34b.py": "a42ccf2ebba58c698bc36facfc1233c6c6e437bd3a7e84069dd95a4e3d449548",
+      "smoke.py": "b8e63c3267292b7fd526565465f783329b1f2b0f8e12e33728051ef3912bd9c5",
+      "twins/reference-917-engine/air-oil-core-controls-f34a.json": "a1e4c7626fccf634856df4f167edfa0f1ad2a32337e4ff9e2386a6abf930c8fa",
+      "twins/reference-917-engine/doe-surrogate-f34.json": "575de28758a6f65f5471e7d4767d0427c58a4ae87ec81b002c5097e2026edc4e",
+      "twins/reference-917-engine/evidence/f34/air-oil-forward-seeds-f34b.json": "f8d9307fa1b627ebf85a650cb6eb88d44444bdc78382075c01e3ce14523ba9df",
+      "twins/reference-917-engine/evidence/f34/doe-case-manifest.json": "16d5e43d71b867f7cc4937f9329de084ee05c358d3abb6d48f826cb847d8a625"
+    },
+    "forbidden_asset_files": [],
+    "policy": "seven_exact_allow_listed_inputs_with_name_extension_and_solver_api_audits",
+    "proprietary_manual_file_in_allow_list": false,
+    "secret_named_files": [],
+    "semantic_content_license_audit_performed": false,
+    "solver_forbidden_network_or_process_api_tokens": []
+  },
+  "cantera": "3.2.0",
+  "dependency_audit": {
+    "hash_count": 4,
+    "pin_count": 4,
+    "policy": "four_exact_hashed_linux_amd64_wheels_plus_pinned_base_pip",
+    "requirements_sha256": "1da2fe643628655b2468ad1f16d562b274c2bea0653542ed7eebddd99145ab15",
+    "unexpected_distributions": [],
+    "versions": {
+      "cantera": "3.2.0",
+      "numpy": "2.5.2",
+      "pip": "25.0.1",
+      "ruamel-yaml": "0.19.1",
+      "typing-extensions": "4.16.0"
+    }
+  },
+  "embedded_authority_audit": {
+    "air_oil_seed_bundle_sha256": "f8d9307fa1b627ebf85a650cb6eb88d44444bdc78382075c01e3ce14523ba9df",
+    "all_embedded_release_gates_closed": true,
+    "architecture_decision_id": "F34A-AIR-OIL-CORE-2026-CONTROLS",
+    "architecture_parent_sha256_verified": true,
+    "canonical_doe_executed_cases": 0,
+    "canonical_doe_planned_cases": 2570,
+    "canonical_doe_training_eligible_cases": 0,
+    "engine_core": "forced_air_and_dry_sump_oil",
+    "engine_core_liquid_coolant_present": false,
+    "manifest_contract_file_sha256_verified": true,
+    "seed_bundle_embedded_parent_sha256s_verified": true
+  },
+  "generic_cantera_fixture": {
+    "canonical_doe_case": false,
+    "equilibrium_temperature_k": 2225.524583477,
+    "fixture": "generic_methane_equilibrium_and_hydrogen_constant_volume_reactor",
+    "reactor_final_temperature_k": 2894.342056322,
+    "reactor_final_time_s": 0.001,
+    "reactor_initial_temperature_k": 1000.0,
+    "reactor_steps": 1344,
+    "uses_engine_calibration": false,
+    "uses_engine_forward_input": false,
+    "uses_engine_geometry": false,
+    "uses_porsche_data": false
+  },
+  "gpu_required": false,
+  "network_isolation_evidence": {
+    "external_routed_interfaces": [],
+    "hostname_recorded": false,
+    "socket_module_available": true,
+    "verified": true
+  },
+  "non_root": true,
+  "offline": true,
+  "physical_release_gates": {
+    "air_cooling_validated": false,
+    "combustion_and_knock_validated": false,
+    "controls_and_overspeed_protection_validated": false,
+    "doe_execution_complete": false,
+    "manufacturing_authorized": false,
+    "mass_and_energy_balance_validated": false,
+    "metal_print_authorized": false,
+    "oil_system_validated": false,
+    "physical_correlation_complete": false,
+    "porsche_993_packaging_validated": false,
+    "porsche_993_vehicle_installation_authorized": false,
+    "structural_and_fatigue_validated": false,
+    "target_definition_complete": false,
+    "target_power_proven": false,
+    "test_bench_start_authorized": false,
+    "thermodynamic_cycle_validated": false,
+    "turbo_match_validated": false
+  },
+  "platform": "linux/amd64-cpu",
+  "proof_boundary": {
+    "canonical_doe_cases_executed": 0,
+    "canonical_doe_solver_campaign_executed": false,
+    "dataset_generated": false,
+    "embedded_model_and_contracts_audited": true,
+    "engine_forward_solver_executed": false,
+    "generic_thermochemistry_fixture_executed": true,
+    "omniverse_executed": false,
+    "physical_correlation": false,
+    "physicsnemo_executed": false,
+    "predicted_engine_power": false,
+    "preflight_executed": true,
+    "remote_compute_used": false,
+    "solver_synthetic_smoke_executed": false,
+    "surrogate_trained": false,
+    "validated_1600_hp": false
+  },
+  "python": "3.12.14",
+  "runtime_identity_and_filesystem_audit": {
+    "account": "air-oil-cycle",
+    "application_payload_write_blocked": true,
+    "gid": 9133,
+    "home_environment": "/tmp",
+    "passwd_home": "/tmp",
+    "tmp_write_probe": true,
+    "uid": 9133,
+    "xdg_cache_home": "/tmp/air-oil-cycle-f34b-cache"
+  },
+  "schema_version": "1.0.0",
+  "solver_preflight": {
+    "allowed_modes": [
+      "preflight"
+    ],
+    "preflight": {
+      "architecture_boundary": {
+        "auxiliary_liquid_isolated_from_core_required": true,
+        "auxiliary_liquid_scope_twin_turbo_only": [
+          "charge_cooling",
+          "turbo_chra_optional_unresolved"
+        ],
+        "engine_core_heat_rejection": [
+          "forced_air",
+          "dry_sump_oil"
+        ],
+        "engine_core_liquid_cavities_or_jackets_present": false,
+        "engine_core_liquid_coolant_present": false
+      },
+      "canonical_doe_cases_executed": 0,
+      "claims": {
+        "controls_validated": false,
+        "cooling_system_validated": false,
+        "manufacturing_authorized": false,
+        "physical_model_validated": false,
+        "physicsnemo_dataset_authorized": false,
+        "target_power_proven": false
+      },
+      "execution_boundary": {
+        "canonical_doe_cases_executed": 0,
+        "canonical_doe_manifest_loaded": false,
+        "cantera_import_attempted": false,
+        "omniverse_executed": false,
+        "physicsnemo_executed": false,
+        "standard_library_only": true,
+        "synthetic_smoke_cases_executed": 0,
+        "vast_used": false
+      },
+      "inputs": {
+        "air_oil_seed_bundle": {
+          "legacy_executable_solver_loaded": false,
+          "legacy_liquid_head_contract_loaded": false,
+          "path": "/opt/air-oil-cycle-f34b/twins/reference-917-engine/evidence/f34/air-oil-forward-seeds-f34b.json",
+          "payload_sha256_verified": true,
+          "sha256": "f8d9307fa1b627ebf85a650cb6eb88d44444bdc78382075c01e3ce14523ba9df"
+        },
+        "architecture_contract": {
+          "path": "/opt/air-oil-cycle-f34b/twins/reference-917-engine/air-oil-core-controls-f34a.json",
+          "sha256": "a1e4c7626fccf634856df4f167edfa0f1ad2a32337e4ff9e2386a6abf930c8fa"
+        },
+        "doe_contract": {
+          "path": "/opt/air-oil-cycle-f34b/twins/reference-917-engine/doe-surrogate-f34.json",
+          "sha256": "575de28758a6f65f5471e7d4767d0427c58a4ae87ec81b002c5097e2026edc4e"
+        },
+        "doe_manifest_hash_binding": {
+          "json_payload_loaded": false,
+          "path": "/opt/air-oil-cycle-f34b/twins/reference-917-engine/evidence/f34/doe-case-manifest.json",
+          "sha256": "16d5e43d71b867f7cc4937f9329de084ee05c358d3abb6d48f826cb847d8a625",
+          "used_for_case_execution": false
+        }
+      },
+      "mode": "preflight",
+      "phase": "F34b",
+      "physical_correlation": false,
+      "predicted_engine_power": false,
+      "schema_version": "1.0.0",
+      "status": "source_and_contract_preflight_passed_runtime_dependency_unchecked",
+      "validated_1600_hp": false,
+      "validated_f34_air_oil_seed_inputs": [
+        {
+          "auxiliary_charge_liquid_applicable": false,
+          "configuration": "naturally_aspirated",
+          "engine_core_liquid_coolant_present": false,
+          "forward_input_sha256": "e767b77e7db9244122c8a9f8c45d387dd01d48d8ab24fc5ae2bd78f944e9f022",
+          "variant_id": "917_2026_flat12_na_air_oil_f34b"
+        },
+        {
+          "auxiliary_charge_liquid_applicable": true,
+          "configuration": "twin_turbo",
+          "engine_core_liquid_coolant_present": false,
+          "forward_input_sha256": "f4bf2bed662701bd4f9e4a10aec2468eae34954aedcbe14e2a0aa38bf74bba66",
+          "variant_id": "917_2026_flat12_twin_turbo_air_oil_f34b"
+        }
+      ]
+    }
+  },
+  "status": "passed_embedded_f34b_preflight_and_generic_cantera_fixture_only"
+}

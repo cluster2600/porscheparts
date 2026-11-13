@@ -98,7 +98,7 @@ geometry and STEP integrity in its own environment:
 
 ```sh
 uv venv --python 3.12 .venv-check-cad
-uv pip install --python .venv-check-cad/bin/python -r requirements-check-cad.txt
+uv pip install --python .venv-check-cad/bin/python -r requirements/requirements-check-cad.txt
 .venv-check-cad/bin/python -m unittest discover -s tests -p 'test_m64_g*.py' -v
 .venv-check-cad/bin/python -m unittest discover -s tests -p 'test_cad_recode_fresh.py' -v
 ```
@@ -110,7 +110,7 @@ missing CAD runtime from silently skipping the dedicated job's geometry tests.
 ### Separate native USD regression environment
 
 CI's `usd-regressions` job installs the Linux AMD64 full OpenUSD 26.08 SDK
-from `requirements-check-usd-linux-64.txt`, an explicit package URL and SHA-256
+from `requirements/requirements-check-usd-linux-64.txt`, an explicit package URL and SHA-256
 lock. It runs the 964 bundle and framing tests, including rejection of an
 unknown shader, after checking that the native checker and `UsdPreviewSurface`
 registry entry are available. The Python-only USD wheel cannot supply this
@@ -122,7 +122,7 @@ the base suite needs the frozen renderer's VTK 9.7.1. The SDK lock contains
 With micromamba 2.10.0 installed on Linux AMD64:
 
 ```sh
-micromamba --no-rc create -y -p /tmp/porsche-usd-check --file requirements-check-usd-linux-64.txt
+micromamba --no-rc create -y -p /tmp/porsche-usd-check --file requirements/requirements-check-usd-linux-64.txt
 micromamba run -p /tmp/porsche-usd-check python -m unittest discover -s tests -p 'test_964_omniverse_bundle.py' -v
 micromamba run -p /tmp/porsche-usd-check python -m unittest discover -s tests -p 'test_964_review_framing.py' -v
 ```
@@ -355,6 +355,47 @@ and runs nine synthetic fluid-boundary tests. The Warp CPU job adds Trimesh
 5.1.0 and exercises the fan ray kernel against an independently known box hit
 and miss. These are geometry/software controls, not flow or fitment validation.
 
+### Tool environments under `work/`
+
+Two assigned tools run from their own hash-locked environments, kept in the
+ignored `work/` folder. They are not part of `make check-setup`; create them
+once per checkout:
+
+```bash
+uv venv --python 3.12 work/scan-primitive-fitting-venv
+uv pip install --python work/scan-primitive-fitting-venv/bin/python \
+  --require-hashes -r benchmarks/scan-primitive-fitting/requirements.lock.txt
+uv venv --python 3.12 work/fatigue-venv
+uv pip install --python work/fatigue-venv/bin/python \
+  --require-hashes -r benchmarks/fatigue-postprocessor/requirements.lock.txt
+```
+
+Each benchmark README gives the witness command that proves the environment:
+both reproduced their committed receipts byte for byte on the WSL host on
+2026-11-10. `scripts/laminate_failure.py` needs only NumPy and runs in
+`.venv-check`.
+
+### Docker needs buildx
+
+Most recipes under `containers/` start with a `# syntax=` line and expect
+BuildKit. Ubuntu's `docker.io` package ships without it: `docker buildx` is
+then an unknown command and `docker build` stops with "Install the buildx
+component". With root, install the `docker-buildx` package. Without root, the
+same package installs for one user:
+
+```bash
+apt-get download docker-buildx          # no root needed; apt checks the hash against its signed index
+dpkg-deb -x docker-buildx_*.deb unpacked
+install -D -m 0755 unpacked/usr/libexec/docker/cli-plugins/docker-buildx ~/.docker/cli-plugins/docker-buildx
+docker buildx version
+```
+
+Done this way on the WSL host on 2026-11-10 (buildx 0.30.1, Docker 29.1.3):
+`containers/free-tools-cloudcompare.Dockerfile` then built from the repository
+root and its native controls passed. apt does not update a per-user plugin;
+repeat the steps to upgrade it. An image built locally has its own image ID. It
+is not the digest a lock file pins.
+
 ## 3. Heavy jobs on a shared or WSL host
 
 A voxel field, mesher or solver that outgrows memory can take the whole WSL VM
@@ -378,6 +419,31 @@ down. Rules that have held:
   acquires the lock.
 - **Never run two capped heavy containers whose caps together exceed host
   memory.** Run one part at a time.
+- **Render off-screen pictures with software OpenGL.** Prefix a pyvista, VTK or
+  trimesh render with `GALLIUM_DRIVER=llvmpipe LIBGL_ALWAYS_SOFTWARE=1`. On
+  2026-11-12 the WSL VM stopped twice, 27 minutes apart, each time within
+  30 seconds of a kernel warning in the GPU driver
+  (`dxgkrnl/dxgvmbus.c ... dxgvmb_send_wait_sync_object_gpu`, `Comm: python`)
+  while a pyvista render ran with the `GALLIUM_DRIVER=d3d12` of section 4 in
+  the environment. Every solver running at the time was lost. Memory was not
+  the cause: the four solver containers held 1.3 GB together.
+  Windows recorded a GPU engine timeout (`LiveKernelEvent` 141) in the same
+  seconds. To put the driver out of reach while solvers run, render inside
+  `bwrap --dev-bind / / --dev /dev --proc /proc xvfb-run -a ...`: that sandbox
+  has no `/dev/dxg`, and the render of the 935 build screen completes in it.
+- **After a VM crash, read the last lines of the previous boot** before
+  blaming memory: `journalctl -b -1 --no-pager | tail -40`. A memory kill
+  leaves `Memory cgroup out of memory`; the GPU fault leaves the warning above.
+- **A stop that leaves nothing in the journal may be an upgrade of WSL.** The
+  same day the VM stopped a third time with no render running and 2.7 GB of
+  solvers: a `winget upgrade` on Windows was reinstalling WSL itself. The
+  journal simply ends (its last minutes are not flushed). Two checks from
+  inside WSL: `uname -r` against the `Linux version` line of
+  `journalctl -b -1 -k` (the kernel went from 6.18.33 to 6.18.58), and the
+  Windows Application log, where the installer and GPU-hang records
+  (`MsiInstaller`, `LiveKernelEvent` 141) carry the time of the stop:
+  `powershell.exe -NoProfile -Command "Get-WinEvent -FilterHashtable @{LogName='Application'; StartTime=(Get-Date).Date}"`.
+  Do not upgrade Windows packages while solvers run.
 - **Worktrees are full checkouts** (about 4 GB here). Remove those whose branch
   is merged (`git worktree remove`, then `git worktree prune`) before the disk
   fills. A full disk makes `git worktree add` fail half-way.
@@ -412,6 +478,9 @@ like this:
 4. **Graphics on WSLg:** `export GALLIUM_DRIVER=d3d12`. Without it Mesa falls
    back to llvmpipe: every step is about 3× slower, and the viewer dies with
    `GLX BadAccess`.
+   Set it for PicoGK only. An `env.sh` sourced from the shell profile puts it
+   in every shell, where it also drives off-screen Python renders
+   (section 3).
 5. **Headless use:** construct `new Library(voxelSizeMm)` and pass a log path
    (`new LogFile(path)` or `Library.Go(..., logPath)`). The default log goes to
    `~/Documents/PicoGK.log` and crashes if that folder does not exist.

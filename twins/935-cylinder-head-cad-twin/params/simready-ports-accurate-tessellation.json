@@ -1,0 +1,348 @@
+{
+  "schema": "935-cad-twin-simready/1",
+  "claims": "study twin; a validator pass shows a well-formed stage only: not SimReady-certified, not measured, not fitted, not functional, not released",
+  "kind": "STEP to OpenUSD conversion and validation",
+  "status": "validator_findings",
+  "tools": {
+    "python": "3.12.3",
+    "usd_validation_nvidia": "1.21.0",
+    "validator_openusd": "0.26.8",
+    "validator_rules_initialized": 42,
+    "validator_rule_names": "ArticulationChecker ColliderChecker DanglingOverPrimChecker DefaultPrimChecker ExtentsChecker IndexedPrimvarChecker KindChecker LayerSpecChecker ManifoldChecker MassChecker MaterialOldMdlSchemaChecker MaterialOutOfScopeChecker MaterialPathChecker MaterialUsdPreviewSurfaceChecker MissingReferenceChecker NormalMapTextureChecker NormalsExistChecker NormalsValidChecker NormalsWindingsChecker PhysicsJointChecker PrimEncapsulationChecker RigidBodyChecker ShaderImplementationSourceChecker SkelBindingAPIAppliedChecker StageMetadataChecker SubdivisionSchemeChecker TextureChecker TypeChecker UnicodeNameChecker UnusedMeshTopologyChecker UnusedPrimvarChecker UsdAsciiPerformanceChecker UsdDanglingMaterialBinding UsdGeomSubsetChecker UsdGeomSubsetFamiliesChecker UsdGeomSubsetParentIsImageableChecker UsdLuxSchemaChecker UsdMaterialBindingApi UsdzPackageValidator ValidateTopologyChecker WeldChecker ZeroAreaFaceChecker",
+    "usd_convert_cad": "0.2.0"
+  },
+  "converter_options": [
+    "--up-axis",
+    "file",
+    "--instancing-style",
+    "reference",
+    "--composition-style",
+    "none",
+    "--filter-style",
+    "deactivate",
+    "--creator",
+    "porscheparts-935-cad-twin",
+    "--accurate-tessellation"
+  ],
+  "inputs": [
+    {
+      "name": "v1-port_y_minus.step",
+      "sha256": "a11e4feb31212114381638b024b00c665aedbce29c0b0d1ab0f2815cffd30966",
+      "bytes": 1805726,
+      "conversion": {
+        "status": "passed",
+        "returncode": 0,
+        "wall_seconds": 5.0,
+        "output": "v1_port_y_minus.usdc",
+        "output_sha256": "9dc9dd828e39eeed81ddcfe05485a003490c5c683c220accf8dbba9987d700de",
+        "output_bytes": 139269
+      },
+      "stage": {
+        "default_prim": "/v1_port_y_minus",
+        "root_prims": [
+          "/v1_port_y_minus"
+        ],
+        "meters_per_unit": 0.001,
+        "meters_per_unit_authored": true,
+        "up_axis": "Z",
+        "up_axis_authored": true,
+        "kilograms_per_unit": 1.0,
+        "layer_creator": "porscheparts-935-cad-twin",
+        "prims": 9,
+        "prims_including_abstract": 15,
+        "prims_by_type": {
+          "Material": 2,
+          "Mesh": 1,
+          "Scope": 2,
+          "Shader": 2,
+          "Xform": 2
+        },
+        "meshes": 1,
+        "mesh_faces": 7704,
+        "triangles": 7704,
+        "non_triangle_faces": 0,
+        "mesh_points": 4264,
+        "world_bound_from_authored_extents_stage_units": [
+          [
+            -28.3877,
+            -99.3457,
+            21.0992
+          ],
+          [
+            20.7655,
+            -40.4768,
+            67.9699
+          ]
+        ]
+      },
+      "validation": {
+        "status": "FAIL",
+        "returncode": 1,
+        "wall_seconds": 0.79,
+        "issues_by_severity": {
+          "FAILURE": 0,
+          "ERROR": 0,
+          "WARNING": 1,
+          "INFO": 0
+        },
+        "rules_with_issues": [
+          {
+            "rule": "ManifoldChecker",
+            "rule_status": "FAIL",
+            "issues_by_severity": {
+              "WARNING": 1
+            },
+            "first_message": "3 vertices are non-manifold.",
+            "first_at": "/v1_port_y_minus/SOLID/Mesh"
+          }
+        ],
+        "raw_report_sha256": "e0bf222c3227c44bba439736088fa12e4a2bebedb16c8ec3c4eaf02fbff6827c"
+      },
+      "independent_check": {
+        "step_sha256": "a11e4feb31212114381638b024b00c665aedbce29c0b0d1ab0f2815cffd30966",
+        "stage_sha256": "9dc9dd828e39eeed81ddcfe05485a003490c5c683c220accf8dbba9987d700de",
+        "step_length_unit_declared": "millimetre",
+        "gates": {
+          "bbox_corner_mm": 0.1,
+          "volume_relative": 0.01,
+          "encloses_a_volume": true,
+          "step_solid_valid": true,
+          "meaning": "screen for unit, axis or gross conversion errors; not a tessellation accuracy claim"
+        },
+        "tools": {
+          "build123d": "0.13.0",
+          "numpy": "2.5.4",
+          "openusd": "0.26.11"
+        },
+        "step": {
+          "solids": 1,
+          "faces": 3,
+          "valid": true,
+          "integration_relative_tolerance": 1e-07,
+          "volume_mm3": 70624.9999,
+          "volume_integration_error_reported": 9e-08,
+          "volume_default_integration_mm3": 70742.038,
+          "area_mm2": 9922.3625,
+          "area_integration_error_reported": 1.6e-08,
+          "bbox_min_mm": [
+            -28.3907,
+            -99.3459,
+            21.0962
+          ],
+          "bbox_max_mm": [
+            20.7664,
+            -40.4767,
+            67.9747
+          ]
+        },
+        "stage": {
+          "meters_per_unit_authored": 0.001,
+          "up_axis_authored": "Z",
+          "scale_to_mm_applied": 1.0,
+          "axis_mapping_applied": "identity (stage is Z-up like the STEP)",
+          "meshes": 1,
+          "triangles": 7704,
+          "degenerate_triangles": 0,
+          "weld_tolerance_mm": 0.0001,
+          "open_edges_after_weld": 0,
+          "open_edge_length_mm": 0.0,
+          "t_junction_vertices_on_open_edges": 0,
+          "t_junction_gap_max_mm": 0.0,
+          "open_edges_after_t_junction_split": 0,
+          "miswound_edges_after_weld": 0,
+          "pinched_vertices_after_weld": 0,
+          "conforming_as_converted": true,
+          "non_manifold_edges_after_weld": 0,
+          "encloses_a_volume": true,
+          "volume_mm3": 70586.1026,
+          "area_mm2": 9921.4856,
+          "bbox_min_mm": [
+            -28.3877,
+            -99.3457,
+            21.0992
+          ],
+          "bbox_max_mm": [
+            20.7655,
+            -40.4768,
+            67.9699
+          ]
+        },
+        "bbox_corner_difference_mm": [
+          [
+            0.00301,
+            0.00015,
+            0.00303
+          ],
+          [
+            0.00085,
+            6e-05,
+            0.00479
+          ]
+        ],
+        "bbox_corner_difference_max_mm": 0.00479,
+        "bbox_corner_difference_max_relative_to_extent": 0.0001021,
+        "volume_relative_difference": -0.0005508,
+        "area_relative_difference": -8.837e-05,
+        "observations": [],
+        "failures": [],
+        "passed": true,
+        "wall_seconds": 20.08
+      }
+    },
+    {
+      "name": "v1-port_y_plus.step",
+      "sha256": "ffb307c503f27e776b12ae9703497f90194795d7e95f0f115d5f294739049bd4",
+      "bytes": 580232,
+      "conversion": {
+        "status": "passed",
+        "returncode": 0,
+        "wall_seconds": 3.86,
+        "output": "v1_port_y_plus.usdc",
+        "output_sha256": "76a0b79ddd7fd164d6550d7c5b3628a7047478682a4333044321e2e237e94272",
+        "output_bytes": 136956
+      },
+      "stage": {
+        "default_prim": "/v1_port_y_plus",
+        "root_prims": [
+          "/v1_port_y_plus"
+        ],
+        "meters_per_unit": 0.001,
+        "meters_per_unit_authored": true,
+        "up_axis": "Z",
+        "up_axis_authored": true,
+        "kilograms_per_unit": 1.0,
+        "layer_creator": "porscheparts-935-cad-twin",
+        "prims": 9,
+        "prims_including_abstract": 15,
+        "prims_by_type": {
+          "Material": 2,
+          "Mesh": 1,
+          "Scope": 2,
+          "Shader": 2,
+          "Xform": 2
+        },
+        "meshes": 1,
+        "mesh_faces": 7530,
+        "triangles": 7530,
+        "non_triangle_faces": 0,
+        "mesh_points": 4260,
+        "world_bound_from_authored_extents_stage_units": [
+          [
+            -26.8255,
+            48.8397,
+            14.1328
+          ],
+          [
+            18.6242,
+            78.4992,
+            54.4272
+          ]
+        ]
+      },
+      "validation": {
+        "status": "PASS",
+        "returncode": 0,
+        "wall_seconds": 0.72,
+        "issues_by_severity": {
+          "FAILURE": 0,
+          "ERROR": 0,
+          "WARNING": 0,
+          "INFO": 0
+        },
+        "rules_with_issues": [],
+        "raw_report_sha256": "fdb36636e75946975b0e4039ea3ba649570f65388d4497b411fcaa28fd97403f"
+      },
+      "independent_check": {
+        "step_sha256": "ffb307c503f27e776b12ae9703497f90194795d7e95f0f115d5f294739049bd4",
+        "stage_sha256": "76a0b79ddd7fd164d6550d7c5b3628a7047478682a4333044321e2e237e94272",
+        "step_length_unit_declared": "millimetre",
+        "gates": {
+          "bbox_corner_mm": 0.1,
+          "volume_relative": 0.01,
+          "encloses_a_volume": true,
+          "step_solid_valid": true,
+          "meaning": "screen for unit, axis or gross conversion errors; not a tessellation accuracy claim"
+        },
+        "tools": {
+          "build123d": "0.13.0",
+          "numpy": "2.5.4",
+          "openusd": "0.26.11"
+        },
+        "step": {
+          "solids": 1,
+          "faces": 3,
+          "valid": true,
+          "integration_relative_tolerance": 1e-07,
+          "volume_mm3": 29490.0691,
+          "volume_integration_error_reported": 5.5e-15,
+          "volume_default_integration_mm3": 29428.6735,
+          "area_mm2": 5827.776,
+          "area_integration_error_reported": 6.3e-09,
+          "bbox_min_mm": [
+            -26.8285,
+            48.8397,
+            14.1323
+          ],
+          "bbox_max_mm": [
+            18.6365,
+            78.4993,
+            54.4394
+          ]
+        },
+        "stage": {
+          "meters_per_unit_authored": 0.001,
+          "up_axis_authored": "Z",
+          "scale_to_mm_applied": 1.0,
+          "axis_mapping_applied": "identity (stage is Z-up like the STEP)",
+          "meshes": 1,
+          "triangles": 7530,
+          "degenerate_triangles": 0,
+          "weld_tolerance_mm": 0.0001,
+          "open_edges_after_weld": 0,
+          "open_edge_length_mm": 0.0,
+          "t_junction_vertices_on_open_edges": 0,
+          "t_junction_gap_max_mm": 0.0,
+          "open_edges_after_t_junction_split": 0,
+          "miswound_edges_after_weld": 0,
+          "pinched_vertices_after_weld": 0,
+          "conforming_as_converted": true,
+          "non_manifold_edges_after_weld": 0,
+          "encloses_a_volume": true,
+          "volume_mm3": 29477.4909,
+          "area_mm2": 5826.4927,
+          "bbox_min_mm": [
+            -26.8255,
+            48.8397,
+            14.1328
+          ],
+          "bbox_max_mm": [
+            18.6242,
+            78.4992,
+            54.4272
+          ]
+        },
+        "bbox_corner_difference_mm": [
+          [
+            0.00303,
+            1e-05,
+            0.00047
+          ],
+          [
+            0.01229,
+            9e-05,
+            0.01215
+          ]
+        ],
+        "bbox_corner_difference_max_mm": 0.01229,
+        "bbox_corner_difference_max_relative_to_extent": 0.0003014,
+        "volume_relative_difference": -0.0004265,
+        "area_relative_difference": -0.0002202,
+        "observations": [],
+        "failures": [],
+        "passed": true,
+        "wall_seconds": 9.47
+      }
+    }
+  ],
+  "wall_seconds_total": 11.14
+}

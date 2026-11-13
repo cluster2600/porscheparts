@@ -1,0 +1,686 @@
+{
+  "schema": "scan-primitive-fitting-witness/1",
+  "witness": "synthetic drafted fin stack, ground truth generated independently of any detector",
+  "script_sha256": "9f4eeb583b640ccde3095632efe171b105fc05e4fb40c03cf3fd5e0a3470cfb1",
+  "lock_sha256": "44d0b821a86e4093b667e61e21e4dc030fb69fd0febb8f65b2c06d8ddc482982",
+  "open3d": "0.19.0",
+  "numpy": "2.2.6",
+  "geometry": {
+    "seed": 20261110,
+    "fins": 12,
+    "faces": 24,
+    "r_mm": [
+      40.0,
+      80.0
+    ],
+    "pitch_mm": 7.0,
+    "thickness_mm": 3.0,
+    "drafts_deg": [
+      0.0,
+      0.5,
+      1.0,
+      1.5,
+      2.0,
+      3.0
+    ],
+    "triangle_mm": 1.0,
+    "noise_mm": 0.03,
+    "samples": 723696
+  },
+  "acceptance": {
+    "recall_min": 0.95,
+    "tilt_error_max_deg": 0.1,
+    "offset_error_max_mm": 0.05,
+    "match_window": {
+      "angle_deg": 1.0,
+      "offset_mm": 0.5
+    }
+  },
+  "ransac_parameters": {
+    "distance_mm": 0.1,
+    "normal_agreement_deg": 15.0,
+    "min_points": 2000,
+    "iterations": 2000
+  },
+  "detectors": {
+    "open3d_sequential_ransac": {
+      "faces": 24,
+      "found": 24,
+      "recall": 1.0,
+      "found_within_acceptance": 24,
+      "found_by_draft_deg": {
+        "0.0": "4/4",
+        "0.5": "4/4",
+        "1.0": "4/4",
+        "1.5": "4/4",
+        "2.0": "4/4",
+        "3.0": "4/4"
+      },
+      "max_tilt_error_deg": 0.0011,
+      "max_offset_error_mm": 0.0006,
+      "unmatched_detections": 0,
+      "rows": [
+        {
+          "fin": 0,
+          "side": "bottom",
+          "draft_deg": 0.0,
+          "found": true,
+          "tilt_error_deg": 0.0002,
+          "offset_error_mm": 0.0
+        },
+        {
+          "fin": 0,
+          "side": "top",
+          "draft_deg": 0.5,
+          "found": true,
+          "tilt_error_deg": 0.0003,
+          "offset_error_mm": 0.0001
+        },
+        {
+          "fin": 1,
+          "side": "bottom",
+          "draft_deg": 1.0,
+          "found": true,
+          "tilt_error_deg": 0.0011,
+          "offset_error_mm": 0.0003
+        },
+        {
+          "fin": 1,
+          "side": "top",
+          "draft_deg": 1.5,
+          "found": true,
+          "tilt_error_deg": 0.0004,
+          "offset_error_mm": 0.0001
+        },
+        {
+          "fin": 2,
+          "side": "bottom",
+          "draft_deg": 2.0,
+          "found": true,
+          "tilt_error_deg": 0.0001,
+          "offset_error_mm": 0.0004
+        },
+        {
+          "fin": 2,
+          "side": "top",
+          "draft_deg": 3.0,
+          "found": true,
+          "tilt_error_deg": 0.0003,
+          "offset_error_mm": 0.0
+        },
+        {
+          "fin": 3,
+          "side": "bottom",
+          "draft_deg": 0.0,
+          "found": true,
+          "tilt_error_deg": 0.0006,
+          "offset_error_mm": 0.0002
+        },
+        {
+          "fin": 3,
+          "side": "top",
+          "draft_deg": 0.5,
+          "found": true,
+          "tilt_error_deg": 0.0003,
+          "offset_error_mm": 0.0004
+        },
+        {
+          "fin": 4,
+          "side": "bottom",
+          "draft_deg": 1.0,
+          "found": true,
+          "tilt_error_deg": 0.0006,
+          "offset_error_mm": 0.0001
+        },
+        {
+          "fin": 4,
+          "side": "top",
+          "draft_deg": 1.5,
+          "found": true,
+          "tilt_error_deg": 0.0003,
+          "offset_error_mm": 0.0001
+        },
+        {
+          "fin": 5,
+          "side": "bottom",
+          "draft_deg": 2.0,
+          "found": true,
+          "tilt_error_deg": 0.0006,
+          "offset_error_mm": 0.0001
+        },
+        {
+          "fin": 5,
+          "side": "top",
+          "draft_deg": 3.0,
+          "found": true,
+          "tilt_error_deg": 0.0006,
+          "offset_error_mm": 0.0
+        },
+        {
+          "fin": 6,
+          "side": "bottom",
+          "draft_deg": 0.0,
+          "found": true,
+          "tilt_error_deg": 0.0004,
+          "offset_error_mm": 0.0001
+        },
+        {
+          "fin": 6,
+          "side": "top",
+          "draft_deg": 0.5,
+          "found": true,
+          "tilt_error_deg": 0.0006,
+          "offset_error_mm": 0.0002
+        },
+        {
+          "fin": 7,
+          "side": "bottom",
+          "draft_deg": 1.0,
+          "found": true,
+          "tilt_error_deg": 0.0003,
+          "offset_error_mm": 0.0003
+        },
+        {
+          "fin": 7,
+          "side": "top",
+          "draft_deg": 1.5,
+          "found": true,
+          "tilt_error_deg": 0.0004,
+          "offset_error_mm": 0.0005
+        },
+        {
+          "fin": 8,
+          "side": "bottom",
+          "draft_deg": 2.0,
+          "found": true,
+          "tilt_error_deg": 0.0005,
+          "offset_error_mm": 0.0006
+        },
+        {
+          "fin": 8,
+          "side": "top",
+          "draft_deg": 3.0,
+          "found": true,
+          "tilt_error_deg": 0.0003,
+          "offset_error_mm": 0.0004
+        },
+        {
+          "fin": 9,
+          "side": "bottom",
+          "draft_deg": 0.0,
+          "found": true,
+          "tilt_error_deg": 0.001,
+          "offset_error_mm": 0.0004
+        },
+        {
+          "fin": 9,
+          "side": "top",
+          "draft_deg": 0.5,
+          "found": true,
+          "tilt_error_deg": 0.0003,
+          "offset_error_mm": 0.0
+        },
+        {
+          "fin": 10,
+          "side": "bottom",
+          "draft_deg": 1.0,
+          "found": true,
+          "tilt_error_deg": 0.001,
+          "offset_error_mm": 0.0003
+        },
+        {
+          "fin": 10,
+          "side": "top",
+          "draft_deg": 1.5,
+          "found": true,
+          "tilt_error_deg": 0.0001,
+          "offset_error_mm": 0.0001
+        },
+        {
+          "fin": 11,
+          "side": "bottom",
+          "draft_deg": 2.0,
+          "found": true,
+          "tilt_error_deg": 0.0002,
+          "offset_error_mm": 0.0001
+        },
+        {
+          "fin": 11,
+          "side": "top",
+          "draft_deg": 3.0,
+          "found": true,
+          "tilt_error_deg": 0.0002,
+          "offset_error_mm": 0.0001
+        }
+      ]
+    },
+    "open3d_patches_library_defaults": {
+      "faces": 24,
+      "found": 2,
+      "recall": 0.0833,
+      "found_within_acceptance": 2,
+      "found_by_draft_deg": {
+        "0.0": "1/4",
+        "0.5": "0/4",
+        "1.0": "0/4",
+        "1.5": "0/4",
+        "2.0": "0/4",
+        "3.0": "1/4"
+      },
+      "max_tilt_error_deg": 0.0014,
+      "max_offset_error_mm": 0.0006,
+      "unmatched_detections": 0,
+      "rows": [
+        {
+          "fin": 0,
+          "side": "bottom",
+          "draft_deg": 0.0,
+          "found": true,
+          "tilt_error_deg": 0.0012,
+          "offset_error_mm": 0.0001
+        },
+        {
+          "fin": 0,
+          "side": "top",
+          "draft_deg": 0.5,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 1,
+          "side": "bottom",
+          "draft_deg": 1.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 1,
+          "side": "top",
+          "draft_deg": 1.5,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 2,
+          "side": "bottom",
+          "draft_deg": 2.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 2,
+          "side": "top",
+          "draft_deg": 3.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 3,
+          "side": "bottom",
+          "draft_deg": 0.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 3,
+          "side": "top",
+          "draft_deg": 0.5,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 4,
+          "side": "bottom",
+          "draft_deg": 1.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 4,
+          "side": "top",
+          "draft_deg": 1.5,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 5,
+          "side": "bottom",
+          "draft_deg": 2.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 5,
+          "side": "top",
+          "draft_deg": 3.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 6,
+          "side": "bottom",
+          "draft_deg": 0.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 6,
+          "side": "top",
+          "draft_deg": 0.5,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 7,
+          "side": "bottom",
+          "draft_deg": 1.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 7,
+          "side": "top",
+          "draft_deg": 1.5,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 8,
+          "side": "bottom",
+          "draft_deg": 2.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 8,
+          "side": "top",
+          "draft_deg": 3.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 9,
+          "side": "bottom",
+          "draft_deg": 0.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 9,
+          "side": "top",
+          "draft_deg": 0.5,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 10,
+          "side": "bottom",
+          "draft_deg": 1.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 10,
+          "side": "top",
+          "draft_deg": 1.5,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 11,
+          "side": "bottom",
+          "draft_deg": 2.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 11,
+          "side": "top",
+          "draft_deg": 3.0,
+          "found": true,
+          "tilt_error_deg": 0.0014,
+          "offset_error_mm": 0.0006
+        }
+      ]
+    },
+    "z_level_histogram_negative_control": {
+      "faces": 24,
+      "found": 12,
+      "recall": 0.5,
+      "found_within_acceptance": 4,
+      "found_by_draft_deg": {
+        "0.0": "4/4",
+        "0.5": "4/4",
+        "1.0": "4/4",
+        "1.5": "0/4",
+        "2.0": "0/4",
+        "3.0": "0/4"
+      },
+      "max_tilt_error_deg": 1.0,
+      "max_offset_error_mm": 0.0425,
+      "unmatched_detections": 1514,
+      "rows": [
+        {
+          "fin": 0,
+          "side": "bottom",
+          "draft_deg": 0.0,
+          "found": true,
+          "tilt_error_deg": 0.0,
+          "offset_error_mm": 0.0
+        },
+        {
+          "fin": 0,
+          "side": "top",
+          "draft_deg": 0.5,
+          "found": true,
+          "tilt_error_deg": 0.5,
+          "offset_error_mm": 0.003
+        },
+        {
+          "fin": 1,
+          "side": "bottom",
+          "draft_deg": 1.0,
+          "found": true,
+          "tilt_error_deg": 1.0,
+          "offset_error_mm": 0.0031
+        },
+        {
+          "fin": 1,
+          "side": "top",
+          "draft_deg": 1.5,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 2,
+          "side": "bottom",
+          "draft_deg": 2.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 2,
+          "side": "top",
+          "draft_deg": 3.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 3,
+          "side": "bottom",
+          "draft_deg": 0.0,
+          "found": true,
+          "tilt_error_deg": 0.0,
+          "offset_error_mm": 0.0003
+        },
+        {
+          "fin": 3,
+          "side": "top",
+          "draft_deg": 0.5,
+          "found": true,
+          "tilt_error_deg": 0.5,
+          "offset_error_mm": 0.0036
+        },
+        {
+          "fin": 4,
+          "side": "bottom",
+          "draft_deg": 1.0,
+          "found": true,
+          "tilt_error_deg": 1.0,
+          "offset_error_mm": 0.036
+        },
+        {
+          "fin": 4,
+          "side": "top",
+          "draft_deg": 1.5,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 5,
+          "side": "bottom",
+          "draft_deg": 2.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 5,
+          "side": "top",
+          "draft_deg": 3.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 6,
+          "side": "bottom",
+          "draft_deg": 0.0,
+          "found": true,
+          "tilt_error_deg": 0.0,
+          "offset_error_mm": 0.0
+        },
+        {
+          "fin": 6,
+          "side": "top",
+          "draft_deg": 0.5,
+          "found": true,
+          "tilt_error_deg": 0.5,
+          "offset_error_mm": 0.0383
+        },
+        {
+          "fin": 7,
+          "side": "bottom",
+          "draft_deg": 1.0,
+          "found": true,
+          "tilt_error_deg": 1.0,
+          "offset_error_mm": 0.0229
+        },
+        {
+          "fin": 7,
+          "side": "top",
+          "draft_deg": 1.5,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 8,
+          "side": "bottom",
+          "draft_deg": 2.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 8,
+          "side": "top",
+          "draft_deg": 3.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 9,
+          "side": "bottom",
+          "draft_deg": 0.0,
+          "found": true,
+          "tilt_error_deg": 0.0,
+          "offset_error_mm": 0.0005
+        },
+        {
+          "fin": 9,
+          "side": "top",
+          "draft_deg": 0.5,
+          "found": true,
+          "tilt_error_deg": 0.5,
+          "offset_error_mm": 0.019
+        },
+        {
+          "fin": 10,
+          "side": "bottom",
+          "draft_deg": 1.0,
+          "found": true,
+          "tilt_error_deg": 1.0,
+          "offset_error_mm": 0.0425
+        },
+        {
+          "fin": 10,
+          "side": "top",
+          "draft_deg": 1.5,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 11,
+          "side": "bottom",
+          "draft_deg": 2.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        },
+        {
+          "fin": 11,
+          "side": "top",
+          "draft_deg": 3.0,
+          "found": false,
+          "tilt_error_deg": null,
+          "offset_error_mm": null
+        }
+      ]
+    }
+  },
+  "passed": {
+    "open3d_sequential_ransac": true,
+    "open3d_patches_library_defaults": false,
+    "z_level_histogram_negative_control": false
+  },
+  "claims": "software witness for drafted planar faces only; no real part, scan or fit is qualified"
+}

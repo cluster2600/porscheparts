@@ -1,0 +1,782 @@
+{
+  "schema": "935-cad-twin-port-fit/1",
+  "method": {
+    "coarse_pitch_mm": 1.0,
+    "close_mm": 26.0,
+    "open_mm": 5.0,
+    "station_step_mm": 3.0,
+    "rays": 48,
+    "observed_within_mm": 0.35,
+    "station_spacing_max_ratio": 1.1
+  },
+  "evidence_class": "sections of the winding-number field; observed only where an acquired facet lies on the wall point, otherwise hypothesis H04. No physical calibration.",
+  "flange_faces_y_mm": {
+    "y_plus": 85.25,
+    "y_minus": -104.25
+  },
+  "cavities_over_5000_mm3": [
+    {
+      "volume_mm3": 110517.0,
+      "bbox_min": [
+        -28.8,
+        -98.8,
+        15.5
+      ],
+      "bbox_max": [
+        20.2,
+        -4.8,
+        67.5
+      ],
+      "port": true,
+      "name": "port_y_minus",
+      "loft": "fitted"
+    },
+    {
+      "volume_mm3": 53495.0,
+      "bbox_min": [
+        -25.8,
+        19.2,
+        14.5
+      ],
+      "bbox_max": [
+        18.2,
+        77.2,
+        54.5
+      ],
+      "port": true,
+      "name": "port_y_plus",
+      "loft": "fitted"
+    },
+    {
+      "volume_mm3": 21258.0,
+      "bbox_min": [
+        26.2,
+        -53.8,
+        37.5
+      ],
+      "bbox_max": [
+        51.2,
+        -27.8,
+        82.5
+      ],
+      "port": false,
+      "name": "cavity_3",
+      "loft": "none: only 3 consecutive closed sections"
+    },
+    {
+      "volume_mm3": 20505.0,
+      "bbox_min": [
+        12.2,
+        -9.8,
+        36.5
+      ],
+      "bbox_max": [
+        51.2,
+        36.2,
+        76.5
+      ],
+      "port": false,
+      "name": "cavity_4",
+      "loft": "none: no closed section"
+    },
+    {
+      "volume_mm3": 20224.0,
+      "bbox_min": [
+        -58.8,
+        32.2,
+        37.5
+      ],
+      "bbox_max": [
+        -34.8,
+        60.2,
+        82.5
+      ],
+      "port": false,
+      "name": "cavity_5",
+      "loft": "none: only 3 consecutive closed sections"
+    },
+    {
+      "volume_mm3": 18560.0,
+      "bbox_min": [
+        -58.8,
+        -19.8,
+        37.5
+      ],
+      "bbox_max": [
+        -21.8,
+        15.2,
+        78.5
+      ],
+      "port": false,
+      "name": "cavity_6",
+      "loft": "none: no closed section"
+    },
+    {
+      "volume_mm3": 8465.0,
+      "bbox_min": [
+        -23.8,
+        49.2,
+        68.5
+      ],
+      "bbox_max": [
+        14.2,
+        86.2,
+        84.5
+      ],
+      "port": false,
+      "name": "cavity_7",
+      "loft": "none: no closed section"
+    },
+    {
+      "volume_mm3": 6763.0,
+      "bbox_min": [
+        26.2,
+        33.2,
+        37.5
+      ],
+      "bbox_max": [
+        50.2,
+        60.2,
+        59.5
+      ],
+      "port": false,
+      "name": "cavity_8",
+      "loft": "none: no closed section"
+    },
+    {
+      "volume_mm3": 6340.0,
+      "bbox_min": [
+        -57.8,
+        -53.8,
+        36.5
+      ],
+      "bbox_max": [
+        -35.8,
+        -27.8,
+        59.5
+      ],
+      "port": false,
+      "name": "cavity_9",
+      "loft": "none: no closed section"
+    }
+  ],
+  "ports": [
+    {
+      "name": "port_y_minus",
+      "flange_y_mm": -104.25,
+      "cavity": {
+        "volume_mm3": 110517.0,
+        "bbox_min": [
+          -28.8,
+          -98.8,
+          15.5
+        ],
+        "bbox_max": [
+          20.2,
+          -4.8,
+          67.5
+        ],
+        "port": true,
+        "name": "port_y_minus",
+        "loft": "fitted"
+      },
+      "stations": 31,
+      "closed_stations": 21,
+      "loft_station_range": [
+        0,
+        18
+      ],
+      "loft_length_mm": 51.0,
+      "wall_points_observed_share": 0.772,
+      "stations_fully_inferred": 0,
+      "station_detail": [
+        {
+          "centre": [
+            -4.29,
+            -95.72,
+            46.47
+          ],
+          "closed": true,
+          "area_mm2": 1373.4,
+          "equivalent_diameter_mm": 41.82,
+          "radius_min_mm": 20.08,
+          "radius_max_mm": 21.55,
+          "observed_share": 0.979
+        },
+        {
+          "centre": [
+            -4.02,
+            -92.67,
+            46.45
+          ],
+          "closed": true,
+          "area_mm2": 1349.9,
+          "equivalent_diameter_mm": 41.46,
+          "radius_min_mm": 19.53,
+          "radius_max_mm": 21.44,
+          "observed_share": 0.812
+        },
+        {
+          "centre": [
+            -3.71,
+            -89.65,
+            46.43
+          ],
+          "closed": true,
+          "area_mm2": 1331.1,
+          "equivalent_diameter_mm": 41.17,
+          "radius_min_mm": 19.13,
+          "radius_max_mm": 21.42,
+          "observed_share": 0.729
+        },
+        {
+          "centre": [
+            -3.56,
+            -86.65,
+            46.35
+          ],
+          "closed": true,
+          "area_mm2": 1326.9,
+          "equivalent_diameter_mm": 41.1,
+          "radius_min_mm": 18.92,
+          "radius_max_mm": 21.41,
+          "observed_share": 0.75
+        },
+        {
+          "centre": [
+            -3.64,
+            -83.66,
+            46.38
+          ],
+          "closed": true,
+          "area_mm2": 1339.4,
+          "equivalent_diameter_mm": 41.3,
+          "radius_min_mm": 18.81,
+          "radius_max_mm": 21.66,
+          "observed_share": 0.792
+        },
+        {
+          "centre": [
+            -3.7,
+            -80.68,
+            46.31
+          ],
+          "closed": true,
+          "area_mm2": 1357.9,
+          "equivalent_diameter_mm": 41.58,
+          "radius_min_mm": 18.92,
+          "radius_max_mm": 21.66,
+          "observed_share": 0.833
+        },
+        {
+          "centre": [
+            -3.75,
+            -77.69,
+            46.25
+          ],
+          "closed": true,
+          "area_mm2": 1373.9,
+          "equivalent_diameter_mm": 41.82,
+          "radius_min_mm": 19.14,
+          "radius_max_mm": 21.72,
+          "observed_share": 0.812
+        },
+        {
+          "centre": [
+            -3.83,
+            -74.69,
+            46.1
+          ],
+          "closed": true,
+          "area_mm2": 1390.4,
+          "equivalent_diameter_mm": 42.08,
+          "radius_min_mm": 19.43,
+          "radius_max_mm": 21.95,
+          "observed_share": 0.812
+        },
+        {
+          "centre": [
+            -3.9,
+            -71.7,
+            45.9
+          ],
+          "closed": true,
+          "area_mm2": 1410.2,
+          "equivalent_diameter_mm": 42.37,
+          "radius_min_mm": 19.66,
+          "radius_max_mm": 22.25,
+          "observed_share": 0.812
+        },
+        {
+          "centre": [
+            -3.95,
+            -68.71,
+            45.6
+          ],
+          "closed": true,
+          "area_mm2": 1421.9,
+          "equivalent_diameter_mm": 42.55,
+          "radius_min_mm": 18.96,
+          "radius_max_mm": 22.61,
+          "observed_share": 0.812
+        },
+        {
+          "centre": [
+            -3.93,
+            -65.71,
+            45.25
+          ],
+          "closed": true,
+          "area_mm2": 1425.0,
+          "equivalent_diameter_mm": 42.6,
+          "radius_min_mm": 17.68,
+          "radius_max_mm": 22.99,
+          "observed_share": 0.729
+        },
+        {
+          "centre": [
+            -3.9,
+            -62.75,
+            44.76
+          ],
+          "closed": true,
+          "area_mm2": 1424.4,
+          "equivalent_diameter_mm": 42.59,
+          "radius_min_mm": 15.97,
+          "radius_max_mm": 23.6,
+          "observed_share": 0.771
+        },
+        {
+          "centre": [
+            -3.88,
+            -59.8,
+            44.16
+          ],
+          "closed": true,
+          "area_mm2": 1416.1,
+          "equivalent_diameter_mm": 42.46,
+          "radius_min_mm": 14.28,
+          "radius_max_mm": 23.88,
+          "observed_share": 0.75
+        },
+        {
+          "centre": [
+            -3.95,
+            -56.86,
+            43.51
+          ],
+          "closed": true,
+          "area_mm2": 1405.2,
+          "equivalent_diameter_mm": 42.3,
+          "radius_min_mm": 12.46,
+          "radius_max_mm": 24.44,
+          "observed_share": 0.771
+        },
+        {
+          "centre": [
+            -4.01,
+            -53.94,
+            42.81
+          ],
+          "closed": true,
+          "area_mm2": 1387.3,
+          "equivalent_diameter_mm": 42.03,
+          "radius_min_mm": 10.59,
+          "radius_max_mm": 24.98,
+          "observed_share": 0.708
+        },
+        {
+          "centre": [
+            -4.0,
+            -51.06,
+            41.95
+          ],
+          "closed": true,
+          "area_mm2": 1368.8,
+          "equivalent_diameter_mm": 41.75,
+          "radius_min_mm": 8.98,
+          "radius_max_mm": 25.61,
+          "observed_share": 0.75
+        },
+        {
+          "centre": [
+            -3.98,
+            -48.15,
+            41.24
+          ],
+          "closed": true,
+          "area_mm2": 1352.8,
+          "equivalent_diameter_mm": 41.5,
+          "radius_min_mm": 7.3,
+          "radius_max_mm": 26.08,
+          "observed_share": 0.688
+        },
+        {
+          "centre": [
+            -4.1,
+            -45.38,
+            39.92
+          ],
+          "closed": true,
+          "area_mm2": 1307.1,
+          "equivalent_diameter_mm": 40.8,
+          "radius_min_mm": 6.09,
+          "radius_max_mm": 26.9,
+          "observed_share": 0.583
+        },
+        {
+          "centre": [
+            -4.11,
+            -42.78,
+            37.81
+          ],
+          "closed": true,
+          "area_mm2": 1341.2,
+          "equivalent_diameter_mm": 41.32,
+          "radius_min_mm": 7.21,
+          "radius_max_mm": 28.23,
+          "observed_share": 0.562
+        },
+        {
+          "centre": [
+            -4.16,
+            -40.14,
+            35.66
+          ],
+          "closed": true,
+          "area_mm2": 1449.3,
+          "equivalent_diameter_mm": 42.96,
+          "radius_min_mm": 7.31,
+          "radius_max_mm": 29.27,
+          "observed_share": 0.708
+        },
+        {
+          "centre": [
+            -1.89,
+            -38.25,
+            29.25
+          ],
+          "closed": true,
+          "area_mm2": 1531.6,
+          "equivalent_diameter_mm": 44.16,
+          "radius_min_mm": 9.98,
+          "radius_max_mm": 35.09,
+          "observed_share": 0.917
+        },
+        {
+          "centre": [
+            -4.17,
+            -33.56,
+            37.77
+          ],
+          "closed": false
+        },
+        {
+          "centre": [
+            -4.18,
+            -30.6,
+            37.3
+          ],
+          "closed": false
+        },
+        {
+          "centre": [
+            -4.18,
+            -27.63,
+            36.92
+          ],
+          "closed": false
+        },
+        {
+          "centre": [
+            -4.18,
+            -24.64,
+            36.62
+          ],
+          "closed": false
+        },
+        {
+          "centre": [
+            -4.16,
+            -21.65,
+            36.43
+          ],
+          "closed": false
+        },
+        {
+          "centre": [
+            -4.14,
+            -18.65,
+            36.36
+          ],
+          "closed": false
+        },
+        {
+          "centre": [
+            -4.11,
+            -15.65,
+            36.4
+          ],
+          "closed": false
+        },
+        {
+          "centre": [
+            -4.07,
+            -12.66,
+            36.58
+          ],
+          "closed": false
+        },
+        {
+          "centre": [
+            -4.02,
+            -9.67,
+            36.9
+          ],
+          "closed": false
+        },
+        {
+          "centre": [
+            -3.96,
+            -6.71,
+            37.35
+          ],
+          "closed": false
+        }
+      ]
+    },
+    {
+      "name": "port_y_plus",
+      "flange_y_mm": 85.25,
+      "cavity": {
+        "volume_mm3": 53495.0,
+        "bbox_min": [
+          -25.8,
+          19.2,
+          14.5
+        ],
+        "bbox_max": [
+          18.2,
+          77.2,
+          54.5
+        ],
+        "port": true,
+        "name": "port_y_plus",
+        "loft": "fitted"
+      },
+      "stations": 19,
+      "closed_stations": 10,
+      "loft_station_range": [
+        0,
+        9
+      ],
+      "loft_length_mm": 24.0,
+      "wall_points_observed_share": 0.921,
+      "stations_fully_inferred": 0,
+      "station_detail": [
+        {
+          "centre": [
+            -3.96,
+            73.96,
+            35.55
+          ],
+          "closed": true,
+          "area_mm2": 1288.9,
+          "equivalent_diameter_mm": 40.51,
+          "radius_min_mm": 18.82,
+          "radius_max_mm": 21.05,
+          "observed_share": 1.0
+        },
+        {
+          "centre": [
+            -3.95,
+            70.9,
+            35.46
+          ],
+          "closed": true,
+          "area_mm2": 1282.1,
+          "equivalent_diameter_mm": 40.4,
+          "radius_min_mm": 17.62,
+          "radius_max_mm": 21.22,
+          "observed_share": 1.0
+        },
+        {
+          "centre": [
+            -3.96,
+            67.87,
+            35.28
+          ],
+          "closed": true,
+          "area_mm2": 1266.9,
+          "equivalent_diameter_mm": 40.16,
+          "radius_min_mm": 15.87,
+          "radius_max_mm": 21.45,
+          "observed_share": 0.979
+        },
+        {
+          "centre": [
+            -4.01,
+            64.86,
+            35.1
+          ],
+          "closed": true,
+          "area_mm2": 1251.7,
+          "equivalent_diameter_mm": 39.92,
+          "radius_min_mm": 13.82,
+          "radius_max_mm": 21.79,
+          "observed_share": 1.0
+        },
+        {
+          "centre": [
+            -4.04,
+            61.87,
+            34.84
+          ],
+          "closed": true,
+          "area_mm2": 1223.7,
+          "equivalent_diameter_mm": 39.47,
+          "radius_min_mm": 12.08,
+          "radius_max_mm": 22.28,
+          "observed_share": 1.0
+        },
+        {
+          "centre": [
+            -4.02,
+            58.89,
+            34.54
+          ],
+          "closed": true,
+          "area_mm2": 1205.5,
+          "equivalent_diameter_mm": 39.18,
+          "radius_min_mm": 10.53,
+          "radius_max_mm": 22.82,
+          "observed_share": 1.0
+        },
+        {
+          "centre": [
+            -4.06,
+            55.94,
+            34.06
+          ],
+          "closed": true,
+          "area_mm2": 1184.4,
+          "equivalent_diameter_mm": 38.83,
+          "radius_min_mm": 9.85,
+          "radius_max_mm": 23.5,
+          "observed_share": 0.938
+        },
+        {
+          "centre": [
+            -4.13,
+            53.0,
+            33.22
+          ],
+          "closed": true,
+          "area_mm2": 1152.8,
+          "equivalent_diameter_mm": 38.31,
+          "radius_min_mm": 9.13,
+          "radius_max_mm": 24.3,
+          "observed_share": 0.708
+        },
+        {
+          "centre": [
+            -4.1,
+            50.06,
+            32.11
+          ],
+          "closed": true,
+          "area_mm2": 1143.1,
+          "equivalent_diameter_mm": 38.15,
+          "radius_min_mm": 6.07,
+          "radius_max_mm": 25.04,
+          "observed_share": 0.667
+        },
+        {
+          "centre": [
+            -4.17,
+            47.13,
+            29.64
+          ],
+          "closed": true,
+          "area_mm2": 1265.6,
+          "equivalent_diameter_mm": 40.14,
+          "radius_min_mm": 10.3,
+          "radius_max_mm": 26.11,
+          "observed_share": 0.667
+        },
+        {
+          "centre": [
+            -3.96,
+            44.01,
+            32.93
+          ],
+          "closed": false
+        },
+        {
+          "centre": [
+            -3.92,
+            41.01,
+            32.91
+          ],
+          "closed": false
+        },
+        {
+          "centre": [
+            -3.88,
+            38.01,
+            32.96
+          ],
+          "closed": false
+        },
+        {
+          "centre": [
+            -3.83,
+            35.01,
+            33.06
+          ],
+          "closed": false
+        },
+        {
+          "centre": [
+            -3.78,
+            32.01,
+            33.23
+          ],
+          "closed": false
+        },
+        {
+          "centre": [
+            -3.73,
+            29.02,
+            33.45
+          ],
+          "closed": false
+        },
+        {
+          "centre": [
+            -3.69,
+            26.04,
+            33.72
+          ],
+          "closed": false
+        },
+        {
+          "centre": [
+            -3.64,
+            23.05,
+            34.04
+          ],
+          "closed": false
+        },
+        {
+          "centre": [
+            -3.6,
+            20.08,
+            34.42
+          ],
+          "closed": false
+        }
+      ]
+    }
+  ]
+}
