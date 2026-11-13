@@ -201,6 +201,10 @@ def main(private, params, media) -> None:
     image.save(media / "features.png", optimize=True)
 
     names = ("hero.gif", "views.png", "scan-and-twin.png", "features.png")
+    # Pictures another script added to the record (render_build_sim.py) stay in it.
+    before = json.loads((media / "provenance.json").read_text()) if (media / "provenance.json").exists() else {}
+    others = {name: entry for name, entry in before.get("images", {}).items() if name not in names and (media / name).exists()}
+    other_inputs = {key: value for key, value in before.get("inputs", {}).items() if key.startswith("build_sim_")}
     (media / "provenance.json").write_text(json.dumps({
         "schema": "935-cad-twin-media/1",
         "kind": "renderings of a study twin; pixels only, no geometry file is published",
@@ -208,11 +212,12 @@ def main(private, params, media) -> None:
         "scan_licence": "the owner states the scan is under an open, reusable licence; no standard identifier is "
                         "archived yet (issue #462) and the vendor page carried no licence text on 2026-11-06",
         "inputs": {"cad_body_stage_sha256": sha256(stage_path), "feature_fits_sha256": sha256(params / "feature-fits.json"),
-                   "assembly_case_sha256": sha256(params / "assembly-case.json")},
+                   "assembly_case_sha256": sha256(params / "assembly-case.json"), **other_inputs},
         "colours": {"grey": "twin surface within 0.2 mm of the acquired scan", "orange": "inferred closure (H01, H02, H04)",
                     "magenta": "hypothesis solids of the assembly thermal screen (H10)"},
         "publication_terms": "published by the owner's decision of 2026-11-11; every image carries its own caption",
-        "images": {name: {"bytes": (media / name).stat().st_size, "sha256": sha256(media / name)} for name in names},
+        "images": {**{name: {"bytes": (media / name).stat().st_size, "sha256": sha256(media / name)} for name in names},
+                   **others},
     }, indent=2) + "\n")
     print({name: (media / name).stat().st_size for name in names})
 
