@@ -87,6 +87,29 @@ class KinematicDrapingTests(unittest.TestCase):
         self.assertFalse(placed[:, 0].any())                       # 24 along the arc: past the foot at 15.7
         self.assertLess(float(np.abs(nodes[placed][:, 1]).max()), 10.0)
 
+    def test_a_start_on_the_edge_of_a_height_grid_still_drapes_inward(self):
+        np, kd = self.np, self.kd
+        x = np.linspace(0.0, 10.0, 11)
+        surface = kd.height_grid(x, x, np.zeros((11, 11)), "flat grid")
+        self.assertTrue(np.allclose(surface.normal(np.array([0.0, 5.0, 0.0])), [0.0, 0.0, 1.0]))
+        self.assertTrue(np.allclose(surface.normal(np.array([10.0, 10.0, 0.0])), [0.0, 0.0, 1.0]))
+        nodes = kd.drape(surface, np.array([0.0, 5.0, 0.0]), np.array([1.0, 0.0, 0.0]), 1.0, 3, 3)
+        placed = np.isfinite(nodes).all(axis=2)
+        self.assertTrue(placed[3:, :].all())                       # everything on the inward side
+        self.assertFalse(placed[:3, :].any())                      # nothing invented outside the grid
+        self.assertEqual(kd.summary(surface, nodes, 1.0)["cells_placed"], 18)
+
+    def test_a_net_with_no_cell_reports_it_instead_of_failing(self):
+        np, kd = self.np, self.kd
+        x = np.linspace(0.0, 1.0, 3)
+        surface = kd.height_grid(x, x, np.zeros((3, 3)), "grid smaller than one yarn step")
+        nodes = kd.drape(surface, np.array([0.5, 0.5, 0.0]), np.array([1.0, 0.0, 0.0]), 2.0, 2, 2)
+        report = kd.summary(surface, nodes, 2.0)
+        self.assertEqual((report["crossings_placed"], report["cells_placed"]), (1, 0))
+        self.assertIsNone(report["shear_deg"])
+        self.assertIn("no cell was placed", report["note"])
+        json.dumps(report)
+
     def test_a_fillet_keeps_the_slope_continuous(self):
         kd = self.kd
         h = kd._filleted_arc(0.3, 0.05)

@@ -60,8 +60,25 @@ class Surface:
     def __init__(self, f, description: str):
         self.f, self.description = f, description
 
+    def gradient(self, p: np.ndarray, h: float = 1e-6) -> np.ndarray:
+        """Gradient of F by differences: central where both sides exist, one-sided at the edge of a mould."""
+
+        here = self.f(p)
+        g = np.empty(3)
+        for k, e in enumerate(np.eye(3)):
+            ahead, behind = self.f(p + h * e), self.f(p - h * e)
+            if np.isfinite(ahead) and np.isfinite(behind):
+                g[k] = (ahead - behind) / (2.0 * h)
+            elif np.isfinite(ahead):
+                g[k] = (ahead - here) / h
+            elif np.isfinite(behind):
+                g[k] = (here - behind) / h
+            else:
+                g[k] = float("nan")
+        return g
+
     def normal(self, p: np.ndarray, h: float = 1e-6) -> np.ndarray:
-        g = np.array([self.f(p + h * e) - self.f(p - h * e) for e in np.eye(3)])
+        g = self.gradient(p, h)
         return g / np.linalg.norm(g)
 
     def project(self, p: np.ndarray) -> np.ndarray:
@@ -71,7 +88,7 @@ class Surface:
             value = self.f(p)
             if abs(value) < 1e-12:
                 break
-            g = np.array([self.f(p + 1e-6 * e) - self.f(p - 1e-6 * e) for e in np.eye(3)]) / 2e-6
+            g = self.gradient(p)
             p = p - value * g / float(g @ g)
         return p
 
@@ -265,6 +282,14 @@ def summary(surface: Surface, nodes: np.ndarray, spacing: float, thresholds_deg=
     gamma = np.degrees(shear_angles(nodes))
     placed = np.isfinite(gamma)
     g = np.abs(gamma[placed])
+    if not len(g):                               # not one whole cell fits on the mould from this start
+        on_nodes = nodes[np.isfinite(nodes).all(axis=2)]
+        return {"crossings_placed": int(len(on_nodes)), "crossings_asked": int(nodes.shape[0] * nodes.shape[1]),
+                "cells_placed": 0, "cells_asked": int(gamma.size), "shear_deg": None,
+                "share_of_cells_above_deg": {f"{t:g}": None for t in thresholds_deg},
+                "flat_pattern_area": 0.0, "area_on_the_mould": 0.0, "largest_fibre_packing_ratio": None,
+                "largest_error_of_a_yarn_length": None, "largest_distance_of_a_crossing_from_the_mould": None,
+                "note": "no cell was placed: the mould is smaller than one yarn step from this start, or the start is off it"}
     edges = np.concatenate([np.linalg.norm(np.diff(nodes, axis=0), axis=2).ravel(), np.linalg.norm(np.diff(nodes, axis=1), axis=2).ravel()])
     edges = edges[np.isfinite(edges)]
     on_nodes = nodes[np.isfinite(nodes).all(axis=2)]
@@ -481,7 +506,7 @@ def main() -> None:
     Path(args.output).write_text(json.dumps(report, indent=1) + "\n")
     if args.nodes:
         np.savez_compressed(args.nodes, nodes=nodes, shear_rad=shear_angles(nodes))
-    if args.plot:
+    if args.plot and report["cells_placed"]:
         plot(nodes, ply["yarn_spacing"], f"{case.get('title', case_path.stem)}: {surface.description}", Path(args.plot))
     print(json.dumps({k: report[k] for k in ("crossings_placed", "crossings_asked", "shear_deg", "share_of_cells_above_deg")}))
 
