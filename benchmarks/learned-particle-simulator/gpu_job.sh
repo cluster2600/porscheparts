@@ -17,11 +17,18 @@ sha256sum hf/fancy_fluid/checkpoint/final.ckpt hf/fancy_fluid/dataset/66/66.npz
 python load_weights_only.py hf/fancy_fluid/checkpoint/final.ckpt hf/fancy_fluid/checkpoint/weights-only.pt | tail -2
 python make_cases.py hf cases
 python -c "import open3d.ml.torch as m; import open3d; print('open3d', open3d.__version__, 'cuda ops', open3d.core.cuda.is_available())"
+failed=0
 run() { # sample data_dir steps out
-  local t0=$(date +%s)
+  local t0=$(date +%s) log=$W/run-$1.log status
   ( cd src && ATTN_IMPL=sdpa MPLCONFIGDIR=/tmp python inference.py --data_dir $2 --sample $1 --config $W/hf/fancy_fluid/checkpoint/config.yaml \
-      --checkpoint $W/hf/fancy_fluid/checkpoint/weights-only.pt --num_steps $3 --dt 1 --output_dir $W/$4 --start 0 --end $(( $3 + 1 )) 2>&1 | grep -v "Warning\|warn\|pkg_resources" | tail -3 )
-  echo "RUN $1 steps=$3 seconds=$(( $(date +%s) - t0 )) exit=$?"
+      --checkpoint $W/hf/fancy_fluid/checkpoint/weights-only.pt --num_steps $3 --dt 1 --output_dir $W/$4 --start 0 --end $(( $3 + 1 )) ) > $log 2>&1
+  status=$?                                   # the status of inference.py itself, not of a filter after it
+  grep -v "Warning\|warn\|pkg_resources" $log | tail -3
+  if [ $status -ne 0 ] || ! ls $W/$4/outcomes/npz/$1/*.npz > /dev/null 2>&1; then
+    failed=$((failed+1)); echo "RUN $1 FAILED steps=$3 seconds=$(( $(date +%s) - t0 )) status=$status"
+  else
+    echo "RUN $1 ok steps=$3 seconds=$(( $(date +%s) - t0 ))"
+  fi
 }
 run 66 $W/hf/fancy_fluid/dataset 599 out-fluid
 run fluid-still $W/cases 300 out-cases
@@ -29,4 +36,5 @@ run fluid-dam $W/cases 500 out-cases
 run fluid-still-training-tank $W/cases 300 out-cases
 tar czf results.tgz out-fluid out-cases cases/fluid-still cases/fluid-dam cases/fluid-still-training-tank src-commit.txt job.log 2>/dev/null
 ls -la results.tgz
-echo "DONE $(date -u +%FT%TZ)"
+echo "DONE failed=$failed $(date -u +%FT%TZ)"
+[ $failed -eq 0 ]
