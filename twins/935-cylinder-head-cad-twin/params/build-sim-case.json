@@ -142,9 +142,23 @@
    "thermal_increments_per_lump": 8,
    "memory_cap": "6g"
   },
+  "c4-l12": {
+   "cell_mm": 4.0,
+   "cell_rows_per_lump": 3,
+   "plate_margin_cells": 2,
+   "thermal_increments_per_lump": 8,
+   "memory_cap": "6g"
+  },
   "c3-l9": {
    "cell_mm": 3.0,
    "cell_rows_per_lump": 3,
+   "plate_margin_cells": 3,
+   "thermal_increments_per_lump": 8,
+   "memory_cap": "10g"
+  },
+  "c3-l12": {
+   "cell_mm": 3.0,
+   "cell_rows_per_lump": 4,
    "plate_margin_cells": 3,
    "thermal_increments_per_lump": 8,
    "memory_cap": "10g"
@@ -165,8 +179,7 @@
    "memory_cap": "6g",
    "process": {
     "lasers": 2
-   },
-   "thermal_only": "the mechanical model was not run for this case: the question is the temperature"
+   }
   },
   "c4-l8-4-lasers": {
    "cell_mm": 4.0,
@@ -176,14 +189,22 @@
    "memory_cap": "6g",
    "process": {
     "lasers": 4
-   },
-   "thermal_only": "the mechanical model was not run for this case: the question is the temperature"
+   }
+  },
+  "c4-l8-laid-supports": {
+   "cell_mm": 4.0,
+   "cell_rows_per_lump": 2,
+   "plate_margin_cells": 2,
+   "thermal_increments_per_lump": 8,
+   "memory_cap": "6g",
+   "supports": "designed",
+   "supports_note": "the envelope of params/support-design.json, a cell at half or more, at the melted share of its block supports instead of the declared solid fraction"
   }
  },
  "not_modelled": [
   "the melt pool, the scan path and any peak temperature: the heat of a lump is spread over its volume and its real time",
   "heat loss to powder and gas: all heat leaves through the plate, so the temperatures are an upper bound for this input",
-  "a support prepared in a build processor: the supports of the build screen are columns of homogenised cells under a 45 degree rule",
+  "a support prepared in a build processor: the supports are homogenised cells, columns under a 45 degree rule or, on one level, the envelope of a layout by rule",
   "creep, stress relief during the build, phase change, and any calibration against a printed coupon"
  ]
 }

@@ -1070,9 +1070,18 @@ class BuildSimTests(unittest.TestCase):
             if "thermal_only" in self.case["levels"][name]:
                 self.assertEqual(level["mechanics"], {}, name)
         # at the declared single laser the rise barely moves with the level; more lasers raise it and shorten the build
-        one = [name for name in levels if "process" not in self.case["levels"][name]]
+        one = [name for name in levels if "process" not in self.case["levels"][name] and "supports" not in self.case["levels"][name]]
         rises = [levels[name]["thermal"]["largest_rise_over_plate_K"] for name in one]
         self.assertLess(max(rises) - min(rises), 5.0)
+        # the level on the laid-out supports has more, denser support cells, and runs cooler
+        for name in (n for n in levels if self.case["levels"][n].get("supports") == "designed"):
+            model, plain = levels[name]["model"], levels["c4-l8"]["model"]
+            self.assertGreater(model["hexahedra"]["support"], plain["hexahedra"]["support"], name)
+            self.assertGreater(model["support_solid_fraction"], self.case["supports"]["solid_fraction"], name)
+            self.assertLess(levels[name]["thermal"]["largest_rise_over_plate_K"], min(rises), name)
+            layout = json.loads((TWIN / "params" / "support-design.json").read_text())
+            self.assertAlmostEqual(model["support_solid_fraction"], layout["block_support"]["melted_share_of_the_envelope"], places=4)
+            self.assertAlmostEqual(model["support_layout"]["envelope_mm3"], layout["supported"]["envelope_volume_mm3"], delta=1.0)
         base = levels["c4-l8"]["thermal"]
         previous = base
         for name in sorted((n for n in levels if "process" in self.case["levels"][n]), key=lambda n: self.case["levels"][n]["process"]["lasers"]):
@@ -1229,6 +1238,17 @@ class SupportDesignTests(unittest.TestCase):
                 self.assertIn(key, case["sources"], key)
         for key in rules["block_support"]:
             self.assertIn(key, case["sources"]["block_support"], key)
+        # the orientation comparison holds this layout as one of its six rows, each checked against the screen
+        compare = json.loads((TWIN / "params" / "support-design-orientations.json").read_text())
+        self.assertEqual(compare["case_sha256"], record["case_sha256"])
+        self.assertEqual(len(compare["orientations"]), 6)
+        mine = compare["orientations"][compare["orientation_of_the_build_screen"]]
+        self.assertAlmostEqual(mine["envelope_volume_mm3"], sup["envelope_volume_mm3"], places=3)
+        self.assertAlmostEqual(mine["wall_line_on_the_part_mm"], block["wall_line_on_the_part_mm"], places=3)
+        for name, row in compare["orientations"].items():
+            self.assertLess(row["largest_difference_from_the_orientation_screen_before_exemption"], 1e-3, name)
+            self.assertLessEqual(row["envelope_landing_on_part_mm3"], row["envelope_volume_mm3"], name)
+        self.assertIn("no orientation is chosen", compare["scope"])
         # the occupancy is the one the build screen was prepared on
         build = json.loads((TWIN / "params" / "build-sim.json").read_text())
         self.assertEqual(record["occupancy_sha256"], build["levels"]["c4-l8"]["model"]["occupancy_sha256"])

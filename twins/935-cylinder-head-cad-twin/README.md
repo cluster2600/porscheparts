@@ -54,13 +54,14 @@ stated blocker. What the twin still does not have:
 - **A qualified build.** The print body has a layer screen and a
   [build screen](#build-screen-the-print-body-grown-lump-by-lump-in-calculix-case-witnesses-record):
   43.4 hours on one laser, a largest rise of 60 to 64 K above the plate, and a distortion after
-  release of 0.24 to 0.31 mm at the median and 1.62 to 2.16 mm at the largest,
-  not converged in lump height or cell size.
+  release of 0.24 to 0.33 mm at the median and 1.62 to 2.16 mm at the largest,
+  settled in cell size at equal lump height, not in lump height.
   Both run on declared process values: no maker's parameters, nothing
   printed. With two or four lasers the hottest region runs
   98 or 138 K above the plate. A
   [support layout](#support-layout-block-supports-laid-out-by-rule-case-witnesses-record)
-  by rule exists; no build processor has prepared one.
+  by rule exists and one level of the build screen stands on it; no build
+  processor has prepared one.
 
 ## Why this directory exists
 
@@ -978,14 +979,14 @@ process value comes from the machine's maker and nothing was printed.*
 
 **The head's build now runs, as a screen.** Under the declared process values the
 print body takes 43.4 hours on one 350 W laser. Its hottest region runs
-60 to 64 K above the plate as a time average, at the four levels solved.
-After release the model is out of shape by 0.24 to 0.31 mm at the
-median and 1.62 to 2.16 mm at its worst corner, depending on the lump
-height and the cell size: the distortion is an order of magnitude, not a
-converged value.
-The stress sits on the declared yield curve, as this kind of model must
-give: what carries information is where the shape moves, not the stress
-level.
+60 to 64 K above the plate as a time average, at the six levels solved.
+After release the model is out of shape by 0.24 to 0.33 mm at the
+median and 1.62 to 2.16 mm at its worst corner across five runs that differ
+only in cell size and lump height. At equal lump height the cell size does
+not change it; the lump height does, so the distortion is an order of
+magnitude, not a converged value. The stress sits on the declared yield curve, as this
+kind of model must give: what carries information is where the shape moves,
+not the stress level.
 
 **How the three blockers were answered.**
 
@@ -1031,10 +1032,16 @@ an upper bound for this heat input.
 |---|---|---|---|---|---|---|---|---|---|
 | c4-l8 | 4 mm | 8 mm, 160 layers | 28 | 1 | 17,336 | 3,550 | 35,299 | +0.04% | thermal, mechanics (3 variants) |
 | c4-l4 | 4 mm | 4 mm, 80 layers | 56 | 1 | 17,336 | 3,550 | 35,299 | +0.04% | thermal, mechanics |
+| c4-l12 | 4 mm | 12 mm, 240 layers | 19 | 1 | 17,336 | 3,550 | 35,299 | +0.04% | thermal, mechanics |
 | c3-l9 | 3 mm | 9 mm, 180 layers | 25 | 1 | 40,978 | 8,744 | 81,438 | -0.24% | thermal, mechanics |
+| c3-l12 | 3 mm | 12 mm, 240 layers | 19 | 1 | 40,978 | 8,744 | 81,438 | -0.24% | thermal, mechanics |
 | c2-l8 | 2 mm | 8 mm, 160 layers | 28 | 1 | 139,548 | 29,142 | 262,998 | +0.66% | thermal |
-| c4-l8-2-lasers | 4 mm | 8 mm, 160 layers | 28 | 2 | 17,336 | 3,550 | 35,299 | +0.04% | thermal |
-| c4-l8-4-lasers | 4 mm | 8 mm, 160 layers | 28 | 4 | 17,336 | 3,550 | 35,299 | +0.04% | thermal |
+| c4-l8-2-lasers | 4 mm | 8 mm, 160 layers | 28 | 2 | 17,336 | 3,550 | 35,299 | +0.04% | thermal, mechanics |
+| c4-l8-4-lasers | 4 mm | 8 mm, 160 layers | 28 | 4 | 17,336 | 3,550 | 35,299 | +0.04% | thermal, mechanics |
+| c4-l8-laid-supports | 4 mm | 8 mm, 160 layers | 28 | 1 | 17,336 | 7,741 | 38,435 | +0.04% | thermal, mechanics |
+
+The level `c4-l8-laid-supports` stands on the envelope of the support layout
+instead of the columns, at the melted share of its block supports.
 
 The half-full rule does not keep the volume exactly: the models hold -0.24% to
 +0.66% of the occupancy's volume, and the absorbed energy follows the cells.
@@ -1045,22 +1052,24 @@ The half-full rule does not keep the volume exactly: the models hold -0.24% to
 |---|---|---|---|---|---|---|
 | c4-l8 | 43.4 h (28.1 h exposure, 15.2 h recoating) | 14.2 MJ | 62.0 K | 180 mm | 0.20% | 6 min |
 | c4-l4 | 43.4 h (28.1 h exposure, 15.2 h recoating) | 14.2 MJ | 63.5 K | 180 mm | 0.40% | 16 min |
+| c4-l12 | 43.4 h (28.1 h exposure, 15.2 h recoating) | 14.2 MJ | 60.5 K | 192 mm | 0.13% | 7 min |
 | c3-l9 | 43.4 h (28.1 h exposure, 15.3 h recoating) | 14.2 MJ | 60.2 K | 189 mm | 0.13% | 79 min |
+| c3-l12 | 43.4 h (28.1 h exposure, 15.3 h recoating) | 14.2 MJ | 60.2 K | 189 mm | 0.10% | 19 min |
 | c2-l8 | 43.6 h (28.3 h exposure, 15.2 h recoating) | 14.3 MJ | 60.6 K | 184 mm | 0.10% | 222 min |
 | c4-l8-2-lasers | 29.3 h (14.1 h exposure, 15.2 h recoating) | 14.2 MJ | 98.1 K | 180 mm | 0.30% | 9 min |
 | c4-l8-4-lasers | 22.3 h (7.0 h exposure, 15.2 h recoating) | 14.2 MJ | 138.2 K | 180 mm | 0.41% | 9 min |
+| c4-l8-laid-supports | 46.6 h (31.4 h exposure, 15.2 h recoating) | 15.8 MJ | 40.3 K | 180 mm | 0.11% | 9 min |
 
 - **The part stays near the plate temperature:** its largest rise is 60 to 64 K, about
   160 to 164 °C at the hottest region with the plate at 100 °C; the rest
   is cooler. The mean absorbed power is
   91 W (14.2 MJ over the build), and the aluminium section carries it
   to the plate.
-- **Lump height and cell size move it by 2 K:** 62.0 K with lumps of
-  8 mm, 63.5 K with lumps of 4 mm, 60.2 K on 3 mm cells, 60.6 K on 2 mm cells.
-  At the same lump height, halving the cells from 4 to 2 mm changes it by
-  -1.4 K: the temperature is settled in cell size at the scale of this
-  screen.
-- **The hottest region is the top of the build,** 180 to 189 mm above the plate,
+- **Lump height and cell size move it by 2 K:** 60.2 to 63.5 K over lumps of 4 to
+  12 mm and cells of 2 to 4 mm. At the same lump height, halving the cells from
+  4 to 2 mm changes it by -1.4 K: the temperature is settled at the scale of
+  this screen.
+- **The hottest region is the top of the build,** 180 to 192 mm above the plate,
   where the heat has the longest way down.
 - **The absorptivity decides the level.** 0.4 is declared; published values
   run from 0.13 to 0.58, and the rise scales with it: 20 to 90 K
@@ -1069,11 +1078,13 @@ The half-full rule does not keep the volume exactly: the models hold -0.24% to
   each the build takes 29.3 hours and the hottest region runs 98 K above the
   plate; with four, 22.3 hours and 138 K, about 238 °C. Only the
   exposure shrinks: the 15.2 hours of recoating stay, so four lasers save
-  49% of the time, not three quarters. The energy is the same; it arrives in less time.
-- **At that temperature the declared yield curve has dropped.** It gives 236 MPa
-  at 200 °C against 322 MPa at room temperature. The mechanical run was not
-  made for the laser cases, and the machine's lasers are 500 W, not the
-  declared 350 W: these two rows are a sensitivity to the mean power.
+  49% of the time, not three quarters. The machine's lasers are 500 W, not the
+  declared 350 W: these rows are a sensitivity to the mean power.
+- **On the laid-out supports the part runs cooler:** 40 K above the plate instead of 62.
+  The [support layout](#support-layout-block-supports-laid-out-by-rule-case-witnesses-record) puts 7,741 support cells
+  under the body where the 45° rule on cells put 3,550, and its walls melt 36% of a cell
+  instead of the declared 20%: more metal between the part and the plate. The build takes
+  46.6 hours instead of 43.4, and absorbs 15.8 MJ instead of 14.2.
 
 **Stress and distortion.** Three states are read: the end of the build, room
 temperature on the plate, and after plate and supports are removed with the
@@ -1086,7 +1097,12 @@ motion and the best uniform shrinkage are taken out.
 | c4-l8, stress-relieved yield curve | 563 °C | 155.3 MPa | 142 / 161 MPa | 43% | 0.24 / 0.70 / 1.67 mm | 0.49% |
 | c4-l8, stress-free at 400 °C | 400 °C | 322 MPa | 170 / 305 MPa | 4% | 0.21 / 0.61 / 1.30 mm | 0.45% |
 | c4-l4, as built | 563 °C | 322 MPa | 216 / 310 MPa | 10% | 0.24 / 0.75 / 1.62 mm | 0.47% |
+| c4-l12, as built | 563 °C | 322 MPa | 219 / 310 MPa | 12% | 0.33 / 0.87 / 1.71 mm | 0.56% |
 | c3-l9, as built | 563 °C | 322 MPa | 230 / 311 MPa | 16% | 0.31 / 0.90 / 2.16 mm | 0.57% |
+| c3-l12, as built | 563 °C | 322 MPa | 225 / 311 MPa | 15% | 0.33 / 0.86 / 1.74 mm | 0.60% |
+| c4-l8-2-lasers, as built, 2 lasers | 563 °C | 322 MPa | 208 / 308 MPa | 7% | 0.28 / 0.82 / 1.81 mm | 0.56% |
+| c4-l8-4-lasers, as built, 4 lasers | 563 °C | 322 MPa | 194 / 305 MPa | 4% | 0.27 / 0.76 / 1.68 mm | 0.60% |
+| c4-l8-laid-supports, as built, laid-out supports | 563 °C | 322 MPa | 229 / 314 MPa | 16% | 0.30 / 0.76 / 1.71 mm | 0.50% |
 
 - **The stress level is the yield curve, not a prediction.** As built, the
   median is 220 MPa and the 95th percentile 310 MPa against a yield
@@ -1098,39 +1114,56 @@ motion and the best uniform shrinkage are taken out.
   temperature.** Largest value 1.93 mm as built, 1.67 mm with the
   yield halved (-14%), 1.30 mm with the stress-free
   temperature lowered from 563 to 400 °C (-33%).
-- **The same point moves most in these three runs:** a corner of the body's
-  outline, 56 mm above the plate. The picture shows the other large values
-  on outer edges and on the bosses that stand out from the body.
 - **Removing plate and supports changes the shape by 0.93 mm at most**
   as built, against 1.93 mm of distortion in all.
 - **The uniform shrinkage (0.45% to 0.52%) follows from the declared
   stress-free temperature.** It is taken out of the distortion and is not a
   scale factor for a build file.
-- **The distortion is not converged in lump height.** With lumps of 4 mm
-  instead of 8 mm it is 0.24 mm at the median (-19%), 0.75 mm at the
-  95th percentile and 1.62 mm at the largest (-16%), and the largest value
-  moves to another corner, 44 mm above the plate. The lumping weighs as
-  much as the yield curve. A real layer is 0.05 mm; nothing here says
-  where the trend ends.
-- **Nor is it shown to be converged in cell size.** On 3 mm cells with lumps
-  of 9 mm it is 0.31 mm at the median (+3% against the 4 mm cells with
-  8 mm lumps), 0.90 mm at the 95th percentile and 2.16 mm at the largest
-  (+12%). The lump is 1 mm thicker as well, so the two effects are not
-  separated. The largest value sits at the corner the 4 mm lumps pointed
-  to, 10 mm higher. The stress stays on the yield curve: 230 MPa at the median and
-  311 MPa at the 95th percentile.
-- **Across the 3 as-built runs the largest distortion is 1.62 to 2.16 mm**
-  and the median 0.24 to 0.31 mm. The 3 mm cells give the most and the 4 mm
-  lumps the least; no run has both finer cells and thinner lumps.
+
+**Cell size against lump height** (as built, one laser, support columns): distortion after release, median / largest.
+
+| Lump height | 4 mm cells | 3 mm cells |
+|---|---|---|
+| 12 mm | 0.33 / 1.71 mm | 0.33 / 1.74 mm |
+| 8 mm on 4 mm cells, 9 mm on 3 mm cells | 0.30 / 1.93 mm | 0.31 / 2.16 mm |
+| 4 mm on 4 mm cells, 3 mm on 3 mm cells | 0.24 / 1.62 mm | in the solver |
+
+- **On 4 mm cells the median falls as the lumps thin:** 0.33, 0.30 and 0.24 mm for
+  lumps of 12, 8 and 4 mm. The largest value does not follow: 1.71, 1.93 and
+  1.62 mm. It is one corner of the outline, and with 4 mm lumps another corner takes over.
+  A real layer is 0.05 mm; nothing here says where the trend ends.
+- **At the same lump height the cell size does not matter.** With 12 mm lumps the largest
+  value is 1.74 mm on 3 mm cells and 1.71 mm on 4 mm cells (+1%), the 95th
+  percentile 0.86 and 0.87 mm, the median 0.33 and 0.33 mm. The worst point is at
+  the same height, 60 mm above the plate, on the opposite corner of the outline. This is the one
+  comparison where only the cell size changes.
+- **So the spread comes from the lump height.** The largest value is 1.71 to 1.74 mm with
+  12 mm lumps, 1.93 and 2.16 mm with 8 and 9 mm, 1.62 mm with 4 mm: it does not fall steadily,
+  because a lump boundary falls on a different part of the body each time. The
+  12% first read as an effect of finer cells (3 mm cells with 9 mm lumps against 4 mm
+  cells with 8 mm) was this.
+- **Across the five runs the largest distortion is 1.62 to 2.16 mm** and the median
+  0.24 to 0.33 mm. A run with 3 mm cells and 3 mm lumps is still in the solver.
+- **A hotter build distorts a little less on this model.** With two and four lasers the
+  largest value is 1.81 and 1.68 mm against 1.93 mm (-6%, -13%), at the
+  same corner, and the median 0.28 and 0.27 mm against 0.30 mm. The median stress
+  falls from 220 to 208 and 194 MPa. The part stays warmer while it is
+  built, as it would on a hotter plate, and the declared yield curve is
+  lower there. Whether the alloy keeps its strength after hours at 200 °C
+  and more is outside this model.
+- **On the laid-out supports the largest distortion is 1.71 mm** instead of 1.93 mm (-12%),
+  and it moves from a lower corner to the top of the build, 176 mm above the plate. The 95th
+  percentile falls from 0.87 to 0.76 mm; the median stays at 0.30 mm. Changing the
+  supports moves the worst corner as much as changing the lumps does.
 
 **What this screen does not say.**
 
 - No melt pool, scan path or peak temperature: the heat of a lump is spread
   over its volume and its real time.
 - No heat loss to powder or gas.
-- No support prepared in a build processor: columns of homogenised cells
-  stand in for one. A [layout by rule](#support-layout-block-supports-laid-out-by-rule-case-witnesses-record)
-  exists; the build screen does not use it yet.
+- No support prepared in a build processor: the supports are homogenised
+  cells, columns under a 45° rule or, on one level, the envelope of the
+  [layout by rule](#support-layout-block-supports-laid-out-by-rule-case-witnesses-record).
 - No creep, stress relief during the build or phase change, and no
   calibration against a printed coupon.
 - Every gate of the record is false: no process parameters from the maker,
@@ -1226,8 +1259,33 @@ the [orientation screen](params/print-body-supports.json) to 0.0003%: 476,689 mm
   taller than the largest disc that fits in their footprint. Whether such a
   support survives the recoater is not judged here.
 - **The supports cost 15% more melted volume** and 4.1 hours of exposure.
-- **The build screen does not use this layout yet.** `build_sim.py` can take
-  the envelope in place of its columns; that run is not in the record.
+- **In the build screen** the level `c4-l8-laid-supports` takes this envelope
+  in place of the columns; its numbers are in the section above.
+
+**The same rules in the six orientations of the [orientation screen](params/print-body-supports.json)** ([record](params/support-design-orientations.json)).
+
+| Orientation | Build height | On the plate | Envelope | Standing on the part | Wall line against the part | Supported surface with no lateral access | Tallest support |
+|---|---|---|---|---|---|---|---|
+| deck down | 95.5 mm | 5 mm² | 448,300 mm³, 40% of the part | 38% | 106.1 m | 9,721 mm² (27%) | 84 mm |
+| deck up | 95.5 mm | 19 mm² | 514,400 mm³, 46% of the part | 33% | 116.4 m | 6,697 mm² (17%) | 90 mm |
+| flange y− down | 224.0 mm | 313 mm² | 386,200 mm³, 35% of the part | 56% | 39.0 m | 2,681 mm² (21%) | 217 mm |
+| flange y+ down (the build screen) | 224.0 mm | 46 mm² | 470,700 mm³, 42% of the part | 48% | 36.6 m | 3,174 mm² (26%) | 176 mm |
+| side x− down | 117.5 mm | 35 mm² | 417,100 mm³, 38% of the part | 60% | 59.4 m | 10,323 mm² (49%) | 114 mm |
+| side x+ down | 117.5 mm | 50 mm² | 414,700 mm³, 37% of the part | 61% | 57.3 m | 8,816 mm² (43%) | 114 mm |
+
+- **The two flange-down builds touch the part least:** 37 to 39 m of wall line
+  against 57 to 116 m for the four others, and 2,700 to 3,200 mm² of
+  supported surface without lateral access against 6,700 to 10,300 mm².
+- **The other flange down needs the least support of the six:** 386,200 mm³,
+  18% less than the orientation the build screen ran, and it sits on
+  313 mm² of plate instead of 46. Its supports are taller
+  (217 mm) and more of the envelope stands on the part (56%).
+- **Deck up or down is less than half as tall** (95.5 mm against 224 mm), and recoating
+  follows the height. It pays with about three times the wall line against
+  the part (106 to 116 m).
+- **No orientation is chosen here.** The build screen solved one of them;
+  build time, distortion and the finish of the machined faces were not
+  compared across orientations.
 
 **What this layout does not say.**
 
@@ -1769,7 +1827,7 @@ contributor. No contributor is named here, and none has been asked.
 | v2 body | occupancy, datum faces | private closed solid; [summary](params/v2-loft-s025-summary.json) | manifold status, watertight, volume; whole-scan [scorecard](params/scorecard-v2-loft-s025.json) with oracle; three section steps | done: p95 0.157 mm, 97.4% within 0.2 mm; area 14% above T1s; no B-rep |
 | Thermal from CAD | v2 body occupancy at 1.0 mm | private deck and fields; [result](params/thermal-screen-cad.json) | energy balance 0.28%; comparison with T3 at the same pitch | done: mean −0.53 °C, heat −0.36% against T3 |
 | USD and 3MF from CAD | v2 body | private `.usdc` and 3MF; [USD](params/usd-cad-summary.json), [3MF](params/print-cad-summary.json) | 30 OpenUSD validators, NVIDIA validator; streaming round trip | done: 0 OpenUSD findings; NVIDIA 0 failures, 2 warnings (35 flat triangles, co-located points); 3MF exact |
-| Port CFD | port fit, hypotheses | [audit](params/port-cfd-audit.json) | three admissibility gates | closed by audit: no admissible domain, no solver run; reopens with H04 and H05 evidence; [prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register); [prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register) |
+| Port CFD | port fit, hypotheses | [audit](params/port-cfd-audit.json) | three admissibility gates | closed by audit: no admissible domain, no solver run; reopens with H04 and H05 evidence; [prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register); [prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register); [prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register) |
 | SimReady tools | v1 deck plate STEP, two port loft STEPs, both stages | private stages; [deck](params/simready-deck-plate.json), [ports](params/simready-ports.json) | NVIDIA validator; independent bounding box and volume against the STEP | done for the three B-rep inputs (pass) and both stages; profile conformance, agents and RTX not attempted; no STEP of the v2 body |
 | AM screen | occupancy | [supports](params/am-supports.json), [cooldown](params/am-cooldown.json) | analytic witnesses within 2.5%; independent VTU reader, energy imbalance 1.5e-4 | done as a screen: six orientations, two cooldown levels; no orientation chosen, no support designed |
 | Feature fit | bare scan, frame, [32 windows](params/feature-rois.json) | [feature-fits.json](params/feature-fits.json); private vertex split | the tool's own `determined` flag and standard deviations; two-centre construction against a guide bore axis (0.42°) | done: 25 determined, 7 detected only; two valve axes, guide bore, seats, plug bores, stud passages |
@@ -1786,7 +1844,7 @@ contributor. No contributor is named here, and none has been asked.
 | Print-body orientations | print-body occupancy | [print-body-supports.json](params/print-body-supports.json) | the AM screen's analytic witnesses | done as a screen: flange y− down and side x+ down kept for the build study; no support designed |
 | Print-body layer screen | 0.5 mm and 1.0 mm surfaces of the print body, EP-M300 card | [print-body-layer-screen.json](params/print-body-layer-screen.json); private per-layer tables and charts | hashes of master and surface; the tool's gates; the bounded-memory driver gives the same four files as the plain run on the 1.0 mm surface | done on both surfaces: build along Y, 4,482 layers, fits the envelope, no trapped powder at 1.0 mm; 563 islands on the fine surface, 216 on the smoother one; thin walls measured on the grid ([wall check](params/print-body-wall-check.json)) |
 | Build simulation witness | a block, two lumped layers from a deposition file | [am-build-witness.json](params/am-build-witness.json) | active volume and mean temperature against a closed form, on the solver's mesh and on an imported one | passed on both; the head's build runs in CalculiX instead (next row) |
-| Build screen | print-body occupancy, [declared case](params/build-sim-case.json) | [build-sim.json](params/build-sim.json); private decks, fields and two [pictures](media/build-sim-result.png) | three closed-form [witnesses](params/build-sim-witness.json); energy balance within 0.4%; 4 levels for temperature and 2 laser cases, 5 mechanical runs | done as a screen: 43.4 h, largest rise 60 to 64 K above the plate (98 and 138 K with two and four lasers); distortion after release 0.24 to 0.31 mm median, 1.62 to 2.16 mm largest on 3 and 4 mm cells, not converged in lump height or cell size; stress at the declared yield curve; every gate false |
+| Build screen | print-body occupancy, [declared case](params/build-sim-case.json) | [build-sim.json](params/build-sim.json); private decks, fields and two [pictures](media/build-sim-result.png) | three closed-form [witnesses](params/build-sim-witness.json); energy balance within 0.4%; 6 levels for temperature and 2 laser cases, 10 mechanical runs | done as a screen: 43.4 h, largest rise 60 to 64 K above the plate (98 and 138 K with two and four lasers); distortion after release 0.24 to 0.33 mm median, 1.62 to 2.16 mm largest on 3 and 4 mm cells: settled in cell size at equal lump height, not in lump height; on the laid-out supports 40 K and 1.71 mm; stress at the declared yield curve; every gate false |
 | Support layout | print-body occupancy, [declared rules](params/support-design-case.json) | [support-design.json](params/support-design.json); private envelope and a [picture](media/support-layout.png) | four shapes with hand-computed answers ([witnesses](params/support-design-witness.json)); the totals before exemption equal the orientation screen's | done as a layout by rule: 470,700 mm³ of envelope, 15% of the part melted in walls, 48% standing on the part, 26% of the supported surface without straight lateral access; no build processor, removal not judged |
 | Fatigue, valve-train dynamics, drawing | none | [prepared-work.json](params/prepared-work.json); [drawing-tool witness](params/drawing-witness.json) | every path of the register exists; the drawing tool reads back three views of a known solid | not run: no stress history or S-N data, no cam, spring or masses, 4 of 32 features confirmed. [Prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register): tool, witness, held and missing inputs for each |
 
@@ -1813,9 +1871,9 @@ contributor. No contributor is named here, and none has been asked.
   layers, on voxel cells of 2 to 4 mm (3 and 4 mm for the mechanics) with
   homogenised support columns. Its temperatures are time averages, its
   stresses sit on a declared yield curve, and its distortion moves with the
-  lump height and the cell size and is not a compensation field. The two
-  laser cases are thermal only. No process value comes from the machine's
-  maker and nothing was printed.
+  lump height and is not a compensation field. One level stands on the
+  laid-out supports; the others on columns. No process value comes from the
+  machine's maker and nothing was printed.
 - The support layout follows declared rules on the 0.25 mm grid. Its teeth
   and its slenderness have no aluminium source, its access test is two
   straight lines, and no build processor or person has prepared or judged it.
