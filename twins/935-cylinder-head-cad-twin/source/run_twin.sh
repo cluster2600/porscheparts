@@ -137,20 +137,25 @@ MEM=10G cap "$PY" -I "$HERE/support_design.py" orientations "$PRIV/print-occ-$ST
 
 # Build screen in CalculiX (cadsim image, one thread): witnesses, then each level of
 # params/build-sim-case.json. A level's thermal run comes before its mechanical run; the 2 mm
-# level and the two laser levels are thermal only. A level with "supports": "designed" would take
-# the envelope of the layout above ($SD); none is declared yet. Solver time on this host: about
-# 5.5 h of thermal runs (3.7 h for the 2 mm level) and 11 h of mechanics, one thread each.
+# level is thermal only. The level with "supports": "designed" takes the envelope of the layout
+# above ($SD). Solver time on this host: about 7 h of thermal runs (3.7 h for the 2 mm level)
+# and some 20 h of mechanics, one thread each; they can run side by side.
 BS="$PRIV/build-sim-$STAMP"; mkdir "$BS"
 "$PY" -I "$HERE/build_sim.py" witness "$BS/witness" "$PARAMS/build-sim-witness.json"
-for level in c4-l8 c4-l4 c3-l9 c2-l8 c4-l8-2-lasers c4-l8-4-lasers; do
+for level in c4-l8 c4-l4 c4-l12 c3-l9 c3-l12 c2-l8 c4-l8-2-lasers c4-l8-4-lasers c4-l8-laid-supports; do
   MEM=8G cap "$PY" -I "$HERE/build_sim.py" prepare "$PRIV/print-occ-$STAMP" "$PARAMS/build-sim-case.json" "$level" "$BS/$level" "$SD"
   "$PY" -I "$HERE/build_sim.py" thermal "$BS/$level"
 done
-"$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8"
-"$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8" --variant yield-stress-relieved
 "$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8" --variant stress-free-673K
+"$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8" --variant yield-stress-relieved
+"$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8"
 "$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l4"
+"$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l12"
 "$PY" -I "$HERE/build_sim.py" mechanics "$BS/c3-l9"
+"$PY" -I "$HERE/build_sim.py" mechanics "$BS/c3-l12"
+"$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8-2-lasers"
+"$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8-4-lasers"
+"$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8-laid-supports"
 "$PY" -I "$HERE/build_sim.py" summarize "$BS" "$PARAMS/build-sim-case.json" "$PARAMS/build-sim-witness.json" "$PARAMS/build-sim.json"
 # Software OpenGL in a sandbox without /dev/dxg, on purpose: with GALLIUM_DRIVER=d3d12 this render
 # took the WSL VM down twice (docs/LOCAL_HOST_SETUP.md, section 3).

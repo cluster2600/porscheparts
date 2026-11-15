@@ -1070,9 +1070,18 @@ class BuildSimTests(unittest.TestCase):
             if "thermal_only" in self.case["levels"][name]:
                 self.assertEqual(level["mechanics"], {}, name)
         # at the declared single laser the rise barely moves with the level; more lasers raise it and shorten the build
-        one = [name for name in levels if "process" not in self.case["levels"][name]]
+        one = [name for name in levels if "process" not in self.case["levels"][name] and "supports" not in self.case["levels"][name]]
         rises = [levels[name]["thermal"]["largest_rise_over_plate_K"] for name in one]
         self.assertLess(max(rises) - min(rises), 5.0)
+        # the level on the laid-out supports has more, denser support cells, and runs cooler
+        for name in (n for n in levels if self.case["levels"][n].get("supports") == "designed"):
+            model, plain = levels[name]["model"], levels["c4-l8"]["model"]
+            self.assertGreater(model["hexahedra"]["support"], plain["hexahedra"]["support"], name)
+            self.assertGreater(model["support_solid_fraction"], self.case["supports"]["solid_fraction"], name)
+            self.assertLess(levels[name]["thermal"]["largest_rise_over_plate_K"], min(rises), name)
+            layout = json.loads((TWIN / "params" / "support-design.json").read_text())
+            self.assertAlmostEqual(model["support_solid_fraction"], layout["block_support"]["melted_share_of_the_envelope"], places=4)
+            self.assertAlmostEqual(model["support_layout"]["envelope_mm3"], layout["supported"]["envelope_volume_mm3"], delta=1.0)
         base = levels["c4-l8"]["thermal"]
         previous = base
         for name in sorted((n for n in levels if "process" in self.case["levels"][n]), key=lambda n: self.case["levels"][n]["process"]["lasers"]):

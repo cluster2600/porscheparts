@@ -1,9 +1,9 @@
 {
  "schema": "935-cad-twin-build-sim/1",
- "date": "2026-11-13",
+ "date": "2026-11-15",
  "scope": "layer-by-layer build screen of the print body under declared hypotheses: time-averaged temperature during the build, then stress and distortion from strain-free birth and cooling, on voxel cells with homogenised supports (columns under a 45 degree rule, or the envelope of a layout by rule). No melt pool, scan path, support prepared in a build processor, creep or calibration against a printed coupon",
  "case_file": "params/build-sim-case.json",
- "case_sha256": "3f464e987d2ea6037b16d0c177cba2c2861076c968396864910baef7d5e49de4",
+ "case_sha256": "204f56534b74d881256453d6032cbda95be00e0982a60acc46fc08bf90fc05cc",
  "witness_file": "params/build-sim-witness.json",
  "witnesses_passed": true,
  "tool": "CalculiX 2.21 in the cadsim image, one thread, SPOOLES; element activation with *MODEL CHANGE",
@@ -1752,6 +1752,393 @@
     }
    }
   },
+  "c4-l12": {
+   "model": {
+    "level": "c4-l12",
+    "cell_mm": 4.0,
+    "cell_rows_per_lump": 3,
+    "lump_height_mm": 12.0,
+    "lumps": 19,
+    "build_height_mm": 224.0,
+    "solid_rule": "a cell is solid when at least half of its 0.25 mm voxels are inside; largest face-connected group kept",
+    "components_before_selection": 1,
+    "hexahedra": {
+     "part": 17336,
+     "support": 3550,
+     "plate": 5544
+    },
+    "nodes": 35299,
+    "part_volume_mm3": 1109504.0,
+    "occupancy_volume_mm3": 1109068.546875,
+    "part_exterior_area_mm2": 163520.0,
+    "support_envelope_mm3": 227200.0,
+    "support_cells_added_for_connection": 0,
+    "cells_needing_support": 375,
+    "plate_mm": [
+     132.0,
+     112.0,
+     24.0
+    ],
+    "occupancy_sha256": "5faadb782b822f1a974ab562b53a2f88bdbfce08fe2324fdc66c6ade55c006a7"
+   },
+   "thermal": {
+    "build_time_s": 156186.1,
+    "build_time_h": 43.39,
+    "exposure_h": 28.14,
+    "recoating_h": 15.24,
+    "absorbed_MJ": 14.183,
+    "largest_rise_over_plate_K": 60.45,
+    "at_lump": 15,
+    "at_build_coordinates_mm": [
+     8.0,
+     88.0,
+     192.0
+    ],
+    "largest_new_lump_mean_rise_K": 59.36,
+    "largest_energy_imbalance": 0.00132,
+    "lumps": [
+     {
+      "lump": 0,
+      "end_time_h": 1.14,
+      "mean_absorbed_power_W": 39.49,
+      "plate_sink_power_at_end_W": 39.49,
+      "new_lump_mean_rise_K": 5.2,
+      "part_max_rise_K": 6.19
+     },
+     {
+      "lump": 1,
+      "end_time_h": 2.47,
+      "mean_absorbed_power_W": 54.04,
+      "plate_sink_power_at_end_W": 54.04,
+      "new_lump_mean_rise_K": 18.05,
+      "part_max_rise_K": 20.59
+     },
+     {
+      "lump": 2,
+      "end_time_h": 4.01,
+      "mean_absorbed_power_W": 65.92,
+      "plate_sink_power_at_end_W": 65.92,
+      "new_lump_mean_rise_K": 21.74,
+      "part_max_rise_K": 25.08
+     },
+     {
+      "lump": 3,
+      "end_time_h": 6.77,
+      "mean_absorbed_power_W": 98.55,
+      "plate_sink_power_at_end_W": 98.55,
+      "new_lump_mean_rise_K": 31.58,
+      "part_max_rise_K": 34.82
+     },
+     {
+      "lump": 4,
+      "end_time_h": 9.98,
+      "mean_absorbed_power_W": 104.38,
+      "plate_sink_power_at_end_W": 104.38,
+      "new_lump_mean_rise_K": 34.92,
+      "part_max_rise_K": 37.06
+     },
+     {
+      "lump": 5,
+      "end_time_h": 12.63,
+      "mean_absorbed_power_W": 96.8,
+      "plate_sink_power_at_end_W": 96.8,
+      "new_lump_mean_rise_K": 34.34,
+      "part_max_rise_K": 35.96
+     },
+     {
+      "lump": 6,
+      "end_time_h": 15.07,
+      "mean_absorbed_power_W": 93.23,
+      "plate_sink_power_at_end_W": 93.23,
+      "new_lump_mean_rise_K": 34.99,
+      "part_max_rise_K": 36.06
+     },
+     {
+      "lump": 7,
+      "end_time_h": 17.69,
+      "mean_absorbed_power_W": 96.43,
+      "plate_sink_power_at_end_W": 96.43,
+      "new_lump_mean_rise_K": 38.64,
+      "part_max_rise_K": 41.8
+     },
+     {
+      "lump": 8,
+      "end_time_h": 20.31,
+      "mean_absorbed_power_W": 96.25,
+      "plate_sink_power_at_end_W": 96.25,
+      "new_lump_mean_rise_K": 40.39,
+      "part_max_rise_K": 42.36
+     },
+     {
+      "lump": 9,
+      "end_time_h": 22.76,
+      "mean_absorbed_power_W": 93.43,
+      "plate_sink_power_at_end_W": 93.43,
+      "new_lump_mean_rise_K": 41.1,
+      "part_max_rise_K": 44.34
+     },
+     {
+      "lump": 10,
+      "end_time_h": 25.28,
+      "mean_absorbed_power_W": 94.55,
+      "plate_sink_power_at_end_W": 94.55,
+      "new_lump_mean_rise_K": 44.54,
+      "part_max_rise_K": 50.47
+     },
+     {
+      "lump": 11,
+      "end_time_h": 27.88,
+      "mean_absorbed_power_W": 96.1,
+      "plate_sink_power_at_end_W": 96.1,
+      "new_lump_mean_rise_K": 47.21,
+      "part_max_rise_K": 50.23
+     },
+     {
+      "lump": 12,
+      "end_time_h": 30.31,
+      "mean_absorbed_power_W": 92.82,
+      "plate_sink_power_at_end_W": 92.82,
+      "new_lump_mean_rise_K": 47.25,
+      "part_max_rise_K": 48.81
+     },
+     {
+      "lump": 13,
+      "end_time_h": 32.68,
+      "mean_absorbed_power_W": 91.8,
+      "plate_sink_power_at_end_W": 91.8,
+      "new_lump_mean_rise_K": 49.66,
+      "part_max_rise_K": 53.78
+     },
+     {
+      "lump": 14,
+      "end_time_h": 35.6,
+      "mean_absorbed_power_W": 100.86,
+      "plate_sink_power_at_end_W": 100.85,
+      "new_lump_mean_rise_K": 56.94,
+      "part_max_rise_K": 59.3
+     },
+     {
+      "lump": 15,
+      "end_time_h": 38.64,
+      "mean_absorbed_power_W": 102.36,
+      "plate_sink_power_at_end_W": 102.34,
+      "new_lump_mean_rise_K": 59.36,
+      "part_max_rise_K": 60.45
+     },
+     {
+      "lump": 16,
+      "end_time_h": 40.77,
+      "mean_absorbed_power_W": 86.43,
+      "plate_sink_power_at_end_W": 86.49,
+      "new_lump_mean_rise_K": 51.98,
+      "part_max_rise_K": 53.75
+     },
+     {
+      "lump": 17,
+      "end_time_h": 42.36,
+      "mean_absorbed_power_W": 67.96,
+      "plate_sink_power_at_end_W": 68.25,
+      "new_lump_mean_rise_K": 44.87,
+      "part_max_rise_K": 46.28
+     },
+     {
+      "lump": 18,
+      "end_time_h": 43.39,
+      "mean_absorbed_power_W": 65.73,
+      "plate_sink_power_at_end_W": 65.79,
+      "new_lump_mean_rise_K": 45.93,
+      "part_max_rise_K": 46.84
+     }
+    ],
+    "solver": {
+     "returncode": 0,
+     "wall_seconds": 392.9,
+     "memory_cap": "6g",
+     "threads": 1,
+     "image": "3dprinting993-cadsim:dev",
+     "ccx_version_line": "CalculiX Version 2.21, Copyright(C) 1998-2023 Guido Dhondt",
+     "errors_in_log": 0,
+     "job_finished": true
+    }
+   },
+   "mechanics": {
+    "mechanics": {
+     "stress_free_temperature_K": 836.15,
+     "yield_MPa_by_temperature_C": [
+      [
+       25,
+       322
+      ],
+      [
+       100,
+       298
+      ],
+      [
+       200,
+       236
+      ],
+      [
+       300,
+       143
+      ],
+      [
+       400,
+       25
+      ],
+      [
+       600,
+       25
+      ]
+     ],
+     "solver": {
+      "returncode": 0,
+      "wall_seconds": 2504.5,
+      "memory_cap": "6g",
+      "threads": 1,
+      "image": "3dprinting993-cadsim:dev",
+      "ccx_version_line": "CalculiX Version 2.21, Copyright(C) 1998-2023 Guido Dhondt",
+      "errors_in_log": 0,
+      "job_finished": true
+     },
+     "states": {
+      "end_of_build_hot": {
+       "largest_displacement_mm": 1.9175,
+       "von_mises_MPa": {
+        "cell_mean_median": 198.2,
+        "cell_mean_p95": 281.1,
+        "integration_point_max": 300.0
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.0,
+       "equivalent_plastic_strain": {
+        "median": 0.00065,
+        "p95": 0.00608,
+        "max": 0.03019
+       }
+      },
+      "room_temperature_on_plate": {
+       "largest_displacement_mm": 1.8766,
+       "von_mises_MPa": {
+        "cell_mean_median": 219.2,
+        "cell_mean_p95": 309.9,
+        "integration_point_max": 326.9
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.1185,
+       "equivalent_plastic_strain": {
+        "median": 0.00065,
+        "p95": 0.00608,
+        "max": 0.03019
+       }
+      },
+      "released": {
+       "largest_displacement_mm": 2.9127,
+       "von_mises_MPa": {
+        "cell_mean_median": 210.7,
+        "cell_mean_p95": 309.6,
+        "integration_point_max": 338.6
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.0649,
+       "equivalent_plastic_strain": {
+        "median": 0.00068,
+        "p95": 0.00615,
+        "max": 0.03019
+       }
+      }
+     },
+     "release": {
+      "change_of_shape_at_release_largest_mm": 0.8278,
+      "best_fit_uniform_shrinkage": -0.005588,
+      "distortion_after_release_rigid_motion_and_uniform_shrinkage_removed_mm": {
+       "largest": 1.7143,
+       "p95": 0.8659,
+       "median": 0.3312,
+       "largest_at_build_coordinates_mm": [
+        8.0,
+        8.0,
+        60.0
+       ]
+      }
+     },
+     "largest_displacement_during_the_build_by_lump": [
+      {
+       "lump": 0,
+       "largest_displacement_mm": 0.1774
+      },
+      {
+       "lump": 1,
+       "largest_displacement_mm": 0.4379
+      },
+      {
+       "lump": 2,
+       "largest_displacement_mm": 0.8152
+      },
+      {
+       "lump": 3,
+       "largest_displacement_mm": 1.1425
+      },
+      {
+       "lump": 4,
+       "largest_displacement_mm": 1.3775
+      },
+      {
+       "lump": 5,
+       "largest_displacement_mm": 1.6137
+      },
+      {
+       "lump": 6,
+       "largest_displacement_mm": 1.697
+      },
+      {
+       "lump": 7,
+       "largest_displacement_mm": 1.8336
+      },
+      {
+       "lump": 8,
+       "largest_displacement_mm": 1.9237
+      },
+      {
+       "lump": 9,
+       "largest_displacement_mm": 1.9462
+      },
+      {
+       "lump": 10,
+       "largest_displacement_mm": 1.9432
+      },
+      {
+       "lump": 11,
+       "largest_displacement_mm": 1.9313
+      },
+      {
+       "lump": 12,
+       "largest_displacement_mm": 1.9259
+      },
+      {
+       "lump": 13,
+       "largest_displacement_mm": 1.9253
+      },
+      {
+       "lump": 14,
+       "largest_displacement_mm": 1.92
+      },
+      {
+       "lump": 15,
+       "largest_displacement_mm": 1.9162
+      },
+      {
+       "lump": 16,
+       "largest_displacement_mm": 1.9152
+      },
+      {
+       "lump": 17,
+       "largest_displacement_mm": 1.917
+      },
+      {
+       "lump": 18,
+       "largest_displacement_mm": 1.9175
+      }
+     ]
+    }
+   }
+  },
   "c3-l9": {
    "model": {
     "level": "c3-l9",
@@ -2206,6 +2593,393 @@
       {
        "lump": 24,
        "largest_displacement_mm": 2.4315
+      }
+     ]
+    }
+   }
+  },
+  "c3-l12": {
+   "model": {
+    "level": "c3-l12",
+    "cell_mm": 3.0,
+    "cell_rows_per_lump": 4,
+    "lump_height_mm": 12.0,
+    "lumps": 19,
+    "build_height_mm": 225.0,
+    "solid_rule": "a cell is solid when at least half of its 0.25 mm voxels are inside; largest face-connected group kept",
+    "components_before_selection": 1,
+    "hexahedra": {
+     "part": 40978,
+     "support": 8744,
+     "plate": 13680
+    },
+    "nodes": 81438,
+    "part_volume_mm3": 1106406.0,
+    "occupancy_volume_mm3": 1109068.546875,
+    "part_exterior_area_mm2": 173016.0,
+    "support_envelope_mm3": 236088.0,
+    "support_cells_added_for_connection": 0,
+    "cells_needing_support": 707,
+    "plate_mm": [
+     135.0,
+     114.0,
+     24.0
+    ],
+    "occupancy_sha256": "5faadb782b822f1a974ab562b53a2f88bdbfce08fe2324fdc66c6ade55c006a7"
+   },
+   "thermal": {
+    "build_time_s": 156315.3,
+    "build_time_h": 43.42,
+    "exposure_h": 28.11,
+    "recoating_h": 15.31,
+    "absorbed_MJ": 14.166,
+    "largest_rise_over_plate_K": 60.22,
+    "at_lump": 15,
+    "at_build_coordinates_mm": [
+     69.0,
+     36.0,
+     189.0
+    ],
+    "largest_new_lump_mean_rise_K": 59.23,
+    "largest_energy_imbalance": 0.001,
+    "lumps": [
+     {
+      "lump": 0,
+      "end_time_h": 1.14,
+      "mean_absorbed_power_W": 39.55,
+      "plate_sink_power_at_end_W": 39.55,
+      "new_lump_mean_rise_K": 6.24,
+      "part_max_rise_K": 7.15
+     },
+     {
+      "lump": 1,
+      "end_time_h": 2.48,
+      "mean_absorbed_power_W": 55.0,
+      "plate_sink_power_at_end_W": 55.0,
+      "new_lump_mean_rise_K": 21.26,
+      "part_max_rise_K": 23.77
+     },
+     {
+      "lump": 2,
+      "end_time_h": 4.04,
+      "mean_absorbed_power_W": 66.51,
+      "plate_sink_power_at_end_W": 66.51,
+      "new_lump_mean_rise_K": 22.92,
+      "part_max_rise_K": 26.75
+     },
+     {
+      "lump": 3,
+      "end_time_h": 6.81,
+      "mean_absorbed_power_W": 98.8,
+      "plate_sink_power_at_end_W": 98.8,
+      "new_lump_mean_rise_K": 31.44,
+      "part_max_rise_K": 33.51
+     },
+     {
+      "lump": 4,
+      "end_time_h": 10.01,
+      "mean_absorbed_power_W": 104.22,
+      "plate_sink_power_at_end_W": 104.22,
+      "new_lump_mean_rise_K": 34.75,
+      "part_max_rise_K": 36.54
+     },
+     {
+      "lump": 5,
+      "end_time_h": 12.67,
+      "mean_absorbed_power_W": 96.99,
+      "plate_sink_power_at_end_W": 96.99,
+      "new_lump_mean_rise_K": 34.27,
+      "part_max_rise_K": 35.73
+     },
+     {
+      "lump": 6,
+      "end_time_h": 15.11,
+      "mean_absorbed_power_W": 93.1,
+      "plate_sink_power_at_end_W": 93.1,
+      "new_lump_mean_rise_K": 34.88,
+      "part_max_rise_K": 35.82
+     },
+     {
+      "lump": 7,
+      "end_time_h": 17.75,
+      "mean_absorbed_power_W": 96.82,
+      "plate_sink_power_at_end_W": 96.82,
+      "new_lump_mean_rise_K": 38.79,
+      "part_max_rise_K": 42.19
+     },
+     {
+      "lump": 8,
+      "end_time_h": 20.38,
+      "mean_absorbed_power_W": 96.54,
+      "plate_sink_power_at_end_W": 96.54,
+      "new_lump_mean_rise_K": 40.54,
+      "part_max_rise_K": 42.8
+     },
+     {
+      "lump": 9,
+      "end_time_h": 22.84,
+      "mean_absorbed_power_W": 93.48,
+      "plate_sink_power_at_end_W": 93.47,
+      "new_lump_mean_rise_K": 41.08,
+      "part_max_rise_K": 44.6
+     },
+     {
+      "lump": 10,
+      "end_time_h": 25.35,
+      "mean_absorbed_power_W": 94.32,
+      "plate_sink_power_at_end_W": 94.32,
+      "new_lump_mean_rise_K": 44.38,
+      "part_max_rise_K": 50.37
+     },
+     {
+      "lump": 11,
+      "end_time_h": 27.94,
+      "mean_absorbed_power_W": 95.89,
+      "plate_sink_power_at_end_W": 95.88,
+      "new_lump_mean_rise_K": 47.06,
+      "part_max_rise_K": 50.12
+     },
+     {
+      "lump": 12,
+      "end_time_h": 30.35,
+      "mean_absorbed_power_W": 92.7,
+      "plate_sink_power_at_end_W": 92.7,
+      "new_lump_mean_rise_K": 47.14,
+      "part_max_rise_K": 48.69
+     },
+     {
+      "lump": 13,
+      "end_time_h": 32.74,
+      "mean_absorbed_power_W": 92.1,
+      "plate_sink_power_at_end_W": 92.09,
+      "new_lump_mean_rise_K": 49.78,
+      "part_max_rise_K": 53.97
+     },
+     {
+      "lump": 14,
+      "end_time_h": 35.64,
+      "mean_absorbed_power_W": 100.59,
+      "plate_sink_power_at_end_W": 100.58,
+      "new_lump_mean_rise_K": 56.7,
+      "part_max_rise_K": 59.07
+     },
+     {
+      "lump": 15,
+      "end_time_h": 38.67,
+      "mean_absorbed_power_W": 102.26,
+      "plate_sink_power_at_end_W": 102.25,
+      "new_lump_mean_rise_K": 59.23,
+      "part_max_rise_K": 60.22
+     },
+     {
+      "lump": 16,
+      "end_time_h": 40.81,
+      "mean_absorbed_power_W": 86.58,
+      "plate_sink_power_at_end_W": 86.64,
+      "new_lump_mean_rise_K": 51.94,
+      "part_max_rise_K": 53.64
+     },
+     {
+      "lump": 17,
+      "end_time_h": 42.39,
+      "mean_absorbed_power_W": 67.39,
+      "plate_sink_power_at_end_W": 67.7,
+      "new_lump_mean_rise_K": 44.6,
+      "part_max_rise_K": 45.98
+     },
+     {
+      "lump": 18,
+      "end_time_h": 43.42,
+      "mean_absorbed_power_W": 57.03,
+      "plate_sink_power_at_end_W": 57.66,
+      "new_lump_mean_rise_K": 40.19,
+      "part_max_rise_K": 41.52
+     }
+    ],
+    "solver": {
+     "returncode": 0,
+     "wall_seconds": 1122.0,
+     "memory_cap": "10g",
+     "threads": 1,
+     "image": "3dprinting993-cadsim:dev",
+     "ccx_version_line": "CalculiX Version 2.21, Copyright(C) 1998-2023 Guido Dhondt",
+     "errors_in_log": 0,
+     "job_finished": true
+    }
+   },
+   "mechanics": {
+    "mechanics": {
+     "stress_free_temperature_K": 836.15,
+     "yield_MPa_by_temperature_C": [
+      [
+       25,
+       322
+      ],
+      [
+       100,
+       298
+      ],
+      [
+       200,
+       236
+      ],
+      [
+       300,
+       143
+      ],
+      [
+       400,
+       25
+      ],
+      [
+       600,
+       25
+      ]
+     ],
+     "solver": {
+      "returncode": 0,
+      "wall_seconds": 171363.0,
+      "memory_cap": "10g",
+      "threads": 1,
+      "image": "3dprinting993-cadsim:dev",
+      "ccx_version_line": "CalculiX Version 2.21, Copyright(C) 1998-2023 Guido Dhondt",
+      "errors_in_log": 0,
+      "job_finished": true
+     },
+     "states": {
+      "end_of_build_hot": {
+       "largest_displacement_mm": 1.9961,
+       "von_mises_MPa": {
+        "cell_mean_median": 204.4,
+        "cell_mean_p95": 283.6,
+        "integration_point_max": 310.0
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.0,
+       "equivalent_plastic_strain": {
+        "median": 0.00093,
+        "p95": 0.00695,
+        "max": 0.04413
+       }
+      },
+      "room_temperature_on_plate": {
+       "largest_displacement_mm": 2.0001,
+       "von_mises_MPa": {
+        "cell_mean_median": 224.7,
+        "cell_mean_p95": 310.9,
+        "integration_point_max": 339.0
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.1533,
+       "equivalent_plastic_strain": {
+        "median": 0.00093,
+        "p95": 0.00695,
+        "max": 0.04413
+       }
+      },
+      "released": {
+       "largest_displacement_mm": 2.8651,
+       "von_mises_MPa": {
+        "cell_mean_median": 217.3,
+        "cell_mean_p95": 314.1,
+        "integration_point_max": 343.5
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.0848,
+       "equivalent_plastic_strain": {
+        "median": 0.00095,
+        "p95": 0.00701,
+        "max": 0.04413
+       }
+      }
+     },
+     "release": {
+      "change_of_shape_at_release_largest_mm": 0.7863,
+      "best_fit_uniform_shrinkage": -0.005955,
+      "distortion_after_release_rigid_motion_and_uniform_shrinkage_removed_mm": {
+       "largest": 1.7366,
+       "p95": 0.8558,
+       "median": 0.3258,
+       "largest_at_build_coordinates_mm": [
+        126.0,
+        9.0,
+        60.0
+       ]
+      }
+     },
+     "largest_displacement_during_the_build_by_lump": [
+      {
+       "lump": 0,
+       "largest_displacement_mm": 0.1847
+      },
+      {
+       "lump": 1,
+       "largest_displacement_mm": 0.4453
+      },
+      {
+       "lump": 2,
+       "largest_displacement_mm": 0.8829
+      },
+      {
+       "lump": 3,
+       "largest_displacement_mm": 1.335
+      },
+      {
+       "lump": 4,
+       "largest_displacement_mm": 1.6367
+      },
+      {
+       "lump": 5,
+       "largest_displacement_mm": 1.7976
+      },
+      {
+       "lump": 6,
+       "largest_displacement_mm": 1.8564
+      },
+      {
+       "lump": 7,
+       "largest_displacement_mm": 1.891
+      },
+      {
+       "lump": 8,
+       "largest_displacement_mm": 1.9852
+      },
+      {
+       "lump": 9,
+       "largest_displacement_mm": 2.0291
+      },
+      {
+       "lump": 10,
+       "largest_displacement_mm": 2.0347
+      },
+      {
+       "lump": 11,
+       "largest_displacement_mm": 2.0197
+      },
+      {
+       "lump": 12,
+       "largest_displacement_mm": 2.0106
+      },
+      {
+       "lump": 13,
+       "largest_displacement_mm": 2.0042
+      },
+      {
+       "lump": 14,
+       "largest_displacement_mm": 1.9957
+      },
+      {
+       "lump": 15,
+       "largest_displacement_mm": 1.9918
+      },
+      {
+       "lump": 16,
+       "largest_displacement_mm": 1.9918
+      },
+      {
+       "lump": 17,
+       "largest_displacement_mm": 1.9945
+      },
+      {
+       "lump": 18,
+       "largest_displacement_mm": 1.9961
       }
      ]
     }
@@ -2775,7 +3549,219 @@
      "job_finished": true
     }
    },
-   "mechanics": {}
+   "mechanics": {
+    "mechanics": {
+     "stress_free_temperature_K": 836.15,
+     "yield_MPa_by_temperature_C": [
+      [
+       25,
+       322
+      ],
+      [
+       100,
+       298
+      ],
+      [
+       200,
+       236
+      ],
+      [
+       300,
+       143
+      ],
+      [
+       400,
+       25
+      ],
+      [
+       600,
+       25
+      ]
+     ],
+     "solver": {
+      "returncode": 0,
+      "wall_seconds": 116323.5,
+      "memory_cap": "6g",
+      "threads": 1,
+      "image": "3dprinting993-cadsim:dev",
+      "ccx_version_line": "CalculiX Version 2.21, Copyright(C) 1998-2023 Guido Dhondt",
+      "errors_in_log": 0,
+      "job_finished": true
+     },
+     "states": {
+      "end_of_build_hot": {
+       "largest_displacement_mm": 2.0022,
+       "von_mises_MPa": {
+        "cell_mean_median": 184.8,
+        "cell_mean_p95": 274.5,
+        "integration_point_max": 300.5
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.0,
+       "equivalent_plastic_strain": {
+        "median": 0.0012,
+        "p95": 0.00611,
+        "max": 0.03068
+       }
+      },
+      "room_temperature_on_plate": {
+       "largest_displacement_mm": 1.8746,
+       "von_mises_MPa": {
+        "cell_mean_median": 208.0,
+        "cell_mean_p95": 308.0,
+        "integration_point_max": 333.0
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.073,
+       "equivalent_plastic_strain": {
+        "median": 0.0012,
+        "p95": 0.00611,
+        "max": 0.03068
+       }
+      },
+      "released": {
+       "largest_displacement_mm": 2.965,
+       "von_mises_MPa": {
+        "cell_mean_median": 198.9,
+        "cell_mean_p95": 305.9,
+        "integration_point_max": 340.1
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.0501,
+       "equivalent_plastic_strain": {
+        "median": 0.00122,
+        "p95": 0.00618,
+        "max": 0.03068
+       }
+      }
+     },
+     "release": {
+      "change_of_shape_at_release_largest_mm": 0.9094,
+      "best_fit_uniform_shrinkage": -0.005632,
+      "distortion_after_release_rigid_motion_and_uniform_shrinkage_removed_mm": {
+       "largest": 1.8147,
+       "p95": 0.817,
+       "median": 0.2824,
+       "largest_at_build_coordinates_mm": [
+        8.0,
+        8.0,
+        56.0
+       ]
+      }
+     },
+     "largest_displacement_during_the_build_by_lump": [
+      {
+       "lump": 0,
+       "largest_displacement_mm": 0.1683
+      },
+      {
+       "lump": 1,
+       "largest_displacement_mm": 0.3444
+      },
+      {
+       "lump": 2,
+       "largest_displacement_mm": 0.5418
+      },
+      {
+       "lump": 3,
+       "largest_displacement_mm": 0.7644
+      },
+      {
+       "lump": 4,
+       "largest_displacement_mm": 1.0081
+      },
+      {
+       "lump": 5,
+       "largest_displacement_mm": 1.157
+      },
+      {
+       "lump": 6,
+       "largest_displacement_mm": 1.2885
+      },
+      {
+       "lump": 7,
+       "largest_displacement_mm": 1.481
+      },
+      {
+       "lump": 8,
+       "largest_displacement_mm": 1.6343
+      },
+      {
+       "lump": 9,
+       "largest_displacement_mm": 1.7303
+      },
+      {
+       "lump": 10,
+       "largest_displacement_mm": 1.8452
+      },
+      {
+       "lump": 11,
+       "largest_displacement_mm": 1.9252
+      },
+      {
+       "lump": 12,
+       "largest_displacement_mm": 1.987
+      },
+      {
+       "lump": 13,
+       "largest_displacement_mm": 2.0128
+      },
+      {
+       "lump": 14,
+       "largest_displacement_mm": 2.0237
+      },
+      {
+       "lump": 15,
+       "largest_displacement_mm": 2.0264
+      },
+      {
+       "lump": 16,
+       "largest_displacement_mm": 2.0209
+      },
+      {
+       "lump": 17,
+       "largest_displacement_mm": 2.0141
+      },
+      {
+       "lump": 18,
+       "largest_displacement_mm": 2.0105
+      },
+      {
+       "lump": 19,
+       "largest_displacement_mm": 2.0096
+      },
+      {
+       "lump": 20,
+       "largest_displacement_mm": 2.0086
+      },
+      {
+       "lump": 21,
+       "largest_displacement_mm": 2.0055
+      },
+      {
+       "lump": 22,
+       "largest_displacement_mm": 2.0029
+      },
+      {
+       "lump": 23,
+       "largest_displacement_mm": 2.0011
+      },
+      {
+       "lump": 24,
+       "largest_displacement_mm": 2.0004
+      },
+      {
+       "lump": 25,
+       "largest_displacement_mm": 2.0018
+      },
+      {
+       "lump": 26,
+       "largest_displacement_mm": 2.002
+      },
+      {
+       "lump": 27,
+       "largest_displacement_mm": 2.0022
+      }
+     ]
+    }
+   }
   },
   "c4-l8-4-lasers": {
    "model": {
@@ -3058,7 +4044,722 @@
      "job_finished": true
     }
    },
-   "mechanics": {}
+   "mechanics": {
+    "mechanics": {
+     "stress_free_temperature_K": 836.15,
+     "yield_MPa_by_temperature_C": [
+      [
+       25,
+       322
+      ],
+      [
+       100,
+       298
+      ],
+      [
+       200,
+       236
+      ],
+      [
+       300,
+       143
+      ],
+      [
+       400,
+       25
+      ],
+      [
+       600,
+       25
+      ]
+     ],
+     "solver": {
+      "returncode": 0,
+      "wall_seconds": 116697.3,
+      "memory_cap": "6g",
+      "threads": 1,
+      "image": "3dprinting993-cadsim:dev",
+      "ccx_version_line": "CalculiX Version 2.21, Copyright(C) 1998-2023 Guido Dhondt",
+      "errors_in_log": 0,
+      "job_finished": true
+     },
+     "states": {
+      "end_of_build_hot": {
+       "largest_displacement_mm": 1.8504,
+       "von_mises_MPa": {
+        "cell_mean_median": 169.7,
+        "cell_mean_p95": 268.8,
+        "integration_point_max": 299.5
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.0,
+       "equivalent_plastic_strain": {
+        "median": 0.00117,
+        "p95": 0.00529,
+        "max": 0.02829
+       }
+      },
+      "room_temperature_on_plate": {
+       "largest_displacement_mm": 1.7734,
+       "von_mises_MPa": {
+        "cell_mean_median": 193.9,
+        "cell_mean_p95": 304.8,
+        "integration_point_max": 332.0
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.0431,
+       "equivalent_plastic_strain": {
+        "median": 0.00117,
+        "p95": 0.00529,
+        "max": 0.02829
+       }
+      },
+      "released": {
+       "largest_displacement_mm": 2.8272,
+       "von_mises_MPa": {
+        "cell_mean_median": 185.6,
+        "cell_mean_p95": 301.4,
+        "integration_point_max": 338.4
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.0388,
+       "equivalent_plastic_strain": {
+        "median": 0.00119,
+        "p95": 0.00534,
+        "max": 0.02829
+       }
+      }
+     },
+     "release": {
+      "change_of_shape_at_release_largest_mm": 0.8848,
+      "best_fit_uniform_shrinkage": -0.006022,
+      "distortion_after_release_rigid_motion_and_uniform_shrinkage_removed_mm": {
+       "largest": 1.676,
+       "p95": 0.7578,
+       "median": 0.2674,
+       "largest_at_build_coordinates_mm": [
+        8.0,
+        8.0,
+        56.0
+       ]
+      }
+     },
+     "largest_displacement_during_the_build_by_lump": [
+      {
+       "lump": 0,
+       "largest_displacement_mm": 0.1681
+      },
+      {
+       "lump": 1,
+       "largest_displacement_mm": 0.3431
+      },
+      {
+       "lump": 2,
+       "largest_displacement_mm": 0.5379
+      },
+      {
+       "lump": 3,
+       "largest_displacement_mm": 0.7558
+      },
+      {
+       "lump": 4,
+       "largest_displacement_mm": 0.9889
+      },
+      {
+       "lump": 5,
+       "largest_displacement_mm": 1.1277
+      },
+      {
+       "lump": 6,
+       "largest_displacement_mm": 1.249
+      },
+      {
+       "lump": 7,
+       "largest_displacement_mm": 1.3773
+      },
+      {
+       "lump": 8,
+       "largest_displacement_mm": 1.5199
+      },
+      {
+       "lump": 9,
+       "largest_displacement_mm": 1.5911
+      },
+      {
+       "lump": 10,
+       "largest_displacement_mm": 1.698
+      },
+      {
+       "lump": 11,
+       "largest_displacement_mm": 1.773
+      },
+      {
+       "lump": 12,
+       "largest_displacement_mm": 1.8311
+      },
+      {
+       "lump": 13,
+       "largest_displacement_mm": 1.8561
+      },
+      {
+       "lump": 14,
+       "largest_displacement_mm": 1.8667
+      },
+      {
+       "lump": 15,
+       "largest_displacement_mm": 1.8691
+      },
+      {
+       "lump": 16,
+       "largest_displacement_mm": 1.8643
+      },
+      {
+       "lump": 17,
+       "largest_displacement_mm": 1.8581
+      },
+      {
+       "lump": 18,
+       "largest_displacement_mm": 1.8552
+      },
+      {
+       "lump": 19,
+       "largest_displacement_mm": 1.8548
+      },
+      {
+       "lump": 20,
+       "largest_displacement_mm": 1.8535
+      },
+      {
+       "lump": 21,
+       "largest_displacement_mm": 1.8498
+      },
+      {
+       "lump": 22,
+       "largest_displacement_mm": 1.8471
+      },
+      {
+       "lump": 23,
+       "largest_displacement_mm": 1.8457
+      },
+      {
+       "lump": 24,
+       "largest_displacement_mm": 1.8462
+      },
+      {
+       "lump": 25,
+       "largest_displacement_mm": 1.8494
+      },
+      {
+       "lump": 26,
+       "largest_displacement_mm": 1.85
+      },
+      {
+       "lump": 27,
+       "largest_displacement_mm": 1.8504
+      }
+     ]
+    }
+   }
+  },
+  "c4-l8-laid-supports": {
+   "model": {
+    "level": "c4-l8-laid-supports",
+    "cell_mm": 4.0,
+    "cell_rows_per_lump": 2,
+    "lump_height_mm": 8.0,
+    "lumps": 28,
+    "build_height_mm": 224.0,
+    "solid_rule": "a cell is solid when at least half of its 0.25 mm voxels are inside; largest face-connected group kept",
+    "components_before_selection": 1,
+    "hexahedra": {
+     "part": 17336,
+     "support": 7741,
+     "plate": 5544
+    },
+    "nodes": 38435,
+    "part_volume_mm3": 1109504.0,
+    "occupancy_volume_mm3": 1109068.546875,
+    "part_exterior_area_mm2": 163520.0,
+    "support_envelope_mm3": 495424.0,
+    "support_cells_added_for_connection": 1,
+    "cells_needing_support": 375,
+    "supports": "the envelope of the support layout, a cell at half or more",
+    "support_solid_fraction": 0.36,
+    "plate_mm": [
+     132.0,
+     112.0,
+     24.0
+    ],
+    "occupancy_sha256": "5faadb782b822f1a974ab562b53a2f88bdbfce08fe2324fdc66c6ade55c006a7",
+    "support_layout": {
+     "rules_sha256": "87c5770501d0e7c279a853cbe3f0f6001a40cd0903ed28845c8738d810212575",
+     "envelope_mm3": 470685.3125,
+     "envelope_kept_in_cells_mm3": 495360.0,
+     "share_kept_in_cells": 1.052422896667293
+    }
+   },
+   "thermal": {
+    "build_time_s": 167844.4,
+    "build_time_h": 46.62,
+    "exposure_h": 31.38,
+    "recoating_h": 15.24,
+    "absorbed_MJ": 15.815,
+    "largest_rise_over_plate_K": 40.34,
+    "at_lump": 22,
+    "at_build_coordinates_mm": [
+     8.0,
+     84.0,
+     180.0
+    ],
+    "largest_new_lump_mean_rise_K": 38.25,
+    "largest_energy_imbalance": 0.00114,
+    "lumps": [
+     {
+      "lump": 0,
+      "end_time_h": 1.1,
+      "mean_absorbed_power_W": 70.51,
+      "plate_sink_power_at_end_W": 70.51,
+      "new_lump_mean_rise_K": 2.78,
+      "part_max_rise_K": 3.1
+     },
+     {
+      "lump": 1,
+      "end_time_h": 2.23,
+      "mean_absorbed_power_W": 73.0,
+      "plate_sink_power_at_end_W": 73.0,
+      "new_lump_mean_rise_K": 5.5,
+      "part_max_rise_K": 6.33
+     },
+     {
+      "lump": 2,
+      "end_time_h": 3.43,
+      "mean_absorbed_power_W": 76.48,
+      "plate_sink_power_at_end_W": 76.48,
+      "new_lump_mean_rise_K": 8.82,
+      "part_max_rise_K": 10.98
+     },
+     {
+      "lump": 3,
+      "end_time_h": 4.66,
+      "mean_absorbed_power_W": 77.59,
+      "plate_sink_power_at_end_W": 77.59,
+      "new_lump_mean_rise_K": 10.85,
+      "part_max_rise_K": 12.17
+     },
+     {
+      "lump": 4,
+      "end_time_h": 6.16,
+      "mean_absorbed_power_W": 89.16,
+      "plate_sink_power_at_end_W": 89.16,
+      "new_lump_mean_rise_K": 12.2,
+      "part_max_rise_K": 13.47
+     },
+     {
+      "lump": 5,
+      "end_time_h": 8.21,
+      "mean_absorbed_power_W": 102.82,
+      "plate_sink_power_at_end_W": 102.82,
+      "new_lump_mean_rise_K": 15.95,
+      "part_max_rise_K": 19.11
+     },
+     {
+      "lump": 6,
+      "end_time_h": 10.37,
+      "mean_absorbed_power_W": 104.84,
+      "plate_sink_power_at_end_W": 104.84,
+      "new_lump_mean_rise_K": 17.15,
+      "part_max_rise_K": 18.59
+     },
+     {
+      "lump": 7,
+      "end_time_h": 12.43,
+      "mean_absorbed_power_W": 103.0,
+      "plate_sink_power_at_end_W": 103.0,
+      "new_lump_mean_rise_K": 17.71,
+      "part_max_rise_K": 18.68
+     },
+     {
+      "lump": 8,
+      "end_time_h": 14.31,
+      "mean_absorbed_power_W": 99.38,
+      "plate_sink_power_at_end_W": 99.38,
+      "new_lump_mean_rise_K": 18.1,
+      "part_max_rise_K": 18.84
+     },
+     {
+      "lump": 9,
+      "end_time_h": 16.11,
+      "mean_absorbed_power_W": 97.66,
+      "plate_sink_power_at_end_W": 97.66,
+      "new_lump_mean_rise_K": 19.01,
+      "part_max_rise_K": 19.99
+     },
+     {
+      "lump": 10,
+      "end_time_h": 17.95,
+      "mean_absorbed_power_W": 98.48,
+      "plate_sink_power_at_end_W": 98.48,
+      "new_lump_mean_rise_K": 20.44,
+      "part_max_rise_K": 21.37
+     },
+     {
+      "lump": 11,
+      "end_time_h": 19.84,
+      "mean_absorbed_power_W": 99.79,
+      "plate_sink_power_at_end_W": 99.79,
+      "new_lump_mean_rise_K": 22.17,
+      "part_max_rise_K": 25.42
+     },
+     {
+      "lump": 12,
+      "end_time_h": 21.73,
+      "mean_absorbed_power_W": 99.57,
+      "plate_sink_power_at_end_W": 99.57,
+      "new_lump_mean_rise_K": 23.22,
+      "part_max_rise_K": 25.14
+     },
+     {
+      "lump": 13,
+      "end_time_h": 23.55,
+      "mean_absorbed_power_W": 98.16,
+      "plate_sink_power_at_end_W": 98.16,
+      "new_lump_mean_rise_K": 23.91,
+      "part_max_rise_K": 24.76
+     },
+     {
+      "lump": 14,
+      "end_time_h": 25.32,
+      "mean_absorbed_power_W": 96.93,
+      "plate_sink_power_at_end_W": 96.93,
+      "new_lump_mean_rise_K": 24.83,
+      "part_max_rise_K": 26.47
+     },
+     {
+      "lump": 15,
+      "end_time_h": 27.1,
+      "mean_absorbed_power_W": 97.23,
+      "plate_sink_power_at_end_W": 97.23,
+      "new_lump_mean_rise_K": 26.44,
+      "part_max_rise_K": 29.71
+     },
+     {
+      "lump": 16,
+      "end_time_h": 28.9,
+      "mean_absorbed_power_W": 97.66,
+      "plate_sink_power_at_end_W": 97.66,
+      "new_lump_mean_rise_K": 27.98,
+      "part_max_rise_K": 30.65
+     },
+     {
+      "lump": 17,
+      "end_time_h": 30.72,
+      "mean_absorbed_power_W": 98.16,
+      "plate_sink_power_at_end_W": 98.15,
+      "new_lump_mean_rise_K": 29.21,
+      "part_max_rise_K": 30.74
+     },
+     {
+      "lump": 18,
+      "end_time_h": 32.47,
+      "mean_absorbed_power_W": 96.31,
+      "plate_sink_power_at_end_W": 96.31,
+      "new_lump_mean_rise_K": 29.74,
+      "part_max_rise_K": 30.8
+     },
+     {
+      "lump": 19,
+      "end_time_h": 34.12,
+      "mean_absorbed_power_W": 94.01,
+      "plate_sink_power_at_end_W": 94.0,
+      "new_lump_mean_rise_K": 30.41,
+      "part_max_rise_K": 32.15
+     },
+     {
+      "lump": 20,
+      "end_time_h": 35.86,
+      "mean_absorbed_power_W": 95.96,
+      "plate_sink_power_at_end_W": 95.96,
+      "new_lump_mean_rise_K": 32.82,
+      "part_max_rise_K": 35.61
+     },
+     {
+      "lump": 21,
+      "end_time_h": 37.77,
+      "mean_absorbed_power_W": 100.25,
+      "plate_sink_power_at_end_W": 100.24,
+      "new_lump_mean_rise_K": 35.58,
+      "part_max_rise_K": 37.8
+     },
+     {
+      "lump": 22,
+      "end_time_h": 39.87,
+      "mean_absorbed_power_W": 103.62,
+      "plate_sink_power_at_end_W": 103.62,
+      "new_lump_mean_rise_K": 37.92,
+      "part_max_rise_K": 40.34
+     },
+     {
+      "lump": 23,
+      "end_time_h": 41.88,
+      "mean_absorbed_power_W": 102.04,
+      "plate_sink_power_at_end_W": 102.03,
+      "new_lump_mean_rise_K": 38.25,
+      "part_max_rise_K": 38.99
+     },
+     {
+      "lump": 24,
+      "end_time_h": 43.47,
+      "mean_absorbed_power_W": 92.18,
+      "plate_sink_power_at_end_W": 92.19,
+      "new_lump_mean_rise_K": 35.82,
+      "part_max_rise_K": 37.12
+     },
+     {
+      "lump": 25,
+      "end_time_h": 44.55,
+      "mean_absorbed_power_W": 69.28,
+      "plate_sink_power_at_end_W": 69.53,
+      "new_lump_mean_rise_K": 29.86,
+      "part_max_rise_K": 31.49
+     },
+     {
+      "lump": 26,
+      "end_time_h": 45.6,
+      "mean_absorbed_power_W": 67.39,
+      "plate_sink_power_at_end_W": 67.39,
+      "new_lump_mean_rise_K": 30.89,
+      "part_max_rise_K": 32.02
+     },
+     {
+      "lump": 27,
+      "end_time_h": 46.62,
+      "mean_absorbed_power_W": 65.73,
+      "plate_sink_power_at_end_W": 65.73,
+      "new_lump_mean_rise_K": 32.13,
+      "part_max_rise_K": 32.96
+     }
+    ],
+    "solver": {
+     "returncode": 0,
+     "wall_seconds": 539.6,
+     "memory_cap": "6g",
+     "threads": 1,
+     "image": "3dprinting993-cadsim:dev",
+     "ccx_version_line": "CalculiX Version 2.21, Copyright(C) 1998-2023 Guido Dhondt",
+     "errors_in_log": 0,
+     "job_finished": true
+    }
+   },
+   "mechanics": {
+    "mechanics": {
+     "stress_free_temperature_K": 836.15,
+     "yield_MPa_by_temperature_C": [
+      [
+       25,
+       322
+      ],
+      [
+       100,
+       298
+      ],
+      [
+       200,
+       236
+      ],
+      [
+       300,
+       143
+      ],
+      [
+       400,
+       25
+      ],
+      [
+       600,
+       25
+      ]
+     ],
+     "solver": {
+      "returncode": 0,
+      "wall_seconds": 3455.6,
+      "memory_cap": "6g",
+      "threads": 1,
+      "image": "3dprinting993-cadsim:dev",
+      "ccx_version_line": "CalculiX Version 2.21, Copyright(C) 1998-2023 Guido Dhondt",
+      "errors_in_log": 0,
+      "job_finished": true
+     },
+     "states": {
+      "end_of_build_hot": {
+       "largest_displacement_mm": 1.8007,
+       "von_mises_MPa": {
+        "cell_mean_median": 210.2,
+        "cell_mean_p95": 289.5,
+        "integration_point_max": 311.5
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.0,
+       "equivalent_plastic_strain": {
+        "median": 0.00168,
+        "p95": 0.00794,
+        "max": 0.04563
+       }
+      },
+      "room_temperature_on_plate": {
+       "largest_displacement_mm": 1.8286,
+       "von_mises_MPa": {
+        "cell_mean_median": 228.6,
+        "cell_mean_p95": 314.2,
+        "integration_point_max": 337.2
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.1649,
+       "equivalent_plastic_strain": {
+        "median": 0.00168,
+        "p95": 0.00794,
+        "max": 0.04563
+       }
+      },
+      "released": {
+       "largest_displacement_mm": 3.0919,
+       "von_mises_MPa": {
+        "cell_mean_median": 196.7,
+        "cell_mean_p95": 313.3,
+        "integration_point_max": 343.9
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.0651,
+       "equivalent_plastic_strain": {
+        "median": 0.00172,
+        "p95": 0.00818,
+        "max": 0.04563
+       }
+      }
+     },
+     "release": {
+      "change_of_shape_at_release_largest_mm": 0.8367,
+      "best_fit_uniform_shrinkage": -0.004983,
+      "distortion_after_release_rigid_motion_and_uniform_shrinkage_removed_mm": {
+       "largest": 1.7113,
+       "p95": 0.7567,
+       "median": 0.2989,
+       "largest_at_build_coordinates_mm": [
+        124.0,
+        96.0,
+        176.0
+       ]
+      }
+     },
+     "largest_displacement_during_the_build_by_lump": [
+      {
+       "lump": 0,
+       "largest_displacement_mm": 0.2061
+      },
+      {
+       "lump": 1,
+       "largest_displacement_mm": 0.3341
+      },
+      {
+       "lump": 2,
+       "largest_displacement_mm": 0.5293
+      },
+      {
+       "lump": 3,
+       "largest_displacement_mm": 0.7104
+      },
+      {
+       "lump": 4,
+       "largest_displacement_mm": 0.9436
+      },
+      {
+       "lump": 5,
+       "largest_displacement_mm": 1.0913
+      },
+      {
+       "lump": 6,
+       "largest_displacement_mm": 1.212
+      },
+      {
+       "lump": 7,
+       "largest_displacement_mm": 1.419
+      },
+      {
+       "lump": 8,
+       "largest_displacement_mm": 1.5677
+      },
+      {
+       "lump": 9,
+       "largest_displacement_mm": 1.6415
+      },
+      {
+       "lump": 10,
+       "largest_displacement_mm": 1.723
+      },
+      {
+       "lump": 11,
+       "largest_displacement_mm": 1.7564
+      },
+      {
+       "lump": 12,
+       "largest_displacement_mm": 1.7914
+      },
+      {
+       "lump": 13,
+       "largest_displacement_mm": 1.811
+      },
+      {
+       "lump": 14,
+       "largest_displacement_mm": 1.8178
+      },
+      {
+       "lump": 15,
+       "largest_displacement_mm": 1.8173
+      },
+      {
+       "lump": 16,
+       "largest_displacement_mm": 1.8139
+      },
+      {
+       "lump": 17,
+       "largest_displacement_mm": 1.8102
+      },
+      {
+       "lump": 18,
+       "largest_displacement_mm": 1.8071
+      },
+      {
+       "lump": 19,
+       "largest_displacement_mm": 1.8053
+      },
+      {
+       "lump": 20,
+       "largest_displacement_mm": 1.8034
+      },
+      {
+       "lump": 21,
+       "largest_displacement_mm": 1.8014
+      },
+      {
+       "lump": 22,
+       "largest_displacement_mm": 1.7999
+      },
+      {
+       "lump": 23,
+       "largest_displacement_mm": 1.799
+      },
+      {
+       "lump": 24,
+       "largest_displacement_mm": 1.799
+      },
+      {
+       "lump": 25,
+       "largest_displacement_mm": 1.8004
+      },
+      {
+       "lump": 26,
+       "largest_displacement_mm": 1.8005
+      },
+      {
+       "lump": 27,
+       "largest_displacement_mm": 1.8007
+      }
+     ]
+    }
+   }
   }
  },
  "gates": {
