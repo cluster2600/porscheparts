@@ -1,0 +1,556 @@
+{
+ "schema": "learned-particle-simulator-witness/1",
+ "date": "2026-11-15",
+ "tool": {
+  "name": "WorldParticle",
+  "code": "https://github.com/WorldParticle/WorldParticle",
+  "code_commit": "b8e37b854f2af3fc9bfd7fc150cfc01cba4a092e",
+  "licence": "MIT",
+  "paper": "arXiv:2605.15305",
+  "weights": "https://huggingface.co/datasets/wclw1021/WorldParticle",
+  "checkpoints_sha256": {
+   "cloth_on_ball": "b39d2d691c1a2be8eb2a990b8e7a06c43ad9b2519073de3855fd0aae4f4bdc61",
+   "fancy_fluid": "1dce523ef994b6ca80d3cd9de7572de117c1c87ba36d51bf5fcf913be24938d9"
+  },
+  "attention_backend": "PyTorch scaled-dot-product attention (ATTN_IMPL=sdpa), on this host's CPU and on one rented RTX 3090; the authors' FlashAttention path was not run"
+ },
+ "scope": "rollouts of two released checkpoints: one held-out sample of the authors' data each, and three cases outside their training scenes with answers known without the model. A witness of the tool as released: it calibrates no material, and no case here is a part of this repository",
+ "acceptance_fixed_before_the_first_reading": {
+  "reproduction_mean_error_at_the_end_in_spacings": 1.0,
+  "cloth_p95_edge_strain": 0.05,
+  "cloth_below_ground_mm": 2.0,
+  "cloth_plane_flatness_mm": 17.4,
+  "cloth_tunnel_inside_the_cylinder_mm": 5.0,
+  "cloth_tunnel_mirror_error_in_spacings": 1.0,
+  "fluid_particles_outside_the_tank": 0,
+  "fluid_still_mean_speed_m_s": 0.05,
+  "fluid_still_mean_drift_in_spacings": 1.0
+ },
+ "script_sha256": "4ec673b03f5cc67783236a3dc8403ce52c2a5c91c4a4fbf0f6792fc6e31bea12",
+ "cases_script_sha256": "4d5fe0da917236adeb697ef5215e4b76ca252ccfba1506fde2a2b4f4fe0bda56",
+ "reproduction": {
+  "cloth": {
+   "sample": "cloth_on_ball/dataset/10 (validation split)",
+   "particles": 4900,
+   "steps": 89,
+   "particle_spacing_mm": 17.39102602005005,
+   "errors": [
+    {
+     "step": 1,
+     "mean_mm": 0.08051296754274517,
+     "p95_mm": 0.20934075364493768,
+     "largest_mm": 0.6554428837262094,
+     "mean_in_spacings": 0.004629569724633962,
+     "mean_travel_of_the_reference_mm": 16.615116968750954
+    },
+    {
+     "step": 30,
+     "mean_mm": 3.3766694832593203,
+     "p95_mm": 10.191530641168361,
+     "largest_mm": 19.543882459402084,
+     "mean_in_spacings": 0.19416160262001625,
+     "mean_travel_of_the_reference_mm": 283.21966528892517
+    },
+    {
+     "step": 89,
+     "mean_mm": 6.184147205203772,
+     "p95_mm": 13.757076440379024,
+     "largest_mm": 92.93925017118454,
+     "mean_in_spacings": 0.3555941551737138,
+     "mean_travel_of_the_reference_mm": 299.8485863208771
+    }
+   ],
+   "edge_strain_of_the_reference_at_the_end": {
+    "median": 0.0022842884063720703,
+    "p95": 0.03347991704940795,
+    "largest": 0.051761746406555176,
+    "smallest": -0.6760914325714111
+   },
+   "edge_strain_of_the_rollout_at_the_end": {
+    "median": 0.0058016180992126465,
+    "p95": 0.1417400240898132,
+    "largest": 3.731112480163574,
+    "smallest": -0.6710615754127502
+   }
+  },
+  "fluid": {
+   "sample": "fancy_fluid/dataset/66 (validation split)",
+   "particle_spacing_mm": 57.085849111634175,
+   "rollouts": {
+    "gpu": {
+     "particles": 7020,
+     "steps": 599,
+     "errors": [
+      {
+       "step": 1,
+       "mean_mm": 0.38880427018739283,
+       "p95_mm": 1.149464561603963,
+       "largest_mm": 3.4619036596268415,
+       "mean_in_spacings": 0.006810869527876638,
+       "mean_travel_of_the_reference_mm": 1.9726147875189781
+      },
+      {
+       "step": 30,
+       "mean_mm": 12.85261195152998,
+       "p95_mm": 26.749281398951965,
+       "largest_mm": 70.16447931528091,
+       "mean_in_spacings": 0.22514532325508668,
+       "mean_travel_of_the_reference_mm": 289.89166021347046
+      },
+      {
+       "step": 150,
+       "mean_mm": 179.97123301029205,
+       "p95_mm": 465.5855342745779,
+       "largest_mm": 2256.4661502838135,
+       "mean_in_spacings": 3.1526417809490663,
+       "mean_travel_of_the_reference_mm": 1951.9912004470825
+      },
+      {
+       "step": 300,
+       "mean_mm": 467.18084812164307,
+       "p95_mm": 1738.4827315807333,
+       "largest_mm": 3845.832586288452,
+       "mean_in_spacings": 8.183829362125245,
+       "mean_travel_of_the_reference_mm": 1673.5119819641113
+      },
+      {
+       "step": 599,
+       "mean_mm": 620.6408739089966,
+       "p95_mm": 1877.4639308452597,
+       "largest_mm": 3800.488233566284,
+       "mean_in_spacings": 10.872061702985322,
+       "mean_travel_of_the_reference_mm": 1725.1635789871216
+      }
+     ],
+     "bulk": [
+      {
+       "step": 1,
+       "centre_of_mass_distance_mm": 0.20080959075130522,
+       "surface_height_rms_difference_mm": 0.18891566167701085,
+       "columns_compared": 6
+      },
+      {
+       "step": 30,
+       "centre_of_mass_distance_mm": 8.840067312121391,
+       "surface_height_rms_difference_mm": 15.843643501618601,
+       "columns_compared": 10
+      },
+      {
+       "step": 150,
+       "centre_of_mass_distance_mm": 27.426008135080338,
+       "surface_height_rms_difference_mm": 180.5610706041949,
+       "columns_compared": 20
+      },
+      {
+       "step": 300,
+       "centre_of_mass_distance_mm": 13.46865389496088,
+       "surface_height_rms_difference_mm": 46.64731810837853,
+       "columns_compared": 20
+      },
+      {
+       "step": 599,
+       "centre_of_mass_distance_mm": 85.600845515728,
+       "surface_height_rms_difference_mm": 47.11953777946853,
+       "columns_compared": 20
+      }
+     ],
+     "particles_ever_outside_the_tank": 0,
+     "nearest_neighbour_spacing_at_the_end_mm": {
+      "reference": 57.085849111634175,
+      "rollout": 57.4657868652878
+     }
+    },
+    "cpu": {
+     "particles": 7020,
+     "steps": 150,
+     "errors": [
+      {
+       "step": 1,
+       "mean_mm": 0.38979516830295324,
+       "p95_mm": 1.15635470720008,
+       "largest_mm": 3.4548419062048197,
+       "mean_in_spacings": 0.00682822756197757,
+       "mean_travel_of_the_reference_mm": 1.9726147875189781
+      },
+      {
+       "step": 30,
+       "mean_mm": 12.150511145591736,
+       "p95_mm": 25.97010107710956,
+       "largest_mm": 73.90487939119339,
+       "mean_in_spacings": 0.2128462891360487,
+       "mean_travel_of_the_reference_mm": 289.89166021347046
+      },
+      {
+       "step": 150,
+       "mean_mm": 179.24651503562927,
+       "p95_mm": 487.3264297842978,
+       "largest_mm": 2330.9125900268555,
+       "mean_in_spacings": 3.139946551116441,
+       "mean_travel_of_the_reference_mm": 1951.9912004470825
+      }
+     ],
+     "bulk": [
+      {
+       "step": 1,
+       "centre_of_mass_distance_mm": 0.20324185607023537,
+       "surface_height_rms_difference_mm": 0.19034163216435193,
+       "columns_compared": 6
+      },
+      {
+       "step": 30,
+       "centre_of_mass_distance_mm": 7.871727459132671,
+       "surface_height_rms_difference_mm": 15.854161630389378,
+       "columns_compared": 10
+      },
+      {
+       "step": 150,
+       "centre_of_mass_distance_mm": 28.114210814237595,
+       "surface_height_rms_difference_mm": 175.07662383373383,
+       "columns_compared": 20
+      }
+     ],
+     "particles_ever_outside_the_tank": 0,
+     "nearest_neighbour_spacing_at_the_end_mm": {
+      "reference": 54.435633105523216,
+      "rollout": 53.77679207304854
+     }
+    }
+   }
+  }
+ },
+ "transfer": {
+  "cloth_on_a_plane": {
+   "steps": 89,
+   "ground_height_mm": -9.999999776482582,
+   "height_above_the_ground_mm": {
+    "mean": 298.7203989177942,
+    "lowest": -28.499716892838478,
+    "highest": 583.5867617279291
+   },
+   "flatness_p99_minus_p1_mm": 567.5623237621039,
+   "sheet_extent_mm": [
+    995.1132535934448,
+    973.8132953643799
+   ],
+   "sheet_extent_at_rest_mm": [
+    1200.0000476837158,
+    1200.0000476837158
+   ],
+   "mean_speed_at_the_end_m_s": 0.01711263507604599,
+   "edge_strain_at_the_end": {
+    "median": -0.014638811349868774,
+    "p95": 0.252809506654739,
+    "largest": 3.373398780822754,
+    "smallest": -0.7483426928520203
+   },
+   "lowest_point_of_the_authors_reference_above_the_ground_mm": 2.523669973015785
+  },
+  "cloth_over_a_half_cylinder": {
+   "steps": 89,
+   "radius_mm": 300.0,
+   "deepest_vertex_inside_the_cylinder_mm": 175.2130389213562,
+   "vertices_more_than_1_mm_inside": 1200,
+   "deepest_vertex_below_the_ground_mm": 19.945822656154633,
+   "mirror_error_mm": {
+    "mean": 54.23667957899362,
+    "p95": 127.88242605364947,
+    "largest": 227.68137634794593
+   },
+   "gap_over_the_crown_mm": {
+    "median": 144.44956183433533,
+    "largest": 285.33339500427246
+   },
+   "share_of_vertices_within_one_spacing_of_the_cylinder_or_the_ground": 0.1346938775510204,
+   "mean_speed_at_the_end_m_s": 0.017347685992717743,
+   "edge_strain_at_the_end": {
+    "median": -0.015801817178726196,
+    "p95": 0.36434864401817263,
+    "largest": 3.1419992446899414,
+    "smallest": -0.716919481754303
+   }
+  },
+  "fluid_at_rest": {
+   "steps": 300,
+   "particles": 5700,
+   "tank_m": [
+    2.4000000953674316,
+    2.0,
+    1.600000023841858
+   ],
+   "particles_ever_outside_the_tank": 2921,
+   "first_step_with_a_particle_outside": 55,
+   "outside_at_the_end_by_wall": {
+    "x_minus": 2007,
+    "x_plus": 914,
+    "floor": 0,
+    "z_minus": 317,
+    "z_plus": 301
+   },
+   "mean_speed_m_s_by_step": {
+    "10": 0.011950378306210041,
+    "50": 0.04703887924551964,
+    "100": 0.19363775849342346,
+    "200": 0.5274649262428284,
+    "300": 0.6624650359153748
+   },
+   "drift_mm": {
+    "mean": 955.1483392715454,
+    "p95": 2246.933877468109,
+    "largest": 2652.2057056427
+   },
+   "surface_height_p99_mm": {
+    "start": 377.9999911785126,
+    "end": 337.3217102885247
+   },
+   "lowest_particle_above_the_floor_mm": {
+    "start": 78.00000160932541,
+    "end": 24.477018043398857
+   },
+   "nearest_neighbour_spacing_mm": {
+    "start": 59.9999874830246,
+    "end": 62.97156624498121
+   }
+  },
+  "fluid_at_rest_in_a_tank_of_the_training_size": {
+   "steps": 300,
+   "particles": 12090,
+   "tank_m": [
+    4.0,
+    2.0,
+    2.0
+   ],
+   "particles_ever_outside_the_tank": 2,
+   "first_step_with_a_particle_outside": 138,
+   "outside_at_the_end_by_wall": {
+    "x_minus": 0,
+    "x_plus": 0,
+    "floor": 0,
+    "z_minus": 0,
+    "z_plus": 0
+   },
+   "mean_speed_m_s_by_step": {
+    "10": 0.013208002783358097,
+    "50": 0.05648691579699516,
+    "100": 0.08363272994756699,
+    "200": 0.11350063234567642,
+    "300": 0.1532292366027832
+   },
+   "drift_mm": {
+    "mean": 205.97831904888153,
+    "p95": 397.34770357608795,
+    "largest": 951.3739347457886
+   },
+   "surface_height_p99_mm": {
+    "start": 377.9999911785126,
+    "end": 448.2733604311943
+   },
+   "lowest_particle_above_the_floor_mm": {
+    "start": 78.00000160932541,
+    "end": 64.77508693933487
+   },
+   "nearest_neighbour_spacing_mm": {
+    "start": 59.9999725818634,
+    "end": 33.48448208195054
+   }
+  },
+  "dam_break_in_the_other_tank": {
+   "steps": 500,
+   "particles": 5700,
+   "tank_m": [
+    2.4000000953674316,
+    2.0,
+    1.600000023841858
+   ],
+   "particles_ever_outside_the_tank": 5700,
+   "first_step_with_a_particle_outside": 43,
+   "outside_at_the_end_by_wall": {
+    "x_minus": 520,
+    "x_plus": 3917,
+    "floor": 5694,
+    "z_minus": 340,
+    "z_plus": 2862
+   },
+   "mean_speed_m_s_by_step": {
+    "10": 0.4897158443927765,
+    "50": 1.7795219421386719,
+    "100": 2.2603509426116943,
+    "200": 1.6912705898284912,
+    "500": 7.395874977111816
+   },
+   "drift_mm": {
+    "mean": 10340.948104858398,
+    "p95": 25474.169063568115,
+    "largest": 31438.268661499023
+   },
+   "surface_height_p99_mm": {
+    "start": 1157.9999923706055,
+    "end": -1982.3754751682275
+   },
+   "lowest_particle_above_the_floor_mm": {
+    "start": 78.00000160932541,
+    "end": -4006.3424110412598
+   },
+   "nearest_neighbour_spacing_mm": {
+    "start": 59.9999725818634,
+    "end": 96.17928507060402
+   }
+  },
+  "fluid_at_rest_on_the_cpu_100_steps": {
+   "steps": 100,
+   "particles": 5700,
+   "tank_m": [
+    2.4000000953674316,
+    2.0,
+    1.600000023841858
+   ],
+   "particles_ever_outside_the_tank": 211,
+   "first_step_with_a_particle_outside": 54,
+   "outside_at_the_end_by_wall": {
+    "x_minus": 208,
+    "x_plus": 3,
+    "floor": 0,
+    "z_minus": 5,
+    "z_plus": 1
+   },
+   "mean_speed_m_s_by_step": {
+    "10": 0.013140389695763588,
+    "50": 0.04925036430358887,
+    "100": 0.20451661944389343
+   },
+   "drift_mm": {
+    "mean": 60.851551592350006,
+    "p95": 167.90533885359775,
+    "largest": 562.5532865524292
+   },
+   "surface_height_p99_mm": {
+    "start": 377.9999911785126,
+    "end": 406.03248685598373
+   },
+   "lowest_particle_above_the_floor_mm": {
+    "start": 78.00000160932541,
+    "end": 24.999156594276428
+   },
+   "nearest_neighbour_spacing_mm": {
+    "start": 59.9999874830246,
+    "end": 56.19959017400631
+   }
+  }
+ },
+ "checks": [
+  {
+   "check": "reproduction, cloth: mean error at the end, in spacings",
+   "value": 0.3555941551737138,
+   "limit": 1.0,
+   "passed": true
+  },
+  {
+   "check": "reproduction, fluid (gpu, 599 steps): mean error at the end, in spacings",
+   "value": 10.872061702985322,
+   "limit": 1.0,
+   "passed": false
+  },
+  {
+   "check": "reproduction, fluid (gpu, 599 steps): particles ever outside the tank",
+   "value": 0.0,
+   "limit": 0.0,
+   "passed": true
+  },
+  {
+   "check": "reproduction, fluid (cpu, 150 steps): mean error at the end, in spacings",
+   "value": 3.139946551116441,
+   "limit": 1.0,
+   "passed": false
+  },
+  {
+   "check": "reproduction, fluid (cpu, 150 steps): particles ever outside the tank",
+   "value": 0.0,
+   "limit": 0.0,
+   "passed": true
+  },
+  {
+   "check": "cloth on a plane: deepest vertex below the ground, mm",
+   "value": 28.499716892838478,
+   "limit": 2.0,
+   "passed": false
+  },
+  {
+   "check": "cloth on a plane: flatness, mm",
+   "value": 567.5623237621039,
+   "limit": 17.4,
+   "passed": false
+  },
+  {
+   "check": "cloth on a plane: p95 edge strain",
+   "value": 0.252809506654739,
+   "limit": 0.05,
+   "passed": false
+  },
+  {
+   "check": "cloth over a half-cylinder: deepest vertex inside the cylinder, mm",
+   "value": 175.2130389213562,
+   "limit": 5.0,
+   "passed": false
+  },
+  {
+   "check": "cloth over a half-cylinder: deepest vertex below the ground, mm",
+   "value": 19.945822656154633,
+   "limit": 2.0,
+   "passed": false
+  },
+  {
+   "check": "cloth over a half-cylinder: mean mirror error, in spacings",
+   "value": 3.118658986333777,
+   "limit": 1.0,
+   "passed": false
+  },
+  {
+   "check": "cloth over a half-cylinder: p95 edge strain",
+   "value": 0.36434864401817263,
+   "limit": 0.05,
+   "passed": false
+  },
+  {
+   "check": "fluid at rest: particles ever outside the tank",
+   "value": 2921.0,
+   "limit": 0.0,
+   "passed": false
+  },
+  {
+   "check": "fluid at rest: mean speed at the end, m/s",
+   "value": 0.6624650359153748,
+   "limit": 0.05,
+   "passed": false
+  },
+  {
+   "check": "fluid at rest: mean drift, in lattice spacings",
+   "value": 15.91913898785909,
+   "limit": 1.0,
+   "passed": false
+  },
+  {
+   "check": "control, fluid at rest in a tank of the training size: particles ever outside the tank",
+   "value": 2.0,
+   "limit": 0.0,
+   "passed": false
+  },
+  {
+   "check": "control, fluid at rest in a tank of the training size: mean speed at the end, m/s",
+   "value": 0.1532292366027832,
+   "limit": 0.05,
+   "passed": false
+  },
+  {
+   "check": "dam break in the other tank: particles ever outside the tank",
+   "value": 5700.0,
+   "limit": 0.0,
+   "passed": false
+  }
+ ],
+ "passed": false,
+ "not_covered": [
+  "gases: the paper and the released checkpoints hold no gas case; its fluids are liquids with a free surface",
+  "training: no training code is released, so the model cannot be fitted to this repository's solver results",
+  "granular material, elastic solids, non-Newtonian fluids, molecular dynamics: no checkpoint released",
+  "any part, mould or material of this repository"
+ ]
+}
