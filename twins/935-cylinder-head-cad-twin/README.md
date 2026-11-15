@@ -194,6 +194,7 @@ process values, with every qualification gate closed.*
 | Build screen: temperature, stress and distortion lump by lump | CalculiX 2.21 with element activation (`*MODEL CHANGE`), one thread (cadsim image) | [build_sim.py](source/build_sim.py), [render_build_sim.py](source/render_build_sim.py) |
 | Support layout by declared rules | NumPy and SciPy on the 0.25 mm occupancy: overhang normals, air columns, labelled bodies, lines of sight | [support_design.py](source/support_design.py), [render_support_design.py](source/render_support_design.py) |
 | Witness of a drawing tool | build123d projection and DXF export, read back with ezdxf | [drawing_witness.py](source/drawing_witness.py) |
+| Melt-pool check of the declared heat input | the reviewed GO-MELT kernel (JAX, CUDA), one explicit level, against Rosenthal's point source | [melt_pool_track.py](source/melt_pool_track.py), [melt_pool_summary.py](source/melt_pool_summary.py) |
 | Six-view render of the body, read by the agent | `preview.py` of the `cad-skill` skill (trimesh, pyrender, EGL under `xvfb-run`) | none: the script is the skill's |
 
 The private inputs and outputs live under `work/935-cad-twin/` (ignored by
@@ -1298,6 +1299,89 @@ the [orientation screen](params/print-body-supports.json) to 0.0003%: 476,689 mm
   no powder escape from the support cells.
 - Every gate of the record is false.
 
+### Melt-pool check of the declared heat input ([record](params/melt-pool-check.json))
+
+![One laser track on a block of solid alloy, seen from above and from the side: a bright spot travels to the right with a white outline, the melting isotherm, trailing behind it like a comet](media/melt-pool.gif)
+
+![Melt-pool width against absorptivity: the simulated points follow the analytic curve from 150 µm at 0.13 to 357 µm at 0.58; three coloured bands mark the published widths between 150 and 230 µm; a vertical line marks the declared value 0.4 at 290 µm](media/melt-pool-width.png)
+
+*One track on solid AlSi10Mg by heat conduction only ([video](media/melt-pool.mp4)). A check of a declared number,
+not a melt-pool prediction: no melt flow, no evaporation, no keyhole, no powder.*
+
+**The declared absorptivity of 0.4 is on the high side.** The build screen's temperature scales with
+that one number. A single track at the declared laser values gives a melt pool 290 µm wide,
+or 240 µm when the latent heat is included. The published tracks nearest to this setting are
+215 to 230 µm wide, which on this model is an absorptivity of 0.24 to 0.27,
+or 0.33 to 0.37 with latent heat. The declared case is not changed here.
+
+**Method** ([melt_pool_track.py](source/melt_pool_track.py), [melt_pool_summary.py](source/melt_pool_summary.py)). An explicit,
+matrix-free heat conduction run built from three functions of the repository's
+reviewed [GO-MELT](https://github.com/JLnorthwestern/GO-MELT) revision, on a rented GPU: the first run of that kernel on CUDA
+here. Half a track is modelled, on a block with adiabatic faces, with the
+build screen's own values: 350 W, 1,200 mm/s, conductivity 105 W/(m·K),
+plate at 100 °C, melting at the solidus (563 °C). The laser spot is a declared 80 µm.
+
+**Checks.**
+
+| Check | Result | Limit |
+|---|---|---|
+| Witness: width within 2% of Rosenthal's point source | 0.16% | 2.0% |
+| Witness: depth within 2% of Rosenthal's point source | 0.19% | 2.0% |
+| Mesh: width changes by less than 1% between the two finest meshes | 0.01% | 1.0% |
+| Energy: source within 0.1% of the absorbed power times the time, every case | 0.03% | 0.1% |
+| Energy: heat stored within 0.1% of the source, constant properties | 0.00% | 0.1% |
+| Energy: heat stored within 2% of the source, cases with latent heat | 1.19% | 2.0% (set after the first reading) |
+
+- **A near-point source reproduces Rosenthal's solution:** 218.7 µm wide and 109.4 µm deep
+  against 218.3 and 109.2 µm, at absorptivity 0.25.
+- **The mesh is fine enough:** 221.5, 221.6, 221.6 µm on elements of 10, 5, 4 µm.
+- **Energy closes** to rounding with constant properties. With latent heat
+  the explicit step is not exactly conservative; the first limit of 0.1% failed
+  there at 1.2%, and that defect is reported instead.
+
+**Width against absorptivity** (80 µm spot, 5 µm elements, constant properties).
+
+| Absorptivity | Width | Depth | Rosenthal width |
+|---|---|---|---|
+| 0.13 | 150 µm | 69 µm | 145 µm |
+| 0.2 | 194 µm | 93 µm | 191 µm |
+| 0.25 | 222 µm | 107 µm | 218 µm |
+| 0.3 | 246 µm | 121 µm | 243 µm |
+| 0.4 (declared) | 290 µm | 143 µm | 287 µm |
+| 0.58 | 357 µm | 182 µm | 354 µm |
+
+**Published widths, and the absorptivity each corresponds to on this model.**
+
+| Source | Width | How it was read | Absorptivity, constant properties | With latent heat |
+|---|---|---|---|---|
+| Klanjšček and Kalin 2025: EOS M290, bulk top surfaces, several settings | 150 to 200 µm | read | 0.13 to 0.21 | 0.15 to 0.29 (beyond the two cases run) |
+| Van Cauwenbergh et al. 2021: 189 ± 15 µm; power and speed not given | 174 to 204 µm | read by an automated reader | 0.17 to 0.22 | 0.22 to 0.30 (beyond the two cases run) |
+| Charan et al. 2023 (preprint): 350 W at 1,300 and 1,100 mm/s, the setting nearest to the declared one | 215 to 230 µm | read off a graph; not peer reviewed | 0.24 to 0.27 | 0.33 to 0.37 |
+
+- **For the build screen:** its largest rise of 62 K scales with the absorptivity. At 0.24 to 0.37,
+  the range of the nearest published tracks with and without latent heat, it would be 37 to 58 K.
+- **The spot hardly matters at this speed:** 60 and 100 µm spots change the width by -0.8% and +1.0%; the
+  depth of the source, by +0.2% and -0.9%.
+- **Latent heat matters:** it narrows the pool by 16%. Its value (400 kJ/kg, that of aluminium) and the
+  solidus and liquidus used with it (830 and 869 K) come from Gusarov et al.,
+  arXiv:2409.18226, Table 1, read in the source.
+- **The peak temperatures are not physical:** up to 12,800 K, far above boiling, because nothing here
+  evaporates or flows. The width is set by the far field, which is why it follows
+  the analytic solution.
+- **On the GPU** one 5 µm case (1.5 million nodes, 21,000 steps) takes 7.3 minutes on an
+  RTX 3090, in double precision.
+
+**What this check does not say.**
+
+- It is not a melt-pool prediction: no melt flow (which widens and shallows a
+  pool), no evaporation, no keyhole, no powder, constant properties.
+- The published widths come from other machines and settings; only one source
+  is at this power and near this speed, and it is a preprint read off a graph.
+- The block is small: its far faces warm by up to
+  349 K by the end of the track, with adiabatic walls.
+- It calibrates nothing: the build screen's absorptivity stays a declared
+  value, and its gate on a calibrated heat input stays closed.
+
 ### SimReady tools: STEP → OpenUSD and NVIDIA validation ([deck plate](params/simready-deck-plate.json), [ports](params/simready-ports.json))
 
 The NVIDIA converter and validator run on this host from wheels, in two
@@ -1846,6 +1930,7 @@ contributor. No contributor is named here, and none has been asked.
 | Build simulation witness | a block, two lumped layers from a deposition file | [am-build-witness.json](params/am-build-witness.json) | active volume and mean temperature against a closed form, on the solver's mesh and on an imported one | passed on both; the head's build runs in CalculiX instead (next row) |
 | Build screen | print-body occupancy, [declared case](params/build-sim-case.json) | [build-sim.json](params/build-sim.json); private decks, fields and two [pictures](media/build-sim-result.png) | three closed-form [witnesses](params/build-sim-witness.json); energy balance within 0.4%; 6 levels for temperature and 2 laser cases, 10 mechanical runs | done as a screen: 43.4 h, largest rise 60 to 64 K above the plate (98 and 138 K with two and four lasers); distortion after release 0.24 to 0.33 mm median, 1.62 to 2.16 mm largest on 3 and 4 mm cells: settled in cell size at equal lump height, not in lump height; on the laid-out supports 40 K and 1.71 mm; stress at the declared yield curve; every gate false |
 | Support layout | print-body occupancy, [declared rules](params/support-design-case.json) | [support-design.json](params/support-design.json); private envelope and a [picture](media/support-layout.png) | four shapes with hand-computed answers ([witnesses](params/support-design-witness.json)); the totals before exemption equal the orientation screen's | done as a layout by rule: 470,700 mm³ of envelope, 15% of the part melted in walls, 48% standing on the part, 26% of the supported surface without straight lateral access; no build processor, removal not judged |
+| Melt-pool check | the build screen's declared laser and material values | [melt-pool-check.json](params/melt-pool-check.json); private fields; [chart](media/melt-pool-width.png) and [animation](media/melt-pool.gif) | Rosenthal's point source within 0.2%; three meshes; energy balance | done as a check: 290 µm at the declared absorptivity (240 µm with latent heat) against 215 to 230 µm published nearest to this setting; conduction only, nothing calibrated |
 | Fatigue, valve-train dynamics, drawing | none | [prepared-work.json](params/prepared-work.json); [drawing-tool witness](params/drawing-witness.json) | every path of the register exists; the drawing tool reads back three views of a known solid | not run: no stress history or S-N data, no cam, spring or masses, 4 of 32 features confirmed. [Prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register): tool, witness, held and missing inputs for each |
 
 ## Limits
@@ -1877,6 +1962,9 @@ contributor. No contributor is named here, and none has been asked.
 - The support layout follows declared rules on the 0.25 mm grid. Its teeth
   and its slenderness have no aluminium source, its access test is two
   straight lines, and no build processor or person has prepared or judged it.
+- The melt-pool check is heat conduction on one track. It shows which
+  absorptivity the published widths correspond to on that model; it calibrates
+  nothing, and the build screen's declared value is unchanged.
 - The prepared work is a register of what is missing. It holds no result, and
   it names no contributor.
 - No port-flow result exists. The audit found no admissible fluid domain.

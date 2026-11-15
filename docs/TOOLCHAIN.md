@@ -76,7 +76,7 @@ The `.3mf` and `.stl` formats are manufacturing derivatives.
 | Ply draping, first screen | [`scripts/kinematic_draping.py`](../scripts/kinematic_draping.py): fishnet (pin-jointed net) method, shear angle of every cell; [witness](../benchmarks/kinematic-draping/README.md) | CLI and Python; woven plies only; a locking angle from a cited source, never from the tool |
 | Exploratory CFD | OpenFOAM + foamlib | CLI and Python |
 | Local LPBF melt pool | ORNL AdditiveFOAM 2.0.0 on OpenFOAM 14 | CLI/MPI, correlated coupons required |
-| Multilevel LPBF thermal research | GO-MELT, pinned source | Isolated JAX CPU kernel witness; multilevel scan and CUDA qualification pending |
+| Multilevel LPBF thermal research | GO-MELT, pinned source | Isolated JAX CPU kernel witness. On CUDA the kernel has run one explicit level, a single track checked against Rosenthal's point source ([935 head twin](../twins/935-cylinder-head-cad-twin/params/melt-pool-check.json)); the multilevel scan is still pending |
 | Powder deposition and particle thermal research | Simulation-of-LPBF-using-CUDA, pinned source | CPU builds and thermal controls; full scans and CUDA qualification pending |
 | Physics surrogate | NVIDIA PhysicsNeMo | Python/PyTorch after converged, correlated runs |
 | CAD to scene | `usd-convert-cad 0.2.0` | CLI, STEP to binary OpenUSD |
