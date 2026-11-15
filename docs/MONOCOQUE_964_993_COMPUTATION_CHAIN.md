@@ -50,7 +50,7 @@ nonlinearity. That is the whole programme up to M6.
 |---|---|---|
 | **crash, energy absorption, cell integrity** | implicit solver; crash is an explicit problem with large deformations, general contact and failure | **OpenRadioss** (open source, Altair, 2022); failing that LS-DYNA or Abaqus/Explicit |
 | **laminate failure and delamination** | no built-in composite criterion: no Hashin, no Puck, no cohesive zone | in-plane first-ply failure: [`scripts/laminate_failure.py`](../scripts/laminate_failure.py), written on 2026-11-10 (maximum stress, Tsai-Wu, Hashin, Puck inter-fibre, on stated strengths). Still to be written: reading ply stresses from the CalculiX result, and delamination, which needs a dedicated solver. No ply strength is admitted for any laminate |
-| **drapability** | a manufacturing question, not a mechanics one: a ply does not lie on an arbitrary double curvature | dedicated draping tool, all commercial |
+| **drapability** | a manufacturing question, not a mechanics one: a ply does not lie on an arbitrary double curvature | first screen: [`scripts/kinematic_draping.py`](../scripts/kinematic_draping.py), written on 2026-11-15 (fishnet method: the shear a woven ply needs on a mould, checked against the continuous net on a sphere). Forming with forces (friction, bending, wrinkle shape) still needs a dedicated tool, all commercial; no fabric locking angle is admitted |
 | **high-dimensional exploration** | every calculation costs; thousands would be needed | surrogate model, see section 3 |
 
 **Crash is the only real software lock in the programme**, and it falls exactly

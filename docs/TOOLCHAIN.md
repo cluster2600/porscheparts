@@ -73,6 +73,7 @@ The `.3mf` and `.stl` formats are manufacturing derivatives.
 | Post-processing | PyVista, ParaView | Python script |
 | Fatigue post-processing | pyLife 2.3 (rainflow, Wöhler, Miner); [witness](../benchmarks/fatigue-postprocessor/README.md) | Python API; S-N data from a cited source, never from the tool |
 | Laminate first-ply failure | [`scripts/laminate_failure.py`](../scripts/laminate_failure.py): lamination theory, maximum stress, Tsai-Wu, Hashin, Puck inter-fibre | CLI and Python; strengths and criterion parameters from a cited source, never from the tool |
+| Ply draping, first screen | [`scripts/kinematic_draping.py`](../scripts/kinematic_draping.py): fishnet (pin-jointed net) method, shear angle of every cell; [witness](../benchmarks/kinematic-draping/README.md) | CLI and Python; woven plies only; a locking angle from a cited source, never from the tool |
 | Exploratory CFD | OpenFOAM + foamlib | CLI and Python |
 | Local LPBF melt pool | ORNL AdditiveFOAM 2.0.0 on OpenFOAM 14 | CLI/MPI, correlated coupons required |
 | Multilevel LPBF thermal research | GO-MELT, pinned source | Isolated JAX CPU kernel witness; multilevel scan and CUDA qualification pending |
