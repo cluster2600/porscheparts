@@ -11,7 +11,7 @@ machine-readable record is [findings.json](findings.json); the twin's
 | Part | Found | Still missing |
 |---|---|---|
 | Valve train | valve sizes, lifts, timing and cam lobe dimensions of the production 930 Turbo, and the valve angles of the 964 Turbo 3.3, from two homologation forms | the cam of the 934 or 935, every spring figure, every mass |
-| Fatigue | three room-temperature sets with their points or fit, two sets after ageing at 177 °C, three single strengths at 200 and 350 °C from abstracts | an S-N curve at the head's temperature with its points |
+| Fatigue | three sets with their points or fit, none of which states its test temperature; two sets after ageing at 177 °C, three single strengths at 200 and 350 °C from abstracts | an S-N curve at the head's temperature with its points |
 | Port flow | the port openings of the production head, the definition of the flow coefficient, two validated computations on other heads (6% and 8% from the bench) | any flow sheet of these heads |
 
 ## How it was read
@@ -99,7 +99,7 @@ decision this note does not take.
 | Set | Condition | Loading | Result | Flag | Second reading |
 |---|---|---|---|---|---|
 | [roveda-2024](https://elib.dlr.de/207898/), Table 4 | as built, 265 °C / 1 h, 300 °C / 2 h; polished; vertical | axial, R = 0.1, 30 Hz, run-out 1e7, temperature not stated | 20 points below | read in source | re-read |
-| [kramer-2025](https://publikationen.bibliothek.kit.edu/1000184850) | machined; vertical; heat treatment not found | rotating bending, R = −1, 50 Hz, run-out 1e7 | 60 MPa amplitude at 1e7; fit 507.7 · N^−0.14 | read in source | re-read |
+| [kramer-2025](https://publikationen.bibliothek.kit.edu/1000184850) | machined; vertical; heat treatment not found | rotating bending, R = −1, 50 Hz, run-out 1e7, temperature not stated | 60 MPa amplitude at 1e7; fit 507.7 · N^−0.14 | read in source | re-read |
 | machine maker's sheet ([catalogue](../../../catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json)) | turned; no heat treatment | fully reversed, temperature not stated | 110 MPa at 2e7 | read in source | not re-read |
 | [nabil-2022](https://utw10945.utweb.utexas.edu/sites/default/files/2022/Effect%20of%20Thermal%20Aging%20in%20the%20Fatigue%20Life%20of%20Hot.pdf), Table 3 | hot isostatic pressing, aged at 177 °C, then machined | axial, R = 0.1, 50 Hz, room temperature | mean life at 124 MPa: 1.31 / 1.23 million cycles unaged (XY / Z), 0.02 / 0.01 million after 1000 h | read in source | re-read |
 | [barrera-2025](https://utw10945.utweb.utexas.edu/sites/default/files/2025/38%20Study%20of%20Fatigue%20Endurance%20on%20Artificially%20Aged.pdf) | stress relief at 285 °C, or pressing and T6; aged at 177 °C; machined | axial, R = 0.1, 50 Hz, room temperature, run-out 5e6 | stress relieved at 124 MPa: 20 of 24 ran out at every ageing time; pressed and T6 at 145 MPa: all ran out to 100 h, mean 61,364 to 182,952 cycles at 1000 h | read in source | conditions only |
@@ -120,7 +120,9 @@ amplitude is half the range):
 | 130 / run-out at 10,000,000 | 130 / 1,174,921 | 110 / 5,336,296 |
 |  | 120 / run-out at 10,000,000 | 100 / run-out at 10,000,000 |
 
-In the two ageing sets the stress level is not defined as a maximum or an
+The first three sets do not state their test temperature: they are not a
+verified room-temperature baseline. In the two ageing sets, which were tested
+at room temperature, the stress level is not defined as a maximum or an
 amplitude. The 200 °C and 350 °C values are single strengths from abstracts:
 their run-out counts, stress ratios and specimens could not be read.
 
@@ -128,7 +130,7 @@ their run-out counts, stress ratios and specimens could not be read.
 
 **Contradictions:** fully reversed strength of machined coupons: 110 MPa at 2e7 cycles on the machine maker's sheet, 60 MPa at 1e7 in the Kramer set; T6: reported to help in three papers and to reduce life in a fourth, as quoted by a review; stress relief: no gain in the Roveda set, where the run-out range falls from 130 to 120 to 100 MPa; surface: one group finds ground and as-built surfaces alike, another finds machining clearly better; exposure: 'no variation' after 17 h at 200 °C, against lives falling by a factor of 60 or more after 1000 h at 177 °C.
 
-**Leads that were not opened:** four often-cited room-temperature sets (2012 to 2017) sit behind paywalls or refusing repositories; their numbers are not written here; a dissertation with strain-life data up to 200 °C is under embargo until 2027.
+**Leads that were not opened:** four often-cited sets (2012 to 2017) sit behind paywalls or refusing repositories; their numbers are not written here; a dissertation with strain-life data up to 200 °C is under embargo until 2027.
 
 ## Port flow
 

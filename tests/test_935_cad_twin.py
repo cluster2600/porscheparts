@@ -1401,6 +1401,26 @@ class PublishedDataTests(unittest.TestCase):
             self.assertEqual(min(row["stress_range_MPa"] for row in group), [row for row in group if row["run_out"]][0]["stress_range_MPa"])
         self.assertIn("stress range", sets["roveda-2024-table-4"]["stress_is"])
 
+    def test_a_set_with_no_stated_test_temperature_is_never_called_room_temperature(self):
+        sets = {item["id"]: item for item in self.topics["fatigue"]["sets"]}
+        unstated = [name for name, item in sets.items() if str(item.get("conditions", {}).get("test_temperature", "")).startswith("not stated")]
+        self.assertEqual(unstated, ["roveda-2024-table-4", "kramer-2025"])
+        self.assertIn("temperature not stated", sets["eos-m290-sheet"]["result"]["conditions"])
+        note = (self.RECORD.parent / "README.md").read_text()
+        rows = [line for line in note.split("\n") if line.startswith("| [roveda-2024]") or line.startswith("| [kramer-2025]") or line.startswith("| machine maker")]
+        self.assertEqual(len(rows), 3)
+        for row in rows:
+            self.assertIn("temperature not stated", row)
+            self.assertNotIn("room temperature", row)
+        summary = [line for line in note.split("\n") if line.startswith("| Fatigue |")][0]
+        self.assertNotIn("room-temperature", summary)
+        self.assertIn("none of which states its test temperature", summary)
+        register = json.loads((TWIN / "params" / "prepared-work.json").read_text())
+        fatigue = [part for part in register["parts"] if part["id"] == "fatigue"][0]
+        for held in fatigue["held"]:
+            if "fatigue" in held["what"]:
+                self.assertNotIn("room temperature", held["what"] + held["standing"], held["what"])
+
     def test_the_register_points_to_the_search_and_stays_blocked(self):
         register = json.loads((TWIN / "params" / "prepared-work.json").read_text())
         search = register["published_search"]
