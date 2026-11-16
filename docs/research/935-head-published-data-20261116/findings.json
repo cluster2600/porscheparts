@@ -1,0 +1,926 @@
+{
+ "schema": "935-head-published-data/1",
+ "date": "2026-11-16",
+ "scope": "what a search of published documents gave for three parts of the 935 head twin that cannot run: valve train, fatigue, port flow. Published values of other heads and of coupons, each with its source and how it was read. Nothing here is a measurement of the scanned head, a design value or an admitted input",
+ "how_it_was_read": {
+  "search": "three search agents read public pages and documents on 2026-11-16; a host that refused automated readers was left alone and is named below",
+  "flags": {
+   "read in source": "the value was read in the document itself",
+   "read off a graph": "the value was read off a figure, about two digits",
+   "abstract only": "only the abstract could be opened",
+   "seller declaration": "the maker's or seller's own statement"
+  },
+  "main_session": {
+   "re-read": "the value was read a second time, in the saved copy, before it was written here",
+   "not re-read": "read once, by the search agent"
+  },
+  "what_the_second_reading_changed": "two failures missing from the first transcription of the Roveda table were restored (20 rows, not 18)",
+  "copies": "the documents read are kept outside Git; their SHA-256 is under each source"
+ },
+ "hosts_that_refused": {
+  "valve-train": [
+   "forums.pelicanparts.com",
+   "rennlist.com",
+   "lnengineering.com",
+   "fvd.net",
+   "911uk.com",
+   "carpokes.com",
+   "gt2i.com",
+   "design911.co.uk",
+   "sierramadrecollection.com"
+  ],
+  "fatigue": [
+   "mdpi.com (full texts)",
+   "sciencedirect.com",
+   "link.springer.com",
+   "nottingham-repository.worktribe.com",
+   "iris.polito.it",
+   "cris.unibo.it",
+   "hal.science (full texts)",
+   "publica.fraunhofer.de",
+   "elib.uni-stuttgart.de",
+   "preprints.org",
+   "apps.dtic.mil"
+  ],
+  "port-flow": [
+   "rennlist.com",
+   "forums.pelicanparts.com",
+   "lnengineering.com",
+   "fvd.net",
+   "lindseyracing.com",
+   "eng-tips.com",
+   "manualshive.com",
+   "matec-conferences.org",
+   "core.ac.uk (full texts)"
+  ]
+ },
+ "sources": {
+  "fia-3076": {
+   "title": "FIA / ONS homologation form no. 3076, Porsche Turbo, Group 3, valid from 1 January 1977, 28 pages",
+   "url": "https://historicdb.fia.com/sites/default/files/car_attachment/1601075701/homologation_form_number_3076_group_3.pdf",
+   "describes": "the production 930 Turbo 3.0 engine, not the 934, the 935 or the scanned head",
+   "private_copy_sha256": "801e56f9b066c7bbed5731c1ca3cada81075f28ee4e4b3ebcf0049f664e42adf"
+  },
+  "fisa-b-298": {
+   "title": "FISA / ONS Group B homologation form B-298, Porsche 911 Turbo 2 (3299 cm3), valid from 1 April 1993, 54 pages; pages 1 to 9 read",
+   "url": "https://historicdb.fia.com/sites/default/files/car_attachment/1479168902/homologation_form_number_298_group_b.pdf",
+   "describes": "the production 964 Turbo 3.3 engine, not the scanned head",
+   "private_copy_sha256": "42084321e44be6845d2cc508b273111504a55878426449dec588382b58f8eb67"
+  },
+  "webcam-233": {
+   "title": "Web Cam timing card, Porsche 911 SOHC 12v, grind 233",
+   "url": "https://webcamshafts.com/pages_vehicles/automobile/porsche_install_data/tc_000452_000591.html",
+   "describes": "an aftermarket camshaft for 911 engines in general"
+  },
+  "roveda-2024": {
+   "title": "Roveda, Serrano-Munoz, Haubrich, Requena, Madia: Investigation on the fatigue strength of AlSi10Mg fabricated by PBF-LB/M and subjected to low temperature heat treatments. Materials & Design 244 (2024) 113170",
+   "url": "https://elib.dlr.de/207898/",
+   "doi": "10.1016/j.matdes.2024.113170",
+   "private_copy_sha256": "afa3c1947eda5887b77e59b6d0f18d5a15c16580994864402a7824f9ef6307f6"
+  },
+  "kramer-2025": {
+   "title": "Kramer, Wexel, Purwitasari, Jarwitz, Schulze, Zanger: Impact of different pore types on the tensile and fatigue properties of AlSi10Mg parts produced by laser powder bed fusion. Progress in Additive Manufacturing (2025)",
+   "url": "https://publikationen.bibliothek.kit.edu/1000184850",
+   "doi": "10.1007/s40964-025-01288-x",
+   "private_copy_sha256": "4c80c1ab1a256883756939f3d49f2e9b9c5fb52215bc0b52f6a6bd8f0b620180"
+  },
+  "nabil-2022": {
+   "title": "Nabil, Arrieta, Wicker, Benedict, Medina: Effect of Thermal Aging in the Fatigue Life of Hot Isostatic Pressed AlSi10Mg Fabricated by Laser Powder Bed Fusion. Solid Freeform Fabrication Symposium 2022",
+   "url": "https://utw10945.utweb.utexas.edu/sites/default/files/2022/Effect%20of%20Thermal%20Aging%20in%20the%20Fatigue%20Life%20of%20Hot.pdf",
+   "private_copy_sha256": "3074f38fdf26e70fb486e676eb648fea740966b83eeeb923d8dc47c33f007880"
+  },
+  "barrera-2025": {
+   "title": "Barrera, Medina, Arrieta, Marquez: Study of Fatigue Endurance on Artificially Aged Additive Manufactured AlSi10Mg After Stress Relieved and Hot Isostatic Pressed + T6. Solid Freeform Fabrication Symposium 2025, pp. 529-545",
+   "url": "https://utw10945.utweb.utexas.edu/sites/default/files/2025/38%20Study%20of%20Fatigue%20Endurance%20on%20Artificially%20Aged.pdf",
+   "private_copy_sha256": "915d523a3b82d5a6561617082ceda12874f4d469572e1c42118722f3d9324aca"
+  },
+  "di-egidio-2023": {
+   "title": "Di Egidio, Ceschini, Morri, Zanni: Room- and High-Temperature Fatigue Strength of the T5 and Rapid T6 Heat-Treated AlSi10Mg Alloy Produced by Laser-Based Powder Bed Fusion. Metals 13 (2023) 263",
+   "url": "https://doi.org/10.3390/met13020263",
+   "doi": "10.3390/met13020263",
+   "opened": "the abstract only, in an open index record; the publisher refused the full text",
+   "private_copy_sha256": "9f7a877201c43d27825cb76bc668a3b79a641a27a3f556917d240eba107083b7"
+  },
+  "bahl-2026": {
+   "title": "Bahl, Richter, Torbet, Rakhmonov, Su, Plotkowski, Pollock, Shyam: Strain-rate hardening enhances fatigue resistance of AlSi10Mg alloy at 350 °C. Acta Materialia 305 (2026) 121866",
+   "url": "https://impact.ornl.gov/en/publications/strain-rate-hardening-enhances-fatigue-resistance-of-alsi10mg-all/",
+   "doi": "10.1016/j.actamat.2025.121866",
+   "opened": "the abstract only, on the laboratory's publication page",
+   "private_copy_sha256": "89434ba50af8f9f30708cfe56eed58cdc746c7e493e4a3df48ed25a0cbe35e98"
+  },
+  "natesan-2020": {
+   "title": "Natesan, Eriksson, Ahlström, Persson: Effect of Temperature on Deformation and Fatigue Behaviour of A356-T7 Cast Aluminium Alloys Used in High Specific Power IC Engine Cylinder Heads. Materials 13 (2020) 1202",
+   "url": "https://doi.org/10.3390/ma13051202",
+   "doi": "10.3390/ma13051202",
+   "opened": "the open-access full text in Europe PMC",
+   "private_copy_sha256": "1df961363a1cc4f27dae7d694cbe593c78b53deef38cfca3b731e72505dffae8"
+  },
+  "naca-tn-1366": {
+   "title": "Livengood and Eppes: Effect of changing manifold pressure, exhaust pressure and valve timing on the air capacity and output of a four-stroke engine operated with inlet valves of various diameters and lifts. NACA Technical Note 1366, December 1947",
+   "url": "https://ntrs.nasa.gov/api/citations/19930082003/downloads/19930082003.pdf",
+   "describes": "a single-cylinder CFR research engine with a flat two-valve head, not a hemispherical chamber",
+   "private_copy_sha256": "a3758ed35cabe40d8392a54bd2ce5b41026d0325176b758621aa2265a470f420"
+  },
+  "encit-2008": {
+   "title": "Comparisons between steady state analyses of a high swirl-generating helical intake port. Proceedings of ENCIT 2008, paper 6-4861",
+   "url": "https://abcm.org.br/app/webroot/anais/encit/2008/artigos/6_4861.pdf",
+   "describes": "a helical diesel inlet port",
+   "private_copy_sha256": "8ad6787c33cf65f8b6668a7fdf1f612d71d79cc583b14828efa615879f125477"
+  },
+  "scientia-2014": {
+   "title": "Mohammadebrahim et al.: Investigation into the effect of intake port geometric parameters and blockage on flow coefficient and in-cylinder flow. Scientia Iranica B 21(2) (2014) 438-448",
+   "url": "https://scientiairanica.sharif.edu/article_3494_20cc6d2898623cf0a9841882fb1a5674.pdf",
+   "describes": "a four-valve petrol head",
+   "private_copy_sha256": "69f4f20b84b59fd805e3c6133dfd9c5b66f63eb9da77c1fea7a5aa641e680306"
+  },
+  "yunick": {
+   "title": "Smokey Yunick: Airflow Testing (note distributed by a flow-bench software maker)",
+   "url": "https://www.performancetrends.com/PDFs/Smokey%20Yunick%20Airflow%20Testing.pdf",
+   "private_copy_sha256": "0fa3c4b4aae6fccb75fa60ac97440a8dcb88c88617cef4fc592776de2b09782d"
+  }
+ },
+ "topics": {
+  "valve-train": {
+   "question": "published valve, cam and spring data of the air-cooled turbo engines the head is said to fit",
+   "values": [
+    {
+     "quantity": "inlet valve, outside diameter",
+     "value": 49.0,
+     "unit": "mm",
+     "source": "fia-3076",
+     "field": "item 161, page 10",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "quantity": "inlet valve, largest lift",
+     "value": 9.7,
+     "unit": "mm",
+     "source": "fia-3076",
+     "field": "item 162",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "quantity": "exhaust valve, outside diameter",
+     "value": 41.5,
+     "unit": "mm",
+     "source": "fia-3076",
+     "field": "item 171",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "quantity": "exhaust valve, largest lift",
+     "value": 8.9,
+     "unit": "mm",
+     "source": "fia-3076",
+     "field": "item 172",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "quantity": "springs per valve",
+     "value": 2,
+     "unit": "coil springs",
+     "source": "fia-3076",
+     "field": "items 163, 164, 173, 174",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "quantity": "clearance at which the timing is stated ('theoretical timing clearance')",
+     "value": 0.1,
+     "unit": "mm",
+     "source": "fia-3076",
+     "field": "items 165, 175",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "quantity": "inlet opens / closes",
+     "value": [
+      3,
+      37
+     ],
+     "unit": "degrees after top dead centre / after bottom dead centre",
+     "source": "fia-3076",
+     "field": "items 166, 167",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "quantity": "exhaust opens / closes",
+     "value": [
+      29,
+      3
+     ],
+     "unit": "degrees before bottom dead centre / before top dead centre",
+     "source": "fia-3076",
+     "field": "item 176 and the item after it, numbered 167 a second time on the form",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "quantity": "inlet cam lobe S / T / U",
+     "value": [
+      22.25,
+      15.75,
+      31.5
+     ],
+     "unit": "mm, each ± 0.2",
+     "source": "fia-3076",
+     "field": "item 205, page 11",
+     "flag": "read in source",
+     "main_session": "re-read",
+     "note": "on the form's sketch T runs from the centre to the heel, S from the centre to the nose and U is the height across the base circle"
+    },
+    {
+     "quantity": "exhaust cam lobe S / T / U",
+     "value": [
+      21.73,
+      15.75,
+      31.5
+     ],
+     "unit": "mm, each ± 0.2",
+     "source": "fia-3076",
+     "field": "item 205, page 11",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "quantity": "smallest diameter of the inlet pipe",
+     "value": 1.259,
+     "unit": "in",
+     "source": "fia-3076",
+     "field": "item 192, page 11",
+     "flag": "read in source",
+     "main_session": "re-read",
+     "note": "the millimetre figure is not legible on the scan; 1.259 in is 31.98 mm"
+    },
+    {
+     "quantity": "bore x stroke, compression ratio",
+     "value": [
+      95.0,
+      70.4,
+      6.5
+     ],
+     "unit": "mm, mm, to 1",
+     "source": "fia-3076",
+     "field": "items 65, 67, 139",
+     "flag": "read in source",
+     "main_session": "not re-read"
+    },
+    {
+     "quantity": "camshafts, drive, valve operation",
+     "value": "2 overhead camshafts, chain, rocker arms, 4 bearings per shaft",
+     "unit": null,
+     "source": "fisa-b-298",
+     "field": "item 325, page 8",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "quantity": "inlet / exhaust valve, largest diameter",
+     "value": [
+      49.0,
+      41.5
+     ],
+     "unit": "mm",
+     "source": "fisa-b-298",
+     "field": "items 327 d, 328 e, page 8",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "quantity": "valve stem in the guide, inlet and exhaust",
+     "value": 9.0,
+     "unit": "mm, ± 0.2",
+     "source": "fisa-b-298",
+     "field": "items 327 e, 328 f",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "quantity": "valve length, inlet / exhaust",
+     "value": [
+      110.1,
+      108.4
+     ],
+     "unit": "mm, each ± 1.5",
+     "source": "fisa-b-298",
+     "field": "items 327 f, 328 g",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "quantity": "angle between valve and vertical, inlet / exhaust",
+     "value": [
+      25.5,
+      30.25
+     ],
+     "unit": "degrees (25°30′ and 30°15′ on the form)",
+     "source": "fisa-b-298",
+     "field": "items 321 e, 321 f, page 5",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "quantity": "aftermarket cam: valve lift, advertised duration, duration at 0.050 in, lobe centre, lash",
+     "value": [
+      0.445,
+      290,
+      268,
+      103,
+      0.004
+     ],
+     "unit": "in, degrees, degrees, degrees, in",
+     "source": "webcam-233",
+     "field": "timing card",
+     "flag": "seller declaration",
+     "main_session": "not re-read"
+    }
+   ],
+   "derived_here": [
+    {
+     "quantity": "cam lift, inlet / exhaust (S − T)",
+     "value": [
+      6.5,
+      5.98
+     ],
+     "unit": "mm"
+    },
+    {
+     "quantity": "base circle check, U − 2 T",
+     "value": [
+      0.0,
+      0.0
+     ],
+     "unit": "mm"
+    },
+    {
+     "quantity": "rocker ratio implied, valve lift over cam lift, inlet / exhaust",
+     "value": [
+      1.492,
+      1.488
+     ],
+     "unit": "to 1",
+     "note": "arithmetic on the form's figures, not a published ratio; the form's tolerance of ± 0.2 mm on S and T moves it by about ± 0.09"
+    },
+    {
+     "quantity": "opening period between the stated events, inlet / exhaust",
+     "value": [
+      214,
+      206
+     ],
+     "unit": "crank degrees",
+     "note": "short for a period taken at the seat: what the 0.10 mm clearance means for the stated events is not explained on the form"
+    }
+   ],
+   "comparison_with_the_scan": {
+    "what": "the two valve axes fitted on the scan against the valve angles of form B-298",
+    "scan_from": "twins/935-cylinder-head-cad-twin/params/feature-fits.json",
+    "rows": [
+     {
+      "quantity": "angle between the two valves",
+      "published": 55.75,
+      "published_basis": "sum of the two angles to the vertical",
+      "scan": 55.763,
+      "difference": 0.013,
+      "unit": "degrees"
+     },
+     {
+      "quantity": "valve_y_minus to the deck normal, against the inlet angle",
+      "published": 25.5,
+      "scan": 25.886,
+      "difference": 0.386,
+      "unit": "degrees"
+     },
+     {
+      "quantity": "valve_y_plus to the deck normal, against the exhaust angle",
+      "published": 30.25,
+      "scan": 29.893,
+      "difference": -0.357,
+      "unit": "degrees"
+     },
+     {
+      "quantity": "guide bore of valve_y_minus, against the stem diameter",
+      "published": 9.0,
+      "scan": 8.51,
+      "difference": -0.49,
+      "unit": "mm"
+     }
+    ],
+    "construction_check_deg": 0.419,
+    "reading": "the angle between the two fitted axes equals the sum of the two published angles within 0.02 degrees. Each axis is about 0.4 degrees from its published angle, in opposite directions, which is the size of the difference the twin already found between its two ways of building a valve axis. The fitted guide bore is half a millimetre smaller than the production stem: this head does not take the production 9 mm valve, which agrees with the 8 mm stems in the maker's catalogue (docs/research/935-faithful-replica-20261028/README.md)",
+    "what_it_does_not_show": "the form describes another head. The agreement does not calibrate the scan, and it does not identify the inlet: it is one more indication that valve_y_minus is the inlet, beside the larger seat. H09 stays open until a specification or a marked photograph of the specimen says so"
+   },
+   "not_found": [
+    "a cam card of the 934 or 935",
+    "how the rocker ratio varies through the lift",
+    "the mass of a valve, retainer, keeper or rocker",
+    "spring installed height, seat load, open load, rate or coil-bind height in a page that could be opened",
+    "a stated engine speed limit of the 935 (8000 rpm appears only as the speed of peak power)",
+    "valve sizes of the 934, the 935 or this maker's head beyond its catalogue ranges",
+    "seat and guide dimensions"
+   ],
+   "contradictions": [
+    "one article states a rocker ratio of 1.47; the form's lobe and lift figures imply about 1.49",
+    "a club forum post gives other timing for the 1974 engine (opening 20 and 50 degrees early) with no clearance stated; the form's events are at 0.10 mm"
+   ],
+   "leads_not_opened": [
+    "a parts seller's page with a racing spring kit's heights, loads and rate (the host answered 'too many requests' three times)",
+    "the maker's and two tuners' pages on billet turbo heads (hosts refuse automated readers)"
+   ]
+  },
+  "fatigue": {
+   "question": "published fatigue data of laser powder bed fusion AlSi10Mg, above all at temperature",
+   "standing": "published values, read as stated below. None is admitted as material data: the repository admits no fatigue data (docs/AGENT_TOOL_GUIDE.md), and admitting any of these is a decision this record does not take",
+   "sets": [
+    {
+     "id": "roveda-2024-table-4",
+     "source": "roveda-2024",
+     "field": "Table 4",
+     "flag": "read in source",
+     "main_session": "re-read",
+     "conditions": {
+      "machine": "Concept Laser M2",
+      "layer_um": 30,
+      "plate_C": 200,
+      "orientation": "vertical",
+      "surface": "machined and polished",
+      "loading": "axial, force control, ISO 1099",
+      "stress_ratio": 0.1,
+      "frequency_Hz": 30,
+      "run_out_cycles": 10000000,
+      "test_temperature": "not stated",
+      "conditions_main_session": "stress ratio, frequency, standard, polishing and run-out re-read; machine, layer, plate and orientation not re-read"
+     },
+     "stress_is": "stress range, MPa (the amplitude is half of it)",
+     "rows": [
+      {
+       "condition": "as built",
+       "stress_range_MPa": 200,
+       "cycles": 43700,
+       "run_out": false
+      },
+      {
+       "condition": "as built",
+       "stress_range_MPa": 180,
+       "cycles": 67316,
+       "run_out": false
+      },
+      {
+       "condition": "as built",
+       "stress_range_MPa": 160,
+       "cycles": 120482,
+       "run_out": false
+      },
+      {
+       "condition": "as built",
+       "stress_range_MPa": 140,
+       "cycles": 706175,
+       "run_out": false
+      },
+      {
+       "condition": "as built",
+       "stress_range_MPa": 130,
+       "cycles": 1532958,
+       "run_out": false
+      },
+      {
+       "condition": "as built",
+       "stress_range_MPa": 130,
+       "cycles": null,
+       "run_out": true
+      },
+      {
+       "condition": "265 °C for 1 h",
+       "stress_range_MPa": 210,
+       "cycles": 3874,
+       "run_out": false
+      },
+      {
+       "condition": "265 °C for 1 h",
+       "stress_range_MPa": 200,
+       "cycles": 10281,
+       "run_out": false
+      },
+      {
+       "condition": "265 °C for 1 h",
+       "stress_range_MPa": 180,
+       "cycles": 76004,
+       "run_out": false
+      },
+      {
+       "condition": "265 °C for 1 h",
+       "stress_range_MPa": 160,
+       "cycles": 193641,
+       "run_out": false
+      },
+      {
+       "condition": "265 °C for 1 h",
+       "stress_range_MPa": 140,
+       "cycles": 327412,
+       "run_out": false
+      },
+      {
+       "condition": "265 °C for 1 h",
+       "stress_range_MPa": 130,
+       "cycles": 1174921,
+       "run_out": false
+      },
+      {
+       "condition": "265 °C for 1 h",
+       "stress_range_MPa": 120,
+       "cycles": null,
+       "run_out": true
+      },
+      {
+       "condition": "300 °C for 2 h",
+       "stress_range_MPa": 180,
+       "cycles": 6637,
+       "run_out": false
+      },
+      {
+       "condition": "300 °C for 2 h",
+       "stress_range_MPa": 170,
+       "cycles": 26039,
+       "run_out": false
+      },
+      {
+       "condition": "300 °C for 2 h",
+       "stress_range_MPa": 160,
+       "cycles": 137131,
+       "run_out": false
+      },
+      {
+       "condition": "300 °C for 2 h",
+       "stress_range_MPa": 140,
+       "cycles": 396002,
+       "run_out": false
+      },
+      {
+       "condition": "300 °C for 2 h",
+       "stress_range_MPa": 120,
+       "cycles": 1589833,
+       "run_out": false
+      },
+      {
+       "condition": "300 °C for 2 h",
+       "stress_range_MPa": 110,
+       "cycles": 5336296,
+       "run_out": false
+      },
+      {
+       "condition": "300 °C for 2 h",
+       "stress_range_MPa": 100,
+       "cycles": null,
+       "run_out": true
+      }
+     ],
+     "authors_reading": "no clear improvement of the fatigue performance after the two heat treatments"
+    },
+    {
+     "id": "kramer-2025",
+     "source": "kramer-2025",
+     "field": "section 4 and Table 5",
+     "flag": "read in source",
+     "main_session": "re-read",
+     "conditions": {
+      "machine": "SLM 280 HL",
+      "orientation": "vertical",
+      "surface": "machined",
+      "loading": "rotating bending, DIN 50100",
+      "stress_ratio": -1,
+      "frequency_Hz": 50,
+      "run_out_cycles": 10000000,
+      "heat_treatment": "not found in the passages read",
+      "test_temperature": "not stated in the copy read"
+     },
+     "result": {
+      "fatigue_strength_amplitude_MPa": 60,
+      "at_cycles": 10000000,
+      "specimens": "standard, high density",
+      "fit": {
+       "form": "stress amplitude = a · cycles^b",
+       "a": 507.7,
+       "b": -0.14,
+       "r2": 0.87
+      }
+     }
+    },
+    {
+     "id": "eos-m290-sheet",
+     "source": null,
+     "held_in": "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json",
+     "flag": "read in source",
+     "main_session": "not re-read",
+     "result": {
+      "fatigue_strength_MPa": 110,
+      "at_cycles": 20000000,
+      "conditions": "fully reversed, turned, no heat treatment, temperature not stated"
+     },
+     "note": "already held in the catalogue; listed because it sits 50 MPa above the previous set for the same loading"
+    },
+    {
+     "id": "nabil-2022-table-3",
+     "source": "nabil-2022",
+     "field": "Table 3",
+     "flag": "read in source",
+     "main_session": "re-read",
+     "conditions": {
+      "machine": "EOS M290",
+      "treatment": "hot isostatic pressing at 515 °C, 100 MPa, 3 h; then aged in air at 177 °C; machined after ageing",
+      "loading": "axial, ASTM E466-15",
+      "stress_ratio": 0.1,
+      "frequency_Hz": 50,
+      "test_temperature": "room temperature",
+      "run_out_cycles": 5000000,
+      "stress_level_is": "not defined as a maximum or an amplitude"
+     },
+     "rows": [
+      {
+       "aged_h": 0,
+       "stress_level_MPa": 124,
+       "mean_life_million_cycles": {
+        "XY": 1.31,
+        "Z": 1.23
+       }
+      },
+      {
+       "aged_h": 10,
+       "stress_level_MPa": 124,
+       "mean_life_million_cycles": {
+        "XY": 0.81,
+        "Z": 0.87
+       }
+      },
+      {
+       "aged_h": 100,
+       "stress_level_MPa": 124,
+       "mean_life_million_cycles": {
+        "XY": 0.58,
+        "Z": 0.63
+       }
+      },
+      {
+       "aged_h": 1000,
+       "stress_level_MPa": 124,
+       "mean_life_million_cycles": {
+        "XY": 0.02,
+        "Z": 0.01
+       }
+      }
+     ],
+     "note": "one unaged Z specimen passed 5 million cycles and is left out of its mean by the authors; at the lower level (62 MPa) every specimen passed 5 million"
+    },
+    {
+     "id": "barrera-2025",
+     "source": "barrera-2025",
+     "field": "text and Tables 3 and 4",
+     "flag": "read in source",
+     "main_session": "conditions re-read in the text; the table values not re-read",
+     "conditions": {
+      "machine": "EOS M290",
+      "treatment": "stress relief at 285 °C for 120 min, or hot isostatic pressing and T6; then aged at 177 °C for 0, 10, 100 or 1000 h",
+      "surface": "machined",
+      "loading": "axial, ASTM E466",
+      "stress_ratio": 0.1,
+      "frequency_Hz": 50,
+      "test_temperature": "room temperature",
+      "run_out_cycles": 5000000,
+      "stress_level_is": "not defined as a maximum or an amplitude"
+     },
+     "result": {
+      "stress_relieved_at_124_MPa": "20 of 24 specimens ran out, at every ageing time",
+      "stress_relieved_at_193_MPa_mean_life_cycles": {
+       "0 h": {
+        "XY": 172905,
+        "Z": 166717
+       },
+       "1000 h": {
+        "XY": 152902,
+        "Z": 106322
+       }
+      },
+      "hip_t6_at_145_MPa": "every specimen ran out up to 100 h of ageing; at 1000 h the mean life is 182,952 (XY) and 61,364 (Z)"
+     }
+    },
+    {
+     "id": "di-egidio-2023",
+     "source": "di-egidio-2023",
+     "field": "abstract",
+     "flag": "abstract only",
+     "main_session": "re-read",
+     "conditions": {
+      "loading": "rotating bending, fully reversed",
+      "surface": "mechanically polished",
+      "treatments": "T5 (4 h at 160 °C); rapid T6 (10 min at 510 °C, then 6 h at 160 °C)",
+      "run_out_cycles": "not in the abstract"
+     },
+     "result": {
+      "fatigue_strength_MPa": {
+       "T5": {
+        "room": 92,
+        "200 °C": 78
+       },
+       "rapid T6": {
+        "room": 108,
+        "200 °C": 92
+       }
+      },
+      "exposure": "up to 17 h at 200 °C brings no macroscopic change of the microstructure"
+     }
+    },
+    {
+     "id": "bahl-2026",
+     "source": "bahl-2026",
+     "field": "abstract",
+     "flag": "abstract only",
+     "main_session": "re-read",
+     "conditions": {
+      "test_temperature_C": 350,
+      "frequency_Hz": 20,
+      "stress_ratio": "not in the abstract",
+      "treatment": "not in the abstract"
+     },
+     "result": {
+      "fatigue_strength_MPa": 30,
+      "at_cycles": 10000000
+     }
+    },
+    {
+     "id": "natesan-2020-cast-comparison",
+     "source": "natesan-2020",
+     "field": "Table 6",
+     "flag": "read in source",
+     "main_session": "re-read",
+     "conditions": {
+      "material": "cast A356 with 0.5% copper, T7, cut from the valve bridges of cylinder heads: not a printed alloy",
+      "loading": "strain controlled, ASTM E606, strain ratio −1"
+     },
+     "result": {
+      "form": "stress amplitude = sigma_f · (2 N)^b",
+      "rows": [
+       {
+        "temperature_C": 150,
+        "sigma_f_MPa": 421,
+        "b": -0.096
+       },
+       {
+        "temperature_C": 200,
+        "sigma_f_MPa": 346,
+        "b": -0.087
+       },
+       {
+        "temperature_C": 250,
+        "sigma_f_MPa": 231,
+        "b": -0.073
+       }
+      ]
+     }
+    }
+   ],
+   "not_found": [
+    "a stress-controlled S-N curve at 100 to 300 °C with its points, in a document that could be opened: the two values at 200 °C and the one at 350 °C are single strengths from abstracts",
+    "a test that combines a long soak with testing at temperature: the 177 °C ageing sets were tested at room temperature",
+    "as-built surfaces at temperature, thermo-mechanical fatigue, or the effect of mean stress at temperature",
+    "a review with a table of points that could be opened; a public database of 1,610 S-N sets exists (doi 10.1038/s41597-023-02150-x) and was not opened"
+   ],
+   "contradictions": [
+    "fully reversed strength of machined coupons: 110 MPa at 2e7 cycles on the machine maker's sheet, 60 MPa at 1e7 in the Kramer set",
+    "T6: reported to help in three papers and to reduce life in a fourth, as quoted by a review",
+    "stress relief: no gain in the Roveda set, where the run-out range falls from 130 to 120 to 100 MPa",
+    "surface: one group finds ground and as-built surfaces alike, another finds machining clearly better",
+    "exposure: 'no variation' after 17 h at 200 °C, against lives falling by a factor of 60 or more after 1000 h at 177 °C"
+   ],
+   "leads_not_opened": [
+    "four often-cited sets (2012 to 2017) sit behind paywalls or refusing repositories; their numbers are not written here",
+    "a dissertation with strain-life data up to 200 °C is under embargo until 2027"
+   ]
+  },
+  "port-flow": {
+   "question": "published flow-bench data of these heads, and the references needed to compare a computed port flow with a bench",
+   "values": [
+    {
+     "quantity": "inlet opening of the head at the manifold face, height x width",
+     "value": [
+      41.5,
+      32.6
+     ],
+     "unit": "mm, −2% / +4%",
+     "source": "fisa-b-298",
+     "field": "drawing I, page 9; chamfer 1.2 x 45°",
+     "flag": "read in source",
+     "main_session": "re-read",
+     "note": "the height includes the injector notch"
+    },
+    {
+     "quantity": "opening of the inlet manifold at the head, height x width",
+     "value": [
+      38.5,
+      33.0
+     ],
+     "unit": "mm, −2% / +4%",
+     "source": "fisa-b-298",
+     "field": "drawing II, page 9",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "quantity": "exhaust manifold outlet, inside",
+     "value": [
+      67,
+      39
+     ],
+     "unit": "mm",
+     "source": "fisa-b-298",
+     "field": "item 328 c, page 8",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "quantity": "smallest diameter of the inlet pipe, 930 Turbo 3.0",
+     "value": 1.259,
+     "unit": "in",
+     "source": "fia-3076",
+     "field": "item 192",
+     "flag": "read in source",
+     "main_session": "re-read"
+    }
+   ],
+   "method_references": [
+    {
+     "what": "definition of the flow coefficient: mass flow = nominal valve area · C · sqrt(2 · density · pressure drop), with the nominal area (π/4) D² of the valve",
+     "source": "naca-tn-1366",
+     "field": "page 4 and appendix A",
+     "flag": "read in source",
+     "main_session": "re-read",
+     "note": "D is the smallest contact diameter of valve and seat (not re-read); test at a pressure drop of 10 in. of alcohol"
+    },
+    {
+     "what": "cycle-mean flow coefficient 0.445 at a lift of a quarter of the valve diameter, for two valve sizes",
+     "source": "naca-tn-1366",
+     "field": "figure captions",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "what": "peak flow coefficient about 0.68 at lift / diameter 0.25 and about 0.60 at 0.198",
+     "source": "naca-tn-1366",
+     "field": "Fig. 23",
+     "flag": "read off a graph",
+     "main_session": "not re-read"
+    },
+    {
+     "what": "computed against measured, helical diesel port, 523,000 cells: the global discharge coefficient is about 6% under the measurement",
+     "source": "encit-2008",
+     "field": "Tables 1 and 3, conclusions",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "what": "computed against measured, four-valve petrol head, 99,500 cells at 5.0 kPa: largest discrepancy 8%",
+     "source": "scientia-2014",
+     "field": "sections 3 and 4",
+     "flag": "read in source",
+     "main_session": "re-read"
+    },
+    {
+     "what": "bench practice: test pressures of 10, 25 or 28 in. of water are all in use; one practitioner chose 28 in. after finding little change of the port balance below 26 in.",
+     "source": "yunick",
+     "field": "whole note",
+     "flag": "read in source",
+     "main_session": "not re-read"
+    }
+   ],
+   "derived_here": [
+    {
+     "quantity": "factor between flows at two test pressures, if flow goes as the square root of the pressure drop: 10 to 28, 25 to 28, 10 to 25 in. of water",
+     "value": [
+      1.673,
+      1.058,
+      1.581
+     ],
+     "unit": "ratio",
+     "note": "follows from the orifice equation above; a bench maker's note warns that it is not exact at high velocity"
+    }
+   ],
+   "not_found": [
+    "a flow sheet of a 930, 934 or 935 head, of a 3.0 to 3.3 litre 911 head or of this maker's head, in a page that could be opened",
+    "valve and port diameters of the 935",
+    "a flow coefficient against lift / diameter, or a validated steady computation, for a two-valve hemispherical air-cooled head: the nearest are a flat two-valve research head of 1947 and four-valve or diesel ports",
+    "the inlet radius and the bore adapter of a bench fixture, with dimensions"
+   ],
+   "contradictions": [
+    "the coefficients of different papers are not interchangeable: seat area, valve-head area, curtain area and bore area are all in use as the reference area",
+    "no single 'standard' test pressure: 10, 25 and 28 in. of water each appear as the usual one"
+   ],
+   "leads_not_opened": [
+    "forum threads that quote flow figures for 911 heads at 25 in. of water, on two hosts that refuse automated readers; search excerpts only, their numbers are not written here",
+    "a flow-bench maker's manual with the fixture rules (behind a robot wall)"
+   ]
+  }
+ }
+}
