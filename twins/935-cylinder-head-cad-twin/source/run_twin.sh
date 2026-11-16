@@ -138,11 +138,12 @@ MEM=10G cap "$PY" -I "$HERE/support_design.py" orientations "$PRIV/print-occ-$ST
 # Build screen in CalculiX (cadsim image, one thread): witnesses, then each level of
 # params/build-sim-case.json. A level's thermal run comes before its mechanical run; the 2 mm
 # level is thermal only. The level with "supports": "designed" takes the envelope of the layout
-# above ($SD). Solver time on this host: about 7 h of thermal runs (3.7 h for the 2 mm level)
-# and some 20 h of mechanics, one thread each; they can run side by side.
+# above ($SD). Solver time on this host: about 7.5 h of thermal runs (3.7 h for the 2 mm level)
+# and some 24 h of mechanics by the solver's own count (7.5 h for the level with 3 mm cells and
+# 3 mm lumps), one thread each; they can run side by side.
 BS="$PRIV/build-sim-$STAMP"; mkdir "$BS"
 "$PY" -I "$HERE/build_sim.py" witness "$BS/witness" "$PARAMS/build-sim-witness.json"
-for level in c4-l8 c4-l4 c4-l12 c3-l9 c3-l12 c2-l8 c4-l8-2-lasers c4-l8-4-lasers c4-l8-laid-supports; do
+for level in c4-l8 c4-l4 c4-l12 c3-l9 c3-l12 c3-l3 c2-l8 c4-l8-2-lasers c4-l8-4-lasers c4-l8-laid-supports; do
   MEM=8G cap "$PY" -I "$HERE/build_sim.py" prepare "$PRIV/print-occ-$STAMP" "$PARAMS/build-sim-case.json" "$level" "$BS/$level" "$SD"
   "$PY" -I "$HERE/build_sim.py" thermal "$BS/$level"
 done
@@ -153,6 +154,7 @@ done
 "$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l12"
 "$PY" -I "$HERE/build_sim.py" mechanics "$BS/c3-l9"
 "$PY" -I "$HERE/build_sim.py" mechanics "$BS/c3-l12"
+"$PY" -I "$HERE/build_sim.py" mechanics "$BS/c3-l3"
 "$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8-2-lasers"
 "$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8-4-lasers"
 "$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8-laid-supports"

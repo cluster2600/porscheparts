@@ -1,9 +1,9 @@
 {
  "schema": "935-cad-twin-build-sim/1",
- "date": "2026-11-15",
+ "date": "2026-11-16",
  "scope": "layer-by-layer build screen of the print body under declared hypotheses: time-averaged temperature during the build, then stress and distortion from strain-free birth and cooling, on voxel cells with homogenised supports (columns under a 45 degree rule, or the envelope of a layout by rule). No melt pool, scan path, support prepared in a build processor, creep or calibration against a printed coupon",
  "case_file": "params/build-sim-case.json",
- "case_sha256": "204f56534b74d881256453d6032cbda95be00e0982a60acc46fc08bf90fc05cc",
+ "case_sha256": "144e05898a97a916e7a474aa7d028032853451fc33924e1c76455408a4018de4",
  "witness_file": "params/build-sim-witness.json",
  "witnesses_passed": true,
  "tool": "CalculiX 2.21 in the cadsim image, one thread, SPOOLES; element activation with *MODEL CHANGE",
@@ -2980,6 +2980,1065 @@
       {
        "lump": 18,
        "largest_displacement_mm": 1.9961
+      }
+     ]
+    }
+   }
+  },
+  "c3-l3": {
+   "model": {
+    "level": "c3-l3",
+    "cell_mm": 3.0,
+    "cell_rows_per_lump": 1,
+    "lump_height_mm": 3.0,
+    "lumps": 75,
+    "build_height_mm": 225.0,
+    "solid_rule": "a cell is solid when at least half of its 0.25 mm voxels are inside; largest face-connected group kept",
+    "components_before_selection": 1,
+    "hexahedra": {
+     "part": 40978,
+     "support": 8744,
+     "plate": 13680
+    },
+    "nodes": 81438,
+    "part_volume_mm3": 1106406.0,
+    "occupancy_volume_mm3": 1109068.546875,
+    "part_exterior_area_mm2": 173016.0,
+    "support_envelope_mm3": 236088.0,
+    "support_cells_added_for_connection": 0,
+    "cells_needing_support": 707,
+    "plate_mm": [
+     135.0,
+     114.0,
+     24.0
+    ],
+    "occupancy_sha256": "5faadb782b822f1a974ab562b53a2f88bdbfce08fe2324fdc66c6ade55c006a7"
+   },
+   "thermal": {
+    "build_time_s": 156315.3,
+    "build_time_h": 43.42,
+    "exposure_h": 28.11,
+    "recoating_h": 15.31,
+    "absorbed_MJ": 14.166,
+    "largest_rise_over_plate_K": 62.67,
+    "at_lump": 58,
+    "at_build_coordinates_mm": [
+     9.0,
+     93.0,
+     177.0
+    ],
+    "largest_new_lump_mean_rise_K": 59.67,
+    "largest_energy_imbalance": 0.00408,
+    "lumps": [
+     {
+      "lump": 0,
+      "end_time_h": 0.28,
+      "mean_absorbed_power_W": 35.99,
+      "plate_sink_power_at_end_W": 35.99,
+      "new_lump_mean_rise_K": 1.98,
+      "part_max_rise_K": 2.31
+     },
+     {
+      "lump": 1,
+      "end_time_h": 0.56,
+      "mean_absorbed_power_W": 39.37,
+      "plate_sink_power_at_end_W": 39.37,
+      "new_lump_mean_rise_K": 5.96,
+      "part_max_rise_K": 6.94
+     },
+     {
+      "lump": 2,
+      "end_time_h": 0.85,
+      "mean_absorbed_power_W": 41.11,
+      "plate_sink_power_at_end_W": 41.11,
+      "new_lump_mean_rise_K": 8.66,
+      "part_max_rise_K": 10.28
+     },
+     {
+      "lump": 3,
+      "end_time_h": 1.14,
+      "mean_absorbed_power_W": 41.55,
+      "plate_sink_power_at_end_W": 41.55,
+      "new_lump_mean_rise_K": 10.3,
+      "part_max_rise_K": 11.45
+     },
+     {
+      "lump": 4,
+      "end_time_h": 1.46,
+      "mean_absorbed_power_W": 51.32,
+      "plate_sink_power_at_end_W": 51.32,
+      "new_lump_mean_rise_K": 17.28,
+      "part_max_rise_K": 19.12
+     },
+     {
+      "lump": 5,
+      "end_time_h": 1.8,
+      "mean_absorbed_power_W": 55.39,
+      "plate_sink_power_at_end_W": 55.39,
+      "new_lump_mean_rise_K": 21.83,
+      "part_max_rise_K": 25.99
+     },
+     {
+      "lump": 6,
+      "end_time_h": 2.14,
+      "mean_absorbed_power_W": 56.37,
+      "plate_sink_power_at_end_W": 56.37,
+      "new_lump_mean_rise_K": 23.58,
+      "part_max_rise_K": 28.12
+     },
+     {
+      "lump": 7,
+      "end_time_h": 2.48,
+      "mean_absorbed_power_W": 56.69,
+      "plate_sink_power_at_end_W": 56.69,
+      "new_lump_mean_rise_K": 24.71,
+      "part_max_rise_K": 27.81
+     },
+     {
+      "lump": 8,
+      "end_time_h": 2.83,
+      "mean_absorbed_power_W": 58.26,
+      "plate_sink_power_at_end_W": 58.26,
+      "new_lump_mean_rise_K": 27.2,
+      "part_max_rise_K": 30.79
+     },
+     {
+      "lump": 9,
+      "end_time_h": 3.18,
+      "mean_absorbed_power_W": 58.26,
+      "plate_sink_power_at_end_W": 58.26,
+      "new_lump_mean_rise_K": 28.08,
+      "part_max_rise_K": 31.33
+     },
+     {
+      "lump": 10,
+      "end_time_h": 3.54,
+      "mean_absorbed_power_W": 59.77,
+      "plate_sink_power_at_end_W": 59.77,
+      "new_lump_mean_rise_K": 31.05,
+      "part_max_rise_K": 34.53
+     },
+     {
+      "lump": 11,
+      "end_time_h": 4.04,
+      "mean_absorbed_power_W": 82.86,
+      "plate_sink_power_at_end_W": 82.86,
+      "new_lump_mean_rise_K": 30.8,
+      "part_max_rise_K": 33.88
+     },
+     {
+      "lump": 12,
+      "end_time_h": 4.58,
+      "mean_absorbed_power_W": 87.25,
+      "plate_sink_power_at_end_W": 87.25,
+      "new_lump_mean_rise_K": 32.9,
+      "part_max_rise_K": 37.43
+     },
+     {
+      "lump": 13,
+      "end_time_h": 5.28,
+      "mean_absorbed_power_W": 99.3,
+      "plate_sink_power_at_end_W": 99.3,
+      "new_lump_mean_rise_K": 31.82,
+      "part_max_rise_K": 35.5
+     },
+     {
+      "lump": 14,
+      "end_time_h": 6.04,
+      "mean_absorbed_power_W": 102.3,
+      "plate_sink_power_at_end_W": 102.3,
+      "new_lump_mean_rise_K": 33.3,
+      "part_max_rise_K": 36.76
+     },
+     {
+      "lump": 15,
+      "end_time_h": 6.81,
+      "mean_absorbed_power_W": 103.01,
+      "plate_sink_power_at_end_W": 103.01,
+      "new_lump_mean_rise_K": 33.8,
+      "part_max_rise_K": 36.55
+     },
+     {
+      "lump": 16,
+      "end_time_h": 7.61,
+      "mean_absorbed_power_W": 104.11,
+      "plate_sink_power_at_end_W": 104.11,
+      "new_lump_mean_rise_K": 34.49,
+      "part_max_rise_K": 37.18
+     },
+     {
+      "lump": 17,
+      "end_time_h": 8.42,
+      "mean_absorbed_power_W": 104.5,
+      "plate_sink_power_at_end_W": 104.49,
+      "new_lump_mean_rise_K": 34.91,
+      "part_max_rise_K": 37.41
+     },
+     {
+      "lump": 18,
+      "end_time_h": 9.22,
+      "mean_absorbed_power_W": 104.64,
+      "plate_sink_power_at_end_W": 104.64,
+      "new_lump_mean_rise_K": 35.26,
+      "part_max_rise_K": 37.21
+     },
+     {
+      "lump": 19,
+      "end_time_h": 10.01,
+      "mean_absorbed_power_W": 103.63,
+      "plate_sink_power_at_end_W": 103.63,
+      "new_lump_mean_rise_K": 35.3,
+      "part_max_rise_K": 37.04
+     },
+     {
+      "lump": 20,
+      "end_time_h": 10.71,
+      "mean_absorbed_power_W": 99.05,
+      "plate_sink_power_at_end_W": 99.05,
+      "new_lump_mean_rise_K": 34.55,
+      "part_max_rise_K": 36.5
+     },
+     {
+      "lump": 21,
+      "end_time_h": 11.37,
+      "mean_absorbed_power_W": 96.98,
+      "plate_sink_power_at_end_W": 96.98,
+      "new_lump_mean_rise_K": 34.42,
+      "part_max_rise_K": 36.21
+     },
+     {
+      "lump": 22,
+      "end_time_h": 12.03,
+      "mean_absorbed_power_W": 96.29,
+      "plate_sink_power_at_end_W": 96.28,
+      "new_lump_mean_rise_K": 34.59,
+      "part_max_rise_K": 36.07
+     },
+     {
+      "lump": 23,
+      "end_time_h": 12.67,
+      "mean_absorbed_power_W": 95.48,
+      "plate_sink_power_at_end_W": 95.48,
+      "new_lump_mean_rise_K": 34.71,
+      "part_max_rise_K": 36.48
+     },
+     {
+      "lump": 24,
+      "end_time_h": 13.28,
+      "mean_absorbed_power_W": 93.2,
+      "plate_sink_power_at_end_W": 93.2,
+      "new_lump_mean_rise_K": 34.37,
+      "part_max_rise_K": 35.75
+     },
+     {
+      "lump": 25,
+      "end_time_h": 13.88,
+      "mean_absorbed_power_W": 92.78,
+      "plate_sink_power_at_end_W": 92.77,
+      "new_lump_mean_rise_K": 34.74,
+      "part_max_rise_K": 35.72
+     },
+     {
+      "lump": 26,
+      "end_time_h": 14.5,
+      "mean_absorbed_power_W": 93.21,
+      "plate_sink_power_at_end_W": 93.2,
+      "new_lump_mean_rise_K": 35.45,
+      "part_max_rise_K": 36.71
+     },
+     {
+      "lump": 27,
+      "end_time_h": 15.11,
+      "mean_absorbed_power_W": 93.21,
+      "plate_sink_power_at_end_W": 93.2,
+      "new_lump_mean_rise_K": 36.01,
+      "part_max_rise_K": 37.1
+     },
+     {
+      "lump": 28,
+      "end_time_h": 15.75,
+      "mean_absorbed_power_W": 95.6,
+      "plate_sink_power_at_end_W": 95.57,
+      "new_lump_mean_rise_K": 37.66,
+      "part_max_rise_K": 50.34
+     },
+     {
+      "lump": 29,
+      "end_time_h": 16.42,
+      "mean_absorbed_power_W": 97.61,
+      "plate_sink_power_at_end_W": 97.58,
+      "new_lump_mean_rise_K": 39.39,
+      "part_max_rise_K": 46.1
+     },
+     {
+      "lump": 30,
+      "end_time_h": 17.09,
+      "mean_absorbed_power_W": 97.16,
+      "plate_sink_power_at_end_W": 97.14,
+      "new_lump_mean_rise_K": 39.61,
+      "part_max_rise_K": 44.5
+     },
+     {
+      "lump": 31,
+      "end_time_h": 17.75,
+      "mean_absorbed_power_W": 96.86,
+      "plate_sink_power_at_end_W": 96.84,
+      "new_lump_mean_rise_K": 39.96,
+      "part_max_rise_K": 44.46
+     },
+     {
+      "lump": 32,
+      "end_time_h": 18.42,
+      "mean_absorbed_power_W": 96.95,
+      "plate_sink_power_at_end_W": 96.93,
+      "new_lump_mean_rise_K": 40.42,
+      "part_max_rise_K": 43.99
+     },
+     {
+      "lump": 33,
+      "end_time_h": 19.08,
+      "mean_absorbed_power_W": 96.87,
+      "plate_sink_power_at_end_W": 96.84,
+      "new_lump_mean_rise_K": 40.77,
+      "part_max_rise_K": 43.63
+     },
+     {
+      "lump": 34,
+      "end_time_h": 19.74,
+      "mean_absorbed_power_W": 96.67,
+      "plate_sink_power_at_end_W": 96.64,
+      "new_lump_mean_rise_K": 41.08,
+      "part_max_rise_K": 43.36
+     },
+     {
+      "lump": 35,
+      "end_time_h": 20.38,
+      "mean_absorbed_power_W": 95.64,
+      "plate_sink_power_at_end_W": 95.63,
+      "new_lump_mean_rise_K": 41.04,
+      "part_max_rise_K": 42.82
+     },
+     {
+      "lump": 36,
+      "end_time_h": 21.01,
+      "mean_absorbed_power_W": 94.45,
+      "plate_sink_power_at_end_W": 94.44,
+      "new_lump_mean_rise_K": 40.96,
+      "part_max_rise_K": 42.26
+     },
+     {
+      "lump": 37,
+      "end_time_h": 21.62,
+      "mean_absorbed_power_W": 93.12,
+      "plate_sink_power_at_end_W": 93.1,
+      "new_lump_mean_rise_K": 40.89,
+      "part_max_rise_K": 42.94
+     },
+     {
+      "lump": 38,
+      "end_time_h": 22.23,
+      "mean_absorbed_power_W": 92.94,
+      "plate_sink_power_at_end_W": 92.9,
+      "new_lump_mean_rise_K": 41.44,
+      "part_max_rise_K": 46.06
+     },
+     {
+      "lump": 39,
+      "end_time_h": 22.84,
+      "mean_absorbed_power_W": 93.36,
+      "plate_sink_power_at_end_W": 93.29,
+      "new_lump_mean_rise_K": 42.61,
+      "part_max_rise_K": 54.72
+     },
+     {
+      "lump": 40,
+      "end_time_h": 23.46,
+      "mean_absorbed_power_W": 93.53,
+      "plate_sink_power_at_end_W": 93.46,
+      "new_lump_mean_rise_K": 43.44,
+      "part_max_rise_K": 54.76
+     },
+     {
+      "lump": 41,
+      "end_time_h": 24.08,
+      "mean_absorbed_power_W": 93.88,
+      "plate_sink_power_at_end_W": 93.81,
+      "new_lump_mean_rise_K": 44.5,
+      "part_max_rise_K": 55.29
+     },
+     {
+      "lump": 42,
+      "end_time_h": 24.71,
+      "mean_absorbed_power_W": 94.72,
+      "plate_sink_power_at_end_W": 94.62,
+      "new_lump_mean_rise_K": 45.67,
+      "part_max_rise_K": 56.05
+     },
+     {
+      "lump": 43,
+      "end_time_h": 25.35,
+      "mean_absorbed_power_W": 95.13,
+      "plate_sink_power_at_end_W": 95.04,
+      "new_lump_mean_rise_K": 46.18,
+      "part_max_rise_K": 53.69
+     },
+     {
+      "lump": 44,
+      "end_time_h": 25.99,
+      "mean_absorbed_power_W": 95.45,
+      "plate_sink_power_at_end_W": 95.36,
+      "new_lump_mean_rise_K": 46.64,
+      "part_max_rise_K": 51.94
+     },
+     {
+      "lump": 45,
+      "end_time_h": 26.63,
+      "mean_absorbed_power_W": 95.72,
+      "plate_sink_power_at_end_W": 95.62,
+      "new_lump_mean_rise_K": 47.07,
+      "part_max_rise_K": 51.13
+     },
+     {
+      "lump": 46,
+      "end_time_h": 27.28,
+      "mean_absorbed_power_W": 96.17,
+      "plate_sink_power_at_end_W": 96.07,
+      "new_lump_mean_rise_K": 47.63,
+      "part_max_rise_K": 50.79
+     },
+     {
+      "lump": 47,
+      "end_time_h": 27.94,
+      "mean_absorbed_power_W": 96.2,
+      "plate_sink_power_at_end_W": 96.11,
+      "new_lump_mean_rise_K": 48.05,
+      "part_max_rise_K": 50.54
+     },
+     {
+      "lump": 48,
+      "end_time_h": 28.59,
+      "mean_absorbed_power_W": 95.99,
+      "plate_sink_power_at_end_W": 95.91,
+      "new_lump_mean_rise_K": 48.3,
+      "part_max_rise_K": 49.78
+     },
+     {
+      "lump": 49,
+      "end_time_h": 29.19,
+      "mean_absorbed_power_W": 92.48,
+      "plate_sink_power_at_end_W": 92.63,
+      "new_lump_mean_rise_K": 47.12,
+      "part_max_rise_K": 48.5
+     },
+     {
+      "lump": 50,
+      "end_time_h": 29.78,
+      "mean_absorbed_power_W": 92.01,
+      "plate_sink_power_at_end_W": 91.95,
+      "new_lump_mean_rise_K": 47.42,
+      "part_max_rise_K": 49.44
+     },
+     {
+      "lump": 51,
+      "end_time_h": 30.35,
+      "mean_absorbed_power_W": 89.92,
+      "plate_sink_power_at_end_W": 89.99,
+      "new_lump_mean_rise_K": 46.99,
+      "part_max_rise_K": 49.35
+     },
+     {
+      "lump": 52,
+      "end_time_h": 30.92,
+      "mean_absorbed_power_W": 89.36,
+      "plate_sink_power_at_end_W": 89.3,
+      "new_lump_mean_rise_K": 47.36,
+      "part_max_rise_K": 51.67
+     },
+     {
+      "lump": 53,
+      "end_time_h": 31.5,
+      "mean_absorbed_power_W": 90.41,
+      "plate_sink_power_at_end_W": 90.18,
+      "new_lump_mean_rise_K": 48.8,
+      "part_max_rise_K": 56.02
+     },
+     {
+      "lump": 54,
+      "end_time_h": 32.11,
+      "mean_absorbed_power_W": 93.11,
+      "plate_sink_power_at_end_W": 92.71,
+      "new_lump_mean_rise_K": 51.17,
+      "part_max_rise_K": 58.21
+     },
+     {
+      "lump": 55,
+      "end_time_h": 32.74,
+      "mean_absorbed_power_W": 95.09,
+      "plate_sink_power_at_end_W": 94.76,
+      "new_lump_mean_rise_K": 52.82,
+      "part_max_rise_K": 58.36
+     },
+     {
+      "lump": 56,
+      "end_time_h": 33.4,
+      "mean_absorbed_power_W": 96.79,
+      "plate_sink_power_at_end_W": 96.48,
+      "new_lump_mean_rise_K": 54.2,
+      "part_max_rise_K": 58.78
+     },
+     {
+      "lump": 57,
+      "end_time_h": 34.11,
+      "mean_absorbed_power_W": 99.35,
+      "plate_sink_power_at_end_W": 98.99,
+      "new_lump_mean_rise_K": 56.11,
+      "part_max_rise_K": 59.81
+     },
+     {
+      "lump": 58,
+      "end_time_h": 34.88,
+      "mean_absorbed_power_W": 102.88,
+      "plate_sink_power_at_end_W": 102.47,
+      "new_lump_mean_rise_K": 58.59,
+      "part_max_rise_K": 62.67
+     },
+     {
+      "lump": 59,
+      "end_time_h": 35.64,
+      "mean_absorbed_power_W": 102.72,
+      "plate_sink_power_at_end_W": 102.56,
+      "new_lump_mean_rise_K": 58.92,
+      "part_max_rise_K": 61.56
+     },
+     {
+      "lump": 60,
+      "end_time_h": 36.42,
+      "mean_absorbed_power_W": 102.98,
+      "plate_sink_power_at_end_W": 102.79,
+      "new_lump_mean_rise_K": 59.32,
+      "part_max_rise_K": 62.11
+     },
+     {
+      "lump": 61,
+      "end_time_h": 37.18,
+      "mean_absorbed_power_W": 102.4,
+      "plate_sink_power_at_end_W": 102.28,
+      "new_lump_mean_rise_K": 59.31,
+      "part_max_rise_K": 60.53
+     },
+     {
+      "lump": 62,
+      "end_time_h": 37.92,
+      "mean_absorbed_power_W": 101.8,
+      "plate_sink_power_at_end_W": 101.69,
+      "new_lump_mean_rise_K": 59.3,
+      "part_max_rise_K": 60.24
+     },
+     {
+      "lump": 63,
+      "end_time_h": 38.67,
+      "mean_absorbed_power_W": 101.84,
+      "plate_sink_power_at_end_W": 101.65,
+      "new_lump_mean_rise_K": 59.67,
+      "part_max_rise_K": 60.64
+     },
+     {
+      "lump": 64,
+      "end_time_h": 39.38,
+      "mean_absorbed_power_W": 99.6,
+      "plate_sink_power_at_end_W": 99.66,
+      "new_lump_mean_rise_K": 58.97,
+      "part_max_rise_K": 60.27
+     },
+     {
+      "lump": 65,
+      "end_time_h": 39.99,
+      "mean_absorbed_power_W": 92.94,
+      "plate_sink_power_at_end_W": 93.88,
+      "new_lump_mean_rise_K": 56.22,
+      "part_max_rise_K": 57.97
+     },
+     {
+      "lump": 66,
+      "end_time_h": 40.41,
+      "mean_absorbed_power_W": 72.99,
+      "plate_sink_power_at_end_W": 78.83,
+      "new_lump_mean_rise_K": 48.31,
+      "part_max_rise_K": 50.32
+     },
+     {
+      "lump": 67,
+      "end_time_h": 40.81,
+      "mean_absorbed_power_W": 68.34,
+      "plate_sink_power_at_end_W": 71.31,
+      "new_lump_mean_rise_K": 44.97,
+      "part_max_rise_K": 47.05
+     },
+     {
+      "lump": 68,
+      "end_time_h": 41.21,
+      "mean_absorbed_power_W": 68.46,
+      "plate_sink_power_at_end_W": 69.12,
+      "new_lump_mean_rise_K": 44.76,
+      "part_max_rise_K": 46.75
+     },
+     {
+      "lump": 69,
+      "end_time_h": 41.61,
+      "mean_absorbed_power_W": 67.99,
+      "plate_sink_power_at_end_W": 68.19,
+      "new_lump_mean_rise_K": 44.94,
+      "part_max_rise_K": 46.4
+     },
+     {
+      "lump": 70,
+      "end_time_h": 42.0,
+      "mean_absorbed_power_W": 66.9,
+      "plate_sink_power_at_end_W": 67.19,
+      "new_lump_mean_rise_K": 44.97,
+      "part_max_rise_K": 46.08
+     },
+     {
+      "lump": 71,
+      "end_time_h": 42.39,
+      "mean_absorbed_power_W": 66.15,
+      "plate_sink_power_at_end_W": 66.36,
+      "new_lump_mean_rise_K": 45.19,
+      "part_max_rise_K": 46.17
+     },
+     {
+      "lump": 72,
+      "end_time_h": 42.77,
+      "mean_absorbed_power_W": 66.15,
+      "plate_sink_power_at_end_W": 66.08,
+      "new_lump_mean_rise_K": 45.81,
+      "part_max_rise_K": 46.67
+     },
+     {
+      "lump": 73,
+      "end_time_h": 43.16,
+      "mean_absorbed_power_W": 66.4,
+      "plate_sink_power_at_end_W": 66.15,
+      "new_lump_mean_rise_K": 46.66,
+      "part_max_rise_K": 47.4
+     },
+     {
+      "lump": 74,
+      "end_time_h": 43.42,
+      "mean_absorbed_power_W": 29.26,
+      "plate_sink_power_at_end_W": 48.3,
+      "new_lump_mean_rise_K": 31.29,
+      "part_max_rise_K": 32.99
+     }
+    ],
+    "solver": {
+     "returncode": 0,
+     "wall_seconds": 4373.1,
+     "memory_cap": "10g",
+     "threads": 1,
+     "image": "3dprinting993-cadsim:dev",
+     "ccx_version_line": "CalculiX Version 2.21, Copyright(C) 1998-2023 Guido Dhondt",
+     "errors_in_log": 0,
+     "job_finished": true
+    }
+   },
+   "mechanics": {
+    "mechanics": {
+     "stress_free_temperature_K": 836.15,
+     "yield_MPa_by_temperature_C": [
+      [
+       25,
+       322
+      ],
+      [
+       100,
+       298
+      ],
+      [
+       200,
+       236
+      ],
+      [
+       300,
+       143
+      ],
+      [
+       400,
+       25
+      ],
+      [
+       600,
+       25
+      ]
+     ],
+     "solver": {
+      "returncode": 0,
+      "wall_seconds": 245941.2,
+      "memory_cap": "10g",
+      "threads": 1,
+      "image": "3dprinting993-cadsim:dev",
+      "ccx_version_line": "CalculiX Version 2.21, Copyright(C) 1998-2023 Guido Dhondt",
+      "errors_in_log": 0,
+      "job_finished": true
+     },
+     "states": {
+      "end_of_build_hot": {
+       "largest_displacement_mm": 2.3483,
+       "von_mises_MPa": {
+        "cell_mean_median": 202.2,
+        "cell_mean_p95": 285.5,
+        "integration_point_max": 324.7
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.0004,
+       "equivalent_plastic_strain": {
+        "median": 0.0004,
+        "p95": 0.00741,
+        "max": 0.04455
+       }
+      },
+      "room_temperature_on_plate": {
+       "largest_displacement_mm": 2.2781,
+       "von_mises_MPa": {
+        "cell_mean_median": 220.4,
+        "cell_mean_p95": 311.0,
+        "integration_point_max": 351.9
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.1255,
+       "equivalent_plastic_strain": {
+        "median": 0.0004,
+        "p95": 0.00741,
+        "max": 0.04455
+       }
+      },
+      "released": {
+       "largest_displacement_mm": 3.0538,
+       "von_mises_MPa": {
+        "cell_mean_median": 211.3,
+        "cell_mean_p95": 312.2,
+        "integration_point_max": 348.7
+       },
+       "share_of_part_cells_within_5_percent_of_room_yield": 0.0753,
+       "equivalent_plastic_strain": {
+        "median": 0.00041,
+        "p95": 0.00751,
+        "max": 0.04455
+       }
+      }
+     },
+     "release": {
+      "change_of_shape_at_release_largest_mm": 0.8923,
+      "best_fit_uniform_shrinkage": -0.004866,
+      "distortion_after_release_rigid_motion_and_uniform_shrinkage_removed_mm": {
+       "largest": 2.1387,
+       "p95": 0.7578,
+       "median": 0.2265,
+       "largest_at_build_coordinates_mm": [
+        126.0,
+        12.0,
+        45.0
+       ]
+      }
+     },
+     "largest_displacement_during_the_build_by_lump": [
+      {
+       "lump": 0,
+       "largest_displacement_mm": 0.0459
+      },
+      {
+       "lump": 1,
+       "largest_displacement_mm": 0.0854
+      },
+      {
+       "lump": 2,
+       "largest_displacement_mm": 0.1338
+      },
+      {
+       "lump": 3,
+       "largest_displacement_mm": 0.1579
+      },
+      {
+       "lump": 4,
+       "largest_displacement_mm": 0.179
+      },
+      {
+       "lump": 5,
+       "largest_displacement_mm": 0.2669
+      },
+      {
+       "lump": 6,
+       "largest_displacement_mm": 0.3629
+      },
+      {
+       "lump": 7,
+       "largest_displacement_mm": 0.4712
+      },
+      {
+       "lump": 8,
+       "largest_displacement_mm": 0.602
+      },
+      {
+       "lump": 9,
+       "largest_displacement_mm": 0.7362
+      },
+      {
+       "lump": 10,
+       "largest_displacement_mm": 0.8431
+      },
+      {
+       "lump": 11,
+       "largest_displacement_mm": 0.9507
+      },
+      {
+       "lump": 12,
+       "largest_displacement_mm": 1.0389
+      },
+      {
+       "lump": 13,
+       "largest_displacement_mm": 1.0932
+      },
+      {
+       "lump": 14,
+       "largest_displacement_mm": 1.1394
+      },
+      {
+       "lump": 15,
+       "largest_displacement_mm": 1.2044
+      },
+      {
+       "lump": 16,
+       "largest_displacement_mm": 1.2757
+      },
+      {
+       "lump": 17,
+       "largest_displacement_mm": 1.3431
+      },
+      {
+       "lump": 18,
+       "largest_displacement_mm": 1.537
+      },
+      {
+       "lump": 19,
+       "largest_displacement_mm": 1.7239
+      },
+      {
+       "lump": 20,
+       "largest_displacement_mm": 1.8553
+      },
+      {
+       "lump": 21,
+       "largest_displacement_mm": 1.9557
+      },
+      {
+       "lump": 22,
+       "largest_displacement_mm": 2.0334
+      },
+      {
+       "lump": 23,
+       "largest_displacement_mm": 2.0899
+      },
+      {
+       "lump": 24,
+       "largest_displacement_mm": 2.1237
+      },
+      {
+       "lump": 25,
+       "largest_displacement_mm": 2.1502
+      },
+      {
+       "lump": 26,
+       "largest_displacement_mm": 2.1768
+      },
+      {
+       "lump": 27,
+       "largest_displacement_mm": 2.1986
+      },
+      {
+       "lump": 28,
+       "largest_displacement_mm": 2.2231
+      },
+      {
+       "lump": 29,
+       "largest_displacement_mm": 2.2422
+      },
+      {
+       "lump": 30,
+       "largest_displacement_mm": 2.2557
+      },
+      {
+       "lump": 31,
+       "largest_displacement_mm": 2.2663
+      },
+      {
+       "lump": 32,
+       "largest_displacement_mm": 2.2781
+      },
+      {
+       "lump": 33,
+       "largest_displacement_mm": 2.293
+      },
+      {
+       "lump": 34,
+       "largest_displacement_mm": 2.3118
+      },
+      {
+       "lump": 35,
+       "largest_displacement_mm": 2.3294
+      },
+      {
+       "lump": 36,
+       "largest_displacement_mm": 2.3443
+      },
+      {
+       "lump": 37,
+       "largest_displacement_mm": 2.3563
+      },
+      {
+       "lump": 38,
+       "largest_displacement_mm": 2.3663
+      },
+      {
+       "lump": 39,
+       "largest_displacement_mm": 2.3734
+      },
+      {
+       "lump": 40,
+       "largest_displacement_mm": 2.3777
+      },
+      {
+       "lump": 41,
+       "largest_displacement_mm": 2.3795
+      },
+      {
+       "lump": 42,
+       "largest_displacement_mm": 2.3794
+      },
+      {
+       "lump": 43,
+       "largest_displacement_mm": 2.3785
+      },
+      {
+       "lump": 44,
+       "largest_displacement_mm": 2.3764
+      },
+      {
+       "lump": 45,
+       "largest_displacement_mm": 2.3736
+      },
+      {
+       "lump": 46,
+       "largest_displacement_mm": 2.3706
+      },
+      {
+       "lump": 47,
+       "largest_displacement_mm": 2.3678
+      },
+      {
+       "lump": 48,
+       "largest_displacement_mm": 2.3653
+      },
+      {
+       "lump": 49,
+       "largest_displacement_mm": 2.3635
+      },
+      {
+       "lump": 50,
+       "largest_displacement_mm": 2.3621
+      },
+      {
+       "lump": 51,
+       "largest_displacement_mm": 2.3611
+      },
+      {
+       "lump": 52,
+       "largest_displacement_mm": 2.3601
+      },
+      {
+       "lump": 53,
+       "largest_displacement_mm": 2.3592
+      },
+      {
+       "lump": 54,
+       "largest_displacement_mm": 2.3584
+      },
+      {
+       "lump": 55,
+       "largest_displacement_mm": 2.3573
+      },
+      {
+       "lump": 56,
+       "largest_displacement_mm": 2.3562
+      },
+      {
+       "lump": 57,
+       "largest_displacement_mm": 2.3549
+      },
+      {
+       "lump": 58,
+       "largest_displacement_mm": 2.3539
+      },
+      {
+       "lump": 59,
+       "largest_displacement_mm": 2.3531
+      },
+      {
+       "lump": 60,
+       "largest_displacement_mm": 2.3525
+      },
+      {
+       "lump": 61,
+       "largest_displacement_mm": 2.3519
+      },
+      {
+       "lump": 62,
+       "largest_displacement_mm": 2.3514
+      },
+      {
+       "lump": 63,
+       "largest_displacement_mm": 2.3508
+      },
+      {
+       "lump": 64,
+       "largest_displacement_mm": 2.3501
+      },
+      {
+       "lump": 65,
+       "largest_displacement_mm": 2.3495
+      },
+      {
+       "lump": 66,
+       "largest_displacement_mm": 2.349
+      },
+      {
+       "lump": 67,
+       "largest_displacement_mm": 2.3487
+      },
+      {
+       "lump": 68,
+       "largest_displacement_mm": 2.3485
+      },
+      {
+       "lump": 69,
+       "largest_displacement_mm": 2.3485
+      },
+      {
+       "lump": 70,
+       "largest_displacement_mm": 2.3484
+      },
+      {
+       "lump": 71,
+       "largest_displacement_mm": 2.3484
+      },
+      {
+       "lump": 72,
+       "largest_displacement_mm": 2.3485
+      },
+      {
+       "lump": 73,
+       "largest_displacement_mm": 2.3485
+      },
+      {
+       "lump": 74,
+       "largest_displacement_mm": 2.3483
       }
      ]
     }
