@@ -1,0 +1,1127 @@
+{
+ "schema": "935-cad-twin-build-sim-dolfinx-record/1",
+ "date": "2026-11-16",
+ "scope": "The mechanics of the build screen solved a second time, by a second program: the cells, the lumps, the temperatures at the end of each lump and the declared material are those of build_sim.py (params/build-sim-case.json, params/build-sim.json). Nothing here is a new hypothesis; only the solver changes, and with it the size of model this host can run.",
+ "tool": {
+  "name": "DOLFINx 0.11.0.post0",
+  "image": "dolfinx/dolfinx@sha256:58b27e84a2f26b98ce2d9ccc537b0ee6a59e2fcfdf386626d5ed9ddf43425ece",
+  "linear_algebra": "PETSc with MUMPS, as shipped in the image",
+  "licence": "LGPL-3.0-or-later (DOLFINx); used unmodified in its container, nothing of it is redistributed here"
+ },
+ "model": {
+  "element": "8-node hexahedron, 2 x 2 x 2 integration points",
+  "plasticity": "von Mises, linear isotropic hardening, radial return",
+  "temperature_of_a_cell": "the mean of its nodal temperatures, as CalculiX uses for its linear elements",
+  "birth": "a cell is added strain free at the displacements and temperature of that moment",
+  "increments_per_step": 2,
+  "newton_stops_at": "1e-8 of the largest out-of-balance force seen"
+ },
+ "linear_solvers": {
+  "mumps": "LU factorisation at every Newton iteration",
+  "blr": "Cholesky factorisation with block low-rank compression (tolerance 1e-6) at the start of every increment, kept as the preconditioner of conjugate gradients (relative tolerance 1e-10) and made again when one solve takes more than 25 iterations",
+  "gamg": "conjugate gradients on smoothed-aggregation multigrid with the six rigid motions as near-null space"
+ },
+ "witness": {
+  "schema": "935-cad-twin-build-sim-dolfinx-witness/2",
+  "date": "2026-11-16",
+  "tool": "DOLFINx 0.11.0.post0, 4 process(es)",
+  "acceptance": "the closed-form values and tolerances of params/build-sim-witness.json, set for CalculiX before this tool was tried",
+  "bar": "The bar of build_sim.py's witness: held at both ends, the upper half born strain free, then cooled.",
+  "expected_sxx_MPa_by_cell_row_after_cooling": [
+   322.0,
+   322.0,
+   483.0,
+   805.0
+  ],
+  "expected_von_mises_MPa_after_cooling_when_perfectly_plastic": 200.0,
+  "by_linear_solver": {
+   "mumps": {
+    "bar_elastic": {
+     "steps": [
+      {
+       "state": "lower half at 400 K",
+       "sxx_MPa_by_cell_row": [
+        [
+         161.0,
+         161.0
+        ],
+        [
+         161.0,
+         161.0
+        ],
+        null,
+        null
+       ],
+       "von_mises_MPa": [
+        161.0,
+        161.0
+       ]
+      },
+      {
+       "state": "upper half born",
+       "sxx_MPa_by_cell_row": [
+        [
+         161.0,
+         161.0
+        ],
+        [
+         161.0,
+         161.0
+        ],
+        [
+         0.0,
+         0.0
+        ],
+        [
+         0.0,
+         0.0
+        ]
+       ],
+       "von_mises_MPa": [
+        0.0,
+        161.0
+       ]
+      },
+      {
+       "state": "cooled to 300 K",
+       "sxx_MPa_by_cell_row": [
+        [
+         322.0,
+         322.0
+        ],
+        [
+         322.0,
+         322.0
+        ],
+        [
+         483.0,
+         483.0
+        ],
+        [
+         805.0,
+         805.0
+        ]
+       ],
+       "von_mises_MPa": [
+        310.08,
+        818.566
+       ]
+      }
+     ],
+     "counts": {
+      "newton_iterations": 5,
+      "linear_iterations": 5,
+      "increments": 6,
+      "line_searches": 0,
+      "factorisations": 5
+     },
+     "passed": true
+    },
+    "bar_perfectly_plastic": {
+     "steps": [
+      {
+       "state": "lower half at 400 K",
+       "sxx_MPa_by_cell_row": [
+        [
+         161.0,
+         161.0
+        ],
+        [
+         161.0,
+         161.0
+        ],
+        null,
+        null
+       ],
+       "von_mises_MPa": [
+        161.0,
+        161.0
+       ]
+      },
+      {
+       "state": "upper half born",
+       "sxx_MPa_by_cell_row": [
+        [
+         161.0,
+         161.0
+        ],
+        [
+         161.0,
+         161.0
+        ],
+        [
+         0.0,
+         0.0
+        ],
+        [
+         0.0,
+         0.0
+        ]
+       ],
+       "von_mises_MPa": [
+        0.0,
+        161.0
+       ]
+      },
+      {
+       "state": "cooled to 300 K",
+       "sxx_MPa_by_cell_row": [
+        [
+         198.29,
+         208.84
+        ],
+        [
+         142.62,
+         200.42
+        ],
+        [
+         150.35,
+         240.71
+        ],
+        [
+         177.35,
+         244.38
+        ]
+       ],
+       "von_mises_MPa": [
+        200.0,
+        200.0
+       ]
+      }
+     ],
+     "counts": {
+      "newton_iterations": 16,
+      "linear_iterations": 16,
+      "increments": 6,
+      "line_searches": 0,
+      "factorisations": 16
+     },
+     "passed": true
+    },
+    "passed": true
+   },
+   "blr": {
+    "bar_elastic": {
+     "steps": [
+      {
+       "state": "lower half at 400 K",
+       "sxx_MPa_by_cell_row": [
+        [
+         161.0,
+         161.0
+        ],
+        [
+         161.0,
+         161.0
+        ],
+        null,
+        null
+       ],
+       "von_mises_MPa": [
+        161.0,
+        161.0
+       ]
+      },
+      {
+       "state": "upper half born",
+       "sxx_MPa_by_cell_row": [
+        [
+         161.0,
+         161.0
+        ],
+        [
+         161.0,
+         161.0
+        ],
+        [
+         0.0,
+         0.0
+        ],
+        [
+         0.0,
+         0.0
+        ]
+       ],
+       "von_mises_MPa": [
+        0.0,
+        161.0
+       ]
+      },
+      {
+       "state": "cooled to 300 K",
+       "sxx_MPa_by_cell_row": [
+        [
+         322.0,
+         322.0
+        ],
+        [
+         322.0,
+         322.0
+        ],
+        [
+         483.0,
+         483.0
+        ],
+        [
+         805.0,
+         805.0
+        ]
+       ],
+       "von_mises_MPa": [
+        310.08,
+        818.566
+       ]
+      }
+     ],
+     "counts": {
+      "newton_iterations": 5,
+      "linear_iterations": 5,
+      "increments": 6,
+      "line_searches": 0,
+      "factorisations": 5
+     },
+     "passed": true
+    },
+    "bar_perfectly_plastic": {
+     "steps": [
+      {
+       "state": "lower half at 400 K",
+       "sxx_MPa_by_cell_row": [
+        [
+         161.0,
+         161.0
+        ],
+        [
+         161.0,
+         161.0
+        ],
+        null,
+        null
+       ],
+       "von_mises_MPa": [
+        161.0,
+        161.0
+       ]
+      },
+      {
+       "state": "upper half born",
+       "sxx_MPa_by_cell_row": [
+        [
+         161.0,
+         161.0
+        ],
+        [
+         161.0,
+         161.0
+        ],
+        [
+         0.0,
+         0.0
+        ],
+        [
+         0.0,
+         0.0
+        ]
+       ],
+       "von_mises_MPa": [
+        0.0,
+        161.0
+       ]
+      },
+      {
+       "state": "cooled to 300 K",
+       "sxx_MPa_by_cell_row": [
+        [
+         198.29,
+         208.84
+        ],
+        [
+         142.62,
+         200.42
+        ],
+        [
+         150.35,
+         240.71
+        ],
+        [
+         177.35,
+         244.38
+        ]
+       ],
+       "von_mises_MPa": [
+        200.0,
+        200.0
+       ]
+      }
+     ],
+     "counts": {
+      "newton_iterations": 16,
+      "linear_iterations": 165,
+      "increments": 6,
+      "line_searches": 0,
+      "factorisations": 8
+     },
+     "passed": true
+    },
+    "passed": true
+   },
+   "gamg": {
+    "bar_elastic": {
+     "steps": [
+      {
+       "state": "lower half at 400 K",
+       "sxx_MPa_by_cell_row": [
+        [
+         161.0,
+         161.0
+        ],
+        [
+         161.0,
+         161.0
+        ],
+        null,
+        null
+       ],
+       "von_mises_MPa": [
+        161.0,
+        161.0
+       ]
+      },
+      {
+       "state": "upper half born",
+       "sxx_MPa_by_cell_row": [
+        [
+         161.0,
+         161.0
+        ],
+        [
+         161.0,
+         161.0
+        ],
+        [
+         0.0,
+         0.0
+        ],
+        [
+         0.0,
+         0.0
+        ]
+       ],
+       "von_mises_MPa": [
+        0.0,
+        161.0
+       ]
+      },
+      {
+       "state": "cooled to 300 K",
+       "sxx_MPa_by_cell_row": [
+        [
+         322.0,
+         322.0
+        ],
+        [
+         322.0,
+         322.0
+        ],
+        [
+         483.0,
+         483.0
+        ],
+        [
+         805.0,
+         805.0
+        ]
+       ],
+       "von_mises_MPa": [
+        310.08,
+        818.566
+       ]
+      }
+     ],
+     "counts": {
+      "newton_iterations": 5,
+      "linear_iterations": 137,
+      "increments": 6,
+      "line_searches": 0,
+      "factorisations": 0
+     },
+     "passed": true
+    },
+    "bar_perfectly_plastic": {
+     "steps": [
+      {
+       "state": "lower half at 400 K",
+       "sxx_MPa_by_cell_row": [
+        [
+         161.0,
+         161.0
+        ],
+        [
+         161.0,
+         161.0
+        ],
+        null,
+        null
+       ],
+       "von_mises_MPa": [
+        161.0,
+        161.0
+       ]
+      },
+      {
+       "state": "upper half born",
+       "sxx_MPa_by_cell_row": [
+        [
+         161.0,
+         161.0
+        ],
+        [
+         161.0,
+         161.0
+        ],
+        [
+         0.0,
+         0.0
+        ],
+        [
+         0.0,
+         0.0
+        ]
+       ],
+       "von_mises_MPa": [
+        0.0,
+        161.0
+       ]
+      },
+      {
+       "state": "cooled to 300 K",
+       "sxx_MPa_by_cell_row": [
+        [
+         198.29,
+         208.84
+        ],
+        [
+         142.62,
+         200.42
+        ],
+        [
+         150.35,
+         240.71
+        ],
+        [
+         177.35,
+         244.38
+        ]
+       ],
+       "von_mises_MPa": [
+        200.0,
+        200.0
+       ]
+      }
+     ],
+     "counts": {
+      "newton_iterations": 16,
+      "linear_iterations": 603,
+      "increments": 6,
+      "line_searches": 0,
+      "factorisations": 0
+     },
+     "passed": true
+    },
+    "passed": true
+   }
+  },
+  "passed": true,
+  "claims": "software witnesses of strain-free birth and perfect plasticity in this DOLFINx model on a bar; no process, machine, material or part is qualified"
+ },
+ "acceptance_file": "build-sim-dolfinx-acceptance.json",
+ "acceptance": {
+  "written": "2026-11-16, before the first DOLFINx run of the head",
+  "reference": "CalculiX run c4-l8 (as built) of params/build-sim.json, same mesh, same thermal field",
+  "accept_when": {
+   "distortion_after_release_median_and_p95_within": 0.02,
+   "distortion_after_release_largest_within": 0.03,
+   "largest_distortion_at_the_same_node": true,
+   "uniform_shrinkage_within": 0.02,
+   "von_mises_cell_mean_median_and_p95_at_room_temperature_within": 0.02
+  },
+  "why_not_tighter": "plasticity depends on the path: CalculiX chooses its own increments and stops its iterations at its default tolerances (0.5% of the mean force)"
+ },
+ "comparison_with_calculix": {
+  "level": "c4-l8",
+  "calculix_solver": {
+   "returncode": 0,
+   "wall_seconds": 7077.5,
+   "memory_cap": "6g",
+   "threads": 1,
+   "image": "3dprinting993-cadsim:dev",
+   "ccx_version_line": "CalculiX Version 2.21, Copyright(C) 1998-2023 Guido Dhondt",
+   "errors_in_log": 0,
+   "job_finished": true
+  },
+  "by_linear_solver": {
+   "mumps": {
+    "dolfinx": {
+     "tool": "DOLFINx 0.11.0.post0",
+     "processes": 8,
+     "linear_solver": "mumps",
+     "temperature_increments_per_step": 2,
+     "wall_seconds": 1261.3,
+     "counts": {
+      "newton_iterations": 295,
+      "linear_iterations": 295,
+      "increments": 59,
+      "line_searches": 0
+     }
+    },
+    "distortion_after_release_mm": {
+     "median": {
+      "dolfinx": 0.2974,
+      "calculix": 0.2974,
+      "difference": 0.0
+     },
+     "p95": {
+      "dolfinx": 0.8691,
+      "calculix": 0.8691,
+      "difference": 0.0
+     },
+     "largest": {
+      "dolfinx": 1.9343,
+      "calculix": 1.9343,
+      "difference": 0.0
+     }
+    },
+    "largest_distortion_at_build_coordinates_mm": {
+     "dolfinx": [
+      8.0,
+      8.0,
+      56.0
+     ],
+     "calculix": [
+      8.0,
+      8.0,
+      56.0
+     ]
+    },
+    "uniform_shrinkage": {
+     "dolfinx": -0.005244,
+     "calculix": -0.005244,
+     "difference": 0.0
+    },
+    "von_mises_at_room_temperature_MPa": {
+     "cell_mean_median": {
+      "dolfinx": 220.1,
+      "calculix": 220.1,
+      "difference": 0.0
+     },
+     "cell_mean_p95": {
+      "dolfinx": 310.0,
+      "calculix": 310.0,
+      "difference": 0.0
+     }
+    },
+    "node_by_node": {
+     "end_of_build_hot_u": {
+      "largest_difference": 3.34e-05,
+      "largest_value": 1.9697
+     },
+     "end_of_build_hot_vm": {
+      "largest_difference": 0.0704,
+      "largest_value": 297.6993
+     },
+     "room_temperature_on_plate_u": {
+      "largest_difference": 3.34e-05,
+      "largest_value": 1.8148
+     },
+     "room_temperature_on_plate_vm": {
+      "largest_difference": 0.0791,
+      "largest_value": 325.2205
+     },
+     "released_u": {
+      "largest_difference": 3.42e-05,
+      "largest_value": 2.6537
+     },
+     "released_vm": {
+      "largest_difference": 0.0787,
+      "largest_value": 337.3625
+     },
+     "released_warp": {
+      "largest_difference": 3.34e-05,
+      "largest_value": 1.8253
+     }
+    },
+    "checks": {
+     "distortion_median_and_p95": true,
+     "distortion_largest": true,
+     "same_node": true,
+     "uniform_shrinkage": true,
+     "von_mises": true
+    },
+    "passed": true
+   },
+   "blr": {
+    "dolfinx": {
+     "tool": "DOLFINx 0.11.0.post0",
+     "processes": 4,
+     "linear_solver": "blr",
+     "temperature_increments_per_step": 2,
+     "wall_seconds": 486.8,
+     "counts": {
+      "newton_iterations": 295,
+      "linear_iterations": 4753,
+      "increments": 59,
+      "line_searches": 0,
+      "factorisations": 112
+     }
+    },
+    "distortion_after_release_mm": {
+     "median": {
+      "dolfinx": 0.2974,
+      "calculix": 0.2974,
+      "difference": 0.0
+     },
+     "p95": {
+      "dolfinx": 0.8691,
+      "calculix": 0.8691,
+      "difference": 0.0
+     },
+     "largest": {
+      "dolfinx": 1.9343,
+      "calculix": 1.9343,
+      "difference": 0.0
+     }
+    },
+    "largest_distortion_at_build_coordinates_mm": {
+     "dolfinx": [
+      8.0,
+      8.0,
+      56.0
+     ],
+     "calculix": [
+      8.0,
+      8.0,
+      56.0
+     ]
+    },
+    "uniform_shrinkage": {
+     "dolfinx": -0.005244,
+     "calculix": -0.005244,
+     "difference": 0.0
+    },
+    "von_mises_at_room_temperature_MPa": {
+     "cell_mean_median": {
+      "dolfinx": 220.1,
+      "calculix": 220.1,
+      "difference": 0.0
+     },
+     "cell_mean_p95": {
+      "dolfinx": 310.0,
+      "calculix": 310.0,
+      "difference": 0.0
+     }
+    },
+    "node_by_node": {
+     "end_of_build_hot_u": {
+      "largest_difference": 3.34e-05,
+      "largest_value": 1.9697
+     },
+     "end_of_build_hot_vm": {
+      "largest_difference": 0.0704,
+      "largest_value": 297.6993
+     },
+     "room_temperature_on_plate_u": {
+      "largest_difference": 3.34e-05,
+      "largest_value": 1.8148
+     },
+     "room_temperature_on_plate_vm": {
+      "largest_difference": 0.0791,
+      "largest_value": 325.2205
+     },
+     "released_u": {
+      "largest_difference": 3.42e-05,
+      "largest_value": 2.6537
+     },
+     "released_vm": {
+      "largest_difference": 0.0787,
+      "largest_value": 337.3625
+     },
+     "released_warp": {
+      "largest_difference": 3.34e-05,
+      "largest_value": 1.8253
+     }
+    },
+    "checks": {
+     "distortion_median_and_p95": true,
+     "distortion_largest": true,
+     "same_node": true,
+     "uniform_shrinkage": true,
+     "von_mises": true
+    },
+    "passed": true
+   },
+   "gamg": {
+    "dolfinx": {
+     "tool": "DOLFINx 0.11.0.post0",
+     "processes": 8,
+     "linear_solver": "gamg",
+     "temperature_increments_per_step": 2,
+     "wall_seconds": 3844.8,
+     "counts": {
+      "newton_iterations": 295,
+      "linear_iterations": 221513,
+      "increments": 59,
+      "line_searches": 0
+     }
+    },
+    "distortion_after_release_mm": {
+     "median": {
+      "dolfinx": 0.2974,
+      "calculix": 0.2974,
+      "difference": 0.0
+     },
+     "p95": {
+      "dolfinx": 0.8691,
+      "calculix": 0.8691,
+      "difference": 0.0
+     },
+     "largest": {
+      "dolfinx": 1.9343,
+      "calculix": 1.9343,
+      "difference": 0.0
+     }
+    },
+    "largest_distortion_at_build_coordinates_mm": {
+     "dolfinx": [
+      8.0,
+      8.0,
+      56.0
+     ],
+     "calculix": [
+      8.0,
+      8.0,
+      56.0
+     ]
+    },
+    "uniform_shrinkage": {
+     "dolfinx": -0.005244,
+     "calculix": -0.005244,
+     "difference": 0.0
+    },
+    "von_mises_at_room_temperature_MPa": {
+     "cell_mean_median": {
+      "dolfinx": 220.1,
+      "calculix": 220.1,
+      "difference": 0.0
+     },
+     "cell_mean_p95": {
+      "dolfinx": 310.0,
+      "calculix": 310.0,
+      "difference": 0.0
+     }
+    },
+    "node_by_node": {
+     "end_of_build_hot_u": {
+      "largest_difference": 3.34e-05,
+      "largest_value": 1.9697
+     },
+     "end_of_build_hot_vm": {
+      "largest_difference": 0.0704,
+      "largest_value": 297.6993
+     },
+     "room_temperature_on_plate_u": {
+      "largest_difference": 3.34e-05,
+      "largest_value": 1.8148
+     },
+     "room_temperature_on_plate_vm": {
+      "largest_difference": 0.0791,
+      "largest_value": 325.2205
+     },
+     "released_u": {
+      "largest_difference": 3.42e-05,
+      "largest_value": 2.6537
+     },
+     "released_vm": {
+      "largest_difference": 0.0787,
+      "largest_value": 337.3625
+     },
+     "released_warp": {
+      "largest_difference": 3.34e-05,
+      "largest_value": 1.8253
+     }
+    },
+    "checks": {
+     "distortion_median_and_p95": true,
+     "distortion_largest": true,
+     "same_node": true,
+     "uniform_shrinkage": true,
+     "von_mises": true
+    },
+    "passed": true
+   }
+  },
+  "passed": true
+ },
+ "levels": {
+  "c2-l8": {
+   "cell_mm": 2.0,
+   "lump_height_mm": 8.0,
+   "tool": "DOLFINx 0.11.0.post0",
+   "processes": 4,
+   "linear_solver": "blr",
+   "temperature_increments_per_step": 2,
+   "wall_seconds": 14350.5,
+   "counts": {
+    "newton_iterations": 356,
+    "linear_iterations": 9704,
+    "increments": 59,
+    "line_searches": 4,
+    "factorisations": 193
+   },
+   "nodes": 262998,
+   "cells": 213714,
+   "unknowns": 788994,
+   "stress_free_temperature_K": 836.15,
+   "yield_MPa_by_temperature_C": [
+    [
+     25,
+     322
+    ],
+    [
+     100,
+     298
+    ],
+    [
+     200,
+     236
+    ],
+    [
+     300,
+     143
+    ],
+    [
+     400,
+     25
+    ],
+    [
+     600,
+     25
+    ]
+   ],
+   "largest_displacement_during_the_build_by_lump": [
+    {
+     "lump": 0,
+     "largest_displacement_mm": 0.1772
+    },
+    {
+     "lump": 1,
+     "largest_displacement_mm": 0.3812
+    },
+    {
+     "lump": 2,
+     "largest_displacement_mm": 0.6914
+    },
+    {
+     "lump": 3,
+     "largest_displacement_mm": 1.0648
+    },
+    {
+     "lump": 4,
+     "largest_displacement_mm": 1.3476
+    },
+    {
+     "lump": 5,
+     "largest_displacement_mm": 1.5272
+    },
+    {
+     "lump": 6,
+     "largest_displacement_mm": 1.8758
+    },
+    {
+     "lump": 7,
+     "largest_displacement_mm": 2.1863
+    },
+    {
+     "lump": 8,
+     "largest_displacement_mm": 2.3435
+    },
+    {
+     "lump": 9,
+     "largest_displacement_mm": 2.43
+    },
+    {
+     "lump": 10,
+     "largest_displacement_mm": 2.5301
+    },
+    {
+     "lump": 11,
+     "largest_displacement_mm": 2.6083
+    },
+    {
+     "lump": 12,
+     "largest_displacement_mm": 2.6691
+    },
+    {
+     "lump": 13,
+     "largest_displacement_mm": 2.6982
+    },
+    {
+     "lump": 14,
+     "largest_displacement_mm": 2.7079
+    },
+    {
+     "lump": 15,
+     "largest_displacement_mm": 2.7106
+    },
+    {
+     "lump": 16,
+     "largest_displacement_mm": 2.7035
+    },
+    {
+     "lump": 17,
+     "largest_displacement_mm": 2.6957
+    },
+    {
+     "lump": 18,
+     "largest_displacement_mm": 2.6918
+    },
+    {
+     "lump": 19,
+     "largest_displacement_mm": 2.6902
+    },
+    {
+     "lump": 20,
+     "largest_displacement_mm": 2.6904
+    },
+    {
+     "lump": 21,
+     "largest_displacement_mm": 2.6881
+    },
+    {
+     "lump": 22,
+     "largest_displacement_mm": 2.686
+    },
+    {
+     "lump": 23,
+     "largest_displacement_mm": 2.6842
+    },
+    {
+     "lump": 24,
+     "largest_displacement_mm": 2.6826
+    },
+    {
+     "lump": 25,
+     "largest_displacement_mm": 2.6829
+    },
+    {
+     "lump": 26,
+     "largest_displacement_mm": 2.6829
+    },
+    {
+     "lump": 27,
+     "largest_displacement_mm": 2.6831
+    }
+   ],
+   "states": {
+    "end_of_build_hot": {
+     "largest_displacement_mm": 2.6831,
+     "von_mises_MPa": {
+      "cell_mean_median": 215.6,
+      "cell_mean_p95": 283.9,
+      "integration_point_max": 321.0
+     },
+     "share_of_part_cells_within_5_percent_of_room_yield": 0.0001,
+     "equivalent_plastic_strain": {
+      "median": 0.00229,
+      "p95": 0.00977,
+      "max": 0.05142
+     }
+    },
+    "room_temperature_on_plate": {
+     "largest_displacement_mm": 2.5732,
+     "von_mises_MPa": {
+      "cell_mean_median": 238.4,
+      "cell_mean_p95": 312.3,
+      "integration_point_max": 350.5
+     },
+     "share_of_part_cells_within_5_percent_of_room_yield": 0.1984,
+     "equivalent_plastic_strain": {
+      "median": 0.00229,
+      "p95": 0.00977,
+      "max": 0.05142
+     }
+    },
+    "released": {
+     "largest_displacement_mm": 3.5314,
+     "von_mises_MPa": {
+      "cell_mean_median": 230.0,
+      "cell_mean_p95": 319.2,
+      "integration_point_max": 353.8
+     },
+     "share_of_part_cells_within_5_percent_of_room_yield": 0.1236,
+     "equivalent_plastic_strain": {
+      "median": 0.00231,
+      "p95": 0.00983,
+      "max": 0.05142
+     }
+    }
+   },
+   "release": {
+    "held_nodes": [
+     49332,
+     88773,
+     90700
+    ],
+    "change_of_shape_at_release_largest_mm": 0.8939,
+    "best_fit_uniform_shrinkage": -0.005904,
+    "distortion_after_release_rigid_motion_and_uniform_shrinkage_removed_mm": {
+     "largest": 2.3784,
+     "p95": 0.9033,
+     "median": 0.2997,
+     "largest_at_build_coordinates_mm": [
+      10.0,
+      12.0,
+      48.0
+     ]
+    }
+   }
+  }
+ },
+ "cell_size_at_the_same_lump_height": [
+  {
+   "lump_height_mm": 8.0,
+   "coarse": {
+    "level": "c4-l8",
+    "cell_mm": 4.0,
+    "solver": "CalculiX",
+    "largest": 1.9343,
+    "p95": 0.8691,
+    "median": 0.2974,
+    "largest_at_build_coordinates_mm": [
+     8.0,
+     8.0,
+     56.0
+    ]
+   },
+   "fine": {
+    "level": "c2-l8",
+    "cell_mm": 2.0,
+    "solver": "DOLFINx",
+    "largest": 2.3784,
+    "p95": 0.9033,
+    "median": 0.2997,
+    "largest_at_build_coordinates_mm": [
+     10.0,
+     12.0,
+     48.0
+    ]
+   },
+   "fine_over_coarse": {
+    "median": 0.0077,
+    "p95": 0.0394,
+    "largest": 0.2296
+   },
+   "distance_between_the_two_largest_points_mm": 9.2
+  }
+ ],
+ "claims": "a second solver reproduces the screen's numbers on the level both ran, and runs one level the first could not on this host. The hypotheses, gates and limits of params/build-sim.json apply unchanged: voxel cells, lumps of many layers, a declared yield curve and stress-free temperature, no measured distortion. Agreement of two solvers on one model says the equations are solved, not that the model is the print."
+}

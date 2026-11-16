@@ -54,9 +54,10 @@ stated blocker. What the twin still does not have:
 - **A qualified build.** The print body has a layer screen and a
   [build screen](#build-screen-the-print-body-grown-lump-by-lump-in-calculix-case-witnesses-record):
   43.4 hours on one laser, a largest rise of 60 to 64 K above the plate, and a distortion after
-  release of 0.23 to 0.33 mm at the median and 1.62 to 2.16 mm at the largest,
-  on 3 and 4 mm cells: the median agrees between them, the worst corner
-  does not.
+  release of 0.23 to 0.33 mm at the median and 1.62 to 2.38 mm at the largest,
+  on 2, 3 and 4 mm cells: the median agrees between them, the worst corner
+  does not. The 2 mm cells were solved by a second program, DOLFINx, which
+  gives CalculiX's numbers on the 4 mm cells.
   Both run on declared process values: no maker's parameters, nothing
   printed. With two or four lasers the hottest region runs
   98 or 138 K above the plate. A
@@ -193,6 +194,7 @@ process values, with every qualification gate closed.*
 | Thin walls of the print body | SciPy morphological opening of the 0.25 mm occupancy | [wall_check.py](source/wall_check.py) |
 | Layer screen in bounded memory | the repository's LPBF layer screen, unmodified, sliced 64 layers and probed 25 points at a time (cadsim image) | [layer_screen.py](source/layer_screen.py) |
 | Build screen: temperature, stress and distortion lump by lump | CalculiX 2.21 with element activation (`*MODEL CHANGE`), one thread (cadsim image) | [build_sim.py](source/build_sim.py), [render_build_sim.py](source/render_build_sim.py) |
+| Build screen mechanics, second solver | DOLFINx 0.11.0 with PETSc and MUMPS, in the `dolfinx/dolfinx` image pinned by digest, 4 to 8 MPI processes | [build_sim_dolfinx.py](source/build_sim_dolfinx.py) |
 | Support layout by declared rules | NumPy and SciPy on the 0.25 mm occupancy: overhang normals, air columns, labelled bodies, lines of sight | [support_design.py](source/support_design.py), [render_support_design.py](source/render_support_design.py) |
 | Witness of a drawing tool | build123d projection and DXF export, read back with ezdxf | [drawing_witness.py](source/drawing_witness.py) |
 | Melt-pool check of the declared heat input | the reviewed GO-MELT kernel (JAX, CUDA), one explicit level, against Rosenthal's point source | [melt_pool_track.py](source/melt_pool_track.py), [melt_pool_summary.py](source/melt_pool_summary.py) |
@@ -983,9 +985,10 @@ process value comes from the machine's maker and nothing was printed.*
 print body takes 43.4 hours on one 350 W laser. Its hottest region runs
 60 to 64 K above the plate as a time average, at the seven levels solved.
 After release the model is out of shape by 0.23 to 0.33 mm at the
-median and 1.62 to 2.16 mm at its worst corner across six runs that differ
-only in cell size and lump height. The median agrees between the two cell
-sizes; the value at the worst corner does not, so the distortion is an order of
+median and 1.62 to 2.38 mm at its worst corner across seven runs that differ
+only in cell size and lump height. The median agrees between the three cell
+sizes; the value at the worst corner does not: with the lumps held at 8 mm it
+rises from 1.93 to 2.38 mm as the cells go from 4 to 2 mm. The distortion is an order of
 magnitude, not a converged value. The stress sits on the declared yield curve, as this
 kind of model must give: what carries information is where the shape moves,
 not the stress level.
@@ -1038,7 +1041,7 @@ an upper bound for this heat input.
 | c3-l9 | 3 mm | 9 mm, 180 layers | 25 | 1 | 40,978 | 8,744 | 81,438 | -0.24% | thermal, mechanics |
 | c3-l12 | 3 mm | 12 mm, 240 layers | 19 | 1 | 40,978 | 8,744 | 81,438 | -0.24% | thermal, mechanics |
 | c3-l3 | 3 mm | 3 mm, 60 layers | 75 | 1 | 40,978 | 8,744 | 81,438 | -0.24% | thermal, mechanics |
-| c2-l8 | 2 mm | 8 mm, 160 layers | 28 | 1 | 139,548 | 29,142 | 262,998 | +0.66% | thermal |
+| c2-l8 | 2 mm | 8 mm, 160 layers | 28 | 1 | 139,548 | 29,142 | 262,998 | +0.66% | thermal, mechanics in DOLFINx |
 | c4-l8-2-lasers | 4 mm | 8 mm, 160 layers | 28 | 2 | 17,336 | 3,550 | 35,299 | +0.04% | thermal, mechanics |
 | c4-l8-4-lasers | 4 mm | 8 mm, 160 layers | 28 | 4 | 17,336 | 3,550 | 35,299 | +0.04% | thermal, mechanics |
 | c4-l8-laid-supports | 4 mm | 8 mm, 160 layers | 28 | 1 | 17,336 | 7,741 | 38,435 | +0.04% | thermal, mechanics |
@@ -1105,6 +1108,7 @@ motion and the best uniform shrinkage are taken out.
 | c3-l9, as built | 563 °C | 322 MPa | 230 / 311 MPa | 16% | 0.31 / 0.90 / 2.16 mm | 0.57% |
 | c3-l12, as built | 563 °C | 322 MPa | 225 / 311 MPa | 15% | 0.33 / 0.86 / 1.74 mm | 0.60% |
 | c3-l3, as built | 563 °C | 322 MPa | 220 / 311 MPa | 13% | 0.23 / 0.76 / 2.14 mm | 0.49% |
+| c2-l8, as built, solved in DOLFINx | 563 °C | 322 MPa | 238 / 312 MPa | 20% | 0.30 / 0.90 / 2.38 mm | 0.59% |
 | c4-l8-2-lasers, as built, 2 lasers | 563 °C | 322 MPa | 208 / 308 MPa | 7% | 0.28 / 0.82 / 1.81 mm | 0.56% |
 | c4-l8-4-lasers, as built, 4 lasers | 563 °C | 322 MPa | 194 / 305 MPa | 4% | 0.27 / 0.76 / 1.68 mm | 0.60% |
 | c4-l8-laid-supports, as built, laid-out supports | 563 °C | 322 MPa | 229 / 314 MPa | 16% | 0.30 / 0.76 / 1.71 mm | 0.50% |
@@ -1127,11 +1131,11 @@ motion and the best uniform shrinkage are taken out.
 
 **Cell size against lump height** (as built, one laser, support columns): distortion after release, median / largest.
 
-| Lump height | 4 mm cells | 3 mm cells |
-|---|---|---|
-| 12 mm | 0.33 / 1.71 mm | 0.33 / 1.74 mm |
-| 8 mm on 4 mm cells, 9 mm on 3 mm cells | 0.30 / 1.93 mm | 0.31 / 2.16 mm |
-| 4 mm on 4 mm cells, 3 mm on 3 mm cells | 0.24 / 1.62 mm | 0.23 / 2.14 mm |
+| Lump height | 4 mm cells | 3 mm cells | 2 mm cells (DOLFINx) |
+|---|---|---|---|
+| 12 mm | 0.33 / 1.71 mm | 0.33 / 1.74 mm | not run |
+| 8 mm on 4 and 2 mm cells, 9 mm on 3 mm cells | 0.30 / 1.93 mm | 0.31 / 2.16 mm | 0.30 / 2.38 mm |
+| 4 mm on 4 mm cells, 3 mm on 3 mm cells | 0.24 / 1.62 mm | 0.23 / 2.14 mm | not run |
 
 - **On 4 mm cells the median falls as the lumps thin:** 0.33, 0.30 and 0.24 mm for
   lumps of 12, 8 and 4 mm. The largest value does not follow: 1.71, 1.93 and
@@ -1153,9 +1157,19 @@ motion and the best uniform shrinkage are taken out.
   On 3 mm cells the median falls as the lumps thin, as on 4 mm cells: 0.33, 0.31
   and 0.23 mm for lumps of 12, 9 and 3 mm. The 95th percentile is lowest with
   the thinnest lumps on both: 0.76 and 0.75 mm.
-- **Across the six runs the largest distortion is 1.62 to 2.16 mm** and the median
-  0.23 to 0.33 mm. The finest lump is 60 real layers; no run with 2 mm
-  cells has its mechanics, which is out of reach of the direct solver on this host.
+- **With the lumps held at 8 mm, halving the cells settles the median, not the worst corner.**
+  On 2 mm cells against 4 mm cells: median 0.30 against 0.30 mm (+0.8%), 95th
+  percentile 0.90 against 0.87 mm (+3.9%), largest 2.38 against 1.93 mm (+23%). The
+  worst point stays near the same corner of the outline, the one at lowest x and y,
+  48 mm above the plate instead of 56. This is the comparison the 3 mm runs lacked:
+  only the cell size changes, and at this lump height the value at the worst corner
+  keeps rising as the cells shrink. With 12 mm lumps, 4 and 3 mm cells agreed within
+  1%; no 2 mm run has those lumps.
+- **Across the seven runs the largest distortion is 1.62 to 2.38 mm** and the median
+  0.23 to 0.33 mm. The finest lump is 60 real layers.
+- **The stress on the plate rises a little as the cells shrink:** median 220, 225 to
+  230 and 238 MPa on 4, 3 and 2 mm cells; the 95th percentile stays at 310 to 312 MPa,
+  under the declared yield of 322 MPa.
 - **A hotter build distorts a little less on this model.** With two and four lasers the
   largest value is 1.81 and 1.68 mm against 1.93 mm (-6%, -13%), at the
   same corner, and the median 0.28 and 0.27 mm against 0.30 mm. The median stress
@@ -1167,6 +1181,41 @@ motion and the best uniform shrinkage are taken out.
   and it moves from a lower corner to the top of the build, 176 mm above the plate. The 95th
   percentile falls from 0.87 to 0.76 mm; the median stays at 0.30 mm. Changing the
   supports moves the worst corner as much as changing the lumps does.
+
+**A second solver for the 2 mm cells** ([build_sim_dolfinx.py](source/build_sim_dolfinx.py), [limits written before the first run](params/build-sim-dolfinx-acceptance.json), [record](params/build-sim-dolfinx.json)).
+CalculiX solves this mechanics on one thread with a direct solver, and the 2 mm
+level, 788,994 unknowns, is out of its reach on this host. The script states the
+same model in DOLFINx 0.11 (PETSc, MPI): the same cells, lumps, temperatures at the
+end of each lump, declared material, plate condition and three held nodes;
+8-node hexahedra with 2 x 2 x 2 integration points, strain-free birth, von Mises
+plasticity with radial return. Nothing in it is a new hypothesis: only the solver
+changes.
+
+- **The bar witnesses pass with each of its three linear solvers** (LU, a block
+  low-rank Cholesky factorisation kept as the preconditioner of conjugate gradients,
+  and multigrid), on four processes, against the closed-form values set for CalculiX.
+- **On the 4 mm cells it gives CalculiX's numbers** with each linear solver. The limits,
+  written before the first run, were 2% on the median and 95th percentile, 3% on the
+  largest value, the same worst node, and 2% on the shrinkage and the stress. Every
+  printed digit agrees (table below). Node by node, the displacements differ by
+  3.4e-5 mm at most and the cell-mean stress by 0.08 MPa, in every saved state.
+- **The 2 mm level then ran in 4.0 hours** on four processes with the block
+  low-rank solver, in a container capped at 18 GiB: 59 increments, 356 Newton
+  iterations, 4 line searches. No CalculiX run of this level exists; the agreement
+  is on the 4 mm cells.
+- **Multigrid needs the least memory but is slow here:** 221,513 conjugate-gradient
+  iterations on the 4 mm cells against 4,753 with the block low-rank solver, because
+  the plastic tangent is far softer along the flow direction than across it.
+
+| c4-l8, as built | Processes | Wall time | Distortion after release, median / 95th / largest | Worst point (x, y, height above the plate) | Uniform shrinkage | von Mises on the plate, median / 95th |
+|---|---|---|---|---|---|---|
+| CalculiX 2.21, direct solver | 1 thread | 118 min | 0.2974 / 0.8691 / 1.9343 mm | 8, 8, 56 mm | 0.5244% | 220.1 / 310.0 MPa |
+| DOLFINx, LU (MUMPS) | 8 | 21 min | 0.2974 / 0.8691 / 1.9343 mm | 8, 8, 56 mm | 0.5244% | 220.1 / 310.0 MPa |
+| DOLFINx, block low-rank Cholesky and conjugate gradients | 4 | 8 min | 0.2974 / 0.8691 / 1.9343 mm | 8, 8, 56 mm | 0.5244% | 220.1 / 310.0 MPa |
+| DOLFINx, multigrid and conjugate gradients | 8 | 64 min | 0.2974 / 0.8691 / 1.9343 mm | 8, 8, 56 mm | 0.5244% | 220.1 / 310.0 MPa |
+
+Two programs that agree on one model say the equations are solved, not that the
+model is the print.
 
 **What this screen does not say.**
 
@@ -1948,7 +1997,7 @@ contributor. No contributor is named here, and none has been asked.
 | Print-body orientations | print-body occupancy | [print-body-supports.json](params/print-body-supports.json) | the AM screen's analytic witnesses | done as a screen: flange y− down and side x+ down kept for the build study; no support designed |
 | Print-body layer screen | 0.5 mm and 1.0 mm surfaces of the print body, EP-M300 card | [print-body-layer-screen.json](params/print-body-layer-screen.json); private per-layer tables and charts | hashes of master and surface; the tool's gates; the bounded-memory driver gives the same four files as the plain run on the 1.0 mm surface | done on both surfaces: build along Y, 4,482 layers, fits the envelope, no trapped powder at 1.0 mm; 563 islands on the fine surface, 216 on the smoother one; thin walls measured on the grid ([wall check](params/print-body-wall-check.json)) |
 | Build simulation witness | a block, two lumped layers from a deposition file | [am-build-witness.json](params/am-build-witness.json) | active volume and mean temperature against a closed form, on the solver's mesh and on an imported one | passed on both; the head's build runs in CalculiX instead (next row) |
-| Build screen | print-body occupancy, [declared case](params/build-sim-case.json) | [build-sim.json](params/build-sim.json); private decks, fields and two [pictures](media/build-sim-result.png) | three closed-form [witnesses](params/build-sim-witness.json); energy balance within 0.4%; 7 levels for temperature and 2 laser cases, 11 mechanical runs | done as a screen: 43.4 h, largest rise 60 to 64 K above the plate (98 and 138 K with two and four lasers); distortion after release 0.23 to 0.33 mm median, 1.62 to 2.16 mm largest on 3 and 4 mm cells: the median agrees between the cell sizes, the worst corner does not; on the laid-out supports 40 K and 1.71 mm; stress at the declared yield curve; every gate false |
+| Build screen | print-body occupancy, [declared case](params/build-sim-case.json) | [build-sim.json](params/build-sim.json), [build-sim-dolfinx.json](params/build-sim-dolfinx.json); private decks, fields and two [pictures](media/build-sim-result.png) | three closed-form [witnesses](params/build-sim-witness.json); energy balance within 0.4%; 7 levels for temperature and 2 laser cases, 11 mechanical runs in CalculiX; a second solver, DOLFINx, within [limits set before its first run](params/build-sim-dolfinx-acceptance.json) on the 4 mm cells, then the 2 mm cells | done as a screen: 43.4 h, largest rise 60 to 64 K above the plate (98 and 138 K with two and four lasers); distortion after release 0.23 to 0.33 mm median, 1.62 to 2.38 mm largest on 2, 3 and 4 mm cells: the median agrees between the cell sizes, the worst corner does not; on the laid-out supports 40 K and 1.71 mm; stress at the declared yield curve; every gate false |
 | Support layout | print-body occupancy, [declared rules](params/support-design-case.json) | [support-design.json](params/support-design.json); private envelope and a [picture](media/support-layout.png) | four shapes with hand-computed answers ([witnesses](params/support-design-witness.json)); the totals before exemption equal the orientation screen's | done as a layout by rule: 470,700 mm³ of envelope, 15% of the part melted in walls, 48% standing on the part, 26% of the supported surface without straight lateral access; no build processor, removal not judged |
 | Melt-pool check | the build screen's declared laser and material values | [melt-pool-check.json](params/melt-pool-check.json); private fields; [chart](media/melt-pool-width.png) and [animation](media/melt-pool.gif) | Rosenthal's point source within 0.2%; three meshes; energy balance | done as a check: 290 µm at the declared absorptivity (240 µm with latent heat) against 215 to 230 µm published nearest to this setting; conduction only, nothing calibrated |
 | Fatigue, valve-train dynamics, drawing | none | [prepared-work.json](params/prepared-work.json); [drawing-tool witness](params/drawing-witness.json) | every path of the register exists; the drawing tool reads back three views of a known solid | not run: no stress history or S-N data, no cam, spring or masses, 4 of 32 features confirmed. [Prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register): tool, witness, held and missing inputs for each |

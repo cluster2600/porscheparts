@@ -1,0 +1,12 @@
+{
+ "written": "2026-11-16, before the first DOLFINx run of the head",
+ "reference": "CalculiX run c4-l8 (as built) of params/build-sim.json, same mesh, same thermal field",
+ "accept_when": {
+  "distortion_after_release_median_and_p95_within": 0.02,
+  "distortion_after_release_largest_within": 0.03,
+  "largest_distortion_at_the_same_node": true,
+  "uniform_shrinkage_within": 0.02,
+  "von_mises_cell_mean_median_and_p95_at_room_temperature_within": 0.02
+ },
+ "why_not_tighter": "plasticity depends on the path: CalculiX chooses its own increments and stops its iterations at its default tolerances (0.5% of the mean force)"
+}
