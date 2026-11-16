@@ -1144,6 +1144,31 @@ class BuildSimTests(unittest.TestCase):
                 self.assertLess(spread["p95"], spread["largest"])
                 self.assertLess(run["release"]["best_fit_uniform_shrinkage"], 0.0)
 
+    def test_median_agrees_between_the_cell_sizes_and_the_worst_corner_does_not(self):
+        record = json.loads((TWIN / "params" / "build-sim.json").read_text())
+        key = "distortion_after_release_rigid_motion_and_uniform_shrinkage_removed_mm"
+        spread = lambda name: record["levels"][name]["mechanics"]["mechanics"]["release"][key]
+        rows = [("c4-l12", "c3-l12"), ("c4-l8", "c3-l9"), ("c4-l4", "c3-l3")]      # 4 mm cells, 3 mm cells
+        for coarse, fine in rows:
+            self.assertEqual((self.case["levels"][coarse]["cell_mm"], self.case["levels"][fine]["cell_mm"]), (4.0, 3.0))
+            self.assertLess(abs(spread(fine)["median"] / spread(coarse)["median"] - 1.0), 0.07, fine)
+            self.assertLess(abs(spread(fine)["p95"] / spread(coarse)["p95"] - 1.0), 0.05, fine)
+        largest = [spread(fine)["largest"] / spread(coarse)["largest"] - 1.0 for coarse, fine in rows]
+        # only the 12 mm row changes the cell size alone, and only there do the largest values agree
+        lump = lambda name: record["levels"][name]["model"]["lump_height_mm"]
+        self.assertEqual([lump(a) == lump(b) for a, b in rows], [True, False, False])
+        self.assertLess(abs(largest[0]), 0.05)
+        self.assertGreater(min(largest[1:]), 0.10)
+        # with the thinnest lumps both cell sizes put the worst point at the same corner, a cell apart at most
+        a, b = (spread(name)["largest_at_build_coordinates_mm"] for name in rows[2])
+        self.assertLessEqual(max(abs(p - q) for p, q in zip(a, b)), 2.0)
+        # the README says so, and no longer says the cell size is settled or that a run is pending
+        readme = " ".join((TWIN / "README.md").read_text().split())
+        self.assertIn("the value at the worst corner is not settled in cell size", readme)
+        self.assertNotIn("settled in cell size at equal lump height", readme)
+        self.assertNotIn("still in the solver", readme)
+        self.assertNotIn("| in the solver |", readme)
+
 
 @unittest.skipUnless(has("numpy", "scipy"), "numpy or scipy absent")
 class SupportDesignTests(unittest.TestCase):
