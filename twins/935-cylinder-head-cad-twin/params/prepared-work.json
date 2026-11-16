@@ -1,12 +1,18 @@
 {
  "schema": "935-cad-twin-prepared-work/1",
- "date": "2026-11-13",
+ "date": "2026-11-16",
  "scope": "what each part of the twin that never ran needs before it can run: the tool and its witness, the inputs held and missing, what a contribution would have to hold, and the first steps once the inputs exist. A preparation: nothing here is a result",
  "rules": {
   "contributed_measurements": "docs/decisions/0019-accept-contributed-measurements.md",
   "what_a_ct_request_must_require": "docs/MEASUREMENT_CAMPAIGN.md",
   "safety": "docs/SAFETY.md",
   "note": "the project measures nothing itself and pays nobody to measure; a contribution needs its capture protocol with instrument and uncertainty, an explicit licence grant, an identified specimen and a review independent of the contributor; no contributor is named here"
+ },
+ "published_search": {
+  "date": "2026-11-16",
+  "note": "docs/research/935-head-published-data-20261116/README.md",
+  "record": "docs/research/935-head-published-data-20261116/findings.json",
+  "standing": "published values of other heads and of test coupons, each with its source and how it was read; no measurement of the scanned head, no admitted input, and no part moved out of its blocked state"
  },
  "parts": [
   {
@@ -40,6 +46,11 @@
      "what": "the load-case contract",
      "where": "twins/engine-simulation-contracts/load-cases-f1.json",
      "standing": "LC-935-PORT-COLD-FLOW, 9 of 9 inputs empty"
+    },
+    {
+     "what": "published port openings of the production 964 Turbo 3.3 head, the definition of the flow coefficient, and two validated port computations on other heads",
+     "where": "docs/research/935-head-published-data-20261116/findings.json",
+     "standing": "another head and other ports; the two computations sit 6% and 8% from their bench, which is the size of agreement a comparison could expect"
     }
    ],
    "missing": [
@@ -66,7 +77,7 @@
     {
      "what": "a measured flow number to compare with",
      "retires": null,
-     "could_arrive_as": "a flow-bench sheet of this head type; none is held"
+     "could_arrive_as": "a flow-bench sheet of this head type; none is held, and the search of 2026-11-16 opened none: forum threads that quote figures sit on hosts that refuse automated readers and can be opened by hand"
     }
    ],
    "a_contribution_must_hold": [
@@ -115,6 +126,11 @@
      "what": "one fatigue number for AlSi10Mg",
      "where": "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json",
      "standing": "one point, fully reversed, room temperature, turned coupons, another machine: not a curve and not a part allowable"
+    },
+    {
+     "what": "published fatigue sets of printed AlSi10Mg: 20 points at room temperature (as built and after two low-temperature treatments), one fully reversed strength with its fit, two sets after ageing at 177 °C, and three single strengths at 200 and 350 °C from abstracts",
+     "where": "docs/research/935-head-published-data-20261116/findings.json",
+     "standing": "published and read, not admitted as material data; the sets disagree (60 against 110 MPa fully reversed), and none has points at the head's temperature"
     }
    ],
    "missing": [
@@ -131,7 +147,7 @@
     {
      "what": "an S-N curve for the alloy as printed, in the build direction, at the head's temperature",
      "retires": null,
-     "could_arrive_as": "a published curve read in its source, or coupon tests by a contributor; the repository admits no fatigue data today (docs/AGENT_TOOL_GUIDE.md)"
+     "could_arrive_as": "a published curve read in its source, or coupon tests by a contributor; the repository admits no fatigue data today (docs/AGENT_TOOL_GUIDE.md). The search of 2026-11-16 opened no curve with its points between 100 and 300 °C"
     },
     {
      "what": "the duty: how many cycles at which load",
@@ -179,18 +195,23 @@
      "what": "catalogue ranges for 935 valves and aftermarket cam timing cards",
      "where": "docs/research/935-faithful-replica-20261028/README.md",
      "standing": "not measurements of this specimen; aftermarket declarations"
+    },
+    {
+     "what": "valve sizes, lifts, timing at 0.10 mm clearance and cam lobe dimensions of the production 930 Turbo; valve angles, stems and lengths of the 964 Turbo 3.3",
+     "where": "docs/research/935-head-published-data-20261116/findings.json",
+     "standing": "two homologation forms, each value read twice; other heads. The angle between the two fitted valve axes is 55.76 degrees against 55.75 published; the fitted guide bore is 0.49 mm under the production stem, so the production valve does not fit this head"
     }
    ],
    "missing": [
     {
      "what": "cam lift curve, rocker geometry and ratio",
      "retires": "H05 in part",
-     "could_arrive_as": "the supplier's valve-train specification or a measured cam card"
+     "could_arrive_as": "the supplier's valve-train specification or a measured cam card. The search of 2026-11-16 found the lobe dimensions and four timing events of the production engine: not a lift curve, and nothing for the 934 or 935"
     },
     {
      "what": "spring rate, installed height, coil-bind height; masses of valve, retainer, rocker",
      "retires": "H05 in part",
-     "could_arrive_as": "the same specification, or weighed and measured parts by a contributor"
+     "could_arrive_as": "the same specification, or weighed and measured parts by a contributor. The search of 2026-11-16 found no spring figure and no mass in a page that could be opened"
     },
     {
      "what": "valve head diameters, stem diameter, seat angle and width of this head",
@@ -215,7 +236,7 @@
     "check the valve-to-valve and valve-to-plug clearances on the fitted axes at full lift",
     "state the result as a sensitivity study until a bench trace exists"
    ],
-   "runnable_today": "the model's own tests; no run for this head, whose cam, spring and masses are unknown"
+   "runnable_today": "the model's own tests; no run for this head, whose cam, spring and masses are unknown. The form's lift and timing would allow a reference case of the production 930 Turbo with a declared cam law and declared springs: a study of another engine"
   },
   {
    "id": "drawing",

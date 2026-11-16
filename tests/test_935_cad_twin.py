@@ -1306,6 +1306,122 @@ class PreparedWorkTests(unittest.TestCase):
         self.assertFalse(dw.has_line(lines, 16, 0, 16, 20))
 
 
+class PublishedDataTests(unittest.TestCase):
+    """The record of the published search of 2026-11-16: sources, flags, and the few numbers computed from it."""
+
+    RECORD = ROOT / "docs" / "research" / "935-head-published-data-20261116" / "findings.json"
+
+    def setUp(self):
+        self.record = json.loads(self.RECORD.read_text())
+        self.topics = self.record["topics"]
+
+    def test_every_value_names_a_source_a_flag_and_whether_it_was_read_twice(self):
+        self.assertIn("Nothing here is a measurement of the scanned head", self.record["scope"])
+        sources = self.record["sources"]
+        flags = set(self.record["how_it_was_read"]["flags"])
+        rows = (self.topics["valve-train"]["values"] + self.topics["port-flow"]["values"]
+                + self.topics["port-flow"]["method_references"] + self.topics["fatigue"]["sets"])
+        self.assertGreater(len(rows), 30)
+        for row in rows:
+            self.assertIn(row["flag"], flags, row)
+            self.assertIn("main_session", row)
+            if row["source"] is None:
+                self.assertTrue((ROOT / row["held_in"]).exists(), row)
+            else:
+                self.assertIn(row["source"], sources, row)
+                self.assertTrue(row["field"], row)
+        for key, source in sources.items():
+            self.assertTrue(source["url"].startswith("https://"), key)
+            self.assertTrue(source["title"], key)
+        # a value from an abstract or a seller is never presented as read in the source
+        for item in self.topics["fatigue"]["sets"]:
+            if item["source"] in ("di-egidio-2023", "bahl-2026"):
+                self.assertEqual(item["flag"], "abstract only")
+        # every topic says what was not found, and no topic names a number for a page that was not opened
+        for name, topic in self.topics.items():
+            self.assertTrue(topic["not_found"], name)
+            for lead in topic["leads_not_opened"]:
+                self.assertNotRegex(lead, r"\d+ ?(cfm|MPa|lb|mm\b)", lead)
+        self.assertIn("None is admitted as material data", self.topics["fatigue"]["standing"])
+
+    def test_numbers_computed_from_the_forms_follow_from_the_forms(self):
+        train = self.topics["valve-train"]
+        values = {row["quantity"]: row["value"] for row in train["values"]}
+        derived = {row["quantity"]: row["value"] for row in train["derived_here"]}
+        s_in, t_in, u_in = values["inlet cam lobe S / T / U"]
+        s_ex, t_ex, u_ex = values["exhaust cam lobe S / T / U"]
+        lifts = derived["cam lift, inlet / exhaust (S − T)"]
+        self.assertAlmostEqual(lifts[0], s_in - t_in, places=9)
+        self.assertAlmostEqual(lifts[1], s_ex - t_ex, places=9)
+        self.assertEqual(derived["base circle check, U − 2 T"], [0.0, 0.0])
+        ratio = derived["rocker ratio implied, valve lift over cam lift, inlet / exhaust"]
+        self.assertAlmostEqual(ratio[0], values["inlet valve, largest lift"] / lifts[0], places=3)
+        self.assertAlmostEqual(ratio[1], values["exhaust valve, largest lift"] / lifts[1], places=3)
+        opens, closes = values["inlet opens / closes"]
+        self.assertEqual(derived["opening period between the stated events, inlet / exhaust"][0], 180 - opens + closes)
+        factors = self.topics["port-flow"]["derived_here"][0]["value"]
+        self.assertAlmostEqual(factors[0], (28 / 10) ** 0.5, places=3)
+        self.assertAlmostEqual(factors[0], factors[1] * factors[2], places=2)
+
+    def test_comparison_with_the_scan_uses_the_fitted_axes(self):
+        fits = json.loads((TWIN / "params" / "feature-fits.json").read_text())
+        comparison = self.topics["valve-train"]["comparison_with_the_scan"]
+        rows = comparison["rows"]
+        values = {row["quantity"]: row["value"] for row in self.topics["valve-train"]["values"]}
+        inlet, exhaust = values["angle between valve and vertical, inlet / exhaust"]
+        self.assertEqual((inlet, exhaust), (25.5, 30.25))
+        between = [a["angle_deg"] for a in fits["datum_angles"] if a["between"] == ["valve_y_minus", "valve_y_plus"]][0]
+        self.assertEqual(rows[0]["scan"], between)
+        self.assertAlmostEqual(rows[0]["published"], inlet + exhaust, places=9)
+        self.assertLess(abs(rows[0]["difference"]), 0.02)
+        self.assertEqual(rows[1]["scan"], fits["group_datums"]["valve_y_minus"]["angle_to_frame_z_deg"])
+        self.assertEqual(rows[2]["scan"], fits["group_datums"]["valve_y_plus"]["angle_to_frame_z_deg"])
+        # each axis is off by about the difference the twin found between its two axis constructions
+        for row in rows[1:3]:
+            self.assertLess(abs(row["difference"]), comparison["construction_check_deg"])
+        self.assertLess(rows[3]["difference"], -0.4)
+        self.assertIn("does not identify the inlet", comparison["what_it_does_not_show"])
+        self.assertIn("H09 stays open", comparison["what_it_does_not_show"])
+
+    def test_the_transcribed_fatigue_table_is_whole(self):
+        sets = {item["id"]: item for item in self.topics["fatigue"]["sets"]}
+        rows = sets["roveda-2024-table-4"]["rows"]
+        self.assertEqual(len(rows), 20)
+        by_condition = {}
+        for row in rows:
+            by_condition.setdefault(row["condition"], []).append(row)
+        self.assertEqual({name: len(group) for name, group in by_condition.items()},
+                         {"as built": 6, "265 °C for 1 h": 7, "300 °C for 2 h": 7})
+        for name, group in by_condition.items():
+            self.assertEqual(sum(row["run_out"] for row in group), 1, name)
+            failures = [row for row in group if not row["run_out"]]
+            # lives rise as the stress range falls
+            self.assertEqual(failures, sorted(failures, key=lambda row: -row["stress_range_MPa"]))
+            self.assertEqual([row["cycles"] for row in failures], sorted(row["cycles"] for row in failures))
+            self.assertEqual(min(row["stress_range_MPa"] for row in group), [row for row in group if row["run_out"]][0]["stress_range_MPa"])
+        self.assertIn("stress range", sets["roveda-2024-table-4"]["stress_is"])
+
+    def test_the_register_points_to_the_search_and_stays_blocked(self):
+        register = json.loads((TWIN / "params" / "prepared-work.json").read_text())
+        search = register["published_search"]
+        self.assertEqual(search["date"], self.record["date"])
+        self.assertTrue((ROOT / search["note"]).exists() and (ROOT / search["record"]).exists())
+        parts = {part["id"]: part for part in register["parts"]}
+        for name in ("port-flow", "fatigue", "valve-train"):
+            self.assertTrue(any(held["where"] == search["record"] for held in parts[name]["held"]), name)
+            self.assertTrue(parts[name]["state"].startswith("blocked"), name)
+        readme = (TWIN / "README.md").read_text()
+        self.assertIn("It moved no part out of its blocked state.", readme)
+        # the ledger row of the port flow links to the section once, however often the section is regenerated
+        row = [line for line in readme.split("\n") if line.startswith("| Port CFD |")]
+        self.assertEqual(len(row), 1)
+        self.assertEqual(row[0].count("[prepared]("), 1)
+        note = (ROOT / search["note"]).read_text()
+        self.assertIn("Nothing here is a measurement of the scanned head", note.replace("\n", " "))
+        for source in self.record["sources"].values():
+            self.assertIn(source["url"], note)
+
+
 class MediaTests(unittest.TestCase):
     def test_public_images_match_their_provenance_and_stay_small(self):
         import hashlib
