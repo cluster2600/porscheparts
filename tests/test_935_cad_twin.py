@@ -1253,6 +1253,20 @@ class BuildSimDolfinxTests(unittest.TestCase):
             for q, v in row["fine_over_coarse"].items():
                 self.assertAlmostEqual(v, row["fine"][q] / row["coarse"][q] - 1.0, places=4)
 
+    def test_the_record_states_the_verdict_of_the_upstream_input_audits(self):
+        audit = json.loads((self.params / "build-sim-dolfinx.json").read_text())["input_audit"]
+        body = json.loads((self.params / "print-body.json").read_text())
+        surface = audit["audits"]["twin_surface_it_derives_from"]
+        score = json.loads((TWIN / surface["record"]).read_text())
+        self.assertEqual(audit["audits"]["print_body"]["strict_watertight_gate_passed"], body["strict_gate"]["passed"])
+        self.assertEqual(audit["audits"]["print_body"]["enclosed_voids_remaining"], body["enclosed_voids_remaining"])
+        self.assertEqual(surface["share_of_the_area_on_acquired_scan"], score["twin_area_observed_supported_share"])
+        closure = f"{1.0 - score['twin_area_observed_supported_share']:.0%}"
+        self.assertIn(f"{closure} of the twin surface it derives from is closure", audit["verdict"])
+        self.assertIn("not as the specimen", audit["verdict"])
+        readme = " ".join((TWIN / "README.md").read_text().split())
+        self.assertIn(f"{closure} is closure where the scanner saw nothing", readme)
+
     def test_the_readme_states_the_2_mm_level_from_the_record(self):
         rec = json.loads((self.params / "build-sim-dolfinx.json").read_text())
         readme = " ".join((TWIN / "README.md").read_text().split())

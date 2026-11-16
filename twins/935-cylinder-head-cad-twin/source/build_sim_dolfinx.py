@@ -47,6 +47,7 @@ TO_DOLFINX = [0, 1, 3, 2, 4, 5, 7, 6]            # CalculiX C3D8 corner order to
 NEVER_YIELDS = 1.0e30
 IMAGE = "dolfinx/dolfinx@sha256:58b27e84a2f26b98ce2d9ccc537b0ee6a59e2fcfdf386626d5ed9ddf43425ece"      # v0.11.0.post0, amd64
 REFERENCE_LEVEL = "c4-l8"      # the level both solvers ran
+INPUT_SCORECARD = "scorecard-v2-loft-s025.json"    # whole-scan scorecard of the v2 body the print body is derived from
 KEPT = []                      # solids of earlier witnesses, kept until exit so that Python's collector frees no parallel
                                # PETSc object at a different moment on each process (a precaution, not a diagnosed fault)
 BLR_MAX_ITERATIONS = 60        # of the conjugate-gradient loop on a kept factorisation, before it is made again
@@ -686,6 +687,24 @@ def record(private_dir, ccx_record_file, acceptance_file, out) -> None:
         model = ccx["levels"][m["level"]]["model"]
         assert model["nodes"] == m["nodes"] and sum(model["hexahedra"].values()) == m["cells"]
         levels[m["level"]] = {"cell_mm": model["cell_mm"], "lump_height_mm": model["lump_height_mm"], **{k: v for k, v in m.items() if k not in ("schema", "date", "level")}}
+    params = Path(ccx_record_file).parent                          # the upstream audits of the geometry sit beside it
+    body = json.loads((params / "print-body.json").read_text())
+    score = json.loads((params / INPUT_SCORECARD).read_text())
+    observed = score["twin_area_observed_supported_share"]
+    input_audit = {
+        "geometry": "the print-body occupancy (params/print-body.json) cut into cells by build_sim.py prepare, flange y+ on the plate",
+        "audits": {
+            "print_body": {"record": "params/print-body.json", "strict_watertight_gate_passed": body["strict_gate"]["passed"],
+                           "enclosed_voids_remaining": body["enclosed_voids_remaining"], "claims": body["claims"]},
+            "twin_surface_it_derives_from": {"record": f"params/{INPUT_SCORECARD}", "checker": score["checker"],
+                                             "share_of_the_area_on_acquired_scan": observed, "limits": score["limits"]}},
+        "verdict": (f"admissible as a closed study body, not as the specimen: the print body is watertight with no enclosed void, but "
+                    f"{1.0 - observed:.0%} of the twin surface it derives from is closure where the scanner saw nothing, and its stock and fills "
+                    "are declared. The two-solver comparison is verification on identical cells and does not depend on this. The cell-size rows "
+                    "and the place of the worst corner describe this study body's voxel model, not the specimen; whether the worst corner "
+                    "lies on acquired surface is not established."),
+    }
+    assert input_audit["audits"]["print_body"]["strict_watertight_gate_passed"] and body["enclosed_voids_remaining"] == 0
     reference = ccx["levels"][REFERENCE_LEVEL]
     ref = reference["mechanics"]["mechanics"]["release"][key]
     cell_size = []
@@ -703,6 +722,7 @@ def record(private_dir, ccx_record_file, acceptance_file, out) -> None:
         "scope": ("The mechanics of the build screen solved a second time, by a second program: the cells, the lumps, the temperatures at the end of "
                   "each lump and the declared material are those of build_sim.py (params/build-sim-case.json, params/build-sim.json). Nothing here "
                   "is a new hypothesis; only the solver changes, and with it the size of model this host can run."),
+        "input_audit": input_audit,
         "tool": {"name": wit["tool"].split(",")[0], "image": IMAGE, "linear_algebra": "PETSc with MUMPS, as shipped in the image",
                  "licence": "LGPL-3.0-or-later (DOLFINx); used unmodified in its container, nothing of it is redistributed here"},
         "model": {"element": "8-node hexahedron, 2 x 2 x 2 integration points", "plasticity": "von Mises, linear isotropic hardening, radial return",

@@ -1217,6 +1217,17 @@ changes.
 Two programs that agree on one model say the equations are solved, not that the
 model is the print.
 
+**Input audit, stated in the record.** The cells are cut from the
+[print body](#print-body-a-study-object-derived-from-the-twin-case-record-orientations),
+which passes the strict watertight gate with no enclosed void. It derives from the
+v2 body, of which 82% of the area lies on acquired scan
+([scorecard](params/scorecard-v2-loft-s025.json)) and 18% is closure where the scanner
+saw nothing; its stock and fills are declared. The input is admissible as a closed
+study body, not as the specimen. The two-solver comparison does not depend on this:
+both programs solve identical cells. The cell-size rows and the place of the worst
+corner describe this study body's voxel model; whether the worst corner lies on
+acquired surface is not established.
+
 **What this screen does not say.**
 
 - No melt pool, scan path or peak temperature: the heat of a lump is spread

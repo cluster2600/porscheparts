@@ -2,6 +2,24 @@
  "schema": "935-cad-twin-build-sim-dolfinx-record/1",
  "date": "2026-11-16",
  "scope": "The mechanics of the build screen solved a second time, by a second program: the cells, the lumps, the temperatures at the end of each lump and the declared material are those of build_sim.py (params/build-sim-case.json, params/build-sim.json). Nothing here is a new hypothesis; only the solver changes, and with it the size of model this host can run.",
+ "input_audit": {
+  "geometry": "the print-body occupancy (params/print-body.json) cut into cells by build_sim.py prepare, flange y+ on the plate",
+  "audits": {
+   "print_body": {
+    "record": "params/print-body.json",
+    "strict_watertight_gate_passed": true,
+    "enclosed_voids_remaining": 0,
+    "claims": "a study object derived from the twin with declared stock and fills; not a build file, no support, no machining drawing, and no dimension of the specimen"
+   },
+   "twin_surface_it_derives_from": {
+    "record": "params/scorecard-v2-loft-s025.json",
+    "checker": "score_twin.py (independent of producers); NVIDIA Warp mesh_query_point_no_sign on CPU",
+    "share_of_the_area_on_acquired_scan": 0.81924,
+    "limits": "distances to the acquired surface only; says nothing about unobserved geometry, physical calibration or function"
+   }
+  },
+  "verdict": "admissible as a closed study body, not as the specimen: the print body is watertight with no enclosed void, but 18% of the twin surface it derives from is closure where the scanner saw nothing, and its stock and fills are declared. The two-solver comparison is verification on identical cells and does not depend on this. The cell-size rows and the place of the worst corner describe this study body's voxel model, not the specimen; whether the worst corner lies on acquired surface is not established."
+ },
  "tool": {
   "name": "DOLFINx 0.11.0.post0",
   "image": "dolfinx/dolfinx@sha256:58b27e84a2f26b98ce2d9ccc537b0ee6a59e2fcfdf386626d5ed9ddf43425ece",
