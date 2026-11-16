@@ -1272,7 +1272,25 @@ class MeltPoolCheckTests(unittest.TestCase):
         # the kernel is the revision the repository's GO-MELT witness pins
         smoke = (ROOT / "benchmarks" / "go-melt" / "smoke.py").read_text()
         self.assertIn(self.record["tool"]["kernel_sha256"], smoke)
-        self.assertEqual(self.record["tool"]["driver_sha256"], hashlib.sha256((SOURCE / "melt_pool_track.py").read_bytes()).hexdigest())
+        # the runs used the driver as first committed; the record keeps that hash and says what changed since
+        self.assertRegex(self.record["tool"]["driver_sha256_at_run_time"], r"^[0-9a-f]{64}$")
+        self.assertIn("4e6f737a", self.record["tool"]["driver_note"])
+        self.assertIn("were not rerun", self.record["tool"]["driver_note"])
+        cases = TWIN / "params" / "melt-pool-cases"
+        rows = (self.record["witness_against_rosenthal"] + self.record["mesh_study"] + self.record["width_against_absorptivity"])
+        self.assertGreaterEqual(len({row["case"] for row in rows}), 9)
+        for row in rows:
+            case_file = cases / f"{row['case']}.json"
+            self.assertEqual(row["case_sha256"], hashlib.sha256(case_file.read_bytes()).hexdigest(), row["case"])
+            case = json.loads(case_file.read_text())
+            self.assertEqual(row["block_mm"], case["block_mm"], row["case"])
+            self.assertEqual(case["laser"]["power_W"], build["process"]["laser_power_W"], row["case"])
+            self.assertEqual(case["start_temperature_K"], build["plate"]["temperature_K"], row["case"])
+            # a track never stopped short, and never ran more than 5% past the length asked for
+            overrun = row["track_length_run_mm"] / row["track_length_asked_mm"] - 1.0
+            self.assertGreaterEqual(overrun, -1e-9, row["case"])
+            self.assertLess(overrun, 0.05, row["case"])
+            self.assertLess(case["track_start_mm"] + row["track_length_run_mm"], case["block_mm"][0], row["case"])
         self.assertTrue(self.record["tool"]["double_precision"])
         self.assertIn("gpu:0", self.record["tool"]["devices"])
 

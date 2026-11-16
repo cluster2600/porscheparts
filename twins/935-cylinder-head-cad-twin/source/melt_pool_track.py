@@ -66,7 +66,9 @@ def main(go_melt_dir, case_file, out_dir) -> None:
     x0, travel = case["track_start_mm"], case["track_length_mm"]
     diffusivity = mat["conductivity_W_mK"] * 1e-3 / (mat["density_kg_m3"] * 1e-9 * mat["specific_heat_J_kgK"])     # mm2/s
     dt = case["stability_factor"] * h * h / (6.0 * diffusivity)
-    steps = int(np.ceil(travel / speed / dt))
+    chunk = int(case.get("steps_per_chunk", 200))
+    # a whole number of chunks covers exactly the requested track: the step is shortened to fit
+    steps = int(np.ceil(travel / speed / dt / chunk)) * chunk
     dt = travel / speed / steps
     t0 = case["start_temperature_K"]
     solid = jnp.ones(n_no)
@@ -78,8 +80,6 @@ def main(go_melt_dir, case_file, out_dir) -> None:
         F = kernel.computeSourcesL3(level, position, ne_nn, props, laser["power_W"])
         T = kernel.solveMatrixFreeFE(level, n_no, n_el, k, rhocp, dt, T, F, 0.0)
         return (T, jnp.maximum(peak, T)), F.sum()
-
-    chunk = int(case.get("steps_per_chunk", 200))
 
     @jax.jit
     def advance(carry, first):
@@ -142,7 +142,9 @@ def main(go_melt_dir, case_file, out_dir) -> None:
         "schema": "melt-pool-track/1", "date": time.strftime("%Y-%m-%d"), "case": case["name"],
         "kernel_sha256": digest, "script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "backend": jax.default_backend(), "device": str(jax.devices()[0]), "jax": jax.__version__, "x64": bool(jax.config.jax_enable_x64),
+        "case_sha256": hashlib.sha256(Path(case_file).read_bytes()).hexdigest(),
         "elements": ne, "nodes": int(n_no), "element_mm": h, "time_step_s": dt, "steps": int(steps_run), "wall_seconds": round(wall, 1),
+        "track_length_run_mm": speed * dt * steps_run, "track_length_asked_mm": travel,
         "melt_pool": {"isotherm_K": t_melt,
                       "width_um": {"median": float(2e3 * np.median(half_widths)), "min": float(2e3 * np.min(half_widths)), "max": float(2e3 * np.max(half_widths))},
                       "depth_um": {"median": float(1e3 * np.median(depths)), "min": float(1e3 * np.min(depths)), "max": float(1e3 * np.max(depths))},

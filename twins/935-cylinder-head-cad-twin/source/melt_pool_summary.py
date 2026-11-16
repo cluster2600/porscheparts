@@ -10,6 +10,7 @@ Reads the reports of melt_pool_track.py (one folder per case) and writes
   MEDIA/melt-pool.gif (.mp4)   one track seen from above and from the side.
 
 Usage: melt_pool_summary.py RUNS_DIR CASES_DIR BUILD_CASE.json OUT.json MEDIA_DIR
+CASES_DIR is params/melt-pool-cases: the record keeps the hash of every case file.
 """
 
 from __future__ import annotations
@@ -60,7 +61,14 @@ def main(runs_dir, cases_dir, build_case_file, out, media_dir) -> None:
         m, l = c["material"], c["laser"]
         w, d = rosenthal_width_depth(l["absorptivity"], l["power_W"], l["speed_mm_s"] * 1e-3, m["conductivity_W_mK"], m["density_kg_m3"],
                                      m["specific_heat_J_kgK"], c["start_temperature_K"], m["solidus_K"])
-        return {"case": name, "absorptivity": l["absorptivity"], "element_um": r["element_mm"] * 1e3,
+        run_mm = l["speed_mm_s"] * r["time_step_s"] * r["steps"]
+        end_mm = c["track_start_mm"] + run_mm
+        assert end_mm + 3 * l["radius_mm"] < c["block_mm"][0], f"{name}: the laser left the block"
+        assert c["track_start_mm"] + 2.0 * c["track_length_mm"] / 3.0 <= end_mm, f"{name}: the pool was read beyond the track"
+        return {"case": name, "case_sha256": hashlib.sha256((cases_dir / f"{name}.json").read_bytes()).hexdigest(),
+                "block_mm": c["block_mm"], "track_start_mm": c["track_start_mm"], "track_length_asked_mm": c["track_length_mm"],
+                "track_length_run_mm": run_mm, "steps_per_chunk": c.get("steps_per_chunk", 200), "stability_factor": c["stability_factor"],
+                "absorptivity": l["absorptivity"], "element_um": r["element_mm"] * 1e3,
                 "laser_radius_um": l["radius_mm"] * 1e3, "laser_depth_um": l["depth_mm"] * 1e3,
                 "latent_heat_J_kg": m.get("latent_heat_J_kg", 0.0), "pool_isotherm_K": r["melt_pool"]["isotherm_K"],
                 "width_um": r["melt_pool"]["width_um"]["median"], "depth_um": r["melt_pool"]["depth_um"]["median"],
@@ -127,7 +135,12 @@ def main(runs_dir, cases_dir, build_case_file, out, media_dir) -> None:
                  "GO-MELT kernel on a GPU. It compares the melt-pool width with published widths to see which absorptivity they "
                  "correspond to. Not a melt-pool prediction: no melt flow, no evaporation, no keyhole, no powder",
         "tool": {"kernel": "GO-MELT, commit 7dafdd8593711cf8ac6ccb18a1f475744610ea3d", "kernel_sha256": next(iter(reports.values()))["kernel_sha256"],
-                 "driver": "source/melt_pool_track.py", "driver_sha256": next(iter(reports.values()))["script_sha256"],
+                 "driver": "source/melt_pool_track.py", "driver_sha256_at_run_time": next(iter(reports.values()))["script_sha256"],
+                 "driver_note": "the runs used the driver as first committed (4e6f737a). It ran whole chunks of steps, so a track went on past "
+                                "the length asked for: by 4.9% on the 10 um cases, by 0.8% or less on the others (track_length_run_mm in every "
+                                "row). The pool is read in the middle third of the length asked for, inside the track in every case. The "
+                                "committed driver now shortens the step so that whole chunks cover exactly the track; the cases were not rerun",
+                 "cases_dir": "params/melt-pool-cases",
                  "jax": next(iter(reports.values()))["jax"], "devices": sorted({r["device"] for r in reports.values()}),
                  "double_precision": all(r["x64"] for r in reports.values())},
         "build_case_file": "params/build-sim-case.json", "build_case_sha256": hashlib.sha256(Path(build_case_file).read_bytes()).hexdigest(),

@@ -1379,6 +1379,10 @@ plate at 100 °C, melting at the solidus (563 °C). The laser spot is a declared
   is at this power and near this speed, and it is a preprint read off a graph.
 - The block is small: its far faces warm by up to
   349 K by the end of the track, with adiabatic walls.
+- The tracks ran 0.1% to 4.9% past the length asked for, because the driver ran whole
+  blocks of steps. The pool is read in the middle of the track, so the widths
+  stand; the driver is corrected for later runs, and these cases were not rerun.
+  Every case file is in [params/melt-pool-cases](params/melt-pool-cases), with its hash in the record.
 - It calibrates nothing: the build screen's absorptivity stays a declared
   value, and its gate on a calibrated heat input stays closed.
 

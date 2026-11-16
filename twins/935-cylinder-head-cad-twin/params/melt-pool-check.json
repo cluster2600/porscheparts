@@ -1,12 +1,14 @@
 {
  "schema": "935-cad-twin-melt-pool-check/1",
- "date": "2026-11-15",
+ "date": "2026-11-16",
  "scope": "one laser track on solid AlSi10Mg at the build screen's declared values, by heat conduction only, with the GO-MELT kernel on a GPU. It compares the melt-pool width with published widths to see which absorptivity they correspond to. Not a melt-pool prediction: no melt flow, no evaporation, no keyhole, no powder",
  "tool": {
   "kernel": "GO-MELT, commit 7dafdd8593711cf8ac6ccb18a1f475744610ea3d",
   "kernel_sha256": "cf1889dfb41e11591e4245a9199262e66ae972e3a75e2c00baddd30f32851176",
   "driver": "source/melt_pool_track.py",
-  "driver_sha256": "da3910703972a7e4343c3ea70b0c0120a2cf7d65cc5c288d3ff6df87f23e1560",
+  "driver_sha256_at_run_time": "da3910703972a7e4343c3ea70b0c0120a2cf7d65cc5c288d3ff6df87f23e1560",
+  "driver_note": "the runs used the driver as first committed (4e6f737a). It ran whole chunks of steps, so a track went on past the length asked for: by 4.9% on the 10 um cases, by 0.8% or less on the others (track_length_run_mm in every row). The pool is read in the middle third of the length asked for, inside the track in every case. The committed driver now shortens the step so that whole chunks cover exactly the track; the cases were not rerun",
+  "cases_dir": "params/melt-pool-cases",
   "jax": "0.4.16",
   "devices": [
    "gpu:0"
@@ -71,6 +73,17 @@
  "witness_against_rosenthal": [
   {
    "case": "witness-point-h050",
+   "case_sha256": "202b456dc79a242c998892005a69feab3c672d4d4c4925bf8b9b478fc1b71da1",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2014875560217413,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
    "absorptivity": 0.25,
    "element_um": 5.0,
    "laser_radius_um": 20.0,
@@ -97,6 +110,17 @@
   },
   {
    "case": "witness-point-h100",
+   "case_sha256": "2d1c2a28b73705a8a2358074de1e82f4ac8107fb91ccc6e72f2bcbcbea111bda",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2585812356979407,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
    "absorptivity": 0.25,
    "element_um": 10.0,
    "laser_radius_um": 20.0,
@@ -125,6 +149,17 @@
  "mesh_study": [
   {
    "case": "spot80-eta025-h100",
+   "case_sha256": "db2b27f126a1b68510829fcc5e755be88111275c46c405d9f89716ac48ac6244",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2585812356979407,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
    "absorptivity": 0.25,
    "element_um": 10.0,
    "laser_radius_um": 49.0,
@@ -151,6 +186,17 @@
   },
   {
    "case": "spot80-eta025-h050",
+   "case_sha256": "b7bf54b5fc2428626b694e18d8ae6093694e48c6e136782a5ade99343e36f44a",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2014875560217413,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
    "absorptivity": 0.25,
    "element_um": 5.0,
    "laser_radius_um": 49.0,
@@ -177,6 +223,17 @@
   },
   {
    "case": "spot80-eta025-h040",
+   "case_sha256": "4fe9794bfab2ade7c94f08edc7c99a67ccb87d05a528e474e6637295ee46e3c2",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2083485902599782,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
    "absorptivity": 0.25,
    "element_um": 4.0,
    "laser_radius_um": 49.0,
@@ -205,6 +262,17 @@
  "width_against_absorptivity": [
   {
    "case": "spot80-eta013-h050",
+   "case_sha256": "7a073cd30a66982702eef0abb7bb239ef22fd5e66d5d1c971cf0c9ed030b1728",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2014875560217413,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
    "absorptivity": 0.13,
    "element_um": 5.0,
    "laser_radius_um": 49.0,
@@ -231,6 +299,17 @@
   },
   {
    "case": "spot80-eta020-h050",
+   "case_sha256": "9874bd7dcea00b8093bbf2e24bed4a875122643e596c9225878740e310d7ff51",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2014875560217413,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
    "absorptivity": 0.2,
    "element_um": 5.0,
    "laser_radius_um": 49.0,
@@ -257,6 +336,17 @@
   },
   {
    "case": "spot80-eta025-h050",
+   "case_sha256": "b7bf54b5fc2428626b694e18d8ae6093694e48c6e136782a5ade99343e36f44a",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2014875560217413,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
    "absorptivity": 0.25,
    "element_um": 5.0,
    "laser_radius_um": 49.0,
@@ -283,6 +373,17 @@
   },
   {
    "case": "spot80-eta030-h050",
+   "case_sha256": "ebc6e89d98e675d77ad9ec70e0b85ec05e36cf7824a198ee4538f7258d486d44",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2014875560217413,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
    "absorptivity": 0.3,
    "element_um": 5.0,
    "laser_radius_um": 49.0,
@@ -309,6 +410,17 @@
   },
   {
    "case": "spot80-eta040-h050",
+   "case_sha256": "74e421389945f0a994066d66e65772e930f5711b99ddc8425b66e1f70f728ac1",
+   "block_mm": [
+    2.3,
+    0.42,
+    0.3
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.6,
+   "track_length_run_mm": 1.6019452191947365,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
    "absorptivity": 0.4,
    "element_um": 5.0,
    "laser_radius_um": 49.0,
@@ -335,6 +447,17 @@
   },
   {
    "case": "spot80-eta057-h050",
+   "case_sha256": "72626c3436206bfbd2520bedcfeea8e54ee023ea322a38c14684c3f28ec5fd2e",
+   "block_mm": [
+    2.3,
+    0.42,
+    0.3
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.6,
+   "track_length_run_mm": 1.6019452191947365,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
    "absorptivity": 0.58,
    "element_um": 5.0,
    "laser_radius_um": 49.0,
