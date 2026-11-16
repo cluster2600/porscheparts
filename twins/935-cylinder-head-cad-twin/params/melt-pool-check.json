@@ -1,0 +1,595 @@
+{
+ "schema": "935-cad-twin-melt-pool-check/1",
+ "date": "2026-11-16",
+ "scope": "one laser track on solid AlSi10Mg at the build screen's declared values, by heat conduction only, with the GO-MELT kernel on a GPU. It compares the melt-pool width with published widths to see which absorptivity they correspond to. Not a melt-pool prediction: no melt flow, no evaporation, no keyhole, no powder",
+ "tool": {
+  "kernel": "GO-MELT, commit 7dafdd8593711cf8ac6ccb18a1f475744610ea3d",
+  "kernel_sha256": "cf1889dfb41e11591e4245a9199262e66ae972e3a75e2c00baddd30f32851176",
+  "driver": "source/melt_pool_track.py",
+  "driver_sha256_at_run_time": "da3910703972a7e4343c3ea70b0c0120a2cf7d65cc5c288d3ff6df87f23e1560",
+  "driver_note": "the runs used the driver as first committed (4e6f737a). It ran whole chunks of steps, so a track went on past the length asked for: by 4.9% on the 10 um cases, by 0.8% or less on the others (track_length_run_mm in every row). The pool is read in the middle third of the length asked for, inside the track in every case. The committed driver now shortens the step so that whole chunks cover exactly the track; the cases were not rerun",
+  "cases_dir": "params/melt-pool-cases",
+  "jax": "0.4.16",
+  "devices": [
+   "gpu:0"
+  ],
+  "double_precision": true
+ },
+ "build_case_file": "params/build-sim-case.json",
+ "build_case_sha256": "204f56534b74d881256453d6032cbda95be00e0982a60acc46fc08bf90fc05cc",
+ "declared": {
+  "absorptivity": 0.4,
+  "laser_power_W": 350.0,
+  "plate_temperature_K": 373.15,
+  "conductivity_W_mK": 105.0,
+  "specific_heat_J_kgK": 900.0,
+  "density_kg_m3": 2670.0,
+  "solidus_K": 836.15,
+  "scan_speed_mm_s": 1200.0,
+  "scan_speed_note": "from the parameter set the energy density was taken from (params/build-sim-case.json, parameter_source)",
+  "laser_spot_um": 80.0,
+  "laser_spot_note": "declared: the 1/e2 diameter of the machine of the nearest published tracks; 60 and 100 um are run as sensitivities"
+ },
+ "checks": [
+  {
+   "check": "witness: width within 2% of Rosenthal's point source",
+   "value": 0.0015881170580083204,
+   "limit": 0.02,
+   "passed": true
+  },
+  {
+   "check": "witness: depth within 2% of Rosenthal's point source",
+   "value": 0.001933945262583503,
+   "limit": 0.02,
+   "passed": true
+  },
+  {
+   "check": "mesh: width changes by less than 1% between the two finest meshes",
+   "value": 8.270807382904088e-05,
+   "limit": 0.01,
+   "passed": true
+  },
+  {
+   "check": "energy: source within 0.1% of the absorbed power times the time, every case",
+   "value": 0.0002944368294215405,
+   "limit": 0.001,
+   "passed": true
+  },
+  {
+   "check": "energy: heat stored within 0.1% of the source, constant properties",
+   "limit": 0.001,
+   "value": 1.7410961561381555e-11,
+   "passed": true
+  },
+  {
+   "check": "energy: heat stored within 2% of the source, cases with latent heat",
+   "limit": 0.02,
+   "value": 0.011853279118923643,
+   "limit_set": "after the first reading (0.1% failed at 1.2%)",
+   "passed": true
+  }
+ ],
+ "passed": true,
+ "witness_against_rosenthal": [
+  {
+   "case": "witness-point-h050",
+   "case_sha256": "202b456dc79a242c998892005a69feab3c672d4d4c4925bf8b9b478fc1b71da1",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2014875560217413,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
+   "absorptivity": 0.25,
+   "element_um": 5.0,
+   "laser_radius_um": 20.0,
+   "laser_depth_um": 15.0,
+   "latent_heat_J_kg": 0.0,
+   "pool_isotherm_K": 836.15,
+   "width_um": 218.69240047505355,
+   "depth_um": 109.38395527820789,
+   "width_spread_along_the_track_um": 1.6279136268525747,
+   "rosenthal_width_um": 218.34564203639377,
+   "rosenthal_depth_um": 109.17282101819688,
+   "source_over_absorbed": 1.0000000000000724,
+   "stored_over_source": 1.000000000004115,
+   "largest_temperature_K": 13184.779054420547,
+   "far_face_rise_K": {
+    "bottom": 197.22350317069652,
+    "side": 113.86284502149067,
+    "ends": 34.97930582591249
+   },
+   "device": "gpu:0",
+   "nodes": 1474089,
+   "steps": 21000,
+   "wall_seconds": 441.7
+  },
+  {
+   "case": "witness-point-h100",
+   "case_sha256": "2d1c2a28b73705a8a2358074de1e82f4ac8107fb91ccc6e72f2bcbcbea111bda",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2585812356979407,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
+   "absorptivity": 0.25,
+   "element_um": 10.0,
+   "laser_radius_um": 20.0,
+   "laser_depth_um": 15.0,
+   "latent_heat_J_kg": 0.0,
+   "pool_isotherm_K": 836.15,
+   "width_um": 218.67992621728538,
+   "depth_um": 109.37821794586549,
+   "width_spread_along_the_track_um": 1.4728745675066648,
+   "rosenthal_width_um": 218.34564203639377,
+   "rosenthal_depth_um": 109.17282101819688,
+   "source_over_absorbed": 1.0002944368294215,
+   "stored_over_source": 1.000000000002512,
+   "largest_temperature_K": 13888.168209296819,
+   "far_face_rise_K": {
+    "bottom": 197.87389139144648,
+    "side": 117.56349901608814,
+    "ends": 36.33145865800935
+   },
+   "device": "gpu:0",
+   "nodes": 190809,
+   "steps": 5500,
+   "wall_seconds": 16.0
+  }
+ ],
+ "mesh_study": [
+  {
+   "case": "spot80-eta025-h100",
+   "case_sha256": "db2b27f126a1b68510829fcc5e755be88111275c46c405d9f89716ac48ac6244",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2585812356979407,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
+   "absorptivity": 0.25,
+   "element_um": 10.0,
+   "laser_radius_um": 49.0,
+   "laser_depth_um": 20.0,
+   "latent_heat_J_kg": 0.0,
+   "pool_isotherm_K": 836.15,
+   "width_um": 221.47796507273716,
+   "depth_um": 107.58571097655592,
+   "width_spread_along_the_track_um": 1.7678532505311182,
+   "rosenthal_width_um": 218.34564203639377,
+   "rosenthal_depth_um": 109.17282101819688,
+   "source_over_absorbed": 1.0000009274120447,
+   "stored_over_source": 1.0000000000025207,
+   "largest_temperature_K": 5792.7134378315095,
+   "far_face_rise_K": {
+    "bottom": 196.93308363691892,
+    "side": 117.90493051986209,
+    "ends": 36.43169112246187
+   },
+   "device": "gpu:0",
+   "nodes": 190809,
+   "steps": 5500,
+   "wall_seconds": 16.0
+  },
+  {
+   "case": "spot80-eta025-h050",
+   "case_sha256": "b7bf54b5fc2428626b694e18d8ae6093694e48c6e136782a5ade99343e36f44a",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2014875560217413,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
+   "absorptivity": 0.25,
+   "element_um": 5.0,
+   "laser_radius_um": 49.0,
+   "laser_depth_um": 20.0,
+   "latent_heat_J_kg": 0.0,
+   "pool_isotherm_K": 836.15,
+   "width_um": 221.55774467908256,
+   "depth_um": 107.4998884517025,
+   "width_spread_along_the_track_um": 1.740004285030352,
+   "rosenthal_width_um": 218.34564203639377,
+   "rosenthal_depth_um": 109.17282101819688,
+   "source_over_absorbed": 1.000000000000006,
+   "stored_over_source": 1.0000000000041287,
+   "largest_temperature_K": 5726.906155150324,
+   "far_face_rise_K": {
+    "bottom": 196.3204091535116,
+    "side": 114.2703962932847,
+    "ends": 35.093595177222255
+   },
+   "device": "gpu:0",
+   "nodes": 1474089,
+   "steps": 21000,
+   "wall_seconds": 440.0
+  },
+  {
+   "case": "spot80-eta025-h040",
+   "case_sha256": "4fe9794bfab2ade7c94f08edc7c99a67ccb87d05a528e474e6637295ee46e3c2",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2083485902599782,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
+   "absorptivity": 0.25,
+   "element_um": 4.0,
+   "laser_radius_um": 49.0,
+   "laser_depth_um": 20.0,
+   "latent_heat_J_kg": 0.0,
+   "pool_isotherm_K": 836.15,
+   "width_um": 221.57606929338687,
+   "depth_um": 107.45466538441136,
+   "width_spread_along_the_track_um": 1.6831073946552806,
+   "rosenthal_width_um": 218.34564203639377,
+   "rosenthal_depth_um": 109.17282101819688,
+   "source_over_absorbed": 1.0000000000000062,
+   "stored_over_source": 1.0000000000040312,
+   "largest_temperature_K": 5719.403144661495,
+   "far_face_rise_K": {
+    "bottom": 196.41515367650402,
+    "side": 114.72712382404256,
+    "ends": 35.256626432531164
+   },
+   "device": "gpu:0",
+   "nodes": 2858856,
+   "steps": 33000,
+   "wall_seconds": 1347.1
+  }
+ ],
+ "width_against_absorptivity": [
+  {
+   "case": "spot80-eta013-h050",
+   "case_sha256": "7a073cd30a66982702eef0abb7bb239ef22fd5e66d5d1c971cf0c9ed030b1728",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2014875560217413,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
+   "absorptivity": 0.13,
+   "element_um": 5.0,
+   "laser_radius_um": 49.0,
+   "laser_depth_um": 20.0,
+   "latent_heat_J_kg": 0.0,
+   "pool_isotherm_K": 836.15,
+   "width_um": 150.18203150923236,
+   "depth_um": 69.22426361880812,
+   "width_spread_along_the_track_um": 0.5478414982934794,
+   "rosenthal_width_um": 145.1012646105557,
+   "rosenthal_depth_um": 72.55063230527784,
+   "source_over_absorbed": 1.000000000000005,
+   "stored_over_source": 1.0000000000078964,
+   "largest_temperature_K": 3157.1032006783025,
+   "far_face_rise_K": {
+    "bottom": 102.08661275996843,
+    "side": 59.420606072812234,
+    "ends": 18.24866949237952
+   },
+   "device": "gpu:0",
+   "nodes": 1474089,
+   "steps": 21000,
+   "wall_seconds": 439.9
+  },
+  {
+   "case": "spot80-eta020-h050",
+   "case_sha256": "9874bd7dcea00b8093bbf2e24bed4a875122643e596c9225878740e310d7ff51",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2014875560217413,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
+   "absorptivity": 0.2,
+   "element_um": 5.0,
+   "laser_radius_um": 49.0,
+   "laser_depth_um": 20.0,
+   "latent_heat_J_kg": 0.0,
+   "pool_isotherm_K": 836.15,
+   "width_um": 194.43354715104005,
+   "depth_um": 93.04633070748658,
+   "width_spread_along_the_track_um": 1.1558421004257582,
+   "rosenthal_width_um": 190.6596523317382,
+   "rosenthal_depth_um": 95.3298261658691,
+   "source_over_absorbed": 1.000000000000006,
+   "stored_over_source": 1.0000000000050624,
+   "largest_temperature_K": 4656.1549241203165,
+   "far_face_rise_K": {
+    "bottom": 157.0563273229244,
+    "side": 91.41631703467186,
+    "ends": 28.074876141866923
+   },
+   "device": "gpu:0",
+   "nodes": 1474089,
+   "steps": 21000,
+   "wall_seconds": 440.0
+  },
+  {
+   "case": "spot80-eta025-h050",
+   "case_sha256": "b7bf54b5fc2428626b694e18d8ae6093694e48c6e136782a5ade99343e36f44a",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2014875560217413,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
+   "absorptivity": 0.25,
+   "element_um": 5.0,
+   "laser_radius_um": 49.0,
+   "laser_depth_um": 20.0,
+   "latent_heat_J_kg": 0.0,
+   "pool_isotherm_K": 836.15,
+   "width_um": 221.55774467908256,
+   "depth_um": 107.4998884517025,
+   "width_spread_along_the_track_um": 1.740004285030352,
+   "rosenthal_width_um": 218.34564203639377,
+   "rosenthal_depth_um": 109.17282101819688,
+   "source_over_absorbed": 1.000000000000006,
+   "stored_over_source": 1.0000000000041287,
+   "largest_temperature_K": 5726.906155150324,
+   "far_face_rise_K": {
+    "bottom": 196.3204091535116,
+    "side": 114.2703962932847,
+    "ends": 35.093595177222255
+   },
+   "device": "gpu:0",
+   "nodes": 1474089,
+   "steps": 21000,
+   "wall_seconds": 440.0
+  },
+  {
+   "case": "spot80-eta030-h050",
+   "case_sha256": "ebc6e89d98e675d77ad9ec70e0b85ec05e36cf7824a198ee4538f7258d486d44",
+   "block_mm": [
+    1.9,
+    0.36,
+    0.26
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.2,
+   "track_length_run_mm": 1.2014875560217413,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
+   "absorptivity": 0.3,
+   "element_um": 5.0,
+   "laser_radius_um": 49.0,
+   "laser_depth_um": 20.0,
+   "latent_heat_J_kg": 0.0,
+   "pool_isotherm_K": 836.15,
+   "width_um": 246.32451706304195,
+   "depth_um": 120.67537451945705,
+   "width_spread_along_the_track_um": 2.2546405545496953,
+   "rosenthal_width_um": 243.10209696793663,
+   "rosenthal_depth_um": 121.55104848396832,
+   "source_over_absorbed": 1.000000000000006,
+   "stored_over_source": 1.0000000000035183,
+   "largest_temperature_K": 6797.657386180332,
+   "far_face_rise_K": {
+    "bottom": 235.58449098414042,
+    "side": 137.1244755519116,
+    "ends": 42.1123142125939
+   },
+   "device": "gpu:0",
+   "nodes": 1474089,
+   "steps": 21000,
+   "wall_seconds": 440.0
+  },
+  {
+   "case": "spot80-eta040-h050",
+   "case_sha256": "74e421389945f0a994066d66e65772e930f5711b99ddc8425b66e1f70f728ac1",
+   "block_mm": [
+    2.3,
+    0.42,
+    0.3
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.6,
+   "track_length_run_mm": 1.6019452191947365,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
+   "absorptivity": 0.4,
+   "element_um": 5.0,
+   "laser_radius_um": 49.0,
+   "laser_depth_um": 20.0,
+   "latent_heat_J_kg": 0.0,
+   "pool_isotherm_K": 836.15,
+   "width_um": 290.060513806796,
+   "depth_um": 143.2265073830936,
+   "width_spread_along_the_track_um": 1.209561262082218,
+   "rosenthal_width_um": 287.029025805712,
+   "rosenthal_depth_um": 143.514512902856,
+   "source_over_absorbed": 1.0000000000000056,
+   "stored_over_source": 1.000000000017411,
+   "largest_temperature_K": 8938.625532838303,
+   "far_face_rise_K": {
+    "bottom": 240.44247609621164,
+    "side": 140.2071242080301,
+    "ends": 55.95546216245282
+   },
+   "device": "gpu:0",
+   "nodes": 2390285,
+   "steps": 28000,
+   "wall_seconds": 954.0
+  },
+  {
+   "case": "spot80-eta057-h050",
+   "case_sha256": "72626c3436206bfbd2520bedcfeea8e54ee023ea322a38c14684c3f28ec5fd2e",
+   "block_mm": [
+    2.3,
+    0.42,
+    0.3
+   ],
+   "track_start_mm": 0.35,
+   "track_length_asked_mm": 1.6,
+   "track_length_run_mm": 1.6019452191947365,
+   "steps_per_chunk": 500,
+   "stability_factor": 0.5,
+   "absorptivity": 0.58,
+   "element_um": 5.0,
+   "laser_radius_um": 49.0,
+   "laser_depth_um": 20.0,
+   "latent_heat_J_kg": 0.0,
+   "pool_isotherm_K": 836.15,
+   "width_um": 357.36499697929975,
+   "depth_um": 181.99949390736978,
+   "width_spread_along_the_track_um": 2.540197196749375,
+   "rosenthal_width_um": 353.95962972875185,
+   "rosenthal_depth_um": 176.97981486437592,
+   "source_over_absorbed": 1.0000000000000064,
+   "stored_over_source": 1.0000000000128473,
+   "largest_temperature_K": 12793.089522614646,
+   "far_face_rise_K": {
+    "bottom": 348.6415903385996,
+    "side": 203.30033010072555,
+    "ends": 81.1354201348529
+   },
+   "device": "gpu:0",
+   "nodes": 2390285,
+   "steps": 28000,
+   "wall_seconds": 954.0
+  }
+ ],
+ "sensitivities": {
+  "spot60-eta025-h050": {
+   "width_um": 219.82521001026782,
+   "depth_um": 108.59219382325892,
+   "width_against_the_base": -0.007819788341518974
+  },
+  "spot100-eta025-h050": {
+   "width_um": 223.83469387710858,
+   "depth_um": 106.09104224537077,
+   "width_against_the_base": 0.010277001155270415
+  },
+  "depth10-eta025-h050": {
+   "width_um": 222.0612116989794,
+   "depth_um": 107.18682745446758,
+   "width_against_the_base": 0.0022723963932116398
+  },
+  "depth40-eta025-h050": {
+   "width_um": 219.6123204226773,
+   "depth_um": 108.7431187207647,
+   "width_against_the_base": -0.008780664648952441
+  },
+  "latent-eta025-h050": {
+   "width_um": 185.71154047126618,
+   "depth_um": 88.19617652714041,
+   "width_against_the_base": -0.1617917002167456
+  },
+  "latent-eta040-h050": {
+   "width_um": 240.11044125863998,
+   "depth_um": 116.73108280974668,
+   "width_against_the_base": -0.17220569560676857
+  }
+ },
+ "published_widths": [
+  {
+   "label": "Klanjšček and Kalin 2025",
+   "low_um": 150.0,
+   "high_um": 200.0,
+   "how_read": "read",
+   "note": "EOS M290, bulk top surfaces, several settings",
+   "absorptivity_for_low": 0.12971205041315634,
+   "absorptivity_for_high": 0.2102610461437708
+  },
+  {
+   "label": "Van Cauwenbergh et al. 2021",
+   "low_um": 174.0,
+   "high_um": 204.0,
+   "how_read": "read by an automated reader",
+   "note": "189 ± 15 µm; power and speed not given",
+   "absorptivity_for_low": 0.167676851745583,
+   "absorptivity_for_high": 0.21763453617212017
+  },
+  {
+   "label": "Charan et al. 2023 (preprint)",
+   "low_um": 215.0,
+   "high_um": 230.0,
+   "how_read": "read off a graph; not peer reviewed",
+   "note": "350 W at 1,300 and 1,100 mm/s, the setting nearest to the declared one",
+   "absorptivity_for_low": 0.2379116337500809,
+   "absorptivity_for_high": 0.2670435113426108
+  }
+ ],
+ "reading": {
+  "width_at_the_declared_absorptivity_um": 290.060513806796,
+  "absorptivity_for_the_published_widths": {
+   "lowest": 0.12971205041315634,
+   "highest": 0.2670435113426108
+  },
+  "with_latent_heat": {
+   "source": "Gusarov, Tarasova, Grigoriev, arXiv:2409.18226 (2024), Table 1: solidus 830 K, liquidus 869 K, latent melting heat 400 kJ/kg (the paper notes it is the value of aluminium); read in the source",
+   "pool_isotherm": "liquidus",
+   "width_um_at_absorptivity": {
+    "0.25": 185.71154047126618,
+    "0.4": 240.11044125863998
+   },
+   "width_against_no_latent_heat": {
+    "0.25": -0.1617917002167456,
+    "0.4": -0.17220569560676857
+   },
+   "absorptivity_for_published_widths": [
+    {
+     "label": "Klanjšček and Kalin 2025",
+     "for_low": 0.15152868912503387,
+     "for_high": 0.2893991220096038,
+     "beyond_the_two_cases": true
+    },
+    {
+     "label": "Van Cauwenbergh et al. 2021",
+     "for_low": 0.21770649690962743,
+     "for_high": 0.30042875664036944,
+     "beyond_the_two_cases": true
+    },
+    {
+     "label": "Charan et al. 2023 (preprint)",
+     "for_low": 0.3307602518749748,
+     "for_high": 0.3721213817403458,
+     "beyond_the_two_cases": false
+    }
+   ],
+   "width_at_the_declared_absorptivity_um": 240.11044125863998
+  },
+  "build_screen_rise_scales_with_absorptivity": true
+ },
+ "not_modelled": [
+  "melt flow (it widens and shallows a pool)",
+  "evaporation and keyhole: the largest temperatures are far above boiling and are not physical",
+  "powder: the track is on solid metal",
+  "temperature-dependent conductivity and heat capacity (constant, as in the build screen)",
+  "the block is small: its far faces warm by up to the values in far_face_rise_K, with adiabatic walls"
+ ]
+}

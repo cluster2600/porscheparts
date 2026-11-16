@@ -1254,6 +1254,88 @@ class SupportDesignTests(unittest.TestCase):
         self.assertEqual(record["occupancy_sha256"], build["levels"]["c4-l8"]["model"]["occupancy_sha256"])
 
 
+class MeltPoolCheckTests(unittest.TestCase):
+    """The melt-pool check of the declared heat input: its record and the analytic reference it leans on."""
+
+    def setUp(self):
+        self.record = json.loads((TWIN / "params" / "melt-pool-check.json").read_text())
+
+    def test_record_uses_the_build_screens_values_and_the_reviewed_kernel(self):
+        build = json.loads((TWIN / "params" / "build-sim-case.json").read_text())
+        declared = self.record["declared"]
+        self.assertEqual(self.record["build_case_sha256"], hashlib.sha256((TWIN / "params" / "build-sim-case.json").read_bytes()).hexdigest())
+        self.assertEqual(declared["absorptivity"], build["process"]["absorptivity"])
+        self.assertEqual(declared["laser_power_W"], build["process"]["laser_power_W"])
+        self.assertEqual(declared["conductivity_W_mK"], build["material"]["conductivity_W_mK"])
+        self.assertEqual(declared["plate_temperature_K"], build["plate"]["temperature_K"])
+        self.assertIn("1200 mm/s", build["process"]["parameter_source"])
+        # the kernel is the revision the repository's GO-MELT witness pins
+        smoke = (ROOT / "benchmarks" / "go-melt" / "smoke.py").read_text()
+        self.assertIn(self.record["tool"]["kernel_sha256"], smoke)
+        # the runs used the driver as first committed; the record keeps that hash and says what changed since
+        self.assertRegex(self.record["tool"]["driver_sha256_at_run_time"], r"^[0-9a-f]{64}$")
+        self.assertIn("4e6f737a", self.record["tool"]["driver_note"])
+        self.assertIn("were not rerun", self.record["tool"]["driver_note"])
+        cases = TWIN / "params" / "melt-pool-cases"
+        rows = (self.record["witness_against_rosenthal"] + self.record["mesh_study"] + self.record["width_against_absorptivity"])
+        self.assertGreaterEqual(len({row["case"] for row in rows}), 9)
+        for row in rows:
+            case_file = cases / f"{row['case']}.json"
+            self.assertEqual(row["case_sha256"], hashlib.sha256(case_file.read_bytes()).hexdigest(), row["case"])
+            case = json.loads(case_file.read_text())
+            self.assertEqual(row["block_mm"], case["block_mm"], row["case"])
+            self.assertEqual(case["laser"]["power_W"], build["process"]["laser_power_W"], row["case"])
+            self.assertEqual(case["start_temperature_K"], build["plate"]["temperature_K"], row["case"])
+            # a track never stopped short, and never ran more than 5% past the length asked for
+            overrun = row["track_length_run_mm"] / row["track_length_asked_mm"] - 1.0
+            self.assertGreaterEqual(overrun, -1e-9, row["case"])
+            self.assertLess(overrun, 0.05, row["case"])
+            self.assertLess(case["track_start_mm"] + row["track_length_run_mm"], case["block_mm"][0], row["case"])
+        self.assertTrue(self.record["tool"]["double_precision"])
+        self.assertIn("gpu:0", self.record["tool"]["devices"])
+
+    def test_checks_hold_and_the_one_moved_limit_says_so(self):
+        self.assertTrue(self.record["passed"])
+        for check in self.record["checks"]:
+            self.assertEqual(check["passed"], check["value"] <= check["limit"], check["check"])
+        moved = [c for c in self.record["checks"] if "limit_set" in c]
+        self.assertEqual(len(moved), 1)
+        self.assertIn("after the first reading", moved[0]["limit_set"])
+        for row in self.record["witness_against_rosenthal"]:
+            self.assertAlmostEqual(row["width_um"] / row["rosenthal_width_um"], 1.0, delta=0.02)
+        widths = [row["width_um"] for row in self.record["mesh_study"]]
+        self.assertLess(max(widths) - min(widths), 1.0)
+
+    def test_width_grows_with_absorptivity_and_the_declared_value_is_wider_than_published(self):
+        sweep = self.record["width_against_absorptivity"]
+        self.assertEqual([r["absorptivity"] for r in sweep], sorted(r["absorptivity"] for r in sweep))
+        self.assertEqual([r["width_um"] for r in sweep], sorted(r["width_um"] for r in sweep))
+        for row in sweep:                                      # conduction with a finite spot stays near the point source
+            self.assertAlmostEqual(row["width_um"] / row["rosenthal_width_um"], 1.0, delta=0.05)
+        reading = self.record["reading"]
+        widest_published = max(p["high_um"] for p in self.record["published_widths"])
+        self.assertGreater(reading["width_at_the_declared_absorptivity_um"], widest_published)
+        self.assertGreater(reading["with_latent_heat"]["width_at_the_declared_absorptivity_um"], widest_published)
+        self.assertLess(reading["with_latent_heat"]["width_at_the_declared_absorptivity_um"], reading["width_at_the_declared_absorptivity_um"])
+        self.assertLess(reading["absorptivity_for_the_published_widths"]["highest"], self.record["declared"]["absorptivity"])
+        self.assertIn("read in the source", reading["with_latent_heat"]["source"])
+        self.assertTrue(any("melt flow" in item for item in self.record["not_modelled"]))
+
+    @unittest.skipUnless(has("numpy"), "numpy absent")
+    def test_the_analytic_reference_scales_as_a_point_source_must(self):
+        sys.path.insert(0, str(SOURCE))
+        import melt_pool_summary as mp
+
+        args = dict(power=350.0, speed=1.2, k=105.0, rho=2670.0, cp=900.0, t0=373.15, tm=836.15)
+        width, depth = mp.rosenthal_width_depth(0.25, **args)
+        self.assertAlmostEqual(depth, width / 2.0)             # a point source on a half-space melts a half-circle
+        self.assertAlmostEqual(width * 1e6, 217.5, delta=1.5)
+        # the same absorbed power gives the same pool: only eta x P enters
+        twice = mp.rosenthal_width_depth(0.125, **{**args, "power": 700.0})[0]
+        self.assertAlmostEqual(twice, width, delta=1e-9)
+        self.assertLess(mp.rosenthal_width_depth(0.25, **{**args, "speed": 2.4})[0], width)
+
+
 class PreparedWorkTests(unittest.TestCase):
     """The register of the parts that never ran, and the witness of the drawing tool."""
 
