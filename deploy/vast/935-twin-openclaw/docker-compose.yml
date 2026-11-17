@@ -1,0 +1,93 @@
+# Node B tool services for the 935 head twin. Each service is one tool image, without network, with
+# the repository read-only, the raw scan read-only and only the private work directory writable.
+#
+#   docker compose -f docker-compose.yml build cae openfoam
+#   docker compose -f docker-compose.yml run --rm cae            # smoke-cae.sh: GPU, CUDA PETSc, witnesses
+#   docker compose -f docker-compose.yml run --rm cae python3 /twin/repo/deploy/vast/935-twin-openclaw/dolfinx_thermal_mech_template.py witness /twin/work/witness --backend cuda
+#
+# Agents do not call compose: they drop a job file that jobrunner.sh validates and runs (README.md).
+#
+# Environment (written by onstart-cae.sh into .env beside this file):
+#   REPO_DIR   checkout of the repository at the commit under work (mounted read-only)
+#   WORK_DIR   private outputs, the only writable mount (rsync'd home after every step)
+#   SCAN_DIR   the scan and other private inputs, read-only; never written, never committed
+
+name: porscheparts-935-twin
+
+x-common: &common
+  network_mode: none
+  user: "1000:1000"
+  read_only: true
+  tmpfs: [/tmp]
+  cap_drop: [ALL]
+  security_opt: ["no-new-privileges:true"]
+  environment:
+    HOME: /twin/work/.home
+    OMP_NUM_THREADS: "1"
+  volumes:
+    - ${REPO_DIR:?REPO_DIR}:/twin/repo:ro
+    - ${SCAN_DIR:?SCAN_DIR}:/twin/scan:ro
+    - ${WORK_DIR:?WORK_DIR}:/twin/work:rw
+
+x-gpu: &gpu
+  deploy:
+    resources:
+      reservations:
+        devices:
+          - driver: nvidia
+            count: all
+            capabilities: [gpu, compute, utility, graphics]
+
+services:
+  cae:
+    <<: [*common, *gpu]
+    image: porscheparts/cae-935:dev
+    build:
+      context: .
+      dockerfile: Dockerfile.cae
+      target: cae
+      args:
+        CUDA_ARCH: ${CUDA_ARCH:-all-major}
+    shm_size: 2gb
+    mem_limit: ${CAE_MEM:-48g}
+    memswap_limit: ${CAE_MEM:-48g}
+    working_dir: /twin/work
+    command: ["bash", "/twin/repo/deploy/vast/935-twin-openclaw/smoke-cae.sh"]
+
+  openfoam:
+    <<: *common
+    image: porscheparts/openfoam-foamlib-935:dev
+    build:
+      context: .
+      dockerfile: Dockerfile.cae
+      target: openfoam
+    mem_limit: ${OPENFOAM_MEM:-32g}
+    memswap_limit: ${OPENFOAM_MEM:-32g}
+    working_dir: /twin/work
+    # The port-flow row is blocked by its audit (no admissible domain). Until it reopens, the only
+    # admissible run here is the Poiseuille witness on this image.
+    command: ["bash", "-lc", "foamVersion; /opt/venv/bin/python -c 'import foamlib; print(foamlib.__version__)'"]
+
+  cloudcompare:
+    <<: *common
+    image: free-tools-cloudcompare:local
+    build:
+      context: ../../..
+      dockerfile: containers/free-tools-cloudcompare.Dockerfile
+    mem_limit: 8g
+    memswap_limit: 8g
+    working_dir: /work
+    volumes:
+      - ${WORK_DIR:?WORK_DIR}:/work:rw
+
+  # Gated: PhysicsNeMo trains surrogates only on converged, correlated cases (AGENT_TOOL_GUIDE.md).
+  # No such case exists for this head, so the service starts only with --profile surrogate.
+  physicsnemo:
+    <<: [*common, *gpu]
+    profiles: [surrogate]
+    image: ghcr.io/cluster2600/3dprinting993-physicsnemo-cae-cu12@sha256:045e8bc3151e0938d0f339aceb74c8583878effe5d0e316715e10818a018598a
+    shm_size: 8gb
+    mem_limit: 48g
+    memswap_limit: 48g
+    working_dir: /twin/work
+    command: ["python", "-c", "import physicsnemo, torch; print(physicsnemo.__version__, torch.cuda.is_available())"]

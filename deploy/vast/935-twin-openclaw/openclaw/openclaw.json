@@ -1,0 +1,135 @@
+{
+  "gateway": {
+    "mode": "local",
+    "bind": "loopback",
+    "port": 18789,
+    "auth": {
+      "mode": "token",
+      "token": "${OPENCLAW_GATEWAY_TOKEN}"
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "vllm-node-a": {
+        "baseUrl": "http://127.0.0.1:8000/v1",
+        "apiKey": { "source": "env", "provider": "default", "id": "VLLM_API_KEY" },
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "nemotron-3.5-super-vl",
+            "name": "Nemotron 3.5 Super VL 120B-A12B NVFP4 (Node A, vLLM)",
+            "reasoning": true,
+            "input": ["text", "image"],
+            "contextWindow": 1048576,
+            "contextTokens": 262144,
+            "maxTokens": 32768
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": { "primary": "vllm-node-a/nemotron-3.5-super-vl", "fallbacks": [] },
+      "imageModel": "vllm-node-a/nemotron-3.5-super-vl",
+      "sandbox": {
+        "mode": "all",
+        "backend": "docker",
+        "scope": "agent",
+        "workspaceAccess": "rw",
+        "docker": {
+          "image": "porscheparts/cae-935:dev",
+          "containerPrefix": "twin935-sbx-",
+          "workdir": "/workspace",
+          "readOnlyRoot": true,
+          "tmpfs": ["/tmp", "/var/tmp", "/run"],
+          "network": "none",
+          "user": "1000:1000",
+          "capDrop": ["ALL"],
+          "pidsLimit": 512,
+          "memory": "32g",
+          "memorySwap": "32g",
+          "cpus": 8,
+          "gpus": "all",
+          "env": { "LANG": "C.UTF-8", "OMP_NUM_THREADS": "1", "HOME": "/workspace", "MPLBACKEND": "Agg" },
+          "binds": [
+            "${TWIN_REPO}:/twin/repo:ro",
+            "${TWIN_SCAN}:/twin/scan:ro",
+            "${TWIN_WORK}:/twin/work:rw",
+            "${TWIN_JOBS}/inbox:/twin/jobs/inbox:rw",
+            "${TWIN_JOBS}/done:/twin/jobs/done:ro",
+            "${TWIN_JOBS}/rejected:/twin/jobs/rejected:ro"
+          ]
+        },
+        "prune": { "idleHours": 6, "maxAgeDays": 1 }
+      },
+      "subagents": { "maxConcurrent": 3, "maxSpawnDepth": 1 }
+    },
+    "entries": {
+      "orchestrator": {
+        "name": "935 twin orchestrator",
+        "workspace": "~/.openclaw/workspace-orchestrator",
+        "subagents": {
+          "allowAgents": ["cad-geometry", "am-print", "engine-sim", "visual-qa"],
+          "requireAgentId": true,
+          "maxConcurrent": 3,
+          "maxChildrenPerAgent": 4
+        },
+        "tools": {
+          "allow": ["read", "write", "edit", "image", "sessions_spawn", "sessions_list", "sessions_history", "sessions_send", "session_status"],
+          "deny": ["exec", "process", "apply_patch", "group:web", "group:ui", "group:messaging", "group:automation", "group:nodes", "gateway"],
+          "elevated": { "enabled": false }
+        }
+      },
+      "cad-geometry": {
+        "name": "935 twin CAD and geometry",
+        "workspace": "~/.openclaw/workspace-cad-geometry",
+        "subagents": { "allowAgents": [] },
+        "tools": {
+          "allow": ["read", "write", "edit", "apply_patch", "exec", "process", "image", "session_status", "sessions_send"],
+          "deny": ["sessions_spawn", "group:web", "group:ui", "group:messaging", "group:automation", "group:nodes", "gateway"],
+          "elevated": { "enabled": false }
+        }
+      },
+      "am-print": {
+        "name": "935 twin LPBF build simulation",
+        "workspace": "~/.openclaw/workspace-am-print",
+        "subagents": { "allowAgents": [] },
+        "tools": {
+          "allow": ["read", "write", "edit", "apply_patch", "exec", "process", "image", "session_status", "sessions_send"],
+          "deny": ["sessions_spawn", "group:web", "group:ui", "group:messaging", "group:automation", "group:nodes", "gateway"],
+          "elevated": { "enabled": false }
+        }
+      },
+      "engine-sim": {
+        "name": "935 twin in-service simulation",
+        "workspace": "~/.openclaw/workspace-engine-sim",
+        "subagents": { "allowAgents": [] },
+        "tools": {
+          "allow": ["read", "write", "edit", "apply_patch", "exec", "process", "image", "session_status", "sessions_send"],
+          "deny": ["sessions_spawn", "group:web", "group:ui", "group:messaging", "group:automation", "group:nodes", "gateway"],
+          "elevated": { "enabled": false }
+        }
+      },
+      "visual-qa": {
+        "name": "935 twin visual QA (reads renders, runs nothing)",
+        "workspace": "~/.openclaw/workspace-visual-qa",
+        "subagents": { "allowAgents": [] },
+        "tools": {
+          "allow": ["read", "write", "image", "session_status", "sessions_send"],
+          "deny": ["exec", "process", "edit", "apply_patch", "sessions_spawn", "group:web", "group:ui", "group:messaging", "group:automation", "group:nodes", "gateway"],
+          "elevated": { "enabled": false }
+        }
+      }
+    }
+  },
+  "tools": {
+    "exec": {
+      "host": "sandbox",
+      "mode": "full",
+      "timeoutSeconds": 3600,
+      "strictInlineEval": false
+    }
+  }
+}
