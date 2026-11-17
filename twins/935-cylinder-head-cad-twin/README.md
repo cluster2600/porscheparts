@@ -199,6 +199,7 @@ process values, with every qualification gate closed.*
 | Witness of a drawing tool | build123d projection and DXF export, read back with ezdxf | [drawing_witness.py](source/drawing_witness.py) |
 | Melt-pool check of the declared heat input | the reviewed GO-MELT kernel (JAX, CUDA), one explicit level, against Rosenthal's point source | [melt_pool_track.py](source/melt_pool_track.py), [melt_pool_summary.py](source/melt_pool_summary.py) |
 | Six-view render of the body, read by the agent | `preview.py` of the `cad-skill` skill (trimesh, pyrender, EGL under `xvfb-run`) | none: the script is the skill's |
+| RTX review stills and turntable, **not yet captured** | OpenUSD 26.11 review scene (cameras, two lights, render products) built locally around the private CAD-body stage; NVIDIA OVRTX 0.3.0 in the pinned SimReady image, which needs an RTX GPU. The scene was built on 2026-11-15 and rebuilt on 2026-11-17 with identical hashes. The capture script has never completed: no picture and no capture receipt exist yet | [build_review_usd.py](source/build_review_usd.py), [capture_rtx.py](source/capture_rtx.py) |
 
 The private inputs and outputs live under `work/935-cad-twin/` (ignored by
 Git). Code, fitted scalar parameters and statistics are committed, as the
