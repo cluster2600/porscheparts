@@ -121,6 +121,16 @@ that 0.2 mm stays in the 3D study as a second arm. The owner may choose that
 reading; it should then be recorded as a deviation from the criterion as
 applied.
 
+The deciding figure was not new when the criterion was written. The criterion
+lists three catalogue process figures as already known (layer thickness,
+minimum wall, laser focus diameter). The same process card,
+`catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json`, had also held
+the 90 µm sieve cut (`sieve_um`) since 2026-09-08, and that is the figure on
+which 0.2 mm fails. The criterion's list omits it, and whether its author had
+read it is not recorded. The criterion is not amended after the evaluation. The
+omission is stated here so that the owner weighs the 8 % margin knowing that
+its deciding figure was already in the catalogue.
+
 Against the indicative figures the picture is the same: the 0.2 mm form is
 below the 95 % maximum Rz of two 30 µm parameter sets on another make
 (0.120 and 0.129 mm) and above their means; the 0.4 mm form is above every

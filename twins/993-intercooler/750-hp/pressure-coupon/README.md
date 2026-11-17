@@ -370,7 +370,9 @@ most (√2 − 1) r. That form must stand above the surface noise of the route.
   route. Against the 25 to 70 µm range EOS also states, it would pass. The
   criterion did not say which figure governs; the larger was taken and the
   criterion was not amended. The proposed radius is 0.4 mm on both readings.
-  The report keeps both.
+  The report keeps both. The 0.09 mm sieve cut was already on the catalogue's
+  process card when the criterion was written, although the criterion's list
+  of what was known omits it; decision 0023 records this.
 - "Unsettled" means that 0.4 mm passes every test that can be evaluated, but
   two tests cannot be (no accuracy and no minimum detail are published for the
   route) and no as-built radius has been measured.

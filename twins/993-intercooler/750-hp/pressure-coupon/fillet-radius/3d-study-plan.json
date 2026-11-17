@@ -35,7 +35,7 @@
       "root": "fillet r = 0.4 mm minus the dimensional accuracy of the selected machine",
       "role": "as-built sensitivity of arm A; mechanical analyses only",
       "radius_mm": null,
-      "null_reason": "No dimensional accuracy is sourced for the reference route and no machine is selected. The radius of this arm stays null until one of the two exists. It is not replaced by an assumed value.",
+      "null_reason": "No dimensional accuracy is sourced for the reference route and no machine is selected. The radius of this arm stays null until one of the two exists, or until a contributed as-built root radius (IN-15) is admitted. It is not replaced by an assumed value.",
       "blocking": false,
       "consequence_if_null": "The study may run without arm L; its report must then say that the sensitivity to the as-built radius is not computed."
     }
@@ -54,7 +54,7 @@
   "geometry": {
     "drawn_from": "an analytical OpenCASCADE drawing, as in the retained fillet study; never meshed from the voxel STL",
     "retained_section": "0.8 mm walls, 3 mm hot passage, 0.8 mm ribs centred at Y = +/-3 and +/-9 mm, clear widths 1.8 / 5.2 / 5.2 / 5.2 / 1.8 mm, length 24 mm",
-    "cold_side": "the sixteen BCC cells of the retained coupon for the conjugate case; for the mechanical cases the cold side may be replaced by its measured stiffness contribution only if a check shows the root peak moves by less than the mesh uncertainty",
+    "cold_side": "the sixteen BCC cells of the retained coupon for the conjugate case; for the mechanical cases the cold side may be replaced by its computed stiffness contribution only if a check shows the root peak moves by less than the mesh uncertainty",
     "input_audit_before_any_sweep": "List every re-entrant edge of the 3D drawing (rib ends, closures, fitting junctions, lattice nodes at the wall). An unblended re-entrant edge inside a region where stress is to be quoted stops the mechanical study until it is blended or excluded by a declared boundary."
   },
   "required_inputs": [
