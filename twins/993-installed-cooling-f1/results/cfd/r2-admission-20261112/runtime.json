@@ -1,0 +1,103 @@
+{
+  "status": "r2_admission_audit_not_admissible_no_mesh_trial",
+  "issue": 452,
+  "follows": "results/cfd/audit-20261110 (PR #676): its three proposed corrections, executed",
+  "corrections": {
+    "1_preparer": "source/prepare_duct_cfd_r2.py: no decimation; outlet and inlet regions labelled to the voxel chamfer; prepare_duct_cfd.py unchanged",
+    "2_geometry": "source-r2/Program.cs: RotKit polynomial blends on the fan cylinder/plenum union and the alternator rear rim (reentrant_blend_mm), and in R2b also on the alternator subtraction (alternator_subtraction_blend_mm); source/Program.cs unchanged",
+    "3_features": "explicit feature edges for the eight port rims (duct-rims.eMesh), implicit feature snapping off"
+  },
+  "blend_basis": "12 mm, the value the branch cones already use; an unmeasured layout hypothesis chosen for numerical admissibility, open to the owner's veto. The r = 70 mm alternator envelope is not the 240 A alternator selected in #454.",
+  "dates": {
+    "generation_and_preparation": "2026-11-12",
+    "audit_r2a": "2026-11-12",
+    "audit_r2b": "2026-11-17"
+  },
+  "host": "native Linux ext4 under WSL2 x86_64; PicoGK native runtime 26.2.0 (binary hashes in generation-*.json), .NET 9.0.318, software rendering (GALLIUM_DRIVER=llvmpipe); Python trimesh/numpy from ~/cad-env",
+  "memory_cap": "every step ran under systemd-run --user --scope -p MemoryMax=8G -p MemorySwapMax=0; the R2b audit took 28 s at 1.52 GB peak RSS (other durations not recorded)",
+  "commands": [
+    "source-r2/generate.py --study study.json      -> generation-r1.json",
+    "source-r2/generate.py --study study-r2a.json  -> generation-r2a.json",
+    "source-r2/generate.py --study study-r2b.json  -> generation-r2b.json",
+    "source/prepare_duct_cfd_r2.py --study study-r2{a,b}.json --flow 2.285161488875746 --cell-mm 5 -> preparation-r2{a,b}.json",
+    "source/audit_mesh_admission_r2.py --case <prepared case> --native <generated surface> --study study-r2{a,b}.json -> audit-r2{a,b}.json"
+  ],
+  "r1_identity": {
+    "result": "the R2 generator with study.json (no blend keys) reproduces the R1 delivery-fluid-domain byte for byte",
+    "output_sha256": "5914107a9d17544a9013e52fb39589d1bcf09765289445af96439f9a95789c87",
+    "cited_by": "attempt-001..006 preparation receipts and audit-20261110/mesh-audit.json"
+  },
+  "results": {
+    "r2a": {
+      "study": "study-r2a.json",
+      "reentrant_blend_mm": 12.0,
+      "alternator_subtraction_blend_mm": 0.0,
+      "input_admissible_for_settings_sweep": false,
+      "hard_re_entrant_length_mm": {
+        "alternator_hard_subtraction_edge": 14.2
+      },
+      "creases_off_constructive_junctions": {
+        "edges": 0,
+        "length_mm": 0.0
+      },
+      "counted_edges": 18,
+      "triangles": 921024,
+      "triangles_with_min_angle_below_5_deg": 99,
+      "constructive_model_residual_mm_max": 0.75,
+      "volume_mm3": 32012257.6
+    },
+    "r2b": {
+      "study": "study-r2b.json",
+      "reentrant_blend_mm": 12.0,
+      "alternator_subtraction_blend_mm": 12.0,
+      "input_admissible_for_settings_sweep": false,
+      "hard_re_entrant_length_mm": {
+        "fan_cylinder_plenum_hard_union_seam": 1.8,
+        "alternator_hard_subtraction_edge": 6.2
+      },
+      "creases_off_constructive_junctions": {
+        "edges": 0,
+        "length_mm": 0.0
+      },
+      "counted_edges": 4,
+      "triangles": 918656,
+      "triangles_with_min_angle_below_5_deg": 0,
+      "constructive_model_residual_mm_max": 0.75,
+      "volume_mm3": 32002572.4
+    }
+  },
+  "r1_native_surface_for_comparison": {
+    "meaning": "hard re-entrant lengths on the undecimated R1 surface, from audit-20261110/mesh-audit.json native_voxel_surface",
+    "hard_re_entrant_length_mm": {
+      "alternator_hard_subtraction_edge": 14.2,
+      "alternator_rear_rim_hard_subtraction": 362.3,
+      "fan_cylinder_plenum_hard_union_seam": 713.0
+    },
+    "total_mm": 1089.5
+  },
+  "where_the_remaining_edges_are": "R2a: 18 edges, all on the alternator's rear plane (y \u2248 -5 mm) where it coincides with the fan cylinder's end, |x| <= 35 mm, z 232-244 mm. Sections show thin cusps there: blending the alternator rim alone pulls it off a plane the duct wall shares. R2b: 4 edges near x = +53, y \u2248 -5, z \u2248 224 mm, where the alternator rim, that shared plane and the plenum top (z = 225 mm) meet; two pairwise blends do not round that three-surface corner. The location is measured; the cause is an inference from the sections.",
+  "verdict": {
+    "input_admissible_for_settings_sweep": false,
+    "mesh_admitted": false,
+    "mesh_trial_run": false,
+    "flow_solver_started": false,
+    "reason": "Neither R2 surface passes the unchanged rule of audit_mesh_admission.py: no re-entrant sharp edge at a hard junction and no crease off a constructive junction. Creases are 0 on both; R2a keeps 14.2 mm and R2b 8.0 mm of re-entrant sharp edge, against 1,089.5 mm on the undecimated R1 surface. The criterion was not relaxed."
+  },
+  "not_run": [
+    "no snappyHexMesh, blockMesh or checkMesh on either R2 surface: the gate before a mesh trial failed",
+    "no mesh-independence study and no flow solver"
+  ],
+  "inspection": "Sections at x = 0, x = 53 mm, y = -6 mm and z = 224/226 mm, and llvmpipe off-screen views of R1, R2a and R2b, were read on 2026-11-17. All three surfaces are closed, consistently wound single bodies. The blends sit only at the union seam and the alternator's rear end; nothing else moved. The images are not retained.",
+  "not_retained_in_git": "the three generated surfaces (about 46 MB each), the prepared cases (duct.stl about 159 MB, duct-rims.eMesh) and the build directories; kept privately under work/ic-r2/ with the discarded drafts that preceded the final sources",
+  "files": {
+    "audit-r2a.json": "98f051e743307d9961318853d7800eb08ec3e90fe3dabf772f0aaa7010ee12b3",
+    "audit-r2b.json": "6e6a500026fccc664eb94ddb589146b522f86e80a2b99fe2a588c254ad709bc9",
+    "generation-r1.json": "1e35e2a7253d5bfff1d59f80d4afe6c616c2be7a6afa27922b3b4002a5a69129",
+    "generation-r2a.json": "be56bbc0fc04960d01c29378bc41600528fb72e727c05699e8b837df920cbb16",
+    "generation-r2b.json": "ade454682843c47ca6e9d2ad48ea20185341377a51f6179036cbb33fde47d09f",
+    "preparation-r2a.json": "6b7c1ee8243ce4e7abd1631303a2838c1844b392e1e81ea8bf41085d8b65c63a",
+    "preparation-r2b.json": "6cd66e4781c25145b8bda46146c8f5aea0bb8c4da1026cec7d456bbb41f313bf"
+  },
+  "manufacturing_authorized": false,
+  "physical_validation": false
+}
