@@ -151,11 +151,11 @@ Renamed so far, each with a redirect stub at the old path:
 - 2026-11-12: `docs/pieces/` became `docs/parts/`, through the generator. Each
   page kept its file name; one stub, `docs/pieces/README.md`, redirects the
   directory.
-- 2026-11-12: two more `docs/993/` pages (turbo oil circuit, LPBF sourcing in
+- 2026-11-17: two more `docs/993/` pages (turbo oil circuit, LPBF sourcing in
   China) and four `docs/research/` pages (964 carbon/Kevlar chassis, carbon
   panels, phase 2 CAD forums, phase 2 German braking research).
 
-Still French-named on 2026-11-12, with the reason:
+Still French-named on 2026-11-17, with the reason:
 
 | path | why it keeps its name |
 |---|---|
