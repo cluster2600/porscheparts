@@ -1,0 +1,197 @@
+# syntax=docker/dockerfile:1.7
+#
+# Node B images for the 935 head twin. NOT BUILT YET: no digest, no lock, no smoke receipt.
+# Until a build on a GPU host has passed `smoke-cae.sh` and its digest is recorded beside this
+# file, nothing here is an admitted image (docs/AGENT_TOOL_GUIDE.md: images are cited by digest).
+#
+# Two targets, because the two MPIs do not mix in one image:
+#
+#   cae       DOLFINx 0.11.0 on PETSc 3.25.1 built WITH CUDA (MPICH), plus NVIDIA Warp, Newton,
+#             Gmsh, build123d, trimesh/manifold3d/libigl, PyVista (EGL), OpenUSD and pyLife.
+#             The official dolfinx/dolfinx images ship PETSc without CUDA, and conda-forge's
+#             fenics-dolfinx pins non-CUDA PETSc builds, so PETSc and DOLFINx are built here,
+#             following upstream docker/Dockerfile.test-env and Dockerfile.end-user at v0.11.0
+#             (real, double, 32-bit indices only) with --with-cuda added.
+#             Assembly stays on the CPU; only PETSc's Krylov solve runs on the GPU
+#             (AIJCUSPARSE matrices, CUDA vectors). The RTX 4090/3090 run double precision at a
+#             small fraction of their single-precision rate; whether the GPU is faster than the
+#             CPU for a given solve is a measurement, recorded by the template, not a promise.
+#
+#   openfoam  the repository's pinned mesh-cfd image (OpenFOAM 13, Open MPI) plus foamlib. It is
+#             the image of the Poiseuille witness (outils/benchmarks/openfoam-poiseuille-f25), so
+#             that witness runs on the image a port case would use.
+#
+# Build (on Node B; about an hour on 16 cores, mostly PETSc and its downloads):
+#   docker build -f Dockerfile.cae --target cae --build-arg CUDA_ARCH=89 -t porscheparts/cae-935:dev .
+#   docker build -f Dockerfile.cae --target openfoam -t porscheparts/openfoam-foamlib-935:dev .
+# CUDA_ARCH: 89 for an RTX 4090, 86 for an RTX 3090; the default builds every major architecture.
+
+ARG CUDA_DEVEL_IMAGE=nvidia/cuda:12.8.1-devel-ubuntu24.04@sha256:520292dbb4f755fd360766059e62956e9379485d9e073bbd2f6e3c20c270ed66
+ARG MESH_CFD_IMAGE=ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f
+
+# ------------------------------------------------------------------------------------------ cae
+FROM ${CUDA_DEVEL_IMAGE} AS cae
+
+# Versions of the dolfinx/dolfinx v0.11.0.post0 image the twin already uses (read from that image
+# on 2026-11-16: PETSc 3.25.1, MPICH, Python 3.12.3, basix/ffcx 0.11.0, UFL 2026.1.0, numpy 2.4.6,
+# mpi4py 4.1.2) and of upstream Dockerfile.test-env at v0.11.0.
+ARG DOLFINX_VERSION=0.11.0
+ARG BASIX_VERSION=0.11.0
+ARG FFCX_VERSION=0.11.0
+ARG UFL_VERSION=2026.1.0
+ARG PETSC_VERSION=3.25.1
+ARG MPICH_VERSION=5.0.1
+ARG HDF5_VERSION=2.1.1
+ARG ADIOS2_VERSION=2.12.1
+ARG KAHIP_VERSION=3.25
+ARG SPDLOG_VERSION=1.17.0
+ARG NUMPY_VERSION=2.4.6
+ARG MPI4PY_VERSION=4.1.2
+ARG CUDA_ARCH=all-major
+ARG BUILD_NP=8
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    OPENBLAS_NUM_THREADS=1 \
+    OMP_NUM_THREADS=1 \
+    VIRTUAL_ENV=/dolfinx-env \
+    PATH=/dolfinx-env/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
+    PETSC_DIR=/usr/local/petsc \
+    PETSC_ARCH=linux-gnu-real64-32-cuda \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_NO_CACHE_DIR=1
+
+# Build tools as upstream, plus the runtime libraries of the gmsh wheel and of VTK's EGL window.
+# hadolint ignore=DL3008
+RUN apt-get -qq update && apt-get -y install --no-install-recommends \
+      ca-certificates cmake g++ gfortran git wget bison flex ninja-build pkg-config \
+      libboost-dev liblapack-dev libopenblas-dev libpugixml-dev libeigen3-dev \
+      python3-dev python3-pip python3-venv \
+      libglu1-mesa libgl1 libegl1 libopengl0 libxrender1 libxcursor1 libxfixes3 libxext6 \
+      libxft2 libfontconfig1 libxinerama1 libx11-6 libgomp1 \
+      rsync openssh-client jq \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /tmp/build
+
+RUN wget -q https://github.com/gabime/spdlog/archive/refs/tags/v${SPDLOG_VERSION}.tar.gz \
+    && tar xfz v${SPDLOG_VERSION}.tar.gz \
+    && cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DSPDLOG_BUILD_SHARED=ON -DSPDLOG_BUILD_PIC=ON \
+         -B spdlog-build -S spdlog-${SPDLOG_VERSION} \
+    && cmake --build spdlog-build && cmake --install spdlog-build && rm -rf /tmp/build/*
+
+RUN wget -q https://www.mpich.org/static/downloads/${MPICH_VERSION}/mpich-${MPICH_VERSION}.tar.gz \
+    && tar xfz mpich-${MPICH_VERSION}.tar.gz && cd mpich-${MPICH_VERSION} \
+    && ./configure && make -j${BUILD_NP} install && ldconfig && rm -rf /tmp/build/*
+
+RUN python3 -m venv ${VIRTUAL_ENV} \
+    && pip install --upgrade pip setuptools wheel \
+    && pip install cython numpy==${NUMPY_VERSION} \
+    && pip install --no-binary mpi4py mpi4py==${MPI4PY_VERSION}
+
+RUN wget -q https://github.com/kahip/kahip/archive/v${KAHIP_VERSION}.tar.gz \
+    && tar xf v${KAHIP_VERSION}.tar.gz \
+    && cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -DNONATIVEOPTIMIZATIONS=on -B kahip-build -S KaHIP-${KAHIP_VERSION} \
+    && cmake --build kahip-build && cmake --install kahip-build && rm -rf /tmp/build/*
+
+RUN wget -q https://github.com/HDFGroup/hdf5/archive/${HDF5_VERSION}.tar.gz \
+    && tar xfz ${HDF5_VERSION}.tar.gz \
+    && cmake -G Ninja -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=Release \
+         -DHDF5_ENABLE_PARALLEL=on -DHDF5_ENABLE_Z_LIB_SUPPORT=on -B hdf5-build -S hdf5-${HDF5_VERSION} \
+    && cmake --build hdf5-build && cmake --install hdf5-build && rm -rf /tmp/build/*
+
+# ADIOS2 for VTXWriter (.bp output).
+RUN wget -q https://github.com/ornladios/ADIOS2/archive/v${ADIOS2_VERSION}.tar.gz -O adios2.tar.gz \
+    && mkdir adios2 && tar xf adios2.tar.gz -C adios2 --strip-components 1 \
+    && cmake -G Ninja -DADIOS2_USE_HDF5=on -DCMAKE_INSTALL_PYTHONDIR=/usr/local/lib/ -DADIOS2_USE_Fortran=off \
+         -DBUILD_TESTING=off -DADIOS2_BUILD_EXAMPLES=off -DADIOS2_USE_ZeroMQ=off -B adios2-build -S adios2 \
+    && cmake --build adios2-build && cmake --install adios2-build && rm -rf /tmp/build/*
+
+# PETSc: upstream's real64-32 configure line, with CUDA (conda-forge's spelling of the CUDA options).
+# Whether --download-hypre then builds a CUDA hypre, and whether BoomerAMG still runs on host
+# matrices, is checked by smoke-cae.sh (the template's witnesses on both backends), not assumed.
+RUN git clone --depth=1 -b v${PETSC_VERSION} https://gitlab.com/petsc/petsc.git ${PETSC_DIR} \
+    && cd ${PETSC_DIR} \
+    && ./configure PETSC_ARCH=${PETSC_ARCH} \
+         --COPTFLAGS=-O2 --CXXOPTFLAGS=-O2 --FOPTFLAGS=-O2 --CUDAOPTFLAGS=-O3 \
+         --with-64-bit-indices=no --with-debugging=no --with-fortran-bindings=no --with-shared-libraries \
+         --with-cuda=1 --with-cuda-arch=${CUDA_ARCH} \
+         --download-hypre --download-metis --download-mumps-avoid-mpi-in-place --download-mumps \
+         --download-ptscotch --download-scalapack --download-suitesparse --download-superlu \
+         --download-superlu_dist --with-scalar-type=real --with-precision=double \
+    && make PETSC_ARCH=${PETSC_ARCH} all \
+    && cd src/binding/petsc4py && pip -v install --no-build-isolation . \
+    && rm -rf ${PETSC_DIR}/src/docs ${PETSC_DIR}/${PETSC_ARCH}/externalpackages ${PETSC_DIR}/${PETSC_ARCH}/obj
+
+# FEniCSx at the tags of the image the twin already runs.
+RUN git clone --depth 1 -b v${BASIX_VERSION} https://github.com/FEniCS/basix.git \
+    && git clone --depth 1 -b ${UFL_VERSION} https://github.com/FEniCS/ufl.git \
+    && git clone --depth 1 -b v${FFCX_VERSION} https://github.com/FEniCS/ffcx.git \
+    && git clone --depth 1 -b v${DOLFINX_VERSION} https://github.com/FEniCS/dolfinx.git \
+    && cd dolfinx/python && pip install scikit-build-core \
+    && python -m scikit_build_core.build requires | python -c "import sys, json; print(' '.join(json.load(sys.stdin)))" | xargs pip install \
+    && cd /tmp/build/basix && cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -B build-dir -S ./cpp \
+    && cmake --build build-dir && cmake --install build-dir && pip install ./python \
+    && pip install /tmp/build/ufl /tmp/build/ffcx \
+    && cd /tmp/build/dolfinx && mkdir build-real && cd build-real \
+    && cmake -G Ninja -DCMAKE_INSTALL_PREFIX=/usr/local/dolfinx-real -DCMAKE_BUILD_TYPE=Release \
+         -DDOLFINX_ENABLE_PETSC=ON -DDOLFINX_ENABLE_SCOTCH=ON -DDOLFINX_ENABLE_KAHIP=ON \
+         -DDOLFINX_ENABLE_ADIOS2=ON ../cpp \
+    && ninja install \
+    && cd ../python \
+    && pip -v install --config-settings=cmake.build-type=Release --no-build-isolation --check-build-dependencies \
+         --target /usr/local/dolfinx-real/lib/python3.12/dist-packages --no-dependencies '.' \
+    && rm -rf /tmp/build/*
+
+ENV PKG_CONFIG_PATH=/usr/local/dolfinx-real/lib/pkgconfig \
+    CMAKE_PREFIX_PATH=/usr/local/dolfinx-real/lib/cmake \
+    PYTHONPATH=/usr/local/dolfinx-real/lib/python3.12/dist-packages:/usr/local/lib \
+    LD_LIBRARY_PATH=/usr/local/dolfinx-real/lib:/usr/local/lib
+
+# The twin's Python layer at the versions of its own venv (work/935-cad-twin/venv, 2026-11-16),
+# except numpy, which stays at the version DOLFINx was compiled against. Warp's PyPI wheel targets
+# CUDA 13.4 and an R580 driver; this image is CUDA 12.8, so the +cu12 wheel from Warp's release.
+ARG WARP_VERSION=1.19.0
+ARG NEWTON_VERSION=1.8.0
+RUN pip install \
+      "https://github.com/NVIDIA/warp/releases/download/v${WARP_VERSION}/warp_lang-${WARP_VERSION}+cu12-py3-none-manylinux_2_28_x86_64.whl" \
+    && pip install \
+      numpy==${NUMPY_VERSION} \
+      newton==${NEWTON_VERSION} \
+      gmsh==4.15.2 \
+      build123d==0.13.0 \
+      trimesh==5.2.0 \
+      manifold3d==3.5.4 \
+      libigl==2.6.3 \
+      scikit-image==0.26.0 \
+      scipy==1.18.1 \
+      shapely==2.2.0 \
+      ezdxf==1.4.5 \
+      matplotlib==3.11.2 \
+      usd-core==26.11 \
+      pylife==2.3.1 \
+      pyvista==0.49.2 \
+      vtk==9.7.2 \
+    && pip check \
+    && pip freeze > /opt/cae-935-pip-freeze.txt
+
+# VTK 9.5+ picks its EGL window when libegl1 is present: off-screen renders on the NVIDIA driver,
+# no Xvfb. NVIDIA_DRIVER_CAPABILITIES must include graphics for EGL inside the container.
+ENV PYVISTA_OFF_SCREEN=true \
+    NVIDIA_DRIVER_CAPABILITIES=graphics,utility,compute \
+    MPLBACKEND=Agg
+
+RUN useradd -m -u 1000 -s /bin/bash cae
+USER cae
+WORKDIR /workspace
+LABEL org.opencontainers.image.title="porscheparts cae-935" \
+      org.opencontainers.image.description="DOLFINx 0.11 on CUDA PETSc, Warp, Newton, Gmsh, build123d, PyVista, OpenUSD, pyLife: 935 head twin, Node B" \
+      porscheparts.status="unbuilt-unqualified"
+
+# ------------------------------------------------------------------------------------- openfoam
+FROM ${MESH_CFD_IMAGE} AS openfoam
+ARG FOAMLIB_VERSION=1.10.4
+# mesh-cfd keeps its tools in /opt/venv (Python 3.12, system site packages); foamlib needs >= 3.12.
+RUN /opt/venv/bin/pip install --no-cache-dir foamlib==${FOAMLIB_VERSION} \
+    && /opt/venv/bin/python -c "import foamlib; print(foamlib.__version__)"
+LABEL porscheparts.status="unbuilt-unqualified"
