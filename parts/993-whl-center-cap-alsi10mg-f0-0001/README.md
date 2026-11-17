@@ -2,7 +2,7 @@
 
 <div align="center">
 
-# 993 center cap, AlSi10Mg F0 concept without crest
+# 993 centre cap, AlSi10Mg F0 concept without crest
 
 **`993-WHL-CENTER-CAP-ALSI10MG-F0-0001`** · Porsche 993 · 1994–1998
 
@@ -27,7 +27,7 @@ The original part is documented — pictures, catalogue entries or published dat
 </td>
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
-<img src="media/preview.png" alt="Concept CAD block for 993 center cap, AlSi10Mg F0 concept without crest" width="340"><br>
+<img src="media/preview.png" alt="Concept CAD block for 993 centre cap, AlSi10Mg F0 concept without crest" width="340"><br>
 <sub>Concept CAD block, 76.3 × 76.2 × 46.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
@@ -37,11 +37,11 @@ The original part is documented — pictures, catalogue entries or published dat
 
 ## What it is
 
-Independent concept of a metal center cap with four integrated tabs to screen a small LPBF series. PorscheFanatics confirms the identity and the historical PET status; partworks publishes three dimensions and states that the original is plastic.
+Independent concept of a metal centre cap with four integrated tabs to screen a small LPBF series. PorscheFanatics confirms the identity and the historical PET status; partworks publishes three dimensions and states that the original is plastic.
 
 ## What it does on the car
 
-CAD, clip-fit, centrifugal, thermal and DfAM screening; no road fitting authorized
+CAD, clip-fit, centrifugal, thermal and DfAM screening; no road fitting authorised
 
 ## At a glance
 

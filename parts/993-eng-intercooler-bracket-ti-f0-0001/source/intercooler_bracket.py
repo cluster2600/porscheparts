@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Support d'intercooler 993 Turbo/GT2, concept Ti F0 indépendant.
+"""993 Turbo/GT2 intercooler bracket, independent Ti F0 concept.
 
-FVD publie uniquement l'enveloppe et la masse de son support renforcé. Le PET
-indexé par PorscheFanatics fournit les identités de pièces. Les rails ouverts,
-les alésages et le plot central ci-dessous sont des hypothèses propres au projet
-et ne constituent ni une reconstruction OEM, ni une géométrie montable.
+FVD publishes only the envelope and mass of its reinforced bracket. The PET
+indexed by PorscheFanatics provides the part identities. The open rails, bores
+and central boss below are project-specific assumptions and constitute neither
+an OEM reconstruction nor a mountable geometry.
 """
 
 from __future__ import annotations
@@ -17,13 +17,13 @@ from pathlib import Path
 
 PART_ID = "993-ENG-INTERCOOLER-BRACKET-TI-F0-0001"
 
-# Données publiées par FVD pour son produit commercial FVD11011050.
+# Data published by FVD for its commercial product FVD11011050.
 PUBLISHED_LENGTH_MM = 255.0
 PUBLISHED_WIDTH_MM = 80.0
 PUBLISHED_HEIGHT_MM = 23.0
 PUBLISHED_MASS_G = 200.0
 
-# Topologie ouverte, propre au concept F0.
+# Open topology, specific to the F0 concept.
 BASE_THICKNESS_MM = 6.0
 OUTER_POINTS = (
     (0.0, 10.0),
@@ -71,14 +71,14 @@ PEDESTAL_WIDTH_MM = 24.0
 PEDESTAL_HEIGHT_MM = PUBLISHED_HEIGHT_MM - BASE_THICKNESS_MM
 PEDESTAL_BORE_DIAMETER_MM = 6.0
 
-# Cas de régression synthétique, sans autorité véhicule.
+# Synthetic regression case, with no vehicle authority.
 SCREEN_FORCE_N = 400.0
 SCREEN_SPAN_MM = 220.0
 SCREEN_DELTA_T_K = 120.0
 RAIL_COUNT = 2.0
 RAIL_EFFECTIVE_WIDTH_MM = 8.0
 
-# Carte mixte provisoire : physique TIMET corroyée + procédé EOS LPBF.
+# Provisional mixed card: wrought TIMET physics + EOS LPBF process.
 DENSITY_G_CM3 = 4.42
 ELASTIC_MODULUS_MPA = 110_000.0
 POISSON_RATIO = 0.31
@@ -87,7 +87,7 @@ THERMAL_EXPANSION_PER_K = 9.0e-6
 
 
 def polygon_area_mm2(points: tuple[tuple[float, float], ...]) -> float:
-    """Aire signée absolue d'un polygone simple par la formule du lacet."""
+    """Absolute signed area of a simple polygon by the shoelace formula."""
 
     return abs(
         sum(
@@ -98,7 +98,7 @@ def polygon_area_mm2(points: tuple[tuple[float, float], ...]) -> float:
 
 
 def analytic_volume_mm3() -> float:
-    """Volume net exact de la géométrie F0 sans dépendance CAO."""
+    """Exact net volume of the F0 geometry without a CAD dependency."""
 
     base_area = polygon_area_mm2(OUTER_POINTS)
     base_area -= sum(polygon_area_mm2(cutout) for cutout in CUTOUTS)
@@ -116,10 +116,10 @@ def analytic_volume_mm3() -> float:
 
 
 def engineering_screen(force_n: float = SCREEN_FORCE_N) -> dict[str, object]:
-    """Criblage poutre/liaisons/thermique, volontairement conservateur et simple."""
+    """Beam/joint/thermal screening, deliberately conservative and simple."""
 
     if force_n <= 0:
-        raise ValueError("La force de criblage doit être positive.")
+        raise ValueError("The screening force must be positive.")
 
     effective_width = RAIL_COUNT * RAIL_EFFECTIVE_WIDTH_MM
     area = effective_width * BASE_THICKNESS_MM
@@ -242,7 +242,7 @@ def engineering_screen(force_n: float = SCREEN_FORCE_N) -> dict[str, object]:
 
 
 def build_solid():
-    """Construit le BREP F0 ; build123d est importé dans l'image CAO."""
+    """Builds the F0 BREP; build123d is imported in the CAD image."""
 
     from build123d import Align, Box, Cylinder, Polygon, Pos, extrude
 
@@ -289,10 +289,10 @@ def main() -> int:
         solid = build_solid()
         expected = analytic_volume_mm3()
         if not solid.is_valid or len(solid.solids()) != 1:
-            raise SystemExit("Le concept OCCT n'est pas un solide BREP unique valide.")
+            raise SystemExit("The OCCT concept is not a single valid BREP solid.")
         if abs(solid.volume - expected) > 0.05:
             raise SystemExit(
-                f"Volume incohérent: OCCT={solid.volume}, analytique={expected}"
+                f"Inconsistent volume: OCCT={solid.volume}, analytical={expected}"
             )
         bbox = solid.bounding_box()
         envelope = (bbox.size.X, bbox.size.Y, bbox.size.Z)
@@ -306,7 +306,7 @@ def main() -> int:
             for actual, target in zip(envelope, expected_envelope)
         ):
             raise SystemExit(
-                f"Enveloppe incohérente: OCCT={envelope}, publiée={expected_envelope}"
+                f"Inconsistent envelope: OCCT={envelope}, published={expected_envelope}"
             )
 
         args.out.parent.mkdir(parents=True, exist_ok=True)
@@ -317,7 +317,7 @@ def main() -> int:
             or len(roundtrip.solids()) != 1
             or abs(roundtrip.volume - expected) > 0.05
         ):
-            raise SystemExit("Le STEP relu ne reproduit pas le solide attendu.")
+            raise SystemExit("The re-read STEP does not reproduce the expected solid.")
         report["step_roundtrip"] = {
             "status": "passed",
             "valid_brep": True,

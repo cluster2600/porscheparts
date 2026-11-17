@@ -41,7 +41,7 @@ Identity-only catalogue record for the charge-air side lines of PET group 107-20
 
 ## What it does on the car
 
-Identity anchor for the charge-air and intake subsystems of the M64 digital twin; no manufacturing, fitment or engine use is authorized by this record
+Identity anchor for the charge-air and intake subsystems of the M64 digital twin; no manufacturing, fitment or engine use is authorised by this record
 
 ## At a glance
 

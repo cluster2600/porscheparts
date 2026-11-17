@@ -42,7 +42,7 @@ Identity-only catalogue record for the two Turbo exhaust heat exchangers (exhaus
 
 ## What it does on the car
 
-Identity anchor for the exhaust subsystem of the M64 digital twin; no manufacturing, fitment or engine use is authorized by this record
+Identity anchor for the exhaust subsystem of the M64 digital twin; no manufacturing, fitment or engine use is authorised by this record
 
 ## At a glance
 

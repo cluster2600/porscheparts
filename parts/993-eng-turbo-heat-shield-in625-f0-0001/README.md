@@ -42,7 +42,7 @@ Independent concept of an open shell with integrated bosses for screening an LPB
 
 ## What it does on the car
 
-CAD, thermal, mechanical and DfAM screening; no manufacturing for fitment and no vehicle installation authorized
+CAD, thermal, mechanical and DfAM screening; no manufacturing for fitment and no vehicle installation authorised
 
 ## At a glance
 

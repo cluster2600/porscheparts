@@ -45,7 +45,7 @@ Catalogue record: [`catalog/parts/993-eng-connecting-rod-ti64-f0-0001.json`](../
 | Porsche part numbers | not recorded |
 | category | connecting_rod |
 | safety class | prohibited_pending_engineering |
-| intended use | CAD, DfAM, mass, synthetic loads, nominal stresses and buckling screening only; no manufacturing, installation or engine start-up authorized |
+| intended use | CAD, DfAM, mass, synthetic loads, nominal stresses and buckling screening only; no manufacturing, installation or engine start-up authorised |
 
 ## Material and manufacturing
 
@@ -56,7 +56,7 @@ Catalogue record: [`catalog/parts/993-eng-connecting-rod-ti64-f0-0001.json`](../
 | material family | candidate titanium |
 | grade | Ti-6Al-4V Grade 5 LPBF for screening; PAUTER titanium alloy unknown |
 | standard | ASTM F2924 and program-specific connecting rod specification to be contracted |
-| supplier requirements | traceable powder, machine, parameters, orientation, lot and powder recycling, oriented coupons with tensile, toughness, fatigue and representative defects after all post-processing, full dimensional analysis of the joint face, center distance, bores, squareness and parallelism, CT of the body and cap, dye penetrant inspection after machining and roughness check, capability evidence on preload, friction, tightening and service life of the selected bolts, proof tests then full-scale fatigue with an approved engine envelope before any dyno run |
+| supplier requirements | traceable powder, machine, parameters, orientation, lot and powder recycling, oriented coupons with tensile, toughness, fatigue and representative defects after all post-processing, full dimensional analysis of the joint face, centre distance, bores, squareness and parallelism, CT of the body and cap, dye penetrant inspection after machining and roughness check, capability evidence on preload, friction, tightening and service life of the selected bolts, proof tests then full-scale fatigue with an approved engine envelope before any dyno run |
 | post-processing | powder removal through a fully open topology, stress relief and heat treatment qualified for machine, parameters and orientation, HIP to be decided on defect population and representative fatigue tests, separation and machining of the cap, joint face, bolt bores and seats, machining and finishing of both bores with defined small-end bushing and bearing shells, radiusing, polishing of load paths, end-to-end and set balancing |
 
 **Titanium**
@@ -67,7 +67,7 @@ Catalogue record: [`catalog/parts/993-eng-connecting-rod-ti64-f0-0001.json`](../
 | heat treatment | EOS stress relief and ductility treatment to be qualified; no recipe is frozen without supplier, orientation and coupons |
 | HIP | to_be_determined |
 | machined surfaces | big-end bore and bearing shell seats, small-end bore and bushing seat, joint face and cap datums, bolt bores, seats and faces, side faces and crankshaft clearances |
-| inspection | CT of the body, cap, fillets and flange transitions, full metrology of bores, center distance, joint face, parallelism and squareness, dye penetrant inspection after machining and finishing, roughness, porosity, alpha case, residual stresses and balancing, proof tests and full-scale fatigue with representative bolts, bearing shells and pins |
+| inspection | CT of the body, cap, fillets and flange transitions, full metrology of bores, centre distance, joint face, parallelism and squareness, dye penetrant inspection after machining and finishing, roughness, porosity, alpha case, residual stresses and balancing, proof tests and full-scale fatigue with representative bolts, bearing shells and pins |
 | galvanic isolation | Qualify titanium-steel couples with bolts, bearing shells and pin, fretting, galling, coatings, lubrication, expansion and galvanic contamination in engine oil. |
 | fatigue assumptions | not recorded |
 
@@ -127,7 +127,7 @@ Catalogue record: [`catalog/parts/993-eng-connecting-rod-ti64-f0-0001.json`](../
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | Only the center distance, the two functional diameters, the two widths, the steel mass and the advertised titanium gain come from the PAUTER/TZR record.<br>The 78/40 mm outer diameters, the two 10 x 14 mm flanges, the cap and the bolt passages are F0 assumptions.<br>The CAD mass of 341.02 g depends on a synthetic shape and a nominal density; it validates neither the PAUTER gain nor the balancing.<br>The load case uses a cylinder pressure of 12 MPa, 600 g piston/pin, one third of the rod mass and 100 h, all entirely synthetic.<br>LPBF is the preferred process only to study the F0 topology; the production choice remains conditional on comparison with forged/machined steel and conventional titanium.<br>Section stresses, the Kt=1.5 factor and Euler replace neither 3D contact, nor bolt preload, nor bearing shells, nor multiaxial fatigue.<br>The EOS/TIMET values are ambient and physical comparisons, not hot or fatigue LPBF allowables.<br>The full-scale Cecchel study reports fatigue below the conventional reference and requires dedicated qualification.<br>The STEP proves only two re-readable BREP solids; it is authorized neither for manufacturing, nor for installation, nor for an engine. |
+| limitations | Only the centre distance, the two functional diameters, the two widths, the steel mass and the advertised titanium gain come from the PAUTER/TZR record.<br>The 78/40 mm outer diameters, the two 10 x 14 mm flanges, the cap and the bolt passages are F0 assumptions.<br>The CAD mass of 341.02 g depends on a synthetic shape and a nominal density; it validates neither the PAUTER gain nor the balancing.<br>The load case uses a cylinder pressure of 12 MPa, 600 g piston/pin, one third of the rod mass and 100 h, all entirely synthetic.<br>LPBF is the preferred process only to study the F0 topology; the production choice remains conditional on comparison with forged/machined steel and conventional titanium.<br>Section stresses, the Kt=1.5 factor and Euler replace neither 3D contact, nor bolt preload, nor bearing shells, nor multiaxial fatigue.<br>The EOS/TIMET values are ambient and physical comparisons, not hot or fatigue LPBF allowables.<br>The full-scale Cecchel study reports fatigue below the conventional reference and requires dedicated qualification.<br>The STEP proves only two re-readable BREP solids; it is authorised neither for manufacturing, nor for installation, nor for an engine. |
 
 **Evidence**
 

@@ -37,11 +37,11 @@ The original part is documented — pictures, catalogue entries or published dat
 
 ## What it is
 
-Independent concept of a manifold with three offset conical runners and two common flanges to screen AlSi10Mg LPBF. PorscheFanatics and Patrick Motorsports cross-check the PMO FUE PMO 9150 kit, stated as 46 x 42 x 100 mm, three bolts, two parts and a raw aluminum finish; no interface geometry is published.
+Independent concept of a manifold with three offset conical runners and two common flanges to screen AlSi10Mg LPBF. PorscheFanatics and Patrick Motorsports cross-check the PMO FUE PMO 9150 kit, stated as 46 x 42 x 100 mm, three bolts, two parts and a raw aluminium finish; no interface geometry is published.
 
 ## What it does on the car
 
-CAD, DfAM, flow, acoustic, pressure and thermal screening; no manufacturing, installation or engine start authorized
+CAD, DfAM, flow, acoustic, pressure and thermal screening; no manufacturing, installation or engine start authorised
 
 ## At a glance
 

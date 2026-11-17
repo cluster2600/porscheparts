@@ -36,7 +36,7 @@ The original part is documented — pictures, catalogue entries or published dat
 
 ## What it is
 
-Investigation target: the chain case from factory plate 103-05, its three lids, its oil bridges and its tensioner. The record establishes identity and material reasoning; it is neither a replacement geometry nor a manufacturing authorization. Selected because the factory catalogue triage makes it a serious consolidation case — and because the titanium grid rejects it three times.
+Investigation target: the chain case from factory plate 103-05, its three lids, its oil bridges and its tensioner. The record establishes identity and material reasoning; it is neither a replacement geometry nor a manufacturing authorisation. Selected because the factory catalogue triage makes it a serious consolidation case — and because the titanium grid rejects it three times.
 
 ## What it does on the car
 

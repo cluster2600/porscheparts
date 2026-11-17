@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Support d'impact avant 993, concept AlSi10Mg F0 non libérable."""
+"""993 front impact support, AlSi10Mg F0 concept, not releasable."""
 
 from __future__ import annotations
 
@@ -11,13 +11,13 @@ from pathlib import Path
 
 PART_ID = "993-BODY-FRONT-IMPACT-SUPPORT-ALSI10MG-F0-0001"
 
-# Déclarations commerciales FVD, sans dessin ni protocole indépendant.
+# FVD commercial claims, with no drawing or independent protocol.
 PUBLISHED_LENGTH_MM = 139.0
 PUBLISHED_WIDTH_MM = 100.0
 PUBLISHED_HEIGHT_MM = 53.0
 PUBLISHED_MASS_G = 145.0
 
-# Topologie F0 indépendante. Les interfaces de montage sont volontairement absentes.
+# Independent F0 topology. The mounting interfaces are deliberately absent.
 BASE_PLATE_MM = 3.0
 BODY_LENGTH_MM = PUBLISHED_LENGTH_MM - BASE_PLATE_MM
 OUTER_A_MM = 30.0
@@ -26,14 +26,14 @@ SHELL_MM = 1.2
 CORE_SEGMENT_THICKNESSES_MM = (1.4, 1.2, 1.0, 0.8)
 CORE_SEGMENT_LENGTH_MM = BODY_LENGTH_MM / len(CORE_SEGMENT_THICKNESSES_MM)
 
-# Cas d'énergie synthétique : ce n'est ni une exigence réglementaire ni un essai 993.
+# Synthetic energy case: neither a regulatory requirement nor a 993 test.
 SCREEN_MEAN_CRUSH_FORCE_N = 15_000.0
 SCREEN_CRUSH_STROKE_MM = 80.0
 SUPPORT_COUNT = 2
 SCREEN_VEHICLE_MASS_KG = 1450.0
 SCREEN_DELTA_T_K = 100.0
 
-# Carte générique de criblage AlSi10Mg, non admissible crash.
+# Generic AlSi10Mg screening card, not a crash allowable.
 DENSITY_G_CM3 = 2.67
 ELASTIC_MODULUS_MPA = 70_000.0
 POISSON_RATIO = 0.33
@@ -51,7 +51,7 @@ def ellipse_annulus_area_mm2() -> float:
 
 def core_area_mm2(thickness_mm: float) -> float:
     if thickness_mm <= 0:
-        raise ValueError("L'épaisseur du cœur doit être positive.")
+        raise ValueError("The core thickness must be positive.")
     inner_width = 2.0 * (OUTER_A_MM - SHELL_MM)
     inner_height = 2.0 * (OUTER_B_MM - SHELL_MM)
     return (
@@ -310,7 +310,7 @@ def build_solid():
             2.0 * OUTER_B_MM,
             align=align_min_x,
         )
-        # Le cœur est borné par l'ellipse extérieure et reste ouvert en bout.
+        # The core is bounded by the outer ellipse and stays open at the end.
         solid = solid + ((horizontal + vertical) & outer_body)
     return solid
 
@@ -328,7 +328,7 @@ def main() -> int:
 
         solid = build_solid()
         if not solid.is_valid or len(solid.solids()) != 1:
-            raise SystemExit("Le concept OCCT n'est pas un solide BREP unique valide.")
+            raise SystemExit("The OCCT concept is not a single valid BREP solid.")
         bbox = solid.bounding_box()
         envelope = (bbox.size.X, bbox.size.Y, bbox.size.Z)
         expected_envelope = (
@@ -341,16 +341,16 @@ def main() -> int:
             for actual, target in zip(envelope, expected_envelope)
         ):
             raise SystemExit(
-                f"Enveloppe incohérente: OCCT={envelope}, publiée={expected_envelope}"
+                f"Inconsistent envelope: OCCT={envelope}, published={expected_envelope}"
             )
 
         args.out.parent.mkdir(parents=True, exist_ok=True)
         export_step(solid, str(args.out))
         roundtrip = import_step(str(args.out))
         if not roundtrip.is_valid or len(roundtrip.solids()) != 1:
-            raise SystemExit("Le STEP relu n'est pas un solide BREP unique valide.")
+            raise SystemExit("The re-read STEP is not a single valid BREP solid.")
         if abs(roundtrip.volume - solid.volume) > 0.05:
-            raise SystemExit("Le STEP relu ne reproduit pas le volume OCCT attendu.")
+            raise SystemExit("The re-read STEP does not reproduce the expected OCCT volume.")
         cad_volume_mm3 = roundtrip.volume
 
     report = engineering_screen(cad_volume_mm3)

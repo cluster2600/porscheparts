@@ -39,7 +39,7 @@ The original part is documented — pictures, catalogue entries or published dat
 
 ## What it is
 
-Research target of the digital twin: two K16 turbochargers mounted in parallel on the 993 Turbo. This record establishes the functional identity and the available public data; it constitutes neither a replacement geometry nor a manufacturing authorization.
+Research target of the digital twin: two K16 turbochargers mounted in parallel on the 993 Turbo. This record establishes the functional identity and the available public data; it constitutes neither a replacement geometry nor a manufacturing authorisation.
 
 ## What it does on the car
 

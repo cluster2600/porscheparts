@@ -46,7 +46,7 @@ Clean-sheet concept of a twelve-blade K16 hot rotor to screen the value and limi
 
 ## What it does on the car
 
-F0 screening of CAD, rotation, overspeed, thermal, turbine power, expansion, imbalance and cycles; no manufacturing, rotation, installation or engine start authorized
+F0 screening of CAD, rotation, overspeed, thermal, turbine power, expansion, imbalance and cycles; no manufacturing, rotation, installation or engine start authorised
 
 ## At a glance
 

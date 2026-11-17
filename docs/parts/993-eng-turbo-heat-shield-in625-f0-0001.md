@@ -42,7 +42,7 @@ Catalogue record: [`catalog/parts/993-eng-turbo-heat-shield-in625-f0-0001.json`]
 | Porsche part numbers | 99312311351 |
 | category | turbocharger_heat_protection |
 | safety class | functional |
-| intended use | CAD, thermal, mechanical and DfAM screening; no manufacturing for fitment and no vehicle installation authorized |
+| intended use | CAD, thermal, mechanical and DfAM screening; no manufacturing for fitment and no vehicle installation authorised |
 
 ## Material and manufacturing
 

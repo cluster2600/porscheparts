@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bielle 993/993 Turbo, concept topologique Ti-6Al-4V LPBF F0."""
+"""993/993 Turbo connecting rod, Ti-6Al-4V LPBF F0 topological concept."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ from pathlib import Path
 
 PART_ID = "993-ENG-CONNECTING-ROD-TI64-F0-0001"
 
-# Valeurs publiées par TZR/PAUTER pour la bielle acier et son option titane.
+# Values published by TZR/PAUTER for the steel connecting rod and its titanium option.
 PUBLISHED_CENTER_DISTANCE_MM = 127.0
 PUBLISHED_PISTON_PIN_DIAMETER_MM = 23.01
 PUBLISHED_BIG_END_HOUSING_DIAMETER_MM = 58.01
@@ -21,7 +21,7 @@ PUBLISHED_STEEL_MASS_G = 535.0
 PUBLISHED_TITANIUM_MASS_REDUCTION_RATIO = 0.33
 PUBLISHED_BIG_END_DIAMETER_TOLERANCE_MM = 0.003
 
-# Enveloppe topologique F0 indépendante : aucune forme PAUTER n'est reproduite.
+# Independent F0 topological envelope: no PAUTER shape is reproduced.
 BIG_END_OUTER_DIAMETER_MM = 78.0
 SMALL_END_OUTER_DIAMETER_MM = 40.0
 STRUT_WIDTH_MM = 10.0
@@ -38,7 +38,7 @@ BOLT_LUG_LENGTH_X_MM = 28.0
 BOLT_LUG_WIDTH_Y_MM = 12.0
 BOLT_LUG_THICKNESS_MM = PUBLISHED_BIG_END_WIDTH_MM
 
-# Cas de charge synthétique, pas une donnée M64/60 mesurée.
+# Synthetic load case, not measured M64/60 data.
 ENGINE_BORE_MM = 100.0
 ENGINE_STROKE_MM = 76.4
 ENGINE_SPEED_RPM = 6720.0
@@ -50,7 +50,7 @@ STRESS_CONCENTRATION_FACTOR = 1.5
 EULER_EFFECTIVE_LENGTH_FACTOR = 1.0
 SCREEN_DELTA_T_K = 100.0
 
-# EOS Ti64 Grade 5 : valeurs typiques de criblage, jamais des admissibles bielle.
+# EOS Ti64 Grade 5: typical screening values, never connecting-rod allowables.
 DENSITY_G_CM3 = 4.42
 ELASTIC_MODULUS_MPA = 110_000.0
 COMPARISON_YIELD_STRENGTH_MPA = 980.0
@@ -399,16 +399,16 @@ def main() -> int:
 
         shape = build_geometry()
         if not shape.is_valid or len(shape.solids()) != 2:
-            raise SystemExit("Le F0 doit contenir exactement un corps et un chapeau valides.")
+            raise SystemExit("The F0 must contain exactly one valid body and one valid cap.")
         bbox = shape.bounding_box()
         envelope = [bbox.size.X, bbox.size.Y, bbox.size.Z]
         args.out.parent.mkdir(parents=True, exist_ok=True)
         export_step(shape, str(args.out))
         roundtrip = import_step(str(args.out))
         if not roundtrip.is_valid or len(roundtrip.solids()) != 2:
-            raise SystemExit("Le STEP relu ne conserve pas les deux solides valides.")
+            raise SystemExit("The re-read STEP does not keep the two valid solids.")
         if abs(roundtrip.volume - shape.volume) > 0.05:
-            raise SystemExit("Le STEP relu ne reproduit pas le volume OCCT attendu.")
+            raise SystemExit("The re-read STEP does not reproduce the expected OCCT volume.")
         cad_volume_mm3 = roundtrip.volume
 
     report = engineering_screen(cad_volume_mm3)

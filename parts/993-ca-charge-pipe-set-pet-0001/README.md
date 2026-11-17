@@ -41,7 +41,7 @@ Identity-only catalogue record grouping the charge-air (group 107-45, 'charge ai
 
 ## What it does on the car
 
-Identity anchor for the charge-air subsystem of the M64 digital twin; no manufacturing, fitment or engine use is authorized by this record
+Identity anchor for the charge-air subsystem of the M64 digital twin; no manufacturing, fitment or engine use is authorised by this record
 
 ## At a glance
 

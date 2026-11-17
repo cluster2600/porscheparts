@@ -2,7 +2,7 @@
 
 <div align="center">
 
-# Console centrale moteur Turbo bionique — étude PicoGK
+# Bionic Turbo engine centre bracket — PicoGK study
 
 **`993-ENG-BRACKET-0001`** · Porsche 993 · 1995–1998
 
@@ -27,7 +27,7 @@ The original part is documented — pictures, catalogue entries or published dat
 </td>
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
-<img src="media/preview.png" alt="Concept CAD block for Console centrale moteur Turbo bionique — étude PicoGK" width="340"><br>
+<img src="media/preview.png" alt="Concept CAD block for Bionic Turbo engine centre bracket — PicoGK study" width="340"><br>
 <sub>Concept CAD block, 120.5 × 60.5 × 64.8 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
@@ -37,11 +37,11 @@ The original part is documented — pictures, catalogue entries or published dat
 
 ## What it is
 
-Pièce distincte de la traverse 993 115 021 53, position PET 18. Squelette bionique à quatre collerettes, branches courbes effilées, deux troncs et couronne organique, sans plaque ni montant plein. Les quatre trous sont hypothétiques ; la fixation côté moteur reste inconnue. Aucune optimisation sous charges réalisée.
+A part distinct from cross member 993 115 021 53, PET position 18. Bionic skeleton with four collars, tapered curved branches, two trunks and an organic crown, with no plate or solid upright. The four holes are hypothetical; the engine-side fixing remains unknown. No optimisation under load has been carried out.
 
 ## What it does on the car
 
-Étude de formes et assemblage documentaire uniquement ; aucun portage moteur ni montage véhicule autorisé.
+Shape study and documentary assembly only; no engine support or vehicle installation is authorised.
 
 ## At a glance
 

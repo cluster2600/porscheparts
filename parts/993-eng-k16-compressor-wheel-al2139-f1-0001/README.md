@@ -46,7 +46,7 @@ Iteration of the rejected AlSi10Mg F0, with Al2139 AM and blades of variable roo
 
 ## What it does on the car
 
-F0-F1 loop for material and thickness choice, CAD, thermodynamics, rotating disk, centrifugal tension, overspeed, expansion and imbalance; no manufacturing, rotation, installation or start-up authorized
+F0-F1 loop for material and thickness choice, CAD, thermodynamics, rotating disk, centrifugal tension, overspeed, expansion and imbalance; no manufacturing, rotation, installation or start-up authorised
 
 ## At a glance
 

@@ -41,7 +41,7 @@ Independent concept of an integrated lever and clevis for studying a low-volume 
 
 ## What it does on the car
 
-CAD, DfAM and mechanical screening of an opening lever; no fitment and no egress use authorized
+CAD, DfAM and mechanical screening of an opening lever; no fitment and no egress use authorised
 
 ## At a glance
 

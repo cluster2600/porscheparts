@@ -37,7 +37,7 @@ The original part is documented — pictures, catalogue entries or published dat
 
 ## What it is
 
-Independent front support concept with an elliptical shell and a graded open cruciform core, used to screen the value of LPBF AlSi10Mg. PorscheFanatics corroborates the lightweight FVD support at 145 g; FVD publishes a 139 x 100 x 53 mm envelope and states only aluminum, with no alloy and no interface geometry.
+Independent front support concept with an elliptical shell and a graded open cruciform core, used to screen the value of LPBF AlSi10Mg. PorscheFanatics corroborates the lightweight FVD support at 145 g; FVD publishes a 139 x 100 x 53 mm envelope and states only aluminium, with no alloy and no interface geometry.
 
 ## What it does on the car
 

@@ -42,7 +42,7 @@ Catalogue record: [`catalog/parts/993-ca-charge-pipe-set-pet-0001.json`](../../c
 | Porsche part numbers | 99311033053, 99311034053, 99311034054, 99311011050, 99311011052, 99311011150, 99360611400, 99311063356, 99311063256 |
 | category | charge_air_cooler_plumbing |
 | safety class | non_critical |
-| intended use | Identity anchor for the charge-air subsystem of the M64 digital twin; no manufacturing, fitment or engine use is authorized by this record |
+| intended use | Identity anchor for the charge-air subsystem of the M64 digital twin; no manufacturing, fitment or engine use is authorised by this record |
 
 ## Material and manufacturing
 

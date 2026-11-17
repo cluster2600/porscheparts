@@ -45,7 +45,7 @@ Catalogue record: [`catalog/parts/993-eng-upper-valve-cover-alsi10mg-f0-0001.jso
 | Porsche part numbers | not recorded |
 | category | upper_valve_cover_with_ignition_mounting |
 | safety class | prohibited_pending_engineering |
-| intended use | F0 screening of open CAD, COP consolidation, crankcase pressure, clamping, flatness, thermal, convection and mass; no manufacturing, sealing, installation or start-up authorized |
+| intended use | F0 screening of open CAD, COP consolidation, crankcase pressure, clamping, flatness, thermal, convection and mass; no manufacturing, sealing, installation or start-up authorised |
 
 ## Material and manufacturing
 
@@ -57,7 +57,7 @@ Catalogue record: [`catalog/parts/993-eng-upper-valve-cover-alsi10mg-f0-0001.jso
 | grade | EOS Aluminium AlSi10Mg T6, for comparison; commercial products in billet aluminum/6061-T6 |
 | standard | DIN EN 1706 EN AC-43000 and ASTM F3318 for the candidate; program-specific sealing/flatness specification to be contracted |
 | supplier requirements | traceable machine, parameters, orientation, supports, powder and lot, oriented coupons with tensile, fatigue, creep, oil and hot corrosion, flatness and distortion witnesses after T6 and machining, full CT, FPI and metallography with zoned defect criteria, metrology of gasket face, bolt pattern, COP towers, vents and clearances, pressure, leak, thermal cycling, vibration and engine endurance proof |
-| post-processing | open orientation, supports and recoater strategy to be qualified, stress relief then T6 with controlled quench and distortion, HIP to be decided on porosity, sealing, fatigue and leak results, machining of the gasket face, holes, COP towers, vents and datums, deburring and oil-side finishing without retention of powder or media, anodizing compatible with oil, temperature, gaskets and coils, engine cleaning and cleanliness conditioning |
+| post-processing | open orientation, supports and recoater strategy to be qualified, stress relief then T6 with controlled quench and distortion, HIP to be decided on porosity, sealing, fatigue and leak results, machining of the gasket face, holes, COP towers, vents and datums, deburring and oil-side finishing without retention of powder or media, anodising compatible with oil, temperature, gaskets and coils, engine cleaning and cleanliness conditioning |
 
 ## Geometry
 
@@ -115,7 +115,7 @@ Catalogue record: [`catalog/parts/993-eng-upper-valve-cover-alsi10mg-f0-0001.jso
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | The 400 x 150 x 200 mm envelope and 3.32 kg concern a kit of four covers with gaskets/hardware, not the F0 part.<br>The 220 x 95 x 45 mm shell, the ten fasteners, six fins and three COP towers are entirely synthetic.<br>The 9.7 Nm torque comes from an unverified OCR transcription and constitutes no fitting instruction.<br>The AlSi10Mg values are generic comparisons, not a hot allowables map for a sealing face.<br>The pressures, temperatures, gradient, convection, heat and gasket are regression inputs.<br>The thermal stress, warpage and convection screens fail; no sealing is demonstrated.<br>No gasket contact, CHT, modal, fatigue, clamp-load relaxation or coil/harness integration is validated.<br>The STEP proves only a readable open BREP and is authorized neither for manufacturing, nor for sealing, nor for an engine. |
+| limitations | The 400 x 150 x 200 mm envelope and 3.32 kg concern a kit of four covers with gaskets/hardware, not the F0 part.<br>The 220 x 95 x 45 mm shell, the ten fasteners, six fins and three COP towers are entirely synthetic.<br>The 9.7 Nm torque comes from an unverified OCR transcription and constitutes no fitting instruction.<br>The AlSi10Mg values are generic comparisons, not a hot allowables map for a sealing face.<br>The pressures, temperatures, gradient, convection, heat and gasket are regression inputs.<br>The thermal stress, warpage and convection screens fail; no sealing is demonstrated.<br>No gasket contact, CHT, modal, fatigue, clamp-load relaxation or coil/harness integration is validated.<br>The STEP proves only a readable open BREP and is authorised neither for manufacturing, nor for sealing, nor for an engine. |
 
 **Evidence**
 

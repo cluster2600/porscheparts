@@ -51,7 +51,7 @@ Concept study of visible dashboard trim for an independently verified M564 left-
 |---|---|
 | Porsche part numbers | not recorded |
 | variants | M564, left-hand drive, non-RS (proposed target; trim identity unresolved) |
-| candidate material | fiber and resin to be determined |
+| candidate material | fibre and resin to be determined |
 | candidate process | undecided |
 | safety class | `functional` |
 | validation status | `concept` |

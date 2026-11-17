@@ -42,7 +42,7 @@ Independent concept of a hollow Ti-6Al-4V intake valve with four internal ribs a
 
 ## What it does on the car
 
-CAD, DfAM, mass, harmonic kinematics, axial load, buckling, natural mode and thermal screening; no manufacturing, installation or engine start-up authorized
+CAD, DfAM, mass, harmonic kinematics, axial load, buckling, natural mode and thermal screening; no manufacturing, installation or engine start-up authorised
 
 ## At a glance
 

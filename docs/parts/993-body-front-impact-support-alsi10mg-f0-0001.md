@@ -4,7 +4,7 @@
 
 **Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
-Independent front support concept with an elliptical shell and a graded open cruciform core, used to screen the value of LPBF AlSi10Mg. PorscheFanatics corroborates the lightweight FVD support at 145 g; FVD publishes a 139 x 100 x 53 mm envelope and states only aluminum, with no alloy and no interface geometry.
+Independent front support concept with an elliptical shell and a graded open cruciform core, used to screen the value of LPBF AlSi10Mg. PorscheFanatics corroborates the lightweight FVD support at 145 g; FVD publishes a 139 x 100 x 53 mm envelope and states only aluminium, with no alloy and no interface geometry.
 
 ```mermaid
 flowchart LR
@@ -53,7 +53,7 @@ Catalogue record: [`catalog/parts/993-body-front-impact-support-alsi10mg-f0-0001
 |---|---|
 | preferred process | undecided |
 | candidate processes | LPBF, DMLS, CNC, sheet_metal |
-| material family | candidate LPBF aluminum alloy |
+| material family | candidate LPBF aluminium alloy |
 | grade | generic screening AlSi10Mg; alloy and temper of the FVD product unknown |
 | standard | ASTM F3318 and a program-specific crash specification to be contracted if LPBF is retained |
 | supplier requirements | traceable powder, machine, parameters, orientation, batch and recycling, capability demonstrated on a 1.2 mm shell and a core graded down to 0.8 mm, coupons in the part orientations with quasi-static and dynamic tensile tests, distortion simulation, support strategy and recoater check before launch, CT of the shell and the core, full metrology and dye-penetrant inspection after finishing, quasi-static and dynamic force-displacement curves on representative batches, subsystem then vehicle validation by a qualified crash engineer |
@@ -113,7 +113,7 @@ Catalogue record: [`catalog/parts/993-body-front-impact-support-alsi10mg-f0-0001
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | Only the 139 x 100 x 53 mm envelope, the 145 g mass and the aluminum family are published; any F0 topology is hypothetical.<br>No hole or boss is modeled because no body shell or bumper interface has been measured.<br>The 144.65 g of the STEP, close to the commercial 145 g, is a designed scalar check, not a geometric validation.<br>The 15 kN over 80 mm load case and its 6.55 km/h equivalent are synthetic and match no regulatory procedure.<br>The elastic and plate calculations predict neither progressive folding, fracture, impulse, intrusion nor occupant protection.<br>The STEP proves only a computable BREP; any manufacture, installation or road use is prohibited at this stage. |
+| limitations | Only the 139 x 100 x 53 mm envelope, the 145 g mass and the aluminium family are published; any F0 topology is hypothetical.<br>No hole or boss is modelled because no body shell or bumper interface has been measured.<br>The 144.65 g of the STEP, close to the commercial 145 g, is a designed scalar check, not a geometric validation.<br>The 15 kN over 80 mm load case and its 6.55 km/h equivalent are synthetic and match no regulatory procedure.<br>The elastic and plate calculations predict neither progressive folding, fracture, impulse, intrusion nor occupant protection.<br>The STEP proves only a computable BREP; any manufacture, installation or road use is prohibited at this stage. |
 
 **Evidence**
 

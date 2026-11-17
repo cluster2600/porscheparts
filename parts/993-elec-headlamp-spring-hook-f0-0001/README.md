@@ -40,7 +40,7 @@ Independent hollow hook concept for studying an additive repair of the lamp spri
 
 ## What it does on the car
 
-CAD, LPBF and mechanical screening of a repair concept; no fitting and no lamp retention authorized
+CAD, LPBF and mechanical screening of a repair concept; no fitting and no lamp retention authorised
 
 ## At a glance
 

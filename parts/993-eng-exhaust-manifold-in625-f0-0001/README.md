@@ -43,7 +43,7 @@ Independent concept of an IN625 three-into-one flow core to screen LPBF manufact
 
 ## What it does on the car
 
-CAD, DfAM, flow, pressure, acoustic and thermal screening; no manufacturing, installation, engine start or heating function authorized
+CAD, DfAM, flow, pressure, acoustic and thermal screening; no manufacturing, installation, engine start or heating function authorised
 
 ## At a glance
 

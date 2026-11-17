@@ -43,7 +43,7 @@ Improved variant of the 993 Turbo cooling fan rotor, drawn from the repository's
 
 ## What it does on the car
 
-F1 design study: airfoil blades inside the original rotor's envelope, one-dimensional fan-curve comparison with the rebuild rotor on a duty inferred from it, lighter-alloy comparison; no manufacture, rotation, installation or start-up authorized
+F1 design study: airfoil blades inside the original rotor's envelope, one-dimensional fan-curve comparison with the rebuild rotor on a duty inferred from it, lighter-alloy comparison; no manufacture, rotation, installation or start-up authorised
 
 ## At a glance
 
@@ -51,7 +51,7 @@ F1 design study: airfoil blades inside the original rotor's envelope, one-dimens
 |---|---|
 | Porsche part numbers | 96410601522 |
 | variants | `993_Turbo`, `M64_60_research` |
-| candidate material | WE43 LPBF, solutionized and aged, for comparison |
+| candidate material | WE43 LPBF, solutionised and aged, for comparison |
 | candidate process | LPBF |
 | safety class | `prohibited_pending_engineering` |
 | validation status | `concept` |

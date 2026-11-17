@@ -37,11 +37,11 @@ The original part is documented — pictures, catalogue entries or published dat
 
 ## What it is
 
-Bolted, oil-tight left lid of the chain case, factory plate 103-05 position 15, paired with gasket 964 105 181 01. Remanufacture in machined Ti-6Al-4V explicitly requested. The original part is **cast magnesium**, whose failure mode is corrosion of the sealing faces: that is where titanium brings something, not on mass. Against magnesium, titanium is 2.45 times denser and loses both plate-bending trade-offs, strength included. One serious obstacle remains: the titanium/magnesium galvanic couple is the least favorable in the grid.
+Bolted, oil-tight left lid of the chain case, factory plate 103-05 position 15, paired with gasket 964 105 181 01. Remanufacture in machined Ti-6Al-4V explicitly requested. The original part is **cast magnesium**, whose failure mode is corrosion of the sealing faces: that is where titanium brings something, not on mass. Against magnesium, titanium is 2.45 times denser and loses both plate-bending trade-offs, strength included. One serious obstacle remains: the titanium/magnesium galvanic couple is the least favourable in the grid.
 
 ## What it does on the car
 
-Parametric screening and measurement preparation; no manufacturing or fitting authorized before a specimen is measured
+Parametric screening and measurement preparation; no manufacturing or fitting authorised before a specimen is measured
 
 ## At a glance
 

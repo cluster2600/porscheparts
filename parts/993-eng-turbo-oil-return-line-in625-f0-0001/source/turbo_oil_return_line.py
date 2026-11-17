@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Conduite de retour d'huile turbo 993, concept IN625 F0 fail-closed."""
+"""993 turbo oil return line, fail-closed IN625 F0 concept."""
 
 from __future__ import annotations
 
@@ -11,11 +11,11 @@ from pathlib import Path
 
 PART_ID = "993-ENG-TURBO-OIL-RETURN-LINE-IN625-F0-0001"
 
-# La source publie seulement la fonction, le jeu gauche/droit et le fitment.
+# The source publishes only the function, the left/right set and the fitment.
 PUBLISHED_PRODUCT_REFERENCE = "TUR 993 107 338 53 PMS"
 PUBLISHED_MODEL_YEARS = [1996, 1997]
 
-# Géométrie propre au F0 ; aucune cote commerciale ou OEM n'est revendiquée.
+# Geometry specific to F0; no commercial or OEM dimension is claimed.
 TUBE_OUTER_DIAMETER_MM = 12.7
 TUBE_WALL_MM = 1.2
 TUBE_INNER_DIAMETER_MM = TUBE_OUTER_DIAMETER_MM - 2.0 * TUBE_WALL_MM
@@ -34,7 +34,7 @@ CENTERLINE_CONTROL_POINTS = (
     (110.0, 30.0, 90.0),
 )
 
-# Carte de comparaison EOS IN625 M290 40 um + référence thermique corroyée.
+# EOS IN625 M290 40 um comparison card + wrought thermal reference.
 DENSITY_KG_M3 = 8440.0
 ELASTIC_MODULUS_PA = 204.0e9
 COMPARISON_YIELD_STRENGTH_PA = 640.0e6
@@ -43,7 +43,7 @@ THERMAL_CONDUCTIVITY_W_M_K = 15.7
 SPECIFIC_HEAT_J_KG_K = 511.0
 PUBLISHED_MINIMUM_WALL_MM = 0.4
 
-# Cas hydrauliques, thermiques et mécaniques synthétiques de régression.
+# Synthetic hydraulic, thermal and mechanical regression cases.
 OIL_VOLUME_FLOW_L_MIN = 2.0
 OIL_DENSITY_KG_M3 = 850.0
 OIL_DYNAMIC_VISCOSITY_PA_S = 0.015
@@ -376,16 +376,16 @@ def main() -> int:
 
         shape = build_geometry()
         if not shape.is_valid or len(shape.solids()) != 1:
-            raise SystemExit("La conduite F0 doit contenir exactement un solide BREP valide.")
+            raise SystemExit("The F0 line must contain exactly one valid BREP solid.")
         bbox = shape.bounding_box()
         envelope = [bbox.size.X, bbox.size.Y, bbox.size.Z]
         args.out.parent.mkdir(parents=True, exist_ok=True)
         export_step(shape, str(args.out))
         roundtrip = import_step(str(args.out))
         if not roundtrip.is_valid or len(roundtrip.solids()) != 1:
-            raise SystemExit("Le STEP relu ne conserve pas le solide valide.")
+            raise SystemExit("The re-read STEP does not keep the valid solid.")
         if abs(roundtrip.volume - shape.volume) > 0.05:
-            raise SystemExit("Le STEP relu ne reproduit pas le volume OCCT attendu.")
+            raise SystemExit("The re-read STEP does not reproduce the expected OCCT volume.")
         cad_volume_mm3 = roundtrip.volume
 
     report = engineering_screen(cad_volume_mm3)

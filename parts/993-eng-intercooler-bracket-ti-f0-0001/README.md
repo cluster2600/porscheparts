@@ -41,7 +41,7 @@ Independent open two-rail bracket concept to screen the value of an LPBF remanuf
 
 ## What it does on the car
 
-CAD, DfAM, mass and mechanical screening of an intercooler bracket; no vehicle fitting authorized
+CAD, DfAM, mass and mechanical screening of an intercooler bracket; no vehicle fitting authorised
 
 ## At a glance
 

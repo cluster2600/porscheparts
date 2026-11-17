@@ -77,7 +77,7 @@ class ChainCaseTests(unittest.TestCase):
     def test_the_aluminium_answer_is_recorded_not_lost(self) -> None:
         doc = DOC.read_text(encoding="utf-8")
         self.assertIn("in aluminium", doc)
-        self.assertIn("aluminum", load(PART)["manufacturing"]["material"]["family"])
+        self.assertIn("aluminium", load(PART)["manufacturing"]["material"]["family"])
 
     def test_a_condition_without_a_declared_mitigation_blocks(self) -> None:
         screen = load(SCREEN)

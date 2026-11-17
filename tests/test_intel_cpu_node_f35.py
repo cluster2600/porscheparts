@@ -89,7 +89,7 @@ printf 'fake 209715200 1 %s 1%% /\n' "${FAKE_WORKSPACE_FREE_KIB}"
     def test_non_amd64_docker_engine_fails_closed(self):
         result = self._run_preflight("aarch64")
         self.assertNotEqual(result.returncode, 0)
-        self.assertIn("linux/amd64 natif requis", result.stderr)
+        self.assertIn("native linux/amd64 required", result.stderr)
         self.assertEqual(result.stdout, "")
 
     def test_resources_below_smoke_minimum_fail_closed(self):

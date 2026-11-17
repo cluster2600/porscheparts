@@ -39,7 +39,7 @@ Fixed ring of seventeen cambered guide vanes placed 15 mm behind the F1 WE43 imp
 
 ## What it does on the car
 
-F1 design study: guide-vane design from the F1 rotor exit flow, rotor-stator tone screen, vane modal and aero-load screens, printable envelope; no manufacture, installation or start-up authorized
+F1 design study: guide-vane design from the F1 rotor exit flow, rotor-stator tone screen, vane modal and aero-load screens, printable envelope; no manufacture, installation or start-up authorised
 
 ## At a glance
 
