@@ -1170,6 +1170,114 @@ class BuildSimTests(unittest.TestCase):
         self.assertNotIn("| in the solver |", readme)
 
 
+@unittest.skipUnless(has("numpy"), "numpy absent")
+class BuildSimDolfinxTests(unittest.TestCase):
+    """The second solver of the build screen: its comparison step on synthetic runs, then the committed record."""
+
+    KEY = "distortion_after_release_rigid_motion_and_uniform_shrinkage_removed_mm"
+
+    def setUp(self):
+        sys.path.insert(0, str(SOURCE))
+        import build_sim_dolfinx
+        import numpy as np
+
+        self.dx, self.np = build_sim_dolfinx, np
+        self.params = TWIN / "params"
+
+    def fake_run(self, folder, largest, at, solver):
+        np = self.np
+        folder.mkdir()
+        release = {"best_fit_uniform_shrinkage": -0.005, self.KEY: {"median": 0.3, "p95": 0.9, "largest": largest, "largest_at_build_coordinates_mm": at}}
+        states = {"room_temperature_on_plate": {"von_mises_MPa": {"cell_mean_median": 220.0, "cell_mean_p95": 310.0}}}
+        report = {"level": "c4-l8", "release": release, "states": states}
+        if solver == "ccx":
+            report["solver"] = {"returncode": 0}
+        else:
+            report.update(tool="DOLFINx x", processes=2, linear_solver=solver, temperature_increments_per_step=2, wall_seconds=1.0, counts={})
+        (folder / "mechanics.json").write_text(json.dumps(report))
+        np.savez(folder / "mechanics-fields.npz", released_u=np.full((5, 3), largest, dtype=np.float32))
+
+    def test_the_comparison_passes_inside_the_limits_and_fails_outside(self):
+        import contextlib
+        import io
+        import tempfile
+
+        acceptance = self.params / "build-sim-dolfinx-acceptance.json"
+        limit = json.loads(acceptance.read_text())["accept_when"]["distortion_after_release_largest_within"]
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            self.fake_run(tmp / "ccx", 2.0, [8.0, 8.0, 56.0], "ccx")
+            self.fake_run(tmp / "near", 2.0 * (1 + 0.5 * limit), [8.0, 8.0, 56.0], "blr")
+            self.fake_run(tmp / "far", 2.0 * (1 + 2.0 * limit), [8.0, 8.0, 56.0], "blr")
+            self.fake_run(tmp / "elsewhere", 2.0, [8.0, 12.0, 56.0], "blr")
+            verdicts = {}
+            for name in ("near", "far", "elsewhere"):
+                with contextlib.redirect_stdout(io.StringIO()):
+                    self.dx.compare(tmp / "ccx", tmp / name, acceptance, tmp / f"{name}.json")
+                verdicts[name] = json.loads((tmp / f"{name}.json").read_text())
+        self.assertTrue(verdicts["near"]["passed"])
+        self.assertFalse(verdicts["far"]["passed"])
+        self.assertFalse(verdicts["far"]["checks"]["distortion_largest"])
+        self.assertFalse(verdicts["elsewhere"]["checks"]["same_node"])
+        self.assertAlmostEqual(verdicts["near"]["node_by_node"]["released_u"]["largest_difference"], limit, places=3)
+
+    def test_the_script_needs_no_dolfinx_to_compare_or_to_write_the_record(self):
+        source = (SOURCE / "build_sim_dolfinx.py").read_text()
+        head = source[:source.index("class Solid")]
+        for name in ("dolfinx", "petsc4py", "mpi4py", "ufl", "basix"):
+            self.assertNotRegex(head, rf"(?m)^(import|from) {name}\b")
+
+    def test_the_committed_record_holds_its_limits_and_only_the_levels_calculix_did_not_run(self):
+        rec = json.loads((self.params / "build-sim-dolfinx.json").read_text())
+        accept = json.loads((self.params / "build-sim-dolfinx-acceptance.json").read_text())
+        ccx = json.loads((self.params / "build-sim.json").read_text())["levels"]
+        limits = accept["accept_when"]
+        self.assertEqual(rec["acceptance"], accept)
+        self.assertTrue(rec["witness"]["passed"])
+        comparison = rec["comparison_with_calculix"]
+        self.assertTrue(comparison["passed"])
+        self.assertEqual(set(comparison["by_linear_solver"]), {"mumps", "blr", "gamg"})
+        reference = ccx[comparison["level"]]["mechanics"]["mechanics"]["release"][self.KEY]
+        for solver, c in comparison["by_linear_solver"].items():
+            d = c["distortion_after_release_mm"]
+            for q in ("median", "p95", "largest"):
+                self.assertEqual(d[q]["calculix"], reference[q], solver)            # against the committed CalculiX run
+            self.assertLessEqual(max(abs(d[q]["difference"]) for q in ("median", "p95")), limits["distortion_after_release_median_and_p95_within"])
+            self.assertLessEqual(abs(d["largest"]["difference"]), limits["distortion_after_release_largest_within"])
+            self.assertTrue(all(c["checks"].values()), solver)
+        self.assertTrue(rec["levels"])
+        for name, lv in rec["levels"].items():
+            self.assertFalse(ccx[name]["mechanics"], name)
+            self.assertEqual(lv["nodes"], ccx[name]["model"]["nodes"])
+        for row in rec["cell_size_at_the_same_lump_height"]:
+            for q, v in row["fine_over_coarse"].items():
+                self.assertAlmostEqual(v, row["fine"][q] / row["coarse"][q] - 1.0, places=4)
+
+    def test_the_record_states_the_verdict_of_the_upstream_input_audits(self):
+        audit = json.loads((self.params / "build-sim-dolfinx.json").read_text())["input_audit"]
+        body = json.loads((self.params / "print-body.json").read_text())
+        surface = audit["audits"]["twin_surface_it_derives_from"]
+        score = json.loads((TWIN / surface["record"]).read_text())
+        self.assertEqual(audit["audits"]["print_body"]["strict_watertight_gate_passed"], body["strict_gate"]["passed"])
+        self.assertEqual(audit["audits"]["print_body"]["enclosed_voids_remaining"], body["enclosed_voids_remaining"])
+        self.assertEqual(surface["share_of_the_area_on_acquired_scan"], score["twin_area_observed_supported_share"])
+        closure = f"{1.0 - score['twin_area_observed_supported_share']:.0%}"
+        self.assertIn(f"{closure} of the twin surface it derives from is closure", audit["verdict"])
+        self.assertIn("not as the specimen", audit["verdict"])
+        readme = " ".join((TWIN / "README.md").read_text().split())
+        self.assertIn(f"{closure} is closure where the scanner saw nothing", readme)
+
+    def test_the_readme_states_the_2_mm_level_from_the_record(self):
+        rec = json.loads((self.params / "build-sim-dolfinx.json").read_text())
+        readme = " ".join((TWIN / "README.md").read_text().split())
+        self.assertIn("(params/build-sim-dolfinx.json)", readme)
+        for name, lv in rec["levels"].items():
+            d = lv["release"][self.KEY]
+            self.assertIn(f"| {name}, as built, solved in DOLFINx |", readme)
+            self.assertIn(f"{d['median']:.2f} / {d['p95']:.2f} / {d['largest']:.2f} mm", readme)
+        self.assertNotIn("no run with 2 mm cells has its mechanics", readme)
+
+
 @unittest.skipUnless(has("numpy", "scipy"), "numpy or scipy absent")
 class SupportDesignTests(unittest.TestCase):
     """The support layout: its rules on small shapes, then the committed records."""

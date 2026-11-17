@@ -137,7 +137,7 @@ MEM=10G cap "$PY" -I "$HERE/support_design.py" orientations "$PRIV/print-occ-$ST
 
 # Build screen in CalculiX (cadsim image, one thread): witnesses, then each level of
 # params/build-sim-case.json. A level's thermal run comes before its mechanical run; the 2 mm
-# level is thermal only. The level with "supports": "designed" takes the envelope of the layout
+# level's mechanics runs in DOLFINx below. The level with "supports": "designed" takes the envelope of the layout
 # above ($SD). Solver time on this host: about 7.5 h of thermal runs (3.7 h for the 2 mm level)
 # and some 24 h of mechanics by the solver's own count (7.5 h for the level with 3 mm cells and
 # 3 mm lumps), one thread each; they can run side by side.
@@ -159,6 +159,31 @@ done
 "$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8-4-lasers"
 "$PY" -I "$HERE/build_sim.py" mechanics "$BS/c4-l8-laid-supports"
 "$PY" -I "$HERE/build_sim.py" summarize "$BS" "$PARAMS/build-sim-case.json" "$PARAMS/build-sim-witness.json" "$PARAMS/build-sim.json"
+
+# The same mechanics in DOLFINx (build_sim_dolfinx.py), on the run folders above: the bar
+# witnesses for each linear solver, the 4 mm level with each linear solver compared with
+# CalculiX against the limits written before the first run, then the 2 mm level. Wall time on
+# this host: 21 min (mumps, 8 processes), 64 min (gamg, 8), 8 min (blr, 4) for c4-l8; 4.0 h for
+# c2-l8 (blr, 4 processes) under an 18 GiB cap. compare and record need NumPy only.
+DFX_IMAGE=dolfinx/dolfinx@sha256:58b27e84a2f26b98ce2d9ccc537b0ee6a59e2fcfdf386626d5ed9ddf43425ece
+DX="$PRIV/build-sim-dolfinx-$STAMP"; mkdir -p "$DX/witness"
+dfx() {   # processes, memory cap, then the script's arguments; $BS is /bs and $DX is /work inside
+  local n=$1 mem=$2; shift 2
+  docker run --rm --memory "$mem" --memory-swap "$mem" --cpus "$n" --user "$(id -u):$(id -g)" \
+    -e HOME=/work/cache -e XDG_CACHE_HOME=/work/cache -e OMP_NUM_THREADS=1 \
+    -v "$HERE:/src:ro" -v "$BS:/bs:ro" -v "$DX:/work" -w /work \
+    --entrypoint mpirun "$DFX_IMAGE" -n "$n" python3 /src/build_sim_dolfinx.py "$@"
+}
+dfx 4 3g witness /work/witness/witness.json
+dfx 8 12g mechanics /bs/c4-l8 /work/c4-l8-mumps-8p --solver mumps
+dfx 8 12g mechanics /bs/c4-l8 /work/c4-l8-gamg-8p --solver gamg
+dfx 4 12g mechanics /bs/c4-l8 /work/c4-l8-blr-4p --solver blr
+dfx 4 18g mechanics /bs/c2-l8 /work/c2-l8-blr-4p --solver blr
+for run in c4-l8-mumps-8p c4-l8-gamg-8p c4-l8-blr-4p; do
+  "$PY" -I "$HERE/build_sim_dolfinx.py" compare "$BS/c4-l8" "$DX/$run" "$PARAMS/build-sim-dolfinx-acceptance.json" "$DX/compare-${run%-*}.json"
+done
+"$PY" -I "$HERE/build_sim_dolfinx.py" record "$DX" "$PARAMS/build-sim.json" "$PARAMS/build-sim-dolfinx-acceptance.json" \
+  "$PARAMS/build-sim-dolfinx.json"
 # Software OpenGL in a sandbox without /dev/dxg, on purpose: with GALLIUM_DRIVER=d3d12 this render
 # took the WSL VM down twice (docs/LOCAL_HOST_SETUP.md, section 3).
 GALLIUM_DRIVER=llvmpipe LIBGL_ALWAYS_SOFTWARE=1 bwrap --dev-bind / / --dev /dev --proc /proc \
