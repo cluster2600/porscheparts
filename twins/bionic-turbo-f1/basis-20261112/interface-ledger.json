@@ -1,0 +1,2429 @@
+{
+  "schema": "bionic-turbo-interface-ledger/v1",
+  "revision": "bionic-turbo-f1-basis-20261112",
+  "issue": 396,
+  "gate": "G03-measured-interfaces-and-basis",
+  "rule": "Every entry is either measured, with an admitted measurement record and a numeric uncertainty, or bound to a named missing-data gate. A study value is a hypothesis or a model output: it keeps the file, span and literal it comes from and is never read as a measurement. A published value for another variant is context only and is never transferable.",
+  "status_vocabulary": {
+    "assumed": "A value fixed by a generator or parameter file as a design or operating hypothesis.",
+    "model_derived": "A value computed or estimated from the concept geometry; it describes the model, not a part.",
+    "numerical_construct": "An idealisation of the numerical domain with no physical counterpart to measure."
+  },
+  "used_by_historical_cfd_meaning": "True when the value appears in an input of the historical CFD chain: a parameter file, the housing or assembly generator, the fluid-domain builder or the case generator. It says the hypothesis was used, not that it is right.",
+  "applies_to_vocabulary": {
+    "reference": "Reference member of the pair (baseline.json).",
+    "bionic": "Bionic member of the pair (candidate.json).",
+    "physical_turbo": "A physical turbocharger; none is identified."
+  },
+  "scope_verdict": {
+    "justified_scope": "provisional_synthetic_comparison_only",
+    "statement": "No entry is measured and no physical unit is identified. The only comparison the evidence supports is a provisional synthetic one: two concept housings sharing one concept wheel, compared numerically at declared hypothetical operating points.",
+    "may_claim": [
+      "A model-internal difference between the two concept housings, once the mesh, solver and uncertainty gates pass",
+      "Results labelled with their hypotheses, domain and numerical uncertainty"
+    ],
+    "may_not_claim": [
+      "Any statement about a K16 or any other physical turbocharger",
+      "A compressor map, a maximum flow, an efficiency of a real unit or an engine power",
+      "Physical correlation, fit, running clearance, durability or manufacturing release"
+    ]
+  },
+  "missing_data_gates": [
+    {
+      "id": "MD-01",
+      "title": "No physical reference variant is identified",
+      "gate_blocker": "no-physical-reference-variant",
+      "route": "owner_scope_decision",
+      "essential_for": [
+        "G05",
+        "G08",
+        "G09",
+        "R2"
+      ],
+      "required_evidence": [
+        "Which physical turbocharger, if any, the comparison is anchored to",
+        "Its identification: data plate, wheel and housing references, handedness, repair history"
+      ],
+      "request": "Not a measurement task. Naming a unit is a scope decision that rests with the owner; the unit's identification can then be requested from an outside contributor through docs/CAPTURE_PROTOCOL.md and docs/MEASUREMENT_CAMPAIGN.md under decision 0019."
+    },
+    {
+      "id": "MD-02",
+      "title": "Rotor metrology is missing",
+      "gate_blocker": "no-measured-interfaces",
+      "route": "contributor_request_adr_0019",
+      "essential_for": [
+        "G05",
+        "G08"
+      ],
+      "required_evidence": [
+        "Inducer and exducer diameters, blade count, profile and trim of an identified wheel",
+        "Bore, hub and back-face geometry; mass and polar inertia",
+        "Instrument, uncertainty, repeats, datum and specimen identity for each reading"
+      ],
+      "request": "May be requested from an outside contributor through docs/CAPTURE_PROTOCOL.md and docs/MEASUREMENT_CAMPAIGN.md under decision 0019; a bare figure is not admitted."
+    },
+    {
+      "id": "MD-03",
+      "title": "Housing, port and reference-geometry metrology is missing",
+      "gate_blocker": "no-measured-interfaces",
+      "route": "contributor_request_adr_0019",
+      "essential_for": [
+        "G05",
+        "G08"
+      ],
+      "required_evidence": [
+        "Volute, diffuser and tongue geometry of an identified housing",
+        "Inlet and outlet spigot diameter, axis and clocking",
+        "CHRA register, backplate face, seal and retention",
+        "A licensed scan or drawing with units, frame and datum declared"
+      ],
+      "request": "May be requested from an outside contributor through docs/CAPTURE_PROTOCOL.md and docs/MEASUREMENT_CAMPAIGN.md under decision 0019."
+    },
+    {
+      "id": "MD-04",
+      "title": "Clearances are not measured",
+      "gate_blocker": "no-measured-interfaces",
+      "route": "contributor_request_adr_0019",
+      "essential_for": [
+        "G05",
+        "G08"
+      ],
+      "required_evidence": [
+        "Cold tip and shroud clearance, wheel back-face and nut gaps on an identified assembly",
+        "Rotor axial end play and radial play with gauge position, load and oil state declared"
+      ],
+      "request": "May be requested from an outside contributor through docs/CAPTURE_PROTOCOL.md and docs/MEASUREMENT_CAMPAIGN.md under decision 0019. A sampled distance is a diagnostic, never a whole-surface clearance certificate."
+    },
+    {
+      "id": "MD-05",
+      "title": "Rotor joint, nut and fastener data are missing",
+      "gate_blocker": "no-measured-interfaces",
+      "route": "contributor_request_adr_0019",
+      "essential_for": [
+        "G05",
+        "R3"
+      ],
+      "required_evidence": [
+        "Nut thread, hand, torque and retention",
+        "Wheel-to-shaft joint and balance record"
+      ],
+      "request": "May be requested from an outside contributor through docs/CAPTURE_PROTOCOL.md and docs/MEASUREMENT_CAMPAIGN.md under decision 0019, or found in a licensed service document."
+    },
+    {
+      "id": "MD-06",
+      "title": "No compressor map or measured inlet and outlet state",
+      "gate_blocker": "no-admitted-compressor-or-turbine-map",
+      "route": "contributor_request_adr_0019",
+      "essential_for": [
+        "G08",
+        "R2"
+      ],
+      "required_evidence": [
+        "Mass flow, inlet and outlet total pressure and temperature at measured shaft speed",
+        "Several speed lines including surge and choke, with the correction reference declared",
+        "Exact identity of the tested unit and housings"
+      ],
+      "request": "Bench data may be accepted from a contributor with a licence grant, or a published dataset may be registered under its licence. Datasets sold by quotation are not pursued: the project buys nothing."
+    },
+    {
+      "id": "MD-07",
+      "title": "No measured or documented shaft speed",
+      "gate_blocker": "no-measured-operating-conditions",
+      "route": "documentary_search",
+      "essential_for": [
+        "G08",
+        "R2"
+      ],
+      "required_evidence": [
+        "Operating shaft speed against flow and pressure ratio for the identified unit",
+        "Maximum permissible rotor speed from the manufacturer or a qualified test"
+      ],
+      "request": "Documentary search for a manufacturer limit; an instrumented speed trace may be accepted from a contributor through docs/CAPTURE_PROTOCOL.md and docs/MEASUREMENT_CAMPAIGN.md under decision 0019."
+    },
+    {
+      "id": "MD-08",
+      "title": "Turbine side and wastegate are not characterised",
+      "gate_blocker": "no-measured-operating-conditions",
+      "route": "contributor_request_adr_0019",
+      "essential_for": [
+        "G09"
+      ],
+      "required_evidence": [
+        "Turbine inlet pressure and temperature, outlet pressure, corrected gas flow, speed",
+        "Wastegate position and flange geometry"
+      ],
+      "request": "Bench data may be accepted from a contributor with a licence grant."
+    },
+    {
+      "id": "MD-09",
+      "title": "No measured engine operating points",
+      "gate_blocker": "no-measured-operating-conditions",
+      "route": "contributor_request_adr_0019",
+      "essential_for": [
+        "G09"
+      ],
+      "required_evidence": [
+        "Engine speed, airflow, boost, intake and exhaust pressures and temperatures per bank",
+        "Verification of the flow split between banks before halving total flow"
+      ],
+      "request": "Logged engine data may be accepted from a contributor with a licence grant and no vehicle identifier."
+    },
+    {
+      "id": "MD-10",
+      "title": "Oil, bearing and thermal state are unknown",
+      "gate_blocker": "no-measured-operating-conditions",
+      "route": "contributor_request_adr_0019",
+      "essential_for": [
+        "G09",
+        "R2"
+      ],
+      "required_evidence": [
+        "Oil supply pressure and temperature, bearing losses",
+        "Wall and metal temperatures, thermal growth of the clearances",
+        "Oil feed and drain connection geometry"
+      ],
+      "request": "Instrumented data may be accepted from a contributor; documentary search for manufacturer oil specifications."
+    },
+    {
+      "id": "MD-11",
+      "title": "Materials, processes and allowables are undefined",
+      "gate_blocker": "no-measured-interfaces",
+      "route": "documentary_search",
+      "essential_for": [
+        "R3"
+      ],
+      "required_evidence": [
+        "Alloy, process and heat treatment of each interface part",
+        "Allowables and expansion coefficients with their source"
+      ],
+      "request": "Documentary search and, later, material qualification under professional review; outside this gate's reach."
+    },
+    {
+      "id": "MD-12",
+      "title": "No datum scheme, declared frame or tolerances",
+      "gate_blocker": "no-measured-interfaces",
+      "route": "contributor_request_adr_0019",
+      "essential_for": [
+        "G05",
+        "R3"
+      ],
+      "required_evidence": [
+        "Datum scheme tying the rotor axis and mating faces to measured features",
+        "Tolerances of each interface",
+        "Unit and frame declared with every contributed geometry"
+      ],
+      "request": "Fixed together with any contributed measurement through docs/CAPTURE_PROTOCOL.md and docs/MEASUREMENT_CAMPAIGN.md under decision 0019."
+    },
+    {
+      "id": "MD-N1",
+      "title": "Numerical idealisations have no measured counterpart and no sensitivity study",
+      "gate_blocker": null,
+      "route": "numerical_sensitivity_downstream",
+      "essential_for": [
+        "G06",
+        "G07"
+      ],
+      "required_evidence": [
+        "Sensitivity of flow and power to the rotating-zone extent, the idealised rear closure, the port extensions and the wall treatment",
+        "Prescribed before application, on the qualified mesh route"
+      ],
+      "request": "Not a measurement request. It is work for the mesh and solver gates, which stay closed."
+    },
+    {
+      "id": "MD-N2",
+      "title": "Representations are not shown to be equivalent",
+      "gate_blocker": null,
+      "route": "numerical_sensitivity_downstream",
+      "essential_for": [
+        "G04",
+        "G05"
+      ],
+      "required_evidence": [
+        "The prescribed link from rational coordinates to writePrecision 16 text to binary64",
+        "Qualification of the full geometry against this ledger"
+      ],
+      "request": "Not a measurement request. It belongs to issues 397 and 398."
+    }
+  ],
+  "entries": [
+    {
+      "id": "identity.physical_reference_variant",
+      "group": "reference_identity",
+      "quantity": "Identity of the physical turbocharger the interfaces would be measured on (data plate, wheel and housing references, handedness, repair history)",
+      "applies_to": [
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-01",
+      "study_value": null,
+      "published_context": [
+        {
+          "corpus_id": "k16-identity-right",
+          "transferable": false,
+          "note": "A stock 993 Turbo unit identified by catalogue cross-reference. The concept states that it does not reproduce a K16, so this identity is context, not the referent."
+        },
+        {
+          "corpus_id": "k16-measurement-protocol",
+          "transferable": false,
+          "note": "The register's own requirement: identify the unit before any metrology."
+        }
+      ],
+      "note": "component-contract.json measured_variant and the F0 interface contract exact_donor_variant are both null: no specimen is named, so no interface has anything to be measured on."
+    },
+    {
+      "id": "rotor.compressor_wheel.exducer_diameter",
+      "group": "rotor_stator",
+      "quantity": "Compressor wheel exducer (outer) diameter",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-02",
+      "study_value": {
+        "status": "assumed",
+        "value": 60.5,
+        "unit": "mm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f0/assembly/source/Components.cs",
+          "sha256": "3243818d77694d97a37bed214dc789bf19e8bfc9568b59c956bed4c57fbea16b",
+          "lines": [
+            30,
+            37
+          ],
+          "literals": [
+            "(\"exducer_diameter_mm\", 60.5f)"
+          ]
+        }
+      },
+      "published_context": [
+        {
+          "corpus_id": "k16-declared-wheel-diameters",
+          "transferable": false,
+          "note": "Numerically equal to a single-vendor declaration for K16 5316-988-6735. That declaration is not a measurement, is unconfirmed, and the concept wheel is not a K16."
+        }
+      ]
+    },
+    {
+      "id": "rotor.compressor_wheel.inducer_diameter",
+      "group": "rotor_stator",
+      "quantity": "Compressor wheel inducer diameter",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-02",
+      "study_value": {
+        "status": "assumed",
+        "value": 40.6,
+        "unit": "mm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f0/assembly/source/Components.cs",
+          "sha256": "3243818d77694d97a37bed214dc789bf19e8bfc9568b59c956bed4c57fbea16b",
+          "lines": [
+            30,
+            37
+          ],
+          "literals": [
+            "(\"inducer_diameter_mm\", 40.6f)"
+          ]
+        }
+      },
+      "published_context": [
+        {
+          "corpus_id": "k16-declared-wheel-diameters",
+          "transferable": false,
+          "note": "Numerically equal to a single-vendor declaration for K16 5316-988-6735. That declaration is not a measurement, is unconfirmed, and the concept wheel is not a K16."
+        }
+      ]
+    },
+    {
+      "id": "rotor.compressor_wheel.total_height",
+      "group": "rotor_stator",
+      "quantity": "Compressor wheel total height",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-02",
+      "study_value": {
+        "status": "assumed",
+        "value": 28,
+        "unit": "mm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f0/assembly/source/Components.cs",
+          "sha256": "3243818d77694d97a37bed214dc789bf19e8bfc9568b59c956bed4c57fbea16b",
+          "lines": [
+            30,
+            37
+          ],
+          "literals": [
+            "(\"total_height_mm\", 28)"
+          ]
+        }
+      }
+    },
+    {
+      "id": "rotor.compressor_wheel.bore_diameter",
+      "group": "rotor_stator",
+      "quantity": "Compressor wheel bore diameter (shaft interface)",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-02",
+      "study_value": {
+        "status": "assumed",
+        "value": 9.6,
+        "unit": "mm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f0/assembly/source/Components.cs",
+          "sha256": "3243818d77694d97a37bed214dc789bf19e8bfc9568b59c956bed4c57fbea16b",
+          "lines": [
+            30,
+            37
+          ],
+          "literals": [
+            "(\"bore_diameter_mm\", 9.6f)"
+          ]
+        }
+      }
+    },
+    {
+      "id": "rotor.compressor_wheel.blade_counts",
+      "group": "rotor_stator",
+      "quantity": "Compressor wheel main and splitter blade counts",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-02",
+      "study_value": {
+        "status": "assumed",
+        "value": {
+          "main": 6,
+          "splitter": 6
+        },
+        "unit": "count",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f0/assembly/source/Components.cs",
+          "sha256": "3243818d77694d97a37bed214dc789bf19e8bfc9568b59c956bed4c57fbea16b",
+          "lines": [
+            30,
+            37
+          ],
+          "literals": [
+            "(\"main_blade_count\", 6), (\"splitter_blade_count\", 6)"
+          ]
+        }
+      },
+      "published_context": [
+        {
+          "corpus_id": "k16-declared-wheel-diameters",
+          "transferable": false,
+          "note": "Numerically equal to a single-vendor declaration for K16 5316-988-6735. That declaration is not a measurement, is unconfirmed, and the concept wheel is not a K16."
+        }
+      ]
+    },
+    {
+      "id": "rotor.compressor_wheel.exit_blade_width",
+      "group": "rotor_stator",
+      "quantity": "Compressor wheel exit blade width",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-02",
+      "study_value": {
+        "status": "assumed",
+        "value": 4.5,
+        "unit": "mm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f0/assembly/source/Components.cs",
+          "sha256": "3243818d77694d97a37bed214dc789bf19e8bfc9568b59c956bed4c57fbea16b",
+          "lines": [
+            30,
+            37
+          ],
+          "literals": [
+            "(\"exit_blade_width_mm\", 4.5f)"
+          ]
+        }
+      }
+    },
+    {
+      "id": "rotor.compressor_wheel.blade_surfaces",
+      "group": "rotor_stator",
+      "quantity": "Compressor wheel blade and hub surfaces (profile, wrap, thickness)",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-02",
+      "study_value": {
+        "status": "assumed",
+        "value": "parametric blade surfaces of the concept generator; no profile is measured",
+        "unit": "n/a",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f0/assembly/source/Components.cs",
+          "sha256": "3243818d77694d97a37bed214dc789bf19e8bfc9568b59c956bed4c57fbea16b",
+          "lines": [
+            58,
+            63
+          ],
+          "literals": [
+            "\"Compressor wheel — assumed blade surfaces\""
+          ]
+        }
+      }
+    },
+    {
+      "id": "rotor.compressor_wheel.axial_position",
+      "group": "rotor_stator",
+      "quantity": "Compressor wheel axial placement in the assembly frame",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-02",
+      "study_value": {
+        "status": "assumed",
+        "value": -3,
+        "unit": "mm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f0/assembly/source/Components.cs",
+          "sha256": "3243818d77694d97a37bed214dc789bf19e8bfc9568b59c956bed4c57fbea16b",
+          "lines": [
+            58,
+            63
+          ],
+          "literals": [
+            "Matrix4x4.CreateTranslation(0, 0, -3)"
+          ]
+        }
+      }
+    },
+    {
+      "id": "rotor.shaft.radius",
+      "group": "rotor_stator",
+      "quantity": "Shaft radius",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-02",
+      "study_value": {
+        "status": "assumed",
+        "value": 4,
+        "unit": "mm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f0/assembly/source/Components.cs",
+          "sha256": "3243818d77694d97a37bed214dc789bf19e8bfc9568b59c956bed4c57fbea16b",
+          "lines": [
+            5,
+            10
+          ],
+          "literals": [
+            "const float shaftRadius = 4"
+          ]
+        }
+      }
+    },
+    {
+      "id": "rotor.shaft.axial_extent",
+      "group": "rotor_stator",
+      "quantity": "Shaft axial extent in the assembly frame",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-02",
+      "study_value": {
+        "status": "assumed",
+        "value": {
+          "z_min": -90,
+          "z_max": 32
+        },
+        "unit": "mm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f0/assembly/source/Components.cs",
+          "sha256": "3243818d77694d97a37bed214dc789bf19e8bfc9568b59c956bed4c57fbea16b",
+          "lines": [
+            58,
+            63
+          ],
+          "literals": [
+            "Cyl(q, shaftRadius, -90, 32)"
+          ]
+        },
+        "note": "The source labels it 'no thread or weld definition'."
+      }
+    },
+    {
+      "id": "rotor.mass_and_inertia",
+      "group": "rotor_stator",
+      "quantity": "Rotor mass and polar inertia",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-02",
+      "study_value": null,
+      "published_context": [
+        {
+          "corpus_id": "k16-measurement-protocol",
+          "transferable": false,
+          "note": "Mass and inertia are listed among the metrology still to be taken on an identified unit."
+        }
+      ]
+    },
+    {
+      "id": "rotor.balance_and_shaft_joint",
+      "group": "rotor_stator",
+      "quantity": "Rotor balance state and wheel-to-shaft joint",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-05",
+      "study_value": null,
+      "note": "component-contract.json measured_interfaces.rotor_balance_and_shaft_joint is null."
+    },
+    {
+      "id": "stator.housing.inlet_radius",
+      "group": "rotor_stator",
+      "quantity": "Compressor housing inlet radius",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-03",
+      "study_value": {
+        "status": "assumed",
+        "value": 22,
+        "unit": "mm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/baseline.json",
+          "sha256": "1a7d430b473746f7ef56e96554acb30692067becd0af118c64e2e65fbbd01011",
+          "pointer": "",
+          "literals": [
+            "\"inlet_radius_mm\": 22"
+          ]
+        },
+        "note": "candidate.json carries the same value; the pair differs only in volute_law."
+      }
+    },
+    {
+      "id": "stator.housing.diffuser_height",
+      "group": "rotor_stator",
+      "quantity": "Diffuser height",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-03",
+      "study_value": {
+        "status": "assumed",
+        "value": 8,
+        "unit": "mm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/baseline.json",
+          "sha256": "1a7d430b473746f7ef56e96554acb30692067becd0af118c64e2e65fbbd01011",
+          "pointer": "",
+          "literals": [
+            "\"diffuser_height_mm\": 8"
+          ]
+        },
+        "note": "candidate.json carries the same value; the pair differs only in volute_law."
+      }
+    },
+    {
+      "id": "stator.housing.volute_centre_radius",
+      "group": "rotor_stator",
+      "quantity": "Volute centre-line radius",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-03",
+      "study_value": {
+        "status": "assumed",
+        "value": 49,
+        "unit": "mm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/baseline.json",
+          "sha256": "1a7d430b473746f7ef56e96554acb30692067becd0af118c64e2e65fbbd01011",
+          "pointer": "",
+          "literals": [
+            "\"volute_center_radius_mm\": 49"
+          ]
+        },
+        "note": "candidate.json carries the same value; the pair differs only in volute_law."
+      }
+    },
+    {
+      "id": "stator.housing.volute_end_radii",
+      "group": "rotor_stator",
+      "quantity": "Volute section radius at start and end",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-03",
+      "study_value": {
+        "status": "assumed",
+        "value": {
+          "start": 6,
+          "end": 14
+        },
+        "unit": "mm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/baseline.json",
+          "sha256": "1a7d430b473746f7ef56e96554acb30692067becd0af118c64e2e65fbbd01011",
+          "pointer": "",
+          "literals": [
+            "\"volute_start_radius_mm\": 6",
+            "\"volute_end_radius_mm\": 14"
+          ]
+        },
+        "note": "candidate.json carries the same value; the pair differs only in volute_law."
+      }
+    },
+    {
+      "id": "stator.housing.volute_law.reference",
+      "group": "rotor_stator",
+      "quantity": "Volute section law of the reference member",
+      "applies_to": [
+        "reference"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-03",
+      "study_value": {
+        "status": "assumed",
+        "value": "radius_linear",
+        "unit": "n/a",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/baseline.json",
+          "sha256": "1a7d430b473746f7ef56e96554acb30692067becd0af118c64e2e65fbbd01011",
+          "pointer": "",
+          "literals": [
+            "\"volute_law\": \"radius_linear\""
+          ]
+        }
+      }
+    },
+    {
+      "id": "stator.housing.volute_law.bionic",
+      "group": "rotor_stator",
+      "quantity": "Volute section law of the bionic member",
+      "applies_to": [
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-03",
+      "study_value": {
+        "status": "assumed",
+        "value": "area_affine",
+        "unit": "n/a",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/candidate.json",
+          "sha256": "82085e4bd1b0a47b2088e47c7bdb64462c31992b5cf3db5f7b4b5e72d9f69f37",
+          "pointer": "",
+          "literals": [
+            "\"volute_law\": \"area_affine\""
+          ]
+        },
+        "note": "A design law, neither a measured hydraulic section nor a calculated flow."
+      }
+    },
+    {
+      "id": "stator.housing.chamber_profile",
+      "group": "rotor_stator",
+      "quantity": "Chamber profile around the wheel",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-03",
+      "study_value": {
+        "status": "assumed",
+        "value": "conical",
+        "unit": "n/a",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/baseline.json",
+          "sha256": "1a7d430b473746f7ef56e96554acb30692067becd0af118c64e2e65fbbd01011",
+          "pointer": "",
+          "literals": [
+            "\"chamber_profile\": \"conical\""
+          ]
+        },
+        "note": "candidate.json carries the same value; the pair differs only in volute_law."
+      }
+    },
+    {
+      "id": "stator.housing.rear_opening_radius",
+      "group": "rotor_stator",
+      "quantity": "Housing rear opening radius (conceptual CHRA access)",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-03",
+      "study_value": {
+        "status": "assumed",
+        "value": 34,
+        "unit": "mm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/baseline.json",
+          "sha256": "1a7d430b473746f7ef56e96554acb30692067becd0af118c64e2e65fbbd01011",
+          "pointer": "",
+          "literals": [
+            "\"rear_opening_radius_mm\": 34"
+          ]
+        },
+        "note": "candidate.json carries the same value; the pair differs only in volute_law."
+      }
+    },
+    {
+      "id": "stator.housing.wall_thickness",
+      "group": "rotor_stator",
+      "quantity": "Housing nominal wall thickness",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-03",
+      "study_value": {
+        "status": "assumed",
+        "value": 3.5,
+        "unit": "mm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/baseline.json",
+          "sha256": "1a7d430b473746f7ef56e96554acb30692067becd0af118c64e2e65fbbd01011",
+          "pointer": "",
+          "literals": [
+            "\"wall_mm\": 3.5"
+          ]
+        },
+        "note": "candidate.json carries the same value; the pair differs only in volute_law."
+      }
+    },
+    {
+      "id": "stator.diffuser_and_tongue_geometry",
+      "group": "rotor_stator",
+      "quantity": "Diffuser and volute tongue geometry",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-03",
+      "study_value": null,
+      "note": "The F0 interface contract keeps diffuser_and_tongue_geometry null; the geometry evidence records overlapping start/end sections and no engineered tongue."
+    },
+    {
+      "id": "stator.chra_register_and_backplate",
+      "group": "rotor_stator",
+      "quantity": "CHRA register axis and diameter, backplate mating face, seal and retention",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-03",
+      "study_value": null,
+      "note": "Null in both interface contracts; retention rings are display proxies that do not capture the housings."
+    },
+    {
+      "id": "nut.geometry",
+      "group": "nut",
+      "quantity": "Compressor nut envelope (hexagon apothem and axial extent)",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-05",
+      "study_value": {
+        "status": "assumed",
+        "value": {
+          "hexagon_apothem": 7,
+          "z_min": 25.5,
+          "z_max": 31.5
+        },
+        "unit": "mm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f0/assembly/source/Components.cs",
+          "sha256": "3243818d77694d97a37bed214dc789bf19e8bfc9568b59c956bed4c57fbea16b",
+          "lines": [
+            107,
+            112
+          ],
+          "literals": [
+            "- 7);",
+            "MathF.Max(25.5f - q.Z, q.Z - 31.5f)",
+            "Compressor nut — unthreaded display geometry"
+          ]
+        }
+      }
+    },
+    {
+      "id": "nut.clearance_bore_radius",
+      "group": "nut",
+      "quantity": "Compressor nut bore radius",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-05",
+      "study_value": {
+        "status": "assumed",
+        "value": 4.8,
+        "unit": "mm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f0/assembly/source/Components.cs",
+          "sha256": "3243818d77694d97a37bed214dc789bf19e8bfc9568b59c956bed4c57fbea16b",
+          "lines": [
+            5,
+            10
+          ],
+          "literals": [
+            "clearanceBore = 4.8f"
+          ]
+        }
+      }
+    },
+    {
+      "id": "nut.wheel_gap",
+      "group": "nut",
+      "quantity": "Axial gap between wheel and nut in the fluid domain",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-04",
+      "study_value": {
+        "status": "model_derived",
+        "value": 0.5,
+        "unit": "mm",
+        "uncertainty_statement": "Quoted in prose as an estimate before snapping, used to size gap refinement. Not a measured count and not a certified gap.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/README.md",
+          "sha256": "08b949eb7c7dc35a8a74ac22644b890bba0ef5f4e109c88445d7d08ab705443d",
+          "lines": [
+            54,
+            59
+          ],
+          "literals": [
+            "in the 0.5 mm wheel/nut gap"
+          ]
+        }
+      }
+    },
+    {
+      "id": "nut.thread_torque_and_retention",
+      "group": "nut",
+      "quantity": "Nut thread, tightening torque and retention",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-05",
+      "study_value": null,
+      "note": "component-contract.json measured_interfaces.fasteners_threads_and_torques is null; the concept nut is unthreaded display geometry."
+    },
+    {
+      "id": "ports.inlet_plane",
+      "group": "ports",
+      "quantity": "Numerical inlet plane of the fluid domain",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-N1",
+      "study_value": {
+        "status": "numerical_construct",
+        "value": 44,
+        "unit": "mm (Z)",
+        "uncertainty_statement": "Numerical idealisation with no physical counterpart to measure. Its influence on the result is unquantified until a sensitivity study under a later gate.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd-geometry/Program.cs",
+          "sha256": "15c37dbc8dd653272a8cc108f61b42a039439206dc450f1c0e3d179816b81d80",
+          "lines": [
+            11,
+            13
+          ],
+          "literals": [
+            "InletZ = 44"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ports.outlet_plane",
+      "group": "ports",
+      "quantity": "Numerical outlet plane of the fluid domain",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-N1",
+      "study_value": {
+        "status": "numerical_construct",
+        "value": 80,
+        "unit": "mm (Y)",
+        "uncertainty_statement": "Numerical idealisation with no physical counterpart to measure. Its influence on the result is unquantified until a sensitivity study under a later gate.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd-geometry/Program.cs",
+          "sha256": "15c37dbc8dd653272a8cc108f61b42a039439206dc450f1c0e3d179816b81d80",
+          "lines": [
+            11,
+            13
+          ],
+          "literals": [
+            "OutletY = 80"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ports.outlet_extension",
+      "group": "ports",
+      "quantity": "Outlet extension added to the fluid domain",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-N1",
+      "study_value": {
+        "status": "numerical_construct",
+        "value": {
+          "radius": 14,
+          "axis": "Y",
+          "centre_x": 49,
+          "centre_z": 0,
+          "y_from": 40,
+          "y_to_before_trim": 81
+        },
+        "unit": "mm",
+        "uncertainty_statement": "Numerical idealisation with no physical counterpart to measure. Its influence on the result is unquantified until a sensitivity study under a later gate.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd-geometry/Program.cs",
+          "sha256": "15c37dbc8dd653272a8cc108f61b42a039439206dc450f1c0e3d179816b81d80",
+          "lines": [
+            11,
+            41
+          ],
+          "literals": [
+            "OutletPretrimY = 81",
+            "RotKit.Rod(p, new(49, 40, 0), new(49, OutletPretrimY, 0), 14)"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ports.rear_closure",
+      "group": "ports",
+      "quantity": "Idealised rear closure replacing the wheel back-face seal path",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-N1",
+      "study_value": {
+        "status": "numerical_construct",
+        "value": {
+          "radius": 35.5,
+          "below_z": -3.75
+        },
+        "unit": "mm",
+        "uncertainty_statement": "Numerical idealisation with no physical counterpart to measure. Its influence on the result is unquantified until a sensitivity study under a later gate.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd-geometry/Program.cs",
+          "sha256": "15c37dbc8dd653272a8cc108f61b42a039439206dc450f1c0e3d179816b81d80",
+          "lines": [
+            11,
+            41
+          ],
+          "literals": [
+            "RearSealRadius = 35.5f",
+            "Sdf.CylZ(p, 0, 0, RearSealRadius, -100, -3.75f)"
+          ]
+        },
+        "note": "A numerical closure; it does not validate the sealing of the 39-component turbo."
+      }
+    },
+    {
+      "id": "ports.cfd_patch_set",
+      "group": "ports",
+      "quantity": "Boundary regions of the CFD surface",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-N1",
+      "study_value": {
+        "status": "numerical_construct",
+        "value": [
+          "inlet",
+          "outlet",
+          "rotor",
+          "stator"
+        ],
+        "unit": "n/a",
+        "uncertainty_statement": "Numerical idealisation with no physical counterpart to measure. Its influence on the result is unquantified until a sensitivity study under a later gate.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            14,
+            14
+          ],
+          "literals": [
+            "PATCHES = (\"inlet\", \"outlet\", \"rotor\", \"stator\")"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ports.inlet_hose_interface",
+      "group": "ports",
+      "quantity": "Inlet hose spigot diameter, axis and clocking",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-03",
+      "study_value": null,
+      "note": "F0 interface contract measured_interfaces.inlet_hose_diameter_axis_and_clocking is null."
+    },
+    {
+      "id": "ports.outlet_hose_interface",
+      "group": "ports",
+      "quantity": "Outlet hose spigot diameter, axis and clocking",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-03",
+      "study_value": null,
+      "note": "F0 interface contract measured_interfaces.outlet_hose_diameter_axis_and_clocking is null."
+    },
+    {
+      "id": "ports.oil_feed_and_drain",
+      "group": "ports",
+      "quantity": "Oil feed and drain connections",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-10",
+      "study_value": null,
+      "note": "component-contract.json measured_interfaces.oil_feed_and_drain_connections is null."
+    },
+    {
+      "id": "ports.turbine_inlet_and_exhaust_flanges",
+      "group": "ports",
+      "quantity": "Turbine inlet and exhaust flanges",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-08",
+      "study_value": null,
+      "note": "component-contract.json measured_interfaces.turbine_inlet_and_exhaust_flanges is null."
+    },
+    {
+      "id": "mrf.zone_radius",
+      "group": "mrf_interface",
+      "quantity": "Radius of the rotating-frame cell zone",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-N1",
+      "study_value": {
+        "status": "numerical_construct",
+        "value": 0.032,
+        "unit": "m",
+        "uncertainty_statement": "Numerical idealisation with no physical counterpart to measure. Its influence on the result is unquantified until a sensitivity study under a later gate.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            185,
+            188
+          ],
+          "literals": [
+            "radius .032;"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mrf.zone_axial_extent",
+      "group": "mrf_interface",
+      "quantity": "Axial extent of the rotating-frame cell zone",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-N1",
+      "study_value": {
+        "status": "numerical_construct",
+        "value": {
+          "z_min": -0.004,
+          "z_max": 0.033
+        },
+        "unit": "m",
+        "uncertainty_statement": "Numerical idealisation with no physical counterpart to measure. Its influence on the result is unquantified until a sensitivity study under a later gate.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            185,
+            188
+          ],
+          "literals": [
+            "p1 (0 0 -.004); p2 (0 0 .033);"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mrf.axis_and_origin",
+      "group": "mrf_interface",
+      "quantity": "Rotation axis and origin of the rotating frame",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-N1",
+      "study_value": {
+        "status": "numerical_construct",
+        "value": {
+          "origin": [
+            0,
+            0,
+            0
+          ],
+          "axis": [
+            0,
+            0,
+            1
+          ]
+        },
+        "unit": "m",
+        "uncertainty_statement": "Numerical idealisation with no physical counterpart to measure. Its influence on the result is unquantified until a sensitivity study under a later gate.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            185,
+            188
+          ],
+          "literals": [
+            "origin (0 0 0); axis (0 0 1);"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mrf.non_rotating_patches",
+      "group": "mrf_interface",
+      "quantity": "Patches excluded from the rotating frame",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-N1",
+      "study_value": {
+        "status": "numerical_construct",
+        "value": [
+          "stator",
+          "inlet",
+          "outlet"
+        ],
+        "unit": "n/a",
+        "uncertainty_statement": "Numerical idealisation with no physical counterpart to measure. Its influence on the result is unquantified until a sensitivity study under a later gate.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            185,
+            188
+          ],
+          "literals": [
+            "nonRotatingPatches (stator inlet outlet)"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mrf.frame_coupling",
+      "group": "mrf_interface",
+      "quantity": "Frame coupling model between rotor and stator regions",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-N1",
+      "study_value": {
+        "status": "numerical_construct",
+        "value": "steady multiple reference frame on cell zone rotorZone",
+        "unit": "n/a",
+        "uncertainty_statement": "Numerical idealisation with no physical counterpart to measure. Its influence on the result is unquantified until a sensitivity study under a later gate.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            185,
+            188
+          ],
+          "literals": [
+            "MRF {{active yes; cellZone rotorZone;"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mrf.representation_equivalence",
+      "group": "mrf_interface",
+      "quantity": "Equivalence between the PR241 representation, native centres, other triangulations and the physical turbo",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-N2",
+      "study_value": null,
+      "note": "The baseline manifest prohibits treating these representations as interchangeable; nothing here reconciles them."
+    },
+    {
+      "id": "clearance.wheel_housing_radial_bound.reference",
+      "group": "clearances",
+      "quantity": "Wheel-to-housing radial separation, reference housing",
+      "applies_to": [
+        "reference"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-04",
+      "study_value": {
+        "status": "model_derived",
+        "value": 1.7858112087169218,
+        "unit": "mm (lower bound)",
+        "uncertainty_statement": "One-sided lower bound over 0.1 mm axial bands of the triangulated concept meshes, valid for every rotation about Z. Not the minimum Euclidean, normal, thermal or manufactured running clearance.",
+        "used_by_historical_cfd": false,
+        "source": {
+          "path": "twins/bionic-turbo-f1/evidence/comparison-volute-004.json",
+          "sha256": "7ced51d463b6dd3f8cbf6fba26f457d09bfba514f45c5e6046f3da58c1fdc98e",
+          "pointer": "/profiles/baseline/minimum_radial_gap_lower_mm",
+          "literals": [
+            "1.7858112087169218"
+          ]
+        }
+      }
+    },
+    {
+      "id": "clearance.wheel_housing_radial_bound.bionic",
+      "group": "clearances",
+      "quantity": "Wheel-to-housing radial separation, bionic housing",
+      "applies_to": [
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-04",
+      "study_value": {
+        "status": "model_derived",
+        "value": 1.7858112087169218,
+        "unit": "mm (lower bound)",
+        "uncertainty_statement": "One-sided lower bound over 0.1 mm axial bands of the triangulated concept meshes, valid for every rotation about Z. Not the minimum Euclidean, normal, thermal or manufactured running clearance.",
+        "used_by_historical_cfd": false,
+        "source": {
+          "path": "twins/bionic-turbo-f1/geometry-evidence.json",
+          "sha256": "ee6e4a7f3a1e5cdef17b5373a14e3b086ce80d65288d1aa8ff05805979530fb0",
+          "pointer": "/full_revolution_compressor_wheel_screen",
+          "literals": [
+            "\"radial_gap_lower_bound_mm\": 1.7858112087169218"
+          ]
+        }
+      }
+    },
+    {
+      "id": "clearance.shroud_nominal_radial_parameter",
+      "group": "clearances",
+      "quantity": "Nominal radial profile clearance parameter of the housing generator",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-04",
+      "study_value": {
+        "status": "assumed",
+        "value": 1.5,
+        "unit": "mm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/baseline.json",
+          "sha256": "1a7d430b473746f7ef56e96554acb30692067becd0af118c64e2e65fbbd01011",
+          "pointer": "",
+          "literals": [
+            "\"shroud_radial_clearance_mm\": 1.5"
+          ]
+        },
+        "note": "A radial design parameter. On the rejected wheel-profile candidate the same nominal value left a mesh distance below 0.4 mm; it is not a normal clearance."
+      }
+    },
+    {
+      "id": "clearance.rear_gap",
+      "group": "clearances",
+      "quantity": "Gap behind the wheel in the fluid domain",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-04",
+      "study_value": {
+        "status": "model_derived",
+        "value": 0.64,
+        "unit": "mm (approximate)",
+        "uncertainty_statement": "Quoted in prose as 'about 0.64 mm', an estimate before snapping. Not a certified gap.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/README.md",
+          "sha256": "08b949eb7c7dc35a8a74ac22644b890bba0ef5f4e109c88445d7d08ab705443d",
+          "lines": [
+            54,
+            59
+          ],
+          "literals": [
+            "the rear gap of about 0.64 mm"
+          ]
+        }
+      }
+    },
+    {
+      "id": "clearance.tip_running_clearance",
+      "group": "clearances",
+      "quantity": "Wheel shroud and tip running clearance",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-04",
+      "study_value": null,
+      "note": "component-contract.json measured_interfaces.wheel_shroud_and_tip_clearances is null."
+    },
+    {
+      "id": "clearance.rotor_axial_end_play",
+      "group": "clearances",
+      "quantity": "Rotor axial end play",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-04",
+      "study_value": null,
+      "published_context": [
+        {
+          "corpus_id": "k16-chart-axial-end-play",
+          "transferable": false,
+          "note": "A specialist's generic K16 service limit; new or used state, fixture and exact variant are unspecified. Not a measurement."
+        }
+      ]
+    },
+    {
+      "id": "clearance.rotor_radial_bearing_clearance",
+      "group": "clearances",
+      "quantity": "Rotor radial bearing clearance and journal diameter",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-04",
+      "study_value": null,
+      "published_context": [
+        {
+          "corpus_id": "k16-chart-radial-clearance",
+          "transferable": false,
+          "note": "Generic K16 chart; the source does not define the measuring position or convention."
+        },
+        {
+          "corpus_id": "k16-chart-journal-diameter",
+          "transferable": false,
+          "note": "Generic K16 chart range; not factory dimensional evidence."
+        }
+      ]
+    },
+    {
+      "id": "clearance.thermal_growth",
+      "group": "clearances",
+      "quantity": "Thermal growth of wheel, housing and shaft at operating temperature",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-10",
+      "study_value": null,
+      "note": "geometry-evidence.json records thermal_clearance_validated false."
+    },
+    {
+      "id": "speed.rotor_speed_operating_point",
+      "group": "shaft_speed",
+      "quantity": "Rotor speed of the common operating point",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-07",
+      "study_value": {
+        "status": "assumed",
+        "value": 100000,
+        "unit": "rpm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            288,
+            290
+          ],
+          "literals": [
+            "\"--rpm\", type=float, default=100000."
+          ]
+        }
+      },
+      "published_context": [
+        {
+          "corpus_id": "hybrid-fvd-k16-24",
+          "transferable": false,
+          "note": "The same figure appears as a supplier balancing condition for a hybrid; it is not an operating speed and not this turbo."
+        },
+        {
+          "corpus_id": "k16-map-sjm-2467",
+          "transferable": false,
+          "note": "Speed lines of a published map for another unit are not operating points of this concept."
+        },
+        {
+          "corpus_id": "unknown-k16-shaft-speed",
+          "transferable": false,
+          "note": "The register records that no measured stock K16 shaft speed was obtained."
+        }
+      ]
+    },
+    {
+      "id": "speed.admitted_hypothesis_range",
+      "group": "shaft_speed",
+      "quantity": "Range of rotor speed the case generator accepts as a hypothesis",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-07",
+      "study_value": {
+        "status": "assumed",
+        "value": {
+          "min": 1000,
+          "max": 150000
+        },
+        "unit": "rpm",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            147,
+            148
+          ],
+          "literals": [
+            "1000 <= rpm <= 150000"
+          ]
+        },
+        "note": "An input guard of the generator, not a mechanical limit."
+      }
+    },
+    {
+      "id": "speed.rotation_direction",
+      "group": "shaft_speed",
+      "quantity": "Direction of rotation about +Z",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-01",
+      "study_value": {
+        "status": "assumed",
+        "value": "+1 or -1, required for every case; the generator has no default",
+        "unit": "sign",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            288,
+            290
+          ],
+          "literals": [
+            "\"--rotation-sign\", type=int, choices=(-1,1), required=True"
+          ]
+        },
+        "note": "The handedness of a physical unit belongs to its identity (left and right units differ)."
+      }
+    },
+    {
+      "id": "speed.maximum_rotor_speed",
+      "group": "shaft_speed",
+      "quantity": "Maximum permissible rotor speed",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-07",
+      "study_value": null,
+      "published_context": [
+        {
+          "corpus_id": "unknown-k16-shaft-speed",
+          "transferable": false,
+          "note": "No validated maximum rotor speed was obtained for the stock unit."
+        }
+      ]
+    },
+    {
+      "id": "bc.inlet_total_pressure",
+      "group": "pressure_temperature_boundary_conditions",
+      "quantity": "Compressor inlet total pressure",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-06",
+      "study_value": {
+        "status": "assumed",
+        "value": 101325,
+        "unit": "Pa",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            193,
+            193
+          ],
+          "literals": [
+            "p0, temperature, gamma, gas_r = 101325."
+          ]
+        }
+      }
+    },
+    {
+      "id": "bc.inlet_total_temperature",
+      "group": "pressure_temperature_boundary_conditions",
+      "quantity": "Compressor inlet total temperature",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-06",
+      "study_value": {
+        "status": "assumed",
+        "value": 298.15,
+        "unit": "K",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            193,
+            193
+          ],
+          "literals": [
+            "101325., 298.15,"
+          ]
+        }
+      }
+    },
+    {
+      "id": "bc.outlet_static_to_inlet_total_ratio",
+      "group": "pressure_temperature_boundary_conditions",
+      "quantity": "Outlet static pressure divided by inlet total pressure",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-06",
+      "study_value": {
+        "status": "assumed",
+        "value": 1.2,
+        "unit": "1",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            288,
+            290
+          ],
+          "literals": [
+            "\"--pressure-ratio\", type=float, default=1.2"
+          ]
+        },
+        "note": "Outlet static over inlet total; it is not the total-to-total pressure ratio of a compressor map."
+      }
+    },
+    {
+      "id": "bc.outlet_static_pressure",
+      "group": "pressure_temperature_boundary_conditions",
+      "quantity": "Compressor outlet static pressure",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-06",
+      "study_value": {
+        "status": "assumed",
+        "value": 121590,
+        "unit": "Pa",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            269,
+            272
+          ],
+          "literals": [
+            "\"outlet_static_pressure_pa\":101325.*pressure_ratio"
+          ]
+        },
+        "note": "Derived by the generator as 101325 Pa times the default ratio 1.2."
+      }
+    },
+    {
+      "id": "bc.gas_model",
+      "group": "pressure_temperature_boundary_conditions",
+      "quantity": "Gas model constants",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-06",
+      "study_value": {
+        "status": "assumed",
+        "value": {
+          "gamma": 1.4,
+          "gas_constant": 287.05
+        },
+        "unit": "1; J/(kg K)",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            193,
+            193
+          ],
+          "literals": [
+            "298.15, 1.4, 287.05"
+          ]
+        }
+      }
+    },
+    {
+      "id": "bc.transport_properties",
+      "group": "pressure_temperature_boundary_conditions",
+      "quantity": "Dynamic viscosity and Prandtl number",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-06",
+      "study_value": {
+        "status": "assumed",
+        "value": {
+          "mu": 1.82e-05,
+          "Prandtl": 0.71
+        },
+        "unit": "Pa s; 1",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            208,
+            209
+          ],
+          "literals": [
+            "transport {{mu 1.82e-5; Pr .71;}}"
+          ]
+        }
+      }
+    },
+    {
+      "id": "bc.wall_thermal_condition",
+      "group": "pressure_temperature_boundary_conditions",
+      "quantity": "Thermal condition on rotor and stator walls",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-10",
+      "study_value": {
+        "status": "assumed",
+        "value": "zeroGradient temperature (adiabatic walls)",
+        "unit": "n/a",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            197,
+            199
+          ],
+          "literals": [
+            "\"rotor\":\"type zeroGradient;\", \"stator\":\"type zeroGradient;\""
+          ]
+        }
+      }
+    },
+    {
+      "id": "bc.wall_velocity_condition",
+      "group": "pressure_temperature_boundary_conditions",
+      "quantity": "Velocity condition on rotor and stator walls",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-N1",
+      "study_value": {
+        "status": "numerical_construct",
+        "value": "noSlip",
+        "unit": "n/a",
+        "uncertainty_statement": "Numerical idealisation with no physical counterpart to measure. Its influence on the result is unquantified until a sensitivity study under a later gate.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            190,
+            192
+          ],
+          "literals": [
+            "\"rotor\":\"type noSlip;\", \"stator\":\"type noSlip;\""
+          ]
+        }
+      }
+    },
+    {
+      "id": "bc.inlet_turbulence",
+      "group": "pressure_temperature_boundary_conditions",
+      "quantity": "Inlet turbulence intensity and mixing length",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-06",
+      "study_value": {
+        "status": "assumed",
+        "value": {
+          "intensity": 0.05,
+          "mixing_length": 0.003
+        },
+        "unit": "1; m",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            200,
+            204
+          ],
+          "literals": [
+            "intensity .05",
+            "mixingLength .003"
+          ]
+        }
+      }
+    },
+    {
+      "id": "bc.mass_flow",
+      "group": "pressure_temperature_boundary_conditions",
+      "quantity": "Compressor mass flow",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-06",
+      "study_value": null,
+      "note": "Never imposed: the paired contract defines it as a solver output at imposed back-pressure. No measured value exists."
+    },
+    {
+      "id": "bc.total_pressure_ratio_and_outlet_total_temperature",
+      "group": "pressure_temperature_boundary_conditions",
+      "quantity": "Total-to-total pressure ratio and outlet total temperature",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-06",
+      "study_value": null
+    },
+    {
+      "id": "bc.compressor_map",
+      "group": "pressure_temperature_boundary_conditions",
+      "quantity": "Compressor map (corrected flow, pressure ratio, efficiency, speed lines, surge and choke)",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-06",
+      "study_value": null,
+      "published_context": [
+        {
+          "corpus_id": "unknown-k16-maps",
+          "transferable": false,
+          "note": "The register records that no exact stock map was verified."
+        },
+        {
+          "corpus_id": "k16-map-sjm-2467",
+          "transferable": false,
+          "note": "A low-resolution scan for an Audi-application unit, with its own reference conditions; identity with any 993 unit is not established."
+        },
+        {
+          "corpus_id": "k16-map-turbomap-996",
+          "transferable": false,
+          "note": "A test-bench provider lists datasets for a 996 unit by quotation; none was acquired, and buying one is outside the project frame."
+        },
+        {
+          "corpus_id": "k16-borgwarner-993-row",
+          "transferable": false,
+          "note": "The manufacturer's catalogue row for the 993 units links no compressor or turbine map."
+        }
+      ]
+    },
+    {
+      "id": "bc.turbine_side_state",
+      "group": "pressure_temperature_boundary_conditions",
+      "quantity": "Turbine inlet pressure and temperature, outlet pressure, gas flow and wastegate position",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-08",
+      "study_value": null
+    },
+    {
+      "id": "bc.engine_operating_points",
+      "group": "pressure_temperature_boundary_conditions",
+      "quantity": "Engine operating points feeding the compressor (speed, airflow, boost, temperatures per bank)",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-09",
+      "study_value": null,
+      "published_context": [
+        {
+          "corpus_id": "engine-max-boost",
+          "transferable": false,
+          "note": "A published engine figure for the stock 993 Turbo; it is engine context, not a compressor boundary condition of the concept."
+        },
+        {
+          "corpus_id": "calc-limitations",
+          "transferable": false,
+          "note": "The register's matching points are illustrative assumptions, not measured operation."
+        }
+      ]
+    },
+    {
+      "id": "bc.oil_and_bearing_state",
+      "group": "pressure_temperature_boundary_conditions",
+      "quantity": "Oil supply state and bearing losses",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-10",
+      "study_value": null,
+      "published_context": [
+        {
+          "corpus_id": "unknown-thermal-operation",
+          "transferable": false,
+          "note": "Metal, oil, gas and charge-air temperatures are recorded as not established."
+        }
+      ]
+    },
+    {
+      "id": "geometry.units",
+      "group": "reference_geometry",
+      "quantity": "Length unit of the concept geometry",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-12",
+      "study_value": {
+        "status": "assumed",
+        "value": "mm",
+        "unit": "n/a",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/geometry-evidence.json",
+          "sha256": "ee6e4a7f3a1e5cdef17b5373a14e3b086ce80d65288d1aa8ff05805979530fb0",
+          "pointer": "/units",
+          "literals": [
+            "mm_assumed_from_generators_not_measured"
+          ]
+        }
+      }
+    },
+    {
+      "id": "geometry.rotation_axis",
+      "group": "reference_geometry",
+      "quantity": "Rotor axis in the geometry frame",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-12",
+      "study_value": {
+        "status": "assumed",
+        "value": "global Z",
+        "unit": "n/a",
+        "uncertainty_statement": "Assumption fixed by the generator. No measurement exists, so no measurement uncertainty can be stated; the physical value is unknown.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/geometry-evidence.json",
+          "sha256": "ee6e4a7f3a1e5cdef17b5373a14e3b086ce80d65288d1aa8ff05805979530fb0",
+          "pointer": "/full_revolution_compressor_wheel_screen",
+          "literals": [
+            "\"axis\": \"global Z\""
+          ]
+        }
+      }
+    },
+    {
+      "id": "geometry.cfd_surface_units",
+      "group": "reference_geometry",
+      "quantity": "Length unit of the CFD input surface",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-N1",
+      "study_value": {
+        "status": "numerical_construct",
+        "value": "m",
+        "unit": "n/a",
+        "uncertainty_statement": "Numerical idealisation with no physical counterpart to measure. Its influence on the result is unquantified until a sensitivity study under a later gate.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/README.md",
+          "sha256": "08b949eb7c7dc35a8a74ac22644b890bba0ef5f4e109c88445d7d08ab705443d",
+          "lines": [
+            13,
+            19
+          ],
+          "literals": [
+            "Input: an ASCII STL in metres"
+          ]
+        }
+      }
+    },
+    {
+      "id": "geometry.source_and_fluid_voxel",
+      "group": "reference_geometry",
+      "quantity": "Voxel size of the source geometry and of the fluid domain",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-N1",
+      "study_value": {
+        "status": "numerical_construct",
+        "value": {
+          "source": 0.5,
+          "fluid": 0.25
+        },
+        "unit": "mm",
+        "uncertainty_statement": "Numerical idealisation with no physical counterpart to measure. Its influence on the result is unquantified until a sensitivity study under a later gate.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd-geometry/Program.cs",
+          "sha256": "15c37dbc8dd653272a8cc108f61b42a039439206dc450f1c0e3d179816b81d80",
+          "lines": [
+            11,
+            13
+          ],
+          "literals": [
+            "SourceVoxel = .5f, Voxel = .25f"
+          ]
+        }
+      }
+    },
+    {
+      "id": "geometry.grid_phase",
+      "group": "reference_geometry",
+      "quantity": "Grid phase offset common to the variants",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-N1",
+      "study_value": {
+        "status": "numerical_construct",
+        "value": [
+          0.173,
+          0.119,
+          0.071
+        ],
+        "unit": "mm",
+        "uncertainty_statement": "Numerical idealisation with no physical counterpart to measure. Its influence on the result is unquantified until a sensitivity study under a later gate.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd-geometry/Program.cs",
+          "sha256": "15c37dbc8dd653272a8cc108f61b42a039439206dc450f1c0e3d179816b81d80",
+          "lines": [
+            11,
+            13
+          ],
+          "literals": [
+            "GridPhase = new(.173f, .119f, .071f)"
+          ]
+        }
+      }
+    },
+    {
+      "id": "geometry.fluid_regularisation_and_proximity",
+      "group": "reference_geometry",
+      "quantity": "Fluid-domain smoothing and the surface proximity criterion",
+      "applies_to": [
+        "reference",
+        "bionic"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-N1",
+      "study_value": {
+        "status": "numerical_construct",
+        "value": {
+          "smoothing": 0.125,
+          "proximity": 0.65
+        },
+        "unit": "mm",
+        "uncertainty_statement": "Numerical idealisation with no physical counterpart to measure. Its influence on the result is unquantified until a sensitivity study under a later gate.",
+        "used_by_historical_cfd": true,
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd-geometry/Program.cs",
+          "sha256": "15c37dbc8dd653272a8cc108f61b42a039439206dc450f1c0e3d179816b81d80",
+          "lines": [
+            11,
+            13
+          ],
+          "literals": [
+            "FluidRegularization = .125f, RequiredSurfaceProximity = .65f"
+          ]
+        }
+      }
+    },
+    {
+      "id": "geometry.physical_reference_scan_or_cad",
+      "group": "reference_geometry",
+      "quantity": "Scan, drawing or CAD of a physical turbocharger to compare the concept against",
+      "applies_to": [
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-03",
+      "study_value": null,
+      "published_context": [
+        {
+          "corpus_id": "unknown-manufacturing-geometry",
+          "transferable": false,
+          "note": "Dimensioned drawings and interface geometry are recorded as not established."
+        }
+      ],
+      "note": "The concept is original geometry with no imported scan, photograph or supplier CAD. Rotor metrology is MD-02."
+    },
+    {
+      "id": "geometry.datums_and_tolerances",
+      "group": "reference_geometry",
+      "quantity": "Datum scheme and tolerances of the interfaces",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-12",
+      "study_value": null,
+      "note": "F0 interface contract measured_interfaces.datums_and_tolerances is null."
+    },
+    {
+      "id": "geometry.material_process_and_allowables",
+      "group": "reference_geometry",
+      "quantity": "Alloys, processes and allowables",
+      "applies_to": [
+        "reference",
+        "bionic",
+        "physical_turbo"
+      ],
+      "measured": null,
+      "uncertainty": null,
+      "missing_data_gate": "MD-11",
+      "study_value": null,
+      "note": "component-contract.json material_process_and_allowables is null."
+    }
+  ],
+  "summary": {
+    "entries": 79,
+    "measured": 0,
+    "with_missing_data_gate": 79,
+    "with_study_value": 54,
+    "null_without_study_value": 25,
+    "study_values_by_status": {
+      "assumed": 35,
+      "model_derived": 4,
+      "numerical_construct": 15
+    },
+    "entries_by_group": {
+      "reference_identity": 1,
+      "rotor_stator": 23,
+      "nut": 4,
+      "ports": 9,
+      "mrf_interface": 6,
+      "clearances": 8,
+      "shaft_speed": 4,
+      "pressure_temperature_boundary_conditions": 15,
+      "reference_geometry": 9
+    }
+  }
+}

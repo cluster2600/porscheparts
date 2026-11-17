@@ -1,0 +1,267 @@
+{
+  "schema": "bionic-turbo-known-citations/v1",
+  "issue": 396,
+  "rule": "Each citation was written from the cited file, not from the corpus. Retrieval passes only when the question returns the expected document among the five excerpts, the excerpt contains the exact phrase, its locator, variant identity, evidence status and units agree with this file, and the excerpt still equals the span read back from the pinned repository file.",
+  "citations": [
+    {
+      "id": "cite-inlet-state",
+      "question": "inlet total pressure total temperature gamma gas constant",
+      "expected_id": "cfd-inlet-state-and-gas",
+      "exact_phrase": "p0, temperature, gamma, gas_r = 101325., 298.15, 1.4, 287.05",
+      "source": "twins/bionic-turbo-f1/cfd/prepare_case.py#L193-L193",
+      "variant": "bionic-turbo-f1-pair",
+      "evidence_status": "study_assumption",
+      "units": ["Pa", "K"]
+    },
+    {
+      "id": "cite-default-speed",
+      "question": "default rpm of the case generator",
+      "expected_id": "cfd-default-speed-and-ratio",
+      "exact_phrase": "parser.add_argument(\"--rpm\", type=float, default=100000.)",
+      "source": "twins/bionic-turbo-f1/cfd/prepare_case.py#L288-L290",
+      "variant": "bionic-turbo-f1-pair",
+      "evidence_status": "study_assumption",
+      "units": ["rpm"]
+    },
+    {
+      "id": "cite-speed-bounds",
+      "question": "hypothesis bounds rotor speed rpm pressure ratio",
+      "expected_id": "cfd-hypothesis-bounds",
+      "exact_phrase": "1000 <= rpm <= 150000",
+      "source": "twins/bionic-turbo-f1/cfd/prepare_case.py#L147-L148",
+      "variant": "bionic-turbo-f1-pair",
+      "evidence_status": "study_assumption",
+      "units": ["rpm"]
+    },
+    {
+      "id": "cite-mrf-zone",
+      "question": "MRF rotating zone cylinder radius axis origin",
+      "expected_id": "cfd-mrf-zone",
+      "exact_phrase": "source cylinderToCell; p1 (0 0 -.004); p2 (0 0 .033); radius .032;",
+      "source": "twins/bionic-turbo-f1/cfd/prepare_case.py#L185-L188",
+      "variant": "bionic-turbo-f1-pair",
+      "evidence_status": "numerical_construct",
+      "units": ["m"]
+    },
+    {
+      "id": "cite-outlet-static-boundary",
+      "question": "pressure boundary conditions totalPressure inlet fixed static outlet",
+      "expected_id": "cfd-pressure-boundaries",
+      "exact_phrase": "\"outlet\":f\"type fixedValue; value uniform {p0*pressure_ratio:.12g};\"",
+      "source": "twins/bionic-turbo-f1/cfd/prepare_case.py#L194-L196",
+      "variant": "bionic-turbo-f1-pair",
+      "evidence_status": "study_assumption",
+      "units": ["Pa"]
+    },
+    {
+      "id": "cite-adiabatic-walls",
+      "question": "temperature boundary conditions totalTemperature zeroGradient walls",
+      "expected_id": "cfd-temperature-boundaries",
+      "exact_phrase": "\"rotor\":\"type zeroGradient;\", \"stator\":\"type zeroGradient;\"",
+      "source": "twins/bionic-turbo-f1/cfd/prepare_case.py#L197-L199",
+      "variant": "bionic-turbo-f1-pair",
+      "evidence_status": "study_assumption",
+      "units": ["K"]
+    },
+    {
+      "id": "cite-ratio-convention",
+      "question": "pressure-ratio option outlet-static inlet-total not total/total",
+      "expected_id": "cfd-readme-hypothetical-conditions",
+      "exact_phrase": "The pressure-ratio option denotes outlet-static/inlet-total, not",
+      "source": "twins/bionic-turbo-f1/cfd/README.md#L21-L27",
+      "variant": "bionic-turbo-f1-pair",
+      "evidence_status": "study_assumption",
+      "units": ["Pa", "K", "rpm"]
+    },
+    {
+      "id": "cite-gap-estimates",
+      "question": "wheel/nut gap rear gap estimate",
+      "expected_id": "cfd-readme-gap-estimates",
+      "exact_phrase": "in the 0.5 mm wheel/nut gap and 4.27 in the rear gap of about 0.64 mm.",
+      "source": "twins/bionic-turbo-f1/cfd/README.md#L54-L59",
+      "variant": "bionic-turbo-f1-pair",
+      "evidence_status": "model_derived",
+      "units": ["mm"]
+    },
+    {
+      "id": "cite-domain-constants",
+      "question": "RearSealRadius InletZ OutletY fluid domain constants",
+      "expected_id": "cfdgeom-constants",
+      "exact_phrase": "const float RearSealRadius = 35.5f, FluidRegularization = .125f, RequiredSurfaceProximity = .65f;",
+      "source": "twins/bionic-turbo-f1/cfd-geometry/Program.cs#L11-L13",
+      "variant": "bionic-turbo-f1-pair",
+      "evidence_status": "numerical_construct",
+      "units": ["mm"]
+    },
+    {
+      "id": "cite-rear-closure",
+      "question": "ideal rear closure radius below Z",
+      "expected_id": "cfdgeom-readme-construction",
+      "exact_phrase": "4. Subtract an ideal rear closure of radius **35.5 mm**, below",
+      "source": "twins/bionic-turbo-f1/cfd-geometry/README.md#L20-L34",
+      "variant": "bionic-turbo-f1-pair",
+      "evidence_status": "numerical_construct",
+      "units": ["mm"]
+    },
+    {
+      "id": "cite-compressor-wheel",
+      "question": "compressor wheel exducer inducer diameter assumed",
+      "expected_id": "f0-compressor-wheel-spec",
+      "exact_phrase": "(\"exducer_diameter_mm\", 60.5f), (\"inducer_diameter_mm\", 40.6f), (\"total_height_mm\", 28),",
+      "source": "twins/bionic-turbo-f0/assembly/source/Components.cs#L30-L37",
+      "variant": "bionic-turbo-f0-concept-assembly",
+      "evidence_status": "study_assumption",
+      "units": ["mm", "count"]
+    },
+    {
+      "id": "cite-compressor-nut",
+      "question": "compressor nut unthreaded display geometry",
+      "expected_id": "f0-compressor-nut",
+      "exact_phrase": "Emit(\"compressor-nut\", \"Compressor nut — unthreaded display geometry\", q =>",
+      "source": "twins/bionic-turbo-f0/assembly/source/Components.cs#L107-L112",
+      "variant": "bionic-turbo-f0-concept-assembly",
+      "evidence_status": "study_assumption",
+      "units": ["mm"]
+    },
+    {
+      "id": "cite-not-a-measured-dimension",
+      "question": "display assembly design variable not a measured K16 dimension",
+      "expected_id": "f0-assumption-label",
+      "exact_phrase": "\"assumption\", null, \"Display assembly design variable; not a measured K16 dimension.\"))",
+      "source": "twins/bionic-turbo-f0/assembly/source/Components.cs#L22-L29",
+      "variant": "bionic-turbo-f0-concept-assembly",
+      "evidence_status": "study_assumption",
+      "units": []
+    },
+    {
+      "id": "cite-reference-volute-law",
+      "question": "reference housing parameters radius_linear volute law",
+      "expected_id": "pair-reference-parameters",
+      "exact_phrase": "\"volute_law\": \"radius_linear\"",
+      "source": "twins/bionic-turbo-f1/baseline.json#/",
+      "variant": "bionic-turbo-f1-reference",
+      "evidence_status": "study_assumption",
+      "units": ["mm"]
+    },
+    {
+      "id": "cite-bionic-volute-law",
+      "question": "bionic housing parameters area_affine volute law",
+      "expected_id": "pair-bionic-parameters",
+      "exact_phrase": "\"volute_law\": \"area_affine\"",
+      "source": "twins/bionic-turbo-f1/candidate.json#/",
+      "variant": "bionic-turbo-f1-bionic",
+      "evidence_status": "study_assumption",
+      "units": ["mm"]
+    },
+    {
+      "id": "cite-radial-bound",
+      "question": "full revolution radial separation lower bound wheel housing",
+      "expected_id": "f1-radial-separation-bound",
+      "exact_phrase": "\"radial_gap_lower_bound_mm\": 1.7858112087169218",
+      "source": "twins/bionic-turbo-f1/geometry-evidence.json#/full_revolution_compressor_wheel_screen",
+      "variant": "bionic-turbo-f1-bionic",
+      "evidence_status": "model_derived",
+      "units": ["mm"]
+    },
+    {
+      "id": "cite-null-tip-clearance",
+      "question": "measured wheel shroud and tip clearances",
+      "expected_id": "f1-contract-measured-interfaces",
+      "exact_phrase": "\"wheel_shroud_and_tip_clearances\": null",
+      "source": "twins/bionic-turbo-f1/component-contract.json#/measured_interfaces",
+      "variant": "bionic-turbo-f1-bionic",
+      "evidence_status": "contract_null",
+      "units": []
+    },
+    {
+      "id": "cite-null-operating-inputs",
+      "question": "compressor map and shaft speed operating inputs null",
+      "expected_id": "f0-contract-operating-inputs",
+      "exact_phrase": "\"compressor_map_and_shaft_speed\": null",
+      "source": "twins/bionic-turbo-f0/interface-contract.json#/operating_inputs",
+      "variant": "bionic-turbo-f1-reference",
+      "evidence_status": "contract_null",
+      "units": []
+    },
+    {
+      "id": "cite-shaft-power-sign",
+      "question": "shaft power definition omega moment fluid on rotor",
+      "expected_id": "contract-shaft-power",
+      "exact_phrase": "Compressor wheel aerodynamic input power P = -omega * M_z in W",
+      "source": "twins/bionic-turbo-f1/recovery-20261106/gate-ledger.json#/paired_comparison_contract/quantities/shaft_power",
+      "variant": "bionic-turbo-f1-pair",
+      "evidence_status": "comparison_contract",
+      "units": ["W"]
+    },
+    {
+      "id": "cite-corrected-flow-equation",
+      "question": "corrected mass flow equation flow reference temperature pressure",
+      "expected_id": "calc-matching-assumptions",
+      "exact_phrase": "corrected_mass_flow = actual_mass_flow * sqrt(inlet_temperature_K / reference_temperature_K) / (inlet_pressure_Pa / reference_pressure_Pa)",
+      "source": "catalog/reference/993-turbo-research-20261002/calculations.json#/matching_assumptions",
+      "variant": "993-turbo-m64-60-engine",
+      "evidence_status": "study_assumption",
+      "units": ["K", "Pa"]
+    },
+    {
+      "id": "cite-kkk-map-reference",
+      "question": "KKK 2467 compressor map reference conditions total pressure ratio",
+      "expected_id": "k16-map-sjm-2467",
+      "exact_phrase": "\"reference_conditions\": {\"pressure_mbar\": 981, \"temperature_K\": 293}",
+      "source": "catalog/reference/993-turbo-research-20261002/turbo-evidence.json#/records/[id=TURBO-MAP-SJM-K16-2467]",
+      "variant": "kkk-5316-988-6717-2467-gga-ggb",
+      "evidence_status": "published_other_variant",
+      "units": ["mbar", "K"]
+    },
+    {
+      "id": "cite-balancing-speed",
+      "question": "hybrid core balanced 100,000 rpm balancing condition",
+      "expected_id": "hybrid-fvd-k16-24",
+      "exact_phrase": "100,000 rpm is a balancing condition, not a maximum operating-speed specification",
+      "source": "catalog/reference/993-turbo-research-20261002/turbo-evidence.json#/records/[id=TURBO-FVD-K16-24]",
+      "variant": "fvd-k16-24-hybrid",
+      "evidence_status": "published_other_variant",
+      "units": ["rpm"]
+    },
+    {
+      "id": "cite-unknown-shaft-speed",
+      "question": "stock K16 shaft speed measured maximum rotor speed",
+      "expected_id": "unknown-k16-shaft-speed",
+      "exact_phrase": "No reference-specific measured shaft speed or validated maximum rotor speed obtained.",
+      "source": "catalog/reference/993-turbo-research-20261002/unknowns.json#/records/[id=UNKNOWN-004]",
+      "variant": "borgwarner-k16-5316-988-6735-6736",
+      "evidence_status": "documented_unknown",
+      "units": []
+    },
+    {
+      "id": "cite-unknown-maps",
+      "question": "exact stock compressor and turbine maps",
+      "expected_id": "unknown-k16-maps",
+      "exact_phrase": "Corrected flow, efficiency, surge/choke and speed limits unavailable for verified 6735/6736 configuration.",
+      "source": "catalog/reference/993-turbo-research-20261002/unknowns.json#/records/[id=UNKNOWN-005]",
+      "variant": "borgwarner-k16-5316-988-6735-6736",
+      "evidence_status": "documented_unknown",
+      "units": []
+    },
+    {
+      "id": "cite-chart-axial-end-play",
+      "question": "generic K16 chart maximum axial end play",
+      "expected_id": "k16-chart-axial-end-play",
+      "exact_phrase": "\"physical_measurement_performed\": false",
+      "source": "catalog/reference/m64-measurements-20261024/facts.json#/records/[id=M64-MEAS-T012]",
+      "variant": "k16-generic-service-chart",
+      "evidence_status": "published_other_variant",
+      "units": ["mm"]
+    },
+    {
+      "id": "cite-declared-wheel-diameters",
+      "question": "single vendor declaration wheel diameters induit exduct",
+      "expected_id": "k16-declared-wheel-diameters",
+      "exact_phrase": "Declaration fournisseur, jamais une mesure",
+      "source": "catalog/sources/src-invasionautoproducts-993-k16-internal-data.json#/notes",
+      "variant": "borgwarner-k16-5316-988-6735-6736",
+      "evidence_status": "published_other_variant",
+      "units": ["mm"]
+    }
+  ]
+}
