@@ -1,8 +1,9 @@
 # syntax=docker/dockerfile:1.7
 #
-# Node B images for the 935 head twin. NOT BUILT YET: no digest, no lock, no smoke receipt.
-# Until a build on a GPU host has passed `smoke-cae.sh` and its digest is recorded beside this
-# file, nothing here is an admitted image (docs/AGENT_TOOL_GUIDE.md: images are cited by digest).
+# Node B images for the 935 head twin. The cae image is admitted only through admitted-image.json
+# beside this file: a digest on a registry, a GPU smoke receipt of that digest, and the owner's
+# reading of its renders (README.md, "Admitting the cae image"). Until then nothing here is an
+# admitted image (docs/AGENT_TOOL_GUIDE.md: images are cited by digest).
 #
 # Two targets, because the two MPIs do not mix in one image:
 #
@@ -21,10 +22,15 @@
 #             the image of the Poiseuille witness (outils/benchmarks/openfoam-poiseuille-f25), so
 #             that witness runs on the image a port case would use.
 #
-# Build (on Node B; about an hour on 16 cores, mostly PETSc and its downloads):
-#   docker build -f Dockerfile.cae --target cae --build-arg CUDA_ARCH=89 -t porscheparts/cae-935:dev .
+# Build on any x86-64 Docker host; no GPU is needed to compile (nvcc only):
+#   docker build -f Dockerfile.cae --target cae --build-arg BUILD_NP=6 \
+#     --build-arg DOCKERFILE_SHA256=$(sha256sum Dockerfile.cae | cut -d' ' -f1) -t porscheparts/cae-935:dev .
 #   docker build -f Dockerfile.cae --target openfoam -t porscheparts/openfoam-foamlib-935:dev .
-# CUDA_ARCH: 89 for an RTX 4090, 86 for an RTX 3090; the default builds every major architecture.
+# CUDA_ARCH is a comma-separated list of compute capabilities: 86 is the RTX 3090, 89 the RTX 4090.
+# It cannot be "all-major": PETSc passes it to hypre, which accepts version numbers only
+# (config/BuildSystem/config/packages/CUDA.py, cudaArchList, at v3.25.1).
+# BUILD_NP caps every parallel compile (make, ninja, PETSc and its downloads): nvcc and the DOLFINx
+# C++ units take 1-3 GB each, so keep BUILD_NP x 3 GB under the builder's free memory.
 
 ARG CUDA_DEVEL_IMAGE=nvidia/cuda:12.8.1-devel-ubuntu24.04@sha256:520292dbb4f755fd360766059e62956e9379485d9e073bbd2f6e3c20c270ed66
 ARG MESH_CFD_IMAGE=ghcr.io/cluster2600/3dprinting993-mesh-cfd@sha256:a1db60cbf61bbcca52c171e50cab01ed0b6ec860b227e7c5fc50f7b809659b4f
@@ -47,7 +53,7 @@ ARG KAHIP_VERSION=3.25
 ARG SPDLOG_VERSION=1.17.0
 ARG NUMPY_VERSION=2.4.6
 ARG MPI4PY_VERSION=4.1.2
-ARG CUDA_ARCH=all-major
+ARG CUDA_ARCH=86,89
 ARG BUILD_NP=8
 
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -59,7 +65,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
     PETSC_ARCH=linux-gnu-real64-32-cuda \
     PYTHONDONTWRITEBYTECODE=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=1 \
-    PIP_NO_CACHE_DIR=1
+    PIP_NO_CACHE_DIR=1 \
+    CMAKE_BUILD_PARALLEL_LEVEL=${BUILD_NP}
 
 # Build tools as upstream, plus the runtime libraries of the gmsh wheel and of VTK's EGL window.
 # hadolint ignore=DL3008
@@ -108,36 +115,54 @@ RUN wget -q https://github.com/ornladios/ADIOS2/archive/v${ADIOS2_VERSION}.tar.g
     && cmake --build adios2-build && cmake --install adios2-build && rm -rf /tmp/build/*
 
 # PETSc: upstream's real64-32 configure line, with CUDA (conda-forge's spelling of the CUDA options).
-# Whether --download-hypre then builds a CUDA hypre, and whether BoomerAMG still runs on host
-# matrices, is checked by smoke-cae.sh (the template's witnesses on both backends), not assumed.
+# hypre stays on the CPU, as in conda-forge's CUDA PETSc builds. With --with-cuda, PETSc would
+# configure hypre --with-cuda --enable-gpu-aware-mpi (hypre.py at v3.25.1), but this MPICH is not
+# CUDA-aware (its configure finds no cuda_runtime_api.h), and the template's CPU backend is meant
+# to be host BoomerAMG. --download-hypre-configure-arguments is appended after PETSc's own
+# arguments, so --without-cuda wins; PETSc then reads HYPRE_USING_GPU from hypre's own
+# HYPRE_config.h and leaves PETSC_HAVE_HYPRE_DEVICE undefined. The GPU path is AIJCUSPARSE + GAMG.
 RUN git clone --depth=1 -b v${PETSC_VERSION} https://gitlab.com/petsc/petsc.git ${PETSC_DIR} \
     && cd ${PETSC_DIR} \
     && ./configure PETSC_ARCH=${PETSC_ARCH} \
          --COPTFLAGS=-O2 --CXXOPTFLAGS=-O2 --FOPTFLAGS=-O2 --CUDAOPTFLAGS=-O3 \
          --with-64-bit-indices=no --with-debugging=no --with-fortran-bindings=no --with-shared-libraries \
-         --with-cuda=1 --with-cuda-arch=${CUDA_ARCH} \
-         --download-hypre --download-metis --download-mumps-avoid-mpi-in-place --download-mumps \
+         --with-cuda=1 --with-cuda-arch=${CUDA_ARCH} --with-make-np=${BUILD_NP} \
+         --download-hypre --download-hypre-configure-arguments="--without-cuda --disable-gpu-aware-mpi" \
+         --download-metis --download-mumps-avoid-mpi-in-place --download-mumps \
          --download-ptscotch --download-scalapack --download-suitesparse --download-superlu \
          --download-superlu_dist --with-scalar-type=real --with-precision=double \
+    && grep -q '^#define PETSC_HAVE_CUDA 1' ${PETSC_ARCH}/include/petscconf.h \
+    && ! grep -q '^#define HYPRE_USING_GPU' ${PETSC_ARCH}/include/HYPRE_config.h \
     && make PETSC_ARCH=${PETSC_ARCH} all \
     && cd src/binding/petsc4py && pip -v install --no-build-isolation . \
     && rm -rf ${PETSC_DIR}/src/docs ${PETSC_DIR}/${PETSC_ARCH}/externalpackages ${PETSC_DIR}/${PETSC_ARCH}/obj
 
-# FEniCSx at the tags of the image the twin already runs.
+# FEniCSx at the tags of the image the twin already runs, without DOLFINx's own SuperLU_DIST
+# interface: PETSc built SuperLU_DIST with CUDA, and DOLFINx includes its headers inside extern "C",
+# where the CUDA C++ headers they pull in cannot compile (builds of 2026-11-18: "cublas_v2.h: No such
+# file", then with the CUDA include path "conflicting declaration of C function ... cuda_fp16.h").
+# SuperLU_DIST stays available through PETSc (-pc_factor_mat_solver_type superlu_dist).
+# nanobind and cffi at the versions of the official v0.11.0.post0 image: unpinned, the build took
+# nanobind 3.1.0, and DOLFINx 0.11's Form constructor then rejected its own arguments (TypeError,
+# 2026-11-18). basix builds without isolation so that it uses the same nanobind. These ARGs sit here,
+# not at the top, so that adding them did not invalidate the cached MPICH and PETSc layers.
+ARG NANOBIND_VERSION=2.12.0
+ARG CFFI_VERSION=2.0.0
 RUN git clone --depth 1 -b v${BASIX_VERSION} https://github.com/FEniCS/basix.git \
     && git clone --depth 1 -b ${UFL_VERSION} https://github.com/FEniCS/ufl.git \
     && git clone --depth 1 -b v${FFCX_VERSION} https://github.com/FEniCS/ffcx.git \
     && git clone --depth 1 -b v${DOLFINX_VERSION} https://github.com/FEniCS/dolfinx.git \
-    && cd dolfinx/python && pip install scikit-build-core \
+    && cd dolfinx/python && pip install scikit-build-core nanobind==${NANOBIND_VERSION} cffi==${CFFI_VERSION} \
     && python -m scikit_build_core.build requires | python -c "import sys, json; print(' '.join(json.load(sys.stdin)))" | xargs pip install \
+    && python -c "import nanobind, cffi; assert (nanobind.__version__, cffi.__version__) == ('${NANOBIND_VERSION}', '${CFFI_VERSION}')" \
     && cd /tmp/build/basix && cmake -G Ninja -DCMAKE_BUILD_TYPE=Release -B build-dir -S ./cpp \
-    && cmake --build build-dir && cmake --install build-dir && pip install ./python \
+    && cmake --build build-dir && cmake --install build-dir && pip install --no-build-isolation ./python \
     && pip install /tmp/build/ufl /tmp/build/ffcx \
     && cd /tmp/build/dolfinx && mkdir build-real && cd build-real \
     && cmake -G Ninja -DCMAKE_INSTALL_PREFIX=/usr/local/dolfinx-real -DCMAKE_BUILD_TYPE=Release \
          -DDOLFINX_ENABLE_PETSC=ON -DDOLFINX_ENABLE_SCOTCH=ON -DDOLFINX_ENABLE_KAHIP=ON \
-         -DDOLFINX_ENABLE_ADIOS2=ON ../cpp \
-    && ninja install \
+         -DDOLFINX_ENABLE_ADIOS2=ON -DDOLFINX_ENABLE_SUPERLU_DIST=OFF ../cpp \
+    && ninja -j${BUILD_NP} install \
     && cd ../python \
     && pip -v install --config-settings=cmake.build-type=Release --no-build-isolation --check-build-dependencies \
          --target /usr/local/dolfinx-real/lib/python3.12/dist-packages --no-dependencies '.' \
@@ -157,6 +182,7 @@ RUN pip install \
       "https://github.com/NVIDIA/warp/releases/download/v${WARP_VERSION}/warp_lang-${WARP_VERSION}+cu12-py3-none-manylinux_2_28_x86_64.whl" \
     && pip install \
       numpy==${NUMPY_VERSION} \
+      cffi==${CFFI_VERSION} \
       newton==${NEWTON_VERSION} \
       gmsh==4.15.2 \
       build123d==0.13.0 \
@@ -181,12 +207,17 @@ ENV PYVISTA_OFF_SCREEN=true \
     NVIDIA_DRIVER_CAPABILITIES=graphics,utility,compute \
     MPLBACKEND=Agg
 
-RUN useradd -m -u 1000 -s /bin/bash cae
+# Ubuntu 24.04 images ship a user `ubuntu` with uid 1000; the compose services run as 1000:1000.
+RUN userdel -r ubuntu 2>/dev/null; useradd -m -u 1000 -s /bin/bash cae
 USER cae
 WORKDIR /workspace
+# The hash of this file, passed by the builder (`--build-arg DOCKERFILE_SHA256=$(sha256sum ...)`):
+# `vast_deploy.sh admit` refuses an image whose label differs from the Dockerfile.cae it sits beside.
+ARG DOCKERFILE_SHA256=unrecorded
 LABEL org.opencontainers.image.title="porscheparts cae-935" \
       org.opencontainers.image.description="DOLFINx 0.11 on CUDA PETSc, Warp, Newton, Gmsh, build123d, PyVista, OpenUSD, pyLife: 935 head twin, Node B" \
-      porscheparts.status="unbuilt-unqualified"
+      porscheparts.cuda_arch="${CUDA_ARCH}" \
+      porscheparts.dockerfile_sha256="${DOCKERFILE_SHA256}"
 
 # ------------------------------------------------------------------------------------- openfoam
 FROM ${MESH_CFD_IMAGE} AS openfoam

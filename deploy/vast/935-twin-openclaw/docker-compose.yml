@@ -1,7 +1,7 @@
 # Node B tool services for the 935 head twin. Each service is one tool image, without network, with
 # the repository read-only, the raw scan read-only and only the private work directory writable.
 #
-#   docker compose -f docker-compose.yml build cae openfoam
+#   docker compose -f docker-compose.yml build openfoam cloudcompare   # cae is pulled by digest, never built here
 #   docker compose -f docker-compose.yml run --rm cae            # smoke-cae.sh: GPU, CUDA PETSc, witnesses
 #   docker compose -f docker-compose.yml run --rm cae python3 /twin/repo/deploy/vast/935-twin-openclaw/dolfinx_thermal_mech_template.py witness /twin/work/witness --backend cuda
 #
@@ -11,6 +11,7 @@
 #   REPO_DIR   checkout of the repository at the commit under work (mounted read-only)
 #   WORK_DIR   private outputs, the only writable mount (rsync'd home after every step)
 #   SCAN_DIR   the scan and other private inputs, read-only; never written, never committed
+#   CAE_IMAGE  the admitted cae image by digest (cae-935.lock.json); the :dev tag is a local build only
 
 name: porscheparts-935-twin
 
@@ -41,13 +42,14 @@ x-gpu: &gpu
 services:
   cae:
     <<: [*common, *gpu]
-    image: porscheparts/cae-935:dev
+    image: ${CAE_IMAGE:-porscheparts/cae-935:dev}
     build:
       context: .
       dockerfile: Dockerfile.cae
       target: cae
       args:
-        CUDA_ARCH: ${CUDA_ARCH:-all-major}
+        CUDA_ARCH: ${CUDA_ARCH:-86,89}
+        BUILD_NP: ${BUILD_NP:-8}
     shm_size: 2gb
     mem_limit: ${CAE_MEM:-48g}
     memswap_limit: ${CAE_MEM:-48g}

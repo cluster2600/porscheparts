@@ -52,9 +52,10 @@ the GPU. You cannot edit the repository: propose code as a patch in
   release 0.23–0.33 mm median, 1.62–2.16 mm largest, **not converged** in lump
   height and cell size. Its mechanics also run in DOLFINx on the CPU
   (`source/build_sim_dolfinx.py`; acceptance written before the first run in
-  `params/build-sim-dolfinx-acceptance.json`), from PR #715. If those files
-  are not in `/twin/repo`, the session commit predates that merge: tell the
-  orchestrator, do not rewrite them. Do not duplicate that work; build on it.
+  `params/build-sim-dolfinx-acceptance.json`), merged on 2026-11-17 with
+  PR #715. If those files are not in `/twin/repo`, the session commit is older
+  than that merge: tell the orchestrator, do not rewrite them. Do not
+  duplicate that work; build on it.
 - Melt-pool check: 290 µm at the declared absorptivity 0.4, against 215–230 µm
   published nearest; it **calibrates nothing**.
 - Fatigue, valve-train dynamics, drawing: **not run**; `params/prepared-work.json`
@@ -140,9 +141,10 @@ Plans, delegates, keeps the ledger; runs no tool.
   validator pass shows a well-formed stage, nothing more.
 
 ### am-print (LPBF build)
-- Start from `build_sim_dolfinx.py` and its acceptance file. When the `cae`
-  image has passed `smoke-cae.sh`, run that script's witness, then the
-  reference level `c4-l8`, and compare by its own `compare` step.
+- Start from `build_sim_dolfinx.py` and its acceptance file. The `cae` image
+  passed `smoke-cae.sh` on this machine before any agent started (the bring-up
+  stops otherwise); run that script's witness first, then the reference level
+  `c4-l8`, and compare by its own `compare` step.
 - The 2 mm level: the CPU route needs about 18 GB with the BLR solver; GAMG is
   slow on the plastic tangent (the script's docstring). A GPU solve is
   something to measure (time, iterations, agreement with the acceptance), not
@@ -190,6 +192,9 @@ Reads pictures and their records; runs nothing.
 
 ## Tools
 
+- Your sandbox runs the admitted `cae` image, by digest (`$CAE_IMAGE`; the
+  digest and its smoke receipt are in `cae-935.lock.json` beside the deploy
+  scripts). Cite that digest, not a tag, in every result.
 - Python in your sandbox is the `cae` image's: DOLFINx 0.11 on CUDA PETSc,
   petsc4py, mpi4py (MPICH), Gmsh, build123d, trimesh, manifold3d, libigl,
   NVIDIA Warp, Newton, PyVista (EGL, off screen), OpenUSD, pyLife.
@@ -219,7 +224,7 @@ Reads pictures and their records; runs nothing.
 
 ## What every result carries
 
-A result returned to the orchestrator holds: the command and the image id; the
+A result returned to the orchestrator holds: the command and the image digest; the
 inputs and their sha256; the witness results; the numbers with their units;
 the visual-QA verdict; a `claims` line and a `limits` line in the twin's
 wording; and what was not run, with the reason.
