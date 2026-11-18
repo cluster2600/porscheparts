@@ -178,6 +178,71 @@ A new mesh trial counts only once the auditor reports
 `input_admissible_for_settings_sweep: true` on the revised surface. Mesh
 independence then follows the [experiment plan](experiment-plan.json).
 
+### Geometry revision R2 and its admission audit (2026-11-12, #452)
+
+The three corrections above were carried out as additions. `source/Program.cs`,
+`prepare_duct_cfd.py`, `audit_mesh_admission.py` and every earlier receipt are
+unchanged. Results are in
+[`results/cfd/r2-admission-20261112/`](results/cfd/r2-admission-20261112/runtime.json).
+
+- **Generator.** [`source-r2/Program.cs`](source-r2/Program.cs) regenerates the
+  delivery fluid domain only. It reads two optional blend keys from the study
+  card and applies RotKit's polynomial blend, the one the branch cones use.
+  Without the keys it reproduces the R1 surface byte for byte (`5914107a…`, the
+  surface that attempts 1–6 meshed). [`study-r2a.json`](study-r2a.json) blends
+  the union seam and the alternator's rear rim. [`study-r2b.json`](study-r2b.json)
+  also blends the alternator's subtraction from the duct, because the
+  alternator's rear plane is the fan cylinder's end plane. Every other value is
+  that of `study.json`.
+- **The blend radius is a hypothesis.** Both blends use 12 mm, the value the
+  cones already use, chosen for numerical admissibility. The joins are unmeasured
+  layout hypotheses, and the r = 70 mm envelope is not the 240 A alternator
+  chosen in #454. The owner may veto the radius.
+- **Preparer.** [`source/prepare_duct_cfd_r2.py`](source/prepare_duct_cfd_r2.py)
+  meshes the cleaned PicoGK surface without decimation. It labels each port up
+  to the voxel chamfer at its rim. On the R2 surfaces, the R1 rule would leave
+  1,465 mm² of the six outlet openings labelled as wall. The eight port rims are
+  written as explicit feature edges, rebuilt from the constructive model and
+  checked to lie within 1.8 mm of the surface's region boundaries. Implicit
+  feature snapping stays off.
+- **Auditor.** [`source/audit_mesh_admission_r2.py`](source/audit_mesh_admission_r2.py)
+  loads the R1 auditor by its pinned hash and swaps in the R2 constructive model
+  only. Faces, junction names, thresholds and the admission rule are unchanged.
+  A sharp edge on a blend therefore counts either as an edge at a hard junction
+  or as a crease, and both reject. Applied to the retained R1 report, the rule
+  returns the R1 verdict (tested).
+
+| Surface | Re-entrant sharp edge at hard junctions | Creases off constructive edges | Triangles under 5° | Admissible |
+|---|---:|---:|---:|---|
+| R1, undecimated native surface | 1,089.5 mm | 0 | 0 | no |
+| R1, attempt 5 (90 % decimated) | 1,328.9 mm | 1,007 | 3,761 | no |
+| R2a: 12 mm on the seam and the rim | 14.2 mm | 0 | 99 | no |
+| R2b: R2a plus 12 mm on the subtraction | 8.0 mm | 0 | 0 | no |
+
+The remaining edges are located; their cause is read from sections, not proven.
+R2a keeps 18 short edges on the alternator's rear plane (y ≈ −5 mm, z 232–244 mm).
+The sections show thin cusps there: blending the alternator's rim alone pulls it
+off a plane the duct wall shares. R2b keeps four edges near x = 53, y ≈ −5,
+z ≈ 224 mm. There the alternator's rim, that shared plane and the plenum top
+meet, and two pairwise blends do not round a corner of three surfaces.
+
+Sections and software-rendered views of R1, R2a and R2b were inspected and not
+retained. All three are closed, consistently wound single bodies. The blends
+sit only at the seam and the alternator's rear end.
+
+**Verdict:** neither R2 surface is admissible under the unchanged rule. No
+mesh trial, mesh-independence study or flow solver was run, and the criterion
+was not relaxed.
+
+Clearing the last 8 mm needs an owner decision. None of these has been run:
+
+- move the alternator's rear plane off the fan cylinder's end plane, which
+  changes an unmeasured dimension (`alternator_rear_y_mm`);
+- revise the generator to blend the three-surface corner at once rather than
+  in pairs;
+- or allow a residual length of hard re-entrant edge. That changes the
+  2026-11-10 rule, so it must be fixed before any trial, not after one.
+
 Next, after the baseline is admissible: vary duct turns and branch sections;
 then clearance, section twist, sweep and a matched stator as separate factors.
 Use equal shaft power, minimum branch mass flow, distribution, core pressure
@@ -223,6 +288,25 @@ python3 twins/993-installed-cooling-f1/source/prepare_duct_cfd.py \
   --native work/cooling/native/delivery-fluid-domain.stl \
   --output work/cooling/cfd --flow 2.285161488875746
 python3 -m unittest discover -s tests -p test_993_installed_cooling_f1.py -v
+```
+
+R2 regenerates the fluid domain only. Run each step under a memory cap
+([host setup, section 3](../../docs/LOCAL_HOST_SETUP.md)); `generate.py` takes
+the PicoGK lock and renders in software.
+
+```sh
+python3 twins/993-installed-cooling-f1/source-r2/generate.py \
+  --picogk /path/to/PicoGK.dll --native /path/to/native-libraries \
+  --study twins/993-installed-cooling-f1/study-r2b.json \
+  --bin work/cooling-r2/bin --output work/cooling-r2/native
+python3 twins/993-installed-cooling-f1/source/prepare_duct_cfd_r2.py \
+  --native work/cooling-r2/native/delivery-fluid-domain.stl \
+  --study twins/993-installed-cooling-f1/study-r2b.json \
+  --output work/cooling-r2/case-5mm --flow 2.285161488875746
+python3 twins/993-installed-cooling-f1/source/audit_mesh_admission_r2.py \
+  --case work/cooling-r2/case-5mm \
+  --native work/cooling-r2/native/delivery-fluid-domain.stl \
+  --study twins/993-installed-cooling-f1/study-r2b.json --output work/cooling-r2/audit.json
 ```
 
 Python geometry/review uses the already installed NumPy, trimesh, PyVista and

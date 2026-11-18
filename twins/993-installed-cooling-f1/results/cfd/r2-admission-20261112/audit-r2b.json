@@ -1,0 +1,261 @@
+{
+  "status": "r2_surface_audit_not_admissible",
+  "issue": 452,
+  "scope": "admission audit of the R2 analysis surface; criteria of audit_mesh_admission.py unchanged",
+  "criteria": {
+    "pinned_auditor": {
+      "path": "twins/993-installed-cooling-f1/source/audit_mesh_admission.py",
+      "sha256": "6bbaaffb9ad5854359938e61f153fae1d29d368cef6c59457aee72e0c58c5156"
+    },
+    "sharp_deg": 30.0,
+    "surface_tol_mm": 3.0,
+    "hard_re_entrant_kinds": [
+      "fan_cylinder_plenum_hard_union_seam",
+      "alternator_rear_rim_hard_subtraction",
+      "alternator_hard_subtraction_edge"
+    ],
+    "rule": "no re-entrant sharp-edge length in any hard kind and no sharp edge off a constructive junction",
+    "kind_names": "R1 names kept: in R2 these joins are blended, and a sharp edge there still counts"
+  },
+  "generator": {
+    "path": "twins/993-installed-cooling-f1/source-r2/Program.cs",
+    "sha256": "96ebe20a5b032e885231f81c6f41379295e6702043d637e32f16245928d131cf",
+    "reentrant_blend_mm": 12.0,
+    "alternator_subtraction_blend_mm": 12.0,
+    "blend_basis": "unmeasured layout hypothesis chosen for numerical admissibility"
+  },
+  "auditor_sha256": "5b27fd93b1415153619f8acdfe79d8e331b512cb6718f45dec0b6aa730ee991c",
+  "study": {
+    "path": "study-r2b.json",
+    "sha256": "725ba163b34d764319f1daf1b17df2e55d85f023fdbf4980992faba46fbb8a3d"
+  },
+  "native_surface_sha256": "7af94c9dd736058cd2bb929fd1c62cc848e3331fe2ce9116893ae7e769c616dc",
+  "preparation": {
+    "preparer_sha256": "da6fc366c28be1958f0179aa3c0425cd106a9b48d2a490e4a9d3dc78b52273b9",
+    "decimation": "none",
+    "explicit_feature_edges": {
+      "meaning": "the inlet and outlet rims only, where the port planes cut the constructive walls; closed polylines at the voxel pitch",
+      "constructive_model": {
+        "auditor_sha256": "5b27fd93b1415153619f8acdfe79d8e331b512cb6718f45dec0b6aa730ee991c",
+        "generator_sha256": "96ebe20a5b032e885231f81c6f41379295e6702043d637e32f16245928d131cf"
+      },
+      "edges": 2082,
+      "points": 2082,
+      "closed_loops": 8,
+      "rim_length_mm": {
+        "inlet_inner": 439.8,
+        "inlet_outer": 791.7,
+        "left1": 277.1,
+        "left2": 277.1,
+        "left3": 277.1,
+        "right1": 277.1,
+        "right2": 277.1,
+        "right3": 277.1
+      },
+      "surface_region_boundaries": {
+        "meaning": "edges of the surface between two regions: zigzags along the voxel chamfers, checked against the rims but not snapped to",
+        "edges": 2460,
+        "connected_boundaries": 8,
+        "boundary_length_mm": [
+          310.1,
+          310.1,
+          310.1,
+          310.1,
+          310.1,
+          310.1,
+          470.1,
+          843.4
+        ],
+        "edges_by_region_pair": {
+          "inlet/walls": 990,
+          "left1/walls": 245,
+          "left2/walls": 245,
+          "left3/walls": 245,
+          "right1/walls": 245,
+          "right2/walls": 245,
+          "right3/walls": 245
+        },
+        "distance_to_constructive_rims_mm": {
+          "mean": 0.94,
+          "max": 1.756
+        }
+      }
+    }
+  },
+  "analysis_surface": {
+    "sha256": "2d71b8e531bd45405c7e33b7b0111d2a9e90af1beb772134b7953a5a8fa39482",
+    "triangles": 918656,
+    "vertices_after_exact_merge": 459328,
+    "closed_single_outward_body": true,
+    "volume_mm3": 32002572.4,
+    "constructive_model_residual_mm": {
+      "meaning": "|fluid SDF of the Program.cs re-implementation| at analysis-surface vertices",
+      "p50": 0.002,
+      "p95": 0.017,
+      "p99": 0.033,
+      "max": 0.75
+    },
+    "edge_length_mm": {
+      "min": 0.161,
+      "p05": 0.916,
+      "median": 1.5,
+      "p95": 2.122,
+      "max": 2.64
+    },
+    "triangles_with_min_angle_below_5_deg": 0,
+    "normal_angle_histogram_deg": {
+      "30-45": 2574,
+      "45-60": 1019,
+      "60-90": 198,
+      "90-120": 0,
+      "120-180": 0
+    },
+    "sharp_edges_over_30_deg": 3791,
+    "sharp_edges_by_construction": {
+      "alternator_hard_subtraction_edge": {
+        "edges": 4,
+        "length_mm": 8.3,
+        "re_entrant_edges": 3,
+        "re_entrant_length_mm": 6.2,
+        "salient_edges": 1,
+        "max_normal_angle_deg": 48.22
+      },
+      "fan_cylinder_plenum_hard_union_seam": {
+        "edges": 3,
+        "length_mm": 5.7,
+        "re_entrant_edges": 1,
+        "re_entrant_length_mm": 1.8,
+        "salient_edges": 2,
+        "max_normal_angle_deg": 35.48
+      },
+      "fan_cylinder_rear_edge": {
+        "edges": 482,
+        "length_mm": 603.8,
+        "re_entrant_edges": 34,
+        "re_entrant_length_mm": 54.2,
+        "salient_edges": 448,
+        "max_normal_angle_deg": 58.63
+      },
+      "inlet_inner_rim_plane_cut": {
+        "edges": 602,
+        "length_mm": 868.0,
+        "re_entrant_edges": 52,
+        "re_entrant_length_mm": 103.7,
+        "salient_edges": 550,
+        "max_normal_angle_deg": 52.52
+      },
+      "inlet_outer_rim_plane_cut": {
+        "edges": 1002,
+        "length_mm": 1416.5,
+        "re_entrant_edges": 80,
+        "re_entrant_length_mm": 161.1,
+        "salient_edges": 922,
+        "max_normal_angle_deg": 54.71
+      },
+      "outlet_rim_plane_cut": {
+        "edges": 1698,
+        "length_mm": 2107.5,
+        "re_entrant_edges": 138,
+        "re_entrant_length_mm": 227.3,
+        "salient_edges": 1560,
+        "max_normal_angle_deg": 67.36
+      }
+    },
+    "regions": [
+      "walls",
+      "inlet",
+      "left1",
+      "left2",
+      "left3",
+      "right1",
+      "right2",
+      "right3"
+    ],
+    "sharp_edges_on_region_boundaries": 2144
+  },
+  "counted_edges": {
+    "count": 4,
+    "listed": [
+      {
+        "midpoint_mm": [
+          52.91,
+          -4.57,
+          223.58
+        ],
+        "length_mm": 1.94,
+        "normal_angle_deg": 48.22,
+        "re_entrant": true,
+        "construction": "alternator_hard_subtraction_edge",
+        "faces": [
+          "alternator_end",
+          "fan_cylinder_end"
+        ],
+        "junction_distance_mm": 1.42
+      },
+      {
+        "midpoint_mm": [
+          52.87,
+          -7.46,
+          227.92
+        ],
+        "length_mm": 2.0,
+        "normal_angle_deg": 37.99,
+        "re_entrant": true,
+        "construction": "alternator_hard_subtraction_edge",
+        "faces": [
+          "alternator_side",
+          "fan_cylinder_end"
+        ],
+        "junction_distance_mm": 2.46
+      },
+      {
+        "midpoint_mm": [
+          53.76,
+          -6.1,
+          224.91
+        ],
+        "length_mm": 2.26,
+        "normal_angle_deg": 36.04,
+        "re_entrant": true,
+        "construction": "alternator_hard_subtraction_edge",
+        "faces": [
+          "alternator_side",
+          "fan_cylinder_end"
+        ],
+        "junction_distance_mm": 1.1
+      },
+      {
+        "midpoint_mm": [
+          53.56,
+          -4.5,
+          224.72
+        ],
+        "length_mm": 1.84,
+        "normal_angle_deg": 30.82,
+        "re_entrant": true,
+        "construction": "fan_cylinder_plenum_hard_union_seam",
+        "faces": [
+          "plenum_box",
+          "fan_cylinder_end"
+        ],
+        "junction_distance_mm": 0.5
+      }
+    ]
+  },
+  "verdict": {
+    "input_admissible_for_settings_sweep": false,
+    "mesh_admitted": false,
+    "flow_solver_started": false,
+    "reason": "The surface carries 1.8 mm of re-entrant sharp edge at fan_cylinder_plenum_hard_union_seam; 6.2 mm of re-entrant sharp edge at alternator_hard_subtraction_edge.",
+    "hard_re_entrant_length_mm": {
+      "fan_cylinder_plenum_hard_union_seam": 1.8,
+      "alternator_hard_subtraction_edge": 6.2
+    },
+    "creases_off_constructive_junctions": {
+      "edges": 0,
+      "length_mm": 0.0
+    }
+  },
+  "manufacturing_authorized": false,
+  "physical_validation": false
+}
