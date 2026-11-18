@@ -1,0 +1,1019 @@
+{
+  "schema": "bionic-turbo-gate-ledger/v1",
+  "baseline": "bionic-turbo-f1-fp-chain-20261118",
+  "parent_ledger": "twins/bionic-turbo-f1/basis-20261112/gate-ledger.json",
+  "parent_ledger_sha256": "36cfc304574ee44957c31f8aca42ce67e9f2e5cf1eafc048ee9336bf2578c8ba",
+  "roadmap": "https://github.com/cluster2600/porscheparts/issues/393",
+  "states": {
+    "not_started": "No execution under this gate. Listed blockers are known missing evidence.",
+    "blocked": "Started or inspected; named evidence is missing and dependent execution must stop.",
+    "unknown": "The state could not be observed.",
+    "failed": "Prescribed criteria were applied and refused the result. A failed gate stays failed; a new attempt is a new gate revision.",
+    "investigated": "The investigation is complete and documented; it records blockers and cannot by itself pass an engineering gate.",
+    "engineering_passed": "Every prerequisite passed, all bindings and configuration pins matched, receipts verified and, for physical correlation or manufacturing, a documented professional review exists."
+  },
+  "opening_rule": "A gate may open only through baseline.py evaluate_gate: every prerequisite engineering_passed, no open blocker, every bound runtime row attested with the same variant, version and platform, every bound identity pinned (never 'unknown') and attested byte-for-byte equal, every configuration pin still matching the repository and attested equal, at least one verified execution receipt, and a review receipt for physical correlation and manufacturing release. A stale or mismatched binary or configuration hash refuses the gate.",
+  "release_separation": {
+    "numerical_comparison": "G08 (compressor) and G10 (whole turbo, with uncertainty) report numerical results within a labelled domain. They are not physical correlation.",
+    "physical_correlation": "R2 requires time-stamped bench measurements correlated with the numerical model; it is false until then.",
+    "manufacturing_release": "R3 requires documented professional engineering review, an approved validation plan and material/process qualification. A turbocharger is a highly loaded engine part under AGENTS.md; this roadmap authorises neither fabrication nor physical testing."
+  },
+  "gates": [
+    {
+      "id": "G01-baseline-frozen",
+      "issue": 394,
+      "kind": "documentary",
+      "title": "Turbo baseline frozen: immutable evidence, hashes, unresolved gates and running jobs inventoried",
+      "state": "engineering_passed",
+      "prerequisites": [],
+      "required_bindings": [],
+      "config_pins": [],
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/baseline-20261106/evidence-inventory.json",
+          "sha256": "0fe39004f5528e63dd595cf270aab3638ff816a7d8391147b8b963ea07b45323"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+          "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/baseline-20261106-mac/runtime-readback.json",
+          "sha256": "85477f2610a367501ac1e6bba152b19e96a9e3e05ab88095c76ce716dd228b86"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/recovery-20261106/prerequisites.json",
+          "sha256": "1955f6e879be74e967daf8745088bc8eb3eb362c6f3d041bce3cb6e07ff41b5a"
+        }
+      ],
+      "results": [
+        {
+          "claim": "63 evidence packages with archive receipts; each committed file-manifest digest matches a live release asset on 2026-11-06; the 1689 tracked evidence files are frozen by one aggregate digest.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106/evidence-inventory.json",
+              "sha256": "0fe39004f5528e63dd595cf270aab3638ff816a7d8391147b8b963ea07b45323"
+            }
+          ]
+        },
+        {
+          "claim": "No OpenFOAM or turbo process, container or recurring automation is running or scheduled on the WSL host.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106/host-observations-20261106.json",
+              "sha256": "f3743a42a21db0f089670a1eb230636c329aa8c335e0f111e2d64df7010b2594"
+            }
+          ]
+        },
+        {
+          "claim": "Mac runtime, volume and paused automation verified; Kali SSH/Docker accessible; no matching OpenFOAM process on either host. Kali storage blocks future substantial checkout/build work, not this read-only inventory.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/baseline-20261106-mac/runtime-readback.json",
+              "sha256": "85477f2610a367501ac1e6bba152b19e96a9e3e05ab88095c76ce716dd228b86"
+            }
+          ]
+        }
+      ],
+      "blockers": []
+    },
+    {
+      "id": "G01-execution-contract",
+      "issue": 394,
+      "kind": "software",
+      "title": "Software execution contract: one pinned OpenCFD v2406 runtime with identified executables and pinned case generators",
+      "state": "engineering_passed",
+      "prerequisites": [],
+      "required_bindings": [
+        {
+          "runtime": "opencfd-v2406-runtime",
+          "field": "identity.image"
+        },
+        {
+          "runtime": "opencfd-v2406-runtime",
+          "field": "executables.rhoSimpleFoam"
+        },
+        {
+          "runtime": "opencfd-v2406-runtime",
+          "field": "executables.blockMesh"
+        },
+        {
+          "runtime": "opencfd-v2406-runtime",
+          "field": "executables.snappyHexMesh"
+        },
+        {
+          "runtime": "opencfd-v2406-runtime",
+          "field": "executables.checkMesh"
+        }
+      ],
+      "config_pins": [
+        {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case_v2.py",
+          "sha256": "067eccbf3afe7667f47816d771ff23a6e11f8be2596382adb587f7f5a52bfe6d"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/cfd/run_case.py",
+          "sha256": "14a98eb9e44206b35ecf5fa60caeb933896787958e88b4617542dd839437f16f"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/cfd/audit_case.py",
+          "sha256": "8fd5b1330c717ffbf92dee7b65f17410a8b84f96015df602028d179762a7fb49"
+        }
+      ],
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/baseline-20261106-mac/runtime-matrix.json",
+          "sha256": "339ab0628ba9666792005264f75f31e79dbf260a4f3a6f25430fe161804a0bd1"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/baseline-20261106-mac/runtime-readback.json",
+          "sha256": "85477f2610a367501ac1e6bba152b19e96a9e3e05ab88095c76ce716dd228b86"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/recovery-20261106/prerequisites.json",
+          "sha256": "1955f6e879be74e967daf8745088bc8eb3eb362c6f3d041bce3cb6e07ff41b5a"
+        }
+      ],
+      "blockers": []
+    },
+    {
+      "id": "G02-evidence-recoverable",
+      "issue": 395,
+      "kind": "software",
+      "title": "Turbo evidence independently recoverable with DVC (empty-cache restore, independent SHA)",
+      "state": "engineering_passed",
+      "prerequisites": [
+        "G01-baseline-frozen",
+        "G01-execution-contract"
+      ],
+      "required_bindings": [
+        {
+          "runtime": "free-tools-dvc",
+          "field": "identity.requirements_lock_sha256"
+        }
+      ],
+      "config_pins": [
+        {
+          "path": "twins/bionic-turbo-f1/recovery-20261106/recover.py",
+          "sha256": "b6581789412b4f33852a0da3ead504db48a2720cd56bee2ac14e0ea499cc485d"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/recovery-20261106/packages.json",
+          "sha256": "2dda9e9b62911198497ee9092b5370e9190b0dd965f6ec5ed20f86f73aa79641"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/recovery-20261106/dvc-manifest.json",
+          "sha256": "7f202cea53318586e31a444446dfd138321b865a402db7636b4ae3a0fa61efd0"
+        },
+        {
+          "path": "benchmarks/free-tools/storage.py",
+          "sha256": "8c56fa168e9c3746e7ec7b51fddf7503f93b075aecc340427fe7a3993dafd721"
+        },
+        {
+          "path": "benchmarks/free-tools/requirements.lock.txt",
+          "sha256": "245ceb27fa48e4605dd4c438354837264b8ab55c59faae1d33d640b8d19d52a4"
+        }
+      ],
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/recovery-20261106/dvc-archive-receipt.json",
+          "sha256": "c63385c7391c643832e952f2e60e7777ed4c88d6d0088157f3b4ea58e031fcab"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/recovery-20261106/dvc-restore-receipt.json",
+          "sha256": "0fc5f5cb00fe0f7383228ead1f76b0739a795aa03bcae385f35f8d0a38caf46a"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/recovery-20261106/contact-receipt.json",
+          "sha256": "ddde2d9c59957430ed0e91d14006590d693b25a3132a7e100b0020d7d050c1a5"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/recovery-20261106/native-receipt.json",
+          "sha256": "34fdcb2e671f0ccfd484ff7b771087d4947740be35358d8d59c339f7270d33ac"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/recovery-20261106/independent-recovery.json",
+          "sha256": "914d0496eed150ba4c80bbfec564dcec91db73791046cce15a55093cf9a6b135"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/recovery-20261106/first-attempt-failure.json",
+          "sha256": "a7ef9dba3e2b734d7feba9909382d85fc9bf9e1e6b35655205b29d7432be7f5f"
+        }
+      ],
+      "results": [
+        {
+          "claim": "Selected 2 of 63 archived packages restored through DVC into an empty independent cache; 96 files independently checked for SHA-256 and size. Remaining 61 packages and second-host replication are outside this accepted scope. No stored programs or solvers executed.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/recovery-20261106/dvc-archive-receipt.json",
+              "sha256": "c63385c7391c643832e952f2e60e7777ed4c88d6d0088157f3b4ea58e031fcab"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/recovery-20261106/dvc-restore-receipt.json",
+              "sha256": "0fc5f5cb00fe0f7383228ead1f76b0739a795aa03bcae385f35f8d0a38caf46a"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/recovery-20261106/contact-receipt.json",
+              "sha256": "ddde2d9c59957430ed0e91d14006590d693b25a3132a7e100b0020d7d050c1a5"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/recovery-20261106/native-receipt.json",
+              "sha256": "34fdcb2e671f0ccfd484ff7b771087d4947740be35358d8d59c339f7270d33ac"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/recovery-20261106/independent-recovery.json",
+              "sha256": "914d0496eed150ba4c80bbfec564dcec91db73791046cce15a55093cf9a6b135"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/recovery-20261106/first-attempt-failure.json",
+              "sha256": "a7ef9dba3e2b734d7feba9909382d85fc9bf9e1e6b35655205b29d7432be7f5f"
+            }
+          ]
+        }
+      ],
+      "blockers": []
+    },
+    {
+      "id": "G03-measured-interfaces-and-basis",
+      "issue": 396,
+      "kind": "documentary",
+      "title": "Measured interfaces and a sourced reference-versus-bionic comparison basis",
+      "state": "investigated",
+      "prerequisites": [
+        "G01-baseline-frozen",
+        "G01-execution-contract",
+        "G02-evidence-recoverable"
+      ],
+      "required_bindings": [],
+      "config_pins": [
+        {
+          "path": "benchmarks/free-tools/knowledge.py",
+          "sha256": "11a529b41e85ea75c6a47e16362b805e8d1e9532e045931c7142a9b9c8a4fc3e"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/basis-20261112/basis.py",
+          "sha256": "4a17a54581a94e2655919059ed4a682a5ded433aea94961d1f2c579ffb02c409"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/basis-20261112/source-allowlist.json",
+          "sha256": "bb22de253b95d30548e25cf9d5a52229a84090bf3f95ef314e8743b670f166d0"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/basis-20261112/turbo-corpus.json",
+          "sha256": "bb8542c8f3e814901ff1f91b8b088b604d58a6180f7f1f4d5df7356e907bd54d"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/basis-20261112/turbo-retrieval-cases.json",
+          "sha256": "33ded4b99ec38734ae5daccec772f23cf3b72305dbf1906af4d27cfa67d2e027"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/basis-20261112/known-citations.json",
+          "sha256": "a6af0bcc524f4ee289bb2a4ce59f38e4279a0b2819a47c4536c12e4828ab953d"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/basis-20261112/interface-ledger.json",
+          "sha256": "698ca36b9e3c2bd966d480b55e741fb45b05861e68264d214fce7fa1c319203c"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/basis-20261112/conventions.json",
+          "sha256": "23b2a89d95ba990d0d679e1d59ca364e85122f5e4e2fe388dd9b5d4bb272bb9a"
+        }
+      ],
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/basis-20261112/retrieval-receipt.json",
+          "sha256": "bf143dafc43eabf86fee1eb80cb6e8c36fe17965f33b1a2f0da70c54442dfd44"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/basis-20261112/prerequisites.json",
+          "sha256": "dc2ff50c521c3629422a17292f1b5856c8e95aad66743d859c01fe9f1b11391d"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/basis-20261112/host-observations-20261112.json",
+          "sha256": "4d1d33f645c3956eb43c7476b3bd59348aef41acf6894dff13fa78aaebd8949d"
+        }
+      ],
+      "blockers": [
+        {
+          "id": "no-measured-operating-conditions",
+          "detail": "Rotor speed, inlet total pressure and temperature and the outlet static pressure remain hypotheses of the case generator (ledger entries speed.* and bc.*). Mass flow, total pressure ratio, outlet total temperature and the turbine-side, engine, oil and thermal states are null. Missing-data gates MD-07 to MD-10."
+        },
+        {
+          "id": "no-measured-interfaces",
+          "detail": "None of the 79 ledger entries is measured. Rotor, housing, nut, port and clearance values are display assumptions or outputs of the concept model; datums, tolerances, materials and the rotor joint are null. Missing-data gates MD-02 to MD-05, MD-11 and MD-12."
+        },
+        {
+          "id": "no-physical-reference-variant",
+          "detail": "No physical turbocharger is identified as the referent of the interfaces: measured_variant in the F1 component contract and exact_donor_variant in the F0 interface contract are null. Until a unit is named, a measurement has no specimen. Missing-data gate MD-01."
+        },
+        {
+          "id": "no-admitted-compressor-or-turbine-map",
+          "detail": "No compressor or turbine map exists for the concept or for an identified unit. The published maps recorded in the registers belong to other units, carry their own reference conditions and are context only. Missing-data gate MD-06."
+        }
+      ],
+      "results": [
+        {
+          "claim": "An authorised turbo source allowlist of 21 committed files yields 76 exact-span documents. The unchanged FTS5 evaluation passes 30 of 30 frozen cases and all 26 known citations are retrieved with their exact phrase, locator, variant identity, evidence status and units. Retrieval is documentary; it is not measurement.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/basis-20261112/retrieval-receipt.json",
+              "sha256": "bf143dafc43eabf86fee1eb80cb6e8c36fe17965f33b1a2f0da70c54442dfd44"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/basis-20261112/turbo-corpus.json",
+              "sha256": "bb8542c8f3e814901ff1f91b8b088b604d58a6180f7f1f4d5df7356e907bd54d"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/basis-20261112/known-citations.json",
+              "sha256": "a6af0bcc524f4ee289bb2a4ce59f38e4279a0b2819a47c4536c12e4828ab953d"
+            }
+          ]
+        },
+        {
+          "claim": "The interface and operating-condition ledger holds 79 entries: 0 measured, 54 carrying a labelled study value with its source span, 25 null. Every entry is bound to a named missing-data gate; no unsourced field is promoted to measured status.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/basis-20261112/interface-ledger.json",
+              "sha256": "698ca36b9e3c2bd966d480b55e741fb45b05861e68264d214fce7fa1c319203c"
+            }
+          ]
+        },
+        {
+          "claim": "Quantities and sign conventions are defined, with one declared pair of reference conditions for corrected flow and speed. With no measured entry and no identified physical unit, a provisional synthetic comparison is the only justified scope.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/basis-20261112/conventions.json",
+              "sha256": "23b2a89d95ba990d0d679e1d59ca364e85122f5e4e2fe388dd9b5d4bb272bb9a"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/basis-20261112/interface-ledger.json",
+              "sha256": "698ca36b9e3c2bd966d480b55e741fb45b05861e68264d214fce7fa1c319203c"
+            }
+          ]
+        },
+        {
+          "claim": "Prerequisite gates G01-baseline-frozen, G01-execution-contract and G02-evidence-recoverable are engineering_passed and their recorded attestations are still accepted by the unchanged evaluator.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/basis-20261112/prerequisites.json",
+              "sha256": "dc2ff50c521c3629422a17292f1b5856c8e95aad66743d859c01fe9f1b11391d"
+            }
+          ]
+        },
+        {
+          "claim": "CloudCompare and Qwen were not used; no mesher, solver, container or remote host was run.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/basis-20261112/host-observations-20261112.json",
+              "sha256": "4d1d33f645c3956eb43c7476b3bd59348aef41acf6894dff13fa78aaebd8949d"
+            }
+          ]
+        },
+        {
+          "claim": "measured interfaces and operating conditions of a physical turbocharger",
+          "unknown": {
+            "reason": "no measurement exists in the repository and no physical unit is identified; see the missing-data gates MD-01 to MD-12"
+          }
+        }
+      ],
+      "next_permitted_action": "Issue 397 (writePrecision 16 conversion and native floating-point execution) may proceed on its own prerequisites. G05, G08 and G09 stay closed behind this gate. Whether the roadmap continues as an explicitly provisional synthetic comparison is an owner decision; it is not taken here."
+    },
+    {
+      "id": "G04-native-fp-execution",
+      "issue": 397,
+      "kind": "numerical",
+      "title": "writePrecision 16 conversion chain and native floating-point execution qualified",
+      "state": "investigated",
+      "prerequisites": [
+        "G01-baseline-frozen",
+        "G01-execution-contract",
+        "G02-evidence-recoverable"
+      ],
+      "required_bindings": [
+        {
+          "runtime": "opencfd-v2406-runtime",
+          "field": "identity.image"
+        },
+        {
+          "runtime": "opencfd-v2406-runtime",
+          "field": "executables.checkMesh"
+        }
+      ],
+      "config_pins": [
+        {
+          "path": "twins/bionic-turbo-f1/fp-chain-20261118/fpchain.py",
+          "sha256": "3ba8fad7c649a411e9e444e391a0f3a037f2326e6462ff98c0afb9dce6fe7b59"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/fp-chain-20261118/independent_reader.py",
+          "sha256": "e25592260eeb27d4ed5f4bd5a5f4424c7f3a04b7e9665d033a4f145da0eda81e"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/fp-chain-20261118/readback_image.py",
+          "sha256": "165fbca06749ff5a27628e9877c5b8bb6adef8a48eed293d640cd97d502e11cf"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-contract.json",
+          "sha256": "006fdd018990ea5ab0cb78fe69d049d309e29a10b8e63fa44d9f29223078a9a0"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/fp-chain-20261118/contract-amendment-20261118.json",
+          "sha256": "40604be8376c32b4f764c13b2bb45ad1c18071a02507b83734b218dd9dfa0bb3"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case_v2.py",
+          "sha256": "067eccbf3afe7667f47816d771ff23a6e11f8be2596382adb587f7f5a52bfe6d"
+        }
+      ],
+      "receipts": [
+        {
+          "path": "twins/bionic-turbo-f1/fp-chain-20261118/runtime-readback-20261118.json",
+          "sha256": "56aa911ea02677bcf7aa2fa15c7f490a22a4d037d3d1ba5788c8135b3e75a9d2"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-receipt.json",
+          "sha256": "ddc09712f2fdebddceb117069e4ff3c40e09e8b93d76870e3616da7820513ca7"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/fp-chain-20261118/independent-readback.json",
+          "sha256": "7febbdf6a4161fdc8a3b3167c9d74331eff7528a5c9b5e571097aeaaf71b8b80"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/fp-chain-20261118/prerequisites.json",
+          "sha256": "bb1543ec37e18e0cfafe664e26eb25ae5371319f394f1edf4bf92cb0d347905a"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/fp-chain-20261118/host-observations-20261118.json",
+          "sha256": "4206a1b3edd2023a81b52ca0a7971c53fa6067e9a22e7b751863e984b276d3fd"
+        }
+      ],
+      "results": [
+        {
+          "claim": "The chain exact rational -> 16-digit text -> native binary128 read -> binary64, the native write at writePrecision 16 and the reread are prescribed with rounding modes, per-stage error bounds (16-digit rounding 5e-16 relative; native read 2^-53 + 2^-111 relative), branches (label token, underflow to +0 at |q| <= VSMALL, range refusal, double rounding) and an accumulation budget of one native rewrite, together with the operation model (contraction covered, reassociation not), the face, closure and guard bounds, the branch and margin rules and the admissibility argument for a later native input. The contract was committed in e68d171c before any pull or reader run.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-contract.json",
+              "sha256": "006fdd018990ea5ab0cb78fe69d049d309e29a10b8e63fa44d9f29223078a9a0"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/contract-amendment-20261118.json",
+              "sha256": "40604be8376c32b4f764c13b2bb45ad1c18071a02507b83734b218dd9dfa0bb3"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-receipt.json",
+              "sha256": "ddc09712f2fdebddceb117069e4ff3c40e09e8b93d76870e3616da7820513ca7"
+            }
+          ]
+        },
+        {
+          "claim": "Static readback of the pulled linux/arm64 image on the WSL host, nothing executed: the manifest digest, the platform and the five pinned executables (checkMesh 469fa2e3ca84...) match the runtime matrix; libOpenFOAM.so imports strtold and __trunctfdf2, so the reader narrows binary128 to binary64; nine exported binary64 constants and mesh thresholds equal the roundings of their source literals; geometry signatures use Vector<double> and UList<int>; the image META-INFO source manifest equals the one archived from the Mac on 2026-10-12 and lists the same git blobs as the pinned archive members read; Ubuntu 24.04, glibc 2.39-0ubuntu8.2, libstdc++ 14-20240412-0ubuntu1, openfoam2406 2406.0-1; 76 fused multiply-add instructions inside the geometry functions (checkClosedBoundary, faceFlatness, faceOrthogonality, faceSkewness, makeCellCentresAndVols, makeFaceCentresAndAreas, updateCellCentresAndVols, updateFaceCentresAndAreas); no fesetround or fesetenv import and no MSR FPCR in checkMesh or libOpenFOAM.so. The binaries carry no compiler string.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/runtime-readback-20261118.json",
+              "sha256": "56aa911ea02677bcf7aa2fa15c7f490a22a4d037d3d1ba5788c8135b3e75a9d2"
+            }
+          ]
+        },
+        {
+          "claim": "The primary reader and the independent reader (integer IEEE emulation, no import of the primary) agree on 1662 comparisons with no mismatch. Every stage stays within its bound for the 17 rational and 13 text witnesses, and all 15 witness classes are exhibited: VSMALL itself is written 1e-300 at writePrecision 16 and read back as 0; 16 digits fail both round trips; a 37-digit text is read as 1 where the correctly rounded value is 1 + 2^-52 (double rounding), which the prescribed lemma excludes for 16-digit text with |x| >= 1e-10.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-receipt.json",
+              "sha256": "ddc09712f2fdebddceb117069e4ff3c40e09e8b93d76870e3616da7820513ca7"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/independent-readback.json",
+              "sha256": "7febbdf6a4161fdc8a3b3167c9d74331eff7528a5c9b5e571097aeaaf71b8b80"
+            }
+          ]
+        },
+        {
+          "claim": "On 62 synthetic reference faces (not turbo geometry) every unfused and fused evaluation lies within its prescribed bound; fused results differ from unfused ones in 86 face-pattern cases; closed cells and closed boundaries have exact rational sums of zero but non-zero binary64 sums in 45 of 48 cell and 18 of 20 boundary evaluations, all within bound and decided closed; the three guard faces are decided active, undecided and inactive by the branch rule.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-receipt.json",
+              "sha256": "ddc09712f2fdebddceb117069e4ff3c40e09e8b93d76870e3616da7820513ca7"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/independent-readback.json",
+              "sha256": "7febbdf6a4161fdc8a3b3167c9d74331eff7528a5c9b5e571097aeaaf71b8b80"
+            }
+          ]
+        },
+        {
+          "claim": "Certified margins read from the pinned certificates, not native decisions: flatness 5.457778e-02, skewness 1.508277e-02, weights 1.408881e-04, volume ratio 2.914558e-01. The non-orthogonality threshold is unresolved: the pinned glibc 2.39 ::cos has no verified error bound and was not executed; only if it were faithfully rounded would the margin be 1.436474e-06, and only then would the 2026-10-13 threshold interval (around the mathematical cos(70 degrees)) lie 1.64 units in the last place below the native threshold. The face guard is decided inactive for every quad of a written input whose coordinates satisfy |x| <= 372.605 length units.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-receipt.json",
+              "sha256": "ddc09712f2fdebddceb117069e4ff3c40e09e8b93d76870e3616da7820513ca7"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/independent-readback.json",
+              "sha256": "7febbdf6a4161fdc8a3b3167c9d74331eff7528a5c9b5e571097aeaaf71b8b80"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/contract-amendment-20261118.json",
+              "sha256": "40604be8376c32b4f764c13b2bb45ad1c18071a02507b83734b218dd9dfa0bb3"
+            }
+          ]
+        },
+        {
+          "claim": "All 153 closed boxes (leaves 1778 to 1930), both domain endpoints and the undecided determinant leaves 1929 and 1930 are carried unchanged; no point, ratio, candidate or native input was selected; no OpenFOAM process, mesher, solver or turbo case ran.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-receipt.json",
+              "sha256": "ddc09712f2fdebddceb117069e4ff3c40e09e8b93d76870e3616da7820513ca7"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/host-observations-20261118.json",
+              "sha256": "4206a1b3edd2023a81b52ca0a7971c53fa6067e9a22e7b751863e984b276d3fd"
+            }
+          ]
+        },
+        {
+          "claim": "native floating-point behaviour of the pinned linux/arm64 binary in execution",
+          "unknown": {
+            "reason": "the pinned binary was not executed: the WSL host has no arm64 executor, the amd64 sibling is a different runtime row, and remote hosts were excluded on 2026-11-18"
+          }
+        },
+        {
+          "claim": "The link rationals to writePrecision 16 text to binary64, the floating-point accumulations, the configuration and the binary remain open; the two undecided determinants are kept.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/evidence/airflow-internal-contact-obligations-20261014/next-scope.md",
+              "sha256": "8fcedd059dab6964daaed2578389e328cc18dcfdf091a118c6de2290564fa285"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/evidence/airflow-native-admission-dossier-20261013/README.md",
+              "sha256": "2411695650330d29a61ae8eeaad6ff6690e42b646563cb60edabdbd96d3bb99c"
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        {
+          "id": "pinned-binary-not-executed",
+          "detail": "The native read (strtold to binary128, narrowing by __trunctfdf2, underflow and range branches), the writePrecision 16 write, the libm cosine of the non-orthogonality threshold and the fused multiply-add paths found in the geometry functions are source and static facts only. Missing evidence: a separately prescribed synthetic probe (the frozen witness texts and reference cells only; no turbo geometry, no PR229 blockMeshDict, no case 084) executed by the pinned linux/arm64 image with its hashes verified at launch, recording the bits read, written and computed."
+        },
+        {
+          "id": "native-nonorthogonality-threshold-unresolved",
+          "detail": "The native threshold ::cos(degToRad(70)) of G5 comes from the pinned glibc 2.39 aarch64 libm, which has no verified (proven) error bound: glibc does not promise correctly rounded cos and its ULP tables are test measurements. The bracket of the two binary64 neighbours of the exact cosine is therefore a conditional figure only (contract amendment of 2026-11-18). Missing evidence: the value returned by the pinned binary, observed by the prescribed probe, or a proven error bound for that implementation at this argument."
+        },
+        {
+          "id": "no-admissible-native-input",
+          "detail": "No native input exists and none is created here. The admissibility argument of the contract is documented but not applied; leaves 1929 and 1930 keep undecided determinants, so no budget has been applied to a written turbo input and no native margin is decided."
+        },
+        {
+          "id": "criterion-sensitivity-and-conditioning-not-certified",
+          "detail": "Certified margins are recorded, but carrying conversion displacement and rounding into the cell guard, closure, flatness, weights, volume ratio, skewness, orthogonality and face-tets decisions needs sensitivity and conditioning bounds over the 153 boxes that no pinned certificate provides. Only the face guard has a certificate-based criterion (|x| <= R_crit). Deriving the missing bounds is a new prescribed derivation that must reuse, not replay, the PR238-256 results."
+        },
+        {
+          "id": "compiler-and-options-not-pinned",
+          "detail": "The pinned binaries carry no .comment section and no recorded switches. The source rules give g++ -std=c++14 -O3 without -ffp-contract, and contraction is observed statically, but the compiler version and the options of package openfoam2406 2406.0-1 (arm64) are not recorded. Reassociation is excluded only by inference: neither checkMesh nor libOpenFOAM.so writes FPCR, and both are stripped of the symbol table that would show a fast-math start-up routine. Missing evidence: the build recipe or log of that package."
+        }
+      ],
+      "resolved_blockers": [
+        {
+          "id": "conversion-chain-not-prescribed",
+          "claim": "Conversions, rounding modes, per-operation errors, branches, budgets and an independent reader are prescribed before application and applied to frozen witnesses, certificate rationals and synthetic reference cells. The libm threshold of the non-orthogonality check is withdrawn from the prescription by the dated amendment and kept as a separate blocker.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-contract.json",
+              "sha256": "006fdd018990ea5ab0cb78fe69d049d309e29a10b8e63fa44d9f29223078a9a0"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/contract-amendment-20261118.json",
+              "sha256": "40604be8376c32b4f764c13b2bb45ad1c18071a02507b83734b218dd9dfa0bb3"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-receipt.json",
+              "sha256": "ddc09712f2fdebddceb117069e4ff3c40e09e8b93d76870e3616da7820513ca7"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/independent-readback.json",
+              "sha256": "7febbdf6a4161fdc8a3b3167c9d74331eff7528a5c9b5e571097aeaaf71b8b80"
+            }
+          ]
+        }
+      ],
+      "next_permitted_action": "G04 stays closed and G05 stays closed behind G03 and G04. Permitted next, each prescribed before application: (1) an owner decision on an arm64 host (the Mac) for the synthetic native probe of blocker pinned-binary-not-executed; (2) a documentary search for the build recipe of openfoam2406 2406.0-1 arm64; (3) a prescribed derivation of sensitivity and conditioning bounds that reuses the pinned certificates without replaying their traversals. None of them selects a native input, launches a solver or touches case 084 or the PR229 blockMeshDict."
+    },
+    {
+      "id": "G05-full-geometry",
+      "issue": 398,
+      "kind": "geometry",
+      "title": "Full reference and bionic geometry qualified against the interface contract",
+      "state": "not_started",
+      "prerequisites": [
+        "G02-evidence-recoverable",
+        "G03-measured-interfaces-and-basis",
+        "G04-native-fp-execution"
+      ],
+      "required_bindings": [
+        {
+          "runtime": "picogk-bionic-turbo-f1",
+          "field": "identity.project_file_sha256"
+        }
+      ],
+      "config_pins": [
+        {
+          "path": "twins/bionic-turbo-f1/baseline.json",
+          "sha256": "1a7d430b473746f7ef56e96554acb30692067becd0af118c64e2e65fbbd01011"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/candidate.json",
+          "sha256": "82085e4bd1b0a47b2088e47c7bdb64462c31992b5cf3db5f7b4b5e72d9f69f37"
+        }
+      ],
+      "receipts": [],
+      "results": [
+        {
+          "claim": "The tighter wheel-profile variant (candidate-combined) is rejected for the current CFD: local wheel/housing distance below 0.4 mm, under the 0.5 mm voxel. The retained pair is reference versus volute-only F1.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/evidence/combined-003-clearance-upper-bound.json",
+              "sha256": "3b24abe04a575711e1939883d80a0b74bc7ce6fcbf2d59775c82fdf67d7cc7cc"
+            }
+          ]
+        },
+        {
+          "claim": "The PR241 representation, native centres, other triangulations and the complete physical turbo are distinct; contacts are covered only in the PR241 representation.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/evidence/airflow-internal-contact-obligations-20261014/README.md",
+              "sha256": "28615621d84854997de682310b274439962a9d13212747ce0e4785428ba5e383"
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        {
+          "id": "interface-contract-absent",
+          "detail": "No independent interface contract with measured datums exists for the turbo."
+        }
+      ]
+    },
+    {
+      "id": "G06-mesh-route",
+      "issue": 399,
+      "kind": "numerical",
+      "title": "Mesh route qualified with native boundary semantics preserved",
+      "state": "not_started",
+      "prerequisites": [
+        "G05-full-geometry"
+      ],
+      "required_bindings": [
+        {
+          "runtime": "opencfd-v2406-runtime",
+          "field": "identity.image"
+        },
+        {
+          "runtime": "opencfd-v2406-runtime",
+          "field": "executables.blockMesh"
+        },
+        {
+          "runtime": "opencfd-v2406-runtime",
+          "field": "executables.snappyHexMesh"
+        },
+        {
+          "runtime": "opencfd-v2406-runtime",
+          "field": "executables.checkMesh"
+        }
+      ],
+      "config_pins": [
+        {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8"
+        }
+      ],
+      "receipts": [],
+      "results": [
+        {
+          "claim": "Inherited failure: medium-gap-002 mesh refused (1167 concave cells, 1667 concave faces, one warped face); the solver was not launched.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/evidence/cfd/summary-medium-gap-002.json",
+              "sha256": "3e63d16901fb3e5998d109cb27ee1553924fdb4bfcf5751c3318b35b647c9eae"
+            }
+          ]
+        },
+        {
+          "claim": "Inherited failure: the PR229 buffered transition is refused (1024 faces above 70 degrees); its archived blockMeshDict must never be executed.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/evidence/airflow-buffered-transition-20261013/README.md",
+              "sha256": "f3075676f5d154318dca74d0089186fd96e54f87e23adabe592ee0e1214575c4"
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        {
+          "id": "no-admitted-physical-mesh",
+          "detail": "No physical turbo mesh has passed the extended checks; native quality, layers and boundary semantics remain open."
+        }
+      ]
+    },
+    {
+      "id": "G07-equilibrium-solver-verification",
+      "issue": 400,
+      "kind": "numerical",
+      "title": "New equilibrium and solver verification case qualified",
+      "state": "not_started",
+      "prerequisites": [
+        "G06-mesh-route"
+      ],
+      "required_bindings": [
+        {
+          "runtime": "opencfd-v2406-runtime",
+          "field": "identity.image"
+        },
+        {
+          "runtime": "opencfd-v2406-runtime",
+          "field": "executables.rhoSimpleFoam"
+        }
+      ],
+      "config_pins": [],
+      "receipts": [],
+      "results": [
+        {
+          "claim": "Inherited: case 084 stopped at its 1200 s budget at 11.1 of 20 microseconds (exit 124, no OOM); it is complete, preserved, and never rerun, extended, shortened or tuned.",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/evidence/airflow-coupled-equilibrium-20261013/README.md",
+              "sha256": "becf37ec2c8aa5b28d41295110ae373f656e423edb8a7f8cd26ea5977cb4abd4"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/evidence/airflow-coupled-equilibrium-20261013/archive-receipt.json",
+              "sha256": "da22732f4c88d841440099fd2c1f39fc63f162ea7c07dfa80c254f6fd4400023"
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        {
+          "id": "no-new-case-prescribed",
+          "detail": "A new case, its criteria and resource limits must be prescribed before application; 084 cannot be reused."
+        }
+      ]
+    },
+    {
+      "id": "G08-paired-compressor-comparison",
+      "issue": 401,
+      "kind": "numerical",
+      "title": "Paired compressor flow and shaft-power comparison (numerical only)",
+      "state": "not_started",
+      "prerequisites": [
+        "G03-measured-interfaces-and-basis",
+        "G07-equilibrium-solver-verification"
+      ],
+      "required_bindings": [
+        {
+          "runtime": "opencfd-v2406-runtime",
+          "field": "identity.image"
+        },
+        {
+          "runtime": "opencfd-v2406-runtime",
+          "field": "executables.rhoSimpleFoam"
+        }
+      ],
+      "config_pins": [
+        {
+          "path": "twins/bionic-turbo-f1/baseline.json",
+          "sha256": "1a7d430b473746f7ef56e96554acb30692067becd0af118c64e2e65fbbd01011"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/candidate.json",
+          "sha256": "82085e4bd1b0a47b2088e47c7bdb64462c31992b5cf3db5f7b4b5e72d9f69f37"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/cfd/audit_case.py",
+          "sha256": "8fd5b1330c717ffbf92dee7b65f17410a8b84f96015df602028d179762a7fb49"
+        }
+      ],
+      "receipts": [],
+      "blockers": [
+        {
+          "id": "no-converged-paired-points",
+          "detail": "No converged, mesh-independent paired point exists for either variant."
+        }
+      ]
+    },
+    {
+      "id": "G09-turbine-wastegate-shaft-balance",
+      "issue": 402,
+      "kind": "numerical",
+      "title": "Turbine, wastegate and shaft-power matching",
+      "state": "not_started",
+      "prerequisites": [
+        "G03-measured-interfaces-and-basis",
+        "G08-paired-compressor-comparison"
+      ],
+      "required_bindings": [],
+      "config_pins": [],
+      "receipts": [],
+      "blockers": [
+        {
+          "id": "turbine-side-absent",
+          "detail": "Turbine, wastegate, thermal state, bearing losses, engine maps and admissible speed are unknown."
+        }
+      ]
+    },
+    {
+      "id": "G10-uncertainty-and-delivery",
+      "issue": 403,
+      "kind": "numerical",
+      "title": "Uncertainty quantified and reproducible comparison delivered",
+      "state": "not_started",
+      "prerequisites": [
+        "G08-paired-compressor-comparison",
+        "G09-turbine-wastegate-shaft-balance"
+      ],
+      "required_bindings": [],
+      "config_pins": [],
+      "receipts": [],
+      "blockers": []
+    },
+    {
+      "id": "R2-physical-correlation",
+      "issue": 403,
+      "kind": "physical_correlation",
+      "title": "Physical correlation with time-stamped bench measurements",
+      "state": "not_started",
+      "prerequisites": [
+        "G10-uncertainty-and-delivery"
+      ],
+      "required_bindings": [],
+      "config_pins": [],
+      "receipts": [],
+      "blockers": [
+        {
+          "id": "no-bench-measurements",
+          "detail": "No measured correlation exists; physical calibration stays false. This roadmap does not authorise physical tests."
+        }
+      ]
+    },
+    {
+      "id": "R3-manufacturing-release",
+      "issue": null,
+      "kind": "manufacturing_release",
+      "title": "Manufacturing release of any turbo part",
+      "state": "not_started",
+      "prerequisites": [
+        "R2-physical-correlation"
+      ],
+      "required_bindings": [],
+      "config_pins": [],
+      "receipts": [],
+      "blockers": [
+        {
+          "id": "professional-review-required",
+          "detail": "Highly loaded engine part: documented professional engineering review and an approved validation plan are required (AGENTS.md)."
+        },
+        {
+          "id": "outside-roadmap",
+          "detail": "Roadmap #393 authorises neither fabrication nor physical testing."
+        }
+      ]
+    }
+  ],
+  "paired_comparison_contract": {
+    "purpose": "Defines, before any application, what a reference-versus-bionic comparison measures and what it may claim.",
+    "pair": {
+      "reference": {
+        "claim": "baseline.json: volute radius law 6 + 8t mm with the conical F0 chamber",
+        "receipts": [
+          {
+            "path": "twins/bionic-turbo-f1/baseline.json",
+            "sha256": "1a7d430b473746f7ef56e96554acb30692067becd0af118c64e2e65fbbd01011"
+          }
+        ]
+      },
+      "bionic": {
+        "claim": "candidate.json: volute radius law sqrt(36 + 160t) mm with the same wheel and conical F0 chamber",
+        "receipts": [
+          {
+            "path": "twins/bionic-turbo-f1/candidate.json",
+            "sha256": "82085e4bd1b0a47b2088e47c7bdb64462c31992b5cf3db5f7b4b5e72d9f69f37"
+          }
+        ]
+      },
+      "excluded": [
+        {
+          "claim": "candidate-combined.json is rejected for the current CFD (wheel/housing distance below 0.4 mm)",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/evidence/combined-003-clearance-upper-bound.json",
+              "sha256": "3b24abe04a575711e1939883d80a0b74bc7ce6fcbf2d59775c82fdf67d7cc7cc"
+            }
+          ]
+        },
+        {
+          "claim": "candidate-shroud.json is an exploratory parameterisation without a standalone run",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/candidate-shroud.json",
+              "sha256": "b582fe33d65e673a926008e5293bd0a7ec06be7af82e7f7d17002a9c1d4066ec"
+            }
+          ]
+        }
+      ],
+      "pairing_rule": "Both variants use the same wheel, seals and closures, inlet and outlet extensions, mesh route, solver runtime row, criteria and operating point. Any difference other than the volute law makes the pair invalid."
+    },
+    "operating_conditions": {
+      "rotor_speed": {
+        "value": "100000 rpm about +Z",
+        "claim": "hypothesis used by the existing case generator, not a measurement",
+        "receipts": [
+          {
+            "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+            "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8"
+          }
+        ]
+      },
+      "inlet_total_pressure": {
+        "value": "101325 Pa",
+        "claim": "hypothesis used by the existing case generator, not a measurement",
+        "receipts": [
+          {
+            "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+            "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8"
+          }
+        ]
+      },
+      "inlet_total_temperature": {
+        "value": "298.15 K",
+        "claim": "hypothesis used by the existing case generator, not a measurement",
+        "receipts": [
+          {
+            "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+            "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8"
+          }
+        ]
+      },
+      "outlet_static_pressure": {
+        "value": "121590 Pa (outlet static / inlet total = 1.2)",
+        "claim": "hypothesis used by the existing case generator, not a measurement; the ratio is static/total, not total/total",
+        "receipts": [
+          {
+            "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+            "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8"
+          }
+        ]
+      },
+      "measured_operating_conditions": {
+        "claim": "measured speed, inlet state, back-pressure and engine operating points",
+        "unknown": {
+          "reason": "no measured turbo map or bench data exists; issue 396 must source them or keep them unknown"
+        }
+      }
+    },
+    "quantities": {
+      "mass_flow": {
+        "definition": "Mass flow rate in kg/s, an output of the solver at imposed back-pressure (never imposed to obtain a better result), integrated over the measurement sections outside the MRF zone. Inlet and outlet must agree within the prescribed relative mass imbalance.",
+        "criterion": {
+          "claim": "relative_mass_imbalance_max 0.001, relative_wall_flux_max 1e-6, port_reverse_flow_fraction_max 0.01 (existing CRITERIA)",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+              "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8"
+            }
+          ]
+        },
+        "not_claimed": "A single point at imposed back-pressure demonstrates neither maximum flow nor choking; maximum flow needs a back-pressure sweep at identical speed."
+      },
+      "shaft_power": {
+        "definition": "Compressor wheel aerodynamic input power P = -omega * M_z in W, where M_z is the native fluid-on-rotor moment (pressure plus viscous) about +Z on the rotor patch. It must be positive and equal the net outward total-enthalpy flux sum(phi*(h + |U_absolute|^2/2)) at the ports outside the MRF, within the prescribed energy imbalance; no absolute value may hide a sign inversion.",
+        "criterion": {
+          "claim": "relative_energy_imbalance_max 0.05 and positive_shaft_power_and_enthalpy_rise (existing audit)",
+          "receipts": [
+            {
+              "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+              "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/cfd/audit_case.py",
+              "sha256": "8fd5b1330c717ffbf92dee7b65f17410a8b84f96015df602028d179762a7fb49"
+            }
+          ]
+        },
+        "not_claimed": "It excludes bearing, seal and disc-friction losses outside the domain. It is the power absorbed by the compressor, not engine power, and not turbine power; the shaft balance P_turbine = P_compressor + losses belongs to G09."
+      }
+    },
+    "acceptance_before_ranking": [
+      "Each variant passes the extended mesh checks and the prescribed history criteria (window, residual, mean change, standard deviation, peak-to-peak) defined before the calculation.",
+      "Each variant is computed on several meshes of the qualified route; the number of meshes and their refinement ratio are prescribed in issue 399/400 before application, never chosen after results.",
+      "A ranking is reported only when the paired difference exceeds the combined numerical uncertainty quantified in issue 403; otherwise the result is indeterminate.",
+      "Failed points and refused meshes are retained; no threshold is relaxed."
+    ],
+    "separation": {
+      "numerical_comparison": "G08 and G10 only; labelled domain and numerical uncertainty.",
+      "physical_correlation": "R2 only; requires measured bench data; false today.",
+      "manufacturing_release": "R3 only; requires professional engineering review; false today."
+    }
+  }
+}

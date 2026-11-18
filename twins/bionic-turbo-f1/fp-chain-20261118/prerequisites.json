@@ -1,0 +1,39 @@
+{
+  "schema": "turbo-fp-chain-prerequisites/v1",
+  "accepted_scope": "Gate-level confirmation of issues 394 and 395 before the conversion-chain work of issue 397",
+  "observed_at_utc": "2026-11-18T13:05:00Z",
+  "source_commit": "af2fbce36d5ccace416d8eaf46b381d20127f975",
+  "issues": {
+    "394": "CLOSED",
+    "395": "CLOSED",
+    "396": "OPEN",
+    "397": "OPEN"
+  },
+  "issue_closure_is_not_gate_admission": true,
+  "parent_ledger": "twins/bionic-turbo-f1/recovery-20261106/gate-ledger.json",
+  "parent_ledger_sha256": "4c9ca93f4f393228205a00cfb8c44c90b34f986e245501f34d2dd5520a634e76",
+  "parent_ledger_errors": [],
+  "gate_states": {
+    "G01-baseline-frozen": "engineering_passed",
+    "G01-execution-contract": "engineering_passed",
+    "G02-evidence-recoverable": "engineering_passed"
+  },
+  "evaluations": {
+    "G01-baseline-frozen": {
+      "may_open": true,
+      "reasons": []
+    },
+    "G01-execution-contract": {
+      "may_open": true,
+      "reasons": []
+    },
+    "G02-evidence-recoverable": {
+      "may_open": true,
+      "reasons": []
+    }
+  },
+  "g03_state_in_parent_ledger": "investigated",
+  "g03_is_not_a_prerequisite_of_g04": "G04 lists G01-baseline-frozen, G01-execution-contract and G02-evidence-recoverable only; G03 stays investigated and keeps G05, G08 and G09 closed",
+  "automation_status": "Last recorded PAUSED on the Mac (recovery-20261106/prerequisites.json); not observable from this host and not reactivated by this work",
+  "downstream_geometry_solver_and_release_authorized": false
+}

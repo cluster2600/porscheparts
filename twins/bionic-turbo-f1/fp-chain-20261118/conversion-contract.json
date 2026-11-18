@@ -1,0 +1,381 @@
+{
+  "schema": "bionic-turbo-fp-chain-contract/v1",
+  "issue": 397,
+  "gate": "G04-native-fp-execution",
+  "scope": "provisional_synthetic",
+  "physical_turbo_claim": false,
+  "prescribed_before_application": true,
+  "statement": "Prescription of the link exact rationals -> writePrecision 16 text -> binary64 and of the floating-point operations the pinned OpenFOAM v2406 checkMesh path executes on it. Written before any pull, readback or reader run. It selects no native input, chooses no point of the domain and grants no native admission.",
+  "inherited_prohibitions": [
+    "never-execute-pr229-blockmeshdict",
+    "never-touch-case-084",
+    "do-not-replay-pr238-256-traversals",
+    "keep-recurring-automation-paused",
+    "no-paid-compute",
+    "no-deletion",
+    "preserve-153-boxes-and-two-undecided-determinants",
+    "retain-writeprecision-16",
+    "preserve-bionic-native-source-20261012",
+    "no-silent-openfoam-substitution",
+    "representations-not-interchangeable"
+  ],
+  "runtime_target": {
+    "matrix": "twins/bionic-turbo-f1/baseline-20261106-mac/runtime-matrix.json",
+    "matrix_sha256": "339ab0628ba9666792005264f75f31e79dbf260a4f3a6f25430fe161804a0bd1",
+    "row": "opencfd-v2406-runtime",
+    "image": "docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+    "platform": "linux/arm64",
+    "platform_directory": "usr/lib/openfoam/openfoam2406/platforms/linuxARM64GccDPInt32Opt",
+    "method": "docker pull by digest, docker save to a private file outside Git, static read of the layers in Python. No container is created or started, nothing from the image is executed, nothing is deleted.",
+    "static_checks": [
+      {"id": "manifest-digest", "requirement": "the saved manifest digest equals identity.image"},
+      {"id": "image-platform", "requirement": "the image configuration declares os linux and architecture arm64"},
+      {"id": "executable-hashes", "requirement": "SHA-256 of checkMesh equals executables.checkMesh; every other pinned executable present in the image matches its pin"},
+      {"id": "elf-machine", "requirement": "checkMesh and libOpenFOAM.so are ELF64 little-endian for machine AArch64 (183)"},
+      {"id": "compiler-string", "requirement": "record the .comment strings of libOpenFOAM.so and checkMesh; compile options are not recorded in the binary and stay inferred from the pinned wmake rules"},
+      {"id": "long-double-path", "requirement": "libOpenFOAM.so imports strtold and __trunctfdf2 (binary128 to binary64 narrowing); absence refuses the S2 model"},
+      {"id": "exported-constants", "requirement": "the 8 bytes of each listed exported constant equal the binary64 rounding of its source literal"},
+      {"id": "build-strings", "requirement": "libOpenFOAM.so contains the build tag _be01ca78-20240625 and declares label 32 and scalar 64 bits"},
+      {"id": "fused-multiply-add", "requirement": "count FMADD/FMSUB/FNMADD/FNMSUB and vector FMLA/FMLS instructions inside the listed geometry functions; an observation, not an acceptance threshold"},
+      {"id": "fast-math-marker", "requirement": "record whether the symbol set_fast_math (crtfastmath, flush-to-zero) is present in checkMesh or libOpenFOAM.so"},
+      {"id": "meta-info-manifest", "requirement": "the git blob ids listed in the image META-INFO manifest for the source members read equal the git blob ids of those members in the pinned archive"},
+      {"id": "runtime-libraries", "requirement": "record SHA-256 and version strings of libc.so.6, libm.so.6, libstdc++.so.6 and libgcc_s.so.1 of the image"}
+    ],
+    "exported_constants": [
+      {"symbol": "_ZN4Foam7pTraitsIdE6vsmallE", "literal": "1.0e-300", "source": "doubleScalarVSMALL via Scalar.C pTraits<Scalar>::vsmall"},
+      {"symbol": "_ZN4Foam7pTraitsIdE3maxE", "literal": "1.0e+300", "source": "doubleScalarVGREAT via Scalar.C pTraits<Scalar>::max"},
+      {"symbol": "_ZN4Foam7pTraitsIdE3minE", "literal": "-1.0e+300", "source": "-doubleScalarVGREAT via Scalar.C pTraits<Scalar>::min"},
+      {"symbol": "_ZN4Foam7pTraitsIdE7rootMaxE", "literal": "1.0e+150", "source": "doubleScalarROOTVGREAT via Scalar.C pTraits<Scalar>::rootMax"},
+      {"symbol": "_ZN4Foam13primitiveMesh16closedThreshold_E", "literal": "1.0e-6", "source": "primitiveMeshCheck.C line 39"},
+      {"symbol": "_ZN4Foam13primitiveMesh16aspectThreshold_E", "literal": "1000", "source": "primitiveMeshCheck.C line 40"},
+      {"symbol": "_ZN4Foam13primitiveMesh17nonOrthThreshold_E", "literal": "70", "source": "primitiveMeshCheck.C line 41"},
+      {"symbol": "_ZN4Foam13primitiveMesh14skewThreshold_E", "literal": "4", "source": "primitiveMeshCheck.C line 42"},
+      {"symbol": "_ZN4Foam13primitiveMesh15planarCosAngle_E", "literal": "1.0e-6", "source": "primitiveMeshCheck.C line 43"}
+    ],
+    "geometry_functions": [
+      "primitiveMeshTools23makeFaceCentresAndAreas",
+      "primitiveMeshTools25updateFaceCentresAndAreas",
+      "primitiveMeshTools22makeCellCentresAndVols",
+      "primitiveMeshTools24updateCellCentresAndVols",
+      "primitiveMeshTools14cellClosedness",
+      "primitiveMeshTools17faceOrthogonality",
+      "primitiveMeshTools12faceSkewness",
+      "primitiveMeshTools12faceFlatness",
+      "primitiveMesh19checkClosedBoundary"
+    ],
+    "not_performed_here": "Execution of the pinned binary. The WSL host is x86_64 with no arm64 executor; its amd64 sibling image is a different runtime row and is not run; no emulator is installed or used. Every native behaviour below is a source fact or a static fact until a prescribed execution on linux/arm64 observes it."
+  },
+  "source_archive": {
+    "sha256": "8d1450fb89eec1e7cecc55c3bb7bc486ccbf63d069379d1d5d7518fa16a4686a",
+    "carrier_release": "bionic-turbo-native-binary-2026-10-12",
+    "carrier_archive_sha256": "87d6f62fde69d4fcbad7bf1defb09e61009191f05e02be1d3f9c29e8687a7558",
+    "carrier_receipt": {"path": "twins/bionic-turbo-f1/evidence/airflow-native-binary-20261012/archive-receipt.json", "sha256": "ef5ae7f72db7c55c66b894cee79774a7eccb15341a774c7bbca810be8341efea"},
+    "facts": [
+      {"id": "reader-strtold", "member": "src/OpenFOAM/primitives/Scalar/doubleScalar/doubleScalar.C", "line": 48, "literal": "#define ScalarConvert ::strtold"},
+      {"id": "reader-underflow-to-zero", "member": "src/OpenFOAM/primitives/Scalar/Scalar.C", "line": 107, "literal": "(parsed >= -ScalarVSMALL && parsed <= ScalarVSMALL)"},
+      {"id": "reader-range-refusal", "member": "src/OpenFOAM/primitives/Scalar/Scalar.C", "line": 114, "literal": "(parsed < -ScalarVGREAT || parsed > ScalarVGREAT)"},
+      {"id": "token-label-branch", "member": "src/OpenFOAM/db/IOstreams/Sstreams/ISstream.C", "line": 774, "literal": "else if (labelVal && Foam::read(buf, labelVal))"},
+      {"id": "token-scalar-branch", "member": "src/OpenFOAM/db/IOstreams/Sstreams/ISstream.C", "line": 782, "literal": "if (readScalar(buf, scalarVal))"},
+      {"id": "token-length-limit", "member": "src/OpenFOAM/db/IOstreams/Sstreams/ISstream.C", "line": 544, "literal": "constexpr const unsigned bufLen = 128; // Max length for labels/scalars"},
+      {"id": "writer-ostream", "member": "src/OpenFOAM/db/IOstreams/Sstreams/OSstream.C", "line": 238, "literal": "os_ << val;"},
+      {"id": "fan-centre", "member": "src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshTools.C", "line": 239, "literal": "fCentre /= nPoints;"},
+      {"id": "fan-sum", "member": "src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshTools.C", "line": 250, "literal": "sumN += n;"},
+      {"id": "face-guard", "member": "src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshTools.C", "line": 257, "literal": "if (sumA < ROOTVSMALL)"},
+      {"id": "face-area-half", "member": "src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshTools.C", "line": 265, "literal": "fAreas[facei] = 0.5*sumN;"},
+      {"id": "triangle-direct", "member": "src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshTools.C", "line": 226, "literal": "fAreas[facei] = triPointRef::areaNormal(p[f[0]], p[f[1]], p[f[2]]);"},
+      {"id": "cell-guard", "member": "src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshTools.C", "line": 366, "literal": "if (mag(cellVols[celli]) > VSMALL)"},
+      {"id": "cell-openness", "member": "src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshTools.C", "line": 680, "literal": "/(sumMagClosed[celli][cmpt] + ROOTVSMALL)"},
+      {"id": "boundary-openness", "member": "src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshCheck.C", "line": 75, "literal": "Vector<solveScalar> openness = sumClosed/(sumMagClosedBoundary + VSMALL);"},
+      {"id": "boundary-threshold", "member": "src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshCheck.C", "line": 77, "literal": "if (cmptMax(cmptMag(openness)) > closedThreshold_)"},
+      {"id": "cell-threshold", "member": "src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshCheck.C", "line": 163, "literal": "if (openness[celli] > closedThreshold_)"},
+      {"id": "closed-threshold", "member": "src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshCheck.C", "line": 39, "literal": "Foam::scalar Foam::primitiveMesh::closedThreshold_  = 1.0e-6;"},
+      {"id": "nonorth-libm", "member": "src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshCheck.C", "line": 385, "literal": "::cos(degToRad(nonOrthThreshold_));"},
+      {"id": "compile-options", "member": "wmake/rules/linuxARM64Gcc/c++Opt", "line": 2, "literal": "c++OPT      = -O3 -floop-optimize -falign-loops -falign-labels -falign-functions -falign-jumps"},
+      {"id": "compiler-standard", "member": "wmake/rules/General/Gcc/c++", "line": 9, "literal": "CC         := g++$(COMPILER_VERSION) -std=c++14"},
+      {"id": "precision-option", "member": "etc/bashrc", "line": 75, "literal": "export WM_PRECISION_OPTION=DP"},
+      {"id": "label-size", "member": "etc/bashrc", "line": 79, "literal": "export WM_LABEL_SIZE=32"}
+    ],
+    "rounding_mode_scan": "Scan every .C, .H and .c file under src/ and applications/ of the archive for fesetround, fesetenv, fesetexceptflag, feupdateenv and _FPU_SETCW; record each hit with its path and line."
+  },
+  "formats": {
+    "binary64": {"precision_bits": 53, "emin": -1022, "emax": 1023, "min_subnormal": "2^-1074"},
+    "binary128": {"precision_bits": 113, "emin": -16382, "emax": 16383, "role": "long double on linux/arm64 (AAPCS64); S2 parses into it"},
+    "decimal16": {"significant_digits": 16, "style": "C printf %.16g: exponent form when the decimal exponent is below -4 or at least 16, trailing zeros and a trailing point removed, exponent with sign and at least two digits"}
+  },
+  "rounding_mode": {
+    "mode": "round to nearest, ties to even, for every binary64 and binary128 operation and conversion",
+    "basis": "IEEE 754 default environment; OpenFOAM sigFpe only enables traps (feenableexcept); the archive scan above must find no rounding-mode change on the checkMesh path",
+    "flush_to_zero": "assumed off (FPCR.FZ = 0); a static fact only if set_fast_math is absent; otherwise the subnormal results are not covered"
+  },
+  "constants": {
+    "u": "1/9007199254740992",
+    "u128": "1/10384593717069655257060992658440192",
+    "eps_decimal16": "1/2000000000000000",
+    "eps_native_read": "1/9007199254740992 + 1/2596148429267413814265248164610048",
+    "eta_underflow": "2^-1075",
+    "gamma": "gamma(k) = k*u/(1 - k*u), defined for k*u < 1"
+  },
+  "stages": [
+    {
+      "id": "S1",
+      "from": "exact rational r",
+      "to": "decimal text T",
+      "where": "the generator of any future native input",
+      "rule": "If r = 0, T = '0'. Otherwise E = floor(log10 |r|); T = sign(r) * round_half_even(|r| * 10^(15 - E)) * 10^(E - 15), written in decimal16 style. T is computed from the exact rational, never through binary64, so no binary64 double rounding enters the text.",
+      "error_bound": "|T - r| <= 10^(E - 15) / 2 <= eps_decimal16 * |r|",
+      "branches": ["exact zero writes '0' and reads through the label branch", "a carry to 10^(E+1) is allowed and stays within the bound", "an integer-valued T without point or exponent is a label token in S2"]
+    },
+    {
+      "id": "S2",
+      "from": "text T",
+      "to": "binary64 x",
+      "where": "native ASCII reader, ISstream token then readDouble (source facts token-label-branch, token-scalar-branch, reader-strtold, reader-underflow-to-zero, reader-range-refusal)",
+      "rule": "If the token has only digits after an optional leading '-' and fits a 32-bit label, x = double(label), exact. Otherwise q = RN128(T) by strtold; if -VSMALL64 <= q <= VSMALL64 then x = +0 (sign of zero and of the value lost); if q < -VGREAT64 or q > VGREAT64 the read fails; else x = RN64(q). VSMALL64 and VGREAT64 are the binary64 roundings of 1e-300 and 1e+300. A token longer than 127 characters fails.",
+      "error_bound": "for VSMALL64 < |q| <= VGREAT64: |x - T| <= eps_native_read * |T|; in the zero branch |x - T| = |T| <= VSMALL64 * (1 + u128)",
+      "branches": ["label token", "zero branch (inclusive at +-VSMALL64)", "range refusal", "double rounding: x may differ from RN64(T) by one unit in the last place when q is a binary64 midpoint and T is not"],
+      "double_rounding_lemma": "If T = D * 10^q with integer |D| < 10^16, q >= -25 and |T| < 2^113, then RN64(RN128(T)) = RN64(T). Proof: a binary64 midpoint M = K * 2^j (K odd, 2^53 <= K < 2^54) differs from T by zero or by at least 1/(2^max(-q,-j) * 5^max(0,-q)); for -q <= 25 this exceeds half a binary128 unit at M because 5^25 < 2^60, so RN128(T) = M only if T = M, and RN128 is monotone and exact on binary64 values. Outside the hypothesis each value is decided by computing both roundings."
+    },
+    {
+      "id": "S3",
+      "from": "binary64 x",
+      "to": "decimal text T'",
+      "where": "native writer at writePrecision 16 (OSstream::write(double) is os_ << val; libstdc++ formats with %.*g at precision 16 through glibc printf, correctly rounded under the current rounding mode)",
+      "rule": "T' = decimal16 rounding of x, ties to even; x = +0 writes '0' and x = -0 writes '-0'",
+      "error_bound": "|T' - x| <= 10^(E_x - 15) / 2 <= eps_decimal16 * |x|",
+      "branches": ["exponent or fixed form (text only)", "exact tie at the 17th digit, half to even", "negative zero written '-0' is read back as +0"]
+    },
+    {
+      "id": "S4",
+      "from": "text T'",
+      "to": "binary64 x'",
+      "rule": "S2 applied to T'",
+      "error_bound": "as S2"
+    }
+  ],
+  "chain_budget": {
+    "beta": "(1 + eps_decimal16) * (1 + eps_native_read) - 1",
+    "first_read": "|x1 - r| <= beta * |r| for VSMALL64 < |r| and |r| * (1 + beta) <= VGREAT64",
+    "native_rewrite_cycles_max": 1,
+    "with_rewrites": "|x_(K+1) - r| <= ((1 + beta)^(K+1) - 1) * |r| for K <= native_rewrite_cycles_max",
+    "not_identities": [
+      "16 significant digits do not guarantee binary64 -> text -> binary64 identity (17 are needed)",
+      "16 significant digits do not guarantee text -> binary64 -> text identity (15 are guaranteed)",
+      "VSMALL64 itself is written as 1e-300 and read back as 0"
+    ],
+    "more_rewrites": "More than one native rewrite needs a new contract revision; it is never absorbed silently."
+  },
+  "operation_model": {
+    "model": "fl(a op b) = (a op b)(1 + d) + e with |d| <= u for op in {+, -, *, /, sqrt}; e = 0 for +, - and sqrt; |e| <= eta_underflow for * and / only when the result is below 2^-1022",
+    "underflow_free_condition": "every non-zero coordinate has magnitude in [2^-200, 2^200] and every product in the bounds has at most four coordinate-difference factors; then no product underflows and e = 0",
+    "theta": "products of at most k factors (1 + d_i) are written 1 + theta_k with |theta_k| <= gamma(k)",
+    "contraction": "GCC may contract a product into an adjacent addition (fused multiply-add) on aarch64. Every bound below counts roundings on the unfused evaluation; a fused operation removes one rounding from a path and never adds one, so each bound holds for every contraction pattern. Reassociation (-ffast-math, -fassociative-math) is not covered.",
+    "exact_conversions": "int to binary64 for |n| < 2^53 and multiplication by 0.5 without underflow are exact"
+  },
+  "operation_bounds": [
+    {
+      "id": "fan_face_area",
+      "applies_to": "faces with n >= 4 points (fan around the computed arithmetic centre c_hat)",
+      "exact_value": "A = (1/2) * sum_i p_i x p_(i+1); it does not depend on the fan centre, so the computed centre enters only through rounding",
+      "bound": "|A_hat_k - A_k| <= gamma(n + 3) / 2 * P_k",
+      "P_k": "sum_i (|a_i,k1 * b_i,k2| + |a_i,k2 * b_i,k1|) with a_i = p_(i+1) - p_i and b_i = c_hat - p_i, exact differences of the binary64 inputs; (k, k1, k2) a cyclic permutation of (x, y, z)",
+      "derivation": "each difference carries theta_1, each product theta_1 more, the subtraction theta_1 more (theta_4 per product term); the sequential sum of n terms adds theta_(n-1); gamma(4) + gamma(n-1) + gamma(4)gamma(n-1) <= gamma(n+3); the factor 0.5 is exact"
+    },
+    {
+      "id": "triangle_face_area",
+      "applies_to": "faces with 3 points (triPointRef::areaNormal)",
+      "exact_value": "A = (1/2) (p1 - p0) x (p2 - p0)",
+      "bound": "|A_hat_k - A_k| <= gamma(4) / 2 * P_k",
+      "P_k": "|e1_k1 * e2_k2| + |e1_k2 * e2_k1| with e1 = p1 - p0, e2 = p2 - p0"
+    },
+    {
+      "id": "face_area_sum_guard",
+      "applies_to": "the comparison sumA < ROOTVSMALL64 of faces with n >= 4",
+      "bound": "sumA_hat lies in [(1 - gamma(n + 2)) * L, (1 + gamma(n + 2)) * U] with L = sum_i max(0, |n_i| - gamma(4) * ||P_i||_2) and U = sum_i (|n_i| + gamma(4) * ||P_i||_2), n_i = a_i x b_i exact and P_i the vector of the per-component product sums of triangle i"
+    },
+    {
+      "id": "cell_closedness",
+      "applies_to": "openness_k = |S_k| / (D_k + ROOTVSMALL64) per cell and component, S = sum_f s_f A_hat_f over the m faces of the cell, D_k = sum_f |A_hat_f,k|",
+      "exact_value": "sum_f s_f A_f = 0 exactly for a closed cell, for any binary64 coordinates (every directed edge appears twice with opposite orientation); the computed S is not zero in general",
+      "bound": "|S_hat_k| <= B_k = sum_f |A_hat_f,k - A_f,k| + gamma(m - 1) * sum_f |A_hat_f,k|; openness_hat_k <= (1 + u)^2 * B_k / ((1 - gamma(m - 1)) * sum_f |A_hat_f,k| + ROOTVSMALL64) / (1 - u)",
+      "decision": "decided closed when the upper bound is <= closedThreshold64; the comparison in the source is openness > closedThreshold"
+    },
+    {
+      "id": "boundary_closedness",
+      "applies_to": "openness_k = S_k / (sum_f mag(A_hat_f) + VSMALL64) over the N_b uncoupled boundary faces",
+      "exact_value": "sum_f A_f = 0 exactly for a closed boundary surface",
+      "bound": "|S_hat_k| <= sum_f |A_hat_f,k - A_f,k| + gamma(N_b - 1) * sum_f |A_hat_f,k|; the denominator is at least (1 - gamma(N_b - 1)) * (1 - gamma(3)) * sum_f |A_hat_f| + VSMALL64 before its own rounding",
+      "decision": "decided closed when (1 + u)^2 / (1 - u) * |S_hat_k| bound / denominator bound <= closedThreshold64 for every k"
+    }
+  ],
+  "branch_rule": {
+    "rule": "A native comparison value <op> threshold is decided only when the whole interval [value - budget, value + budget] lies on one side of the binary64 threshold (or of the whole threshold bracket when the threshold itself comes from libm). Otherwise it is undecided and retained with its interval and both endpoints. An undecided branch is never resolved by choosing a point, a ratio or a candidate.",
+    "equality": "equality is resolved by the source comparison operator only when the interval is a single point"
+  },
+  "native_branches": [
+    {"id": "G1-face-guard", "comparison": "sumA < ROOTVSMALL64", "evaluated_here": "reference faces and a certificate-based critical scale"},
+    {"id": "G2-cell-guard", "comparison": "mag(cellVols) > VSMALL64 on the accumulated triple volume before the factor 1/3", "evaluated_here": "no; needs a face-centre conditioning bound"},
+    {"id": "G3-cell-closedness", "comparison": "openness > closedThreshold64", "evaluated_here": "reference cells"},
+    {"id": "G4-boundary-closedness", "comparison": "cmptMax(cmptMag(openness)) > closedThreshold64", "evaluated_here": "reference block"},
+    {"id": "G5-non-orthogonality", "comparison": "ortho < cos(degToRad(70)) from libm", "evaluated_here": "threshold bracket only"},
+    {"id": "G6-flatness", "comparison": "faceFlatness < 0.8", "evaluated_here": "certified margin only"},
+    {"id": "G7-weights", "comparison": "weight < 0.05", "evaluated_here": "certified margin only"},
+    {"id": "G8-volume-ratio", "comparison": "volRatio < 0.01", "evaluated_here": "certified margin only"},
+    {"id": "G9-skewness", "comparison": "skewness > 4", "evaluated_here": "certified margin only"},
+    {"id": "G10-face-tets", "comparison": "tet quality against tol = sqr(SMALL)", "evaluated_here": "certified interval only"}
+  ],
+  "thresholds": [
+    {"id": "VSMALL", "literal": "1.0e-300"},
+    {"id": "ROOTVSMALL", "literal": "1.0e-150"},
+    {"id": "SMALL", "literal": "1.0e-15"},
+    {"id": "GREAT", "literal": "1.0e+15"},
+    {"id": "VGREAT", "literal": "1.0e+300"},
+    {"id": "closedThreshold", "literal": "1.0e-6"},
+    {"id": "planarCosAngle", "literal": "1.0e-6"},
+    {"id": "aspectThreshold", "literal": "1000"},
+    {"id": "nonOrthThreshold", "literal": "70"},
+    {"id": "skewThreshold", "literal": "4"},
+    {"id": "flatness", "literal": "0.8"},
+    {"id": "faceWeight", "literal": "0.05"},
+    {"id": "volRatio", "literal": "0.01"},
+    {"id": "nonOrthCosine", "expression": "::cos(fl(fl(70 * pi64) / 180))", "rule": "pi64 is the binary64 rounding of pi; the two products are binary64 operations; the libm result is not observed here, so the threshold is the bracket of the two binary64 neighbours of the exact cosine of the binary64 argument"}
+  ],
+  "certificates": [
+    {"id": "dossier", "path": "twins/bionic-turbo-f1/evidence/airflow-native-admission-dossier-20261013/dossier.json", "sha256": "15e2d87f01c17047ae5c79e7b613cfbd23b285b9ba95d8f81021cb3d312b59c4", "use": "domain_v endpoints and the 153 source boxes"},
+    {"id": "face-tets-summary", "path": "twins/bionic-turbo-f1/evidence/airflow-native-face-tets-audit-20261013/summary.json", "sha256": "e6c19eb98db9cb8a5863ab6fae11d9068537bca7364699acb37639851ca79856", "use": "the 153 leaves and their endpoints; the undecided determinant leaves"},
+    {"id": "face-tets-readback", "path": "twins/bionic-turbo-f1/evidence/airflow-native-face-tets-audit-20261013/readback.json", "sha256": "ea22cb5589d5ccc761ecb90f9e1f6c4f2027fe3614f533e5d2bc0167be0de61d", "use": "threshold_interval of sqr(SMALL)"},
+    {"id": "flatness-summary", "path": "twins/bionic-turbo-f1/evidence/airflow-native-flatness-bounds-20261013/summary.json", "sha256": "ec34f31ce71ae05c56ce2d66c5c08bf0e042abc83a0bb990bf38e2a94bd052e0", "use": "minimum flatness and fan sum lower bounds"},
+    {"id": "flatness-readback", "path": "twins/bionic-turbo-f1/evidence/airflow-native-flatness-bounds-20261013/readback.json", "sha256": "99901b646aae1a91eaf9f8f79ce2d5751e14932fe04e2536298b2ea674a29496", "use": "recorded ROOTVSMALL, VSMALL and flatness threshold rationals"},
+    {"id": "orthogonality-summary", "path": "twins/bionic-turbo-f1/evidence/airflow-native-orthogonality-bounds-20261013/summary.json", "sha256": "f4179c0b0680c7db37156739af1a64f603873f3000e052169bd5260160ac8c48", "use": "minimum positive orthogonality certificate"},
+    {"id": "orthogonality-readback", "path": "twins/bionic-turbo-f1/evidence/airflow-native-orthogonality-bounds-20261013/readback.json", "sha256": "82abdebc923638f23a097f75ac73bc00706e3d54b26da8715e3077e1348f1dd6", "use": "recorded non-orthogonality threshold interval"},
+    {"id": "skewness-summary", "path": "twins/bionic-turbo-f1/evidence/airflow-native-skewness-bounds-20261013/summary.json", "sha256": "631cac309558cedd1c12454ae72a182d7fda6fafcd68d2ad84961a563fca91e2", "use": "maximum positive skewness upper bound"},
+    {"id": "weight-summary", "path": "twins/bionic-turbo-f1/evidence/airflow-native-weight-bounds-20261013/summary.json", "sha256": "21cc648f71d2fbbd6e8e54b73748ab6e11777b74f4b67dce049ec226965d1b37", "use": "minimum positive weight lower bound"},
+    {"id": "weight-readback", "path": "twins/bionic-turbo-f1/evidence/airflow-native-weight-bounds-20261013/readback.json", "sha256": "307ce4a9a5d1b3908728d4ac098bd83884ad12a7ced67e5ab10ceb08a842ce20", "use": "recorded weight threshold"},
+    {"id": "volume-ratio-readback", "path": "twins/bionic-turbo-f1/evidence/airflow-native-volume-ratio-bounds-20261013/readback.json", "sha256": "defc65956c7c783c3c82379b16181f30629e264d5660a1f10bf5803da41e4fcf", "use": "minimum volume ratio lower bound and recorded threshold"}
+  ],
+  "retained": {
+    "boxes": 153,
+    "leaves": [1778, 1930],
+    "undecided_determinant_leaves": [1929, 1930],
+    "domain_v": ["18685771944522017155/18446744073709551616", "9345323731508729405/9223372036854775808"],
+    "u": "source q_m, exact",
+    "statement": "Every box, every endpoint and both undecided determinants are carried unchanged. No point of the domain is selected."
+  },
+  "margin_rule": {
+    "rule": "For each native criterion with a pinned certified bound, margin = distance between the certified bound and the binary64 threshold (or the far end of the threshold bracket), computed exactly. A native decision is admissible only when margin > conversion displacement effect + operation rounding budget. The conversion displacement effect needs a sensitivity (Lipschitz) bound of the criterion with respect to point displacement, and the rounding budget needs a conditioning bound of its formula; no pinned certificate provides either, so this revision records margins and the margin expressed in units of u * |threshold|, and decides no native criterion.",
+    "inputs_missing": ["criterion sensitivity to point displacement over the 153 boxes", "conditioning of each native formula over the 153 boxes", "coordinate magnitude bound R_max of the representation actually written"]
+  },
+  "admissibility_argument": {
+    "status": "documented, not applied; no native input exists or is created here",
+    "conditions": [
+      "the selection rule of any native instance is declared, with its justification from an obligation, before any computation that uses it; a ratio or point chosen because a check passes is refused",
+      "the instance lies in boxes where every native criterion is decided by the margin rule including this contract's budgets; boxes 1929 and 1930 stay undecided until a new certificate decides their determinants",
+      "every written coordinate is S1 of its exact rational, and the independent reader recomputes every token from the rationals before the native read",
+      "every non-zero coordinate satisfies 1e-10 <= |x| (double-rounding lemma) and the underflow-free condition, or the value is decided individually",
+      "R_max of the written coordinates is below the critical scale of each guard decided with it",
+      "at most one native rewrite at writePrecision 16 between generation and the checked read",
+      "the native read, write and checkMesh path is executed by the pinned linux/arm64 binary with its hash verified at launch, under a separately prescribed run"
+    ]
+  },
+  "witness_classes": [
+    "finite-normal",
+    "certificate-rational",
+    "subnormal",
+    "near-zero-below-vsmall",
+    "vsmall-boundary",
+    "vgreat-boundary",
+    "signed-zero",
+    "negative-values",
+    "decimal16-tie",
+    "label-token",
+    "label-overflow",
+    "roundtrip-binary-text-binary-fails",
+    "roundtrip-text-binary-text-fails",
+    "double-rounding-discrepancy",
+    "token-length-limit"
+  ],
+  "witnesses": {
+    "rationals": [
+      {"id": "one-third", "value": "1/3"},
+      {"id": "minus-two-sevenths", "value": "-2/7"},
+      {"id": "one-tenth", "value": "1/10"},
+      {"id": "three-hundredths", "value": "3/100"},
+      {"id": "domain-lower", "value": "18685771944522017155/18446744073709551616"},
+      {"id": "domain-upper", "value": "9345323731508729405/9223372036854775808"},
+      {"id": "leaf-1930-lower", "value": "18690615596883501675/18446744073709551616"},
+      {"id": "two53-plus-one", "value": "9007199254740993"},
+      {"id": "sum-tenth-fifth-binary64", "value": "0.3000000000000000444089209850062616169452667236328125"},
+      {"id": "decimal16-tie", "value": "1234567890123456.5"},
+      {"id": "vsmall64", "value": "binary64(1.0e-300)"},
+      {"id": "rootvsmall64", "value": "binary64(1.0e-150)"},
+      {"id": "vgreat64", "value": "binary64(1.0e+300)"},
+      {"id": "min-normal", "value": "2^-1022"},
+      {"id": "min-subnormal", "value": "2^-1074"},
+      {"id": "minus-min-subnormal", "value": "-2^-1074"},
+      {"id": "zero", "value": "0"}
+    ],
+    "texts": [
+      {"id": "text-1e-300", "text": "1e-300"},
+      {"id": "text-minus-1e-300", "text": "-1e-300"},
+      {"id": "text-above-vsmall", "text": "1.000000000000001e-300"},
+      {"id": "text-subnormal", "text": "1e-310"},
+      {"id": "text-minus-zero-label", "text": "-0"},
+      {"id": "text-minus-zero-scalar", "text": "-0.0"},
+      {"id": "text-zero", "text": "0"},
+      {"id": "text-label", "text": "42"},
+      {"id": "text-label-overflow", "text": "2147483648"},
+      {"id": "text-1e300", "text": "1e300"},
+      {"id": "text-above-vgreat", "text": "1.000000000000001e+300"},
+      {"id": "text-double-rounding", "text": "1.000000000000000111022302462515654043"},
+      {"id": "text-too-long", "text": "repeat '1' 128 times"}
+    ]
+  },
+  "reference_cells": {
+    "purpose": "Synthetic, non-turbo cells that exercise the operation bounds, closure sums and branch rule. They are not a candidate and say nothing about the turbo mesh.",
+    "input_path": "every coordinate is an exact rational taken through S1 then S2; the operations run on the resulting binary64 values",
+    "hex_faces": [[0, 4, 7, 3], [1, 2, 6, 5], [0, 1, 5, 4], [3, 7, 6, 2], [0, 3, 2, 1], [4, 5, 6, 7]],
+    "hex_unit_vertices": [[0, 0, 0], [1, 0, 0], [1, 1, 0], [0, 1, 0], [0, 0, 1], [1, 0, 1], [1, 1, 1], [0, 1, 1]],
+    "prism_faces": [[0, 2, 1], [3, 4, 5], [0, 1, 4, 3], [1, 2, 5, 4], [0, 3, 5, 2]],
+    "prism_unit_vertices": [[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1], [1, 0, 1], [0, 1, 1]],
+    "offset": ["3/100", "1/50", "1/100"],
+    "edge": "1/10000",
+    "rotation_quaternion": [1, 2, 3, 4],
+    "cells": [
+      {"id": "RC1-offset-cube", "shape": "hex", "map": "offset + edge * v"},
+      {"id": "RC2-rotated-cube", "shape": "hex", "map": "offset + edge * R v, R the rational rotation of the quaternion"},
+      {"id": "RC3-warped-hex", "shape": "hex", "map": "offset + edge * v, then vertex 6 moved by edge * (0, 0, 1/10)"},
+      {"id": "RC4-rotated-prism", "shape": "prism", "map": "offset + edge * R v"}
+    ],
+    "block": {"id": "RB-rotated-block-2x2x2", "map": "offset + edge * R v over the 3 x 3 x 3 lattice v in {0,1,2}^3", "cells": 8, "internal_faces": 12, "boundary_faces": 24},
+    "guard_faces": [
+      {"id": "GF-below", "square_side": "1/10^76", "plane": "z = 0, corner at the origin"},
+      {"id": "GF-near", "square_side": "7.0710678118654752e-76", "plane": "z = 0, corner at the origin"},
+      {"id": "GF-above", "square_side": "1/10^74", "plane": "z = 0, corner at the origin"}
+    ],
+    "fused_patterns": [
+      {"id": "F0", "rule": "no contraction, source order"},
+      {"id": "F1", "rule": "cross product component k = fma(a_k1, b_k2, -fl(a_k2 * b_k1))"},
+      {"id": "F2", "rule": "cross product component k = fma(-a_k2, b_k1, fl(a_k1 * b_k2))"},
+      {"id": "F3", "rule": "F1, and mag(v) = sqrt(fma(x, x, fma(y, y, fl(z * z))))"}
+    ]
+  },
+  "acceptance": [
+    "pin: manifest digest, platform and checkMesh SHA-256 equal the runtime matrix row; every other pinned executable present matches",
+    "constants: every listed exported constant equals the binary64 rounding of its literal",
+    "long-double path: strtold and __trunctfdf2 are imported by libOpenFOAM.so",
+    "conversions: primary and independent reader agree bit for bit on every stage of every witness and certificate rational, every stage error lies within its bound, and every witness class is covered",
+    "operations: for every reference face and cell and every fused pattern, the computed value lies within its prescribed bound; closure sums are reported as computed",
+    "branches: every guard and threshold comparison of the references is classified by the branch rule; undecided ones are retained",
+    "certificates: pinned SHA-256 match; 153 boxes, leaves 1778-1930, both domain endpoints and undecided leaves 1929 and 1930 carried unchanged",
+    "gate: only G04 changes in the ledger revision and its verdict is the unchanged evaluator's"
+  ],
+  "resource_limits": {
+    "host": "WSL2 x86_64, shared",
+    "memory_gib_max": 8,
+    "wall_minutes_per_step_max": 30,
+    "network": "Docker Hub pull of the pinned digest; GitHub release download of the pinned evidence archive",
+    "containers_created": 0,
+    "processes_from_image_executed": 0,
+    "remote_hosts": 0,
+    "paid_compute": false
+  }
+}

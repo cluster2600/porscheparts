@@ -1,0 +1,30 @@
+{
+  "schema": "bionic-turbo-fp-chain-contract-amendment/v1",
+  "date": "2026-11-18",
+  "amends": {
+    "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-contract.json",
+    "sha256": "006fdd018990ea5ab0cb78fe69d049d309e29a10b8e63fa44d9f29223078a9a0",
+    "commit": "e68d171c4ccb4b9cbf000b82033ab4dd14f6960e"
+  },
+  "applied_after_commit": "ae58d128903a081659bade9154823c1c4d0988a3",
+  "trigger": "Review of PR #726 (P2 on fpchain.py, the cosine bracket of the non-orthogonality threshold): the bracket encloses only the correctly rounded value of the exact cosine, while the pinned glibc 2.39 does not promise correctly rounded cos and only its library hash was read.",
+  "finding": "The contract prescribed the native non-orthogonality threshold as the bracket of the two binary64 neighbours of the exact cosine of the binary64 argument. That presumes the pinned ::cos is at least faithfully rounded. No verified (proven) error bound for glibc 2.39 aarch64 double cos is held by the repository or by this revision, glibc's accuracy policy does not require correctly rounded results, and its published ULP figures are test measurements, not proofs. The presumption is withdrawn.",
+  "changes": [
+    {
+      "entry": "thresholds[id=nonOrthCosine].rule",
+      "was": "pi64 is the binary64 rounding of pi; the two products are binary64 operations; the libm result is not observed here, so the threshold is the bracket of the two binary64 neighbours of the exact cosine of the binary64 argument",
+      "now": "pi64 is the binary64 rounding of pi; the two products are binary64 operations. The native threshold ::cos(fl(fl(70 * pi64) / 180)) is unresolved until either a verified error bound for the pinned implementation or an observation by the pinned binary establishes it. The two binary64 neighbours of the exact cosine are recorded only as a figure conditional on faithful rounding, never as the native threshold."
+    },
+    {
+      "entry": "margin_rule",
+      "now": "A threshold returned by a library function without a verified error bound is unresolved. A margin against it is reported only as a conditional figure; it certifies no side and decides nothing."
+    },
+    {
+      "entry": "native_branches[id=G5-non-orthogonality].evaluated_here",
+      "was": "threshold bracket only",
+      "now": "conditional bracket only; native threshold unresolved"
+    }
+  ],
+  "unchanged": "Every other entry of the contract, including its acceptance criteria and resource limits. The contract file itself is not edited.",
+  "effect_on_gate": "New G04 blocker native-nonorthogonality-threshold-unresolved; the G5 margin moves to a conditional figure."
+}

@@ -1,0 +1,90 @@
+{
+  "schema": "bionic-turbo-host-observations/v1",
+  "purpose": "Sanitised receipt of what was run on the WSL host for issue 397. One image was pulled by digest and exported; nothing from it was executed, no container was created, nothing was deleted.",
+  "observed_from_utc": "2026-11-18T12:10:51Z",
+  "observed_to_utc": "2026-11-18T13:04:50Z",
+  "observer_host": {
+    "role": "WSL2 Linux host; the work ran in an isolated Git worktree",
+    "kernel": "6.18.58.1-microsoft-standard-WSL2",
+    "architecture": "x86_64 (linux/amd64)",
+    "logical_cpus": 22,
+    "memory_gib": 25,
+    "docker_server": "29.1.3 with the containerd image store",
+    "repository_file_system": "native Linux file system, not DrvFs"
+  },
+  "containers_created": 0,
+  "processes_from_image_executed": 0,
+  "images_removed": 0,
+  "remote_hosts": 0,
+  "paid_compute": false,
+  "observations": [
+    {
+      "id": "preflight",
+      "at_utc": "2026-11-18T12:28:11Z",
+      "command": "docker ps; ps -eo comm (exact names rhoSimpleFoam, rhoPimpleFoam, snappyHexMesh, blockMesh, checkMesh); free -g",
+      "result": "0 running containers, 0 matching OpenFOAM processes, 21 GiB available. The same counts were observed again at 13:04:50Z."
+    },
+    {
+      "id": "arm64-execution",
+      "command": "ls /proc/sys/fs/binfmt_misc; objdump -i",
+      "result": "No aarch64 binfmt handler is registered (WSLInterop and python3.12 only) and the host binutils have no AArch64 target. The pinned linux/arm64 binaries cannot run here; nothing was installed to change that."
+    },
+    {
+      "id": "images-before",
+      "command": "docker images --digests (opencfd)",
+      "result": "Only opencfd/openfoam-run@sha256:32c0541b... (the linux/amd64 member of the same tag, a different runtime row) was present. It was not run."
+    },
+    {
+      "id": "source-archive-download",
+      "at_utc": "2026-11-18T12:10:51Z",
+      "command": "gh release download bionic-turbo-native-binary-2026-10-12 -p native-binary-052-053.tar.gz",
+      "result": "54591667-byte archive, SHA-256 87d6f62fde69d4fcbad7bf1defb09e61009191f05e02be1d3f9c29e8687a7558 as in its committed archive receipt. Its member OpenFOAM-v2406.tgz has SHA-256 8d1450fb89eec1e7cecc55c3bb7bc486ccbf63d069379d1d5d7518fa16a4686a, the pinned official archive. Read before the plan was written, as issue step 1 requires; members were read with Python tarfile, nothing was built or run."
+    },
+    {
+      "id": "pull",
+      "at_utc": "2026-11-18T12:28:11Z",
+      "command": "docker pull --platform linux/arm64 docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+      "result": "Pulled in 15 s after the plan commit e68d171c; inspect reports linux/arm64, created 2024-06-26T12:40:12Z, 5 layers. The image stays on the host."
+    },
+    {
+      "id": "save",
+      "command": "docker save --platform linux/arm64 -o <private>/image-arm64.tar <same reference>",
+      "result": "167927296-byte OCI archive in the session's private scratch directory, outside Git (file SHA-256 a299e74e8ba797054e44ba04d32c76afb727a3a29a2d66a0edf723892bc973bc; the export file is not an identity, the manifest and layer digests are)."
+    },
+    {
+      "id": "static-readback",
+      "at_utc": "2026-11-18T12:51:49Z",
+      "command": "python3 readback_image.py --image <private>/image-arm64.tar --source-archive <private>/OpenFOAM-v2406.tgz --extract <private>/extract --write",
+      "result": "16.6 s wall; all static checks passed. 18 MB of extracted ELF files and manifests stay in the private directory."
+    },
+    {
+      "id": "primary-and-independent",
+      "at_utc": "2026-11-18T13:03:41Z",
+      "command": "python3 fpchain.py apply --source-archive <private>/OpenFOAM-v2406.tgz --write; python3 independent_reader.py --private-extract <private>/extract --write",
+      "result": "about 11 s and 1.4 s wall, under 1 GiB; primary passed, independent reader 1659 comparisons, 0 mismatches"
+    },
+    {
+      "id": "recurring-automation",
+      "command": "none",
+      "result": "Not observable from this host; last recorded PAUSED on the Mac. This work started no scheduled or recurring job."
+    }
+  ],
+  "skipped_steps": [
+    {
+      "step": "Execution of the pinned binary (native read, write, libm cosine and fused paths)",
+      "reason": "No linux/arm64 executor on this host; the amd64 sibling is a different runtime row and substituting it is prohibited; no emulator was installed or used; remote hosts were excluded by the owner today."
+    },
+    {
+      "step": "Compiler and option pin",
+      "reason": "libOpenFOAM.so and checkMesh carry no .comment section and no recorded switches; only the source wmake rules and the observed fused instructions are available."
+    },
+    {
+      "step": "Native decisions for the cell guard and for closure, flatness, weights, volume ratio, skewness, orthogonality and face tets of the turbo representation",
+      "reason": "They need sensitivity and conditioning bounds over the 153 boxes that no pinned certificate provides; deriving them is a new prescribed derivation, not part of this revision, and replaying the earlier traversals is prohibited."
+    },
+    {
+      "step": "Application to a native input",
+      "reason": "No native input exists and none was created; selecting a point, ratio or candidate is refused."
+    }
+  ]
+}

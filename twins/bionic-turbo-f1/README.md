@@ -213,6 +213,19 @@ against known citations. **Nothing is measured and no physical turbocharger is
 identified**, so gate G03 is investigated, not passed: the only justified scope
 is a provisional synthetic comparison of the two concept housings.
 
+## Conversion chain and native floating point of 18 November 2026
+
+The [revision of 2026-11-18](fp-chain-20261118/README.md) prescribes, before
+application, the chain from exact rationals to writePrecision 16 text to
+binary64, with its rounding modes, per-stage errors, branches and budgets. It
+reads the pinned linux/arm64 runtime statically: the image digest and the five
+pinned executables match, the reader parses through binary128, and the
+geometry code contains fused multiply-adds. Two independent readers then agree
+on every conversion and bound. `VSMALL` itself does not survive a
+writePrecision 16 write and read. **The pinned binary was not executed and no
+native input exists**, so gate G04 is investigated, not passed. The scope
+stays provisional and synthetic.
+
 ## Next step: digital twin
 
 1. Resolve the observed mesh defects while preserving the passages and
