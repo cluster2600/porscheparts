@@ -1,0 +1,262 @@
+{
+  "schema": "bionic-turbo-conventions/v1",
+  "revision": "bionic-turbo-f1-basis-20261112",
+  "issue": 396,
+  "rule": "Definitions and sign conventions fixed before any comparison is computed. A definition is not evidence: it says how a number would be formed, not that any number exists. Functions of the same names in basis.py implement them and take the reference conditions as explicit arguments.",
+  "frame_and_stations": {
+    "axis": "Rotor axis is +Z of the geometry frame; angular velocity omega = rotation_sign * 2 pi N / 60 in rad/s.",
+    "station_1": "Compressor inlet measurement section, outside the rotating-frame zone.",
+    "station_2": "Compressor outlet measurement section, outside the rotating-frame zone.",
+    "averaging": "Total pressure and total temperature at a station are mass-flow-weighted averages over the section. With the constant-Cp gas model this makes the total-temperature rise consistent with the total-enthalpy flux of the existing audit. The choice is fixed here, before application; an area average is a different quantity.",
+    "pressures": "Absolute pressures in Pa. Gauge values are converted before use and the ambient value is stated."
+  },
+  "quantities": [
+    {
+      "id": "mass_flow",
+      "symbol": "m_dot",
+      "unit": "kg/s",
+      "definition": "Mass flow through the compressor, an output of the solver at imposed back-pressure, integrated over station 1 and station 2; the two must agree within the prescribed imbalance. It is never imposed.",
+      "basis": {
+        "kind": "repository_source",
+        "source": {
+          "path": "twins/bionic-turbo-f1/recovery-20261106/gate-ledger.json",
+          "sha256": "4c9ca93f4f393228205a00cfb8c44c90b34f986e245501f34d2dd5520a634e76",
+          "pointer": "/paired_comparison_contract/quantities/mass_flow",
+          "literals": [
+            "Mass flow rate in kg/s, an output of the solver at imposed back-pressure"
+          ]
+        }
+      }
+    },
+    {
+      "id": "corrected_mass_flow",
+      "symbol": "m_dot_corr",
+      "unit": "kg/s",
+      "definition": "m_dot_corr = m_dot * sqrt(T01 / T_ref) / (p01 / p_ref). Always reported with its (T_ref, p_ref) pair.",
+      "basis": {
+        "kind": "repository_source",
+        "source": {
+          "path": "catalog/reference/993-turbo-research-20261002/calculations.json",
+          "sha256": "699d460783a8878150ccf5d6959d6daa894101297dcb24a072528720122f4a97",
+          "pointer": "/matching_assumptions",
+          "literals": [
+            "corrected_mass_flow = actual_mass_flow * sqrt(inlet_temperature_K / reference_temperature_K) / (inlet_pressure_Pa / reference_pressure_Pa)"
+          ]
+        }
+      }
+    },
+    {
+      "id": "corrected_speed",
+      "symbol": "N_corr",
+      "unit": "rpm",
+      "definition": "N_corr = N / sqrt(T01 / T_ref), with the same T_ref as the corrected mass flow.",
+      "basis": {
+        "kind": "definition_adopted_in_this_revision"
+      }
+    },
+    {
+      "id": "total_pressure_ratio",
+      "symbol": "pi_tt",
+      "unit": "1",
+      "definition": "pi_tt = p02 / p01, both absolute total pressures at stations 2 and 1. It is not the outlet-static over inlet-total ratio that the historical case generator takes as an input.",
+      "basis": {
+        "kind": "definition_adopted_in_this_revision"
+      },
+      "see_also": [
+        "cfd-readme-hypothetical-conditions",
+        "k16-map-sjm-2467",
+        "method-garrett-tech103"
+      ]
+    },
+    {
+      "id": "inlet_total_temperature",
+      "symbol": "T01",
+      "unit": "K",
+      "definition": "Total temperature at station 1. In the historical case it is imposed by the totalTemperature inlet condition.",
+      "basis": {
+        "kind": "repository_source",
+        "source": {
+          "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+          "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+          "lines": [
+            197,
+            199
+          ],
+          "literals": [
+            "type totalTemperature"
+          ]
+        }
+      }
+    },
+    {
+      "id": "outlet_total_temperature",
+      "symbol": "T02",
+      "unit": "K",
+      "definition": "Mass-flow-weighted total temperature at station 2, an output of the solver. With adiabatic walls it carries the whole work input; that wall condition is itself an assumption.",
+      "basis": {
+        "kind": "definition_adopted_in_this_revision"
+      }
+    },
+    {
+      "id": "shaft_torque",
+      "symbol": "tau",
+      "unit": "N m",
+      "definition": "tau = -M_z, where M_z is the fluid-on-rotor moment (pressure plus viscous) about +Z on the rotor patch. In steady state it is the torque the shaft applies to the wheel.",
+      "basis": {
+        "kind": "repository_source",
+        "source": {
+          "path": "twins/bionic-turbo-f1/recovery-20261106/gate-ledger.json",
+          "sha256": "4c9ca93f4f393228205a00cfb8c44c90b34f986e245501f34d2dd5520a634e76",
+          "pointer": "/paired_comparison_contract/quantities/shaft_power",
+          "literals": [
+            "M_z is the native fluid-on-rotor moment (pressure plus viscous) about +Z on the rotor patch"
+          ]
+        }
+      }
+    },
+    {
+      "id": "shaft_power",
+      "symbol": "P",
+      "unit": "W",
+      "definition": "P = omega * tau = -omega * M_z. It must be positive for a compressor and equal the net outward total-enthalpy flux within the prescribed energy imbalance; the sign is kept, never hidden by an absolute value. It excludes bearing, seal and disc-friction losses outside the domain.",
+      "basis": {
+        "kind": "repository_source",
+        "source": {
+          "path": "twins/bionic-turbo-f1/recovery-20261106/gate-ledger.json",
+          "sha256": "4c9ca93f4f393228205a00cfb8c44c90b34f986e245501f34d2dd5520a634e76",
+          "pointer": "/paired_comparison_contract/quantities/shaft_power",
+          "literals": [
+            "P = -omega * M_z in W"
+          ]
+        }
+      }
+    },
+    {
+      "id": "isentropic_efficiency_tt",
+      "symbol": "eta_tt",
+      "unit": "1",
+      "definition": "eta_tt = (pi_tt^((gamma - 1) / gamma) - 1) / (T02 / T01 - 1), for the constant-gamma perfect gas of the model. It is an adiabatic-wall model efficiency of the idealised domain, not the efficiency of a physical turbocharger.",
+      "basis": {
+        "kind": "definition_adopted_in_this_revision"
+      },
+      "see_also": [
+        "cfd-readme-no-ranking",
+        "cfd-temperature-boundaries"
+      ]
+    }
+  ],
+  "reference_conditions": {
+    "temperature_k": 288.15,
+    "pressure_pa": 101325,
+    "status": "convention_not_measurement",
+    "why": "The only flow reference already adopted by a repository register; reusing it avoids a third convention.",
+    "source": {
+      "path": "catalog/reference/993-turbo-research-20261002/calculations.json",
+      "sha256": "699d460783a8878150ccf5d6959d6daa894101297dcb24a072528720122f4a97",
+      "pointer": "/matching_assumptions",
+      "literals": [
+        "\"flow_reference_temperature_K\": 288.15",
+        "\"flow_reference_pressure_Pa\": 101325"
+      ]
+    },
+    "other_references_in_the_corpus": [
+      {
+        "corpus_id": "k16-map-sjm-2467",
+        "temperature_k": 293,
+        "pressure": "981 mbar",
+        "note": "Reference stated on a published map of another unit."
+      },
+      {
+        "corpus_id": "cfd-inlet-state-and-gas",
+        "temperature_k": 298.15,
+        "pressure": "101325 Pa",
+        "note": "The hypothetical inlet state of the historical case; an operating hypothesis, not a correction reference."
+      }
+    ],
+    "conversion_rule": "A corrected value is compared with another only after both are brought to the same (T_ref, p_ref)."
+  },
+  "model_constants": [
+    {
+      "id": "gamma",
+      "value": 1.4,
+      "unit": "1",
+      "status": "assumed",
+      "source": {
+        "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+        "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+        "lines": [
+          193,
+          193
+        ],
+        "literals": [
+          "p0, temperature, gamma, gas_r = 101325., 298.15, 1.4, 287.05"
+        ]
+      }
+    },
+    {
+      "id": "gas_constant",
+      "value": 287.05,
+      "unit": "J/(kg K)",
+      "status": "assumed",
+      "source": {
+        "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+        "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+        "lines": [
+          193,
+          193
+        ],
+        "literals": [
+          "p0, temperature, gamma, gas_r = 101325., 298.15, 1.4, 287.05"
+        ]
+      }
+    },
+    {
+      "id": "cp",
+      "value": 1004.6750000000002,
+      "unit": "J/(kg K)",
+      "status": "assumed",
+      "derivation": "gamma * gas_constant / (gamma - 1), as the generator writes it",
+      "source": {
+        "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+        "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+        "lines": [
+          208,
+          209
+        ],
+        "literals": [
+          "Cp {gamma*gas_r/(gamma-1):.15g}"
+        ]
+      }
+    }
+  ],
+  "illustration_from_assumed_inputs": {
+    "status": "arithmetic_on_hypotheses_not_a_result",
+    "inputs": {
+      "inlet_total_temperature_k": 298.15,
+      "inlet_total_pressure_pa": 101325.0,
+      "rotor_speed_rpm": 100000.0
+    },
+    "corrected_mass_flow_per_unit_mass_flow": 1.0172040833311593,
+    "corrected_speed_rpm": 98308.68912019907,
+    "angular_velocity_rad_s": 10471.975511965977,
+    "note": "Shows what the conventions do to the hypothetical operating point. No flow, torque, power or efficiency exists to report."
+  },
+  "independent_check": {
+    "claim": "corrected_mass_flow reproduces the 20 illustrative points of the 2026-10-02 research register from their stated inlet state and reference.",
+    "path": "catalog/reference/993-turbo-research-20261002/calculations.json",
+    "sha256": "699d460783a8878150ccf5d6959d6daa894101297dcb24a072528720122f4a97"
+  },
+  "unregistered_leads": [
+    {
+      "lead": "SAE J1826, turbocharger gas-stand test code",
+      "status": "unverified_lead_not_read_not_registered",
+      "note": "Named from general knowledge as the usual home of gas-stand corrections; no value is taken from it."
+    },
+    {
+      "lead": "SAE J922, turbocharger nomenclature and terminology",
+      "status": "unverified_lead_not_read_not_registered",
+      "note": "Named from general knowledge; no definition is taken from it."
+    }
+  ],
+  "essential_missing_measurements": "See missing_data_gates in interface-ledger.json; MD-01 to MD-07 are essential before a compressor comparison can leave synthetic scope."
+}

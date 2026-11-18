@@ -202,6 +202,17 @@ OpenCFD v2406 remains the only runtime with turbo evidence; the Foundation 13 an
 14 images are prohibited substitutes. No gate is passed, and its validator refuses
 any stale or mismatched binary or configuration hash.
 
+## Interface ledger and comparison basis of 12 November 2026
+
+The [basis of 2026-11-12](basis-20261112/README.md) follows the
+[Mac runtime revision](baseline-20261106-mac/README.md) and the
+[evidence recovery](recovery-20261106/README.md). It lists every interface and
+operating condition with its source or a named missing-data gate, defines the
+quantities and conventions of the comparison, and tests documentary retrieval
+against known citations. **Nothing is measured and no physical turbocharger is
+identified**, so gate G03 is investigated, not passed: the only justified scope
+is a provisional synthetic comparison of the two concept housings.
+
 ## Next step: digital twin
 
 1. Resolve the observed mesh defects while preserving the passages and

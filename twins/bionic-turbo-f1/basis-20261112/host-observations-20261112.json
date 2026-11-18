@@ -1,0 +1,62 @@
+{
+  "schema": "bionic-turbo-host-observations/v1",
+  "purpose": "Sanitised receipt of the read-only commands run for issue #396 before any work. Nothing was started, stopped, removed, pulled, built or changed.",
+  "observed_at_utc": "2026-11-12T10:43:37Z",
+  "observer_host": {
+    "role": "WSL2 Linux host; the work ran in an isolated Git worktree",
+    "kernel": "6.18.58.1-microsoft-standard-WSL2",
+    "architecture": "x86_64 (linux/amd64)",
+    "logical_cpus": 22,
+    "repository_file_system": "native Linux file system, not DrvFs"
+  },
+  "observations": [
+    {
+      "id": "prerequisite-issues",
+      "command": "gh issue view 394 --json state,closedAt; gh issue view 395 --json state,closedAt",
+      "result": "Issue 394 CLOSED 2026-11-12T10:22:30Z; issue 395 CLOSED 2026-11-09T08:41:39Z. Issue closure is not gate admission; the gate evaluations are in prerequisites.json."
+    },
+    {
+      "id": "docker-running-containers",
+      "command": "docker ps --format '{{.Image}}'",
+      "result": "Seven running containers belonging to other sessions: six of image 3dprinting993-cadsim:dev and one of 3dprinting993-recon:dev. None uses an OpenCFD, bionic turbo or free-tools image. None was touched."
+    },
+    {
+      "id": "turbo-processes",
+      "command": "ps -eo comm | grep -c -i -E '^(rhoSimpleFoam|rhoPimpleFoam|snappyHexMesh|blockMesh|checkMesh|CloudCompare)$'",
+      "result": "0 matching processes"
+    },
+    {
+      "id": "docker-turbo-images",
+      "command": "docker images --digests | grep -i -E 'opencfd|cloudcompare'",
+      "result": {
+        "opencfd/openfoam-run@sha256:32c0541bc3577916a6ddae618ad12d5082a40702249e101358a3f078bcc7f722": "present; this is not the digest pinned for the historical turbo runtime (sha256:1db0df06...), and it was not run",
+        "free-tools-cloudcompare@sha256:5b33bb63c14752060c96cc74f4871266908c672d0d495cee2edbed7bbae74f03": "present, local build created 2026-11-10; the runtime matrix records the CloudCompare image identity as unknown, so this image is not a qualified turbo runtime, and it was not run"
+      }
+    },
+    {
+      "id": "sqlite-fts5",
+      "command": "python -c \"import sqlite3; c = sqlite3.connect(':memory:'); c.execute('create virtual table t using fts5(x)'); print(sqlite3.sqlite_version)\"",
+      "result": "SQLite 3.45.1 in the CI virtual environment; FTS5 virtual table creation succeeds"
+    },
+    {
+      "id": "recurring-automation",
+      "command": "none",
+      "result": "Not observable from this host: the automation was last recorded PAUSED on the Mac in recovery-20261106/prerequisites.json. This work started no scheduled or recurring job and contacted no other host."
+    }
+  ],
+  "skipped_steps": [
+    {
+      "step": "CloudCompare sampled diagnostic (issue step 3)",
+      "reason": "Two conditions of PLAN.md are unmet. No turbo surface is committed: the wheel and housing meshes are local or archived outputs, absent from the worktree. The runtime matrix row free-tools-cloudcompare-salome has cloudcompare_image unknown and is qualified for carrier and synthetic controls only. A sampled distance would also add nothing to the ledger that the existing exact-triangle radial bound does not already bound more strongly."
+    },
+    {
+      "step": "Qwen documentary drafting (issue step 4)",
+      "reason": "Optional and not useful here: every ledger entry and summary was written from the cited spans directly."
+    },
+    {
+      "step": "Web research for published turbo data",
+      "reason": "Not needed: the repository already holds reviewed, rights-recorded registers for the K16 family, and none of them supplies a map or a measurement for the concept turbo. No external request was sent."
+    }
+  ],
+  "computation": "Hashing of committed files, JSON validation and one SQLite FTS5 index of 76 short documents built in a private temporary directory. No mesher, solver, container or remote host."
+}
