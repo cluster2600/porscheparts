@@ -1,0 +1,619 @@
+{
+  "schema_version": "1.0.0",
+  "record_id": "993-INTERCOOLER-750-COUPON-3D-INPUTS-1",
+  "issue": 467,
+  "written_on": "2026-11-18",
+  "plan": "twins/993-intercooler/750-hp/pressure-coupon/fillet-radius/3d-study-plan.json",
+  "instruction": "Owner, 2026-11-18: research the blocking inputs of the plan in the DDK and PorscheFanatics data already held, and in the repository's own sources.",
+  "what_this_is": "Declared design decisions for the inputs that are design choices (IN-01 end closure, IN-03 bench fixture) and a declared bench load for IN-04, each tied to what the sources state; search records for the inputs the data does not supply (IN-02 fitting, IN-10 cold-side flow). No drawing was made, no solver ran, nothing was printed or measured.",
+  "number_rule": "Every number below cites a registered source record or a retained file of this repository, or is marked declared with its reason. A declared value is a design choice, not a sourced fact, and the 3D study may show it to be a poor one.",
+  "screen": {
+    "data": {
+      "repository": "cluster2600/porschefanatics.com, local checkout",
+      "commit": "5131d95503372230d821867c63c4bc80bc97e078",
+      "read_on": "2026-11-18",
+      "read_only": true,
+      "modified": false
+    },
+    "rights": "Counts, record ids, bases, part numbers and hashes only. No post text, member names or member fields, and no PorscheFanatics, PET or vendor content is copied.",
+    "script": "twins/993-intercooler/750-hp/pressure-coupon/source/owner_data_screen.py",
+    "computed": {
+      "patterns": {
+        "charge_air": "intercool|ladeluft|\\bllk\\b|charge[- ]?air|charge[- ]cool|boost(?!er)|ladedruck|wastegate|blow-?off|schubumluft",
+        "joint": "hose|schlauch|clamp|schelle|\\bbead|fitting|spigot|coupler|union|sleeve|manschette",
+        "standard": "DIN ?3017|DIN ?3021|DIN ?71802|ISO ?1179|ISO ?228|ISO ?6149|SAE ?J1926|SAE ?J20\\b|bead roll|beaded|t-bolt clamp|hose barb",
+        "flow_units": "kg/s|kg/h|m³/h|m3/h|m³/s|m3/s|\\bcfm\\b"
+      },
+      "ddk_forum_measurements": {
+        "path": "data/forum-measurements.json",
+        "sha256": "8a288acd49ff46123ba51cc6d482e582ee47e0e71173bab41896c9445a7b15a5",
+        "records": 5916,
+        "reviewed_on": "2026-11-02",
+        "records_tagged_993": 78,
+        "category_counts": {
+          "flow": 12,
+          "temperature": 45,
+          "pressure": 296
+        },
+        "charge_air_terms": [
+          {
+            "id": "ddk-187031-boost-onset-engine-speed-930-turbo-3-0",
+            "basis": "quoted"
+          },
+          {
+            "id": "ddk-210408-engine-speed-where-boost-builds-930-turbo",
+            "basis": "reported"
+          },
+          {
+            "id": "ddk-425175-dyno-power-of-935-k3-at-one-bar-boost",
+            "basis": "measured"
+          },
+          {
+            "id": "ddk-621969-factory-power-output-of-934-engine",
+            "basis": "reported"
+          }
+        ],
+        "joint_terms_on_964_or_993_records": [
+          {
+            "id": "ddk-146589-extra-weight-of-964-door-with-intrusion-beam-vs-early-911-do",
+            "basis": "reported"
+          },
+          {
+            "id": "ddk-167696-rear-carrera-script-height-above-base-964-rs",
+            "basis": "reported"
+          },
+          {
+            "id": "ddk-446125-diameter-of-front-cockpit-heater-hoses-964",
+            "basis": "reported"
+          },
+          {
+            "id": "ddk-448234-front-damper-setting-bilstein-pss10-on-964-c2",
+            "basis": "reported"
+          },
+          {
+            "id": "ddk-494524-ride-height-setting-relative-to-rs-993-on-pss10-dampers",
+            "basis": "reported"
+          },
+          {
+            "id": "ddk-588479-ride-height-offset-above-rs-setting-993",
+            "basis": "reported"
+          },
+          {
+            "id": "ddk-624610-standard-964-camshaft-timing-inlet-lift-at-z1",
+            "basis": "reported"
+          },
+          {
+            "id": "ddk-632883-aftermarket-bucket-seat-position-vs-standard-seat-964",
+            "basis": "reported"
+          },
+          {
+            "id": "ddk-677206-heater-hose-inside-diameter-for-993-heat-exchangers-fitted-t",
+            "basis": "reported"
+          }
+        ],
+        "standard_terms": [
+          {
+            "id": "ddk-371868-height-of-silicone-bead-on-lower-cam-cover-gasket",
+            "basis": "reported"
+          }
+        ],
+        "flow_units": [
+          {
+            "id": "ddk-313147-mfi-throttle-stop-air-flow-setting-per-stack",
+            "basis": "reported"
+          }
+        ]
+      },
+      "pet_transcription": {
+        "path": "data/oem-listed.json",
+        "sha256": "1be46beb55b495c0fd9cc3f02e607fb03f391d8874c149743bf4de4402cd213c",
+        "plates": {
+          "107-20": {
+            "lines": 65,
+            "joint_lines": [
+              {
+                "position": 1,
+                "reference": "999 181 022 51"
+              },
+              {
+                "position": 2,
+                "reference": "000 043 204 96"
+              },
+              {
+                "position": 2,
+                "reference": "000 043 204 98"
+              },
+              {
+                "position": 2,
+                "reference": "900 123 019 30"
+              },
+              {
+                "position": 4,
+                "reference": "993 110 368 51"
+              },
+              {
+                "position": 5,
+                "reference": "999 512 539 00"
+              },
+              {
+                "position": 5,
+                "reference": "999 512 539 01"
+              },
+              {
+                "position": 7,
+                "reference": "999 652 777 40"
+              },
+              {
+                "position": 12,
+                "reference": "999 512 551 00"
+              },
+              {
+                "position": 15,
+                "reference": "900 123 106 30"
+              },
+              {
+                "position": 17,
+                "reference": "993 110 693 52"
+              },
+              {
+                "position": 19,
+                "reference": "993 110 397 50"
+              },
+              {
+                "position": 19,
+                "reference": "993 110 397 51"
+              },
+              {
+                "position": 20,
+                "reference": "999 512 349 01"
+              },
+              {
+                "position": 20,
+                "reference": "999 512 349 02"
+              },
+              {
+                "position": 22,
+                "reference": "999 512 198 02"
+              },
+              {
+                "position": 22,
+                "reference": "PCG 512 198 02"
+              },
+              {
+                "position": 27,
+                "reference": "928 574 717 03"
+              },
+              {
+                "position": 31,
+                "reference": "993 110 113 52"
+              },
+              {
+                "position": 32,
+                "reference": "993 110 114 51"
+              }
+            ]
+          },
+          "107-45": {
+            "lines": 49,
+            "joint_lines": [
+              {
+                "position": 10,
+                "reference": "993 110 111 50"
+              },
+              {
+                "position": 13,
+                "reference": "964 110 227 00"
+              },
+              {
+                "position": 14,
+                "reference": "999 707 326 40"
+              },
+              {
+                "position": 18,
+                "reference": "993 504 325 04"
+              },
+              {
+                "position": 19,
+                "reference": "993 110 632 56"
+              },
+              {
+                "position": 19,
+                "reference": "993 110 633 56"
+              },
+              {
+                "position": 20,
+                "reference": "999 512 648 02"
+              },
+              {
+                "position": 21,
+                "reference": "999 512 647 02"
+              }
+            ]
+          }
+        }
+      },
+      "parts_catalogue": {
+        "path": "data/parts",
+        "files": 13,
+        "sha256": {
+          "000.json": "a06174d44d1343058e1308a57e8042a622116b8279a7c52bee0e93a19c7ac116",
+          "001.json": "2e846f98ebe8cdad4c7fc8ffb80cde5d81ca406fff94162aed0f7a2de547b314",
+          "002.json": "b804ce6e4b4768862cca6e2b0dee0ff8a288402e44a296e68e4995f91ebbf1d2",
+          "003.json": "43daa2debce8259fb665146696bfe68193c658dca3058e086f01af4b51b9c338",
+          "004.json": "e25fa5eca595f9329c42a79b9ba263d10698993712a6b2f7e561da83c70e9e83",
+          "005.json": "646d2d4a5abd7fe92041344295b8731f7f34ce39e997585a04517e506a3d05ce",
+          "006.json": "598c49b8b8e4d22f175dee0644f8ad4eceee5f931b8ed15ad7dec005a2df342b",
+          "007.json": "7b200c86fdfb27eae5ad8c80f44a94eefbd0a6eaf1904bc5162005c4437743bf",
+          "008.json": "8dca380c8ff95add053b92133ae5c0e79553fcfb79ae96b38fcfe7875d9fdc6e",
+          "009.json": "5dcbf5be197c4a6969d455df0ccfa38ec71f190552ae2b27906bf8e9fd89d122",
+          "010.json": "4499e5f7860eacdc32ef2922cf5009c416886b4291ac9b01f50c1d9a8d04c730",
+          "011.json": "74ac6ffd2578fda35edf0085cb59a58ca7d00b1ecf7de2638ef27306918aa399",
+          "012.json": "20c5c6be1f8dce848a1ca74c81925aed65051158aa41340b5e6cbff98583873a"
+        },
+        "records_with_993_fitment_and_charge_air_or_joint_terms": 49,
+        "of_which_name_states_a_size_in_mm": [
+          "auto-atlanta-15mm-turbo-throttle-body-hose-spring-clamp-for-993-1994-98-and-99",
+          "auto-atlanta-60mm-hose-clamp-993-turbo-95-98"
+        ]
+      },
+      "other_files": {
+        "data/993-manual/technical-data.json": {
+          "sha256": "fc35ce95f2ab5e9afb718a44f75c1408a55185b55dabeb651be49d9a70ed564e",
+          "charge_air_hits": 1,
+          "standard_hits": 0,
+          "flow_unit_hits": 0
+        },
+        "data/993-manual/torque-specs.json": {
+          "sha256": "152318a14137e37c609d010728567626f75140c1c385499fc34a71ab107dc04e",
+          "charge_air_hits": 0,
+          "standard_hits": 0,
+          "flow_unit_hits": 0
+        },
+        "data/993-manual/procedures.json": {
+          "sha256": "786b6c093904369626e87c05e4017147fd50164c43fc702168e6fadbe5d15e0d",
+          "charge_air_hits": 0,
+          "standard_hits": 0,
+          "flow_unit_hits": 0
+        },
+        "data/builds.json": {
+          "sha256": "32f2f94ce3dc533d96487c5a98c3c6794d313e5a5e8396758b37ad732e3a21b5",
+          "charge_air_hits": 33,
+          "standard_hits": 0,
+          "flow_unit_hits": 0
+        },
+        "data/engine-reference-data.json": {
+          "sha256": "d75163614be37c6ad9db7f8a9c1bd6ce7fbb282fe14ec6b2c2a9b0fd1cb07c05",
+          "charge_air_hits": 0,
+          "standard_hits": 0,
+          "flow_unit_hits": 0
+        },
+        "data/tuneup-specs.json": {
+          "sha256": "27966a2d033148858aa74e1b876d7ddc4bde01c58c740bafcafab8914bd24018",
+          "charge_air_hits": 0,
+          "standard_hits": 0,
+          "flow_unit_hits": 0
+        },
+        "data/factory-literature.json": {
+          "sha256": "b0127718523e815ede12babfb9609c4b6e9940d451569dee0f92d3ef3b2fca09",
+          "charge_air_hits": 0,
+          "standard_hits": 0,
+          "flow_unit_hits": 0
+        },
+        "data/magazine-archive.json": {
+          "sha256": "a164efda50a1abaeb1d01e45237b7ea637b20c6b44716c1dbf636510a60fc5ad",
+          "charge_air_hits": 4,
+          "standard_hits": 0,
+          "flow_unit_hits": 0
+        },
+        "data/raw/factory-manuals/930-1976-1984.txt": {
+          "sha256": "cf752224d05c57588e013477b25e66f789e60c66de7d59c5bc8dd45805b20267",
+          "charge_air_hits": 28,
+          "standard_hits": 0,
+          "flow_unit_hits": 0
+        }
+      }
+    },
+    "review": {
+      "ddk_forum_measurements": {
+        "relevant_records": [],
+        "statement": "None of the 5916 DDK records states anything about a 993 Turbo or GT2 charge-air cooler, its hoses, clamps or fittings, a boost pressure, a charge-air temperature or a cooling-air flow. No DDK record is used.",
+        "dispositions": {
+          "charge_air_terms": "930, 934 and 935 engines: engine speed at boost onset or power at a stated boost. Other generations, and no intercooler, hose or flow figure.",
+          "joint_terms_on_964_or_993_records": "Heater hoses of the exhaust heat exchangers (on an air-cooled 911 'heat exchanger' is the exhaust heater box, not the charge cooler), dampers, seats, cam timing, body. None on the charge-air path.",
+          "standard_terms": "A sealant bead on a cam-cover gasket.",
+          "flow_units": "A throttle-stop air setting of an early mechanical-injection 911.",
+          "category_counts": "The 12 flow records are fuel deliveries and injection-pump settings; the 45 temperature records are oil, heater-duct, carburettor and engine-bay temperatures; the 296 pressure records are tyre, oil, fuel and injection pressures. The 78 records tagged 993 are masses, wheels, dimensions, power, ride heights, engine speeds and tyre pressures."
+        }
+      },
+      "pet_transcription": "Plate 107-45 (charge air cooler) lists the cooler 993 110 330 53, rubber mountings 930 113 430 00, sleeves 993 110 111 50, brackets 993 110 110 50/52, a sealing ring, an O-ring, a gasket, one pressure hose per side (993 110 633 56 left, 993 110 632 56 right) and two hose clamps of each of 999 512 648 02 and 999 512 647 02. The transcription carries identities only: no dimension, standard, torque or drawing.",
+      "parts_catalogue": "Of the records with 993 fitment and charge-air or joint terms, only two name a size: a 15 mm spring clamp of the Turbo throttle-body hose (not the cooler joint) and the 60 mm hose clamp registered as SRC-AUTOATLANTA-993-TURBO-60MM-HOSE-CLAMP. The intercooler hose kits, silicone boost-hose kits and replacement cores carry no dimension in the dataset. Generic NPT hose-barb listings name a thread family for other cooling uses and carry no dimension or standard text.",
+      "other_files": {
+        "data/993-manual/*.json": "The 993 repair manual data cover the Carrera: no charge-air entry. The single technical-data hit is the brake booster factor.",
+        "data/builds.json": "The PorscheFanatics build narrative names a full-width core as the catalogued upgrade; no figure.",
+        "data/raw/factory-manuals/930-1976-1984.txt": "The 930 manual gives a manifold pressure of 0.70 to 0.85 bar for the Turbo 3.3 and asks for the 1978 intercooler duct to be installed without stress. Another generation: used for no input.",
+        "data/magazine-archive.json": "Four hits, none about the 993 Turbo charge air.",
+        "data/engine-reference-data.json, data/tuneup-specs.json, data/factory-literature.json": "No hit."
+      },
+      "read_by_hand": {
+        "src/pages/projects/993-turbo-fan.astro": "Gives 2.34 m3/s of engine cooling-fan airflow at 10,000 fan rpm and the 2.5 kg/s imposed cooling-air flow. Both are copied from this repository (an inferred engine-fan model and an imposed assumption). They are circular and are not a charge-cooler air flow: not admissible for IN-10.",
+        "docs/ and research-output/": "Text search for intercooler, charge-air, Ladeluft and boost terms. The hits are builder and supplier research (intercooler makers, 930, 964 and 935 builds): no 993 Turbo charge-air figure.",
+        "marketplace/": "No hit."
+      },
+      "not_searched": "node_modules/, dist/ and public/ hold the site build and its assets, not data."
+    }
+  },
+  "inputs": {
+    "IN-01": {
+      "status": "declared_design_decision",
+      "what_the_data_states": [
+        {
+          "fact": "The car has one charge-air cooler 993 110 330 53, joined to the charge path by a pressure hose on each side (993 110 633 56 left, 993 110 632 56 right) held by hose clamps: round clamped hose connections, not a flange on each passage. The plate gives no routing and no dimension of the cooler's connections.",
+          "source_ids": [
+            "SRC-PORSCHE-AUSTRIA-993-107-45-PET",
+            "SRC-PORSCHE-PET-993",
+            "SRC-PORSCHEFANATICS-993-OEM-LISTED-PET"
+          ]
+        },
+        {
+          "fact": "Announced hose diameters of an aftermarket kit: 43 and 57 mm.",
+          "source_ids": [
+            "SRC-FVD-993-REINFORCED-INTERCOOLER-HOSE-KIT-DIMENSIONS"
+          ]
+        },
+        {
+          "fact": "Announced connections of an aftermarket cooler: 66 mm outside, 68 mm inside.",
+          "source_ids": [
+            "SRC-TA-TECHNIX-993-INTERCOOLER-DIMENSIONS"
+          ]
+        },
+        {
+          "fact": "No source gives the end tanks, flanges or port geometry of 993 110 330 53.",
+          "source_ids": [
+            "SRC-PORSCHE-AUSTRIA-993-107-45-PET",
+            "SRC-PORSCHE-PET-993",
+            "SRC-PORSCHEFANATICS-993-OEM-LISTED-PET",
+            "SRC-PORSCHEFANATICS-993-INTERCOOLER-END-TANK-CANDIDATE"
+          ]
+        }
+      ],
+      "what_is_taken_from_the_car": "The principle only: a round connection serving all passages through a plenum, rather than a connection per passage. The vehicle connections are 43 to 68 mm across; the coupon is 24 mm wide and its hot zone 4.6 mm high, so no vehicle dimension is transferred.",
+      "decision": {
+        "C1_topology": {
+          "rule": "At each end of the ribbed length a plenum joins the five hot channels, and each plenum ends in one round port on the passage axis, pointing along X: inlet on the -X end, outlet on the +X end.",
+          "port_axis_y_mm": 0.0,
+          "port_axis_z_mm": 2.3,
+          "basis": "The principle of the car (round clamped hose connections serving the core). Y = 0 and Z = 2.3 mm are the centre of the retained hot passage, Z 0.8 to 3.8 mm in twins/993-intercooler/750-hp/pressure-coupon/source/picogk/Program.cs; straight-through flow keeps the hot flow along X as in the retained studies.",
+          "declared": true
+        },
+        "C2_ribbed_length": {
+          "rule": "The ribbed passage keeps its retained length; the ribs reach X = -12 and +12 mm.",
+          "length_mm": 24.0,
+          "basis": "retained coupon, twins/993-intercooler/750-hp/pressure-coupon/source/picogk/Program.cs"
+        },
+        "C3_plenum": {
+          "rule": "Inner section equal to the full hot passage, walls flush with the coupon walls, axial depth 3 mm.",
+          "inner_section_mm": [
+            22.4,
+            3.0
+          ],
+          "axial_depth_mm": 3.0,
+          "basis": "The section is the retained hot passage (22.4 x 3 mm), so no channel is masked. The depth is declared: equal to the passage height, it keeps the plenum's span along the flow to the smallest dimension the retained section already has, and the 3 mm opening across all five channels meets the at-least-3 mm powder-removal opening of SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES (a service guideline: it shows no depowdering). How the flow splits between the channels is not prescribed: it is a quantity the CHT analysis reports.",
+          "declared": true
+        },
+        "C4_port_transition": {
+          "rule": "Between the plenum and the port seat of IN-02, the walls make at most 45 degrees with the X axis; the transition length follows from the seat bore.",
+          "max_wall_angle_to_axis_deg": 45.0,
+          "basis": "45 degrees is the overhang figure the plan already cites (SRC-NASA-TM-20250010927-LPBF-FILLETING and the down-skin diagram of SRC-EOS-ALSI10MG-M290-30UM): built with its axis vertical, no transition wall would pass it. This decision chooses no build orientation.",
+          "declared": true
+        },
+        "C5_walls": {
+          "rule": "Every wall of the closure is 0.8 mm thick.",
+          "wall_mm": 0.8,
+          "basis": "The retained wall of the coupon, twice the 0.4 mm minimum wall of the reference route (SRC-EOS-ALSI10MG-M290-30UM); no new wall thickness enters the comparison."
+        },
+        "C6_rib_ends": {
+          "rule": "Each rib ends in a semicircular nose whose tip lies at X = -12 or +12 mm; the straight flanks stop at X = -11.6 and +11.6 mm. Same in every arm.",
+          "nose_radius_mm": 0.4,
+          "basis": "Half the 0.8 mm rib thickness, so the root fillet runs round the rib end as one surface, with no corner where three fillets meet. A convex nose is not a singular feature.",
+          "declared": true
+        },
+        "C7_concave_edges": {
+          "rule": "Every concave edge of the closure (rib nose to wall, plenum to transition, transition to port bore) is blended with the arm's root radius: 0.4 mm in arm A, sharp in arm S, the IN-15 radius in arm L.",
+          "basis": "The plan's matching rule (one drawing in which only the root radius changes) and its input audit (no unblended re-entrant edge where stress is quoted). Arm S quotes no stress."
+        },
+        "C8_cold_side": {
+          "rule": "Unchanged: the cold lattice stays open on its two Y faces and closed at its X ends by the existing walls; plenums and transitions lie beyond X = -12 and +12 mm and cover no cold face.",
+          "basis": "Cold region X -11.2 to 11.2, Y -12 to 12, Z 4.6 to 10.6 mm in twins/993-intercooler/750-hp/pressure-coupon/source/picogk/Program.cs."
+        }
+      },
+      "left_to_other_inputs": {
+        "IN-02": "port seat: bore, wall, thread or bead, length"
+      },
+      "blocking": false
+    },
+    "IN-02": {
+      "status": "null_not_in_the_data",
+      "value": null,
+      "what_the_data_states": [
+        {
+          "fact": "Charge-air hose clamps of the car: sizes 60-80/12 and 40-60/9, two of each of 999 512 648 02 and 999 512 647 02; O-ring 30 x 3. No clamp type, torque, bead or spigot profile, no standard.",
+          "source_ids": [
+            "SRC-PORSCHE-AUSTRIA-993-107-45-PET",
+            "SRC-PORSCHE-PET-993",
+            "SRC-PORSCHEFANATICS-993-OEM-LISTED-PET"
+          ]
+        },
+        {
+          "fact": "A listing whose image file carries 999 512 647 02 names a 60 mm hose clamp for the 993 Turbo 1995-98; no type, band, torque or standard.",
+          "source_ids": [
+            "SRC-AUTOATLANTA-993-TURBO-60MM-HOSE-CLAMP"
+          ]
+        },
+        {
+          "fact": "Announced hose diameters 43 and 57 mm (aftermarket kit) and connections 66 mm outside, 68 mm inside (aftermarket cooler).",
+          "source_ids": [
+            "SRC-FVD-993-REINFORCED-INTERCOOLER-HOSE-KIT-DIMENSIONS",
+            "SRC-TA-TECHNIX-993-INTERCOOLER-DIMENSIONS"
+          ]
+        },
+        {
+          "fact": "DDK: no record on a charge-air hose, clamp or fitting.",
+          "ddk_records_used": []
+        }
+      ],
+      "not_found": "No named fitting or port standard, no manufacturer drawing of a port, bore, wall, thread, bead or spigot, and no clamp type or tightening torque for the 993 Turbo charge-air joints, in the DDK data, the PorscheFanatics data or the repository's source records.",
+      "why_null": "The plan accepts only a named published fitting standard or a manufacturer drawing registered as a source record. The data hold neither. Even complete vehicle data would not supply this input: the car's joints are 43 to 68 mm across, and a 24 mm coupon needs a bench port.",
+      "what_would_fill_it": "A published port or fitting standard chosen by the owner, registered as a source record with its seat, thread or bead and bore tables actually read. It then completes the port seat of IN-01, the support face of IN-03 and terms L2 and L3 of IN-04.",
+      "blocking": true
+    },
+    "IN-03": {
+      "status": "declared_design_decision",
+      "what_the_data_states": [
+        {
+          "fact": "In the car the cooler is mounted with rubber mountings 930 113 430 00, sleeves 993 110 111 50 and brackets 993 110 110 50/52, and is joined to the charge path by pressure hoses held by hose clamps: hoses, not rigid pipes, and rubber mountings. The plate gives identities and quantities, not stiffness or geometry.",
+          "source_ids": [
+            "SRC-PORSCHE-AUSTRIA-993-107-45-PET",
+            "SRC-PORSCHE-PET-993",
+            "SRC-PORSCHEFANATICS-993-OEM-LISTED-PET"
+          ]
+        },
+        {
+          "fact": "The interface contract of the installed-cooling twin requires flexible couplers that isolate motion, with boost pressure and hose reactions carried into supported tanks; none of its interfaces is measured.",
+          "repository_file": "twins/993-installed-cooling-f1/interface-contract.json"
+        },
+        {
+          "fact": "The flanges, axes and mounts of 993 110 330 53 are not measured: no vehicle mount geometry or stiffness is used.",
+          "repository_file": "twins/993-intercooler/README.md"
+        }
+      ],
+      "decision": {
+        "F1_support": {
+          "rule": "The inlet port seat is the only support, fixed in all six degrees of freedom on a rigid bench manifold; in the model, zero displacement on the seat face that IN-02 defines.",
+          "basis": "Statically determinate: the reactions follow from the applied loads alone, so the plan's pressure balance (resultant equal to the reactions within 0.1 %) applies directly, and the free outlet end lets the coupon expand, so thermal stress in M-T comes from the coupon's own temperature field rather than from a restraint no real fixture reproduces. It follows the car's arrangement (rubber mountings, hose connections) without using its unmeasured geometry or stiffness.",
+          "declared": true
+        },
+        "F2_outlet": {
+          "rule": "The outlet port is connected through a slack flexible hose that carries only the outlet end load of IN-04.",
+          "basis": "Keeps the support of F1 statically determinate and follows the car's hose connections; the hose acts on the coupon only through the end load L2.",
+          "declared": true
+        },
+        "F3_body": {
+          "rule": "No clamp or contact on the coupon body. The cold-air supply reaches the open Y faces through a duct that does not touch the coupon; any seal there is declared load-free.",
+          "basis": "A clamp or contact on the body would add a restraint that nothing measures and would break the static determinacy of F1.",
+          "declared": true
+        },
+        "F4_excluded_band": {
+          "rule": "The seat face and the port wall within one seat bore of it are a declared boundary where no stress is quoted; the port-to-plenum junction must therefore lie at least one seat bore from the seat face.",
+          "basis": "A fully fixed face makes a singular stress at its edge that belongs to the idealised support, not to the coupon (repository rule on singular corners); by Saint-Venant's principle the support's local effect fades within about one characteristic size of the supported face.",
+          "declared": true
+        }
+      },
+      "left_to_other_inputs": {
+        "IN-02": "seat face geometry and bore"
+      },
+      "blocking": false
+    },
+    "IN-04": {
+      "status": "declared_bench_load_partial",
+      "basis": "No measurement exists in the DDK data, the PorscheFanatics data or the repository: this is a declared bench load. Terms that depend on the fitting wait for IN-02.",
+      "decision": {
+        "L1_pressure": {
+          "rule": "IN-05 on every wetted face up to the seal plane of each port, as already set in analysis M-P.",
+          "numerical_proof_case_mpa": 0.375,
+          "service_mpa": 0.25,
+          "basis": "IN-05, unchanged (assumed, from hot-weather/assumptions.json)."
+        },
+        "L2_outlet_end_load": {
+          "rule": "The slack outlet hose transmits the closed-end pressure thrust p x pi d_s^2 / 4 along +X at the outlet seal plane, d_s being the seal diameter of IN-02.",
+          "value_n": null,
+          "basis": "Conservative (as if the end were capped) and independent of how the hose is routed.",
+          "declared": true
+        },
+        "L3_fitting_preload": {
+          "rule": "Clamp or thread preload from the IN-02 standard.",
+          "value_n": null,
+          "basis": "No standard is registered. The car's clamp sizes (60-80/12, 40-60/9 mm) come without type or torque and belong to 43 to 57 mm hoses the coupon does not have."
+        },
+        "L4_pipe_bending_and_transverse_force": {
+          "rule": "None: the bench hose is slack and no rigid pipe is connected.",
+          "moment_n_m": 0.0,
+          "force_n": 0.0,
+          "basis": "Follows from fixture F2. A vehicle installation would bring its own loads, which are not known.",
+          "declared": true
+        },
+        "L5_vibration": {
+          "rule": "None: the bench case is static and steady.",
+          "basis": "No pressure-cycle or vibration spectrum exists (IN-07 is null) and the plan assesses no fatigue.",
+          "declared": true
+        },
+        "L6_self_weight": {
+          "rule": "Neglected while the weight of the full drawing stays below 1 % of the pressure load on the open four-rib section, 0.375 MPa x 57.6 mm^2 = 21.6 N, that is below 0.216 N (22.0 g); checked when IN-02 completes the drawing.",
+          "retained_body_bound_n": 0.1726,
+          "retained_body_bound_basis": "Full envelope 24 x 24 x 11.4 mm (twins/993-intercooler/750-hp/pressure-coupon/source/picogk/Program.cs) at the assumed 2680 kg/m3 of requirements.json, as if solid: 17.6 g, 0.80 % of 21.6 N. The plenums and ports add mass not yet drawn.",
+          "threshold_fraction": 0.01,
+          "basis": "The weight is two orders of magnitude below the pressure load. Neglecting it is a declared simplification; the 1 % threshold is a declared choice that makes the neglect checkable once the full drawing exists.",
+          "declared": true
+        },
+        "L7_reactions": {
+          "rule": "The inlet seat reactions are outputs of the analysis, never applied loads."
+        }
+      },
+      "remaining_null": [
+        "L2_outlet_end_load",
+        "L3_fitting_preload"
+      ],
+      "blocking": true
+    },
+    "IN-10": {
+      "status": "cold_side_null_not_in_the_data",
+      "cold_kg_s": null,
+      "what_the_data_states": [
+        {
+          "fact": "DDK: 12 flow records, all fuel deliveries or injection settings; no cooling-air or charge-air flow.",
+          "ddk_records_used": []
+        },
+        {
+          "fact": "PorscheFanatics: no charge-cooler air flow. Its fan page repeats this repository's inferred engine-fan airflow and the imposed 2.5 kg/s: circular, not admissible."
+        },
+        {
+          "fact": "Repository: requirements.json imposes 2.5 kg/s of cooling air as an assumption, and the installed-cooling twin lists the charge-air duty as missing.",
+          "repository_file": "twins/993-intercooler/750-hp/requirements.json"
+        }
+      ],
+      "why_null": "The data give no vehicle-level cooling-air flow through the charge cooler, and the core that would contain this passage is not fixed: the retained witness is an offset-strip core, not this ribbed passage with a BCC cold side.",
+      "method_when_sourced": {
+        "formula": "m_cold_coupon = m_cold_core x A_open_coupon / A_open_core",
+        "A_open_coupon_mm2": 134.4,
+        "A_open_coupon_basis": "Cold region 22.4 mm along X by 6 mm high (twins/993-intercooler/750-hp/pressure-coupon/source/picogk/Program.cs), open face before lattice blockage; the blockage cancels only if the core uses the same cold lattice.",
+        "assumptions": [
+          "uniform cooling-air mass flux over the open cold face of the core (no maldistribution, no bypass)",
+          "the core contains this ribbed hot passage and this BCC cold side",
+          "m_cold_core is the measured or admitted flow through the core, not a fan or vehicle total"
+        ],
+        "inputs_needed": {
+          "m_cold_core_kg_s": null,
+          "A_open_core_mm2": null
+        },
+        "applied": false
+      },
+      "blocking": true
+    }
+  },
+  "source_ids": [
+    "SRC-AUTOATLANTA-993-TURBO-60MM-HOSE-CLAMP",
+    "SRC-EOS-ALSI10MG-M290-30UM",
+    "SRC-FVD-993-REINFORCED-INTERCOOLER-HOSE-KIT-DIMENSIONS",
+    "SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES",
+    "SRC-NASA-TM-20250010927-LPBF-FILLETING",
+    "SRC-PORSCHE-AUSTRIA-993-107-45-PET",
+    "SRC-PORSCHE-PET-993",
+    "SRC-PORSCHEFANATICS-993-INTERCOOLER-END-TANK-CANDIDATE",
+    "SRC-PORSCHEFANATICS-993-OEM-LISTED-PET",
+    "SRC-TA-TECHNIX-993-INTERCOOLER-DIMENSIONS"
+  ],
+  "drawing_made": false,
+  "solver_run": false,
+  "pressure_qualified": false,
+  "manufacturing_authorized": false,
+  "physical_test_authorized": false
+}
