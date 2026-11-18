@@ -386,9 +386,10 @@ class FilletRadiusChoiceTests(unittest.TestCase):
         self.assertTrue(inputs['IN-04']['status'].startswith('declared bench load'))
         self.assertEqual(inputs['IN-04']['remaining_null'],['outlet_end_load_n','fitting_preload_n'])
         for key in inputs['IN-04']['remaining_null']:self.assertIsNone(inputs['IN-04']['value'][key])
-        # Filling inputs changed nothing else: method, arms, rules and limits keep the digest they had on 2026-11-12.
-        rest={k:v for k,v in p.items() if k!='required_inputs'}
-        self.assertEqual(hashlib.sha256(json.dumps(rest,sort_keys=True,ensure_ascii=False).encode()).hexdigest(),'831203561ae882ee799cdecdcc3e232479cbd619ba964c9d875c70c05993af62')
+        # Filling inputs changed nothing else: method, arms, rules and limits keep the digest they had before the inputs
+        # were filled. The one exception is M-T's supports, which waited for IN-03 and now uses the declared fixture.
+        rest=json.loads(json.dumps({k:v for k,v in p.items() if k!='required_inputs'}));del rest['analyses']['M-T']['supports']
+        self.assertEqual(hashlib.sha256(json.dumps(rest,sort_keys=True,ensure_ascii=False).encode()).hexdigest(),'5e75e0303680875b803592bd24eb419f85ea8c7fdf3acc8fe73033d94676eb06')
         self.assertIsNone(inputs['IN-10']['value']['cold_kg_s']);self.assertEqual(inputs['IN-10']['value']['hot_kg_s'],M.hydraulic(4)['total_mass_flow_kg_s'])
         self.assertEqual(inputs['IN-05']['value']['numerical_proof_case_mpa'],M.PRESSURE);self.assertEqual(inputs['IN-11']['value'],{'elastic_modulus_mpa':M.E,'poisson_ratio':M.NU})
         pressure=json.loads((STUDY.parent/'hot-weather/assumptions.json').read_text())['pressure']
