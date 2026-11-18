@@ -1,0 +1,118 @@
+{
+  "status": "r2d_admission_audit_not_admissible_no_mesh_trial",
+  "issue": 452,
+  "follows": "results/cfd/r2c-admission-20261118: R2c kept 5.1 mm of re-entrant sharp edge where its surface twists about the line where the alternator side meets the plenum top's plane",
+  "request_2026_11_18": "option 1 of the R2c record, called R2d: extend the one-step 12 mm blend so it also covers that line; within the owner's decisions (12 mm throughout, alternator rear plane not moved, voxel and audit rule unchanged, no mesh trial or solver); one variant only",
+  "change": {
+    "generator": "source-r2d/Program.cs: source-r2c/Program.cs plus the key corner_line_blend_mm = cl. With cl > 0 the R2c plane mean is averaged again over the alternator side moved by t2 uniform in [-cl, cl], sampled at 24 midpoints; where no side break reaches the plane's window the plane mean is affine in the side and the R2c value is used without sampling. R2d requires cl = three_surface_corner_blend_mm. source-r2c/Program.cs is unchanged.",
+    "consequence_on_the_plane_edges": "no joint law of the two shifts keeps all four two-surface edges of the shared plane at the R2 blend (the variances force the second shift to zero). With the side moved, the alternator rim and the subtraction edge above the plenum become the mean of two 12 mm blends: apex radius unchanged (8.49 mm, k / sqrt(2)), setback 4 mm instead of 3. The seam and the plenum-top edge keep the R2 blend.",
+    "card": "study-r2d.json = study-r2c.json plus corner_line_blend_mm = 12",
+    "preparer": "source/prepare_duct_cfd_r2.py, unchanged; the R2d model gives the same walls at its port rims (largest difference 5.7e-14 mm over 2082 rim points)",
+    "auditor": "source/audit_mesh_admission_r2d.py loads audit_mesh_admission_r2c.py by its pinned hash, which loads audit_mesh_admission_r2.py and audit_mesh_admission.py by theirs, and swaps in the R2d constructive model only. Faces, junction names, thresholds and the admission rule are unchanged."
+  },
+  "dates": {
+    "generation_preparation_audit": "2026-11-18"
+  },
+  "host": "native Linux ext4 under WSL2 x86_64; PicoGK native runtime 26.2.0 (binary hashes in generation-*.json), .NET 9.0.318, software rendering (GALLIUM_DRIVER=llvmpipe); Python from ~/.venvs/porscheparts-ci",
+  "memory_cap": "every step ran under systemd-run --user --scope -p MemoryMax=8G -p MemorySwapMax=0. R2d generation 28 s at 0.35 GB peak RSS, preparation 25 s at 0.83 GB, audit 30 s at 1.53 GB; the four reproduction runs were not timed. A first build failed to compile (a name clash) before any geometry was written; its log is kept privately",
+  "commands": [
+    "source-r2d/generate.py --study study-r2d.json  -> generation-r2d.json",
+    "source-r2d/generate.py --study study.json | study-r2a.json | study-r2b.json | study-r2c.json  -> generation-{r1,r2a,r2b,r2c}-by-r2d.json",
+    "source/prepare_duct_cfd_r2.py --study study-r2d.json --flow 2.285161488875746 --cell-mm 5 -> preparation-r2d.json",
+    "source/audit_mesh_admission_r2d.py --case <prepared case> --native <generated surface> --study study-r2d.json -> audit-r2d.json"
+  ],
+  "earlier_paths_reproduced": {
+    "result": "the R2d generator, given study.json, study-r2a.json, study-r2b.json and study-r2c.json, writes the R1, R2a, R2b and R2c delivery-fluid-domain byte for byte",
+    "output_sha256": {
+      "r1": "5914107a9d17544a9013e52fb39589d1bcf09765289445af96439f9a95789c87",
+      "r2a": "c2c39a41f71e2d742a742ddb9287be1fa2a37a7943f432b57f27aacd55bdc1aa",
+      "r2b": "7af94c9dd736058cd2bb929fd1c62cc848e3331fe2ce9116893ae7e769c616dc",
+      "r2c": "16bebc4968817215d34ae85d96869db8ddfd60165bf1089e93dc552c447fd0f3"
+    },
+    "identical_to_earlier_records": true
+  },
+  "results": {
+    "r2d": {
+      "study": "study-r2d.json",
+      "reentrant_blend_mm": 12.0,
+      "alternator_subtraction_blend_mm": 12.0,
+      "three_surface_corner_blend_mm": 12.0,
+      "corner_line_blend_mm": 12.0,
+      "input_admissible_for_settings_sweep": false,
+      "hard_re_entrant_length_mm": {
+        "fan_cylinder_plenum_hard_union_seam": 0.0,
+        "alternator_hard_subtraction_edge": 2.0
+      },
+      "creases_off_constructive_junctions": {
+        "edges": 1,
+        "length_mm": 2.1
+      },
+      "counted_edges": 2,
+      "counted_edge_normal_angles_deg": [
+        30.13,
+        35.57
+      ],
+      "triangles": 918704,
+      "triangles_with_min_angle_below_5_deg": 4,
+      "constructive_model_residual_mm_max": 0.75,
+      "volume_mm3": 32005258.1
+    },
+    "r2c_for_comparison": {
+      "hard_re_entrant_length_mm": {
+        "fan_cylinder_plenum_hard_union_seam": 0.0,
+        "alternator_hard_subtraction_edge": 5.1
+      },
+      "creases_off_constructive_junctions": {
+        "edges": 0,
+        "length_mm": 0.0
+      },
+      "counted_edges": 3,
+      "counted_edge_normal_angles_deg": [
+        31.75,
+        33.62,
+        34.88
+      ],
+      "triangles_with_min_angle_below_5_deg": 0,
+      "volume_mm3": 32001268.0
+    }
+  },
+  "where_r2d_differs_from_r2c": "On the R2c surface's vertices the two constructive fields differ by more than 1e-4 mm only within x -76..76, y -28..7, z 110..272 mm: the whole rear end of the alternator, its rim included. The largest difference, 1.0 mm, is on the rim (the 4 mm setback). Inlet and outlet patch areas are identical; the wall area is 692.3 mm2 smaller than R2c's and the volume 3,990 mm3 larger.",
+  "where_the_remaining_edges_are": {
+    "plus_x_corner": "one re-entrant edge of kind alternator_hard_subtraction_edge, 2.0 mm long at 35.6 deg, midpoint x 52.9, y -7.5, z 223.5 mm, 2.5 mm from the alternator side and the cylinder's end plane",
+    "minus_x_corner": "one salient edge, 2.1 mm long at 30.1 deg, midpoint x -53.8, y -9.0, z 226.6 mm. Its nearest faces are the alternator side and the cylinder's end plane, but the second lies 3.97 mm away, beyond the 3 mm junction tolerance, so the rule counts it as a crease off constructive junctions",
+    "small_triangles": "the 4 triangles under 5 deg (R2c: 0) sit at x +-54, y -8.7 to -9.2, z 227.8 to 228.2 mm, beside the counted edges; they are reported, not part of the admission rule",
+    "reading": "The line now moves: the corner's tightest point shifts from y -4.6, z 225 (R2c) to about y -7.5, z 227. The surface still turns tightly there. Sections show a small hook at both corners, and the 4 mm setback carries it more than 3 mm off the hard junction on the minus-x side."
+  },
+  "corner_curvature": {
+    "meaning": "smallest principal radius of the constructive zero set within 12 mm of the plus-x corner, from finite differences of the analytic field at 0.25 mm; diagnostic only, not part of the rule; computed before generation",
+    "r2c_mm": 4.27,
+    "r2d_mm": 3.84,
+    "location_r2d": "x 54.4, y -7.5, z 226.8 mm",
+    "rim_apex_radius_mm": 8.49
+  },
+  "verdict": {
+    "input_admissible_for_settings_sweep": false,
+    "mesh_admitted": false,
+    "mesh_trial_run": false,
+    "flow_solver_started": false,
+    "reason": "R2d does not pass the unchanged rule of audit_mesh_admission.py: it keeps 2.0 mm of re-entrant sharp edge at alternator_hard_subtraction_edge and 1 sharp edge (2.1 mm) off constructive junctions, 4.1 mm in all against R2c's 5.1 mm. The criterion was not relaxed, and no further variant was tried."
+  },
+  "not_run": [
+    "no snappyHexMesh, blockMesh or checkMesh on R2d: the gate before a mesh trial failed",
+    "no mesh-independence study and no flow solver",
+    "no third variant, as requested"
+  ],
+  "inspection": "Sections at x = 53, x = -54, y = -8 and z = 160 mm of R2c and R2d, drawn with matplotlib (no GPU), were read on 2026-11-18. Both surfaces are closed, consistently wound single bodies. R2d's rim carries the wider setback all round the alternator's rear end, and each rear corner shows a small hook where the counted edges are. The images are not retained.",
+  "not_retained_in_git": "the generated surfaces (about 46 MB each), the prepared case (duct.stl about 159 MB, duct-rims.eMesh), the build directories and logs; kept privately under work/ic-r2/r2d/",
+  "files": {
+    "audit-r2d.json": "6aac61acaf8d8969ca67302c93d6982d55dc14e3dc277dec7d7300defa6a8e6e",
+    "generation-r1-by-r2d.json": "778617602af0dddfd244365efa6f7c7b7c50398b8d2032b0e3dda74607937881",
+    "generation-r2a-by-r2d.json": "1b446c943c0cad3054c8f48c4ecced442bd4de372ec14408ef280e4c3ef2d6c8",
+    "generation-r2b-by-r2d.json": "3a59bc6ce7a47edf45785bd808c5aacc45ac8696f77d01e5c8c76effeef0a528",
+    "generation-r2c-by-r2d.json": "15368e2033fec695c3a8b0381dbb38f4755ad8130a8ca89690b3a7236eb8fcfa",
+    "generation-r2d.json": "73cb8bbf4770a52bc6c0ef55b3cbd24c6ba1e66269742aeb523f1670984d0fd5",
+    "preparation-r2d.json": "0983ea0b6540bf36bc425e6c4a7b6264b232856117826b990bd8f7a172264f6a"
+  },
+  "manufacturing_authorized": false,
+  "physical_validation": false
+}

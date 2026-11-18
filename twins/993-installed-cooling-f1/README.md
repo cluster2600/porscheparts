@@ -305,6 +305,56 @@ What could clear the last 5.1 mm is again an owner decision; none has been run:
   so the 30° threshold would then accept a tighter radius. It changes what the
   rule measures and needs deciding like a rule change.
 
+### Geometry revision R2d: the corner's line blended too (2026-11-18, #452)
+
+The first option above was run as R2d, within the same decisions: 12 mm
+throughout, the alternator's rear plane in place, the same voxel and an
+unchanged rule. It is one variant; no further one was tried. Results are in
+[`results/cfd/r2d-admission-20261118/`](results/cfd/r2d-admission-20261118/runtime.json).
+
+- **Generator.** [`source-r2d/Program.cs`](source-r2d/Program.cs) is the R2c
+  generator plus `corner_line_blend_mm`. The R2c file is pinned by its
+  receipts, so it was not edited. R2d takes the R2c mean again over the
+  alternator's side moved within ±12 mm, so the line moves with the side.
+  Given the R1, R2a, R2b and R2c cards, it writes those four surfaces byte for
+  byte.
+- **What it costs.** No pair of shifts can move the line and keep every
+  two-surface edge of the shared plane at the R2 blend. In R2d the alternator rim
+  and the subtraction edge above the plenum become the mean of two 12 mm blends.
+  The apex radius is the same (8.5 mm), but the setback is 4 mm instead of 3.
+  The seam and the plenum-top edge are unchanged.
+- **Card and audit.** [`study-r2d.json`](study-r2d.json) is `study-r2c.json`
+  plus `corner_line_blend_mm: 12`. The R2 preparer is unchanged, and the port
+  rims are identical under the R2d model.
+  [`source/audit_mesh_admission_r2d.py`](source/audit_mesh_admission_r2d.py)
+  loads the R2c auditor by its pinned hash; that auditor loads the R2 and R1
+  auditors by theirs.
+
+| Surface | Re-entrant sharp edge at hard junctions | Creases off constructive edges | Normal angles of counted edges | Triangles under 5° | Admissible |
+|---|---:|---:|---:|---:|---|
+| R2c | 5.1 mm (3 edges) | 0 | 31.8–34.9° | 0 | no |
+| R2d: R2c with the line blended too | 2.0 mm (1 edge) | 1 (2.1 mm) | 30.1–35.6° | 4 | no |
+
+R2d differs from R2c over the whole rear end of the alternator (x ±76,
+y −28 to 7, z 110 to 272 mm), its rim included. The residue is one edge at each
+rear corner:
+
+- at x = +52.9, y = −7.5, z = 223.5 mm, a re-entrant edge 2.0 mm long at 35.6°,
+  between the alternator side and the cylinder's end plane;
+- at x = −53.8, y = −9.0, z = 226.6 mm, a salient edge 2.1 mm long at 30.1°. Its
+  second-nearest face lies 3.97 mm away, beyond the 3 mm junction tolerance,
+  so the rule counts it as a crease.
+
+The four thin triangles sit beside these edges, at x ±54, y ≈ −9, z ≈ 228 mm.
+The line does move: the corner's tightest point shifts from y −4.6, z 225 to
+about y −7.5, z 227. The surface still turns tightly there; its smallest
+analytic radius, computed before generation, is 3.8 mm against R2c's 4.3 mm.
+Sections, drawn without a GPU and not retained, show a small hook at each
+corner. Both surfaces are closed, consistently wound single bodies.
+
+**Verdict:** R2d is not admissible under the unchanged rule. No mesh trial,
+mesh-independence study or flow solver was run.
+
 Next, after the baseline is admissible: vary duct turns and branch sections;
 then clearance, section twist, sweep and a matched stator as separate factors.
 Use equal shaft power, minimum branch mass flow, distribution, core pressure
@@ -387,6 +437,9 @@ python3 twins/993-installed-cooling-f1/source/audit_mesh_admission_r2c.py \
   --native work/cooling-r2c/native/delivery-fluid-domain.stl \
   --study twins/993-installed-cooling-f1/study-r2c.json --output work/cooling-r2c/audit.json
 ```
+
+R2d runs the same three steps with `source-r2d/generate.py`,
+`study-r2d.json` and `source/audit_mesh_admission_r2d.py`.
 
 Python geometry/review uses the already installed NumPy, trimesh, PyVista and
 matplotlib. The resistance screen and its analytical checks use the standard
