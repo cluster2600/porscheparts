@@ -42,7 +42,7 @@ Catalogue record: [`catalog/parts/993-elec-headlamp-spring-hook-f0-0001.json`](.
 | Porsche part numbers | not recorded |
 | category | lighting_repair |
 | safety class | functional |
-| intended use | CAD, LPBF and mechanical screening of a repair concept; no fitting and no lamp retention authorized |
+| intended use | CAD, LPBF and mechanical screening of a repair concept; no fitting and no lamp retention authorised |
 
 ## Material and manufacturing
 
@@ -50,7 +50,7 @@ Catalogue record: [`catalog/parts/993-elec-headlamp-spring-hook-f0-0001.json`](.
 |---|---|
 | preferred process | LPBF |
 | candidate processes | LPBF, CNC |
-| material family | LPBF aluminum |
+| material family | LPBF aluminium |
 | grade | EOS Aluminium AlSi10Mg / AlSi10Mg_FlexM291 2.01 / 30 µm, screening candidate not attributed to the commercial part |
 | standard | DIN EN 1706 EN AC-43000 and ASTM F3318-18 per the EOS data sheet; supplier specification to be contracted |
 | supplier requirements | traceable powder, machine, orientation and batch, witness coupon in the critical orientation of the arm, CT or radiography of the root and dimensional inspection, roughness report inside the groove, thermal, vibration and retention tests before any vehicle use |

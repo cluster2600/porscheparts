@@ -221,7 +221,7 @@ links to the original part.
 </tr>
 <tr>
 <td align="center" valign="top" width="33%"><a href="parts/993-turbocharger-k16-pair-0001/README.md"><img src="parts/993-turbocharger-k16-pair-0001/media/gyroid.png" alt="Concept render of Pair of K16 turbochargers of the 993 Turbo" width="240"></a><br><sub><i>Concept model — not the original part, not a print file</i></sub><br><a href="parts/993-turbocharger-k16-pair-0001/README.md"><b>Pair of K16 turbochargers of the 993 Turbo</b></a><br><sub>Design study: blocked until a professional engineering review</sub></td>
-<td align="center" valign="top" width="33%"><a href="parts/993-whl-center-cap-alsi10mg-f0-0001/README.md"><img src="parts/993-whl-center-cap-alsi10mg-f0-0001/media/gyroid.png" alt="Concept render of 993 center cap" width="240"></a><br><sub><i>Concept model — not the original part, not a print file</i></sub><br><a href="parts/993-whl-center-cap-alsi10mg-f0-0001/README.md"><b>993 center cap</b></a><br><sub>Design study: functional part, needs documented testing</sub></td>
+<td align="center" valign="top" width="33%"><a href="parts/993-whl-center-cap-alsi10mg-f0-0001/README.md"><img src="parts/993-whl-center-cap-alsi10mg-f0-0001/media/gyroid.png" alt="Concept render of 993 centre cap" width="240"></a><br><sub><i>Concept model — not the original part, not a print file</i></sub><br><a href="parts/993-whl-center-cap-alsi10mg-f0-0001/README.md"><b>993 centre cap</b></a><br><sub>Design study: functional part, needs documented testing</sub></td>
 </tr>
 </table>
 

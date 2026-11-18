@@ -4,7 +4,7 @@
 
 **Status: non-critical. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
-Switch trim ring, F1 reconstruction. The pilot served to validate the CAD chain, the LPBF screening and the confrontation with a real route; the latter concluded that the part must be turned in a 6xxx grade and not sintered. It is neither an OEM geometry nor a part authorized for fitting.
+Switch trim ring, F1 reconstruction. The pilot served to validate the CAD chain, the LPBF screening and the confrontation with a real route; the latter concluded that the part must be turned in a 6xxx grade and not sintered. It is neither an OEM geometry nor a part authorised for fitting.
 
 ```mermaid
 flowchart LR
@@ -50,11 +50,11 @@ Catalogue record: [`catalog/parts/993-int-switch-trim-ring-f1-0001.json`](../../
 |---|---|
 | preferred process | CNC |
 | candidate processes | LPBF, CNC |
-| material family | 6000-series wrought aluminum |
-| grade | EN AW-6063 T6 retained for bright anodizing; EN AW-6061 T6 as fallback if the turner refuses |
+| material family | 6000-series wrought aluminium |
+| grade | EN AW-6063 T6 retained for bright anodising; EN AW-6061 T6 as fallback if the turner refuses |
 | standard | EN 755-2 for the bar; original grade still unidentified |
-| supplier requirements | Material certificate and metallurgical temper of the bar, Tolerance actually held on the outer diameter, Anodizing thickness obtained and its scatter, Quote for 6061 T6 alongside, with what the appearance loses, Dimensional inspection of the four dimensions and the axial profile |
-| post-processing | finish turning, target Ra 0.8 µm on visible faces, edge chamfers or radii to be decided, then added to the model, clear decorative sulfuric anodizing, layer growth to be subtracted from the fit dimension |
+| supplier requirements | Material certificate and metallurgical temper of the bar, Tolerance actually held on the outer diameter, Anodising thickness obtained and its scatter, Quote for 6061 T6 alongside, with what the appearance loses, Dimensional inspection of the four dimensions and the axial profile |
+| post-processing | finish turning, target Ra 0.8 µm on visible faces, edge chamfers or radii to be decided, then added to the model, clear decorative sulfuric anodising, layer growth to be subtracted from the fit dimension |
 
 ## Geometry
 
@@ -106,7 +106,7 @@ Catalogue record: [`catalog/parts/993-int-switch-trim-ring-f1-0001.json`](../../
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | The continuous conical inner profile is an F1 hypothesis to be replaced by a measurement.<br>The master carries sharp edges and no tolerance; both remain to be decided.<br>The OEM opening and the clearance or interference condition are not measured: the outer diameter is taken from a sales page.<br>The aluminum grade of the original product is unknown; 6063 T6 is a choice of the repository, not an identification.<br>The STEP model is neither dimensionally reviewed, nor fitted, nor tested on a vehicle.<br>LPBF remains a screened and documented candidate, but it is no longer the preferred process: see docs/decisions/0005-alsi10mg-is-not-a-choice.md. |
+| limitations | The continuous conical inner profile is an F1 hypothesis to be replaced by a measurement.<br>The master carries sharp edges and no tolerance; both remain to be decided.<br>The OEM opening and the clearance or interference condition are not measured: the outer diameter is taken from a sales page.<br>The aluminium grade of the original product is unknown; 6063 T6 is a choice of the repository, not an identification.<br>The STEP model is neither dimensionally reviewed, nor fitted, nor tested on a vehicle.<br>LPBF remains a screened and documented candidate, but it is no longer the preferred process: see docs/decisions/0005-alsi10mg-is-not-a-choice.md. |
 
 **Evidence**
 

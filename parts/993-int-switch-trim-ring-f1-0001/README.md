@@ -39,7 +39,7 @@ The original part is documented — pictures, catalogue entries or published dat
 
 ## What it is
 
-Switch trim ring, F1 reconstruction. The pilot served to validate the CAD chain, the LPBF screening and the confrontation with a real route; the latter concluded that the part must be turned in a 6xxx grade and not sintered. It is neither an OEM geometry nor a part authorized for fitting.
+Switch trim ring, F1 reconstruction. The pilot served to validate the CAD chain, the LPBF screening and the confrontation with a real route; the latter concluded that the part must be turned in a 6xxx grade and not sintered. It is neither an OEM geometry nor a part authorised for fitting.
 
 ## What it does on the car
 
@@ -51,7 +51,7 @@ Reconstruction and LPBF/CNC comparison pilot, with no vehicle fitting at this st
 |---|---|
 | Porsche part numbers | not recorded |
 | variants | `993_all_models_per_supplier_to_confirm` |
-| candidate material | EN AW-6063 T6 retained for bright anodizing |
+| candidate material | EN AW-6063 T6 retained for bright anodising |
 | candidate process | CNC |
 | safety class | `non_critical` |
 | validation status | `concept` |

@@ -479,7 +479,7 @@ engineering** stays so until an engineering review lifts it.
 </tr>
 <tr>
 <td align="center" width="16%"><a href="../parts/993-elec-headlamp-spring-hook-f0-0001/"><img src="../parts/993-elec-headlamp-spring-hook-f0-0001/media/preview.png" alt="Headlamp spring hook repair" width="130"><br><sub>Headlamp spring hook repair</sub></a></td>
-<td align="center" width="16%"><a href="../parts/993-eng-bracket-0001/"><img src="../parts/993-eng-bracket-0001/media/preview.png" alt="Console centrale moteur Turbo bio…" width="130"><br><sub>Console centrale moteur Turbo bio…</sub></a></td>
+<td align="center" width="16%"><a href="../parts/993-eng-bracket-0001/"><img src="../parts/993-eng-bracket-0001/media/preview.png" alt="Bionic Turbo engine centre bracke…" width="130"><br><sub>Bionic Turbo engine centre bracke…</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-eng-carrier-0001/"><img src="../parts/993-eng-carrier-0001/media/preview.png" alt="Turbo engine carrier (Motortraege…" width="130"><br><sub>Turbo engine carrier (Motortraege…</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-eng-chain-case-0001/"><img src="../parts/993-eng-chain-case-0001/media/preview.png" alt="993 timing chain case and its lids" width="130"><br><sub>993 timing chain case and its lids</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-eng-chain-case-lid-ti-f0-0001/"><img src="../parts/993-eng-chain-case-lid-ti-f0-0001/media/preview.png" alt="Left chain case lid 964 105 107 01" width="130"><br><sub>Left chain case lid 964 105 107 01</sub></a></td>
@@ -530,7 +530,7 @@ engineering** stays so until an engineering review lifts it.
 <td align="center" width="16%"><a href="../parts/993-int-switch-blank-0001/"><img src="../parts/993-int-switch-blank-0001/media/preview.png" alt="Switch blank" width="130"><br><sub>Switch blank</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-int-switch-trim-ring-f1-0001/"><img src="../parts/993-int-switch-trim-ring-f1-0001/media/preview.png" alt="🖨️ Aluminum switch trim ring" width="130"><br><sub>🖨️ Aluminum switch trim ring</sub></a></td>
 <td align="center" width="16%"><a href="../parts/993-turbocharger-k16-pair-0001/"><img src="../parts/993-turbocharger-k16-pair-0001/media/preview.png" alt="Pair of K16 turbochargers of the…" width="130"><br><sub>Pair of K16 turbochargers of the…</sub></a></td>
-<td align="center" width="16%"><a href="../parts/993-whl-center-cap-alsi10mg-f0-0001/"><img src="../parts/993-whl-center-cap-alsi10mg-f0-0001/media/preview.png" alt="993 center cap" width="130"><br><sub>993 center cap</sub></a></td>
+<td align="center" width="16%"><a href="../parts/993-whl-center-cap-alsi10mg-f0-0001/"><img src="../parts/993-whl-center-cap-alsi10mg-f0-0001/media/preview.png" alt="993 centre cap" width="130"><br><sub>993 centre cap</sub></a></td>
 </tr>
 </table>
 
@@ -569,13 +569,13 @@ flowchart LR
 
 | part | candidate material | process | status |
 |---|---|---|---|
-| [Console centrale moteur Turbo bionique — étud…](parts/993-eng-bracket-0001.md) | undetermined | undecided | **prohibited pending engineering** |
+| [Bionic Turbo engine centre bracket — PicoGK s…](parts/993-eng-bracket-0001.md) | undetermined | undecided | **prohibited pending engineering** |
 | [Turbo engine carrier (Motortraeger)](parts/993-eng-carrier-0001.md) | unknown | undecided | **safety-critical** |
 | [993 timing chain case and its lids](parts/993-eng-chain-case-0001.md) | unidentified | undecided | **prohibited pending engineering** |
 | [Left chain case lid 964 105 107 01](parts/993-eng-chain-case-lid-ti-f0-0001.md) | Ti-6Al-4V Grade 5, plate — deliberate c… | CNC | functional |
 | [993/993 Turbo connecting rod](parts/993-eng-connecting-rod-ti64-f0-0001.md) | Ti-6Al-4V Grade 5 LPBF for screening | LPBF | **prohibited pending engineering** |
 | [993 engine cooling fan — archived Carrera F0…](parts/993-eng-cooling-impeller-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
-| [Engine cooling fan impeller](parts/993-eng-cooling-impeller-we43-f1-0001.md) | WE43 LPBF, solutionized and aged, for c… | LPBF | **prohibited pending engineering** |
+| [Engine cooling fan impeller](parts/993-eng-cooling-impeller-we43-f1-0001.md) | WE43 LPBF, solutionised and aged, for c… | LPBF | **prohibited pending engineering** |
 | [M64 four-valve water-cooled cylinder head — c…](parts/993-eng-cylinder-head-4v-f0-0001.md) | not selected | undecided | **prohibited pending engineering** |
 | [993 Turbo three-into-one exhaust manifold](parts/993-eng-exhaust-manifold-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | **prohibited pending engineering** |
 | [993 exhaust valves - F1 proxies](parts/993-eng-exhaust-valve-f1-0001.md) | INCONEL 751 / UNS N07751 candidate | CNC | **prohibited pending engineering** |
@@ -625,7 +625,7 @@ flowchart LR
 | part | candidate material | process | status |
 |---|---|---|---|
 | [993 front impact support](parts/993-body-front-impact-support-alsi10mg-f0-0001.md) | generic screening AlSi10Mg | undecided | **prohibited pending engineering** |
-| [Front lid](parts/993-body-front-lid-0001.md) | fiber and resin to be determined | undecided | functional |
+| [Front lid](parts/993-body-front-lid-0001.md) | fibre and resin to be determined | undecided | functional |
 
 **Central cell studies**
 
@@ -638,7 +638,7 @@ flowchart LR
 
 | part | candidate material | process | status |
 |---|---|---|---|
-| [Dashboard trim](parts/993-int-dashboard-trim-0001.md) | fiber and resin to be determined | undecided | functional |
+| [Dashboard trim](parts/993-int-dashboard-trim-0001.md) | fibre and resin to be determined | undecided | functional |
 | [993 interior door opener lever](parts/993-int-door-opener-lever-f0-0001.md) | AlSi10Mg, screening | LPBF | functional |
 | [Interior door pull handle](parts/993-int-door-pull-0001.md) | to_be_determined_after_load_test | undecided | functional |
 | [Seat rail cover](parts/993-int-seat-rail-cover-0001.md) | to_be_determined_after_fit_test | FFF | non-critical |
@@ -655,7 +655,7 @@ flowchart LR
 
 | part | candidate material | process | status |
 |---|---|---|---|
-| [993 center cap](parts/993-whl-center-cap-alsi10mg-f0-0001.md) | AlSi10Mg for screening | undecided | functional |
+| [993 centre cap](parts/993-whl-center-cap-alsi10mg-f0-0001.md) | AlSi10Mg for screening | undecided | functional |
 
 *47 records, 28 of them prohibited pending engineering, none released. Each link opens the part's description page in [`docs/parts/`](parts/), generated from its `catalog/parts/*.json` record; the design dossiers are in [`docs/993/`](993/). Table generated by `scripts/render_parts_table.py`, checked by `make check`.*
 

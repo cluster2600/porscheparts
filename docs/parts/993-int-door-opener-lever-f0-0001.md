@@ -42,7 +42,7 @@ Catalogue record: [`catalog/parts/993-int-door-opener-lever-f0-0001.json`](../..
 | Porsche part numbers | 99355585100, 99355585200 |
 | category | interior_door_release |
 | safety class | functional |
-| intended use | CAD, DfAM and mechanical screening of an opening lever; no fitment and no egress use authorized |
+| intended use | CAD, DfAM and mechanical screening of an opening lever; no fitment and no egress use authorised |
 
 ## Material and manufacturing
 
@@ -50,11 +50,11 @@ Catalogue record: [`catalog/parts/993-int-door-opener-lever-f0-0001.json`](../..
 |---|---|
 | preferred process | LPBF |
 | candidate processes | LPBF, CNC |
-| material family | candidate LPBF aluminum |
+| material family | candidate LPBF aluminium |
 | grade | AlSi10Mg, screening; OEM material and grade of the commercial product unknown |
 | standard | ASTM F3318-18 to be contracted if the concept progresses |
 | supplier requirements | traceable powder, machine, parameters, orientation and lot, witness coupon in the critical orientation of the lever, dimensional inspection of the envelope, pivot, mounting faces and stops, CT or radiography of the clevis and penetrant testing after machining, controlled roughness and radii in the grip areas, instrumented static and cyclic tests before any fitment |
-| post-processing | support removal while keeping access to the pockets, heat treatment qualified for the machine and orientation, boring and finishing of the pivot after the clearance is defined, machining of the mounting faces with a future machining allowance, anodizing or powder coating after dimensional inspection |
+| post-processing | support removal while keeping access to the pockets, heat treatment qualified for the machine and orientation, boring and finishing of the pivot after the clearance is defined, machining of the mounting faces with a future machining allowance, anodising or powder coating after dimensional inspection |
 
 ## Geometry
 

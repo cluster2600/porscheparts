@@ -45,7 +45,7 @@ Catalogue record: [`catalog/parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001.
 | Porsche part numbers | not recorded |
 | category | charge_air_intercooler_end_tank |
 | safety class | prohibited_pending_engineering |
-| intended use | CAD, DfAM, flow, pressure loss, pressure, membrane, guided panel, thermal and cycle screening; no manufacture, installation or engine start-up authorized |
+| intended use | CAD, DfAM, flow, pressure loss, pressure, membrane, guided panel, thermal and cycle screening; no manufacture, installation or engine start-up authorised |
 
 ## Material and manufacturing
 
@@ -53,7 +53,7 @@ Catalogue record: [`catalog/parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001.
 |---|---|
 | preferred process | LPBF |
 | candidate processes | LPBF, DMLS, sheet_metal, casting, CNC |
-| material family | candidate LPBF aluminum alloy |
+| material family | candidate LPBF aluminium alloy |
 | grade | EOS Aluminium AlSi10Mg for screening; commercial alloy unknown |
 | standard | DIN EN 1706 EN AC-43000, ASTM F3318 and a program-specific end-tank specification to be contracted |
 | supplier requirements | traceable powder, machine, parameters, orientation, batch and recycling, capability demonstrated on a 2.2 mm wall and a 1.5 mm guide vane after post-processing, supports/recoater/distortion simulation and transition/flange witnesses, CT of the guide vanes and junctions, then metrology of the walls, face, connection and datums, oriented coupons with representative tensile, fatigue, pressure and temperature tests, comparison of LPBF, TIG-welded sheet and casting on flow, mass, cost, repairability and service life |
@@ -115,7 +115,7 @@ Catalogue record: [`catalog/parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001.
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | The commercial values describe the complete intercooler and define neither a core face nor an end tank.<br>The 260 x 100 mm interpretation, the 120 mm transition, the 2.2 mm wall and the three guide vanes are synthetic.<br>The 66 mm connection represents an outer position; the central 68 mm connection and the second core are not modeled.<br>The CAD mass of 605.92 g is that of a synthetic end tank and cannot be compared with the 14 kg of the commercial assembly.<br>The flow uses 3.6 l, 5,750 rpm, VE 0.95, 1.8 bar absolute, 330 K and porosity 0.65, with no measurement on the vehicle.<br>The 487 Pa loss is a sudden-expansion screen, not a CFD with core, turbulence or face uniformity.<br>The membrane/panel stresses and thermal bounds replace neither FEA, nor welding/brazing, nor pressure-temperature fatigue.<br>The STEP proves only an open BREP and a connected fluid volume; it is authorized neither for manufacture, nor for fitting, nor for an engine. |
+| limitations | The commercial values describe the complete intercooler and define neither a core face nor an end tank.<br>The 260 x 100 mm interpretation, the 120 mm transition, the 2.2 mm wall and the three guide vanes are synthetic.<br>The 66 mm connection represents an outer position; the central 68 mm connection and the second core are not modelled.<br>The CAD mass of 605.92 g is that of a synthetic end tank and cannot be compared with the 14 kg of the commercial assembly.<br>The flow uses 3.6 l, 5,750 rpm, VE 0.95, 1.8 bar absolute, 330 K and porosity 0.65, with no measurement on the vehicle.<br>The 487 Pa loss is a sudden-expansion screen, not a CFD with core, turbulence or face uniformity.<br>The membrane/panel stresses and thermal bounds replace neither FEA, nor welding/brazing, nor pressure-temperature fatigue.<br>The STEP proves only an open BREP and a connected fluid volume; it is authorised neither for manufacture, nor for fitting, nor for an engine. |
 
 **Evidence**
 

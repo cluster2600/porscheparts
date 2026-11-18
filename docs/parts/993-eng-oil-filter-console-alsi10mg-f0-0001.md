@@ -45,7 +45,7 @@ Catalogue record: [`catalog/parts/993-eng-oil-filter-console-alsi10mg-f0-0001.js
 | Porsche part numbers | 99310705700, 99310705701 |
 | category | engine_oil_filter_console |
 | safety class | prohibited_pending_engineering |
-| intended use | F0 screening of open CAD, DfAM value, hot/cold pressure loss, pressure, threads, thermal, mass and cleanliness; no manufacture, sealing, installation, oil circulation or start-up authorized |
+| intended use | F0 screening of open CAD, DfAM value, hot/cold pressure loss, pressure, threads, thermal, mass and cleanliness; no manufacture, sealing, installation, oil circulation or start-up authorised |
 
 ## Material and manufacturing
 
@@ -116,7 +116,7 @@ Catalogue record: [`catalog/parts/993-eng-oil-filter-console-alsi10mg-f0-0001.js
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | PorscheFanatics identifies the part and the filter but provides neither geometry nor material.<br>The 0.78 kg mass is a commercial claim with no protocol and no weighing boundary.<br>The 76 x 101 mm, M20x1.5 and 72/62 mm dimensions concern the OC 229 filter, not the console.<br>The 144 x 90 x 50 mm body, the four mounting points, two ports and two galleries are entirely synthetic.<br>The 6.5 bar pressure is an unverified OCR occurrence; flow, viscosities, local losses and roughness are scenarios.<br>The filter, its bypass valve and the engine circuit are absent from the hydraulic calculation.<br>The cold screen and the constrained thermal screen fail.<br>No internal cleanliness, sealing, fatigue, corrosion, CHT-CFD or engine integration is demonstrated.<br>The STEP proves only a re-readable BREP; no manufacture, oil circulation or start-up is authorized. |
+| limitations | PorscheFanatics identifies the part and the filter but provides neither geometry nor material.<br>The 0.78 kg mass is a commercial claim with no protocol and no weighing boundary.<br>The 76 x 101 mm, M20x1.5 and 72/62 mm dimensions concern the OC 229 filter, not the console.<br>The 144 x 90 x 50 mm body, the four mounting points, two ports and two galleries are entirely synthetic.<br>The 6.5 bar pressure is an unverified OCR occurrence; flow, viscosities, local losses and roughness are scenarios.<br>The filter, its bypass valve and the engine circuit are absent from the hydraulic calculation.<br>The cold screen and the constrained thermal screen fail.<br>No internal cleanliness, sealing, fatigue, corrosion, CHT-CFD or engine integration is demonstrated.<br>The STEP proves only a re-readable BREP; no manufacture, oil circulation or start-up is authorised. |
 
 **Evidence**
 

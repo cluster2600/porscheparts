@@ -1,41 +1,41 @@
-name: Campagne de mesure
-description: Organiser la mesure ou le scan d’une pièce candidate
+name: Measurement campaign
+description: Organise the measurement or scan of a candidate part
 title: "[MEASURE] "
 labels: ["measurement"]
 body:
   - type: input
     id: part-id
     attributes:
-      label: Identifiant ou issue de la pièce
+      label: Part identifier or issue
     validations:
       required: true
 
   - type: textarea
     id: objective
     attributes:
-      label: Dimensions ou surfaces recherchées
+      label: Dimensions or surfaces sought
     validations:
       required: true
 
   - type: textarea
     id: equipment
     attributes:
-      label: Instruments disponibles
-      description: Pied à coulisse, micromètre, scanner, appareil photo, gabarits.
+      label: Available instruments
+      description: Calliper, micrometer, scanner, camera, gauges.
     validations:
       required: true
 
   - type: textarea
     id: references
     attributes:
-      label: Repères et méthode d’échelle
+      label: Datums and scaling method
     validations:
       required: true
 
   - type: textarea
     id: outputs
     attributes:
-      label: Livrables attendus
-      description: Tableau de mesures, photos, point cloud, maillage, rapport d’incertitude.
+      label: Expected deliverables
+      description: Measurement table, photos, point cloud, mesh, uncertainty report.
     validations:
       required: true

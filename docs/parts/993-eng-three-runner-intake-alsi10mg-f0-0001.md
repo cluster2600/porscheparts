@@ -4,7 +4,7 @@
 
 **Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
-Independent concept of a manifold with three offset conical runners and two common flanges to screen AlSi10Mg LPBF. PorscheFanatics and Patrick Motorsports cross-check the PMO FUE PMO 9150 kit, stated as 46 x 42 x 100 mm, three bolts, two parts and a raw aluminum finish; no interface geometry is published.
+Independent concept of a manifold with three offset conical runners and two common flanges to screen AlSi10Mg LPBF. PorscheFanatics and Patrick Motorsports cross-check the PMO FUE PMO 9150 kit, stated as 46 x 42 x 100 mm, three bolts, two parts and a raw aluminium finish; no interface geometry is published.
 
 ```mermaid
 flowchart LR
@@ -42,7 +42,7 @@ Catalogue record: [`catalog/parts/993-eng-three-runner-intake-alsi10mg-f0-0001.j
 | Porsche part numbers | not recorded |
 | category | three_runner_intake_manifold |
 | safety class | functional |
-| intended use | CAD, DfAM, flow, acoustic, pressure and thermal screening; no manufacturing, installation or engine start authorized |
+| intended use | CAD, DfAM, flow, acoustic, pressure and thermal screening; no manufacturing, installation or engine start authorised |
 
 ## Material and manufacturing
 
@@ -50,7 +50,7 @@ Catalogue record: [`catalog/parts/993-eng-three-runner-intake-alsi10mg-f0-0001.j
 |---|---|
 | preferred process | undecided |
 | candidate processes | LPBF, DMLS, CNC, casting |
-| material family | candidate LPBF aluminum alloy |
+| material family | candidate LPBF aluminium alloy |
 | grade | generic AlSi10Mg for screening; alloy and temper of the PMO product unknown |
 | standard | ASTM F3318 and a program-specific engine specification to be contracted if LPBF is retained |
 | supplier requirements | traceable powder, machine, parameters, orientation, lot and recycling, capability on 2 mm walls, inclined runners and 6 mm flanges, support, recoater and distortion simulation before build, CT of the runners and metrology of ports, flanges and future fastenings, porosity, roughness, flatness, leak-tightness and cleanliness contracted, flow, pressure, vibration, thermal cycling and engine dyno tests before vehicle |

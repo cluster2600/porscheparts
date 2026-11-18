@@ -4,7 +4,7 @@
 
 **Status: functional. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
-Bolted, oil-tight left lid of the chain case, factory plate 103-05 position 15, paired with gasket 964 105 181 01. Remanufacture in machined Ti-6Al-4V explicitly requested. The original part is **cast magnesium**, whose failure mode is corrosion of the sealing faces: that is where titanium brings something, not on mass. Against magnesium, titanium is 2.45 times denser and loses both plate-bending trade-offs, strength included. One serious obstacle remains: the titanium/magnesium galvanic couple is the least favorable in the grid.
+Bolted, oil-tight left lid of the chain case, factory plate 103-05 position 15, paired with gasket 964 105 181 01. Remanufacture in machined Ti-6Al-4V explicitly requested. The original part is **cast magnesium**, whose failure mode is corrosion of the sealing faces: that is where titanium brings something, not on mass. Against magnesium, titanium is 2.45 times denser and loses both plate-bending trade-offs, strength included. One serious obstacle remains: the titanium/magnesium galvanic couple is the least favourable in the grid.
 
 ```mermaid
 flowchart LR
@@ -42,7 +42,7 @@ Catalogue record: [`catalog/parts/993-eng-chain-case-lid-ti-f0-0001.json`](../..
 | Porsche part numbers | 964 105 107 01, 964 105 181 01 |
 | category | engine_timing_chain_case_lid |
 | safety class | functional |
-| intended use | Parametric screening and measurement preparation; no manufacturing or fitting authorized before a specimen is measured |
+| intended use | Parametric screening and measurement preparation; no manufacturing or fitting authorised before a specimen is measured |
 
 ## Material and manufacturing
 
@@ -51,10 +51,10 @@ Catalogue record: [`catalog/parts/993-eng-chain-case-lid-ti-f0-0001.json`](../..
 | preferred process | CNC |
 | candidate processes | CNC |
 | material family | titanium |
-| grade | Ti-6Al-4V Grade 5, plate — deliberate choice; 6061 billet aluminum is the market's answer |
+| grade | Ti-6Al-4V Grade 5, plate — deliberate choice; 6061 billet aluminium is the market's answer |
 | standard | ASTM B265 for the plate, to be contracted |
 | supplier requirements | Material certificate for the plate, Flatness and surface finish held on the gasket plane, Dimensional inspection of the outline, hole spacings and holes |
-| post-processing | facing of the gasket plane, flatness to be defined after measurement, edge breaking, bead blasting or titanium anodizing depending on the intended finish, anti-seize paste on fasteners, insulating washers if direct metal contact |
+| post-processing | facing of the gasket plane, flatness to be defined after measurement, edge breaking, bead blasting or titanium anodising depending on the intended finish, anti-seize paste on fasteners, insulating washers if direct metal contact |
 
 **Titanium**
 
@@ -117,7 +117,7 @@ Catalogue record: [`catalog/parts/993-eng-chain-case-lid-ti-f0-0001.json`](../..
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | The original part is cast magnesium, not aluminum: any mass comparison made against aluminum was comparing with the replacement product, not the original.<br>Against magnesium, titanium loses both plate-bending indices, strength included: it will not be lighter, whatever thickness is chosen.<br>No dimension is measured: outline, thickness, hole spacings, holes, gasket face and centering are unknown.<br>Neither commercial reproducer publishes a dimension: the dimensions cannot be found online; they are obtained by buying the part or its gasket.<br>Recomputed for M6 (issue #471): with an ISO 273 medium 6.6 mm clearance hole (0.30 mm radial play) and delta T = 100 K, the expansion margin is +0.228 mm (aluminium case, centroid datum) down to +0.126 mm (magnesium case, dowel datum, the worst of the four cases in evidence/parametric-screen.json). It rests on an extreme hole spacing of 100 mm and a 6.6 mm hole, both hypothetical: no hole position or size is measured. The superseded M8 figure was +0.056 mm.<br>The internal clearance to the chain and tensioner is not measured.<br>Titanium makes the part 64% heavier at equal geometry; it is a deliberate material choice, not a gain.<br>The part retains oil: a leak on an air-cooled engine has hot neighbors, hence the `functional` class and not `non_critical`.<br>No leak test, thermal cycling or repeated removal-refitting.<br>The titanium/magnesium galvanic couple is not resolved and could shift corrosion from the lid to the case. |
+| limitations | The original part is cast magnesium, not aluminium: any mass comparison made against aluminium was comparing with the replacement product, not the original.<br>Against magnesium, titanium loses both plate-bending indices, strength included: it will not be lighter, whatever thickness is chosen.<br>No dimension is measured: outline, thickness, hole spacings, holes, gasket face and centring are unknown.<br>Neither commercial reproducer publishes a dimension: the dimensions cannot be found online; they are obtained by buying the part or its gasket.<br>Recomputed for M6 (issue #471): with an ISO 273 medium 6.6 mm clearance hole (0.30 mm radial play) and delta T = 100 K, the expansion margin is +0.228 mm (aluminium case, centroid datum) down to +0.126 mm (magnesium case, dowel datum, the worst of the four cases in evidence/parametric-screen.json). It rests on an extreme hole spacing of 100 mm and a 6.6 mm hole, both hypothetical: no hole position or size is measured. The superseded M8 figure was +0.056 mm.<br>The internal clearance to the chain and tensioner is not measured.<br>Titanium makes the part 64% heavier at equal geometry; it is a deliberate material choice, not a gain.<br>The part retains oil: a leak on an air-cooled engine has hot neighbours, hence the `functional` class and not `non_critical`.<br>No leak test, thermal cycling or repeated removal-refitting.<br>The titanium/magnesium galvanic couple is not resolved and could shift corrosion from the lid to the case. |
 
 **Evidence**
 

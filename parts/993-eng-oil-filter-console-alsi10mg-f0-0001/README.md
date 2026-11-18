@@ -43,7 +43,7 @@ Independent concept of a 993 console combining filter seat, two non-collinear ga
 
 ## What it does on the car
 
-F0 screening of open CAD, DfAM value, hot/cold pressure loss, pressure, threads, thermal, mass and cleanliness; no manufacture, sealing, installation, oil circulation or start-up authorized
+F0 screening of open CAD, DfAM value, hot/cold pressure loss, pressure, threads, thermal, mass and cleanliness; no manufacture, sealing, installation, oil circulation or start-up authorised
 
 ## At a glance
 

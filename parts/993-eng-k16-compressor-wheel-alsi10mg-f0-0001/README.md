@@ -43,7 +43,7 @@ Independent concept of an AlSi10Mg compressor wheel with six main blades and six
 
 ## What it does on the car
 
-CAD, DfAM, continuity, compressor thermodynamics, rotating disk, blade tension, expansion, imbalance and energy screening; no manufacturing, rotation, installation or start-up authorized
+CAD, DfAM, continuity, compressor thermodynamics, rotating disk, blade tension, expansion, imbalance and energy screening; no manufacturing, rotation, installation or start-up authorised
 
 ## At a glance
 

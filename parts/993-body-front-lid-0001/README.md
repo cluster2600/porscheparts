@@ -50,7 +50,7 @@ Closes the front compartment; the part carries no load, but its retention is a s
 |---|---|
 | Porsche part numbers | 993 511 010 01, 993 511 010 31 |
 | variants | `to_confirm_on_vehicle` |
-| candidate material | fiber and resin to be determined |
+| candidate material | fibre and resin to be determined |
 | candidate process | undecided |
 | safety class | `functional` |
 | validation status | `concept` |

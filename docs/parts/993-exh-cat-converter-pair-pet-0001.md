@@ -45,7 +45,7 @@ Catalogue record: [`catalog/parts/993-exh-cat-converter-pair-pet-0001.json`](../
 | Porsche part numbers | 99311321357, 99311321457, 99311321458 |
 | category | exhaust_catalytic_converter |
 | safety class | prohibited_pending_engineering |
-| intended use | Identity anchor for the exhaust subsystem of the M64 digital twin; no manufacturing, fitment or engine use is authorized by this record |
+| intended use | Identity anchor for the exhaust subsystem of the M64 digital twin; no manufacturing, fitment or engine use is authorised by this record |
 
 ## Material and manufacturing
 

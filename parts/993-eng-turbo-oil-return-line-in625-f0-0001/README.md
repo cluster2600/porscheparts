@@ -43,7 +43,7 @@ Clean-sheet concept of a left turbocharger oil line with an open internal passag
 
 ## What it does on the car
 
-F0 screening of hollow CAD, hydraulics, pressure, bending, expansion, thermal and DfAM; no manufacturing, installation, oil circulation or engine start authorized
+F0 screening of hollow CAD, hydraulics, pressure, bending, expansion, thermal and DfAM; no manufacturing, installation, oil circulation or engine start authorised
 
 ## At a glance
 

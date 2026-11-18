@@ -4,7 +4,7 @@
 
 **Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
-Deux occurrences dans le groupe Turbo PET, position 21. Cage ouverte à branches courbes et racines bifurquées ; enveloppe souple séparée, étranglée et sculptée à six lobes. Aucun socle rectangulaire ni paroi de coupelle pleine. Cette morphologie ne reconstitue pas le mécanisme OEM et ne prédit ni raideur ni amortissement ; aucune optimisation sous charges réalisée.
+Two occurrences in the Turbo PET group, position 21. Open cage with curved branches and forked roots; separate compliant envelope, necked and sculpted with six lobes. No rectangular base and no solid cup wall. This morphology does not reconstruct the OEM mechanism and predicts neither stiffness nor damping; no optimisation under load has been carried out.
 
 ```mermaid
 flowchart LR
@@ -45,7 +45,7 @@ Catalogue record: [`catalog/parts/993-eng-mounting-0001.json`](../../catalog/par
 | Porsche part numbers | 993 375 049 05 |
 | category | powertrain_mounting |
 | safety class | prohibited_pending_engineering |
-| intended use | Étude de formes et assemblage documentaire uniquement ; aucun portage moteur ni montage véhicule autorisé. |
+| intended use | Shape study and documentary assembly only; no engine support or vehicle installation is authorised. |
 
 ## Material and manufacturing
 

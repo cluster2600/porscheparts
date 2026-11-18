@@ -42,7 +42,7 @@ Catalogue record: [`catalog/parts/993-ca-turbo-intake-manifold-pet-0001.json`](.
 | Porsche part numbers | 99311006250, 99311006251, 99311063154, 99311063052, 99311063053, 99311033750, 99311033751, 99360612401, 99360610300, 99360610301, 99311011352, 99311011451 |
 | category | turbocharging_intake_tract |
 | safety class | non_critical |
-| intended use | Identity anchor for the charge-air and intake subsystems of the M64 digital twin; no manufacturing, fitment or engine use is authorized by this record |
+| intended use | Identity anchor for the charge-air and intake subsystems of the M64 digital twin; no manufacturing, fitment or engine use is authorised by this record |
 
 ## Material and manufacturing
 

@@ -39,11 +39,11 @@ The original part is documented — pictures, catalogue entries or published dat
 
 ## What it is
 
-Independent concept of a 993 annular housing combining shell, front flange, alternator support and six spokes. The sources establish the part number, a commercial envelope, two consistent masses and a reseller claim of aluminum, but no interface geometry; the F0 does not reproduce the Porsche part.
+Independent concept of a 993 annular housing combining shell, front flange, alternator support and six spokes. The sources establish the part number, a commercial envelope, two consistent masses and a reseller claim of aluminium, but no interface geometry; the F0 does not reproduce the Porsche part.
 
 ## What it does on the car
 
-F0 screening of open CAD, DfAM value, flow, pressure loss, bending, modal, thermal and mass; no manufacturing, installation, fan rotation or engine start-up authorized
+F0 screening of open CAD, DfAM value, flow, pressure loss, bending, modal, thermal and mass; no manufacturing, installation, fan rotation or engine start-up authorised
 
 ## At a glance
 

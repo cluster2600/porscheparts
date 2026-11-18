@@ -42,7 +42,7 @@ Catalogue record: [`catalog/parts/993-eng-intercooler-bracket-ti-f0-0001.json`](
 | Porsche part numbers | 99311011050, 99311011052 |
 | category | charge_air_support |
 | safety class | functional |
-| intended use | CAD, DfAM, mass and mechanical screening of an intercooler bracket; no vehicle fitting authorized |
+| intended use | CAD, DfAM, mass and mechanical screening of an intercooler bracket; no vehicle fitting authorised |
 
 ## Material and manufacturing
 
@@ -53,7 +53,7 @@ Catalogue record: [`catalog/parts/993-eng-intercooler-bracket-ti-f0-0001.json`](
 | material family | candidate LPBF titanium |
 | grade | Ti-6Al-4V Grade 5 for screening; OEM material and FVD product unknown |
 | standard | ASTM F2924 or equivalent supplier specification to be contracted |
-| supplier requirements | traceable powder, machine, parameters, orientation, lot and powder recycling, witness coupons in critical orientations with representative tensile and fatigue, dimensional inspection of datums, center distances, bores and envelope, CT of nodes and bosses, then dye penetrant inspection after machining, contracted roughness, porosity, alpha case and residual stresses, instrumented static, vibration and thermal tests before any fitting |
+| supplier requirements | traceable powder, machine, parameters, orientation, lot and powder recycling, witness coupons in critical orientations with representative tensile and fatigue, dimensional inspection of datums, centre distances, bores and envelope, CT of nodes and bosses, then dye penetrant inspection after machining, contracted roughness, porosity, alpha case and residual stresses, instrumented static, vibration and thermal tests before any fitting |
 | post-processing | support removal keeping access to the two open recesses, heat treatment qualified for the machine, parameters and orientation, HIP to be decided after fatigue analysis and defect population, machining of the end bores and central interface after clearances are defined, deburring, radiusing and finishing of load paths, passivation and galvanic isolation after dimensional inspection |
 
 **Titanium**
@@ -65,7 +65,7 @@ Catalogue record: [`catalog/parts/993-eng-intercooler-bracket-ti-f0-0001.json`](
 | HIP | to_be_determined |
 | machined surfaces | two end bores, central boss bore and datum, mounting seats to be defined on a measured part |
 | inspection | CT of bosses and rail junctions, dimensional inspection of machined interfaces, dye penetrant inspection after machining, roughness and porosity, tensile and fatigue coupons representative of the orientation |
-| galvanic isolation | Electrically separate the titanium from the aluminum intercooler and the steel fasteners with bushings, washers, coating and sealing qualified after the actual materials are identified. |
+| galvanic isolation | Electrically separate the titanium from the aluminium intercooler and the steel fasteners with bushings, washers, coating and sealing qualified after the actual materials are identified. |
 | fatigue assumptions | not recorded |
 
 ## Geometry

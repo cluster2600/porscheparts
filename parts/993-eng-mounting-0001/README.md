@@ -37,11 +37,11 @@ The original part is documented — pictures, catalogue entries or published dat
 
 ## What it is
 
-Deux occurrences dans le groupe Turbo PET, position 21. Cage ouverte à branches courbes et racines bifurquées ; enveloppe souple séparée, étranglée et sculptée à six lobes. Aucun socle rectangulaire ni paroi de coupelle pleine. Cette morphologie ne reconstitue pas le mécanisme OEM et ne prédit ni raideur ni amortissement ; aucune optimisation sous charges réalisée.
+Two occurrences in the Turbo PET group, position 21. Open cage with curved branches and forked roots; separate compliant envelope, necked and sculpted with six lobes. No rectangular base and no solid cup wall. This morphology does not reconstruct the OEM mechanism and predicts neither stiffness nor damping; no optimisation under load has been carried out.
 
 ## What it does on the car
 
-Étude de formes et assemblage documentaire uniquement ; aucun portage moteur ni montage véhicule autorisé.
+Shape study and documentary assembly only; no engine support or vehicle installation is authorised.
 
 ## At a glance
 

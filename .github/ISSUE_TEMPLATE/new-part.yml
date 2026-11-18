@@ -1,48 +1,48 @@
-name: Nouvelle pièce
-description: Proposer une pièce à mesurer, reconstruire ou fabriquer
+name: New part
+description: Propose a part to measure, reconstruct or manufacture
 title: "[PART] "
 labels: ["part-candidate"]
 body:
   - type: markdown
     attributes:
       value: |
-        Ne téléversez aucun manuel, modèle ou scan sans licence de redistribution explicite.
+        Do not upload any manual, model or scan without an explicit redistribution licence.
 
   - type: input
     id: name
     attributes:
-      label: Nom de la pièce
+      label: Part name
     validations:
       required: true
 
   - type: input
     id: part-number
     attributes:
-      label: Référence Porsche supposée
-      description: Écrire « inconnue » si elle n’est pas vérifiée.
+      label: Presumed Porsche part number
+      description: Write "unknown" if it is not verified.
     validations:
       required: true
 
   - type: textarea
     id: need
     attributes:
-      label: Besoin
-      description: Pourquoi la pièce doit-elle être reproduite ?
+      label: Need
+      description: Why must the part be reproduced?
     validations:
       required: true
 
   - type: textarea
     id: fitment
     attributes:
-      label: Variantes et années
-      description: Indiquer uniquement ce qui est confirmé et distinguer les inconnues.
+      label: Variants and years
+      description: State only what is confirmed and distinguish the unknowns.
     validations:
       required: true
 
   - type: dropdown
     id: safety
     attributes:
-      label: Classe de sécurité proposée
+      label: Proposed safety class
       options:
         - prohibited_pending_engineering
         - non_critical
@@ -54,25 +54,25 @@ body:
   - type: textarea
     id: sources
     attributes:
-      label: Sources et licences
-      description: URL, auteur, licence et date d’accès pour chaque source.
+      label: Sources and licences
+      description: URL, author, licence and access date for each source.
     validations:
       required: true
 
   - type: textarea
     id: available-part
     attributes:
-      label: Pièce ou véhicule disponible pour mesure
-      description: Ne pas publier de VIN, adresse ou donnée personnelle.
+      label: Part or vehicle available for measurement
+      description: Do not publish a VIN, address or personal data.
 
   - type: dropdown
     id: titanium
     attributes:
-      label: Candidat titane ?
+      label: Titanium candidate?
       options:
-        - À étudier
-        - Non
-        - Oui, avec justification dans le besoin
+        - To be studied
+        - No
+        - Yes, with justification in the need
     validations:
       required: true
 
@@ -81,7 +81,7 @@ body:
     attributes:
       label: Confirmation
       options:
-        - label: Je n’affirme pas qu’une pièce est sûre ou compatible sans preuve documentée.
+        - label: I do not claim that a part is safe or compatible without documented evidence.
           required: true
-        - label: Je dispose des droits nécessaires sur les fichiers que je proposerai.
+        - label: I hold the necessary rights to the files I will propose.
           required: true

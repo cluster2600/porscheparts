@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Console de filtre à huile moteur 993 AlSi10Mg, concept F0 à galeries intégrées."""
+"""993 engine oil filter console in AlSi10Mg, F0 concept with integrated galleries."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ from pathlib import Path
 
 PART_ID = "993-ENG-OIL-FILTER-CONSOLE-ALSI10MG-F0-0001"
 
-# Faits publics. Les dimensions du filtre ne définissent pas la console.
+# Public facts. The filter dimensions do not define the console.
 PUBLISHED_CONSOLE_PART_NUMBERS = ["99310705700", "99310705701"]
 PUBLISHED_CONSOLE_MASS_KG = 0.78
 PUBLISHED_FILTER_PART_NUMBER = "99310720303"
@@ -27,7 +27,7 @@ OCR_UNVERIFIED_OIL_PRESSURE_BAR = 6.5
 OCR_UNVERIFIED_OIL_PRESSURE_RPM = 5000.0
 OCR_UNVERIFIED_OIL_PRESSURE_TEMPERATURE_C = 90.0
 
-# Géométrie propre et synthétique. Aucune surface commerciale ou Porsche.
+# Own, synthetic geometry. No commercial or Porsche surface.
 BODY_LENGTH_MM = 130.0
 BODY_WIDTH_MM = 90.0
 BODY_HEIGHT_MM = 20.0
@@ -51,7 +51,7 @@ MOUNT_BORE_DIAMETER_MM = 8.5
 MOUNT_X_MM = (-50.0, 50.0)
 MOUNT_Y_MM = (-34.0, 34.0)
 
-# Comparaison générique EOS AlSi10Mg du projet, pas carte admissible chaude.
+# Generic project EOS AlSi10Mg comparison, not a hot allowables card.
 DENSITY_KG_M3 = 2670.0
 ELASTIC_MODULUS_PA = 70.0e9
 COMPARISON_YIELD_STRENGTH_PA = 245.0e6
@@ -59,7 +59,7 @@ THERMAL_EXPANSION_PER_K = 21.0e-6
 SPECIFIC_HEAT_J_KG_K = 900.0
 PUBLISHED_PROCESS_MINIMUM_WALL_MM = 0.4
 
-# Cas analytiques synthétiques et volontairement conservateurs.
+# Synthetic, deliberately conservative analytical cases.
 SYNTHETIC_FLOW_L_MIN = 30.0
 OIL_DENSITY_KG_M3 = 850.0
 HOT_OIL_DYNAMIC_VISCOSITY_PA_S = 0.012
@@ -82,7 +82,7 @@ MINIMUM_SCREEN_RATIO = 1.5
 
 def _friction_factor(reynolds: float, diameter_m: float) -> float:
     if reynolds <= 0.0:
-        raise ValueError("Le nombre de Reynolds doit être positif.")
+        raise ValueError("The Reynolds number must be positive.")
     if reynolds < 2300.0:
         return 64.0 / reynolds
     roughness_m = AS_BUILT_EFFECTIVE_ROUGHNESS_MM / 1000.0
@@ -540,16 +540,16 @@ def main() -> int:
 
         shape = build_geometry()
         if not shape.is_valid or len(shape.solids()) != 1:
-            raise SystemExit("La console d'huile F0 doit être un solide BREP unique valide.")
+            raise SystemExit("The F0 oil console must be a single valid BREP solid.")
         bbox = shape.bounding_box()
         envelope = [bbox.size.X, bbox.size.Y, bbox.size.Z]
         args.out.parent.mkdir(parents=True, exist_ok=True)
         export_step(shape, str(args.out))
         roundtrip = import_step(str(args.out))
         if not roundtrip.is_valid or len(roundtrip.solids()) != 1:
-            raise SystemExit("Le STEP relu ne conserve pas le solide valide.")
+            raise SystemExit("The re-read STEP does not keep the valid solid.")
         if abs(roundtrip.volume - shape.volume) > 0.05:
-            raise SystemExit("Le STEP relu ne reproduit pas le volume OCCT attendu.")
+            raise SystemExit("The re-read STEP does not reproduce the expected OCCT volume.")
         cad_volume_mm3 = roundtrip.volume
 
     report = engineering_screen(cad_volume_mm3)

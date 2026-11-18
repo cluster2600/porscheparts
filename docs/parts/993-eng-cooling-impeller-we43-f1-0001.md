@@ -45,7 +45,7 @@ Catalogue record: [`catalog/parts/993-eng-cooling-impeller-we43-f1-0001.json`](.
 | Porsche part numbers | 96410601522 |
 | category | engine_cooling_fan_impeller |
 | safety class | prohibited_pending_engineering |
-| intended use | F1 design study: airfoil blades inside the original rotor's envelope, one-dimensional fan-curve comparison with the rebuild rotor on a duty inferred from it, lighter-alloy comparison; no manufacture, rotation, installation or start-up authorized |
+| intended use | F1 design study: airfoil blades inside the original rotor's envelope, one-dimensional fan-curve comparison with the rebuild rotor on a duty inferred from it, lighter-alloy comparison; no manufacture, rotation, installation or start-up authorised |
 
 ## Material and manufacturing
 
@@ -54,10 +54,10 @@ Catalogue record: [`catalog/parts/993-eng-cooling-impeller-we43-f1-0001.json`](.
 | preferred process | LPBF |
 | candidate processes | LPBF, CNC, casting |
 | material family | candidate LPBF magnesium-yttrium-rare-earth alloy |
-| grade | WE43 LPBF, solutionized and aged, for comparison; Scalmalloy and AlSi10Mg screened as alternatives |
+| grade | WE43 LPBF, solutionised and aged, for comparison; Scalmalloy and AlSi10Mg screened as alternatives |
 | standard | ASTM B80/B107 WE43 composition reference only; program-specific LPBF, rotating, HCF, balance and overspeed specification to be contracted |
 | supplier requirements | inert, magnesium-rated LPBF machine with powder handling and fire procedure, traceable machine, parameters, orientation, supports, powder, recycling and batch, oriented coupons with tensile, HCF and hot corrosion tests, full CT and metallography with zoned defect criteria, metrology of cup, web, bore, bolt holes, runout, blades and mass, proof of balance, overspeed, vibration, flow, containment and endurance |
-| post-processing | flat build_z is the preferred next study candidate after the thermal comparison; roll_y_45 is retained as a comparison; thermal anchoring, support topology and removal access require supplier review, solutionizing and ageing, distortion monitored, HIP to be decided by the HCF/defect card, steel inserts or creep-rated washers at the three bolt holes, machined web faces and bore, conversion or PEO coating and galvanic isolation from steel and aluminium neighbours, two-plane dynamic balancing in the final condition |
+| post-processing | flat build_z is the preferred next study candidate after the thermal comparison; roll_y_45 is retained as a comparison; thermal anchoring, support topology and removal access require supplier review, solutionising and ageing, distortion monitored, HIP to be decided by the HCF/defect card, steel inserts or creep-rated washers at the three bolt holes, machined web faces and bore, conversion or PEO coating and galvanic isolation from steel and aluminium neighbours, two-plane dynamic balancing in the final condition |
 
 ## Geometry
 

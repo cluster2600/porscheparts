@@ -42,7 +42,7 @@ Catalogue record: [`catalog/parts/993-exh-oval-tip-ti-f1-0001.json`](../../catal
 | Porsche part numbers | not recorded |
 | category | exhaust_tip |
 | safety class | functional |
-| intended use | CAD, DfAM, flow, thermal, pressure and modal screening; no manufacturing for fitting and no vehicle installation authorized |
+| intended use | CAD, DfAM, flow, thermal, pressure and modal screening; no manufacturing for fitting and no vehicle installation authorised |
 
 ## Material and manufacturing
 

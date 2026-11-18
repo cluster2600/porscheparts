@@ -43,7 +43,7 @@ Independent concept of a 993 upper valve cover, open on the oil side, with six f
 
 ## What it does on the car
 
-F0 screening of open CAD, COP consolidation, crankcase pressure, clamping, flatness, thermal, convection and mass; no manufacturing, sealing, installation or start-up authorized
+F0 screening of open CAD, COP consolidation, crankcase pressure, clamping, flatness, thermal, convection and mass; no manufacturing, sealing, installation or start-up authorised
 
 ## At a glance
 

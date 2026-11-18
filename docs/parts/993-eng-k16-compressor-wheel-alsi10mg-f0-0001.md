@@ -45,7 +45,7 @@ Catalogue record: [`catalog/parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001.
 | Porsche part numbers | not recorded |
 | category | turbocharger_compressor_wheel |
 | safety class | prohibited_pending_engineering |
-| intended use | CAD, DfAM, continuity, compressor thermodynamics, rotating disk, blade tension, expansion, imbalance and energy screening; no manufacturing, rotation, installation or start-up authorized |
+| intended use | CAD, DfAM, continuity, compressor thermodynamics, rotating disk, blade tension, expansion, imbalance and energy screening; no manufacturing, rotation, installation or start-up authorised |
 
 ## Material and manufacturing
 
@@ -53,7 +53,7 @@ Catalogue record: [`catalog/parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001.
 |---|---|
 | preferred process | LPBF |
 | candidate processes | LPBF, DMLS, CNC, casting |
-| material family | candidate LPBF aluminum alloy |
+| material family | candidate LPBF aluminium alloy |
 | grade | EOS AlSi10Mg, screening; alloy and process of the BorgWarner wheel not published |
 | standard | DIN EN 1706 / ASTM F3318 for the powder and a program-specific rotor specification to be contracted |
 | supplier requirements | traceable powder, machine, parameters, orientation, lot and recycling, oriented coupons with tensile, HCF, toughness, crack growth and defects at temperature, distortion simulation and witnesses for blades, exducer, hub and bore, full CT before and after machining, defect criteria by zone, and metallography, metrology of profiles, thicknesses, fillets, bore, runouts and polar mass, high-speed balancing, spin proof, overspeed, burst and containment validation before turbo rig testing |
@@ -115,7 +115,7 @@ Catalogue record: [`catalog/parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001.
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | Only the 40.6 mm, 60.5 mm, six main blades, six splitters and the part numbers come from the supplier page.<br>The 3 mm disk, 18 mm height, 6 mm bore, the hub and all the straight blades are synthetic.<br>The 32.70 g STEP is not comparable to a real K16 wheel; the 4.22 ratio uses a theoretical envelope cylinder, not an industrial blank.<br>The 103,464 rpm speed is derived from Mach 0.9 at 330 K, not measured on the K16.<br>The 3.6 l, 5,750 rpm, VE 0.95, PR 1.8 and 0.72 efficiency point is a regression case without a compressor map.<br>The main blade reaches 390.9 MPa in the overspeed screen, a ratio of 0.63 against the ambient limit: the F0 design fails.<br>The disk/blade models ignore real shape, fillets, bore, preload, defects, HCF, rotor dynamics, contact and containment.<br>The EOS values are ambient comparisons, not allowables for a printed AlSi10Mg rotor.<br>The STEP proves only a readable twelve-blade BREP; it is authorized neither for manufacturing, nor for rotation, nor for a turbo or an engine. |
+| limitations | Only the 40.6 mm, 60.5 mm, six main blades, six splitters and the part numbers come from the supplier page.<br>The 3 mm disk, 18 mm height, 6 mm bore, the hub and all the straight blades are synthetic.<br>The 32.70 g STEP is not comparable to a real K16 wheel; the 4.22 ratio uses a theoretical envelope cylinder, not an industrial blank.<br>The 103,464 rpm speed is derived from Mach 0.9 at 330 K, not measured on the K16.<br>The 3.6 l, 5,750 rpm, VE 0.95, PR 1.8 and 0.72 efficiency point is a regression case without a compressor map.<br>The main blade reaches 390.9 MPa in the overspeed screen, a ratio of 0.63 against the ambient limit: the F0 design fails.<br>The disk/blade models ignore real shape, fillets, bore, preload, defects, HCF, rotor dynamics, contact and containment.<br>The EOS values are ambient comparisons, not allowables for a printed AlSi10Mg rotor.<br>The STEP proves only a readable twelve-blade BREP; it is authorised neither for manufacturing, nor for rotation, nor for a turbo or an engine. |
 
 **Evidence**
 

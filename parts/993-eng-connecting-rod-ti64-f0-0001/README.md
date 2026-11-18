@@ -45,7 +45,7 @@ Independent two-open-flange concept to screen an LPBF Ti-6Al-4V connecting rod. 
 
 ## What it does on the car
 
-CAD, DfAM, mass, synthetic loads, nominal stresses and buckling screening only; no manufacturing, installation or engine start-up authorized
+CAD, DfAM, mass, synthetic loads, nominal stresses and buckling screening only; no manufacturing, installation or engine start-up authorised
 
 ## At a glance
 

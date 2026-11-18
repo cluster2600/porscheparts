@@ -43,7 +43,7 @@ Independent concept of a round-to-rectangular-face transition with three open in
 
 ## What it does on the car
 
-CAD, DfAM, flow, pressure loss, pressure, membrane, guided panel, thermal and cycle screening; no manufacture, installation or engine start-up authorized
+CAD, DfAM, flow, pressure loss, pressure, membrane, guided panel, thermal and cycle screening; no manufacture, installation or engine start-up authorised
 
 ## At a glance
 

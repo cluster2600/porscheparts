@@ -42,7 +42,7 @@ Same double-wall geometry as the IN625 F0 variant, screened in titanium. Selecte
 
 ## What it does on the car
 
-CAD, DfAM, flow, thermal, pressure and modal screening; no manufacturing for fitting and no vehicle installation authorized
+CAD, DfAM, flow, thermal, pressure and modal screening; no manufacturing for fitting and no vehicle installation authorised
 
 ## At a glance
 

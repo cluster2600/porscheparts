@@ -4,7 +4,7 @@
 
 **Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../docs/SAFETY.md).**
 
-Independent concept of a 993 annular housing combining shell, front flange, alternator support and six spokes. The sources establish the part number, a commercial envelope, two consistent masses and a reseller claim of aluminum, but no interface geometry; the F0 does not reproduce the Porsche part.
+Independent concept of a 993 annular housing combining shell, front flange, alternator support and six spokes. The sources establish the part number, a commercial envelope, two consistent masses and a reseller claim of aluminium, but no interface geometry; the F0 does not reproduce the Porsche part.
 
 ```mermaid
 flowchart LR
@@ -45,7 +45,7 @@ Catalogue record: [`catalog/parts/993-eng-fan-housing-alsi10mg-f0-0001.json`](..
 | Porsche part numbers | 99310666703, 99310666701 |
 | category | engine_cooling_fan_housing |
 | safety class | prohibited_pending_engineering |
-| intended use | F0 screening of open CAD, DfAM value, flow, pressure loss, bending, modal, thermal and mass; no manufacturing, installation, fan rotation or engine start-up authorized |
+| intended use | F0 screening of open CAD, DfAM value, flow, pressure loss, bending, modal, thermal and mass; no manufacturing, installation, fan rotation or engine start-up authorised |
 
 ## Material and manufacturing
 
@@ -54,7 +54,7 @@ Catalogue record: [`catalog/parts/993-eng-fan-housing-alsi10mg-f0-0001.json`](..
 | preferred process | undecided |
 | candidate processes | LPBF, DMLS, casting, CNC |
 | material family | candidate LPBF aluminum-silicon-magnesium alloy |
-| grade | EOS Aluminium AlSi10Mg T6 for comparison; commercial replacement declared only as unspecified aluminum |
+| grade | EOS Aluminium AlSi10Mg T6 for comparison; commercial replacement declared only as unspecified aluminium |
 | standard | DIN EN 1706 EN AC-43000 and ASTM F3318 for the candidate; program-specific cooling, fatigue and containment specification to be contracted |
 | supplier requirements | traceable large-platform machine, parameters, orientation, supports, powder and lot, oriented coupons with tensile, fatigue, creep and hot corrosion, witness samples for annular distortion and duct surface finish, full CT, FPI and metallography with zoned defect criteria, metrology of bore, concentricity, alternator, mountings, seal and envelope, evidence of flow, vibration, overspeed/containment, thermal cycling and engine endurance |
 | post-processing | orientation and supports of the 300 x 300 x 170 mm ring to be qualified, stress relief then T6 with monitored quench and distortion, HIP to be decided on fatigue, air tightness and tomography results, machining of the fan bore, alternator seat, mounting, seal and datums, deburring, open depowdering and particle-free duct finishing, anti-corrosion treatment compatible with temperatures, fasteners and engine compartment, final clearance check before any rotation |
@@ -111,7 +111,7 @@ Catalogue record: [`catalog/parts/993-eng-fan-housing-alsi10mg-f0-0001.json`](..
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | The 300 x 300 x 170 mm figures are a commercial envelope, not a definition drawing.<br>The 1.86/1.9 kg masses are commercial claims with no protocol and no weighing boundary.<br>The aluminum material comes with no grade, no process and no certificate; AlSi10Mg remains a candidate.<br>The 252 mm diameter, 3 mm shell, 4 mm flange, hub, six spokes and mountings are synthetic.<br>The flow, loss, load, speed, blade count and temperature cases are regressions with no 993 authority.<br>The constrained thermal screen fails; fatigue, containment and cooling remain non-computable.<br>No CFD/CHT, converged FEA, correlated modal, overspeed, vibration or endurance is demonstrated.<br>The STEP proves only a re-readable BREP; no manufacturing, rotation or start-up is authorized. |
+| limitations | The 300 x 300 x 170 mm figures are a commercial envelope, not a definition drawing.<br>The 1.86/1.9 kg masses are commercial claims with no protocol and no weighing boundary.<br>The aluminium material comes with no grade, no process and no certificate; AlSi10Mg remains a candidate.<br>The 252 mm diameter, 3 mm shell, 4 mm flange, hub, six spokes and mountings are synthetic.<br>The flow, loss, load, speed, blade count and temperature cases are regressions with no 993 authority.<br>The constrained thermal screen fails; fatigue, containment and cooling remain non-computable.<br>No CFD/CHT, converged FEA, correlated modal, overspeed, vibration or endurance is demonstrated.<br>The STEP proves only a re-readable BREP; no manufacturing, rotation or start-up is authorised. |
 
 **Evidence**
 
