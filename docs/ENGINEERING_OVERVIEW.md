@@ -354,7 +354,7 @@ A finite-element shell model of the floor pan, the box section and the full
 cell answers **relative** questions: between changing the material and closing
 the body shell, which pays off more? Where does the load go in torsion?
 
-![The shell model, bare floor pan and full cell](media/diagrams/964-modele-coque.svg)
+![The shell model, bare floor pan and full cell](media/diagrams/964-shell-model.svg)
 
 **Results that hold**, see [`twins/964-chassis/fea/`](../twins/964-chassis/fea/):
 
@@ -367,7 +367,7 @@ the body shell, which pays off more? Where does the load go in torsion?
   separate contributions: the roof only works once the ring is closed;
 - at equal mass, closing the body shell is worth more than switching to carbon.
 
-![von Mises stress on the bare floor pan](media/diagrams/964-chemin-effort.svg)
+![von Mises stress on the bare floor pan](media/diagrams/964-load-path.svg)
 
 A **corpus of 3,000 CalculiX cases** in quadratic shells is built to train a
 design surrogate later, its validation set frozen before any model exists:
@@ -752,7 +752,7 @@ flowchart TB
 
 This is the most useful part of its history, and it is public.
 
-![Stiffness by architecture in linear and quadratic shells](media/diagrams/964-echelle-architectures.svg)
+![Stiffness by architecture in linear and quadratic shells](media/diagrams/964-architecture-ladder.svg)
 
 | withdrawn claim | what defeated it |
 |---|---|
@@ -866,7 +866,7 @@ Details and exit criteria: [ROADMAP.md](ROADMAP.md) ·
 [docs/DIGITAL_TWIN.md](DIGITAL_TWIN.md) ·
 [docs/QUALITY_GATES.md](QUALITY_GATES.md).
 
-![Sourced state of the 993 digital twin](media/diagrams/digital-twin-993-etat.svg)
+![Sourced state of the 993 digital twin](media/diagrams/digital-twin-993-state.svg)
 
 *Sourced logical relationships of the 993 twin, not the actual position of
 the components in the car.*

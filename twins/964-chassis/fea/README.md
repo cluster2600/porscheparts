@@ -6,7 +6,7 @@ Steel E = 210,000 MPa, nu = 0.3. Units mm, N, MPa.
 Load case: rear clamped, torque of 1290 N.m applied at the front side-rail tips
 (1000 N upward on the left, 1000 N downward on the right, lever arm 1290 mm).
 
-![The shell model: bare floor pan with side rails and cross members, K = 2442 N.m/deg, next to the full cell, K = 9093 N.m/deg](../../../docs/media/diagrams/964-modele-coque.svg)
+![The shell model: bare floor pan with side rails and cross members, K = 2442 N.m/deg, next to the full cell, K = 9093 N.m/deg](../../../docs/media/diagrams/964-shell-model.svg)
 
 *What the computation contains, from the bare floor pan to the full cell, in
 linear S3 shells. It is not a 964, and neither stiffness is a 964 stiffness.*
@@ -57,7 +57,7 @@ This result converges with the manual: plate 50-013 designates the *inner side
 member* as a high-strength steel panel. Porsche put HS steel where the
 computation places the load path.
 
-![von Mises stress on the bare floor pan under torsion: the side rails carry the load, not the floor pan](../../../docs/media/diagrams/964-chemin-effort.svg)
+![von Mises stress on the bare floor pan under torsion: the side rails carry the load, not the floor pan](../../../docs/media/diagrams/964-load-path.svg)
 
 *The load path on the bare floor pan, 0.8 mm steel. It shows where the stress
 goes; the absolute stress values are not robust (see below).*
@@ -136,7 +136,7 @@ not affected, carbon dominating on both.
     pycad dominance_study.py f
     pycad dominance_study.py fbtaprw
 
-![Share of shear in stiffness, d ln K / d ln G, by architecture, for the S3 and S6 corpora of 3,000 cases](../../../docs/media/diagrams/964-mecanisme-architecture.svg)
+![Share of shear in stiffness, d ln K / d ln G, by architecture, for the S3 and S6 corpora of 3,000 cases](../../../docs/media/diagrams/964-architecture-mechanism.svg)
 
 *The mechanism changes along the architecture ladder, from near-pure bending on
 the floor pan toward shear on the closed cell. It shows a sensitivity, not a 964
@@ -376,7 +376,7 @@ narrows. It is not a mesh-density defect: refining in S3 brings K down from 2442
 to 1750 without converging, whereas S6 returns 1436 from the coarsest density.
 **It is the element order, not the mesh size.**
 
-![Torsional stiffness by architecture in linear S3 and quadratic S6 shells, with the per-architecture deviation](../../../docs/media/diagrams/964-echelle-architectures.svg)
+![Torsional stiffness by architecture in linear S3 and quadratic S6 shells, with the per-architecture deviation](../../../docs/media/diagrams/964-architecture-ladder.svg)
 
 *The architecture ladder in both element orders. It shows that linear triangles
 overestimate stiffness, and unevenly; neither series is a 964 stiffness.*

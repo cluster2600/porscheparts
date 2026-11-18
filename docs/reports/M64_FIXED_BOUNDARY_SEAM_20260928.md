@@ -191,7 +191,7 @@ internal geometry are not verified.
 Our potential additive advantage is routing a cleanable, inspectable channel
 closer to local hot zones while preserving the external shape, load paths and
 insert/fastener interfaces. It is not an established performance gain.
-Retain the existing [air-only versus air-plus-oil campaign](M64_700CH_MATERIAL_COOLING_LPBF.md)
+Retain the existing [air-only versus air-plus-oil campaign](M64_700PS_MATERIAL_COOLING_LPBF.md)
 instead of adding a duplicate oil solver. Compare equal gas loads, air supply
 and geometry assumptions; calculate oil pressure loss, heat pickup, pumping
 power, lubrication reserve and external oil-cooler rejection. Check shutdown

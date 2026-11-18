@@ -132,7 +132,7 @@ The separate audit replaces neither this `Common` nor functional checks 6–12:
 continuity of the complete four-valve gas path, retention of seats/guides,
 walls after both ports and protected interface bands.
 Thermal, strength, LPBF and print validation are not run
-on this candidate. See the [material/cooling/LPBF dossier](M64_700CH_MATERIAL_COOLING_LPBF.md)
+on this candidate. See the [material/cooling/LPBF dossier](M64_700PS_MATERIAL_COOLING_LPBF.md)
 for their separate requirements.
 
 A **private** image is actually rendered from the exported body alone:

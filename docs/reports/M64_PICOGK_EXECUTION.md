@@ -108,8 +108,8 @@ and not as a passed scientific test. The 700 PS target model has 14 tests.
 These software checks prove neither engine strength nor manufacturability.
 
 The parallel research also delivers the
-[700 PS target sizing](M64_700CH_ENGINE_RESEARCH.md) and the
-[material/air/oil/LPBF campaign](M64_700CH_MATERIAL_COOLING_LPBF.md).
+[700 PS target sizing](M64_700PS_ENGINE_RESEARCH.md) and the
+[material/air/oil/LPBF campaign](M64_700PS_MATERIAL_COOLING_LPBF.md).
 The laser-off AdditiveFOAM smoke test and the new 25 ns step were actually
 run, **on an AlSi10Mg coupon, not on this cylinder head**. The active case
 remains capped and unqualified; its outcome authorises no engine print.

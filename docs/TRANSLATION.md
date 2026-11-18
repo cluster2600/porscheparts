@@ -24,7 +24,7 @@ make translation-status      # lists Markdown files still written in French
 | **`**/evidence/**`** | **never edited.** Evidence files are pinned by digest; a translation would break provenance and `make check` would fail |
 | **`archive/**`** | **never edited.** 2,014 digests pin the archived 917 line (see [ARCHIVE.md](ARCHIVE.md)) |
 | `containers/*.lock.json` and their recipe inputs | **never edited**, same reason |
-| file and directory names (`964-chemin-effort.svg`, …) | renamed in phase 5, group by group, each with a redirect stub left at the old path. A name not yet renamed is kept: renaming breaks inbound links and pinned paths |
+| file and directory names (`M64_AVANCEMENT_20260907.md`, …) | renamed in phase 5, group by group, each Markdown page with a redirect stub left at the old path. An image cannot hold a stub, so it is moved and every reference updated. A name that is pinned or frozen is kept: renaming breaks inbound links and pinned paths |
 
 Before editing any file, check that its digest is not pinned:
 
@@ -140,7 +140,7 @@ flow, a hierarchy, a sequence of gates, a timeline, a comparison.
 | 2 | remaining `docs/*.md`, `docs/993/` (with the generated print-screen sections), `docs/research/`, `docs/decisions/`, `docs/media/`, catalogue READMEs and templates, CHANGELOG | done |
 | 3 | `docs/reports/`, twin, container, deploy and simulation READMEs outside `evidence/`, catalogue twin records; diagrams and images across the docs | done |
 | 4 | code comments, docstrings and command-line messages in `scripts/` and `tests/` | done (exceptions below) |
-| 5 | file and directory renames, with redirects | open |
+| 5 | file and directory renames, with redirects | done (exceptions below) |
 
 Phase 5 progress ([#430](https://github.com/cluster2600/porscheparts/issues/430)).
 Renamed so far, each with a redirect stub at the old path:
@@ -154,8 +154,44 @@ Renamed so far, each with a redirect stub at the old path:
 - 2026-11-17: two more `docs/993/` pages (turbo oil circuit, LPBF sourcing in
   China) and four `docs/research/` pages (964 carbon/Kevlar chassis, carbon
   panels, phase 2 CAD forums, phase 2 German braking research).
+- 2026-11-18, after the owner's decision "all in British English": the 13
+  French-named `docs/reports/M64_*` reports, each with a stub at its old name,
+  and the five French-named diagrams in `docs/media/diagrams/`, moved without
+  a stub:
 
-Still French-named on 2026-11-17, with the reason:
+  | old name | new name |
+  |---|---|
+  | `M64_700CH_ENGINE_RESEARCH.md` | `M64_700PS_ENGINE_RESEARCH.md` |
+  | `M64_700CH_MATERIAL_COOLING_LPBF.md` | `M64_700PS_MATERIAL_COOLING_LPBF.md` |
+  | `M64_ADMISSION_CHAMBRE_20260908.md` | `M64_INTAKE_CHAMBER_20260908.md` |
+  | `M64_AGGLOMERATION_LOCALE_20260908.md` | `M64_LOCAL_AGGLOMERATION_20260908.md` |
+  | `M64_AVANCEMENT_20260907.md` | `M64_PROGRESS_20260907.md` |
+  | `M64_CORPS_ADMISSION_MAILLAGE_20260908.md` | `M64_BODY_INTAKE_MESH_20260908.md` |
+  | `M64_CORRECTIONS_NATIVES_20260908.md` | `M64_NATIVE_CORRECTIONS_20260908.md` |
+  | `M64_DOMAINE_GAZ_OPENFOAM_20260908.md` | `M64_GAS_DOMAIN_OPENFOAM_20260908.md` |
+  | `M64_LOCALISATION_ET_HXT_20260908.md` | `M64_LOCALISATION_AND_HXT_20260908.md` |
+  | `M64_MAILLAGE_PARTITION_UNIFIEE_20260908.md` | `M64_UNIFIED_PARTITION_MESH_20260908.md` |
+  | `M64_NETGEN_CONTRECONTROLE_20260908.md` | `M64_NETGEN_CROSS_CHECK_20260908.md` |
+  | `M64_REMAILLAGE_NATIF_20260908.md` | `M64_NATIVE_REMESH_20260908.md` |
+  | `M64_VOLUME_REEL_CONTROLES_20260908.md` | `M64_REAL_VOLUME_CHECKS_20260908.md` |
+  | `964-chemin-effort.svg` | `964-load-path.svg` |
+  | `964-echelle-architectures.svg` | `964-architecture-ladder.svg` |
+  | `964-mecanisme-architecture.svg` | `964-architecture-mechanism.svg` |
+  | `964-modele-coque.svg` | `964-shell-model.svg` |
+  | `digital-twin-993-etat.{excalidraw,mmd,png,svg}` | `digital-twin-993-state.*` |
+
+  `700PS` follows the existing `M64_700PS_*` reports. Each report keeps its
+  content and title; only links to the renamed files changed. No pinned or
+  frozen file referenced a diagram path, so no copy was kept at an old image
+  path; the docs, the gallery and `twins/964-chassis/fea/figures.py`, which
+  draws the four 964 figures, use the new names. Two consequences are
+  accepted. External links to an old image path break. And the reports index
+  generator, `scripts/render_reports_index.py`, is pinned by digest in
+  `containers/stack-20261105/recon-native-validation.json`, so it cannot learn
+  to skip stubs: `docs/reports/README.md` lists the 13 stubs as `Moved` rows
+  and counts them as reports.
+
+Still French-named on 2026-11-18, with the reason:
 
 | path | why it keeps its name |
 |---|---|
@@ -165,8 +201,12 @@ Still French-named on 2026-11-17, with the reason:
 | `parts/993-eng-carrier-0001/source/progress-figures-20261016/**` | figures pinned by their manifests and receipts |
 | `twins/964-chassis/derived/scan-recalage-20260925.json` | its digest is pinned in five run records, three of which also record its path |
 | `training/qwen-metal-additive-20261002/input/glossaire_7_langues.csv` | pinned by the training manifest |
-| `docs/reports/M64_*` with a French name (13 reports) | not pinned, but a report is cited by its name and two of them are cited by evidence files; undecided |
-| `docs/media/diagrams/964-*.svg`, `digital-twin-993-etat.*` | not pinned, but an image path cannot hold a Markdown redirect stub; undecided |
+| French report names cited inside `twins/m64-cylinder-head/evidence/*.json` | frozen evidence, never edited. Three records cite `docs/M64_AGGLOMERATION_LOCALE_20260908.md` or `docs/M64_MAILLAGE_PARTITION_UNIFIEE_20260908.md`. That `docs/` path has not existed since 2026-09-14, when the reports moved into `docs/reports/` without a stub. The stubs now at `docs/reports/` under those names lead to the English reports |
+| the redirect stubs left by every batch, including the 13 in `docs/reports/` | they exist to keep the old names working |
+
+A scan of tracked file names for French words on 2026-11-18 found no other
+French name. The French code and generated content that stay on purpose are the
+phase 4 exceptions below.
 
 Phase 4 exceptions (2026-11-06, issue #429). These stay French on purpose:
 

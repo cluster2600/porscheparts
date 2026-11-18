@@ -1,6 +1,6 @@
 # M64: conductive materials, hot strength and missing data
 
-This targeted review supplements the [existing material campaign](../reports/M64_700CH_MATERIAL_COOLING_LPBF.md). It does not make a final alloy selection. Sources were consulted up to **September 12, 2026**; scientific publication, supplier data sheet and unread lead are kept distinct.
+This targeted review supplements the [existing material campaign](../reports/M64_700PS_MATERIAL_COOLING_LPBF.md). It does not make a final alloy selection. Sources were consulted up to **September 12, 2026**; scientific publication, supplier data sheet and unread lead are kept distinct.
 
 ## Decision for the first comparisons
 
@@ -8,7 +8,7 @@ Keep **AlSi10Mg as the process baseline**, **CP1 as the heat-spreading candidate
 
 Pauzon et al. study CP1, Al–1Fe–1Zr, made by LPBF, directly. They link precipitation to mechanical behaviour after aging and report **330 MPa yield strength and 27 MS/m electrical conductivity**, after 400 °C for four hours. These are results of their protocol; **400 °C is the heat treatment, not the service temperature under load**. Electrical conductivity does not become a thermal card without a justified relation and calibration.[^1]
 
-The Constellium data sheet gives **182–189 W/(m·K)** depending on the treatment time at 400 °C; the measurement temperature of that column is not specified. Its room-temperature tensile table therefore does not guarantee 300 MPa of strength in a valve bridge at 200–300 °C. The [existing campaign](../reports/M64_700CH_MATERIAL_COOLING_LPBF.md) keeps the hot points and their different treatment separate.[^2]
+The Constellium data sheet gives **182–189 W/(m·K)** depending on the treatment time at 400 °C; the measurement temperature of that column is not specified. Its room-temperature tensile table therefore does not guarantee 300 MPa of strength in a valve bridge at 200–300 °C. The [existing campaign](../reports/M64_700PS_MATERIAL_COOLING_LPBF.md) keeps the hot points and their different treatment separate.[^2]
 
 The EOS **M290, AlSi10Mg, 30 µm** data sheet gives a conductivity of 100/110 W/(m·K) as-built vertical/horizontal, 165/155 after T6 and 160/165 after stress relief. It identifies a reproducible baseline, but does not allow these values to be carried over to another machine, a rough internal surface or another thermal history. The page does not provide a complete k(T) curve here. Its mention of a minimum printable wall is not an allowable structural thickness for a cylinder head.[^3]
 

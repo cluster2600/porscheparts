@@ -17,7 +17,7 @@ not adopted; the reference and agglomeration 04 are kept.**
 The scope remains the virtual intake bench from a 935 reference scan, not a
 complete metal cylinder head or measured M64 interfaces. The absolute scale
 remains uncertified. This checkpoint complements, without rewriting it, the
-[local agglomeration trial](M64_AGGLOMERATION_LOCALE_20260908.md). The
+[local agglomeration trial](M64_LOCAL_AGGLOMERATION_20260908.md). The
 [evidence capsule](../../twins/m64-cylinder-head/evidence/surface-meshadapt-trial-20260908.json)
 binds the private receipts and the results by their digests; no raw mesh is
 published.

@@ -221,7 +221,7 @@ No region or material is deleted, and no depowdering acceptance follows.
 The independent native section remains more useful for the identified thin lip
 than this coarse voxel test.
 
-The existing [material/process campaign](M64_700CH_MATERIAL_COOLING_LPBF.md)
+The existing [material/process campaign](M64_700PS_MATERIAL_COOLING_LPBF.md)
 is retained: CP1 for the heat-spreading branch, HT1 for the hot-strength branch,
 and AlSi10Mg as a separate software coupon control. **No winning alloy is
 declared**, no inconsistent heat-treatment datasets are merged, and no missing

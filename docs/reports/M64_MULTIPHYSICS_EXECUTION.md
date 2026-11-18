@@ -7,10 +7,10 @@ replace the historical 700 PS reference below.
 
 Detailed state of the latest batch: [PicoGK and Vast](M64_PICOGK_EXECUTION.md).
 Resumption of September 8: [candidate chamber, assembly and preparation of the
-intake bench](M64_ADMISSION_CHAMBRE_20260908.md), with
+intake bench](M64_INTAKE_CHAMBER_20260908.md), with
 [local PicoGK comparison](M64_PICOGK_LOCAL_JUNCTION_WITNESS_20260908.md).
-Continuation of the batch: [gas volume, CAD correction and executed OpenFOAM witness](M64_DOMAINE_GAZ_OPENFOAM_20260908.md).
-Complementary checks of September 8: [native chamber/intake body](M64_CORPS_ADMISSION_MAILLAGE_20260908.md),
+Continuation of the batch: [gas volume, CAD correction and executed OpenFOAM witness](M64_GAS_DOMAIN_OPENFOAM_20260908.md).
+Complementary checks of September 8: [native chamber/intake body](M64_BODY_INTAKE_MESH_20260908.md),
 [approximation of the short edges](M64_NATIVE_EDGE_APPROXIMATION_20260908.md) and
 [spatial refinement of the AdditiveFOAM coupon](M64_F58_SPATIAL_REFINEMENT_20260908.md).
 Next trial: [remesh of the two short edges, not adopted after the OpenFOAM check](M64_SHORT_EDGE_REMESH_20260908.md).
@@ -21,9 +21,9 @@ Corrected trial: [coupon with flow, stopped at 109.55 µs out of 120 µs](M64_F5
 CAD: [copy with exhaust and native audit, qualification refused](M64_EXHAUST_NATIVE_AUDIT_20260908.md).
 Next check: [material removed and walls of the exhaust guide bores](M64_EXHAUST_MATERIAL_CONTROLS_20260908.md), real contacts still to be verified.
 Next checkpoint: [nominal contacts of the four guides measured, curve supports verified and gas partition refused](M64_GEOMETRY_CHECKPOINT_20260908.md), with no modification of the body and no physical qualification.
-Target sizing: [twin-turbo M64 700 PS](M64_700CH_ENGINE_RESEARCH.md).
+Target sizing: [twin-turbo M64 700 PS](M64_700PS_ENGINE_RESEARCH.md).
 Engine cycle: [Cantera variable thermodynamics and energy cross-computation](M64_700PS_VARIABLE_THERMO_20260908.md), with no validation of power or local loads.
-Parallel campaign: [materials, cooling and LPBF](M64_700CH_MATERIAL_COOLING_LPBF.md).
+Parallel campaign: [materials, cooling and LPBF](M64_700PS_MATERIAL_COOLING_LPBF.md).
 The Mermaid maps and the inventory below cover the requested stack; they do
 not declare the whole chain executed on the current body.
 
@@ -238,8 +238,8 @@ The current geometry is the one tied to STL `e006e148…` in the
 | Cantera and Wiebe model | Historical zero-dimensional cases, not 3D combustion of the current geometry. [Model authority](../../twins/reference-917-engine/engine-solver-authority-f46.json). | Documented turbo/fuel/lift-law scenarios; compare the models and pass on the loads with their uncertainty. |
 | FluidX3D | LBM already executed on F36, not on this body; old disagreements unresolved. [Historical cross-computation](../../twins/reference-917-engine/evidence/f36-final-cfd-thermal/cross-solver-report.json). | Comparable flow case, with compatible validity domain and licence. |
 | CalculiX; Code_Aster or Elmer | CalculiX executed on old models; no Code_Aster/Elmer execution found. | Choose and qualify the second solver on witnesses, then compare contacts, heat transfers and stresses of the same case. |
-| AdditiveFOAM and global distortion | F58 coupon, zero-laser witness and three time steps executed; the active case remains capped. This is not a print of a cylinder head. [Latest checks](M64_700CH_MATERIAL_COOLING_LPBF.md). | Correct the artificial capping, qualify the recipe, then compute supports, distortion, plate removal and machining. |
-| OpenUSD, Omniverse/SimReady, OVRTX, Material/Physics Agents | Conversion of the 12-component V2 module succeeded, **without the body**; Material failed, physics suite not executed. [NVIDIA status](M64_AVANCEMENT_20260907.md). | Assemble body and valvetrain; resolve the service failures, verify units/instances and overlay the real CAE fields. |
+| AdditiveFOAM and global distortion | F58 coupon, zero-laser witness and three time steps executed; the active case remains capped. This is not a print of a cylinder head. [Latest checks](M64_700PS_MATERIAL_COOLING_LPBF.md). | Correct the artificial capping, qualify the recipe, then compute supports, distortion, plate removal and machining. |
+| OpenUSD, Omniverse/SimReady, OVRTX, Material/Physics Agents | Conversion of the 12-component V2 module succeeded, **without the body**; Material failed, physics suite not executed. [NVIDIA status](M64_PROGRESS_20260907.md). | Assemble body and valvetrain; resolve the service failures, verify units/instances and overlay the real CAE fields. |
 | PhysicsNeMo, PyTorch, Qwen, vLLM | Runtimes prepared/tested, no cylinder head model trained and evaluated. [AI contract](../../twins/reference-917-engine/physicsnemo-readiness-f52.json). | Build admissible cases; separate training/test, measure the error and recompute the variants kept. Qwen/vLLM assist, with no validation authority. |
 | ParaView, PyVista, Blender | Current PyVista/VTK renders and sections; Blender code and ParaView exports present, with no recent receipt for each application. | Show the same units, geometry, cases and colour scales; keep explicitly labelled section views and animations. |
 | Docker, CI, GHCR, Vast, OpenBao | Python/PicoGK image published, real computations collected; resumption rental stopped and absence verified. [Latest receipt](../../twins/m64-cylinder-head/evidence/picogk-roundtrip-checkpoint-audit-20260907.json). | One job bounded by receipt, digest, budget and stop guard; never a secret or a proprietary scan in the public image. |

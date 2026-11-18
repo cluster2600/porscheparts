@@ -76,7 +76,7 @@ def fig_echelle(d):
              "Sections ASSUMED: only the ratios are usable.",
              fontsize=7.2, color="#555555", ha="left", va="bottom")
     fig.tight_layout(rect=(0, 0.17, 1, 1))
-    p = OUT / "964-echelle-architectures.svg"
+    p = OUT / "964-architecture-ladder.svg"
     fig.savefig(p, format="svg", facecolor=BG)
     plt.close(fig)
     return p
@@ -111,7 +111,7 @@ def fig_mecanisme(d):
              "what disqualified the first corpus, before any training.",
              fontsize=7.2, color="#555555", ha="left", va="bottom")
     fig.tight_layout(rect=(0, 0.17, 1, 1))
-    p = OUT / "964-mecanisme-architecture.svg"
+    p = OUT / "964-architecture-mechanism.svg"
     fig.savefig(p, format="svg", facecolor=BG)
     plt.close(fig)
     return p
@@ -162,7 +162,7 @@ def fig_modele():
              fontsize=7.2, color="#555555", ha="left", va="bottom")
     # tight_layout fights with 3D axes: the framing is set by hand.
     fig.subplots_adjust(left=0.0, right=1.0, bottom=0.13, top=0.87, wspace=0.0)
-    p = OUT / "964-modele-coque.svg"
+    p = OUT / "964-shell-model.svg"
     fig.savefig(p, format="svg", facecolor=BG, dpi=170)
     plt.close(fig)
     return p
@@ -202,7 +202,7 @@ def fig_effort():
              "50-013 agree.",
              fontsize=7.2, color="#555555", ha="left", va="bottom")
     fig.subplots_adjust(left=0.0, right=0.98, bottom=0.13, top=0.90)
-    p = OUT / "964-chemin-effort.svg"
+    p = OUT / "964-load-path.svg"
     fig.savefig(p, format="svg", facecolor=BG, dpi=170)
     plt.close(fig)
     return p

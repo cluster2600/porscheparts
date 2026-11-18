@@ -207,7 +207,7 @@ The activation tested adds melt-pool flow to the existing model.
 It creates neither a free surface/keyhole, nor evaporation, nor mass loss:
 the limiting term is not a latent heat of vaporisation.
 A defensible physical recipe still requires the missing properties and
-reference measurements. See the [material/process campaign](M64_700CH_MATERIAL_COOLING_LPBF.md).
+reference measurements. See the [material/process campaign](M64_700PS_MATERIAL_COOLING_LPBF.md).
 
 Both control cases are run on the existing Kali host, with 2 CPUs, 2 GiB of memory,
 120 s of cumulative CPU monitored and 180 s wall time maximum; their containers are
