@@ -7,7 +7,7 @@ neither a four-valve 700 hp M64 cylinder head, nor a universal solver combining
 combustion, moving valvetrain and air/oil cooling. The published speedups remain
 specific to their problems and hardware.
 
-The [local reference](../reports/M64_700CH_ENGINE_RESEARCH.md) keeps **700 PS at
+The [local reference](../reports/M64_700PS_ENGINE_RESEARCH.md) keeps **700 PS at
 the crankshaft = 514.849 kW**. A sensitivity case at **700 mechanical hp =
 521.990 kW** adds 1.387 %. This unit ambiguity does not change the existing
 contract. Engine speed, fuel, actual displacement, duration at full load and

@@ -10,7 +10,7 @@ trials was applied to the private cylinder head.** The master remains
 unchanged; no physical or printing validation is claimed.
 
 The priority on the real geometry is documented separately in
-[Intake, chamber and next useful computation](M64_ADMISSION_CHAMBRE_20260908.md).
+[Intake, chamber and next useful computation](M64_INTAKE_CHAMBER_20260908.md).
 The PicoGK witnesses inform a junction method; they do not replace the ports,
 the chamber and the components needed for the gas domain.
 

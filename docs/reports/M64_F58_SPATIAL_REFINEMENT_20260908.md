@@ -3,7 +3,7 @@
 This work concerns only the **AlSi10Mg F58 software coupon**,
 not a cylinder head, CP1, a qualified supplier recipe or a whole-build
 distortion simulation. The
-[material/process campaign](M64_700CH_MATERIAL_COOLING_LPBF.md) remains open.
+[material/process campaign](M64_700PS_MATERIAL_COOLING_LPBF.md) remains open.
 
 **Result: the h/2 run reaches 120 µs, but the cap remains.** The
 limiter still removes 9.3093 % of the absorbed laser energy. Spatial

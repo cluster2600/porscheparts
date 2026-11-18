@@ -97,7 +97,7 @@ FreeCAD, but reproduce neither the spokes, nor the actual rim profile, nor the
 bolt seats. The two hubs remain logical reference frames with no geometry. The
 twin is therefore at status `concept`, not `digitally_checked`.
 
-![Register of the sourced 993 twin state: 17- and 18-inch Fuchs wheel sets with masses and known interfaces, Carrera brakes not admitted, 3D positioning still unknown](media/diagrams/digital-twin-993-etat.svg)
+![Register of the sourced 993 twin state: 17- and 18-inch Fuchs wheel sets with masses and known interfaces, Carrera brakes not admitted, 3D positioning still unknown](media/diagrams/digital-twin-993-state.svg)
 
 *The sourced state as a register: wheel sets, masses and known interfaces, logically assembled; the brakes are not admitted and the global 3D transforms are unknown. It shows what is recorded, not a positioned or validated assembly.*
 

@@ -229,7 +229,7 @@ its calibration does not automatically validate this binary, grid or head.
 ## Full physical scope and execution order
 
 Reuse the [existing jobs 2/3/4](M64_JOBS_234_20260912.md) and
-[material/cooling/process campaign](M64_700CH_MATERIAL_COOLING_LPBF.md), not a new
+[material/cooling/process campaign](M64_700PS_MATERIAL_COOLING_LPBF.md), not a new
 parallel validation framework. “Electric air cooling” is provisionally
 interpreted as a variable-speed blower, not thermoelectric refrigeration.
 

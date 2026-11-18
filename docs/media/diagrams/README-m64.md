@@ -10,7 +10,7 @@ receipts, linked from the documents.
 | Software chain | [m64-stack.mmd](m64-stack.mmd) | [Multiphysics scope](../../reports/M64_MULTIPHYSICS_EXECUTION.md) |
 | Validation path | [m64-validation.mmd](m64-validation.mmd) | [Multiphysics scope](../../reports/M64_MULTIPHYSICS_EXECUTION.md) |
 | Rental and collection | [m64-vast-run.mmd](m64-vast-run.mmd) | [PicoGK execution](../../reports/M64_PICOGK_EXECUTION.md) |
-| 700 PS target sizing | [m64-700ps-execution.mmd](m64-700ps-execution.mmd) | [Engine research and 0D balance](../../reports/M64_700CH_ENGINE_RESEARCH.md) |
+| 700 PS target sizing | [m64-700ps-execution.mmd](m64-700ps-execution.mmd) | [Engine research and 0D balance](../../reports/M64_700PS_ENGINE_RESEARCH.md) |
 
 Each source comes with a `.svg`, `.png` and `.excalidraw` of the same name.
 The Excalidraw scenes stay editable via **File → Open** in Excalidraw.

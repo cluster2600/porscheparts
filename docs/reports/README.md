@@ -2,14 +2,14 @@
 
 # Execution and audit reports
 
-154 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../SAFETY.md).
+167 reports of runs, audits and checkpoints, newest first (16 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../SAFETY.md).
 
 ```mermaid
 xychart-beta
     title "Reports written per day, 2026"
     x-axis ["09-01", "09-06", "09-07", "09-08", "09-09", "09-12", "09-14", "09-16", "09-24", "09-25", "09-26", "09-27", "09-28", "09-29", "10-15", "10-16", "10-22", "10-28", "11-04", "11-05", "11-06", "11-07"]
-    y-axis "reports" 0 --> 25
-    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 8, 6, 3, 15, 1, 1, 2, 1, 1, 2, 5, 10, 7]
+    y-axis "reports" 0 --> 35
+    bar [1, 1, 21, 34, 13, 9, 7, 1, 2, 8, 6, 3, 15, 1, 1, 2, 1, 1, 2, 5, 10, 7]
 ```
 
 ## November 7, 2026
@@ -202,34 +202,44 @@ xychart-beta
 |---|---|
 | M64 700 PS — thermodynamic cross-check and limits of the inherited models | [`M64_700PS_CYCLE_MODEL_AUDIT_20260908.md`](M64_700PS_CYCLE_MODEL_AUDIT_20260908.md) |
 | M64 700 PS — first computation with variable thermodynamics | [`M64_700PS_VARIABLE_THERMO_20260908.md`](M64_700PS_VARIABLE_THERMO_20260908.md) |
-| M64 — intake, chamber and next useful computation | [`M64_ADMISSION_CHAMBRE_20260908.md`](M64_ADMISSION_CHAMBRE_20260908.md) |
-| M64 — local tetrahedron agglomeration trial | [`M64_AGGLOMERATION_LOCALE_20260908.md`](M64_AGGLOMERATION_LOCALE_20260908.md) |
+| Moved | [`M64_ADMISSION_CHAMBRE_20260908.md`](M64_ADMISSION_CHAMBRE_20260908.md) |
+| Moved | [`M64_AGGLOMERATION_LOCALE_20260908.md`](M64_AGGLOMERATION_LOCALE_20260908.md) |
 | M64 — locating the rejected mesh, before a multi-zone rebuild | [`M64_ANNULAR_MESH_LOCALISATION_20260908.md`](M64_ANNULAR_MESH_LOCALISATION_20260908.md) |
-| M64 — hollowed body and intake meshing | [`M64_CORPS_ADMISSION_MAILLAGE_20260908.md`](M64_CORPS_ADMISSION_MAILLAGE_20260908.md) |
-| M64 — correcting the C0 representation and repair trials | [`M64_CORRECTIONS_NATIVES_20260908.md`](M64_CORRECTIONS_NATIVES_20260908.md) |
-| M64 — air volume and OpenFOAM execution | [`M64_DOMAINE_GAZ_OPENFOAM_20260908.md`](M64_DOMAINE_GAZ_OPENFOAM_20260908.md) |
+| M64 — hollowed body and intake meshing | [`M64_BODY_INTAKE_MESH_20260908.md`](M64_BODY_INTAKE_MESH_20260908.md) |
+| Moved | [`M64_CORPS_ADMISSION_MAILLAGE_20260908.md`](M64_CORPS_ADMISSION_MAILLAGE_20260908.md) |
+| Moved | [`M64_CORRECTIONS_NATIVES_20260908.md`](M64_CORRECTIONS_NATIVES_20260908.md) |
+| Moved | [`M64_DOMAINE_GAZ_OPENFOAM_20260908.md`](M64_DOMAINE_GAZ_OPENFOAM_20260908.md) |
 | M64 — removed material and exhaust pocket walls | [`M64_EXHAUST_MATERIAL_CONTROLS_20260908.md`](M64_EXHAUST_MATERIAL_CONTROLS_20260908.md) |
 | M64 — native exhaust passage: candidate kept, not validated | [`M64_EXHAUST_NATIVE_AUDIT_20260908.md`](M64_EXHAUST_NATIVE_AUDIT_20260908.md) |
 | F58 — coupon with corrected Marangoni contract: incomplete run | [`M64_F58_CORRECTED_COUPON_20260908.md`](M64_F58_CORRECTED_COUPON_20260908.md) |
 | M64 — controlled activation of flow in the F58 coupon | [`M64_F58_COUPLED_FLOW_20260908.md`](M64_F58_COUPLED_FLOW_20260908.md) |
 | M64 — Marangoni predictor contract: native control case passed | [`M64_F58_PREDICTOR_CONTRACT_20260908.md`](M64_F58_PREDICTOR_CONTRACT_20260908.md) |
 | M64 — spatial refinement of the AdditiveFOAM F58 control case | [`M64_F58_SPATIAL_REFINEMENT_20260908.md`](M64_F58_SPATIAL_REFINEMENT_20260908.md) |
+| M64 — air volume and OpenFOAM execution | [`M64_GAS_DOMAIN_OPENFOAM_20260908.md`](M64_GAS_DOMAIN_OPENFOAM_20260908.md) |
 | M64 — guide contacts and geometric preparation | [`M64_GEOMETRY_CHECKPOINT_20260908.md`](M64_GEOMETRY_CHECKPOINT_20260908.md) |
-| M64 — defects localised, HXT trial and native correction | [`M64_LOCALISATION_ET_HXT_20260908.md`](M64_LOCALISATION_ET_HXT_20260908.md) |
-| M64 — meshing the unified-partition domain | [`M64_MAILLAGE_PARTITION_UNIFIEE_20260908.md`](M64_MAILLAGE_PARTITION_UNIFIEE_20260908.md) |
+| M64 — intake, chamber and next useful computation | [`M64_INTAKE_CHAMBER_20260908.md`](M64_INTAKE_CHAMBER_20260908.md) |
+| M64 — defects localised, HXT trial and native correction | [`M64_LOCALISATION_AND_HXT_20260908.md`](M64_LOCALISATION_AND_HXT_20260908.md) |
+| Moved | [`M64_LOCALISATION_ET_HXT_20260908.md`](M64_LOCALISATION_ET_HXT_20260908.md) |
+| M64 — local tetrahedron agglomeration trial | [`M64_LOCAL_AGGLOMERATION_20260908.md`](M64_LOCAL_AGGLOMERATION_20260908.md) |
+| Moved | [`M64_MAILLAGE_PARTITION_UNIFIEE_20260908.md`](M64_MAILLAGE_PARTITION_UNIFIEE_20260908.md) |
+| M64 — correcting the C0 representation and repair trials | [`M64_NATIVE_CORRECTIONS_20260908.md`](M64_NATIVE_CORRECTIONS_20260908.md) |
 | M64 — approximating the short edges: result and scope of the tolerances | [`M64_NATIVE_EDGE_APPROXIMATION_20260908.md`](M64_NATIVE_EDGE_APPROXIMATION_20260908.md) |
-| M64 — Netgen recovery and OpenFOAM cross-check | [`M64_NETGEN_CONTRECONTROLE_20260908.md`](M64_NETGEN_CONTRECONTROLE_20260908.md) |
+| M64 — remeshing the native domain with segmented continuity | [`M64_NATIVE_REMESH_20260908.md`](M64_NATIVE_REMESH_20260908.md) |
+| Moved | [`M64_NETGEN_CONTRECONTROLE_20260908.md`](M64_NETGEN_CONTRECONTROLE_20260908.md) |
+| M64 — Netgen recovery and OpenFOAM cross-check | [`M64_NETGEN_CROSS_CHECK_20260908.md`](M64_NETGEN_CROSS_CHECK_20260908.md) |
 | M64 — PicoGK local junction witness, September 8, 2026 | [`M64_PICOGK_LOCAL_JUNCTION_WITNESS_20260908.md`](M64_PICOGK_LOCAL_JUNCTION_WITNESS_20260908.md) |
-| M64 — remeshing the native domain with segmented continuity | [`M64_REMAILLAGE_NATIF_20260908.md`](M64_REMAILLAGE_NATIF_20260908.md) |
+| M64 — first meshed intake volume, OpenFOAM quality rejected | [`M64_REAL_VOLUME_CHECKS_20260908.md`](M64_REAL_VOLUME_CHECKS_20260908.md) |
+| Moved | [`M64_REMAILLAGE_NATIF_20260908.md`](M64_REMAILLAGE_NATIF_20260908.md) |
 | M64 — one-chord remesh of the two short edges | [`M64_SHORT_EDGE_REMESH_20260908.md`](M64_SHORT_EDGE_REMESH_20260908.md) |
 | M64 — local MeshAdapt remesh of four native faces | [`M64_SURFACE_MESHADAPT_20260908.md`](M64_SURFACE_MESHADAPT_20260908.md) |
-| M64 — first meshed intake volume, OpenFOAM quality rejected | [`M64_VOLUME_REEL_CONTROLES_20260908.md`](M64_VOLUME_REEL_CONTROLES_20260908.md) |
+| M64 — meshing the unified-partition domain | [`M64_UNIFIED_PARTITION_MESH_20260908.md`](M64_UNIFIED_PARTITION_MESH_20260908.md) |
+| Moved | [`M64_VOLUME_REEL_CONTROLES_20260908.md`](M64_VOLUME_REEL_CONTROLES_20260908.md) |
 
 ## September 7, 2026
 
 | report | file |
 |---|---|
-| M64 turbo 4V — state of the evidence as of September 7, 2026 | [`M64_AVANCEMENT_20260907.md`](M64_AVANCEMENT_20260907.md) |
+| Moved | [`M64_AVANCEMENT_20260907.md`](M64_AVANCEMENT_20260907.md) |
 | Local repair: displacement bound over the whole surface | [`M64_BERNSTEIN_GLOBAL_BOUND_20260907.md`](M64_BERNSTEIN_GLOBAL_BOUND_20260907.md) |
 | CP1 — targeted supplement: one elevated-temperature point and expansion coefficients | [`M64_CP1_HOT_POINTS_SUPPLEMENT_20260907.md`](M64_CP1_HOT_POINTS_SUPPLEMENT_20260907.md) |
 | 4V valvetrain: independent CAD sub-assembly built | [`M64_FOUR_VALVE_DISTRIBUTION_MODULE_20260907.md`](M64_FOUR_VALVE_DISTRIBUTION_MODULE_20260907.md) |
@@ -242,6 +252,7 @@ xychart-beta
 | Real local-reconstruction trial — September 7, 2026 | [`M64_LOCAL_TRANSITION_FILLING_20260907.md`](M64_LOCAL_TRANSITION_FILLING_20260907.md) |
 | M64 — smooth surfaces, insert contacts and native mesh | [`M64_NATIVE_CAD_CONTACTS_AND_MESH_20260907.md`](M64_NATIVE_CAD_CONTACTS_AND_MESH_20260907.md) |
 | M64 4V — gas passages and motion envelopes | [`M64_PORTS_AND_CONTINUOUS_MOTION_20260907.md`](M64_PORTS_AND_CONTINUOUS_MOTION_20260907.md) |
+| M64 turbo 4V — state of the evidence as of September 7, 2026 | [`M64_PROGRESS_20260907.md`](M64_PROGRESS_20260907.md) |
 | Origin of the thin walls — scan 935 reference, September 7, 2026 | [`M64_REFERENCE_WALL_ORIGIN_20260907.md`](M64_REFERENCE_WALL_ORIGIN_20260907.md) |
 | Audit of the available solid volumes — September 7, 2026 | [`M64_SOLID_MESH_AUDIT_20260907.md`](M64_SOLID_MESH_AUDIT_20260907.md) |
 | TI 1570 (02/00) — access and evidence of a distinct repair | [`M64_TI1570_ACCESS_AND_REPAIR_SCOPE_20260907.md`](M64_TI1570_ACCESS_AND_REPAIR_SCOPE_20260907.md) |
@@ -267,8 +278,10 @@ xychart-beta
 | report | file |
 |---|---|
 | F58 — energy balance of the AdditiveFOAM coupon | [`917_F58_COUPON_ENERGY_DIAGNOSTIC.md`](917_F58_COUPON_ENERGY_DIAGNOSTIC.md) |
-| Twin-turbo M64 at 700 hp: computable target and engine research | [`M64_700CH_ENGINE_RESEARCH.md`](M64_700CH_ENGINE_RESEARCH.md) |
-| Twin-turbo M64 at 700 hp — material, cooling and process campaign | [`M64_700CH_MATERIAL_COOLING_LPBF.md`](M64_700CH_MATERIAL_COOLING_LPBF.md) |
+| Moved | [`M64_700CH_ENGINE_RESEARCH.md`](M64_700CH_ENGINE_RESEARCH.md) |
+| Moved | [`M64_700CH_MATERIAL_COOLING_LPBF.md`](M64_700CH_MATERIAL_COOLING_LPBF.md) |
+| Twin-turbo M64 at 700 hp: computable target and engine research | [`M64_700PS_ENGINE_RESEARCH.md`](M64_700PS_ENGINE_RESEARCH.md) |
+| Twin-turbo M64 at 700 hp — material, cooling and process campaign | [`M64_700PS_MATERIAL_COOLING_LPBF.md`](M64_700PS_MATERIAL_COOLING_LPBF.md) |
 | M64 — preparing the full cylinder-head thermal analysis | [`M64_CHT_HEAD_INPUT_AUDIT.md`](M64_CHT_HEAD_INPUT_AUDIT.md) |
 | M64 — CHT software preflight, not a cylinder head simulation | [`M64_CHT_RUNTIME_SMOKE.md`](M64_CHT_RUNTIME_SMOKE.md) |
 | Four-pocket body — CAD audit of September 7, 2026 | [`M64_FOUR_SEAT_BODY_CAD_AUDIT.md`](M64_FOUR_SEAT_BODY_CAD_AUDIT.md) |

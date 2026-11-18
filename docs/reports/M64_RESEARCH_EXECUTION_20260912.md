@@ -54,7 +54,7 @@ The computation must include the exhaust and spark plug bridges, the seat/guide�
 
 With **illustrative assumptions**, 5 kW extracted per cylinder head, constant Cp of 2,000 J/(kg·K), oil temperature rise of 25 K and density of 850 kg/m³: 0.1 kg/s is needed, i.e. **7.06 L/min per cylinder head**, or **42.35 L/min for six**. At a total pressure loss of 2 bar and an efficiency of 0.6, the corresponding pump power would be **235 W**, excluding other consumers. These numbers are neither the computed M64 thermal need, nor the capacity of its pump, nor an installation instruction. They make visible the need to verify the full circuit and the heat exchanger before drawing galleries.
 
-Likewise, 700 mechanical hp at 6,500 rpm would imply **766.9 N·m** and **26.77 bar of brake mean effective pressure** for a 3.6 L four-stroke. The latter is **not** the peak cylinder pressure. The [existing engine balances](M64_700CH_ENGINE_RESEARCH.md) and the [Cantera cycle](M64_700PS_VARIABLE_THERMO_20260908.md) remain the starting controls; no local load can be inferred from power alone.
+Likewise, 700 mechanical hp at 6,500 rpm would imply **766.9 N·m** and **26.77 bar of brake mean effective pressure** for a 3.6 L four-stroke. The latter is **not** the peak cylinder pressure. The [existing engine balances](M64_700PS_ENGINE_RESEARCH.md) and the [Cantera cycle](M64_700PS_VARIABLE_THERMO_20260908.md) remain the starting controls; no local load can be inferred from power alone.
 
 ## Operational plan with entry gates
 

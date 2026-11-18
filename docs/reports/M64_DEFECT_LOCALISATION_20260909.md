@@ -105,7 +105,7 @@ The next computation must measure their projected face-center distances,
 their volumes and the layer geometry before choosing a redistribution.
 For the rank-deficient tets, a local agglomeration remains an option
 to be tried, with a check of the neighbours and of the
-[native concavity predicate](M64_AGGLOMERATION_LOCALE_20260908.md).
+[native concavity predicate](M64_LOCAL_AGGLOMERATION_20260908.md).
 No new selection or corrective transformation is executed here.
 
 ```mermaid
