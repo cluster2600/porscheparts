@@ -395,10 +395,11 @@ class FilletRadiusChoiceTests(unittest.TestCase):
         self.assertIn('0019',p['contributor_request']['basis']);self.assertIn('never a task for the owner',p['contributor_request']['addressed_to'])
         for key in ['pressure_qualified','manufacturing_authorized','lpbf_process_qualified','physical_test_authorized']:self.assertFalse(p[key])
 
-    def test_decision_record_is_proposed_and_claims_nothing_else(self):
+    def test_decision_record_is_accepted_and_claims_nothing_else(self):
         text=DECISION.read_text()
-        for phrase in ['**Proposed** on 2026-11-12','carries a 0.4 mm rib-root fillet','design assumption for the 3D study only','**No pressure strength.**','**No print authorisation and no pressure-test authorisation.**','**No LPBF qualification.**','nobody is paid or commissioned']:self.assertIn(phrase,text)
-        self.assertNotIn('**Accepted**',text)
-        readme=(STUDY/'README.md').read_text();self.assertIn('proposed, not accepted',readme);self.assertIn('planned, not run',readme)
+        for phrase in ['**Accepted** as written by the project owner on 2026-11-18','issues/467#issuecomment-6975630822','0.2 mm is not kept as a second arm','carries a 0.4 mm rib-root fillet','design assumption for the 3D study only','**No pressure strength.**','**No print authorisation and no pressure-test authorisation.**','**No LPBF qualification.**','nobody is paid or commissioned']:self.assertIn(phrase,text)
+        self.assertNotIn('**Proposed**',text)
+        readme=(STUDY/'README.md').read_text();self.assertIn('accepted as a design assumption, not shown to be held by any machine',readme);self.assertIn('planned, not run',readme)
+        self.assertEqual(self.plan['blocked_by'],'the null entries of required_inputs marked blocking')
 
 if __name__=='__main__':unittest.main()

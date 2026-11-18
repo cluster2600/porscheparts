@@ -2,10 +2,13 @@
 
 ## Status
 
-**Proposed** on 2026-11-12 for
-[issue #467](https://github.com/cluster2600/porscheparts/issues/467). It
-becomes accepted when the owner records acceptance on that issue. Until then
-the coupon keeps both assumed radii and nothing below is in force.
+**Accepted** as written by the project owner on 2026-11-18, recorded on
+[issue #467](https://github.com/cluster2600/porscheparts/issues/467#issuecomment-6975630822).
+It was proposed on 2026-11-12. The owner accepted 0.4 mm alone, under the
+criterion as applied: 0.2 mm is not kept as a second arm (see "How narrow the
+margin is"). Acceptance makes 0.4 mm the design assumption of the next
+geometry and of the 3D study, and nothing more: the limits under "What this
+decision does not claim" stand unchanged.
 
 ## Context
 
@@ -119,7 +122,8 @@ Counting only 0.07 mm, 0.2 mm would be "unsettled" like 0.4 mm. The proposed
 radius would still be 0.4 mm, by the tie rule R4. The only change would be
 that 0.2 mm stays in the 3D study as a second arm. The owner may choose that
 reading; it should then be recorded as a deviation from the criterion as
-applied.
+applied. On acceptance (2026-11-18) the owner did not choose it: there is no
+second arm and no deviation.
 
 The deciding figure was not new when the criterion was written. The criterion
 lists three catalogue process figures as already known (layer thickness,
@@ -165,7 +169,8 @@ figure found except the upper end of one 50 µm range (0.17 mm).
 ## Consequences
 
 - The pressure-coupon README, the intercooler README and the twins index say
-  that a radius is proposed and that the 3D study is planned, not run.
+  that 0.4 mm is accepted as a design assumption (2026-11-18) and that the 3D
+  study is planned, not run.
 - Issue #467 stays open: its second half, the 3D mechanical and conjugate
   comparison, has not started and is blocked by null inputs (closure, fitting,
   fixture, fitting loads, per-passage flows).

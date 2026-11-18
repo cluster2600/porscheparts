@@ -332,9 +332,11 @@ identified by SHA-256 and not committed.
 
 ## Choice of root radius and plan for the 3D study
 
-*Added 2026-11-12, for issue #467.* A radius is **proposed, not accepted**:
-[decision 0023](../../../../docs/decisions/0023-intercooler-rib-root-fillet-0-4-mm.md)
-proposes **0.4 mm as a design assumption for the 3D study**, and sets 0.2 mm
+*Added 2026-11-12, for issue #467; accepted 2026-11-18.* The radius is
+**accepted as a design assumption, not shown to be held by any machine**:
+[decision 0023](../../../../docs/decisions/0023-intercooler-rib-root-fillet-0-4-mm.md),
+accepted as written by the owner on 2026-11-18, takes **0.4 mm as a design
+assumption for the 3D study**, and sets 0.2 mm
 aside until a printed and sectioned coupon has been measured by an outside
 contributor. Nothing was computed with a solver for this step, and nothing
 was printed or measured.
@@ -456,9 +458,9 @@ under a second on the standard library.
 
 Next steps, in order:
 
-1. The owner accepts or amends
+1. Done on 2026-11-18: the owner accepted
    [decision 0023](../../../../docs/decisions/0023-intercooler-rib-root-fillet-0-4-mm.md)
-   (0.4 mm as an assumption; whether 0.2 mm stays as a second arm).
+   as written (0.4 mm as an assumption; 0.2 mm is not kept as a second arm).
 2. The five blocking inputs of the 3D plan are supplied from a design decision
    or a registered source. None is filled with a plausible value.
 3. The 3D mechanical and conjugate comparison is run under the plan. Whether
