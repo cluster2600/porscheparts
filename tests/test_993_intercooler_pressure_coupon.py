@@ -372,6 +372,7 @@ class FilletRadiusChoiceTests(unittest.TestCase):
         self.assertEqual([(a['id'],a['radius_mm']) for a in p['arms']],[('A',self.r['decision']['proposed_radius_mm']),('S',0.),('L',None)])
         self.assertEqual(p['analyses']['CHT']['arms'],['A','S'])
         for name in ['M-P','M-T']:self.assertNotIn('S',p['analyses'][name]['arms'])
+        supports=p['analyses']['M-T']['supports'];self.assertIn('declared bench support of IN-03',supports);self.assertIn('waits for IN-02',supports);self.assertNotIn('Waits for IN-03',supports)
         self.assertFalse(self.r['decision']['other_radius_stays_in_3d_study']);self.assertIn('0.2 mm',p['arms_excluded'][0]['root'])
         inputs={i['id']:i for i in p['required_inputs']};self.assertEqual(len(inputs),15)
         for i in inputs.values():

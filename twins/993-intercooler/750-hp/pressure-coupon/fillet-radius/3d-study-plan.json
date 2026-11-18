@@ -86,7 +86,7 @@
       "name": "pressure with the temperature field",
       "tool": "CalculiX 2.21, one thread; temperature mapped one way from the conjugate case",
       "arms": ["A", "L"],
-      "supports": "Waits for IN-03. Thermal stress depends on the restraint; with the fixture unknown it could only be bracketed between free and fully restrained supports, which is a result for no real fixture.",
+      "supports": "The declared bench support of IN-03: the inlet port seat, fixed in six degrees of freedom, is the only restraint; the outlet hose carries only the IN-04 outlet end load; the body is free. No bracketing between free and fully restrained supports. The seat face geometry still waits for IN-02, and no stress is quoted on the seat face or within one seat bore of it.",
       "quantities": ["the same as M-P", "the thermal part reported separately from the pressure part"]
     },
     "CHT": {
