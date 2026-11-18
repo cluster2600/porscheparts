@@ -400,6 +400,6 @@ class FilletRadiusChoiceTests(unittest.TestCase):
         for phrase in ['**Accepted** as written by the project owner on 2026-11-18','issues/467#issuecomment-6975630822','0.2 mm is not kept as a second arm','carries a 0.4 mm rib-root fillet','design assumption for the 3D study only','**No pressure strength.**','**No print authorisation and no pressure-test authorisation.**','**No LPBF qualification.**','nobody is paid or commissioned']:self.assertIn(phrase,text)
         self.assertNotIn('**Proposed**',text)
         readme=(STUDY/'README.md').read_text();self.assertIn('accepted as a design assumption, not shown to be held by any machine',readme);self.assertIn('planned, not run',readme)
-        self.assertIn('accepted by the owner on 2026-11-18',self.plan['blocked_by'])
+        self.assertEqual(self.plan['blocked_by'],'the null entries of required_inputs marked blocking')
 
 if __name__=='__main__':unittest.main()
