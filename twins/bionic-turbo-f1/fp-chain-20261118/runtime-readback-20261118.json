@@ -1,0 +1,481 @@
+{
+  "schema": "bionic-turbo-runtime-static-readback/v1",
+  "issue": 397,
+  "purpose": "Static readback of the pinned linux/arm64 image on the WSL x86_64 host. Nothing from the image was executed; no container was created; nothing was deleted.",
+  "contract": {
+    "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-contract.json",
+    "sha256": "006fdd018990ea5ab0cb78fe69d049d309e29a10b8e63fa44d9f29223078a9a0"
+  },
+  "reference": "docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+  "oci": {
+    "manifest_digest": "sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+    "config_digest": "sha256:3fb3c48c44c714df08192e49ef7e9d089b5f7646108cbbbe2e7626ce5ef6ea44",
+    "layers": [
+      {
+        "digest": "sha256:eed1663d223832f23c8ca8fc0f9b48e2bcb0813b94a692d43b0a0a963e89d20f",
+        "size": 28843043,
+        "media_type": "application/vnd.oci.image.layer.v1.tar+gzip"
+      },
+      {
+        "digest": "sha256:d6ea34277a020cfa203333b1cb7f72c3742677551a599f35b9af57e3b13473e6",
+        "size": 4320029,
+        "media_type": "application/vnd.oci.image.layer.v1.tar+gzip"
+      },
+      {
+        "digest": "sha256:caadae4f35bdd9d3f1254ca26adb195ed9ae1556d172ac84d1ce5deb75d8c92e",
+        "size": 134734996,
+        "media_type": "application/vnd.oci.image.layer.v1.tar+gzip"
+      },
+      {
+        "digest": "sha256:2d779d8a30e49516fd4d3dc1a3cedd0128649dfed54955ddbecaf4bcd816a4d4",
+        "size": 8054,
+        "media_type": "application/vnd.oci.image.layer.v1.tar+gzip"
+      },
+      {
+        "digest": "sha256:d9f00d7e51d35b76630ff4cd9ed98a1bc448baa777ab5dde9daed5b6cae6eae5",
+        "size": 5616,
+        "media_type": "application/vnd.oci.image.layer.v1.tar+gzip"
+      }
+    ],
+    "blobs_verified": 7
+  },
+  "config": {
+    "os": "linux",
+    "architecture": "arm64",
+    "variant": null,
+    "created": "2024-06-26T12:40:12.992292988Z",
+    "diff_ids": [
+      "sha256:aac3af10edc6612ad169ab9f9267dbe90e421f650a089ddc3f63546d9aacb3ed",
+      "sha256:6e2cdf1379fff34a4157e09769ed169396e41013a9d19cc7fc7875a09f38f5cb",
+      "sha256:da9f00fa9f356bcea244a73b505f12c80e8c2edcc4628f710c1317d4f924cdc7",
+      "sha256:3dc716baad82b79a5246afa09809f048ac8c4d4e44d9c1f17954785d44280790",
+      "sha256:a5a5b786e460b700d933457418122974e0c1e0019d3273821010d391bf3b1801"
+    ]
+  },
+  "os_release": "Ubuntu 24.04 LTS",
+  "dpkg_versions": {
+    "libc6": "2.39-0ubuntu8.2",
+    "libgcc-s1": "14-20240412-0ubuntu1",
+    "libstdc++6": "14-20240412-0ubuntu1",
+    "openfoam2406": "2406.0-1"
+  },
+  "platform_directory": "usr/lib/openfoam/openfoam2406/platforms/linuxARM64GccDPInt32Opt",
+  "executables": {
+    "count": 287,
+    "aggregate_sha256": "a6a3f36d2c55f54ae69676f75bb8090b0cb50101f4461ad7020c986bf1ab9aa4",
+    "aggregate_rule": "sha256 of '<sha256>  <name>' lines sorted by name, newline-terminated"
+  },
+  "libraries": {
+    "count": 158,
+    "aggregate_sha256": "edd343029a6a8a290920a99c584a12089fb4562f11869bfa677a99f026995da9",
+    "libOpenFOAM.so": "ea0573d6ddc52e09a969905bb697fd9f7f128c84ac51b2e8f6d390d559c9e234"
+  },
+  "pinned_executables": {
+    "blockMesh": {
+      "pinned": "70acbec5399aad67c3ca5cb2ad91f480cc95fe4eabf871eec6494fa1573815dd",
+      "observed": "70acbec5399aad67c3ca5cb2ad91f480cc95fe4eabf871eec6494fa1573815dd",
+      "equal": true
+    },
+    "checkMesh": {
+      "pinned": "469fa2e3ca84b5858c3da7998536630c2ab8988efb4f8a9329a850944b4e1b33",
+      "observed": "469fa2e3ca84b5858c3da7998536630c2ab8988efb4f8a9329a850944b4e1b33",
+      "equal": true
+    },
+    "rhoPimpleFoam": {
+      "pinned": "85e40da38fc4fd0ba24ef1560f659390684f334677554ebfb0ac2d0f41ba3467",
+      "observed": "85e40da38fc4fd0ba24ef1560f659390684f334677554ebfb0ac2d0f41ba3467",
+      "equal": true
+    },
+    "rhoSimpleFoam": {
+      "pinned": "9fddcd4d4da2608ce159c8da1fb6c4719db4f5f558dd66e98f44b27831751646",
+      "observed": "9fddcd4d4da2608ce159c8da1fb6c4719db4f5f558dd66e98f44b27831751646",
+      "equal": true
+    },
+    "snappyHexMesh": {
+      "pinned": "fdf8086f6ffbd2bd99864567121efb90e02f042af59cbeb785b542306238ed1d",
+      "observed": "fdf8086f6ffbd2bd99864567121efb90e02f042af59cbeb785b542306238ed1d",
+      "equal": true
+    }
+  },
+  "checkMesh": {
+    "sha256": "469fa2e3ca84b5858c3da7998536630c2ab8988efb4f8a9329a850944b4e1b33",
+    "bytes": 526352,
+    "elf_machine": 183,
+    "elf_machine_name": "AArch64",
+    "comment": [],
+    "has_symtab": false,
+    "dynamic_symbols": 576,
+    "imports_of_interest": [
+      "acos"
+    ],
+    "fe_environment_imports": [],
+    "set_fast_math_symbol": false,
+    "msr_fpcr_in_text": 0
+  },
+  "libOpenFOAM": {
+    "sha256": "ea0573d6ddc52e09a969905bb697fd9f7f128c84ac51b2e8f6d390d559c9e234",
+    "bytes": 8746080,
+    "elf_machine": 183,
+    "elf_machine_name": "AArch64",
+    "comment": [],
+    "has_symtab": false,
+    "dynamic_symbols": 12374,
+    "imports_of_interest": [
+      "__getf2",
+      "__letf2",
+      "__trunctfdf2",
+      "acos",
+      "cos",
+      "fedisableexcept",
+      "feenableexcept",
+      "sin",
+      "sqrt",
+      "strtod",
+      "strtold"
+    ],
+    "fe_environment_imports": [
+      "fedisableexcept",
+      "feenableexcept"
+    ],
+    "set_fast_math_symbol": false,
+    "msr_fpcr_in_text": 0,
+    "exported_constants": [
+      {
+        "symbol": "_ZN4Foam7pTraitsIdE6vsmallE",
+        "found": true,
+        "size": 8,
+        "section": ".rodata",
+        "literal": "1.0e-300",
+        "bits": "0x01a56e1fc2f8f359",
+        "literal_binary64_bits": "0x01a56e1fc2f8f359",
+        "equal": true
+      },
+      {
+        "symbol": "_ZN4Foam7pTraitsIdE3maxE",
+        "found": true,
+        "size": 8,
+        "section": ".rodata",
+        "literal": "1.0e+300",
+        "bits": "0x7e37e43c8800759c",
+        "literal_binary64_bits": "0x7e37e43c8800759c",
+        "equal": true
+      },
+      {
+        "symbol": "_ZN4Foam7pTraitsIdE3minE",
+        "found": true,
+        "size": 8,
+        "section": ".rodata",
+        "literal": "-1.0e+300",
+        "bits": "0xfe37e43c8800759c",
+        "literal_binary64_bits": "0xfe37e43c8800759c",
+        "equal": true
+      },
+      {
+        "symbol": "_ZN4Foam7pTraitsIdE7rootMaxE",
+        "found": true,
+        "size": 8,
+        "section": ".rodata",
+        "literal": "1.0e+150",
+        "bits": "0x5f138d352e5096af",
+        "literal_binary64_bits": "0x5f138d352e5096af",
+        "equal": true
+      },
+      {
+        "symbol": "_ZN4Foam13primitiveMesh16closedThreshold_E",
+        "found": true,
+        "size": 8,
+        "section": ".data",
+        "literal": "1.0e-6",
+        "bits": "0x3eb0c6f7a0b5ed8d",
+        "literal_binary64_bits": "0x3eb0c6f7a0b5ed8d",
+        "equal": true
+      },
+      {
+        "symbol": "_ZN4Foam13primitiveMesh16aspectThreshold_E",
+        "found": true,
+        "size": 8,
+        "section": ".data",
+        "literal": "1000",
+        "bits": "0x408f400000000000",
+        "literal_binary64_bits": "0x408f400000000000",
+        "equal": true
+      },
+      {
+        "symbol": "_ZN4Foam13primitiveMesh17nonOrthThreshold_E",
+        "found": true,
+        "size": 8,
+        "section": ".data",
+        "literal": "70",
+        "bits": "0x4051800000000000",
+        "literal_binary64_bits": "0x4051800000000000",
+        "equal": true
+      },
+      {
+        "symbol": "_ZN4Foam13primitiveMesh14skewThreshold_E",
+        "found": true,
+        "size": 8,
+        "section": ".data",
+        "literal": "4",
+        "bits": "0x4010000000000000",
+        "literal_binary64_bits": "0x4010000000000000",
+        "equal": true
+      },
+      {
+        "symbol": "_ZN4Foam13primitiveMesh15planarCosAngle_E",
+        "found": true,
+        "size": 8,
+        "section": ".data",
+        "literal": "1.0e-6",
+        "bits": "0x3eb0c6f7a0b5ed8d",
+        "literal_binary64_bits": "0x3eb0c6f7a0b5ed8d",
+        "equal": true
+      }
+    ],
+    "geometry_functions": [
+      {
+        "symbol": "_ZN4Foam18primitiveMeshTools23makeFaceCentresAndAreasERKNS_13primitiveMeshERKNS_5FieldINS_6VectorIdEEEERS7_SA_",
+        "bytes": 132,
+        "instructions": 33,
+        "fused": {},
+        "fused_total": 0
+      },
+      {
+        "symbol": "_ZN4Foam18primitiveMeshTools23makeFaceCentresAndAreasERKNS_5UListINS_4faceEEERKNS_5FieldINS_6VectorIdEEEERS9_SC_",
+        "bytes": 1000,
+        "instructions": 250,
+        "fused": {
+          "fmadd.double": 5,
+          "fnmsub.double": 6
+        },
+        "fused_total": 11
+      },
+      {
+        "symbol": "_ZN4Foam18primitiveMeshTools25updateFaceCentresAndAreasERKNS_13primitiveMeshERKNS_5UListIiEERKNS_5FieldINS_6VectorIdEEEERSB_SE_",
+        "bytes": 880,
+        "instructions": 220,
+        "fused": {
+          "fmadd.double": 5,
+          "fnmsub.double": 6
+        },
+        "fused_total": 11
+      },
+      {
+        "symbol": "_ZN4Foam18primitiveMeshTools22makeCellCentresAndVolsERKNS_13primitiveMeshERKNS_5FieldINS_6VectorIdEEEES9_RS7_RNS4_IdEE",
+        "bytes": 1432,
+        "instructions": 358,
+        "fused": {
+          "fmadd.double": 16
+        },
+        "fused_total": 16
+      },
+      {
+        "symbol": "_ZN4Foam18primitiveMeshTools24updateCellCentresAndVolsERKNS_13primitiveMeshERKNS_5FieldINS_6VectorIdEEEES9_RKNS_4ListIiEERKNSA_INS_4cellEEERS7_RNS4_IdEE",
+        "bytes": 1208,
+        "instructions": 302,
+        "fused": {
+          "fmadd.double": 10
+        },
+        "fused_total": 10
+      },
+      {
+        "symbol": "_ZN4Foam18primitiveMeshTools14cellClosednessERKNS_13primitiveMeshERKNS_6VectorIiEERKNS_5FieldINS4_IdEEEERKNS8_IdEERSD_SG_",
+        "bytes": 1096,
+        "instructions": 274,
+        "fused": {},
+        "fused_total": 0
+      },
+      {
+        "symbol": "_ZN4Foam18primitiveMeshTools17faceOrthogonalityERKNS_13primitiveMeshERKNS_5FieldINS_6VectorIdEEEES9_",
+        "bytes": 656,
+        "instructions": 164,
+        "fused": {},
+        "fused_total": 0
+      },
+      {
+        "symbol": "_ZN4Foam18primitiveMeshTools17faceOrthogonalityERKNS_6VectorIdEES4_S4_",
+        "bytes": 120,
+        "instructions": 30,
+        "fused": {
+          "fmadd.double": 7
+        },
+        "fused_total": 7
+      },
+      {
+        "symbol": "_ZN4Foam18primitiveMeshTools12faceSkewnessERKNS_13primitiveMeshERKNS_5FieldINS_6VectorIdEEEES9_S9_S9_",
+        "bytes": 588,
+        "instructions": 147,
+        "fused": {},
+        "fused_total": 0
+      },
+      {
+        "symbol": "_ZN4Foam18primitiveMeshTools12faceSkewnessERKNS_13primitiveMeshERKNS_5FieldINS_6VectorIdEEEES9_S9_iRKS6_SB_",
+        "bytes": 136,
+        "instructions": 34,
+        "fused": {},
+        "fused_total": 0
+      },
+      {
+        "symbol": "_ZN4Foam18primitiveMeshTools12faceSkewnessERKNS_5UListINS_4faceEEERKNS_5FieldINS_6VectorIdEEEESB_SB_iRKS8_SD_",
+        "bytes": 324,
+        "instructions": 81,
+        "fused": {
+          "fmadd.double": 11,
+          "fmsub.double": 3
+        },
+        "fused_total": 14
+      },
+      {
+        "symbol": "_ZN4Foam18primitiveMeshTools12faceFlatnessERKNS_13primitiveMeshERKNS_5FieldINS_6VectorIdEEEES9_S9_",
+        "bytes": 812,
+        "instructions": 203,
+        "fused": {
+          "fmadd.double": 2,
+          "fnmsub.double": 3
+        },
+        "fused_total": 5
+      },
+      {
+        "symbol": "_ZNK4Foam13primitiveMesh19checkClosedBoundaryERKNS_5FieldINS_6VectorIdEEEEbRKNS_6bitSetE",
+        "bytes": 716,
+        "instructions": 179,
+        "fused": {
+          "fmadd.double": 2
+        },
+        "fused_total": 2
+      },
+      {
+        "symbol": "_ZNK4Foam13primitiveMesh19checkClosedBoundaryEb",
+        "bytes": 216,
+        "instructions": 54,
+        "fused": {},
+        "fused_total": 0
+      }
+    ],
+    "type_evidence": {
+      "geometry_signatures_with_Vector_double": 12,
+      "geometry_signatures_with_Vector_float": 0,
+      "label_list_int32_signatures": 1,
+      "label_list_int64_signatures": 0,
+      "pTraits_double_symbols": 11
+    },
+    "strings": {
+      "_be01ca78-20240625": true,
+      ";label=": true,
+      ";scalar=": true,
+      "LSB": true,
+      "2406": true
+    }
+  },
+  "runtime_libraries": {
+    "usr/lib/aarch64-linux-gnu/libc.so.6": {
+      "sha256": "b4a89e2f8fcca8e944040f6388ab764cc70e4852392a21db3646b1c8a124416a",
+      "bytes": 1722920,
+      "comment": [],
+      "version_banner": "GNU C Library (Ubuntu GLIBC 2.39-0ubuntu8.2) stable release version 2.39."
+    },
+    "usr/lib/aarch64-linux-gnu/libm.so.6": {
+      "sha256": "c4743c983ae3862ab534dc34eb470d0e9b7ea2d727046a3270de30156e67da86",
+      "bytes": 591800,
+      "comment": []
+    },
+    "usr/lib/aarch64-linux-gnu/libgcc_s.so.1": {
+      "sha256": "2a417ca4e1da148b874d510c5356c2652eb934dd761a138454aefbeb61539fa2",
+      "bytes": 133616,
+      "comment": []
+    },
+    "usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.33": {
+      "sha256": "859f91df8be46cdf236694ea740ff20cf194b2e7f186a3c130b56684f14c8cad",
+      "bytes": 2567600,
+      "comment": [],
+      "max_glibcxx": "GLIBCXX_3.4.33"
+    }
+  },
+  "etc_controlDict_sha256": "5c0f8899208ecb3789d7241f29b34fd312a11ea6a0f8e05ca942555149c8531e",
+  "meta_info": {
+    "build_info_sha256": "8ead08ad7fb7e5c218a4774f82385f9f4553cf9ecdd915f579409c5f3a6044c9",
+    "api_info_sha256": "ccc8c8c9e9e668f04ffec310b31d6d907169dcd89f90d4b17b1fc7dc60d1567b",
+    "manifest_sha256": "ebcde03f0ac3a603165d8a6f47f7f9f3c8bafb99eaad2576be0ddbac3aae76b7",
+    "manifest_sha256_archived_from_mac_2026_10_12": "ebcde03f0ac3a603165d8a6f47f7f9f3c8bafb99eaad2576be0ddbac3aae76b7",
+    "manifest_equal_to_archived": true,
+    "source_members": {
+      "applications/utilities/mesh/manipulation/checkMesh/checkGeometry.C": {
+        "archive_git_blob": "b8008a71b4f7f6b4392e831be132c91b4ae335cd",
+        "image_manifest_git_blob": "b8008a71b4f7f6b4392e831be132c91b4ae335cd",
+        "equal": true
+      },
+      "etc/bashrc": {
+        "archive_git_blob": "c65844adafc65d040f3c6b1ba883ec58c53156ee",
+        "image_manifest_git_blob": "c65844adafc65d040f3c6b1ba883ec58c53156ee",
+        "equal": true
+      },
+      "src/OSspecific/POSIX/signals/sigFpe.C": {
+        "archive_git_blob": "079d254bafa63792a7090285f4b794e6767754de",
+        "image_manifest_git_blob": "079d254bafa63792a7090285f4b794e6767754de",
+        "equal": true
+      },
+      "src/OpenFOAM/db/IOstreams/Sstreams/ISstream.C": {
+        "archive_git_blob": "48d63eb49af87ecc99cf3bff2aa392db6efa0835",
+        "image_manifest_git_blob": "48d63eb49af87ecc99cf3bff2aa392db6efa0835",
+        "equal": true
+      },
+      "src/OpenFOAM/db/IOstreams/Sstreams/OSstream.C": {
+        "archive_git_blob": "f08ff4cd2d984d0a28e31a320310314f9e1cb767",
+        "image_manifest_git_blob": "f08ff4cd2d984d0a28e31a320310314f9e1cb767",
+        "equal": true
+      },
+      "src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshCheck.C": {
+        "archive_git_blob": "24b36c89e7d6b7f9c827560a16de2ee7d67bfc41",
+        "image_manifest_git_blob": "24b36c89e7d6b7f9c827560a16de2ee7d67bfc41",
+        "equal": true
+      },
+      "src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshTools.C": {
+        "archive_git_blob": "ad5e0aa63cd57de8604c3708bfaa9bb9cb5b0cfc",
+        "image_manifest_git_blob": "ad5e0aa63cd57de8604c3708bfaa9bb9cb5b0cfc",
+        "equal": true
+      },
+      "src/OpenFOAM/primitives/Scalar/Scalar.C": {
+        "archive_git_blob": "bba2f8fd1213e4faa88b6c372335ebc79589ac65",
+        "image_manifest_git_blob": "bba2f8fd1213e4faa88b6c372335ebc79589ac65",
+        "equal": true
+      },
+      "src/OpenFOAM/primitives/Scalar/doubleScalar/doubleScalar.C": {
+        "archive_git_blob": "a50db2bad3f91ac5be120e433ecaad1e313e94c6",
+        "image_manifest_git_blob": "a50db2bad3f91ac5be120e433ecaad1e313e94c6",
+        "equal": true
+      },
+      "src/OpenFOAM/primitives/Scalar/doubleScalar/doubleScalar.H": {
+        "archive_git_blob": "fba14df589080c93a01ef7a2dae531aa5bfdfd9d",
+        "image_manifest_git_blob": "fba14df589080c93a01ef7a2dae531aa5bfdfd9d",
+        "equal": true
+      },
+      "src/OpenFOAM/primitives/Scalar/scalar/scalar.H": {
+        "archive_git_blob": "cd5d1550433a909aef4b6a8a1e23603020aff778",
+        "image_manifest_git_blob": "cd5d1550433a909aef4b6a8a1e23603020aff778",
+        "equal": true
+      },
+      "wmake/rules/General/Gcc/c++": {
+        "archive_git_blob": "d87479014fc87447907c9160ae7bedaa09fbe1f7",
+        "image_manifest_git_blob": "d87479014fc87447907c9160ae7bedaa09fbe1f7",
+        "equal": true
+      },
+      "wmake/rules/linuxARM64Gcc/c++Opt": {
+        "archive_git_blob": "2e3e8c3bb197f54f6dd30cf18da6e656878dd3da",
+        "image_manifest_git_blob": "2e3e8c3bb197f54f6dd30cf18da6e656878dd3da",
+        "equal": true
+      }
+    }
+  },
+  "source_archive_sha256": "8d1450fb89eec1e7cecc55c3bb7bc486ccbf63d069379d1d5d7518fa16a4686a",
+  "checks": {
+    "manifest-digest": true,
+    "image-platform": true,
+    "executable-hashes": true,
+    "elf-machine": true,
+    "long-double-path": true,
+    "exported-constants": true,
+    "build-strings": true,
+    "meta-info-manifest": true
+  },
+  "all_checks_passed": true,
+  "not_observed": "Execution of any of these files. Behaviour of strtold, the binary128 narrowing, printf, libm cos and the fused instructions at run time is not observed by a static readback."
+}
