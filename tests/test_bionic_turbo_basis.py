@@ -308,13 +308,14 @@ class InterfaceLedgerTests(unittest.TestCase):
                     continue
                 self.assertIn(study["status"], {"assumed", "model_derived", "numerical_construct"})
                 self.assertTrue(study["uncertainty_statement"].strip())
-                source = study["source"]
-                self.assertEqual(basis.sha256_file(ROOT / source["path"]), source["sha256"])
-                if "lines" in source:
-                    text = read_lines(source["path"], *source["lines"])
-                    for literal in source["literals"]:
-                        self.assertIn(literal, text)
-                        literal_checked += 1
+                sources = study["source"] if isinstance(study["source"], list) else [study["source"]]
+                for source in sources:
+                    self.assertEqual(basis.sha256_file(ROOT / source["path"]), source["sha256"])
+                    if "lines" in source:
+                        text = read_lines(source["path"], *source["lines"])
+                        for literal in source["literals"]:
+                            self.assertIn(literal, text)
+                            literal_checked += 1
         self.assertEqual(self.ledger["summary"], {
             "entries": 79, "measured": 0, "with_missing_data_gate": 79, "with_study_value": 54,
             "null_without_study_value": 25,
@@ -382,6 +383,55 @@ class InterfaceLedgerTests(unittest.TestCase):
         foreign = copy.deepcopy(self.ledger)
         self.entry(foreign, name)["study_value"]["source"]["path"] = "benchmarks/free-tools/corpus.json"
         self.assertTrue(any("not an allowlisted turbo source" in e for e in self.check(foreign)))
+
+    def test_a_cited_span_must_be_one_of_the_allowlisted_spans(self):
+        # An allowlisted file is not a licence to cite any of its lines: the shebang of
+        # prepare_case.py carries a literal, but it is not a selected span.
+        shebang = copy.deepcopy(self.ledger)
+        source = {"path": "twins/bionic-turbo-f1/cfd/prepare_case.py", "lines": [1, 1], "literals": ["python3"]}
+        source["sha256"] = basis.sha256_file(ROOT / source["path"])
+        self.entry(shebang, "rotor.compressor_wheel.exducer_diameter")["study_value"]["source"] = source
+        self.assertTrue(any("is not one of the allowlisted spans" in e for e in self.check(shebang)))
+        # A value whose literals sit in two selected spans cites both; widening it to the
+        # lines between them is refused.
+        joined = copy.deepcopy(self.ledger)
+        parts = self.entry(joined, "ports.rear_closure")["study_value"]["source"]
+        self.assertEqual([part["lines"] for part in parts], [[11, 13], [37, 41]])
+        merged = dict(parts[0], lines=[11, 41], literals=parts[0]["literals"] + parts[1]["literals"])
+        self.entry(joined, "ports.rear_closure")["study_value"]["source"] = merged
+        self.assertTrue(any("is not one of the allowlisted spans" in e for e in self.check(joined)))
+
+    def test_a_measured_field_is_bound_to_a_valid_physical_reading(self):
+        template = json.loads((ROOT / "catalog/templates/measurement-record.json").read_text())
+        record = copy.deepcopy(template)
+        record["subject"]["part_reference"] = "TURBO-SPECIMEN-01"
+        reading = record["readings"][0]
+        measured = {"value": reading["value"], "unit": reading["unit"], "method": reading["method"],
+                    "instrument": reading["instrument_id"], "repeats": len(reading["samples"]),
+                    "dimension_id": reading["dimension_id"], "specimen_id": "TURBO-SPECIMEN-01"}
+        uncertainty = {"value": reading["uncertainty"], "unit": reading["unit"]}
+        self.assertEqual(basis.check_measurement_record(record, measured, uncertainty, ROOT, "x"), [])
+        for key, value, needle in (("value", 60.5, "measured value"), ("repeats", 5, "measured repeats"),
+                                   ("specimen_id", "OTHER", "is not the subject"),
+                                   ("dimension_id", "D99", "has no reading")):
+            with self.subTest(key=key):
+                errors = basis.check_measurement_record(record, dict(measured, **{key: value}), uncertainty, ROOT, "x")
+                self.assertTrue(any(needle in e for e in errors), errors)
+        loose = basis.check_measurement_record(record, measured, {"value": 0.5, "unit": "mm"}, ROOT, "x")
+        self.assertTrue(any("uncertainty differs" in e for e in loose))
+        broken = copy.deepcopy(record)
+        del broken["readings"][0]["samples"]
+        self.assertTrue(any("not valid" in e for e in basis.check_measurement_record(broken, measured, uncertainty, ROOT, "x")))
+        # The 993 body drawing is a documented specification of another part: linking it to a turbo
+        # field with complete-looking metadata must not count the field as measured.
+        path = "catalog/measurements/MEAS-MANUAL-993-BODY-DRAWING-20261104.json"
+        spoofed = copy.deepcopy(self.ledger)
+        entry = self.entry(spoofed, "rotor.compressor_wheel.exducer_diameter")
+        entry["measured"] = dict(measured, value=60.5, licence="CC-BY-4.0", datum="axis", independent_review="yes",
+                                 record={"path": path, "sha256": basis.sha256_file(ROOT / path)})
+        entry["uncertainty"] = {"value": 0.02, "unit": "mm"}
+        errors = self.check(spoofed)
+        self.assertTrue(any("not a physical measurement" in e for e in errors), errors)
 
     def test_missing_data_gates_are_requests_never_purchases_or_owner_tasks(self):
         blockers = {b["id"] for b in next(g for g in self.gate_ledger["gates"] if g["id"] == GATE)["blockers"]}

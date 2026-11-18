@@ -118,7 +118,9 @@ none is measured.
 | **Total** | **79** | **54** | **25** |
 
 A study value is not a measurement. It carries one of three labels, the file
-and span it comes from, and a literal that must be found in that span:
+and span it comes from, and a literal that must be found in that span. The span
+must be one of the spans the allowlist selects in that file; a value whose
+literals sit in two selected spans cites both:
 
 - `assumed` (35): a design or operating hypothesis fixed by a generator or a
   parameter file. The hypotheses already used by the historical CFD are here
@@ -140,7 +142,10 @@ Promoting a field to measured needs an admitted measurement record, the
 instrument, method, datum, specimen, licence, repeats, a numeric uncertainty
 and a review independent of the contributor, as
 [decision 0019](../../../docs/decisions/0019-accept-contributed-measurements.md)
-requires. `basis.py check` refuses anything less.
+requires. The linked record must pass the repository's measurement validator,
+be a physical measurement (not a documented specification) of the same
+specimen, and hold a reading whose value, unit, method, instrument, number of
+samples and uncertainty are the field's. `basis.py check` refuses anything less.
 
 ## Essential missing measurements
 

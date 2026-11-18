@@ -1113,18 +1113,30 @@
         "unit": "mm",
         "uncertainty_statement": "Numerical idealisation with no physical counterpart to measure. Its influence on the result is unquantified until a sensitivity study under a later gate.",
         "used_by_historical_cfd": true,
-        "source": {
-          "path": "twins/bionic-turbo-f1/cfd-geometry/Program.cs",
-          "sha256": "15c37dbc8dd653272a8cc108f61b42a039439206dc450f1c0e3d179816b81d80",
-          "lines": [
-            11,
-            41
-          ],
-          "literals": [
-            "OutletPretrimY = 81",
-            "RotKit.Rod(p, new(49, 40, 0), new(49, OutletPretrimY, 0), 14)"
-          ]
-        }
+        "source": [
+          {
+            "path": "twins/bionic-turbo-f1/cfd-geometry/Program.cs",
+            "sha256": "15c37dbc8dd653272a8cc108f61b42a039439206dc450f1c0e3d179816b81d80",
+            "lines": [
+              11,
+              13
+            ],
+            "literals": [
+              "OutletPretrimY = 81"
+            ]
+          },
+          {
+            "path": "twins/bionic-turbo-f1/cfd-geometry/Program.cs",
+            "sha256": "15c37dbc8dd653272a8cc108f61b42a039439206dc450f1c0e3d179816b81d80",
+            "lines": [
+              37,
+              41
+            ],
+            "literals": [
+              "RotKit.Rod(p, new(49, 40, 0), new(49, OutletPretrimY, 0), 14)"
+            ]
+          }
+        ]
       }
     },
     {
@@ -1147,18 +1159,30 @@
         "unit": "mm",
         "uncertainty_statement": "Numerical idealisation with no physical counterpart to measure. Its influence on the result is unquantified until a sensitivity study under a later gate.",
         "used_by_historical_cfd": true,
-        "source": {
-          "path": "twins/bionic-turbo-f1/cfd-geometry/Program.cs",
-          "sha256": "15c37dbc8dd653272a8cc108f61b42a039439206dc450f1c0e3d179816b81d80",
-          "lines": [
-            11,
-            41
-          ],
-          "literals": [
-            "RearSealRadius = 35.5f",
-            "Sdf.CylZ(p, 0, 0, RearSealRadius, -100, -3.75f)"
-          ]
-        },
+        "source": [
+          {
+            "path": "twins/bionic-turbo-f1/cfd-geometry/Program.cs",
+            "sha256": "15c37dbc8dd653272a8cc108f61b42a039439206dc450f1c0e3d179816b81d80",
+            "lines": [
+              11,
+              13
+            ],
+            "literals": [
+              "RearSealRadius = 35.5f"
+            ]
+          },
+          {
+            "path": "twins/bionic-turbo-f1/cfd-geometry/Program.cs",
+            "sha256": "15c37dbc8dd653272a8cc108f61b42a039439206dc450f1c0e3d179816b81d80",
+            "lines": [
+              37,
+              41
+            ],
+            "literals": [
+              "Sdf.CylZ(p, 0, 0, RearSealRadius, -100, -3.75f)"
+            ]
+          }
+        ],
         "note": "A numerical closure; it does not validate the sealing of the 39-component turbo."
       }
     },

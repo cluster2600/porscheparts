@@ -152,6 +152,12 @@ def parent():
 
 
 @functools.lru_cache(maxsize=None)
+def measurements():
+    """The repository's unchanged measurement-record validator."""
+    return _module("turbo_basis_measurements", REPO / "scripts/validate_measurements.py")
+
+
+@functools.lru_cache(maxsize=None)
 def knowledge():
     """The unchanged free-tools FTS5 module; its helper is imported by bare name."""
     tools = REPO / "benchmarks/free-tools"
@@ -535,7 +541,11 @@ def run_retrieval(base: Path = HERE, repo: Path = REPO) -> dict:
 # --------------------------------------------------------------------------
 
 def check_source(source, allowlist: dict, repo: Path, label: str) -> list[str]:
-    """A cited span: allowlisted file, pinned hash, readable span, literals present."""
+    """Cited spans: allowlisted file, one of its selected spans, pinned hash, literals present.
+
+    A value whose literals sit in two selected spans of a file cites both, as a list."""
+    if isinstance(source, list) and source:
+        return [error for item in source for error in check_source(item, allowlist, repo, label)]
     if not isinstance(source, dict):
         return [f"{label}: no source"]
     pins = {item["path"]: item["sha256"] for item in allowlist.get("sources", [])}
@@ -543,6 +553,10 @@ def check_source(source, allowlist: dict, repo: Path, label: str) -> list[str]:
     if path not in pins:
         return [f"{label}: {path} is not an allowlisted turbo source"]
     errors = []
+    selected = next(item for item in allowlist["sources"] if item["path"] == path).get("spans", [])
+    locator = ("lines", source["lines"]) if "lines" in source else ("pointer", source.get("pointer"))
+    if not any(locator[0] in span and span[locator[0]] == locator[1] for span in selected):
+        errors.append(f"{label}: {path}#{locator[1]} is not one of the allowlisted spans of that file")
     if source.get("sha256") != pins[path]:
         errors.append(f"{label}: hash of {path} differs from the allowlist pin")
     try:
@@ -567,7 +581,7 @@ def check_measurement(entry: dict, repo: Path) -> list[str]:
     if not isinstance(measured, dict):
         return [f"{label}: a measured value must be a measurement object, never a bare figure"]
     errors = []
-    for key in ("value", "unit", "instrument", "method", "datum", "specimen_id", "licence", "repeats"):
+    for key in ("value", "unit", "instrument", "method", "datum", "specimen_id", "licence", "repeats", "dimension_id"):
         if measured.get(key) in (None, "", []):
             errors.append(f"{label}: measured without {key}")
     uncertainty = entry.get("uncertainty")
@@ -582,10 +596,41 @@ def check_measurement(entry: dict, repo: Path) -> list[str]:
         try:
             if sha256_file(repo_file(repo, path)) != record.get("sha256"):
                 errors.append(f"{label}: measurement record hash mismatch")
+            else:
+                errors += check_measurement_record(load_json(repo_file(repo, path)), measured, uncertainty, repo, label)
         except BasisError as error:
             errors.append(f"{label}: {error}")
     if measured.get("independent_review") in (None, "", False):
         errors.append(f"{label}: measured without a review independent of its contributor")
+    return errors
+
+
+def check_measurement_record(record: dict, measured: dict, uncertainty, repo: Path, label: str) -> list[str]:
+    """The linked record must be a valid physical measurement whose reading is the ledger's value.
+
+    A documented specification, a record of another specimen or a reading that differs from
+    the field is not a measurement of this interface."""
+    invalid = measurements().validate_measurement(record)
+    if invalid:
+        return [f"{label}: measurement record is not valid: {invalid[0]}"]
+    errors = []
+    if record.get("record_kind", "physical_measurement") != "physical_measurement":
+        errors.append(f"{label}: the linked record is a {record.get('record_kind')}, not a physical measurement")
+    subject = record.get("subject") or {}
+    if measured.get("specimen_id") not in {subject.get("part_id"), subject.get("part_reference")} - {None, ""}:
+        errors.append(f"{label}: specimen {measured.get('specimen_id')!r} is not the subject of the linked record")
+    reading = next((item for item in record.get("readings", [])
+                    if item.get("dimension_id") == measured.get("dimension_id")), None)
+    if reading is None:
+        return errors + [f"{label}: the linked record has no reading {measured.get('dimension_id')!r}"]
+    expected = {"value": reading.get("value"), "unit": reading.get("unit"), "method": reading.get("method"),
+                "instrument": reading.get("instrument_id"), "repeats": len(reading.get("samples") or [])}
+    for key, value in expected.items():
+        if measured.get(key) != value:
+            errors.append(f"{label}: measured {key} {measured.get(key)!r} differs from the record's {value!r}")
+    if isinstance(uncertainty, dict) and (uncertainty.get("value") != reading.get("uncertainty")
+                                          or uncertainty.get("unit") != reading.get("unit")):
+        errors.append(f"{label}: uncertainty differs from the record's reading")
     return errors
 
 
