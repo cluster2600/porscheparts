@@ -55,6 +55,7 @@ FILES = {
     "evaluation": "G04-evaluation.json",
     "prerequisites": "prerequisites.json",
     "host": "host-observations-20261118.json",
+    "amendment": "contract-amendment-20261118.json",
 }
 PROGRAMS = ("fpchain.py", "independent_reader.py", "readback_image.py")
 
@@ -63,7 +64,12 @@ U128 = Fr(1, 2 ** 113)
 EPS_DEC16 = Fr(1, 2 * 10 ** 15)
 EPS_READ = U + Fr(1, 2 ** 111)
 BETA = (1 + EPS_DEC16) * (1 + EPS_READ) - 1
-KEPT_BLOCKERS_REQUIRED = {"pinned-binary-not-executed", "no-admissible-native-input",
+AMENDMENT = "contract-amendment-20261118.json"
+UNRESOLVED_COS = ("::cos of the pinned glibc 2.39 aarch64 libm has no verified (proven) error bound and was not "
+                  "executed, so the binary64 value it returns for degToRad(70) is not established")
+CONDITION_COS = ("holds only if the pinned ::cos returns one of the two binary64 neighbours of the exact cosine "
+                 "(faithful rounding); not established for the pinned runtime")
+KEPT_BLOCKERS_REQUIRED = {"pinned-binary-not-executed", "native-nonorthogonality-threshold-unresolved", "no-admissible-native-input",
                           "criterion-sensitivity-and-conditioning-not-certified",
                           "compiler-and-options-not-pinned"}
 
@@ -372,7 +378,7 @@ def coverage(rationals: list, texts: list) -> dict:
 
 
 # --------------------------------------------------------------------------
-# Thresholds and the libm bracket of the non-orthogonality cosine
+# Thresholds, and the non-orthogonality cosine (unresolved: libm not bounded)
 # --------------------------------------------------------------------------
 
 def cos_enclosure(x: Fr, bits_after: int = 220) -> tuple[Fr, Fr]:
@@ -419,11 +425,15 @@ def thresholds(contract: dict) -> dict:
                 "argument_bits": bits(argument), "pi64_bits": bits(math.pi),
                 "exact_cosine_enclosure_width": "2^-220 or less",
                 "exact_cosine_approx": "%.17e" % float(low),
-                "neighbour_down_bits": bits(down), "neighbour_up_bits": bits(up),
-                "round_to_nearest_bits": bits(nearest) if nearest is not None else None,
-                "distance_from_midpoint_in_ulps": "%.6f" % distance,
-                "bracket": [str(down), str(up)],
-                "libm_result": "not observed; the pinned arm64 libm was not executed"}}
+                "native_threshold": "unresolved",
+                "native_threshold_reason": UNRESOLVED_COS,
+                "conditional_on_faithful_cos": {
+                    "condition": CONDITION_COS,
+                    "neighbour_down_bits": bits(down), "neighbour_up_bits": bits(up),
+                    "round_to_nearest_bits": bits(nearest) if nearest is not None else None,
+                    "distance_from_midpoint_in_ulps": "%.6f" % distance,
+                    "bracket": [str(down), str(up)]},
+                "amendment": AMENDMENT}}
 
 
 # --------------------------------------------------------------------------
@@ -439,7 +449,7 @@ def certificate(contract: dict, cid: str, repo: Path = REPO):
     return load_json(path)
 
 
-def certificates(contract: dict, cos_bracket: list, repo: Path = REPO) -> dict:
+def certificates(contract: dict, conditional_cos_bracket: list, repo: Path = REPO) -> dict:
     dossier = certificate(contract, "dossier", repo)
     tets = certificate(contract, "face-tets-summary", repo)
     tets_rb = certificate(contract, "face-tets-readback", repo)
@@ -490,14 +500,14 @@ def certificates(contract: dict, cos_bracket: list, repo: Path = REPO) -> dict:
     ]
     constants = [{"certificate_value": name, "literal": literal, "equals_binary64_of_literal": Fr(value) == rn64(Fr(literal))}
                  for name, value, literal in recorded]
-    down, up = (Fr(v) for v in cos_bracket)
+    down, up = (Fr(v) for v in conditional_cos_bracket)
     ulp = up - down
     intervals = {
         "sqr_SMALL_interval_contains_exact_square": tol_low <= small64 ** 2 <= tol_high,
         "sqr_SMALL_interval_contains_binary64_square": tol_low <= rn64(small64 ** 2) <= tol_high,
-        "orthogonality_threshold_interval_contains_libm_bracket": ortho_low <= down and up <= ortho_high,
-        "orthogonality_threshold_interval_upper_minus_bracket_down_in_ulps": "%.6f" % float((ortho_high - down) / ulp),
-        "orthogonality_threshold_interval_note": "the 2026-10-13 interval encloses the mathematical cos(70 degrees); the native threshold is cos of the binary64 argument, whose two binary64 neighbours lie above that interval; margins below use the far end of the libm bracket",
+        "orthogonality_threshold_interval_contains_conditional_cos_bracket": ortho_low <= down and up <= ortho_high,
+        "orthogonality_threshold_interval_upper_minus_conditional_down_in_ulps": "%.6f" % float((ortho_high - down) / ulp),
+        "orthogonality_threshold_interval_note": "the 2026-10-13 interval encloses the mathematical cos(70 degrees); both binary64 neighbours of the exact cosine of the binary64 argument lie above it. Whether the pinned ::cos returns one of them is not established, so the native threshold is unresolved.",
     }
     w64, f64, r64 = rn64(Fr("0.05")), rn64(Fr("0.8")), rn64(Fr("0.01"))
 
@@ -510,11 +520,24 @@ def certificates(contract: dict, cos_bracket: list, repo: Path = REPO) -> dict:
                 "certified_side": m > 0, "native_decision": "undecided: sensitivity and conditioning not certified",
                 "note": note}
 
+    def conditional_margin(cid, certified, conditional_threshold, note):
+        m = certified - conditional_threshold
+        return {"criterion": cid, "certified_bound": str(certified), "certified_approx": "%.12g" % float(certified),
+                "threshold": None, "threshold_status": "unresolved: " + UNRESOLVED_COS,
+                "margin": None, "certified_side": None,
+                "conditional_on_faithful_cos": {
+                    "condition": CONDITION_COS,
+                    "threshold": str(conditional_threshold), "threshold_approx": "%.12g" % float(conditional_threshold),
+                    "margin": str(m), "margin_approx": "%.6e" % float(m),
+                    "margin_in_u_times_threshold": "%.4e" % float(m / (U * abs(conditional_threshold)))},
+                "native_decision": "undecided: native threshold unresolved; sensitivity and conditioning not certified",
+                "note": note}
+
     margins = [
         margin("G6-flatness", Fr(flat["minimum_positive_record_bounds"]["flatness"]["lower"]), f64, "above",
                f"lowest certified flatness lower bound; {flat['counts']['unknown']} envelope records stay unknown and are covered by local records"),
-        margin("G5-non-orthogonality", Fr(ortho["minimum_positive_certificate"]["lower"]), max(up, ortho_high), "above",
-               f"measured against the far end of the libm bracket of the native threshold; {ortho['category_counts']['matrix:unknown']} matrix and {ortho['category_counts']['witness:unknown']} witness records stay unknown"),
+        conditional_margin("G5-non-orthogonality", Fr(ortho["minimum_positive_certificate"]["lower"]), max(up, ortho_high),
+                           f"{ortho['category_counts']['matrix:unknown']} matrix and {ortho['category_counts']['witness:unknown']} witness records stay unknown"),
         margin("G9-skewness", Fr(skew["maximum_positive_upper"]), Fr(4), "below",
                f"highest certified skewness upper bound; {skew['envelope_counts']['unknown']} envelope records covered locally"),
         margin("G7-weights", Fr(weight["minimum_positive_lower"]), w64, "above",
@@ -910,7 +933,7 @@ def compute(contract: dict, repo: Path = REPO) -> dict:
     texts = [chain_text(item) for item in contract["witnesses"]["texts"]]
     cov = coverage(rationals, texts)
     thr = thresholds(contract)
-    certs = certificates(contract, thr["non_orthogonality_cosine"]["bracket"], repo)
+    certs = certificates(contract, thr["non_orthogonality_cosine"]["conditional_on_faithful_cos"]["bracket"], repo)
     refs = references(contract)
     summary = reference_summary(refs)
     bound_flags = [v for r in rationals for k, v in r.items() if k.endswith("within_bound") or k.startswith("chain_within")] + \
@@ -1060,11 +1083,44 @@ def check_attestation(attestation: dict, readback: dict, ledger: dict, repo: Pat
     pins = {p["path"]: p["sha256"] for p in gate["config_pins"]}
     if attestation.get("config_sha256") != pins:
         errors.append("attestation: configuration hashes differ from the G04 pins")
-    for program in PROGRAMS + (FILES["contract"],):
+    for program in PROGRAMS + (FILES["contract"], FILES["amendment"]):
         if REVISION + "/" + program not in pins:
             errors.append(f"G04 does not pin {program}")
     if "nothing" not in attestation.get("execution_host", "").lower():
         errors.append("attestation: execution host must state that nothing was executed")
+    return errors
+
+
+def check_amendment(amendment: dict, contract: dict, base: Path = HERE) -> list[str]:
+    """The dated amendment pins the unchanged contract and quotes the entries it withdraws."""
+    errors = []
+    if amendment.get("amends", {}).get("sha256") != sha256_file(base / FILES["contract"]):
+        errors.append("amendment does not pin the current, unedited contract")
+    if amendment.get("amends", {}).get("commit") != "e68d171c4ccb4b9cbf000b82033ab4dd14f6960e":
+        errors.append("amendment must name the prescription commit e68d171c")
+    rule = next(t for t in contract["thresholds"] if t["id"] == "nonOrthCosine")["rule"]
+    g5 = next(b for b in contract["native_branches"] if b["id"] == "G5-non-orthogonality")["evaluated_here"]
+    quoted = {c["entry"]: c.get("was") for c in amendment.get("changes", [])}
+    if quoted.get("thresholds[id=nonOrthCosine].rule") != rule:
+        errors.append("amendment does not quote the contract's cosine rule it withdraws")
+    if quoted.get("native_branches[id=G5-non-orthogonality].evaluated_here") != g5:
+        errors.append("amendment does not quote the contract's G5 entry it withdraws")
+    if "margin_rule" not in quoted:
+        errors.append("amendment does not amend the margin rule")
+    return errors
+
+
+def check_no_cos_containment(receipt: dict) -> list[str]:
+    """No receipt field may present the conditional cosine bracket as the native threshold."""
+    errors = []
+    cosine = receipt["thresholds"]["non_orthogonality_cosine"]
+    if cosine.get("native_threshold") != "unresolved" or "bracket" in cosine:
+        errors.append("receipt presents a native non-orthogonality threshold")
+    g5 = next(m for m in receipt["certificates"]["margins"] if m["criterion"] == "G5-non-orthogonality")
+    if g5.get("threshold") is not None or g5.get("margin") is not None or g5.get("certified_side") is not None:
+        errors.append("receipt reports an unconditional G5 margin against an unbounded libm result")
+    if "libm_bracket" in json.dumps(receipt):
+        errors.append("receipt still names a libm bracket")
     return errors
 
 
@@ -1079,6 +1135,7 @@ def check_all(base: Path = HERE, repo: Path = REPO) -> list[str]:
         errors.append("contract must be prescribed before application and claim no physical turbo")
     if set(contract.get("inherited_prohibitions", [])) != parent().REQUIRED_PROHIBITIONS:
         errors.append("contract does not inherit every baseline prohibition")
+    errors += check_amendment(load("amendment", base), contract, base)
     readback = load("readback", base)
     errors += check_readback(readback, contract, repo)
     recorded = load("conversions", base)
@@ -1095,6 +1152,7 @@ def check_all(base: Path = HERE, repo: Path = REPO) -> list[str]:
         errors.append("conversion receipt: source facts missing or not found")
     if recorded.get("status") != "passed":
         errors.append("conversion receipt status is not passed")
+    errors += check_no_cos_containment(recorded)
     independent = load("independent", base)
     if independent.get("primary_receipt_sha256") != sha256_file(base / FILES["conversions"]):
         errors.append("independent readback does not read the current primary receipt")

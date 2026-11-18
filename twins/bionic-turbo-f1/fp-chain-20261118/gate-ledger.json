@@ -402,11 +402,11 @@
       "config_pins": [
         {
           "path": "twins/bionic-turbo-f1/fp-chain-20261118/fpchain.py",
-          "sha256": "9c196023ec935168290e9ab4d1024110291354fea9bace54d62e516f4ac37e75"
+          "sha256": "3ba8fad7c649a411e9e444e391a0f3a037f2326e6462ff98c0afb9dce6fe7b59"
         },
         {
           "path": "twins/bionic-turbo-f1/fp-chain-20261118/independent_reader.py",
-          "sha256": "be776bdbb58030d2ce20ad884e9b2ce22c186ebc75910b56a380b4b0bf595127"
+          "sha256": "e25592260eeb27d4ed5f4bd5a5f4424c7f3a04b7e9665d033a4f145da0eda81e"
         },
         {
           "path": "twins/bionic-turbo-f1/fp-chain-20261118/readback_image.py",
@@ -415,6 +415,10 @@
         {
           "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-contract.json",
           "sha256": "006fdd018990ea5ab0cb78fe69d049d309e29a10b8e63fa44d9f29223078a9a0"
+        },
+        {
+          "path": "twins/bionic-turbo-f1/fp-chain-20261118/contract-amendment-20261118.json",
+          "sha256": "40604be8376c32b4f764c13b2bb45ad1c18071a02507b83734b218dd9dfa0bb3"
         },
         {
           "path": "twins/bionic-turbo-f1/cfd/prepare_case_v2.py",
@@ -428,11 +432,11 @@
         },
         {
           "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-receipt.json",
-          "sha256": "70cbb8b5b985747ce30d8b7de62ef741705c3a520884c61fa45200d03782c638"
+          "sha256": "ddc09712f2fdebddceb117069e4ff3c40e09e8b93d76870e3616da7820513ca7"
         },
         {
           "path": "twins/bionic-turbo-f1/fp-chain-20261118/independent-readback.json",
-          "sha256": "b55d221145e4cea50d0da75377ae42e5c2dc8058caec98a2fd69ee2b218d9871"
+          "sha256": "7febbdf6a4161fdc8a3b3167c9d74331eff7528a5c9b5e571097aeaaf71b8b80"
         },
         {
           "path": "twins/bionic-turbo-f1/fp-chain-20261118/prerequisites.json",
@@ -452,8 +456,12 @@
               "sha256": "006fdd018990ea5ab0cb78fe69d049d309e29a10b8e63fa44d9f29223078a9a0"
             },
             {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/contract-amendment-20261118.json",
+              "sha256": "40604be8376c32b4f764c13b2bb45ad1c18071a02507b83734b218dd9dfa0bb3"
+            },
+            {
               "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-receipt.json",
-              "sha256": "70cbb8b5b985747ce30d8b7de62ef741705c3a520884c61fa45200d03782c638"
+              "sha256": "ddc09712f2fdebddceb117069e4ff3c40e09e8b93d76870e3616da7820513ca7"
             }
           ]
         },
@@ -467,15 +475,15 @@
           ]
         },
         {
-          "claim": "The primary reader and the independent reader (integer IEEE emulation, no import of the primary) agree on 1659 comparisons with no mismatch. Every stage stays within its bound for the 17 rational and 13 text witnesses, and all 15 witness classes are exhibited: VSMALL itself is written 1e-300 at writePrecision 16 and read back as 0; 16 digits fail both round trips; a 37-digit text is read as 1 where the correctly rounded value is 1 + 2^-52 (double rounding), which the prescribed lemma excludes for 16-digit text with |x| >= 1e-10.",
+          "claim": "The primary reader and the independent reader (integer IEEE emulation, no import of the primary) agree on 1662 comparisons with no mismatch. Every stage stays within its bound for the 17 rational and 13 text witnesses, and all 15 witness classes are exhibited: VSMALL itself is written 1e-300 at writePrecision 16 and read back as 0; 16 digits fail both round trips; a 37-digit text is read as 1 where the correctly rounded value is 1 + 2^-52 (double rounding), which the prescribed lemma excludes for 16-digit text with |x| >= 1e-10.",
           "receipts": [
             {
               "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-receipt.json",
-              "sha256": "70cbb8b5b985747ce30d8b7de62ef741705c3a520884c61fa45200d03782c638"
+              "sha256": "ddc09712f2fdebddceb117069e4ff3c40e09e8b93d76870e3616da7820513ca7"
             },
             {
               "path": "twins/bionic-turbo-f1/fp-chain-20261118/independent-readback.json",
-              "sha256": "b55d221145e4cea50d0da75377ae42e5c2dc8058caec98a2fd69ee2b218d9871"
+              "sha256": "7febbdf6a4161fdc8a3b3167c9d74331eff7528a5c9b5e571097aeaaf71b8b80"
             }
           ]
         },
@@ -484,24 +492,28 @@
           "receipts": [
             {
               "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-receipt.json",
-              "sha256": "70cbb8b5b985747ce30d8b7de62ef741705c3a520884c61fa45200d03782c638"
+              "sha256": "ddc09712f2fdebddceb117069e4ff3c40e09e8b93d76870e3616da7820513ca7"
             },
             {
               "path": "twins/bionic-turbo-f1/fp-chain-20261118/independent-readback.json",
-              "sha256": "b55d221145e4cea50d0da75377ae42e5c2dc8058caec98a2fd69ee2b218d9871"
+              "sha256": "7febbdf6a4161fdc8a3b3167c9d74331eff7528a5c9b5e571097aeaaf71b8b80"
             }
           ]
         },
         {
-          "claim": "Certified margins read from the pinned certificates, not native decisions: flatness 5.457778e-02, non-orthogonality 1.436474e-06 against the far end of the libm bracket, skewness 1.508277e-02, weights 1.408881e-04, volume ratio 2.914558e-01. The 2026-10-13 orthogonality threshold interval encloses the mathematical cos(70 degrees), 1.64 units in the last place below the binary64 values the native cosine can return. The face guard is decided inactive for every quad of a written input whose coordinates satisfy |x| <= 372.605 length units.",
+          "claim": "Certified margins read from the pinned certificates, not native decisions: flatness 5.457778e-02, skewness 1.508277e-02, weights 1.408881e-04, volume ratio 2.914558e-01. The non-orthogonality threshold is unresolved: the pinned glibc 2.39 ::cos has no verified error bound and was not executed; only if it were faithfully rounded would the margin be 1.436474e-06, and only then would the 2026-10-13 threshold interval (around the mathematical cos(70 degrees)) lie 1.64 units in the last place below the native threshold. The face guard is decided inactive for every quad of a written input whose coordinates satisfy |x| <= 372.605 length units.",
           "receipts": [
             {
               "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-receipt.json",
-              "sha256": "70cbb8b5b985747ce30d8b7de62ef741705c3a520884c61fa45200d03782c638"
+              "sha256": "ddc09712f2fdebddceb117069e4ff3c40e09e8b93d76870e3616da7820513ca7"
             },
             {
               "path": "twins/bionic-turbo-f1/fp-chain-20261118/independent-readback.json",
-              "sha256": "b55d221145e4cea50d0da75377ae42e5c2dc8058caec98a2fd69ee2b218d9871"
+              "sha256": "7febbdf6a4161fdc8a3b3167c9d74331eff7528a5c9b5e571097aeaaf71b8b80"
+            },
+            {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/contract-amendment-20261118.json",
+              "sha256": "40604be8376c32b4f764c13b2bb45ad1c18071a02507b83734b218dd9dfa0bb3"
             }
           ]
         },
@@ -510,7 +522,7 @@
           "receipts": [
             {
               "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-receipt.json",
-              "sha256": "70cbb8b5b985747ce30d8b7de62ef741705c3a520884c61fa45200d03782c638"
+              "sha256": "ddc09712f2fdebddceb117069e4ff3c40e09e8b93d76870e3616da7820513ca7"
             },
             {
               "path": "twins/bionic-turbo-f1/fp-chain-20261118/host-observations-20261118.json",
@@ -544,6 +556,10 @@
           "detail": "The native read (strtold to binary128, narrowing by __trunctfdf2, underflow and range branches), the writePrecision 16 write, the libm cosine of the non-orthogonality threshold and the fused multiply-add paths found in the geometry functions are source and static facts only. Missing evidence: a separately prescribed synthetic probe (the frozen witness texts and reference cells only; no turbo geometry, no PR229 blockMeshDict, no case 084) executed by the pinned linux/arm64 image with its hashes verified at launch, recording the bits read, written and computed."
         },
         {
+          "id": "native-nonorthogonality-threshold-unresolved",
+          "detail": "The native threshold ::cos(degToRad(70)) of G5 comes from the pinned glibc 2.39 aarch64 libm, which has no verified (proven) error bound: glibc does not promise correctly rounded cos and its ULP tables are test measurements. The bracket of the two binary64 neighbours of the exact cosine is therefore a conditional figure only (contract amendment of 2026-11-18). Missing evidence: the value returned by the pinned binary, observed by the prescribed probe, or a proven error bound for that implementation at this argument."
+        },
+        {
           "id": "no-admissible-native-input",
           "detail": "No native input exists and none is created here. The admissibility argument of the contract is documented but not applied; leaves 1929 and 1930 keep undecided determinants, so no budget has been applied to a written turbo input and no native margin is decided."
         },
@@ -559,19 +575,23 @@
       "resolved_blockers": [
         {
           "id": "conversion-chain-not-prescribed",
-          "claim": "Conversions, rounding modes, per-operation errors, branches, budgets and an independent reader are prescribed before application and applied to frozen witnesses, certificate rationals and synthetic reference cells.",
+          "claim": "Conversions, rounding modes, per-operation errors, branches, budgets and an independent reader are prescribed before application and applied to frozen witnesses, certificate rationals and synthetic reference cells. The libm threshold of the non-orthogonality check is withdrawn from the prescription by the dated amendment and kept as a separate blocker.",
           "receipts": [
             {
               "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-contract.json",
               "sha256": "006fdd018990ea5ab0cb78fe69d049d309e29a10b8e63fa44d9f29223078a9a0"
             },
             {
+              "path": "twins/bionic-turbo-f1/fp-chain-20261118/contract-amendment-20261118.json",
+              "sha256": "40604be8376c32b4f764c13b2bb45ad1c18071a02507b83734b218dd9dfa0bb3"
+            },
+            {
               "path": "twins/bionic-turbo-f1/fp-chain-20261118/conversion-receipt.json",
-              "sha256": "70cbb8b5b985747ce30d8b7de62ef741705c3a520884c61fa45200d03782c638"
+              "sha256": "ddc09712f2fdebddceb117069e4ff3c40e09e8b93d76870e3616da7820513ca7"
             },
             {
               "path": "twins/bionic-turbo-f1/fp-chain-20261118/independent-readback.json",
-              "sha256": "b55d221145e4cea50d0da75377ae42e5c2dc8058caec98a2fd69ee2b218d9871"
+              "sha256": "7febbdf6a4161fdc8a3b3167c9d74331eff7528a5c9b5e571097aeaaf71b8b80"
             }
           ]
         }

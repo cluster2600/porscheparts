@@ -1098,15 +1098,20 @@
       "pi64_bits": "0x400921fb54442d18",
       "exact_cosine_enclosure_width": "2^-220 or less",
       "exact_cosine_approx": "3.42020143325668824e-01",
-      "neighbour_down_bits": "0x3fd5e3a8748a0bf7",
-      "neighbour_up_bits": "0x3fd5e3a8748a0bf8",
-      "round_to_nearest_bits": "0x3fd5e3a8748a0bf7",
-      "distance_from_midpoint_in_ulps": "-0.495781",
-      "bracket": [
-        "6161287160138743/18014398509481984",
-        "770160895017343/2251799813685248"
-      ],
-      "libm_result": "not observed; the pinned arm64 libm was not executed"
+      "native_threshold": "unresolved",
+      "native_threshold_reason": "::cos of the pinned glibc 2.39 aarch64 libm has no verified (proven) error bound and was not executed, so the binary64 value it returns for degToRad(70) is not established",
+      "conditional_on_faithful_cos": {
+        "condition": "holds only if the pinned ::cos returns one of the two binary64 neighbours of the exact cosine (faithful rounding); not established for the pinned runtime",
+        "neighbour_down_bits": "0x3fd5e3a8748a0bf7",
+        "neighbour_up_bits": "0x3fd5e3a8748a0bf8",
+        "round_to_nearest_bits": "0x3fd5e3a8748a0bf7",
+        "distance_from_midpoint_in_ulps": "-0.495781",
+        "bracket": [
+          "6161287160138743/18014398509481984",
+          "770160895017343/2251799813685248"
+        ]
+      },
+      "amendment": "contract-amendment-20261118.json"
     }
   },
   "certificates": {
@@ -1182,9 +1187,9 @@
     "intervals": {
       "sqr_SMALL_interval_contains_exact_square": true,
       "sqr_SMALL_interval_contains_binary64_square": true,
-      "orthogonality_threshold_interval_contains_libm_bracket": false,
-      "orthogonality_threshold_interval_upper_minus_bracket_down_in_ulps": "-1.637262",
-      "orthogonality_threshold_interval_note": "the 2026-10-13 interval encloses the mathematical cos(70 degrees); the native threshold is cos of the binary64 argument, whose two binary64 neighbours lie above that interval; margins below use the far end of the libm bracket"
+      "orthogonality_threshold_interval_contains_conditional_cos_bracket": false,
+      "orthogonality_threshold_interval_upper_minus_conditional_down_in_ulps": "-1.637262",
+      "orthogonality_threshold_interval_note": "the 2026-10-13 interval encloses the mathematical cos(70 degrees); both binary64 neighbours of the exact cosine of the binary64 argument lie above it. Whether the pinned ::cos returns one of them is not established, so the native threshold is unresolved."
     },
     "margins": [
       {
@@ -1204,14 +1209,20 @@
         "criterion": "G5-non-orthogonality",
         "certified_bound": "124966274720072889087547980382261790977891208293/365375409332725729550921208179070754913983135744",
         "certified_approx": "0.3420215798",
-        "threshold": "770160895017343/2251799813685248",
-        "threshold_approx": "0.342020143326",
-        "margin": "524852419100353880977155137785190904204389/365375409332725729550921208179070754913983135744",
-        "margin_approx": "1.436474e-06",
-        "margin_in_u_times_threshold": "3.7830e+10",
-        "certified_side": true,
-        "native_decision": "undecided: sensitivity and conditioning not certified",
-        "note": "measured against the far end of the libm bracket of the native threshold; 8859 matrix and 83 witness records stay unknown"
+        "threshold": null,
+        "threshold_status": "unresolved: ::cos of the pinned glibc 2.39 aarch64 libm has no verified (proven) error bound and was not executed, so the binary64 value it returns for degToRad(70) is not established",
+        "margin": null,
+        "certified_side": null,
+        "conditional_on_faithful_cos": {
+          "condition": "holds only if the pinned ::cos returns one of the two binary64 neighbours of the exact cosine (faithful rounding); not established for the pinned runtime",
+          "threshold": "770160895017343/2251799813685248",
+          "threshold_approx": "0.342020143326",
+          "margin": "524852419100353880977155137785190904204389/365375409332725729550921208179070754913983135744",
+          "margin_approx": "1.436474e-06",
+          "margin_in_u_times_threshold": "3.7830e+10"
+        },
+        "native_decision": "undecided: native threshold unresolved; sensitivity and conditioning not certified",
+        "note": "8859 matrix and 83 witness records stay unknown"
       },
       {
         "criterion": "G9-skewness",
@@ -7192,9 +7203,9 @@
     "certificate_intervals": {
       "sqr_SMALL_interval_contains_exact_square": true,
       "sqr_SMALL_interval_contains_binary64_square": true,
-      "orthogonality_threshold_interval_contains_libm_bracket": false,
-      "orthogonality_threshold_interval_upper_minus_bracket_down_in_ulps": "-1.637262",
-      "orthogonality_threshold_interval_note": "the 2026-10-13 interval encloses the mathematical cos(70 degrees); the native threshold is cos of the binary64 argument, whose two binary64 neighbours lie above that interval; margins below use the far end of the libm bracket"
+      "orthogonality_threshold_interval_contains_conditional_cos_bracket": false,
+      "orthogonality_threshold_interval_upper_minus_conditional_down_in_ulps": "-1.637262",
+      "orthogonality_threshold_interval_note": "the 2026-10-13 interval encloses the mathematical cos(70 degrees); both binary64 neighbours of the exact cosine of the binary64 argument lie above it. Whether the pinned ::cos returns one of them is not established, so the native threshold is unresolved."
     },
     "vsmall64_survives_native_cycle": false,
     "double_rounding_witnesses": [

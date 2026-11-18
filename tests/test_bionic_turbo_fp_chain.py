@@ -36,7 +36,7 @@ fp = _load("turbo_fp_chain", HERE / "fpchain.py")
 reader = _load("turbo_fp_reader", HERE / "independent_reader.py")
 
 GATE = "G04-native-fp-execution"
-BLOCKERS = ["pinned-binary-not-executed", "no-admissible-native-input",
+BLOCKERS = ["pinned-binary-not-executed", "native-nonorthogonality-threshold-unresolved", "no-admissible-native-input",
             "criterion-sensitivity-and-conditioning-not-certified", "compiler-and-options-not-pinned"]
 
 
@@ -223,7 +223,7 @@ class ReceiptTests(unittest.TestCase):
                          {"GF-below": ["active"], "GF-near": ["undecided"], "GF-above": ["inactive"]})
         margins = fp.load("conversions")["certificates"]["margins"]
         self.assertTrue(all(m["native_decision"].startswith("undecided") for m in margins))
-        self.assertTrue(all(m["certified_side"] for m in margins))
+        self.assertTrue(all(m["certified_side"] for m in margins if m["criterion"] != "G5-non-orthogonality"))
 
     def test_boxes_endpoints_and_undecided_determinants_are_retained(self):
         retained = fp.load("conversions")["certificates"]["retained"]
@@ -234,8 +234,40 @@ class ReceiptTests(unittest.TestCase):
         contract = fp.load("contract")
         shrunk = copy.deepcopy(contract)
         shrunk["retained"]["boxes"] = 151
-        thr = fp.load("conversions")["thresholds"]["non_orthogonality_cosine"]["bracket"]
+        thr = fp.load("conversions")["thresholds"]["non_orthogonality_cosine"]["conditional_on_faithful_cos"]["bracket"]
         self.assertFalse(fp.certificates(shrunk, thr)["retained"]["all_kept"])
+
+    def test_no_receipt_claims_to_contain_the_pinned_libm_cosine(self):
+        receipt = fp.load("conversions")
+        self.assertEqual(fp.check_no_cos_containment(receipt), [])
+        cosine = receipt["thresholds"]["non_orthogonality_cosine"]
+        self.assertEqual(cosine["native_threshold"], "unresolved")
+        self.assertIn("not established", cosine["conditional_on_faithful_cos"]["condition"])
+        g5 = next(m for m in receipt["certificates"]["margins"] if m["criterion"] == "G5-non-orthogonality")
+        self.assertEqual((g5["threshold"], g5["margin"], g5["certified_side"]), (None, None, None))
+        self.assertIn("margin", g5["conditional_on_faithful_cos"])
+        claimed = copy.deepcopy(receipt)
+        next(m for m in claimed["certificates"]["margins"] if m["criterion"] == "G5-non-orthogonality")["certified_side"] = True
+        self.assertTrue(fp.check_no_cos_containment(claimed))
+        bracketed = copy.deepcopy(receipt)
+        bracketed["thresholds"]["non_orthogonality_cosine"]["bracket"] = cosine["conditional_on_faithful_cos"]["bracket"]
+        self.assertTrue(fp.check_no_cos_containment(bracketed))
+        ledger = fp.load("ledger")
+        gate = next(g for g in ledger["gates"] if g["id"] == GATE)
+        text = json.dumps(gate["results"])
+        self.assertNotIn("libm bracket", text)
+        self.assertIn("native-nonorthogonality-threshold-unresolved", [b["id"] for b in gate["blockers"]])
+
+    def test_amendment_pins_the_unedited_contract(self):
+        amendment, contract = fp.load("amendment"), fp.load("contract")
+        self.assertEqual(fp.check_amendment(amendment, contract), [])
+        self.assertEqual(amendment["amends"]["sha256"], fp.sha256_file(HERE / "conversion-contract.json"))
+        edited = copy.deepcopy(amendment)
+        edited["amends"]["sha256"] = "0" * 64
+        self.assertTrue(fp.check_amendment(edited, contract))
+        unquoted = copy.deepcopy(amendment)
+        unquoted["changes"] = [c for c in unquoted["changes"] if c["entry"] != "margin_rule"]
+        self.assertTrue(fp.check_amendment(unquoted, contract))
 
     def test_a_stale_certificate_is_refused(self):
         contract = copy.deepcopy(fp.load("contract"))

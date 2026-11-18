@@ -367,12 +367,17 @@ def read_thresholds(contract: dict, primary: dict, book: Ledger) -> None:
         total += term
     value = Fraction(total)
     slack = Fraction(1, 10 ** 100)
-    down, up = (Fraction(v) for v in cosine["bracket"])
-    book.same("cos.bracket_encloses", down < value - slack and value + slack < up, True)
-    book.same("cos.bracket_adjacent", F.exact(down).bits() == cosine["neighbour_down_bits"]
+    # The native ::cos has no verified error bound: only the exact cosine is enclosed here, and the
+    # two binary64 neighbours are a figure conditional on faithful rounding, never the native threshold.
+    book.same("cos.native_threshold", cosine["native_threshold"], "unresolved")
+    book.same("cos.no_unconditional_bracket", "bracket" in cosine, False)
+    conditional = cosine["conditional_on_faithful_cos"]
+    down, up = (Fraction(v) for v in conditional["bracket"])
+    book.same("cos.conditional_bracket_encloses_exact", down < value - slack and value + slack < up, True)
+    book.same("cos.conditional_bracket_adjacent", F.exact(down).bits() == conditional["neighbour_down_bits"]
               and B64.to_bits(0, up) - B64.to_bits(0, down) == 1, True)
     nearest = down if value < (down + up) / 2 else up
-    book.same("cos.nearest", F.exact(nearest).bits(), cosine["round_to_nearest_bits"])
+    book.same("cos.conditional_nearest", F.exact(nearest).bits(), conditional["round_to_nearest_bits"])
 
 
 def read_certificates(contract: dict, primary: dict, book: Ledger) -> None:
@@ -394,11 +399,10 @@ def read_certificates(contract: dict, primary: dict, book: Ledger) -> None:
     book.same("retained.all_kept", retained["all_kept"], True)
     flat, ortho, skew = files["flatness-summary"], files["orthogonality-summary"], files["skewness-summary"]
     weight, ratio = files["weight-summary"], files["volume-ratio-readback"]
-    down, up = (Fraction(v) for v in primary["thresholds"]["non_orthogonality_cosine"]["bracket"])
+    down, up = (Fraction(v) for v in primary["thresholds"]["non_orthogonality_cosine"]["conditional_on_faithful_cos"]["bracket"])
     ortho_high = Fraction(files["orthogonality-readback"]["threshold"][1])
     expected = {
         "G6-flatness": Fraction(flat["minimum_positive_record_bounds"]["flatness"]["lower"]) - F.exact(parse("0.8")).q,
-        "G5-non-orthogonality": Fraction(ortho["minimum_positive_certificate"]["lower"]) - max(up, ortho_high),
         "G9-skewness": 4 - Fraction(skew["maximum_positive_upper"]),
         "G7-weights": Fraction(weight["minimum_positive_lower"]) - F.exact(parse("0.05")).q,
         "G8-volume-ratio": Fraction(ratio["minimum_ratio_lower"]) - F.exact(parse("0.01")).q,
@@ -408,6 +412,11 @@ def read_certificates(contract: dict, primary: dict, book: Ledger) -> None:
     for name, value in expected.items():
         book.same(f"margin.{name}", str(value), margins[name]["margin"])
         book.same(f"margin.{name}.undecided", margins[name]["native_decision"].startswith("undecided"), True)
+    g5 = margins["G5-non-orthogonality"]
+    book.same("margin.G5.unconditional", (g5["threshold"], g5["margin"], g5["certified_side"]), (None, None, None))
+    conditional = Fraction(ortho["minimum_positive_certificate"]["lower"]) - max(up, ortho_high)
+    book.same("margin.G5.conditional", str(conditional), g5["conditional_on_faithful_cos"]["margin"])
+    book.same("margin.G5.undecided", g5["native_decision"].startswith("undecided"), True)
     guard = primary["certificates"]["face_guard_critical_scale"]
     mags = Fraction(flat["minimum_positive_record_bounds"]["magS"]["lower"])
     eps16, eps_read = Fraction(1, 2 * 10 ** 15), U + Fraction(1, 2 ** 111)

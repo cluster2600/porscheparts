@@ -10,10 +10,11 @@ nothing here concerns a physical turbocharger.
 **Result: the gate is `investigated`, not passed.** The conversion chain is
 prescribed, the pinned runtime is identified byte for byte, and two readers
 agree on every conversion and bound. The unchanged evaluator still refuses G04
-for four named blockers: the pinned linux/arm64 binary has not been executed,
-no admissible native input exists, the sensitivity and conditioning of the
-native criteria are not certified, and the compiler and its options are not
-recorded in the binary.
+for five named blockers: the pinned linux/arm64 binary has not been executed,
+the native non-orthogonality threshold (a libm cosine with no verified error
+bound) is unresolved, no admissible native input exists, the sensitivity and
+conditioning of the native criteria are not certified, and the compiler and
+its options are not recorded in the binary.
 
 No OpenFOAM process, mesher, solver, container or remote host was run. One
 image was pulled by digest and read statically. The recurring turbo automation
@@ -26,12 +27,13 @@ were not touched. All 153 boxes and the two undecided determinants are kept.
 |---|---|
 | [PLAN.md](PLAN.md) | Method, acceptance criteria and limits, committed alone before application (e68d171c) |
 | [conversion-contract.json](conversion-contract.json) | The prescription: stages, bounds, branches, budgets, operation model, rules, witnesses, reference cells |
+| [contract-amendment-20261118.json](contract-amendment-20261118.json) | Dated amendment after review: the libm cosine threshold is unresolved, not bracketed |
 | [readback_image.py](readback_image.py) | Static reader of the pinned image (no container, nothing executed) |
 | [runtime-readback-20261118.json](runtime-readback-20261118.json) | Its receipt: digests, hashes, ELF facts, constants, fused instructions |
 | [fpchain.py](fpchain.py) | Primary reader and checker |
 | [conversion-receipt.json](conversion-receipt.json) | Primary receipt: witnesses, thresholds, certificates, margins, reference cells |
 | [independent_reader.py](independent_reader.py) | Independent reader (integer IEEE emulation; does not import the primary) |
-| [independent-readback.json](independent-readback.json) | Its verdict: 1659 comparisons, no mismatch |
+| [independent-readback.json](independent-readback.json) | Its verdict: 1662 comparisons, no mismatch |
 | [gate-ledger.json](gate-ledger.json) | Ledger revision: only G04 changes |
 | [G04-attestation.json](G04-attestation.json), [G04-evaluation.json](G04-evaluation.json) | What was submitted to the unchanged evaluator, and its verdict |
 | [prerequisites.json](prerequisites.json) | Gate-level confirmation of #394 and #395 |
@@ -116,7 +118,7 @@ was created. [The receipt](runtime-readback-20261118.json) shows:
 
 ## What the readers found
 
-The primary and the independent reader agree on 1659 comparisons. All 17
+The primary and the independent reader agree on 1662 comparisons. All 17
 rational and 13 text witnesses stay within their bounds. They exhibit all 15
 witness classes of the contract:
 
@@ -147,7 +149,7 @@ Read exactly from the pinned certificates:
 | Criterion | Certified bound | Native threshold | Margin |
 |---|---:|---:|---:|
 | Flatness | ≥ 0.85458 | 0.8 | 5.46·10⁻² |
-| Non-orthogonality (cosine) | ≥ 0.3420216 | ≤ 0.3420201433 (libm bracket) | 1.44·10⁻⁶ |
+| Non-orthogonality (cosine) | ≥ 0.3420216 | unresolved (libm `cos`, no verified bound) | none; 1.44·10⁻⁶ only if `cos` were faithfully rounded |
 | Skewness | ≤ 3.98492 | 4 | 1.51·10⁻² |
 | Interpolation weight | ≥ 0.0501409 | 0.05 | 1.41·10⁻⁴ |
 | Volume ratio | ≥ 0.30146 | 0.01 | 0.291 |
@@ -164,31 +166,43 @@ for every quad of a written input whose coordinates satisfy
 |x| ≤ 372.6 length units. That bound can be checked directly on any future
 input.
 
-**A finding for the inherited packages.** The 2026-10-13 orthogonality package
-used a threshold interval around the mathematical cos(70°). The native
-threshold is the cosine of the binary64 argument `70·π/180`. Both binary64
-values the pinned libm can return lie above that interval, by 1.64 and 2.64
-units in the last place. The margin above is measured against the far end of
-the libm bracket. The difference is far below the margin, but the inherited
-interval does not contain the native threshold.
+**The non-orthogonality threshold is unresolved.** OpenFOAM computes it as
+`::cos(degToRad(70))` with the image's glibc 2.39. glibc does not promise
+correctly rounded `cos`, and its published error figures are test
+measurements, not proofs. No verified error bound for that implementation is
+held here, and the binary was not executed, so the value it returns is not
+established. The two binary64 neighbours of the exact cosine of the binary64
+argument are recorded only as a conditional figure, valid if `cos` were
+faithfully rounded. The [dated amendment](contract-amendment-20261118.json)
+withdraws the contract's earlier wording, which treated that bracket as the
+native threshold; the contract file itself is unchanged.
+
+**A conditional finding for the inherited packages.** The 2026-10-13
+orthogonality package used a threshold interval around the mathematical
+cos(70°). Both binary64 neighbours of the exact cosine of `70·π/180` lie above
+that interval, by 1.64 and 2.64 units in the last place. If the pinned `cos`
+is faithfully rounded, the inherited interval therefore does not contain the
+native threshold. Whether it is, is part of the same open question.
 
 ## Gate state
 
 The [ledger revision](gate-ledger.json) inherits the opening rule, the
 comparison contract and every other gate unchanged. G04 moves from
-`not_started` to `investigated`. It gains five configuration pins and five
-receipts. Its blocker `conversion-chain-not-prescribed` is recorded as
-resolved, with its receipts. Four precise blockers remain:
+`not_started` to `investigated`. It gains six configuration pins, the
+amendment among them, and five receipts. Its blocker
+`conversion-chain-not-prescribed` is recorded as resolved, with its receipts.
+Five precise blockers remain:
 
 1. `pinned-binary-not-executed`
-2. `no-admissible-native-input`
-3. `criterion-sensitivity-and-conditioning-not-certified`
-4. `compiler-and-options-not-pinned`
+2. `native-nonorthogonality-threshold-unresolved`
+3. `no-admissible-native-input`
+4. `criterion-sensitivity-and-conditioning-not-certified`
+5. `compiler-and-options-not-pinned`
 
 The [attestation](G04-attestation.json) carries the runtime identity read from
 the image: variant, version, linux/arm64, image digest and `checkMesh` hash.
 Every binding and every pin is accepted. The unchanged evaluator
-[refuses](G04-evaluation.json) the gate for exactly the four blockers and
+[refuses](G04-evaluation.json) the gate for exactly the five blockers and
 nothing else. G05 stays closed behind G03 and G04.
 
 ## Not done, and why
@@ -201,6 +215,8 @@ nothing else. G05 stays closed behind G03 and G04.
   conditioning certificates. Deriving those is new work that must reuse, not
   replay, the earlier traversals.
 - **Compiler pin.** Nothing in the binaries records it.
+- **The libm cosine.** No proven error bound for glibc 2.39 aarch64 `cos` is
+  available, so the threshold it produces is left unresolved.
 - **A native input.** None exists. Selecting a point, a ratio or a candidate
   to make a check pass is refused. The contract documents how a later input
   could be admitted.
@@ -215,7 +231,7 @@ python3 -m unittest tests.test_bionic_turbo_fp_chain
 ```
 
 `check` exits 0 on the committed files. It recomputes everything that needs no
-private input. `gate` exits 1 and prints the four refusals: that is the
+private input. `gate` exits 1 and prints the five refusals: that is the
 recorded verdict, not a fault. The `apply` command of `fpchain.py` and
 `readback_image.py` need the private archive and image export. Their outputs
 are the committed receipts.
@@ -226,7 +242,9 @@ Each of these must be prescribed before it is applied:
 
 1. An owner decision on an arm64 host (the Mac) for a synthetic native probe:
    the frozen witness texts and reference cells only, run by the pinned image
-   with its hashes verified at launch.
+   with its hashes verified at launch. It would also observe the native
+   non-orthogonality threshold, unless a proven error bound for the pinned
+   `cos` is found first.
 2. A documentary search for the build recipe of openfoam2406 2406.0-1 arm64.
 3. A derivation of sensitivity and conditioning bounds that reuses the pinned
    certificates without replaying their traversals.
