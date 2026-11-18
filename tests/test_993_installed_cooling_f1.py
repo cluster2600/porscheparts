@@ -213,4 +213,93 @@ class InstalledCoolingR2Tests(unittest.TestCase):
         with self.assertRaises(ValueError):prepare["block_cells"](3.0)
 
 
+R2C=STUDY/"results/cfd/r2c-admission-20261118"
+
+
+class InstalledCoolingR2cTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.audit=runpy.run_path(str(STUDY/"source/audit_mesh_admission_r2c.py"))
+        cls.r2=cls.audit["load_r2"]()
+        cls.g=json.loads((STUDY/"study-r2c.json").read_text())["geometry"]
+
+    def test_r2c_card_adds_only_the_corner_blend(self):
+        base=json.loads((STUDY/"study.json").read_text())
+        r2b=json.loads((STUDY/"study-r2b.json").read_text())
+        card=json.loads((STUDY/"study-r2c.json").read_text())
+        self.assertEqual(card["parent_revision"],base["revision"])
+        self.assertEqual(card["geometry"],{**r2b["geometry"],"three_surface_corner_blend_mm":12})
+        rest=lambda c:{k:v for k,v in c.items() if k not in ("revision","parent_revision","r2_basis","geometry")}
+        self.assertEqual(rest(card),rest(r2b))
+        self.assertIn("owner's veto",card["r2_basis"])
+        g=card["geometry"]
+        self.assertEqual(g["reentrant_blend_mm"],g["alternator_subtraction_blend_mm"])
+        self.assertEqual(g["reentrant_blend_mm"],g["three_surface_corner_blend_mm"])
+        self.assertEqual(g["alternator_rear_y_mm"],base["geometry"]["alternator_rear_y_mm"])
+
+    def test_one_step_mean_is_the_r2_blend_on_each_two_surface_edge(self):
+        mean,smin=self.audit["plane_mean"],self.r2.smin
+        rng=np.random.default_rng(1118);u,b,side=rng.uniform(-20,20,(3,5000));c=12.0
+        far=np.full_like(u,1e3)
+        np.testing.assert_allclose(mean(u,b,far,c),smin(u,b,c),atol=1e-9)              # union seam at the cap
+        np.testing.assert_allclose(mean(u,-far,side,c),-self.r2.smax(side,u,c),atol=1e-9) # alternator rim
+        t=(np.arange(20000)+.5)/20000*2*c-c                                             # brute-force mean
+        brute=self.audit["corner"](u[:200,None]-t[None,:],b[:200,None],side[:200,None]).mean(axis=1)
+        np.testing.assert_allclose(mean(u[:200],b[:200],side[:200],c),brute,atol=1e-4)
+
+    def test_r2c_model_changes_only_the_alternator_corner(self):
+        p=np.random.default_rng(452).uniform((-290,-210,5),(290,320,325),(20000,3))
+        r2b={**self.g};r2b.pop("three_surface_corner_blend_mm")
+        without=self.audit["bind_r2c_model"](self.r2,self.r2.load_base(),r2b)
+        old=self.r2.bind_r2_model(self.r2.load_base(),r2b)
+        f_old=old.fluid_sdf(old.constituents(p,r2b)[0])
+        np.testing.assert_array_equal(without.fluid_sdf(without.constituents(p,r2b)[0]),f_old)
+        new=self.audit["bind_r2c_model"](self.r2,self.r2.load_base(),self.g)
+        f_new=new.fluid_sdf(new.constituents(p,self.g)[0])
+        zone=(np.abs(p[:,0])<90)&(p[:,1]>-40)&(p[:,1]<30)&(p[:,2]>190)&(p[:,2]<290)
+        np.testing.assert_array_equal(np.sign(f_new[~zone]),np.sign(f_old[~zone]))
+        near=~zone&(np.abs(f_old)<3)
+        np.testing.assert_allclose(f_new[near],f_old[near],atol=1e-9)
+        self.assertLess(self.audit["rims_unchanged"](self.r2,self.g)[0],1e-9)
+        with self.assertRaises(ValueError):
+            self.audit["bind_r2c_model"](self.r2,self.r2.load_base(),{**self.g,"alternator_subtraction_blend_mm":0})
+
+    def test_r2c_record_binds_its_sources_and_keeps_the_mesh_unadmitted(self):
+        runtime=json.loads((R2C/"runtime.json").read_text())
+        for name,digest in runtime["files"].items():self.assertEqual(sha(R2C/name),digest)
+        for key in ("input_admissible_for_settings_sweep","mesh_admitted","mesh_trial_run","flow_solver_started"):
+            self.assertFalse(runtime["verdict"][key])
+        for tag in ("r1","r2a","r2b"):
+            again=json.loads((R2C/f"generation-{tag}-by-r2c.json").read_text())
+            first=json.loads((R2/f"generation-{tag}.json").read_text())
+            self.assertEqual(again["outputs"],first["outputs"])
+            self.assertEqual(again["study"],first["study"])
+            for path,digest in again["source_hashes"].items():self.assertEqual(sha(ROOT/path),digest)
+        generation=json.loads((R2C/"generation-r2c.json").read_text())
+        preparation=json.loads((R2C/"preparation-r2c.json").read_text())
+        audit=json.loads((R2C/"audit-r2c.json").read_text())
+        for path,digest in generation["source_hashes"].items():self.assertEqual(sha(ROOT/path),digest)
+        self.assertIn("twins/993-installed-cooling-f1/source-r2c/Program.cs",generation["source_hashes"])
+        self.assertEqual(generation["generation"]["geometry_revision"],"R2c")
+        self.assertEqual(generation["study"]["sha256"],sha(STUDY/"study-r2c.json"))
+        self.assertEqual(generation["outputs"]["delivery-fluid-domain.stl"],audit["native_surface_sha256"])
+        self.assertEqual(preparation["source_sha256"],sha(STUDY/"source/prepare_duct_cfd_r2.py"))
+        self.assertEqual(preparation["explicit_feature_edges"]["constructive_model"]["auditor_sha256"],
+                         sha(STUDY/"source/audit_mesh_admission_r2.py"))
+        self.assertEqual(preparation["decimation"],"none")
+        self.assertEqual(audit["auditor_sha256"],sha(STUDY/"source/audit_mesh_admission_r2c.py"))
+        self.assertEqual(audit["criteria"]["pinned_auditor"]["sha256"],sha(STUDY/"source/audit_mesh_admission.py"))
+        self.assertEqual(audit["criteria"]["pinned_r2_auditor"]["sha256"],sha(STUDY/"source/audit_mesh_admission_r2.py"))
+        self.assertEqual(audit["generator"]["sha256"],sha(STUDY/"source-r2c/Program.cs"))
+        self.assertEqual(audit["analysis_surface"]["sha256"],preparation["files"]["constant/triSurface/duct.stl"])
+        self.assertLess(audit["analysis_surface"]["constructive_model_residual_mm"]["max"],self.g["voxel_mm"])
+        verdict=audit["verdict"]
+        self.assertEqual(verdict["creases_off_constructive_junctions"]["edges"],0)
+        self.assertTrue(any(verdict["hard_re_entrant_length_mm"].values()))
+        self.assertFalse(verdict["input_admissible_for_settings_sweep"])
+        self.assertEqual(runtime["results"]["r2c"]["hard_re_entrant_length_mm"],verdict["hard_re_entrant_length_mm"])
+        self.assertLess(sum(verdict["hard_re_entrant_length_mm"].values()),
+                        sum(runtime["results"]["r2b_for_comparison"]["hard_re_entrant_length_mm"].values()))
+
+
 if __name__=="__main__":unittest.main()

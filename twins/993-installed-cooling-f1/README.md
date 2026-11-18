@@ -243,6 +243,68 @@ Clearing the last 8 mm needs an owner decision. None of these has been run:
 - or allow a residual length of hard re-entrant edge. That changes the
   2026-11-10 rule, so it must be fixed before any trial, not after one.
 
+### Geometry revision R2c: the corner blended in one step (2026-11-18, #452)
+
+The owner chose the second option on 2026-11-18. The 12 mm radius stays an
+unmeasured layout hypothesis, the alternator's rear plane stays where it is, and
+the rule stays as it is. Results are in
+[`results/cfd/r2c-admission-20261118/`](results/cfd/r2c-admission-20261118/runtime.json).
+
+- **Generator.** [`source-r2c/Program.cs`](source-r2c/Program.cs) is the R2
+  generator plus one key, `three_surface_corner_blend_mm`. The R2 file is
+  pinned by the R2a and R2b receipts, so it was not edited. RotKit's blend
+  `SMin(a, b, k)` is exactly the mean of `min(a + t, b)` for `t` uniform in
+  `[-k, k]`. R2c takes that mean once over the hard Boolean of the three
+  surfaces, with `t` the position of the shared plane, and integrates it
+  exactly. On each two-surface edge of that plane the mean equals the R2b
+  blend. The R2 union is kept beside it, so the fan cylinder's rear edge and its
+  corners with the plenum stay as in R2b. Given `study.json`, `study-r2a.json`
+  and `study-r2b.json`, this generator writes the R1, R2a and R2b surfaces byte
+  for byte.
+- **Card.** [`study-r2c.json`](study-r2c.json) is `study-r2b.json` plus
+  `three_surface_corner_blend_mm: 12`. R2c requires one radius for the three
+  blends and the shared plane at y = −5 mm.
+- **Audit.** The surface was prepared by the unchanged R2 preparer. The R2c
+  model gives the same walls at its eight port rims (largest difference
+  below 1e-13 mm). [`source/audit_mesh_admission_r2c.py`](source/audit_mesh_admission_r2c.py)
+  loads the R2 auditor by its pinned hash and swaps in the R2c constructive
+  model only.
+
+| Surface | Re-entrant sharp edge at hard junctions | Normal angles of counted edges | Creases off constructive edges | Triangles under 5° | Admissible |
+|---|---:|---:|---:|---:|---|
+| R2b | 8.0 mm (4 edges) | 30.8–48.2° | 0 | 0 | no |
+| R2c: R2b with the corner blended in one step | 5.1 mm (3 edges) | 31.8–34.9° | 0 | 0 | no |
+
+R2c differs from R2b only around the alternator's rear end, within x ±66,
+y −16 to 7 and z 213 to 260 mm. The union seam no longer counts. The three remaining
+edges are all at the alternator, near x = ±53, y ≈ −5, z ≈ 224 mm, the same
+two corners as before.
+
+The cause is read from the analytic field, not proven. The smallest radius of
+the constructive surface there rises from 2.7 mm (R2b) to 4.3 mm (R2c); the
+plain 12 mm seam blend has 8.5 mm. It sits on the line where the alternator's
+side meets the plane of the plenum top. That line lies on the hard boundary for
+every position of the shared plane, so averaging over the plane cannot move
+it, and the surface twists about it instead. A marching-cubes check of the
+analytic field at 1.5 mm had predicted at most 26° there; the PicoGK voxel
+surface shows 31.8–34.9°.
+
+Sections and views of R2b and R2c were drawn without a GPU, inspected and not
+retained. Both are closed, consistently wound single bodies.
+
+**Verdict:** R2c is not admissible under the unchanged rule. No mesh trial,
+mesh-independence study or flow solver was run, and the criterion was not
+relaxed.
+
+What could clear the last 5.1 mm is again an owner decision; none has been run:
+
+- extend the one-step mean to the alternator's side as well, so that the line
+  itself moves. That is a further generator revision with the same 12 mm radius;
+- raise the corner's blend radius above 12 mm, which reverses today's decision;
+- or regenerate at a finer voxel. That lowers the angles on the same geometry,
+  so the 30° threshold would then accept a tighter radius. It changes what the
+  rule measures and needs deciding like a rule change.
+
 Next, after the baseline is admissible: vary duct turns and branch sections;
 then clearance, section twist, sweep and a matched stator as separate factors.
 Use equal shaft power, minimum branch mass flow, distribution, core pressure
@@ -307,6 +369,23 @@ python3 twins/993-installed-cooling-f1/source/audit_mesh_admission_r2.py \
   --case work/cooling-r2/case-5mm \
   --native work/cooling-r2/native/delivery-fluid-domain.stl \
   --study twins/993-installed-cooling-f1/study-r2b.json --output work/cooling-r2/audit.json
+```
+
+R2c uses its own generator and auditor with the same preparer:
+
+```sh
+python3 twins/993-installed-cooling-f1/source-r2c/generate.py \
+  --picogk /path/to/PicoGK.dll --native /path/to/native-libraries \
+  --study twins/993-installed-cooling-f1/study-r2c.json \
+  --bin work/cooling-r2c/bin --output work/cooling-r2c/native
+python3 twins/993-installed-cooling-f1/source/prepare_duct_cfd_r2.py \
+  --native work/cooling-r2c/native/delivery-fluid-domain.stl \
+  --study twins/993-installed-cooling-f1/study-r2c.json \
+  --output work/cooling-r2c/case-5mm --flow 2.285161488875746
+python3 twins/993-installed-cooling-f1/source/audit_mesh_admission_r2c.py \
+  --case work/cooling-r2c/case-5mm \
+  --native work/cooling-r2c/native/delivery-fluid-domain.stl \
+  --study twins/993-installed-cooling-f1/study-r2c.json --output work/cooling-r2c/audit.json
 ```
 
 Python geometry/review uses the already installed NumPy, trimesh, PyVista and

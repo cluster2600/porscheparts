@@ -1,0 +1,112 @@
+{
+  "status": "r2c_admission_audit_not_admissible_no_mesh_trial",
+  "issue": 452,
+  "follows": "results/cfd/r2-admission-20261112 (PR #720): R2b left 8.0 mm of re-entrant sharp edge at the alternator's rear corners",
+  "owner_decision_2026_11_18": {
+    "blend_radius": "keep 12 mm, an unmeasured layout hypothesis chosen for numerical admissibility",
+    "corner": "blend the corner of the alternator rim, the shared y = -5 plane and the plenum top in one step",
+    "alternator_rear_plane": "not moved: moving it would invent an unmeasured dimension",
+    "audit_rule": "not relaxed"
+  },
+  "change": {
+    "generator": "source-r2c/Program.cs: source-r2/Program.cs plus the key three_surface_corner_blend_mm = c. With c > 0 the hard Boolean of the three surfaces is averaged once over the shared plane's position, t uniform in [-c, c], integrated exactly; RotKit.SMin(a, b, k) is that same average of min(a + t, b). The R2 union SMin(cylinder, box, k) is kept beside it by MathF.Max; with k = c the maximum is the average near the alternator and the R2 union elsewhere. R2c requires k = s = c and alternator_rear_y_mm = -5. source-r2/Program.cs is unchanged.",
+    "card": "study-r2c.json = study-r2b.json plus three_surface_corner_blend_mm = 12",
+    "preparer": "source/prepare_duct_cfd_r2.py, unchanged; its port rims come from the R2 model of the card, and the R2c model gives the same walls there (largest difference 5.7e-14 mm over 2082 rim points)",
+    "auditor": "source/audit_mesh_admission_r2c.py loads audit_mesh_admission_r2.py by its pinned hash (which loads audit_mesh_admission.py by its own) and swaps in the R2c constructive model only. Faces, junction names, thresholds and the admission rule are unchanged."
+  },
+  "dates": {
+    "generation_preparation_audit": "2026-11-18"
+  },
+  "host": "native Linux ext4 under WSL2 x86_64; PicoGK native runtime 26.2.0 (binary hashes in generation-*.json), .NET 9.0.318, software rendering (GALLIUM_DRIVER=llvmpipe); Python from ~/.venvs/porscheparts-ci",
+  "memory_cap": "every step ran under systemd-run --user --scope -p MemoryMax=8G -p MemorySwapMax=0. R2c generation 34 s at 0.35 GB peak RSS, preparation 54 s at 0.83 GB, audit 39 s at 1.53 GB; the three reproduction runs took about as long as the R2c generation (not timed)",
+  "commands": [
+    "source-r2c/generate.py --study study-r2c.json  -> generation-r2c.json",
+    "source-r2c/generate.py --study study.json | study-r2a.json | study-r2b.json  -> generation-{r1,r2a,r2b}-by-r2c.json",
+    "source/prepare_duct_cfd_r2.py --study study-r2c.json --flow 2.285161488875746 --cell-mm 5 -> preparation-r2c.json",
+    "source/audit_mesh_admission_r2c.py --case <prepared case> --native <generated surface> --study study-r2c.json -> audit-r2c.json"
+  ],
+  "earlier_paths_reproduced": {
+    "result": "the R2c generator, given study.json, study-r2a.json and study-r2b.json, writes the R1, R2a and R2b delivery-fluid-domain byte for byte",
+    "output_sha256": {
+      "r1": "5914107a9d17544a9013e52fb39589d1bcf09765289445af96439f9a95789c87",
+      "r2a": "c2c39a41f71e2d742a742ddb9287be1fa2a37a7943f432b57f27aacd55bdc1aa",
+      "r2b": "7af94c9dd736058cd2bb929fd1c62cc848e3331fe2ce9116893ae7e769c616dc"
+    },
+    "identical_to_r2_record": true
+  },
+  "results": {
+    "r2c": {
+      "study": "study-r2c.json",
+      "reentrant_blend_mm": 12.0,
+      "alternator_subtraction_blend_mm": 12.0,
+      "three_surface_corner_blend_mm": 12.0,
+      "input_admissible_for_settings_sweep": false,
+      "hard_re_entrant_length_mm": {
+        "fan_cylinder_plenum_hard_union_seam": 0.0,
+        "alternator_hard_subtraction_edge": 5.1
+      },
+      "creases_off_constructive_junctions": {
+        "edges": 0,
+        "length_mm": 0.0
+      },
+      "counted_edges": 3,
+      "counted_edge_normal_angles_deg": [
+        31.75,
+        33.62,
+        34.88
+      ],
+      "triangles": 918684,
+      "triangles_with_min_angle_below_5_deg": 0,
+      "constructive_model_residual_mm_max": 0.75,
+      "volume_mm3": 32001268.0
+    },
+    "r2b_for_comparison": {
+      "hard_re_entrant_length_mm": {
+        "fan_cylinder_plenum_hard_union_seam": 1.8,
+        "alternator_hard_subtraction_edge": 6.2
+      },
+      "counted_edges": 4,
+      "counted_edge_normal_angles_deg": [
+        30.82,
+        36.04,
+        37.99,
+        48.22
+      ],
+      "volume_mm3": 32002572.4
+    }
+  },
+  "where_r2c_differs_from_r2b": "On the R2b surface's vertices the two constructive fields differ by more than 1e-4 mm only within x -66..66, y -16..7, z 213..260 mm, around the alternator's rear end where it meets the shared plane and the plenum top; the largest difference is 0.58 mm, on the subtraction edge above the plenum. Patch areas of the inlet and the six outlets are identical; the wall area is 148.6 mm2 smaller.",
+  "where_the_remaining_edges_are": "3 edges, 5.1 mm, all of kind alternator_hard_subtraction_edge: x = +50.2 and +52.9 mm (y -3.1 and -4.5, z 222.1 and 223.5) and x = -53.9 mm (y -6.3, z 226.9), at normal angles of 31.8, 33.6 and 34.9 deg against the 30 deg rule. R2b had 4 edges, 8.0 mm, at 30.8 to 48.2 deg, at the same two corners. The union seam no longer counts.",
+  "corner_curvature": {
+    "meaning": "smallest principal radius of the constructive zero set within 14 mm of each corner, from finite differences of the analytic field at 0.2 mm; diagnostic only, not part of the rule",
+    "r2b_mm": 2.72,
+    "r2c_mm": 4.27,
+    "plain_12_mm_seam_blend_mm": 8.49,
+    "location": "x = +-53.4, y = -4.6, z = 225 mm: the line where the alternator side meets the plenum top's plane",
+    "inference": "That line lies on the hard boundary for every position of the shared plane, so averaging over the plane cannot move it; the surface twists about it, by the 130 deg between the two surfaces' normals, within +-12 mm of the plane. The cause is read from the field, not proven.",
+    "local_check_before_generation": "a marching-cubes contour of the analytic field at 1.5 mm, on three grid offsets, gave at most 26 deg there; the PicoGK voxel surface gives 31.8 to 34.9 deg"
+  },
+  "verdict": {
+    "input_admissible_for_settings_sweep": false,
+    "mesh_admitted": false,
+    "mesh_trial_run": false,
+    "flow_solver_started": false,
+    "reason": "R2c does not pass the unchanged rule of audit_mesh_admission.py: it keeps 5.1 mm of re-entrant sharp edge at alternator_hard_subtraction_edge (R2b: 8.0 mm), with 0 creases off constructive junctions. The criterion was not relaxed."
+  },
+  "not_run": [
+    "no snappyHexMesh, blockMesh or checkMesh on R2c: the gate before a mesh trial failed",
+    "no mesh-independence study and no flow solver"
+  ],
+  "inspection": "Sections at x = 0, x = 53 mm, y = -6 mm and z = 226 mm and a cropped view of the corner, drawn with matplotlib (no GPU), were read on 2026-11-18 for R2b and R2c. Both surfaces are closed, consistently wound single bodies. R2c differs from R2b only at the alternator's rear corners and on its subtraction edges. The images are not retained.",
+  "not_retained_in_git": "the generated surfaces (about 46 MB each), the prepared case (duct.stl about 159 MB, duct-rims.eMesh), the build directories and logs; kept privately under work/ic-r2/r2c/",
+  "files": {
+    "audit-r2c.json": "a3918aaa8ef29acd2ef2eb28b3992c768a205d33be778ea62059387da75220df",
+    "generation-r1-by-r2c.json": "1b9b8759c2efdf7f8427efc40cdfd2568c5304996462012ef2c78b9d22396b59",
+    "generation-r2a-by-r2c.json": "cfb4b3df0eaf4d00a304d02247ad9943078304b259a6a39933f0ddf5c8e3c4c6",
+    "generation-r2b-by-r2c.json": "9c2c41a2b0678d1a26c9b31470fabee846c08e1fda2dd1c720996fcdd34a7dc0",
+    "generation-r2c.json": "921e0e22c3cf8dbb1f7a0cbd4aa321a1561469b5c21c1fe5c6c5b069aad510d7",
+    "preparation-r2c.json": "633445f2eb622f78b90e1e2d2ea6c547598d100fcc99e1b202d124bdc94a599f"
+  },
+  "manufacturing_authorized": false,
+  "physical_validation": false
+}
