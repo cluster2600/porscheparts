@@ -278,3 +278,7 @@ local CalculiX runs, two PicoGK generations, an exploratory hydraulic cost,
 and explicitly recorded non-converged root stresses. A follow-up study draws assumed 0.2 and 0.4 mm
 root fillets: their peaks converge (12.8 and 9.3 MPa at 3.75 bar, plane strain),
 while the sharp root keeps growing; no pressure strength is qualified.
+[Decision 0023](../../../docs/decisions/0023-intercooler-rib-root-fillet-0-4-mm.md),
+proposed and not yet accepted, takes 0.4 mm as a design assumption for a 3D
+study that is planned and not run; no source shows that a machine holds either
+radius.

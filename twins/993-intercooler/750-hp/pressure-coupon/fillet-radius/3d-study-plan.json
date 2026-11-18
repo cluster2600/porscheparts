@@ -1,0 +1,199 @@
+{
+  "schema_version": "1.0.0",
+  "plan_id": "993-INTERCOOLER-750-COUPON-3D-STUDY-PLAN-1",
+  "issue": 467,
+  "written_on": "2026-11-12",
+  "status": "predeclared_not_executed",
+  "executed": false,
+  "blocked": true,
+  "blocked_by": "the null entries of required_inputs marked blocking, and the owner's decision on docs/decisions/0023-intercooler-rib-root-fillet-0-4-mm.md",
+  "purpose": "Compare matched 3D models of the four-rib hot-passage coupon, with its end closures, fittings and supports, under pressure, under pressure with temperature, and in conjugate heat transfer, on meshes shown to be converged. It replaces the plane-strain slice for the questions the slice cannot answer: the 3D ends, the fittings, the supports, thermal stress and heat transfer.",
+  "what_a_completed_study_could_claim": "A numerical comparison for stated loads, supports and boundary data, with its mesh study and balances. Nothing more.",
+  "what_it_can_never_claim": [
+    "pressure strength, a proof or burst rating, or fatigue life",
+    "that any LPBF machine holds the root radius, or any LPBF qualification",
+    "leak-tightness, depowdering or a build orientation",
+    "performance of the full-size core, of its headers, or of a gyroid core",
+    "authorisation to print or to pressure-test"
+  ],
+  "arms": [
+    {
+      "id": "A",
+      "root": "fillet r = 0.4 mm on every rib and side-wall root of the five hot channels",
+      "role": "proposed radius of decision 0023; all three analyses",
+      "radius_mm": 0.4
+    },
+    {
+      "id": "S",
+      "root": "sharp",
+      "role": "reference for conjugate heat transfer and hydraulics only",
+      "radius_mm": 0.0,
+      "restriction": "No stress is ever quoted from this arm: the sharp root is singular (retained growth of 1.35 to 1.42 per halving)."
+    },
+    {
+      "id": "L",
+      "root": "fillet r = 0.4 mm minus the dimensional accuracy of the selected machine",
+      "role": "as-built sensitivity of arm A; mechanical analyses only",
+      "radius_mm": null,
+      "null_reason": "No dimensional accuracy is sourced for the reference route and no machine is selected. The radius of this arm stays null until one of the two exists, or until a contributed as-built root radius (IN-15) is admitted. It is not replaced by an assumed value.",
+      "blocking": false,
+      "consequence_if_null": "The study may run without arm L; its report must then say that the sensitivity to the as-built radius is not computed."
+    }
+  ],
+  "arms_excluded": [
+    {
+      "root": "fillet r = 0.2 mm",
+      "reason": "Rule R6 of the criterion: classed not_distinguishable on the reading applied (its form of 0.083 mm is below the 0.09 mm sieve cut of the reference route). It returns after an admitted contributed measurement of its as-built root, or if the owner chooses the other reading of the powder scale recorded in the evaluation report, under which it stays as a comparison arm."
+    },
+    {
+      "root": "a fillet larger than 0.4 mm",
+      "reason": "No retained result. Two indicative sources put the smallest reproduced detail at 0.5 mm. A larger radius would first need its own plane-strain convergence with the existing script; that is an owner decision and is not scheduled here."
+    }
+  ],
+  "matching_rule": "All arms come from one parametric drawing in which only the root radius changes. Mesh size fields, element types, solver settings, boundary data and post-processing are identical and their hashes are recorded per arm. A difference between arms that is smaller than its own numerical uncertainty is reported as unresolved, never as zero and never as a gain.",
+  "geometry": {
+    "drawn_from": "an analytical OpenCASCADE drawing, as in the retained fillet study; never meshed from the voxel STL",
+    "retained_section": "0.8 mm walls, 3 mm hot passage, 0.8 mm ribs centred at Y = +/-3 and +/-9 mm, clear widths 1.8 / 5.2 / 5.2 / 5.2 / 1.8 mm, length 24 mm",
+    "cold_side": "the sixteen BCC cells of the retained coupon for the conjugate case; for the mechanical cases the cold side may be replaced by its computed stiffness contribution only if a check shows the root peak moves by less than the mesh uncertainty",
+    "input_audit_before_any_sweep": "List every re-entrant edge of the 3D drawing (rib ends, closures, fitting junctions, lattice nodes at the wall). An unblended re-entrant edge inside a region where stress is to be quoted stops the mechanical study until it is blended or excluded by a declared boundary."
+  },
+  "required_inputs": [
+    {"id": "IN-01", "what": "end closure of the 24 mm coupon (how the five channels are closed or joined)", "value": null, "must_come_from": "a header or closure design decision recorded in the twin; the retained coupon models no header", "blocking": true},
+    {"id": "IN-02", "what": "fitting geometry: port type, bore, wall, thread or bead, and its junction with the coupon", "value": null, "must_come_from": "a named published fitting standard or a manufacturer drawing registered as a source record; none is registered", "blocking": true},
+    {"id": "IN-03", "what": "support and fixture conditions of the coupon", "value": null, "must_come_from": "a declared bench fixture design for the coupon. Vehicle mounts cannot be used: the flanges, axes and mounts of OEM 993 110 330 53 are not measured", "blocking": true},
+    {"id": "IN-04", "what": "loads carried by the fittings: hose reaction, clamp preload, bending from the connected pipe, vibration", "value": null, "must_come_from": "the fitting standard of IN-02 and an admitted measurement or a declared bench load; none exists", "blocking": true},
+    {"id": "IN-05", "what": "internal gauge pressure", "value": {"service_mpa": 0.25, "numerical_proof_case_mpa": 0.375}, "status": "assumed", "must_come_from": "twins/993-intercooler/750-hp/hot-weather/assumptions.json (service_gauge_pa and exploratory_proof_gauge_pa, both exploratory); requirements.json leaves boost_bar_gauge null. A qualified value needs the confirmed boost pressure and a chosen proof standard", "blocking": false},
+    {"id": "IN-06", "what": "proof and burst factors, and the standard they come from", "value": null, "must_come_from": "a named standard chosen by the owner with engineering review", "blocking": false, "consequence_if_null": "results are reported at the assumed pressure only; no factor is applied or implied"},
+    {"id": "IN-07", "what": "pressure-cycle spectrum for fatigue", "value": null, "must_come_from": "admitted vehicle data; none exists", "blocking": false, "consequence_if_null": "no fatigue assessment is made"},
+    {"id": "IN-08", "what": "hot-side inlet state", "value": {"temperature_k": 506.47, "pressure_pa_absolute": 303975}, "status": "assumed", "must_come_from": "the retained study and the high scenario of the 750 hp sizing; not measured", "blocking": false},
+    {"id": "IN-09", "what": "cold-side inlet state", "value": {"temperature_k": 318.15}, "status": "assumed", "must_come_from": "the retained hot-weather study (45 degC); not measured", "blocking": false},
+    {"id": "IN-10", "what": "mass flow through the coupon, hot and cold side", "value": {"hot_kg_s": 0.00014050644890540917, "cold_kg_s": null}, "status": "hot side assumed (1 m/s in the smooth passage, retained); cold side unsourced for the coupon", "must_come_from": "the per-passage flows of the core that this passage belongs to. That core is not fixed: the retained witness is an offset-strip core, not this ribbed passage", "blocking": true},
+    {"id": "IN-11", "what": "elastic card of LPBF AlSi10Mg against temperature up to the hot-side inlet temperature", "value": {"elastic_modulus_mpa": 50000, "poisson_ratio": 0.33}, "status": "assumed, single hot value from the retained study", "must_come_from": "a supplier or peer-reviewed hot tensile data set registered as a source record; the catalogue card gives room-temperature coupon data only", "blocking": false, "consequence_if_null": "stresses under pressure do not depend on E in the linear model; thermal stresses do, and stay conditional on the assumed value"},
+    {"id": "IN-12", "what": "thermal expansion and conductivity against temperature", "value": "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json: mean expansion 25 to 100, 200 and 300 degC; conductivity 100 (vertical) and 110 (horizontal) W/(m K) as manufactured", "status": "sourced for one route, room-temperature conductivity only", "must_come_from": "SRC-EOS-ALSI10MG-M290-30UM", "blocking": false},
+    {"id": "IN-13", "what": "hot yield, allowable stress and notch fatigue strength of the as-built root", "value": null, "must_come_from": "tests on the selected route; requirements.json lists hot_material_allowables as unknown", "blocking": false, "consequence_if_null": "the 40 MPa screen stays an assumption and no strength is stated"},
+    {"id": "IN-14", "what": "as-built wall roughness of the passages for the flow model", "value": null, "must_come_from": "Rz or sand-grain equivalent for the selected route. Indicative figures from other machines are in process-capability.json and may only be used as a declared sensitivity", "blocking": false, "consequence_if_null": "the conjugate case is run with smooth walls and says so"},
+    {"id": "IN-15", "what": "as-built root radius and its scatter", "value": null, "must_come_from": "an admitted contributed measurement of a printed and sectioned coupon (decision 0019); the project prints and measures nothing", "blocking": false}
+  ],
+  "analyses": {
+    "M-P": {
+      "name": "pressure, isothermal",
+      "tool": "CalculiX 2.21, one thread, quadratic solid elements (no S3 shells), linear elastic",
+      "arms": ["A", "L"],
+      "loads": "IN-05 on every wetted hot face, plus IN-04 when sourced",
+      "quantities": ["root peak von Mises at the nodal and integration-point level, by location class: mid-length root, rib end, closure junction, fitting junction", "maximum displacement", "support reactions"]
+    },
+    "M-T": {
+      "name": "pressure with the temperature field",
+      "tool": "CalculiX 2.21, one thread; temperature mapped one way from the conjugate case",
+      "arms": ["A", "L"],
+      "supports": "Waits for IN-03. Thermal stress depends on the restraint; with the fixture unknown it could only be bracketed between free and fully restrained supports, which is a result for no real fixture.",
+      "quantities": ["the same as M-P", "the thermal part reported separately from the pressure part"]
+    },
+    "CHT": {
+      "name": "conjugate heat transfer, hot passage, metal and cold side",
+      "tool": "OpenFOAM 13 in the pinned cadsim image, steady, checkMesh first; flow regime decided from the Reynolds numbers of IN-10 before a turbulence model is chosen",
+      "arms": ["A", "S"],
+      "quantities": ["heat duty", "hot-side and cold-side pressure loss", "flow split between the five hot channels", "wall temperature field for M-T"],
+      "closed_form_bound_recorded_in_advance": "The fillets remove (2 - pi/2) r of wetted perimeter per corner: 5.02 % of the hot-side perimeter at 0.4 mm (2.51 % at 0.2 mm), from the perimeters of the retained hydraulic report. This bounds the loss of hot-side area; it is not a prediction of the loss of duty."
+    }
+  },
+  "verification_before_the_comparison": [
+    "V1. A 3D extrusion of the quarter section of arm A, constrained to plane strain, reproduces the retained plane-strain nodal root peak of 9.31 MPa within 2 %. A larger gap stops the study.",
+    "V2. A single-element or patch case reproduces a uniform analytical state for the 3D element type used, as the retained study did for CPE8.",
+    "V3. Half the pressure gives half the displacement within 1e-5, as in the retained study.",
+    "V4. The conjugate solver reproduces a closed-form case on its own mesh family before the coupon: fully developed laminar flow in the sharp 1.8 mm and 5.2 mm ducts against the exact series already retained (fRe 59.92 and 60.37), within 1 %."
+  ],
+  "mesh_convergence_rule": {
+    "levels": "at least three systematically refined meshes per reported quantity, refinement ratio at least 1.5 in the region of the quantity",
+    "estimator": "observed order, Richardson extrapolation and fine-grid GCI with a safety factor of 1.25, as in the retained fillet study",
+    "accepted_when": "the sequence is monotone and the fine-grid GCI is at most 5 %, the threshold the fillet study already fixed; nodal and integration-point peaks then agree within 5 %",
+    "starting_size": "0.05 mm at the roots: on the retained plane model that size already gave the nodal root peak within 1 % of its extrapolation at both radii. This is a starting point, not evidence for 3D.",
+    "non_converging_peak": "A peak that grows at every refinement is a singular feature of the drawing. It is reported as such, no value is quoted, and the geometry is corrected first (repository rule on re-entrant corners).",
+    "submodels": "If three levels cannot be reached on the whole coupon under the compute limits, the root, rib-end, closure and fitting regions are refined as submodels driven by the displacements of the whole model. Each submodel is then repeated with its cut boundary moved; the peak must change by less than its GCI.",
+    "flow": "For the conjugate case the same three-level rule applies to heat duty and to both pressure losses. The retained channel CFD could not separate the fillet effect from its mesh spread of 0.3 to 1.2 %; the new meshes must bring the GCI of each compared quantity below half the difference being claimed, or the difference is reported as unresolved."
+  },
+  "balance_checks": {
+    "computed_by": "a separate script from the exported fields and the drawing, not read from the solver log",
+    "pressure": "The resultant of the applied pressure, from projected areas of the drawing, equals the sum of the support reactions within 0.1 % in each direction.",
+    "mass": "Inlet and outlet mass flows of each stream agree within 1e-6 relative, and the drift over the last 50 iterations stays below 1e-6, as retained.",
+    "heat": "Enthalpy lost by the hot stream, enthalpy gained by the cold stream and the heat flux integrated over each wetted wall agree pairwise within 1 %; the remainder is reported, not absorbed.",
+    "energy_cross_check": "The duty is also bounded by the capacity-rate limit m cp (T_hot,in - T_cold,in) of the weaker stream; a duty above it is an error."
+  },
+  "acceptance_rules": {
+    "note": "These rules decide what the comparison reports. Passing them qualifies no part.",
+    "mechanical": [
+      "Arm A keeps a mesh-converged root peak below the assumed 40 MPa screen at the assumed 0.375 MPa, at every location class where a peak can be quoted.",
+      "No location class is left with a singular, unquoted peak inside the pressure boundary.",
+      "Arm L, when its radius is not null, also stays below the screen."
+    ],
+    "conjugate": [
+      "Arm A loses at most 5 % of heat duty against arm S at equal mass flows and inlet states. The limit equals the closed-form loss of hot-side perimeter, so a larger loss would mean the fillets cost more than the area they remove.",
+      "Arm A raises the hot-side pressure loss by at most 5 % against arm S, the limit already fixed in the criterion.",
+      "Each difference is resolved by the mesh rule above, or is reported as unresolved."
+    ],
+    "what_overturns_decision_0023": "A failed mechanical rule for arm A, or a resolved conjugate penalty above either limit."
+  },
+  "stop_rules": [
+    "Any blocking input still null: the corresponding analysis does not start. Nothing is filled with a plausible value.",
+    "A failed verification V1 to V4.",
+    "A failed balance check: the case is kept as failed and is not compared.",
+    "An unblended re-entrant edge found by the input audit in a region where stress is to be quoted.",
+    "Three mesh levels not reachable under the compute limits even with submodels: the quantity is reported as not converged and no value is quoted.",
+    "A solver killed by the memory cap (exit code 137) is a limit reached, not a result; it is recorded and never read as a verdict on the design.",
+    "Tolerances and limits of this plan are not changed after the first run. A change is a new plan revision made before further runs, with the earlier runs kept."
+  ],
+  "compute_limits": {
+    "where": "local Linux host, pinned 3dprinting993-cadsim image cited by digest, network off",
+    "paid_or_remote_compute": "none; issue 467 authorises none",
+    "calculix": "one thread (multi-threaded SPOOLES has given wrong solves here), at most 8 GB per case, the largest cap the retained fillet study needed",
+    "openfoam": "at most 4 CPUs and 6 GB per case, as in the retained channel CFD",
+    "concurrency": "one heavy case at a time under /tmp/porscheparts-heavy.lock",
+    "largest_mesh": null,
+    "largest_mesh_note": "Not known in advance. It is found by a ramp on arm A under the caps and recorded; it is not guessed here.",
+    "wall_clock_budget_per_case_h": null,
+    "wall_clock_note": "To be set by the owner before the first run."
+  },
+  "records_to_keep": [
+    "source revision, image digest, input and output SHA-256 per case, including failed and killed cases",
+    "decks, dictionaries, logs and receipts in Git when small; solver fields, meshes and voxel data outside Git in the private evidence release, identified by SHA-256 (no file over 1 MiB in Git)",
+    "the verdict of the input audit and of each verification, balance and mesh rule, pass or fail"
+  ],
+  "separate_gates_not_addressed_by_this_study": {
+    "gyroid_header": {
+      "state": "open",
+      "statement": "The two-network gyroid core of the core comparison opens on every face and its headers are neither designed nor credited. This study is about the ribbed plate passage. No result of it carries over to a gyroid core or to its headers, and the ribbed core's own header (IN-01) is itself null."
+    },
+    "lpbf_orientation_and_overhang": {
+      "state": "open",
+      "statement": "No build orientation is chosen. Built on its side, each 5.2 mm passage has an unsupported roof and the upper roots are down-skin; the reference route's own diagram shows down-skin Ra near 0.056 mm at 45 degrees against 0.007 mm on a vertical surface. A fillet built across the layers becomes an overhang past 45 degrees (SRC-NASA-TM-20250010927-LPBF-FILLETING, another alloy and far larger fillets). Orientation needs its own study and a supplier's build preparation."
+    },
+    "depowdering": {
+      "state": "open",
+      "statement": "No depowdering path is shown for the passages or for the BCC cold side. One service guideline asks for openings of at least 3 mm and advises against long internal channels without review (SRC-MATERIALISE-ALSI10MG-DESIGN-GUIDELINES); the narrow hot channels are 1.8 mm by 3 mm. Nothing here addresses it."
+    },
+    "sealing": {
+      "state": "open",
+      "statement": "No source read gives leak-tightness for 0.8 mm LPBF AlSi10Mg walls. Closed triangle meshes and converged stresses say nothing about porosity or leakage. Sealing needs a leak test on printed parts, which requires separate authorisation."
+    },
+    "hot_material": {
+      "state": "open",
+      "statement": "No hot allowable for LPBF AlSi10Mg at the hot-side temperature is sourced (IN-13)."
+    }
+  },
+  "contributor_request": {
+    "basis": "docs/decisions/0019-accept-contributed-measurements.md: the project may request and accept a contributed measurement; it buys, prints, measures and commissions nothing, and nobody is paid.",
+    "addressed_to": "an outside contributor who already has access to an LPBF AlSi10Mg build and to sectioning or tomography; never a task for the owner or the maintainer",
+    "request": "As-built radius of the rib roots of a short length of the four-rib section, designed sharp, at 0.2 mm and at 0.4 mm, with machine, powder lot, layer thickness, parameter set and build orientation stated.",
+    "method_conditions": [
+      "through docs/CAPTURE_PROTOCOL.md, with instrument, uncertainty, repeats and datums declared",
+      "metallographic section with optical microscopy, or X-ray tomography whose declared uncertainty is below half the form of the smaller fillet (0.04 mm)",
+      "at least five roots per design radius and per orientation, up-skin and down-skin roots reported separately",
+      "an explicit licence grant recorded in a source record before the data is used; no personal data in Git"
+    ],
+    "what_it_would_settle": "Test P3 of the criterion and the radius of arm L (IN-15). It would not qualify the process, the pressure strength or the part."
+  },
+  "pressure_qualified": false,
+  "manufacturing_authorized": false,
+  "lpbf_process_qualified": false,
+  "physical_test_authorized": false
+}

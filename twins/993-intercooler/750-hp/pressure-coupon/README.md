@@ -330,6 +330,89 @@ The [sections](derived/fillet-geometry/fillet-geometry-sections.png) show the ho
 channels at mid-length. The STL and VDB outputs (up to 276 MB per file) are
 identified by SHA-256 and not committed.
 
+## Choice of root radius and plan for the 3D study
+
+*Added 2026-11-12, for issue #467.* A radius is **proposed, not accepted**:
+[decision 0023](../../../../docs/decisions/0023-intercooler-rib-root-fillet-0-4-mm.md)
+proposes **0.4 mm as a design assumption for the 3D study**, and sets 0.2 mm
+aside until a printed and sectioned coupon has been measured by an outside
+contributor. Nothing was computed with a solver for this step, and nothing
+was printed or measured.
+
+The work was done in three commits, in this order:
+
+1. [criterion.json](fillet-radius/criterion.json) fixes the tests, their
+   thresholds and the decision rule. It was committed before any source was
+   searched, and says which retained numbers were already known.
+2. [process-capability.json](fillet-radius/process-capability.json) ties each
+   process figure to one of eleven new source records, with its machine, layer
+   thickness and stated uncertainty. A figure with no source is `null`.
+3. [fillet_radius_choice.py](source/fillet_radius_choice.py) applies the
+   criterion to the retained reports and writes
+   [the report](derived/fillet-radius-choice/fillet-radius-choice.json).
+
+**What the sources do not give.** No source states the smallest internal
+fillet radius that LPBF holds in AlSi10Mg, and none measures an as-built
+concave radius. For the reference route (EOS M 290, 30 µm layers) neither Rz
+nor a dimensional accuracy is published. ISO/ASTM 52911-1:2019 is cited by
+designation and was not read. The sources do not settle whether 0.2 mm can be
+held, and they do not settle it for 0.4 mm either.
+
+**What the criterion compares.** A fillet departs from the sharp corner by at
+most (√2 − 1) r. That form must stand above the surface noise of the route.
+
+| | Form | Layers across the radius | Form / 0.09 mm sieve | Root peak (upper bound) | Hydraulic proxy | Class |
+|---|---:|---:|---:|---:|---:|---|
+| r = 0.2 mm | 0.083 mm | 6.7 | 0.92 | 12.8 MPa | +0.33 % | not distinguishable |
+| r = 0.4 mm | 0.166 mm | 13.3 | 1.84 | 9.6 MPa | +1.47 % | unsettled |
+
+- 0.2 mm fails one test by 8 %: its form is below the 0.09 mm sieve cut of the
+  route. Against the 25 to 70 µm range EOS also states, it would pass. The
+  criterion did not say which figure governs; the larger was taken and the
+  criterion was not amended. The proposed radius is 0.4 mm on both readings.
+  The report keeps both. The 0.09 mm sieve cut was already on the catalogue's
+  process card when the criterion was written, although the criterion's list
+  of what was known omits it; decision 0023 records this.
+- "Unsettled" means that 0.4 mm passes every test that can be evaluated, but
+  two tests cannot be (no accuracy and no minimum detail are published for the
+  route) and no as-built radius has been measured. A future entry in
+  `as_built_concave_radius_measurements` counts for P3 only when it names a
+  registered source and states AlSi10Mg by laser powder bed fusion, a concave
+  radius, its design radius at or below the candidate, the as-built radius and
+  a positive uncertainty. An entry missing any of these is listed under
+  `not_counted` in the report.
+- Figures from other machines are reported as indicative and never decide a
+  test. On another make at 30 µm layers the published as-built Rz is 0.064 mm
+  on average and 0.120 mm at its 95 % maximum: 0.2 mm sits between the two and
+  0.4 mm above both.
+- The root peaks are the retained plane-strain values under the assumed
+  0.375 MPa, raised by their GCI. **They are not strengths**, and the 40 MPa
+  screen is not an allowable.
+
+**The 3D study is planned, not run.**
+[3d-study-plan.json](fillet-radius/3d-study-plan.json) declares in advance
+the matched arms (0.4 mm, a sharp reference for heat transfer only, and an
+as-built sensitivity arm), the verification cases, the mesh-convergence rule,
+the pressure, mass and heat balances, the acceptance and stop rules and the
+compute limits. It also lists every input the study needs and where each must
+come from. These are still `null`:
+
+| Input | Blocks the study |
+|---|---|
+| End closure or header of the coupon | yes |
+| Fitting geometry, from a named standard or drawing | yes |
+| Support and fixture conditions | yes |
+| Loads carried by the fittings | yes |
+| Cold-side mass flow of the coupon | yes |
+| Proof and burst factors; pressure-cycle spectrum | no: reported at the assumed pressure only |
+| Hot yield, allowable and notch fatigue of the as-built root | no: no strength is stated |
+| As-built wall roughness of the route | no: smooth walls, declared |
+| As-built root radius and its scatter | no: the sensitivity arm stays empty |
+
+The gyroid-header question, build orientation and overhang, depowdering,
+sealing and hot material are kept in the plan as separate open gates. The 3D
+study addresses none of them.
+
 ## Reproduction and next steps
 
 ```sh
@@ -352,6 +435,8 @@ done
 flock /tmp/porscheparts-heavy.lock docker run --rm --network none --cpus 4 --memory 6g --memory-swap 6g --user "$(id -u):$(id -g)" \
   -v "$PWD":/repo:ro -v "$PWD/work/picogk-fillet":/native:ro -v "$PWD/work":/out -w /tmp 3dprinting993-cadsim:dev \
   python3 -B /repo/twins/993-intercooler/750-hp/pressure-coupon/source/fillet_geometry_review.py --native /native --output /out/new-fillet-geometry
+python3 twins/993-intercooler/750-hp/pressure-coupon/source/fillet_radius_choice.py --output work/new-fillet-radius-choice
+python3 twins/993-intercooler/750-hp/pressure-coupon/source/fillet_radius_choice.py --check
 python3 -m unittest discover -s tests -p test_993_intercooler_pressure_coupon.py -v
 ```
 
@@ -366,10 +451,20 @@ The Mac PicoGK generation above uses the SDK `~/Developer/PicoGK/sdk/dotnet`. Th
 filleted Linux generation uses `~/picogk/env.sh` and the host stack; it needs the
 native runtime in `~/picogk/native` and is not reproducible on the Mac SDK as is.
 
-The assumed fillets are now drawn in the geometry. The next mechanical steps are to
-choose a radius, confirm the process can hold it, and run a 3D study with fittings
-and support conditions.
-The passages will also have to be compared by CHT (the CFD above is hydraulic
-only) or on a bench, then orientation, overhangs, depowdering, hot material and
-sealing qualified.
+The radius choice needs no container: it reads the retained reports and runs in
+under a second on the standard library.
+
+Next steps, in order:
+
+1. The owner accepts or amends
+   [decision 0023](../../../../docs/decisions/0023-intercooler-rib-root-fillet-0-4-mm.md)
+   (0.4 mm as an assumption; whether 0.2 mm stays as a second arm).
+2. The five blocking inputs of the 3D plan are supplied from a design decision
+   or a registered source. None is filled with a plausible value.
+3. The 3D mechanical and conjugate comparison is run under the plan. Whether
+   the process holds the radius stays open until an outside contributor sends
+   in a measured section of a printed coupon; the plan words that request.
+4. Orientation, overhangs, depowdering, hot material and sealing remain to be
+   qualified separately, as does any header.
+
 **No authorisation to print or to pressure-test is given.**

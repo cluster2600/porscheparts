@@ -254,4 +254,151 @@ class FilletGeometryTests(unittest.TestCase):
             solid_error,hot_error,mismatch=expected[check['name']]
             self.assertAlmostEqual(solid/analytic-1,solid_error,delta=.0005);self.assertAlmostEqual(hot/analytic-1,hot_error,delta=.0005);self.assertAlmostEqual(solid-hot,mismatch,delta=.005)
 
+import math
+CHOICE=STUDY/'derived/fillet-radius-choice/fillet-radius-choice.json'
+CRITERION=STUDY/'fillet-radius/criterion.json'
+CAPABILITY=STUDY/'fillet-radius/process-capability.json'
+PLAN=STUDY/'fillet-radius/3d-study-plan.json'
+DECISION=ROOT/'docs/decisions/0023-intercooler-rib-root-fillet-0-4-mm.md'
+spec=importlib.util.spec_from_file_location('fillet_radius_choice',STUDY/'source/fillet_radius_choice.py');R=importlib.util.module_from_spec(spec);spec.loader.exec_module(R)
+
+
+class FilletRadiusChoiceTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.r=json.loads(CHOICE.read_text());cls.criterion=json.loads(CRITERION.read_text());cls.capability=json.loads(CAPABILITY.read_text());cls.plan=json.loads(PLAN.read_text())
+
+    def test_criterion_is_the_one_committed_before_the_source_search(self):
+        # The criterion was committed alone, before the sources and the evaluation. Amending it must be a visible act: this digest changes.
+        self.assertEqual(sha(CRITERION),'03c00b96fb120dce3bfb5509c51f01f72f21aee8b4cc68ead3499f909cbd829b')
+        self.assertEqual(self.criterion['candidates_mm'],[.2,.4]);self.assertEqual([t['id'] for t in self.criterion['tests']],['M1','H1','M2','P1','P2','P3'])
+        self.assertEqual(list(self.criterion['classes_best_first']),R.CLASSES)
+        for key in ['pressure_qualified','manufacturing_authorized','lpbf_process_qualified']:self.assertFalse(self.criterion[key])
+
+    def test_report_is_reproduced_from_its_inputs_without_a_solver(self):
+        self.assertEqual(R.evaluate(),self.r);self.assertEqual(sha(STUDY/'source/fillet_radius_choice.py'),self.r['source_sha256'])
+        for path,digest in self.r['input_hashes'].items():self.assertEqual(sha(ROOT/path),digest)
+        self.assertEqual(len(self.r['input_hashes']),5)
+        for key in ['pressure_qualified','manufacturing_authorized','lpbf_process_qualified','new_finite_element_or_cfd_run']:self.assertFalse(self.r[key])
+        source=(STUDY/'source/fillet_radius_choice.py').read_text()
+        for word in ['docker','ccx','gmsh','numpy']:self.assertNotIn(word,source)
+
+    def test_closed_forms(self):
+        lam=R.williams_lambda();self.assertAlmostEqual(math.sin(1.5*math.pi*lam),lam,places=12);self.assertAlmostEqual(lam,.5445,places=4)
+        # A straight edge (180 degrees of solid) has no singular root in the bracket: the function refuses rather than returning a number.
+        with self.assertRaises(ValueError):R.williams_lambda(180.)
+        self.assertAlmostEqual(R.sagitta(.2),.2*math.sqrt(2)-.2,places=15);self.assertAlmostEqual(R.sagitta(.4)/R.sagitta(.2),2)
+        self.assertIsNone(R.low_radius_peak(10.,.2,.2,.4555));self.assertIsNone(R.low_radius_peak(10.,.2,.3,.4555))
+        self.assertAlmostEqual(R.low_radius_peak(10.,.4,.2,.5),10*math.sqrt(2));self.assertEqual(R.low_radius_peak(10.,.4,0.,.5),10.)
+        s=self.r['scaling_validity_check'];self.assertTrue(s['valid']);self.assertAlmostEqual(s['predicted_peak_ratio'],2**(1-lam));self.assertLess(abs(s['relative_difference']),.01)
+        summary=json.loads((FILLET/'fillet-convergence.json').read_text())['summary']
+        self.assertAlmostEqual(s['retained_nodal_peak_ratio'],summary['0.2']['root_nodal_richardson']['extrapolated']/summary['0.4']['root_nodal_richardson']['extrapolated'])
+        for radius in ['0.2','0.4']:
+            upper=R.upper_peak(summary[radius]);self.assertEqual(upper,self.r['radii'][radius]['tests']['M1']['upper_peak_mpa'])
+            self.assertGreaterEqual(upper,summary[radius]['root_nodal_richardson']['extrapolated']);self.assertLess(upper/summary[radius]['root_nodal_richardson']['extrapolated'],1.03)
+
+    def test_decision_rules(self):
+        d=R.decide({.2:'unsettled',.4:'unsettled'});self.assertEqual((d['proposed_radius_mm'],d['rule'],d['other_radius_stays_in_3d_study']),(.4,'R4',True))
+        d=R.decide({.2:'sourced',.4:'unsettled'});self.assertEqual((d['proposed_radius_mm'],d['rule'],d['design_assumption_only']),(.2,'R3',False))
+        d=R.decide({.2:'not_distinguishable',.4:'unsettled'});self.assertEqual((d['proposed_radius_mm'],d['rule'],d['other_radius_stays_in_3d_study']),(.4,'R3',False))
+        for classes in [{.2:'not_distinguishable',.4:'not_distinguishable'},{.2:'rejected',.4:'not_distinguishable'}]:
+            d=R.decide(classes);self.assertIsNone(d['proposed_radius_mm']);self.assertEqual(d['rule'],'R2')
+        base={k:{'result':'pass'} for k in ['M1','H1','M2','P1','P3']};base['P2']={'result':'pass','every_scale_sourced':True}
+        self.assertEqual(R.classify(base),'sourced')
+        for key,expected in [('M1','rejected'),('H1','rejected'),('M2','not_distinguishable'),('P1','not_distinguishable'),('P2','not_distinguishable')]:
+            self.assertEqual(R.classify({**base,key:{**base[key],'result':'fail'}}),expected)
+        self.assertEqual(R.classify({**base,'P3':{'result':'not_met'}}),'unsettled');self.assertEqual(R.classify({**base,'M2':{'result':'not_evaluable'}}),'unsettled')
+        self.assertEqual(R.classify({**base,'P2':{'result':'pass','every_scale_sourced':False}}),'unsettled')
+
+    def test_p3_counts_only_a_complete_on_route_measurement(self):
+        route=self.capability['route']
+        good={'source_id':'SRC-EOS-ALSI10MG-M290-30UM','alloy':'AlSi10Mg','process':'laser powder bed fusion','feature':'concave_radius',
+              'design_radius_mm':.4,'as_built_radius_mm':.37,'uncertainty_mm':.02}
+        self.assertEqual(R.p3_refusals(good,.4,route),[])
+        self.assertEqual(R.p3_refusals(good,.2,route),['designed above 0.2 mm'])
+        for change,reason in [({'source_id':'SRC-NOT-REGISTERED'},'no registered source record'),({'alloy':'Ti6Al4V'},'not AlSi10Mg by laser powder bed fusion'),
+                              ({'feature':'wall_thickness'},'not a concave radius'),({'as_built_radius_mm':None},'no as-built radius'),
+                              ({'uncertainty_mm':0},'no positive uncertainty'),({'design_radius_mm':'0.4'},'no design radius')]:
+            with self.subTest(change=change):
+                self.assertIn(reason,R.p3_refusals({**good,**change},.4,route))
+        bare=[{'design_radius_mm':.2}]
+        self.assertEqual([R.p3_refusals(m,.4,route) for m in bare],[['no registered source record','not AlSi10Mg by laser powder bed fusion','not a concave radius','no as-built radius','no positive uncertainty']])
+
+    def test_every_process_figure_has_a_source_record_and_gaps_stay_null(self):
+        c=self.capability;ids=set()
+        for name,scale in c['scales'].items():
+            for row in scale['on_route']+scale['indicative']+scale.get('recommendations_that_are_not_capability_limits',[]):
+                self.assertIsInstance(row['value'],float,name);self.assertGreater(row['value'],0);ids.add(row['source_id'])
+        for entry in c['context_not_deciding'].values():ids.update([entry['source_id']] if 'source_id' in entry else entry.get('source_ids',[]))
+        ids.update(s['source_id'] for s in c['standards_cited_by_designation_only'])
+        self.assertEqual(len(ids),13)
+        for source_id in ids:
+            record=json.loads((ROOT/'catalog/sources'/(source_id.lower()+'.json')).read_text());self.assertEqual(record['source_id'],source_id)
+        for s in c['standards_cited_by_designation_only']:
+            self.assertFalse(s['read']);self.assertEqual(json.loads((ROOT/'catalog/sources'/(s['source_id'].lower()+'.json')).read_text())['access']['status'],'paywalled')
+        # What the sources do not give stays empty rather than filled: no Rz, accuracy or minimum detail on the reference route, and no measured radius.
+        for name in ['as_built_roughness_rz_mm','delta_offset_mm','minimum_internal_radius_or_detail_mm']:self.assertEqual(c['scales'][name]['on_route'],[])
+        self.assertEqual(c['as_built_concave_radius_measurements'],[])
+        for key in ['does_any_source_state_a_minimum_internal_radius_for_lpbf_alsi10mg','does_any_source_measure_an_as_built_concave_radius_in_lpbf_alsi10mg','do_the_sources_settle_whether_0_2_mm_can_be_held','do_the_sources_settle_whether_0_4_mm_can_be_held']:self.assertFalse(c['verdict'][key])
+        for key in ['measured_or_printed_by_this_project','lpbf_process_qualified','manufacturing_authorized']:self.assertFalse(c[key])
+        process=json.loads((ROOT/'catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json').read_text())['process_reference']
+        self.assertEqual(c['scales']['layer_thickness_mm']['on_route'][0]['value'],process['layer_thickness_um']/1000)
+        self.assertEqual(max(x['value'] for x in c['scales']['powder_upper_size_mm']['on_route']),process['sieve_um']/1000)
+        self.assertEqual(c['context_not_deciding']['minimum_wall_mm']['value'],process['minimum_wall_thickness_mm'])
+        machine=json.loads((ROOT/'catalog/manufacturing/machines/eos-m290.json').read_text());self.assertEqual(c['context_not_deciding']['laser_focus_diameter_mm']['value'],machine['focus_diameter_um']/1000)
+
+    def test_outcome_and_how_narrow_it_is(self):
+        r=self.r;small,large=r['radii']['0.2'],r['radii']['0.4']
+        self.assertEqual(r['classes'],{'0.2':'not_distinguishable','0.4':'unsettled'})
+        self.assertEqual(r['decision'],{'proposed_radius_mm':.4,'rule':'R3','design_assumption_only':True,'other_radius_mm':.2,'other_radius_stays_in_3d_study':False})
+        for radius in [small,large]:
+            self.assertEqual({k:v['result'] for k,v in radius['tests'].items() if k!='P2'},{'M1':'pass','H1':'pass','M2':'not_evaluable','P1':'not_evaluable','P3':'not_met'})
+            self.assertEqual(radius['tests']['P2']['scales_not_sourced_on_route'],['as_built_roughness_rz_mm']);self.assertLess(radius['tests']['M1']['upper_peak_mpa'],r['assumed_screen_mpa'])
+        # 0.2 mm fails on one figure only, the 0.09 mm sieve cut, by about 8 %.
+        failed=[x for x in small['tests']['P2']['on_route'] if not x['form_above_scale']]
+        self.assertEqual([(x['scale'],x['value_mm']) for x in failed],[('powder_upper_size_mm',.09)]);self.assertAlmostEqual(failed[0]['form_over_scale'],.92,places=2)
+        self.assertEqual(large['tests']['P2']['result'],'pass');self.assertGreater(min(x['form_over_scale'] for x in large['tests']['P2']['on_route']),1.8)
+        # The other reading of the powder scale keeps 0.2 mm as an arm but proposes the same radius.
+        a=r['criterion_ambiguity'];self.assertTrue(a['found_at_evaluation']);self.assertEqual(a['classes_if_only_the_smaller_figure_counted'],{'0.2':'unsettled','0.4':'unsettled'})
+        self.assertEqual(a['decision_if_only_the_smaller_figure_counted']['proposed_radius_mm'],.4);self.assertTrue(a['decision_if_only_the_smaller_figure_counted']['other_radius_stays_in_3d_study'])
+        hydraulics=json.loads(HYDRAULICS.read_text())['variants']
+        for key,radius in [('0.2',small),('0.4',large)]:self.assertAlmostEqual(radius['tests']['H1']['hydraulic_penalty'],hydraulics[key]['split']['pressure_drop_pa']/hydraulics['0.0']['split']['pressure_drop_pa']-1)
+        # Indicative figures never decide: a 0.2 mm shortfall would leave the 0.2 mm root sharp, with no stress to quote.
+        sharp=[x for x in small['tests']['M2']['indicative_not_deciding'] if x['low_radius_peak_mpa'] is None];self.assertEqual([x['delta_offset_mm'] for x in sharp],[.2])
+        self.assertTrue(all(x['below_assumed_screen'] for x in large['tests']['M2']['indicative_not_deciding']))
+
+    def test_3d_plan_is_predeclared_not_executed_and_keeps_unknowns_null(self):
+        p=self.plan;self.assertEqual(p['status'],'predeclared_not_executed');self.assertFalse(p['executed']);self.assertTrue(p['blocked'])
+        self.assertEqual([(a['id'],a['radius_mm']) for a in p['arms']],[('A',self.r['decision']['proposed_radius_mm']),('S',0.),('L',None)])
+        self.assertEqual(p['analyses']['CHT']['arms'],['A','S'])
+        for name in ['M-P','M-T']:self.assertNotIn('S',p['analyses'][name]['arms'])
+        self.assertFalse(self.r['decision']['other_radius_stays_in_3d_study']);self.assertIn('0.2 mm',p['arms_excluded'][0]['root'])
+        inputs={i['id']:i for i in p['required_inputs']};self.assertEqual(len(inputs),15)
+        for i in inputs.values():
+            self.assertTrue(i['must_come_from']);self.assertIn('value',i)
+            if i['value'] is not None:self.assertIn('status',i)
+        self.assertEqual(sorted(k for k,i in inputs.items() if i['blocking']),['IN-01','IN-02','IN-03','IN-04','IN-10'])
+        for key in ['IN-01','IN-02','IN-03','IN-04','IN-06','IN-07','IN-13','IN-14','IN-15']:self.assertIsNone(inputs[key]['value'])
+        self.assertIsNone(inputs['IN-10']['value']['cold_kg_s']);self.assertEqual(inputs['IN-10']['value']['hot_kg_s'],M.hydraulic(4)['total_mass_flow_kg_s'])
+        self.assertEqual(inputs['IN-05']['value']['numerical_proof_case_mpa'],M.PRESSURE);self.assertEqual(inputs['IN-11']['value'],{'elastic_modulus_mpa':M.E,'poisson_ratio':M.NU})
+        pressure=json.loads((STUDY.parent/'hot-weather/assumptions.json').read_text())['pressure']
+        self.assertEqual(inputs['IN-05']['value'],{'service_mpa':pressure['service_gauge_pa']/1e6,'numerical_proof_case_mpa':pressure['exploratory_proof_gauge_pa']/1e6})
+        self.assertIsNone(json.loads((STUDY.parent/'requirements.json').read_text())['unknown']['boost_bar_gauge'])
+        # The closed-form perimeter bound quoted in the plan follows from the retained hydraulic report.
+        sections={(s['fillet_radius_mm'],s['width_mm']):s['cad_perimeter_mm'] for s in json.loads(HYDRAULICS.read_text())['sections']}
+        perimeter=lambda radius:sum(sections[radius,w] for w in H.widths())
+        self.assertAlmostEqual(1-perimeter(.4)/perimeter(0.),.0502,places=4);self.assertAlmostEqual(1-perimeter(.2)/perimeter(0.),.0251,places=4)
+        self.assertAlmostEqual(perimeter(0.)-perimeter(.4),20*(2-math.pi/2)*.4,places=9)
+        self.assertEqual(set(p['separate_gates_not_addressed_by_this_study']),{'gyroid_header','lpbf_orientation_and_overhang','depowdering','sealing','hot_material'})
+        for gate in p['separate_gates_not_addressed_by_this_study'].values():self.assertEqual(gate['state'],'open')
+        limits=p['compute_limits'];self.assertIn('none',limits['paid_or_remote_compute']);self.assertIsNone(limits['largest_mesh']);self.assertIsNone(limits['wall_clock_budget_per_case_h'])
+        self.assertIn('0019',p['contributor_request']['basis']);self.assertIn('never a task for the owner',p['contributor_request']['addressed_to'])
+        for key in ['pressure_qualified','manufacturing_authorized','lpbf_process_qualified','physical_test_authorized']:self.assertFalse(p[key])
+
+    def test_decision_record_is_proposed_and_claims_nothing_else(self):
+        text=DECISION.read_text()
+        for phrase in ['**Proposed** on 2026-11-12','carries a 0.4 mm rib-root fillet','design assumption for the 3D study only','**No pressure strength.**','**No print authorisation and no pressure-test authorisation.**','**No LPBF qualification.**','nobody is paid or commissioned']:self.assertIn(phrase,text)
+        self.assertNotIn('**Accepted**',text)
+        readme=(STUDY/'README.md').read_text();self.assertIn('proposed, not accepted',readme);self.assertIn('planned, not run',readme)
+
 if __name__=='__main__':unittest.main()
