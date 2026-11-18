@@ -188,6 +188,12 @@ a `vastai` that always fails:
 - With a valid lock, `up` gets past every check and stops at the `vastai`
   call.
 - `qualify` refuses a tag that is not a digest.
+- Once `up` or `qualify` has rented anything, any exit before its setup
+  completes destroys the session's instances: an error, `die`, Ctrl-C or
+  SIGTERM. A Node B whose bring-up never started has no deadline shutdown, so
+  it would otherwise bill until someone noticed. Tested with a fake `vastai`
+  and an unreachable sshd, and with SIGTERM during the SSH wait: one
+  `destroy`, nothing left.
 
 ## Before renting
 

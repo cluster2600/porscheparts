@@ -49,9 +49,24 @@ VM_IMAGE=docker.io/vastai/kvm:ubuntu_cli_22.04-2025-11-21      # Docker 29 + NVI
 LLM_QUERY=${LLM_QUERY:-"gpu_name in [H200,H200_NVL] num_gpus=1 reliability>=0.98 inet_down>=1000 disk_space>=$STORAGE_GB direct_port_count>=1 verified=true rentable=true"}
 CAE_QUERY=${CAE_QUERY:-"gpu_name in [RTX_4090,RTX_3090] num_gpus=1 cpu_ram>=64 cpu_cores_effective>=16 vms_enabled=true reliability>=0.98 inet_down>=500 disk_space>=$STORAGE_GB direct_port_count>=1 verified=true rentable=true"}
 QUAL_QUERY=${QUAL_QUERY:-"gpu_name in [RTX_4090,RTX_3090] num_gpus=1 vms_enabled=true reliability>=0.98 inet_down>=500 disk_space>=$QUAL_STORAGE_GB direct_port_count>=1 verified=true rentable=true"}
+SSH_WAIT_TRIES=${SSH_WAIT_TRIES:-40}   # x 15 s for a new instance's sshd
 SSH_OPTS=(-o BatchMode=yes -o StrictHostKeyChecking=accept-new -o ConnectTimeout=15 -o ServerAliveInterval=30)
 
 die() { echo "vast_deploy: $*" >&2; exit 1; }
+
+# While `up` or `qualify` sets up a rental, any exit before the setup completes (an error, `die`,
+# Ctrl-C) destroys the session's instances: a Node B whose bring-up never started has no deadline
+# shutdown at all, and would bill until someone notices.
+TEARDOWN_ON_EXIT=
+teardown_on_exit() {
+  local rc=$? s=$TEARDOWN_ON_EXIT
+  [ -n "$s" ] || return 0
+  TEARDOWN_ON_EXIT=
+  echo "vast_deploy: setup of session $s stopped (exit $rc): destroying its instances" >&2
+  cmd_down "$s" --no-sync || echo "vast_deploy: teardown of $s failed: check 'vastai show instances' by hand" >&2
+}
+trap teardown_on_exit EXIT
+trap 'exit 130' INT TERM
 need() { command -v "$1" >/dev/null || die "missing tool: $1"; }
 now() { date -u +%s; }
 session_dir() { local s=${1:-$(cat "$SESSIONS_DIR/current" 2>/dev/null || true)}; [ -n "$s" ] || die "no session"; echo "$SESSIONS_DIR/$s"; }
@@ -133,6 +148,11 @@ start_b() {  # session host port: clone the commit's deploy folder on B and star
     setsid nohup bash /workspace/repo/deploy/vast/935-twin-openclaw/onstart-cae.sh >/dev/null 2>&1 &"
 }
 
+wait_ssh() {  # host port: until the instance's sshd answers, else die (the EXIT trap tears down)
+  for _ in $(seq 1 "$SSH_WAIT_TRIES"); do ssh "${SSH_OPTS[@]}" -p "$2" "root@$1" true 2>/dev/null && return 0; sleep 15; done
+  die "no SSH to $1:$2 after $((SSH_WAIT_TRIES * 15)) s"
+}
+
 wait_running() {  # id -> waits until actual_status == running (20 min max)
   for _ in $(seq 1 80); do
     [ "$("$VASTAI" show instance "$1" --raw | jq -r '.actual_status // ""')" = running ] && return 0
@@ -193,22 +213,21 @@ cmd_up() {
   jq --arg id "$ida" --arg l "$la" --arg o "$offer_a" --arg p "$dph_a" '.instances.llm = {id: ($id|tonumber), label: $l, offer: $o, dph: ($p|tonumber)}' \
     "$sd/manifest.json" > "$sd/m.tmp" && mv "$sd/m.tmp" "$sd/manifest.json"
   echo "Node A: instance $ida ($la)"
+  TEARDOWN_ON_EXIT=$sess     # from here, a failed setup destroys what this session rented
 
   # Node B: a VM, because the compose services and the OpenClaw sandboxes need Docker.
   idb=$("$VASTAI" create instance "$offer_b" --image "$VM_IMAGE" --disk "$STORAGE_GB" --ssh --direct \
           --label "$lb" --raw | jq -r '.new_contract') || true
-  if ! [[ "$idb" =~ ^[0-9]+$ ]]; then
-    echo "Node B creation failed: destroying Node A" >&2; SESSION=$sess cmd_down "$sess" --no-sync; exit 1
-  fi
+  [[ "$idb" =~ ^[0-9]+$ ]] || die "Node B creation failed: destroying Node A"
   jq --arg id "$idb" --arg l "$lb" --arg o "$offer_b" --arg p "$dph_b" '.instances.cae = {id: ($id|tonumber), label: $l, offer: $o, dph: ($p|tonumber)}' \
     "$sd/manifest.json" > "$sd/m.tmp" && mv "$sd/m.tmp" "$sd/manifest.json"
   echo "Node B: instance $idb ($lb)"
 
-  wait_running "$ida" || { echo "Node A not running after 20 min" >&2; cmd_down "$sess" --no-sync; exit 1; }
-  wait_running "$idb" || { echo "Node B not running after 20 min" >&2; cmd_down "$sess" --no-sync; exit 1; }
+  wait_running "$ida" || die "Node A not running after 20 min"
+  wait_running "$idb" || die "Node B not running after 20 min"
   local a b; read -r -a a <<< "$(ssh_target llm "$sess")"; read -r -a b <<< "$(ssh_target cae "$sess")"
   printf 'LLM_SSH_HOST=%s\nLLM_SSH_PORT=%s\n' "${a[0]}" "${a[1]}" >> "$sd/session.env"
-  for _ in $(seq 1 40); do ssh "${SSH_OPTS[@]}" -p "${b[1]}" "root@${b[0]}" true 2>/dev/null && break; sleep 15; done
+  wait_ssh "${b[0]}" "${b[1]}"
 
   # Session files, then the inputs, rehashed on B before anything uses them.
   SESSION=$sess on_b "mkdir -p /root/session /workspace/scan && chmod 700 /root/session"
@@ -218,11 +237,12 @@ cmd_up() {
     [ -n "$f" ] && rsync -e "ssh ${SSH_OPTS[*]} -p ${b[1]}" -a --chmod=F444 "$f" "root@${b[0]}:/workspace/scan/$(basename "$f")"
   done < "$inputs"
   SESSION=$sess on_b "cd /workspace/scan && sha256sum -c --quiet -" < "$sd/inputs.sha256" \
-    || { echo "inputs differ after the copy" >&2; cmd_down "$sess" --no-sync; exit 1; }
+    || die "inputs differ after the copy"
   SESSION=$sess on_b "chmod -R a-w /workspace/scan"
 
   # Bring-up on B, from the commit on GitHub (the script arms B's shutdown before anything else).
   start_b "$sess"
+  TEARDOWN_ON_EXIT=          # B's own deadline shutdown is armed; the session now runs until `down`
   echo
   echo "Session $sess up. Deadline $(date -u -d "@$deadline" +%FT%TZ). Estimated cost $cost USD."
   echo "Follow B:    ssh -p ${b[1]} root@${b[0]} tail -f /workspace/logs/onstart-cae.log"
@@ -262,9 +282,10 @@ cmd_qualify() {
   jq --arg id "$idb" --arg l "$lb" --arg o "$offer" --arg p "$dph" '.instances.cae = {id: ($id|tonumber), label: $l, offer: $o, dph: ($p|tonumber)}' \
     "$sd/manifest.json" > "$sd/m.tmp" && mv "$sd/m.tmp" "$sd/manifest.json"
   echo "qualify VM: instance $idb ($lb)"
-  wait_running "$idb" || { echo "VM not running after 20 min" >&2; cmd_down "$sess" --no-sync; exit 1; }
+  TEARDOWN_ON_EXIT=$sess     # any exit before the normal teardown below destroys the VM
+  wait_running "$idb" || die "VM not running after 20 min"
   read -r -a b <<< "$(ssh_target cae "$sess")"
-  for _ in $(seq 1 40); do ssh "${SSH_OPTS[@]}" -p "${b[1]}" "root@${b[0]}" true 2>/dev/null && break; sleep 15; done
+  wait_ssh "${b[0]}" "${b[1]}"
   SESSION=$sess on_b "mkdir -p /root/session && chmod 700 /root/session"
   rsync -e "ssh ${SSH_OPTS[*]} -p ${b[1]}" -a "$sd/session.env" "root@${b[0]}:/root/session/"
   [ -n "${RCLONE_CONF:-}" ] && rsync -e "ssh ${SSH_OPTS[*]} -p ${b[1]}" -a "$RCLONE_CONF" "root@${b[0]}:/root/session/rclone.conf"
@@ -276,6 +297,7 @@ cmd_qualify() {
     [ -n "$done_line" ] && break
     sleep 30
   done
+  TEARDOWN_ON_EXIT=
   cmd_down "$sess"     # syncs first, then destroys and checks the VM is gone
   [ -n "$done_line" ] || die "no QUALIFY_DONE before the deadline: read $LOCAL_WORK/$sess/logs/onstart-cae.log"
   read -r stamp rc <<< "$done_line"
