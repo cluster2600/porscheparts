@@ -1,0 +1,127 @@
+{
+  "status": "prepared_not_solved",
+  "scope": "stationary_delivery_duct_fixed_flow_free_discharge",
+  "preparer_revision": 2,
+  "geometry_revision": "installed-cooling-f1-r2c-20261118",
+  "reentrant_blend_mm": 12,
+  "alternator_subtraction_blend_mm": 12,
+  "fan_resolved": false,
+  "intercooler_resolved": false,
+  "engine_heat_transfer_resolved": false,
+  "physical_validation": false,
+  "flow_m3_s": 2.285161488875746,
+  "background_cell_mm": 5.0,
+  "background_cells": [
+    116,
+    106,
+    64
+  ],
+  "source_sha256": "da6fc366c28be1958f0179aa3c0425cd106a9b48d2a490e4a9d3dc78b52273b9",
+  "study": {
+    "path": "study-r2c.json",
+    "sha256": "908fa7bf2af93c77719daa1e8587d10b6d9b5526818748e1f96c215bad98c09c"
+  },
+  "native_surface_sha256": "16bebc4968817215d34ae85d96869db8ddfd60165bf1089e93dc552c447fd0f3",
+  "decimation": "none",
+  "triangles": 918684,
+  "surface_volume_mm3": 32001268.004603487,
+  "patch_triangles": {
+    "walls": 855476,
+    "inlet": 30526,
+    "left1": 5447,
+    "left2": 5447,
+    "left3": 5447,
+    "right1": 5447,
+    "right2": 5447,
+    "right3": 5447
+  },
+  "patch_area_mm2": {
+    "walls": 805850.6,
+    "inlet": 34248.1,
+    "left1": 6057.7,
+    "left2": 6057.7,
+    "left3": 6057.7,
+    "right1": 6057.7,
+    "right2": 6057.7,
+    "right3": 6057.7
+  },
+  "r1_label_rule_on_this_surface": {
+    "meaning": "what the rule of prepare_duct_cfd.py would have labelled, for comparison only",
+    "patch_area_mm2": {
+      "walls": 812943.1,
+      "inlet": 32229.0,
+      "left1": 5212.1,
+      "left2": 5212.1,
+      "left3": 5212.1,
+      "right1": 5212.1,
+      "right2": 5212.1,
+      "right3": 5212.1
+    },
+    "outlet_plane_area_labelled_wall_mm2": 1464.8
+  },
+  "explicit_feature_edges": {
+    "meaning": "the inlet and outlet rims only, where the port planes cut the constructive walls; closed polylines at the voxel pitch",
+    "constructive_model": {
+      "auditor_sha256": "5b27fd93b1415153619f8acdfe79d8e331b512cb6718f45dec0b6aa730ee991c",
+      "generator_sha256": "96ebe20a5b032e885231f81c6f41379295e6702043d637e32f16245928d131cf"
+    },
+    "edges": 2082,
+    "points": 2082,
+    "closed_loops": 8,
+    "rim_length_mm": {
+      "inlet_inner": 439.8,
+      "inlet_outer": 791.7,
+      "left1": 277.1,
+      "left2": 277.1,
+      "left3": 277.1,
+      "right1": 277.1,
+      "right2": 277.1,
+      "right3": 277.1
+    },
+    "surface_region_boundaries": {
+      "meaning": "edges of the surface between two regions: zigzags along the voxel chamfers, checked against the rims but not snapped to",
+      "edges": 2460,
+      "connected_boundaries": 8,
+      "boundary_length_mm": [
+        310.1,
+        310.1,
+        310.1,
+        310.1,
+        310.1,
+        310.1,
+        470.1,
+        843.4
+      ],
+      "edges_by_region_pair": {
+        "inlet/walls": 990,
+        "left1/walls": 245,
+        "left2/walls": 245,
+        "left3/walls": 245,
+        "right1/walls": 245,
+        "right2/walls": 245,
+        "right3/walls": 245
+      },
+      "distance_to_constructive_rims_mm": {
+        "mean": 0.94,
+        "max": 1.756
+      }
+    }
+  },
+  "files": {
+    "constant/triSurface/duct.stl": "eef276c84a655bb5398db75d4ea7eb6c3b6161d131312ca13edc14feb1e82245",
+    "constant/triSurface/duct-rims.eMesh": "59605697785747eee1241d4abf7b4e55f435771d1c515a18aaeede227d0f35d7",
+    "system/blockMeshDict": "215d80be419152014838efaed907b84949b09fd9d068a56ad4dde7960e636ea0",
+    "system/snappyHexMeshDict": "87290013c123f60d549281f7ed7b74f673c394e950bcea3b63e7acff8c3b3e49",
+    "system/controlDict": "5fb77290f687ff5fe92a62ee1c9c9d5fae30a8704a7ff67412165e3ea8301bae",
+    "system/fvSchemes": "1562a9a639c379d67fb8dc088e95cf402dc9b4c51722e7fe2164fad744a337c7",
+    "system/fvSolution": "af945c0ba675108c7b03e288c723aac1b50e546314ffd04416df6cc274fa1c2b",
+    "system/decomposeParDict": "a0a1fe93e553f9fb2cd191adf76610879b59546471beeec33a1ce2da8fa8fadf",
+    "constant/transportProperties": "9b0061b4ee4075d41819ab78d99daa626c0d936b8f77be8ac9bd5fb999464a34",
+    "constant/turbulenceProperties": "799f1a8d64f7f7ed3062acb01885e506ff37dadb83361882967d47de46c6880a",
+    "0/U": "c09a6a2654bcc941324f2375327cec1b8cc00a7c49b73deb75b4d4023d431fb3",
+    "0/p": "3b9769b657b48f040df5c0ab7b9abdd4a038f925c02f2196588204fcf3e449a2",
+    "0/k": "5896727ec2e3fb0b16c20b73aa6e0a2835256b90d64effc5f62d651eebba04a7",
+    "0/omega": "ab6e7b6d60dd09d7cb646497a1c4a68b1e57808f839fc35545d482a153c49c79",
+    "0/nut": "776521f03e462d3bb4a62fb19789bbc338501c01fc708e339ba879eb5d0c930e"
+  }
+}
