@@ -109,7 +109,7 @@ uncertain yield.
 The good news is that it **no longer has to be opened for the essentials**. The
 claim to test — "the leverage of a monocoque is architectural" — is relative,
 so it can be measured without any external denominator. That is done: see
-`docs/research/964-chassis-carbone-kevlar.md`. A German-language thread
+`docs/research/964-carbon-kevlar-chassis.md`. A German-language thread
 consulted the same day also points out that the manufacturers themselves
 publish only relative figures, for lack of a standardised protocol.
 

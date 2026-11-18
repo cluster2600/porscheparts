@@ -151,6 +151,22 @@ Renamed so far, each with a redirect stub at the old path:
 - 2026-11-12: `docs/pieces/` became `docs/parts/`, through the generator. Each
   page kept its file name; one stub, `docs/pieces/README.md`, redirects the
   directory.
+- 2026-11-17: two more `docs/993/` pages (turbo oil circuit, LPBF sourcing in
+  China) and four `docs/research/` pages (964 carbon/Kevlar chassis, carbon
+  panels, phase 2 CAD forums, phase 2 German braking research).
+
+Still French-named on 2026-11-17, with the reason:
+
+| path | why it keeps its name |
+|---|---|
+| `outils/` | frozen in place ([#425](https://github.com/cluster2600/porscheparts/issues/425)); run records pin its files by path and digest |
+| `catalog/sources/src-*.json` | the file name is the source identifier |
+| `docs/research/993-turbo-20261002/exports/fr/` | the French export, pinned by its publication manifest |
+| `parts/993-eng-carrier-0001/source/progress-figures-20261016/**` | figures pinned by their manifests and receipts |
+| `twins/964-chassis/derived/scan-recalage-20260925.json` | its digest is pinned in five run records, three of which also record its path |
+| `training/qwen-metal-additive-20261002/input/glossaire_7_langues.csv` | pinned by the training manifest |
+| `docs/reports/M64_*` with a French name (13 reports) | not pinned, but a report is cited by its name and two of them are cited by evidence files; undecided |
+| `docs/media/diagrams/964-*.svg`, `digital-twin-993-etat.*` | not pinned, but an image path cannot hold a Markdown redirect stub; undecided |
 
 Phase 4 exceptions (2026-11-06, issue #429). These stay French on purpose:
 

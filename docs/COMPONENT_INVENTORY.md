@@ -89,7 +89,7 @@ cross-check the dimensions of the Carrera front discs; ATE gives the associated
 Porsche part numbers, and Brembo also documents the rear disc. None of the
 retained manufacturer documents, however, publishes the net unit mass or a
 complete material grade. The details and the exit gate are recorded in
-[the German-language braking research](research/phase-2-freinage-allemand.md).
+[the German-language braking research](research/phase-2-german-braking.md).
 
 ## Acquisition queue
 

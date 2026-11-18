@@ -57,7 +57,7 @@ because of its failure mode. **Fire is the most common and most overlooked
 case**: a turbocharger oil line is neither a brake nor a steering component, but
 its failure drops oil onto a turbine housing far above the autoignition point.
 It is critical, and no refinement of the design takes it out of that class — see
-[`docs/993/993_CIRCUIT_HUILE_TURBO_202-16.md`](993/993_CIRCUIT_HUILE_TURBO_202-16.md).
+[`docs/993/993_TURBO_OIL_CIRCUIT_202-16.md`](993/993_TURBO_OIL_CIRCUIT_202-16.md).
 
 So the question to ask is not "which group does the part belong to", but
 **"what happens when it breaks"**.

@@ -464,7 +464,7 @@ membrane shear, so the criterion is `G/rho` and not `E/rho`, and a sandwich core
 changes nothing. The leverage of a monocoque is architectural, not material, and
 cannot be demonstrated on a floor pan alone.
 
-See `docs/research/964-chassis-carbone-kevlar.md`. This lead produces no
+See `docs/research/964-carbon-kevlar-chassis.md`. This lead produces no
 releasable geometry: a self-supporting structure carries occupant restraint and
 stays `prohibited_pending_engineering`.
 
