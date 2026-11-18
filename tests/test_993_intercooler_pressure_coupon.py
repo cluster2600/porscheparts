@@ -310,6 +310,20 @@ class FilletRadiusChoiceTests(unittest.TestCase):
         self.assertEqual(R.classify({**base,'P3':{'result':'not_met'}}),'unsettled');self.assertEqual(R.classify({**base,'M2':{'result':'not_evaluable'}}),'unsettled')
         self.assertEqual(R.classify({**base,'P2':{'result':'pass','every_scale_sourced':False}}),'unsettled')
 
+    def test_p3_counts_only_a_complete_on_route_measurement(self):
+        route=self.capability['route']
+        good={'source_id':'SRC-EOS-ALSI10MG-M290-30UM','alloy':'AlSi10Mg','process':'laser powder bed fusion','feature':'concave_radius',
+              'design_radius_mm':.4,'as_built_radius_mm':.37,'uncertainty_mm':.02}
+        self.assertEqual(R.p3_refusals(good,.4,route),[])
+        self.assertEqual(R.p3_refusals(good,.2,route),['designed above 0.2 mm'])
+        for change,reason in [({'source_id':'SRC-NOT-REGISTERED'},'no registered source record'),({'alloy':'Ti6Al4V'},'not AlSi10Mg by laser powder bed fusion'),
+                              ({'feature':'wall_thickness'},'not a concave radius'),({'as_built_radius_mm':None},'no as-built radius'),
+                              ({'uncertainty_mm':0},'no positive uncertainty'),({'design_radius_mm':'0.4'},'no design radius')]:
+            with self.subTest(change=change):
+                self.assertIn(reason,R.p3_refusals({**good,**change},.4,route))
+        bare=[{'design_radius_mm':.2}]
+        self.assertEqual([R.p3_refusals(m,.4,route) for m in bare],[['no registered source record','not AlSi10Mg by laser powder bed fusion','not a concave radius','no as-built radius','no positive uncertainty']])
+
     def test_every_process_figure_has_a_source_record_and_gaps_stay_null(self):
         c=self.capability;ids=set()
         for name,scale in c['scales'].items():

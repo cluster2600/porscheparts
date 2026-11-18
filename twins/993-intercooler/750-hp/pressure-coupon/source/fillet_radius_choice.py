@@ -55,6 +55,37 @@ def sagitta(radius):
     return (math.sqrt(2) - 1) * radius
 
 
+def positive(value):
+    return type(value) in (int, float) and math.isfinite(value) and value > 0
+
+
+def p3_refusals(entry, r, route):
+    """Why an as-built radius entry does not meet P3 for radius r; empty when it does.
+
+    P3 asks for an admitted source reporting, with its uncertainty, the as-built value of a
+    concave radius designed at or below r in LPBF AlSi10Mg. An entry counts only when each
+    of those is stated: a registered source, the route's alloy and process, the design and
+    as-built radii and a positive uncertainty."""
+    reasons = []
+    source_id = entry.get('source_id')
+    record = REPO / 'catalog/sources' / (str(source_id).lower() + '.json')
+    if not (isinstance(source_id, str) and record.is_file() and json.loads(record.read_text()).get('source_id') == source_id):
+        reasons.append('no registered source record')
+    if entry.get('alloy') != route['alloy'] or entry.get('process') != route['process']:
+        reasons.append(f"not {route['alloy']} by {route['process']}")
+    if entry.get('feature') != 'concave_radius':
+        reasons.append('not a concave radius')
+    if not positive(entry.get('design_radius_mm')):
+        reasons.append('no design radius')
+    elif entry['design_radius_mm'] > r:
+        reasons.append(f'designed above {r} mm')
+    if not positive(entry.get('as_built_radius_mm')):
+        reasons.append('no as-built radius')
+    if not positive(entry.get('uncertainty_mm')):
+        reasons.append('no positive uncertainty')
+    return reasons
+
+
 def upper_peak(summary):
     """S of the criterion: the larger Richardson extrapolation, each raised by its fine-grid GCI."""
     return max(summary[k]['extrapolated'] * (1 + summary[k]['gci_fine']) for k in ['root_nodal_richardson', 'integration_point_richardson'])
@@ -131,8 +162,10 @@ def evaluate():
         unsourced = [name for name in NOISE_SCALES if not scales[name]['on_route']]
         tests['P2'] = {'result': 'pass' if all(x['form_above_scale'] for x in on_route) else 'fail', 'form_mm': s, 'on_route': on_route, 'scales_not_sourced_on_route': unsourced,
                        'every_scale_sourced': not unsourced, 'indicative_not_deciding': [p2(name, row) for name in NOISE_SCALES for row in scales[name]['indicative']]}
-        measured = [m for m in capability['as_built_concave_radius_measurements'] if m.get('design_radius_mm', math.inf) <= r]
-        tests['P3'] = {'result': 'pass' if measured else 'not_met', 'measurements': measured}
+        entries = capability['as_built_concave_radius_measurements']
+        measured = [m for m in entries if not p3_refusals(m, r, capability['route'])]
+        refused = [{'entry': m, 'reasons': p3_refusals(m, r, capability['route'])} for m in entries if p3_refusals(m, r, capability['route'])]
+        tests['P3'] = {'result': 'pass' if measured else 'not_met', 'measurements': measured, 'not_counted': refused}
         layer = scales[LAYER_FOR_CONTEXT]['on_route'][0]['value']
         context = {'layers_across_the_radius': r / layer, 'form_over_laser_focus_diameter': s / capability['context_not_deciding']['laser_focus_diameter_mm']['value'],
                    'radius_over_rib_thickness': r / RIB_MM, 'radius_over_passage_half_height': r / HALF_HEIGHT_MM,

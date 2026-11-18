@@ -375,7 +375,12 @@ most (√2 − 1) r. That form must stand above the surface noise of the route.
   of what was known omits it; decision 0023 records this.
 - "Unsettled" means that 0.4 mm passes every test that can be evaluated, but
   two tests cannot be (no accuracy and no minimum detail are published for the
-  route) and no as-built radius has been measured.
+  route) and no as-built radius has been measured. A future entry in
+  `as_built_concave_radius_measurements` counts for P3 only when it names a
+  registered source and states AlSi10Mg by laser powder bed fusion, a concave
+  radius, its design radius at or below the candidate, the as-built radius and
+  a positive uncertainty. An entry missing any of these is listed under
+  `not_counted` in the report.
 - Figures from other machines are reported as indicative and never decide a
   test. On another make at 30 µm layers the published as-built Rz is 0.064 mm
   on average and 0.120 mm at its 95 % maximum: 0.2 mm sits between the two and
