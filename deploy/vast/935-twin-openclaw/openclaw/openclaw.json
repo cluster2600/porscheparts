@@ -39,7 +39,7 @@
         "scope": "agent",
         "workspaceAccess": "rw",
         "docker": {
-          "image": "porscheparts/cae-935:dev",
+          "image": "${CAE_IMAGE}",
           "containerPrefix": "twin935-sbx-",
           "workdir": "/workspace",
           "readOnlyRoot": true,
@@ -52,7 +52,7 @@
           "memorySwap": "32g",
           "cpus": 8,
           "gpus": "all",
-          "env": { "LANG": "C.UTF-8", "OMP_NUM_THREADS": "1", "HOME": "/workspace", "MPLBACKEND": "Agg" },
+          "env": { "LANG": "C.UTF-8", "OMP_NUM_THREADS": "1", "HOME": "/workspace", "MPLBACKEND": "Agg", "CAE_IMAGE": "${CAE_IMAGE}" },
           "binds": [
             "${TWIN_REPO}:/twin/repo:ro",
             "${TWIN_SCAN}:/twin/scan:ro",

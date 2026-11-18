@@ -5,7 +5,8 @@
 # three witnesses on both backends, Warp and Newton on the device, and an EGL render. Nothing more.
 set -euo pipefail
 HERE=$(cd "$(dirname "$0")" && pwd)
-OUT=/twin/work/receipts/smoke-cae-$(date -u +%Y%m%dT%H%M%SZ)
+# SMOKE_OUT is set by onstart-cae.sh, which writes the pulled image's digest (image.json) there first.
+OUT=${SMOKE_OUT:-/twin/work/receipts/smoke-cae-$(date -u +%Y%m%dT%H%M%SZ)}
 mkdir -p "$OUT"
 exec > >(tee "$OUT/smoke.log") 2>&1
 
@@ -93,4 +94,4 @@ print(json.dumps(receipt, indent=1))
 if not receipt["passed"]:
     raise SystemExit("smoke failed")
 PY
-echo "SMOKE PASSED: $OUT (read demo/run-cuda/render-*.png before admitting the image)"
+echo "SMOKE PASSED: $OUT (read every PNG under it before \`vast_deploy.sh admit\`)"
