@@ -377,8 +377,17 @@ class FilletRadiusChoiceTests(unittest.TestCase):
         for i in inputs.values():
             self.assertTrue(i['must_come_from']);self.assertIn('value',i)
             if i['value'] is not None:self.assertIn('status',i)
-        self.assertEqual(sorted(k for k,i in inputs.items() if i['blocking']),['IN-01','IN-02','IN-03','IN-04','IN-10'])
-        for key in ['IN-01','IN-02','IN-03','IN-04','IN-06','IN-07','IN-13','IN-14','IN-15']:self.assertIsNone(inputs[key]['value'])
+        # 2026-11-18: closure and fixture are declared design decisions; the fitting, its loads and the cold-side flow still block.
+        self.assertEqual(sorted(k for k,i in inputs.items() if i['blocking']),['IN-02','IN-04','IN-10'])
+        for key in ['IN-02','IN-06','IN-07','IN-13','IN-14','IN-15']:self.assertIsNone(inputs[key]['value'])
+        for key in ['IN-01','IN-03']:
+            self.assertTrue(inputs[key]['status'].startswith('declared design decision'));self.assertEqual(inputs[key]['depends_on'],['IN-02'])
+        self.assertTrue(inputs['IN-04']['status'].startswith('declared bench load'))
+        self.assertEqual(inputs['IN-04']['remaining_null'],['outlet_end_load_n','fitting_preload_n'])
+        for key in inputs['IN-04']['remaining_null']:self.assertIsNone(inputs['IN-04']['value'][key])
+        # Filling inputs changed nothing else: method, arms, rules and limits keep the digest they had on 2026-11-12.
+        rest={k:v for k,v in p.items() if k!='required_inputs'}
+        self.assertEqual(hashlib.sha256(json.dumps(rest,sort_keys=True,ensure_ascii=False).encode()).hexdigest(),'831203561ae882ee799cdecdcc3e232479cbd619ba964c9d875c70c05993af62')
         self.assertIsNone(inputs['IN-10']['value']['cold_kg_s']);self.assertEqual(inputs['IN-10']['value']['hot_kg_s'],M.hydraulic(4)['total_mass_flow_kg_s'])
         self.assertEqual(inputs['IN-05']['value']['numerical_proof_case_mpa'],M.PRESSURE);self.assertEqual(inputs['IN-11']['value'],{'elastic_modulus_mpa':M.E,'poisson_ratio':M.NU})
         pressure=json.loads((STUDY.parent/'hot-weather/assumptions.json').read_text())['pressure']
@@ -401,5 +410,95 @@ class FilletRadiusChoiceTests(unittest.TestCase):
         self.assertNotIn('**Proposed**',text)
         readme=(STUDY/'README.md').read_text();self.assertIn('accepted as a design assumption, not shown to be held by any machine',readme);self.assertIn('planned, not run',readme)
         self.assertEqual(self.plan['blocked_by'],'the null entries of required_inputs marked blocking')
+
+
+import os
+import re
+INPUTS=STUDY/'fillet-radius/3d-inputs.json'
+PROGRAM=STUDY/'source/picogk/Program.cs'
+DDK_BRIDGE=ROOT/'twins/964-chassis/ddk-interface-bridge-20261104/reviewed-leads.json'
+spec=importlib.util.spec_from_file_location('owner_data_screen',STUDY/'source/owner_data_screen.py');S=importlib.util.module_from_spec(spec);spec.loader.exec_module(S)
+
+
+def walk(value):
+    if isinstance(value,dict):
+        for k,v in value.items():yield k,v;yield from walk(v)
+    elif isinstance(value,list):
+        for v in value:yield from walk(v)
+
+
+class ThreeDInputsTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.d=json.loads(INPUTS.read_text());cls.plan=json.loads(PLAN.read_text())
+
+    def test_every_cited_source_record_is_registered(self):
+        ids={i for k,v in walk([self.d,self.plan['required_inputs']]) if k=='source_ids' for i in v}
+        self.assertIn('SRC-AUTOATLANTA-993-TURBO-60MM-HOSE-CLAMP',ids);self.assertLessEqual(ids,set(self.d['source_ids']))
+        for source_id in ids:
+            record=json.loads((ROOT/'catalog/sources'/(source_id.lower()+'.json')).read_text());self.assertEqual(record['source_id'],source_id)
+        for path in [v for k,v in walk(self.d) if k=='repository_file']:self.assertTrue((ROOT/path).exists(),path)
+        for i in ['IN-01','IN-02','IN-03','IN-04','IN-10']:
+            entry=next(x for x in self.plan['required_inputs'] if x['id']==i)
+            self.assertIn('3d-inputs.json',json.dumps(entry));self.assertEqual(entry['blocking'],self.d['inputs'][i]['blocking'])
+
+    def test_declared_numbers_trace_to_the_retained_coupon(self):
+        text=PROGRAM.read_text()
+        lo,hi={},{}
+        for name in ['envelope','hot','coldBox']:
+            m=re.search(r'Voxels '+name+r'=Box\(new\(([^)]*)\),new\(([^)]*)\)\)',text);lo[name],hi[name]=[[float(v.rstrip('f')) for v in g.split(',')] for g in m.groups()]
+        c=self.d['inputs']['IN-01']['decision']
+        self.assertEqual(c['C3_plenum']['inner_section_mm'],[round(hi['hot'][1]-lo['hot'][1],6),round(hi['hot'][2]-lo['hot'][2],6)])
+        self.assertAlmostEqual(c['C1_topology']['port_axis_z_mm'],(lo['hot'][2]+hi['hot'][2])/2);self.assertEqual(c['C1_topology']['port_axis_y_mm'],0)
+        self.assertEqual(c['C2_ribbed_length']['length_mm'],hi['envelope'][0]-lo['envelope'][0])
+        self.assertAlmostEqual(c['C5_walls']['wall_mm'],lo['hot'][2]);self.assertAlmostEqual(c['C6_rib_ends']['nose_radius_mm'],.8/2)
+        self.assertIn('Box(new(-13,y-.4f,.6f),new(13,y+.4f,4f))',text)  # the 0.8 mm rib whose half-thickness is the nose radius
+        process=json.loads((ROOT/'catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json').read_text())['process_reference']
+        self.assertEqual(c['C5_walls']['wall_mm'],2*process['minimum_wall_thickness_mm'])
+        m=self.d['inputs']['IN-10']['method_when_sourced']
+        self.assertAlmostEqual(m['A_open_coupon_mm2'],(hi['coldBox'][0]-lo['coldBox'][0])*(hi['coldBox'][2]-lo['coldBox'][2]))
+        self.assertFalse(m['applied']);self.assertEqual(m['inputs_needed'],{'m_cold_core_kg_s':None,'A_open_core_mm2':None})
+        # Every rule states its basis; a design choice also says that it is one.
+        declared=0
+        for key in ['IN-01','IN-03','IN-04']:
+            for name,rule in self.d['inputs'][key]['decision'].items():
+                self.assertTrue(rule['rule'],name)
+                if name!='L7_reactions':self.assertTrue(rule.get('basis'),name)
+                declared+=bool(rule.get('declared'))
+        self.assertEqual(declared,12)
+
+    def test_self_weight_bound_and_end_load_rule(self):
+        l6=self.d['inputs']['IN-04']['decision']['L6_self_weight'];reference=M.PRESSURE*M.hydraulic(4)['open_area_mm2']
+        self.assertAlmostEqual(reference,21.6,places=9)
+        weight=24*24*11.4e-9*json.loads((STUDY.parent/'requirements.json').read_text())['assumed']['metal_density_kg_m3']*9.80665
+        self.assertAlmostEqual(l6['retained_body_bound_n'],weight,places=4);self.assertLess(weight/reference,l6['threshold_fraction'])
+        self.assertAlmostEqual(weight/reference,.0080,places=4)
+        l=self.d['inputs']['IN-04']['decision'];self.assertIsNone(l['L2_outlet_end_load']['value_n']);self.assertIsNone(l['L3_fitting_preload']['value_n'])
+        self.assertEqual((l['L4_pipe_bending_and_transverse_force']['moment_n_m'],l['L4_pipe_bending_and_transverse_force']['force_n']),(0.,0.))
+        self.assertEqual(self.d['inputs']['IN-04']['remaining_null'],['L2_outlet_end_load','L3_fitting_preload'])
+
+    def test_unsupplied_inputs_stay_null(self):
+        i=self.d['inputs'];self.assertIsNone(i['IN-02']['value']);self.assertIsNone(i['IN-10']['cold_kg_s'])
+        for key in ['IN-02','IN-04','IN-10']:self.assertTrue(i[key]['blocking'])
+        for key in ['IN-01','IN-03']:self.assertFalse(i[key]['blocking'])
+        for key in ['drawing_made','solver_run','pressure_qualified','manufacturing_authorized','physical_test_authorized']:self.assertFalse(self.d[key])
+
+    def test_screen_keeps_ids_and_bases_only(self):
+        screen=self.d['screen'];ddk=screen['computed']['ddk_forum_measurements']
+        # Same DDK file as the 964 interface bridge.
+        self.assertEqual(ddk['sha256'],json.loads(DDK_BRIDGE.read_text())['dataset']['sha256']);self.assertEqual(ddk['records'],5916)
+        for key,value in ddk.items():
+            if isinstance(value,list):
+                for row in value:self.assertEqual(set(row),{'id','basis'});self.assertTrue(row['id'].startswith('ddk-'))
+        self.assertEqual(screen['review']['ddk_forum_measurements']['relevant_records'],[])
+        keys={k for k,_ in walk(self.d)}
+        for forbidden in ['author','topicTitle','post','postedOn','context','asStated']:self.assertNotIn(forbidden,keys)
+        self.assertTrue(screen['data']['read_only']);self.assertFalse(screen['data']['modified'])
+        source=(STUDY/'source/owner_data_screen.py').read_text()
+        for word in ['write_text','urllib','requests','subprocess']:self.assertNotIn(word,source)
+
+    @unittest.skipUnless(os.environ.get('PORSCHEFANATICS_DATA'),'set PORSCHEFANATICS_DATA to a local PorscheFanatics checkout to recompute the screen')
+    def test_screen_reproduces_from_the_data(self):
+        self.assertEqual(S.run(Path(os.environ['PORSCHEFANATICS_DATA']).expanduser()),self.d['screen']['computed'])
 
 if __name__=='__main__':unittest.main()

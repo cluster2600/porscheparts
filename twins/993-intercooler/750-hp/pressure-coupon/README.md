@@ -397,23 +397,129 @@ the matched arms (0.4 mm, a sharp reference for heat transfer only, and an
 as-built sensitivity arm), the verification cases, the mesh-convergence rule,
 the pressure, mass and heat balances, the acceptance and stop rules and the
 compute limits. It also lists every input the study needs and where each must
-come from. These are still `null`:
+come from. On 2026-11-12 the first five below were `null` and blocking; the
+next section says what the owner's data supplied on 2026-11-18:
 
-| Input | Blocks the study |
-|---|---|
-| End closure or header of the coupon | yes |
-| Fitting geometry, from a named standard or drawing | yes |
-| Support and fixture conditions | yes |
-| Loads carried by the fittings | yes |
-| Cold-side mass flow of the coupon | yes |
-| Proof and burst factors; pressure-cycle spectrum | no: reported at the assumed pressure only |
-| Hot yield, allowable and notch fatigue of the as-built root | no: no strength is stated |
-| As-built wall roughness of the route | no: smooth walls, declared |
-| As-built root radius and its scatter | no: the sensitivity arm stays empty |
+| Input | State on 2026-11-18 | Blocks the study |
+|---|---|---|
+| End closure or header of the coupon | declared design decision | no; its port seat waits for the fitting |
+| Fitting geometry, from a named standard or drawing | `null`: not in the data | yes |
+| Support and fixture conditions | declared bench fixture | no; its seat face waits for the fitting |
+| Loads carried by the fittings | declared bench load, partial: outlet end load and preload `null` | yes |
+| Cold-side mass flow of the coupon | `null`: not in the data, and the core is not fixed | yes |
+| Proof and burst factors; pressure-cycle spectrum | `null` | no: reported at the assumed pressure only |
+| Hot yield, allowable and notch fatigue of the as-built root | `null` | no: no strength is stated |
+| As-built wall roughness of the route | `null` | no: smooth walls, declared |
+| As-built root radius and its scatter | `null` | no: the sensitivity arm stays empty |
 
 The gyroid-header question, build orientation and overhang, depowdering,
 sealing and hot material are kept in the plan as separate open gates. The 3D
 study addresses none of them.
+
+## Inputs of the 3D study from the owner's data
+
+*Added 2026-11-18.* The owner asked for the blocking inputs to be researched in
+the DDK and PorscheFanatics files already held. Only the input entries of the
+[plan](fillet-radius/3d-study-plan.json) changed; its method, arms and rules did
+not, and the study was not run. The declarations, the search record and the
+reason for every number are in [3d-inputs.json](fillet-radius/3d-inputs.json).
+
+**What was searched.** A local checkout of the PorscheFanatics repository
+(commit `5131d955`), read only:
+
+- the DDK forum index (`data/forum-measurements.json`, 5,916 records, the same
+  file as the 964 interface bridge): charge-air, hose, clamp, fitting-standard
+  and flow-unit screens, plus every flow, temperature and pressure record and
+  every record tagged 993;
+- the PET transcription of plates 107-20 and 107-45, the 13 files of the parts
+  catalogue, the 993 repair-manual data, the 930 manual text, the build,
+  literature, tune-up and magazine files;
+- by hand, the 993 Turbo fan project page, `docs/`, `research-output/` and
+  `marketplace/`.
+
+[owner_data_screen.py](source/owner_data_screen.py) recomputes the screen from
+that checkout and compares it with the committed one. It prints counts, record
+ids, bases, part numbers and hashes only.
+
+**What the data hold.** No DDK record is about a 993 Turbo or GT2 charge-air
+cooler, its hoses, clamps or fittings, a boost pressure, a charge-air
+temperature or a cooling-air flow; none is used. The four records that mention
+boost are about 930, 934 and 935 engines, and the hose records on 964 and 993
+cars are heater hoses of the exhaust heat exchangers. What the data do hold
+about the car's charge-air joint is identity, not geometry: on plate 107-45 the
+cooler is joined by a pressure hose on each side, held by clamps of 60-80/12
+and 40-60/9 mm, and is carried on rubber mountings, sleeves and brackets. One
+listing, now registered as `SRC-AUTOATLANTA-993-TURBO-60MM-HOSE-CLAMP`, names
+a 60 mm clamp and carries the number 999 512 647 02 in its image. The hoses
+and connections are 43 to 68 mm across in two aftermarket sources. Nothing
+gives a clamp type, a torque, a bead profile, a fitting standard or a
+cooling-air flow.
+
+| Input | Outcome | Basis |
+|---|---|---|
+| IN-01 end closure | declared | the car's principle on the retained section; no vehicle dimension |
+| IN-02 fitting | `null` | no named standard or port drawing in any of the data |
+| IN-03 bench fixture | declared | statically determinate bench support; vehicle mounts not used |
+| IN-04 fitting loads | declared, partial | no measurement exists; two terms need the fitting |
+| IN-10 cold-side flow | `null` | no vehicle-level cooling-air flow; core not fixed |
+
+**IN-01, end closure (declared).** At each end of the 24 mm ribbed length a
+plenum joins the five hot channels and ends in one round port on the passage
+axis, inlet at −X and outlet at +X: like the car's cooler, which is joined by
+round clamped hoses rather than a connection per passage. The car's 43 to 68 mm
+connections cannot sit on a coupon 24 mm wide, so only that principle is taken.
+
+- The plenum has the full 22.4 × 3 mm hot section, so no channel is masked, and
+  a declared depth of 3 mm: the passage height, and the at-least-3 mm
+  powder-removal opening of the Materialise guideline. How the flow splits
+  between the channels is left to the conjugate analysis, which reports it.
+- Between the plenum and the port seat, the walls make at most 45° with the
+  axis, the overhang figure the plan already cites. No orientation is chosen.
+- All closure walls are 0.8 mm, the retained wall and twice the route's
+  0.4 mm minimum.
+- Each rib ends in a semicircular nose of radius 0.4 mm, half its thickness,
+  so the root fillet runs round the end without a three-fillet corner.
+- Every concave edge of the closure takes the arm's root radius (0.4 mm in arm
+  A, sharp in arm S), as the matching rule and the input audit require.
+- The cold lattice is untouched: the plenums lie beyond the ends of its walls.
+- The port seat itself (bore, wall, thread or bead) belongs to IN-02.
+
+**IN-03, bench fixture (declared).** The inlet port seat, fixed in all six
+degrees of freedom on a rigid bench manifold, is the only support. The outlet
+goes to a slack hose and the body is touched by nothing, not even the cold-air
+duct. The support is statically determinate, so the reactions follow from the
+loads and the plan's pressure balance applies directly. The free outlet lets
+the coupon expand, which settles the question the plan left open for analysis
+M-T: thermal stress then comes from the coupon's own temperatures, not from a
+restraint that no real fixture would reproduce. It follows the car's rubber
+mountings and hose connections without using their unmeasured geometry. No
+stress is quoted on the seat face or within one seat bore of it, where the
+idealised support itself makes a singular stress, so the port-to-plenum
+junction must lie at least one seat bore from the seat.
+
+**IN-04, loads at the fittings (declared bench load, partial).** No measurement
+exists, so the load is declared for the bench. The assumed pressure acts on
+every wetted face up to the seal planes, as already set in analysis M-P. The
+slack outlet hose carries the closed-end thrust p·πd²/4 at the outlet seal,
+whose diameter d comes from IN-02. There is no bending or transverse force from
+a pipe and no vibration, since the case is static. Self-weight is neglected
+while it stays below 1 % of the pressure load on the open four-rib section
+(0.375 MPa × 57.6 mm² = 21.6 N); the retained body, counted as solid, weighs at
+most 0.173 N (0.80 %). The end thrust and the clamp or thread preload stay
+`null` until the fitting is known, so this input still blocks.
+
+**IN-10, cold-side flow (`null`).** No vehicle-level cooling-air flow through
+the charge cooler exists in the data. The airflow on the PorscheFanatics fan
+page is this repository's own inferred engine-fan figure, and the 2.5 kg/s of
+the sizing is an imposed assumption; neither is admissible. The plan now
+records the method that will give the coupon's share once a measured core flow
+and a fixed core exist: the core flow scaled by the coupon's open cold face,
+22.4 × 6 mm, over the core's, assuming uniform face flux and the same cold
+lattice. It is not applied.
+
+Still open for the owner: the choice of a published port or fitting standard
+(IN-02, which also completes IN-01, IN-03 and IN-04), and the core and its
+measured cooling-air flow (IN-10). Until both exist, the 3D study stays blocked.
 
 ## Reproduction and next steps
 
@@ -439,6 +545,7 @@ flock /tmp/porscheparts-heavy.lock docker run --rm --network none --cpus 4 --mem
   python3 -B /repo/twins/993-intercooler/750-hp/pressure-coupon/source/fillet_geometry_review.py --native /native --output /out/new-fillet-geometry
 python3 twins/993-intercooler/750-hp/pressure-coupon/source/fillet_radius_choice.py --output work/new-fillet-radius-choice
 python3 twins/993-intercooler/750-hp/pressure-coupon/source/fillet_radius_choice.py --check
+python3 twins/993-intercooler/750-hp/pressure-coupon/source/owner_data_screen.py --data ~/porschefanatics.com --check
 python3 -m unittest discover -s tests -p test_993_intercooler_pressure_coupon.py -v
 ```
 
@@ -456,13 +563,19 @@ native runtime in `~/picogk/native` and is not reproducible on the Mac SDK as is
 The radius choice needs no container: it reads the retained reports and runs in
 under a second on the standard library.
 
+The owner-data screen needs a local PorscheFanatics checkout, which it only
+reads; it runs in about 20 seconds on the standard library.
+
 Next steps, in order:
 
 1. Done on 2026-11-18: the owner accepted
    [decision 0023](../../../../docs/decisions/0023-intercooler-rib-root-fillet-0-4-mm.md)
    as written (0.4 mm as an assumption; 0.2 mm is not kept as a second arm).
-2. The five blocking inputs of the 3D plan are supplied from a design decision
-   or a registered source. None is filled with a plausible value.
+2. Partly done on 2026-11-18: the end closure and the bench fixture are
+   declared design decisions, and the fitting loads a partial declared bench
+   load. The fitting standard and the cold-side flow are not in the owner's
+   data and stay `null`; they wait for the owner. None is filled with a
+   plausible value.
 3. The 3D mechanical and conjugate comparison is run under the plan. Whether
    the process holds the radius stays open until an outside contributor sends
    in a measured section of a printed coupon; the plan words that request.
