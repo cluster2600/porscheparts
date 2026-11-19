@@ -1,0 +1,62 @@
+{
+  "schema": "k33-scan-twin-media/1",
+  "kind": "rendering of a private study twin; pixels only, no geometry file is published",
+  "subject": "a turbocharger in the owner's possession, named K33 BorgWarner by the owner and in the scan file name; no vehicle application is claimed",
+  "scan": {
+    "sha256": "6b6a16846bf1028269c4e808159896fa66994eb1c1de0fcd78fb7bd73907a1c1",
+    "instrument": "Einstar Vega, operated by the owner",
+    "faces": 6414363,
+    "edge_length_mm": {"p05": 0.250, "median": 0.299, "p95": 0.425},
+    "accuracy": "not measured: 0.25 mm is the scanner's point spacing, not its accuracy, and no reference length was scanned",
+    "licence": "the owner's own scan of a part in the owner's possession",
+    "published": false,
+    "why_not_published": "AGENTS.md: raw scans are never committed"
+  },
+  "model": {
+    "what": "study twin rebuilt from the scan: a revolved centre housing, two scrolls and two ducts lofted from superellipse sections fitted to the scan, the turbine inlet flange and outlet boss; union by manifold3d",
+    "part_stl_sha256": "6778260bc04f838bc7003c1c104513b4ef53abec1135b96c541b15deace0243b",
+    "watertight": true,
+    "volume_mm3": 3023441,
+    "not_modelled": "bolts, clamp plates, oil fittings, the wheels (their hub noses are kept), both scroll tongues, passages beyond the scanned depth",
+    "published": false
+  },
+  "deviation": {
+    "method": "1.5 million area-weighted samples on the scan; unsigned distance to the model surface (libigl), sign from the model's winding number; a sample is exterior when the scan's winding number 1 mm out along its normal is below 0.25",
+    "deviation_record_sha256": "b011a27037e229e1e23525238b6cbfae327ea27946d4d8666667570db47f803b",
+    "deviation_script_sha256": "aa33a17a47e19d8162781e9f102b2c07d6a1c18b1525636b6935b091469f1c24",
+    "exterior_share_of_scan_area": 0.960,
+    "exterior_within_mm": {"0.5": 0.426, "1": 0.590, "2": 0.739},
+    "exterior_median_mm": 0.687,
+    "exterior_within_1_mm_by_region": {
+      "compressor_housing": 0.709,
+      "turbine_duct_and_flange": 0.681,
+      "compressor_duct": 0.672,
+      "turbine_housing": 0.465,
+      "centre_housing": 0.335
+    },
+    "known_causes": "the centre housing sits 1 to 2 mm off the fitted shaft axis, so a revolve about that axis cannot follow it; the turbine scroll sections overfill its flanks; unmodelled features read as red"
+  },
+  "figure": {
+    "script_sha256": "390cef9e14b0236b5b0ecfba1cdffe4f6018d6c18e507fd2f57e790bb0574182",
+    "renderer": "pyrender on Mesa llvmpipe (software)",
+    "view_azimuth_elevation_deg": [-60, 25],
+    "view_choice": "one camera for all three panels; this side avoids the cast markings on the turbine housing underside",
+    "scan_display": "400,000-face decimation of the scan",
+    "colours": {
+      "left panel grey": "the scan",
+      "middle panel pale blue": "the study model",
+      "right panel grey": "scan within 0.5 mm of the model",
+      "right panel blue": "model proud of the scan (too big), scale clamped at 2 mm",
+      "right panel red": "model short of the scan (too small) or a feature left out, scale clamped at 2 mm"
+    }
+  },
+  "claims_not_made": "not dimensionally inspected, not fitted, not a print file, not a released part",
+  "publication_terms": "published by the owner's decision of 2026-11-19",
+  "images": [
+    {
+      "path": "scan-model-deviation.png",
+      "sha256": "3b8da928e1f314d1881b015f18fd15320295aeb2adb27a7cc630d8c7dca1356f",
+      "bytes": 344166
+    }
+  ]
+}
