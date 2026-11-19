@@ -32,6 +32,14 @@ It is withdrawn as the current reconstruction baseline.
 
 [How the build screen works, and what it does not say](twins/935-cylinder-head-cad-twin/README.md#build-screen-the-print-body-grown-lump-by-lump-in-calculix-case-witnesses-record) · [The CAD twin of the scanned head](twins/935-cylinder-head-cad-twin/README.md)
 
+**K33 turbocharger: from a 3D scan to a study model, and how far apart they are**
+
+<img src="docs/media/k33-scan-twin-20261119/scan-model-deviation.png" alt="Three views of a K33 turbocharger from the same angle: the owner's 3D scan in grey, the study model rebuilt from it in pale blue, and the scan coloured by its distance from the model" width="800">
+
+<sub><i>Left, the owner's 3D scan of a K33 turbocharger. Middle, a study model rebuilt from it: a revolved centre housing, and scrolls and ducts lofted from sections fitted to the scan. Right, the scan coloured by its distance from the model: grey within 0.5 mm, blue where the model is too big, red where it is too small or leaves a feature out. Over the outside of the part, 59 % of the scanned surface lies within 1 mm of the model and 43 % within 0.5 mm. The compressor housing fits best (71 % within 1 mm) and the centre housing worst (34 %), because it sits 1 to 2 mm off the shaft axis the model revolves it about. Bolts, fittings and the wheels are not modelled. This is a study model, not a print file and not an inspected part: the scanner's 0.25 mm is its point spacing, not its accuracy. The scan and the model files stay private.</i></sub>
+
+[What the figure records: inputs, method and fingerprints](docs/media/k33-scan-twin-20261119/provenance.json)
+
 # porscheparts
 
 **Studying and redesigning parts of the Porsche 911 (964 and 993 generations) on a computer,
