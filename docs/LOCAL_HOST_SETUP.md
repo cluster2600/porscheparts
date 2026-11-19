@@ -179,6 +179,15 @@ revalidates the original pinned packages before both `test_carrier_root*.py`
 tests run. Both tests pass locally with this combination; they distinguish
 tangent from sharp joins and inspect a known cylinder's CAD/mesh section.
 
+`carrier-cad` and `carrier-pyslm` are the only jobs on hosted macOS arm64
+runners, and since 2026-11-18 GitHub sometimes never assigns one: the job is
+cancelled after 15 to 20 minutes with no runner and no step, whatever its
+`timeout-minutes` (#733). `.github/workflows/retry-unacquired.yml` re-runs the
+failed jobs of such a run, at most twice, when
+`scripts/ci_retry_unacquired.py` finds that every failed job was never
+acquired. A job that ran and failed is never re-run automatically. Before
+calling a run red by hand, check whether its failed job has a runner and steps.
+
 CI's `warp-cpu` job reuses the Linux AMD64 hash-pinned Warp 1.18.0 requirements
 from `containers/warp-geometry.requirements.txt`. It runs the pilot's independent
 tests on native Linux, including actual CPU dispatch against an analytic box
