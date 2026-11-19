@@ -1,0 +1,1814 @@
+{
+  "schema": "935-cad-twin-feature-refits/1",
+  "issue": "#696",
+  "scan_sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+  "units": "mm (owner-confirmed 1 OBJ unit = 1 mm; no physical calibration)",
+  "declaration_sha256": "77a0c04158ad8c159b23fbaba1a46be35808dc4781258b3414e62b27f2901b9d",
+  "first_fits_sha256": "aac00fc56eb66834bde8b1aa09ef99db24181b7380a3d17eed8e362cabab7ac8",
+  "first_check_sha256": "15ee3af5f378bd3c8a3b5676d803f5d71b1bb1a882a0f722592515891dfda04d",
+  "rois_sha256": "8a59cb584debb9d784c35fdb8097fb077d6b878e87805a4504a5c122da5ae166",
+  "split": "each window's vertices are split in two by a hash of the vertex index; one half is fitted, the other is measured by check_features.py",
+  "claims": "re-fitted numbers on acquired scan vertices of the fitted half, under the declared rule; no dimension of the specimen is established",
+  "rejected_by_guard": [
+    "valve_y_minus_seat",
+    "valve_y_plus_guide_bore_cam_end",
+    "valve_y_plus_guide_boss_port",
+    "stud_x_minus_y_plus_counterbore",
+    "deck_register_recess"
+  ],
+  "regions": [
+    {
+      "id": "valve_y_minus_guide_bore",
+      "group": "valve_y_minus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 2484,
+      "fitted_vertices": 1226,
+      "held_out_vertices": 1258,
+      "first_fit_share_on_fitted_half": 0.8455,
+      "fit": {
+        "type": "cylinder",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -4.4211,
+          -39.184,
+          56.9785
+        ],
+        "axis_direction": [
+          -0.010124,
+          -0.436211,
+          0.899788
+        ],
+        "diameter_mm": 8.5569,
+        "radius_sigma_mm": 0.00872,
+        "rms_mm": 0.1525,
+        "station_range_mm": [
+          -19.031,
+          29.739
+        ],
+        "points": 1146,
+        "fit_points": 1139
+      },
+      "refit_attempt": {
+        "type": "cylinder",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -4.4211,
+          -39.184,
+          56.9785
+        ],
+        "axis_direction": [
+          -0.010124,
+          -0.436211,
+          0.899788
+        ],
+        "diameter_mm": 8.5569,
+        "radius_sigma_mm": 0.00872,
+        "rms_mm": 0.1525,
+        "station_range_mm": [
+          -19.031,
+          29.739
+        ],
+        "points": 1146,
+        "fit_points": 1139
+      },
+      "change_from_first_fit": {
+        "axis_deg": 0.0693,
+        "half_angle_deg": 0.0,
+        "diameter_mm": 0.0488
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.8403,
+        "vertices_near": 1146,
+        "share_with_a_richer_surface": 0.8447
+      }
+    },
+    {
+      "id": "valve_y_minus_guide_bore_port_end",
+      "group": "valve_y_minus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 1381,
+      "fitted_vertices": 677,
+      "held_out_vertices": 704,
+      "first_fit_share_on_fitted_half": 0.9201,
+      "fit": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -4.2405,
+          -32.4964,
+          43.2998
+        ],
+        "axis_direction": [
+          0.002661,
+          -0.394788,
+          0.918768
+        ],
+        "diameter_mm": 8.6424,
+        "radius_sigma_mm": 0.01428,
+        "rms_mm": 0.1152,
+        "station_range_mm": [
+          -3.974,
+          7.737
+        ],
+        "points": 667,
+        "fit_points": 663,
+        "half_angle_deg": 1.829
+      },
+      "refit_attempt": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -4.2405,
+          -32.4964,
+          43.2998
+        ],
+        "axis_direction": [
+          0.002661,
+          -0.394788,
+          0.918768
+        ],
+        "diameter_mm": 8.6424,
+        "radius_sigma_mm": 0.01428,
+        "rms_mm": 0.1152,
+        "station_range_mm": [
+          -3.974,
+          7.737
+        ],
+        "points": 667,
+        "fit_points": 663,
+        "half_angle_deg": 1.829
+      },
+      "change_from_first_fit": {
+        "axis_deg": 0.5658,
+        "half_angle_deg": -0.7836,
+        "diameter_mm": -0.0158
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.931,
+        "vertices_near": 667,
+        "share_with_a_richer_surface": 0.943
+      }
+    },
+    {
+      "id": "valve_y_minus_guide_bore_cam_end",
+      "group": "valve_y_minus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 1098,
+      "fitted_vertices": 548,
+      "held_out_vertices": 550,
+      "first_fit_share_on_fitted_half": 0.7646,
+      "fit": {
+        "type": "cylinder",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -4.6277,
+          -50.3734,
+          79.9155
+        ],
+        "axis_direction": [
+          -0.008428,
+          0.414784,
+          -0.909881
+        ],
+        "diameter_mm": 8.7249,
+        "radius_sigma_mm": 0.01733,
+        "rms_mm": 0.1695,
+        "station_range_mm": [
+          -4.457,
+          5.576
+        ],
+        "points": 487,
+        "fit_points": 480
+      },
+      "refit_attempt": {
+        "type": "cylinder",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -4.6277,
+          -50.3734,
+          79.9155
+        ],
+        "axis_direction": [
+          -0.008428,
+          0.414784,
+          -0.909881
+        ],
+        "diameter_mm": 8.7249,
+        "radius_sigma_mm": 0.01733,
+        "rms_mm": 0.1695,
+        "station_range_mm": [
+          -4.457,
+          5.576
+        ],
+        "points": 487,
+        "fit_points": 480
+      },
+      "change_from_first_fit": {
+        "axis_deg": 1.0071,
+        "half_angle_deg": 0.0,
+        "diameter_mm": 0.1184
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.7906,
+        "vertices_near": 487,
+        "share_with_a_richer_surface": 0.8008
+      }
+    },
+    {
+      "id": "valve_y_minus_guide_od_cam",
+      "group": "valve_y_minus",
+      "kind": "boss",
+      "window_trim_mm": 1.0,
+      "window_vertices": 2221,
+      "fitted_vertices": 1103,
+      "held_out_vertices": 1118,
+      "first_fit_share_on_fitted_half": 0.79,
+      "fit": {
+        "type": "cylinder",
+        "side": "convex",
+        "determined": true,
+        "axis_point": [
+          -4.6548,
+          -50.2705,
+          79.4426
+        ],
+        "axis_direction": [
+          -0.003966,
+          -0.43128,
+          0.902209
+        ],
+        "diameter_mm": 13.0725,
+        "radius_sigma_mm": 0.00848,
+        "rms_mm": 0.1685,
+        "station_range_mm": [
+          -4.63,
+          3.951
+        ],
+        "points": 1099,
+        "fit_points": 1005
+      },
+      "refit_attempt": {
+        "type": "cylinder",
+        "side": "convex",
+        "determined": true,
+        "axis_point": [
+          -4.6548,
+          -50.2705,
+          79.4426
+        ],
+        "axis_direction": [
+          -0.003966,
+          -0.43128,
+          0.902209
+        ],
+        "diameter_mm": 13.0725,
+        "radius_sigma_mm": 0.00848,
+        "rms_mm": 0.1685,
+        "station_range_mm": [
+          -4.63,
+          3.951
+        ],
+        "points": 1099,
+        "fit_points": 1005
+      },
+      "change_from_first_fit": {
+        "axis_deg": 0.9358,
+        "half_angle_deg": 0.0,
+        "diameter_mm": 0.1875
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.7743,
+        "vertices_near": 1099,
+        "share_with_a_richer_surface": 0.9072
+      }
+    },
+    {
+      "id": "valve_y_minus_guide_od_port",
+      "group": "valve_y_minus",
+      "kind": "boss",
+      "window_trim_mm": 1.0,
+      "window_vertices": 1274,
+      "fitted_vertices": 650,
+      "held_out_vertices": 624,
+      "first_fit_share_on_fitted_half": 0.7611,
+      "fit": {
+        "type": "cone",
+        "side": "convex",
+        "determined": true,
+        "axis_point": [
+          -4.2,
+          -32.2397,
+          42.6904
+        ],
+        "axis_direction": [
+          0.026334,
+          -0.39849,
+          0.916795
+        ],
+        "diameter_mm": 11.9915,
+        "radius_sigma_mm": 0.00906,
+        "rms_mm": 0.1879,
+        "station_range_mm": [
+          -2.895,
+          4.457
+        ],
+        "points": 573,
+        "fit_points": 473,
+        "half_angle_deg": 7.2147
+      },
+      "refit_attempt": {
+        "type": "cone",
+        "side": "convex",
+        "determined": true,
+        "axis_point": [
+          -4.2,
+          -32.2397,
+          42.6904
+        ],
+        "axis_direction": [
+          0.026334,
+          -0.39849,
+          0.916795
+        ],
+        "diameter_mm": 11.9915,
+        "radius_sigma_mm": 0.00906,
+        "rms_mm": 0.1879,
+        "station_range_mm": [
+          -2.895,
+          4.457
+        ],
+        "points": 573,
+        "fit_points": 473,
+        "half_angle_deg": 7.2147
+      },
+      "change_from_first_fit": {
+        "axis_deg": 1.8785,
+        "half_angle_deg": 2.3548,
+        "diameter_mm": -0.0059
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.7661,
+        "vertices_near": 573,
+        "share_with_a_richer_surface": 0.8918
+      }
+    },
+    {
+      "id": "valve_y_minus_throat",
+      "group": "valve_y_minus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 11008,
+      "fitted_vertices": 5512,
+      "held_out_vertices": 5496,
+      "first_fit_share_on_fitted_half": 0.9353,
+      "fit": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -4.1502,
+          -22.3597,
+          22.5281
+        ],
+        "axis_direction": [
+          0.008608,
+          -0.447232,
+          0.894377
+        ],
+        "diameter_mm": 45.8426,
+        "radius_sigma_mm": 0.00171,
+        "rms_mm": 0.0979,
+        "station_range_mm": [
+          -5.196,
+          5.77
+        ],
+        "points": 5507,
+        "fit_points": 5504,
+        "half_angle_deg": 1.6421
+      },
+      "refit_attempt": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -4.1502,
+          -22.3597,
+          22.5281
+        ],
+        "axis_direction": [
+          0.008608,
+          -0.447232,
+          0.894377
+        ],
+        "diameter_mm": 45.8426,
+        "radius_sigma_mm": 0.00171,
+        "rms_mm": 0.0979,
+        "station_range_mm": [
+          -5.196,
+          5.77
+        ],
+        "points": 5507,
+        "fit_points": 5504,
+        "half_angle_deg": 1.6421
+      },
+      "change_from_first_fit": {
+        "axis_deg": 0.3227,
+        "half_angle_deg": 0.056,
+        "diameter_mm": 0.0363
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.9502,
+        "vertices_near": 5507,
+        "share_with_a_richer_surface": 0.9682
+      }
+    },
+    {
+      "id": "valve_y_minus_seat",
+      "group": "valve_y_minus",
+      "kind": "seat",
+      "window_trim_mm": 1.0,
+      "window_vertices": 2315,
+      "fitted_vertices": 1173,
+      "held_out_vertices": 1142,
+      "first_fit_share_on_fitted_half": 0.8111,
+      "fit": null,
+      "refit_attempt": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -2.9707,
+          -19.4079,
+          15.9247
+        ],
+        "axis_direction": [
+          -0.02277,
+          0.435992,
+          -0.899662
+        ],
+        "diameter_mm": 48.68,
+        "radius_sigma_mm": 0.01712,
+        "rms_mm": 0.0908,
+        "station_range_mm": [
+          -0.781,
+          1.549
+        ],
+        "points": 1173,
+        "fit_points": 1117,
+        "half_angle_deg": 59.9302
+      },
+      "change_from_first_fit": {
+        "axis_deg": 2.3591,
+        "half_angle_deg": 14.4185,
+        "diameter_mm": -0.4155
+      },
+      "guard_passed": false,
+      "fitted_half": {
+        "share_within_tolerance": 0.9616,
+        "vertices_near": 1173,
+        "share_with_a_richer_surface": 0.9727
+      },
+      "reason": "re-fit drifted beyond the declared guard"
+    },
+    {
+      "id": "valve_y_minus_spring_seat",
+      "group": "valve_y_minus",
+      "kind": "plane",
+      "window_trim_mm": 0.0,
+      "window_vertices": 6006,
+      "fitted_vertices": 3021,
+      "held_out_vertices": 2985,
+      "first_fit_share_on_fitted_half": 0.8546,
+      "fit": {
+        "type": "plane",
+        "point": [
+          -10.3174,
+          -56.644,
+          69.3577
+        ],
+        "normal": [
+          -0.007671,
+          -0.436621,
+          0.899613
+        ],
+        "determined": true,
+        "rms_mm": 0.1325,
+        "points": 2870,
+        "fit_points": 2868
+      },
+      "refit_attempt": {
+        "type": "plane",
+        "point": [
+          -10.3174,
+          -56.644,
+          69.3577
+        ],
+        "normal": [
+          -0.007671,
+          -0.436621,
+          0.899613
+        ],
+        "determined": true,
+        "rms_mm": 0.1325,
+        "points": 2870,
+        "fit_points": 2868
+      },
+      "change_from_first_fit": {
+        "normal_deg": 0.1662
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.8589,
+        "vertices_near": 2870,
+        "share_with_a_richer_surface": 0.9477
+      }
+    },
+    {
+      "id": "valve_y_plus_guide_od_cam",
+      "group": "valve_y_plus",
+      "kind": "boss",
+      "window_trim_mm": 1.0,
+      "window_vertices": 2306,
+      "fitted_vertices": 1150,
+      "held_out_vertices": 1156,
+      "first_fit_share_on_fitted_half": 0.7697,
+      "fit": {
+        "type": "cone",
+        "side": "convex",
+        "determined": true,
+        "axis_point": [
+          -4.5896,
+          66.1711,
+          78.801
+        ],
+        "axis_direction": [
+          -0.03512,
+          -0.470609,
+          -0.881643
+        ],
+        "diameter_mm": 13.408,
+        "radius_sigma_mm": 0.01086,
+        "rms_mm": 0.1772,
+        "station_range_mm": [
+          -4.119,
+          5.344
+        ],
+        "points": 1108,
+        "fit_points": 1029,
+        "half_angle_deg": 3.4182
+      },
+      "refit_attempt": {
+        "type": "cone",
+        "side": "convex",
+        "determined": true,
+        "axis_point": [
+          -4.5896,
+          66.1711,
+          78.801
+        ],
+        "axis_direction": [
+          -0.03512,
+          -0.470609,
+          -0.881643
+        ],
+        "diameter_mm": 13.408,
+        "radius_sigma_mm": 0.01086,
+        "rms_mm": 0.1772,
+        "station_range_mm": [
+          -4.119,
+          5.344
+        ],
+        "points": 1108,
+        "fit_points": 1029,
+        "half_angle_deg": 3.4182
+      },
+      "change_from_first_fit": {
+        "axis_deg": 0.9338,
+        "half_angle_deg": 0.3434,
+        "diameter_mm": 0.1527
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.7807,
+        "vertices_near": 1108,
+        "share_with_a_richer_surface": 0.8791
+      }
+    },
+    {
+      "id": "valve_y_plus_guide_bore_cam_end",
+      "group": "valve_y_plus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 1140,
+      "fitted_vertices": 609,
+      "held_out_vertices": 531,
+      "first_fit_share_on_fitted_half": 0.7645,
+      "fit": null,
+      "refit_attempt": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -4.742,
+          66.5164,
+          79.349
+        ],
+        "axis_direction": [
+          0.090034,
+          0.512004,
+          0.854252
+        ],
+        "diameter_mm": 8.1852,
+        "radius_sigma_mm": 0.02762,
+        "rms_mm": 0.1442,
+        "station_range_mm": [
+          -3.653,
+          3.722
+        ],
+        "points": 576,
+        "fit_points": 569,
+        "half_angle_deg": 5.843
+      },
+      "change_from_first_fit": {
+        "axis_deg": 4.2092,
+        "half_angle_deg": 3.3814,
+        "diameter_mm": -0.1862
+      },
+      "guard_passed": false,
+      "fitted_half": {
+        "share_within_tolerance": 0.8229,
+        "vertices_near": 576,
+        "share_with_a_richer_surface": 0.8854
+      },
+      "reason": "re-fit drifted beyond the declared guard"
+    },
+    {
+      "id": "valve_y_plus_guide_boss_port",
+      "group": "valve_y_plus",
+      "kind": "boss",
+      "window_trim_mm": 1.0,
+      "window_vertices": 1905,
+      "fitted_vertices": 960,
+      "held_out_vertices": 945,
+      "first_fit_share_on_fitted_half": 0.6852,
+      "fit": null,
+      "refit_attempt": {
+        "type": "cone",
+        "side": "convex",
+        "determined": true,
+        "axis_point": [
+          -3.8744,
+          45.6852,
+          43.4445
+        ],
+        "axis_direction": [
+          -0.041934,
+          0.252545,
+          0.966676
+        ],
+        "diameter_mm": 13.1596,
+        "radius_sigma_mm": 0.01239,
+        "rms_mm": 0.1744,
+        "station_range_mm": [
+          -3.747,
+          1.033
+        ],
+        "points": 683,
+        "fit_points": 613,
+        "half_angle_deg": 13.6786
+      },
+      "change_from_first_fit": {
+        "axis_deg": 11.2324,
+        "half_angle_deg": 10.0592,
+        "diameter_mm": 0.0297
+      },
+      "guard_passed": false,
+      "fitted_half": {
+        "share_within_tolerance": 0.754,
+        "vertices_near": 683,
+        "share_with_a_richer_surface": 0.8507
+      },
+      "reason": "re-fit drifted beyond the declared guard"
+    },
+    {
+      "id": "valve_y_plus_spring_pocket",
+      "group": "valve_y_plus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 3073,
+      "fitted_vertices": 1545,
+      "held_out_vertices": 1528,
+      "first_fit_share_on_fitted_half": 0.7787,
+      "fit": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -4.5469,
+          62.8463,
+          73.3432
+        ],
+        "axis_direction": [
+          0.013628,
+          -0.534945,
+          -0.844777
+        ],
+        "diameter_mm": 34.3772,
+        "radius_sigma_mm": 0.00703,
+        "rms_mm": 0.1572,
+        "station_range_mm": [
+          -4.017,
+          3.385
+        ],
+        "points": 1544,
+        "fit_points": 1491,
+        "half_angle_deg": 0.4266
+      },
+      "refit_attempt": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -4.5469,
+          62.8463,
+          73.3432
+        ],
+        "axis_direction": [
+          0.013628,
+          -0.534945,
+          -0.844777
+        ],
+        "diameter_mm": 34.3772,
+        "radius_sigma_mm": 0.00703,
+        "rms_mm": 0.1572,
+        "station_range_mm": [
+          -4.017,
+          3.385
+        ],
+        "points": 1544,
+        "fit_points": 1491,
+        "half_angle_deg": 0.4266
+      },
+      "change_from_first_fit": {
+        "axis_deg": 1.0704,
+        "half_angle_deg": -0.6295,
+        "diameter_mm": 0.1234
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.8193,
+        "vertices_near": 1544,
+        "share_with_a_richer_surface": 0.888
+      }
+    },
+    {
+      "id": "valve_y_plus_spring_seat",
+      "group": "valve_y_plus",
+      "kind": "plane",
+      "window_trim_mm": 0.0,
+      "window_vertices": 2982,
+      "fitted_vertices": 1442,
+      "held_out_vertices": 1540,
+      "first_fit_share_on_fitted_half": 0.6684,
+      "fit": {
+        "type": "plane",
+        "point": [
+          -9.6606,
+          58.9924,
+          70.5884
+        ],
+        "normal": [
+          -0.007595,
+          0.478909,
+          0.877832
+        ],
+        "determined": true,
+        "rms_mm": 0.1914,
+        "points": 1398,
+        "fit_points": 1330
+      },
+      "refit_attempt": {
+        "type": "plane",
+        "point": [
+          -9.6606,
+          58.9924,
+          70.5884
+        ],
+        "normal": [
+          -0.007595,
+          0.478909,
+          0.877832
+        ],
+        "determined": true,
+        "rms_mm": 0.1914,
+        "points": 1398,
+        "fit_points": 1330
+      },
+      "change_from_first_fit": {
+        "normal_deg": 0.6878
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.691,
+        "vertices_near": 1398,
+        "share_with_a_richer_surface": 0.7368
+      }
+    },
+    {
+      "id": "plug_x_plus_thread_bore",
+      "group": "plug_x_plus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 3753,
+      "fitted_vertices": 1920,
+      "held_out_vertices": 1833,
+      "first_fit_share_on_fitted_half": 0.8786,
+      "fit": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          23.3873,
+          10.5584,
+          31.2207
+        ],
+        "axis_direction": [
+          0.181256,
+          0.456115,
+          0.871267
+        ],
+        "diameter_mm": 11.3996,
+        "radius_sigma_mm": 0.00337,
+        "rms_mm": 0.1034,
+        "station_range_mm": [
+          -6.776,
+          7.391
+        ],
+        "points": 1920,
+        "fit_points": 1919,
+        "half_angle_deg": 0.1396
+      },
+      "refit_attempt": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          23.3873,
+          10.5584,
+          31.2207
+        ],
+        "axis_direction": [
+          0.181256,
+          0.456115,
+          0.871267
+        ],
+        "diameter_mm": 11.3996,
+        "radius_sigma_mm": 0.00337,
+        "rms_mm": 0.1034,
+        "station_range_mm": [
+          -6.776,
+          7.391
+        ],
+        "points": 1920,
+        "fit_points": 1919,
+        "half_angle_deg": 0.1396
+      },
+      "change_from_first_fit": {
+        "axis_deg": 0.7496,
+        "half_angle_deg": -0.1989,
+        "diameter_mm": -0.0882
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.951,
+        "vertices_near": 1920,
+        "share_with_a_richer_surface": 0.9625
+      }
+    },
+    {
+      "id": "plug_x_plus_chamber_relief",
+      "group": "plug_x_plus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 1565,
+      "fitted_vertices": 805,
+      "held_out_vertices": 760,
+      "first_fit_share_on_fitted_half": 0.9048,
+      "fit": {
+        "type": "cylinder",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          21.0811,
+          5.46,
+          20.9292
+        ],
+        "axis_direction": [
+          0.189677,
+          0.432286,
+          0.881562
+        ],
+        "diameter_mm": 14.3472,
+        "radius_sigma_mm": 0.00956,
+        "rms_mm": 0.1224,
+        "station_range_mm": [
+          -3.449,
+          2.692
+        ],
+        "points": 743,
+        "fit_points": 735
+      },
+      "refit_attempt": {
+        "type": "cylinder",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          21.0811,
+          5.46,
+          20.9292
+        ],
+        "axis_direction": [
+          0.189677,
+          0.432286,
+          0.881562
+        ],
+        "diameter_mm": 14.3472,
+        "radius_sigma_mm": 0.00956,
+        "rms_mm": 0.1224,
+        "station_range_mm": [
+          -3.449,
+          2.692
+        ],
+        "points": 743,
+        "fit_points": 735
+      },
+      "change_from_first_fit": {
+        "axis_deg": 0.9818,
+        "half_angle_deg": 0.0,
+        "diameter_mm": 0.0899
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.9152,
+        "vertices_near": 743,
+        "share_with_a_richer_surface": 0.926
+      }
+    },
+    {
+      "id": "plug_x_plus_well",
+      "group": "plug_x_plus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 5172,
+      "fitted_vertices": 2585,
+      "held_out_vertices": 2587,
+      "first_fit_share_on_fitted_half": 0.8432,
+      "fit": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          26.0705,
+          18.4724,
+          46.7981
+        ],
+        "axis_direction": [
+          -0.188198,
+          -0.455221,
+          -0.870262
+        ],
+        "diameter_mm": 25.0905,
+        "radius_sigma_mm": 0.01193,
+        "rms_mm": 0.1294,
+        "station_range_mm": [
+          -10.503,
+          7.412
+        ],
+        "points": 2071,
+        "fit_points": 1945,
+        "half_angle_deg": 0.7822
+      },
+      "refit_attempt": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          26.0705,
+          18.4724,
+          46.7981
+        ],
+        "axis_direction": [
+          -0.188198,
+          -0.455221,
+          -0.870262
+        ],
+        "diameter_mm": 25.0905,
+        "radius_sigma_mm": 0.01193,
+        "rms_mm": 0.1294,
+        "station_range_mm": [
+          -10.503,
+          7.412
+        ],
+        "points": 2071,
+        "fit_points": 1945,
+        "half_angle_deg": 0.7822
+      },
+      "change_from_first_fit": {
+        "axis_deg": 1.1597,
+        "half_angle_deg": -1.5129,
+        "diameter_mm": 0.365
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.8914,
+        "vertices_near": 2071,
+        "share_with_a_richer_surface": 0.9054
+      }
+    },
+    {
+      "id": "plug_x_minus_thread_bore",
+      "group": "plug_x_minus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 3537,
+      "fitted_vertices": 1739,
+      "held_out_vertices": 1798,
+      "first_fit_share_on_fitted_half": 0.7984,
+      "fit": {
+        "type": "cylinder",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -31.0555,
+          4.7791,
+          28.9225
+        ],
+        "axis_direction": [
+          -0.197849,
+          -0.419242,
+          0.886054
+        ],
+        "diameter_mm": 11.2473,
+        "radius_sigma_mm": 0.00447,
+        "rms_mm": 0.1242,
+        "station_range_mm": [
+          -4.945,
+          8.616
+        ],
+        "points": 1628,
+        "fit_points": 1632
+      },
+      "refit_attempt": {
+        "type": "cylinder",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -31.0555,
+          4.7791,
+          28.9225
+        ],
+        "axis_direction": [
+          -0.197849,
+          -0.419242,
+          0.886054
+        ],
+        "diameter_mm": 11.2473,
+        "radius_sigma_mm": 0.00447,
+        "rms_mm": 0.1242,
+        "station_range_mm": [
+          -4.945,
+          8.616
+        ],
+        "points": 1628,
+        "fit_points": 1632
+      },
+      "change_from_first_fit": {
+        "axis_deg": 1.3278,
+        "half_angle_deg": 0.0,
+        "diameter_mm": -0.0305
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.9066,
+        "vertices_near": 1628,
+        "share_with_a_richer_surface": 0.9502
+      }
+    },
+    {
+      "id": "plug_x_minus_chamber_relief",
+      "group": "plug_x_minus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 1236,
+      "fitted_vertices": 587,
+      "held_out_vertices": 649,
+      "first_fit_share_on_fitted_half": 0.9016,
+      "fit": {
+        "type": "cylinder",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -29.0043,
+          8.7122,
+          20.0227
+        ],
+        "axis_direction": [
+          -0.208251,
+          -0.404234,
+          0.890633
+        ],
+        "diameter_mm": 14.5592,
+        "radius_sigma_mm": 0.01133,
+        "rms_mm": 0.1184,
+        "station_range_mm": [
+          -3.771,
+          2.12
+        ],
+        "points": 510,
+        "fit_points": 498
+      },
+      "refit_attempt": {
+        "type": "cylinder",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -29.0043,
+          8.7122,
+          20.0227
+        ],
+        "axis_direction": [
+          -0.208251,
+          -0.404234,
+          0.890633
+        ],
+        "diameter_mm": 14.5592,
+        "radius_sigma_mm": 0.01133,
+        "rms_mm": 0.1184,
+        "station_range_mm": [
+          -3.771,
+          2.12
+        ],
+        "points": 510,
+        "fit_points": 498
+      },
+      "change_from_first_fit": {
+        "axis_deg": 0.2569,
+        "half_angle_deg": 0.0,
+        "diameter_mm": 0.1711
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.9098,
+        "vertices_near": 510,
+        "share_with_a_richer_surface": 0.9235
+      }
+    },
+    {
+      "id": "plug_x_minus_well",
+      "group": "plug_x_minus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 5166,
+      "fitted_vertices": 2642,
+      "held_out_vertices": 2524,
+      "first_fit_share_on_fitted_half": 0.8685,
+      "fit": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -35.1956,
+          -3.7564,
+          47.8071
+        ],
+        "axis_direction": [
+          0.218159,
+          0.408535,
+          -0.886288
+        ],
+        "diameter_mm": 25.6101,
+        "radius_sigma_mm": 0.00872,
+        "rms_mm": 0.1278,
+        "station_range_mm": [
+          -8.299,
+          9.557
+        ],
+        "points": 2445,
+        "fit_points": 2380,
+        "half_angle_deg": -0.8755
+      },
+      "refit_attempt": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -35.1956,
+          -3.7564,
+          47.8071
+        ],
+        "axis_direction": [
+          0.218159,
+          0.408535,
+          -0.886288
+        ],
+        "diameter_mm": 25.6101,
+        "radius_sigma_mm": 0.00872,
+        "rms_mm": 0.1278,
+        "station_range_mm": [
+          -8.299,
+          9.557
+        ],
+        "points": 2445,
+        "fit_points": 2380,
+        "half_angle_deg": -0.8755
+      },
+      "change_from_first_fit": {
+        "axis_deg": 1.2137,
+        "half_angle_deg": -1.3022,
+        "diameter_mm": 0.1865
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.9043,
+        "vertices_near": 2445,
+        "share_with_a_richer_surface": 0.9292
+      }
+    },
+    {
+      "id": "stud_x_minus_y_minus_passage",
+      "group": "stud_x_minus_y_minus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 3847,
+      "fitted_vertices": 1918,
+      "held_out_vertices": 1929,
+      "first_fit_share_on_fitted_half": 0.8807,
+      "fit": {
+        "type": "cylinder",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -47.2469,
+          -39.7977,
+          11.2267
+        ],
+        "axis_direction": [
+          -0.023052,
+          -0.014116,
+          -0.999635
+        ],
+        "diameter_mm": 10.466,
+        "radius_sigma_mm": 0.00526,
+        "rms_mm": 0.1312,
+        "station_range_mm": [
+          -26.525,
+          9.84
+        ],
+        "points": 1768,
+        "fit_points": 1768
+      },
+      "refit_attempt": {
+        "type": "cylinder",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -47.2469,
+          -39.7977,
+          11.2267
+        ],
+        "axis_direction": [
+          -0.023052,
+          -0.014116,
+          -0.999635
+        ],
+        "diameter_mm": 10.466,
+        "radius_sigma_mm": 0.00526,
+        "rms_mm": 0.1312,
+        "station_range_mm": [
+          -26.525,
+          9.84
+        ],
+        "points": 1768,
+        "fit_points": 1768
+      },
+      "change_from_first_fit": {
+        "axis_deg": 0.0562,
+        "half_angle_deg": 0.0,
+        "diameter_mm": -0.0374
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.8863,
+        "vertices_near": 1768,
+        "share_with_a_richer_surface": 0.9055
+      }
+    },
+    {
+      "id": "stud_x_minus_y_minus_counterbore",
+      "group": "stud_x_minus_y_minus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 3655,
+      "fitted_vertices": 1815,
+      "held_out_vertices": 1840,
+      "first_fit_share_on_fitted_half": 0.893,
+      "fit": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -47.2195,
+          -39.5839,
+          43.6577
+        ],
+        "axis_direction": [
+          -0.040403,
+          -0.01933,
+          0.998996
+        ],
+        "diameter_mm": 24.6086,
+        "radius_sigma_mm": 0.00632,
+        "rms_mm": 0.1314,
+        "station_range_mm": [
+          -6.175,
+          5.989
+        ],
+        "points": 1609,
+        "fit_points": 1551,
+        "half_angle_deg": 1.3584
+      },
+      "refit_attempt": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -47.2195,
+          -39.5839,
+          43.6577
+        ],
+        "axis_direction": [
+          -0.040403,
+          -0.01933,
+          0.998996
+        ],
+        "diameter_mm": 24.6086,
+        "radius_sigma_mm": 0.00632,
+        "rms_mm": 0.1314,
+        "station_range_mm": [
+          -6.175,
+          5.989
+        ],
+        "points": 1609,
+        "fit_points": 1551,
+        "half_angle_deg": 1.3584
+      },
+      "change_from_first_fit": {
+        "axis_deg": 1.3807,
+        "half_angle_deg": 1.113,
+        "diameter_mm": 0.1661
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.8912,
+        "vertices_near": 1609,
+        "share_with_a_richer_surface": 0.9024
+      }
+    },
+    {
+      "id": "stud_x_minus_y_plus_passage",
+      "group": "stud_x_minus_y_plus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 4023,
+      "fitted_vertices": 1998,
+      "held_out_vertices": 2025,
+      "first_fit_share_on_fitted_half": 0.7508,
+      "fit": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -46.9309,
+          45.8511,
+          10.9617
+        ],
+        "axis_direction": [
+          -0.006767,
+          0.005211,
+          0.999964
+        ],
+        "diameter_mm": 10.9897,
+        "radius_sigma_mm": 0.00708,
+        "rms_mm": 0.1752,
+        "station_range_mm": [
+          -9.446,
+          27.78
+        ],
+        "points": 1785,
+        "fit_points": 1774,
+        "half_angle_deg": 0.6064
+      },
+      "refit_attempt": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -46.9309,
+          45.8511,
+          10.9617
+        ],
+        "axis_direction": [
+          -0.006767,
+          0.005211,
+          0.999964
+        ],
+        "diameter_mm": 10.9897,
+        "radius_sigma_mm": 0.00708,
+        "rms_mm": 0.1752,
+        "station_range_mm": [
+          -9.446,
+          27.78
+        ],
+        "points": 1785,
+        "fit_points": 1774,
+        "half_angle_deg": 0.6064
+      },
+      "change_from_first_fit": {
+        "axis_deg": 0.2647,
+        "half_angle_deg": -0.1286,
+        "diameter_mm": 0.0263
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.7821,
+        "vertices_near": 1785,
+        "share_with_a_richer_surface": 0.7916
+      }
+    },
+    {
+      "id": "stud_x_minus_y_plus_counterbore",
+      "group": "stud_x_minus_y_plus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 4916,
+      "fitted_vertices": 2409,
+      "held_out_vertices": 2507,
+      "first_fit_share_on_fitted_half": 0.7034,
+      "fit": null,
+      "refit_attempt": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          -47.1194,
+          45.8024,
+          43.6164
+        ],
+        "axis_direction": [
+          0.049854,
+          -0.031993,
+          -0.998244
+        ],
+        "diameter_mm": 25.0381,
+        "radius_sigma_mm": 0.01096,
+        "rms_mm": 0.1962,
+        "station_range_mm": [
+          -6.109,
+          6.084
+        ],
+        "points": 1828,
+        "fit_points": 1561,
+        "half_angle_deg": -2.9286
+      },
+      "change_from_first_fit": {
+        "axis_deg": 4.0919,
+        "half_angle_deg": -4.0874,
+        "diameter_mm": -0.1772
+      },
+      "guard_passed": false,
+      "fitted_half": {
+        "share_within_tolerance": 0.7139,
+        "vertices_near": 1828,
+        "share_with_a_richer_surface": 0.7352
+      },
+      "reason": "re-fit drifted beyond the declared guard"
+    },
+    {
+      "id": "stud_x_plus_y_minus_passage",
+      "group": "stud_x_plus_y_minus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 3880,
+      "fitted_vertices": 1933,
+      "held_out_vertices": 1947,
+      "first_fit_share_on_fitted_half": 0.8547,
+      "fit": {
+        "type": "cylinder",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          38.8526,
+          -40.0421,
+          14.2456
+        ],
+        "axis_direction": [
+          0.022996,
+          -0.006466,
+          -0.999715
+        ],
+        "diameter_mm": 10.5604,
+        "radius_sigma_mm": 0.00535,
+        "rms_mm": 0.1368,
+        "station_range_mm": [
+          -24.033,
+          12.788
+        ],
+        "points": 1679,
+        "fit_points": 1665
+      },
+      "refit_attempt": {
+        "type": "cylinder",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          38.8526,
+          -40.0421,
+          14.2456
+        ],
+        "axis_direction": [
+          0.022996,
+          -0.006466,
+          -0.999715
+        ],
+        "diameter_mm": 10.5604,
+        "radius_sigma_mm": 0.00535,
+        "rms_mm": 0.1368,
+        "station_range_mm": [
+          -24.033,
+          12.788
+        ],
+        "points": 1679,
+        "fit_points": 1665
+      },
+      "change_from_first_fit": {
+        "axis_deg": 0.0762,
+        "half_angle_deg": 0.0,
+        "diameter_mm": 0.0456
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.8886,
+        "vertices_near": 1679,
+        "share_with_a_richer_surface": 0.9071
+      }
+    },
+    {
+      "id": "stud_x_plus_y_minus_counterbore",
+      "group": "stud_x_plus_y_minus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 4837,
+      "fitted_vertices": 2372,
+      "held_out_vertices": 2465,
+      "first_fit_share_on_fitted_half": 0.8074,
+      "fit": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          38.4599,
+          -40.1396,
+          44.1896
+        ],
+        "axis_direction": [
+          0.038567,
+          -0.035589,
+          0.998622
+        ],
+        "diameter_mm": 24.4627,
+        "radius_sigma_mm": 0.00892,
+        "rms_mm": 0.1722,
+        "station_range_mm": [
+          -6.442,
+          5.639
+        ],
+        "points": 1991,
+        "fit_points": 1854,
+        "half_angle_deg": 2.6844
+      },
+      "refit_attempt": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          38.4599,
+          -40.1396,
+          44.1896
+        ],
+        "axis_direction": [
+          0.038567,
+          -0.035589,
+          0.998622
+        ],
+        "diameter_mm": 24.4627,
+        "radius_sigma_mm": 0.00892,
+        "rms_mm": 0.1722,
+        "station_range_mm": [
+          -6.442,
+          5.639
+        ],
+        "points": 1991,
+        "fit_points": 1854,
+        "half_angle_deg": 2.6844
+      },
+      "change_from_first_fit": {
+        "axis_deg": 1.2863,
+        "half_angle_deg": 1.4261,
+        "diameter_mm": 0.1976
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.783,
+        "vertices_near": 1991,
+        "share_with_a_richer_surface": 0.8021
+      }
+    },
+    {
+      "id": "stud_x_plus_y_plus_passage",
+      "group": "stud_x_plus_y_plus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 4188,
+      "fitted_vertices": 2107,
+      "held_out_vertices": 2081,
+      "first_fit_share_on_fitted_half": 0.6194,
+      "fit": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          39.1736,
+          45.5882,
+          6.582
+        ],
+        "axis_direction": [
+          0.025911,
+          4.5e-05,
+          -0.999664
+        ],
+        "diameter_mm": 10.5897,
+        "radius_sigma_mm": 0.00685,
+        "rms_mm": 0.1732,
+        "station_range_mm": [
+          -32.019,
+          5.137
+        ],
+        "points": 1796,
+        "fit_points": 1587,
+        "half_angle_deg": 0.233
+      },
+      "refit_attempt": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          39.1736,
+          45.5882,
+          6.582
+        ],
+        "axis_direction": [
+          0.025911,
+          4.5e-05,
+          -0.999664
+        ],
+        "diameter_mm": 10.5897,
+        "radius_sigma_mm": 0.00685,
+        "rms_mm": 0.1732,
+        "station_range_mm": [
+          -32.019,
+          5.137
+        ],
+        "points": 1796,
+        "fit_points": 1587,
+        "half_angle_deg": 0.233
+      },
+      "change_from_first_fit": {
+        "axis_deg": 0.8076,
+        "half_angle_deg": -0.1671,
+        "diameter_mm": 0.0814
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.7895,
+        "vertices_near": 1796,
+        "share_with_a_richer_surface": 0.8641
+      }
+    },
+    {
+      "id": "stud_x_plus_y_plus_counterbore",
+      "group": "stud_x_plus_y_plus",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 5675,
+      "fitted_vertices": 2850,
+      "held_out_vertices": 2825,
+      "first_fit_share_on_fitted_half": 0.7491,
+      "fit": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          38.513,
+          45.4377,
+          44.0694
+        ],
+        "axis_direction": [
+          -0.024379,
+          -0.020825,
+          -0.999486
+        ],
+        "diameter_mm": 24.3466,
+        "radius_sigma_mm": 0.00814,
+        "rms_mm": 0.181,
+        "station_range_mm": [
+          -5.61,
+          5.732
+        ],
+        "points": 2274,
+        "fit_points": 2172,
+        "half_angle_deg": -1.6616
+      },
+      "refit_attempt": {
+        "type": "cone",
+        "side": "concave",
+        "determined": true,
+        "axis_point": [
+          38.513,
+          45.4377,
+          44.0694
+        ],
+        "axis_direction": [
+          -0.024379,
+          -0.020825,
+          -0.999486
+        ],
+        "diameter_mm": 24.3466,
+        "radius_sigma_mm": 0.00814,
+        "rms_mm": 0.181,
+        "station_range_mm": [
+          -5.61,
+          5.732
+        ],
+        "points": 2274,
+        "fit_points": 2172,
+        "half_angle_deg": -1.6616
+      },
+      "change_from_first_fit": {
+        "axis_deg": 2.5201,
+        "half_angle_deg": -2.4686,
+        "diameter_mm": 0.0871
+      },
+      "guard_passed": true,
+      "fitted_half": {
+        "share_within_tolerance": 0.7511,
+        "vertices_near": 2274,
+        "share_with_a_richer_surface": 0.803
+      }
+    },
+    {
+      "id": "deck_register_recess",
+      "group": "deck",
+      "kind": "bore",
+      "window_trim_mm": 1.0,
+      "window_vertices": 0,
+      "fitted_vertices": 0,
+      "held_out_vertices": 0,
+      "first_fit_share_on_fitted_half": null,
+      "fit": null,
+      "refit_attempt": null,
+      "change_from_first_fit": null,
+      "guard_passed": false,
+      "fitted_half": {
+        "share_within_tolerance": null,
+        "vertices_near": 0,
+        "share_with_a_richer_surface": null
+      },
+      "reason": "fewer than 100 fitted vertices near the first fit once the window is shortened"
+    }
+  ]
+}

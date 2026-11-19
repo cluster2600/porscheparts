@@ -1,0 +1,812 @@
+{
+  "schema": "935-cad-twin-feature-refit-declaration/1",
+  "issue": "#696",
+  "declared_on": "2026-11-19",
+  "declared_before_check": "committed and pushed before refit_features.py output was measured by check_features.py; the held-out half had not been read by any re-fit or diagnosis",
+  "scope": [
+    "valve_y_minus_guide_bore",
+    "valve_y_minus_guide_bore_port_end",
+    "valve_y_minus_guide_bore_cam_end",
+    "valve_y_minus_guide_od_cam",
+    "valve_y_minus_guide_od_port",
+    "valve_y_minus_throat",
+    "valve_y_minus_seat",
+    "valve_y_minus_spring_seat",
+    "valve_y_plus_guide_od_cam",
+    "valve_y_plus_guide_bore_cam_end",
+    "valve_y_plus_guide_boss_port",
+    "valve_y_plus_spring_pocket",
+    "valve_y_plus_spring_seat",
+    "plug_x_plus_thread_bore",
+    "plug_x_plus_chamber_relief",
+    "plug_x_plus_well",
+    "plug_x_minus_thread_bore",
+    "plug_x_minus_chamber_relief",
+    "plug_x_minus_well",
+    "stud_x_minus_y_minus_passage",
+    "stud_x_minus_y_minus_counterbore",
+    "stud_x_minus_y_plus_passage",
+    "stud_x_minus_y_plus_counterbore",
+    "stud_x_plus_y_minus_passage",
+    "stud_x_plus_y_minus_counterbore",
+    "stud_x_plus_y_plus_passage",
+    "stud_x_plus_y_plus_counterbore",
+    "deck_register_recess"
+  ],
+  "unchanged": {
+    "acceptance": {
+      "fixed_before_first_run": true,
+      "band_mm": 0.5,
+      "tolerance_mm": 0.2,
+      "min_share": 0.9,
+      "min_vertices": 100
+    },
+    "check": "check_features.py and CloudCompare 2.13.2 in free-tools-cloudcompare:local, as for the first check",
+    "split": "the hash split of fit_features.py; refit_features.py imports it, so a shortened window keeps every vertex in its half and every checked vertex was held out of the first fit too",
+    "first_fits_and_check": "feature-fits.json and feature-check.json stay as they are, failed fits included"
+  },
+  "diagnosis": {
+    "data": "fitted half only, against the first fit; the held-out half was not read",
+    "findings": [
+      "The fitted half reproduces the first check within 0.03 on every feature, so it shows why the held-out vertices disagree.",
+      "Offset: on many features the vertices within 0.5 mm sit off-centre from the first fit by 0.1 to 0.2 mm (the 1-lobe amplitude). The assigned tool fits only the vertices inside its 0.12 mm band, so on a surface rougher than the deck it fits part of the surface.",
+      "Window ends: the end sixths of several windows score far below their middles (chamfers, edge breaks and neighbouring surfaces inside the tube).",
+      "Unresolved surface: on the guide outside diameters, the stud passages and counterbores and the valve_y_plus spring features, even a revolved surface with offset, taper and two- and three-lobe terms leaves more than 10% outside 0.2 mm."
+    ],
+    "per_feature": [
+      {
+        "id": "valve_y_minus_guide_bore",
+        "type": "cylinder",
+        "first_fit_share_fitted_half": 0.815,
+        "share_beyond_plus_0p2_mm": 0.141,
+        "share_beyond_minus_0p2_mm": 0.044,
+        "lobe_amplitude_mm": {
+          "1": 0.036,
+          "2": 0.042,
+          "3": 0.007
+        },
+        "share_after_offset_taper_and_lobes": 0.825,
+        "share_by_station_sixth": [
+          0.835,
+          0.835,
+          null,
+          null,
+          1.0,
+          0.896
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.805,
+          "robust_refit_trim_0.5_mm": 0.805,
+          "robust_refit_trim_1.0_mm": 0.84,
+          "robust_refit_trim_2.0_mm": 0.92
+        }
+      },
+      {
+        "id": "valve_y_minus_guide_bore_port_end",
+        "type": "cone",
+        "first_fit_share_fitted_half": 0.855,
+        "share_beyond_plus_0p2_mm": 0.105,
+        "share_beyond_minus_0p2_mm": 0.039,
+        "lobe_amplitude_mm": {
+          "1": 0.011,
+          "2": 0.049,
+          "3": 0.021
+        },
+        "share_after_offset_taper_and_lobes": 0.87,
+        "share_by_station_sixth": [
+          0.803,
+          0.956,
+          0.912,
+          0.92,
+          1.0,
+          0.977
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.853,
+          "robust_refit_trim_0.5_mm": 0.853,
+          "robust_refit_trim_1.0_mm": 0.931,
+          "robust_refit_trim_2.0_mm": 0.964
+        }
+      },
+      {
+        "id": "valve_y_minus_guide_bore_cam_end",
+        "type": "cylinder",
+        "first_fit_share_fitted_half": 0.765,
+        "share_beyond_plus_0p2_mm": 0.169,
+        "share_beyond_minus_0p2_mm": 0.062,
+        "lobe_amplitude_mm": {
+          "1": 0.119,
+          "2": 0.073,
+          "3": 0.051
+        },
+        "share_after_offset_taper_and_lobes": 0.821,
+        "share_by_station_sixth": [
+          0.65,
+          0.968,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.791,
+          "robust_refit_trim_0.5_mm": 0.791,
+          "robust_refit_trim_1.0_mm": 0.791,
+          "robust_refit_trim_2.0_mm": 0.921
+        }
+      },
+      {
+        "id": "valve_y_minus_guide_od_cam",
+        "type": "cylinder",
+        "first_fit_share_fitted_half": 0.724,
+        "share_beyond_plus_0p2_mm": 0.188,
+        "share_beyond_minus_0p2_mm": 0.088,
+        "lobe_amplitude_mm": {
+          "1": 0.141,
+          "2": 0.097,
+          "3": 0.069
+        },
+        "share_after_offset_taper_and_lobes": 0.82,
+        "share_by_station_sixth": [
+          0.871,
+          0.923,
+          0.773,
+          0.724,
+          0.794,
+          0.554
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.713,
+          "robust_refit_trim_0.5_mm": 0.755,
+          "robust_refit_trim_1.0_mm": 0.774,
+          "robust_refit_trim_2.0_mm": 0.77
+        }
+      },
+      {
+        "id": "valve_y_minus_guide_od_port",
+        "type": "cone",
+        "first_fit_share_fitted_half": 0.691,
+        "share_beyond_plus_0p2_mm": 0.146,
+        "share_beyond_minus_0p2_mm": 0.162,
+        "lobe_amplitude_mm": {
+          "1": 0.204,
+          "2": 0.075,
+          "3": 0.012
+        },
+        "share_after_offset_taper_and_lobes": 0.892,
+        "share_by_station_sixth": [
+          0.617,
+          0.933,
+          0.766,
+          0.586,
+          0.69,
+          0.816
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.75,
+          "robust_refit_trim_0.5_mm": 0.769,
+          "robust_refit_trim_1.0_mm": 0.766,
+          "robust_refit_trim_2.0_mm": 0.79
+        }
+      },
+      {
+        "id": "valve_y_minus_throat",
+        "type": "cone",
+        "first_fit_share_fitted_half": 0.859,
+        "share_beyond_plus_0p2_mm": 0.122,
+        "share_beyond_minus_0p2_mm": 0.019,
+        "lobe_amplitude_mm": {
+          "1": 0.02,
+          "2": 0.027,
+          "3": 0.054
+        },
+        "share_after_offset_taper_and_lobes": 0.904,
+        "share_by_station_sixth": [
+          0.622,
+          0.971,
+          0.998,
+          0.958,
+          0.923,
+          0.616
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.882,
+          "robust_refit_trim_0.5_mm": 0.921,
+          "robust_refit_trim_1.0_mm": 0.95,
+          "robust_refit_trim_2.0_mm": 0.985
+        }
+      },
+      {
+        "id": "valve_y_minus_seat",
+        "type": "cone",
+        "first_fit_share_fitted_half": 0.835,
+        "share_beyond_plus_0p2_mm": 0.16,
+        "share_beyond_minus_0p2_mm": 0.0,
+        "lobe_amplitude_mm": {
+          "1": 0.157,
+          "2": 0.014,
+          "3": 0.013
+        },
+        "share_after_offset_taper_and_lobes": 0.924,
+        "share_by_station_sixth": [
+          1.0,
+          1.0,
+          0.836,
+          0.831,
+          0.805,
+          0.757
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.879,
+          "robust_refit_trim_0.5_mm": 0.877,
+          "robust_refit_trim_1.0_mm": 0.962,
+          "robust_refit_trim_2.0_mm": null
+        }
+      },
+      {
+        "id": "valve_y_minus_spring_seat",
+        "type": "plane",
+        "first_fit_share_fitted_half": 0.855,
+        "share_beyond_plus_0p2_mm": 0.045,
+        "share_beyond_minus_0p2_mm": 0.1,
+        "share_after_a_quadratic": 0.949,
+        "explored_share_fitted_half": {
+          "robust_refit": 0.859
+        }
+      },
+      {
+        "id": "valve_y_plus_guide_od_cam",
+        "type": "cone",
+        "first_fit_share_fitted_half": 0.75,
+        "share_beyond_plus_0p2_mm": 0.131,
+        "share_beyond_minus_0p2_mm": 0.119,
+        "lobe_amplitude_mm": {
+          "1": 0.149,
+          "2": 0.052,
+          "3": 0.041
+        },
+        "share_after_offset_taper_and_lobes": 0.825,
+        "share_by_station_sixth": [
+          0.617,
+          0.907,
+          0.744,
+          0.724,
+          0.944,
+          0.939
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.759,
+          "robust_refit_trim_0.5_mm": 0.758,
+          "robust_refit_trim_1.0_mm": 0.781,
+          "robust_refit_trim_2.0_mm": 0.821
+        }
+      },
+      {
+        "id": "valve_y_plus_guide_bore_cam_end",
+        "type": "cone",
+        "first_fit_share_fitted_half": 0.75,
+        "share_beyond_plus_0p2_mm": 0.16,
+        "share_beyond_minus_0p2_mm": 0.088,
+        "lobe_amplitude_mm": {
+          "1": 0.081,
+          "2": 0.086,
+          "3": 0.071
+        },
+        "share_after_offset_taper_and_lobes": 0.865,
+        "share_by_station_sixth": [
+          0.893,
+          1.0,
+          0.986,
+          0.968,
+          0.728,
+          0.632
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.811,
+          "robust_refit_trim_0.5_mm": 0.807,
+          "robust_refit_trim_1.0_mm": 0.823,
+          "robust_refit_trim_2.0_mm": 0.917
+        }
+      },
+      {
+        "id": "valve_y_plus_guide_boss_port",
+        "type": "cone",
+        "first_fit_share_fitted_half": 0.678,
+        "share_beyond_plus_0p2_mm": 0.114,
+        "share_beyond_minus_0p2_mm": 0.208,
+        "lobe_amplitude_mm": {
+          "1": 0.095,
+          "2": 0.015,
+          "3": 0.052
+        },
+        "share_after_offset_taper_and_lobes": 0.738,
+        "share_by_station_sixth": [
+          0.673,
+          0.563,
+          0.655,
+          0.789,
+          0.775,
+          0.81
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.716,
+          "robust_refit_trim_0.5_mm": 0.72,
+          "robust_refit_trim_1.0_mm": 0.754,
+          "robust_refit_trim_2.0_mm": 0.774
+        }
+      },
+      {
+        "id": "valve_y_plus_spring_pocket",
+        "type": "cone",
+        "first_fit_share_fitted_half": 0.721,
+        "share_beyond_plus_0p2_mm": 0.239,
+        "share_beyond_minus_0p2_mm": 0.04,
+        "lobe_amplitude_mm": {
+          "1": 0.112,
+          "2": 0.042,
+          "3": 0.093
+        },
+        "share_after_offset_taper_and_lobes": 0.852,
+        "share_by_station_sixth": [
+          0.547,
+          0.691,
+          0.773,
+          0.8,
+          0.815,
+          0.838
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.745,
+          "robust_refit_trim_0.5_mm": 0.797,
+          "robust_refit_trim_1.0_mm": 0.819,
+          "robust_refit_trim_2.0_mm": 0.795
+        }
+      },
+      {
+        "id": "valve_y_plus_spring_seat",
+        "type": "plane",
+        "first_fit_share_fitted_half": 0.668,
+        "share_beyond_plus_0p2_mm": 0.241,
+        "share_beyond_minus_0p2_mm": 0.091,
+        "share_after_a_quadratic": 0.768,
+        "explored_share_fitted_half": {
+          "robust_refit": 0.691
+        }
+      },
+      {
+        "id": "plug_x_plus_thread_bore",
+        "type": "cone",
+        "first_fit_share_fitted_half": 0.857,
+        "share_beyond_plus_0p2_mm": 0.019,
+        "share_beyond_minus_0p2_mm": 0.124,
+        "lobe_amplitude_mm": {
+          "1": 0.073,
+          "2": 0.062,
+          "3": 0.026
+        },
+        "share_after_offset_taper_and_lobes": 0.931,
+        "share_by_station_sixth": [
+          0.878,
+          0.93,
+          0.837,
+          0.819,
+          0.856,
+          0.819
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.915,
+          "robust_refit_trim_0.5_mm": 0.938,
+          "robust_refit_trim_1.0_mm": 0.951,
+          "robust_refit_trim_2.0_mm": 0.955
+        }
+      },
+      {
+        "id": "plug_x_plus_chamber_relief",
+        "type": "cylinder",
+        "first_fit_share_fitted_half": 0.803,
+        "share_beyond_plus_0p2_mm": 0.098,
+        "share_beyond_minus_0p2_mm": 0.099,
+        "lobe_amplitude_mm": {
+          "1": 0.063,
+          "2": 0.02,
+          "3": 0.043
+        },
+        "share_after_offset_taper_and_lobes": 0.858,
+        "share_by_station_sixth": [
+          0.808,
+          0.883,
+          0.876,
+          0.89,
+          0.919,
+          0.799
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.801,
+          "robust_refit_trim_0.5_mm": 0.837,
+          "robust_refit_trim_1.0_mm": 0.915,
+          "robust_refit_trim_2.0_mm": 0.934
+        }
+      },
+      {
+        "id": "plug_x_plus_well",
+        "type": "cone",
+        "first_fit_share_fitted_half": 0.832,
+        "share_beyond_plus_0p2_mm": 0.116,
+        "share_beyond_minus_0p2_mm": 0.052,
+        "lobe_amplitude_mm": {
+          "1": 0.219,
+          "2": 0.09,
+          "3": 0.027
+        },
+        "share_after_offset_taper_and_lobes": 0.919,
+        "share_by_station_sixth": [
+          0.549,
+          0.837,
+          0.944,
+          0.928,
+          0.847,
+          0.822
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.879,
+          "robust_refit_trim_0.5_mm": 0.896,
+          "robust_refit_trim_1.0_mm": 0.891,
+          "robust_refit_trim_2.0_mm": 0.894
+        }
+      },
+      {
+        "id": "plug_x_minus_thread_bore",
+        "type": "cylinder",
+        "first_fit_share_fitted_half": 0.774,
+        "share_beyond_plus_0p2_mm": 0.108,
+        "share_beyond_minus_0p2_mm": 0.117,
+        "lobe_amplitude_mm": {
+          "1": 0.109,
+          "2": 0.068,
+          "3": 0.037
+        },
+        "share_after_offset_taper_and_lobes": 0.889,
+        "share_by_station_sixth": [
+          0.856,
+          0.964,
+          0.935,
+          0.916,
+          0.659,
+          0.221
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.903,
+          "robust_refit_trim_0.5_mm": 0.904,
+          "robust_refit_trim_1.0_mm": 0.907,
+          "robust_refit_trim_2.0_mm": 0.955
+        }
+      },
+      {
+        "id": "plug_x_minus_chamber_relief",
+        "type": "cylinder",
+        "first_fit_share_fitted_half": 0.882,
+        "share_beyond_plus_0p2_mm": 0.116,
+        "share_beyond_minus_0p2_mm": 0.0,
+        "lobe_amplitude_mm": {
+          "1": 0.211,
+          "2": 0.06,
+          "3": 0.016
+        },
+        "share_after_offset_taper_and_lobes": 0.94,
+        "share_by_station_sixth": [
+          0.74,
+          0.907,
+          0.876,
+          0.902,
+          0.911,
+          0.932
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.893,
+          "robust_refit_trim_0.5_mm": 0.901,
+          "robust_refit_trim_1.0_mm": 0.91,
+          "robust_refit_trim_2.0_mm": 0.898
+        }
+      },
+      {
+        "id": "plug_x_minus_well",
+        "type": "cone",
+        "first_fit_share_fitted_half": 0.865,
+        "share_beyond_plus_0p2_mm": 0.063,
+        "share_beyond_minus_0p2_mm": 0.072,
+        "lobe_amplitude_mm": {
+          "1": 0.156,
+          "2": 0.095,
+          "3": 0.055
+        },
+        "share_after_offset_taper_and_lobes": 0.915,
+        "share_by_station_sixth": [
+          0.888,
+          0.953,
+          0.949,
+          0.854,
+          0.809,
+          0.79
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.901,
+          "robust_refit_trim_0.5_mm": 0.903,
+          "robust_refit_trim_1.0_mm": 0.904,
+          "robust_refit_trim_2.0_mm": 0.929
+        }
+      },
+      {
+        "id": "stud_x_minus_y_minus_passage",
+        "type": "cylinder",
+        "first_fit_share_fitted_half": 0.869,
+        "share_beyond_plus_0p2_mm": 0.052,
+        "share_beyond_minus_0p2_mm": 0.079,
+        "lobe_amplitude_mm": {
+          "1": 0.021,
+          "2": 0.048,
+          "3": 0.029
+        },
+        "share_after_offset_taper_and_lobes": 0.893,
+        "share_by_station_sixth": [
+          0.923,
+          0.907,
+          null,
+          null,
+          0.781,
+          0.9
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.876,
+          "robust_refit_trim_0.5_mm": 0.883,
+          "robust_refit_trim_1.0_mm": 0.886,
+          "robust_refit_trim_2.0_mm": 0.887
+        }
+      },
+      {
+        "id": "stud_x_minus_y_minus_counterbore",
+        "type": "cone",
+        "first_fit_share_fitted_half": 0.872,
+        "share_beyond_plus_0p2_mm": 0.087,
+        "share_beyond_minus_0p2_mm": 0.04,
+        "lobe_amplitude_mm": {
+          "1": 0.155,
+          "2": 0.118,
+          "3": 0.035
+        },
+        "share_after_offset_taper_and_lobes": 0.921,
+        "share_by_station_sixth": [
+          0.906,
+          0.997,
+          0.817,
+          0.911,
+          0.832,
+          0.855
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.868,
+          "robust_refit_trim_0.5_mm": 0.865,
+          "robust_refit_trim_1.0_mm": 0.891,
+          "robust_refit_trim_2.0_mm": 0.879
+        }
+      },
+      {
+        "id": "stud_x_minus_y_plus_passage",
+        "type": "cone",
+        "first_fit_share_fitted_half": 0.75,
+        "share_beyond_plus_0p2_mm": 0.11,
+        "share_beyond_minus_0p2_mm": 0.14,
+        "lobe_amplitude_mm": {
+          "1": 0.019,
+          "2": 0.055,
+          "3": 0.05
+        },
+        "share_after_offset_taper_and_lobes": 0.78,
+        "share_by_station_sixth": [
+          0.79,
+          0.746,
+          null,
+          null,
+          0.746,
+          0.661
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.787,
+          "robust_refit_trim_0.5_mm": 0.785,
+          "robust_refit_trim_1.0_mm": 0.782,
+          "robust_refit_trim_2.0_mm": 0.784
+        }
+      },
+      {
+        "id": "stud_x_minus_y_plus_counterbore",
+        "type": "cone",
+        "first_fit_share_fitted_half": 0.695,
+        "share_beyond_plus_0p2_mm": 0.16,
+        "share_beyond_minus_0p2_mm": 0.145,
+        "lobe_amplitude_mm": {
+          "1": 0.052,
+          "2": 0.009,
+          "3": 0.024
+        },
+        "share_after_offset_taper_and_lobes": 0.751,
+        "share_by_station_sixth": [
+          0.727,
+          0.656,
+          0.571,
+          0.683,
+          0.821,
+          0.797
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.702,
+          "robust_refit_trim_0.5_mm": 0.702,
+          "robust_refit_trim_1.0_mm": 0.714,
+          "robust_refit_trim_2.0_mm": 0.728
+        }
+      },
+      {
+        "id": "stud_x_plus_y_minus_passage",
+        "type": "cylinder",
+        "first_fit_share_fitted_half": 0.86,
+        "share_beyond_plus_0p2_mm": 0.096,
+        "share_beyond_minus_0p2_mm": 0.043,
+        "lobe_amplitude_mm": {
+          "1": 0.075,
+          "2": 0.032,
+          "3": 0.045
+        },
+        "share_after_offset_taper_and_lobes": 0.913,
+        "share_by_station_sixth": [
+          0.941,
+          0.971,
+          null,
+          null,
+          0.819,
+          0.873
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.888,
+          "robust_refit_trim_0.5_mm": 0.891,
+          "robust_refit_trim_1.0_mm": 0.889,
+          "robust_refit_trim_2.0_mm": 0.895
+        }
+      },
+      {
+        "id": "stud_x_plus_y_minus_counterbore",
+        "type": "cone",
+        "first_fit_share_fitted_half": 0.8,
+        "share_beyond_plus_0p2_mm": 0.13,
+        "share_beyond_minus_0p2_mm": 0.07,
+        "lobe_amplitude_mm": {
+          "1": 0.174,
+          "2": 0.097,
+          "3": 0.069
+        },
+        "share_after_offset_taper_and_lobes": 0.859,
+        "share_by_station_sixth": [
+          0.746,
+          0.975,
+          0.789,
+          0.71,
+          0.923,
+          0.77
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.78,
+          "robust_refit_trim_0.5_mm": 0.777,
+          "robust_refit_trim_1.0_mm": 0.783,
+          "robust_refit_trim_2.0_mm": 0.823
+        }
+      },
+      {
+        "id": "stud_x_plus_y_plus_passage",
+        "type": "cone",
+        "first_fit_share_fitted_half": 0.627,
+        "share_beyond_plus_0p2_mm": 0.277,
+        "share_beyond_minus_0p2_mm": 0.097,
+        "lobe_amplitude_mm": {
+          "1": 0.211,
+          "2": 0.114,
+          "3": 0.026
+        },
+        "share_after_offset_taper_and_lobes": 0.829,
+        "share_by_station_sixth": [
+          0.359,
+          0.266,
+          0.333,
+          0.077,
+          0.707,
+          0.821
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.777,
+          "robust_refit_trim_0.5_mm": 0.785,
+          "robust_refit_trim_1.0_mm": 0.79,
+          "robust_refit_trim_2.0_mm": 0.795
+        }
+      },
+      {
+        "id": "stud_x_plus_y_plus_counterbore",
+        "type": "cone",
+        "first_fit_share_fitted_half": 0.735,
+        "share_beyond_plus_0p2_mm": 0.149,
+        "share_beyond_minus_0p2_mm": 0.116,
+        "lobe_amplitude_mm": {
+          "1": 0.075,
+          "2": 0.127,
+          "3": 0.003
+        },
+        "share_after_offset_taper_and_lobes": 0.818,
+        "share_by_station_sixth": [
+          0.738,
+          0.743,
+          0.641,
+          0.808,
+          0.917,
+          0.644
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.733,
+          "robust_refit_trim_0.5_mm": 0.734,
+          "robust_refit_trim_1.0_mm": 0.751,
+          "robust_refit_trim_2.0_mm": 0.794
+        }
+      },
+      {
+        "id": "deck_register_recess",
+        "type": "cylinder",
+        "first_fit_share_fitted_half": 0.855,
+        "share_beyond_plus_0p2_mm": 0.056,
+        "share_beyond_minus_0p2_mm": 0.089,
+        "lobe_amplitude_mm": {
+          "1": 1.114,
+          "2": 0.519,
+          "3": 0.46
+        },
+        "share_after_offset_taper_and_lobes": 0.934,
+        "share_by_station_sixth": [
+          0.782,
+          0.908,
+          0.79,
+          0.694,
+          0.974,
+          1.0
+        ],
+        "explored_share_fitted_half": {
+          "robust_refit": 0.863,
+          "robust_refit_trim_0.5_mm": 0.926,
+          "robust_refit_trim_1.0_mm": null,
+          "robust_refit_trim_2.0_mm": null
+        }
+      }
+    ]
+  },
+  "exploration": {
+    "data": "fitted half only",
+    "tried": "the robust re-fit below alone, and with the window shortened by 0.5, 1 and 2 mm at each end",
+    "chosen": "1 mm at each end for every revolved window, chosen after seeing those fitted-half shares: 0.5 mm leaves the end transitions in, 2 mm removes about a third of the guide-bore vertices and empties the short seat and register windows. One amount for all, not one per feature."
+  },
+  "changes": {
+    "window_trim_mm": 1.0,
+    "window_rule": "revolved windows: station range shortened by window_trim_mm at both ends, radius range unchanged; plane windows unchanged",
+    "outlier_model": "scipy.optimize.least_squares with the loss and scale below, on the fitted-half vertices of the window within the check band (0.5 mm) of the first fit, replacing the tool's 3-sigma inlier band",
+    "loss": "soft_l1",
+    "f_scale_mm": 0.1,
+    "primitive": "unchanged family: a cylinder stays a cylinder, a cone a cone, a plane a plane",
+    "station_range": "extent along the re-fitted axis of the re-fitted vertices within the tolerance (0.2 mm)",
+    "guard": {
+      "max_axis_change_deg": 3.0,
+      "max_half_angle_change_deg": 3.0,
+      "max_diameter_change_mm": 0.5,
+      "min_points": 100,
+      "why": "3 degrees is the disagreement already recorded between short cam-end features and the two-centre axis; 0.5 mm is the check band. A re-fit that moves further is fitting a different surface.",
+      "on_failure": "the re-fit is not checked; the feature is recorded as not confirmable from this scan because its surface does not hold the first primitive under a robust fit"
+    }
+  },
+  "reasons_if_not_confirmed": {
+    "guard": "re-fit drifted: the surface does not hold the first primitive under a robust fit",
+    "unresolved": "the fitted half keeps less than 90% within 0.2 mm even with a richer surface (offset, taper, two- and three-lobe terms; a quadratic for a plane): this scan does not resolve the surface to the tolerance",
+    "shape": "a richer surface would hold 90% on the fitted half, but no assigned primitive has that shape (out of round, or a curved face)",
+    "all": "every feature not confirmed needs a contributed measurement of the specimen to be dimensioned"
+  },
+  "caveat": "The fitted and held-out halves interleave on one surface, so a rule chosen on the fitted half predicts the check closely. The check guards against over-fitting and tool error; it cannot show that a window holds the right surface. That is why one trim applies to every window and the guard limits how far a re-fit may move."
+}
