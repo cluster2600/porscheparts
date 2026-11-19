@@ -1,3 +1,5 @@
+@AGENTS.md
+
 # CAD & Scan-to-Digital-Twin Rules
 - **Python Environment:** Always execute CAD and point-cloud scripts using `~/cad-env/bin/python`.
 - **Scan-to-CAD Workflow:** Follow `~/.claude/skills/cad-skill/SKILL.md`. Use `open3d` and `trimesh` to clean, align, and slice raw 3D scans (`~/.claude/skills/cad-skill/outline_from_scan.py`) before generating parametric CAD geometry. Never dump raw `.ply`/`.obj`/`.stl` vertex coordinates into chat context.
