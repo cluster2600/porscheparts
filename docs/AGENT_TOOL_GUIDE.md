@@ -242,6 +242,17 @@ neighbouring study's README for more before starting.
   a median of 0.03 to 0.13 mm and only 63% to 94% within 0.2 mm; 4 of 32
   passed an acceptance of 90% fixed beforehand. Keep half of the vertices out
   of the fit and measure them with another tool before quoting a feature.
+- **On a rough bore, refit robustly over the check band and trim the window
+  ends, under a rule declared before the check.** The narrow band fits part
+  of the surface: on the 935 head the vertices within 0.5 mm sat 0.1 to
+  0.2 mm off-centre from many fits, and window ends held chamfers. A soft-L1
+  least-squares refit (0.1 mm scale) over the 0.5 mm band, windows shortened
+  by 1 mm at each end and a guard against re-fits that move more than 3° or
+  0.5 mm confirmed 7 more of the 28 under the unchanged acceptance
+  (2026-11-19, #696). Diagnose on the fitted half only: it predicted the
+  held-out shares within 0.035, so a rule tuned on it predicts its own check,
+  and only a guard and one rule for every window keep that honest. Without the
+  guard a seat re-fit turned 14° onto another surface.
 - **A surface whose form error exceeds the inlier band splits into rival
   models, and both come back not determined.** Two stud passages of 10.5 mm,
   each seen over at least 354° and 37 mm, were reported twice and shared nearly all

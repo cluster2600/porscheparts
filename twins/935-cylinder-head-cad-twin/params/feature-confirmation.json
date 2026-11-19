@@ -1,0 +1,327 @@
+{
+  "schema": "935-cad-twin-feature-confirmation/1",
+  "issue": "#696",
+  "first_check_sha256": "15ee3af5f378bd3c8a3b5676d803f5d71b1bb1a882a0f722592515891dfda04d",
+  "refits_sha256": "08b37f03cb1cdfbcd42f343d597d9bec2925b6a779b8378be8ff8bcda66ad8fb",
+  "refit_check_sha256": "3a0d09112cfdc63d3047901c84d8f8ccf6f7baaa847c9f6f3cff429c885bc64d",
+  "declaration_sha256": "77a0c04158ad8c159b23fbaba1a46be35808dc4781258b3414e62b27f2901b9d",
+  "acceptance": {
+    "fixed_before_first_run": true,
+    "band_mm": 0.5,
+    "tolerance_mm": 0.2,
+    "min_share": 0.9,
+    "min_vertices": 100
+  },
+  "claims": "a confirmed feature is a primitive that describes the acquired surface within the tolerance on held-out vertices; it is not a dimension of the specimen, whose scale is an owner instruction",
+  "confirmed": 11,
+  "features": 32,
+  "confirmed_by_first_check": [
+    "valve_y_plus_throat",
+    "valve_y_plus_seat",
+    "plug_x_plus_seat_face",
+    "plug_x_minus_seat_face"
+  ],
+  "confirmed_by_declared_refit": [
+    "valve_y_minus_guide_bore_port_end",
+    "valve_y_minus_throat",
+    "plug_x_plus_thread_bore",
+    "plug_x_plus_chamber_relief",
+    "plug_x_plus_well",
+    "plug_x_minus_chamber_relief",
+    "plug_x_minus_well"
+  ],
+  "need_a_contributed_measurement": [
+    "valve_y_minus_guide_bore",
+    "valve_y_minus_guide_bore_cam_end",
+    "valve_y_minus_guide_od_cam",
+    "valve_y_minus_guide_od_port",
+    "valve_y_minus_seat",
+    "valve_y_minus_spring_seat",
+    "valve_y_plus_guide_od_cam",
+    "valve_y_plus_guide_bore_cam_end",
+    "valve_y_plus_guide_boss_port",
+    "valve_y_plus_spring_pocket",
+    "valve_y_plus_spring_seat",
+    "plug_x_minus_thread_bore",
+    "stud_x_minus_y_minus_passage",
+    "stud_x_minus_y_minus_counterbore",
+    "stud_x_minus_y_plus_passage",
+    "stud_x_minus_y_plus_counterbore",
+    "stud_x_plus_y_minus_passage",
+    "stud_x_plus_y_minus_counterbore",
+    "stud_x_plus_y_plus_passage",
+    "stud_x_plus_y_plus_counterbore",
+    "deck_register_recess"
+  ],
+  "rows": [
+    {
+      "id": "valve_y_minus_guide_bore",
+      "first_check_share": 0.7987,
+      "refit_check_share": 0.8363,
+      "fitted_half_share_with_a_richer_surface": 0.8447,
+      "status": "not confirmable from this scan",
+      "reason_class": "unresolved",
+      "reason": "the fitted half keeps less than 90% within 0.2 mm even with a richer surface (offset, taper, two- and three-lobe terms; a quadratic for a plane): this scan does not resolve the surface to the tolerance"
+    },
+    {
+      "id": "valve_y_minus_guide_bore_port_end",
+      "first_check_share": 0.8282,
+      "refit_check_share": 0.9009,
+      "fitted_half_share_with_a_richer_surface": 0.943,
+      "status": "confirmed",
+      "by": "declared re-fit"
+    },
+    {
+      "id": "valve_y_minus_guide_bore_cam_end",
+      "first_check_share": 0.8047,
+      "refit_check_share": 0.7954,
+      "fitted_half_share_with_a_richer_surface": 0.8008,
+      "status": "not confirmable from this scan",
+      "reason_class": "unresolved",
+      "reason": "the fitted half keeps less than 90% within 0.2 mm even with a richer surface (offset, taper, two- and three-lobe terms; a quadratic for a plane): this scan does not resolve the surface to the tolerance"
+    },
+    {
+      "id": "valve_y_minus_guide_od_cam",
+      "first_check_share": 0.718,
+      "refit_check_share": 0.7625,
+      "fitted_half_share_with_a_richer_surface": 0.9072,
+      "status": "not confirmable from this scan",
+      "reason_class": "shape",
+      "reason": "a richer surface would hold 90% on the fitted half, but no assigned primitive has that shape (out of round, or a curved face)"
+    },
+    {
+      "id": "valve_y_minus_guide_od_port",
+      "first_check_share": 0.6784,
+      "refit_check_share": 0.7996,
+      "fitted_half_share_with_a_richer_surface": 0.8918,
+      "status": "not confirmable from this scan",
+      "reason_class": "unresolved",
+      "reason": "the fitted half keeps less than 90% within 0.2 mm even with a richer surface (offset, taper, two- and three-lobe terms; a quadratic for a plane): this scan does not resolve the surface to the tolerance"
+    },
+    {
+      "id": "valve_y_minus_throat",
+      "first_check_share": 0.857,
+      "refit_check_share": 0.9483,
+      "fitted_half_share_with_a_richer_surface": 0.9682,
+      "status": "confirmed",
+      "by": "declared re-fit"
+    },
+    {
+      "id": "valve_y_minus_seat",
+      "first_check_share": 0.8315,
+      "refit_check_share": null,
+      "fitted_half_share_with_a_richer_surface": 0.9727,
+      "status": "not confirmable from this scan",
+      "reason_class": "guard",
+      "reason": "re-fit drifted: the surface does not hold the first primitive under a robust fit"
+    },
+    {
+      "id": "valve_y_minus_spring_seat",
+      "first_check_share": 0.8525,
+      "refit_check_share": 0.8649,
+      "fitted_half_share_with_a_richer_surface": 0.9477,
+      "status": "not confirmable from this scan",
+      "reason_class": "shape",
+      "reason": "a richer surface would hold 90% on the fitted half, but no assigned primitive has that shape (out of round, or a curved face)"
+    },
+    {
+      "id": "valve_y_plus_guide_od_cam",
+      "first_check_share": 0.7278,
+      "refit_check_share": 0.7736,
+      "fitted_half_share_with_a_richer_surface": 0.8791,
+      "status": "not confirmable from this scan",
+      "reason_class": "unresolved",
+      "reason": "the fitted half keeps less than 90% within 0.2 mm even with a richer surface (offset, taper, two- and three-lobe terms; a quadratic for a plane): this scan does not resolve the surface to the tolerance"
+    },
+    {
+      "id": "valve_y_plus_guide_bore_cam_end",
+      "first_check_share": 0.7367,
+      "refit_check_share": null,
+      "fitted_half_share_with_a_richer_surface": 0.8854,
+      "status": "not confirmable from this scan",
+      "reason_class": "guard",
+      "reason": "re-fit drifted: the surface does not hold the first primitive under a robust fit"
+    },
+    {
+      "id": "valve_y_plus_guide_boss_port",
+      "first_check_share": 0.6925,
+      "refit_check_share": null,
+      "fitted_half_share_with_a_richer_surface": 0.8507,
+      "status": "not confirmable from this scan",
+      "reason_class": "guard",
+      "reason": "re-fit drifted: the surface does not hold the first primitive under a robust fit"
+    },
+    {
+      "id": "valve_y_plus_throat",
+      "first_check_share": 0.923,
+      "status": "confirmed",
+      "by": "first check"
+    },
+    {
+      "id": "valve_y_plus_seat",
+      "first_check_share": 0.9028,
+      "status": "confirmed",
+      "by": "first check"
+    },
+    {
+      "id": "valve_y_plus_spring_pocket",
+      "first_check_share": 0.7021,
+      "refit_check_share": 0.8214,
+      "fitted_half_share_with_a_richer_surface": 0.888,
+      "status": "not confirmable from this scan",
+      "reason_class": "unresolved",
+      "reason": "the fitted half keeps less than 90% within 0.2 mm even with a richer surface (offset, taper, two- and three-lobe terms; a quadratic for a plane): this scan does not resolve the surface to the tolerance"
+    },
+    {
+      "id": "valve_y_plus_spring_seat",
+      "first_check_share": 0.6873,
+      "refit_check_share": 0.7137,
+      "fitted_half_share_with_a_richer_surface": 0.7368,
+      "status": "not confirmable from this scan",
+      "reason_class": "unresolved",
+      "reason": "the fitted half keeps less than 90% within 0.2 mm even with a richer surface (offset, taper, two- and three-lobe terms; a quadratic for a plane): this scan does not resolve the surface to the tolerance"
+    },
+    {
+      "id": "plug_x_plus_thread_bore",
+      "first_check_share": 0.855,
+      "refit_check_share": 0.9433,
+      "fitted_half_share_with_a_richer_surface": 0.9625,
+      "status": "confirmed",
+      "by": "declared re-fit"
+    },
+    {
+      "id": "plug_x_plus_chamber_relief",
+      "first_check_share": 0.7892,
+      "refit_check_share": 0.9137,
+      "fitted_half_share_with_a_richer_surface": 0.926,
+      "status": "confirmed",
+      "by": "declared re-fit"
+    },
+    {
+      "id": "plug_x_plus_well",
+      "first_check_share": 0.826,
+      "refit_check_share": 0.9035,
+      "fitted_half_share_with_a_richer_surface": 0.9054,
+      "status": "confirmed",
+      "by": "declared re-fit"
+    },
+    {
+      "id": "plug_x_plus_seat_face",
+      "first_check_share": 0.9377,
+      "status": "confirmed",
+      "by": "first check"
+    },
+    {
+      "id": "plug_x_minus_thread_bore",
+      "first_check_share": 0.7822,
+      "refit_check_share": 0.8971,
+      "fitted_half_share_with_a_richer_surface": 0.9502,
+      "status": "not confirmable from this scan",
+      "reason_class": "shape",
+      "reason": "a richer surface would hold 90% on the fitted half, but no assigned primitive has that shape (out of round, or a curved face)"
+    },
+    {
+      "id": "plug_x_minus_chamber_relief",
+      "first_check_share": 0.8978,
+      "refit_check_share": 0.9096,
+      "fitted_half_share_with_a_richer_surface": 0.9235,
+      "status": "confirmed",
+      "by": "declared re-fit"
+    },
+    {
+      "id": "plug_x_minus_well",
+      "first_check_share": 0.865,
+      "refit_check_share": 0.905,
+      "fitted_half_share_with_a_richer_surface": 0.9292,
+      "status": "confirmed",
+      "by": "declared re-fit"
+    },
+    {
+      "id": "plug_x_minus_seat_face",
+      "first_check_share": 0.9232,
+      "status": "confirmed",
+      "by": "first check"
+    },
+    {
+      "id": "stud_x_minus_y_minus_passage",
+      "first_check_share": 0.872,
+      "refit_check_share": 0.8774,
+      "fitted_half_share_with_a_richer_surface": 0.9055,
+      "status": "not confirmable from this scan",
+      "reason_class": "shape",
+      "reason": "a richer surface would hold 90% on the fitted half, but no assigned primitive has that shape (out of round, or a curved face)"
+    },
+    {
+      "id": "stud_x_minus_y_minus_counterbore",
+      "first_check_share": 0.8713,
+      "refit_check_share": 0.8808,
+      "fitted_half_share_with_a_richer_surface": 0.9024,
+      "status": "not confirmable from this scan",
+      "reason_class": "shape",
+      "reason": "a richer surface would hold 90% on the fitted half, but no assigned primitive has that shape (out of round, or a curved face)"
+    },
+    {
+      "id": "stud_x_minus_y_plus_passage",
+      "first_check_share": 0.7636,
+      "refit_check_share": 0.7866,
+      "fitted_half_share_with_a_richer_surface": 0.7916,
+      "status": "not confirmable from this scan",
+      "reason_class": "unresolved",
+      "reason": "the fitted half keeps less than 90% within 0.2 mm even with a richer surface (offset, taper, two- and three-lobe terms; a quadratic for a plane): this scan does not resolve the surface to the tolerance"
+    },
+    {
+      "id": "stud_x_minus_y_plus_counterbore",
+      "first_check_share": 0.6671,
+      "refit_check_share": null,
+      "fitted_half_share_with_a_richer_surface": 0.7352,
+      "status": "not confirmable from this scan",
+      "reason_class": "guard",
+      "reason": "re-fit drifted: the surface does not hold the first primitive under a robust fit"
+    },
+    {
+      "id": "stud_x_plus_y_minus_passage",
+      "first_check_share": 0.8685,
+      "refit_check_share": 0.8878,
+      "fitted_half_share_with_a_richer_surface": 0.9071,
+      "status": "not confirmable from this scan",
+      "reason_class": "shape",
+      "reason": "a richer surface would hold 90% on the fitted half, but no assigned primitive has that shape (out of round, or a curved face)"
+    },
+    {
+      "id": "stud_x_plus_y_minus_counterbore",
+      "first_check_share": 0.7929,
+      "refit_check_share": 0.7613,
+      "fitted_half_share_with_a_richer_surface": 0.8021,
+      "status": "not confirmable from this scan",
+      "reason_class": "unresolved",
+      "reason": "the fitted half keeps less than 90% within 0.2 mm even with a richer surface (offset, taper, two- and three-lobe terms; a quadratic for a plane): this scan does not resolve the surface to the tolerance"
+    },
+    {
+      "id": "stud_x_plus_y_plus_passage",
+      "first_check_share": 0.6266,
+      "refit_check_share": 0.7798,
+      "fitted_half_share_with_a_richer_surface": 0.8641,
+      "status": "not confirmable from this scan",
+      "reason_class": "unresolved",
+      "reason": "the fitted half keeps less than 90% within 0.2 mm even with a richer surface (offset, taper, two- and three-lobe terms; a quadratic for a plane): this scan does not resolve the surface to the tolerance"
+    },
+    {
+      "id": "stud_x_plus_y_plus_counterbore",
+      "first_check_share": 0.7562,
+      "refit_check_share": 0.7576,
+      "fitted_half_share_with_a_richer_surface": 0.803,
+      "status": "not confirmable from this scan",
+      "reason_class": "unresolved",
+      "reason": "the fitted half keeps less than 90% within 0.2 mm even with a richer surface (offset, taper, two- and three-lobe terms; a quadratic for a plane): this scan does not resolve the surface to the tolerance"
+    },
+    {
+      "id": "deck_register_recess",
+      "first_check_share": 0.8655,
+      "refit_check_share": null,
+      "fitted_half_share_with_a_richer_surface": null,
+      "status": "not confirmable from this scan",
+      "reason_class": "guard",
+      "reason": "fewer than 100 fitted vertices near the first fit once the window is shortened"
+    }
+  ]
+}

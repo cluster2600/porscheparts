@@ -1,0 +1,300 @@
+{
+  "schema": "935-cad-twin-feature-check/1",
+  "fits_sha256": "08b37f03cb1cdfbcd42f343d597d9bec2925b6a779b8378be8ff8bcda66ad8fb",
+  "tool": {
+    "name": "CloudCompare 2.13.2, C2M_DIST, unsigned",
+    "image": "free-tools-cloudcompare:local",
+    "image_id": "sha256:5b33bb63c14752060c96cc74f4871266908c672d0d495cee2edbed7bbae74f03",
+    "wrapper": "benchmarks/free-tools/cloudcompare.py"
+  },
+  "acceptance": {
+    "fixed_before_first_run": true,
+    "band_mm": 0.5,
+    "tolerance_mm": 0.2,
+    "min_share": 0.9,
+    "min_vertices": 100
+  },
+  "claims": "held-out scan vertices against the fitted primitive; a confirmed feature describes the acquired surface within the tolerance and establishes no dimension of the specimen",
+  "confirmed": 7,
+  "regions_checked": 28,
+  "regions": [
+    {
+      "id": "valve_y_minus_guide_bore",
+      "type": "cylinder",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 1258,
+      "check_vertices": 1173,
+      "share_within_tolerance": 0.8363,
+      "median_mm": 0.0873,
+      "p95_mm": 0.3196,
+      "confirmed": false
+    },
+    {
+      "id": "valve_y_minus_guide_bore_port_end",
+      "type": "cone",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 704,
+      "check_vertices": 696,
+      "share_within_tolerance": 0.9009,
+      "median_mm": 0.0752,
+      "p95_mm": 0.2472,
+      "confirmed": true
+    },
+    {
+      "id": "valve_y_minus_guide_bore_cam_end",
+      "type": "cylinder",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 550,
+      "check_vertices": 479,
+      "share_within_tolerance": 0.7954,
+      "median_mm": 0.0801,
+      "p95_mm": 0.3907,
+      "confirmed": false
+    },
+    {
+      "id": "valve_y_minus_guide_od_cam",
+      "type": "cylinder",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 1118,
+      "check_vertices": 1116,
+      "share_within_tolerance": 0.7625,
+      "median_mm": 0.0993,
+      "p95_mm": 0.355,
+      "confirmed": false
+    },
+    {
+      "id": "valve_y_minus_guide_od_port",
+      "type": "cone",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 624,
+      "check_vertices": 549,
+      "share_within_tolerance": 0.7996,
+      "median_mm": 0.0857,
+      "p95_mm": 0.4316,
+      "confirmed": false
+    },
+    {
+      "id": "valve_y_minus_throat",
+      "type": "cone",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 5496,
+      "check_vertices": 5490,
+      "share_within_tolerance": 0.9483,
+      "median_mm": 0.0569,
+      "p95_mm": 0.2015,
+      "confirmed": true
+    },
+    {
+      "id": "valve_y_minus_seat",
+      "confirmed": false,
+      "reason": "no fit"
+    },
+    {
+      "id": "valve_y_minus_spring_seat",
+      "type": "plane",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 2985,
+      "check_vertices": 2827,
+      "share_within_tolerance": 0.8649,
+      "median_mm": 0.0722,
+      "p95_mm": 0.2841,
+      "confirmed": false
+    },
+    {
+      "id": "valve_y_plus_guide_od_cam",
+      "type": "cone",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 1156,
+      "check_vertices": 1113,
+      "share_within_tolerance": 0.7736,
+      "median_mm": 0.101,
+      "p95_mm": 0.3743,
+      "confirmed": false
+    },
+    {
+      "id": "valve_y_plus_guide_bore_cam_end",
+      "confirmed": false,
+      "reason": "no fit"
+    },
+    {
+      "id": "valve_y_plus_guide_boss_port",
+      "confirmed": false,
+      "reason": "no fit"
+    },
+    {
+      "id": "valve_y_plus_spring_pocket",
+      "type": "cone",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 1528,
+      "check_vertices": 1523,
+      "share_within_tolerance": 0.8214,
+      "median_mm": 0.0943,
+      "p95_mm": 0.3301,
+      "confirmed": false
+    },
+    {
+      "id": "valve_y_plus_spring_seat",
+      "type": "plane",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 1540,
+      "check_vertices": 1495,
+      "share_within_tolerance": 0.7137,
+      "median_mm": 0.1429,
+      "p95_mm": 0.386,
+      "confirmed": false
+    },
+    {
+      "id": "plug_x_plus_thread_bore",
+      "type": "cone",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 1833,
+      "check_vertices": 1833,
+      "share_within_tolerance": 0.9433,
+      "median_mm": 0.0679,
+      "p95_mm": 0.2031,
+      "confirmed": true
+    },
+    {
+      "id": "plug_x_plus_chamber_relief",
+      "type": "cylinder",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 760,
+      "check_vertices": 695,
+      "share_within_tolerance": 0.9137,
+      "median_mm": 0.0578,
+      "p95_mm": 0.2583,
+      "confirmed": true
+    },
+    {
+      "id": "plug_x_plus_well",
+      "type": "cone",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 2587,
+      "check_vertices": 2082,
+      "share_within_tolerance": 0.9035,
+      "median_mm": 0.0533,
+      "p95_mm": 0.29,
+      "confirmed": true
+    },
+    {
+      "id": "plug_x_minus_thread_bore",
+      "type": "cylinder",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 1798,
+      "check_vertices": 1720,
+      "share_within_tolerance": 0.8971,
+      "median_mm": 0.0705,
+      "p95_mm": 0.2686,
+      "confirmed": false
+    },
+    {
+      "id": "plug_x_minus_chamber_relief",
+      "type": "cylinder",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 649,
+      "check_vertices": 586,
+      "share_within_tolerance": 0.9096,
+      "median_mm": 0.0377,
+      "p95_mm": 0.3097,
+      "confirmed": true
+    },
+    {
+      "id": "plug_x_minus_well",
+      "type": "cone",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 2524,
+      "check_vertices": 2368,
+      "share_within_tolerance": 0.905,
+      "median_mm": 0.0705,
+      "p95_mm": 0.2771,
+      "confirmed": true
+    },
+    {
+      "id": "stud_x_minus_y_minus_passage",
+      "type": "cylinder",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 1929,
+      "check_vertices": 1754,
+      "share_within_tolerance": 0.8774,
+      "median_mm": 0.0767,
+      "p95_mm": 0.3081,
+      "confirmed": false
+    },
+    {
+      "id": "stud_x_minus_y_minus_counterbore",
+      "type": "cone",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 1840,
+      "check_vertices": 1636,
+      "share_within_tolerance": 0.8808,
+      "median_mm": 0.0541,
+      "p95_mm": 0.3517,
+      "confirmed": false
+    },
+    {
+      "id": "stud_x_minus_y_plus_passage",
+      "type": "cone",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 2025,
+      "check_vertices": 1818,
+      "share_within_tolerance": 0.7866,
+      "median_mm": 0.0939,
+      "p95_mm": 0.3754,
+      "confirmed": false
+    },
+    {
+      "id": "stud_x_minus_y_plus_counterbore",
+      "confirmed": false,
+      "reason": "no fit"
+    },
+    {
+      "id": "stud_x_plus_y_minus_passage",
+      "type": "cylinder",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 1947,
+      "check_vertices": 1729,
+      "share_within_tolerance": 0.8878,
+      "median_mm": 0.0747,
+      "p95_mm": 0.3133,
+      "confirmed": false
+    },
+    {
+      "id": "stud_x_plus_y_minus_counterbore",
+      "type": "cone",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 2465,
+      "check_vertices": 2065,
+      "share_within_tolerance": 0.7613,
+      "median_mm": 0.0775,
+      "p95_mm": 0.4048,
+      "confirmed": false
+    },
+    {
+      "id": "stud_x_plus_y_plus_passage",
+      "type": "cone",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 2081,
+      "check_vertices": 1744,
+      "share_within_tolerance": 0.7798,
+      "median_mm": 0.0941,
+      "p95_mm": 0.4152,
+      "confirmed": false
+    },
+    {
+      "id": "stud_x_plus_y_plus_counterbore",
+      "type": "cone",
+      "determined_by_the_fit": true,
+      "held_out_vertices_in_window": 2825,
+      "check_vertices": 2224,
+      "share_within_tolerance": 0.7576,
+      "median_mm": 0.1044,
+      "p95_mm": 0.3949,
+      "confirmed": false
+    },
+    {
+      "id": "deck_register_recess",
+      "confirmed": false,
+      "reason": "no fit"
+    }
+  ]
+}
