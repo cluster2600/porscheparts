@@ -241,7 +241,7 @@
   {
    "id": "drawing",
    "ledger_row": "Fatigue, valve-train dynamics, drawing",
-   "state": "tool assigned and witnessed; the reference sheet of the confirmed features is next (#708)",
+   "state": "reference sheet of the 11 confirmed features drawn (#708); a dimensioned drawing waits for a scale, more features and sourced tolerances",
    "question": "a dimensioned drawing of the head's machined features",
    "tool": {
     "assigned": "build123d projection to DXF, with ezdxf dimensions and a title block (docs/TOOLCHAIN.md, 2026-11-19, #708)",
@@ -254,6 +254,11 @@
      "what": "11 features confirmed on held-out vertices: valve_y_plus_throat, valve_y_plus_seat, plug_x_plus_seat_face, plug_x_minus_seat_face at the first check; valve_y_minus_guide_bore_port_end, valve_y_minus_throat, plug_x_plus_thread_bore, plug_x_plus_chamber_relief, plug_x_plus_well, plug_x_minus_chamber_relief, plug_x_minus_well after the declared re-fit (#696)",
      "where": "twins/935-cylinder-head-cad-twin/params/feature-confirmation.json",
      "standing": "confirmed against the scan within 0.2 mm, at 1 scan unit = 1 mm by owner instruction; not dimensions of the specimen"
+    },
+    {
+     "what": "a reference sheet of the 11 confirmed features on their fitted datums, every value a reference fitted on a scan",
+     "where": "twins/935-cylinder-head-cad-twin/params/reference-sheet.json",
+     "standing": "drawn and read back on 2026-11-19; scale uncalibrated (#693); no tolerance, fit or thread"
     },
     {
      "what": "21 features fitted and not confirmable from this scan",
@@ -298,7 +303,7 @@
     "annotation and title-block checks added to the tool witness before any dimension is drawn",
     "a tool assignment recorded in docs/TOOLCHAIN.md"
    ],
-   "runnable_today": "a reference sheet of the 11 confirmed features on their fitted datums, every value marked as fitted on a scan and the scale as uncalibrated (#693)"
+   "runnable_today": "the reference sheet, regenerated from the records; nothing more until a measured length (#693), another confirmed feature or a sourced tolerance arrives"
   }
  ]
 }

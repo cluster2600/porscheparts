@@ -1692,6 +1692,35 @@ how far a re-fit may move. The confirmed numbers stay nominal: the scale is
 an owner instruction (#693), H05 keeps `not_modelled_in_v0`, and no feature
 is cut into the v2 body.
 
+#### Reference sheet of the confirmed features ([record](params/reference-sheet.json), #708)
+
+![The reference sheet: profile views of the confirmed valve and plug features on their fitted datum axes, every value in parentheses as a reference, the table of the 11 confirmed features and a title block that marks the scale as uncalibrated](media/reference-sheet.png)
+
+[reference_sheet.py](source/reference_sheet.py) draws the 11 confirmed
+features, and only those, with the drawing tool now assigned in
+[TOOLCHAIN.md](../../docs/TOOLCHAIN.md). There are four views, one per valve
+or plug: the valves at 1:1 and the plugs at 2:1. Each feature is drawn about
+its own axis, at its station on the datum axis of its group as
+`feature-fits.json` records it. The tilts from the datum, 0.46° to 2.75°, and
+the offsets, 0.01 to 0.80 mm, are in the record, not drawn.
+
+Every value is in parentheses: a reference value fitted on a scan, not a
+dimension of the specimen. The title block states the scale as uncalibrated
+(#693). No tolerance, fit or thread is drawn, because none has a source.
+
+The sheet is read back like the witness:
+- each of the 16 dimensions shows the fitted number it stands for, from
+  points on the drawn profile;
+- no text on the sheet carries a tolerance, a fit or a thread;
+- the title block reads back field by field;
+- every confirmed feature is named, and no unconfirmed one except as the
+  source of a datum. Two datums come from surfaces that are not confirmed:
+  the `valve_y_minus` guide bore and the `plug_x_minus` thread bore.
+
+A copy of the sheet whose dimension style forgets the 2:1 scale is caught. It
+is a sheet to read the fits by, not a drawing to make or inspect the part
+from.
+
 **Valve train**, in the twin frame. The valves are named by flange side;
 which one is the intake is not established.
 
@@ -1767,9 +1796,11 @@ Not run on this head, each for a stated reason:
   S-N data is admitted for the alloy, which is itself unknown.
 - **Valve-train dynamics.** No tool is installed (Chrono is a candidate
   only), and there is no valve, spring or cam.
-- **A dimensioned drawing.** The tool is now assigned and witnessed (#708),
-  but 21 of the 32 features it would dimension are not confirmable from this
-  scan; a reference sheet of the 11 confirmed ones is the next step.
+- **A dimensioned drawing.** The tool is assigned and witnessed, and a
+  [reference sheet](#reference-sheet-of-the-confirmed-features-record-708) of
+  the 11 confirmed features exists (#708). A drawing to make or inspect the
+  part from still needs a measured scale (#693), the 21 features this scan
+  cannot confirm, and a source for every tolerance, fit and thread.
 
 ### Alloy and machine for a simulated LPBF print ([candidates](params/alloy-candidates.json), [bare-head ranking](params/alloy-thermal.json), [assembly case](params/assembly-case.json), [assembly ranking](params/assembly-thermal.json), [strength](params/alloy-strength.json), [trade-off](params/alloy-tradeoff.json), [literature](params/thermal-literature-bounds.json), [machines](params/lpbf-machine-survey.json), [993 comparison](params/published-993-comparison.json))
 
@@ -2025,7 +2056,7 @@ was read. It moved no part out of its blocked state.
 | Port flow | blocked on geometry | OpenFOAM with foamlib ([TOOLCHAIN.md](../../docs/TOOLCHAIN.md)); Gmsh for meshing ([AGENT_TOOL_GUIDE.md](../../docs/AGENT_TOOL_GUIDE.md)) | [openfoam-poiseuille-f25](../../outils/benchmarks/openfoam-poiseuille-f25): exists with its test ([test_openfoam_poiseuille_f25.py](../../tests/test_openfoam_poiseuille_f25.py)); to be rerun on the image used before any port case |
 | Fatigue | blocked on a stress history and on material data | pyLife 2.3 ([TOOLCHAIN.md](../../docs/TOOLCHAIN.md)): rainflow counting, Wöhler curves, Miner damage | [witness_rainflow_miner.py](../../benchmarks/fatigue-postprocessor/witness_rainflow_miner.py): passed on 2026-11-10 ([results-20261110.json](../../benchmarks/fatigue-postprocessor/results-20261110.json)): rainflow against the ASTM E1049 table, Basquin and Miner against a closed form |
 | Valve-train dynamics | blocked on kinematics and on a dynamics tool | none. Chrono is a candidate, not installed: no image, lock or witness ([AGENT_TOOL_GUIDE.md](../../docs/AGENT_TOOL_GUIDE.md)) | [test_m64_valvetrain_v1.py](../../tests/test_m64_valvetrain_v1.py): analytic checks of that model (derivatives, spring rate, harmonic limit, energy); a sensitivity study, no cam data and no bench correlation |
-| Drawing | tool assigned and witnessed; the reference sheet of the confirmed features is next (#708) | build123d projection to DXF, with ezdxf dimensions and a title block ([TOOLCHAIN.md](../../docs/TOOLCHAIN.md), 2026-11-19, #708) | [drawing_witness.py](source/drawing_witness.py): passed on 2026-11-19 ([drawing-witness.json](params/drawing-witness.json)): three views of a known solid read back from DXF; one third-angle sheet whose seven dimensions show their own measurement at 3.5 mm from definition points on drawn edges, and whose title block reads back field by field; five planted faults caught; sections not checked |
+| Drawing | reference sheet of the 11 confirmed features drawn (#708); a dimensioned drawing waits for a scale, more features and sourced tolerances | build123d projection to DXF, with ezdxf dimensions and a title block ([TOOLCHAIN.md](../../docs/TOOLCHAIN.md), 2026-11-19, #708) | [drawing_witness.py](source/drawing_witness.py): passed on 2026-11-19 ([drawing-witness.json](params/drawing-witness.json)): three views of a known solid read back from DXF; one third-angle sheet whose seven dimensions show their own measurement at 3.5 mm from definition points on drawn edges, and whose title block reads back field by field; five planted faults caught; sections not checked |
 
 **Port flow:** the flow through each port at stated valve lifts and pressure difference.
 
@@ -2053,11 +2084,11 @@ was read. It moved no part out of its blocked state.
 
 **Drawing:** a dimensioned drawing of the head's machined features.
 
-- Held: 11 features confirmed on held-out vertices: valve_y_plus_throat, valve_y_plus_seat, plug_x_plus_seat_face, plug_x_minus_seat_face at the first check; valve_y_minus_guide_bore_port_end, valve_y_minus_throat, plug_x_plus_thread_bore, plug_x_plus_chamber_relief, plug_x_plus_well, plug_x_minus_chamber_relief, plug_x_minus_well after the declared re-fit (#696) ([feature-confirmation.json](params/feature-confirmation.json): confirmed against the scan within 0.2 mm, at 1 scan unit = 1 mm by owner instruction; not dimensions of the specimen); 21 features fitted and not confirmable from this scan ([feature-confirmation.json](params/feature-confirmation.json): 71% to 89.7% of held-out vertices within 0.2 mm after the declared re-fit, or a re-fit its guard rejected, against the 90% fixed beforehand; each needs a contributed measurement); analytic B-rep of the deck plate and of two port lofts ([deck-features.json](params/deck-features.json): the v1 parts; the v2 body is a triangle solid with no B-rep to project).
+- Held: 11 features confirmed on held-out vertices: valve_y_plus_throat, valve_y_plus_seat, plug_x_plus_seat_face, plug_x_minus_seat_face at the first check; valve_y_minus_guide_bore_port_end, valve_y_minus_throat, plug_x_plus_thread_bore, plug_x_plus_chamber_relief, plug_x_plus_well, plug_x_minus_chamber_relief, plug_x_minus_well after the declared re-fit (#696) ([feature-confirmation.json](params/feature-confirmation.json): confirmed against the scan within 0.2 mm, at 1 scan unit = 1 mm by owner instruction; not dimensions of the specimen); a reference sheet of the 11 confirmed features on their fitted datums, every value a reference fitted on a scan ([reference-sheet.json](params/reference-sheet.json): drawn and read back on 2026-11-19; scale uncalibrated (#693); no tolerance, fit or thread); 21 features fitted and not confirmable from this scan ([feature-confirmation.json](params/feature-confirmation.json): 71% to 89.7% of held-out vertices within 0.2 mm after the declared re-fit, or a re-fit its guard rejected, against the 90% fixed beforehand; each needs a contributed measurement); analytic B-rep of the deck plate and of two port lofts ([deck-features.json](params/deck-features.json): the v1 parts; the v2 body is a triangle solid with no B-rep to project).
 - Missing: a physical scale: one calibrated length on the specimen (retires the owner's instruction that 1 unit is 1 mm); confirmation of the other features; tolerances, fits and threads (retires H03 for the studs, H05 for seats and guides); a B-rep of the body, if outline views are wanted.
 - A contribution must hold: the specimen and the feature measured, with the datum it was measured from; instrument, resolution and uncertainty; an explicit licence to use and redistribute the values.
 - First steps once the inputs exist: a reference sheet of the confirmed features on the fitted datums, each value marked as fitted on a scan; annotation and title-block checks added to the tool witness before any dimension is drawn; a tool assignment recorded in docs/TOOLCHAIN.md.
-- Runnable today: a reference sheet of the 11 confirmed features on their fitted datums, every value marked as fitted on a scan and the scale as uncalibrated (#693).
+- Runnable today: the reference sheet, regenerated from the records; nothing more until a measured length (#693), another confirmed feature or a sourced tolerance arrives.
 
 The project measures nothing itself and pays nobody to measure
 ([decision 0019](../../docs/decisions/0019-accept-contributed-measurements.md)). A contribution needs its capture protocol,

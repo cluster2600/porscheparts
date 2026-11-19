@@ -1657,6 +1657,38 @@ class PreparedWorkTests(unittest.TestCase):
         self.assertIn("| Dimensioned drawings |", toolchain)
         self.assertIn("drawing_witness.py", toolchain)
 
+    def test_reference_sheet_draws_only_confirmed_features_as_references(self):
+        # #708: the sheet of the confirmed features, read back; every value a reference fitted on a scan
+        import hashlib
+        import re
+
+        record = json.loads((TWIN / "params" / "reference-sheet.json").read_text())
+        standing = json.loads((TWIN / "params" / "feature-confirmation.json").read_text())
+        self.assertTrue(record["passed"])
+        self.assertTrue(all(check["passed"] for check in record["checks"]))
+        for name, digest in record["inputs_sha256"].items():
+            self.assertEqual(hashlib.sha256((TWIN / "params" / name).read_bytes()).hexdigest(), digest, name)
+        confirmed = standing["confirmed_by_first_check"] + standing["confirmed_by_declared_refit"]
+        self.assertEqual([f["id"] for f in record["features"]], confirmed)
+        self.assertTrue(all(f["evidence"] == "fitted on a scan" for f in record["features"]))
+        # each dimension shows, in parentheses, the fitted number it stands for
+        by_label = {(f["group"], f["label"]): f for f in record["features"]}
+        for dim in record["dimensions"]:
+            self.assertEqual(dim["displayed"], dim["shows"], dim["dimension"])
+            self.assertRegex(dim["displayed"], r"^\(\d+(\.\d{1,2})?\)$", dim["dimension"])
+            group, rest = dim["dimension"].split(": ", 1)
+            if rest.endswith(" diameter at mid-band"):
+                feature = by_label[(group, rest[: -len(" diameter at mid-band")])]
+                self.assertAlmostEqual(dim["expected_mm"], feature["mid_diameter_mm"], places=3, msg=dim["dimension"])
+        self.assertIn("uncalibrated", record["claims"] + " ".join(c["check"] for c in record["checks"]))
+        self.assertTrue(any("forgets the 2:1 scale" in c["check"] and c["passed"] for c in record["checks"]))
+        self.assertTrue(any(c["check"] == "no tolerance, fit or thread anywhere on the sheet" and c["passed"]
+                            for c in record["checks"]))
+        image = (TWIN / "media" / record["sheet"]["image"]).read_bytes()
+        self.assertEqual(hashlib.sha256(image).hexdigest(), record["sheet"]["image_sha256"])
+        self.assertEqual(record["sheet"]["dxf"], "private (work directory)")
+        self.assertIsNone(re.search(r"±|H7|\bM\d{1,2}\b", json.dumps(record["dimensions"])))
+
     def test_a_segment_is_found_only_when_collinear_pieces_cover_it(self):
         sys.path.insert(0, str(SOURCE))
         import drawing_witness as dw

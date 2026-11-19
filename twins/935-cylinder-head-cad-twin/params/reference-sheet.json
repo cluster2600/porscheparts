@@ -1,0 +1,640 @@
+{
+ "schema": "935-cad-twin-reference-sheet/1",
+ "date": "2026-11-19",
+ "issue": "#708",
+ "claims": "a reference sheet of fitted numbers: every value is fitted on a scan whose scale is an owner instruction (#693); none is a dimension, a tolerance, a fit or a thread of the specimen",
+ "tool": "ezdxf on a DXF sheet, as assigned in docs/TOOLCHAIN.md and witnessed by drawing_witness.py",
+ "inputs_sha256": {
+  "feature-fits.json": "aac00fc56eb66834bde8b1aa09ef99db24181b7380a3d17eed8e362cabab7ac8",
+  "feature-refits.json": "08b37f03cb1cdfbcd42f343d597d9bec2925b6a779b8378be8ff8bcda66ad8fb",
+  "feature-confirmation.json": "e69ee678cd949f0ed3f880aa2c85dfc6fec7c97b2c419822bc26d31062b394ad"
+ },
+ "sheet": {
+  "size_mm": [
+   420.0,
+   297.0
+  ],
+  "scale": {
+   "valve_y_minus": "1:1",
+   "valve_y_plus": "1:1",
+   "plug_x_plus": "2:1",
+   "plug_x_minus": "2:1"
+  },
+  "dxf": "private (work directory)",
+  "image": "reference-sheet.png",
+  "image_sha256": "fb569b9abe878b19fcd22ea758ccf66bfc4fc80d763363442b4aefe26e8814e3"
+ },
+ "datums": {
+  "valve_y_minus": {
+   "rule": {
+    "axis_of": "valve_y_minus_guide_bore"
+   },
+   "what": "axis of valve_y_minus_guide_bore, fitted; that surface is not confirmed"
+  },
+  "valve_y_plus": {
+   "rule": {
+    "line_through": [
+     "valve_y_plus_throat",
+     "valve_y_plus_guide_od_cam"
+    ]
+   },
+   "what": "line through the fitted centres of valve_y_plus_throat and valve_y_plus_guide_od_cam"
+  },
+  "plug_x_plus": {
+   "rule": {
+    "axis_of": "plug_x_plus_thread_bore"
+   },
+   "what": "axis of plug_x_plus_thread_bore, fitted"
+  },
+  "plug_x_minus": {
+   "rule": {
+    "axis_of": "plug_x_minus_thread_bore"
+   },
+   "what": "axis of plug_x_minus_thread_bore, fitted; that surface is not confirmed"
+  }
+ },
+ "features": [
+  {
+   "id": "valve_y_plus_throat",
+   "group": "valve_y_plus",
+   "label": "throat",
+   "type": "cone",
+   "confirmed_by": "first check",
+   "held_out_share": 0.923,
+   "evidence": "fitted on a scan",
+   "stations_mm": [
+    -4.3119,
+    4.9595
+   ],
+   "radii_mm": [
+    19.0788,
+    19.3914
+   ],
+   "mid_station_mm": 0.3238,
+   "mid_diameter_mm": 38.4702,
+   "half_angle_deg": 1.9304,
+   "length_mm": 9.276,
+   "own_axis_to_datum_deg": 1.8064,
+   "own_axis_off_datum_at_mid_mm": 0.0102
+  },
+  {
+   "id": "valve_y_plus_seat",
+   "group": "valve_y_plus",
+   "label": "seat",
+   "type": "cone",
+   "confirmed_by": "first check",
+   "held_out_share": 0.9028,
+   "evidence": "fitted on a scan",
+   "stations_mm": [
+    -8.4172,
+    -4.7517
+   ],
+   "radii_mm": [
+    23.6047,
+    19.3936
+   ],
+   "mid_station_mm": -6.5845,
+   "mid_diameter_mm": 42.9983,
+   "half_angle_deg": 48.9586,
+   "length_mm": 3.666,
+   "own_axis_to_datum_deg": 0.973,
+   "own_axis_off_datum_at_mid_mm": 0.0992
+  },
+  {
+   "id": "plug_x_plus_seat_face",
+   "group": "plug_x_plus",
+   "label": "seat face",
+   "type": "plane",
+   "confirmed_by": "first check",
+   "held_out_share": 0.9377,
+   "evidence": "fitted on a scan",
+   "station_mm": 9.044,
+   "normal_to_datum_deg": 1.4049
+  },
+  {
+   "id": "plug_x_minus_seat_face",
+   "group": "plug_x_minus",
+   "label": "seat face",
+   "type": "plane",
+   "confirmed_by": "first check",
+   "held_out_share": 0.9232,
+   "evidence": "fitted on a scan",
+   "station_mm": 11.6803,
+   "normal_to_datum_deg": 1.5777
+  },
+  {
+   "id": "valve_y_minus_guide_bore_port_end",
+   "group": "valve_y_minus",
+   "label": "guide bore, port end",
+   "type": "cone",
+   "confirmed_by": "declared re-fit (#696)",
+   "held_out_share": 0.9009,
+   "evidence": "fitted on a scan",
+   "stations_mm": [
+    -19.1964,
+    -7.4988
+   ],
+   "radii_mm": [
+    4.1943,
+    4.5683
+   ],
+   "mid_station_mm": -13.3476,
+   "mid_diameter_mm": 8.7626,
+   "half_angle_deg": 1.829,
+   "length_mm": 11.711,
+   "own_axis_to_datum_deg": 2.7451,
+   "own_axis_off_datum_at_mid_mm": 0.1467
+  },
+  {
+   "id": "valve_y_minus_throat",
+   "group": "valve_y_minus",
+   "label": "throat",
+   "type": "cone",
+   "confirmed_by": "declared re-fit (#696)",
+   "held_out_share": 0.9483,
+   "evidence": "fitted on a scan",
+   "stations_mm": [
+    -43.5341,
+    -32.5711
+   ],
+   "radii_mm": [
+    22.7723,
+    23.0867
+   ],
+   "mid_station_mm": -38.0526,
+   "mid_diameter_mm": 45.8591,
+   "half_angle_deg": 1.6421,
+   "length_mm": 10.966,
+   "own_axis_to_datum_deg": 1.3326,
+   "own_axis_off_datum_at_mid_mm": 0.1828
+  },
+  {
+   "id": "plug_x_plus_thread_bore",
+   "group": "plug_x_plus",
+   "label": "thread bore",
+   "type": "cone",
+   "confirmed_by": "declared re-fit (#696)",
+   "held_out_share": 0.9433,
+   "evidence": "fitted on a scan",
+   "stations_mm": [
+    -6.7754,
+    7.3904
+   ],
+   "radii_mm": [
+    5.6833,
+    5.7178
+   ],
+   "mid_station_mm": 0.3075,
+   "mid_diameter_mm": 11.4011,
+   "half_angle_deg": 0.1396,
+   "length_mm": 14.167,
+   "own_axis_to_datum_deg": 0.7497,
+   "own_axis_off_datum_at_mid_mm": 0.0763
+  },
+  {
+   "id": "plug_x_plus_chamber_relief",
+   "group": "plug_x_plus",
+   "label": "chamber relief",
+   "type": "cylinder",
+   "confirmed_by": "declared re-fit (#696)",
+   "held_out_share": 0.9137,
+   "evidence": "fitted on a scan",
+   "stations_mm": [
+    -15.1614,
+    -9.0215
+   ],
+   "radii_mm": [
+    7.1736,
+    7.1736
+   ],
+   "mid_station_mm": -12.0915,
+   "mid_diameter_mm": 14.3472,
+   "half_angle_deg": 0.0,
+   "length_mm": 6.141,
+   "own_axis_to_datum_deg": 1.0546,
+   "own_axis_off_datum_at_mid_mm": 0.22
+  },
+  {
+   "id": "plug_x_plus_well",
+   "group": "plug_x_plus",
+   "label": "well",
+   "type": "cone",
+   "confirmed_by": "declared re-fit (#696)",
+   "held_out_share": 0.9035,
+   "evidence": "fitted on a scan",
+   "stations_mm": [
+    10.2508,
+    28.1653
+   ],
+   "radii_mm": [
+    12.6464,
+    12.4019
+   ],
+   "mid_station_mm": 19.2081,
+   "mid_diameter_mm": 25.0483,
+   "half_angle_deg": 0.7822,
+   "length_mm": 17.915,
+   "own_axis_to_datum_deg": 0.4645,
+   "own_axis_off_datum_at_mid_mm": 0.6596
+  },
+  {
+   "id": "plug_x_minus_chamber_relief",
+   "group": "plug_x_minus",
+   "label": "chamber relief",
+   "type": "cylinder",
+   "confirmed_by": "declared re-fit (#696)",
+   "held_out_share": 0.9096,
+   "evidence": "fitted on a scan",
+   "stations_mm": [
+    -13.7068,
+    -7.818
+   ],
+   "radii_mm": [
+    7.2796,
+    7.2796
+   ],
+   "mid_station_mm": -10.7624,
+   "mid_diameter_mm": 14.5592,
+   "half_angle_deg": 0.0,
+   "length_mm": 5.891,
+   "own_axis_to_datum_deg": 1.5647,
+   "own_axis_off_datum_at_mid_mm": 0.3358
+  },
+  {
+   "id": "plug_x_minus_well",
+   "group": "plug_x_minus",
+   "label": "well",
+   "type": "cone",
+   "confirmed_by": "declared re-fit (#696)",
+   "held_out_share": 0.905,
+   "evidence": "fitted on a scan",
+   "stations_mm": [
+    11.5651,
+    29.4177
+   ],
+   "radii_mm": [
+    12.659,
+    12.9319
+   ],
+   "mid_station_mm": 20.4914,
+   "mid_diameter_mm": 25.5909,
+   "half_angle_deg": 0.8755,
+   "length_mm": 17.856,
+   "own_axis_to_datum_deg": 1.1181,
+   "own_axis_off_datum_at_mid_mm": 0.7985
+  }
+ ],
+ "dimensions": [
+  {
+   "dimension": "valve_y_minus: throat diameter at mid-band",
+   "expected_mm": 45.8591,
+   "shows": "(45.86)",
+   "displayed": "(45.86)",
+   "text_height_mm": 3.5
+  },
+  {
+   "dimension": "valve_y_minus: guide bore, port end diameter at mid-band",
+   "expected_mm": 8.7626,
+   "shows": "(8.76)",
+   "displayed": "(8.76)",
+   "text_height_mm": 3.5
+  },
+  {
+   "dimension": "valve_y_minus: throat to guide bore, port end along the datum",
+   "expected_mm": 24.705,
+   "shows": "(24.71)",
+   "displayed": "(24.71)",
+   "text_height_mm": 3.5
+  },
+  {
+   "dimension": "valve_y_plus: seat diameter at mid-band",
+   "expected_mm": 42.9983,
+   "shows": "(43)",
+   "displayed": "(43)",
+   "text_height_mm": 3.5
+  },
+  {
+   "dimension": "valve_y_plus: throat diameter at mid-band",
+   "expected_mm": 38.4702,
+   "shows": "(38.47)",
+   "displayed": "(38.47)",
+   "text_height_mm": 3.5
+  },
+  {
+   "dimension": "valve_y_plus: seat to throat along the datum",
+   "expected_mm": 6.9083,
+   "shows": "(6.91)",
+   "displayed": "(6.91)",
+   "text_height_mm": 3.5
+  },
+  {
+   "dimension": "plug_x_plus: chamber relief diameter at mid-band",
+   "expected_mm": 14.3472,
+   "shows": "(14.35)",
+   "displayed": "(14.35)",
+   "text_height_mm": 3.5
+  },
+  {
+   "dimension": "plug_x_plus: thread bore diameter at mid-band",
+   "expected_mm": 11.4011,
+   "shows": "(11.4)",
+   "displayed": "(11.4)",
+   "text_height_mm": 3.5
+  },
+  {
+   "dimension": "plug_x_plus: well diameter at mid-band",
+   "expected_mm": 25.0483,
+   "shows": "(25.05)",
+   "displayed": "(25.05)",
+   "text_height_mm": 3.5
+  },
+  {
+   "dimension": "plug_x_plus: chamber relief to thread bore along the datum",
+   "expected_mm": 12.399,
+   "shows": "(12.4)",
+   "displayed": "(12.4)",
+   "text_height_mm": 3.5
+  },
+  {
+   "dimension": "plug_x_plus: thread bore to seat face along the datum",
+   "expected_mm": 8.7365,
+   "shows": "(8.74)",
+   "displayed": "(8.74)",
+   "text_height_mm": 3.5
+  },
+  {
+   "dimension": "plug_x_plus: seat face to well along the datum",
+   "expected_mm": 10.1641,
+   "shows": "(10.16)",
+   "displayed": "(10.16)",
+   "text_height_mm": 3.5
+  },
+  {
+   "dimension": "plug_x_minus: chamber relief diameter at mid-band",
+   "expected_mm": 14.5592,
+   "shows": "(14.56)",
+   "displayed": "(14.56)",
+   "text_height_mm": 3.5
+  },
+  {
+   "dimension": "plug_x_minus: well diameter at mid-band",
+   "expected_mm": 25.5909,
+   "shows": "(25.59)",
+   "displayed": "(25.59)",
+   "text_height_mm": 3.5
+  },
+  {
+   "dimension": "plug_x_minus: chamber relief to seat face along the datum",
+   "expected_mm": 22.4427,
+   "shows": "(22.44)",
+   "displayed": "(22.44)",
+   "text_height_mm": 3.5
+  },
+  {
+   "dimension": "plug_x_minus: seat face to well along the datum",
+   "expected_mm": 8.8111,
+   "shows": "(8.81)",
+   "displayed": "(8.81)",
+   "text_height_mm": 3.5
+  }
+ ],
+ "checks": [
+  {
+   "check": "16 dimensions read back",
+   "passed": true,
+   "detail": 16
+  },
+  {
+   "check": "valve_y_minus: throat diameter at mid-band: shows (45.86), a reference value, from points on the drawn profile",
+   "passed": true,
+   "detail": [
+    "(45.86)",
+    3.5,
+    true
+   ]
+  },
+  {
+   "check": "valve_y_minus: guide bore, port end diameter at mid-band: shows (8.76), a reference value, from points on the drawn profile",
+   "passed": true,
+   "detail": [
+    "(8.76)",
+    3.5,
+    true
+   ]
+  },
+  {
+   "check": "valve_y_minus: throat to guide bore, port end along the datum: shows (24.71), a reference value, from points on the drawn profile",
+   "passed": true,
+   "detail": [
+    "(24.71)",
+    3.5,
+    true
+   ]
+  },
+  {
+   "check": "valve_y_plus: seat diameter at mid-band: shows (43), a reference value, from points on the drawn profile",
+   "passed": true,
+   "detail": [
+    "(43)",
+    3.5,
+    true
+   ]
+  },
+  {
+   "check": "valve_y_plus: throat diameter at mid-band: shows (38.47), a reference value, from points on the drawn profile",
+   "passed": true,
+   "detail": [
+    "(38.47)",
+    3.5,
+    true
+   ]
+  },
+  {
+   "check": "valve_y_plus: seat to throat along the datum: shows (6.91), a reference value, from points on the drawn profile",
+   "passed": true,
+   "detail": [
+    "(6.91)",
+    3.5,
+    true
+   ]
+  },
+  {
+   "check": "plug_x_plus: chamber relief diameter at mid-band: shows (14.35), a reference value, from points on the drawn profile",
+   "passed": true,
+   "detail": [
+    "(14.35)",
+    3.5,
+    true
+   ]
+  },
+  {
+   "check": "plug_x_plus: thread bore diameter at mid-band: shows (11.4), a reference value, from points on the drawn profile",
+   "passed": true,
+   "detail": [
+    "(11.4)",
+    3.5,
+    true
+   ]
+  },
+  {
+   "check": "plug_x_plus: well diameter at mid-band: shows (25.05), a reference value, from points on the drawn profile",
+   "passed": true,
+   "detail": [
+    "(25.05)",
+    3.5,
+    true
+   ]
+  },
+  {
+   "check": "plug_x_plus: chamber relief to thread bore along the datum: shows (12.4), a reference value, from points on the drawn profile",
+   "passed": true,
+   "detail": [
+    "(12.4)",
+    3.5,
+    true
+   ]
+  },
+  {
+   "check": "plug_x_plus: thread bore to seat face along the datum: shows (8.74), a reference value, from points on the drawn profile",
+   "passed": true,
+   "detail": [
+    "(8.74)",
+    3.5,
+    true
+   ]
+  },
+  {
+   "check": "plug_x_plus: seat face to well along the datum: shows (10.16), a reference value, from points on the drawn profile",
+   "passed": true,
+   "detail": [
+    "(10.16)",
+    3.5,
+    true
+   ]
+  },
+  {
+   "check": "plug_x_minus: chamber relief diameter at mid-band: shows (14.56), a reference value, from points on the drawn profile",
+   "passed": true,
+   "detail": [
+    "(14.56)",
+    3.5,
+    true
+   ]
+  },
+  {
+   "check": "plug_x_minus: well diameter at mid-band: shows (25.59), a reference value, from points on the drawn profile",
+   "passed": true,
+   "detail": [
+    "(25.59)",
+    3.5,
+    true
+   ]
+  },
+  {
+   "check": "plug_x_minus: chamber relief to seat face along the datum: shows (22.44), a reference value, from points on the drawn profile",
+   "passed": true,
+   "detail": [
+    "(22.44)",
+    3.5,
+    true
+   ]
+  },
+  {
+   "check": "plug_x_minus: seat face to well along the datum: shows (8.81), a reference value, from points on the drawn profile",
+   "passed": true,
+   "detail": [
+    "(8.81)",
+    3.5,
+    true
+   ]
+  },
+  {
+   "check": "no tolerance, fit or thread anywhere on the sheet",
+   "passed": true,
+   "detail": []
+  },
+  {
+   "check": "no dimension carries a tolerance or limits",
+   "passed": true
+  },
+  {
+   "check": "title block: every field comes back as written",
+   "passed": true,
+   "detail": [
+    "DATE",
+    "EVIDENCE",
+    "PROJECTION",
+    "SCALE",
+    "SCALE_STATUS",
+    "SOURCE",
+    "TITLE",
+    "UNITS"
+   ]
+  },
+  {
+   "check": "title block: the scale is stated as uncalibrated, with its issue",
+   "passed": true
+  },
+  {
+   "check": "title block: every field fits inside it",
+   "passed": true
+  },
+  {
+   "check": "every confirmed feature is named",
+   "passed": true
+  },
+  {
+   "check": "no unconfirmed feature is named, except as the source of a datum",
+   "passed": true
+  },
+  {
+   "check": "valve_y_minus: profile, labels and dimensions stay in its cell",
+   "passed": true,
+   "detail": [
+    42.0,
+    191.2,
+    145.5,
+    260.6
+   ]
+  },
+  {
+   "check": "valve_y_plus: profile, labels and dimensions stay in its cell",
+   "passed": true,
+   "detail": [
+    190.1,
+    190.7,
+    265.9,
+    263.1
+   ]
+  },
+  {
+   "check": "plug_x_plus: profile, labels and dimensions stay in its cell",
+   "passed": true,
+   "detail": [
+    50.7,
+    73.0,
+    193.8,
+    162.3
+   ]
+  },
+  {
+   "check": "plug_x_minus: profile, labels and dimensions stay in its cell",
+   "passed": true,
+   "detail": [
+    242.9,
+    72.4,
+    385.4,
+    156.9
+   ]
+  },
+  {
+   "check": "everything drawn lies on the sheet",
+   "passed": true
+  },
+  {
+   "check": "control: a dimension style that forgets the 2:1 scale: caught",
+   "passed": true
+  }
+ ],
+ "passed": true
+}
