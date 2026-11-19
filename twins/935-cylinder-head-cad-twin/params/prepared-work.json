@@ -241,13 +241,13 @@
   {
    "id": "drawing",
    "ledger_row": "Fatigue, valve-train dynamics, drawing",
-   "state": "tool witnessed; too few confirmed features",
+   "state": "tool assigned and witnessed; the reference sheet of the confirmed features is next (#708)",
    "question": "a dimensioned drawing of the head's machined features",
    "tool": {
-    "assigned": "none (docs/AGENT_TOOL_GUIDE.md: no tool is assigned or witnessed)",
+    "assigned": "build123d projection to DXF, with ezdxf dimensions and a title block (docs/TOOLCHAIN.md, 2026-11-19, #708)",
     "on_this_host": "build123d 0.13.0 and ezdxf 1.4.5 in the twin's environment",
     "witness": "twins/935-cylinder-head-cad-twin/source/drawing_witness.py",
-    "witness_state": "passed on 2026-11-13 (twins/935-cylinder-head-cad-twin/params/drawing-witness.json): three views of a known solid, extents, a hole and hidden lines read back from DXF; annotations, sections and a title block not checked"
+    "witness_state": "passed on 2026-11-19 (twins/935-cylinder-head-cad-twin/params/drawing-witness.json): three views of a known solid read back from DXF; one third-angle sheet whose seven dimensions show their own measurement at 3.5 mm from definition points on drawn edges, and whose title block reads back field by field; five planted faults caught; sections not checked"
    },
    "held": [
     {
@@ -298,7 +298,7 @@
     "annotation and title-block checks added to the tool witness before any dimension is drawn",
     "a tool assignment recorded in docs/TOOLCHAIN.md"
    ],
-   "runnable_today": "the tool witness; a sheet of four reference values would be a table, not a drawing"
+   "runnable_today": "a reference sheet of the 11 confirmed features on their fitted datums, every value marked as fitted on a scan and the scale as uncalibrated (#693)"
   }
  ]
 }

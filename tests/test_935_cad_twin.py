@@ -1627,11 +1627,35 @@ class PreparedWorkTests(unittest.TestCase):
         self.assertTrue(all(check["passed"] for check in witness["checks"]))
         self.assertEqual({name: view["size_mm"] for name, view in witness["views"].items()},
                          {"top": [60.0, 40.0], "front": [60.0, 20.0], "side": [40.0, 20.0]})
-        self.assertIn("no tool assignment", witness["scope"])
-        self.assertIn("dimension and tolerance annotations", witness["not_checked"])
+        self.assertIn("docs/TOOLCHAIN.md assigns the tool", witness["scope"])
+        self.assertTrue(any(item.startswith("tolerance, fit and thread annotations") for item in witness["not_checked"]))
+        self.assertIn("section views", witness["not_checked"])
         # hidden edges are kept on their own layer in every view
         for name, view in witness["views"].items():
             self.assertTrue(any(key.startswith("hidden:") for key in view["entities"]), name)
+
+    def test_drawing_witness_sheet_shows_what_it_measures(self):
+        # #708: every dimension shows its own measurement, legibly, from points on drawn geometry
+        witness = json.loads((TWIN / "params" / "drawing-witness.json").read_text())
+        sheet = witness["sheet"]
+        self.assertEqual((sheet["projection"], sheet["scale"]), ("third angle", "1:1"))
+        self.assertEqual(len(sheet["dimensions"]), 7)
+        for dim in sheet["dimensions"]:
+            self.assertAlmostEqual(dim["measured_mm"], dim["expected_mm"], places=4, msg=dim["dimension"])
+            self.assertEqual(dim["displayed"], f"{dim['expected_mm']:.2f}".rstrip("0").rstrip("."), dim["dimension"])
+            self.assertGreaterEqual(dim["text_height_mm"], 2.5, dim["dimension"])
+            self.assertFalse(dim["text_override"], dim["dimension"])
+            self.assertTrue(dim["anchored_on_geometry"], dim["dimension"])
+        for tag in ("TITLE", "SCALE", "UNITS", "PROJECTION", "SCALE_STATUS", "EVIDENCE"):
+            self.assertTrue(sheet["title_block"][tag], tag)
+        # a witness that cannot fail proves nothing: each planted fault must be caught
+        controls = [c for c in witness["checks"] if c["check"].startswith("control:")]
+        self.assertEqual(len(controls), 5)
+        self.assertTrue(all(c["passed"] for c in controls))
+        self.assertTrue(any("times 100" in c["check"] for c in controls))
+        toolchain = (ROOT / "docs" / "TOOLCHAIN.md").read_text()
+        self.assertIn("| Dimensioned drawings |", toolchain)
+        self.assertIn("drawing_witness.py", toolchain)
 
     def test_a_segment_is_found_only_when_collinear_pieces_cover_it(self):
         sys.path.insert(0, str(SOURCE))

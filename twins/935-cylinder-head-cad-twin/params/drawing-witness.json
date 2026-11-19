@@ -1,7 +1,7 @@
 {
- "schema": "935-cad-twin-drawing-witness/1",
- "date": "2026-11-13",
- "scope": "three orthographic views of a block with a hole and a step, projected by build123d, exported to DXF and read back with ezdxf. A witness of the tool on a known solid: not a drawing of the head, and no tool assignment",
+ "schema": "935-cad-twin-drawing-witness/2",
+ "date": "2026-11-19",
+ "scope": "three orthographic views of a block with a hole and a step, projected by build123d, exported to DXF and read back with ezdxf, then one third-angle sheet with ezdxf dimensions and a title block, read back. A witness of the tool on a known solid, not a drawing of the head; docs/TOOLCHAIN.md assigns the tool on it",
  "tools": {
   "build123d": "0.13.0",
   "ezdxf": "1.4.5"
@@ -41,6 +41,99 @@
     40.0,
     20.0
    ]
+  }
+ },
+ "sheet": {
+  "size_mm": [
+   297.0,
+   210.0
+  ],
+  "projection": "third angle",
+  "scale": "1:1",
+  "dimensions": [
+   {
+    "dimension": "top: length",
+    "expected_mm": 60.0,
+    "measured_mm": 60.0,
+    "displayed": "60",
+    "text_height_mm": 3.5,
+    "text_override": false,
+    "anchored_on_geometry": true
+   },
+   {
+    "dimension": "top: width",
+    "expected_mm": 40.0,
+    "measured_mm": 40.0,
+    "displayed": "40",
+    "text_height_mm": 3.5,
+    "text_override": false,
+    "anchored_on_geometry": true
+   },
+   {
+    "dimension": "top: hole from the left edge",
+    "expected_mm": 10.0,
+    "measured_mm": 10.0,
+    "displayed": "10",
+    "text_height_mm": 3.5,
+    "text_override": false,
+    "anchored_on_geometry": true
+   },
+   {
+    "dimension": "top: hole from the front edge",
+    "expected_mm": 12.0,
+    "measured_mm": 12.0,
+    "displayed": "12",
+    "text_height_mm": 3.5,
+    "text_override": false,
+    "anchored_on_geometry": true
+   },
+   {
+    "dimension": "top: hole diameter",
+    "expected_mm": 12.0,
+    "measured_mm": 12.0,
+    "displayed": "12",
+    "text_height_mm": 3.5,
+    "text_override": false,
+    "anchored_on_geometry": true
+   },
+   {
+    "dimension": "front: height",
+    "expected_mm": 20.0,
+    "measured_mm": 20.0,
+    "displayed": "20",
+    "text_height_mm": 3.5,
+    "text_override": false,
+    "anchored_on_geometry": true
+   },
+   {
+    "dimension": "front: step depth",
+    "expected_mm": 8.0,
+    "measured_mm": 8.0,
+    "displayed": "8",
+    "text_height_mm": 3.5,
+    "text_override": false,
+    "anchored_on_geometry": true
+   }
+  ],
+  "title_block": {
+   "TITLE": "Witness: block 60 x 40 x 20, a hole and a step",
+   "SOURCE": "935 head twin, source/drawing_witness.py",
+   "SCALE": "1:1",
+   "UNITS": "mm",
+   "PROJECTION": "third angle",
+   "SCALE_STATUS": "exact: a solid defined in code",
+   "EVIDENCE": "witness geometry, not a part",
+   "DATE": "2026-11-19"
+  },
+  "entities": {
+   "border:LWPOLYLINE": 2,
+   "dimensions:DIMENSION": 7,
+   "hidden:CIRCLE": 1,
+   "hidden:LINE": 20,
+   "hidden:SPLINE": 10,
+   "title:INSERT": 1,
+   "visible:CIRCLE": 1,
+   "visible:LINE": 20
   }
  },
  "checks": [
@@ -106,13 +199,180 @@
   {
    "check": "side: the hole is two hidden lines at y = 6 and y = 18",
    "passed": true
+  },
+  {
+   "check": "sheet: top view outline drawn at its third-angle place",
+   "passed": true
+  },
+  {
+   "check": "sheet: front view outline drawn at its third-angle place",
+   "passed": true
+  },
+  {
+   "check": "sheet: side view outline drawn at its third-angle place",
+   "passed": true
+  },
+  {
+   "check": "sheet: top view above the front view, x extents aligned",
+   "passed": true
+  },
+  {
+   "check": "sheet: side view right of the front view, z extents aligned",
+   "passed": true
+  },
+  {
+   "check": "sheet: 7 dimensions read back",
+   "passed": true,
+   "detail": 7
+  },
+  {
+   "check": "sheet: top: length: measures 60 mm, no typed text, anchored on drawn geometry",
+   "passed": true,
+   "detail": 60.0
+  },
+  {
+   "check": "sheet: top: length: shows 60 at a legible height",
+   "passed": true,
+   "detail": [
+    "60",
+    3.5
+   ]
+  },
+  {
+   "check": "sheet: top: width: measures 40 mm, no typed text, anchored on drawn geometry",
+   "passed": true,
+   "detail": 40.0
+  },
+  {
+   "check": "sheet: top: width: shows 40 at a legible height",
+   "passed": true,
+   "detail": [
+    "40",
+    3.5
+   ]
+  },
+  {
+   "check": "sheet: top: hole from the left edge: measures 10 mm, no typed text, anchored on drawn geometry",
+   "passed": true,
+   "detail": 10.0
+  },
+  {
+   "check": "sheet: top: hole from the left edge: shows 10 at a legible height",
+   "passed": true,
+   "detail": [
+    "10",
+    3.5
+   ]
+  },
+  {
+   "check": "sheet: top: hole from the front edge: measures 12 mm, no typed text, anchored on drawn geometry",
+   "passed": true,
+   "detail": 12.0
+  },
+  {
+   "check": "sheet: top: hole from the front edge: shows 12 at a legible height",
+   "passed": true,
+   "detail": [
+    "12",
+    3.5
+   ]
+  },
+  {
+   "check": "sheet: top: hole diameter: measures 12 mm, no typed text, anchored on drawn geometry",
+   "passed": true,
+   "detail": 12.0
+  },
+  {
+   "check": "sheet: top: hole diameter: shows 12 at a legible height",
+   "passed": true,
+   "detail": [
+    "12",
+    3.5
+   ]
+  },
+  {
+   "check": "sheet: front: height: measures 20 mm, no typed text, anchored on drawn geometry",
+   "passed": true,
+   "detail": 20.0
+  },
+  {
+   "check": "sheet: front: height: shows 20 at a legible height",
+   "passed": true,
+   "detail": [
+    "20",
+    3.5
+   ]
+  },
+  {
+   "check": "sheet: front: step depth: measures 8 mm, no typed text, anchored on drawn geometry",
+   "passed": true,
+   "detail": 8.0
+  },
+  {
+   "check": "sheet: front: step depth: shows 8 at a legible height",
+   "passed": true,
+   "detail": [
+    "8",
+    3.5
+   ]
+  },
+  {
+   "check": "sheet: title block: every field comes back as written",
+   "passed": true,
+   "detail": [
+    "DATE",
+    "EVIDENCE",
+    "PROJECTION",
+    "SCALE",
+    "SCALE_STATUS",
+    "SOURCE",
+    "TITLE",
+    "UNITS"
+   ]
+  },
+  {
+   "check": "sheet: title block inside the border and clear of the views",
+   "passed": true
+  },
+  {
+   "check": "sheet: title block: every field fits inside it",
+   "passed": true
+  },
+  {
+   "check": "sheet: everything drawn lies on the sheet",
+   "passed": true,
+   "detail": [
+    0.0,
+    0.0,
+    297.0,
+    210.0
+   ]
+  },
+  {
+   "check": "control: a dimension shows typed text instead of its measurement: caught",
+   "passed": true
+  },
+  {
+   "check": "control: a dimension anchored on the corner the step removed: caught",
+   "passed": true
+  },
+  {
+   "check": "control: dimensions styled to show lengths times 100: caught",
+   "passed": true
+  },
+  {
+   "check": "control: a title-block field changed after it was written: caught",
+   "passed": true
+  },
+  {
+   "check": "control: a title-block field longer than its row: caught",
+   "passed": true
   }
  ],
  "passed": true,
  "not_checked": [
-  "dimension and tolerance annotations",
+  "tolerance, fit and thread annotations: none is drawn, and none may be without a source",
   "section views",
-  "a title block",
   "a mesh body: the v2 body has no B-rep"
  ]
 }

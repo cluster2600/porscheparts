@@ -198,7 +198,7 @@ process values, with every qualification gate closed.*
 | Build screen: temperature, stress and distortion lump by lump | CalculiX 2.21 with element activation (`*MODEL CHANGE`), one thread (cadsim image) | [build_sim.py](source/build_sim.py), [render_build_sim.py](source/render_build_sim.py) |
 | Build screen mechanics, second solver | DOLFINx 0.11.0 with PETSc and MUMPS, in the `dolfinx/dolfinx` image pinned by digest, 4 to 8 MPI processes | [build_sim_dolfinx.py](source/build_sim_dolfinx.py) |
 | Support layout by declared rules | NumPy and SciPy on the 0.25 mm occupancy: overhang normals, air columns, labelled bodies, lines of sight | [support_design.py](source/support_design.py), [render_support_design.py](source/render_support_design.py) |
-| Witness of a drawing tool | build123d projection and DXF export, read back with ezdxf | [drawing_witness.py](source/drawing_witness.py) |
+| Drawings, assigned in [TOOLCHAIN.md](../../docs/TOOLCHAIN.md) (#708) | build123d projection and DXF export, ezdxf dimensions and title block, read back with ezdxf; witnessed on a known solid with five planted faults | [drawing_witness.py](source/drawing_witness.py) |
 | Melt-pool check of the declared heat input | the reviewed GO-MELT kernel (JAX, CUDA), one explicit level, against Rosenthal's point source | [melt_pool_track.py](source/melt_pool_track.py), [melt_pool_summary.py](source/melt_pool_summary.py) |
 | Six-view render of the body, read by the agent | `preview.py` of the `cad-skill` skill (trimesh, pyrender, EGL under `xvfb-run`) | none: the script is the skill's |
 | RTX review stills and turntable, **not yet captured** | OpenUSD 26.11 review scene (cameras, two lights, render products) built locally around the private CAD-body stage; NVIDIA OVRTX 0.3.0 in the pinned SimReady image, which needs an RTX GPU. The scene was built on 2026-11-15 and rebuilt on 2026-11-17 with identical hashes. The capture script has never completed: no picture and no capture receipt exist yet | [build_review_usd.py](source/build_review_usd.py), [capture_rtx.py](source/capture_rtx.py) |
@@ -1767,8 +1767,9 @@ Not run on this head, each for a stated reason:
   S-N data is admitted for the alloy, which is itself unknown.
 - **Valve-train dynamics.** No tool is installed (Chrono is a candidate
   only), and there is no valve, spring or cam.
-- **A dimensioned drawing.** No tool is assigned, and 21 of the 32 features
-  it would dimension are not confirmable from this scan.
+- **A dimensioned drawing.** The tool is now assigned and witnessed (#708),
+  but 21 of the 32 features it would dimension are not confirmable from this
+  scan; a reference sheet of the 11 confirmed ones is the next step.
 
 ### Alloy and machine for a simulated LPBF print ([candidates](params/alloy-candidates.json), [bare-head ranking](params/alloy-thermal.json), [assembly case](params/assembly-case.json), [assembly ranking](params/assembly-thermal.json), [strength](params/alloy-strength.json), [trade-off](params/alloy-tradeoff.json), [literature](params/thermal-literature-bounds.json), [machines](params/lpbf-machine-survey.json), [993 comparison](params/published-993-comparison.json))
 
@@ -2024,7 +2025,7 @@ was read. It moved no part out of its blocked state.
 | Port flow | blocked on geometry | OpenFOAM with foamlib ([TOOLCHAIN.md](../../docs/TOOLCHAIN.md)); Gmsh for meshing ([AGENT_TOOL_GUIDE.md](../../docs/AGENT_TOOL_GUIDE.md)) | [openfoam-poiseuille-f25](../../outils/benchmarks/openfoam-poiseuille-f25): exists with its test ([test_openfoam_poiseuille_f25.py](../../tests/test_openfoam_poiseuille_f25.py)); to be rerun on the image used before any port case |
 | Fatigue | blocked on a stress history and on material data | pyLife 2.3 ([TOOLCHAIN.md](../../docs/TOOLCHAIN.md)): rainflow counting, Wöhler curves, Miner damage | [witness_rainflow_miner.py](../../benchmarks/fatigue-postprocessor/witness_rainflow_miner.py): passed on 2026-11-10 ([results-20261110.json](../../benchmarks/fatigue-postprocessor/results-20261110.json)): rainflow against the ASTM E1049 table, Basquin and Miner against a closed form |
 | Valve-train dynamics | blocked on kinematics and on a dynamics tool | none. Chrono is a candidate, not installed: no image, lock or witness ([AGENT_TOOL_GUIDE.md](../../docs/AGENT_TOOL_GUIDE.md)) | [test_m64_valvetrain_v1.py](../../tests/test_m64_valvetrain_v1.py): analytic checks of that model (derivatives, spring rate, harmonic limit, energy); a sensitivity study, no cam data and no bench correlation |
-| Drawing | tool witnessed; too few confirmed features | none ([AGENT_TOOL_GUIDE.md](../../docs/AGENT_TOOL_GUIDE.md): no tool is assigned or witnessed) | [drawing_witness.py](source/drawing_witness.py): passed on 2026-11-13 ([drawing-witness.json](params/drawing-witness.json)): three views of a known solid, extents, a hole and hidden lines read back from DXF; annotations, sections and a title block not checked |
+| Drawing | tool assigned and witnessed; the reference sheet of the confirmed features is next (#708) | build123d projection to DXF, with ezdxf dimensions and a title block ([TOOLCHAIN.md](../../docs/TOOLCHAIN.md), 2026-11-19, #708) | [drawing_witness.py](source/drawing_witness.py): passed on 2026-11-19 ([drawing-witness.json](params/drawing-witness.json)): three views of a known solid read back from DXF; one third-angle sheet whose seven dimensions show their own measurement at 3.5 mm from definition points on drawn edges, and whose title block reads back field by field; five planted faults caught; sections not checked |
 
 **Port flow:** the flow through each port at stated valve lifts and pressure difference.
 
@@ -2056,7 +2057,7 @@ was read. It moved no part out of its blocked state.
 - Missing: a physical scale: one calibrated length on the specimen (retires the owner's instruction that 1 unit is 1 mm); confirmation of the other features; tolerances, fits and threads (retires H03 for the studs, H05 for seats and guides); a B-rep of the body, if outline views are wanted.
 - A contribution must hold: the specimen and the feature measured, with the datum it was measured from; instrument, resolution and uncertainty; an explicit licence to use and redistribute the values.
 - First steps once the inputs exist: a reference sheet of the confirmed features on the fitted datums, each value marked as fitted on a scan; annotation and title-block checks added to the tool witness before any dimension is drawn; a tool assignment recorded in docs/TOOLCHAIN.md.
-- Runnable today: the tool witness; a sheet of four reference values would be a table, not a drawing.
+- Runnable today: a reference sheet of the 11 confirmed features on their fitted datums, every value marked as fitted on a scan and the scale as uncalibrated (#693).
 
 The project measures nothing itself and pays nobody to measure
 ([decision 0019](../../docs/decisions/0019-accept-contributed-measurements.md)). A contribution needs its capture protocol,

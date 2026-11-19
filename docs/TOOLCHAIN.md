@@ -50,6 +50,7 @@ otherwise it explicitly carries the `manual_entry` flag.
 | Functional assemblies | FreeCAD Assembly | Constraints, motion and interface review |
 | New engine geometry | PicoGK | Versioned C# and voxel geometry under the [architecture contract](architecture/README.md) |
 | Optional exact-solid/OpenUSD operations | NVIDIA USD BRep 1.0.1 | Isolated Python 3.12 container; primitives, booleans and BRep USD round-trip |
+| Dimensioned drawings | build123d projection to DXF, ezdxf dimensions and title block; [witness](../twins/935-cylinder-head-cad-twin/source/drawing_witness.py) ([record](../twins/935-cylinder-head-cad-twin/params/drawing-witness.json)) | DXF sheet in third-angle projection. Every dimension shows its own measurement from definition points on drawn edges, never typed text. A tolerance, fit or thread appears only with a source. Override ezdxf's `EZDXF` preset: it scales lengths by 100 for metre drawings. Sections are not witnessed |
 
 A part can therefore have as its master source a versioned Python script that
 regenerates its STEP. A `.FCStd` file is still accepted; it is simply harder to
