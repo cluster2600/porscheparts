@@ -96,6 +96,25 @@ docker run --rm --memory=8g --user "$(id -u):$(id -g)" -v "$PRIV:/p" -v "$HERE:/
   --entrypoint /opt/venv/bin/python 3dprinting993-cadsim:dev -I /src/assembly_thermal.py solve /p/assembly-sim-mc100.stl \
   /params /p/v2-loft-s025-occ "/p/assembly-thermal-$STAMP" /p/assembly-thermal-summary.json
 cp "$PRIV/assembly-thermal-summary.json" "$PARAMS/assembly-thermal.json"
+# Heat paths (#701): a barrel under the deck, oil where it reaches, a conductance at each
+# joint (split nodes tied by CalculiX contact pairs). The four variants, the sensitivity
+# sweep and the perfect-contact witness on one mesh; then the reference configuration on
+# a finer surface and on a second mesh of the same surface.
+MEM=8G cap "$PY" -I "$HERE/assembly_heat_paths.py" occupancy "$PRIV/v2-loft-s025-occ" "$PARAMS" "$PRIV/assembly-hp-occ-$STAMP"
+for k in 4 3; do
+  MEM=10G cap "$PY" -I "$HERE/sim_surface_mc.py" "$PRIV/assembly-hp-occ-$STAMP" "$PRIV/assembly-hp-k$k.stl" "$PRIV/assembly-hp-k$k.json" $k 0.4921875
+done
+hp() { docker run --rm --memory=16g --memory-swap=16g --cpus=8 --user "$(id -u):$(id -g)" -v "$PRIV:/p" -v "$HERE:/src:ro" \
+  -v "$PARAMS:/params:ro" --entrypoint /opt/venv/bin/python 3dprinting993-cadsim:dev -I /src/assembly_heat_paths.py "$@"; }
+hp witness "/p/assembly-hp-witness-$STAMP" /p/assembly-hp-joint-witness.json
+hp prepare /p/assembly-hp-k4.stl /params /p/v2-loft-s025-occ "/p/assembly-hp-$STAMP"
+hp solve "/p/assembly-hp-$STAMP" /params /p/assembly-heat-paths-summary.json 4
+hp prepare /p/assembly-hp-k3.stl /params /p/v2-loft-s025-occ "/p/assembly-hp-fine-$STAMP"
+hp reference "/p/assembly-hp-fine-$STAMP" /params /p/assembly-heat-paths-summary.json /p/assembly-hp-fine.json
+hp prepare /p/assembly-hp-k4.stl /params /p/v2-loft-s025-occ "/p/assembly-hp-again-$STAMP"
+hp reference "/p/assembly-hp-again-$STAMP" /params /p/assembly-heat-paths-summary.json /p/assembly-hp-again.json
+"$PY" -I "$HERE/assembly_heat_paths.py" record "$PRIV/assembly-heat-paths-summary.json" "$PRIV/assembly-hp-$STAMP" "$PRIV/assembly-hp-fine.json" \
+  "$PRIV/assembly-hp-again.json" "$PRIV/assembly-hp-joint-witness.json" "$PARAMS/assembly-heat-paths.json"
 "$PY" -I "$HERE/alloy_tradeoff.py" "$PARAMS" "$TWIN/media"
 
 # Port CFD: the audit only. It finds no admissible fluid domain, so no solver runs.

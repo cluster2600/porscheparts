@@ -184,6 +184,19 @@ neighbouring study's README for more before starting.
 - **One output frequency per step.** A `*NODE PRINT,FREQUENCY=1` for a heat
   flow also writes the `*NODE FILE` field at every increment, whatever its own
   frequency says. Select the end-of-step blocks by time when reading.
+- **A joint conductance works in a plain `*HEAT TRANSFER` step**: split the
+  shared nodes, then tie the two copies with `*CONTACT PAIR` and
+  `*GAP CONDUCTANCE`. No coupled step is needed. On an interface that follows
+  the tetrahedra (materials labelled by centroid), use **node to surface with a
+  face-based slave surface**: it carried the declared conductance within 0.5 %
+  of the closed form across a jagged plane and cylinder. Surface to surface
+  carried 4 % less, and on the 935 assembly 11 to 16 % less than the face-by-face
+  sum (2026-11-20, ccx 2.21). The jagged interface is about 1.6 times the area of
+  the surface it stands for, so scale the conductance by the projected area.
+  Merge islands of a few mislabelled tetrahedra first: after the split, one that no
+  joint reaches floats at its film's sink temperature (an exhaust valve read
+  exactly 700 °C). Check every part's own heat balance, not only the total
+  ([assembly_heat_paths.py](../twins/935-cylinder-head-cad-twin/source/assembly_heat_paths.py)).
 
 ### Stress peaks and mesh studies
 

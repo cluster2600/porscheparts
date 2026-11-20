@@ -112,6 +112,19 @@ def main(params, media) -> None:
     candidates = json.loads((params / "alloy-candidates.json").read_text())
     assembly = json.loads((params / "assembly-thermal.json").read_text())
     rows = tradeoff(strength, candidates, assembly)
+    paths_file = params / "assembly-heat-paths.json"
+    heat_paths = None
+    if paths_file.exists():
+        # The same reading on the case with barrel, oil and joint conductances (#701).
+        paths = json.loads(paths_file.read_text())
+        paths_rows = tradeoff(strength, candidates, paths)
+        inside = [r["id"] for r in paths_rows if r["peak_head_alloy_C"] and r["peak_head_alloy_C"][0] <= r["yield_MPa_published_up_to_C"]]
+        heat_paths = {
+            "record": "params/assembly-heat-paths.json", "ranking_variant": paths["ranking_variant"], "rows": paths_rows,
+            "inside_a_published_strength_range": inside,
+            "statement": ("no computed peak lies inside the published strength range of its alloy" if not inside else
+                          "the computed peak lies inside the published strength range for: " + ", ".join(inside)),
+        }
     (params / "alloy-tradeoff.json").write_text(json.dumps({
         "schema": SCHEMA,
         "ranking_variant": assembly["ranking_variant"],
@@ -120,6 +133,7 @@ def main(params, media) -> None:
         "rule": "peak temperatures are read at solved conductivities only; a hot yield is a straight line between two "
                 "published points and is never extrapolated",
         "rows": rows,
+        "heat_paths": heat_paths,
         "claims": "published strengths beside computed screen temperatures; no value is a design allowable, no alloy "
                   "is qualified, and the temperatures are those of a hypothesis case",
     }, indent=2) + "\n")
