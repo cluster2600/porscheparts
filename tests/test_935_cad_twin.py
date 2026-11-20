@@ -553,7 +553,7 @@ class FeatureFitTests(unittest.TestCase):
         # sys.path: a script that imports twin_common must add that directory itself.
         import subprocess
 
-        for name in ("fit_features.py", "check_features.py", "export_simready.py", "assemble_records.py"):
+        for name in ("fit_features.py", "check_features.py", "refit_features.py", "export_simready.py", "assemble_records.py"):
             source = (SOURCE / name).read_text()
             if "twin_common" in source:
                 self.assertLess(source.index("sys.path.insert(0, str(Path(__file__).resolve().parent))"),
@@ -601,6 +601,128 @@ class FeatureFitTests(unittest.TestCase):
             self.assertAlmostEqual(body["cloudcompare"][key], body["scorecard_scan_to_twin"][key], delta=0.005)
         for key in ("share_within_0p1_mm", "share_within_0p2_mm", "share_within_0p5_mm"):
             self.assertAlmostEqual(body["cloudcompare"][key], body["scorecard_scan_to_twin"][key], delta=0.005)
+
+
+@unittest.skipUnless(has("numpy", "scipy"), "numpy or scipy absent")
+class FeatureRefitTests(unittest.TestCase):
+    """refit_features.py and feature_confirmation.py (#696) on synthetic geometry and on the committed records."""
+
+    def setUp(self):
+        sys.path.insert(0, str(SOURCE))
+        import check_features
+        import feature_confirmation
+        import fit_features
+        import refit_features
+        import numpy as np
+
+        self.ff, self.cf, self.rf, self.fc, self.np = fit_features, check_features, refit_features, feature_confirmation, np
+        self.params = TWIN / "params"
+
+    def load(self, name):
+        return json.loads((self.params / name).read_text())
+
+    def test_robust_refit_recovers_an_offset_cylinder_through_outliers(self):
+        np = self.np
+        rng = np.random.default_rng(5)
+        t = rng.uniform(-5.0, 5.0, 3000)
+        theta = rng.uniform(0, 2 * np.pi, 3000)
+        rho = 6.0 + rng.normal(0.0, 0.03, 3000)
+        rho[:300] += 0.4  # a tenth of the points on another surface
+        points = np.column_stack((0.15 + rho * np.cos(theta), -0.1 + rho * np.sin(theta), t))
+        first = {"type": "cylinder", "axis_point": [0, 0, 0], "axis_direction": [0, 0, 1], "diameter_mm": 12.2}
+        rule = {"loss": "soft_l1", "f_scale_mm": 0.1}
+        (c, a, r0, k), sigma = self.rf.refit_revolved(first, points, rule)
+        # Soft-L1 still feels the outliers a little: plain least squares would sit 0.04 mm out.
+        self.assertAlmostEqual(r0, 6.0, delta=0.02)
+        self.assertEqual(k, 0.0)
+        self.assertLess(self.rf.angle_deg(a, [0, 0, 1]), 0.1)
+        offset = c - (c @ a) * a
+        np.testing.assert_allclose(offset[:2], [0.15, -0.1], atol=0.02)
+        self.assertIsNotNone(sigma)
+
+    def test_shortened_window_keeps_every_vertex_in_its_first_half(self):
+        np = self.np
+        rng = np.random.default_rng(1)
+        points = rng.uniform(-10, 10, (20000, 3))
+        roi = {"seed_point": [0, 0, 0], "seed_axis": [0, 0, 1], "t_mm": [-8, 8], "rho_mm": [2, 9]}
+        whole = self.ff.window(points, roi)
+        short = self.rf.window(points, roi, 1.0)
+        self.assertTrue(set(short.tolist()) < set(whole.tolist()))
+        self.assertTrue(np.all(np.abs(points[short, 2]) <= 7.0))
+        _, held_whole = self.ff.split_halves(whole)
+        fitted_short, held_short = self.rf.split_halves(short)
+        self.assertTrue(set(held_short.tolist()) <= set(held_whole.tolist()))
+        self.assertFalse(set(fitted_short.tolist()) & set(held_whole.tolist()))
+
+    def test_richer_surface_takes_out_an_ovality(self):
+        np = self.np
+        theta = np.linspace(0, 2 * np.pi, 2000, endpoint=False)
+        t = np.tile(np.linspace(-3, 3, 20), 100)
+        residual = 0.3 * np.cos(2 * theta)  # an oval the cylinder cannot follow
+        self.assertLess(float((np.abs(residual) < 0.2).mean()), 0.9)
+        self.assertEqual(self.rf.richer_surface_share("revolved", residual, t, theta, 0.2), 1.0)
+
+    def test_declaration_scope_and_unchanged_acceptance(self):
+        first_check = self.load("feature-check.json")
+        declaration = self.load("feature-refit-declaration.json")
+        unconfirmed = [r["id"] for r in first_check["regions"] if not r["confirmed"]]
+        self.assertEqual(declaration["scope"], unconfirmed)
+        self.assertEqual(declaration["unchanged"]["acceptance"], first_check["acceptance"])
+        self.assertEqual(self.load("feature-check-refit.json")["acceptance"], first_check["acceptance"])
+        self.assertEqual(declaration["changes"]["guard"]["min_points"], self.cf.MIN_VERTICES)
+
+    def test_committed_refits_are_bound_and_respect_the_guard(self):
+        import hashlib
+
+        def digest(name):
+            return hashlib.sha256((self.params / name).read_bytes()).hexdigest()
+
+        refits = self.load("feature-refits.json")
+        guard = self.load("feature-refit-declaration.json")["changes"]["guard"]
+        self.assertEqual(refits["declaration_sha256"], digest("feature-refit-declaration.json"))
+        self.assertEqual(refits["first_fits_sha256"], digest("feature-fits.json"))
+        self.assertEqual(refits["first_check_sha256"], digest("feature-check.json"))
+        self.assertEqual(refits["scan_sha256"], SCAN_SHA256)
+        check = self.load("feature-check-refit.json")
+        self.assertEqual(check["fits_sha256"], digest("feature-refits.json"))
+        self.assertEqual([r["id"] for r in refits["regions"]], [r["id"] for r in check["regions"]])
+        for row, checked in zip(refits["regions"], check["regions"]):
+            if not row["guard_passed"]:
+                self.assertIsNone(row["fit"])
+                self.assertFalse(checked["confirmed"])
+                self.assertTrue(row["reason"])
+                continue
+            change = row["change_from_first_fit"]
+            if row["fit"]["type"] == "plane":
+                self.assertLessEqual(change["normal_deg"], guard["max_axis_change_deg"])
+            else:
+                self.assertLessEqual(change["axis_deg"], guard["max_axis_change_deg"])
+                self.assertLessEqual(abs(change["half_angle_deg"]), guard["max_half_angle_change_deg"])
+                self.assertLessEqual(abs(change["diameter_mm"]), guard["max_diameter_change_mm"])
+            if checked["confirmed"]:
+                self.assertGreaterEqual(checked["share_within_tolerance"], self.cf.MIN_SHARE)
+        self.assertEqual(refits["rejected_by_guard"], [r["id"] for r in refits["regions"] if not r["guard_passed"]])
+
+    def test_standing_is_reproduced_from_its_inputs(self):
+        standing = self.load("feature-confirmation.json")
+        rows = self.fc.standing(self.load("feature-check.json"), self.load("feature-refits.json"),
+                                self.load("feature-check-refit.json"), self.load("feature-refit-declaration.json"))
+        self.assertEqual(rows, standing["rows"])
+        self.assertEqual(standing["confirmed"], sum(r["status"] == "confirmed" for r in rows))
+        self.assertEqual(standing["features"], 32)
+        self.assertEqual(set(standing["need_a_contributed_measurement"]),
+                         {r["id"] for r in rows if r["status"] != "confirmed"})
+        declared = set(self.load("feature-refit-declaration.json")["reasons_if_not_confirmed"])
+        for row in rows:
+            if row["status"] != "confirmed":
+                self.assertIn(row["reason_class"], declared)
+
+    def test_readme_states_the_count_and_the_list(self):
+        standing = self.load("feature-confirmation.json")
+        readme = " ".join((TWIN / "README.md").read_text().split())
+        self.assertIn(f"**{standing['confirmed']} of {standing['features']} features are confirmed**", readme)
+        for name in standing["need_a_contributed_measurement"] + standing["confirmed_by_declared_refit"]:
+            self.assertIn(f"`{name}`", readme)
 
 
 @unittest.skipUnless(has("numpy"), "numpy absent")
@@ -1486,9 +1608,10 @@ class PreparedWorkTests(unittest.TestCase):
             self.assertTrue((ROOT / part["tool"]["witness"]).exists(), name)
             for held in part["held"]:
                 self.assertTrue((ROOT / held["where"]).exists(), held["where"])
-        # the count of confirmed features is the feature check's
-        check = json.loads((TWIN / "params" / "feature-check.json").read_text())
-        confirmed = [row["id"] for row in check["regions"] if row["confirmed"]]
+        # the count of confirmed features is the standing after the first check and the declared re-fit
+        standing = json.loads((TWIN / "params" / "feature-confirmation.json").read_text())
+        confirmed = standing["confirmed_by_first_check"] + standing["confirmed_by_declared_refit"]
+        self.assertEqual(len(confirmed), standing["confirmed"])
         self.assertIn(f"{len(confirmed)} features confirmed", parts["drawing"]["held"][0]["what"])
         for name in confirmed:
             self.assertIn(name, parts["drawing"]["held"][0]["what"])

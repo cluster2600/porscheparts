@@ -204,6 +204,18 @@ if [ -n "${FIT:-}" ] && [ -n "${CC_IMAGE:-}" ]; then
   "$PY" -I "$HERE/check_features.py" --bare-scan "$PRIV/bare-scan-twin.npz" --image "$CC_IMAGE" \
     --work "$PRIV/feature-check-$STAMP" --fits "$PARAMS/feature-fits.json" --split "$PRIV/feature-split.npz" \
     --out "$PARAMS/feature-check.json"
+  # #696: the declared re-fit of the features the first check left unconfirmed, then the same check on
+  # its held-out half. feature-refit-declaration.json is an input written before that check, not an output.
+  MEM=4G cap "$PY" -I "$HERE/refit_features.py" --bare-scan "$PRIV/bare-scan-twin.npz" --rois "$PARAMS/feature-rois.json" \
+    --fits "$PARAMS/feature-fits.json" --check "$PARAMS/feature-check.json" \
+    --declaration "$PARAMS/feature-refit-declaration.json" --private-out "$PRIV/feature-refit-split.npz" \
+    --out "$PARAMS/feature-refits.json"
+  "$PY" -I "$HERE/check_features.py" --bare-scan "$PRIV/bare-scan-twin.npz" --image "$CC_IMAGE" \
+    --work "$PRIV/feature-check-refit-$STAMP" --fits "$PARAMS/feature-refits.json" --split "$PRIV/feature-refit-split.npz" \
+    --out "$PARAMS/feature-check-refit.json"
+  "$PY" -I "$HERE/feature_confirmation.py" --first-check "$PARAMS/feature-check.json" --refits "$PARAMS/feature-refits.json" \
+    --refit-check "$PARAMS/feature-check-refit.json" --declaration "$PARAMS/feature-refit-declaration.json" \
+    --out "$PARAMS/feature-confirmation.json"
   "$PY" -I "$HERE/check_features.py" --bare-scan "$PRIV/bare-scan-twin.npz" --image "$CC_IMAGE" \
     --work "$PRIV/body-cloudcompare-$STAMP" --body "$PRIV/v2-loft-s025.npz" \
     --scorecard "$PARAMS/scorecard-v2-loft-s025.json" --out "$PARAMS/cloudcompare-v2-body.json"

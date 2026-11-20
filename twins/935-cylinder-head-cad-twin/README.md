@@ -36,8 +36,9 @@ stated blocker. What the twin still does not have:
 - **A valve train.** The guides, seats, throats, plug bores and stud passages
   are now [fitted where the scanner reached them](#machined-features-fitted-with-the-assigned-tool-checked-with-cloudcompare-windows-fits-check):
   two valve axes, 25.9° and 29.9° from the bore axis, a guide bore of 8.51 mm
-  and seats near 45° and 49°. CloudCompare confirms 4 of the 32 fits within
-  0.2 mm, so they are nominal sizes and axes, not inspected surfaces. No
+  and seats near 45° and 49°. CloudCompare confirms 11 of the 32 fits within
+  0.2 mm, 7 of them after a [declared re-fit](#the-declared-re-fit-of-the-28-declaration-re-fits-check-standing),
+  so they are nominal sizes and axes, not inspected surfaces. No
   valve, seat insert or guide is modelled in a body (H05), no port-flow domain
   is admissible and no port CFD was run.
 - **Any physical calibration.** Every distance is to the scan, whose scale is
@@ -163,7 +164,7 @@ flowchart LR
 
 *Diagram: the chain as run. T1s is the reference surface; v2 is the CAD body
 and feeds the same tiers; v1 holds the analytic features and stops at 69.9%.
-The feature fit is amber because CloudCompare confirms 4 of its 32 features;
+The feature fit is amber because CloudCompare confirms 11 of its 32 features;
 the layer screen and the build screen are amber because they run on declared
 process values, with every qualification gate closed.*
 
@@ -188,6 +189,7 @@ process values, with every qualification gate closed.*
 | Port-flow admissibility | reads the port fit and the hypotheses register | [audit_port_domain.py](source/audit_port_domain.py) |
 | Revolved machined features | [`primitive_fit.py`](../../benchmarks/scan-primitive-fitting/primitive_fit.py), the assigned cylinder and cone fit, in its own locked environment | [fit_features.py](source/fit_features.py) |
 | Independent deviation of each feature and of the v2 body | CloudCompare 2.13.2 in the `free-tools-cloudcompare` image, no network | [check_features.py](source/check_features.py) |
+| Declared re-fit of the unconfirmed features (#696) | SciPy `least_squares` with a soft-L1 loss, on the fitted half only, under a rule committed before the check | [refit_features.py](source/refit_features.py), [feature_confirmation.py](source/feature_confirmation.py) |
 | Asset package: collider, display material, `.usda` and `.usdz` | OpenUSD 26.11 (`UsdPhysics`, `UsdShade`, `UsdUtils`), then both validators | [export_simready.py](source/export_simready.py) |
 | Alloy ranking on the bare head | CalculiX 2.21 on the deck of the CAD-body screen, conductivity replaced (cadsim image) | [alloy_thermal.py](source/alloy_thermal.py) |
 | Alloy ranking in the assembly | hypothesis solids on the occupancy lattice, Gmsh HXT, CalculiX with four materials and six films, four load cases | [assembly_thermal.py](source/assembly_thermal.py) |
@@ -1580,27 +1582,115 @@ flowchart LR
   DET -->|"7"| D["detected,<br/>no sigma"]
   CC --> ACC{"90% of held-out vertices<br/>within 0.2 mm?"}
   ACC -->|"4"| OK["confirmed"]
-  ACC -->|"28"| NO["not confirmed"]
+  ACC -->|"28"| RF["declared re-fit (#696)<br/>1 mm end trim, robust loss, guard"]
+  RF -->|"5"| G["rejected by the guard"]
+  RF -->|"23"| ACC2{"same check,<br/>same 90%"}
+  ACC2 -->|"7"| OK2["confirmed"]
+  ACC2 -->|"16"| NO["not confirmable<br/>from this scan"]
+  G --> NO
   classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
   classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
   classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
-  class OK,M ok;
-  class D open;
-  class NO stop;
+  class OK,OK2,M ok;
+  class D,RF open;
+  class NO,G stop;
 ```
 
 *Diagram: every window is split before fitting, so the check never measures a
-vertex the fit saw. The acceptance was fixed before the first check run.*
+vertex the fit saw. The acceptance was fixed before the first check run and is
+the same for the re-fit.*
 
 **The check, first.** A feature is confirmed when at least 90% of its
 held-out vertices within 0.5 mm of the primitive lie within 0.2 mm, the
-twin's tolerance. **4 of 32 pass**: the throat and the seat of `valve_y_plus`
+twin's tolerance. **4 of 32 pass** at this first check, 11 after the declared
+re-fit below: the throat and the seat of `valve_y_plus`
 and the two plug seat faces. The other 28 hold between 63% and 90% within
 0.2 mm, with a median distance of 0.03 to 0.13 mm and a 95th percentile of
 0.29 to 0.46 mm. The fit's own residual, 0.03 to 0.06 mm RMS, does not show
 this: it only counts the vertices inside its 0.12 mm band. The numbers below
 are therefore nominal sizes and axes of the scanned features. None is an
 inspected surface, and the tool's standard deviations are lower bounds.
+
+#### The declared re-fit of the 28 ([declaration](params/feature-refit-declaration.json), [re-fits](params/feature-refits.json), [check](params/feature-check-refit.json), [standing](params/feature-confirmation.json))
+
+Issue #696 asked for each unconfirmed feature to be confirmed after a re-fit
+declared before its check, or recorded as not confirmable from this scan with
+the reason. The diagnosis read the fitted half only. It reproduces the first
+check within 0.03 on every feature, so it shows why the held-out vertices
+disagreed:
+
+- the tool fits only the vertices inside its 0.12 mm band, so on a bore
+  rougher than the deck it fits part of the surface: on many first fits the
+  vertices within 0.5 mm sit 0.1 to 0.2 mm off-centre;
+- the end sixths of several windows hold chamfers, edge breaks or a
+  neighbouring surface;
+- some surfaces stay outside 0.2 mm even when an offset, a taper and two- and
+  three-lobe terms are allowed.
+
+One rule was declared for all 28 and pushed (commit `44784510`, draft #732)
+before any held-out vertex was measured. Revolved windows are shortened by
+1 mm at each end. The primitive is refitted, in its own family, by robust
+least squares (SciPy, soft-L1 loss, 0.1 mm scale) over the fitted-half
+vertices within the check band of the first fit. A guard rejects a re-fit
+whose axis or half-angle moves more than 3° or whose diameter moves more than
+0.5 mm: it would be fitting another surface. The 1 mm was chosen after trying
+0.5, 1 and 2 mm on the fitted half; 2 mm empties the short windows. The
+acceptance, the split and the first fits are unchanged, and a shortened
+window keeps every vertex in its first half, so every checked vertex was held
+out of both fits.
+
+**11 of 32 features are confirmed**: the four of the first check and seven
+after the re-fit.
+
+| Confirmed after the re-fit | First check | Re-fit check | Re-fitted on the scan |
+|---|---|---|---|
+| `valve_y_minus_throat` | 85.7% | 94.8% | Ø45.86 mm at mid-band, cone 1.64°, 11.0 mm long, rms 0.098 mm |
+| `plug_x_plus_thread_bore` | 85.5% | 94.3% | Ø11.40 mm at mid-band, cone 0.14°, 14.2 mm long, rms 0.103 mm |
+| `plug_x_plus_chamber_relief` | 78.9% | 91.4% | Ø14.35 mm, cylinder, 6.1 mm long, rms 0.122 mm |
+| `plug_x_minus_chamber_relief` | 89.8% | 91.0% | Ø14.56 mm, cylinder, 5.9 mm long, rms 0.118 mm |
+| `plug_x_minus_well` | 86.5% | 90.5% | Ø25.59 mm at mid-band, cone 0.88°, 17.9 mm long, rms 0.128 mm |
+| `plug_x_plus_well` | 82.6% | 90.3% | Ø25.05 mm at mid-band, cone 0.78°, 17.9 mm long, rms 0.129 mm |
+| `valve_y_minus_guide_bore_port_end` | 82.8% | 90.1% | Ø8.76 mm at mid-band, cone 1.83°, 11.7 mm long, rms 0.115 mm |
+
+The margins are thin: five of the seven pass by less than 1.5 points.
+`plug_x_minus_thread_bore` held 90.7% on the fitted half and 89.7% on the
+held-out half, so it stays unconfirmed. The fitted half predicted every
+held-out share within 0.035.
+
+**21 features are not confirmable from this scan.** Each needs a contributed
+measurement of the specimen. The reason is the class the declaration fixed
+before the check:
+
+- **Rejected by the guard (5).** `valve_y_minus_seat`: the re-fit turned its
+  half-angle by 14° onto another surface. `valve_y_plus_guide_bore_cam_end`,
+  `valve_y_plus_guide_boss_port` and `stud_x_minus_y_plus_counterbore`: axes
+  moved 4° to 11°. `deck_register_recess`: a ring 5.5 mm long keeps too few
+  vertices once shortened.
+- **Not resolved by this scan (10).** Even a revolved surface with offset,
+  taper and two- and three-lobe terms leaves more than 10% of the fitted half
+  outside 0.2 mm: `valve_y_minus_guide_bore` (83.6% on the held-out half),
+  `valve_y_minus_guide_bore_cam_end` (79.5%), `valve_y_minus_guide_od_port`
+  (80.0%), `valve_y_plus_guide_od_cam` (77.4%), `valve_y_plus_spring_pocket`
+  (82.1%), `valve_y_plus_spring_seat` (71.4%), `stud_x_minus_y_plus_passage`
+  (78.7%), `stud_x_plus_y_minus_counterbore` (76.1%),
+  `stud_x_plus_y_plus_passage` (78.0%) and `stud_x_plus_y_plus_counterbore`
+  (75.8%): the inside of the guides, stud passages and counterbores, and the
+  spring features of `valve_y_plus`.
+- **No assigned primitive has the shape (6).** A richer surface would hold
+  90% of the fitted half, but no cylinder, cone or plane does: out of round,
+  or a curved face. `valve_y_minus_guide_od_cam` (76.2%),
+  `valve_y_minus_spring_seat` (86.5%, a curved face),
+  `plug_x_minus_thread_bore` (89.7%), `stud_x_minus_y_minus_passage` (87.7%),
+  `stud_x_minus_y_minus_counterbore` (88.1%) and
+  `stud_x_plus_y_minus_passage` (88.8%).
+
+The fitted and held-out halves interleave on one surface, so a rule chosen on
+the fitted half predicts the check closely. The check guards against
+over-fitting and tool error; it cannot show that a window holds the right
+surface. That is why one trim applies to every window and the guard limits
+how far a re-fit may move. The confirmed numbers stay nominal: the scale is
+an owner instruction (#693), H05 keeps `not_modelled_in_v0`, and no feature
+is cut into the v2 body.
 
 **Valve train**, in the twin frame. The valves are named by flange side;
 which one is the intake is not established.
@@ -1649,7 +1739,9 @@ Found on the way:
   Two stud passages seen over 354° and 37 mm are in that state. The record
   keeps the first estimate without any uncertainty.
 - **The deck's noise understates the noise in a bore.** That is the reading
-  of the check above; the fits were not rerun with another value.
+  of the check above. The tool's fits were not rerun with another value; the
+  [declared re-fit](#the-declared-re-fit-of-the-28-declaration-re-fits-check-standing)
+  replaced its 0.12 mm band by a robust loss over the check band instead.
 - **The windows were drawn twice.** The first pass had 39 windows about axes
   read from plots. The second pass redrew the valve windows about the fitted
   axes, narrowed the two seat windows to the 45° band and dropped seven
@@ -1675,8 +1767,8 @@ Not run on this head, each for a stated reason:
   S-N data is admitted for the alloy, which is itself unknown.
 - **Valve-train dynamics.** No tool is installed (Chrono is a candidate
   only), and there is no valve, spring or cam.
-- **A dimensioned drawing.** No tool is assigned, and 28 of the 32 features
-  it would dimension are not confirmed.
+- **A dimensioned drawing.** No tool is assigned, and 21 of the 32 features
+  it would dimension are not confirmable from this scan.
 
 ### Alloy and machine for a simulated LPBF print ([candidates](params/alloy-candidates.json), [bare-head ranking](params/alloy-thermal.json), [assembly case](params/assembly-case.json), [assembly ranking](params/assembly-thermal.json), [strength](params/alloy-strength.json), [trade-off](params/alloy-tradeoff.json), [literature](params/thermal-literature-bounds.json), [machines](params/lpbf-machine-survey.json), [993 comparison](params/published-993-comparison.json))
 
@@ -1952,7 +2044,7 @@ was read. It moved no part out of its blocked state.
 
 **Valve-train dynamics:** valve motion, spring margin and seating at stated engine speeds.
 
-- Held: two valve axes, 55.8 degrees apart, a guide bore, seats and spring seats fitted on the scan ([feature-fits.json](params/feature-fits.json): nominal; 4 of 32 features confirmed, the valve of each flange side not identified as inlet or exhaust); the load-case contract for a valve cycle ([load-cases-f1.json](../../twins/engine-simulation-contracts/load-cases-f1.json): LC-993-VALVE-DYNAMIC-CYCLE, written for the 993: 8 of 8 inputs empty); catalogue ranges for 935 valves and aftermarket cam timing cards ([README.md](../../docs/research/935-faithful-replica-20261028/README.md): not measurements of this specimen; aftermarket declarations); valve sizes, lifts, timing at 0.10 mm clearance and cam lobe dimensions of the production 930 Turbo; valve angles, stems and lengths of the 964 Turbo 3.3 ([findings.json](../../docs/research/935-head-published-data-20261116/findings.json): two homologation forms, each value read twice; other heads. The angle between the two fitted valve axes is 55.76 degrees against 55.75 published; the fitted guide bore is 0.49 mm under the production stem, so the production valve does not fit this head).
+- Held: two valve axes, 55.8 degrees apart, a guide bore, seats and spring seats fitted on the scan ([feature-fits.json](params/feature-fits.json): nominal; 11 of 32 features confirmed, the valve of each flange side not identified as inlet or exhaust); the load-case contract for a valve cycle ([load-cases-f1.json](../../twins/engine-simulation-contracts/load-cases-f1.json): LC-993-VALVE-DYNAMIC-CYCLE, written for the 993: 8 of 8 inputs empty); catalogue ranges for 935 valves and aftermarket cam timing cards ([README.md](../../docs/research/935-faithful-replica-20261028/README.md): not measurements of this specimen; aftermarket declarations); valve sizes, lifts, timing at 0.10 mm clearance and cam lobe dimensions of the production 930 Turbo; valve angles, stems and lengths of the 964 Turbo 3.3 ([findings.json](../../docs/research/935-head-published-data-20261116/findings.json): two homologation forms, each value read twice; other heads. The angle between the two fitted valve axes is 55.76 degrees against 55.75 published; the fitted guide bore is 0.49 mm under the production stem, so the production valve does not fit this head).
 - Missing: cam lift curve, rocker geometry and ratio (retires H05 in part); spring rate, installed height, coil-bind height; masses of valve, retainer, rocker (retires H05 in part); valve head diameters, stem diameter, seat angle and width of this head (retires H05); a dynamics tool with a witness, if more than one mass is needed.
 - A contribution must hold: the specimen and the parts measured, with part numbers; instrument and uncertainty for each length, mass and spring force; the cam card with its reference lift and lash; an explicit licence to use and redistribute the data.
 - First steps once the inputs exist: write a parameter set for this head in the model's own format, every entry with its status and source; rerun the model's analytic checks, then spring margin and float speed over the stated speed range; check the valve-to-valve and valve-to-plug clearances on the fitted axes at full lift; state the result as a sensitivity study until a bench trace exists.
@@ -1960,7 +2052,7 @@ was read. It moved no part out of its blocked state.
 
 **Drawing:** a dimensioned drawing of the head's machined features.
 
-- Held: 4 features confirmed on held-out vertices: valve_y_plus_throat, valve_y_plus_seat, plug_x_plus_seat_face, plug_x_minus_seat_face ([feature-check.json](params/feature-check.json): confirmed against the scan within 0.2 mm, at 1 scan unit = 1 mm by owner instruction; not dimensions of the specimen); 28 features fitted and not confirmed ([feature-fits.json](params/feature-fits.json): 63% to 90% of held-out vertices within 0.2 mm, against the 90% fixed beforehand); analytic B-rep of the deck plate and of two port lofts ([deck-features.json](params/deck-features.json): the v1 parts; the v2 body is a triangle solid with no B-rep to project).
+- Held: 11 features confirmed on held-out vertices: valve_y_plus_throat, valve_y_plus_seat, plug_x_plus_seat_face, plug_x_minus_seat_face at the first check; valve_y_minus_guide_bore_port_end, valve_y_minus_throat, plug_x_plus_thread_bore, plug_x_plus_chamber_relief, plug_x_plus_well, plug_x_minus_chamber_relief, plug_x_minus_well after the declared re-fit (#696) ([feature-confirmation.json](params/feature-confirmation.json): confirmed against the scan within 0.2 mm, at 1 scan unit = 1 mm by owner instruction; not dimensions of the specimen); 21 features fitted and not confirmable from this scan ([feature-confirmation.json](params/feature-confirmation.json): 71% to 89.7% of held-out vertices within 0.2 mm after the declared re-fit, or a re-fit its guard rejected, against the 90% fixed beforehand; each needs a contributed measurement); analytic B-rep of the deck plate and of two port lofts ([deck-features.json](params/deck-features.json): the v1 parts; the v2 body is a triangle solid with no B-rep to project).
 - Missing: a physical scale: one calibrated length on the specimen (retires the owner's instruction that 1 unit is 1 mm); confirmation of the other features; tolerances, fits and threads (retires H03 for the studs, H05 for seats and guides); a B-rep of the body, if outline views are wanted.
 - A contribution must hold: the specimen and the feature measured, with the datum it was measured from; instrument, resolution and uncertainty; an explicit licence to use and redistribute the values.
 - First steps once the inputs exist: a reference sheet of the confirmed features on the fitted datums, each value marked as fitted on a scan; annotation and title-block checks added to the tool witness before any dimension is drawn; a tool assignment recorded in docs/TOOLCHAIN.md.
@@ -1996,7 +2088,8 @@ contributor. No contributor is named here, and none has been asked.
 | SimReady tools | v1 deck plate STEP, two port loft STEPs, both stages | private stages; [deck](params/simready-deck-plate.json), [ports](params/simready-ports.json) | NVIDIA validator; independent bounding box and volume against the STEP | done for the three B-rep inputs (pass) and both stages; profile conformance, agents and RTX not attempted; no STEP of the v2 body |
 | AM screen | occupancy | [supports](params/am-supports.json), [cooldown](params/am-cooldown.json) | analytic witnesses within 2.5%; independent VTU reader, energy imbalance 1.5e-4 | done as a screen: six orientations, two cooldown levels; no orientation chosen, no support designed |
 | Feature fit | bare scan, frame, [32 windows](params/feature-rois.json) | [feature-fits.json](params/feature-fits.json); private vertex split | the tool's own `determined` flag and standard deviations; two-centre construction against a guide bore axis (0.42°) | done: 25 determined, 7 detected only; two valve axes, guide bore, seats, plug bores, stud passages |
-| Feature check | fits, held-out half of each window | [feature-check.json](params/feature-check.json); private clouds and receipts | CloudCompare distances; acceptance fixed beforehand (90% within 0.2 mm) | done: **4 of 32 confirmed**; the fits are nominal, not inspected |
+| Feature check | fits, held-out half of each window | [feature-check.json](params/feature-check.json); private clouds and receipts | CloudCompare distances; acceptance fixed beforehand (90% within 0.2 mm) | done: **4 of 32 confirmed** at the first check; the fits are nominal, not inspected |
+| Feature re-fit (#696) | the 28 unconfirmed fits, fitted half only, a rule declared before the check | [declaration](params/feature-refit-declaration.json), [re-fits](params/feature-refits.json), [check](params/feature-check-refit.json), [standing](params/feature-confirmation.json) | same CloudCompare check and 90% on the held-out half; standing reproduced by a test | done: **11 of 32 confirmed**; 21 not confirmable from this scan, each with its declared reason |
 | Body check by a second tool | v2 body, 200,000 scan facets | [cloudcompare-v2-body.json](params/cloudcompare-v2-body.json) | CloudCompare against the Warp scorecard | done: 97.36% against 97.37% within 0.2 mm, p95 0.1571 against 0.1572 mm |
 | Asset package | CAD-body stage, 1.0 mm surface | private `part.usda`, `part.usdz` and two binary layers; [summary](params/simready-asset.json) | 30 OpenUSD validators and the NVIDIA validator on both forms; read-back of the package | done: 0 OpenUSD findings; NVIDIA 0 failures, the 2 inherited warnings; no mass, no physics run |
 | Visual check of the v2 body | double-precision 3MF | private six-view render; [record](params/v2-body-visual-check.json) | read by the agent; the renderer's strict watertight gate | done twice: the first reading found stud slivers up to 26 mm tall and led to the stud repair; after it, stubs of 5.5 mm and 5 non-manifold edges once vertices are welded |
@@ -2012,7 +2105,7 @@ contributor. No contributor is named here, and none has been asked.
 | Build screen | print-body occupancy, [declared case](params/build-sim-case.json) | [build-sim.json](params/build-sim.json), [build-sim-dolfinx.json](params/build-sim-dolfinx.json); private decks, fields and two [pictures](media/build-sim-result.png) | three closed-form [witnesses](params/build-sim-witness.json); energy balance within 0.4%; 7 levels for temperature and 2 laser cases, 11 mechanical runs in CalculiX; a second solver, DOLFINx, within [limits set before its first run](params/build-sim-dolfinx-acceptance.json) on the 4 mm cells, then the 2 mm cells | done as a screen: 43.4 h, largest rise 60 to 64 K above the plate (98 and 138 K with two and four lasers); distortion after release 0.23 to 0.33 mm median, 1.62 to 2.38 mm largest on 2, 3 and 4 mm cells: the median agrees between the cell sizes, the worst corner does not; on the laid-out supports 40 K and 1.71 mm; stress at the declared yield curve; every gate false |
 | Support layout | print-body occupancy, [declared rules](params/support-design-case.json) | [support-design.json](params/support-design.json); private envelope and a [picture](media/support-layout.png) | four shapes with hand-computed answers ([witnesses](params/support-design-witness.json)); the totals before exemption equal the orientation screen's | done as a layout by rule: 470,700 mm³ of envelope, 15% of the part melted in walls, 48% standing on the part, 26% of the supported surface without straight lateral access; no build processor, removal not judged |
 | Melt-pool check | the build screen's declared laser and material values | [melt-pool-check.json](params/melt-pool-check.json); private fields; [chart](media/melt-pool-width.png) and [animation](media/melt-pool.gif) | Rosenthal's point source within 0.2%; three meshes; energy balance | done as a check: 290 µm at the declared absorptivity (240 µm with latent heat) against 215 to 230 µm published nearest to this setting; conduction only, nothing calibrated |
-| Fatigue, valve-train dynamics, drawing | none | [prepared-work.json](params/prepared-work.json); [drawing-tool witness](params/drawing-witness.json) | every path of the register exists; the drawing tool reads back three views of a known solid | not run: no stress history or S-N data, no cam, spring or masses, 4 of 32 features confirmed. [Prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register): tool, witness, held and missing inputs for each |
+| Fatigue, valve-train dynamics, drawing | none | [prepared-work.json](params/prepared-work.json); [drawing-tool witness](params/drawing-witness.json) | every path of the register exists; the drawing tool reads back three views of a known solid | not run: no stress history or S-N data, no cam, spring or masses, 11 of 32 features confirmed. [Prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register): tool, witness, held and missing inputs for each |
 
 ## Limits
 
@@ -2027,7 +2120,7 @@ contributor. No contributor is named here, and none has been asked.
 - The valve guides, seats and valves are not modelled. The bosses the scan
   shows in the spring pockets are in the v2 body as scanned, without bores
   beyond what was acquired.
-- The fitted features are numbers on scan vertices. CloudCompare confirms 4
+- The fitted features are numbers on scan vertices. CloudCompare confirms 11
   of 32 within 0.2 mm; none is a dimension of the specimen, a tolerance, a
   fit or a thread, and the valve named by a flange side is not identified as
   intake or exhaust.

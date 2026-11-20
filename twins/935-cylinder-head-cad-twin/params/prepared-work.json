@@ -184,7 +184,7 @@
     {
      "what": "two valve axes, 55.8 degrees apart, a guide bore, seats and spring seats fitted on the scan",
      "where": "twins/935-cylinder-head-cad-twin/params/feature-fits.json",
-     "standing": "nominal; 4 of 32 features confirmed, the valve of each flange side not identified as inlet or exhaust"
+     "standing": "nominal; 11 of 32 features confirmed, the valve of each flange side not identified as inlet or exhaust"
     },
     {
      "what": "the load-case contract for a valve cycle",
@@ -251,14 +251,14 @@
    },
    "held": [
     {
-     "what": "4 features confirmed on held-out vertices: valve_y_plus_throat, valve_y_plus_seat, plug_x_plus_seat_face, plug_x_minus_seat_face",
-     "where": "twins/935-cylinder-head-cad-twin/params/feature-check.json",
+     "what": "11 features confirmed on held-out vertices: valve_y_plus_throat, valve_y_plus_seat, plug_x_plus_seat_face, plug_x_minus_seat_face at the first check; valve_y_minus_guide_bore_port_end, valve_y_minus_throat, plug_x_plus_thread_bore, plug_x_plus_chamber_relief, plug_x_plus_well, plug_x_minus_chamber_relief, plug_x_minus_well after the declared re-fit (#696)",
+     "where": "twins/935-cylinder-head-cad-twin/params/feature-confirmation.json",
      "standing": "confirmed against the scan within 0.2 mm, at 1 scan unit = 1 mm by owner instruction; not dimensions of the specimen"
     },
     {
-     "what": "28 features fitted and not confirmed",
-     "where": "twins/935-cylinder-head-cad-twin/params/feature-fits.json",
-     "standing": "63% to 90% of held-out vertices within 0.2 mm, against the 90% fixed beforehand"
+     "what": "21 features fitted and not confirmable from this scan",
+     "where": "twins/935-cylinder-head-cad-twin/params/feature-confirmation.json",
+     "standing": "71% to 89.7% of held-out vertices within 0.2 mm after the declared re-fit, or a re-fit its guard rejected, against the 90% fixed beforehand; each needs a contributed measurement"
     },
     {
      "what": "analytic B-rep of the deck plate and of two port lofts",
