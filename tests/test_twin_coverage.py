@@ -42,7 +42,7 @@ class TwinCoverageTests(unittest.TestCase):
             mass, citation = twin_coverage.engine_mass("Carrera", transmission)
             self.assertEqual(mass, _manual_value(value_id)["numeric_values"][0])
             self.assertIn(value_id, citation)
-            self.assertIn("scope open", citation)
+            self.assertIn("p. 15 engine weight", citation)
 
     def test_unsourced_turbo_engine_mass_is_not_counted(self) -> None:
         mass, reason = twin_coverage.engine_mass("Turbo", "manual")
@@ -56,17 +56,51 @@ class TwinCoverageTests(unittest.TestCase):
         expected = f"Coverage: {documented:.1f} kg of {kerb:.0f} kg, i.e. {documented / kerb * 100:.1f} %"
         self.assertIn(expected, _run())
 
-    def test_output_states_the_open_engine_scope_and_the_weighing(self) -> None:
+    def test_output_states_the_checked_engine_scope_and_the_weighing(self) -> None:
         output = " ".join(_run().split())
         self.assertIn(f'"{_manual_value("MNL-TECH-0020")["description"]}"', output)
-        self.assertIn("engine scope is open", output)
+        self.assertIn('Scope: "Engine weight (dry, ready for fitting)"', output)
+        self.assertIn(str(twin_coverage.ENGINE_SCOPE_RECORD.relative_to(twin_coverage.ROOT)), output)
         self.assertIn("Gearbox excluded", output)
+        self.assertIn('Open: which ancillaries "ready for fitting" includes', output)
         self.assertIn("186.9 kg", output)
-        self.assertIn("unregistered community weighing", output)
+        self.assertIn(f"registered community weighing ({twin_coverage.COMMUNITY_WEIGHING_SOURCE})", output)
         self.assertIn(twin_coverage.COMMUNITY_WEIGHING_RECORD, output)
+        source = twin_coverage.ROOT / "catalog" / "sources" / "src-pelican-timmins-993-engine-weights.json"
+        self.assertEqual(json.loads(source.read_text(encoding="utf-8"))["source_id"], twin_coverage.COMMUNITY_WEIGHING_SOURCE)
         gap = _manual_value("MNL-TECH-0020")["numeric_values"][0] - twin_coverage.COMMUNITY_WEIGHING_KG
         self.assertIn(f"{gap:.1f} kg", output)
         self.assertTrue((twin_coverage.ROOT / twin_coverage.COMMUNITY_WEIGHING_RECORD).is_file())
+
+    def test_page_checked_scope_record_matches_the_measurement_record(self) -> None:
+        record = json.loads(twin_coverage.ENGINE_SCOPE_RECORD.read_text(encoding="utf-8"))
+        self.assertEqual(record["source_id"], twin_coverage.MANUAL_SOURCE)
+        self.assertEqual(record["heading"], "Engine weight (dry, ready for fitting)")
+        self.assertEqual(len(record["copies_read"]), 2)
+        for copy in record["copies_read"]:
+            self.assertRegex(copy["sha256"], r"^[0-9a-f]{64}$")
+            self.assertEqual(copy["pdf_page"], 15)
+        rows = {row["measurement_value_id"]: row for row in record["records"]}
+        self.assertEqual(set(rows), {"MNL-TECH-0020", "MNL-TECH-0021"})
+        for value_id, row in rows.items():
+            self.assertEqual(row["status"], "page_checked")
+            self.assertEqual(row["value"], _manual_value(value_id)["numeric_values"][0])
+            self.assertEqual(row["value_text"], _manual_value(value_id)["value_text"])
+
+    def test_scope_is_reported_unchecked_when_the_page_check_disagrees(self) -> None:
+        record = json.loads(twin_coverage.ENGINE_SCOPE_RECORD.read_text(encoding="utf-8"))
+        for row in record["records"]:
+            if row["measurement_value_id"] == "MNL-TECH-0020":
+                row["value"] = 231
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "engine-weight.json"
+            path.write_text(json.dumps(record), encoding="utf-8")
+            with mock.patch.object(twin_coverage, "ENGINE_SCOPE_RECORD", path):
+                manual = " ".join(_run().split())
+                tiptronic = " ".join(_run("--transmission", "tiptronic", "--kerb-weight", "1400").split())
+        self.assertIn("Scope unchecked", manual)
+        self.assertNotIn("dry, ready for fitting", manual)
+        self.assertIn('Scope: "Engine weight (dry, ready for fitting)"', tiptronic)
 
     def test_unknown_or_unreviewed_manual_value_fails_closed(self) -> None:
         with self.assertRaises(ValueError):
@@ -91,7 +125,7 @@ class TwinCoverageTests(unittest.TestCase):
         self.assertEqual(mass, 0.0)
         self.assertIn("not counted", reason)
         self.assertIn("not admissible", reason)
-        self.assertNotIn("engine scope is open", output)
+        self.assertNotIn("Scope:", output)
         self.assertIn(f"Coverage: {_documented_parts_kg():.1f} kg", output)
 
     def test_turbo_and_tiptronic_require_a_curb_weight(self) -> None:
@@ -106,7 +140,7 @@ class TwinCoverageTests(unittest.TestCase):
         output = _run("--variant", "Turbo", "--kerb-weight", "1000")
         self.assertIn("Engine: not counted, no registered source gives the Turbo engine mass", output)
         self.assertIn(f"Coverage: {_documented_parts_kg('Turbo'):.1f} kg of 1000 kg", output)
-        self.assertNotIn("engine scope is open", output)
+        self.assertNotIn("Scope", output)
 
     def test_turbo_only_parts_are_not_counted_for_the_carrera(self) -> None:
         carrera = _run()
