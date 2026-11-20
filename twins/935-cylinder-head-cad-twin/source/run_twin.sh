@@ -134,6 +134,9 @@ MEM=10G cap "$PY" -I "$HERE/support_design.py" orientations "$PRIV/print-occ-$ST
 
 # Witness of a drawing tool on a known solid (build123d projection, DXF read back with ezdxf).
 "$PY" -I "$HERE/drawing_witness.py" "$PRIV/drawing-witness-$STAMP" "$PARAMS/drawing-witness.json"
+# #708: the reference sheet of the confirmed features, drawn with the witnessed tool. The work directory
+# must be new; the sheet's DXF stays there, its image goes to media/ with its hash in media/provenance.json.
+"$PY" -I "$HERE/reference_sheet.py" "$PARAMS" "$PRIV/reference-sheet-$STAMP" "$PARAMS/reference-sheet.json" "$TWIN/media/reference-sheet.png"
 
 # Build screen in CalculiX (cadsim image, one thread): witnesses, then each level of
 # params/build-sim-case.json. A level's thermal run comes before its mechanical run; the 2 mm
