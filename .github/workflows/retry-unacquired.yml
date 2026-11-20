@@ -1,0 +1,46 @@
+name: Retry jobs never given a runner
+
+# Issue #733. GitHub's hosted macOS arm64 pool is sometimes out of capacity: the carrier jobs of
+# "Validate catalogue" are then cancelled after 15 to 20 minutes without a runner or a step, and the
+# run shows as failed although nothing ran. This workflow re-runs the failed jobs of such a run, at
+# most twice, and only when scripts/ci_retry_unacquired.py finds that every failed job of the attempt
+# was never acquired. A job that ran and failed is never re-run here.
+#
+# It checks out the default branch only (the event's own default for workflow_run) and runs no code
+# from the triggering run; the run id and attempt come from the event and are numbers.
+
+on:
+  workflow_run:
+    workflows: ["Validate catalogue"]
+    types: [completed]
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  retry:
+    if: github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.run_attempt < 3
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Re-run the failed jobs if none of them was ever given a runner
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          ATTEMPT: ${{ github.event.workflow_run.run_attempt }}
+        run: |
+          gh api --paginate "repos/$REPO/actions/runs/$RUN_ID/attempts/$ATTEMPT/jobs" --jq '.jobs[]' > "$RUNNER_TEMP/jobs.jsonl"
+          set +e
+          python3 scripts/ci_retry_unacquired.py "$RUNNER_TEMP/jobs.jsonl"
+          code=$?
+          set -e
+          if [ "$code" -eq 0 ]; then
+            gh run rerun "$RUN_ID" --failed --repo "$REPO"
+          elif [ "$code" -ne 10 ]; then
+            exit "$code"
+          fi
