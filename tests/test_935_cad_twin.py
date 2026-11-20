@@ -848,6 +848,176 @@ class AssemblyThermalTests(unittest.TestCase):
         self.assertEqual(self.case["films"]["chamber_gas"]["sink_temperature_C"], 900.0)   # the base case is not altered
 
 
+@unittest.skipUnless(has("numpy"), "numpy absent")
+class AssemblyHeatPathsTests(unittest.TestCase):
+    """assembly_heat_paths.py: barrel, joints, node splitting and the case file of #701."""
+
+    def setUp(self):
+        sys.path.insert(0, str(SOURCE))
+        import assembly_heat_paths
+        import numpy as np
+
+        self.hp, self.np = assembly_heat_paths, np
+        self.base, self.case, self.comps, self.g = assembly_heat_paths.load(TWIN / "params")
+
+    def test_every_new_value_is_a_fit_a_published_value_or_a_ranged_hypothesis(self):
+        hyp = {i["id"] for i in json.loads((TWIN / "hypotheses.json").read_text())["items"]}
+        values = [v for v in self.case["barrel"].values() if isinstance(v, dict)]
+        values += list(self.case["oil"].values())
+        for item in values:
+            status = item["status"]
+            self.assertTrue(item["source"], item)
+            if "hypothesis, declared" in status:
+                low, high = item["range"]
+                self.assertTrue(low < item["value"] < high, item)
+            if "hypothesis" in status or "published" in status:
+                self.assertIn(item["hypothesis"], hyp)
+        for name, film in self.case["films"].items():
+            if film is not None:
+                self.assertIn(film["hypothesis"], hyp, name)
+                if "range" in film:
+                    self.assertTrue(film["range"][0] < film["coefficient_W_per_m2K"] < film["range"][1], name)
+        self.assertIn(self.case["joints"]["hypothesis"], hyp)
+        self.assertEqual(set(self.case["joints"]["items"]), set(self.hp.JOINTS))
+        for name, joint in self.case["joints"]["items"].items():
+            self.assertTrue(joint["range"][0] < joint["value"] < joint["range"][1], name)
+        # every sensitivity item names a declared range, and every ranged value is swept
+        swept = {item["path"] for item in self.case["sensitivity"]["items"]}
+        for path in swept:
+            value, (low, high) = self.hp.declared_range(self.case, path)
+            self.assertTrue(low < value < high, path)
+        ranged = {f"joints.items.{n}" for n in self.case["joints"]["items"]}
+        ranged |= {f"barrel.{k}" for k, v in self.case["barrel"].items() if isinstance(v, dict) and "range" in v}
+        ranged |= {f"oil.{k}" for k, v in self.case["oil"].items() if "range" in v}
+        ranged |= {f"films.{k}" for k, v in self.case["films"].items() if v and "range" in v}
+        self.assertEqual(swept, ranged)
+        self.assertEqual([v["id"] for v in self.case["variants"]], [v["id"] for v in self.base["variants"]])
+
+    def test_the_barrel_stands_on_the_fitted_recess_with_the_published_heights(self):
+        g = self.g
+        self.assertAlmostEqual(g["r_bore"], self.base["regions"]["chamber_radius_mm"], delta=0.01)
+        self.assertEqual(g["r_collar"], self.base["regions"]["register_radius_mm"])
+        self.assertAlmostEqual(g["z_top"] - g["z_bottom"], 114.5)
+        self.assertAlmostEqual(g["z_top"] - g["z_shoulder"], 77.27)
+        self.assertLess(g["r_register"], g["r_collar"])
+        np = self.np
+        pts = np.array([[51.0, 0, 1.0],       # collar, inside the recess
+                        [51.0, 0, -50.0],     # finned length
+                        [55.0, 0, -100.0],    # beyond the lower register
+                        [50.0, 0, -100.0],    # lower register
+                        [40.0, 0, -50.0],     # in the bore
+                        [57.2, 0, -0.5],      # just outside the collar at the deck: never grown into
+                        [57.2, 0, -10.0]])    # just outside the collar below it: grown into
+        self.assertEqual(self.hp.barrel_mask(pts, g).tolist(), [True, True, False, True, False, False, False])
+        self.assertEqual(self.hp.barrel_mask(pts, g, 1.0).tolist(), [True, True, False, True, False, False, True])
+        # Outside the CAD body the barrel takes its solid; inside, the head alloy wins.
+        mat = self.hp.material_of(pts[:2], self.comps, g, np.array([True, False]), 1.0)
+        self.assertEqual([self.hp.MATERIALS[i] for i in mat], ["alloy", "barrel"])
+
+    def test_two_tetrahedra_of_two_materials_get_their_own_copies_of_the_shared_face(self):
+        np = self.np
+        tets = np.array([[0, 1, 2, 3], [1, 2, 3, 4]])
+        (b_elem, b_fid), (ea, fa, eb, fb) = self.hp.face_pairs(tets)
+        self.assertEqual(len(b_elem), 6)
+        self.assertEqual(len(ea), 1)
+        shared = sorted(tets[ea[0]][list(self.hp.FACE_NODES[int(fa[0])])])
+        self.assertEqual(shared, sorted(tets[eb[0]][list(self.hp.FACE_NODES[int(fb[0])])]))
+        self.assertEqual(shared, [1, 2, 3])
+        split, source = self.hp.split_nodes(tets, np.array([0, 4]))
+        self.assertEqual(split[0].tolist(), [0, 1, 2, 3])
+        self.assertEqual(sorted(source[split[1]].tolist()), [1, 2, 3, 4])
+        self.assertEqual(len(set(split[0]) & set(split[1])), 0)        # nothing shared after the split
+        self.assertEqual(len(source), 8)
+        # Within one material nothing is split.
+        same, src = self.hp.split_nodes(tets, np.array([0, 0]))
+        self.assertEqual(same.tolist(), tets.tolist())
+        self.assertEqual(len(src), 5)
+
+    def test_a_stray_island_joins_the_material_around_it(self):
+        np = self.np
+        chain = np.array([[0, 1, 2, 3], [1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 5, 6]])     # four tetrahedra in a row
+        _, (ea, _, eb, _) = self.hp.face_pairs(chain)
+        alloy, valve = 0, self.hp.MATERIALS.index("valve")
+        # The alloy is cut in two by a valve tetrahedron: its smaller piece is an island and takes the valve.
+        material, report = self.hp.merge_islands(4, np.array([alloy, valve, alloy, alloy], dtype=np.int8), (ea, eb))
+        self.assertEqual(material.tolist(), [valve, valve, alloy, alloy])
+        self.assertEqual(report["tets_relabelled_from"]["alloy"], 1)
+        self.assertEqual(report["islands_left"], 0)
+        # Two valve pieces are two valves and stay; of two alloy pieces, one joins a valve.
+        kept, report = self.hp.merge_islands(4, np.array([valve, alloy, valve, alloy], dtype=np.int8), (ea, eb))
+        self.assertEqual(kept.tolist().count(alloy), 1)
+        self.assertEqual(report["tets_relabelled_from"], {**{m: 0 for m in self.hp.MATERIALS}, "alloy": 1})
+
+    def test_joint_areas_project_onto_the_part_surface(self):
+        np = self.np
+        v = self.comps["valves"]["valve_y_minus"]
+        a = np.asarray(v["direction"])
+        e = np.cross(a, [1.0, 0.0, 0.0])
+        e /= np.linalg.norm(e)
+        mid = 0.5 * sum(v["guide_stations"])
+        beside_stem = np.asarray(v["origin"]) + mid * a + v["r_stem"] * e
+        name, normal, dist = self.hp.nearest_segment(beside_stem[None, :], self.hp.profiles(self.comps, self.g)["valve"])
+        self.assertEqual(name[0], "stem")
+        self.assertAlmostEqual(abs(float(normal[0] @ e)), 1.0, places=6)       # a stem is a cylinder: radial normal
+        self.assertLess(dist[0], 1e-6)
+        names = self.hp.joint_of(np.array([1, 1, 1, 2, 3, 4]), np.array([0, 0, 2, 0, 0, 0]),
+                                 np.array(["seat", "stem", "stem", "od", "thread", "top"], dtype=object))
+        self.assertEqual(names.tolist(), ["seat", "stem", "stem", "guide", "plug", "deck"])
+
+    def test_faces_of_the_barrel_and_the_cam_side_are_sorted_into_their_groups(self):
+        np = self.np
+        g, reg = self.g, self.case["regions"]
+        ports = {"inlet": [{"centre": [0.0, -90.0, 46.0], "radius_max_mm": 21.0}],
+                 "exhaust": [{"centre": [0.0, 70.0, 36.0], "radius_max_mm": 20.0}]}
+        p = self.comps["plugs"]["plug_x_plus"]
+        well = np.asarray(p["origin"]) + (p["t_seat"] + 30.0) * np.asarray(p["direction"])
+        centroid = np.array([[g["r_bore"], 0.0, -40.0], [g["r_collar"], 0.0, -40.0], [g["r_register"], 0.0, -100.0],
+                             [0.0, -20.0, reg["cam_face_z_mm"]], well])
+        normal = np.array([[-1.0, 0, 0], [1.0, 0, 0], [1.0, 0, 0], [0, 0, 1.0], [0, 0, 1.0]])
+        owner = np.array([4, 4, 4, 0, 0])
+        got = [self.hp.GROUPS[i] for i in self.hp.classify(centroid, normal, owner, self.comps, g, self.base, self.case, ports)]
+        self.assertEqual(got, ["barrel_gas", "barrel_fins", "crankcase", "cam_housing", "air"])
+
+    def test_calibration_reaches_a_saturating_loading_in_a_few_steps(self):
+        # A wall that saturates as its film grows, like the barrel bore nearing its gas temperature.
+        def loading(h):
+            return 200.0 * h / (h + 2000.0)
+        target, history, h = 145.0, [], 400.0
+        for _ in range(10):
+            history.append((h, loading(h)))
+            if abs(history[-1][1] / target - 1.0) <= 0.01:
+                break
+            h = self.hp.next_coefficient(history, target)
+        self.assertLessEqual(len(history), 6)
+        self.assertAlmostEqual(history[-1][1], target, delta=1.45)
+        # target over achieved alone is still 5 % short after five steps
+        h = 400.0
+        for _ in range(5):
+            h *= target / loading(h)
+        self.assertLess(loading(h), 0.97 * target)
+
+    def test_variants_carry_the_heat_paths_and_a_sweep_changes_one_value(self):
+        hp = self.hp
+        declared = hp.resolve(self.base, self.case, "declared")
+        self.assertIsNone(declared["films"]["oil"])
+        self.assertIsNone(declared["films"]["cam_housing"])
+        self.assertIsNone(declared["films"]["crankcase"])
+        self.assertIsNone(declared["films"]["cylinder_contact"])        # the barrel replaces the contact film
+        oil = hp.resolve(self.base, self.case, "declared_oil")
+        fin = self.case["barrel"]["fin_factor"]["value"]
+        self.assertEqual(oil["films"]["barrel_fins"]["coefficient_W_per_m2K"], oil["films"]["air"]["coefficient_W_per_m2K"] * fin)
+        self.assertEqual(oil["films"]["cam_housing"]["sink_temperature_C"], oil["films"]["oil"]["sink_temperature_C"])
+        self.assertEqual(oil["films"]["barrel_gas"]["sink_temperature_C"], 316.0)
+        air = hp.resolve(self.base, self.case, "published_loading_oil_air_233")
+        self.assertEqual(air["films"]["barrel_fins"]["coefficient_W_per_m2K"], 233.0 * fin)
+        hot = hp.resolve(self.base, self.case, "published_loading_oil", {"oil.sink_temperature_C": 100.0})
+        self.assertEqual({hot["films"][n]["sink_temperature_C"] for n in ("oil", "cam_housing", "crankcase")}, {100.0})
+        seat = hp.resolve(self.base, self.case, "published_loading_oil", {"joints.items.seat": 1000.0})
+        self.assertEqual(seat["joints"]["seat"], 1000.0)
+        self.assertEqual(seat["joints"]["deck"], self.case["joints"]["items"]["deck"]["value"])
+        self.assertEqual(hot["conductivity"]["barrel"], self.case["barrel"]["conductivity_W_per_mK"]["value"])
+
+
 class AlloyTradeoffTests(unittest.TestCase):
     def setUp(self):
         sys.path.insert(0, str(SOURCE))
@@ -1921,6 +2091,78 @@ class AlloyRecordTests(unittest.TestCase):
         self.assertIsNone(asm["variants"]["declared"]["films"]["oil"])
         self.assertEqual(asm["variants"]["declared"]["calibration"], [])
 
+    def test_heat_paths_conserve_energy_part_by_part_and_carry_their_loadings(self):
+        rec = self.load("assembly-heat-paths.json")
+        case = self.load("assembly-heat-paths-case.json")
+        self.assertEqual(rec["case_file"], "params/assembly-heat-paths-case.json")
+        self.assertEqual(list(rec["variants"]), [v["id"] for v in case["variants"]])
+        reference = self.load("assembly-case.json")["reference_conductivity_W_per_mK"]
+        for name, variant in rec["variants"].items():
+            rows = variant["by_conductivity"]
+            self.assertGreaterEqual(len(rows), 3, name)
+            self.assertEqual([r["peak_C"]["alloy"] for r in rows], sorted((r["peak_C"]["alloy"] for r in rows), reverse=True))
+            for r in rows:
+                self.assertLess(r["energy_imbalance_relative"], 1e-3, r["label"])
+                # each part's films and joints balance: what a joint carries is what CalculiX carried
+                worst = max(abs(v) for v in r["part_balance_residual_W"].values())
+                self.assertLess(worst, 0.01 * r["heat_into_the_assembly_W"], r["label"])
+                self.assertGreater(r["heat_out_W_by_group"]["barrel_fins"], 0.0)
+            targets = next(v for v in case["variants"] if v["id"] == name).get("calibrate_wall_loading_kW_per_m2", {})
+            row = next(r for r in rows if r["alloy_conductivity_W_per_mK"] == reference)
+            tolerance = case["calibration"]["tolerance_relative"]
+            for group, target in targets.items():
+                self.assertAlmostEqual(row["wall_loading_kW_per_m2"][group] / target, 1.0, delta=tolerance, msg=(name, group))
+            if targets:
+                self.assertTrue(variant["calibration"][-1]["converged"], name)
+                self.assertLessEqual(len(variant["calibration"]), case["calibration"]["max_steps"])
+        self.assertIsNone(rec["variants"]["declared"]["films"]["cam_housing"])
+        self.assertEqual(rec["mesh"]["islands"]["islands_left"], 0)
+        self.assertEqual(set(rec["joints"]) - {"other"}, set(case["joints"]["items"]))
+        for name, joint in rec["joints"].items():
+            if name != "other":
+                self.assertTrue(0.5 < joint["area_factor"] < 0.8, name)
+
+    def test_heat_paths_sweep_every_declared_range_and_witness_their_joints(self):
+        rec = self.load("assembly-heat-paths.json")
+        case = self.load("assembly-heat-paths-case.json")
+        sens = rec["sensitivity"]
+        self.assertEqual({i["id"] for i in sens["items"]}, {i["id"] for i in case["sensitivity"]["items"]})
+        centre = next(r for r in rec["variants"][sens["variant"]]["by_conductivity"]
+                      if r["alloy_conductivity_W_per_mK"] == sens["alloy_conductivity_W_per_mK"])
+        self.assertEqual(sens["centre"]["peak_alloy_C"], centre["peak_C"]["alloy"])
+        for item in sens["items"]:
+            self.assertEqual(item["peak_alloy_C"][1], centre["peak_C"]["alloy"], item["id"])
+            self.assertLess(item["energy_imbalance_relative"], 1e-3, item["id"])
+        spans = [abs(i["peak_alloy_C"][2] - i["peak_alloy_C"][0]) for i in sens["items"]]
+        self.assertEqual(spans, sorted(spans, reverse=True))
+        # a joint at a thousand times its declared conductance is perfect contact through shared nodes
+        self.assertLess(rec["perfect_contact_witness"]["max_peak_difference_C"], 1.0)
+        rows = rec["joint_witness"]["rows"]
+        self.assertEqual(len(rows), 12)
+        for r in rows:
+            if r["contact"] == "node to surface":
+                self.assertLess(abs(r["relative_error"]), 0.01, r)
+            else:
+                self.assertLess(r["relative_error"], -0.03, r)       # why surface to surface is not used
+        mesh = rec["mesh_comparison"]
+        self.assertLess(mesh["finer_surface"]["surface_pitch_mm"], mesh["base"]["surface_pitch_mm"])
+        self.assertGreater(mesh["finer_surface"]["tets"], mesh["base"]["tets"])
+        for name in ("finer_surface", "second_mesh_same_surface"):
+            self.assertEqual(set(mesh[name]["difference_from_base_C"]), set(mesh["base"]["peak_C"]))
+            self.assertLess(mesh[name]["energy_imbalance_relative"], 1e-3)
+        # What the README claims: a second mesh of the same surface moves no zone by 3 °C or more, and the finer
+        # surface agrees within 3 °C at the base peak's zone, the bridge and the plug bosses. Its own peak sits on
+        # the thin alloy edge at the inlet valve rim, which does not converge: that difference is reported, not tested.
+        self.assertTrue(all(abs(d) < 3.0 for d in mesh["second_mesh_same_surface"]["difference_from_base_C"].values()))
+        for zone in ("exhaust_seat", "valve_bridge", "plug_bosses"):
+            self.assertLess(abs(mesh["finer_surface"]["difference_from_base_C"][zone]), 3.0, zone)
+        self.assertEqual(mesh["base"]["peak_C"]["alloy"], mesh["base"]["peak_C"]["exhaust_seat"])
+        self.assertEqual(set(rec["first_screen"]["peak_alloy_C_by_conductivity"]), set(rec["variants"]))
+        self.assertTrue((TWIN / "media" / "heat-paths.png").stat().st_size < (1 << 20))
+        self.assertIn("hypothesis", rec["claims"])
+        ids = {i["id"][:3] for i in json.loads((TWIN / "hypotheses.json").read_text())["items"]}
+        self.assertTrue({"H13", "H14", "H15"} <= ids)
+
     def test_strength_rows_name_their_source_and_the_tradeoff_selects_nothing(self):
         strength = self.load("alloy-strength.json")
         ids = {c["id"] for c in self.load("alloy-candidates.json")["candidates"]}
@@ -1943,6 +2185,14 @@ class AlloyRecordTests(unittest.TestCase):
             self.assertIsNone(row["yield_MPa_at_the_computed_peak"], row["id"])
         self.assertIn("no alloy", trade["claims"])
         self.assertIn("never extrapolated", trade["rule"])
+        # The same reading on the heat-path case (#701): which peaks fall inside a published strength range.
+        paths = trade["heat_paths"]
+        self.assertEqual(paths["ranking_variant"], self.load("assembly-heat-paths.json")["ranking_variant"])
+        self.assertEqual([r["id"] for r in paths["rows"]], [r["id"] for r in strength["rows"]])
+        inside = [r["id"] for r in paths["rows"]
+                  if r["peak_head_alloy_C"] and r["peak_head_alloy_C"][0] <= r["yield_MPa_published_up_to_C"]]
+        self.assertEqual(paths["inside_a_published_strength_range"], inside)
+        self.assertEqual(paths["statement"].startswith("no computed peak"), not inside)
         self.assertTrue((TWIN / "media" / "alloy-ranking.png").stat().st_size < (1 << 20))
 
     def test_surveys_say_what_was_not_found(self):

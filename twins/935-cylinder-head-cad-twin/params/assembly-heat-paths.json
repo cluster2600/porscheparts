@@ -1,0 +1,3044 @@
+{
+  "schema": "935-cad-twin-assembly-heat-paths/1",
+  "case_file": "params/assembly-heat-paths-case.json",
+  "extends": "params/assembly-case.json",
+  "mesh": {
+    "mesher": "Gmsh HXT",
+    "size_max_mm": 3.0,
+    "nodes": 1119411,
+    "nodes_after_split": 1134645,
+    "tets": 6039059,
+    "share_with_minSICN_below_0p1": 0.006197,
+    "tets_by_material": {
+      "alloy": 4507858,
+      "valve": 153104,
+      "guide": 31459,
+      "plug": 67381,
+      "barrel": 1279257
+    },
+    "volume_mm3_by_material": {
+      "alloy": 1083278.6,
+      "valve": 33811.6,
+      "guide": 6989.8,
+      "plug": 13813.7,
+      "barrel": 340703.0
+    },
+    "islands": {
+      "tets_relabelled_from": {
+        "alloy": 394,
+        "valve": 58,
+        "guide": 0,
+        "plug": 30,
+        "barrel": 31
+      },
+      "islands_left": 0
+    }
+  },
+  "film_area_mm2_by_group": {
+    "chamber_gas": 8567.4,
+    "hot_port": 9530.8,
+    "cool_port": 16262.4,
+    "cylinder_contact": 21.6,
+    "air": 99771.9,
+    "oil": 7233.7,
+    "cam_housing": 14425.1,
+    "barrel_gas": 33865.5,
+    "barrel_fins": 26275.7,
+    "crankcase": 15690.9
+  },
+  "joints": {
+    "seat": {
+      "faces": 3409,
+      "meshed_area_mm2": 2149.4,
+      "projected_area_mm2": 1325.3,
+      "area_factor": 0.6166,
+      "distance_to_part_surface_mm_p95": 0.64,
+      "by_segment_mm2": {
+        "rim": 239.5,
+        "seat": 1808.0,
+        "tulip": 101.9
+      }
+    },
+    "stem": {
+      "faces": 5680,
+      "meshed_area_mm2": 4304.7,
+      "projected_area_mm2": 2652.7,
+      "area_factor": 0.6162,
+      "distance_to_part_surface_mm_p95": 0.267,
+      "by_segment_mm2": {
+        "stem": 4304.7
+      }
+    },
+    "guide": {
+      "faces": 6318,
+      "meshed_area_mm2": 4813.3,
+      "projected_area_mm2": 2955.3,
+      "area_factor": 0.614,
+      "distance_to_part_surface_mm_p95": 0.24,
+      "by_segment_mm2": {
+        "od": 4813.3
+      }
+    },
+    "plug": {
+      "faces": 4824,
+      "meshed_area_mm2": 3052.0,
+      "projected_area_mm2": 1883.5,
+      "area_factor": 0.6171,
+      "distance_to_part_surface_mm_p95": 0.421,
+      "by_segment_mm2": {
+        "body": 698.3,
+        "seat": 316.0,
+        "thread": 2037.7
+      }
+    },
+    "deck": {
+      "faces": 7831,
+      "meshed_area_mm2": 5418.8,
+      "projected_area_mm2": 3167.4,
+      "area_factor": 0.5845,
+      "distance_to_part_surface_mm_p95": 1.919,
+      "by_segment_mm2": {
+        "bore": 56.8,
+        "collar": 595.0,
+        "top": 4767.0
+      }
+    }
+  },
+  "zone_nodes": {
+    "alloy": 821399,
+    "inlet_seat": 3194,
+    "exhaust_seat": 3126,
+    "valve_bridge": 139,
+    "plug_bosses": 4657
+  },
+  "variants": {
+    "declared": {
+      "what": "the first declared case: gas at 900 \u00b0C and 400 W/(m\u00b2 K), no oil film; with the heat paths, no oil path at all: the cam-housing face and the barrel's crankcase faces are in air",
+      "films": {
+        "chamber_gas": {
+          "sink_temperature_C": 900.0,
+          "coefficient_W_per_m2K": 400.0
+        },
+        "hot_port": {
+          "sink_temperature_C": 700.0,
+          "coefficient_W_per_m2K": 300.0
+        },
+        "cool_port": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 200.0
+        },
+        "cylinder_contact": null,
+        "air": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 150.0
+        },
+        "oil": null,
+        "barrel_gas": {
+          "sink_temperature_C": 316.0,
+          "coefficient_W_per_m2K": 400.0
+        },
+        "barrel_fins": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 450.0
+        },
+        "crankcase": null,
+        "cam_housing": null
+      },
+      "joints_W_per_m2K": {
+        "seat": 10000.0,
+        "stem": 10000.0,
+        "guide": 10000.0,
+        "plug": 10000.0,
+        "deck": 10000.0
+      },
+      "conductivity_W_per_mK": {
+        "valve": 20.0,
+        "guide": 60.0,
+        "plug": 45.0,
+        "barrel": 150.0
+      },
+      "calibration": [],
+      "by_conductivity": [
+        {
+          "label": "declared-k95",
+          "alloy_conductivity_W_per_mK": 95.0,
+          "peak_C": {
+            "alloy": 316.6,
+            "inlet_seat": 288.69,
+            "exhaust_seat": 313.19,
+            "valve_bridge": 279.58,
+            "plug_bosses": 286.9
+          },
+          "peak_alloy_at_mm": [
+            8.6,
+            42.6,
+            12.4
+          ],
+          "mean_alloy_C": 184.22,
+          "part_peak_C": {
+            "inlet_valve": 443.26,
+            "inlet_guide": 162.55,
+            "exhaust_valve": 547.95,
+            "exhaust_guide": 310.77,
+            "plug_x_plus": 298.57,
+            "plug_x_minus": 287.49,
+            "barrel": 224.62,
+            "barrel_top_ring": 224.62
+          },
+          "barrel_top_ring_mean_C": 196.03,
+          "heat_out_W_by_group": {
+            "chamber_gas": -1986.36,
+            "hot_port": -1176.6,
+            "cool_port": 450.68,
+            "cylinder_contact": 0.59,
+            "air": 2012.78,
+            "oil": 128.58,
+            "cam_housing": 252.18,
+            "barrel_gas": -1718.18,
+            "barrel_fins": 1676.77,
+            "crankcase": 359.57
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 702.3,
+            "stem": 31.43,
+            "guide": 31.74,
+            "plug": 20.87,
+            "deck": -345.24
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 231.9,
+            "hot_port": 123.5,
+            "barrel_gas": 50.7
+          },
+          "heat_into_the_assembly_W": 4881.14,
+          "energy_imbalance_relative": 2e-06,
+          "part_balance_residual_W": {
+            "alloy": -11.543,
+            "valve": 16.783,
+            "guide": -0.218,
+            "plug": 0.287,
+            "barrel": -5.309
+          },
+          "ccx_s": 895.6
+        },
+        {
+          "label": "declared-k150",
+          "alloy_conductivity_W_per_mK": 150.0,
+          "peak_C": {
+            "alloy": 283.53,
+            "inlet_seat": 259.37,
+            "exhaust_seat": 279.39,
+            "valve_bridge": 252.11,
+            "plug_bosses": 259.16
+          },
+          "peak_alloy_at_mm": [
+            8.6,
+            42.6,
+            12.4
+          ],
+          "mean_alloy_C": 186.3,
+          "part_peak_C": {
+            "inlet_valve": 435.81,
+            "inlet_guide": 168.84,
+            "exhaust_valve": 535.03,
+            "exhaust_guide": 297.05,
+            "plug_x_plus": 278.56,
+            "plug_x_minus": 272.01,
+            "barrel": 217.79,
+            "barrel_top_ring": 217.79
+          },
+          "barrel_top_ring_mean_C": 193.2,
+          "heat_out_W_by_group": {
+            "chamber_gas": -2041.25,
+            "hot_port": -1215.41,
+            "cool_port": 469.31,
+            "cylinder_contact": 0.57,
+            "air": 2088.01,
+            "oil": 137.93,
+            "cam_housing": 274.62,
+            "barrel_gas": -1733.12,
+            "barrel_fins": 1660.97,
+            "crankcase": 358.36
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 735.52,
+            "stem": 30.94,
+            "guide": 30.79,
+            "plug": 25.68,
+            "deck": -312.44
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 238.3,
+            "hot_port": 127.5,
+            "barrel_gas": 51.2
+          },
+          "heat_into_the_assembly_W": 4989.78,
+          "energy_imbalance_relative": 2e-06,
+          "part_balance_residual_W": {
+            "alloy": -12.518,
+            "valve": 17.263,
+            "guide": -0.292,
+            "plug": 0.421,
+            "barrel": -4.875
+          },
+          "ccx_s": 931.2
+        },
+        {
+          "label": "declared-k191",
+          "alloy_conductivity_W_per_mK": 191.0,
+          "peak_C": {
+            "alloy": 268.82,
+            "inlet_seat": 246.98,
+            "exhaust_seat": 264.88,
+            "valve_bridge": 240.8,
+            "plug_bosses": 247.49
+          },
+          "peak_alloy_at_mm": [
+            8.6,
+            42.6,
+            12.4
+          ],
+          "mean_alloy_C": 187.22,
+          "part_peak_C": {
+            "inlet_valve": 432.94,
+            "inlet_guide": 172.17,
+            "exhaust_valve": 529.53,
+            "exhaust_guide": 291.12,
+            "plug_x_plus": 270.03,
+            "plug_x_minus": 265.65,
+            "barrel": 214.07,
+            "barrel_top_ring": 214.07
+          },
+          "barrel_top_ring_mean_C": 191.81,
+          "heat_out_W_by_group": {
+            "chamber_gas": -2063.72,
+            "hot_port": -1232.34,
+            "cool_port": 478.98,
+            "cylinder_contact": 0.56,
+            "air": 2119.55,
+            "oil": 142.08,
+            "cam_housing": 284.31,
+            "barrel_gas": -1740.43,
+            "barrel_fins": 1653.25,
+            "crankcase": 357.77
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 749.13,
+            "stem": 30.72,
+            "guide": 30.33,
+            "plug": 27.74,
+            "deck": -296.38
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 240.9,
+            "hot_port": 129.3,
+            "barrel_gas": 51.4
+          },
+          "heat_into_the_assembly_W": 5036.49,
+          "energy_imbalance_relative": 2e-06,
+          "part_balance_residual_W": {
+            "alloy": -12.953,
+            "valve": 17.467,
+            "guide": -0.331,
+            "plug": 0.479,
+            "barrel": -4.662
+          },
+          "ccx_s": 914.6
+        }
+      ]
+    },
+    "declared_oil": {
+      "what": "the first declared case with the oil film, the cam housing and the crankcase",
+      "films": {
+        "chamber_gas": {
+          "sink_temperature_C": 900.0,
+          "coefficient_W_per_m2K": 400.0
+        },
+        "hot_port": {
+          "sink_temperature_C": 700.0,
+          "coefficient_W_per_m2K": 300.0
+        },
+        "cool_port": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 200.0
+        },
+        "cylinder_contact": null,
+        "air": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 150.0
+        },
+        "oil": {
+          "sink_temperature_C": 90.0,
+          "coefficient_W_per_m2K": 500.0
+        },
+        "barrel_gas": {
+          "sink_temperature_C": 316.0,
+          "coefficient_W_per_m2K": 400.0
+        },
+        "barrel_fins": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 450.0
+        },
+        "crankcase": {
+          "sink_temperature_C": 90.0,
+          "coefficient_W_per_m2K": 1000.0
+        },
+        "cam_housing": {
+          "sink_temperature_C": 90.0,
+          "coefficient_W_per_m2K": 1000.0
+        }
+      },
+      "joints_W_per_m2K": {
+        "seat": 10000.0,
+        "stem": 10000.0,
+        "guide": 10000.0,
+        "plug": 10000.0,
+        "deck": 10000.0
+      },
+      "conductivity_W_per_mK": {
+        "valve": 20.0,
+        "guide": 60.0,
+        "plug": 45.0,
+        "barrel": 150.0
+      },
+      "calibration": [],
+      "by_conductivity": [
+        {
+          "label": "declared_oil-k95",
+          "alloy_conductivity_W_per_mK": 95.0,
+          "peak_C": {
+            "alloy": 305.55,
+            "inlet_seat": 274.05,
+            "exhaust_seat": 301.55,
+            "valve_bridge": 263.73,
+            "plug_bosses": 273.39
+          },
+          "peak_alloy_at_mm": [
+            8.6,
+            42.6,
+            12.4
+          ],
+          "mean_alloy_C": 167.66,
+          "part_peak_C": {
+            "inlet_valve": 437.84,
+            "inlet_guide": 148.05,
+            "exhaust_valve": 540.92,
+            "exhaust_guide": 290.22,
+            "plug_x_plus": 286.65,
+            "plug_x_minus": 274.49,
+            "barrel": 213.03,
+            "barrel_top_ring": 213.03
+          },
+          "barrel_top_ring_mean_C": 185.28,
+          "heat_out_W_by_group": {
+            "chamber_gas": -2021.55,
+            "hot_port": -1223.38,
+            "cool_port": 415.76,
+            "cylinder_contact": 0.56,
+            "air": 1781.26,
+            "oil": 160.44,
+            "cam_housing": 569.29,
+            "barrel_gas": -2069.98,
+            "barrel_fins": 1474.9,
+            "crankcase": 912.69
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 720.66,
+            "stem": 34.49,
+            "guide": 33.77,
+            "plug": 26.95,
+            "deck": -343.11
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 236.0,
+            "hot_port": 128.4,
+            "barrel_gas": 61.1
+          },
+          "heat_into_the_assembly_W": 5314.91,
+          "energy_imbalance_relative": 2e-06,
+          "part_balance_residual_W": {
+            "alloy": -12.222,
+            "valve": 17.335,
+            "guide": -0.282,
+            "plug": 0.42,
+            "barrel": -5.251
+          },
+          "ccx_s": 877.4
+        },
+        {
+          "label": "declared_oil-k150",
+          "alloy_conductivity_W_per_mK": 150.0,
+          "peak_C": {
+            "alloy": 269.01,
+            "inlet_seat": 241.38,
+            "exhaust_seat": 264.26,
+            "valve_bridge": 233.13,
+            "plug_bosses": 242.5
+          },
+          "peak_alloy_at_mm": [
+            8.6,
+            42.6,
+            12.4
+          ],
+          "mean_alloy_C": 166.56,
+          "part_peak_C": {
+            "inlet_valve": 428.88,
+            "inlet_guide": 151.34,
+            "exhaust_valve": 526.38,
+            "exhaust_guide": 274.95,
+            "plug_x_plus": 263.5,
+            "plug_x_minus": 256.03,
+            "barrel": 203.89,
+            "barrel_top_ring": 203.89
+          },
+          "barrel_top_ring_mean_C": 180.36,
+          "heat_out_W_by_group": {
+            "chamber_gas": -2086.11,
+            "hot_port": -1269.52,
+            "cool_port": 421.56,
+            "cylinder_contact": 0.52,
+            "air": 1804.9,
+            "oil": 181.37,
+            "cam_housing": 687.3,
+            "barrel_gas": -2093.31,
+            "barrel_fins": 1448.41,
+            "crankcase": 904.89
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 759.01,
+            "stem": 34.11,
+            "guide": 32.67,
+            "plug": 33.2,
+            "deck": -283.93
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 243.5,
+            "hot_port": 133.2,
+            "barrel_gas": 61.8
+          },
+          "heat_into_the_assembly_W": 5448.94,
+          "energy_imbalance_relative": 2e-06,
+          "part_balance_residual_W": {
+            "alloy": -13.758,
+            "valve": 17.92,
+            "guide": -0.359,
+            "plug": 0.591,
+            "barrel": -4.395
+          },
+          "ccx_s": 905.9
+        },
+        {
+          "label": "declared_oil-k191",
+          "alloy_conductivity_W_per_mK": 191.0,
+          "peak_C": {
+            "alloy": 252.47,
+            "inlet_seat": 227.4,
+            "exhaust_seat": 248.42,
+            "valve_bridge": 220.36,
+            "plug_bosses": 229.16
+          },
+          "peak_alloy_at_mm": [
+            8.6,
+            42.6,
+            12.4
+          ],
+          "mean_alloy_C": 166.02,
+          "part_peak_C": {
+            "inlet_valve": 425.25,
+            "inlet_guide": 153.0,
+            "exhaust_valve": 520.08,
+            "exhaust_guide": 268.42,
+            "plug_x_plus": 253.36,
+            "plug_x_minus": 248.19,
+            "barrel": 198.92,
+            "barrel_top_ring": 198.92
+          },
+          "barrel_top_ring_mean_C": 177.76,
+          "heat_out_W_by_group": {
+            "chamber_gas": -2113.65,
+            "hot_port": -1289.8,
+            "cool_port": 425.05,
+            "cylinder_contact": 0.51,
+            "air": 1812.95,
+            "oil": 191.7,
+            "cam_housing": 743.56,
+            "barrel_gas": -2105.57,
+            "barrel_fins": 1434.46,
+            "crankcase": 900.79
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 775.28,
+            "stem": 33.88,
+            "guide": 31.99,
+            "plug": 35.99,
+            "deck": -252.8
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 246.7,
+            "hot_port": 135.3,
+            "barrel_gas": 62.2
+          },
+          "heat_into_the_assembly_W": 5509.02,
+          "energy_imbalance_relative": 0.0,
+          "part_balance_residual_W": {
+            "alloy": -14.5,
+            "valve": 18.176,
+            "guide": -0.398,
+            "plug": 0.667,
+            "barrel": -3.945
+          },
+          "ccx_s": 902.7
+        }
+      ]
+    },
+    "published_loading_oil": {
+      "what": "the first case's published-loading variant: chamber, exhaust port and now barrel bore scaled to the published wall loadings",
+      "films": {
+        "chamber_gas": {
+          "sink_temperature_C": 621.0,
+          "coefficient_W_per_m2K": 2222.63
+        },
+        "hot_port": {
+          "sink_temperature_C": 700.0,
+          "coefficient_W_per_m2K": 394.82
+        },
+        "cool_port": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 200.0
+        },
+        "cylinder_contact": null,
+        "air": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 150.0
+        },
+        "oil": {
+          "sink_temperature_C": 90.0,
+          "coefficient_W_per_m2K": 500.0
+        },
+        "barrel_gas": {
+          "sink_temperature_C": 316.0,
+          "coefficient_W_per_m2K": 2992.62
+        },
+        "barrel_fins": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 450.0
+        },
+        "crankcase": {
+          "sink_temperature_C": 90.0,
+          "coefficient_W_per_m2K": 1000.0
+        },
+        "cam_housing": {
+          "sink_temperature_C": 90.0,
+          "coefficient_W_per_m2K": 1000.0
+        }
+      },
+      "joints_W_per_m2K": {
+        "seat": 10000.0,
+        "stem": 10000.0,
+        "guide": 10000.0,
+        "plug": 10000.0,
+        "deck": 10000.0
+      },
+      "conductivity_W_per_mK": {
+        "valve": 20.0,
+        "guide": 60.0,
+        "plug": 45.0,
+        "barrel": 150.0
+      },
+      "calibration": [
+        {
+          "step": 0,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 1500.0,
+            "loading_kW_per_m2": 398.8,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 300.0,
+            "loading_kW_per_m2": 123.8,
+            "target_kW_per_m2": 145.0
+          },
+          "barrel_gas": {
+            "coefficient_W_per_m2K": 400.0,
+            "loading_kW_per_m2": 57.8,
+            "target_kW_per_m2": 145.0
+          },
+          "converged": false
+        },
+        {
+          "step": 1,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 1749.0,
+            "loading_kW_per_m2": 420.8,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 351.37,
+            "loading_kW_per_m2": 137.1,
+            "target_kW_per_m2": 145.0
+          },
+          "barrel_gas": {
+            "coefficient_W_per_m2K": 1003.46,
+            "loading_kW_per_m2": 99.3,
+            "target_kW_per_m2": 145.0
+          },
+          "converged": false
+        },
+        {
+          "step": 2,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 2249.25,
+            "loading_kW_per_m2": 475.5,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 381.89,
+            "loading_kW_per_m2": 141.4,
+            "target_kW_per_m2": 145.0
+          },
+          "barrel_gas": {
+            "coefficient_W_per_m2K": 1667.99,
+            "loading_kW_per_m2": 120.2,
+            "target_kW_per_m2": 145.0
+          },
+          "converged": false
+        },
+        {
+          "step": 3,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 2153.23,
+            "loading_kW_per_m2": 457.2,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 407.44,
+            "loading_kW_per_m2": 149.4,
+            "target_kW_per_m2": 145.0
+          },
+          "barrel_gas": {
+            "coefficient_W_per_m2K": 2456.53,
+            "loading_kW_per_m2": 137.3,
+            "target_kW_per_m2": 145.0
+          },
+          "converged": false
+        },
+        {
+          "step": 4,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 2194.16,
+            "loading_kW_per_m2": 461.8,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 393.38,
+            "loading_kW_per_m2": 144.5,
+            "target_kW_per_m2": 145.0
+          },
+          "barrel_gas": {
+            "coefficient_W_per_m2K": 2811.6,
+            "loading_kW_per_m2": 142.4,
+            "target_kW_per_m2": 145.0
+          },
+          "converged": false
+        },
+        {
+          "step": 5,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 2222.63,
+            "loading_kW_per_m2": 464.4,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 394.82,
+            "loading_kW_per_m2": 144.6,
+            "target_kW_per_m2": 145.0
+          },
+          "barrel_gas": {
+            "coefficient_W_per_m2K": 2992.62,
+            "loading_kW_per_m2": 144.5,
+            "target_kW_per_m2": 145.0
+          },
+          "converged": true
+        }
+      ],
+      "by_conductivity": [
+        {
+          "label": "published_loading_oil-k95",
+          "alloy_conductivity_W_per_mK": 95.0,
+          "peak_C": {
+            "alloy": 408.07,
+            "inlet_seat": 387.82,
+            "exhaust_seat": 408.07,
+            "valve_bridge": 378.41,
+            "plug_bosses": 404.04
+          },
+          "peak_alloy_at_mm": [
+            15.4,
+            26.2,
+            18.7
+          ],
+          "mean_alloy_C": 232.28,
+          "part_peak_C": {
+            "inlet_valve": 542.04,
+            "inlet_guide": 194.88,
+            "exhaust_valve": 590.24,
+            "exhaust_guide": 352.9,
+            "plug_x_plus": 442.17,
+            "plug_x_minus": 426.59,
+            "barrel": 322.19,
+            "barrel_top_ring": 322.19
+          },
+          "barrel_top_ring_mean_C": 287.2,
+          "heat_out_W_by_group": {
+            "chamber_gas": -3614.54,
+            "hot_port": -1336.0,
+            "cool_port": 632.58,
+            "cylinder_contact": 0.85,
+            "air": 2689.26,
+            "oil": 279.03,
+            "cam_housing": 1031.32,
+            "barrel_gas": -4819.41,
+            "barrel_fins": 2688.19,
+            "crankcase": 2448.72
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 808.66,
+            "stem": 31.74,
+            "guide": 20.03,
+            "plug": 58.65,
+            "deck": -357.21
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 421.9,
+            "hot_port": 140.2,
+            "barrel_gas": 142.3
+          },
+          "heat_into_the_assembly_W": 9769.95,
+          "energy_imbalance_relative": 0.0,
+          "part_balance_residual_W": {
+            "alloy": -14.223,
+            "valve": 19.37,
+            "guide": -0.346,
+            "plug": 0.91,
+            "barrel": -5.711
+          },
+          "ccx_s": 1148.4
+        },
+        {
+          "label": "published_loading_oil-k100",
+          "alloy_conductivity_W_per_mK": 100.0,
+          "peak_C": {
+            "alloy": 403.82,
+            "inlet_seat": 383.7,
+            "exhaust_seat": 403.82,
+            "valve_bridge": 374.51,
+            "plug_bosses": 400.02
+          },
+          "peak_alloy_at_mm": [
+            15.4,
+            26.2,
+            18.7
+          ],
+          "mean_alloy_C": 232.92,
+          "part_peak_C": {
+            "inlet_valve": 541.74,
+            "inlet_guide": 196.26,
+            "exhaust_valve": 589.72,
+            "exhaust_guide": 351.62,
+            "plug_x_plus": 439.64,
+            "plug_x_minus": 424.57,
+            "barrel": 321.41,
+            "barrel_top_ring": 321.41
+          },
+          "barrel_top_ring_mean_C": 286.84,
+          "heat_out_W_by_group": {
+            "chamber_gas": -3657.96,
+            "hot_port": -1341.2,
+            "cool_port": 635.85,
+            "cylinder_contact": 0.85,
+            "air": 2705.51,
+            "oil": 285.34,
+            "cam_housing": 1062.71,
+            "barrel_gas": -4826.71,
+            "barrel_fins": 2686.98,
+            "crankcase": 2448.62
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 819.42,
+            "stem": 31.52,
+            "guide": 19.34,
+            "plug": 60.47,
+            "deck": -348.45
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 427.0,
+            "hot_port": 140.7,
+            "barrel_gas": 142.5
+          },
+          "heat_into_the_assembly_W": 9825.87,
+          "energy_imbalance_relative": 1e-06,
+          "part_balance_residual_W": {
+            "alloy": -14.583,
+            "valve": 19.58,
+            "guide": -0.359,
+            "plug": 0.955,
+            "barrel": -5.593
+          },
+          "ccx_s": 1167.2
+        },
+        {
+          "label": "published_loading_oil-k110",
+          "alloy_conductivity_W_per_mK": 110.0,
+          "peak_C": {
+            "alloy": 396.04,
+            "inlet_seat": 376.17,
+            "exhaust_seat": 396.04,
+            "valve_bridge": 367.43,
+            "plug_bosses": 392.63
+          },
+          "peak_alloy_at_mm": [
+            15.4,
+            26.2,
+            18.7
+          ],
+          "mean_alloy_C": 234.08,
+          "part_peak_C": {
+            "inlet_valve": 541.19,
+            "inlet_guide": 198.78,
+            "exhaust_valve": 588.76,
+            "exhaust_guide": 349.37,
+            "plug_x_plus": 434.98,
+            "plug_x_minus": 420.88,
+            "barrel": 319.86,
+            "barrel_top_ring": 319.86
+          },
+          "barrel_top_ring_mean_C": 286.12,
+          "heat_out_W_by_group": {
+            "chamber_gas": -3737.07,
+            "hot_port": -1350.51,
+            "cool_port": 641.85,
+            "cylinder_contact": 0.84,
+            "air": 2734.69,
+            "oil": 297.16,
+            "cam_housing": 1121.14,
+            "barrel_gas": -4841.13,
+            "barrel_fins": 2684.58,
+            "crankcase": 2448.44
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 838.94,
+            "stem": 31.08,
+            "guide": 18.04,
+            "plug": 63.82,
+            "deck": -331.12
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 436.2,
+            "hot_port": 141.7,
+            "barrel_gas": 143.0
+          },
+          "heat_into_the_assembly_W": 9928.71,
+          "energy_imbalance_relative": 1e-06,
+          "part_balance_residual_W": {
+            "alloy": -15.259,
+            "valve": 19.96,
+            "guide": -0.382,
+            "plug": 1.038,
+            "barrel": -5.358
+          },
+          "ccx_s": 1130.0
+        },
+        {
+          "label": "published_loading_oil-k116",
+          "alloy_conductivity_W_per_mK": 116.0,
+          "peak_C": {
+            "alloy": 391.77,
+            "inlet_seat": 372.06,
+            "exhaust_seat": 391.77,
+            "valve_bridge": 363.58,
+            "plug_bosses": 388.55
+          },
+          "peak_alloy_at_mm": [
+            15.4,
+            26.2,
+            18.7
+          ],
+          "mean_alloy_C": 234.71,
+          "part_peak_C": {
+            "inlet_valve": 540.89,
+            "inlet_guide": 200.16,
+            "exhaust_valve": 588.24,
+            "exhaust_guide": 348.2,
+            "plug_x_plus": 432.42,
+            "plug_x_minus": 418.87,
+            "barrel": 318.95,
+            "barrel_top_ring": 318.95
+          },
+          "barrel_top_ring_mean_C": 285.69,
+          "heat_out_W_by_group": {
+            "chamber_gas": -3780.2,
+            "hot_port": -1355.51,
+            "cool_port": 645.14,
+            "cylinder_contact": 0.84,
+            "air": 2750.38,
+            "oil": 303.78,
+            "cam_housing": 1153.68,
+            "barrel_gas": -4849.61,
+            "barrel_fins": 2683.16,
+            "crankcase": 2448.33
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 849.55,
+            "stem": 30.84,
+            "guide": 17.29,
+            "plug": 65.68,
+            "deck": -320.92
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 441.2,
+            "hot_port": 142.2,
+            "barrel_gas": 143.2
+          },
+          "heat_into_the_assembly_W": 9985.32,
+          "energy_imbalance_relative": 1e-06,
+          "part_balance_residual_W": {
+            "alloy": -15.639,
+            "valve": 20.168,
+            "guide": -0.396,
+            "plug": 1.085,
+            "barrel": -5.218
+          },
+          "ccx_s": 1167.5
+        },
+        {
+          "label": "published_loading_oil-k120",
+          "alloy_conductivity_W_per_mK": 120.0,
+          "peak_C": {
+            "alloy": 389.08,
+            "inlet_seat": 369.46,
+            "exhaust_seat": 389.08,
+            "valve_bridge": 361.16,
+            "plug_bosses": 385.96
+          },
+          "peak_alloy_at_mm": [
+            15.4,
+            26.2,
+            18.7
+          ],
+          "mean_alloy_C": 235.1,
+          "part_peak_C": {
+            "inlet_valve": 540.7,
+            "inlet_guide": 201.04,
+            "exhaust_valve": 587.91,
+            "exhaust_guide": 347.48,
+            "plug_x_plus": 430.79,
+            "plug_x_minus": 417.63,
+            "barrel": 318.34,
+            "barrel_top_ring": 318.34
+          },
+          "barrel_top_ring_mean_C": 285.42,
+          "heat_out_W_by_group": {
+            "chamber_gas": -3807.36,
+            "hot_port": -1358.63,
+            "cool_port": 647.22,
+            "cylinder_contact": 0.84,
+            "air": 2760.19,
+            "oil": 308.01,
+            "cam_housing": 1174.42,
+            "barrel_gas": -4855.18,
+            "barrel_fins": 2682.23,
+            "crankcase": 2448.26
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 856.22,
+            "stem": 30.67,
+            "guide": 16.81,
+            "plug": 66.85,
+            "deck": -314.22
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 444.4,
+            "hot_port": 142.6,
+            "barrel_gas": 143.4
+          },
+          "heat_into_the_assembly_W": 10021.17,
+          "energy_imbalance_relative": 0.0,
+          "part_balance_residual_W": {
+            "alloy": -15.883,
+            "valve": 20.298,
+            "guide": -0.404,
+            "plug": 1.115,
+            "barrel": -5.125
+          },
+          "ccx_s": 1133.3
+        },
+        {
+          "label": "published_loading_oil-k130",
+          "alloy_conductivity_W_per_mK": 130.0,
+          "peak_C": {
+            "alloy": 382.81,
+            "inlet_seat": 363.44,
+            "exhaust_seat": 382.81,
+            "valve_bridge": 355.56,
+            "plug_bosses": 379.93
+          },
+          "peak_alloy_at_mm": [
+            15.4,
+            26.2,
+            18.7
+          ],
+          "mean_alloy_C": 236.01,
+          "part_peak_C": {
+            "inlet_valve": 540.28,
+            "inlet_guide": 203.07,
+            "exhaust_valve": 587.15,
+            "exhaust_guide": 345.86,
+            "plug_x_plus": 427.0,
+            "plug_x_minus": 414.76,
+            "barrel": 316.86,
+            "barrel_top_ring": 316.86
+          },
+          "barrel_top_ring_mean_C": 284.74,
+          "heat_out_W_by_group": {
+            "chamber_gas": -3870.31,
+            "hot_port": -1365.79,
+            "cool_port": 652.07,
+            "cylinder_contact": 0.83,
+            "air": 2782.69,
+            "oil": 318.0,
+            "cam_housing": 1223.21,
+            "barrel_gas": -4868.76,
+            "barrel_fins": 2679.96,
+            "crankcase": 2448.09
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 871.63,
+            "stem": 30.29,
+            "guide": 15.67,
+            "plug": 69.59,
+            "deck": -297.88
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 451.7,
+            "hot_port": 143.3,
+            "barrel_gas": 143.8
+          },
+          "heat_into_the_assembly_W": 10104.86,
+          "energy_imbalance_relative": 1e-06,
+          "part_balance_residual_W": {
+            "alloy": -16.462,
+            "valve": 20.599,
+            "guide": -0.423,
+            "plug": 1.183,
+            "barrel": -4.897
+          },
+          "ccx_s": 1142.7
+        },
+        {
+          "label": "published_loading_oil-k132",
+          "alloy_conductivity_W_per_mK": 132.0,
+          "peak_C": {
+            "alloy": 381.63,
+            "inlet_seat": 362.31,
+            "exhaust_seat": 381.63,
+            "valve_bridge": 354.51,
+            "plug_bosses": 378.79
+          },
+          "peak_alloy_at_mm": [
+            15.4,
+            26.2,
+            18.7
+          ],
+          "mean_alloy_C": 236.18,
+          "part_peak_C": {
+            "inlet_valve": 540.2,
+            "inlet_guide": 203.46,
+            "exhaust_valve": 587.01,
+            "exhaust_guide": 345.57,
+            "plug_x_plus": 426.28,
+            "plug_x_minus": 414.22,
+            "barrel": 316.57,
+            "barrel_top_ring": 316.57
+          },
+          "barrel_top_ring_mean_C": 284.6,
+          "heat_out_W_by_group": {
+            "chamber_gas": -3882.12,
+            "hot_port": -1367.12,
+            "cool_port": 652.99,
+            "cylinder_contact": 0.83,
+            "air": 2786.88,
+            "oil": 319.91,
+            "cam_housing": 1232.48,
+            "barrel_gas": -4871.41,
+            "barrel_fins": 2679.52,
+            "crankcase": 2448.06
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 874.51,
+            "stem": 30.21,
+            "guide": 15.44,
+            "plug": 70.11,
+            "deck": -294.68
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 453.1,
+            "hot_port": 143.4,
+            "barrel_gas": 143.8
+          },
+          "heat_into_the_assembly_W": 10120.65,
+          "energy_imbalance_relative": 2e-06,
+          "part_balance_residual_W": {
+            "alloy": -16.573,
+            "valve": 20.656,
+            "guide": -0.428,
+            "plug": 1.197,
+            "barrel": -4.852
+          },
+          "ccx_s": 1486.6
+        },
+        {
+          "label": "published_loading_oil-k140",
+          "alloy_conductivity_W_per_mK": 140.0,
+          "peak_C": {
+            "alloy": 377.13,
+            "inlet_seat": 358.08,
+            "exhaust_seat": 377.13,
+            "valve_bridge": 350.53,
+            "plug_bosses": 374.44
+          },
+          "peak_alloy_at_mm": [
+            15.4,
+            26.2,
+            18.7
+          ],
+          "mean_alloy_C": 236.82,
+          "part_peak_C": {
+            "inlet_valve": 539.91,
+            "inlet_guide": 204.92,
+            "exhaust_valve": 586.47,
+            "exhaust_guide": 344.47,
+            "plug_x_plus": 423.54,
+            "plug_x_minus": 412.17,
+            "barrel": 315.42,
+            "barrel_top_ring": 315.42
+          },
+          "barrel_top_ring_mean_C": 284.08,
+          "heat_out_W_by_group": {
+            "chamber_gas": -3927.05,
+            "hot_port": -1372.16,
+            "cool_port": 656.48,
+            "cylinder_contact": 0.83,
+            "air": 2802.73,
+            "oil": 327.24,
+            "cam_housing": 1268.06,
+            "barrel_gas": -4881.82,
+            "barrel_fins": 2677.77,
+            "crankcase": 2447.93
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 885.46,
+            "stem": 29.92,
+            "guide": 14.59,
+            "plug": 72.08,
+            "deck": -282.15
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 458.4,
+            "hot_port": 144.0,
+            "barrel_gas": 144.2
+          },
+          "heat_into_the_assembly_W": 10181.03,
+          "energy_imbalance_relative": 1e-06,
+          "part_balance_residual_W": {
+            "alloy": -17.0,
+            "valve": 20.871,
+            "guide": -0.442,
+            "plug": 1.246,
+            "barrel": -4.675
+          },
+          "ccx_s": 1441.9
+        },
+        {
+          "label": "published_loading_oil-k150",
+          "alloy_conductivity_W_per_mK": 150.0,
+          "peak_C": {
+            "alloy": 371.96,
+            "inlet_seat": 353.35,
+            "exhaust_seat": 371.96,
+            "valve_bridge": 345.98,
+            "plug_bosses": 369.42
+          },
+          "peak_alloy_at_mm": [
+            15.4,
+            26.2,
+            18.7
+          ],
+          "mean_alloy_C": 237.55,
+          "part_peak_C": {
+            "inlet_valve": 539.57,
+            "inlet_guide": 206.61,
+            "exhaust_valve": 585.86,
+            "exhaust_guide": 343.25,
+            "plug_x_plus": 420.38,
+            "plug_x_minus": 409.82,
+            "barrel": 314.03,
+            "barrel_top_ring": 314.03
+          },
+          "barrel_top_ring_mean_C": 283.46,
+          "heat_out_W_by_group": {
+            "chamber_gas": -3978.51,
+            "hot_port": -1377.87,
+            "cool_port": 660.52,
+            "cylinder_contact": 0.82,
+            "air": 2820.69,
+            "oil": 335.8,
+            "cam_housing": 1309.43,
+            "barrel_gas": -4894.33,
+            "barrel_fins": 2675.67,
+            "crankcase": 2447.77
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 897.96,
+            "stem": 29.58,
+            "guide": 13.58,
+            "plug": 74.36,
+            "deck": -267.08
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 464.4,
+            "hot_port": 144.6,
+            "barrel_gas": 144.5
+          },
+          "heat_into_the_assembly_W": 10250.71,
+          "energy_imbalance_relative": 1e-06,
+          "part_balance_residual_W": {
+            "alloy": -17.5,
+            "valve": 21.116,
+            "guide": -0.459,
+            "plug": 1.304,
+            "barrel": -4.461
+          },
+          "ccx_s": 1432.1
+        },
+        {
+          "label": "published_loading_oil-k155",
+          "alloy_conductivity_W_per_mK": 155.0,
+          "peak_C": {
+            "alloy": 369.54,
+            "inlet_seat": 351.14,
+            "exhaust_seat": 369.54,
+            "valve_bridge": 343.87,
+            "plug_bosses": 367.06
+          },
+          "peak_alloy_at_mm": [
+            15.4,
+            26.2,
+            18.7
+          ],
+          "mean_alloy_C": 237.89,
+          "part_peak_C": {
+            "inlet_valve": 539.41,
+            "inlet_guide": 207.4,
+            "exhaust_valve": 585.57,
+            "exhaust_guide": 342.7,
+            "plug_x_plus": 418.9,
+            "plug_x_minus": 408.73,
+            "barrel": 313.36,
+            "barrel_top_ring": 313.36
+          },
+          "barrel_top_ring_mean_C": 283.15,
+          "heat_out_W_by_group": {
+            "chamber_gas": -4002.49,
+            "hot_port": -1380.51,
+            "cool_port": 662.41,
+            "cylinder_contact": 0.82,
+            "air": 2829.01,
+            "oil": 339.85,
+            "cam_housing": 1328.94,
+            "barrel_gas": -4900.37,
+            "barrel_fins": 2674.65,
+            "crankcase": 2447.69
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 903.77,
+            "stem": 29.41,
+            "guide": 13.1,
+            "plug": 75.43,
+            "deck": -259.8
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 467.2,
+            "hot_port": 144.8,
+            "barrel_gas": 144.7
+          },
+          "heat_into_the_assembly_W": 10283.37,
+          "energy_imbalance_relative": 0.0,
+          "part_balance_residual_W": {
+            "alloy": -17.739,
+            "valve": 21.23,
+            "guide": -0.466,
+            "plug": 1.331,
+            "barrel": -4.356
+          },
+          "ccx_s": 1452.1
+        },
+        {
+          "label": "published_loading_oil-k160",
+          "alloy_conductivity_W_per_mK": 160.0,
+          "peak_C": {
+            "alloy": 367.23,
+            "inlet_seat": 349.03,
+            "exhaust_seat": 367.23,
+            "valve_bridge": 341.85,
+            "plug_bosses": 364.81
+          },
+          "peak_alloy_at_mm": [
+            15.4,
+            26.2,
+            18.7
+          ],
+          "mean_alloy_C": 238.21,
+          "part_peak_C": {
+            "inlet_valve": 539.27,
+            "inlet_guide": 208.22,
+            "exhaust_valve": 585.29,
+            "exhaust_guide": 342.19,
+            "plug_x_plus": 417.48,
+            "plug_x_minus": 407.68,
+            "barrel": 312.7,
+            "barrel_top_ring": 312.7
+          },
+          "barrel_top_ring_mean_C": 282.86,
+          "heat_out_W_by_group": {
+            "chamber_gas": -4025.41,
+            "hot_port": -1383.03,
+            "cool_port": 664.23,
+            "cylinder_contact": 0.82,
+            "air": 2836.92,
+            "oil": 343.75,
+            "cam_housing": 1347.73,
+            "barrel_gas": -4906.29,
+            "barrel_fins": 2673.65,
+            "crankcase": 2447.62
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 909.31,
+            "stem": 29.25,
+            "guide": 12.64,
+            "plug": 76.46,
+            "deck": -252.67
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 469.9,
+            "hot_port": 145.1,
+            "barrel_gas": 144.9
+          },
+          "heat_into_the_assembly_W": 10314.73,
+          "energy_imbalance_relative": 1e-06,
+          "part_balance_residual_W": {
+            "alloy": -17.968,
+            "valve": 21.339,
+            "guide": -0.475,
+            "plug": 1.357,
+            "barrel": -4.254
+          },
+          "ccx_s": 1478.6
+        },
+        {
+          "label": "published_loading_oil-k165",
+          "alloy_conductivity_W_per_mK": 165.0,
+          "peak_C": {
+            "alloy": 365.01,
+            "inlet_seat": 347.02,
+            "exhaust_seat": 365.01,
+            "valve_bridge": 339.93,
+            "plug_bosses": 362.64
+          },
+          "peak_alloy_at_mm": [
+            15.4,
+            26.2,
+            18.7
+          ],
+          "mean_alloy_C": 238.52,
+          "part_peak_C": {
+            "inlet_valve": 539.12,
+            "inlet_guide": 209.05,
+            "exhaust_valve": 585.03,
+            "exhaust_guide": 341.7,
+            "plug_x_plus": 416.11,
+            "plug_x_minus": 406.68,
+            "barrel": 312.05,
+            "barrel_top_ring": 312.05
+          },
+          "barrel_top_ring_mean_C": 282.57,
+          "heat_out_W_by_group": {
+            "chamber_gas": -4047.34,
+            "hot_port": -1385.42,
+            "cool_port": 665.98,
+            "cylinder_contact": 0.82,
+            "air": 2844.45,
+            "oil": 347.52,
+            "cam_housing": 1365.83,
+            "barrel_gas": -4912.06,
+            "barrel_fins": 2672.68,
+            "crankcase": 2447.54
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 914.61,
+            "stem": 29.1,
+            "guide": 12.19,
+            "plug": 77.44,
+            "deck": -245.71
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 472.4,
+            "hot_port": 145.4,
+            "barrel_gas": 145.0
+          },
+          "heat_into_the_assembly_W": 10344.82,
+          "energy_imbalance_relative": 0.0,
+          "part_balance_residual_W": {
+            "alloy": -18.191,
+            "valve": 21.444,
+            "guide": -0.481,
+            "plug": 1.382,
+            "barrel": -4.153
+          },
+          "ccx_s": 1454.6
+        },
+        {
+          "label": "published_loading_oil-k170",
+          "alloy_conductivity_W_per_mK": 170.0,
+          "peak_C": {
+            "alloy": 362.88,
+            "inlet_seat": 345.09,
+            "exhaust_seat": 362.88,
+            "valve_bridge": 338.08,
+            "plug_bosses": 360.56
+          },
+          "peak_alloy_at_mm": [
+            15.4,
+            26.2,
+            18.7
+          ],
+          "mean_alloy_C": 238.82,
+          "part_peak_C": {
+            "inlet_valve": 538.99,
+            "inlet_guide": 209.85,
+            "exhaust_valve": 584.78,
+            "exhaust_guide": 341.24,
+            "plug_x_plus": 414.8,
+            "plug_x_minus": 405.73,
+            "barrel": 311.41,
+            "barrel_top_ring": 311.41
+          },
+          "barrel_top_ring_mean_C": 282.29,
+          "heat_out_W_by_group": {
+            "chamber_gas": -4068.35,
+            "hot_port": -1387.71,
+            "cool_port": 667.66,
+            "cylinder_contact": 0.82,
+            "air": 2851.64,
+            "oil": 351.17,
+            "cam_housing": 1383.28,
+            "barrel_gas": -4917.7,
+            "barrel_fins": 2671.73,
+            "crankcase": 2447.47
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 919.67,
+            "stem": 28.95,
+            "guide": 11.75,
+            "plug": 78.38,
+            "deck": -238.91
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 474.9,
+            "hot_port": 145.6,
+            "barrel_gas": 145.2
+          },
+          "heat_into_the_assembly_W": 10373.76,
+          "energy_imbalance_relative": 1e-06,
+          "part_balance_residual_W": {
+            "alloy": -18.406,
+            "valve": 21.544,
+            "guide": -0.488,
+            "plug": 1.406,
+            "barrel": -4.056
+          },
+          "ccx_s": 1236.2
+        },
+        {
+          "label": "published_loading_oil-k191",
+          "alloy_conductivity_W_per_mK": 191.0,
+          "peak_C": {
+            "alloy": 354.79,
+            "inlet_seat": 337.8,
+            "exhaust_seat": 354.79,
+            "valve_bridge": 331.14,
+            "plug_bosses": 352.64
+          },
+          "peak_alloy_at_mm": [
+            15.4,
+            26.2,
+            18.7
+          ],
+          "mean_alloy_C": 239.94,
+          "part_peak_C": {
+            "inlet_valve": 538.48,
+            "inlet_guide": 212.87,
+            "exhaust_valve": 583.84,
+            "exhaust_guide": 339.59,
+            "plug_x_plus": 409.8,
+            "plug_x_minus": 402.12,
+            "barrel": 308.88,
+            "barrel_top_ring": 308.88
+          },
+          "barrel_top_ring_mean_C": 281.17,
+          "heat_out_W_by_group": {
+            "chamber_gas": -4147.77,
+            "hot_port": -1396.28,
+            "cool_port": 674.07,
+            "cylinder_contact": 0.81,
+            "air": 2878.58,
+            "oil": 365.2,
+            "cam_housing": 1450.24,
+            "barrel_gas": -4939.99,
+            "barrel_fins": 2667.97,
+            "crankcase": 2447.19
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 938.75,
+            "stem": 28.36,
+            "guide": 10.05,
+            "plug": 81.98,
+            "deck": -212.02
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 484.1,
+            "hot_port": 146.5,
+            "barrel_gas": 145.9
+          },
+          "heat_into_the_assembly_W": 10484.04,
+          "energy_imbalance_relative": 2e-06,
+          "part_balance_residual_W": {
+            "alloy": -19.24,
+            "valve": 21.92,
+            "guide": -0.515,
+            "plug": 1.497,
+            "barrel": -3.662
+          },
+          "ccx_s": 1283.6
+        }
+      ]
+    },
+    "published_loading_oil_air_233": {
+      "what": "the same with the air film, and so the fin film, at Mackerle's upper bound of 233 W/(m\u00b2 K)",
+      "films": {
+        "chamber_gas": {
+          "sink_temperature_C": 621.0,
+          "coefficient_W_per_m2K": 1885.48
+        },
+        "hot_port": {
+          "sink_temperature_C": 700.0,
+          "coefficient_W_per_m2K": 357.6
+        },
+        "cool_port": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 200.0
+        },
+        "cylinder_contact": null,
+        "air": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 233.0
+        },
+        "oil": {
+          "sink_temperature_C": 90.0,
+          "coefficient_W_per_m2K": 500.0
+        },
+        "barrel_gas": {
+          "sink_temperature_C": 316.0,
+          "coefficient_W_per_m2K": 1566.8
+        },
+        "barrel_fins": {
+          "sink_temperature_C": 40.0,
+          "coefficient_W_per_m2K": 699.0
+        },
+        "crankcase": {
+          "sink_temperature_C": 90.0,
+          "coefficient_W_per_m2K": 1000.0
+        },
+        "cam_housing": {
+          "sink_temperature_C": 90.0,
+          "coefficient_W_per_m2K": 1000.0
+        }
+      },
+      "joints_W_per_m2K": {
+        "seat": 10000.0,
+        "stem": 10000.0,
+        "guide": 10000.0,
+        "plug": 10000.0,
+        "deck": 10000.0
+      },
+      "conductivity_W_per_mK": {
+        "valve": 20.0,
+        "guide": 60.0,
+        "plug": 45.0,
+        "barrel": 150.0
+      },
+      "calibration": [
+        {
+          "step": 0,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 1500.0,
+            "loading_kW_per_m2": 424.1,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 300.0,
+            "loading_kW_per_m2": 130.4,
+            "target_kW_per_m2": 145.0
+          },
+          "barrel_gas": {
+            "coefficient_W_per_m2K": 400.0,
+            "loading_kW_per_m2": 65.4,
+            "target_kW_per_m2": 145.0
+          },
+          "converged": false
+        },
+        {
+          "step": 1,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 1644.66,
+            "loading_kW_per_m2": 436.8,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 333.59,
+            "loading_kW_per_m2": 139.9,
+            "target_kW_per_m2": 145.0
+          },
+          "barrel_gas": {
+            "coefficient_W_per_m2K": 886.85,
+            "loading_kW_per_m2": 110.0,
+            "target_kW_per_m2": 145.0
+          },
+          "converged": false
+        },
+        {
+          "step": 2,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 1965.87,
+            "loading_kW_per_m2": 479.6,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 351.62,
+            "loading_kW_per_m2": 142.7,
+            "target_kW_per_m2": 145.0
+          },
+          "barrel_gas": {
+            "coefficient_W_per_m2K": 1268.91,
+            "loading_kW_per_m2": 130.9,
+            "target_kW_per_m2": 145.0
+          },
+          "converged": false
+        },
+        {
+          "step": 3,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 1856.3,
+            "loading_kW_per_m2": 459.7,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 366.43,
+            "loading_kW_per_m2": 148.4,
+            "target_kW_per_m2": 145.0
+          },
+          "barrel_gas": {
+            "coefficient_W_per_m2K": 1526.66,
+            "loading_kW_per_m2": 143.1,
+            "target_kW_per_m2": 145.0
+          },
+          "converged": false
+        },
+        {
+          "step": 4,
+          "chamber_gas": {
+            "coefficient_W_per_m2K": 1885.48,
+            "loading_kW_per_m2": 464.3,
+            "target_kW_per_m2": 465.0
+          },
+          "hot_port": {
+            "coefficient_W_per_m2K": 357.6,
+            "loading_kW_per_m2": 145.0,
+            "target_kW_per_m2": 145.0
+          },
+          "barrel_gas": {
+            "coefficient_W_per_m2K": 1566.8,
+            "loading_kW_per_m2": 144.7,
+            "target_kW_per_m2": 145.0
+          },
+          "converged": true
+        }
+      ],
+      "by_conductivity": [
+        {
+          "label": "published_loading_oil_air_233-k95",
+          "alloy_conductivity_W_per_mK": 95.0,
+          "peak_C": {
+            "alloy": 367.14,
+            "inlet_seat": 352.66,
+            "exhaust_seat": 367.14,
+            "valve_bridge": 340.06,
+            "plug_bosses": 361.91
+          },
+          "peak_alloy_at_mm": [
+            15.4,
+            26.2,
+            18.7
+          ],
+          "mean_alloy_C": 194.48,
+          "part_peak_C": {
+            "inlet_valve": 524.25,
+            "inlet_guide": 171.27,
+            "exhaust_valve": 574.65,
+            "exhaust_guide": 319.34,
+            "plug_x_plus": 399.6,
+            "plug_x_minus": 385.55,
+            "barrel": 276.46,
+            "barrel_top_ring": 276.46
+          },
+          "barrel_top_ring_mean_C": 239.7,
+          "heat_out_W_by_group": {
+            "chamber_gas": -3650.46,
+            "hot_port": -1341.74,
+            "cool_port": 529.36,
+            "cylinder_contact": 1.07,
+            "air": 3254.61,
+            "oil": 192.84,
+            "cam_housing": 690.95,
+            "barrel_gas": -4847.27,
+            "barrel_fins": 3285.1,
+            "crankcase": 1885.54
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 869.18,
+            "stem": 37.12,
+            "guide": 33.81,
+            "plug": 46.69,
+            "deck": -371.71
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 426.1,
+            "hot_port": 140.8,
+            "barrel_gas": 143.1
+          },
+          "heat_into_the_assembly_W": 9839.47,
+          "energy_imbalance_relative": 0.0,
+          "part_balance_residual_W": {
+            "alloy": -15.248,
+            "valve": 20.909,
+            "guide": -0.328,
+            "plug": 0.584,
+            "barrel": -5.921
+          },
+          "ccx_s": 1264.9
+        },
+        {
+          "label": "published_loading_oil_air_233-k150",
+          "alloy_conductivity_W_per_mK": 150.0,
+          "peak_C": {
+            "alloy": 328.97,
+            "inlet_seat": 315.03,
+            "exhaust_seat": 328.97,
+            "valve_bridge": 305.52,
+            "plug_bosses": 325.65
+          },
+          "peak_alloy_at_mm": [
+            15.4,
+            26.2,
+            18.7
+          ],
+          "mean_alloy_C": 198.08,
+          "part_peak_C": {
+            "inlet_valve": 520.93,
+            "inlet_guide": 179.35,
+            "exhaust_valve": 569.14,
+            "exhaust_guide": 307.88,
+            "plug_x_plus": 376.19,
+            "plug_x_minus": 366.97,
+            "barrel": 267.7,
+            "barrel_top_ring": 267.7
+          },
+          "barrel_top_ring_mean_C": 235.65,
+          "heat_out_W_by_group": {
+            "chamber_gas": -3978.23,
+            "hot_port": -1381.84,
+            "cool_port": 548.03,
+            "cylinder_contact": 1.04,
+            "air": 3431.24,
+            "oil": 234.45,
+            "cam_housing": 899.6,
+            "barrel_gas": -4898.68,
+            "barrel_fins": 3260.91,
+            "crankcase": 1883.47
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 957.66,
+            "stem": 35.82,
+            "guide": 29.74,
+            "plug": 62.48,
+            "deck": -292.19
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 464.3,
+            "hot_port": 145.0,
+            "barrel_gas": 144.7
+          },
+          "heat_into_the_assembly_W": 10258.75,
+          "energy_imbalance_relative": 1e-06,
+          "part_balance_residual_W": {
+            "alloy": -18.353,
+            "valve": 22.624,
+            "guide": -0.427,
+            "plug": 0.995,
+            "barrel": -4.843
+          },
+          "ccx_s": 1231.0
+        },
+        {
+          "label": "published_loading_oil_air_233-k191",
+          "alloy_conductivity_W_per_mK": 191.0,
+          "peak_C": {
+            "alloy": 311.11,
+            "inlet_seat": 297.68,
+            "exhaust_seat": 311.11,
+            "valve_bridge": 289.83,
+            "plug_bosses": 308.34
+          },
+          "peak_alloy_at_mm": [
+            15.4,
+            26.2,
+            18.7
+          ],
+          "mean_alloy_C": 199.67,
+          "part_peak_C": {
+            "inlet_valve": 519.47,
+            "inlet_guide": 183.3,
+            "exhaust_valve": 566.64,
+            "exhaust_guide": 303.3,
+            "plug_x_plus": 364.99,
+            "plug_x_minus": 358.65,
+            "barrel": 262.3,
+            "barrel_top_ring": 262.3
+          },
+          "barrel_top_ring_mean_C": 233.23,
+          "heat_out_W_by_group": {
+            "chamber_gas": -4128.44,
+            "hot_port": -1399.53,
+            "cool_port": 557.36,
+            "cylinder_contact": 1.01,
+            "air": 3507.8,
+            "oil": 256.34,
+            "cam_housing": 1006.28,
+            "barrel_gas": -4929.41,
+            "barrel_fins": 3246.34,
+            "crankcase": 1882.23
+          },
+          "heat_W_through_joint_from_part": {
+            "seat": 997.57,
+            "stem": 35.04,
+            "guide": 27.4,
+            "plug": 70.15,
+            "deck": -244.47
+          },
+          "wall_loading_kW_per_m2": {
+            "chamber_gas": 481.9,
+            "hot_port": 146.8,
+            "barrel_gas": 145.6
+          },
+          "heat_into_the_assembly_W": 10457.38,
+          "energy_imbalance_relative": 2e-06,
+          "part_balance_residual_W": {
+            "alloy": -19.965,
+            "valve": 23.405,
+            "guide": -0.477,
+            "plug": 1.195,
+            "barrel": -4.162
+          },
+          "ccx_s": 1264.7
+        }
+      ]
+    }
+  },
+  "ranking_variant": "published_loading_oil",
+  "ranking_by_peak_alloy_temperature": [
+    {
+      "id": "cp1-eos-heat-treated-wf",
+      "alloy": "Aheadd CP1 (Al-Fe-Zr)",
+      "condition": "heat treated 4 h at 400 \u00b0C, 46 %IACS",
+      "alloy_conductivity_W_per_mK": 191.0,
+      "peak_C": {
+        "alloy": 354.79,
+        "inlet_seat": 337.8,
+        "exhaust_seat": 354.79,
+        "valve_bridge": 331.14,
+        "plug_bosses": 352.64
+      }
+    },
+    {
+      "id": "alsi10mg-3ds-stress-relieved-high",
+      "alloy": "AlSi10Mg",
+      "condition": "after stress relief, upper end (160-170)",
+      "alloy_conductivity_W_per_mK": 170.0,
+      "peak_C": {
+        "alloy": 362.88,
+        "inlet_seat": 345.09,
+        "exhaust_seat": 362.88,
+        "valve_bridge": 338.08,
+        "plug_bosses": 360.56
+      }
+    },
+    {
+      "id": "alsi7mg-eplus3d-high",
+      "alloy": "AlSi7Mg (Eplus3D)",
+      "condition": "condition not stated, upper end of 150-170",
+      "alloy_conductivity_W_per_mK": 170.0,
+      "peak_C": {
+        "alloy": 362.88,
+        "inlet_seat": 345.09,
+        "exhaust_seat": 362.88,
+        "valve_bridge": 338.08,
+        "plug_bosses": 360.56
+      }
+    },
+    {
+      "id": "alsi10mg-eos-t6-v",
+      "alloy": "AlSi10Mg",
+      "condition": "EOS T6 (530 \u00b0C 30 min, water quench, 165 \u00b0C 6 h), vertical",
+      "alloy_conductivity_W_per_mK": 165.0,
+      "peak_C": {
+        "alloy": 365.01,
+        "inlet_seat": 347.02,
+        "exhaust_seat": 365.01,
+        "valve_bridge": 339.93,
+        "plug_bosses": 362.64
+      }
+    },
+    {
+      "id": "alsi10mg-3ds-stress-relieved-low",
+      "alloy": "AlSi10Mg",
+      "condition": "after stress relief, lower end (160-170)",
+      "alloy_conductivity_W_per_mK": 160.0,
+      "peak_C": {
+        "alloy": 367.23,
+        "inlet_seat": 349.03,
+        "exhaust_seat": 367.23,
+        "valve_bridge": 341.85,
+        "plug_bosses": 364.81
+      }
+    },
+    {
+      "id": "alsi10mg-eos-stress-relieved-v",
+      "alloy": "AlSi10Mg",
+      "condition": "stress relieved (270 \u00b0C 90 min), vertical",
+      "alloy_conductivity_W_per_mK": 160.0,
+      "peak_C": {
+        "alloy": 367.23,
+        "inlet_seat": 349.03,
+        "exhaust_seat": 367.23,
+        "valve_bridge": 341.85,
+        "plug_bosses": 364.81
+      }
+    },
+    {
+      "id": "cp1-velo3d-blog",
+      "alloy": "Aheadd CP1 (Al-Fe-Zr)",
+      "condition": "condition unclear",
+      "alloy_conductivity_W_per_mK": 160.0,
+      "peak_C": {
+        "alloy": 367.23,
+        "inlet_seat": 349.03,
+        "exhaust_seat": 367.23,
+        "valve_bridge": 341.85,
+        "plug_bosses": 364.81
+      }
+    },
+    {
+      "id": "alsi10mg-eos-t6-h",
+      "alloy": "AlSi10Mg",
+      "condition": "EOS T6, horizontal",
+      "alloy_conductivity_W_per_mK": 155.0,
+      "peak_C": {
+        "alloy": 369.54,
+        "inlet_seat": 351.14,
+        "exhaust_seat": 369.54,
+        "valve_bridge": 343.87,
+        "plug_bosses": 367.06
+      }
+    },
+    {
+      "id": "alsi7mg-eos-t6",
+      "alloy": "AlSi7Mg (EOS AlF357)",
+      "condition": "T6-like (540 \u00b0C 30 min, quench, 165 \u00b0C 6 h), vertical and horizontal",
+      "alloy_conductivity_W_per_mK": 150.0,
+      "peak_C": {
+        "alloy": 371.96,
+        "inlet_seat": 353.35,
+        "exhaust_seat": 371.96,
+        "valve_bridge": 345.98,
+        "plug_bosses": 369.42
+      }
+    },
+    {
+      "id": "alsi7mg-eplus3d-low",
+      "alloy": "AlSi7Mg (Eplus3D)",
+      "condition": "condition not stated, lower end of 150-170",
+      "alloy_conductivity_W_per_mK": 150.0,
+      "peak_C": {
+        "alloy": 371.96,
+        "inlet_seat": 353.35,
+        "exhaust_seat": 371.96,
+        "valve_bridge": 345.98,
+        "plug_bosses": 369.42
+      }
+    },
+    {
+      "id": "generic-reference",
+      "alloy": "generic cast aluminium of the thermal screen",
+      "condition": "declared hypothesis, no source",
+      "alloy_conductivity_W_per_mK": 150.0,
+      "peak_C": {
+        "alloy": 371.96,
+        "inlet_seat": 353.35,
+        "exhaust_seat": 371.96,
+        "valve_bridge": 345.98,
+        "plug_bosses": 369.42
+      }
+    },
+    {
+      "id": "alsi7mg-eos-as-built",
+      "alloy": "AlSi7Mg (EOS AlF357)",
+      "condition": "as manufactured, vertical and horizontal",
+      "alloy_conductivity_W_per_mK": 140.0,
+      "peak_C": {
+        "alloy": 377.13,
+        "inlet_seat": 358.08,
+        "exhaust_seat": 377.13,
+        "valve_bridge": 350.53,
+        "plug_bosses": 374.44
+      }
+    },
+    {
+      "id": "al5x1-eos-heat-treated-v",
+      "alloy": "EOS Al5X1",
+      "condition": "heat treated, vertical",
+      "alloy_conductivity_W_per_mK": 132.0,
+      "peak_C": {
+        "alloy": 381.63,
+        "inlet_seat": 362.31,
+        "exhaust_seat": 381.63,
+        "valve_bridge": 354.51,
+        "plug_bosses": 378.79
+      }
+    },
+    {
+      "id": "alsi10mg-3ds-as-printed-high",
+      "alloy": "AlSi10Mg",
+      "condition": "as printed, upper end of the published range",
+      "alloy_conductivity_W_per_mK": 130.0,
+      "peak_C": {
+        "alloy": 382.81,
+        "inlet_seat": 363.44,
+        "exhaust_seat": 382.81,
+        "valve_bridge": 355.56,
+        "plug_bosses": 379.93
+      }
+    },
+    {
+      "id": "alsi10mg-3ds-as-printed-low",
+      "alloy": "AlSi10Mg",
+      "condition": "as printed, lower end of the published range",
+      "alloy_conductivity_W_per_mK": 120.0,
+      "peak_C": {
+        "alloy": 389.08,
+        "inlet_seat": 369.46,
+        "exhaust_seat": 389.08,
+        "valve_bridge": 361.16,
+        "plug_bosses": 385.96
+      }
+    },
+    {
+      "id": "cp1-eos-as-built-wf",
+      "alloy": "Aheadd CP1 (Al-Fe-Zr)",
+      "condition": "as manufactured, 28 %IACS",
+      "alloy_conductivity_W_per_mK": 116.0,
+      "peak_C": {
+        "alloy": 391.77,
+        "inlet_seat": 372.06,
+        "exhaust_seat": 391.77,
+        "valve_bridge": 363.58,
+        "plug_bosses": 388.55
+      }
+    },
+    {
+      "id": "alsi10mg-eos-as-built-h",
+      "alloy": "AlSi10Mg",
+      "condition": "as manufactured, horizontal",
+      "alloy_conductivity_W_per_mK": 110.0,
+      "peak_C": {
+        "alloy": 396.04,
+        "inlet_seat": 376.17,
+        "exhaust_seat": 396.04,
+        "valve_bridge": 367.43,
+        "plug_bosses": 392.63
+      }
+    },
+    {
+      "id": "alsi10mg-eos-as-built-v",
+      "alloy": "AlSi10Mg",
+      "condition": "as manufactured, vertical",
+      "alloy_conductivity_W_per_mK": 100.0,
+      "peak_C": {
+        "alloy": 403.82,
+        "inlet_seat": 383.7,
+        "exhaust_seat": 403.82,
+        "valve_bridge": 374.51,
+        "plug_bosses": 400.02
+      }
+    },
+    {
+      "id": "scalmalloy-3ds-high",
+      "alloy": "Al-Mg-Sc (Scalmalloy)",
+      "condition": "heat treated, upper end of 95-100",
+      "alloy_conductivity_W_per_mK": 100.0,
+      "peak_C": {
+        "alloy": 403.82,
+        "inlet_seat": 383.7,
+        "exhaust_seat": 403.82,
+        "valve_bridge": 374.51,
+        "plug_bosses": 400.02
+      }
+    },
+    {
+      "id": "scalmalloy-3ds-low",
+      "alloy": "Al-Mg-Sc (Scalmalloy)",
+      "condition": "heat treated, lower end of 95-100",
+      "alloy_conductivity_W_per_mK": 95.0,
+      "peak_C": {
+        "alloy": 408.07,
+        "inlet_seat": 387.82,
+        "exhaust_seat": 408.07,
+        "valve_bridge": 378.41,
+        "plug_bosses": 404.04
+      }
+    }
+  ],
+  "sensitivity": {
+    "variant": "published_loading_oil",
+    "alloy_conductivity_W_per_mK": 150.0,
+    "rule": "one value at a time to each end of its declared range, at the reference conductivity, with the calibrated coefficients of the variant held fixed",
+    "centre": {
+      "peak_alloy_C": 371.96,
+      "label": "published_loading_oil-k150"
+    },
+    "items": [
+      {
+        "id": "joint_seat",
+        "path": "joints.items.seat",
+        "value": 10000.0,
+        "range": [
+          1000.0,
+          100000.0
+        ],
+        "peak_alloy_C": [
+          359.57,
+          371.96,
+          397.95
+        ],
+        "peak_alloy_at_mm": [
+          [
+            25.4,
+            10.6,
+            17.9
+          ],
+          [
+            13.6,
+            35.6,
+            16.3
+          ]
+        ],
+        "valve_bridge_C": [
+          324.23,
+          345.98,
+          355.05
+        ],
+        "exhaust_valve_C": [
+          616.11,
+          585.86,
+          574.66
+        ],
+        "heat_into_the_assembly_W": [
+          9986.16,
+          10250.71,
+          10364.38
+        ],
+        "energy_imbalance_relative": 0.0
+      },
+      {
+        "id": "cam_housing_coefficient",
+        "path": "films.cam_housing",
+        "value": 1000.0,
+        "range": [
+          300.0,
+          3000.0
+        ],
+        "peak_alloy_C": [
+          383.15,
+          371.96,
+          359.01
+        ],
+        "peak_alloy_at_mm": [
+          [
+            15.4,
+            26.2,
+            18.7
+          ],
+          [
+            15.4,
+            26.2,
+            18.7
+          ]
+        ],
+        "valve_bridge_C": [
+          361.65,
+          345.98,
+          327.57
+        ],
+        "exhaust_valve_C": [
+          588.03,
+          585.86,
+          583.32
+        ],
+        "heat_into_the_assembly_W": [
+          9943.31,
+          10250.71,
+          10606.2
+        ],
+        "energy_imbalance_relative": 1e-06
+      },
+      {
+        "id": "joint_deck",
+        "path": "joints.items.deck",
+        "value": 10000.0,
+        "range": [
+          1000.0,
+          100000.0
+        ],
+        "peak_alloy_C": [
+          378.74,
+          371.96,
+          368.8
+        ],
+        "peak_alloy_at_mm": [
+          [
+            15.4,
+            26.2,
+            18.7
+          ],
+          [
+            15.4,
+            26.2,
+            18.7
+          ]
+        ],
+        "valve_bridge_C": [
+          349.63,
+          345.98,
+          344.27
+        ],
+        "exhaust_valve_C": [
+          586.86,
+          585.86,
+          585.34
+        ],
+        "heat_into_the_assembly_W": [
+          10313.05,
+          10250.71,
+          10223.08
+        ],
+        "energy_imbalance_relative": 0.0
+      },
+      {
+        "id": "oil_coefficient",
+        "path": "oil.coefficient_W_per_m2K",
+        "value": 500.0,
+        "range": [
+          100.0,
+          2000.0
+        ],
+        "peak_alloy_C": [
+          374.76,
+          371.96,
+          365.53
+        ],
+        "peak_alloy_at_mm": [
+          [
+            15.4,
+            26.2,
+            18.7
+          ],
+          [
+            15.4,
+            26.2,
+            18.7
+          ]
+        ],
+        "valve_bridge_C": [
+          349.25,
+          345.98,
+          338.43
+        ],
+        "exhaust_valve_C": [
+          586.4,
+          585.86,
+          584.61
+        ],
+        "heat_into_the_assembly_W": [
+          10174.85,
+          10250.71,
+          10425.14
+        ],
+        "energy_imbalance_relative": 0.0
+      },
+      {
+        "id": "barrel_fin_factor",
+        "path": "barrel.fin_factor",
+        "value": 3.0,
+        "range": [
+          1.5,
+          6.0
+        ],
+        "peak_alloy_C": [
+          375.1,
+          371.96,
+          366.77
+        ],
+        "peak_alloy_at_mm": [
+          [
+            15.4,
+            26.2,
+            18.7
+          ],
+          [
+            15.4,
+            26.2,
+            18.7
+          ]
+        ],
+        "valve_bridge_C": [
+          348.21,
+          345.98,
+          342.31
+        ],
+        "exhaust_valve_C": [
+          586.39,
+          585.86,
+          584.97
+        ],
+        "heat_into_the_assembly_W": [
+          9160.29,
+          10250.71,
+          12040.0
+        ],
+        "energy_imbalance_relative": 2e-06
+      },
+      {
+        "id": "oil_temperature",
+        "path": "oil.sink_temperature_C",
+        "value": 90.0,
+        "range": [
+          80.0,
+          100.0
+        ],
+        "peak_alloy_C": [
+          370.45,
+          371.96,
+          373.47
+        ],
+        "peak_alloy_at_mm": [
+          [
+            15.4,
+            26.2,
+            18.7
+          ],
+          [
+            15.4,
+            26.2,
+            18.7
+          ]
+        ],
+        "valve_bridge_C": [
+          343.94,
+          345.98,
+          348.02
+        ],
+        "exhaust_valve_C": [
+          585.57,
+          585.86,
+          586.14
+        ],
+        "heat_into_the_assembly_W": [
+          10401.95,
+          10250.71,
+          10099.46
+        ],
+        "energy_imbalance_relative": 0.0
+      },
+      {
+        "id": "barrel_conductivity",
+        "path": "barrel.conductivity_W_per_mK",
+        "value": 150.0,
+        "range": [
+          95.0,
+          191.0
+        ],
+        "peak_alloy_C": [
+          372.86,
+          371.96,
+          371.45
+        ],
+        "peak_alloy_at_mm": [
+          [
+            15.4,
+            26.2,
+            18.7
+          ],
+          [
+            15.4,
+            26.2,
+            18.7
+          ]
+        ],
+        "valve_bridge_C": [
+          346.42,
+          345.98,
+          345.72
+        ],
+        "exhaust_valve_C": [
+          585.97,
+          585.86,
+          585.79
+        ],
+        "heat_into_the_assembly_W": [
+          10152.91,
+          10250.71,
+          10288.96
+        ],
+        "energy_imbalance_relative": 1e-06
+      },
+      {
+        "id": "crankcase_coefficient",
+        "path": "films.crankcase",
+        "value": 1000.0,
+        "range": [
+          300.0,
+          3000.0
+        ],
+        "peak_alloy_C": [
+          372.21,
+          371.96,
+          371.55
+        ],
+        "peak_alloy_at_mm": [
+          [
+            15.4,
+            26.2,
+            18.7
+          ],
+          [
+            15.4,
+            26.2,
+            18.7
+          ]
+        ],
+        "valve_bridge_C": [
+          346.16,
+          345.98,
+          345.69
+        ],
+        "exhaust_valve_C": [
+          585.9,
+          585.86,
+          585.78
+        ],
+        "heat_into_the_assembly_W": [
+          8787.15,
+          10250.71,
+          12500.15
+        ],
+        "energy_imbalance_relative": 2e-06
+      },
+      {
+        "id": "joint_plug",
+        "path": "joints.items.plug",
+        "value": 10000.0,
+        "range": [
+          1000.0,
+          100000.0
+        ],
+        "peak_alloy_C": [
+          371.67,
+          371.96,
+          371.86
+        ],
+        "peak_alloy_at_mm": [
+          [
+            15.4,
+            26.2,
+            18.7
+          ],
+          [
+            15.4,
+            26.2,
+            18.7
+          ]
+        ],
+        "valve_bridge_C": [
+          344.47,
+          345.98,
+          346.48
+        ],
+        "exhaust_valve_C": [
+          585.75,
+          585.86,
+          585.88
+        ],
+        "heat_into_the_assembly_W": [
+          10236.71,
+          10250.71,
+          10257.33
+        ],
+        "energy_imbalance_relative": 0.0
+      },
+      {
+        "id": "joint_stem",
+        "path": "joints.items.stem",
+        "value": 10000.0,
+        "range": [
+          1000.0,
+          100000.0
+        ],
+        "peak_alloy_C": [
+          371.91,
+          371.96,
+          371.98
+        ],
+        "peak_alloy_at_mm": [
+          [
+            15.4,
+            26.2,
+            18.7
+          ],
+          [
+            15.4,
+            26.2,
+            18.7
+          ]
+        ],
+        "valve_bridge_C": [
+          345.86,
+          345.98,
+          346.02
+        ],
+        "exhaust_valve_C": [
+          586.65,
+          585.86,
+          585.6
+        ],
+        "heat_into_the_assembly_W": [
+          10246.43,
+          10250.71,
+          10252.12
+        ],
+        "energy_imbalance_relative": 1e-06
+      },
+      {
+        "id": "joint_guide",
+        "path": "joints.items.guide",
+        "value": 10000.0,
+        "range": [
+          1000.0,
+          100000.0
+        ],
+        "peak_alloy_C": [
+          371.92,
+          371.96,
+          371.96
+        ],
+        "peak_alloy_at_mm": [
+          [
+            15.4,
+            26.2,
+            18.7
+          ],
+          [
+            15.4,
+            26.2,
+            18.7
+          ]
+        ],
+        "valve_bridge_C": [
+          345.89,
+          345.98,
+          346.0
+        ],
+        "exhaust_valve_C": [
+          586.34,
+          585.86,
+          585.71
+        ],
+        "heat_into_the_assembly_W": [
+          10245.81,
+          10250.71,
+          10252.35
+        ],
+        "energy_imbalance_relative": 1e-06
+      }
+    ]
+  },
+  "perfect_contact_witness": {
+    "what": "the reference configuration with every joint at a conductance a thousand times the declared value, against the same mesh with shared nodes (perfect contact, no contact pairs)",
+    "joints_W_per_m2K": 10000000.0,
+    "peak_alloy_C": [
+      414.41,
+      414.46
+    ],
+    "max_peak_difference_C": 0.1,
+    "heat_into_the_assembly_W": [
+      10356.63,
+      10357.59
+    ],
+    "heat_W_through_deck_joint": -1034.16
+  },
+  "solve_wall_s": 9695.0,
+  "claims": "peak temperatures under declared hypothesis cases: hypothetical valves, guides, plugs and barrel, declared joint conductances, films uncorrelated with any engine, room-temperature conductivities. Not an engine temperature, not a material qualification",
+  "joint_witness": {
+    "what": "two materials labelled by centroid across a plane (20 mm cube) or a cylinder (tube 5 to 20 mm), split and tied by one contact pair at 10,000 W/(m2 K) scaled by the projected-area factor; heat carried between two fixed temperatures against the closed-form answer for the smooth interface",
+    "rows": [
+      {
+        "shape": "plane",
+        "size_mm": 0.5,
+        "contact": "node to surface",
+        "tets": 252891,
+        "area_factor": 0.6259,
+        "expected_W": 342.86,
+        "carried_W": 342.77,
+        "relative_error": -0.0002,
+        "over_face_sum": 0.9865
+      },
+      {
+        "shape": "plane",
+        "size_mm": 0.5,
+        "contact": "surface to surface",
+        "tets": 252891,
+        "area_factor": 0.6259,
+        "expected_W": 342.86,
+        "carried_W": 329.49,
+        "relative_error": -0.039,
+        "over_face_sum": 0.9
+      },
+      {
+        "shape": "plane",
+        "size_mm": 1.0,
+        "contact": "node to surface",
+        "tets": 33272,
+        "area_factor": 0.6019,
+        "expected_W": 342.86,
+        "carried_W": 342.03,
+        "relative_error": -0.0024,
+        "over_face_sum": 0.9921
+      },
+      {
+        "shape": "plane",
+        "size_mm": 1.0,
+        "contact": "surface to surface",
+        "tets": 33272,
+        "area_factor": 0.6019,
+        "expected_W": 342.86,
+        "carried_W": 327.08,
+        "relative_error": -0.046,
+        "over_face_sum": 0.8922
+      },
+      {
+        "shape": "plane",
+        "size_mm": 2.0,
+        "contact": "node to surface",
+        "tets": 4619,
+        "area_factor": 0.5947,
+        "expected_W": 342.86,
+        "carried_W": 341.07,
+        "relative_error": -0.0052,
+        "over_face_sum": 0.9939
+      },
+      {
+        "shape": "plane",
+        "size_mm": 2.0,
+        "contact": "surface to surface",
+        "tets": 4619,
+        "area_factor": 0.5947,
+        "expected_W": 342.86,
+        "carried_W": 328.72,
+        "relative_error": -0.0412,
+        "over_face_sum": 0.9078
+      },
+      {
+        "shape": "cylinder",
+        "size_mm": 0.5,
+        "contact": "node to surface",
+        "tets": 377738,
+        "area_factor": 0.6481,
+        "expected_W": 657.69,
+        "carried_W": 658.62,
+        "relative_error": 0.0014,
+        "over_face_sum": 0.9899
+      },
+      {
+        "shape": "cylinder",
+        "size_mm": 0.5,
+        "contact": "surface to surface",
+        "tets": 377738,
+        "area_factor": 0.6481,
+        "expected_W": 657.69,
+        "carried_W": 629.8,
+        "relative_error": -0.0424,
+        "over_face_sum": 0.9075
+      },
+      {
+        "shape": "cylinder",
+        "size_mm": 1.0,
+        "contact": "node to surface",
+        "tets": 50456,
+        "area_factor": 0.6326,
+        "expected_W": 657.69,
+        "carried_W": 657.62,
+        "relative_error": -0.0001,
+        "over_face_sum": 0.9904
+      },
+      {
+        "shape": "cylinder",
+        "size_mm": 1.0,
+        "contact": "surface to surface",
+        "tets": 50456,
+        "area_factor": 0.6326,
+        "expected_W": 657.69,
+        "carried_W": 629.05,
+        "relative_error": -0.0435,
+        "over_face_sum": 0.9066
+      },
+      {
+        "shape": "cylinder",
+        "size_mm": 2.0,
+        "contact": "node to surface",
+        "tets": 7146,
+        "area_factor": 0.6807,
+        "expected_W": 657.69,
+        "carried_W": 657.94,
+        "relative_error": 0.0004,
+        "over_face_sum": 0.9967
+      },
+      {
+        "shape": "cylinder",
+        "size_mm": 2.0,
+        "contact": "surface to surface",
+        "tets": 7146,
+        "area_factor": 0.6807,
+        "expected_W": 657.69,
+        "carried_W": 633.46,
+        "relative_error": -0.0368,
+        "over_face_sum": 0.9207
+      }
+    ]
+  },
+  "mesh_comparison": {
+    "rule": "the comparison mesh is extracted from the same occupancy at a finer pitch and solved at the reference configuration; a second mesh at the base pitch gives the run-to-run spread of Gmsh HXT",
+    "variant": "published_loading_oil",
+    "alloy_conductivity_W_per_mK": 150.0,
+    "base": {
+      "surface_pitch_mm": 1.0,
+      "tets": 6039059,
+      "nodes_after_split": 1134645,
+      "peak_C": {
+        "alloy": 371.96,
+        "inlet_seat": 353.35,
+        "exhaust_seat": 371.96,
+        "valve_bridge": 345.98,
+        "plug_bosses": 369.42
+      },
+      "peak_alloy_at_mm": [
+        15.4,
+        26.2,
+        18.7
+      ],
+      "part_peak_C": {
+        "inlet_valve": 539.57,
+        "inlet_guide": 206.61,
+        "exhaust_valve": 585.86,
+        "exhaust_guide": 343.25,
+        "plug_x_plus": 420.38,
+        "plug_x_minus": 409.82,
+        "barrel": 314.03,
+        "barrel_top_ring": 314.03
+      },
+      "heat_into_the_assembly_W": 10250.71,
+      "energy_imbalance_relative": 1e-06
+    },
+    "finer_surface": {
+      "surface_pitch_mm": 0.75,
+      "tets": 12871413,
+      "nodes_after_split": 2357688,
+      "peak_C": {
+        "alloy": 409.37,
+        "inlet_seat": 409.37,
+        "exhaust_seat": 372.86,
+        "valve_bridge": 345.97,
+        "plug_bosses": 369.34
+      },
+      "peak_alloy_at_mm": [
+        10.5,
+        -1.2,
+        23.9
+      ],
+      "part_peak_C": {
+        "inlet_valve": 542.21,
+        "inlet_guide": 205.75,
+        "exhaust_valve": 588.34,
+        "exhaust_guide": 353.05,
+        "plug_x_plus": 415.98,
+        "plug_x_minus": 414.82,
+        "barrel": 315.62,
+        "barrel_top_ring": 315.62
+      },
+      "heat_into_the_assembly_W": 10359.26,
+      "energy_imbalance_relative": 1e-06,
+      "joint_area_factor": {
+        "seat": 0.6286,
+        "stem": 0.6244,
+        "guide": 0.6128,
+        "plug": 0.6114,
+        "deck": 0.5805
+      },
+      "islands": {
+        "tets_relabelled_from": {
+          "alloy": 889,
+          "valve": 128,
+          "guide": 1,
+          "plug": 54,
+          "barrel": 31
+        },
+        "islands_left": 0
+      },
+      "difference_from_base_C": {
+        "alloy": 37.41,
+        "inlet_seat": 56.02,
+        "exhaust_seat": 0.9,
+        "valve_bridge": -0.01,
+        "plug_bosses": -0.08
+      },
+      "peak_moved_mm": 28.3
+    },
+    "second_mesh_same_surface": {
+      "surface_pitch_mm": 1.0,
+      "tets": 6042365,
+      "nodes_after_split": 1135271,
+      "peak_C": {
+        "alloy": 374.37,
+        "inlet_seat": 352.92,
+        "exhaust_seat": 374.37,
+        "valve_bridge": 345.9,
+        "plug_bosses": 371.17
+      },
+      "peak_alloy_at_mm": [
+        13.6,
+        35.6,
+        16.3
+      ],
+      "part_peak_C": {
+        "inlet_valve": 539.4,
+        "inlet_guide": 206.52,
+        "exhaust_valve": 586.11,
+        "exhaust_guide": 347.04,
+        "plug_x_plus": 420.16,
+        "plug_x_minus": 409.22,
+        "barrel": 311.78,
+        "barrel_top_ring": 311.78
+      },
+      "heat_into_the_assembly_W": 10249.75,
+      "energy_imbalance_relative": 1e-06,
+      "joint_area_factor": {
+        "seat": 0.6205,
+        "stem": 0.6236,
+        "guide": 0.619,
+        "plug": 0.6214,
+        "deck": 0.5853
+      },
+      "islands": {
+        "tets_relabelled_from": {
+          "alloy": 445,
+          "valve": 51,
+          "guide": 1,
+          "plug": 40,
+          "barrel": 18
+        },
+        "islands_left": 0
+      },
+      "difference_from_base_C": {
+        "alloy": 2.41,
+        "inlet_seat": -0.43,
+        "exhaust_seat": 2.41,
+        "valve_bridge": -0.08,
+        "plug_bosses": 1.75
+      },
+      "peak_moved_mm": 9.9
+    }
+  },
+  "first_screen": {
+    "record": "params/assembly-thermal.json",
+    "what": "the same four variants without the heat paths: perfect contact, the cylinder as one film, oil on the pockets only",
+    "peak_alloy_C_by_conductivity": {
+      "declared": {
+        "95.0": 311.09,
+        "150.0": 279.72,
+        "191.0": 266.75
+      },
+      "declared_oil": {
+        "95.0": 308.99,
+        "150.0": 277.28,
+        "191.0": 264.1
+      },
+      "published_loading_oil": {
+        "95.0": 428.16,
+        "100.0": 424.81,
+        "110.0": 418.65,
+        "116.0": 415.26,
+        "120.0": 413.11,
+        "130.0": 408.13,
+        "132.0": 407.19,
+        "140.0": 403.61,
+        "150.0": 399.47,
+        "155.0": 397.53,
+        "160.0": 395.67,
+        "165.0": 393.88,
+        "170.0": 392.17,
+        "191.0": 385.64
+      },
+      "published_loading_oil_air_233": {
+        "95.0": 373.19,
+        "150.0": 339.5,
+        "191.0": 323.6
+      }
+    }
+  }
+}

@@ -48,7 +48,8 @@ stated blocker. What the twin still does not have:
   are [ranked on two thermal screens](#alloy-and-machine-for-a-simulated-lpbf-print-candidates-bare-head-ranking-assembly-case-assembly-ranking-strength-trade-off-literature-machines-993-comparison)
   and set beside published strength. Every candidate runs above the published
   head-temperature limit in each of the four load cases: 386 to 428 °C at the
-  published wall loading. Heat-treated AlSi10Mg is the documented middle
+  published wall loading, and still 355 to 408 °C once a barrel, oil on the cam
+  side and a conductance at each joint are [added](#heat-paths-in-the-assembly-barrel-oil-and-joints-case-record-chart). Heat-treated AlSi10Mg is the documented middle
   ground and Aheadd CP1 the candidate to verify. No Chinese maker publishes a
   complete data set; the owner accepted the larger Eplus3D EP-M300. Nothing is
   selected.
@@ -193,6 +194,7 @@ process values, with every qualification gate closed.*
 | Asset package: collider, display material, `.usda` and `.usdz` | OpenUSD 26.11 (`UsdPhysics`, `UsdShade`, `UsdUtils`), then both validators | [export_simready.py](source/export_simready.py) |
 | Alloy ranking on the bare head | CalculiX 2.21 on the deck of the CAD-body screen, conductivity replaced (cadsim image) | [alloy_thermal.py](source/alloy_thermal.py) |
 | Alloy ranking in the assembly | hypothesis solids on the occupancy lattice, Gmsh HXT, CalculiX with four materials and six films, four load cases | [assembly_thermal.py](source/assembly_thermal.py) |
+| Heat paths in the assembly | a barrel, oil films and a contact conductance at each joint: split nodes tied by CalculiX node-to-surface contact pairs; four load cases, a sweep of every declared value, a joint witness and a mesh comparison | [assembly_heat_paths.py](source/assembly_heat_paths.py) |
 | Thin walls of the print body | SciPy morphological opening of the 0.25 mm occupancy | [wall_check.py](source/wall_check.py) |
 | Layer screen in bounded memory | the repository's LPBF layer screen, unmodified, sliced 64 layers and probed 25 points at a time (cadsim image) | [layer_screen.py](source/layer_screen.py) |
 | Build screen: temperature, stress and distortion lump by lump | CalculiX 2.21 with element activation (`*MODEL CHANGE`), one thread (cadsim image) | [build_sim.py](source/build_sim.py), [render_build_sim.py](source/render_build_sim.py) |
@@ -1904,7 +1906,8 @@ carry 460 and 144 kW/m².
   the exhaust seat. At the published loading it is in the alloy round a
   plug bore.
 - **The model still lacks cooling a real head has.** There is no barrel, no
-  oil beyond the pockets and no cam housing. With the heat load the
+  oil beyond the pockets and no cam housing ([added since](#heat-paths-in-the-assembly-barrel-oil-and-joints-case-record-chart):
+  they lower the peak by 20 to 31 °C, and every alloy stays above 300 °C). With the heat load the
   literature gives, that is why nothing stays under the limit. The computed
   exhaust valve (579 °C) is still below the textbook 700 °C.
 - **Reproducibility.** The assembly mesh is regenerated at each run and the
@@ -2018,6 +2021,131 @@ head. They do not contradict the scale, they support the inlet role of
 a 9 mm stem. The oil temperatures (80 to 100 °C in normal running) are kept
 as a lead for an oil-cooling hypothesis.
 
+### Heat paths in the assembly: barrel, oil and joints ([case](params/assembly-heat-paths-case.json), [record](params/assembly-heat-paths.json), [chart](media/heat-paths.png))
+
+The assembly screen above put every alloy above the published limit, but it
+had no barrel, oil on the spring pockets only, and perfect contact at every
+joint. Issue #701 asked whether the over-temperature came from those missing
+sinks. This screen keeps every value of the first one and adds three heat
+paths, each value either fitted, published with its source, or declared as a
+hypothesis with a range (H13 to H15):
+
+- **A barrel.** It is a tube on the bore axis:
+  - its bore sits on the fitted chamber shoulder (92.80 mm), and its collar
+    fills the fitted register recess;
+  - its heights (114.5 mm overall, 77.27 mm to the shoulder) and its 107 mm
+    lower register come from the MAHLE replacement cylinder of the 993 Turbo,
+    which is another engine;
+  - its bore takes gas at the 316 °C that NACA Report 612 gives for barrels,
+    scaled to Mackerle's 145 kW/m² on cylinder walls in the published-loading
+    cases;
+  - its fins are one effective film, 3 (1.5 to 6) times the air film, and its
+    lower register stands in a crankcase at the oil temperature.
+- **Oil where it reaches.** The spring pockets, now walls and mouth included,
+  and the cam-housing face (fitted level 85.87 mm), as one lumped contact to
+  the oil, which is at 90 °C (80 to 100 °C published for other 911 engines).
+- **A conductance at each joint.** This covers the valve seats, the stems in
+  their guides, the guides, the plug threads and seats, and the barrel collar.
+  No published number was found for any of them, so each takes
+  10,000 W/(m²·K), swept from 1,000 to 100,000.
+
+```mermaid
+flowchart LR
+  G["chamber gas<br/>4.0 kW"] --> H["head alloy"]
+  E["exhaust gas<br/>1.4 kW"] --> H
+  G --> V["valves"]
+  V -->|"seat joints<br/>0.9 kW"| H
+  B["barrel bore gas<br/>4.9 kW"] --> R["barrel"]
+  H -->|"barrel joint<br/>0.3 kW"| R
+  H --> A["air<br/>2.8 kW"]
+  H --> C["cam housing<br/>1.3 kW"]
+  H --> O["oil and inlet port<br/>1.0 kW"]
+  R --> F["fins<br/>2.7 kW"]
+  R --> K["crankcase<br/>2.4 kW"]
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+  class G,E,V,B,R,H,A,C,O,F,K open;
+```
+
+*Diagram: heat flows at the published loading and 150 W/(m·K), rounded. Every
+box is amber: each flow rests on declared films, joints or a hypothesis
+part.*
+
+**The four load cases, before and after:**
+
+| Case | First screen, peak at 95 / 150 / 191 W/(m·K) | With the heat paths | Heat in at 150 | Exhaust valve at 150 |
+|---|---|---|---|---|
+| Declared | 311 / 280 / 267 °C | 317 / 284 / 269 °C | 4,990 W | 535 °C |
+| Declared, with oil | 309 / 277 / 264 °C | 306 / 269 / 252 °C | 5,449 W | 526 °C |
+| **Published loading, with oil** | 428 / 399 / 386 °C | **408 / 372 / 355 °C** | 10,251 W | 586 °C |
+| Published loading, more air | 373 / 340 / 324 °C | 367 / 329 / 311 °C | 10,259 W | 569 °C |
+
+![Peak head-alloy temperature against conductivity for the four cases with barrel, oil and joints, beside the first screen, and the sensitivity of the peak to each new value](media/heat-paths.png)
+
+**Sensitivity**, one value at a time to each end of its declared range, at
+the published loading and 150 W/(m·K), with the calibrated gas side held fixed:
+
+| Value | Declared, range | Peak at the low and high ends | Span |
+|---|---|---|---|
+| valve seat joint | 10,000; 1,000 to 100,000 W/(m²·K) | 360 / 398 °C | 38 °C |
+| cam-housing contact | 1,000; 300 to 3,000 W/(m²·K) | 383 / 359 °C | 24 °C |
+| barrel joint | 10,000; 1,000 to 100,000 W/(m²·K) | 379 / 369 °C | 10 °C |
+| oil film coefficient | 500; 100 to 2,000 W/(m²·K) | 375 / 366 °C | 9 °C |
+| barrel fin factor | 3; 1.5 to 6 | 375 / 367 °C | 8 °C |
+| oil temperature | 90; 80 to 100 °C | 370 / 373 °C | 3 °C |
+| barrel conductivity | 150; 95 to 191 W/(m·K) | 373 / 371 °C | 1 °C |
+| crankcase contact | 1,000; 300 to 3,000 W/(m²·K) | 372 / 372 °C | 0.7 °C |
+| plug, stem and guide joints | 10,000; 1,000 to 100,000 W/(m²·K) | 372 °C | 0.2 °C at most |
+
+- **No computed peak lies inside a published strength range.** At the
+  published loading the heat paths lower the peak by 20 to 31 °C, to 355 to
+  408 °C, and every candidate stays above 300 °C. The closest is
+  stress-relieved AlSi10Mg, at 363 to 367 °C, whose strength is published up to
+  250 °C ([trade-off](params/alloy-tradeoff.json)). Nothing is selected.
+- **The joints matter more than the barrel.** With every joint perfect, the
+  same configuration peaks at 414 °C; at the declared 10,000 W/(m²·K) it
+  peaks at 372 °C. The seat joint alone spans 38 °C: a poor seat keeps the
+  heat in the exhaust valve (616 °C) and out of the head. The stem, guide and
+  plug joints change the peak by 0.2 °C or less.
+- **The barrel is mostly a system of its own.** At Mackerle's 145 kW/m² its
+  bore takes 4.9 kW. The fins and the crankcase reject it, and only 0.3 kW
+  passes from the head into the barrel. Its collar runs at 314 °C, against the
+  180 °C contact of the first screen, so it is a weaker sink than that
+  contact was.
+- **The cam housing is the largest new sink:** 1.3 kW at the declared
+  coefficient, and a 24 °C span on the peak.
+- **In the declared case without oil the peak rises by 2 to 6 °C.** The
+  barrel brings its gas heat to the deck, and no oil path takes heat out.
+- **The hottest head alloy is behind the exhaust seat** in every
+  published-loading case, as in the first screen's declared cases.
+
+**How the result was checked.**
+
+- **The joint method passes three checks:**
+  - a witness with a known answer, where node-to-surface contact pairs carried
+    the declared conductance within 0.5 % across a jagged plane and cylinder
+    (surface-to-surface carried 4 % less);
+  - a perfect-contact witness, where every joint at 10⁷ W/(m²·K) reproduces
+    the same mesh with shared nodes within 0.1 °C;
+  - a balance per part, closing to 0.4 % of the heat put in.
+- **The calibration converged.** It stopped with every calibrated wall within
+  1 % of its target, after 6 and 5 steps. A first run used the first case's
+  rule, five plain scaling steps, and was stopped: after four steps the barrel
+  bore carried 125.7 of its 145 kW/m², because its loading saturates as the
+  bore wall nears the gas temperature.
+- **The mesh comparison.** The base mesh has 6.04 million tetrahedra.
+  - A second mesh of the same surface moves no zone by more than 2.4 °C.
+  - A surface extracted at 0.75 mm instead of 1.0 mm (12.9 million
+    tetrahedra) agrees within 0.9 °C behind the exhaust seat and within 0.1 °C
+    at the valve bridge and the plug bosses.
+  - Its own peak, 409 °C, sits on the thin edge of head alloy where the inlet
+    valve rim meets the chamber wall. That edge is a sharp corner of the
+    hypothesis valve geometry, and it gets hotter as the mesh resolves it
+    thinner, so its temperature does not converge. It is reported, not
+    quoted as the peak.
+
+It remains a hypothesis screen: no barrel, joint or oil path of this engine is
+measured, and nothing here predicts an engine temperature.
+
 ### Port CFD: upstream audit, no solver run ([audit](params/port-cfd-audit.json))
 
 A port-flow number needs a closed duct from the flange to the chamber, walls
@@ -2068,7 +2196,7 @@ was read. It moved no part out of its blocked state.
 
 **Fatigue:** damage of the head under a stated duty, for a stated alloy and process.
 
-- Held: temperature fields of the head in an assembly, four load cases ([assembly-thermal.json](params/assembly-thermal.json): a hypothesis screen: declared films and conductivities, no engine correlation); residual stress after the build, on voxel cells ([build-sim.json](params/build-sim.json): a screen: the stress sits on the declared yield curve and is not a prediction); published static strengths of the candidate alloys ([alloy-strength.json](params/alloy-strength.json): published values, most not re-read, none a design allowable); one fatigue number for AlSi10Mg ([eos-m290-alsi10mg-30um.json](../../catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json): one point, fully reversed, test temperature not stated, turned coupons, another machine: not a curve and not a part allowable); published fatigue sets of printed AlSi10Mg: 20 points as built and after two low-temperature treatments, one fully reversed strength with its fit, two sets after ageing at 177 °C, and three single strengths at 200 and 350 °C from abstracts ([findings.json](../../docs/research/935-head-published-data-20261116/findings.json): published and read, not admitted as material data; the three sets with points or a fit do not state their test temperature, the sets disagree (60 against 110 MPa fully reversed), and none has points at the head's temperature).
+- Held: temperature fields of the head in an assembly, four load cases ([assembly-thermal.json](params/assembly-thermal.json): a hypothesis screen: declared films and conductivities, no engine correlation); temperature fields of the head with a barrel, oil on the cam side and a conductance at each joint, four load cases and a sweep of every new value ([assembly-heat-paths.json](params/assembly-heat-paths.json): a hypothesis screen: declared joints, barrel and oil (H13 to H15), no engine correlation); residual stress after the build, on voxel cells ([build-sim.json](params/build-sim.json): a screen: the stress sits on the declared yield curve and is not a prediction); published static strengths of the candidate alloys ([alloy-strength.json](params/alloy-strength.json): published values, most not re-read, none a design allowable); one fatigue number for AlSi10Mg ([eos-m290-alsi10mg-30um.json](../../catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json): one point, fully reversed, test temperature not stated, turned coupons, another machine: not a curve and not a part allowable); published fatigue sets of printed AlSi10Mg: 20 points as built and after two low-temperature treatments, one fully reversed strength with its fit, two sets after ageing at 177 °C, and three single strengths at 200 and 350 °C from abstracts ([findings.json](../../docs/research/935-head-published-data-20261116/findings.json): published and read, not admitted as material data; the three sets with points or a fit do not state their test temperature, the sets disagree (60 against 110 MPa fully reversed), and none has points at the head's temperature).
 - Missing: a mechanical load case of the head: stud preload, gas pressure on the chamber, seat and guide press fits (retires H03 for the studs); a converged stress field under that load case, cold and hot; an S-N curve for the alloy as printed, in the build direction, at the head's temperature; the duty: how many cycles at which load.
 - A contribution must hold: alloy, powder lot, machine, layer thickness, build orientation and heat treatment of the coupons; surface state (as built or machined), stress ratio, test temperature and run-out definition; the raw points, not only a fitted curve; an explicit licence to use and redistribute the data.
 - First steps once the inputs exist: write the load case beside the assembly thermal case, every value with its source; solve cold assembly and hot firing on the same mesh; mesh sensitivity at the three highest locations; rerun the pyLife witness, then count damage with the stated curve; report the sensitivity to the curve before any life; keep the result a screen: no life is stated for a part without process-specific data (docs/SAFETY.md).
@@ -2128,7 +2256,8 @@ contributor. No contributor is named here, and none has been asked.
 | Alloy candidates and machine survey | public datasheets and pages read on 2026-11-11 | [candidates](params/alloy-candidates.json), [machines](params/lpbf-machine-survey.json), [literature](params/thermal-literature-bounds.json) | each value marked re-read or reported only; source URL and file hash | done as a survey: no alloy or machine selected; no maker publishes a complete data set |
 | Alloy ranking, bare head | CAD-body thermal deck, candidate conductivities | [alloy-thermal.json](params/alloy-thermal.json) | same mesh and case; 150 W/(m·K) reproduces the CAD screen; energy balance 0.3% | done: 1,475 W to 1,707 W, a 16% spread |
 | Alloy ranking, assembly | CAD body, fitted axes, [declared case](params/assembly-case.json), H09 to H12 | private occupancy, surface and decks; [assembly-thermal.json](params/assembly-thermal.json) | watertight union; film areas and heat by group; four load cases, two scaled to published wall loadings | done as a hypothesis screen: peak head alloy 386 to 428 °C at the published loading, above the 235 to 250 °C limit for every candidate in every case |
-| Strength beside temperature | [published strengths](params/alloy-strength.json), the assembly ranking | [alloy-tradeoff.json](params/alloy-tradeoff.json), [chart](media/alloy-ranking.png) | solved conductivities only; no extrapolation beyond a published range | done: no computed peak lies inside a published strength range; nothing selected |
+| Heat paths in the assembly | the assembly case, [heat-path case](params/assembly-heat-paths-case.json), H13 to H15 | private occupancy, surfaces and decks; [assembly-heat-paths.json](params/assembly-heat-paths.json), [chart](media/heat-paths.png) | joint witness against a closed form; perfect-contact witness; balance per part; calibration within 1 %; a finer surface and a second mesh | done as a hypothesis screen: peak head alloy 355 to 408 °C at the published loading; the seat joint and the cam housing decide most of the spread; [section](#heat-paths-in-the-assembly-barrel-oil-and-joints-case-record-chart) |
+| Strength beside temperature | [published strengths](params/alloy-strength.json), both assembly rankings | [alloy-tradeoff.json](params/alloy-tradeoff.json), [chart](media/alloy-ranking.png) | solved conductivities only; no extrapolation beyond a published range | done: no computed peak lies inside a published strength range, with or without the heat paths; nothing selected |
 | 993 manual cross-check | fitted features, workshop-manual catalogue | [published-993-comparison.json](params/published-993-comparison.json) | same-dimension flag on each row | done: scale not contradicted; not a calibration |
 | Print body | v2 occupancy, fits, [declared stock](params/print-body-case.json) | private occupancy and 0.5 mm surface; [record](params/print-body.json) | welded watertight, no non-manifold edge, no enclosed void; the renderer's strict gate | done as a study object: passes the gate the twin body failed; stock amounts are hypotheses |
 | Print-body orientations | print-body occupancy | [print-body-supports.json](params/print-body-supports.json) | the AM screen's analytic witnesses | done as a screen: flange y− down and side x+ down kept for the build study; no support designed |
@@ -2177,8 +2306,11 @@ contributor. No contributor is named here, and none has been asked.
 - The alloy rankings are screens on room-temperature conductivities and
   declared boundaries. The assembly screen's valves, guides and plugs are
   hypothesis solids in perfect contact, with an oil film on the spring
-  pockets only and no barrel. It selects no alloy and predicts no engine
-  temperature. The strengths beside it are published values, most of them
+  pockets only and no barrel. The heat-path screen adds a barrel from another
+  engine's published heights, oil on the cam side and declared joint
+  conductances, every one a hypothesis with a range; its peak does not
+  converge on the thin alloy edge at the inlet valve rim. Neither selects an
+  alloy or predicts an engine temperature. The strengths beside it are published values, most of them
   not re-read and none a design allowable.
 - The machine survey reads makers' own pages on one day. A datasheet is not
   a qualified process.

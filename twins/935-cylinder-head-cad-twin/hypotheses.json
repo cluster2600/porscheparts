@@ -124,6 +124,30 @@
       "how": "six films with one sink temperature and one coefficient each, and four variants of them (params/assembly-case.json): two declared, two with the gas side scaled to published generic wall loadings; the cylinder is a contact condition in the register recess at one temperature, not a modelled part; oil only as a film on the spring pockets; no radiation, both valves closed",
       "colour": "analytic_hypothesis",
       "retire_with": "an engine heat balance and measured head temperatures for one operating point"
+    },
+    {
+      "id": "H13-barrel",
+      "region": "the cylinder barrel under the head in the heat-path case of the assembly thermal screen",
+      "status": "modelled_as_hypothesis_solid_for_one_screen",
+      "how": "a tube on the bore axis: bore on the fitted chamber shoulder (92.80 mm), collar filling the fitted register recess, heights and lower register from the MAHLE replacement cylinder 503 WR 44 00 of the 993 Turbo (total 114.5 mm, collar 77.27 mm, register 107.0 mm), which is another engine; conductivity 150 W/(m K) in 95 to 191, fins as one effective film of 3 (1.5 to 6) times the air film, gas at NACA Report 612's 316 °C on the whole bore, a crankcase contact at the oil temperature below the shoulder (params/assembly-heat-paths-case.json)",
+      "colour": "analytic_hypothesis",
+      "retire_with": "a drawing or a scan of the barrel used with this head, its alloy, and its fin geometry"
+    },
+    {
+      "id": "H14-oil-and-cam-housing",
+      "region": "the faces oil reaches in the heat-path case: spring pockets, guide tops and stems, and the cam-housing face",
+      "status": "declared_values_no_source",
+      "how": "oil film of the first case (500 W/(m2 K), swept 100 to 2000) extended to the walls and mouth of each spring pocket; every face at or above the fitted cam face (z 85.87 mm, 2 mm band), outside the pockets and plug wells, takes one lumped coefficient of 1000 (300 to 3000) W/(m2 K) to the oil temperature, 90 °C (80 to 100, published for other 911 engines)",
+      "colour": "analytic_hypothesis",
+      "retire_with": "the cam housing and its gasket line for this head, and an oil temperature and heat flow measured at one operating point"
+    },
+    {
+      "id": "H15-joint-conductances",
+      "region": "contact conductance at the valve seats, valve stems, guides, plug threads and seats, and the barrel collar in the register recess",
+      "status": "declared_values_no_source",
+      "how": "no published number was found for any joint (params/thermal-literature-bounds.json); each takes 10,000 W/(m2 K), swept from 1,000 to 100,000. The meshed interface of each joint is scaled to the area it projects onto the part surface (about 0.6 of the meshed area)",
+      "colour": "analytic_hypothesis",
+      "retire_with": "a contact conductance from test or literature for each joint, with its contact pressure and surface finish"
     }
   ]
 }

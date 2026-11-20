@@ -1,0 +1,200 @@
+{
+  "schema": "935-cad-twin-assembly-heat-paths-case/1",
+  "date": "2026-11-20",
+  "issue": 701,
+  "extends": "params/assembly-case.json",
+  "rule": "This case keeps every value of the first assembly case and adds heat paths to it. Each new value is a fit of this head, a published value with what it was published for, or a declared hypothesis with its register id and a range. None is a measurement of this head or of an engine. A declared value is used at its stated value; its range is swept one value at a time at the ranking variant and the reference conductivity, with the calibrated gas-side coefficients held fixed.",
+  "barrel": {
+    "what": "a tube on the bore axis: its collar fills the register recess of the head, its finned length hangs below the deck in the cooling air, its lower register stands in the crankcase. Fins are not modelled as solids: the finned length carries an effective film",
+    "bore_radius_mm": {
+      "value": 46.4015,
+      "status": "fit",
+      "source": "half the fitted chamber shoulder diameter, 92.8029 mm (params/deck-features.json, chamber.shoulder_diameter_mm)"
+    },
+    "collar_radius_mm": {
+      "value": 56.68,
+      "status": "fit",
+      "source": "half the fitted register recess diameter, 113.36 mm (params/assembly-case.json, regions.register_radius_mm)"
+    },
+    "top_z_mm": {
+      "value": 2.17,
+      "status": "fit",
+      "source": "floor of the register recess (params/deck-features.json, register.floor_z)"
+    },
+    "overlap_into_head_mm": {
+      "value": 0.5,
+      "status": "meshing rule, not a dimension",
+      "source": "the barrel solid is drawn this far into the head so that no gap separates them; every point inside the CAD body stays head alloy"
+    },
+    "total_height_mm": {
+      "value": 114.5,
+      "status": "published for another engine; applied here as hypothesis H13",
+      "hypothesis": "H13-barrel",
+      "source": "MAHLE replacement cylinder 503 WR 44 00 for the 993 Turbo (M 64.60, 100 mm bore): catalogue total cylinder height L (catalog/reference/m64-dimensions-deep-20261024/facts.json, M64-DEEP-P010)"
+    },
+    "collar_height_mm": {
+      "value": 77.27,
+      "status": "published for another engine; applied here as hypothesis H13",
+      "hypothesis": "H13-barrel",
+      "source": "the same cylinder: catalogue collar height H, from the upper face to the shoulder above the lower register (M64-DEEP-P009)"
+    },
+    "register_diameter_mm": {
+      "value": 107.0,
+      "status": "published for another engine; applied here as hypothesis H13",
+      "hypothesis": "H13-barrel",
+      "source": "the same cylinder: catalogue register diameter A of the lower register (M64-DEEP-P007)"
+    },
+    "conductivity_W_per_mK": {
+      "value": 150.0,
+      "range": [95.0, 191.0],
+      "status": "hypothesis, declared; no source",
+      "hypothesis": "H13-barrel",
+      "source": "no barrel alloy or conductivity of this engine was found; Nikasil-coated bores are recorded for Mezger turbo engines (catalog/reference/mezger-turbo-materials-20261003), not the barrel alloy. The value and range are the reference conductivity and the span of the head candidates (params/alloy-candidates.json)"
+    },
+    "fin_factor": {
+      "value": 3.0,
+      "range": [1.5, 6.0],
+      "status": "hypothesis, declared; no source",
+      "hypothesis": "H13-barrel",
+      "source": "air-side area times fin efficiency per unit of plain outer surface of the finned length; no fin geometry of this barrel was found. The finned length takes the air film of the variant multiplied by this factor"
+    }
+  },
+  "films": {
+    "barrel_gas": {
+      "sink_temperature_C": 316.0,
+      "sink_source": "effective gas temperature for the barrel, 600 °F (316 °C), measured on air-cooled aircraft cylinders (Pinkel, NACA Report 612, 1938; params/thermal-literature-bounds.json)",
+      "coefficient_W_per_m2K": 400.0,
+      "coefficient_source": "the declared chamber coefficient of the first case; the published-loading variants scale it to a published wall loading",
+      "what": "cycle-averaged gas on the whole bore of the barrel",
+      "status": "hypothesis: a published effective temperature, a declared coefficient",
+      "hypothesis": "H13-barrel"
+    },
+    "barrel_fins": {
+      "sink_from": "air",
+      "coefficient_times_air": "barrel.fin_factor",
+      "what": "the cooling air on the outer surface of the finned length, from the deck plane down to the shoulder",
+      "status": "hypothesis, declared; no source",
+      "hypothesis": "H13-barrel"
+    },
+    "crankcase": {
+      "sink_from": "oil",
+      "coefficient_W_per_m2K": 1000.0,
+      "range": [300.0, 3000.0],
+      "what": "the shoulder, the lower register and the bottom face of the barrel, in contact with a crankcase at the oil temperature: one lumped coefficient for the joint and the crankcase",
+      "status": "hypothesis, declared; no source",
+      "hypothesis": "H13-barrel"
+    },
+    "cam_housing": {
+      "sink_from": "oil",
+      "coefficient_W_per_m2K": 1000.0,
+      "range": [300.0, 3000.0],
+      "what": "every face at or above the cam-housing joint face, outside the spring pockets and the plug wells: the joint to a cam housing whose inside is wetted by oil, and the faces inside it, as one lumped coefficient to the oil temperature",
+      "status": "hypothesis, declared; no source",
+      "hypothesis": "H14-oil-and-cam-housing"
+    },
+    "cylinder_contact": null
+  },
+  "oil": {
+    "coefficient_W_per_m2K": {
+      "value": 500.0,
+      "range": [100.0, 2000.0],
+      "status": "hypothesis, declared; no source",
+      "hypothesis": "H14-oil-and-cam-housing",
+      "source": "the declared oil film of the first case on the spring pockets, the guide tops and the stems above the spring seats"
+    },
+    "sink_temperature_C": {
+      "value": 90.0,
+      "range": [80.0, 100.0],
+      "status": "published for other 911 engines",
+      "hypothesis": "H14-oil-and-cam-housing",
+      "source": "80 to 90 °C in the 993 workshop manual; forum reports of 80 to 100 °C (params/thermal-literature-bounds.json). The oil film, the cam housing and the crankcase share it"
+    }
+  },
+  "regions": {
+    "cam_face_z_mm": 85.8683,
+    "cam_face_source": "fitted cam face level (params/frame.json, levels_twin.cam_face_z)",
+    "cam_face_band_mm": 2.0,
+    "cam_face_band_note": "faces within this distance below the fitted level count as the joint face; the fit leaves 0.81 mm RMS and 1.40 mm at the 95th percentile",
+    "plug_well_radius_mm": 13.0,
+    "plug_well_note": "faces within this distance of a plug axis, above its seat face, are in a plug well: dry and in air. The fitted wells are 25.0 and 25.3 mm in diameter (params/feature-fits.json)",
+    "pocket_mouth_radius_mm": 24.0,
+    "pocket_mouth_note": "the oil film of the first case stops at 18 mm from each valve axis; here it also takes every face above the spring seat, within this distance of the axis, that looks toward the axis: the upper walls and the mouth of the spring pocket, never an outer wall of the head",
+    "barrel_face_tolerance_mm": 1.5,
+    "status": "hypothesis, declared; the levels and radii they start from are fits"
+  },
+  "joints": {
+    "what": "a contact conductance at each joint between two parts; the first case had perfect contact everywhere",
+    "rule": "no published contact conductance was found for any of these joints (params/thermal-literature-bounds.json, not_found). Every joint takes one declared value two decades wide: from a poor contact to one close to perfect",
+    "status": "hypothesis, declared; no source",
+    "hypothesis": "H15-joint-conductances",
+    "items": {
+      "seat": {"pair": ["valve", "alloy"], "where": "valve head on its seat, and any other face of the valve head against the head alloy", "value": 10000.0, "range": [1000.0, 100000.0]},
+      "stem": {"pair": ["valve", "guide"], "where": "valve stem in its guide, and in the head where no guide covers it", "value": 10000.0, "range": [1000.0, 100000.0]},
+      "guide": {"pair": ["guide", "alloy"], "where": "guide outside diameter and ends in the head", "value": 10000.0, "range": [1000.0, 100000.0]},
+      "plug": {"pair": ["plug", "alloy"], "where": "plug thread in its bore and plug seat on its seat face", "value": 10000.0, "range": [1000.0, 100000.0]},
+      "deck": {"pair": ["barrel", "alloy"], "where": "barrel collar on the floor and wall of the register recess", "value": 10000.0, "range": [1000.0, 100000.0]}
+    },
+    "perfect_contact_witness_W_per_m2K": 10000000.0
+  },
+  "calibration": {
+    "rule": "at the reference conductivity, each calibrated coefficient is first multiplied by target over achieved wall loading, as in the first case, then moved along the secant through its last two (coefficient, loading) pairs, until every calibrated wall carries its target within the tolerance; the coefficients of the last solved step are kept for every alloy of the variant",
+    "why": "with the first case's rule the barrel bore carried 125.7 of its 145 kW/m² after four of the five steps: its loading saturates as the bore wall nears the 316 °C gas (stopped run of 2026-11-20)",
+    "tolerance_relative": 0.01,
+    "max_steps": 10
+  },
+  "variants": [
+    {
+      "id": "declared",
+      "what": "the first declared case: gas at 900 °C and 400 W/(m² K), no oil film; with the heat paths, no oil path at all: the cam-housing face and the barrel's crankcase faces are in air",
+      "films": {"cam_housing": null, "crankcase": null}
+    },
+    {
+      "id": "declared_oil",
+      "what": "the first declared case with the oil film, the cam housing and the crankcase"
+    },
+    {
+      "id": "published_loading_oil",
+      "what": "the first case's published-loading variant: chamber, exhaust port and now barrel bore scaled to the published wall loadings",
+      "calibrate_wall_loading_kW_per_m2": {"chamber_gas": 465.0, "hot_port": 145.0, "barrel_gas": 145.0},
+      "calibrate_source": "about 465 kW/m² on the combustion chamber wall and 145 kW/m² on cylinder walls and exhaust ducts (Mackerle 1961; params/thermal-literature-bounds.json)"
+    },
+    {
+      "id": "published_loading_oil_air_233",
+      "what": "the same with the air film, and so the fin film, at Mackerle's upper bound of 233 W/(m² K)",
+      "calibrate_wall_loading_kW_per_m2": {"chamber_gas": 465.0, "hot_port": 145.0, "barrel_gas": 145.0},
+      "calibrate_source": "as above"
+    }
+  ],
+  "sensitivity": {
+    "variant": "published_loading_oil",
+    "what": "one value at a time to each end of its declared range, at the reference conductivity, with the calibrated coefficients of the variant held fixed",
+    "items": [
+      {"id": "joint_seat", "path": "joints.items.seat"},
+      {"id": "joint_stem", "path": "joints.items.stem"},
+      {"id": "joint_guide", "path": "joints.items.guide"},
+      {"id": "joint_plug", "path": "joints.items.plug"},
+      {"id": "joint_deck", "path": "joints.items.deck"},
+      {"id": "barrel_conductivity", "path": "barrel.conductivity_W_per_mK"},
+      {"id": "barrel_fin_factor", "path": "barrel.fin_factor"},
+      {"id": "crankcase_coefficient", "path": "films.crankcase"},
+      {"id": "cam_housing_coefficient", "path": "films.cam_housing"},
+      {"id": "oil_coefficient", "path": "oil.coefficient_W_per_m2K"},
+      {"id": "oil_temperature", "path": "oil.sink_temperature_C"}
+    ]
+  },
+  "mesh": {
+    "surface_pitch_mm": 1.0,
+    "comparison_surface_pitch_mm": 0.75,
+    "size_max_mm": 3.0,
+    "rule": "the comparison mesh is extracted from the same occupancy at a finer pitch and solved at the reference configuration; a second mesh at the base pitch gives the run-to-run spread of Gmsh HXT"
+  },
+  "not_modelled": [
+    "seat inserts as a separate material",
+    "valve motion: both valves are closed",
+    "the piston and its rings: no heat reaches the barrel from the piston",
+    "fins of the barrel as solids: one effective film",
+    "radiation",
+    "temperature-dependent properties",
+    "oil jets, oil return tubes and oil inside the head: the head has no modelled gallery (H07)"
+  ]
+}
