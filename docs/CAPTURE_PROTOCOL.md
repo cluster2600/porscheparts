@@ -167,6 +167,10 @@ In force: a scan is a reference, never absolute truth
 ([WORKFLOW.md](WORKFLOW.md#4-reconstruction)); critical dimensions are measured
 separately; the door pull plan registers on D01 and D02, checks D03 to D05, and
 leaves its threshold "to define before acquisition".
+One part-level exception: under
+[decision 0024](decisions/0024-engine-carrier-interfaces-from-a-scan.md) the
+engine carrier's interfaces may come from an admitted scan, with D03, D05 and
+D07 kept as caliper checks held out of the scaling and the registration.
 
 **Proposal P5 — the comparison.**
 

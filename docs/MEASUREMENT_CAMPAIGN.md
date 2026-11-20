@@ -22,10 +22,17 @@ is consolidated in [CAPTURE_PROTOCOL.md](CAPTURE_PROTOCOL.md).
 | 2 | `993-INT-SEAT-RAIL-COVER-0001` | Caliper, depth gauge | Dimensions D01–D05 on both sides, check of the symmetry assumption, JSON record |
 | 3 | `993-INT-DOOR-PULL-0001` | Caliper and scaled photogrammetry | Five interface dimensions, photos with a scale bar, manifest and JSON record |
 | 4 | `993-INT-DASHBOARD-TRIM-0001` | Reading of the option code, then scaled photogrammetry and caliper | Evidence that no passenger airbag is fitted, fourteen dimensions in place **and** removed, three weighings, mesh and manifest |
+| 5 | `993-ENG-CARRIER-0001`, Turbo 993 115 021 53 | 3D scan with a certified scale bar, then caliper | Scan of both blade faces and of every attachment hole, scanner model and settings, D03, D05 and D07 by caliper with three repeats each, manifest and JSON record |
 
 The detailed plans are in the `parts/<part_id>/evidence/` directory. Priority 1
 is the best first trial: the part is non-critical and its master geometry
 already exists in `parts/993-int-switch-blank-0001/source/switch_blank.py`.
+
+Priority 5 is a structural part. Under
+[decision 0024](decisions/0024-engine-carrier-interfaces-from-a-scan.md) its
+interfaces may come from the scan, but only if the three caliper readings agree
+with it within thresholds committed before the scan is taken. Nothing gathered
+for it is a repair instruction or releases the part.
 
 Priority 4 is of a different nature from the first three: it is a 1.4 m
 freeform surface, and above all the only one whose measurement starts with an
