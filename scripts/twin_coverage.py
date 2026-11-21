@@ -16,9 +16,11 @@ registered source, with a quantity per car. Everything else is the work left.
 
 The default curb weight is the manual's single Carrera curb weight (PDF p. 19,
 MNL-TECH-0037). It names no transmission, so it is used only for the base
-configuration, the Carrera with manual transmission. No registered source gives
+configuration, the Carrera with manual transmission. No measurement record gives
 a Tiptronic or a Turbo curb weight, so those runs require --kerb-weight and stop
-otherwise rather than reuse the Carrera figure.
+otherwise rather than reuse the Carrera figure. (A Porsche brochure gives the
+Turbo's kerb weight as 1,500 kg, SRC-PORSCHE-993-TURBO-BROCHURE-UK-1995-PUBSTACK,
+without its weighing standard; it is not yet a measurement value.)
 
 Each counted part entry names the variants it belongs to (field "variants" in
 catalog/reference). An entry is counted for the requested variant when it names
@@ -27,35 +29,33 @@ of other variants are listed as excluded, never silently added.
 
 The engine is counted as one assembly mass read from the workshop manual's
 measurement record. The manual has no Turbo volume and no registered source
-gives a Turbo engine mass, so the Turbo variant counts no engine at all. For the
-Carrera, the scope of the counted figure is an open question, stated in every
-run:
+gives a Turbo engine mass, so the Turbo variant counts no engine at all (the
+M64/60 bill of materials, twins/m64-engine-system/bom/m64-bom-v1.json, keeps it
+unresolved). For the Carrera, every run states the scope of the counted figure:
 
-- What is settled (2026-11-05): the figure excludes the gearbox. The Porsche
-  993 technical specification booklet (SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK,
-  read visually, printed p. 18) prints "Engine Weight (Tiptronic) kg/lbs
-  232 (224)" for the 911 Carrera, the same values as the manual sheet, and lists
-  "Transmission Weight with Oil" separately on p. 22-23 (66 kg G50/21, 105 kg
-  Tiptronic). The hypothesis that 232 kg is engine plus gearbox is therefore
-  rejected. What stays open is the engine's own scope: neither document says
-  dry or wet, nor which ancillaries (exhaust, flywheel, air conditioning).
-- MEAS-MANUAL-993-ALL transcribes the PDF p. 15 technical-data sheet with only
-  the labels "Manual transmission: 232 (511)" and "Tiptronic: 224 (494)", in kg
-  (lbs). "Dry, ready to install" is the sheet heading as recorded in
-  docs/993/993_MANUAL_DATA_MAP.md; the transcription itself does not carry it.
-  The Tiptronic figure being lower than the manual one fits an engine-only
-  figure, but that is an inference, not a statement of the sheet.
-- Both values are structured_derived, not manually_checked, and the upstream
-  transcription (catalog/specifications/porschefanatics-993-technical-data.json)
-  marks them ocr_transcription_unverified. A manual value whose extraction
+- Dry, ready for fitting, without gearbox. The PDF p. 15 technical-data sheet
+  heads both values "Engine weight (dry, ready for fitting)". MEAS-MANUAL-993-ALL
+  keeps only the row labels ("Manual transmission: 232 (511)", "Tiptronic:
+  224 (494)"), so the heading is carried by the page-checked record
+  ENGINE_SCOPE_RECORD, read on the page image in two copies on 2026-11-20
+  (#434). The Porsche 993 technical specification booklet
+  (SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK, printed p. 18) gives the same figures
+  as "Engine Weight" and lists "Transmission Weight with Oil" separately
+  (pp. 22-23: 66 kg G50/21, 105 kg Tiptronic), so 232 kg is not engine plus
+  gearbox.
+- Open: which ancillaries "ready for fitting" includes; the sheet does not list
+  them. The Tiptronic figure being 8 kg lower fits a figure that includes the
+  manual gearbox's flywheel and clutch, by inference only.
+- The values themselves are structured_derived. A manual value whose extraction
   status is not structured_derived or manually_checked is refused, and the
-  engine is then reported as not counted.
-- An unregistered community weighing with a named weigher and a declared method
-  gives 186.9 kg for a complete 1995 Carrera engine, ready to run, without
-  gearbox. parts/993-eng-carrier-0001/evidence/load-cases.md records the 45.1 kg
-  gap; it is not a gearbox, which is weighed separately, and stays unexplained.
-  twins/m64-engine-system/bom/m64-bom-v1.json keeps the dry engine mass
-  unresolved. The weighing is printed for comparison only and never counted.
+  engine is then reported as not counted. If no page-checked row agrees with
+  the counted value, the run says its scope is unchecked instead of stating it.
+- A registered community weighing (SRC-PELICAN-TIMMINS-993-ENGINE-WEIGHTS)
+  gives 186.9 kg for a 1995 Carrera engine in a conversion configuration: light
+  flywheel, headers and mufflers, no air conditioning, fluid state unknown
+  (docs/research/993-engine-mass-scope-20261107.md). The configurations differ,
+  so the 45.1 kg gap is not a like-for-like disagreement; it stays unallocated.
+  The weighing is printed for comparison only and never counted.
 """
 
 from __future__ import annotations
@@ -76,19 +76,22 @@ ADMISSIBLE_EXTRACTION = {"structured_derived", "manually_checked"}
 # never typed here. None means no registered source gives the value: the engine is
 # then reported as not counted, never guessed.
 ENGINE_MASS = {
-    ("Carrera", "manual"): ("MNL-TECH-0020", "p. 15 value for the manual transmission, read as the engine (scope open)"),
-    ("Carrera", "tiptronic"): ("MNL-TECH-0021", "p. 15 value for the Tiptronic, read as the engine (scope open)"),
+    ("Carrera", "manual"): ("MNL-TECH-0020", "p. 15 engine weight, manual transmission"),
+    ("Carrera", "tiptronic"): ("MNL-TECH-0021", "p. 15 engine weight, Tiptronic"),
     ("Turbo", "manual"): None,
     ("Turbo", "tiptronic"): None,
 }
+# The p. 15 sheet heading, read on the page image; the measurement record drops it.
+ENGINE_SCOPE_RECORD = ROOT / "catalog" / "manual" / "page-checked" / "993-workshop-manual-group0-engine-weight.json"
 # Single Carrera curb weight of the manual, p. 19; it names no transmission.
 CARRERA_CURB_WEIGHT = "MNL-TECH-0037"
-# Unregistered community weighing (named weigher, declared method and scope:
-# complete 1995 Carrera engine, ready to run, without gearbox), recorded in
-# COMMUNITY_WEIGHING_RECORD. Printed for comparison only: it has no source record
-# and is never counted.
+# Registered community weighing of a 1995 Carrera engine in a conversion
+# configuration (light flywheel, headers and mufflers, no air conditioning, fluid
+# state unknown), scoped in COMMUNITY_WEIGHING_RECORD. Printed for comparison only,
+# never counted.
 COMMUNITY_WEIGHING_KG = 186.9
-COMMUNITY_WEIGHING_RECORD = "parts/993-eng-carrier-0001/evidence/load-cases.md"
+COMMUNITY_WEIGHING_SOURCE = "SRC-PELICAN-TIMMINS-993-ENGINE-WEIGHTS"
+COMMUNITY_WEIGHING_RECORD = "docs/research/993-engine-mass-scope-20261107.md"
 # Second Porsche document giving the same engine figures and the gearbox separately.
 SCOPE_CROSS_CHECK = "SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK"
 UNSPECIFIED = "unspecified"
@@ -142,27 +145,53 @@ def engine_mass(variant: str, transmission: str) -> tuple[float, str]:
     return mass, f"{label}, {MANUAL_SOURCE} ({MANUAL_RECORD.stem}:{value_id})"
 
 
+def checked_heading(value_id: str, mass: float) -> str | None:
+    """Return the page-checked sheet heading of a manual engine-weight value, or None if no checked row agrees."""
+    try:
+        record = json.loads(ENGINE_SCOPE_RECORD.read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return None
+    for row in record.get("records", []):
+        if row.get("measurement_value_id") != value_id:
+            continue
+        checked = row.get("status") == "page_checked" and isinstance(row.get("value"), (int, float))
+        if checked and float(row["value"]) == mass and record.get("heading"):
+            return str(record["heading"])
+        return None
+    return None
+
+
 def engine_scope_note(variant: str, transmission: str, engine: float, kerb_weight: float) -> list[str]:
-    """State why the scope of the counted engine mass is open, and the weighing it contradicts."""
+    """State the scope of the counted engine mass, what is still open, and the weighing it differs from."""
     entry = ENGINE_MASS[(variant, transmission)]
     if entry is None or engine <= 0:
         return []
     value = manual_value(entry[0])
     gap = engine - COMMUNITY_WEIGHING_KG
+    heading = checked_heading(entry[0], engine)
+    shown = ENGINE_SCOPE_RECORD.relative_to(ROOT) if ENGINE_SCOPE_RECORD.is_relative_to(ROOT) else ENGINE_SCOPE_RECORD
+    if heading:
+        scope = (
+            f"Scope: \"{heading}\", the p. 15 sheet heading, page-checked in "
+            f"{shown}. Gearbox excluded: {SCOPE_CROSS_CHECK} "
+            f"(printed p. 18) gives the same figure as \"Engine Weight\" and the transmission "
+            f"weight separately (pp. 22-23). Open: which ancillaries \"ready for fitting\" includes."
+        )
+    else:
+        scope = (
+            f"Scope unchecked: no page-checked row of {shown} agrees "
+            f"with {entry[0]}. Gearbox excluded per {SCOPE_CROSS_CHECK}; fluids and ancillaries open."
+        )
     text = (
-        f"Gearbox excluded: {SCOPE_CROSS_CHECK} (printed p. 18) gives the same figure as "
-        f"\"Engine Weight\" and the transmission weight separately (p. 22-23). "
-        f"The rest of the engine scope is open. The p. 15 sheet labels this value only "
-        f"\"{value.get('description')}\" (kg, lbs); \"dry, ready to install\" is the "
-        f"sheet heading as recorded in docs/993/993_MANUAL_DATA_MAP.md, not in the "
-        f"transcription, which is {value.get('extraction_status')}, not manually checked. "
-        f"Tiptronic lighter than manual fits an engine-only figure, by inference only. "
-        f"An unregistered community weighing with a declared method gives "
-        f"{COMMUNITY_WEIGHING_KG:.1f} kg for a complete 1995 Carrera engine without gearbox, "
-        f"{gap:.1f} kg ({gap / kerb_weight * 100:.1f} points of coverage) below the counted "
-        f"figure; the gap is not the gearbox and stays open in {COMMUNITY_WEIGHING_RECORD}."
+        f"{scope} The measurement record labels this value \"{value.get('description')}\" "
+        f"(kg, lbs) and is {value.get('extraction_status')}. A registered community weighing "
+        f"({COMMUNITY_WEIGHING_SOURCE}) gives {COMMUNITY_WEIGHING_KG:.1f} kg for a 1995 Carrera "
+        f"engine in a conversion configuration (light flywheel, headers and mufflers, no air "
+        f"conditioning, fluid state unknown), {gap:.1f} kg ({gap / kerb_weight * 100:.1f} points "
+        f"of coverage) below the counted figure; the configurations differ and the gap stays "
+        f"unallocated ({COMMUNITY_WEIGHING_RECORD})."
     )
-    return textwrap.wrap(text, width=80)
+    return textwrap.wrap(text, width=80, break_on_hyphens=False, break_long_words=False)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -182,7 +211,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.kerb_weight is None:
         if (args.variant, args.transmission) != ("Carrera", "manual"):
             parser.error(
-                f"no registered source gives a curb weight for the {args.variant} with {args.transmission} "
+                f"no measurement record gives a curb weight for the {args.variant} with {args.transmission} "
                 f"transmission; {CARRERA_CURB_WEIGHT} is the manual's single Carrera curb weight, names no "
                 "transmission and is the default for the manual-transmission Carrera only; pass --kerb-weight"
             )

@@ -1,0 +1,44 @@
+{
+  "$comment": "Engine-weight rows of the 993 workshop manual's technical-data sheet, read on the page image in two copies on 2026-11-20 (issue #434). Facts only: no page image or text of the manual is stored here. The companion register's structured rows carry the values but drop the sheet heading; this record carries it.",
+  "schema_version": "1.0.0",
+  "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+  "source_record": "catalog/sources/src-porsche-workshop-manual-993.json",
+  "companion_registry": "catalog/manual/993-workshop-manual-measurements.json",
+  "measurement_record": "catalog/measurements/MEAS-MANUAL-993-ALL.json",
+  "generated_on": "2026-11-20",
+  "copies_read": [
+    {
+      "id": "local_1481_pages",
+      "description": "Scanned copy of undocumented provenance already used for the register (see the source record); not stored in the repository",
+      "sha256": "dd3f55c5eab801992d1c5fd90ee59a4734e2f098468c100203fea63390a1ad92",
+      "pdf_pages": 1481,
+      "pdf_page": 15
+    },
+    {
+      "id": "archive_volume_1",
+      "description": "Volume I (General, Engine) in the public community archive that also holds SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK; image-only PDF, read on the rendered page; not stored in the repository",
+      "url": "https://raw.githubusercontent.com/pubstack/pubstack.github.io/master/static/993/Porsche_993_Workshop_Repair_Manual_I.pdf",
+      "sha256": "3f691ded1ab781c5d9912a7920e62f5c9000e57f4a23e2a737f508a85037f4ca",
+      "pdf_pages": 351,
+      "pdf_page": 15
+    }
+  ],
+  "authorised_copy": "archive_volume_1, accepted by the project owner on 2026-11-21 as the authorised copy #434 asks for. Neither copy is purchased or licensed; the acceptance is the owner's decision, recorded as such",
+  "manual_page_label": "0 Overall Vehicle - General, 911 Carrera (993), Technical data",
+  "heading": "Engine weight (dry, ready for fitting)",
+  "records": [
+    {"id": "engine_weight_manual_transmission", "label": "Manual transmission", "value_text": "232 (511)", "value": 232, "unit": "kg (lbs)", "measurement_value_id": "MNL-TECH-0020", "status": "page_checked"},
+    {"id": "engine_weight_tiptronic", "label": "Tiptronic", "value_text": "224 (494)", "value": 224, "unit": "kg (lbs)", "measurement_value_id": "MNL-TECH-0021", "status": "page_checked"}
+  ],
+  "scope": {
+    "fluids": "dry, as printed in the heading",
+    "gearbox": "excluded: SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK gives the same engine figures (printed p. 18) and the transmission weights separately (printed pp. 22-23)",
+    "ancillaries": "open: 'ready for fitting' is not itemised on the sheet",
+    "turbo": "not covered: the manual has no Turbo (M64/60) volume"
+  },
+  "not_found_on_the_sheet": [
+    "a list of the parts included in 'ready for fitting'",
+    "whether the 8 kg between the manual-transmission and Tiptronic figures is the flywheel and clutch",
+    "any Turbo engine weight"
+  ]
+}

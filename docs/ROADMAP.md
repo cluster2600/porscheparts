@@ -207,23 +207,32 @@ sourced parts, via `make twin`.
 
 How to read the 32.5%:
 
-- **The engine figure excludes the gearbox; the rest of its scope is open.**
-  The workshop manual's p. 15 technical-data sheet gives 232 kg under the label
-  "Manual transmission" and 224 kg under "Tiptronic"; that transcription is
-  `structured_derived` and has not been checked against an authorised copy of
-  the manual. On November 5, 2026 the same two figures were read visually in a
-  second Porsche document, the 993 technical specification booklet
-  (`SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK`, printed p. 18): "Engine Weight
-  (Tiptronic) kg/lbs 232 (224)". The booklet lists "Transmission Weight with
-  Oil" separately (66 kg for the G50/21, 105 kg for the Tiptronic, pp. 22-23),
-  so 232 kg is not engine plus gearbox. Neither document says dry or wet, or
-  which ancillaries are included. The now-registered community weighing
-  (`SRC-PELICAN-TIMMINS-993-ENGINE-WEIGHTS`) reports a 1995 Carrera conversion
-  configuration, not a stock complete-engine specification. Its scope and
-  conversion to 186.9 kg are recorded in the
-  [source addendum](research/993-engine-mass-scope-20261107.md). Configuration
-  differences are documented, but the approximately 45.1 kg gap remains
-  unallocated. The historical
+- **The engine figure is dry, ready for fitting, and excludes the gearbox; its
+  list of ancillaries is open.** The workshop manual's p. 15 technical-data
+  sheet heads its two values "Engine weight (dry, ready for fitting)": 232 kg
+  under "Manual transmission" and 224 kg under "Tiptronic". The structured
+  transcription keeps the values but drops that heading. On November 20, 2026
+  the sheet was read on the page image in two copies, the local scan behind the
+  register and volume I in the public community archive, and the
+  [page-checked record](../catalog/manual/page-checked/993-workshop-manual-group0-engine-weight.json)
+  now carries the heading. Neither copy is a purchased one; on November 21,
+  2026 the owner accepted the archive copy as the authorised copy, which closed
+  #434 with the gap below left open. The 993 technical
+  specification booklet (`SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK`, printed
+  p. 18) gives the same figures, "Engine Weight (Tiptronic) kg/lbs 232 (224)",
+  and lists "Transmission Weight with Oil" separately (66 kg for the G50/21,
+  105 kg for the Tiptronic, pp. 22-23), so 232 kg is not engine plus gearbox.
+  Which ancillaries "ready for fitting" includes is not listed. The registered
+  community weighing (`SRC-PELICAN-TIMMINS-993-ENGINE-WEIGHTS`) reports a 1995
+  Carrera conversion configuration of unknown fluid state, not a stock
+  complete-engine specification. Its scope and conversion to 186.9 kg are
+  recorded in the [source addendum](research/993-engine-mass-scope-20261107.md).
+  **Open:** the approximately 45.1 kg gap remains unallocated
+  ([2026-11-20 note](research/993-engine-mass-scope-20261120.md)). Closing it
+  needs a Porsche list of what "ready for fitting" contains or an itemised
+  weighing contributed under
+  [decision 0019](decisions/0019-accept-contributed-measurements.md). The
+  historical
   [engine-carrier load cases](../parts/993-eng-carrier-0001/evidence/load-cases.md)
   are not promoted by this source recovery.
   With the weighing, the coverage would read 29.2%.
@@ -237,11 +246,16 @@ How to read the 32.5%:
   RS door panels: 34.7% becomes 32.5%. The 19 `unspecified` entries are body,
   glass and trim from a source that names no variant; they are still counted for
   every variant.
-- **The Turbo has no engine and no registered curb weight.** No registered
-  source gives the M64/60 engine mass, and `scripts/twin_coverage.py` stops for
-  Tiptronic and Turbo runs unless `--kerb-weight` is given. With the 1,500 kg
-  Turbo curb weight declared in the reference data (`VEHICLE-KERB-TURBO`, a
-  third-party figure), the Turbo run counts 229.0 kg, i.e. 15.3%, and no engine.
+- **The Turbo has no engine mass.** No registered source gives the M64/60
+  engine mass: the manual has no Turbo volume, and the Porsche UK Turbo
+  brochure of February 1995 (`SRC-PORSCHE-993-TURBO-BROCHURE-UK-1995-PUBSTACK`,
+  registered November 20, 2026) gives no engine weight. That brochure does give
+  the Turbo's kerb weight, 1,500 kg, without its weighing standard, the same
+  figure as the third-party `VEHICLE-KERB-TURBO` in the reference data.
+  `scripts/twin_coverage.py` still stops for Tiptronic and Turbo runs unless
+  `--kerb-weight` is given, since no measurement record holds either curb
+  weight. With 1,500 kg the Turbo run counts 229.0 kg, i.e. 15.3%, and no
+  engine.
 
 ### Assembly skeleton — done
 
