@@ -215,8 +215,9 @@ How to read the 32.5%:
   the sheet was read on the page image in two copies, the local scan behind the
   register and volume I in the public community archive, and the
   [page-checked record](../catalog/manual/page-checked/993-workshop-manual-group0-engine-weight.json)
-  now carries the heading. Neither copy is a purchased one: whether the archive
-  copy counts as the authorised copy is left open in #434. The 993 technical
+  now carries the heading. Neither copy is a purchased one; on November 21,
+  2026 the owner accepted the archive copy as the authorised copy, which closed
+  #434 with the gap below left open. The 993 technical
   specification booklet (`SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK`, printed
   p. 18) gives the same figures, "Engine Weight (Tiptronic) kg/lbs 232 (224)",
   and lists "Transmission Weight with Oil" separately (66 kg for the G50/21,
@@ -226,8 +227,11 @@ How to read the 32.5%:
   Carrera conversion configuration of unknown fluid state, not a stock
   complete-engine specification. Its scope and conversion to 186.9 kg are
   recorded in the [source addendum](research/993-engine-mass-scope-20261107.md).
-  The approximately 45.1 kg gap remains unallocated
-  ([2026-11-20 note](research/993-engine-mass-scope-20261120.md)). The
+  **Open:** the approximately 45.1 kg gap remains unallocated
+  ([2026-11-20 note](research/993-engine-mass-scope-20261120.md)). Closing it
+  needs a Porsche list of what "ready for fitting" contains or an itemised
+  weighing contributed under
+  [decision 0019](decisions/0019-accept-contributed-measurements.md). The
   historical
   [engine-carrier load cases](../parts/993-eng-carrier-0001/evidence/load-cases.md)
   are not promoted by this source recovery.

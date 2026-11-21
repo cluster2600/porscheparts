@@ -24,8 +24,9 @@ The sheet was read on the rendered page image in two copies:
 Both give the same heading and values. Full hashes and the URL are in the
 [page-checked record](../../catalog/manual/page-checked/993-workshop-manual-group0-engine-weight.json),
 which `scripts/twin_coverage.py` now reads to state the scope. Neither copy is a
-purchased or licensed one, so this does not settle the issue's "authorised copy"
-condition: that is the owner's call.
+purchased or licensed one. On 2026-11-21 the owner accepted the archive copy as
+the "authorised copy" the issue asks for; that is the owner's decision, not a
+finding about the copy.
 
 Settled scope: **dry, ready for fitting, without gearbox** (the gearbox
 exclusion comes from the spec booklet, printed pp. 18 and 22-23). Open: what
