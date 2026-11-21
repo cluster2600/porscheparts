@@ -74,6 +74,11 @@ those needs its own instrument and datum.
 
    Deviation is scan minus caliper. Each check is `pass`, `fail` or
    `not_observable` (P5c).
+
+   The owner accepted these values unchanged on 2026-11-21. They are committed,
+   with the measurand of each check, the uncertainty rule and the verdict rule,
+   in [the carrier's scan-check thresholds](../../parts/993-eng-carrier-0001/scan-checks/thresholds.json),
+   before any scan or reply exists.
 4. **Every feature is fitted on half the scan and checked on the other
    half.** A hole axis comes from its bore wall, or from its edge circles on
    both faces. A face is a plane fit, and the blade thickness is measured
