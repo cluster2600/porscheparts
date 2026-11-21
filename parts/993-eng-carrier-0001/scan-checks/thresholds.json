@@ -1,0 +1,100 @@
+{
+  "schema": "993-eng-carrier-scan-check-thresholds/1",
+  "part_id": "993-ENG-CARRIER-0001",
+  "part_number": "993 115 021 53",
+  "decision": "docs/decisions/0024-engine-carrier-interfaces-from-a-scan.md, step 3",
+  "protocol": "docs/CAPTURE_PROTOCOL.md, proposal P5 with P5a-P5c",
+  "accepted_by_owner_on": "2026-11-21",
+  "accepted_as": "the values ADR 0024 proposed, unchanged",
+  "committed_before_acquisition": true,
+  "note": "Committed alone, before any scan of the carrier exists and before any contributor has replied to a request. No scan, photograph or reading of any carrier specimen was known when it was written. Results are added by a later commit and never next to this file's first version.",
+  "instruments_assumed": {
+    "caliper": "0-150 mm, 0.01 mm resolution (parts/993-eng-carrier-0001/evidence/measurement-plan.md, Instruments)",
+    "rule": "0-1000 mm, 0.5 mm resolution (same table)",
+    "note": "The contributor's own instrument and stated accuracy replace these when reported; the uncertainty rule below uses what is reported."
+  },
+  "registration": {
+    "preferred": {
+      "dimension": "certified scale bar in the field (P3)",
+      "consequence": "D01 becomes a check, C4 below"
+    },
+    "fallback": {
+      "dimension": "D01 measured by contact, three repeats",
+      "consequence": "D01 sets the scale and is not a check; C4 is not run and the record says that the scale came from D01"
+    },
+    "neither": "A scan with neither a scale bar nor a contact D01 has no scale and cannot establish the interfaces."
+  },
+  "checks": [
+    {
+      "id": "C1",
+      "plan_dimension": "D03",
+      "feature": "diameter of a body-mounting hole: the hole the contributor measured, as shown in their photograph",
+      "caliper_value": "mean of the three repeats",
+      "scan_measurand": "diameter of the cylinder fitted to the bore wall on the fitted half of the scan; when the bore wall is not captured, the mean of the least-squares circles fitted to the hole's edge on both faces (ADR 0024 step 4)",
+      "threshold_T_mm": 0.2,
+      "pass_rule": "|scan - caliper| <= T",
+      "failure_means": "the scan disagrees with contact measurement on this specimen; recorded as a contradiction, and D01-D07 fall back to the measurement plan's contact rule (ADR 0024 step 5)"
+    },
+    {
+      "id": "C2",
+      "plan_dimension": "D05",
+      "feature": "diameter of an engine-mount hole: the hole the contributor measured, as shown in their photograph",
+      "caliper_value": "mean of the three repeats",
+      "scan_measurand": "as C1",
+      "threshold_T_mm": 0.2,
+      "pass_rule": "|scan - caliper| <= T",
+      "failure_means": "as C1"
+    },
+    {
+      "id": "C3",
+      "plan_dimension": "D07",
+      "feature": "material thickness at an attachment: the station where the contributor's caliper jaws sat, as shown in their photograph",
+      "caliper_value": "mean of the three repeats",
+      "scan_measurand": "distance between the planes fitted to the two faces at that station, along their mean normal (ADR 0024 step 4)",
+      "threshold_T_mm": 0.2,
+      "pass_rule": "|scan - caliper| <= T",
+      "failure_means": "as C1"
+    },
+    {
+      "id": "C4",
+      "plan_dimension": "D01",
+      "applies_when": "a certified scale bar sets the scale",
+      "feature": "centre-to-centre distance between the two body-mounting holes, left to right",
+      "caliper_value": "mean of the three repeats with a rule or caliper",
+      "scan_measurand": "distance between the points where the two fitted hole axes cross the plane fitted to the face the rule was laid on",
+      "threshold_T_mm": 1.0,
+      "threshold_basis": "twice the 0.5 mm resolution of the rule",
+      "pass_rule": "|scan - caliper| <= T",
+      "failure_means": "as C1"
+    }
+  ],
+  "deviation": "scan minus caliper, in mm, reported for every check whatever its outcome",
+  "uncertainty_rule": {
+    "rule": "P5 step 2: T must be at least twice the caliper uncertainty u of the same dimension, otherwise the reference cannot decide.",
+    "u": "the larger of the instrument's stated accuracy (its resolution when no accuracy is stated) and half the range of the three repeats",
+    "when_2u_exceeds_T": "the check is reported not_observable with the reason 'reference cannot decide'; T is not widened"
+  },
+  "identification": "Which hole or station on the scan each reading belongs to is written down, with its reasoning, in a commit after the scan arrives and before any deviation is computed (P5b). If it cannot be established, every candidate assignment is judged and all are reported; the passing one is never picked.",
+  "feature_acceptance": {
+    "source": "ADR 0024 step 4, the acceptance of twins/935-cylinder-head-cad-twin/params/feature-check.json",
+    "split": "fitted and held-out halves by the parity of a hash of the vertex index, as split_halves in twins/935-cylinder-head-cad-twin/source/fit_features.py",
+    "band_mm": 0.5,
+    "tolerance_mm": 0.2,
+    "min_share": 0.9,
+    "min_vertices": 100,
+    "meaning": "at least 90 % of the held-out vertices within 0.5 mm of the fitted surface lie within 0.2 mm of it, and there are at least 100 of them",
+    "if_not_met": "the feature stays unconfirmed; a check whose scan measurand depends on an unconfirmed feature is not_observable"
+  },
+  "outcomes": {
+    "pass": "|deviation| <= T and the features the measurand uses are confirmed",
+    "fail": "|deviation| > T",
+    "not_observable": "the scan holds no confirmed feature for the measurand, or the reference cannot decide; this is a result, not a pass (P5c)"
+  },
+  "verdict_rule": "The scan establishes D01-D07 only if every check that applies passes. Any fail, or any not_observable, leaves D01-D07 on the measurement plan's contact rule, and the failed or unobservable checks are recorded as such.",
+  "fixed_rules": [
+    "No rescaling, re-registration or dropped check after results are seen (P5 step 5, ADR 0024 step 5).",
+    "A caliper reading is never used to scale or register the scan; only a certified scale bar or, without one, a contact D01.",
+    "A feature the scanner did not see stays null with its reason; nothing is filled from a photograph, the PET drawing or a neighbouring feature.",
+    "A pass shows that the scan agrees with contact measurement on this specimen at T. It is not a scanner calibration, and it releases nothing: the structural route of SAFETY.md is unchanged."
+  ]
+}

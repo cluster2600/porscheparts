@@ -31,7 +31,9 @@ already exists in `parts/993-int-switch-blank-0001/source/switch_blank.py`.
 Priority 5 is a structural part. Under
 [decision 0024](decisions/0024-engine-carrier-interfaces-from-a-scan.md) its
 interfaces may come from the scan, but only if the three caliper readings agree
-with it within thresholds committed before the scan is taken. Nothing gathered
+with it within the
+[thresholds committed on 2026-11-21](../parts/993-eng-carrier-0001/scan-checks/thresholds.json),
+before any scan was taken. Nothing gathered
 for it is a repair instruction or releases the part.
 
 Priority 4 is of a different nature from the first three: it is a 1.4 m
