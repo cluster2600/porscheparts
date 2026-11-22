@@ -1,0 +1,25 @@
+{
+ "schema": "935-cad-twin-dynamics-witness-attempt/1",
+ "attempt": 2,
+ "written": "2026-11-22, after the first attempt failed and before the second ran",
+ "acceptance_file": "twins/935-cylinder-head-cad-twin/params/dynamics-witness-acceptance.json",
+ "acceptance_sha256": "2f1fc28e9aab7e9fb97c16c38f99397e148a05f88f74792b9b097b1357116652",
+ "first_attempt": {
+  "record": "twins/935-cylinder-head-cad-twin/params/dynamics-witness-rotating-cam.json",
+  "cam": "rotating: an eccentric circle turning on a hinge",
+  "passed": false,
+  "passed_there": "the natural frequency and both two-mass modes (errors of 7e-9 and 2e-7 against 1e-3), the follower lift (1.5e-6 m and 4.8e-6 m against 5e-5 m), the cam speed, the three controls",
+  "failed_there": "the contact force at 0.5 and 0.9 of the float speed (the force fell to zero every cycle), the float detector at 0.9, and the float bracket: contact was lost at 0.8 of the float speed already"
+ },
+ "reason": "MuJoCo's contact constraint does not see the acceleration that a contact point on a rotating body has at constant speed (the J-dot v term). It makes up for it by penetration alone: r = -(y'' + (1 - d) (F0 + k y) / m) / (d k_ref), with k_ref d = 4.04e8 s^-2 from the declared solref. On the base circle at 0.5 of the float speed that predicts 1.52e-6 m; the first attempt measured 1.49e-6 m, against 2.0e-8 m with the cam at rest. Past a quarter turn the cam surface accelerates away from the follower, the required r turns positive and the contact can only hold by separating: the explanation predicts zero force from 1.598 rad at 0.5 and 1.579 rad at 0.9 of the float speed; the first attempt measured 1.63 to 1.64 rad, the lag of a contact whose time constant is 0.03 rad of cam angle. The follower then chatters on the cam by nanometres at every speed. No contact setting removes it: a stiffer contact shrinks the gap, not its sign",
+ "cam": "lift-law",
+ "change": "the cam enters as its lift law. A tappet on a slide joint, 1e6 kg, carries the same circle under the follower's flat face; before every step a generalised force puts the tappet on y(t) = e (1 - cos w t) at the end of the step. The contact is then between two translating bodies, whose contact Jacobian does not change with time. This is how a valve-train screen uses a cam card: a lift law at the valve, not a cam shape",
+ "unchanged": "the acceptance (accept_when), the settings, the witness inputs, the speeds and the three controls of the acceptance file, whose hash is above",
+ "added_check": {
+  "tappet_off_lift_law_over_full_lift_within": 0.0001,
+  "replaces": "cam_speed_drift_relative_within, which has no meaning without a turning cam",
+  "why": "the drive must put the tappet on the lift law to well under the lift tolerance (0.005), or the force check would measure the drive"
+ },
+ "kept_as_limitation": "the rotating cam at 0.5 of the float speed is rerun and recorded beside the result, so that the record says what this tool cannot do",
+ "for_the_head": "a valve train enters this tool as lift laws at the valve (cam lift times the rocker ratio, with lash), a rocker as a reduced mass on the valve axis or on a translating body of its own. A contact on a turning cam or a rocking lever is not admissible in this tool"
+}
