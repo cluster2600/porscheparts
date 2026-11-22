@@ -2214,6 +2214,32 @@ hypotheses and the missing valve, not the port, so no solver was run. The
 row reopens with registered sections of the bend and pocket (H04) and the
 valve, seat and guide geometry (H05).
 
+### Interface contract: written, nothing measured ([contract](params/interface-contract.json), [check](params/interface-contract-check.json), #694)
+
+AGENTS.md asks for an interface contract before any functional part. The
+[contract](params/interface-contract.json) lists 11 interfaces and 170 quantities:
+the deck face and register, the four stud passages, the ten studs and their
+tapped holes, both port flanges, both plug bores, the cam-housing face, a
+valve-cover face, and the guides and seats of both valves. Each quantity names
+its datum in the [twin frame](params/frame.json).
+
+**Nothing is measured.** Every value, uncertainty and source is null. Each
+quantity names what would fill it: a contribution under
+[decision 0019](../../docs/decisions/0019-accept-contributed-measurements.md)
+or a drawing, once the specimen is identified (#692). A length can be compared
+with the twin only after the scale is measured (#693). Where a hypothesis
+applies, it is named: H02 for the passages, H03 for the tapped holes, H05 and
+H09 for the valves, H06 for the plug threads. The twin's own number sits beside
+89 quantities, under `twin_nominal_not_evidence`. It is never the value.
+
+[check_interface_contract.py](source/check_interface_contract.py) reads the
+contract and the params files. It imports the standard library only and shares
+no code with the scripts that built the twin. It reports pass, fail or not
+checkable for each quantity. Today all 170 are not checkable. A pass will also
+need a threshold committed before the values arrive, as for the
+[carrier scan](../../docs/decisions/0024-engine-carrier-interfaces-from-a-scan.md).
+The clocking datum about the bore axis has no physical feature yet.
+
 ### Prepared work: what the four parts that never ran need ([register](params/prepared-work.json))
 
 Four parts of this twin never ran: port flow, fatigue, valve-train dynamics
