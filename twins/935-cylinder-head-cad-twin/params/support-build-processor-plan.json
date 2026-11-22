@@ -1,0 +1,95 @@
+{
+ "schema": "935-cad-twin-support-build-processor-plan/1",
+ "date": "2026-11-22",
+ "issue": "#706, second half: supports prepared by a build processor rather than by the repository's own rule",
+ "written": "before the processor ran on the print body. Only the witness had run when this plan was committed (params/support-build-processor-witness.json: the voxeliser on three closed meshes, PySLM on a round and a square T block); nothing in it was chosen after seeing a result on the head",
+ "processor": {
+  "name": "PySLM (distribution PythonSLM) 0.6.1, GridBlockSupportGenerator",
+  "repository": "https://github.com/drlukeparry/pyslm",
+  "revision": "8fa03f1eb98b1fbc8e617eb3119d669f356a2f0b",
+  "revision_date": "2026-02-01",
+  "licence": "LGPL-2.1",
+  "licence_sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+  "source_archive": "https://github.com/drlukeparry/pyslm/archive/8fa03f1eb98b1fbc8e617eb3119d669f356a2f0b.tar.gz",
+  "source_archive_sha256": "3035524b2558d19f3ad267d3a83a63e6f5be7c67072033ee5d514181a0a47ee4",
+  "same_pin_as": "parts/993-eng-carrier-0001/source/process-coverage-20261016/upstream.json (revision and licence hash)",
+  "upstream_support_sources_sha256": {
+   "support.py": "3332ca5ddecd3b692d727efecb36a3b76dea2f84069c7d9b3fbc340eed77b723",
+   "gridBlockSupport.py": "9cb01123079a43827a60fe4e87fc81658b5973f4ef006c99ab255dfd9fef7c53",
+   "utils.py": "0ae04b4275b81091775df8cc5e2858f5079af20f7cea913315e948b333716808",
+   "geometry.py": "f85b89bd646403807b41ea0117f53e318568c9acfcc37b845f5c19a7fbc362ba",
+   "render.py": "f92b0056e90db349d68acf6271528fdf57f72dcc35f034ee0020111408675091"
+  },
+  "patches": "none. The carrier pins the same revision with the repository's own patches; those patches change how the library admits support regions, so they would make this layout partly the repository's again. The upstream code runs as published",
+  "declared_fallbacks": [
+   "if the upstream extrusion raises its vertex-count error (the one the carrier met: heights for vertices merged in XY), apply parts/993-eng-carrier-0001/source/process-20261016/pyslm-support-projection.patch, which changes only that extrusion, and say so in the record",
+   "if the spline simplification of a region boundary raises, set splineSimplificationFactor to None, as both carrier generations did, and say so in the record"
+  ],
+  "what_it_is_not": "an open research library, not the machine maker's build processor: no machine file, no exposure parameters, no maker's support templates"
+ },
+ "environment": {
+  "host": "Linux x86_64 (WSL2), CPython 3.11.16 from uv",
+  "dependencies": "the versions of parts/993-eng-carrier-0001/source/process-coverage-20261016/requirements-macos-arm64-python311.lock.txt as Linux wheels; pyclipr 0.1.8 has no Linux wheel and is built from its sdist; test tools left out",
+  "opengl": "PySLM projects its height maps with vispy (PyQt5 backend) under xvfb-run with GALLIUM_DRIVER=llvmpipe LIBGL_ALWAYS_SOFTWARE=1",
+  "caps": "memory 6 GiB, swap 0, at most 6 threads, under systemd-run"
+ },
+ "input": {
+  "primary": "print-body-mc050.stl: the 0.5 mm surface of the print body recorded in params/print-body.json, 1,684,604 triangles, the surface that passed the strict watertight gate",
+  "fallback": "print-body-mc100.stl (the 1.0 mm surface of the same occupancy, 398,652 triangles, the other surface of the layer screen), used only if the processor does not finish on the primary within the caps or 8 hours; the record then says so",
+  "occupancy": "private-r2/print-occ, sha256 5faadb782b822f1a974ab562b53a2f88bdbfce08fe2324fdc66c6ade55c006a7, the grid of the rule layout and of the build screen"
+ },
+ "orientation": {
+  "name": "flange_y_plus_down",
+  "build_direction": "-y",
+  "frame": "(x, z, -y) of the twin, the frame of support_design.py and build_sim.py prepare; voxel (i, k, m) of that frame has its centre at (i, k, m) x 0.25 mm",
+  "plate": "the lowest vertex of the surface on z = 0, PySLM's dropToPlatform(0); no raft and no gap under the part, as in the rule layout"
+ },
+ "parameters": {
+  "overhang_angle_deg": 45.0,
+  "why_45": "the critical angle of the rule layout (params/support-design-case.json), so that both layouts answer the same surface. PySLM's example uses 55",
+  "generator": "GridBlockSupportGenerator() with every other value at its constructor default at this revision; findSelfIntersectingSupport = True",
+  "defaults_at_this_revision": {
+   "rayProjectionResolution_mm": 0.2,
+   "minimumAreaThreshold_mm2": 5.0,
+   "innerSupportEdgeGap_mm": 0.2,
+   "outerSupportEdgeGap_mm": 0.5,
+   "lowerProjectionOffset_mm": 0.05,
+   "upperProjectionOffset_mm": 0.05,
+   "triangulationSpacing": 2.0,
+   "simplifyPolygonFactor": 0.5,
+   "splineSimplificationFactor": 20.0,
+   "gridSpacing_mm": [3.0, 3.0],
+   "supportWallThickness_mm": 3.0,
+   "supportBorderDistance_mm": 3.0,
+   "trussWidth_mm": 1.0,
+   "trussAngle_deg": 45.0,
+   "supportTeethHeight_mm": 1.5,
+   "supportTeethTopLength_mm": 0.1,
+   "supportTeethBottomLength_mm": 1.5,
+   "supportTeethBaseInterval_mm": 0.2,
+   "supportTeethUpperPenetration_mm": 0.2,
+   "useUpperSupportTeeth": true,
+   "useLowerSupportTeeth": true
+  },
+  "status": "the library's defaults: neither a machine maker's values nor values chosen for this part. They are a study setting, labelled as such"
+ },
+ "compared": {
+  "how": "both layouts on the same 0.25 mm occupancy grid, in the same frame, by the same code. The rule layout is read from its private envelope (private-r2/support-design); the processor's support blocks are closed meshes, voxelised by winding number at the voxel centres. Processor voxels inside the part or at or below the plate level are dropped and their volume is reported",
+  "reference_surface": "the down-facing transitions within 45 degrees of straight down found by support_design.transitions on the occupancy: the surface the rule layout started from (12,538 mm2 projected)",
+  "supported_tolerance_mm": 0.5,
+  "supported_rule": "a transition is supported when an envelope voxel lies in its own column with at most two air voxels (0.5 mm) between them. The same tolerance decides whether the top or the foot of an envelope column touches the part or the plate",
+  "quantities": {
+   "supported_area": "projected area of the reference surface that is supported, for each layout; and the projected area where any envelope column touches the part from below, at any angle",
+   "support_volume": "envelope volume on the grid, split by where each column stands: on the plate, on the part, or ending in air; plus the processor's own volume of its block meshes as a check of the voxeliser",
+   "contact_area_with_the_part": "projected area where envelope columns touch the part: at their top under the supported surface, at their foot where they stand on the part, and the sum",
+   "regions": "on the reference surface: projected area supported by both, by the processor only, by the rule only, by neither; envelope volume in both, in the processor's only, in the rule's only; the processor's top contacts outside the reference surface",
+   "max_overhang_left_unsupported": "for each layout, the unsupported patches of the reference surface (26-connected, as in the rule's exemption): count, total projected area, the largest patch's projected area, and the largest inscribed width of a patch's footprint in mm with the height of that patch above the plate"
+  },
+  "consistency_check": "the rule layout measured by this code must give back its committed numbers (params/support-design.json): supported projected area 12,375.875 mm2, envelope 470,685.3125 mm3, landing on the part 5,911.25 mm2. If it does not, the comparison is not reported",
+  "no_threshold": "this is a comparison, not an acceptance test: no value of any quantity is called good or bad in advance"
+ },
+ "after_the_comparison": "the processor's grid truss (GridBlockSupport.geometry, defaults above) is generated for every block, under the same caps and at most 4 hours; reported are the blocks it finished, those it failed on with the error, and the truss surface area. It is not part of the comparison: the truss is a set of surfaces without thickness, and its melted volume would need a declared wall thickness",
+ "renders": "both layouts on the plate from the same two views, drawn from the grid as the rule layout's picture is, with GALLIUM_DRIVER=llvmpipe LIBGL_ALWAYS_SOFTWARE=1 PYOPENGL_PLATFORM=egl xvfb-run -a, and read before anything is written about them",
+ "private_outputs": "work/935-cad-twin/agents-20261122/706-supports in the w935twin checkout; their hashes go in the record, the files stay out of Git",
+ "build_screen": "unchanged: no level of params/build-sim-case.json is changed or added by this work"
+}
