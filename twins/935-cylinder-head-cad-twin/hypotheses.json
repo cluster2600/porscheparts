@@ -148,6 +148,22 @@
       "how": "no published number was found for any joint (params/thermal-literature-bounds.json); each takes 10,000 W/(m2 K), swept from 1,000 to 100,000. The meshed interface of each joint is scaled to the area it projects onto the part surface (about 0.6 of the meshed area)",
       "colour": "analytic_hypothesis",
       "retire_with": "a contact conductance from test or literature for each joint, with its contact pressure and surface finish"
+    },
+    {
+      "id": "H16-specimen-identity",
+      "region": "the whole specimen: maker, process, head type, valve stems and spark-plug thread",
+      "status": "assumed by owner decision 2026-11-22, not confirmed",
+      "how": "the scanned head is taken to be a new aftermarket casting by Xtreme Cylinder Heads, cast then machined (the seller's private statement of 2026-10-11, recorded in the repository; the listing's 'billet' is superseded), made for a Porsche 935: one air-cooled two-valve head per cylinder with two spark plugs and four head-stud passages. From the maker's published options it takes 8 mm valve stems and the 12 mm plug, read as M12 x 1.25 (ISO 28741). Candidates, evidence for and against, and the questions for the reviewer: params/specimen-identity.json",
+      "colour": "analytic_hypothesis",
+      "retire_with": "the maker's or the seller's statement naming the product, program and casting, or a part number, casting mark or engraved logo legible on the specimen"
+    },
+    {
+      "id": "H17-bore-family",
+      "region": "cylinder bore and chamber edge: the engine and the maker's program the head serves",
+      "status": "assumed by owner decision 2026-11-22, not confirmed",
+      "how": "the head is taken to belong to the maker's 2.0 - 2.9 liter program and to the 2.85 L 935 engine, whose bore is at most 92.8 mm with the 70.4 mm stroke under the 4.0 L class and the 1.4 turbo factor (published bores disagree: 92.0, 92.4 and 92.8 mm); the fitted chamber shoulder, 92.80 mm, is taken to be the bore. The choice rests partly on that fit under the 1 mm unit, so the shoulder is not counted as a check of the unit (params/scale-check.json). The maker's 3.0 - 3.5 liter program, for bores of 95 mm and more, stays a live alternative",
+      "colour": "analytic_hypothesis",
+      "retire_with": "the maker's or the seller's statement of the program and bore, the chamber volume as cc'd on the specimen, or a contributed measurement of the chamber edge and of the cylinder used with it"
     }
   ]
 }

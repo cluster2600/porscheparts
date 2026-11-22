@@ -229,6 +229,30 @@ to `media/`, with the scan's licence state in
 Two short rod-like features (Ø4.6 × 7 mm and Ø6.4 × 8.7 mm proud) fail the
 stud test and stay in the body, flagged as H08.
 
+### Assumed identity and a check of the scale ([identity](params/specimen-identity.json), [scale check](params/scale-check.json), #692, #693)
+
+**Assumed, not confirmed.** On 2026-11-22 the owner decided that the twin
+works on declared assumptions, to be reviewed by Wolfe Classics. Nobody was
+contacted. From the seller's listing, the seller's private statement and the
+maker's pages, the twin assumes a new Xtreme Cylinder Heads casting, cast then
+machined, for a Porsche 935: two valves, two plugs, four head studs, 8 mm
+stems and M12 × 1.25 plugs (H16), of the maker's 2.0–2.9 litre program for
+the 2.85 L engine, bore at most 92.8 mm (H17). No published figure describes
+this specimen; each figure compared so far is marked "same family" or "other
+head" in the identity record, which also keeps the 3.0–3.5 litre program
+open and lists eleven questions for the reviewer.
+
+| Check of 1 unit = 1 mm | Published | Fitted | Scale s |
+|---|---|---|---|
+| plug thread bore, confirmed (primary) | M12 × 1.25: crest 10.647 mm, root 12.0 mm | 11.40 mm | 0.934 to 1.053 |
+| chamber shoulder (needs H17; not counted) | 2.85 L 935 bore 92.0 to 92.8 mm | 92.80 mm | 0.991 to 1.000 |
+| guide bore, not confirmed (discordant) | maker's 8 mm stem; 993 guide 8.00 to 8.015 mm | 8.51 mm | 0.935 to 0.942 |
+
+The unit holds within the primary check's ±6%; the guide bore reads half a
+millimetre large and stays unexplained. This is a check against published
+values, not a measurement: the twin is not rescaled and #693 stays open.
+The search log is in [the research note](../../docs/research/935-identity-scale-20261122.md).
+
 ### The stud repair of 2026-11-11 ([occupancy](params/occupancy-summary.json))
 
 The first render of the v2 body showed five slivers, 1.3 to 5.1 mm wide,
