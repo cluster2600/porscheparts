@@ -18,15 +18,23 @@ def has(*names: str) -> bool:
     return all(importlib.util.find_spec(n) is not None for n in names)
 
 
+def load(name: str, filename: str):
+    if name not in sys.modules:
+        spec = importlib.util.spec_from_file_location(name, STUDY / filename)
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[name] = module
+        spec.loader.exec_module(module)
+    return sys.modules[name]
+
+
 @unittest.skipUnless(has("numpy", "scipy"), "numpy or scipy absent")
 class CarrierCellGpuTests(unittest.TestCase):
     def setUp(self):
         import numpy as np
 
+        # loaded by path under names of their own: other tests import unrelated modules called "study"
         sys.path.insert(0, str(STUDY))
-        import rve_c3d8
-
-        self.np, self.rve = np, rve_c3d8
+        self.np, self.rve, self.study = np, load("carrier_cell_gpu_rve_c3d8", "rve_c3d8.py"), load("carrier_cell_gpu_study", "study.py")
         self.contract = json.loads((STUDY / "contract.json").read_text())
 
     def tensor(self, path: Path):
@@ -103,8 +111,7 @@ class CarrierCellGpuTests(unittest.TestCase):
         import shutil
         import tempfile
 
-        import study
-
+        study = self.study
         with tempfile.TemporaryDirectory() as tmp:
             tmp = Path(tmp)
             shutil.copytree(RESULTS / "n16-floor1e-6", tmp / "n16-floor1e-6")
