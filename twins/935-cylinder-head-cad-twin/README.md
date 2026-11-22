@@ -2274,7 +2274,9 @@ so the 18.1% stands.
 [port_domain.py](source/port_domain.py) replaces, in a fluid domain only, the
 closure beyond the last scan section by rule H17: the convex hull of that
 section (guide boss taken out) and the fitted throat circle, then the fitted
-throat and seat, minus the fitted guide. The rule adds no length of its own.
+throat and seat, minus the fitted guide. The rule adds no port
+dimension of its own; its one setting is a 1 mm margin that finds the rays
+ending on the guide boss.
 
 | Port | Stations: scan / bowl (H17) / throat | Observed on each | All | Gate 1 | Gate 2, 95% | Gate 3 |
 |---|---|---|---|---|---|---|

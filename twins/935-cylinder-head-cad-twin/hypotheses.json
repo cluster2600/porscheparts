@@ -192,7 +192,7 @@
       "id": "H17-port-continuation-declared",
       "region": "each port between its last closed scan section and the fitted valve throat: the bend, the bowl and the guide boss in it",
       "status": "modelled_as_declared_rule_in_the_port_domain",
-      "how": "the convex hull of the last scan section, with the guide boss taken out of its outline, and the fitted throat circle at the top of the throat window; the fitted guide cylinder is cut from it (source/port_domain.py, params/port-domain.json). The rule adds no length or radius of its own. It lives in the port domain only, not in the v2 body",
+      "how": "the convex hull of the last scan section, with the guide boss taken out of its outline, and the fitted throat circle at the top of the throat window; the fitted guide cylinder is cut from it (source/port_domain.py, params/port-domain.json). The rule adds no port dimension of its own; its only setting is the 1 mm margin that picks the rays ending on the guide boss. It lives in the port domain only, not in the v2 body",
       "colour": "inferred_closure",
       "retire_with": "registered sections of the port bend and bowl from CT, moulds or a borescope survey (the evidence that retires H04)"
     }

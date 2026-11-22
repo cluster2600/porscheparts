@@ -10,8 +10,9 @@ before any number was read, and states what the result is made of:
      them (observed where an acquired facet lies within OBSERVED_MM);
   2. bowl (H17, declared): the convex hull of the last scan section, with the
      guide boss taken out of its outline, and the fitted throat circle at the
-     cam-side end of the throat window. The rule adds no length or radius of
-     its own: the hull is the smallest convex volume holding both outlines;
+     cam-side end of the throat window. The rule adds no port dimension of
+     its own: the hull is the smallest convex volume holding both outlines,
+     and its one setting is the BOSS_MARGIN_MM that finds the boss rays;
   3. throat (fitted): a tube about the valve's datum axis with the fitted
      throat diameter, widening along the fitted seat cone, from the top of
      the throat window down to the seat mid-band;
