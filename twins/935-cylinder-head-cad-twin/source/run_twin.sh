@@ -165,7 +165,7 @@ MEM=10G cap "$PY" -I "$HERE/support_design.py" orientations "$PRIV/print-occ-$ST
 # 3 mm lumps), one thread each; they can run side by side.
 BS="$PRIV/build-sim-$STAMP"; mkdir "$BS"
 "$PY" -I "$HERE/build_sim.py" witness "$BS/witness" "$PARAMS/build-sim-witness.json"
-for level in c4-l8 c4-l4 c4-l12 c3-l9 c3-l12 c3-l3 c2-l8 c4-l8-2-lasers c4-l8-4-lasers c4-l8-laid-supports; do
+for level in c4-l8 c4-l4 c4-l12 c3-l9 c3-l12 c3-l3 c2-l8 c2-l12 c2-l4 c1.5-l12 c4-l8-2-lasers c4-l8-4-lasers c4-l8-laid-supports; do
   MEM=8G cap "$PY" -I "$HERE/build_sim.py" prepare "$PRIV/print-occ-$STAMP" "$PARAMS/build-sim-case.json" "$level" "$BS/$level" "$SD"
   "$PY" -I "$HERE/build_sim.py" thermal "$BS/$level"
 done
@@ -205,7 +205,7 @@ for run in c4-l8-mumps-8p c4-l8-gamg-8p c4-l8-blr-4p; do
   "$PY" -I "$HERE/build_sim_dolfinx.py" compare "$BS/c4-l8" "$DX/$run" "$PARAMS/build-sim-dolfinx-acceptance.json" "$DX/compare-${run%-*}.json"
 done
 "$PY" -I "$HERE/build_sim_dolfinx.py" record "$DX" "$PARAMS/build-sim.json" "$PARAMS/build-sim-dolfinx-acceptance.json" \
-  "$PARAMS/build-sim-dolfinx.json"
+  "$PARAMS/build-sim-dolfinx.json" "$BS"
 # Software OpenGL in a sandbox without /dev/dxg, on purpose: with GALLIUM_DRIVER=d3d12 this render
 # took the WSL VM down twice (docs/LOCAL_HOST_SETUP.md, section 3).
 GALLIUM_DRIVER=llvmpipe LIBGL_ALWAYS_SOFTWARE=1 bwrap --dev-bind / / --dev /dev --proc /proc \
