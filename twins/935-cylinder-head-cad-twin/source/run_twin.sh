@@ -158,14 +158,15 @@ MEM=10G cap "$PY" -I "$HERE/support_design.py" orientations "$PRIV/print-occ-$ST
 "$PY" -I "$HERE/reference_sheet.py" "$PARAMS" "$PRIV/reference-sheet-$STAMP" "$PARAMS/reference-sheet.json" "$TWIN/media/reference-sheet.png"
 
 # Build screen in CalculiX (cadsim image, one thread): witnesses, then each level of
-# params/build-sim-case.json. A level's thermal run comes before its mechanical run; the 2 mm
-# level's mechanics runs in DOLFINx below. The level with "supports": "designed" takes the envelope of the layout
-# above ($SD). Solver time on this host: about 7.5 h of thermal runs (3.7 h for the 2 mm level)
-# and some 24 h of mechanics by the solver's own count (7.5 h for the level with 3 mm cells and
-# 3 mm lumps), one thread each; they can run side by side.
+# params/build-sim-case.json. A level's thermal run comes before its mechanical run; the 2 and
+# 1.5 mm levels' mechanics run in DOLFINx below. The level with "supports": "designed" takes the envelope of the layout
+# above ($SD). Solver time on this host: about 7.5 h of thermal runs for the 4 and 3 mm levels, then
+# 3.7, 1.6, 4.4 and 6.5 h for c2-l8, c2-l12, c2-l4 and c1.5-l12, and some 24 h of mechanics by the
+# solver's own count (7.5 h for the level with 3 mm cells and 3 mm lumps), one thread each; they can
+# run side by side.
 BS="$PRIV/build-sim-$STAMP"; mkdir "$BS"
 "$PY" -I "$HERE/build_sim.py" witness "$BS/witness" "$PARAMS/build-sim-witness.json"
-for level in c4-l8 c4-l4 c4-l12 c3-l9 c3-l12 c3-l3 c2-l8 c4-l8-2-lasers c4-l8-4-lasers c4-l8-laid-supports; do
+for level in c4-l8 c4-l4 c4-l12 c3-l9 c3-l12 c3-l3 c2-l8 c2-l12 c2-l4 c1.5-l12 c4-l8-2-lasers c4-l8-4-lasers c4-l8-laid-supports; do
   MEM=8G cap "$PY" -I "$HERE/build_sim.py" prepare "$PRIV/print-occ-$STAMP" "$PARAMS/build-sim-case.json" "$level" "$BS/$level" "$SD"
   "$PY" -I "$HERE/build_sim.py" thermal "$BS/$level"
 done
@@ -184,9 +185,12 @@ done
 
 # The same mechanics in DOLFINx (build_sim_dolfinx.py), on the run folders above: the bar
 # witnesses for each linear solver, the 4 mm level with each linear solver compared with
-# CalculiX against the limits written before the first run, then the 2 mm level. Wall time on
-# this host: 21 min (mumps, 8 processes), 64 min (gamg, 8), 8 min (blr, 4) for c4-l8; 4.0 h for
-# c2-l8 (blr, 4 processes) under an 18 GiB cap. compare and record need NumPy only.
+# CalculiX against the limits written before the first run, then the 2 and 1.5 mm levels. Wall time
+# on this host: 21 min (mumps, 8 processes), 64 min (gamg, 8), 8 min (blr, 4) for c4-l8; 4.0 h for
+# c2-l8 (blr, 4 processes) under an 18 GiB cap. c2-l12, c2-l4 and c1.5-l12 ran side by side on a
+# rented 44-core Xeon E5-2699 v4 (2.7, 5.3 and 6.5 h; largest resident memory 17, 20 and 54 GiB),
+# beyond this host's memory; record reads where.json beside such a run, written from that
+# machine's receipts, and the witness run there. compare and record need NumPy only.
 DFX_IMAGE=dolfinx/dolfinx@sha256:58b27e84a2f26b98ce2d9ccc537b0ee6a59e2fcfdf386626d5ed9ddf43425ece
 DX="$PRIV/build-sim-dolfinx-$STAMP"; mkdir -p "$DX/witness"
 dfx() {   # processes, memory cap, then the script's arguments; $BS is /bs and $DX is /work inside
@@ -201,11 +205,17 @@ dfx 8 12g mechanics /bs/c4-l8 /work/c4-l8-mumps-8p --solver mumps
 dfx 8 12g mechanics /bs/c4-l8 /work/c4-l8-gamg-8p --solver gamg
 dfx 4 12g mechanics /bs/c4-l8 /work/c4-l8-blr-4p --solver blr
 dfx 4 18g mechanics /bs/c2-l8 /work/c2-l8-blr-4p --solver blr
+# c2-l12, c2-l4 and c1.5-l12 need 17, 20 and 54 GiB and do not fit this host: they run on a rented machine
+# from the same image, script and run folders, with rented/run_remote.sh (the bar witness first, then
+# "run c2-l12 8", "run c2-l4 12" and "run c1.5-l12 16"). RENTED_DX names the copy of that machine's /root/dx;
+# rented/where_from_receipts.py turns it into run folders with where.json. The replay stops without it.
+"$PY" -I "$HERE/rented/where_from_receipts.py" "${RENTED_DX:?copy of /root/dx from the rented machine}" "$DX" "$DFX_IMAGE" \
+  c2-l12-blr-8p c2-l4-blr-12p c1.5-l12-blr-16p
 for run in c4-l8-mumps-8p c4-l8-gamg-8p c4-l8-blr-4p; do
   "$PY" -I "$HERE/build_sim_dolfinx.py" compare "$BS/c4-l8" "$DX/$run" "$PARAMS/build-sim-dolfinx-acceptance.json" "$DX/compare-${run%-*}.json"
 done
 "$PY" -I "$HERE/build_sim_dolfinx.py" record "$DX" "$PARAMS/build-sim.json" "$PARAMS/build-sim-dolfinx-acceptance.json" \
-  "$PARAMS/build-sim-dolfinx.json"
+  "$PARAMS/build-sim-dolfinx.json" "$BS"
 # Software OpenGL in a sandbox without /dev/dxg, on purpose: with GALLIUM_DRIVER=d3d12 this render
 # took the WSL VM down twice (docs/LOCAL_HOST_SETUP.md, section 3).
 GALLIUM_DRIVER=llvmpipe LIBGL_ALWAYS_SOFTWARE=1 bwrap --dev-bind / / --dev /dev --proc /proc \

@@ -1,0 +1,31 @@
+{
+ "written": "2026-11-21, before the levels c2-l12, c2-l4 and c1.5-l12 were prepared or run. The results of the ten earlier runs (params/build-sim.json, params/build-sim-dolfinx.json) were known when it was written.",
+ "issue": "#706",
+ "question": "At a fixed lump height, does the largest distortion after release stop changing as the cells shrink?",
+ "quantity": {
+  "decides": "largest distortion after release, rigid motion and uniform shrinkage removed (distortion_after_release_rigid_motion_and_uniform_shrinkage_removed_mm.largest)",
+  "reported_beside_it": ["median", "p95", "largest_at_build_coordinates_mm", "part volume and support cells of each level"]
+ },
+ "rows": {
+  "lumps_12_mm": ["c4-l12 (CalculiX)", "c3-l12 (CalculiX)", "c2-l12 (DOLFINx)", "c1.5-l12 (DOLFINx)"],
+  "lumps_8_mm": ["c4-l8 (CalculiX)", "c2-l8 (DOLFINx)"],
+  "lumps_4_mm": ["c4-l4 (CalculiX)", "c2-l4 (DOLFINx)"]
+ },
+ "rule": {
+  "change": "relative change of the largest value between successive cell sizes of a row: fine / coarse - 1",
+  "threshold": 0.05,
+  "settled": "the row has at least three cell sizes, the last two changes are both within the threshold, and the worst points of the two finest levels lie within 12 mm of each other (three cells of the coarsest level in the row)",
+  "not_settled": "any of the last two changes exceeds the threshold, or the worst points of the two finest levels lie more than 12 mm apart",
+  "undecided": "a row with two cell sizes whose one change is within the threshold: one pair cannot show that a value has stopped changing"
+ },
+ "threshold_basis": "Declared, not derived. It is above the 0.03 by which the two solvers were allowed to differ on the largest value (params/build-sim-dolfinx-acceptance.json), so a change within it is not taken for a settlement the solvers could not resolve, and below the 0.12 and 0.23 already seen between cell sizes.",
+ "two_solvers_in_one_row": "4 and 3 mm cells were solved in CalculiX, 2 and 1.5 mm cells in DOLFINx. On c4-l8 the two agree to every printed digit (params/build-sim-dolfinx.json), which is what allows them in one row. The DOLFINx levels use the blr linear solver, as c2-l8; the number of MPI processes is a run setting and is recorded.",
+ "geometry_changes_with_the_cell": "A cell is solid when at least half of its 0.25 mm voxels are inside, so each cell size makes a different solid: part volume 1,109,504 mm3 on 4 mm cells, 1,106,406 on 3 mm and 1,116,384 on 2 mm. The supports follow the same voxel rule. Each level reports its part volume and support cells, so that a change of geometry is visible beside a change of distortion; on the carrier's gyroid cell a convergence gate turned out to measure the solid fraction instead of the discretisation.",
+ "where_the_runs_run": "prepare and thermal on this host in the cadsim image (build_sim.py); mechanics in the pinned DOLFINx image, on a rented CPU machine for the levels this host cannot hold. The image digest, the script hash at launch and the machine are recorded with each run.",
+ "fixed": [
+  "The threshold, the rows and the 12 mm distance are not changed after a result is read.",
+  "No level is dropped from a row or added to one after its result is read.",
+  "A run that fails (non-zero exit, memory cap reached, host lost) is rerun unchanged and the failure is reported; it is never rerun with other settings because of its result."
+ ],
+ "what_a_settled_row_means": "The voxel model's worst corner stops moving with the cell size at that lump height. It says nothing about the 0.05 mm real layer, the print or the specimen, and it is not a compensation field."
+}

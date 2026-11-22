@@ -1513,6 +1513,79 @@ class BuildSimDolfinxTests(unittest.TestCase):
         self.assertFalse(verdicts["elsewhere"]["checks"]["same_node"])
         self.assertAlmostEqual(verdicts["near"]["node_by_node"]["released_u"]["largest_difference"], limit, places=3)
 
+    def test_the_cell_size_rule_gives_each_verdict_it_names_and_measures_in_twin_coordinates(self):
+        rule = json.loads((self.params / "build-sim-convergence-rule.json").read_text())
+        self.assertEqual(rule["rule"]["threshold"], 0.05)
+        origin = (0.0, 100.0, 0.0)
+        point = lambda at, o=origin: self.dx.twin_point(o, at)
+        # build (a, b, h) is twin (x, z, -y) from the origin mesh.npz keeps
+        self.assertEqual(point([1.0, 2.0, 3.0], (10.0, 100.0, 20.0)), [11.0, 97.0, 22.0])
+        value = lambda largest, at=(0.0, 0.0, 50.0), o=origin: {"largest": largest, "largest_at_twin_coordinates_mm": point(at, o)}
+        synthetic = {"rule": rule["rule"], "rows": {"three": ["a (X)", "b (X)", "c (X)"], "two": ["a (X)", "b (X)"], "short": ["a (X)", "z (X)"]}}
+        judge = lambda values: self.dx.judge_rows(synthetic, values)
+        settled = judge({"a": value(2.0), "b": value(2.08), "c": value(2.06, (5.0, 5.0, 50.0))})
+        self.assertEqual(settled["three"]["verdict"], "settled")
+        self.assertEqual([c["fine_over_coarse"] for c in settled["three"]["changes_of_the_largest"]], [0.04, -0.0096])
+        self.assertEqual(settled["three"]["worst_points_of_the_two_finest_apart_mm"], 7.1)
+        self.assertEqual(settled["two"]["verdict"], "undecided")               # one pair cannot show a value has stopped
+        self.assertIsNone(settled["short"]["verdict"])                         # a level not run: no verdict
+        self.assertEqual(settled["short"]["missing"], ["z"])
+        moving = judge({"a": value(2.0), "b": value(2.08), "c": value(2.20)})  # +5.8 % on the last change
+        self.assertEqual(moving["three"]["verdict"], "not_settled")
+        early = judge({"a": value(2.0), "b": value(1.80), "c": value(1.81)})   # -10 % is a change too
+        self.assertEqual(early["three"]["verdict"], "not_settled")
+        far = judge({"a": value(2.0), "b": value(2.0), "c": value(2.0, (0.0, 12.5, 50.0))})
+        self.assertEqual(far["three"]["verdict"], "not_settled")
+        self.assertEqual(far["two"]["verdict"], "undecided")
+        # 12 mm apart in build coordinates, 11 mm in the twin once the second level's origin is 1 mm further along x
+        shifted = judge({"a": value(2.0), "b": value(2.0), "c": value(2.0, (12.0, 0.0, 50.0), (-1.0, 100.0, 0.0))})
+        self.assertEqual(shifted["three"]["worst_points_of_the_two_finest_apart_mm"], 11.0)
+        self.assertEqual(shifted["three"]["verdict"], "settled")
+
+    def test_the_committed_rows_follow_from_their_numbers_and_the_rule_written_before_them(self):
+        import hashlib
+
+        rule_file = self.params / "build-sim-convergence-rule.json"
+        rule = json.loads(rule_file.read_text())
+        rec = json.loads((self.params / "build-sim-dolfinx.json").read_text())
+        ccx = json.loads((self.params / "build-sim.json").read_text())["levels"]
+        rows = rec["cell_size_rows"]
+        self.assertEqual(rows["rule_sha256"], hashlib.sha256(rule_file.read_bytes()).hexdigest())
+        self.assertEqual(set(rows["rows"]), set(rule["rows"]))
+        threshold = rule["rule"]["threshold"]
+        for name, row in rows["rows"].items():
+            levels = [lv["level"] for lv in row["levels"]]
+            self.assertEqual(levels, [e.split()[0] for e in rule["rows"][name]], name)
+            for lv in row["levels"]:
+                # the values are those of the committed runs, from either solver
+                source = rec["levels"][lv["level"]]["release"] if lv["solver"] == "DOLFINx" else ccx[lv["level"]]["mechanics"]["mechanics"]["release"]
+                self.assertEqual(lv["largest"], source[self.KEY]["largest"], lv["level"])
+                a, b, h = lv["largest_at_build_coordinates_mm"]
+                o = lv["build_origin_at_twin_coordinates_mm"]
+                self.assertEqual(lv["largest_at_twin_coordinates_mm"], [round(o[0] + a, 3), round(o[1] - h, 3), round(o[2] + b, 3)])
+            largest = [lv["largest"] for lv in row["levels"]]
+            changes = [f / c - 1.0 for c, f in zip(largest, largest[1:])]
+            self.assertEqual([c["fine_over_coarse"] for c in row["changes_of_the_largest"]], [round(c, 4) for c in changes])
+            p, q = (self.np.array(lv["largest_at_twin_coordinates_mm"]) for lv in row["levels"][-2:])
+            apart = float(self.np.linalg.norm(p - q))
+            self.assertAlmostEqual(row["worst_points_of_the_two_finest_apart_mm"], apart, places=1)
+            moving = any(abs(c) > threshold for c in changes[-2:]) or apart > 12.0
+            expected = "not_settled" if moving else ("settled" if len(levels) >= 3 else "undecided")
+            self.assertEqual(row["verdict"], expected, name)
+        # the README prints each verdict and keeps the worst corner unsettled
+        readme = " ".join((TWIN / "README.md").read_text().split())
+        self.assertIn("(params/build-sim-convergence-rule.json)", readme)
+        for name, row in rows["rows"].items():
+            mm = name.split("_")[1]
+            self.assertIn(f"| {mm} mm | ", readme)
+            self.assertIn(f"| {row['worst_points_of_the_two_finest_apart_mm']:g} mm apart | {row['verdict'].replace('_', ' ')} |", readme)
+        # a level run elsewhere than this host names its machine, the pinned image and a witness that passed there
+        for name, lv in rec["levels"].items():
+            if isinstance(lv["ran_on"], dict):
+                self.assertEqual(lv["ran_on"]["image"], self.dx.IMAGE, name)
+                self.assertTrue(lv["ran_on"]["witness_on_that_machine_passed"], name)
+                self.assertEqual(lv["ran_on"]["processes"], lv["processes"], name)
+
     def test_the_script_needs_no_dolfinx_to_compare_or_to_write_the_record(self):
         source = (SOURCE / "build_sim_dolfinx.py").read_text()
         head = source[:source.index("class Solid")]

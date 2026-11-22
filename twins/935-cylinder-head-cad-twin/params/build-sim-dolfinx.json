@@ -1,6 +1,6 @@
 {
  "schema": "935-cad-twin-build-sim-dolfinx-record/1",
- "date": "2026-11-16",
+ "date": "2026-11-22",
  "scope": "The mechanics of the build screen solved a second time, by a second program: the cells, the lumps, the temperatures at the end of each lump and the declared material are those of build_sim.py (params/build-sim-case.json, params/build-sim.json). Nothing here is a new hypothesis; only the solver changes, and with it the size of model this host can run.",
  "input_audit": {
   "geometry": "the print-body occupancy (params/print-body.json) cut into cells by build_sim.py prepare, flange y+ on the plate",
@@ -880,6 +880,757 @@
   "passed": true
  },
  "levels": {
+  "c1.5-l12": {
+   "cell_mm": 1.5,
+   "lump_height_mm": 12.0,
+   "tool": "DOLFINx 0.11.0.post0",
+   "processes": 16,
+   "linear_solver": "blr",
+   "temperature_increments_per_step": 2,
+   "wall_seconds": 23265.0,
+   "counts": {
+    "newton_iterations": 326,
+    "linear_iterations": 9892,
+    "increments": 41,
+    "line_searches": 66,
+    "factorisations": 183
+   },
+   "nodes": 601400,
+   "cells": 503573,
+   "unknowns": 1804200,
+   "stress_free_temperature_K": 836.15,
+   "yield_MPa_by_temperature_C": [
+    [
+     25,
+     322
+    ],
+    [
+     100,
+     298
+    ],
+    [
+     200,
+     236
+    ],
+    [
+     300,
+     143
+    ],
+    [
+     400,
+     25
+    ],
+    [
+     600,
+     25
+    ]
+   ],
+   "largest_displacement_during_the_build_by_lump": [
+    {
+     "lump": 0,
+     "largest_displacement_mm": 0.2075
+    },
+    {
+     "lump": 1,
+     "largest_displacement_mm": 0.4607
+    },
+    {
+     "lump": 2,
+     "largest_displacement_mm": 0.9122
+    },
+    {
+     "lump": 3,
+     "largest_displacement_mm": 1.4359
+    },
+    {
+     "lump": 4,
+     "largest_displacement_mm": 1.8265
+    },
+    {
+     "lump": 5,
+     "largest_displacement_mm": 2.0438
+    },
+    {
+     "lump": 6,
+     "largest_displacement_mm": 2.1285
+    },
+    {
+     "lump": 7,
+     "largest_displacement_mm": 2.1672
+    },
+    {
+     "lump": 8,
+     "largest_displacement_mm": 2.2048
+    },
+    {
+     "lump": 9,
+     "largest_displacement_mm": 2.2309
+    },
+    {
+     "lump": 10,
+     "largest_displacement_mm": 2.2268
+    },
+    {
+     "lump": 11,
+     "largest_displacement_mm": 2.212
+    },
+    {
+     "lump": 12,
+     "largest_displacement_mm": 2.206
+    },
+    {
+     "lump": 13,
+     "largest_displacement_mm": 2.2069
+    },
+    {
+     "lump": 14,
+     "largest_displacement_mm": 2.2015
+    },
+    {
+     "lump": 15,
+     "largest_displacement_mm": 2.1975
+    },
+    {
+     "lump": 16,
+     "largest_displacement_mm": 2.1961
+    },
+    {
+     "lump": 17,
+     "largest_displacement_mm": 2.1979
+    },
+    {
+     "lump": 18,
+     "largest_displacement_mm": 2.1984
+    }
+   ],
+   "states": {
+    "end_of_build_hot": {
+     "largest_displacement_mm": 2.1984,
+     "von_mises_MPa": {
+      "cell_mean_median": 206.1,
+      "cell_mean_p95": 282.4,
+      "integration_point_max": 318.3
+     },
+     "share_of_part_cells_within_5_percent_of_room_yield": 0.0,
+     "equivalent_plastic_strain": {
+      "median": 0.00129,
+      "p95": 0.0084,
+      "max": 0.06595
+     }
+    },
+    "room_temperature_on_plate": {
+     "largest_displacement_mm": 2.1332,
+     "von_mises_MPa": {
+      "cell_mean_median": 228.0,
+      "cell_mean_p95": 311.5,
+      "integration_point_max": 348.3
+     },
+     "share_of_part_cells_within_5_percent_of_room_yield": 0.1797,
+     "equivalent_plastic_strain": {
+      "median": 0.00129,
+      "p95": 0.0084,
+      "max": 0.06595
+     }
+    },
+    "released": {
+     "largest_displacement_mm": 2.9907,
+     "von_mises_MPa": {
+      "cell_mean_median": 222.3,
+      "cell_mean_p95": 316.0,
+      "integration_point_max": 354.2
+     },
+     "share_of_part_cells_within_5_percent_of_room_yield": 0.1159,
+     "equivalent_plastic_strain": {
+      "median": 0.0013,
+      "p95": 0.00844,
+      "max": 0.06595
+     }
+    }
+   },
+   "release": {
+    "held_nodes": [
+     117342,
+     200179,
+     211197
+    ],
+    "change_of_shape_at_release_largest_mm": 0.7676,
+    "best_fit_uniform_shrinkage": -0.006179,
+    "distortion_after_release_rigid_motion_and_uniform_shrinkage_removed_mm": {
+     "largest": 1.9251,
+     "p95": 0.8388,
+     "median": 0.3218,
+     "largest_at_build_coordinates_mm": [
+      10.5,
+      9.0,
+      60.0
+     ]
+    }
+   },
+   "script_sha256_at_launch": "e405f5c0b1bec7e4974f1889c01f3ba05047fc3b66a3ef12d192a14b6ace0532",
+   "ran_on": {
+    "machine": "a rented container instance (Vast.ai), the image pulled by digest",
+    "cpu": "Intel(R) Xeon(R) CPU E5-2699 v4 @ 2.20GHz",
+    "cpus_allowed": 42.24,
+    "memory_allowed_GiB": 341.9,
+    "image": "dolfinx/dolfinx@sha256:58b27e84a2f26b98ce2d9ccc537b0ee6a59e2fcfdf386626d5ed9ddf43425ece",
+    "tool_reported": "0.11.0.post0",
+    "processes": 16,
+    "started_utc": "2026-11-22T02:45:06Z",
+    "largest_resident_GiB_sampled_each_minute": 53.6,
+    "witness": "witness-vast-20261121/witness.json",
+    "witness_on_that_machine_passed": true
+   }
+  },
+  "c2-l12": {
+   "cell_mm": 2.0,
+   "lump_height_mm": 12.0,
+   "tool": "DOLFINx 0.11.0.post0",
+   "processes": 8,
+   "linear_solver": "blr",
+   "temperature_increments_per_step": 2,
+   "wall_seconds": 9850.5,
+   "counts": {
+    "newton_iterations": 245,
+    "linear_iterations": 6834,
+    "increments": 41,
+    "line_searches": 2,
+    "factorisations": 136
+   },
+   "nodes": 262998,
+   "cells": 213714,
+   "unknowns": 788994,
+   "stress_free_temperature_K": 836.15,
+   "yield_MPa_by_temperature_C": [
+    [
+     25,
+     322
+    ],
+    [
+     100,
+     298
+    ],
+    [
+     200,
+     236
+    ],
+    [
+     300,
+     143
+    ],
+    [
+     400,
+     25
+    ],
+    [
+     600,
+     25
+    ]
+   ],
+   "largest_displacement_during_the_build_by_lump": [
+    {
+     "lump": 0,
+     "largest_displacement_mm": 0.1918
+    },
+    {
+     "lump": 1,
+     "largest_displacement_mm": 0.4583
+    },
+    {
+     "lump": 2,
+     "largest_displacement_mm": 0.9168
+    },
+    {
+     "lump": 3,
+     "largest_displacement_mm": 1.4031
+    },
+    {
+     "lump": 4,
+     "largest_displacement_mm": 1.7696
+    },
+    {
+     "lump": 5,
+     "largest_displacement_mm": 1.9698
+    },
+    {
+     "lump": 6,
+     "largest_displacement_mm": 2.0443
+    },
+    {
+     "lump": 7,
+     "largest_displacement_mm": 2.0792
+    },
+    {
+     "lump": 8,
+     "largest_displacement_mm": 2.1361
+    },
+    {
+     "lump": 9,
+     "largest_displacement_mm": 2.1585
+    },
+    {
+     "lump": 10,
+     "largest_displacement_mm": 2.1602
+    },
+    {
+     "lump": 11,
+     "largest_displacement_mm": 2.1439
+    },
+    {
+     "lump": 12,
+     "largest_displacement_mm": 2.135
+    },
+    {
+     "lump": 13,
+     "largest_displacement_mm": 2.1351
+    },
+    {
+     "lump": 14,
+     "largest_displacement_mm": 2.1296
+    },
+    {
+     "lump": 15,
+     "largest_displacement_mm": 2.1258
+    },
+    {
+     "lump": 16,
+     "largest_displacement_mm": 2.1246
+    },
+    {
+     "lump": 17,
+     "largest_displacement_mm": 2.1265
+    },
+    {
+     "lump": 18,
+     "largest_displacement_mm": 2.1271
+    }
+   ],
+   "states": {
+    "end_of_build_hot": {
+     "largest_displacement_mm": 2.1271,
+     "von_mises_MPa": {
+      "cell_mean_median": 206.6,
+      "cell_mean_p95": 282.8,
+      "integration_point_max": 312.7
+     },
+     "share_of_part_cells_within_5_percent_of_room_yield": 0.0,
+     "equivalent_plastic_strain": {
+      "median": 0.00123,
+      "p95": 0.00794,
+      "max": 0.05074
+     }
+    },
+    "room_temperature_on_plate": {
+     "largest_displacement_mm": 2.1181,
+     "von_mises_MPa": {
+      "cell_mean_median": 228.2,
+      "cell_mean_p95": 311.3,
+      "integration_point_max": 339.7
+     },
+     "share_of_part_cells_within_5_percent_of_room_yield": 0.1774,
+     "equivalent_plastic_strain": {
+      "median": 0.00123,
+      "p95": 0.00794,
+      "max": 0.05074
+     }
+    },
+    "released": {
+     "largest_displacement_mm": 3.0715,
+     "von_mises_MPa": {
+      "cell_mean_median": 221.9,
+      "cell_mean_p95": 316.0,
+      "integration_point_max": 347.5
+     },
+     "share_of_part_cells_within_5_percent_of_room_yield": 0.111,
+     "equivalent_plastic_strain": {
+      "median": 0.00124,
+      "p95": 0.00798,
+      "max": 0.05074
+     }
+    }
+   },
+   "release": {
+    "held_nodes": [
+     49332,
+     88773,
+     90700
+    ],
+    "change_of_shape_at_release_largest_mm": 0.8131,
+    "best_fit_uniform_shrinkage": -0.006157,
+    "distortion_after_release_rigid_motion_and_uniform_shrinkage_removed_mm": {
+     "largest": 1.8492,
+     "p95": 0.8369,
+     "median": 0.3236,
+     "largest_at_build_coordinates_mm": [
+      10.0,
+      8.0,
+      60.0
+     ]
+    }
+   },
+   "script_sha256_at_launch": "e405f5c0b1bec7e4974f1889c01f3ba05047fc3b66a3ef12d192a14b6ace0532",
+   "ran_on": {
+    "machine": "a rented container instance (Vast.ai), the image pulled by digest",
+    "cpu": "Intel(R) Xeon(R) CPU E5-2699 v4 @ 2.20GHz",
+    "cpus_allowed": 42.24,
+    "memory_allowed_GiB": 341.9,
+    "image": "dolfinx/dolfinx@sha256:58b27e84a2f26b98ce2d9ccc537b0ee6a59e2fcfdf386626d5ed9ddf43425ece",
+    "tool_reported": "0.11.0.post0",
+    "processes": 8,
+    "started_utc": "2026-11-22T02:45:06Z",
+    "largest_resident_GiB_sampled_each_minute": 17.2,
+    "witness": "witness-vast-20261121/witness.json",
+    "witness_on_that_machine_passed": true
+   }
+  },
+  "c2-l4": {
+   "cell_mm": 2.0,
+   "lump_height_mm": 4.0,
+   "tool": "DOLFINx 0.11.0.post0",
+   "processes": 12,
+   "linear_solver": "blr",
+   "temperature_increments_per_step": 2,
+   "wall_seconds": 19059.0,
+   "counts": {
+    "newton_iterations": 651,
+    "linear_iterations": 16697,
+    "increments": 115,
+    "line_searches": 0,
+    "factorisations": 359
+   },
+   "nodes": 262998,
+   "cells": 213714,
+   "unknowns": 788994,
+   "stress_free_temperature_K": 836.15,
+   "yield_MPa_by_temperature_C": [
+    [
+     25,
+     322
+    ],
+    [
+     100,
+     298
+    ],
+    [
+     200,
+     236
+    ],
+    [
+     300,
+     143
+    ],
+    [
+     400,
+     25
+    ],
+    [
+     600,
+     25
+    ]
+   ],
+   "largest_displacement_during_the_build_by_lump": [
+    {
+     "lump": 0,
+     "largest_displacement_mm": 0.1106
+    },
+    {
+     "lump": 1,
+     "largest_displacement_mm": 0.163
+    },
+    {
+     "lump": 2,
+     "largest_displacement_mm": 0.2677
+    },
+    {
+     "lump": 3,
+     "largest_displacement_mm": 0.3423
+    },
+    {
+     "lump": 4,
+     "largest_displacement_mm": 0.6279
+    },
+    {
+     "lump": 5,
+     "largest_displacement_mm": 0.8942
+    },
+    {
+     "lump": 6,
+     "largest_displacement_mm": 1.1288
+    },
+    {
+     "lump": 7,
+     "largest_displacement_mm": 1.3072
+    },
+    {
+     "lump": 8,
+     "largest_displacement_mm": 1.4672
+    },
+    {
+     "lump": 9,
+     "largest_displacement_mm": 1.5781
+    },
+    {
+     "lump": 10,
+     "largest_displacement_mm": 1.6464
+    },
+    {
+     "lump": 11,
+     "largest_displacement_mm": 1.7333
+    },
+    {
+     "lump": 12,
+     "largest_displacement_mm": 1.835
+    },
+    {
+     "lump": 13,
+     "largest_displacement_mm": 2.1289
+    },
+    {
+     "lump": 14,
+     "largest_displacement_mm": 2.4107
+    },
+    {
+     "lump": 15,
+     "largest_displacement_mm": 2.6
+    },
+    {
+     "lump": 16,
+     "largest_displacement_mm": 2.7303
+    },
+    {
+     "lump": 17,
+     "largest_displacement_mm": 2.8169
+    },
+    {
+     "lump": 18,
+     "largest_displacement_mm": 2.8629
+    },
+    {
+     "lump": 19,
+     "largest_displacement_mm": 2.8979
+    },
+    {
+     "lump": 20,
+     "largest_displacement_mm": 2.9308
+    },
+    {
+     "lump": 21,
+     "largest_displacement_mm": 2.9818
+    },
+    {
+     "lump": 22,
+     "largest_displacement_mm": 3.0211
+    },
+    {
+     "lump": 23,
+     "largest_displacement_mm": 3.0542
+    },
+    {
+     "lump": 24,
+     "largest_displacement_mm": 3.0837
+    },
+    {
+     "lump": 25,
+     "largest_displacement_mm": 3.1107
+    },
+    {
+     "lump": 26,
+     "largest_displacement_mm": 3.1298
+    },
+    {
+     "lump": 27,
+     "largest_displacement_mm": 3.1391
+    },
+    {
+     "lump": 28,
+     "largest_displacement_mm": 3.1447
+    },
+    {
+     "lump": 29,
+     "largest_displacement_mm": 3.1496
+    },
+    {
+     "lump": 30,
+     "largest_displacement_mm": 3.1533
+    },
+    {
+     "lump": 31,
+     "largest_displacement_mm": 3.1544
+    },
+    {
+     "lump": 32,
+     "largest_displacement_mm": 3.1509
+    },
+    {
+     "lump": 33,
+     "largest_displacement_mm": 3.1482
+    },
+    {
+     "lump": 34,
+     "largest_displacement_mm": 3.1452
+    },
+    {
+     "lump": 35,
+     "largest_displacement_mm": 3.1425
+    },
+    {
+     "lump": 36,
+     "largest_displacement_mm": 3.1405
+    },
+    {
+     "lump": 37,
+     "largest_displacement_mm": 3.1394
+    },
+    {
+     "lump": 38,
+     "largest_displacement_mm": 3.1389
+    },
+    {
+     "lump": 39,
+     "largest_displacement_mm": 3.1379
+    },
+    {
+     "lump": 40,
+     "largest_displacement_mm": 3.1381
+    },
+    {
+     "lump": 41,
+     "largest_displacement_mm": 3.1381
+    },
+    {
+     "lump": 42,
+     "largest_displacement_mm": 3.1377
+    },
+    {
+     "lump": 43,
+     "largest_displacement_mm": 3.1366
+    },
+    {
+     "lump": 44,
+     "largest_displacement_mm": 3.1357
+    },
+    {
+     "lump": 45,
+     "largest_displacement_mm": 3.1348
+    },
+    {
+     "lump": 46,
+     "largest_displacement_mm": 3.134
+    },
+    {
+     "lump": 47,
+     "largest_displacement_mm": 3.1331
+    },
+    {
+     "lump": 48,
+     "largest_displacement_mm": 3.1321
+    },
+    {
+     "lump": 49,
+     "largest_displacement_mm": 3.1311
+    },
+    {
+     "lump": 50,
+     "largest_displacement_mm": 3.1305
+    },
+    {
+     "lump": 51,
+     "largest_displacement_mm": 3.1302
+    },
+    {
+     "lump": 52,
+     "largest_displacement_mm": 3.1301
+    },
+    {
+     "lump": 53,
+     "largest_displacement_mm": 3.13
+    },
+    {
+     "lump": 54,
+     "largest_displacement_mm": 3.13
+    },
+    {
+     "lump": 55,
+     "largest_displacement_mm": 3.1301
+    }
+   ],
+   "states": {
+    "end_of_build_hot": {
+     "largest_displacement_mm": 3.1301,
+     "von_mises_MPa": {
+      "cell_mean_median": 209.5,
+      "cell_mean_p95": 284.7,
+      "integration_point_max": 334.5
+     },
+     "share_of_part_cells_within_5_percent_of_room_yield": 0.0003,
+     "equivalent_plastic_strain": {
+      "median": 0.00355,
+      "p95": 0.01134,
+      "max": 0.07137
+     }
+    },
+    "room_temperature_on_plate": {
+     "largest_displacement_mm": 2.9979,
+     "von_mises_MPa": {
+      "cell_mean_median": 231.3,
+      "cell_mean_p95": 313.5,
+      "integration_point_max": 363.2
+     },
+     "share_of_part_cells_within_5_percent_of_room_yield": 0.1811,
+     "equivalent_plastic_strain": {
+      "median": 0.00355,
+      "p95": 0.01134,
+      "max": 0.07137
+     }
+    },
+    "released": {
+     "largest_displacement_mm": 3.7617,
+     "von_mises_MPa": {
+      "cell_mean_median": 221.8,
+      "cell_mean_p95": 319.7,
+      "integration_point_max": 363.5
+     },
+     "share_of_part_cells_within_5_percent_of_room_yield": 0.1181,
+     "equivalent_plastic_strain": {
+      "median": 0.00358,
+      "p95": 0.01141,
+      "max": 0.07137
+     }
+    }
+   },
+   "release": {
+    "held_nodes": [
+     49332,
+     88773,
+     90700
+    ],
+    "change_of_shape_at_release_largest_mm": 0.9382,
+    "best_fit_uniform_shrinkage": -0.005327,
+    "distortion_after_release_rigid_motion_and_uniform_shrinkage_removed_mm": {
+     "largest": 2.8703,
+     "p95": 0.8307,
+     "median": 0.2468,
+     "largest_at_build_coordinates_mm": [
+      10.0,
+      12.0,
+      40.0
+     ]
+    }
+   },
+   "script_sha256_at_launch": "e405f5c0b1bec7e4974f1889c01f3ba05047fc3b66a3ef12d192a14b6ace0532",
+   "ran_on": {
+    "machine": "a rented container instance (Vast.ai), the image pulled by digest",
+    "cpu": "Intel(R) Xeon(R) CPU E5-2699 v4 @ 2.20GHz",
+    "cpus_allowed": 42.24,
+    "memory_allowed_GiB": 341.9,
+    "image": "dolfinx/dolfinx@sha256:58b27e84a2f26b98ce2d9ccc537b0ee6a59e2fcfdf386626d5ed9ddf43425ece",
+    "tool_reported": "0.11.0.post0",
+    "processes": 12,
+    "started_utc": "2026-11-22T02:45:06Z",
+    "largest_resident_GiB_sampled_each_minute": 19.7,
+    "witness": "witness-vast-20261121/witness.json",
+    "witness_on_that_machine_passed": true
+   }
+  },
   "c2-l8": {
    "cell_mm": 2.0,
    "lump_height_mm": 8.0,
@@ -1101,7 +1852,9 @@
       48.0
      ]
     }
-   }
+   },
+   "script_sha256_at_launch": "4354cc9e99aea6c09356ae3ee67c115b7dcb9eb3fa9b73937dadd135482541cb",
+   "ran_on": "this host (WSL2), the image run by docker"
   }
  },
  "cell_size_at_the_same_lump_height": [
@@ -1141,5 +1894,271 @@
    "distance_between_the_two_largest_points_mm": 9.2
   }
  ],
+ "cell_size_rows": {
+  "rule_file": "params/build-sim-convergence-rule.json",
+  "rule_sha256": "ccb8c414420b1589414297cc596d35d5f2fe5e163b1aa3b56408802cca63cd85",
+  "threshold": 0.05,
+  "worst_points_apart_mm": 12.0,
+  "reading": "a change is within the threshold when its size is, either sign; the distance between worst points is taken in twin coordinates, because each level's build coordinates start at its own footprint corner",
+  "rows": {
+   "lumps_12_mm": {
+    "levels": [
+     {
+      "level": "c4-l12",
+      "cell_mm": 4.0,
+      "solver": "CalculiX",
+      "median": 0.3312,
+      "p95": 0.8659,
+      "largest": 1.7143,
+      "largest_at_build_coordinates_mm": [
+       8.0,
+       8.0,
+       60.0
+      ],
+      "build_origin_at_twin_coordinates_mm": [
+       -71.125,
+       119.125,
+       -9.125
+      ],
+      "largest_at_twin_coordinates_mm": [
+       -63.125,
+       59.125,
+       -1.125
+      ],
+      "part_volume_mm3": 1109504.0,
+      "support_cells": 3550,
+      "support_envelope_mm3": 227200.0
+     },
+     {
+      "level": "c3-l12",
+      "cell_mm": 3.0,
+      "solver": "CalculiX",
+      "median": 0.3258,
+      "p95": 0.8558,
+      "largest": 1.7366,
+      "largest_at_build_coordinates_mm": [
+       126.0,
+       9.0,
+       60.0
+      ],
+      "build_origin_at_twin_coordinates_mm": [
+       -72.125,
+       119.125,
+       -10.125
+      ],
+      "largest_at_twin_coordinates_mm": [
+       53.875,
+       59.125,
+       -1.125
+      ],
+      "part_volume_mm3": 1106406.0,
+      "support_cells": 8744,
+      "support_envelope_mm3": 236088.0
+     },
+     {
+      "level": "c2-l12",
+      "cell_mm": 2.0,
+      "solver": "DOLFINx",
+      "median": 0.3236,
+      "p95": 0.8369,
+      "largest": 1.8492,
+      "largest_at_build_coordinates_mm": [
+       10.0,
+       8.0,
+       60.0
+      ],
+      "build_origin_at_twin_coordinates_mm": [
+       -71.125,
+       119.125,
+       -9.125
+      ],
+      "largest_at_twin_coordinates_mm": [
+       -61.125,
+       59.125,
+       -1.125
+      ],
+      "part_volume_mm3": 1116384.0,
+      "support_cells": 29142,
+      "support_envelope_mm3": 233136.0
+     },
+     {
+      "level": "c1.5-l12",
+      "cell_mm": 1.5,
+      "solver": "DOLFINx",
+      "median": 0.3218,
+      "p95": 0.8388,
+      "largest": 1.9251,
+      "largest_at_build_coordinates_mm": [
+       10.5,
+       9.0,
+       60.0
+      ],
+      "build_origin_at_twin_coordinates_mm": [
+       -72.125,
+       119.125,
+       -10.125
+      ],
+      "largest_at_twin_coordinates_mm": [
+       -61.625,
+       59.125,
+       -1.125
+      ],
+      "part_volume_mm3": 1113625.125,
+      "support_cells": 64170,
+      "support_envelope_mm3": 216573.75
+     }
+    ],
+    "changes_of_the_largest": [
+     {
+      "from": "c4-l12",
+      "to": "c3-l12",
+      "fine_over_coarse": 0.013
+     },
+     {
+      "from": "c3-l12",
+      "to": "c2-l12",
+      "fine_over_coarse": 0.0648
+     },
+     {
+      "from": "c2-l12",
+      "to": "c1.5-l12",
+      "fine_over_coarse": 0.041
+     }
+    ],
+    "worst_points_of_the_two_finest_apart_mm": 0.5,
+    "verdict": "not_settled"
+   },
+   "lumps_8_mm": {
+    "levels": [
+     {
+      "level": "c4-l8",
+      "cell_mm": 4.0,
+      "solver": "CalculiX",
+      "median": 0.2974,
+      "p95": 0.8691,
+      "largest": 1.9343,
+      "largest_at_build_coordinates_mm": [
+       8.0,
+       8.0,
+       56.0
+      ],
+      "build_origin_at_twin_coordinates_mm": [
+       -71.125,
+       119.125,
+       -9.125
+      ],
+      "largest_at_twin_coordinates_mm": [
+       -63.125,
+       63.125,
+       -1.125
+      ],
+      "part_volume_mm3": 1109504.0,
+      "support_cells": 3550,
+      "support_envelope_mm3": 227200.0
+     },
+     {
+      "level": "c2-l8",
+      "cell_mm": 2.0,
+      "solver": "DOLFINx",
+      "median": 0.2997,
+      "p95": 0.9033,
+      "largest": 2.3784,
+      "largest_at_build_coordinates_mm": [
+       10.0,
+       12.0,
+       48.0
+      ],
+      "build_origin_at_twin_coordinates_mm": [
+       -71.125,
+       119.125,
+       -9.125
+      ],
+      "largest_at_twin_coordinates_mm": [
+       -61.125,
+       71.125,
+       2.875
+      ],
+      "part_volume_mm3": 1116384.0,
+      "support_cells": 29142,
+      "support_envelope_mm3": 233136.0
+     }
+    ],
+    "changes_of_the_largest": [
+     {
+      "from": "c4-l8",
+      "to": "c2-l8",
+      "fine_over_coarse": 0.2296
+     }
+    ],
+    "worst_points_of_the_two_finest_apart_mm": 9.2,
+    "verdict": "not_settled"
+   },
+   "lumps_4_mm": {
+    "levels": [
+     {
+      "level": "c4-l4",
+      "cell_mm": 4.0,
+      "solver": "CalculiX",
+      "median": 0.2409,
+      "p95": 0.7506,
+      "largest": 1.619,
+      "largest_at_build_coordinates_mm": [
+       124.0,
+       12.0,
+       44.0
+      ],
+      "build_origin_at_twin_coordinates_mm": [
+       -71.125,
+       119.125,
+       -9.125
+      ],
+      "largest_at_twin_coordinates_mm": [
+       52.875,
+       75.125,
+       2.875
+      ],
+      "part_volume_mm3": 1109504.0,
+      "support_cells": 3550,
+      "support_envelope_mm3": 227200.0
+     },
+     {
+      "level": "c2-l4",
+      "cell_mm": 2.0,
+      "solver": "DOLFINx",
+      "median": 0.2468,
+      "p95": 0.8307,
+      "largest": 2.8703,
+      "largest_at_build_coordinates_mm": [
+       10.0,
+       12.0,
+       40.0
+      ],
+      "build_origin_at_twin_coordinates_mm": [
+       -71.125,
+       119.125,
+       -9.125
+      ],
+      "largest_at_twin_coordinates_mm": [
+       -61.125,
+       79.125,
+       2.875
+      ],
+      "part_volume_mm3": 1116384.0,
+      "support_cells": 29142,
+      "support_envelope_mm3": 233136.0
+     }
+    ],
+    "changes_of_the_largest": [
+     {
+      "from": "c4-l4",
+      "to": "c2-l4",
+      "fine_over_coarse": 0.7729
+     }
+    ],
+    "worst_points_of_the_two_finest_apart_mm": 114.1,
+    "verdict": "not_settled"
+   }
+  }
+ },
  "claims": "a second solver reproduces the screen's numbers on the level both ran, and runs one level the first could not on this host. The hypotheses, gates and limits of params/build-sim.json apply unchanged: voxel cells, lumps of many layers, a declared yield curve and stress-free temperature, no measured distortion. Agreement of two solvers on one model says the equations are solved, not that the model is the print."
 }

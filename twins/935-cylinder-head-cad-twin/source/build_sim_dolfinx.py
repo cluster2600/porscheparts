@@ -26,7 +26,7 @@ need NumPy only):
   build_sim_dolfinx.py witness OUT.json
   build_sim_dolfinx.py mechanics RUN_DIR OUT_DIR [--solver mumps|blr|gamg] [--increments N]
   build_sim_dolfinx.py compare CCX_RUN_DIR DOLFINX_DIR ACCEPTANCE.json OUT.json
-  build_sim_dolfinx.py record PRIVATE_DIR CCX_RECORD.json ACCEPTANCE.json OUT.json
+  build_sim_dolfinx.py record PRIVATE_DIR CCX_RECORD.json ACCEPTANCE.json OUT.json BUILD_SIM_DIR
 
 This is a screen under declared hypotheses. It qualifies no process, support scheme,
 orientation, material or part.
@@ -52,6 +52,8 @@ KEPT = []                      # solids of earlier witnesses, kept until exit so
                                # PETSc object at a different moment on each process (a precaution, not a diagnosed fault)
 BLR_MAX_ITERATIONS = 60        # of the conjugate-gradient loop on a kept factorisation, before it is made again
 BLR_REFACTOR_ABOVE = 25        # iterations of one solve above which the next solve starts from a new factorisation
+CONVERGENCE_RULE = "build-sim-convergence-rule.json"   # written before the 2 and 1.5 mm rows ran (#706)
+WORST_POINTS_APART_MM = 12.0   # the distance that rule writes into its "settled" and "not_settled" texts
 
 
 class Solid:
@@ -664,8 +666,67 @@ def compare(ccx_run_dir, dolfinx_dir, acceptance_file, out) -> None:
 # record: what goes into the repository (numpy only)
 
 
-def record(private_dir, ccx_record_file, acceptance_file, out) -> None:
-    """Witness, the comparisons on the level both solvers ran, and the levels only this solver ran."""
+def twin_point(origin, at):
+    """Build coordinates (a, b, h) of one level -> twin coordinates (x, y, z).
+
+    build_sim.py prepare anchors each level's build coordinates at its own footprint corner less its plate
+    margin, so two cell sizes can disagree by a millimetre there; mesh.npz keeps the twin point of the build
+    origin (to_twin), and the build axes are twin x, twin z and the height down twin y."""
+    a, b, h = at
+    return [round(float(origin[0] + a), 3), round(float(origin[1] - h), 3), round(float(origin[2] + b), 3)]
+
+
+def judge_rows(rule, values) -> dict:
+    """Apply the cell-size rule written before the runs to each of its rows.
+
+    values maps a level to its largest distortion after release and the twin point where it sits. "Within the
+    threshold" is read as the size of the change, either sign. A row with a level missing gets no verdict."""
+    threshold = float(rule["rule"]["threshold"])
+    assert f"within {WORST_POINTS_APART_MM:g} mm" in rule["rule"]["settled"]
+    assert f"more than {WORST_POINTS_APART_MM:g} mm apart" in rule["rule"]["not_settled"]
+    rows = {}
+    for row, entries in rule["rows"].items():
+        names = [e.split()[0] for e in entries]
+        missing = [n for n in names if n not in values]
+        if missing:
+            rows[row] = {"levels": names, "missing": missing, "verdict": None}
+            continue
+        largest = [values[n]["largest"] for n in names]
+        changes = [f / c - 1.0 for c, f in zip(largest, largest[1:])]
+        apart = float(np.linalg.norm(np.subtract(values[names[-1]]["largest_at_twin_coordinates_mm"],
+                                                 values[names[-2]]["largest_at_twin_coordinates_mm"])))
+        if any(abs(c) > threshold for c in changes[-2:]) or apart > WORST_POINTS_APART_MM:
+            verdict = "not_settled"
+        elif len(names) >= 3:
+            verdict = "settled"
+        else:
+            verdict = "undecided"
+        rows[row] = {"levels": [{"level": n, **values[n]} for n in names],
+                     "changes_of_the_largest": [{"from": a, "to": b, "fine_over_coarse": round(c, 4)}
+                                                for a, b, c in zip(names, names[1:], changes)],
+                     "worst_points_of_the_two_finest_apart_mm": round(apart, 1), "verdict": verdict}
+    return rows
+
+
+def where_it_ran(run_dir: Path) -> dict:
+    """The machine of a DOLFINx run. A run made elsewhere than this host has where.json beside its
+    mechanics.json, written from the receipts the rented machine made, and the witness run on that machine."""
+    launch = run_dir.parent / f"{run_dir.name}.script.sha256"
+    out = {"script_sha256_at_launch": launch.read_text().split()[0]} if launch.exists() else {}
+    f = run_dir / "where.json"
+    if not f.exists():
+        return {**out, "ran_on": "this host (WSL2), the image run by docker"}
+    w = json.loads(f.read_text())
+    wit = json.loads((run_dir.parent / w["witness"]).read_text())
+    assert w["image"] == IMAGE and wit["passed"], run_dir
+    return {**out, "ran_on": {**w, "witness_on_that_machine_passed": wit["passed"]}}
+
+
+def record(private_dir, ccx_record_file, acceptance_file, out, build_dir) -> None:
+    """Witness, the comparisons on the level both solvers ran, the levels only this solver ran, and the
+    verdict of the cell-size rule on each of its rows."""
+
+    import hashlib
 
     d = Path(private_dir)
     ccx = json.loads(Path(ccx_record_file).read_text())
@@ -686,8 +747,35 @@ def record(private_dir, ccx_record_file, acceptance_file, out) -> None:
         assert m["level"] not in levels and m["linear_solver"] == "blr"
         model = ccx["levels"][m["level"]]["model"]
         assert model["nodes"] == m["nodes"] and sum(model["hexahedra"].values()) == m["cells"]
-        levels[m["level"]] = {"cell_mm": model["cell_mm"], "lump_height_mm": model["lump_height_mm"], **{k: v for k, v in m.items() if k not in ("schema", "date", "level")}}
+        levels[m["level"]] = {"cell_mm": model["cell_mm"], "lump_height_mm": model["lump_height_mm"],
+                              **{k: v for k, v in m.items() if k not in ("schema", "date", "level")}, **where_it_ran(run.parent)}
     params = Path(ccx_record_file).parent                          # the upstream audits of the geometry sit beside it
+    rule_file = params / CONVERGENCE_RULE
+    rule = json.loads(rule_file.read_text())
+    values = {}
+    for entry in (e for row in rule["rows"].values() for e in row):
+        name, solver = entry.split()[0], entry.split("(")[1].rstrip(")")
+        if name in levels:
+            release = levels[name]["release"][key]
+        elif ccx["levels"].get(name, {}).get("mechanics"):
+            release = ccx["levels"][name]["mechanics"]["mechanics"]["release"][key]
+        else:
+            continue                                               # not run yet: its row gets no verdict
+        assert solver == ("DOLFINx" if name in levels else "CalculiX"), entry
+        model = ccx["levels"][name]["model"]
+        origin = np.load(Path(build_dir) / name / "mesh.npz")["to_twin"]
+        values[name] = {"cell_mm": model["cell_mm"], "solver": solver, **{q: release[q] for q in ("median", "p95", "largest")},
+                        "largest_at_build_coordinates_mm": release["largest_at_build_coordinates_mm"],
+                        "build_origin_at_twin_coordinates_mm": [round(float(v), 3) for v in origin],
+                        "largest_at_twin_coordinates_mm": twin_point(origin, release["largest_at_build_coordinates_mm"]),
+                        "part_volume_mm3": model["part_volume_mm3"], "support_cells": model["hexahedra"]["support"],
+                        "support_envelope_mm3": model["support_envelope_mm3"]}
+    convergence = {
+        "rule_file": f"params/{CONVERGENCE_RULE}", "rule_sha256": hashlib.sha256(rule_file.read_bytes()).hexdigest(),
+        "threshold": rule["rule"]["threshold"], "worst_points_apart_mm": WORST_POINTS_APART_MM,
+        "reading": ("a change is within the threshold when its size is, either sign; the distance between worst points is taken "
+                    "in twin coordinates, because each level's build coordinates start at its own footprint corner"),
+        "rows": judge_rows(rule, values)}
     body = json.loads((params / "print-body.json").read_text())
     score = json.loads((params / INPUT_SCORECARD).read_text())
     observed = score["twin_area_observed_supported_share"]
@@ -740,6 +828,7 @@ def record(private_dir, ccx_record_file, acceptance_file, out) -> None:
                                      "passed": bool(all(c["passed"] for c in comparisons.values()))},
         "levels": levels,
         "cell_size_at_the_same_lump_height": cell_size,
+        "cell_size_rows": convergence,
         "claims": ("a second solver reproduces the screen's numbers on the level both ran, and runs one level the first could not on this host. The "
                    "hypotheses, gates and limits of params/build-sim.json apply unchanged: voxel cells, lumps of many layers, a declared yield curve "
                    "and stress-free temperature, no measured distortion. Agreement of two solvers on one model says the equations are solved, not "
@@ -748,7 +837,9 @@ def record(private_dir, ccx_record_file, acceptance_file, out) -> None:
     assert wit["passed"] and report["comparison_with_calculix"]["passed"]
     Path(out).write_text(json.dumps(report, indent=1) + "\n")
     print(json.dumps({"levels": list(levels), "comparison_passed": report["comparison_with_calculix"]["passed"],
-                      "cell_size": [(r["fine"]["level"], r["fine_over_coarse"]) for r in cell_size]}))
+                      "cell_size": [(r["fine"]["level"], r["fine_over_coarse"]) for r in cell_size],
+                      "rows": {k: (r["verdict"], [c["fine_over_coarse"] for c in r.get("changes_of_the_largest", [])],
+                                   r.get("worst_points_of_the_two_finest_apart_mm")) for k, r in convergence["rows"].items()}}))
 
 
 if __name__ == "__main__":
