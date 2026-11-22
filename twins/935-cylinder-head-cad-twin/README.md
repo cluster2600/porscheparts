@@ -201,6 +201,7 @@ process values, with every qualification gate closed.*
 | Build screen mechanics, second solver | DOLFINx 0.11.0 with PETSc and MUMPS, in the `dolfinx/dolfinx` image pinned by digest, 4 to 16 MPI processes, on this host or a rented machine | [build_sim_dolfinx.py](source/build_sim_dolfinx.py) |
 | Support layout by declared rules | NumPy and SciPy on the 0.25 mm occupancy: overhang normals, air columns, labelled bodies, lines of sight | [support_design.py](source/support_design.py), [render_support_design.py](source/render_support_design.py) |
 | Drawings, assigned in [TOOLCHAIN.md](../../docs/TOOLCHAIN.md) (#708) | build123d projection and DXF export, ezdxf dimensions and title block, read back with ezdxf; witnessed on a known solid with five planted faults | [drawing_witness.py](source/drawing_witness.py) |
+| Valve-train dynamics, assigned in [TOOLCHAIN.md](../../docs/TOOLCHAIN.md) (#699) | MuJoCo 3.9.0 from a hash lock, private venv; the cam as its lift law on a translating body; witnessed against closed forms with three planted faults | [dynamics_witness.py](source/dynamics_witness.py) |
 | Melt-pool check of the declared heat input | the reviewed GO-MELT kernel (JAX, CUDA), one explicit level, against Rosenthal's point source | [melt_pool_track.py](source/melt_pool_track.py), [melt_pool_summary.py](source/melt_pool_summary.py) |
 | Six-view render of the body, read by the agent | `preview.py` of the `cad-skill` skill (trimesh, pyrender, EGL under `xvfb-run`) | none: the script is the skill's |
 | RTX review stills and turntable, **not yet captured** | OpenUSD 26.11 review scene (cameras, two lights, render products) built locally around the private CAD-body stage; NVIDIA OVRTX 0.3.0 in the pinned SimReady image, which needs an RTX GPU. The scene was built on 2026-11-15 and rebuilt on 2026-11-17 with identical hashes. The capture script has never completed: no picture and no capture receipt exist yet | [build_review_usd.py](source/build_review_usd.py), [capture_rtx.py](source/capture_rtx.py) |
@@ -2214,6 +2215,38 @@ hypotheses and the missing valve, not the port, so no solver was run. The
 row reopens with registered sections of the bend and pocket (H04) and the
 valve, seat and guide geometry (H05).
 
+### Dynamics tool: MuJoCo against closed forms ([acceptance](params/dynamics-witness-acceptance.json), [first attempt](params/dynamics-witness-rotating-cam.json), [second](params/dynamics-witness-attempt-2.json), [record](params/dynamics-witness.json), [parameters](params/valve-train-parameters.json))
+
+The valve train needs a dynamics tool before it needs data (#699). Chrono, the
+candidate, could not be pinned on this host on 2026-11-22: its conda-forge
+core package alone is 0.54 GB compressed, the shared disk then had under
+0.8 GB free, and the PyPI name `pychrono` served an unrelated library before
+a release candidate uploaded twelve days earlier. MuJoCo 3.9.0 (Apache-2.0,
+Google DeepMind) installs from PyPI wheels under a
+[hash lock](source/dynamics-requirements.lock.txt) in 0.1 GB.
+[dynamics_witness.py](source/dynamics_witness.py) holds it to closed forms
+on round witness inputs, with the tolerances, settings and inputs committed
+before the first run. **None of them is a value of this head.**
+
+| Case | Closed form | MuJoCo | Accepted within |
+|---|---|---|---|
+| spring-mass, 0.25 kg on 40 N/mm | 63.662 Hz | 63.662 Hz (7e-9) | 1e-3 |
+| two-mass chain, modes 1 and 2 | 53.581 and 378.195 Hz | errors 5e-9 and 2e-7, shapes held | 1e-3 |
+| follower on a simple-harmonic lift law, 200 N preload, 0.9 of the float speed | 114 to 686 N | 114.00 to 686.00 N, largest error 0.003 N | 2% of the peak |
+| float speed, contact force first zero | 692.82 rad/s | 692.79 rad/s (5e-5) | 1% |
+
+The first attempt turned an eccentric cam under the follower and failed:
+MuJoCo's contact does not see the acceleration of a contact point on a turning
+body, so the follower lost contact every cycle wherever the cam surface
+accelerates away, at every speed. A second attempt, declared before it ran,
+entered the cam as its lift law on a translating body and passed with
+everything else unchanged. A mass 10% off, a missing preload and MuJoCo's
+default contact each fail the same comparison. A valve train therefore enters
+this tool as lift laws at the valve; a turning cam or a rocking lever in
+contact is not admissible. The [parameter set](params/valve-train-parameters.json)
+of this head has every entry null, each with its blocker: #698 and a
+contributed measurement under decision 0019.
+
 ### Prepared work: what the four parts that never ran need ([register](params/prepared-work.json))
 
 Four parts of this twin never ran: port flow, fatigue, valve-train dynamics
@@ -2231,7 +2264,7 @@ was read. It moved no part out of its blocked state.
 |---|---|---|---|
 | Port flow | blocked on geometry | OpenFOAM with foamlib ([TOOLCHAIN.md](../../docs/TOOLCHAIN.md)); Gmsh for meshing ([AGENT_TOOL_GUIDE.md](../../docs/AGENT_TOOL_GUIDE.md)) | [openfoam-poiseuille-f25](../../outils/benchmarks/openfoam-poiseuille-f25): exists with its test ([test_openfoam_poiseuille_f25.py](../../tests/test_openfoam_poiseuille_f25.py)); to be rerun on the image used before any port case |
 | Fatigue | blocked on a stress history and on material data | pyLife 2.3 ([TOOLCHAIN.md](../../docs/TOOLCHAIN.md)): rainflow counting, Wöhler curves, Miner damage | [witness_rainflow_miner.py](../../benchmarks/fatigue-postprocessor/witness_rainflow_miner.py): passed on 2026-11-10 ([results-20261110.json](../../benchmarks/fatigue-postprocessor/results-20261110.json)): rainflow against the ASTM E1049 table, Basquin and Miner against a closed form |
-| Valve-train dynamics | blocked on kinematics and on a dynamics tool | none. Chrono is a candidate, not installed: no image, lock or witness ([AGENT_TOOL_GUIDE.md](../../docs/AGENT_TOOL_GUIDE.md)) | [test_m64_valvetrain_v1.py](../../tests/test_m64_valvetrain_v1.py): analytic checks of that model (derivatives, spring rate, harmonic limit, energy); a sensitivity study, no cam data and no bench correlation |
+| Valve-train dynamics | blocked on kinematics: no cam, rocker, spring or mass data for this head | MuJoCo 3.9.0 ([TOOLCHAIN.md](../../docs/TOOLCHAIN.md), 2026-11-22, #699): the cam enters as its lift law on a translating body; a contact on a turning cam is not admissible | [dynamics_witness.py](source/dynamics_witness.py): passed on 2026-11-22 at the second declared attempt ([dynamics-witness.json](params/dynamics-witness.json)): a natural frequency and two modes within 3e-7, the contact force of a preloaded follower within 5e-6 of its peak, the float speed within 5e-5, three planted faults caught; the first attempt, a turning cam, failed ([record](params/dynamics-witness-rotating-cam.json)) |
 | Drawing | reference sheet of the 11 confirmed features drawn (#708); a dimensioned drawing waits for a scale, more features and sourced tolerances | build123d projection to DXF, with ezdxf dimensions and a title block ([TOOLCHAIN.md](../../docs/TOOLCHAIN.md), 2026-11-19, #708) | [drawing_witness.py](source/drawing_witness.py): passed on 2026-11-19 ([drawing-witness.json](params/drawing-witness.json)): three views of a known solid read back from DXF; one third-angle sheet whose seven dimensions show their own measurement at 3.5 mm from definition points on drawn edges, and whose title block reads back field by field; five planted faults caught; sections not checked |
 
 **Port flow:** the flow through each port at stated valve lifts and pressure difference.
@@ -2252,11 +2285,11 @@ was read. It moved no part out of its blocked state.
 
 **Valve-train dynamics:** valve motion, spring margin and seating at stated engine speeds.
 
-- Held: two valve axes, 55.8 degrees apart, a guide bore, seats and spring seats fitted on the scan ([feature-fits.json](params/feature-fits.json): nominal; 11 of 32 features confirmed, the valve of each flange side not identified as inlet or exhaust); the load-case contract for a valve cycle ([load-cases-f1.json](../../twins/engine-simulation-contracts/load-cases-f1.json): LC-993-VALVE-DYNAMIC-CYCLE, written for the 993: 8 of 8 inputs empty); catalogue ranges for 935 valves and aftermarket cam timing cards ([README.md](../../docs/research/935-faithful-replica-20261028/README.md): not measurements of this specimen; aftermarket declarations); valve sizes, lifts, timing at 0.10 mm clearance and cam lobe dimensions of the production 930 Turbo; valve angles, stems and lengths of the 964 Turbo 3.3 ([findings.json](../../docs/research/935-head-published-data-20261116/findings.json): two homologation forms, each value read twice; other heads. The angle between the two fitted valve axes is 55.76 degrees against 55.75 published; the fitted guide bore is 0.49 mm under the production stem, so the production valve does not fit this head).
-- Missing: cam lift curve, rocker geometry and ratio (retires H05 in part); spring rate, installed height, coil-bind height; masses of valve, retainer, rocker (retires H05 in part); valve head diameters, stem diameter, seat angle and width of this head (retires H05); a dynamics tool with a witness, if more than one mass is needed.
+- Held: two valve axes, 55.8 degrees apart, a guide bore, seats and spring seats fitted on the scan ([feature-fits.json](params/feature-fits.json): nominal; 11 of 32 features confirmed, the valve of each flange side not identified as inlet or exhaust); the load-case contract for a valve cycle ([load-cases-f1.json](../../twins/engine-simulation-contracts/load-cases-f1.json): LC-993-VALVE-DYNAMIC-CYCLE, written for the 993: 8 of 8 inputs empty); catalogue ranges for 935 valves and aftermarket cam timing cards ([README.md](../../docs/research/935-faithful-replica-20261028/README.md): not measurements of this specimen; aftermarket declarations); valve sizes, lifts, timing at 0.10 mm clearance and cam lobe dimensions of the production 930 Turbo; valve angles, stems and lengths of the 964 Turbo 3.3 ([findings.json](../../docs/research/935-head-published-data-20261116/findings.json): two homologation forms, each value read twice; other heads. The angle between the two fitted valve axes is 55.76 degrees against 55.75 published; the fitted guide bore is 0.49 mm under the production stem, so the production valve does not fit this head); the parameter set of this head's valve train, in the units the dynamics tool takes ([valve-train-parameters.json](params/valve-train-parameters.json): every entry null, each with its blocker (#698, decision 0019) and the load-case input it fills).
+- Missing: cam lift curve, rocker geometry and ratio (retires H05 in part); spring rate, installed height, coil-bind height; masses of valve, retainer, rocker (retires H05 in part); valve head diameters, stem diameter, seat angle and width of this head (retires H05).
 - A contribution must hold: the specimen and the parts measured, with part numbers; instrument and uncertainty for each length, mass and spring force; the cam card with its reference lift and lash; an explicit licence to use and redistribute the data.
-- First steps once the inputs exist: write a parameter set for this head in the model's own format, every entry with its status and source; rerun the model's analytic checks, then spring margin and float speed over the stated speed range; check the valve-to-valve and valve-to-plug clearances on the fitted axes at full lift; state the result as a sensitivity study until a bench trace exists.
-- Runnable today: the model's own tests; no run for this head, whose cam, spring and masses are unknown. The form's lift and timing would allow a reference case of the production 930 Turbo with a declared cam law and declared springs: a study of another engine.
+- First steps once the inputs exist: fill params/valve-train-parameters.json, every entry with its status and source; rerun the model's analytic checks, then spring margin and float speed over the stated speed range; check the valve-to-valve and valve-to-plug clearances on the fitted axes at full lift; state the result as a sensitivity study until a bench trace exists.
+- Runnable today: the dynamics witness and the M64 model's own tests; no run for this head, whose cam, spring and masses are unknown. The form's lift and timing would allow a reference case of the production 930 Turbo with a declared cam law and declared springs: a study of another engine.
 
 **Drawing:** a dimensioned drawing of the head's machined features.
 
@@ -2314,7 +2347,7 @@ contributor. No contributor is named here, and none has been asked.
 | Build screen | print-body occupancy, [declared case](params/build-sim-case.json) | [build-sim.json](params/build-sim.json), [build-sim-dolfinx.json](params/build-sim-dolfinx.json); private decks, fields and two [pictures](media/build-sim-result.png) | three closed-form [witnesses](params/build-sim-witness.json); energy balance within 0.4%; 10 levels for temperature and 2 laser cases, 11 mechanical runs in CalculiX; a second solver, DOLFINx, within [limits set before its first run](params/build-sim-dolfinx-acceptance.json) on the 4 mm cells, then four levels on 2 and 1.5 mm cells; a [cell-size rule](params/build-sim-convergence-rule.json) written before those runs | done as a screen: 43.4 h, largest rise 60 to 64 K above the plate (98 and 138 K with two and four lasers); distortion after release 0.23 to 0.33 mm median, 1.62 to 2.87 mm largest on 1.5 to 4 mm cells: the median agrees between the cell sizes, the worst corner does not settle in any row of the rule; on the laid-out supports 40 K and 1.71 mm; stress at the declared yield curve; every gate false |
 | Support layout | print-body occupancy, [declared rules](params/support-design-case.json) | [support-design.json](params/support-design.json); private envelope and a [picture](media/support-layout.png) | four shapes with hand-computed answers ([witnesses](params/support-design-witness.json)); the totals before exemption equal the orientation screen's | done as a layout by rule: 470,700 mm³ of envelope, 15% of the part melted in walls, 48% standing on the part, 26% of the supported surface without straight lateral access; no build processor, removal not judged |
 | Melt-pool check | the build screen's declared laser and material values | [melt-pool-check.json](params/melt-pool-check.json); private fields; [chart](media/melt-pool-width.png) and [animation](media/melt-pool.gif) | Rosenthal's point source within 0.2%; three meshes; energy balance | done as a check: 290 µm at the declared absorptivity (240 µm with latent heat) against 215 to 230 µm published nearest to this setting; conduction only, nothing calibrated |
-| Fatigue, valve-train dynamics, drawing | none | [prepared-work.json](params/prepared-work.json); [drawing-tool witness](params/drawing-witness.json) | every path of the register exists; the drawing tool reads back three views of a known solid | not run: no stress history or S-N data, no cam, spring or masses, 11 of 32 features confirmed. [Prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register): tool, witness, held and missing inputs for each |
+| Fatigue, valve-train dynamics, drawing | none | [prepared-work.json](params/prepared-work.json); [drawing-tool witness](params/drawing-witness.json); [dynamics-tool witness](params/dynamics-witness.json); [valve-train parameters](params/valve-train-parameters.json) | every path of the register exists; the drawing tool reads back three views of a known solid; the dynamics tool meets its closed forms at the second declared attempt | not run: no stress history or S-N data, no cam, spring or masses, 11 of 32 features confirmed. [Prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register): tool, witness, held and missing inputs for each |
 
 ## Limits
 

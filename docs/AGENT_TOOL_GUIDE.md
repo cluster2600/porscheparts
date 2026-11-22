@@ -66,6 +66,7 @@ tool beyond that table.*
 | LPBF geometric screen | repository layer slicer + trimesh | `make print-screens PYLIB=<dir>`, one part at a time | `cadsim`, 6 GB cap | slices, thin walls and powder traps of a mesh | [AM_VALIDATION_PIPELINE.md](AM_VALIDATION_PIPELINE.md) |
 | LPBF melt pool | ORNL AdditiveFOAM 2.0 on OpenFOAM 14 | image `qwen-picogk/additivefoam`; needs a process map and coupons | CPU/HPC | melt-pool fields; blocked for the small 993 parts | [usd-brep-lpbf.md](architecture/usd-brep-lpbf.md) |
 | STEP to OpenUSD, validation | `usd-convert-cad 0.2`, `nvidia_usd_validate 1.21` | see the runbook; exact solids via `make container-smoke-usd-brep` | CPU container | a valid stage; asserts no fit | [usd-brep-lpbf.md](architecture/usd-brep-lpbf.md) |
+| Valve-train dynamics, small multibody | MuJoCo 3.9.0 (Apache-2.0) | venv from [its hash lock](../twins/935-cylinder-head-cad-twin/source/dynamics-requirements.lock.txt) (`uv pip install --require-hashes`), `MUJOCO_GL=disable`; the witnessed settings: step 1e-6 s, contact `solref` 5e-5 s, `solimp` 0.99 | host venv, CPU | follower force, lift and float speed for **stated** lift laws, springs and masses: within 5e-6 of the closed forms on the witness. A cam enters as its lift law on a translating body; a contact on a turning cam or a rocking lever is not admissible. It supplies no valve-train data | [record](../twins/935-cylinder-head-cad-twin/params/dynamics-witness.json), [parameters](../twins/935-cylinder-head-cad-twin/params/valve-train-parameters.json) |
 | Rigid contact, motion | `ovstage` + `ovphysx 0.5` | lifecycle `create → populate → attach → step → detach → destroy` | CPU, or a Vast GPU | contact and motion for declared, often synthetic, properties | [SOFTWARE_STACK.md](SOFTWARE_STACK.md#omniverse-and-simready) |
 | Render, sensors | OVRTX | only after the GPU gates | rented RTX GPU | pixels; never a physical result | [SOFTWARE_STACK.md](SOFTWARE_STACK.md#gates-before-paid-gpu-computation) |
 | Local AI CAD proposals | CADAM + local Qwen/MLX | per the runbook; proposals checked independently | Mac | a proposal, never its own inspection | [cadam-local-qwen.md](architecture/cadam-local-qwen.md) |
@@ -333,6 +334,25 @@ of the 935 head twin.
 - Compare reserve factors, not raw indices: Tsai-Wu's index is not linear in
   load, so an index of 0.5 does not mean half the failure load.
 
+### MuJoCo
+
+Both measured on the 935 head twin's dynamics witness on 2026-11-22, MuJoCo
+3.9.0 ([record](../twins/935-cylinder-head-cad-twin/params/dynamics-witness.json)).
+
+- **A contact on a turning body is not held where its surface accelerates
+  away.** The contact constraint leaves out the acceleration a contact point
+  has from the body's rotation at constant speed and makes up for it by
+  penetration alone. On an eccentric cam the penetration reached 1.49e-6 m
+  (1.52e-6 m predicted from the `solref`) against 2e-8 m with the cam at rest;
+  past a quarter turn the follower lost contact every cycle at every speed,
+  down to half the float speed. A stiffer contact shrinks the gap, not its
+  sign. Enter a cam as its lift law on a translating body: the same follower
+  then matched its contact force within 5e-6 of the peak and its float speed
+  within 5e-5 ([first attempt](../twins/935-cylinder-head-cad-twin/params/dynamics-witness-rotating-cam.json)).
+- **The default contact is far too soft for a valve train.** With `solref`
+  0.02 s the follower ran 4.2 mm (42% of the lift) off its lift law at 0.9 of
+  the float speed. Set the time constant well under the cam period.
+
 ### PicoGK 2.3
 
 - `IntersectImplicit` aborts below 1/3 mm voxels; use
@@ -420,7 +440,7 @@ All measured on the 935 head twin on 2026-11-10.
 | Material Agent / Omniverse endpoints | HTTP 403 | #459, #561 |
 | PhysicsNeMo on a part | GPU smoke only; needs converged, correlated cases | SOFTWARE_STACK.md |
 | Learned particle simulator (WorldParticle, MIT) | evaluated on 2026-11-15, **not admitted**: the released cloth and fluid checkpoints reproduce the authors' scenes and replay them when given another obstacle or tank; no gas case, no training code. For woven plies use `kinematic_draping.py`; for flow, OpenFOAM | [evaluation](../benchmarks/learned-particle-simulator/README.md) |
-| Vehicle dynamics, multibody, valve-train dynamics | candidate: Chrono (BSD-3; Chrono::Vehicle for the car), not installed: no image, lock or witness. A head twin needs it for anything beyond static geometry; code-to-code validation only until measured 993 data exist | [twin tooling research](research/993-digital-twin-tooling-2026-11-06.md), #504 |
+| Vehicle dynamics, multibody with contacts on turning bodies (a rocker, a cam shape) | candidate: Chrono (BSD-3; Chrono::Vehicle for the car), not installed: no image, lock or witness. Its conda-forge 10.0.0 core package alone is 0.54 GB compressed; the PyPI name `pychrono` served an unrelated library before a 10.0.0 release candidate of 2026-11-10. Valve-train dynamics on lift laws is assigned to MuJoCo (above, #699); code-to-code validation only until measured 993 data exist | [twin tooling research](research/993-digital-twin-tooling-2026-11-06.md), #504 |
 | Laminate strengths, delamination | no admitted ply strength or criterion parameter for any laminate; `laminate_failure.py` covers in-plane first-ply failure only. Interlaminar stresses, cohesive zones and reading ply stresses from a CalculiX result are not implemented | [computation chain](MONOCOQUE_964_993_COMPUTATION_CHAIN.md), ADR 0018 |
 | Small fillets, spheres, tori, tangent blends from a scan | not covered by `primitive_fit.py`; a fillet needs several vertex columns outside its shared zones, or a fit constrained tangent to its flanks | [fitting README](../benchmarks/scan-primitive-fitting/README.md) |
 | Dimensioned drawings for a supplier | [TOOLCHAIN.md](TOOLCHAIN.md) promises one with every titanium order. Since 2026-11-19 (#708) the assigned tool is build123d projection to DXF with ezdxf dimensions and a title block, witnessed in the 935 head twin's environment (build123d 0.13, ezdxf 1.4) on a known solid ([record](../twins/935-cylinder-head-cad-twin/params/drawing-witness.json)): every dimension shows its own measurement from points on drawn edges, the title block reads back, and five planted faults are caught. Not covered: section views, tolerances, fits and threads (none may be drawn without a source), and a mesh body (the 935 v2 body has no B-rep). ezdxf's `EZDXF` dimension preset scales lengths by 100 and printed 6000 for 60 mm on the first sheet: override `dimlfac`. FreeCAD TechDraw is not installed | TOOLCHAIN.md |
