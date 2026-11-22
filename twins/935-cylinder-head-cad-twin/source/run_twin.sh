@@ -205,9 +205,12 @@ dfx 8 12g mechanics /bs/c4-l8 /work/c4-l8-mumps-8p --solver mumps
 dfx 8 12g mechanics /bs/c4-l8 /work/c4-l8-gamg-8p --solver gamg
 dfx 4 12g mechanics /bs/c4-l8 /work/c4-l8-blr-4p --solver blr
 dfx 4 18g mechanics /bs/c2-l8 /work/c2-l8-blr-4p --solver blr
-dfx 8 24g mechanics /bs/c2-l12 /work/c2-l12-blr-8p --solver blr
-dfx 12 24g mechanics /bs/c2-l4 /work/c2-l4-blr-12p --solver blr
-dfx 16 64g mechanics /bs/c1.5-l12 /work/c1.5-l12-blr-16p --solver blr
+# c2-l12, c2-l4 and c1.5-l12 need 17, 20 and 54 GiB and do not fit this host: they run on a rented machine
+# from the same image, script and run folders, with rented/run_remote.sh (the bar witness first, then
+# "run c2-l12 8", "run c2-l4 12" and "run c1.5-l12 16"). RENTED_DX names the copy of that machine's /root/dx;
+# rented/where_from_receipts.py turns it into run folders with where.json. The replay stops without it.
+"$PY" -I "$HERE/rented/where_from_receipts.py" "${RENTED_DX:?copy of /root/dx from the rented machine}" "$DX" "$DFX_IMAGE" \
+  c2-l12-blr-8p c2-l4-blr-12p c1.5-l12-blr-16p
 for run in c4-l8-mumps-8p c4-l8-gamg-8p c4-l8-blr-4p; do
   "$PY" -I "$HERE/build_sim_dolfinx.py" compare "$BS/c4-l8" "$DX/$run" "$PARAMS/build-sim-dolfinx-acceptance.json" "$DX/compare-${run%-*}.json"
 done
