@@ -53,6 +53,7 @@ KEPT = []                      # solids of earlier witnesses, kept until exit so
 BLR_MAX_ITERATIONS = 60        # of the conjugate-gradient loop on a kept factorisation, before it is made again
 BLR_REFACTOR_ABOVE = 25        # iterations of one solve above which the next solve starts from a new factorisation
 CONVERGENCE_RULE = "build-sim-convergence-rule.json"   # written before the 2 and 1.5 mm rows ran (#706)
+FIXED_SOLID_RULE = "build-sim-fixed-solid-rule.json"   # written before the subdivided levels of the 4 mm cut ran (#706)
 WORST_POINTS_APART_MM = 12.0   # the distance that rule writes into its "settled" and "not_settled" texts
 
 
@@ -750,32 +751,34 @@ def record(private_dir, ccx_record_file, acceptance_file, out, build_dir) -> Non
         levels[m["level"]] = {"cell_mm": model["cell_mm"], "lump_height_mm": model["lump_height_mm"],
                               **{k: v for k, v in m.items() if k not in ("schema", "date", "level")}, **where_it_ran(run.parent)}
     params = Path(ccx_record_file).parent                          # the upstream audits of the geometry sit beside it
-    rule_file = params / CONVERGENCE_RULE
-    rule = json.loads(rule_file.read_text())
-    values = {}
-    for entry in (e for row in rule["rows"].values() for e in row):
-        name, solver = entry.split()[0], entry.split("(")[1].rstrip(")")
-        if name in levels:
-            release = levels[name]["release"][key]
-        elif ccx["levels"].get(name, {}).get("mechanics"):
-            release = ccx["levels"][name]["mechanics"]["mechanics"]["release"][key]
-        else:
-            continue                                               # not run yet: its row gets no verdict
-        assert solver == ("DOLFINx" if name in levels else "CalculiX"), entry
-        model = ccx["levels"][name]["model"]
-        origin = np.load(Path(build_dir) / name / "mesh.npz")["to_twin"]
-        values[name] = {"cell_mm": model["cell_mm"], "solver": solver, **{q: release[q] for q in ("median", "p95", "largest")},
-                        "largest_at_build_coordinates_mm": release["largest_at_build_coordinates_mm"],
-                        "build_origin_at_twin_coordinates_mm": [round(float(v), 3) for v in origin],
-                        "largest_at_twin_coordinates_mm": twin_point(origin, release["largest_at_build_coordinates_mm"]),
-                        "part_volume_mm3": model["part_volume_mm3"], "support_cells": model["hexahedra"]["support"],
-                        "support_envelope_mm3": model["support_envelope_mm3"]}
-    convergence = {
-        "rule_file": f"params/{CONVERGENCE_RULE}", "rule_sha256": hashlib.sha256(rule_file.read_bytes()).hexdigest(),
-        "threshold": rule["rule"]["threshold"], "worst_points_apart_mm": WORST_POINTS_APART_MM,
-        "reading": ("a change is within the threshold when its size is, either sign; the distance between worst points is taken "
-                    "in twin coordinates, because each level's build coordinates start at its own footprint corner"),
-        "rows": judge_rows(rule, values)}
+    def rows_of(rule_name: str) -> dict:
+        rule_file = params / rule_name
+        rule = json.loads(rule_file.read_text())
+        values = {}
+        for entry in (e for row in rule["rows"].values() for e in row):
+            name, solver = entry.split()[0], entry.split("(")[1].rstrip(")")
+            if name in levels:
+                release = levels[name]["release"][key]
+            elif ccx["levels"].get(name, {}).get("mechanics"):
+                release = ccx["levels"][name]["mechanics"]["mechanics"]["release"][key]
+            else:
+                continue                                           # not run yet: its row gets no verdict
+            assert solver == ("DOLFINx" if name in levels else "CalculiX"), entry
+            model = ccx["levels"][name]["model"]
+            origin = np.load(Path(build_dir) / name / "mesh.npz")["to_twin"]
+            values[name] = {"cell_mm": model["cell_mm"], "solver": solver, **{q: release[q] for q in ("median", "p95", "largest")},
+                            "largest_at_build_coordinates_mm": release["largest_at_build_coordinates_mm"],
+                            "build_origin_at_twin_coordinates_mm": [round(float(v), 3) for v in origin],
+                            "largest_at_twin_coordinates_mm": twin_point(origin, release["largest_at_build_coordinates_mm"]),
+                            "part_volume_mm3": model["part_volume_mm3"], "support_cells": model["hexahedra"]["support"],
+                            "support_envelope_mm3": model["support_envelope_mm3"]}
+        return {
+            "rule_file": f"params/{rule_name}", "rule_sha256": hashlib.sha256(rule_file.read_bytes()).hexdigest(),
+            "threshold": rule["rule"]["threshold"], "worst_points_apart_mm": WORST_POINTS_APART_MM,
+            "reading": ("a change is within the threshold when its size is, either sign; the distance between worst points is taken "
+                        "in twin coordinates, because each level's build coordinates start at its own footprint corner"),
+            "rows": judge_rows(rule, values)}
+    convergence, fixed_solid = rows_of(CONVERGENCE_RULE), rows_of(FIXED_SOLID_RULE)
     body = json.loads((params / "print-body.json").read_text())
     score = json.loads((params / INPUT_SCORECARD).read_text())
     observed = score["twin_area_observed_supported_share"]
@@ -829,6 +832,7 @@ def record(private_dir, ccx_record_file, acceptance_file, out, build_dir) -> Non
         "levels": levels,
         "cell_size_at_the_same_lump_height": cell_size,
         "cell_size_rows": convergence,
+        "fixed_solid_rows": fixed_solid,
         "claims": ("a second solver reproduces the screen's numbers on the level both ran, and runs one level the first could not on this host. The "
                    "hypotheses, gates and limits of params/build-sim.json apply unchanged: voxel cells, lumps of many layers, a declared yield curve "
                    "and stress-free temperature, no measured distortion. Agreement of two solvers on one model says the equations are solved, not "
@@ -839,7 +843,8 @@ def record(private_dir, ccx_record_file, acceptance_file, out, build_dir) -> Non
     print(json.dumps({"levels": list(levels), "comparison_passed": report["comparison_with_calculix"]["passed"],
                       "cell_size": [(r["fine"]["level"], r["fine_over_coarse"]) for r in cell_size],
                       "rows": {k: (r["verdict"], [c["fine_over_coarse"] for c in r.get("changes_of_the_largest", [])],
-                                   r.get("worst_points_of_the_two_finest_apart_mm")) for k, r in convergence["rows"].items()}}))
+                                   r.get("worst_points_of_the_two_finest_apart_mm"))
+                               for k, r in {**convergence["rows"], **fixed_solid["rows"]}.items()}}))
 
 
 if __name__ == "__main__":

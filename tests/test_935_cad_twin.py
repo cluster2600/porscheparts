@@ -1319,6 +1319,49 @@ class BuildSimTests(unittest.TestCase):
         self.assertEqual(sorted(set(lump[kind == 3].tolist())), [0, 1, 2, 3, 4, 5])
         self.assertTrue((lump[kind == 1] == -1).all())
 
+    @unittest.skipUnless(has("scipy"), "scipy absent")
+    def test_a_subdivided_level_keeps_the_cut_and_splits_its_cells(self):
+        import tempfile
+
+        np = self.np
+        occ = np.zeros((128, 112, 64), dtype=np.float32)
+        y = lambda lo, hi: slice(112 - int(hi / 0.25), 112 - int(lo / 0.25))
+        occ[32:64, y(0, 24), 16:48] = 1.0
+        occ[16:112, y(24, 28), 16:48] = 1.0
+        case = json.loads(json.dumps(self.case))
+        level = {"cell_mm": 4.0, "cell_rows_per_lump": 2, "plate_margin_cells": 1, "thermal_increments_per_lump": 2, "memory_cap": "1g"}
+        case["levels"] = {"cut": level, "split": {**level, "subdivide": 3, "cell_rows_per_lump": 6, "plate_margin_cells": 3}}
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            np.save(tmp / "occupancy-wn.npy", occ)
+            (tmp / "occupancy-grid.json").write_text(json.dumps({"pitch_mm": 0.25, "x0": 0.125, "y0": 0.125, "z0": 0.125,
+                                                                   "shape": list(occ.shape), "array": "occupancy-wn.npy"}))
+            (tmp / "case.json").write_text(json.dumps(case))
+            reports, meshes = {}, {}
+            for name in ("cut", "split"):
+                self.bs.prepare(tmp, tmp / "case.json", name, tmp / name)
+                reports[name] = json.loads((tmp / name / "prepare.json").read_text())
+                meshes[name] = {k: v for k, v in np.load(tmp / name / "mesh.npz").items()}
+        cut, split = reports["cut"], reports["split"]
+        # the same solid, supports and plate, in 27 times as many cells; the same lumps and the same frame
+        for kind in ("part", "support", "plate"):
+            self.assertEqual(split["hexahedra"][kind], 27 * cut["hexahedra"][kind], kind)
+        for key in ("part_volume_mm3", "support_envelope_mm3", "lumps", "lump_height_mm", "build_height_mm", "plate_mm"):
+            self.assertAlmostEqual(np.max(np.abs(np.subtract(split[key], cut[key]))), 0.0, places=9, msg=key)
+        self.assertEqual(split["subdivided"]["split"], 3)
+        self.assertEqual(split["cells_needing_support"], cut["cells_needing_support"])
+        self.assertEqual(meshes["split"]["to_twin"].tolist(), meshes["cut"]["to_twin"].tolist())
+        # every node of the cut is a node of the split mesh, at the same place
+        coarse = {tuple(np.round(p, 6)) for p in meshes["cut"]["xyz"]}
+        fine = {tuple(np.round(p, 6)) for p in meshes["split"]["xyz"]}
+        self.assertLessEqual(coarse, fine)
+        # each split cell lies in the lump of the cut cell it came from
+        for name in ("cut", "split"):
+            m = meshes[name]
+            built = m["kind"] != 1
+            top = (m["cells"][built, 2] - m["plate_rows"] + 1) * m["pitch"]
+            self.assertTrue((np.ceil(top / 8.0 - 1e-9) - 1 == m["lump"][built]).all(), name)
+
     def test_witness_record_holds_the_closed_forms_and_keeps_the_pitfall(self):
         record = json.loads((TWIN / "params" / "build-sim-witness.json").read_text())
         self.assertTrue(record["passed"])
