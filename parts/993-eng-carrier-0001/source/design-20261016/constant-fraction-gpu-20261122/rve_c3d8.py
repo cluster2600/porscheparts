@@ -181,23 +181,27 @@ def solve(K, F, backend: str):
         lu = splu(K.tocsc(), permc_spec="COLAMD")
         W = lu.solve(F)
         info = {"backend": "scipy SuperLU (CPU)"}
-    elif backend == "cudss":
+    elif backend in ("cudss", "cudss-hybrid"):
         import cupy as cp
         import cupyx.scipy.sparse as csp
         import nvmath
-        from nvmath.sparse.advanced import DirectSolver, DirectSolverMatrixType, DirectSolverOptions
+        from nvmath.sparse.advanced import (DirectSolver, DirectSolverMatrixType, DirectSolverOptions, ExecutionCUDA,
+                                            HybridMemoryModeOptions)
 
         A = csp.csr_matrix(K)
         B = cp.asfortranarray(cp.asarray(F))
         options = DirectSolverOptions(sparse_system_type=DirectSolverMatrixType.SPD)
-        with DirectSolver(A, B, options=options) as solver:
+        # hybrid: the factors are kept in host memory; the equations and the factorisation are the same
+        execution = ExecutionCUDA(hybrid_memory_mode_options=HybridMemoryModeOptions(hybrid_memory_mode=backend == "cudss-hybrid"))
+        with DirectSolver(A, B, options=options, execution=execution) as solver:
             solver.plan()
             solver.factorize()
             X = solver.solve()
         cp.cuda.Device().synchronize()
         W = cp.asnumpy(X)
         props = cp.cuda.runtime.getDeviceProperties(0)
-        info = {"backend": "NVIDIA cuDSS through nvmath-python (GPU)", "nvmath": nvmath.__version__,
+        info = {"backend": "NVIDIA cuDSS through nvmath-python (GPU)", "hybrid_memory_mode": backend == "cudss-hybrid",
+                "nvmath": nvmath.__version__,
                 "gpu": props["name"].decode(), "gpu_memory_GiB": round(props["totalGlobalMem"] / 2 ** 30, 1)}
     else:
         raise SystemExit(f"unknown backend {backend}")
