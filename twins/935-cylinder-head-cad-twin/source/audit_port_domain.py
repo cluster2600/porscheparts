@@ -21,6 +21,11 @@ import sys
 from pathlib import Path
 
 WALL_OBSERVED_MIN = 0.95
+FAILING_MEANS = {
+    "closed_sections_along_whole_centreline": "the open sections",
+    "wall_observed_share_at_least_min": "the unobserved walls",
+    "valve_seat_guide_modelled": "the missing valve",
+}
 
 
 def audit(fit, hypotheses):
@@ -46,14 +51,17 @@ def audit(fit, hypotheses):
             "gates": gates,
             "admissible": all(gates.values()),
         })
+    failing = [g for g in ports[0]["gates"] if any(not p["gates"][g] for p in ports)]
     return {
         "schema": "935-cad-twin-port-cfd-audit/1",
         "wall_observed_min": WALL_OBSERVED_MIN,
         "hypothesis_h05_status": h05["status"],
         "ports": ports,
         "verdict": "admissible" if all(p["admissible"] for p in ports) else "not_admissible",
-        "consequence": "no port-flow solver run: a flow number on this domain would record the closure "
-                       "hypotheses and the missing valve, not the port",
+        # The wording follows the gates; the gates themselves are the three above, unchanged.
+        "consequence": ("a solver may run on this domain, under the hypotheses it carries" if not failing else
+                        "no port-flow solver run: a flow number on this domain would record "
+                        + " and ".join(FAILING_MEANS[g] for g in failing) + ", not the port"),
         "retire_with": "registered sections of the port bend and valve pocket (CT, moulds or borescope, H04) "
                        "and the valve, seat and guide geometry (H05)",
     }
