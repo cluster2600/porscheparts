@@ -310,6 +310,11 @@ def prepare(occ_dir, case_file, level, run_dir, support_dir=None) -> None:
     case = json.loads(Path(case_file).read_text())
     lv = case["levels"][level]
     pitch, rows_per_lump = float(lv["cell_mm"]), int(lv["cell_rows_per_lump"])
+    # "subdivide": s cuts the solid on cell_mm cells as any level does, then splits each cell into s x s x s:
+    # the solid, supports and plate stay those of the cut, only the discretisation changes. Rows per lump are
+    # counted in the split cells, so the cut sees rows_per_lump / s of its own rows per lump.
+    split = int(lv.get("subdivide", 1))
+    assert split >= 1 and rows_per_lump % split == 0
     run.mkdir(parents=True, exist_ok=False)
     grid = json.loads((occ_dir / "occupancy-grid.json").read_text())
     p = float(grid["pitch_mm"])
@@ -373,11 +378,12 @@ def prepare(occ_dir, case_file, level, run_dir, support_dir=None) -> None:
     # No group of cells may hang free at any stage of the build: every stage must be
     # face-connected to the plate.
     added_for_connection = 0
-    lumps = int(np.ceil(nz / rows_per_lump))
+    cut_rows = rows_per_lump // split
+    lumps = int(np.ceil(nz / cut_rows))
     for _ in range(20):
         loose = np.zeros_like(part)
         for lump in range(lumps):
-            top = min(nz, (lump + 1) * rows_per_lump)
+            top = min(nz, (lump + 1) * cut_rows)
             body = np.zeros((part.shape[0], part.shape[1], top + 1), dtype=bool)
             body[:, :, 0] = True                                           # the plate
             body[:, :, 1:] = part[:, :, :top] | support[:, :, :top]
@@ -395,6 +401,10 @@ def prepare(occ_dir, case_file, level, run_dir, support_dir=None) -> None:
     else:
         raise SystemExit("supports did not reach a connected build")
     assert not (support & part).any()
+    cut_mm = pitch
+    if split > 1:
+        part, support = (a.repeat(split, axis=0).repeat(split, axis=1).repeat(split, axis=2) for a in (part, support))
+        pitch, nz = pitch / split, nz * split
 
     margin, plate_rows = int(lv["plate_margin_cells"]), int(round(case["plate"]["thickness_mm"] / pitch))
     foot = (part | support).any(axis=2)
@@ -426,8 +436,8 @@ def prepare(occ_dir, case_file, level, run_dir, support_dir=None) -> None:
     np.minimum.at(node_lump, conn.ravel(), np.repeat(lump, 8))
 
     # frame: build coordinates (a, b, h) -> twin coordinates (x, y, z)
-    origin_x = grid["x0"] - p / 2 + (lo[0] + a0 * k) * p
-    origin_z = grid["z0"] - p / 2 + (lo[1] + b0 * k) * p
+    origin_x = grid["x0"] - p / 2 + (lo[0] * p + a0 * pitch)
+    origin_z = grid["z0"] - p / 2 + (lo[1] * p + b0 * pitch)
     y_top = grid["y0"] - p / 2 + grid["shape"][1] * p - lo[2] * p             # twin y of build height 0
     np.savez_compressed(run / "mesh.npz", xyz=xyz, conn=conn, kind=ckind, lump=lump, node_lump=node_lump,
                         cells=cells, pitch=pitch, plate_rows=plate_rows, rows_per_lump=rows_per_lump,
@@ -455,6 +465,9 @@ def prepare(occ_dir, case_file, level, run_dir, support_dir=None) -> None:
         "plate_mm": [shape[0] * pitch, shape[1] * pitch, plate_rows * pitch],
         "occupancy_sha256": sha256(occ_dir / grid["array"]),
     }
+    if split > 1:
+        rep["subdivided"] = {"cut_cell_mm": cut_mm, "split": split,
+                             "rule": "the cut on cut_cell_mm cells, each cell split into split^3 cells; cells_needing_support counts cut cells"}
     if designed:
         rep["support_layout"] = {"rules_sha256": laid["rules_sha256"], "envelope_mm3": designed_volume,
                                  "envelope_kept_in_cells_mm3": laid_cells * pitch ** 3,

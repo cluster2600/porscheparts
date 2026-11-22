@@ -1,0 +1,35 @@
+{
+ "written": "2026-11-22, before the levels c4s2-l12, c4s3-l12 and c4s2-l4 were prepared or run. The results of the cell-size rows (params/build-sim-convergence-rule.json: not settled in every row) were known when it was written.",
+ "issue": "#706",
+ "question": "On one fixed solid, does the largest distortion after release stop changing as the cells shrink?",
+ "why": "In the cell-size rows each cell size cuts its own solid (part volume +0.04%, -0.24%, +0.66%, +0.41% against the occupancy), so a change of the worst corner mixes discretisation with a change of the corner itself. Here the solid is the 4 mm cut of the level it extends, part, supports and plate alike, and each 4 mm cell is split into s x s x s cells: only the discretisation changes.",
+ "quantity": {
+  "decides": "largest distortion after release, rigid motion and uniform shrinkage removed (distortion_after_release_rigid_motion_and_uniform_shrinkage_removed_mm.largest)",
+  "reported_beside_it": ["median", "p95", "largest_at_build_coordinates_mm", "the twin point of the worst corner"]
+ },
+ "rows": {
+  "lumps_12_mm_on_the_4_mm_cut": ["c4-l12 (CalculiX)", "c4s2-l12 (DOLFINx)", "c4s3-l12 (DOLFINx)"],
+  "lumps_4_mm_on_the_4_mm_cut": ["c4-l4 (CalculiX)", "c4s2-l4 (DOLFINx)"]
+ },
+ "rule": {
+  "change": "relative change of the largest value between successive subdivisions of a row: fine / coarse - 1",
+  "threshold": 0.05,
+  "settled": "the row has at least three cell sizes, the last two changes are both within the threshold, and the worst points of the two finest levels lie within 12 mm of each other (three cells of the coarsest level in the row)",
+  "not_settled": "any of the last two changes exceeds the threshold, or the worst points of the two finest levels lie more than 12 mm apart",
+  "undecided": "a row with two cell sizes whose one change is within the threshold: one pair cannot show that a value has stopped changing",
+  "reading": "as in the cell-size rows: within means the size of the change, either sign; distances in twin coordinates"
+ },
+ "threshold_basis": "the same 5% and 12 mm as the cell-size rule, so that the two answers can be read side by side",
+ "subdivision": {
+  "s2": "2 mm cells, each 4 mm cell split in 2 x 2 x 2; 6 rows per 12 mm lump, 2 per 4 mm lump; plate margin 4 cells (8 mm)",
+  "s3": "1.333 mm cells, each 4 mm cell split in 3 x 3 x 3; 9 rows per 12 mm lump; plate margin 6 cells (8 mm)",
+  "unchanged": "the 4 mm cut, its support columns and connections, the plate thickness and margin in mm, the lump heights, the temperature increments per lump, the material and the process"
+ },
+ "where_the_runs_run": "prepare and thermal on this host in the cadsim image (build_sim.py); mechanics in the pinned DOLFINx image with the blr solver, on a rented CPU machine. The image digest, the script hash at launch and the machine are recorded with each run.",
+ "fixed": [
+  "The threshold, the rows and the 12 mm distance are not changed after a result is read.",
+  "No level is dropped from a row or added to one after its result is read.",
+  "A run that fails (non-zero exit, memory cap reached, host lost) is rerun unchanged and the failure is reported; it is never rerun with other settings because of its result."
+ ],
+ "what_a_settled_row_means": "The voxel model of the 4 mm cut has a worst corner that stops moving with the discretisation at that lump height. The 4 mm cut is a coarse picture of the print body; a settled row says nothing about the print body's own corners, the 0.05 mm real layer, the print or the specimen, and it is not a compensation field."
+}
