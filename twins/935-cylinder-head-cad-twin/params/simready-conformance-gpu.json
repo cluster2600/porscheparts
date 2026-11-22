@@ -1,0 +1,903 @@
+{
+ "schema": "935-cad-twin-simready-gpu/1",
+ "issue": 707,
+ "date": "2026-11-22",
+ "claims": "a check that the asset is a well-formed stage and RTX pictures of a study twin: no validator pass or picture says anything about accuracy, fit or function; the twin stays not measured, not functional, not released",
+ "asset": {
+  "record": "params/simready-asset.json",
+  "part_usdz_sha256": "938ec80947375af20ec7fce947286f0794aeaa74f6a4e644da57d5611b5e9708",
+  "part_usda_sha256": "a4a4674be19ad792180c1832faeb88b6070a5197ed25b12a824fe84105c4ce67",
+  "geometry_usdc_sha256": "fa2b64b291cafb8afb98d9c5abfc2c5943d8f23014a327a2524b841bce27dc40",
+  "collider_usdc_sha256": "f73aaa3b899f0b8d21cdc924803d42e09c76c735aceb85f882cda669c1e3f3fe",
+  "geometry_rebuilt_byte_for_byte": "export_usd.py rebuilt the CAD-body stage from v2-loft-s025.npz on this host with Warp 1.18.0 (CPU), usd-core 26.11, trimesh 5.2.0 and numpy 2.5.4; the rebuild has the recorded SHA-256, so the chain that wrote the stage is reproducible"
+ },
+ "runtime": {
+  "image": "ghcr.io/cluster2600/3dprinting993-simready-local-ai@sha256:5a69a6805a275ef708e264600cb933663159a2846b069eafe0459c28e5f69699",
+  "image_admission": "the digest deploy/openbao/openbao-ghcr admits (GHCR_DIGEST), used for the piston profile validation of 2026-09-08 and the monocoque OVRTX capture of 2026-10-29; the package is public on GHCR and Vast pulled it anonymously (54 layers, 34.6 GB compressed); no credential was passed to Vast",
+  "controller": "deploy/vast/simready was not used: its scripts need the OpenBao Vast wrapper (OPENBAO_VASTAI_BIN), installed on the Mac only, and refuse an offer below its heavy floor (RTX PRO 6000 WS, 80 GB GPU memory, 24 cores, 128 GB RAM, 500 GB disk), which is sized for the image's local AI services. The session used the vastai CLI directly with the admitted image by digest and kept the gates of SOFTWARE_STACK.md: image by digest, a GPU probe before any work, inputs frozen by hash, a cost cap, an on-instance dead-man guard and a verified teardown",
+  "gpu": {
+   "name": "NVIDIA GeForce RTX 3090",
+   "driver": "595.91.07",
+   "memory": "24576 MiB"
+  },
+  "ovrtx_version": "0.3.0",
+  "content_agents_commit": "36dbf3f274f8e256637230a05a085853f65cc175",
+  "ffmpeg": "ffmpeg version 6.1.1-3ubuntu5",
+  "vulkan_icd": "a copy of the image's /etc/vulkan/icd.d/nvidia_icd.json (sha256 8bf904abc1c5d6428a1f27cc5d4a3c9783d15231f17ce1ef8d25e9cab1f60d1c) with library_path libEGL_nvidia.so.0 (sha256 ce58502a82c9aaff51cd31f525f24966092c4e90f1c2d93dadbe76bbd03c3752), passed through VK_ICD_FILENAMES and VK_DRIVER_FILES; no system file changed"
+ },
+ "rental": {
+  "provider": "Vast.ai",
+  "label": "porscheparts-935-707-simready",
+  "instance_id": 61955410,
+  "offer_id": 52741275,
+  "kind": "container instance, SSH direct, 160 GB disk",
+  "gpu": "RTX 3090 (United Kingdom offer)",
+  "usd_per_hour": 0.3378,
+  "created_utc": "2026-11-22T10:43:07Z",
+  "running_utc": "2026-11-22T11:00:30Z",
+  "destroyed_utc": "2026-11-22T11:16:21Z",
+  "guard": {
+   "script_sha256": "c3a562b1d0fe507d8617bb9fed1db78e769370910044a458828afeef4504eafc",
+   "deadline_seconds": 7200,
+   "key_present": true
+  },
+  "budget_usd": 4.0,
+  "credit_before_usd": 19.9377,
+  "credit_after_usd": 19.8062,
+  "spent_usd": 0.131,
+  "upper_bound_usd": 0.19,
+  "spent_note": "the Vast invoice lines of the instance; the credit fell by the same amount, from 19.9377 to 19.8062, with no other instance on the account in between; the upper bound is the hourly price over the 33 minutes from creation to destruction",
+  "destroyed_and_absent_from_the_account": true,
+  "invoice_usd": {
+   "gpu": 0.102,
+   "gpu_hours": 0.348,
+   "storage": 0.028,
+   "storage_hours": 0.634,
+   "download": 0.001
+  }
+ },
+ "inherited_warnings": {
+  "rules": [
+   "WeldChecker",
+   "ZeroAreaFaceChecker"
+  ],
+  "cleared": false,
+  "why_they_stand": "Both warnings are what single precision makes of the double-precision loft body: the stage holds exactly the float32 cast of v2-loft-s025.npz. ZeroAreaFaceChecker sees 996 faces whose float32 cross product is zero; usd-cad-summary.json counts 35 because it measures them in double. All 996 are caps, three distinct corners nearly on one line. WeldChecker sees 1,058 groups of identical float32 points; 1,056 are distinct in double, at most 7.3e-6 mm apart where the float32 spacing is 7.6e-6 mm, and 2 coincide in double, where the solid touches itself. Deleting the faces would open the surface and welding points that share no edge would pinch it. Three repairs that keep the surface closed were tried under a tolerance of 1e-4 mm fixed beforehand; none removes both warnings, because the flat faces come in chains across shared edges and 51 point groups lie on parts of the surface that are two or more edges apart. The stage is therefore left byte for byte as recorded. usd-validation-nvidia 1.23.0, alone in its venv, reports the same two warnings and nothing else on part.usda and part.usdz",
+  "tol_mm": 0.0001,
+  "audit": {
+   "stage_sha256": "fa2b64b291cafb8afb98d9c5abfc2c5943d8f23014a327a2524b841bce27dc40",
+   "body_sha256": "96c813d0a80885246997aadcdcc93795fe796a6dc1ceb8985779a2686d6a9cc3",
+   "stage_points_are_float32_of_body": true,
+   "stage_faces_are_body_faces": true,
+   "zero_area_face_checker": {
+    "faces_flat_in_float32": 996,
+    "faces_below_1e-12_mm2_in_double": 35,
+    "faces_exactly_flat_in_double": 0,
+    "flat_faces_that_are_caps": 996,
+    "shortest_edge_of_a_flat_face_mm": [
+     1.74e-10,
+     0.992
+    ]
+   },
+   "weld_checker": {
+    "colocated_float32_groups": 1058,
+    "colocated_float32_points": 3748,
+    "groups_distinct_in_double": 1056,
+    "groups_coincident_in_double": 2,
+    "largest_separation_in_double_mm": 7.251e-06,
+    "float32_spacing_at_these_points_mm": 7.62939453125e-06,
+    "where_they_sit": {
+     "far_corners_of_the_two_faces_on_one_edge": 618,
+     "joined_by_an_edge": 297,
+     "more_than_four_edges_apart": 29,
+     "share_a_neighbour_only": 92,
+     "two_to_four_edges_apart": 22
+    }
+   }
+  },
+  "trials": {
+   "tol_mm": 0.0001,
+   "broad": {
+    "edges_collapsed": 15015,
+    "caps_flipped": 365361,
+    "largest_vertex_move_mm": 9.999e-05,
+    "largest_surface_change_mm": 9.999e-05,
+    "after": {
+     "faces": 2232360,
+     "points": 1115958,
+     "faces_flat_in_float32": 834,
+     "colocated_float32_groups": 2,
+     "colocated_float32_points": 4,
+     "volume_change_mm3": 0.008572,
+     "closed_and_consistently_wound": true,
+     "directed_edges_repeated": 0,
+     "edges_without_reverse": 0,
+     "where_the_remaining_groups_sit": {
+      "two_to_four_edges_apart": 2
+     }
+    },
+    "seconds": 498.3
+   },
+   "float32": {
+    "edges_collapsed": 9006,
+    "caps_flipped": 770,
+    "largest_vertex_move_mm": 9.999e-05,
+    "largest_surface_change_mm": 6.891e-06,
+    "after": {
+     "faces": 2244378,
+     "points": 1121967,
+     "faces_flat_in_float32": 103,
+     "colocated_float32_groups": 751,
+     "colocated_float32_points": 3070,
+     "volume_change_mm3": 0.00581,
+     "closed_and_consistently_wound": true,
+     "directed_edges_repeated": 0,
+     "edges_without_reverse": 0,
+     "where_the_remaining_groups_sit": {
+      "far_corners_of_the_two_faces_on_one_edge": 593,
+      "joined_by_an_edge": 19,
+      "more_than_four_edges_apart": 29,
+      "share_a_neighbour_only": 88,
+      "two_to_four_edges_apart": 22
+     }
+    },
+    "seconds": 137.5
+   },
+   "manifold": {
+    "after": {
+     "faces": 1680272,
+     "points": 839914,
+     "faces_flat_in_float32": 125,
+     "colocated_float32_groups": 62,
+     "colocated_float32_points": 124,
+     "volume_change_mm3": -4.351e-05,
+     "closed_and_consistently_wound": true,
+     "directed_edges_repeated": 0,
+     "edges_without_reverse": 0
+    },
+    "seconds": 31.2
+   },
+   "a_trial_clears_both_warnings": false
+  },
+  "script": "source/stage_warnings.py"
+ },
+ "profile_conformance": {
+  "stacks": {
+   "image": {
+    "simready-validate": "2026.6.5",
+    "usd-core": "26.8",
+    "usd-profiles-nvidia": "1.21.0",
+    "usd-validation-nvidia": "1.21.0",
+    "foundation_commit": "0ed0dfbc539c9de99289771bd6848effe3ef5779",
+    "foundation_release": "SimReady Foundation Release 2026.06.0 (tag v2026.06.0)"
+   },
+   "latest": {
+    "simready-foundation-tier-core": "2026.10.0",
+    "simready-validate": "2026.10.0",
+    "usd-core": "26.11",
+    "usd-profiles-nvidia": "1.23.0",
+    "usd-validation-nvidia": "1.23.0",
+    "source": "public PyPI, pinned in the session"
+   }
+  },
+  "staging": "Both validator releases read the package through a .usd or .usda root: the image's release wrote an empty report for part.usdz, and the newest refuses the package profiles on a .usdz. The package was therefore validated as its root layer part.usda with geometry.usdc and collider.usdc beside it, extracted from part.usdz with the hashes of simready-asset.json (folder a-x). A second copy under part/pkg follows the folder-naming convention of NP.005",
+  "runs": [
+   {
+    "stack": "image",
+    "asset": "a/part.usdz",
+    "exit_code": 1,
+    "receipt_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "profile": "Package",
+    "version": "1.0.0",
+    "result": "unavailable",
+    "reason": "the validator produced no result"
+   },
+   {
+    "stack": "image",
+    "asset": "a/part.usdz",
+    "exit_code": 1,
+    "receipt_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "profile": "Package-Candidate",
+    "version": "1.0.0",
+    "result": "unavailable",
+    "reason": "the validator produced no result"
+   },
+   {
+    "stack": "image",
+    "asset": "a/part.usdz",
+    "exit_code": 1,
+    "receipt_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "profile": "Package-NoBOM",
+    "version": "1.0.0",
+    "result": "unavailable",
+    "reason": "the validator produced no result"
+   },
+   {
+    "stack": "image",
+    "asset": "a/part.usdz",
+    "exit_code": 1,
+    "receipt_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "profile": "Prop-Robotics-Isaac",
+    "version": "1.1.0",
+    "result": "unavailable",
+    "reason": "the validator produced no result"
+   },
+   {
+    "stack": "image",
+    "asset": "a/part.usdz",
+    "exit_code": 1,
+    "receipt_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "profile": "Prop-Robotics-Neutral",
+    "version": "1.0.0",
+    "result": "unavailable",
+    "reason": "the validator produced no result"
+   },
+   {
+    "stack": "image",
+    "asset": "a/part.usdz",
+    "exit_code": 1,
+    "receipt_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "profile": "Prop-Robotics-Neutral",
+    "version": "2.1.0",
+    "result": "unavailable",
+    "reason": "the validator produced no result"
+   },
+   {
+    "stack": "image",
+    "asset": "a/part.usdz",
+    "exit_code": 1,
+    "receipt_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "profile": "Prop-Robotics-Physx",
+    "version": "2.1.0",
+    "result": "unavailable",
+    "reason": "the validator produced no result"
+   },
+   {
+    "stack": "image",
+    "asset": "a-x/part.usda",
+    "exit_code": 0,
+    "receipt_sha256": "3a510a5506a5462febd1e228534261a61a688ed823e6cb420990672381094d52",
+    "profile": "Package",
+    "version": "1.0.0",
+    "result": "pass",
+    "features_passed": [
+     "FET030_PACKAGING_CORE",
+     "FET032_PACKAGING_INTROSPECTION"
+    ],
+    "features_failed": [],
+    "blocking_requirements": [],
+    "optional_requirements_unmet": []
+   },
+   {
+    "stack": "image",
+    "asset": "a-x/part.usda",
+    "exit_code": 1,
+    "receipt_sha256": "e6812a8ebbcb76020e9b7088e4d0c1ca49655972a5e08413ad23ce94a640f52c",
+    "profile": "Package-Candidate",
+    "version": "1.0.0",
+    "result": "fail",
+    "features_passed": [
+     "FET031_PACKAGE_SELF_CONTAINED"
+    ],
+    "features_failed": [
+     "FET033_SIMREADY_PACKAGING"
+    ],
+    "blocking_requirements": [
+     "com.nvidia.simready.SR.002"
+    ],
+    "optional_requirements_unmet": []
+   },
+   {
+    "stack": "image",
+    "asset": "a-x/part.usda",
+    "exit_code": 0,
+    "receipt_sha256": "c5356e5f6447516be8325a39f16f2ca608ee323c6192262c8a3f26414069d8a0",
+    "profile": "Package-NoBOM",
+    "version": "1.0.0",
+    "result": "pass",
+    "features_passed": [
+     "FET030_PACKAGING_CORE"
+    ],
+    "features_failed": [],
+    "blocking_requirements": [],
+    "optional_requirements_unmet": []
+   },
+   {
+    "stack": "image",
+    "asset": "a-x/part.usda",
+    "exit_code": 1,
+    "receipt_sha256": "b2069c80d53326f6085e94bddb9c26dca85085f108d2aabeec45967b1c144b05",
+    "profile": "Prop-Robotics-Isaac",
+    "version": "1.1.0",
+    "result": "fail",
+    "features_passed": [
+     "FET004_BASE_NEUTRAL"
+    ],
+    "features_failed": [
+     "FET001_BASE_NEUTRAL",
+     "FET003_BASE_NEUTRAL",
+     "FET003_BASE_PHYSX",
+     "FET004_BASE_PHYSX",
+     "FET005_BASE_NEUTRAL",
+     "FET100_BASE_ISAACSIM"
+    ],
+    "blocking_requirements": [
+     "com.nvidia.simready.GSP.001",
+     "com.nvidia.simready.ISA.001",
+     "com.nvidia.simready.RB.001",
+     "com.nvidia.simready.UN.007"
+    ],
+    "optional_requirements_unmet": [
+     "com.nvidia.simready.RB.MB.001"
+    ]
+   },
+   {
+    "stack": "image",
+    "asset": "a-x/part.usda",
+    "exit_code": 1,
+    "receipt_sha256": "0ac4e91e3300e27c188b815f7c74798ece4d8897a44bb01da389ae223a08f090",
+    "profile": "Prop-Robotics-Neutral",
+    "version": "1.0.0",
+    "result": "fail",
+    "features_passed": [
+     "FET006_BASE_MDL"
+    ],
+    "features_failed": [
+     "FET000_CORE",
+     "FET001_BASE_NEUTRAL",
+     "FET003_BASE_NEUTRAL",
+     "FET004_BASE_NEUTRAL",
+     "FET005_BASE_NEUTRAL"
+    ],
+    "blocking_requirements": [
+     "com.nvidia.simready.GSP.001",
+     "com.nvidia.simready.NP.005",
+     "com.nvidia.simready.NP.006",
+     "com.nvidia.simready.RB.001",
+     "com.nvidia.simready.UN.007"
+    ],
+    "optional_requirements_unmet": [
+     "com.nvidia.simready.RB.MB.001"
+    ]
+   },
+   {
+    "stack": "image",
+    "asset": "a-x/part.usda",
+    "exit_code": 1,
+    "receipt_sha256": "35c371503c4fcba63230a81dcdb8c5a24df2c76367c8860b52c22b0e8b35a382",
+    "profile": "Prop-Robotics-Neutral",
+    "version": "2.1.0",
+    "result": "fail",
+    "features_passed": [
+     "FET006_BASE_MDL"
+    ],
+    "features_failed": [
+     "FET000_CORE",
+     "FET001_BASE_NEUTRAL",
+     "FET003_BASE_NEUTRAL",
+     "FET004_BASE_NEUTRAL",
+     "FET005_BASE_NEUTRAL"
+    ],
+    "blocking_requirements": [
+     "com.nvidia.simready.GSP.001",
+     "com.nvidia.simready.NP.005",
+     "com.nvidia.simready.NP.006",
+     "com.nvidia.simready.RB.001",
+     "com.nvidia.simready.RB.MB.001",
+     "com.nvidia.simready.UN.007"
+    ],
+    "optional_requirements_unmet": []
+   },
+   {
+    "stack": "image",
+    "asset": "a-x/part.usda",
+    "exit_code": 1,
+    "receipt_sha256": "5537cc87d3f561f7aaed8bd67f8f6952138fb787db538f983005e6cb96a0fc23",
+    "profile": "Prop-Robotics-Physx",
+    "version": "2.1.0",
+    "result": "fail",
+    "features_passed": [
+     "FET004_BASE_NEUTRAL",
+     "FET006_BASE_MDL"
+    ],
+    "features_failed": [
+     "FET000_CORE",
+     "FET001_BASE_NEUTRAL",
+     "FET003_BASE_NEUTRAL",
+     "FET003_BASE_PHYSX",
+     "FET004_BASE_PHYSX",
+     "FET005_BASE_NEUTRAL"
+    ],
+    "blocking_requirements": [
+     "com.nvidia.simready.GSP.001",
+     "com.nvidia.simready.NP.005",
+     "com.nvidia.simready.NP.006",
+     "com.nvidia.simready.RB.001",
+     "com.nvidia.simready.UN.007"
+    ],
+    "optional_requirements_unmet": [
+     "com.nvidia.simready.RB.MB.001"
+    ]
+   },
+   {
+    "stack": "image",
+    "asset": "part/pkg/part.usda",
+    "exit_code": 1,
+    "receipt_sha256": "75f192d54dc7af04a6b81995adf93f7cd911a9e2b8c38c582330bec6eb42bc25",
+    "profile": "Prop-Robotics-Neutral",
+    "version": "2.1.0",
+    "result": "fail",
+    "features_passed": [
+     "FET006_BASE_MDL"
+    ],
+    "features_failed": [
+     "FET000_CORE",
+     "FET001_BASE_NEUTRAL",
+     "FET003_BASE_NEUTRAL",
+     "FET004_BASE_NEUTRAL",
+     "FET005_BASE_NEUTRAL"
+    ],
+    "blocking_requirements": [
+     "com.nvidia.simready.GSP.001",
+     "com.nvidia.simready.NP.006",
+     "com.nvidia.simready.RB.001",
+     "com.nvidia.simready.RB.MB.001",
+     "com.nvidia.simready.UN.007"
+    ],
+    "optional_requirements_unmet": []
+   },
+   {
+    "stack": "latest",
+    "asset": "a-x/part.usda",
+    "exit_code": 1,
+    "receipt_sha256": "f1113857b8957ae150232956e53e52b7496007e7d3847e7fc167aaf319bcefe4",
+    "profile": "Robotics-Prop",
+    "version": "5.0.0",
+    "result": "fail",
+    "features_passed": [
+     "CAP031_SelfContainedPackage.0-1-0",
+     "CAP046_WikidataLabels.0-1-0",
+     "FET006_Materials.0-3-0",
+     "FET009_MaterialCoverage.0-1-0",
+     "FET010_DisplayColor.0-1-0"
+    ],
+    "features_failed": [
+     "CAP000_Core.0-2-0",
+     "CAP000_Core.MuJoCo.0-2-0",
+     "CAP000_Core.Newton.0-2-0",
+     "CAP000_Core.PhysX.0-2-0",
+     "CAP003_RigidBody.MuJoCo.0-1-0",
+     "CAP004_Multibody.MuJoCo.0-1-0",
+     "CAP007_NonVisualMaterials.0-2-0",
+     "CAP033_SimReadyPackage.0-4-0",
+     "CAP100_IsaacComposition.Isaac.0-4-0",
+     "FET001_MinimalPlaceableVisual.1-0-1",
+     "FET003_RigidBody.0-2-0",
+     "FET003_RigidBody.Newton.0-1-0",
+     "FET003_RigidBody.PhysX.0-4-0",
+     "FET004_Multibody.0-2-0",
+     "FET004_Multibody.Newton.0-1-0",
+     "FET004_Multibody.PhysX.0-4-0",
+     "FET005_Grasp.0-1-0",
+     "FET006_Materials.MDL.0-3-0",
+     "FET006_Materials.Openpbr.0-2-0",
+     "FET008_ObjectForward.0-1-0",
+     "FET011_SemanticLabels.0-2-0",
+     "FET011_SemanticLabels.RTX.0-1-0"
+    ],
+    "blocking_requirements": [
+     "com.nvidia.simready.AF.001",
+     "com.nvidia.simready.NP.005",
+     "com.nvidia.simready.RB.001",
+     "com.nvidia.simready.SL.001",
+     "com.nvidia.simready.SL.MAT.001",
+     "com.nvidia.simready.SR.002",
+     "com.nvidia.simready.SR.004",
+     "com.nvidia.simready.UN.007"
+    ],
+    "optional_requirements_unmet": [
+     "com.nvidia.simready.GSP.001",
+     "com.nvidia.simready.ISA.001",
+     "com.nvidia.simready.MUJOCO.COL.001",
+     "com.nvidia.simready.NEWTON.COL.001",
+     "com.nvidia.simready.NVM.001",
+     "com.nvidia.simready.NVM.002",
+     "com.nvidia.simready.NVM.003",
+     "com.nvidia.simready.PMT.001",
+     "com.nvidia.simready.RB.MB.001",
+     "com.nvidia.simready.RV.001",
+     "com.nvidia.simready.RV.004",
+     "com.nvidia.simready.RV.007",
+     "com.nvidia.simready.VM.MDL.003",
+     "com.nvidia.simready.VM.PBR.001"
+    ]
+   },
+   {
+    "stack": "latest",
+    "asset": "a/part.usdz",
+    "exit_code": 1,
+    "receipt_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "profile": "Package",
+    "version": "1.0.0",
+    "result": "unavailable",
+    "reason": "Validation execution unavailable for profile 'Package' version '1.0.0', bucket neutral, input USD stage: rule simready.foundation.tier_core.rules_and_reqs.packaging.packaging_introspection.validation.BomStructureChecker for selected requirements [com.nvidia.simready.PKG.BOM.001@0.1.0] only implement"
+   },
+   {
+    "stack": "latest",
+    "asset": "a/part.usdz",
+    "exit_code": 1,
+    "receipt_sha256": "4932cd00133d99f6739a575bc480aa868d1634c9d3f5a3d22745414ec8227e4c",
+    "profile": "Package-Candidate",
+    "version": "1.3.0",
+    "result": "fail",
+    "features_passed": [
+     "CAP031_SelfContainedPackage.0-1-0"
+    ],
+    "features_failed": [
+     "CAP033_SimReadyPackage.0-4-0"
+    ],
+    "blocking_requirements": [
+     "com.nvidia.simready.SR.002",
+     "com.nvidia.simready.SR.004"
+    ],
+    "optional_requirements_unmet": []
+   },
+   {
+    "stack": "latest",
+    "asset": "a/part.usdz",
+    "exit_code": 1,
+    "receipt_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "profile": "Package-NoBOM",
+    "version": "1.0.0",
+    "result": "unavailable",
+    "reason": "Validation execution unavailable for profile 'Package-NoBOM' version '1.0.0', bucket neutral, input USD stage: rule simready.foundation.tier_core.rules_and_reqs.packaging.conformance_metadata.validation.ConformanceMetadataChecker for selected requirements [com.nvidia.simready.PKG.CONF.001@0.1.0] onl"
+   },
+   {
+    "stack": "latest",
+    "asset": "a/part.usdz",
+    "exit_code": 1,
+    "receipt_sha256": "6f94d396d1f411bf98c001b599c3a39e5c8c02b645ec8c5e8e0b7348719e5e56",
+    "profile": "Robotics-Prop",
+    "version": "5.0.0",
+    "result": "fail",
+    "features_passed": [
+     "CAP000_Core.0-2-0",
+     "CAP031_SelfContainedPackage.0-1-0",
+     "CAP046_WikidataLabels.0-1-0",
+     "FET006_Materials.0-3-0",
+     "FET009_MaterialCoverage.0-1-0",
+     "FET010_DisplayColor.0-1-0"
+    ],
+    "features_failed": [
+     "CAP000_Core.MuJoCo.0-2-0",
+     "CAP000_Core.Newton.0-2-0",
+     "CAP000_Core.PhysX.0-2-0",
+     "CAP003_RigidBody.MuJoCo.0-1-0",
+     "CAP004_Multibody.MuJoCo.0-1-0",
+     "CAP007_NonVisualMaterials.0-2-0",
+     "CAP033_SimReadyPackage.0-4-0",
+     "CAP100_IsaacComposition.Isaac.0-4-0",
+     "FET001_MinimalPlaceableVisual.1-0-1",
+     "FET003_RigidBody.0-2-0",
+     "FET003_RigidBody.Newton.0-1-0",
+     "FET003_RigidBody.PhysX.0-4-0",
+     "FET004_Multibody.0-2-0",
+     "FET004_Multibody.Newton.0-1-0",
+     "FET004_Multibody.PhysX.0-4-0",
+     "FET005_Grasp.0-1-0",
+     "FET006_Materials.MDL.0-3-0",
+     "FET006_Materials.Openpbr.0-2-0",
+     "FET008_ObjectForward.0-1-0",
+     "FET011_SemanticLabels.0-2-0",
+     "FET011_SemanticLabels.RTX.0-1-0"
+    ],
+    "blocking_requirements": [
+     "com.nvidia.simready.AF.001",
+     "com.nvidia.simready.RB.001",
+     "com.nvidia.simready.SL.001",
+     "com.nvidia.simready.SL.MAT.001",
+     "com.nvidia.simready.SR.002",
+     "com.nvidia.simready.SR.004",
+     "com.nvidia.simready.UN.007"
+    ],
+    "optional_requirements_unmet": [
+     "com.nvidia.simready.GSP.001",
+     "com.nvidia.simready.ISA.001",
+     "com.nvidia.simready.MUJOCO.COL.001",
+     "com.nvidia.simready.NEWTON.COL.001",
+     "com.nvidia.simready.NVM.001",
+     "com.nvidia.simready.NVM.002",
+     "com.nvidia.simready.NVM.003",
+     "com.nvidia.simready.PMT.001",
+     "com.nvidia.simready.RB.MB.001",
+     "com.nvidia.simready.RV.001",
+     "com.nvidia.simready.RV.004",
+     "com.nvidia.simready.RV.007",
+     "com.nvidia.simready.VM.MDL.003",
+     "com.nvidia.simready.VM.PBR.001"
+    ]
+   },
+   {
+    "stack": "latest",
+    "asset": "a-x/part.usda",
+    "exit_code": 1,
+    "receipt_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "profile": "Package",
+    "version": "1.0.0",
+    "result": "unavailable",
+    "reason": "Validation execution unavailable for profile 'Package' version '1.0.0', bucket neutral, input USD stage: rule simready.foundation.tier_core.rules_and_reqs.packaging.packaging_introspection.validation.BomStructureChecker for selected requirements [com.nvidia.simready.PKG.BOM.001@0.1.0] only implement"
+   },
+   {
+    "stack": "latest",
+    "asset": "a-x/part.usda",
+    "exit_code": 1,
+    "receipt_sha256": "4a87a21c60ae1b5ac0c9d4478027b3c8bd8f61cfd06d46cb5613bf7238d69f77",
+    "profile": "Package-Candidate",
+    "version": "1.3.0",
+    "result": "fail",
+    "features_passed": [
+     "CAP031_SelfContainedPackage.0-1-0"
+    ],
+    "features_failed": [
+     "CAP033_SimReadyPackage.0-4-0"
+    ],
+    "blocking_requirements": [
+     "com.nvidia.simready.SR.002",
+     "com.nvidia.simready.SR.004"
+    ],
+    "optional_requirements_unmet": []
+   },
+   {
+    "stack": "latest",
+    "asset": "a-x/part.usda",
+    "exit_code": 1,
+    "receipt_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "profile": "Package-NoBOM",
+    "version": "1.0.0",
+    "result": "unavailable",
+    "reason": "Validation execution unavailable for profile 'Package-NoBOM' version '1.0.0', bucket neutral, input USD stage: rule simready.foundation.tier_core.rules_and_reqs.packaging.conformance_metadata.validation.ConformanceMetadataChecker for selected requirements [com.nvidia.simready.PKG.CONF.001@0.1.0] onl"
+   },
+   {
+    "stack": "latest",
+    "asset": "part/pkg/part.usda",
+    "exit_code": 1,
+    "receipt_sha256": "9e2d3100eeb317d8bc52e5da0b53b832c51cd3aeadcd5774d5496d40e9edea25",
+    "profile": "Robotics-Prop",
+    "version": "5.0.0",
+    "result": "fail",
+    "features_passed": [
+     "CAP031_SelfContainedPackage.0-1-0",
+     "CAP046_WikidataLabels.0-1-0",
+     "FET006_Materials.0-3-0",
+     "FET009_MaterialCoverage.0-1-0",
+     "FET010_DisplayColor.0-1-0"
+    ],
+    "features_failed": [
+     "CAP000_Core.0-2-0",
+     "CAP000_Core.MuJoCo.0-2-0",
+     "CAP000_Core.Newton.0-2-0",
+     "CAP000_Core.PhysX.0-2-0",
+     "CAP003_RigidBody.MuJoCo.0-1-0",
+     "CAP004_Multibody.MuJoCo.0-1-0",
+     "CAP007_NonVisualMaterials.0-2-0",
+     "CAP033_SimReadyPackage.0-4-0",
+     "CAP100_IsaacComposition.Isaac.0-4-0",
+     "FET001_MinimalPlaceableVisual.1-0-1",
+     "FET003_RigidBody.0-2-0",
+     "FET003_RigidBody.Newton.0-1-0",
+     "FET003_RigidBody.PhysX.0-4-0",
+     "FET004_Multibody.0-2-0",
+     "FET004_Multibody.Newton.0-1-0",
+     "FET004_Multibody.PhysX.0-4-0",
+     "FET005_Grasp.0-1-0",
+     "FET006_Materials.MDL.0-3-0",
+     "FET006_Materials.Openpbr.0-2-0",
+     "FET008_ObjectForward.0-1-0",
+     "FET011_SemanticLabels.0-2-0",
+     "FET011_SemanticLabels.RTX.0-1-0"
+    ],
+    "blocking_requirements": [
+     "com.nvidia.simready.AF.001",
+     "com.nvidia.simready.NP.005",
+     "com.nvidia.simready.RB.001",
+     "com.nvidia.simready.SL.001",
+     "com.nvidia.simready.SL.MAT.001",
+     "com.nvidia.simready.SR.002",
+     "com.nvidia.simready.SR.004",
+     "com.nvidia.simready.UN.007"
+    ],
+    "optional_requirements_unmet": [
+     "com.nvidia.simready.GSP.001",
+     "com.nvidia.simready.ISA.001",
+     "com.nvidia.simready.MUJOCO.COL.001",
+     "com.nvidia.simready.NEWTON.COL.001",
+     "com.nvidia.simready.NVM.001",
+     "com.nvidia.simready.NVM.002",
+     "com.nvidia.simready.NVM.003",
+     "com.nvidia.simready.PMT.001",
+     "com.nvidia.simready.RB.MB.001",
+     "com.nvidia.simready.RV.001",
+     "com.nvidia.simready.RV.004",
+     "com.nvidia.simready.RV.007",
+     "com.nvidia.simready.VM.MDL.003",
+     "com.nvidia.simready.VM.PBR.001"
+    ]
+   }
+  ],
+  "requirement_causes": {
+   "com.nvidia.simready.AF.001": {
+    "blocked_by": "authoring",
+    "why": "no simready:assetFrame:forwardDirection on the default prim"
+   },
+   "com.nvidia.simready.GSP.001": {
+    "blocked_by": "not applicable",
+    "why": "no grasp vector: a robotics handling point, which no source gives for this part"
+   },
+   "com.nvidia.simready.ISA.001": {
+    "blocked_by": "not applicable",
+    "why": "no Isaac composition"
+   },
+   "com.nvidia.simready.NP.005": {
+    "blocked_by": "authoring",
+    "why": "package layout: root, geometry and collider are three sibling USD files, and the folder names do not follow the asset-root convention"
+   },
+   "com.nvidia.simready.NP.006": {
+    "blocked_by": "authoring",
+    "why": "no simready_metadata in the root layer or a sidecar"
+   },
+   "com.nvidia.simready.RB.001": {
+    "blocked_by": "#705",
+    "why": "no rigid body: a body without mass would let the engine invent a density, and the alloy is not selected"
+   },
+   "com.nvidia.simready.RB.MB.001": {
+    "blocked_by": "#705",
+    "why": "no rigid body: a body without mass would let the engine invent a density, and the alloy is not selected"
+   },
+   "com.nvidia.simready.SL.001": {
+    "blocked_by": "authoring",
+    "why": "no semantic labels"
+   },
+   "com.nvidia.simready.SL.MAT.001": {
+    "blocked_by": "authoring",
+    "why": "no semantic labels"
+   },
+   "com.nvidia.simready.SR.002": {
+    "blocked_by": "authoring",
+    "why": "no 256 x 256 thumbnail in the package"
+   },
+   "com.nvidia.simready.SR.004": {
+    "blocked_by": "#705",
+    "why": "SimReady metadata missing; mass is one of its fields and waits for the alloy, the others (author, licence, category, qcode) are not authored"
+   },
+   "com.nvidia.simready.UN.007": {
+    "blocked_by": "authoring",
+    "why": "the stage is in millimetres (metersPerUnit 0.001, the twin's convention); the profile wants metres"
+   }
+  },
+  "summary": "No prop profile passes, in either release. Every one fails on RB.001, no rigid body, which waits for the alloy (#705), and on UN.007, the stage being in millimetres. They also fail on authoring nobody has done: SimReady metadata and thumbnail, an asset frame, semantic labels, a grasp vector, and in the newest release one USD file per folder. In the image's release the materials feature passes, and Package 1.0.0 and Package-NoBOM 1.0.0 pass; Package-Candidate fails only on the missing thumbnail. The newest release cannot run Package or Package-NoBOM on a USD stage (execution unavailable)"
+ },
+ "nvidia_validator_latest": {
+  "version": "1.23.0",
+  "venv": {
+   "usd-core": "26.11",
+   "usd-validation-nvidia": "1.23.0"
+  },
+  "assets": {
+   "a_part_usdz": {
+    "status": "FAIL",
+    "exit_code": 1,
+    "rules_with_issues": {
+     "WeldChecker": {
+      "WARNING": 1
+     },
+     "ZeroAreaFaceChecker": {
+      "WARNING": 1
+     }
+    },
+    "receipt_sha256": "9f485f96ab8fe1c343ce5608f4d04857a37d6891372114600e2b75dea051cd3f"
+   },
+   "a-x_part_usda": {
+    "status": "FAIL",
+    "exit_code": 1,
+    "rules_with_issues": {
+     "WeldChecker": {
+      "WARNING": 1
+     },
+     "ZeroAreaFaceChecker": {
+      "WARNING": 1
+     }
+    },
+    "receipt_sha256": "9f485f96ab8fe1c343ce5608f4d04857a37d6891372114600e2b75dea051cd3f"
+   }
+  }
+ },
+ "rtx": {
+  "renderer": "NVIDIA Omniverse OVRTX",
+  "ovrtx_version": "0.3.0",
+  "gpu": "NVIDIA GeForce RTX 3090, 595.91.07",
+  "scene_sha256": {
+   "head.usdc": "fa2b64b291cafb8afb98d9c5abfc2c5943d8f23014a327a2524b841bce27dc40",
+   "review.usda": "1136f6cd0e7d88dd44b3fc25a549d4162c6ec82664bad0c7b729c908def5e0af",
+   "review-floor.usda": "abc2dd3f07effa818f3aef1029ae46ac25ba3c63064d22ab8eaf44d6db36cd1b"
+  },
+  "cad_stage_sha256": "fa2b64b291cafb8afb98d9c5abfc2c5943d8f23014a327a2524b841bce27dc40",
+  "stills": [
+   "CamSide",
+   "PortSide",
+   "Chamber"
+  ],
+  "video_frames": 120,
+  "video_fps": 24,
+  "accumulation_steps": {
+   "still": 64,
+   "orbit_frame": 16
+  },
+  "adapter_sha256": "3a117a20434baf8bdfe1f7e9dd037b9be2a346dabe0ef70d4b0fe1b4aa177b11",
+  "media_sha256": {
+   "camside.png": "ec84524f39b2e366885d1adf4982aa0e62f334d3bab3ca6e6ffb3ad9976dd28f",
+   "chamber.png": "cf5e873b8775b5c4f5588dc9c4a7abcb8cd7069ceef4e383b24989c3b1d3ce15",
+   "orbit-000.png": "b22a8c4806659bb2d76c9f70fd82cd24eb9ce9afe78bc5e372f78f6ac891cc41",
+   "orbit-010.png": "44e81f53ff058c7d9eb3570e0f4b3b6923e98fea4ee804757140f20f356ebe33",
+   "orbit-020.png": "c3285e68f06b4ee692b0e3328629955b5c155bc8261256cdd45d9aeb6c3e42c2",
+   "orbit-030.png": "412d05b37a8e692afefb5e592eabd3593dd8647c924a355fdf7c55370a1e3749",
+   "orbit-040.png": "f8341804bf3f57f0d39624dd42c37d0cbd8f7dadd2d6542ab3e3799ecc82c7c0",
+   "orbit-050.png": "a51e7d9de5bf3844f3a61cbb4de6fc00ec8522c0ad8683b1b8dbe64a00183f29",
+   "orbit-060.png": "1a56e78a8b64a872a195e1e959393d4dad11b98efd8e8d718259eca0b47cce02",
+   "orbit-070.png": "af7272c658f6bfa106d89e233f518d15fc1c59093eacf1ea7f74dca5e84424a2",
+   "orbit-080.png": "9db3ca66773d579f52aab8c6434166d7f31bd2c2c4ff85652ac5a126e208eb0c",
+   "orbit-090.png": "a5631d7f6c676b9e64628cbf17f466d2167ee71c2b6eb2af8d766fcc18e7e848",
+   "orbit-100.png": "a47fbac9771a0982d8b823e819a184c08adec92dbaaa742ea349c5421691af13",
+   "orbit-110.png": "83252bac8ac37a41ce026793784f2d5861d239d032f6ce2f88b481a6c6075d7c",
+   "portside.png": "d91cddedcbd522be1097801a82ea4dfc91d12f7511ed9be2bdb8c27b434733f4",
+   "turntable.mp4": "1b02c3346106c9609eab069ec40974ee47a22792566f61d640214fa9a042df80"
+  },
+  "capture_receipt_sha256": "099647b2d469949b6670e6a9139b7b2b70ecacfb3ebc821edbdaacb95fc8105f",
+  "wall_seconds": 304,
+  "read_by_the_agent": true,
+  "reading": [
+   "All three stills and orbit frames 0, 30, 60 and 90 show the whole body inside the frame",
+   "No hole, stray shell or dark inverted patch in any of them; fins, both ports, the spring pockets with their guide bosses, the chamber with two throats and two plug bores, the stud holes and the sealing groove are where the six-view software render has them",
+   "The scene's two lights saturate the display colours: the observed grey renders almost white and the inferred orange as a yellow orange",
+   "A dark seam crosses the exhaust-port boss in the CamSide and Chamber stills and in orbit frame 90, where loft bands meet; a render cannot tell a step from a crease",
+   "Fine lines follow the loft sections on flat faces, from the faceted surface with one normal per face",
+   "The stud stub beside a long stud on the cam face, described under the visual check, is visible",
+   "The Chamber camera looks into the 12 degree key light, which RTX draws as a white disc behind the body: a property of the review scene, not of the stage",
+   "Orbit frames from 30 on carry translucent ghosts of the studs from the previous camera position: 16 accumulation steps per frame do not clear the history after a camera move; the stills, 64 steps from a fixed camera, have none"
+  ],
+  "published": "media/rtx-camside.png"
+ },
+ "agents": {
+  "run": false,
+  "why": "The Material and Physics agents propose a material, a density, friction and a mass. The alloy is not selected (#705), and the stack removes any unsourced property (docs/SOFTWARE_STACK.md), so nothing they propose could be bound; the remote Material Agent endpoints answer HTTP 403 (#459, #561). Not attempted"
+ },
+ "not_authored": {
+  "mass_kg": {
+   "value": null,
+   "blocked_by": "#705: the alloy, and with it the density, is not selected"
+  },
+  "inertia": {
+   "value": null,
+   "blocked_by": "#705: needs the density"
+  },
+  "density": {
+   "value": null,
+   "blocked_by": "#705: no density is invented"
+  },
+  "physics_material": {
+   "value": null,
+   "blocked_by": "#705: friction and restitution need a material"
+  },
+  "whole_body_step": {
+   "value": null,
+   "blocked_by": "#695: the whole-body B-rep does not exist yet, so there is nothing for the NVIDIA converter"
+  },
+  "thermal_field": {
+   "value": null,
+   "blocked_by": "#702: no thermal field is accepted; a screen is not bound as a result"
+  },
+  "stress_field": {
+   "value": null,
+   "blocked_by": "#703: no converged stress field exists"
+  }
+ }
+}

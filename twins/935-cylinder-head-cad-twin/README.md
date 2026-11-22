@@ -203,7 +203,9 @@ process values, with every qualification gate closed.*
 | Drawings, assigned in [TOOLCHAIN.md](../../docs/TOOLCHAIN.md) (#708) | build123d projection and DXF export, ezdxf dimensions and title block, read back with ezdxf; witnessed on a known solid with five planted faults | [drawing_witness.py](source/drawing_witness.py) |
 | Melt-pool check of the declared heat input | the reviewed GO-MELT kernel (JAX, CUDA), one explicit level, against Rosenthal's point source | [melt_pool_track.py](source/melt_pool_track.py), [melt_pool_summary.py](source/melt_pool_summary.py) |
 | Six-view render of the body, read by the agent | `preview.py` of the `cad-skill` skill (trimesh, pyrender, EGL under `xvfb-run`) | none: the script is the skill's |
-| RTX review stills and turntable, **not yet captured** | OpenUSD 26.11 review scene (cameras, two lights, render products) built locally around the private CAD-body stage; NVIDIA OVRTX 0.3.0 in the pinned SimReady image, which needs an RTX GPU. The scene was built on 2026-11-15 and rebuilt on 2026-11-17 with identical hashes. The capture script has never completed: no picture and no capture receipt exist yet | [build_review_usd.py](source/build_review_usd.py), [capture_rtx.py](source/capture_rtx.py) |
+| RTX review stills and turntable | OpenUSD 26.11 review scene (cameras, two lights, render products) built locally around the private CAD-body stage; NVIDIA OVRTX 0.3.0 in the admitted SimReady image on a rented RTX 3090. The scene was built on 2026-11-15 and rebuilt on 2026-11-17 with identical hashes; captured on 2026-11-22 ([#707](#profiles-rtx-and-the-two-warnings-on-a-rented-gpu-707)) | [build_review_usd.py](source/build_review_usd.py), [capture_rtx.py](source/capture_rtx.py), [publish_rtx_still.py](source/publish_rtx_still.py) |
+| What the two NVIDIA warnings are, and three repairs tried | NumPy on the stage and its double-precision body; manifold3d 3.5 for the library repair | [stage_warnings.py](source/stage_warnings.py) |
+| SimReady profile validation, two releases | `simready-validate` 2026.6.5 with Foundation 2026.06.0 (in the image); 2026.10.0 with `simready-foundation-tier-core` 2026.10.0 (PyPI) | [simready_gpu_record.py](source/simready_gpu_record.py) |
 
 The private inputs and outputs live under `work/935-cad-twin/` (ignored by
 Git). Code, fitted scalar parameters and statistics are committed, as the
@@ -752,10 +754,12 @@ refused the surface. The level is now 31.5/64 for such a grid.
 | Stage mesh | 600,000 triangles, 12.7% of area inferred | 2,262,390 triangles, 18.0% inferred |
 | 3MF study | 7,050,948 triangles, watertight, exact round trip | 2,262,390 triangles, watertight, exact round trip (1,095,426.1 mm³) |
 
-The two warnings on the CAD stage are the 35 triangles without area and
-points that coincide in single precision
+The two warnings on the CAD stage are faces without area and points that
+coincide, both in single precision
 ([report](params/simready-validate-cad-stage.json)). They are left as
-measured: removing the triangles would open the surface. The 3MF is written
+measured: removing the faces would open the surface, and the repairs that
+keep it closed do not clear them
+([#707](#profiles-rtx-and-the-two-warnings-on-a-rented-gpu-707)). The 3MF is written
 from the double-precision body; written from its single-precision STL, the
 read-back was not watertight.
 
@@ -791,7 +795,7 @@ warnings the geometry layer already carried; the package adds none.*
 | Material | `Looks/EvidenceDisplay`, a `UsdPreviewSurface` that reads the evidence colour; bound to the body and the 10 studs |
 | Collider | `Collision/BareHead`, guide purpose, 396,244 triangles (the 1.0 mm surface of the thermal screen), `UsdPhysics` collision with convex decomposition; volume 1.00017 of the render body |
 | OpenUSD validators (30) | no finding on `part.usda` or on `part.usdz` |
-| NVIDIA validator (42 rules) | 0 failures, 0 errors, 2 warnings on each: 35 triangles without area and co-located points, both on `BareHead` and both inherited |
+| NVIDIA validator (42 rules) | 0 failures, 0 errors, 2 warnings on each: faces without area and co-located points in single precision, both on `BareHead`, both inherited and [explained](#profiles-rtx-and-the-two-warnings-on-a-rented-gpu-707) |
 | Read back from the `.usdz` | identical to the layers |
 
 Not authored, on purpose: **no mass, density or rigid body**, because the
@@ -819,6 +823,98 @@ figures below are from the body rebuilt after it.
   and 23 before the repair. The solid touches itself at those points. A
   slicer or mesher that welds will see the same thing; the 3MF and the
   thermal surface were built without welding.
+
+### Profiles, RTX and the two warnings on a rented GPU (#707)
+
+[Record](params/simready-conformance-gpu.json). On 2026-11-22 the admitted
+SimReady image (`3dprinting993-simready-local-ai@sha256:5a69a680…`, the
+digest `deploy/openbao/openbao-ghcr` admits) ran on a rented RTX 3090,
+driver 595.91.07, instance 61955410. The invoice is $0.131 (GPU $0.102 for
+0.35 h, storage $0.028, download $0.001), and the instance was destroyed, then
+confirmed gone. All 113 receipts came back and rehashed; they stay private.
+The controller in
+`deploy/vast/simready` was not used: it needs the OpenBao wrapper, which is
+on the Mac only, and an RTX PRO 6000 floor sized for the image's local AI. Its
+gates were kept: image by digest, GPU probe, inputs frozen by hash, cost cap,
+guard on the instance and checked teardown. The package checked is the one
+of the previous section, byte for byte.
+
+| Check | Tool | Result |
+|---|---|---|
+| The two inherited warnings | [stage_warnings.py](source/stage_warnings.py) on this host | explained; no repair that keeps the surface closed clears them, so the stage is unchanged |
+| NVIDIA stage validator, newest release | `usd-validation-nvidia` 1.23.0 alone in its venv | the same two warnings on `part.usda` and `part.usdz`; the report is byte for byte the 1.21 one |
+| SimReady profiles, the image's release | `simready-validate` 2026.6.5, Foundation 2026.06.0 | Package 1.0.0 and Package-NoBOM 1.0.0 pass; Package-Candidate fails on the missing thumbnail only; the four prop profiles fail |
+| SimReady profiles, newest release | `simready-validate` 2026.10.0 with `simready-foundation-tier-core` 2026.10.0, from PyPI | Robotics-Prop 5.0.0 and Package-Candidate 1.3.0 fail; Package and Package-NoBOM cannot run on a USD stage in this release |
+| RTX capture of the frozen review scene | OVRTX 0.3.0, [capture_rtx.py](source/capture_rtx.py) unchanged | three stills and a 120-frame turntable in 304 s; read by the agent |
+
+**The warnings.** The stage holds exactly the float32 cast of the
+double-precision loft body; a rebuild with `export_usd.py` on this host
+reproduced it byte for byte. ZeroAreaFaceChecker sees 996 faces whose float32
+cross product is zero. [usd-cad-summary.json](params/usd-cad-summary.json)
+counts 35 because it measures in double. All 996 are caps: three distinct
+corners nearly on one line. WeldChecker sees 1,058 groups of identical float32
+points. 1,056 of them are distinct in double, at most 7.3e-6 mm apart where
+the float32 spacing is 7.6e-6 mm; 2 coincide in double, where the solid
+touches itself. Three repairs keep the surface closed and consistently wound
+under a tolerance of 1e-4 mm fixed beforehand:
+
+| Repair | Faces flat in float32 | Co-located groups |
+|---|---|---|
+| none (the stage) | 996 | 1,058 |
+| collapse edges under 1e-4 mm, flip caps lower than 1e-4 mm | 834 | 2 |
+| collapse float32-equal or short edges, flip only float32-flat faces | 103 | 751 |
+| manifold3d `simplify(1e-4)`, 26% fewer triangles | 125 | 62 |
+
+None clears both. The flat faces come in chains across shared edges, where a
+flip would fold the neighbour. Points two or more edges apart cannot be welded
+without pinching the surface, and nudging them apart would only hide the
+warning. The warnings stand on this mesh-derived stage. A stage tessellated
+from the whole-body B-rep (#695) will be checked afresh.
+
+**The profiles.** Each validator release reads a `.usd` or `.usda` root, so
+the package was checked as its root layer with its two binary layers beside it,
+extracted from `part.usdz` with the recorded hashes. Every failing requirement
+has a cause:
+
+| Requirement | Why it fails here | Waits for |
+|---|---|---|
+| RB.001, RB.MB.001 | no rigid body: a body without mass lets the engine invent a density | the alloy (#705) |
+| SR.004 | SimReady metadata missing; mass is one of its fields | the alloy (#705) for mass; authoring for the rest |
+| UN.007 | the stage is in millimetres, the twin's convention; the profile wants metres | an authoring decision |
+| NP.005 | in 2026.06.0, the folder names (gone in a copy named by the convention); in 2026.10.0, also one USD file per folder | authoring |
+| NP.006, SR.002, AF.001, SL.001 | no SimReady metadata, thumbnail, asset frame or semantic labels | authoring |
+| GSP.001 | no grasp vector: a robotics handling point no source gives | not applicable |
+
+The materials feature passes in the image's release. A profile pass would say
+the package is well formed for a use; no pass or fail here says anything about
+the part.
+
+![RTX still of the review scene: the head from the cam side with fins, exhaust port and blue fitted studs; grey observed surface, orange inferred](media/rtx-camside.png)
+
+**The RTX capture.** The three stills and orbit frames 0, 30, 60 and 90 were
+read. The whole body stays in frame through the orbit. No hole, stray shell or
+dark inverted patch is visible. Fins, both ports, the spring pockets, the
+chamber with two throats and two plug bores, the stud holes and the sealing
+groove are where the six-view render has them. Seen in the pictures:
+
+- the scene's lights saturate the display colours: the observed grey comes out
+  almost white and the inferred orange yellow-orange;
+- a dark seam crosses the exhaust-port boss in three views, where loft bands
+  meet; a render cannot tell a step from a crease;
+- fine lines follow the loft sections on flat faces, and the stud stub beside a
+  long stud is visible;
+- the chamber camera looks into the 12° key light, drawn as a white disc behind
+  the body, which is a property of the scene;
+- orbit frames from 30 on carry faint ghosts of the studs from the previous
+  camera position: 16 accumulation steps do not clear a camera move. The
+  stills, 64 steps from a fixed camera, have none.
+
+**Not done.** The Material and Physics agents were not run: they propose a
+material, density and mass, and nothing unsourced may be bound before the
+alloy is selected (#705). Mass, inertia, density and a physics material stay
+null (#705), the STEP conversion waits for the whole-body B-rep (#695), and no
+thermal or stress field is bound (#702, #703). The twin stays not measured, not
+functional, not released.
 
 ### Print body: a study object derived from the twin ([case](params/print-body-case.json), [record](params/print-body.json), [orientations](params/print-body-supports.json))
 
@@ -1544,9 +1640,10 @@ found and the validator did not:
   [port-loft-check.json](params/port-loft-check.json) carry that error.
 
 A validator pass shows a well-formed stage. It is not a SimReady profile
-conformance, and the Material and Physics agents and RTX renders were not
-attempted. The v2 body has no STEP, so it enters this tier only as the USD
-stage above.
+conformance. Profile validation and an RTX capture of the CAD-body package ran
+on 2026-11-22 ([#707](#profiles-rtx-and-the-two-warnings-on-a-rented-gpu-707));
+the Material and Physics agents were not attempted. The v2 body has no STEP,
+so it enters this tier only as the USD stage above.
 
 ### AM screen: orientations and cooldown ([supports](params/am-supports.json), [cooldown](params/am-cooldown.json))
 
@@ -2293,13 +2390,14 @@ contributor. No contributor is named here, and none has been asked.
 | Thermal from CAD | v2 body occupancy at 1.0 mm | private deck and fields; [result](params/thermal-screen-cad.json) | energy balance 0.28%; comparison with T3 at the same pitch | done: mean −0.53 °C, heat −0.36% against T3 |
 | USD and 3MF from CAD | v2 body | private `.usdc` and 3MF; [USD](params/usd-cad-summary.json), [3MF](params/print-cad-summary.json) | 30 OpenUSD validators, NVIDIA validator; streaming round trip | done: 0 OpenUSD findings; NVIDIA 0 failures, 2 warnings (35 flat triangles, co-located points); 3MF exact |
 | Port CFD | port fit, hypotheses | [audit](params/port-cfd-audit.json) | three admissibility gates | closed by audit: no admissible domain, no solver run; reopens with H04 and H05 evidence; [prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register) |
-| SimReady tools | v1 deck plate STEP, two port loft STEPs, both stages | private stages; [deck](params/simready-deck-plate.json), [ports](params/simready-ports.json) | NVIDIA validator; independent bounding box and volume against the STEP | done for the three B-rep inputs (pass) and both stages; profile conformance, agents and RTX not attempted; no STEP of the v2 body |
+| SimReady tools | v1 deck plate STEP, two port loft STEPs, both stages | private stages; [deck](params/simready-deck-plate.json), [ports](params/simready-ports.json) | NVIDIA validator; independent bounding box and volume against the STEP | done for the three B-rep inputs (pass) and both stages; profile validation and RTX done on the CAD-body package (#707), agents not attempted; no STEP of the v2 body |
 | AM screen | occupancy | [supports](params/am-supports.json), [cooldown](params/am-cooldown.json) | analytic witnesses within 2.5%; independent VTU reader, energy imbalance 1.5e-4 | done as a screen: six orientations, two cooldown levels; no orientation chosen, no support designed |
 | Feature fit | bare scan, frame, [32 windows](params/feature-rois.json) | [feature-fits.json](params/feature-fits.json); private vertex split | the tool's own `determined` flag and standard deviations; two-centre construction against a guide bore axis (0.42°) | done: 25 determined, 7 detected only; two valve axes, guide bore, seats, plug bores, stud passages |
 | Feature check | fits, held-out half of each window | [feature-check.json](params/feature-check.json); private clouds and receipts | CloudCompare distances; acceptance fixed beforehand (90% within 0.2 mm) | done: **4 of 32 confirmed** at the first check; the fits are nominal, not inspected |
 | Feature re-fit (#696) | the 28 unconfirmed fits, fitted half only, a rule declared before the check | [declaration](params/feature-refit-declaration.json), [re-fits](params/feature-refits.json), [check](params/feature-check-refit.json), [standing](params/feature-confirmation.json) | same CloudCompare check and 90% on the held-out half; standing reproduced by a test | done: **11 of 32 confirmed**; 21 not confirmable from this scan, each with its declared reason |
 | Body check by a second tool | v2 body, 200,000 scan facets | [cloudcompare-v2-body.json](params/cloudcompare-v2-body.json) | CloudCompare against the Warp scorecard | done: 97.36% against 97.37% within 0.2 mm, p95 0.1571 against 0.1572 mm |
-| Asset package | CAD-body stage, 1.0 mm surface | private `part.usda`, `part.usdz` and two binary layers; [summary](params/simready-asset.json) | 30 OpenUSD validators and the NVIDIA validator on both forms; read-back of the package | done: 0 OpenUSD findings; NVIDIA 0 failures, the 2 inherited warnings; no mass, no physics run |
+| Asset package | CAD-body stage, 1.0 mm surface | private `part.usda`, `part.usdz` and two binary layers; [summary](params/simready-asset.json) | 30 OpenUSD validators and the NVIDIA validator on both forms; read-back of the package | done: 0 OpenUSD findings; NVIDIA 0 failures, the 2 inherited warnings, explained and not cleared (#707); no mass, no physics run |
+| SimReady profiles and RTX (#707) | the asset package | private receipts; [record](params/simready-conformance-gpu.json), [still](media/rtx-camside.png) | two validator releases on a rented RTX 3090; receipts rehashed; pictures read by the agent | done: Package and Package-NoBOM pass, every prop profile fails on the rigid body (#705) and on units; RTX stills and turntable captured |
 | Visual check of the v2 body | double-precision 3MF | private six-view render; [record](params/v2-body-visual-check.json) | read by the agent; the renderer's strict watertight gate | done twice: the first reading found stud slivers up to 26 mm tall and led to the stud repair; after it, stubs of 5.5 mm and 5 non-manifold edges once vertices are welded |
 | Alloy candidates and machine survey | public datasheets and pages read on 2026-11-11 | [candidates](params/alloy-candidates.json), [machines](params/lpbf-machine-survey.json), [literature](params/thermal-literature-bounds.json) | each value marked re-read or reported only; source URL and file hash | done as a survey: no alloy or machine selected; no maker publishes a complete data set |
 | Alloy ranking, bare head | CAD-body thermal deck, candidate conductivities | [alloy-thermal.json](params/alloy-thermal.json) | same mesh and case; 150 W/(m·K) reproduces the CAD screen; energy balance 0.3% | done: 1,475 W to 1,707 W, a 16% spread |
