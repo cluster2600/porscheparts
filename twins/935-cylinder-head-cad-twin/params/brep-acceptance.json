@@ -1,0 +1,53 @@
+{
+  "schema": "935-cad-twin-brep-acceptance/1",
+  "issue": "#695",
+  "declared_on": "2026-11-22",
+  "declared_before_any_result": "committed and pushed before any B-rep of the whole body was built in this attempt; the result record must cite this file's commit and show a build time after it. Nothing here may be changed after a result: a different rule needs a new file and a new attempt",
+  "earlier_attempt": "T2 (2026-11-06, README 'T2 editable B-rep: measured negative result'): band-stack prisms fused with OCCT, invalid, 13 solids on a 10 mm slab",
+  "reference_body": {
+    "label": "v2-loft-s025",
+    "summary": "params/v2-loft-s025-summary.json",
+    "scorecard": "params/scorecard-v2-loft-s025.json",
+    "surface_sha256": "6a18e8c4524b182447e93d05ee61337920be52385f72f9827a07ad604b11bbce",
+    "volume_mm3": 1095426.1
+  },
+  "validity": {
+    "brepcheck": "BRepCheck_Analyzer on the whole shape written to STEP, geometric checks on, reports IsValid() true",
+    "one_solid": "the shape holds exactly one TopoDS_Solid and no face, shell or solid outside it; enclosed voids may be inner shells of that solid",
+    "closed": "ShapeAnalysis_FreeBounds finds no free edge in the solid",
+    "volume": "BRepGProp volume positive and within 0.5% of the reference body's volume (a consistency check, not an accuracy claim)",
+    "step_round_trip": "the STEP file read back with STEPControl_Reader gives one solid with the same face count that passes the same BRepCheck",
+    "not_a_triangle_copy": "at most 10% of the B-rep's area may lie in faces that are single triangles of the reference body; the face count by surface type is reported"
+  },
+  "scorecard": {
+    "checker": "source/score_twin.py unchanged, on a tessellation of the B-rep written to STL",
+    "tessellation": "BRepMesh_IncrementalMesh with an absolute linear deflection of at most 0.01 mm and an angular deflection of at most 0.1 rad; the values used are recorded",
+    "control": "the reference body is re-scored in the same environment first. If it reproduces scorecard-v2-loft-s025.json within 0.0005 in every share and 0.001 mm in every percentile, the committed reference numbers are used; otherwise both bodies are compared on the re-scored numbers and the difference is reported",
+    "the_brep_may_be_worse_than_the_reference_by_at_most": {
+      "scan_to_twin_share_within_0.1_mm": 0.01,
+      "scan_to_twin_share_within_0.2_mm": 0.005,
+      "scan_to_twin_share_within_0.5_mm": 0.002,
+      "scan_to_twin_share_within_1.0_mm": 0.001,
+      "scan_to_twin_p50_mm": 0.005,
+      "scan_to_twin_p95_mm": 0.01,
+      "scan_to_twin_p99_mm": 0.03,
+      "share_within_0.2_mm_in_each_zone_deck_fin_cam": 0.01,
+      "twin_area_observed_supported_share": 0.02
+    },
+    "oracle": "the checker's trimesh oracle must pass on the B-rep tessellation",
+    "why_these_values": "0.5 point within 0.2 mm is a quarter of what separates the v2 body from the T1 reference surface (97.4% against 99.5%); 0.01 mm on p95 is the size of the checker's single-precision loss on needle triangles. Better than the reference is not a requirement"
+  },
+  "differing_regions": {
+    "distances": "every non-hardware scan facet measured to the B-rep tessellation and to the reference body with score_twin.py's own Warp kernel, in one run; delta = distance to the B-rep minus distance to the reference",
+    "by_class": "share within 0.2 mm of both bodies by zone and surface class (the classes of error_breakdown.py), and the change in points of the whole scan area",
+    "clusters": "scan facets whose delta exceeds 0.05 mm in magnitude or whose 0.2 mm verdict changes, joined by single linkage at 2 mm on facet centroids; every cluster of at least 1 mm2 is listed, largest first, at most 30 rows, with centroid and extent rounded to 1 mm, zone, area, mean and largest delta and the net change of area within 0.2 mm; totals of all clusters are given",
+    "body_to_body": "B-rep tessellation against the reference surface both ways: area-weighted p50, p99 and largest distance, and the B-rep area farther than 0.01 and 0.05 mm from the reference by face type"
+  },
+  "inferred_closure": {
+    "rule": "every face carries one class: observed when at least half of its tessellated area lies within 0.2 mm of the bare scan (the scorecard's support threshold), inferred_closure otherwise. The class is written into the STEP as a face name and the display colour of hypotheses.json",
+    "reported": "face counts and areas by class, and the area whose triangle-level class differs from its face's class",
+    "standing": "the class says where the scanner saw the surface; it retires no hypothesis (H01, H02, H04 stay as registered)"
+  },
+  "outcome": "accepted only if every validity item, every tolerance and the oracle hold. Otherwise the attempt is recorded as a measured negative result naming each item that failed and its measured value, and the failed attempts stay in the record",
+  "limits": "acceptance compares the B-rep with the scan and with the reference body only; it says nothing about unobserved geometry, physical calibration or function, and the B-rep's own checks never certify it"
+}
