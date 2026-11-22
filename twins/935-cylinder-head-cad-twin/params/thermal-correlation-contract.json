@@ -1,0 +1,130 @@
+{
+  "schema": "935-cad-twin-thermal-correlation-contract/1",
+  "date": "2026-11-22",
+  "issue": 702,
+  "owner_decision": "2026-11-22: the owner asked to research online what is needed and to work with declared assumptions; professional review will be by Wolfe Classics. Nobody was contacted.",
+  "rule": "This contract was written and committed before any solve of the correlation. It fixes the operating points, the location compared, the one input that may be adjusted and its range, the rule that carries the fit to the held-out points, the tolerance and the verdict. Nothing in it may change after the first solve; a later change needs a new contract and keeps this one.",
+  "label_if_it_passes": "correlated to a published operating point under declared hypotheses",
+  "never_label": ["validated", "measured", "calibrated to this engine", "engine temperature"],
+  "search_verdict": "No head temperature of a 911, 930, 934 or 935 engine at a stated operating point could be opened on 2026-11-22. The closest complete published operating data with a sensor position are NACA's for air-cooled aircraft cylinders. They are used here through hypothesis H16; the search and the leads that could replace them are in docs/research/935-thermal-operating-point-20261122.md.",
+  "model": {
+    "script": "source/thermal_correlation.py, which drives source/assembly_heat_paths.py unchanged",
+    "case": ["params/assembly-case.json", "params/assembly-heat-paths-case.json"],
+    "variant": "published_loading_oil, with the calibrated gas-side coefficients recorded in params/assembly-heat-paths.json",
+    "calibrated_coefficients_W_per_m2K": {"chamber_gas": 2222.63, "hot_port": 394.82, "barrel_gas": 2992.62},
+    "sink_temperatures_C": {"chamber_gas": 621.0, "hot_port": 700.0, "barrel_gas": 316.0},
+    "alloy_conductivity_W_per_mK": 150.0,
+    "mesh": {
+      "what": "the base mesh of the heat-path screen (#701), read only; private, outside Git",
+      "prepared_npz_sha256": "2881b5ee6585dabaa5df52907bff79ea75ea6193cfa6b4a906c7e826eed7a7ae",
+      "prepared_json_sha256": "d40da1462d0557850beb5aef16264cddc7eff37aff3bcafb7c9d77cead876746",
+      "tets": 6039059
+    },
+    "solver": "CalculiX 2.21 in the cadsim image, one thread, one job at a time under a 5 GB memory cap"
+  },
+  "reproduction_gate": {
+    "what": "before any correlation solve, the reference configuration (published_loading_oil, 150 W/(m K), air 40 °C) is solved again with the recorded coefficients",
+    "must_reproduce": {"peak_alloy_C": 371.96, "heat_into_the_assembly_W": 10250.71},
+    "tolerance": {"peak_alloy_C": 0.5, "heat_relative": 0.005},
+    "if_it_fails": "stop: no correlation solve is run"
+  },
+  "operating_points": [
+    {
+      "id": "normal_rated",
+      "role": "calibration",
+      "source": "naca-mr-e5g09",
+      "row": "Table I, 'Normal rated power'",
+      "engine": "Pratt & Whitney R-1830-94, 14-cylinder double-row radial, air cooled, in the left inboard nacelle of a B-24D",
+      "condition": {"engine_speed_rpm": 2600, "manifold_pressure_in_Hg_abs": 42.7, "brake_horsepower_nominal": 1100, "mixture": "automatic rich", "cowl_flaps": "1/4 to 1/3 open", "pressure_altitude_ft": 7000, "cooling_air_temperature_F": 60, "carburetor_air_temperature_F": 60},
+      "published_temperature": {"what": "predicted maximum rear-spark-plug-gasket temperature T12", "value_F": 440, "value_C": 226.67},
+      "manufacturer_limit_F": 450,
+      "how_published": "computed by NACA from its cooling correlation of one measured cooling flight (2250 rpm, 7000 ft); a predicted maximum, not a single reading"
+    },
+    {
+      "id": "military",
+      "role": "holdout A",
+      "source": "naca-mr-e5g09",
+      "row": "Table I, 'Military power'",
+      "condition": {"engine_speed_rpm": 2800, "manifold_pressure_in_Hg_abs": 50.8, "brake_horsepower_nominal": 1350, "mixture": "automatic rich", "cowl_flaps": "1/3 open", "pressure_altitude_ft": 7000, "cooling_air_temperature_F": 60, "carburetor_air_temperature_F": 60},
+      "published_temperature": {"what": "predicted maximum rear-spark-plug-gasket temperature T12", "value_F": 456, "value_C": 235.56},
+      "manufacturer_limit_F": 500,
+      "why_this_row": "the same altitude, air temperatures and mixture setting as the calibration row, and nearly the same cowl-flap setting"
+    },
+    {
+      "id": "take_off",
+      "role": "holdout B",
+      "source": "naca-mr-e5g09",
+      "row": "Table I, 'Take-off'",
+      "condition": {"engine_speed_rpm": 2800, "manifold_pressure_in_Hg_abs": 52.0, "brake_horsepower_nominal": 1350, "mixture": "automatic rich", "cowl_flaps": "1/4 to 1/3 open", "pressure_altitude_ft": 0, "cooling_air_temperature_F": 100, "carburetor_air_temperature_F": 100},
+      "published_temperature": {"what": "predicted maximum rear-spark-plug-gasket temperature T12", "value_F": 543, "value_C": 283.89},
+      "manufacturer_limit_F": 500,
+      "why_this_row": "the same cowl-flap setting as the calibration row, at sea level and 100 °F; NACA predicts it above the manufacturer's limit"
+    }
+  ],
+  "excluded_rows": {
+    "rows": ["Maximum cruise", "Cruising maximum bmep", "Normal landing approach"],
+    "why": "closed or partly open cowl flaps change the cooling-air flow, which this model does not represent with one declared air coefficient; the landing approach states no power"
+  },
+  "location": {
+    "published": "rear-spark-plug-gasket thermocouple T12: a gasket-type thermocouple under the rear spark plug (NACA MR E5G09; NACA Report 645 calls it the usual index of cylinder cooling)",
+    "model": "the area-weighted mean temperature of the head alloy on the faces of the plug-seat joint, that is the alloy side of the 'seat' segment of each plug (the annulus between the thread bore and the plug body on the fitted seat face)",
+    "compared": "the hotter of the two plugs (plug_x_plus, plug_x_minus): NACA's value is the maximum over the cylinders and its plug is the rear one, the hotter by practice",
+    "also_reported": ["the other plug", "the plug side of the same faces", "the peak of every zone of the heat-path screen", "heat by group"],
+    "hypothesis": "H16-operating-point-transfer"
+  },
+  "inputs_set_to_the_operating_point": {
+    "air.sink_temperature_C": {"normal_rated": 15.56, "military": 15.56, "take_off": 37.78, "why": "the cooling-air temperature of the row; the barrel fins take their sink from the air as in the heat-path case"},
+    "not_changed": "the charge in the inlet port (40 °C, 200 W/(m2 K)), the oil (90 °C) and every other declared value of the heat-path case keep their values: the aircraft engine's are not those of a 911"
+  },
+  "adjusted_input": {
+    "name": "gas_side_factor",
+    "symbol": "f",
+    "what": "one common multiplier on the three calibrated gas-side coefficients (chamber, exhaust port, barrel bore); their sink temperatures stay at 621, 700 and 316 °C. f = 1 is the published-loading case of the heat-path screen (465, 145 and 145 kW/m2 at 40 °C air)",
+    "hypotheses": ["H12-assembly-thermal-boundaries", "H13-barrel"],
+    "declared_range": [0.05, 1.5],
+    "fit": "at the calibration row and 150 W/(m K): first f = 1.0, then f = 0.6, then the secant through the last two (f, T) pairs, each step clipped to the declared range, until the compared temperature is within 1.0 °C of 226.67 °C; at most 8 solves",
+    "if_it_does_not_fit": "a fit outside the declared range, or not within 1.0 °C after 8 solves, is a failed correlation: it is reported as failed and no temperature is passed on to the alloy screen"
+  },
+  "held_fixed": [
+    "air coefficient 150 W/(m2 K), barrel fins 3 times the air coefficient",
+    "oil 90 °C at 500 W/(m2 K); cam housing and crankcase 1,000 W/(m2 K) to the oil",
+    "every joint at 10,000 W/(m2 K)",
+    "valve 20, guide 60, plug 45 and barrel 150 W/(m K)",
+    "inlet-port charge 40 °C at 200 W/(m2 K)"
+  ],
+  "transfer_to_holdouts": {
+    "gas_side": "f at a held-out row = f* x (P_row / P_calibration)^0.64, with the nominal brake powers of the table standing for indicated powers: (1350 / 1100)^0.64 = 1.1400",
+    "exponent_source": "NACA Report 612, equation (19), Pratt & Whitney 1340-H head: the gas-side term goes as the indicated horsepower to the power 0.64",
+    "air_side": "the declared coefficient is kept: Table I states no cooling-air pressure drop, and the cowl flaps of both held-out rows are set within the calibration row's range",
+    "no_other_change": true
+  },
+  "tolerance": {
+    "holdout_C": 15.0,
+    "why": "half the 50 °F (28 °C) that NACA Report 645 gives between the maximum temperatures of the cylinders of one multicylinder engine"
+  },
+  "verdict": {
+    "correlated": "the fit lies inside the declared range and both held-out rows are within the tolerance",
+    "partly_correlated": "the fit lies inside the declared range and holdout A is within the tolerance, holdout B is not",
+    "failed": "any other outcome; a failed correlation is kept as failed",
+    "hypotheses_after": {
+      "H12": "narrowed to the fitted gas-side factor, under H16, only if correlated; kept otherwise. It is never retired: the operating point is not of this engine",
+      "H11": "kept: no material or contact is adjusted",
+      "H16": "added by this contract; retired only by a head temperature of this head type measured at a stated operating point"
+    }
+  },
+  "alloy_consequence": {
+    "what": "the peak head-alloy temperature, and where it is, at 95, 150 and 191 W/(m K) at the calibration row and at the held-out row with the higher compared temperature, with the coefficients of that row",
+    "for": "#705, the alloy selection; no alloy is chosen here",
+    "only_if": "the fit succeeded; the verdict is stated beside the numbers"
+  },
+  "reported_not_judged": [
+    "the fit repeated with the air coefficient at 116 and at 233 W/(m2 K), Mackerle's bound, with the factor and the peak at each",
+    "the heat into the assembly at the fitted factor, beside 0.6 to 0.8 times the brake power per cylinder of the 1976 Porsche 935 (434 kW, six cylinders; Mackerle's rule for the heat removed by cooling, which includes the barrel and the oil)"
+  ],
+  "sources": {
+    "naca-mr-e5g09": {"title": "Flight and test-stand investigation of high-performance fuels in modified double-row radial air-cooled engines. I - Determination of the cooling characteristics of the flight engine", "authors": "Werner, Blackman, White", "report": "NACA MR E5G09 (Wartime Report E-261), July 1945", "url": "https://ntrs.nasa.gov/api/citations/19930093593/downloads/19930093593.pdf", "sha256": "4f042e7a82360b1b10d5fff50dea2507886fa8934ea6a6b46ebc4d413a0c6aee", "terms": "NTRS: GOV_PUBLIC_USE_PERMITTED"},
+    "naca-tr-612": {"title": "Heat-transfer processes in air-cooled engine cylinders", "authors": "Pinkel", "report": "NACA Report 612, 1938", "url": "https://ntrs.nasa.gov/api/citations/19930091688/downloads/19930091688.pdf", "sha256": "dc9cf2c862f1f0800a4a846036be32873035fc942df8cfd7a470310161a59f6f", "terms": "NTRS: GOV_PUBLIC_USE_PERMITTED"},
+    "naca-tr-645": {"title": "Correction of temperatures of air-cooled engine cylinders for variation in engine and cooling conditions", "authors": "Schey, Pinkel, Ellerbrock", "report": "NACA Report 645, 1938", "url": "https://ntrs.nasa.gov/api/citations/19930091720/downloads/19930091720.pdf", "sha256": "b5f7c5a7881429fc9a996fa9804d58adfce05e22ec5ea86b13f62be06007301d", "terms": "NTRS: GOV_PUBLIC_USE_PERMITTED"}
+  },
+  "results_not_looked_at": "No solve of the twin was run at any of these operating points before this file was committed; the reproduction gate itself runs after it."
+}

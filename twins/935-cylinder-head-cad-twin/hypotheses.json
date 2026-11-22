@@ -148,6 +148,14 @@
       "how": "no published number was found for any joint (params/thermal-literature-bounds.json); each takes 10,000 W/(m2 K), swept from 1,000 to 100,000. The meshed interface of each joint is scaled to the area it projects onto the part surface (about 0.6 of the meshed area)",
       "colour": "analytic_hypothesis",
       "retire_with": "a contact conductance from test or literature for each joint, with its contact pressure and surface finish"
+    },
+    {
+      "id": "H16-operating-point-transfer",
+      "region": "the operating point of the thermal correlation: gas-side heat input, cooling-air temperature and the temperature at the spark-plug seat",
+      "status": "declared_values_published_for_another_engine",
+      "how": "no head temperature of a 911, 930, 934 or 935 engine at a stated operating point could be opened (docs/research/935-thermal-operating-point-20261122.md). The correlation takes NACA's predicted rear-spark-plug-gasket temperatures of a Pratt & Whitney R-1830-94 aircraft engine (MR E5G09, Table I) as those of this head at a comparable rated condition: the gasket thermocouple is read as the head alloy on the hotter plug seat, the cooling air takes the row's temperature, the gas side moves as power to the 0.64 between rows (NACA Report 612, 1340-H head) and the air side keeps its declared coefficient (params/thermal-correlation-contract.json)",
+      "colour": "analytic_hypothesis",
+      "retire_with": "a temperature of this head type measured at a stated operating point (speed, load, boost, cooling-air state) with its sensor position, from a registered source or a contributor"
     }
   ]
 }
