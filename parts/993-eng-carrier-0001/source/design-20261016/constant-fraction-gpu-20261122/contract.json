@@ -1,0 +1,39 @@
+{
+ "written": "2026-11-22, before any GPU run and before any tensor above N=32 at constant fraction existed",
+ "study": "periodic gyroid cell refinement at constant actual solid fraction, continued with a direct solver on a rented GPU",
+ "why": "The constant-fraction study of 2026-10-26 (../constant-fraction-20261026) declared N = 16, 24, 32, 48 and was refused at N=48: one CalculiX thread passed the runner's 1200 s ceiling, and multithreaded SPOOLES returned a wrong solve. On 2026-11-22 the owner asked for the carrier's remaining compute to run on rented GPUs.",
+ "unchanged_from_the_earlier_study": {
+  "geometry": "gyroid_magnitude and threshold_for_fraction imported from ../constant-fraction-20261026/run_constant_fraction_case.py",
+  "target_solid_fraction": 0.4000097,
+  "element": "C3D8, 2 x 2 x 2 Gauss points, E = 107000 MPa (solid) or E x floor (void), nu = 0.31",
+  "load": "six macro strain modes of amplitude 0.001, periodic fluctuation, node (0,0,0) held",
+  "void_floors": [1e-4, 1e-6],
+  "case_checks": "one periodic solid component; relative energy residual <= 1e-4 for each mode; relative antisymmetry <= 1e-4; normalised stiffness eigenvalues positive and at most the Voigt bound + 1e-4",
+  "comparison": "relative Frobenius change of the 1e-6 tensor between successive resolutions <= 0.02; void-floor change between the 1e-4 and 1e-6 tensors <= 0.01; a series is converged when its last two comparisons both pass"
+ },
+ "changed": {
+  "solver": "one factorisation of the assembled periodic stiffness for the six modes (rve_c3d8.py) instead of six CalculiX decks with *EQUATION; backends scipy SuperLU (CPU) and NVIDIA cuDSS through nvmath-python (GPU)",
+  "time_ceiling": "none per solve; the rented machine carries its own deadline"
+ },
+ "qualification_before_use": {
+  "rule": "a backend is admitted only if, at N = 16, 24 and 32 and both void floors, its tensor differs from the committed CalculiX tensor (../constant-fraction-20261026/results/single-thread) by at most this relative Frobenius norm",
+  "limit": 1e-6,
+  "seen_before_writing": "the scipy backend at N=16: 1.25e-9 (floor 1e-6) and 1.46e-9 (floor 1e-4); no GPU result existed"
+ },
+ "resolutions": {
+  "completion_of_the_declared_study": [16, 24, 32, 48],
+  "extension_declared_now": [64, 80],
+  "verdicts": [
+   "declared study: converged when 24->32 and 32->48 both pass (the rule of run_constant_fraction_study.py on its own list)",
+   "extended series: converged when 48->64 and 64->80 both pass",
+   "a resolution that cannot be solved (memory, host lost) is reported as refused; it is not dropped and no other resolution is put in its place"
+  ]
+ },
+ "fixed": [
+  "No limit, resolution or verdict rule is changed after a tensor above N=32 is read.",
+  "The earlier fixed-threshold series (2.2369% from N=48 to 64) is not rewritten; this study answers a different question."
+ ],
+ "carrier_convergence_demonstrated": false,
+ "cellular_part_generated": false,
+ "manufacturing_released": false
+}

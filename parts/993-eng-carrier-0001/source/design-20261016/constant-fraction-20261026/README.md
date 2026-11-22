@@ -89,6 +89,11 @@ Completing 32 → 48 therefore needs either the separately built SPOOLES-fixed
 binary of the earlier study, or a raised per-solve ceiling for the
 single-threaded path. Both are owner decisions; neither is taken here.
 
+**Continued on 2026-11-22** in [constant-fraction-gpu-20261122](../constant-fraction-gpu-20261122/README.md):
+the same discrete problem, solved by one factorisation on a rented GPU after it
+reproduced these N=16, 24 and 32 tensors to 1.5e-9, passes 32 to 48 (1.129%), 48 to
+64 (0.573%) and 64 to 80 (0.591%). The results above are unchanged.
+
 ## Declared differences from the earlier study
 
 These are differences, not improvements, and results are not comparable to the

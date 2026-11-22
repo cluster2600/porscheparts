@@ -1,0 +1,67 @@
+No multithreading interface library was specified using the DirectSolverOptions. The performance of CPU operations like planning will be significantly lower than if you provide a multithreading library.
+n=16 floor=1e-4 min ratio 0.1602130 dofs 12285 solve 0.85 s wall 1.3 s
+No multithreading interface library was specified using the DirectSolverOptions. The performance of CPU operations like planning will be significantly lower than if you provide a multithreading library.
+n=16 floor=1e-6 min ratio 0.1600792 dofs 12285 solve 0.1 s wall 0.59 s
+No multithreading interface library was specified using the DirectSolverOptions. The performance of CPU operations like planning will be significantly lower than if you provide a multithreading library.
+n=24 floor=1e-4 min ratio 0.1604553 dofs 41469 solve 0.41 s wall 1.61 s
+No multithreading interface library was specified using the DirectSolverOptions. The performance of CPU operations like planning will be significantly lower than if you provide a multithreading library.
+n=24 floor=1e-6 min ratio 0.1603254 dofs 41469 solve 0.34 s wall 1.6 s
+No multithreading interface library was specified using the DirectSolverOptions. The performance of CPU operations like planning will be significantly lower than if you provide a multithreading library.
+n=32 floor=1e-4 min ratio 0.1623268 dofs 98301 solve 1.02 s wall 2.92 s
+No multithreading interface library was specified using the DirectSolverOptions. The performance of CPU operations like planning will be significantly lower than if you provide a multithreading library.
+n=32 floor=1e-6 min ratio 0.1622004 dofs 98301 solve 0.94 s wall 2.7 s
+qualification admitted 1.459423728255072e-09
+n=16 floor=1e-4 min ratio 0.1602130 dofs 12285 solve 0.85 s wall 1.3 s
+n=16 floor=1e-6 min ratio 0.1600792 dofs 12285 solve 0.1 s wall 0.59 s
+{'resolution': 16, 'solid_fraction': 0.401611328125, 'solid_fraction_error_relative': 0.004003973216149449, 'gyroid_threshold': 0.574025148547635, 'minimum_tensor_stiffness_ratio': 0.1600791838826223, 'relative_void_floor_tensor_change': 0.0008520400053677434, 'void_floor_test_passed': True}
+n=24 floor=1e-4 min ratio 0.1604553 dofs 41469 solve 0.41 s wall 1.61 s
+n=24 floor=1e-6 min ratio 0.1603254 dofs 41469 solve 0.34 s wall 1.6 s
+{'resolution': 24, 'solid_fraction': 0.40089699074074076, 'solid_fraction_error_relative': 0.0022181730611550957, 'gyroid_threshold': 0.6123724356957946, 'minimum_tensor_stiffness_ratio': 0.16032541105812048, 'relative_void_floor_tensor_change': 0.0008144473395107782, 'void_floor_test_passed': True, 'relative_tensor_resolution_change': 0.0060088190477014004, 'resolution_change_passed': True}
+n=32 floor=1e-4 min ratio 0.1623268 dofs 98301 solve 1.02 s wall 2.92 s
+n=32 floor=1e-6 min ratio 0.1622004 dofs 98301 solve 0.94 s wall 2.7 s
+{'resolution': 32, 'solid_fraction': 0.40008544921875, 'solid_fraction_error_relative': 0.00018936845468991482, 'gyroid_threshold': 0.6436741226398031, 'minimum_tensor_stiffness_ratio': 0.16220044256063645, 'relative_void_floor_tensor_change': 0.0007879413682969776, 'void_floor_test_passed': True, 'relative_tensor_resolution_change': 0.014179704533051276, 'resolution_change_passed': True}
+No multithreading interface library was specified using the DirectSolverOptions. The performance of CPU operations like planning will be significantly lower than if you provide a multithreading library.
+n=48 floor=1e-4 min ratio 0.1643286 dofs 331773 solve 4.86 s wall 9.4 s
+No multithreading interface library was specified using the DirectSolverOptions. The performance of CPU operations like planning will be significantly lower than if you provide a multithreading library.
+n=48 floor=1e-6 min ratio 0.1642047 dofs 331773 solve 4.52 s wall 8.99 s
+{'resolution': 48, 'solid_fraction': 0.40016456886574076, 'solid_fraction_error_relative': 0.0003871627756545192, 'gyroid_threshold': 0.6194988180069264, 'minimum_tensor_stiffness_ratio': 0.16420469205678312, 'relative_void_floor_tensor_change': 0.0007600012724990019, 'void_floor_test_passed': True, 'relative_tensor_resolution_change': 0.011294098264953919, 'resolution_change_passed': True}
+No multithreading interface library was specified using the DirectSolverOptions. The performance of CPU operations like planning will be significantly lower than if you provide a multithreading library.
+n=64 floor=1e-4 min ratio 0.1649789 dofs 786429 solve 15.16 s wall 24.89 s
+No multithreading interface library was specified using the DirectSolverOptions. The performance of CPU operations like planning will be significantly lower than if you provide a multithreading library.
+n=64 floor=1e-6 min ratio 0.1648568 dofs 786429 solve 14.65 s wall 24.49 s
+{'resolution': 64, 'solid_fraction': 0.4000205993652344, 'solid_fraction_error_relative': 2.72477523278846e-05, 'gyroid_threshold': 0.6134947733186316, 'minimum_tensor_stiffness_ratio': 0.1648568322752038, 'relative_void_floor_tensor_change': 0.0007421127429734932, 'void_floor_test_passed': True, 'relative_tensor_resolution_change': 0.005725055443285807, 'resolution_change_passed': True}
+No multithreading interface library was specified using the DirectSolverOptions. The performance of CPU operations like planning will be significantly lower than if you provide a multithreading library.
+Traceback (most recent call last):
+  File "/root/w/parts/993-eng-carrier-0001/source/design-20261016/constant-fraction-gpu-20261122/study.py", line 97, in <module>
+    main()
+  File "/root/w/parts/993-eng-carrier-0001/source/design-20261016/constant-fraction-gpu-20261122/study.py", line 65, in main
+    reports = [case(out, n, floor, label, target, backend) for floor, label in FLOORS]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/w/parts/993-eng-carrier-0001/source/design-20261016/constant-fraction-gpu-20261122/study.py", line 65, in <listcomp>
+    reports = [case(out, n, floor, label, target, backend) for floor, label in FLOORS]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/w/parts/993-eng-carrier-0001/source/design-20261016/constant-fraction-gpu-20261122/study.py", line 33, in case
+    rve_c3d8.run(n, floor, target, backend, folder)
+  File "/root/w/parts/993-eng-carrier-0001/source/design-20261016/constant-fraction-gpu-20261122/rve_c3d8.py", line 214, in run
+    W, info = solve(K, F, backend)
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/root/w/parts/993-eng-carrier-0001/source/design-20261016/constant-fraction-gpu-20261122/rve_c3d8.py", line 195, in solve
+    solver.factorize()
+  File "/opt/conda/lib/python3.11/site-packages/nvmath/internal/utils.py", line 601, in inner
+    result = wrapped_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/nvmath/internal/utils.py", line 601, in inner
+    result = wrapped_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/nvmath/internal/utils.py", line 601, in inner
+    result = wrapped_function(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/nvmath/sparse/advanced/direct_solver.py", line 1721, in factorize
+    r = self._execute(phase=cudss.Phase.FACTORIZATION, stream=stream)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/lib/python3.11/site-packages/nvmath/sparse/advanced/direct_solver.py", line 1831, in _execute
+    cudss.execute(self.handle, phase, self.config_ptr, self.data_ptr, self.a_ptr, self.x_ptr, self.b_ptr)
+  File "nvmath/bindings/cudss.pyx", line 380, in nvmath.bindings.cudss.execute
+  File "nvmath/bindings/cudss.pyx", line 384, in nvmath.bindings.cudss.execute
+  File "nvmath/bindings/cudss.pyx", line 266, in nvmath.bindings.cudss.check_status
+nvmath.bindings.cudss.cuDSSError: ALLOC_FAILED (2)

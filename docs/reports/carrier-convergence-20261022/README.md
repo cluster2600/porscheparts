@@ -1352,3 +1352,17 @@ must start its own controlled comparison and keep this failed series intact.
 All requested fields were collected before the Vast instance was destroyed.
 The independent guard confirms **three consecutive absences**, followed by a
 fresh empty account listing. The stopped outer coordinators are also cleaned up.
+
+### Constant-fraction cell series finished on a GPU (22 November)
+
+The fixed-threshold series above stays failed and is not rewritten. The separate
+[constant-fraction study](../../../parts/993-eng-carrier-0001/source/design-20261016/constant-fraction-20261026/README.md),
+which holds the actual solid fraction at 0.4000097, was refused at N=48 by the
+single-thread CalculiX ceiling. It is now
+[finished on a rented A100](../../../parts/993-eng-carrier-0001/source/design-20261016/constant-fraction-gpu-20261122/README.md):
+the same C3D8 problem, solved by one cuDSS factorisation after reproducing the
+committed CalculiX tensors at N=16, 24 and 32 to 1.5e-9, gives tensor changes of
+**1.129%** (32→48), **0.573%** (48→64) and **0.591%** (64→80) under the unchanged 2%
+condition, with the void-floor change at 0.073% to 0.076%. Cell stiffness is
+therefore converged at constant solid fraction. Carrier convergence is not: the
+whole-carrier comparison above still fails on its two stress peaks.

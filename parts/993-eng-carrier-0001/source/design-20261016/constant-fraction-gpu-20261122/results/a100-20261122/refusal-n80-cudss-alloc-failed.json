@@ -1,0 +1,99 @@
+{
+  "error": "cuDSSError",
+  "detail": "ALLOC_FAILED (2)",
+  "traceback": "Traceback (most recent call last):\n  File \"/root/w/parts/993-eng-carrier-0001/source/design-20261016/constant-fraction-gpu-20261122/study.py\", line 65, in main\n    reports = [case(out, n, floor, label, target, backend) for floor, label in FLOORS]\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/w/parts/993-eng-carrier-0001/source/design-20261016/constant-fraction-gpu-20261122/study.py\", line 65, in <listcomp>\n    reports = [case(out, n, floor, label, target, backend) for floor, label in FLOORS]\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/w/parts/993-eng-carrier-0001/source/design-20261016/constant-fraction-gpu-20261122/study.py\", line 33, in case\n    rve_c3d8.run(n, floor, target, backend, folder)\n  File \"/root/w/parts/993-eng-carrier-0001/source/design-20261016/constant-fraction-gpu-20261122/rve_c3d8.py\", line 214, in run\n    W, info = solve(K, F, backend)\n              ^^^^^^^^^^^^^^^^^^^^\n  File \"/root/w/parts/993-eng-carrier-0001/source/design-20261016/constant-fraction-gpu-20261122/rve_c3d8.py\", line 195, in solve\n    solver.factorize()\n  File \"/opt/conda/lib/python3.11/site-packages/nvmath/internal/utils.py\", line 601, in inner\n    result = wrapped_function(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/conda/lib/python3.11/site-packages/nvmath/internal/utils.py\", line 601, in inner\n    result = wrapped_function(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/conda/lib/python3.11/site-packages/nvmath/internal/utils.py\", line 601, in inner\n    result = wrapped_function(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/conda/lib/python3.11/site-packages/nvmath/sparse/advanced/direct_solver.py\", line 1721, in factorize\n    r = self._execute(phase=cudss.Phase.FACTORIZATION, stream=stream)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/conda/lib/python3.11/site-packages/nvmath/sparse/advanced/direct_solver.py\", line 1831, in _execute\n    cudss.execute(self.handle, phase, self.config_ptr, self.data_ptr, self.a_ptr, self.x_ptr, self.b_ptr)\n  File \"nvmath/bindings/cudss.pyx\", line 380, in nvmath.bindings.cudss.execute\n  File \"nvmath/bindings/cudss.pyx\", line 384, in nvmath.bindings.cudss.execute\n  File \"nvmath/bindings/cudss.pyx\", line 266, in nvmath.bindings.cudss.check_status\nnvmath.bindings.cudss.cuDSSError: ALLOC_FAILED (2)\n",
+  "qualification": [
+    {
+      "resolution": 16,
+      "void_floor": "1e-4",
+      "relative_difference_to_calculix": 1.459423728255072e-09,
+      "passed": true
+    },
+    {
+      "resolution": 16,
+      "void_floor": "1e-6",
+      "relative_difference_to_calculix": 1.2524527278288568e-09,
+      "passed": true
+    },
+    {
+      "resolution": 24,
+      "void_floor": "1e-4",
+      "relative_difference_to_calculix": 8.148474175829271e-10,
+      "passed": true
+    },
+    {
+      "resolution": 24,
+      "void_floor": "1e-6",
+      "relative_difference_to_calculix": 7.451093443976491e-10,
+      "passed": true
+    },
+    {
+      "resolution": 32,
+      "void_floor": "1e-4",
+      "relative_difference_to_calculix": 4.3114714165662003e-10,
+      "passed": true
+    },
+    {
+      "resolution": 32,
+      "void_floor": "1e-6",
+      "relative_difference_to_calculix": 6.6714120563369e-10,
+      "passed": true
+    }
+  ],
+  "completed_comparisons": [
+    {
+      "resolution": 16,
+      "solid_fraction": 0.401611328125,
+      "solid_fraction_error_relative": 0.004003973216149449,
+      "gyroid_threshold": 0.574025148547635,
+      "minimum_tensor_stiffness_ratio": 0.1600791838826223,
+      "relative_void_floor_tensor_change": 0.0008520400053677434,
+      "void_floor_test_passed": true
+    },
+    {
+      "resolution": 24,
+      "solid_fraction": 0.40089699074074076,
+      "solid_fraction_error_relative": 0.0022181730611550957,
+      "gyroid_threshold": 0.6123724356957946,
+      "minimum_tensor_stiffness_ratio": 0.16032541105812048,
+      "relative_void_floor_tensor_change": 0.0008144473395107782,
+      "void_floor_test_passed": true,
+      "relative_tensor_resolution_change": 0.0060088190477014004,
+      "resolution_change_passed": true
+    },
+    {
+      "resolution": 32,
+      "solid_fraction": 0.40008544921875,
+      "solid_fraction_error_relative": 0.00018936845468991482,
+      "gyroid_threshold": 0.6436741226398031,
+      "minimum_tensor_stiffness_ratio": 0.16220044256063645,
+      "relative_void_floor_tensor_change": 0.0007879413682969776,
+      "void_floor_test_passed": true,
+      "relative_tensor_resolution_change": 0.014179704533051276,
+      "resolution_change_passed": true
+    },
+    {
+      "resolution": 48,
+      "solid_fraction": 0.40016456886574076,
+      "solid_fraction_error_relative": 0.0003871627756545192,
+      "gyroid_threshold": 0.6194988180069264,
+      "minimum_tensor_stiffness_ratio": 0.16420469205678312,
+      "relative_void_floor_tensor_change": 0.0007600012724990019,
+      "void_floor_test_passed": true,
+      "relative_tensor_resolution_change": 0.011294098264953919,
+      "resolution_change_passed": true
+    },
+    {
+      "resolution": 64,
+      "solid_fraction": 0.4000205993652344,
+      "solid_fraction_error_relative": 2.72477523278846e-05,
+      "gyroid_threshold": 0.6134947733186316,
+      "minimum_tensor_stiffness_ratio": 0.1648568322752038,
+      "relative_void_floor_tensor_change": 0.0007421127429734932,
+      "void_floor_test_passed": true,
+      "relative_tensor_resolution_change": 0.005725055443285807,
+      "resolution_change_passed": true
+    }
+  ],
+  "epoch": 1795339593.613013
+}

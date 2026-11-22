@@ -1,0 +1,143 @@
+{
+  "effective_C_MPa": [
+    [
+      24810.035023728706,
+      10712.439901294976,
+      10713.664033783893,
+      -0.413820837392605,
+      3.3415034586552492,
+      1.6645378623458518
+    ],
+    [
+      10712.439901295082,
+      24806.770981786598,
+      10713.40606949057,
+      2.5428849636697066,
+      1.8344223458355817,
+      0.25529674840484756
+    ],
+    [
+      10713.664033783452,
+      10713.406069490076,
+      24814.033928921726,
+      1.6761560494373178,
+      0.8033578048250403,
+      3.401229077705085
+    ],
+    [
+      -0.41382083739517117,
+      2.542884963671408,
+      1.6761560494378063,
+      8159.764838287733,
+      1.1397156330188698,
+      1.712762574368925
+    ],
+    [
+      3.3415034586557795,
+      1.83442234583532,
+      0.8033578048270578,
+      1.139715633019202,
+      8161.148913251816,
+      1.1579978343797503
+    ],
+    [
+      1.664537862345629,
+      0.2552967484068832,
+      3.4012290777068013,
+      1.712762574368912,
+      1.1579978343790358,
+      8160.7572853782385
+    ]
+  ],
+  "relative_antisymmetry": 1.8098036913008903e-14,
+  "normalized_stiffness_eigenvalues": [
+    0.16420469205678312,
+    0.17257367282133798,
+    0.17260781971919187,
+    0.19976782624791314,
+    0.19980433440445705,
+    0.19988578417395086
+  ],
+  "minimum_tensor_stiffness_ratio": 0.16420469205678312,
+  "solid_fraction": 0.40016456886574076,
+  "target_solid_fraction": 0.4000097,
+  "solid_fraction_error_relative": 0.0003871627756545192,
+  "solid_periodic_components": 1,
+  "void_relative_stiffness": 1e-06,
+  "gyroid_threshold": 0.6194988180069264,
+  "resolution": 48,
+  "voigt_upper_ratio": 0.4001651687011719,
+  "cases": [
+    {
+      "mode": 0,
+      "periodicity": "exact by construction: u = H x + w, w periodic",
+      "independent_internal_energy": 0.012405017511864389,
+      "macro_energy": 0.012405017511864352,
+      "assembled_energy": 0.01240501751186454,
+      "relative_algebraic_residual": 6.940583776726034e-15,
+      "relative_energy_residual": 2.936649864514218e-15
+    },
+    {
+      "mode": 1,
+      "periodicity": "exact by construction: u = H x + w, w periodic",
+      "independent_internal_energy": 0.012403385490893244,
+      "macro_energy": 0.0124033854908933,
+      "assembled_energy": 0.012403385490893381,
+      "relative_algebraic_residual": 7.091252469503545e-15,
+      "relative_energy_residual": 4.475483832379048e-15
+    },
+    {
+      "mode": 2,
+      "periodicity": "exact by construction: u = H x + w, w periodic",
+      "independent_internal_energy": 0.012407016964460523,
+      "macro_energy": 0.012407016964460863,
+      "assembled_energy": 0.012407016964460631,
+      "relative_algebraic_residual": 7.25506725597227e-15,
+      "relative_energy_residual": 2.740431501507412e-14
+    },
+    {
+      "mode": 3,
+      "periodicity": "exact by construction: u = H x + w, w periodic",
+      "independent_internal_energy": 0.004079882419143883,
+      "macro_energy": 0.004079882419143867,
+      "assembled_energy": 0.0040798824191439695,
+      "relative_algebraic_residual": 1.694628873390364e-14,
+      "relative_energy_residual": 3.826706184112883e-15
+    },
+    {
+      "mode": 4,
+      "periodicity": "exact by construction: u = H x + w, w periodic",
+      "independent_internal_energy": 0.004080574456625866,
+      "macro_energy": 0.004080574456625908,
+      "assembled_energy": 0.004080574456625951,
+      "relative_algebraic_residual": 1.8148164719565246e-14,
+      "relative_energy_residual": 1.041537793592283e-14
+    },
+    {
+      "mode": 5,
+      "periodicity": "exact by construction: u = H x + w, w periodic",
+      "independent_internal_energy": 0.004080378642689057,
+      "macro_energy": 0.00408037864268912,
+      "assembled_energy": 0.004080378642689144,
+      "relative_algebraic_residual": 1.7287748375651366e-14,
+      "relative_energy_residual": 1.5304963240864375e-14
+    }
+  ],
+  "status": "constant_fraction_periodic_gyroid_six_strain_energy_checks_passed",
+  "formulation": "C3D8 2x2x2, periodic w with u = H x + w, node 0 held, one factorisation for six modes",
+  "dofs": 331773,
+  "nonzeros": 26873379,
+  "assembly_s": 1.62,
+  "solver": {
+    "backend": "NVIDIA cuDSS through nvmath-python (GPU)",
+    "nvmath": "1.0.1",
+    "gpu": "NVIDIA A100-SXM4-80GB",
+    "gpu_memory_GiB": 79.4,
+    "solve_s": 4.52
+  },
+  "wall_s": 8.99,
+  "source_sha256": "8c149bb87d2f54718cf441d795923f0b315361203cf34ad85580db62073237c7",
+  "geometry_source_sha256": "5effef725d44746a542d416d9739ed86bcc01275447ca445fad6827244eaea04",
+  "carrier_convergence_demonstrated": false,
+  "cellular_part_generated": false
+}

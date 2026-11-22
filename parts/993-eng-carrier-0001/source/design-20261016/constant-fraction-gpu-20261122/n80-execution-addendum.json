@@ -1,0 +1,7 @@
+{
+ "written": "2026-11-22, after the first N=80 attempt failed and before any N=80 tensor existed",
+ "what_happened": "N = 16 to 64 completed on an A100 80 GB with cuDSS. The first N=80 case (void floor 1e-4) stopped in the factorisation with cuDSS ALLOC_FAILED: its factors do not fit in the GPU's memory. Its empty folder and the study's refusal.json are kept, renamed with the reason.",
+ "retry": "the same two N=80 cases with backend cudss-hybrid: cuDSS keeps the factors in host memory (HybridMemoryModeOptions(hybrid_memory_mode=True)). The matrix, the right-hand sides, the SPD factorisation and every check are unchanged; only where the factors are stored changes.",
+ "unchanged": "the contract's limits, resolutions and verdict rules; N=80 keeps its place in the extended series, and if the retry fails too it is reported as refused",
+ "precedent": "the earlier study declared a separate 900 s per-case budget after an N=64 timeout, keeping the timeout on record (docs/reports/carrier-convergence-20261022)"
+}
