@@ -97,6 +97,26 @@ class CarrierCellGpuTests(unittest.TestCase):
         for n in (24, 32):
             self.assertAlmostEqual(rows[n]["relative_tensor_resolution_change"], earlier[n]["relative_tensor_resolution_change"], places=6)
 
+    def test_a_cached_case_is_reused_only_for_the_same_case_and_backend_family(self):
+        import contextlib
+        import io
+        import shutil
+        import tempfile
+
+        import study
+
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            shutil.copytree(RESULTS / "n16-floor1e-6", tmp / "n16-floor1e-6")
+            with contextlib.redirect_stdout(io.StringIO()):
+                report = study.case(tmp, 16, 1e-6, "1e-6", 0.4000097, "cudss")
+            self.assertTrue(report["solver"]["backend"].startswith("NVIDIA cuDSS"))
+            for args in [(16, 1e-6, "1e-6", 0.4000097, "scipy"),      # another backend
+                         (16, 1e-4, "1e-6", 0.4000097, "cudss"),      # another void floor in that folder
+                         (16, 1e-6, "1e-6", 0.41, "cudss")]:          # another target
+                with self.assertRaises(SystemExit):
+                    study.case(tmp, *args)
+
     def test_the_n80_refusal_is_kept_and_the_retry_changed_only_memory_placement(self):
         refusal = json.loads((RESULTS / "refusal-n80-cudss-alloc-failed.json").read_text())
         self.assertIn("ALLOC_FAILED", refusal["detail"])

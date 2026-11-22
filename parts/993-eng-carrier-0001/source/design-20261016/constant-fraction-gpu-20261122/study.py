@@ -2,7 +2,9 @@
 
 Usage: python study.py OUT_DIR BACKEND
 Writes OUT_DIR/n{N}-floor{F}/assessment.json for each case, OUT_DIR/qualification.json, and OUT_DIR/terminal.json
-with the comparisons and the two verdicts of the contract. A case that fails is recorded in refusal.json and
+with the comparisons and the two verdicts of the contract. A rerun into the same OUT_DIR reuses a case only if its
+assessment names the same resolution, void floor, target, backend family and geometry source; the solver script hash
+of each case stays in its assessment. A case that fails is recorded in refusal.json and
 the study stops there: no resolution is skipped or replaced.
 """
 from __future__ import annotations
@@ -27,11 +29,22 @@ def tensor(path: Path) -> np.ndarray:
     return np.array(json.loads(path.read_text())["effective_C_MPa"])
 
 
+BACKEND_FAMILY = {"scipy": "scipy SuperLU (CPU)", "cudss": "NVIDIA cuDSS", "cudss-hybrid": "NVIDIA cuDSS"}
+
+
 def case(out: Path, n: int, floor: float, label: str, target: float, backend: str) -> dict:
+    """Solve one case, or reuse an assessment already in OUT_DIR only if it is the same case from the same
+    backend family on the same geometry source; anything else stops the study rather than mixing series."""
     folder = out / f"n{n}-floor{label}"
     if not (folder / "assessment.json").exists():
         rve_c3d8.run(n, floor, target, backend, folder)
     report = json.loads((folder / "assessment.json").read_text())
+    identity = {"resolution": report["resolution"] == n, "void_floor": report["void_relative_stiffness"] == floor,
+                "target_fraction": report["target_solid_fraction"] == target,
+                "backend": report["solver"]["backend"].startswith(BACKEND_FAMILY[backend]),
+                "geometry_source": report["geometry_source_sha256"] == rve_c3d8.hashlib.sha256(rve_c3d8.CASE.read_bytes()).hexdigest()}
+    if not all(identity.values()):
+        raise SystemExit(f"{folder}: an assessment from another case, backend or geometry source is in the way: {identity}")
     print(f"n={n} floor={label} min ratio {report['minimum_tensor_stiffness_ratio']:.7f} "
           f"dofs {report['dofs']} solve {report['solver']['solve_s']} s wall {report['wall_s']} s", flush=True)
     return report
