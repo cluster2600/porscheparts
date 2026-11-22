@@ -2,6 +2,33 @@
  "schema": "935-cad-twin-support-build-processor-witness/1",
  "date": "2026-11-22",
  "pitch_mm": 0.25,
+ "library": {
+  "packages": {
+   "PythonSLM": "0.6.1",
+   "numpy": "1.26.4",
+   "trimesh": "5.1.1",
+   "shapely": "2.2.0",
+   "pyclipr": "0.1.8",
+   "manifold3d": "3.5.4",
+   "vispy": "0.17.0",
+   "PyQt5": "5.15.11",
+   "scipy": "1.17.1",
+   "scikit-image": "0.26.0",
+   "networkx": "3.6.1",
+   "rtree": "1.4.1",
+   "triangle": "20250106",
+   "mapbox_earcut": "2.1.0",
+   "matplotlib": "3.11.2"
+  },
+  "source_sha256": {
+   "support.py": "fea7275ce46ad8d4f9c9471457c260111e7a1278b2dce315d126c8341e957c52",
+   "gridBlockSupport.py": "9cb01123079a43827a60fe4e87fc81658b5973f4ef006c99ab255dfd9fef7c53",
+   "utils.py": "0ae04b4275b81091775df8cc5e2858f5079af20f7cea913315e948b333716808",
+   "geometry.py": "f85b89bd646403807b41ea0117f53e318568c9acfcc37b845f5c19a7fbc362ba",
+   "render.py": "f92b0056e90db349d68acf6271528fdf57f72dcc35f034ee0020111408675091"
+  },
+  "state": "declared fallback 1: parts/993-eng-carrier-0001/source/process-20261016/pyslm-support-projection.patch (the extrusion keeps its 3D vertex correspondence); the rest upstream"
+ },
  "settings": {
   "rayProjectionResolution": 0.2,
   "minimumAreaThreshold": 5.0,
@@ -87,7 +114,7 @@
      "subregions": 2,
      "base_plate_block": 2
     },
-    "seconds": 2.77,
+    "seconds": 1.52,
     "overhang_face_area_mm2": 1254.619
    }
   },
@@ -110,6 +137,14 @@
     "area_after_splitting_into_regions_mm2": 3600.0
    },
    "reading": "trimesh 5 splits the overhang with repair=True, which fills boundary loops of three or four edges. The annulus 40 x 40 - 20 x 20 (1,200 mm2) comes back closed, 3,200 mm2, with no outline; PySLM cannot flatten it, logs a warning and leaves the cap unsupported"
+  },
+  {
+   "witness": "G1 height-map canvases in one process",
+   "quantity": "canvases drawn in a row, of 120",
+   "expected": 120,
+   "measured": 120,
+   "within_tolerance": true,
+   "note": "without release_canvases() the 52nd canvas of this sequence fails its framebuffer check (Qt 5.15, Xvfb, llvmpipe), and PySLM stopped at the 14th height map of the print body"
   }
  ]
 }

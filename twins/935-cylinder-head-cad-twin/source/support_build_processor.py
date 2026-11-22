@@ -152,12 +152,64 @@ def generator_settings(gen) -> dict:
     return out
 
 
+def release_canvases() -> None:
+    """Let Qt delete each height-map canvas once PySLM has read it.
+
+    PySLM opens one vispy canvas per height map and closes it, but the window is only destroyed when Qt
+    processes its events, which nothing does in a script. Under Xvfb with llvmpipe the 52nd canvas of a
+    process then fails its framebuffer check and the library stops (`witness`, case G1). This wrapper calls
+    the library's own function unchanged and processes Qt's events after it; the height map is not touched.
+    """
+
+    import gc
+
+    import vispy.app
+    from pyslm.support import render
+
+    if getattr(render.projectHeightMap, "_released", False):
+        return
+    original = render.projectHeightMap
+
+    def wrapped(*args, **kwargs):
+        out = original(*args, **kwargs)
+        vispy.app.process_events()
+        gc.collect()
+        vispy.app.process_events()
+        return out
+
+    wrapped._released = True
+    render.projectHeightMap = wrapped
+
+
+UPSTREAM_SUPPORT_PY = "3332ca5ddecd3b692d727efecb36a3b76dea2f84069c7d9b3fbc340eed77b723"
+PATCHED_SUPPORT_PY = "fea7275ce46ad8d4f9c9471457c260111e7a1278b2dce315d126c8341e957c52"   # process-20261016 patch
+
+
+def installed_library() -> dict:
+    """Versions and source hashes of the PySLM actually imported, and which declared state it is in."""
+
+    import inspect
+    from importlib.metadata import version
+
+    import pyslm.support
+
+    folder = Path(inspect.getfile(pyslm.support.BlockSupportGenerator)).parent
+    hashes = {name: sha256(folder / name) for name in ("support.py", "gridBlockSupport.py", "utils.py", "geometry.py", "render.py")}
+    state = {UPSTREAM_SUPPORT_PY: "upstream, unpatched",
+             PATCHED_SUPPORT_PY: "declared fallback 1: parts/993-eng-carrier-0001/source/process-20261016/pyslm-support-projection.patch "
+                                 "(the extrusion keeps its 3D vertex correspondence); the rest upstream"}.get(hashes["support.py"], "unknown")
+    packages = {n: version(n) for n in ("PythonSLM", "numpy", "trimesh", "shapely", "pyclipr", "manifold3d", "vispy", "PyQt5",
+                                        "scipy", "scikit-image", "networkx", "rtree", "triangle", "mapbox_earcut", "matplotlib")}
+    return {"packages": packages, "source_sha256": hashes, "state": state}
+
+
 def run_pyslm(mesh, angle_deg=OVERHANG_DEG, spline=True):
     """identifySupportRegions on a mesh already in the build frame with its lowest point on z = 0."""
 
     import pyslm
     import pyslm.support
 
+    release_canvases()
     part = pyslm.Part("print_body")
     part.setGeometry(mesh, fixGeometry=False, mergeVertices=False)
     part.dropToPlatform(0.0)
@@ -216,26 +268,35 @@ def column_runs(envelope: np.ndarray, solid: np.ndarray, plate_level: int, tol: 
         solid_below[:, :, s:] |= solid[:, :, :-s]
     ti, tj, tk = np.nonzero(top)
     fi, fj, fk = np.nonzero(foot)
-    on_plate = fk <= plate_level + 1 + tol
-    on_part = ~on_plate & solid_below[fi, fj, fk]
+    # as in support_design.py: a column stands on the plate only when no part lies anywhere under it
+    anything_below = np.logical_or.accumulate(solid, axis=2)
+    nothing_below = ~anything_below[fi, fj, np.maximum(fk - 1, 0)] | (fk == 0)
+    del anything_below
+    on_part = solid_below[fi, fj, fk]
+    on_plate = ~on_part & nothing_below & (fk <= plate_level + 1 + tol)
     in_air = ~on_plate & ~on_part
     touches = solid_above[ti, tj, tk]
     return {"top": (ti, tj, tk), "foot": (fi, fj, fk), "foot_on_plate": on_plate, "foot_on_part": on_part,
             "foot_in_air": in_air, "top_touches_part": touches}
 
 
+def landing_labels(envelope: np.ndarray, runs: dict) -> np.ndarray:
+    """Each envelope voxel labelled by what its column stands on: 1 the plate, 2 the part, 3 nothing (air)."""
+
+    label = np.zeros(envelope.shape, dtype=np.int8)
+    fi, fj, fk = runs["foot"]
+    label[fi, fj, fk] = np.where(runs["foot_on_plate"], 1, np.where(runs["foot_on_part"], 2, 3)).astype(np.int8)
+    for k in range(1, envelope.shape[2]):                   # carry each foot's label up its run
+        carry = envelope[:, :, k] & (label[:, :, k] == 0)
+        label[:, :, k][carry] = label[:, :, k - 1][carry]
+    return label
+
+
 def runs_volume(envelope: np.ndarray, runs: dict) -> dict:
     """Envelope volume split by what the column stands on (each run's voxels follow its foot)."""
 
     v = PITCH ** 3
-    label = np.zeros(envelope.shape, dtype=np.int8)
-    fi, fj, fk = runs["foot"]
-    kinds = np.where(runs["foot_on_plate"], 1, np.where(runs["foot_on_part"], 2, 3)).astype(np.int8)
-    label[fi, fj, fk] = kinds
-    # carry each foot's kind up its run
-    for k in range(1, envelope.shape[2]):
-        carry = envelope[:, :, k] & (label[:, :, k] == 0)
-        label[:, :, k][carry] = label[:, :, k - 1][carry]
+    label = landing_labels(envelope, runs)
     return {"on_plate_mm3": float((label == 1).sum() * v), "on_part_mm3": float((label == 2).sum() * v),
             "ending_in_air_mm3": float((label == 3).sum() * v)}
 
@@ -393,8 +454,28 @@ def witness(out) -> None:
                              "The annulus 40 x 40 - 20 x 20 (1,200 mm2) comes back closed, 3,200 mm2, with no outline; PySLM "
                              "cannot flatten it, logs a warning and leaves the cap unsupported"})
 
+    # G1: many height-map canvases in one process, as on the head, through release_canvases()
+    from pyslm.support import render
+
+    release_canvases()
+    rng = np.random.default_rng(1)
+    drawn = 0
+    for n in range(120):
+        w, h = rng.integers(5, 400, size=2)
+        ball = trimesh.creation.icosphere(subdivisions=3, radius=1.0)
+        ball.apply_scale((w * 0.1, h * 0.1, 3.0))
+        ball.apply_translation((50.0, 50.0, 20.0))
+        image = render.projectHeightMap(ball, 0.2, bool(n % 2), ball.bounds.copy())
+        if image is None or abs(image.shape[0] - h) > 1 or abs(image.shape[1] - w) > 1:
+            break
+        drawn += 1
+    cases.append({"witness": "G1 height-map canvases in one process", "quantity": "canvases drawn in a row, of 120",
+                  "expected": 120, "measured": drawn, "within_tolerance": drawn == 120,
+                  "note": "without release_canvases() the 52nd canvas of this sequence fails its framebuffer check "
+                          "(Qt 5.15, Xvfb, llvmpipe), and PySLM stopped at the 14th height map of the print body"})
+
     rep = {"schema": "935-cad-twin-support-build-processor-witness/1", "date": time.strftime("%Y-%m-%d"),
-           "pitch_mm": PITCH, "settings": generator_settings(gen),
+           "pitch_mm": PITCH, "library": installed_library(), "settings": generator_settings(gen),
            "passed": all(c.get("within_tolerance", True) for c in cases), "cases": cases}
     Path(out).write_text(json.dumps(rep, indent=1) + "\n")
     print(json.dumps(rep, indent=1))
@@ -440,7 +521,8 @@ def prepare(mesh_path, occ_dir, plan_file, private) -> None:
     mesh = trimesh.Trimesh(to_build_frame(np.asarray(raw.vertices), grid), np.asarray(raw.faces), process=True)
     lowest = float(mesh.vertices[:, 2].min())
     mesh.apply_translation((0.0, 0.0, -lowest))
-    report = {"mesh_file": mesh_path.name, "mesh_sha256": sha256(mesh_path), "triangles": int(len(mesh.faces)),
+    report = {"library": installed_library(),
+              "mesh_file": mesh_path.name, "mesh_sha256": sha256(mesh_path), "triangles": int(len(mesh.faces)),
               "watertight": bool(mesh.is_watertight), "volume_mm3": float(mesh.volume),
               "lowest_point_in_the_grid_frame_mm": lowest}
     spline = True
@@ -507,6 +589,12 @@ def compare(occ_dir, rule_dir, private, plan_file, out) -> None:
     n = len([k for k in data.files if k.startswith("v")])
     meshes = [(data[f"v{q:05d}"], data[f"f{q:05d}"]) for q in range(n)]
     raw = voxelise(meshes, solid.shape)
+    # each block alone, on its own box of the grid: the voxeliser against the library's mesh volumes
+    one_by_one = 0
+    for v_, f_ in meshes:
+        lo = np.floor(v_.min(axis=0) / PITCH).astype(int) - 1
+        hi = np.ceil(v_.max(axis=0) / PITCH).astype(int) + 2
+        one_by_one += int(voxelise([(v_, f_)], tuple(hi - lo), origin=lo * PITCH).sum())
     inside_part = raw & solid
     below_plate = raw & ~solid
     below_plate[:, :, plate_level + 1:] = False
@@ -517,12 +605,17 @@ def compare(occ_dir, rule_dir, private, plan_file, out) -> None:
     mine = measure(rule, solid, ref, plate_level)
     theirs = measure(proc, solid, ref, plate_level)
     committed = json.loads((Path(plan_file).parent / "support-design.json").read_text())
-    check = {"supported_projected_area_mm2": (mine["supported_projected_area_mm2"], committed["supported"]["projected_area_mm2"]),
+    # The rule's own adjacency is exact (tolerance 0); the planned 0.5 mm tolerance is reported beside it.
+    strict = float(supported_mask(rule, ref["i"], ref["j"], ref["k"], tol=0).sum() * PITCH ** 2)
+    check = {"supported_projected_area_mm2": (strict, committed["supported"]["projected_area_mm2"]),
              "envelope_volume_mm3": (mine["envelope_volume_mm3"], committed["supported"]["envelope_volume_mm3"]),
              "landing_area_on_part_mm2": (mine["contact_with_the_part_projected_mm2"]["at_the_foot"],
                                           committed["supported"]["landing_area_on_part_mm2"])}
     consistency = {key: {"measured_here": a, "committed": b, "equal": bool(abs(a - b) < 1e-6)} for key, (a, b) in check.items()}
     assert all(c["equal"] for c in consistency.values()), consistency
+    consistency["supported_projected_area_mm2"]["at_the_planned_tolerance"] = mine["supported_projected_area_mm2"]
+    consistency["note"] = ("the supported area is checked at the rule's own adjacency (no air voxel between surface and support); "
+                           "at the planned 0.5 mm tolerance the same layout reads the value given beside it")
 
     a, v = PITCH ** 2, PITCH ** 3
     s_rule, s_proc = mine.pop("_supported"), theirs.pop("_supported")
@@ -561,8 +654,11 @@ def compare(occ_dir, rule_dir, private, plan_file, out) -> None:
         "voxelised": {"blocks": n, "inside_the_part_dropped_mm3": float(inside_part.sum() * v),
                       "at_or_below_the_plate_level_dropped_mm3": float(below_plate.sum() * v),
                       "kept_mm3": float(proc.sum() * v),
-                      "against_the_block_meshes": float((proc.sum() + inside_part.sum() + below_plate.sum()) * v
-                                                        / max(prep["mesh_volume_mm3"], 1e-9) - 1.0)},
+                      "blocks_one_by_one_mm3": float(one_by_one * v),
+                      "one_by_one_against_the_block_meshes": float(one_by_one * v / max(prep["mesh_volume_mm3"], 1e-9) - 1.0),
+                      "overlap_between_blocks_mm3": float(one_by_one * v - (proc.sum() + inside_part.sum() + below_plate.sum()) * v),
+                      "union_against_the_block_meshes": float((proc.sum() + inside_part.sum() + below_plate.sum()) * v
+                                                              / max(prep["mesh_volume_mm3"], 1e-9) - 1.0)},
         "plate_level_mm": plate_level * PITCH,
         "consistency_with_the_committed_rule_layout": consistency,
         "rule_layout": mine, "processor_layout": theirs, "regions": regions,
@@ -575,6 +671,128 @@ def compare(occ_dir, rule_dir, private, plan_file, out) -> None:
     print(json.dumps({k: record[k] for k in ("voxelised", "consistency_with_the_committed_rule_layout", "regions", "seconds")}, indent=1))
 
 
+def diagnose(mesh_path, occ_dir, out) -> None:
+    """Where the library's own region steps drop overhang before any projection (a reading of its code path).
+
+    For each overhang region the generator would process: flattenSupportRegion, simplify, the outer edge inset
+    and the minimum area, then the MultiPolygon branch, exactly as identifySupportRegions takes them.
+    """
+
+    import shapely
+    import trimesh
+    import pyslm
+    import pyslm.support
+    from pyslm.support import utils
+    from pyslm.support.support import SupportStructure
+
+    grid = json.loads((Path(occ_dir) / "occupancy-grid.json").read_text())
+    raw = trimesh.load_mesh(mesh_path, process=False)
+    mesh = trimesh.Trimesh(to_build_frame(np.asarray(raw.vertices), grid), np.asarray(raw.faces), process=True)
+    mesh.apply_translation((0.0, 0.0, -float(mesh.vertices[:, 2].min())))
+    part = pyslm.Part("print_body")
+    part.setGeometry(mesh, fixGeometry=False, mergeVertices=False)
+    part.dropToPlatform(0.0)
+    gen = pyslm.support.GridBlockSupportGenerator()
+    steps = {}
+    sizes = []
+    for sub in utils.getOverhangMesh(part, OVERHANG_DEG, True):
+        projected = float(np.abs(sub.area_faces * sub.face_normals[:, 2]).sum())
+        sizes.append(projected)
+        flattened = None
+        try:
+            polygon = SupportStructure.flattenSupportRegion(sub)
+        except Exception:  # noqa: BLE001 - the library catches the same error and skips the region
+            key = "could not be flattened"
+        else:
+            flattened = float(polygon.area)
+            inset = polygon.simplify(gen.simplifyPolygonFactor, preserve_topology=False).buffer(-gen.outerSupportEdgeGap)
+            if inset is None or inset.area < gen.minimumAreaThreshold:
+                key = "under the minimum area once inset"
+            elif isinstance(inset, shapely.geometry.MultiPolygon):
+                kept = [p for p in inset.geoms if (lambda t: t.is_closed and t.area > gen.minimumAreaThreshold)(
+                    trimesh.load_path(p, process=False))]
+                key = "split by the inset, a piece kept" if kept else "split by the inset, every piece refused as an open path"
+            else:
+                key = "kept for projection"
+        row = steps.setdefault(key, {"regions": 0, "projected_area_mm2": 0.0, "largest_projected_mm2": 0.0,
+                                     "flattened_area_mm2": 0.0})
+        row["regions"] += 1
+        row["projected_area_mm2"] += projected
+        row["largest_projected_mm2"] = max(row["largest_projected_mm2"], projected)
+        row["flattened_area_mm2"] += flattened or 0.0
+    sizes = np.array(sizes)
+    edges = [0.0, 0.5, 1.0, 5.0, 50.0, 1e9]
+    rep = {"mesh_file": Path(mesh_path).name, "mesh_sha256": sha256(Path(mesh_path)), "library": installed_library(),
+           "regions": len(sizes), "projected_area_mm2": float(sizes.sum()),
+           "regions_by_projected_area_mm2": {f"{a:g} to {b:g}" if b < 1e9 else f"{a:g} and more": int(((sizes >= a) & (sizes < b)).sum())
+                                             for a, b in zip(edges[:-1], edges[1:])},
+           "steps": steps,
+           "reading": "flattenSupportRegion keeps only the first polygon of a region's outline; the inset is "
+                      "outerSupportEdgeGap; a MultiPolygon piece is loaded with trimesh.load_path(process=False), whose "
+                      "entities trimesh 5.1.1 does not report closed, so the piece is refused"}
+    Path(out).write_text(json.dumps(rep, indent=1) + "\n")
+    print(json.dumps({k: v for k, v in rep.items() if k != "library"}, indent=1))
+
+
+def assemble(primary, sensitivity, plan_file, witness_file, out) -> None:
+    """The committed record: the planned run in full, the unplanned 1.0 mm run as a sensitivity row."""
+
+    primary, sensitivity = Path(primary), Path(sensitivity)
+    record = json.loads((primary / "support-build-processor.json").read_text())
+    assert record["plan_sha256"] == sha256(Path(plan_file))
+    prep = record["processor_run"]
+    record["witness_file"] = "params/" + Path(witness_file).name
+    record["witness_sha256"] = sha256(Path(witness_file))
+    record["private_outputs"].update({"pyslm-blocks.npz": prep["blocks_sha256"],
+                                      "pyslm-prepare.json": sha256(primary / "pyslm-prepare.json")})
+    record["diagnosis_of_the_dropped_overhang"] = json.loads((primary / "pyslm-diagnose.json").read_text())
+    record["diagnosis_of_the_dropped_overhang"].pop("library", None)
+    truss_file = primary / "pyslm-truss.json"
+    record["truss_after_the_comparison"] = (json.loads(truss_file.read_text()) if truss_file.exists() else
+                                           {"status": "not run"})
+    record["truss_after_the_comparison"].pop("settings", None)
+    other = json.loads((sensitivity / "support-build-processor.json").read_text())
+    op = other["processor_layout"]
+    record["sensitivity_not_in_the_plan"] = {
+        "why": "the 1.0 mm surface of the same occupancy, run although the primary finished, to see how much the "
+               "result depends on the tessellation the library reads its face normals from",
+        "mesh_file": other["processor_run"]["mesh_file"], "mesh_sha256": other["processor_run"]["mesh_sha256"],
+        "triangles": other["processor_run"]["triangles"],
+        "library_state": other["processor_run"]["library"]["state"],
+        "spline_fallback": other["processor_run"].get("fallback", "not needed: splineSimplificationFactor stayed at 20"),
+        "log": other["processor_run"]["log"], "blocks": other["processor_run"]["blocks"],
+        "block_mesh_volume_mm3": other["processor_run"]["mesh_volume_mm3"],
+        "voxelised": other["voxelised"],
+        "processor_layout": op, "regions": other["regions"],
+        "blocks_sha256": other["processor_run"]["blocks_sha256"],
+        "envelope_sha256": other["private_outputs"]["pyslm-envelope.npy"]}
+    record["deviations_from_the_plan"] = [
+        "declared fallback 1 applied: upstream PySLM raised its extrusion error on the print body (value array of shape "
+        "(411,) against an index of (406,)); support.py was patched with the carrier's historical patch "
+        "(process-20261016/pyslm-support-projection.patch, installed support.py sha256 " + PATCHED_SUPPORT_PY + ")",
+        "declared fallback 2 applied on the 0.5 mm surface: the spline simplification raised \"MultiPolygon error please "
+        "submit a bug report\"; the run was repeated with splineSimplificationFactor None",
+        "not declared: release_canvases() processes Qt's events after each height map, because the 52nd canvas of a "
+        "process fails under Xvfb and llvmpipe (witness G1); the library's code and its height maps are unchanged",
+        "the consistency check of the supported area is made at the rule's own adjacency (tolerance 0): at the planned "
+        "0.5 mm tolerance the rule layout reads 12,376.0 mm2 against its committed 12,375.875 mm2, two voxels more",
+        "the 1.0 mm surface ran as a sensitivity although the primary finished; it does not replace the primary"]
+    record["for_issue_706"] = {
+        "counts_as_prepared_by_a_build_processor": False,
+        "why": "PySLM is an open research library, not the machine maker's build processor, and on this body with its "
+               f"defaults it supports {record['processor_layout']['supported_share_of_the_reference_surface']:.1%} of the overhang "
+               f"the rule layout starts from ({op['supported_share_of_the_reference_surface']:.1%} on the 1.0 mm surface)",
+        "the_missing_tool": "the machine maker's build processor for the selected machine, or a commercial preparation "
+                            "suite with a build processor for it (for example Materialise Magics): none is installed or "
+                            "licensed here",
+        "what_it_would_add": ["support templates and exposure parameters qualified by the maker for the alloy and the machine",
+                              "a machine build file, with scan order and support exposure",
+                              "support types beyond blocks (cones, lattices, contour and gusset supports) chosen per surface",
+                              "checks the library does not make: recoater collision, powder removal, thermal load on supports"]}
+    Path(out).write_text(json.dumps(record, indent=1) + "\n")
+    print(json.dumps({"bytes": Path(out).stat().st_size}))
+
+
 def truss(private, out) -> None:
     """PySLM's grid truss for every block, with the generator's defaults; outside the comparison."""
 
@@ -582,34 +800,43 @@ def truss(private, out) -> None:
     import pyslm.support
     import trimesh
 
+    from pyslm.support.support import BlockSupportBase, BlockSupportGenerator
+
     private = Path(private)
     prep = json.loads((private / "pyslm-prepare.json").read_text())
     data = np.load(private / prep["blocks_file"])
     n = len([k for k in data.files if k.startswith("v")])
-    defaults = pyslm.support.GridBlockSupportGenerator()
+    saved = [BlockSupportBase(supportObject=None, supportVolume=trimesh.Trimesh(data[f"v{q:05d}"], data[f"f{q:05d}"], process=False),
+                              supportSurface=None, intersectsPart=bool(data["intersects"][q])) for q in range(n)]
+    # The generator wraps the saved blocks exactly as it wraps its own, with the settings transfer of this
+    # revision (which hands the teeth height to the top length).
+    gen = pyslm.support.GridBlockSupportGenerator()
+    original = BlockSupportGenerator.identifySupportRegions
+    BlockSupportGenerator.identifySupportRegions = lambda self, part, angle, find=True: saved
+    try:
+        grid_blocks = gen.identifySupportRegions(None, OVERHANG_DEG, True)
+    finally:
+        BlockSupportGenerator.identifySupportRegions = original
     started = time.time()
-    done, failed, area = 0, [], 0.0
-    for q in range(n):
-        vol = trimesh.Trimesh(data[f"v{q:05d}"], data[f"f{q:05d}"], process=False)
-        block = pyslm.support.GridBlockSupport(None, vol, None, bool(data["intersects"][q]))
-        for name, value in generator_settings(defaults).items():
-            if hasattr(block, name) and value is not None:
-                try:
-                    setattr(block, name, value)
-                except AttributeError:
-                    pass
+    done, failed, area, triangles = 0, [], 0.0, 0
+    for q, block in enumerate(grid_blocks):
+        if block.supportVolume.volume <= 0.0:
+            failed.append({"block": q, "error": "empty support volume"})
+            continue
         try:
             geom = block.geometry()
-            area += float(geom.area) if geom is not None else 0.0
+            area += float(geom.area)
+            triangles += int(len(geom.faces))
             done += 1
         except Exception as exc:  # noqa: BLE001 - every failure is recorded
-            failed.append({"block": q, "error": repr(exc)[:300]})
+            failed.append({"block": q, "volume_mm3": float(block.supportVolume.volume), "error": repr(exc)[:300]})
         print(q, done, len(failed), round(time.time() - started), flush=True)
-    rep = {"blocks": n, "finished": done, "failed": failed, "truss_surface_area_mm2": area,
-           "seconds": round(time.time() - started, 1), "peak_rss_gib": round(peak_rss_gib(), 2)}
+    rep = {"blocks": n, "finished": done, "failed": failed, "truss_surface_area_mm2": area, "truss_triangles": triangles,
+           "settings": generator_settings(gen), "seconds": round(time.time() - started, 1), "peak_rss_gib": round(peak_rss_gib(), 2)}
     Path(out).write_text(json.dumps(rep, indent=1) + "\n")
     print(json.dumps({k: v for k, v in rep.items() if k != "failed"}, indent=1))
 
 
 if __name__ == "__main__":
-    {"witness": witness, "prepare": prepare, "compare": compare, "truss": truss}[sys.argv[1]](*sys.argv[2:])
+    {"witness": witness, "prepare": prepare, "compare": compare, "diagnose": diagnose, "truss": truss,
+     "assemble": assemble}[sys.argv[1]](*sys.argv[2:])
