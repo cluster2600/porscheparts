@@ -148,6 +148,54 @@
       "how": "no published number was found for any joint (params/thermal-literature-bounds.json); each takes 10,000 W/(m2 K), swept from 1,000 to 100,000. The meshed interface of each joint is scaled to the area it projects onto the part surface (about 0.6 of the meshed area)",
       "colour": "analytic_hypothesis",
       "retire_with": "a contact conductance from test or literature for each joint, with its contact pressure and surface finish"
+    },
+    {
+      "id": "H16-mechanical-body",
+      "region": "the head alloy of the mechanical screen (#703)",
+      "status": "declared_for_one_screen",
+      "how": "the v2 body occupancy minus the guide and plug cylinders of H10 (the guides are pressed-in bronze, the plugs separate parts); seat inserts stay head alloy as in the thermal screens; the indicator is smoothed by a Gaussian of 0.5 mm before its 0.5 iso-surface is taken, so every edge and corner is rounded by about that much (params/mechanical-load-case.json)",
+      "colour": "analytic_hypothesis",
+      "retire_with": "a drawing of the head with its corner radii, the seat insert and guide bores, or a CT of the specimen"
+    },
+    {
+      "id": "H17-stud-preload",
+      "region": "the four head studs and their nuts",
+      "status": "declared_values_partly_published",
+      "how": "M10 nuts at 33 Nm (911 workshop manual 1972-1981, another engine), nut factor 0.2 (0.15 to 0.3, generic) giving 16.5 kN (11 to 22 kN) per stud; nut bearing 20 mm on the fitted counterbore floor; hot stud force equal to the preload (swept to +50 % and +100 %); no gas share in the stud (swept to 0.3)",
+      "colour": "hardware",
+      "retire_with": "the stud, nut and washer specification and tightening procedure of this head, the stud material and length, and a measured preload"
+    },
+    {
+      "id": "H18-peak-firing-pressure",
+      "region": "the combustion chamber, valve heads and spark plugs in firing",
+      "status": "declared_value_published_for_other_engines",
+      "how": "12 MPa (10 to 16.7 MPa): the peak-pressure limit of modern turbocharged SI research engines (Chalmers thesis 2022), the upper end a second-hand report of a Formula 1 turbo engine; no 930, 934 or 935 value was found",
+      "colour": "analytic_hypothesis",
+      "retire_with": "a measured cylinder-pressure trace of the engine this head is for, at its boost and timing"
+    },
+    {
+      "id": "H19-mechanical-holds",
+      "region": "how the head is held in the mechanical screen",
+      "status": "declared_values_no_source",
+      "how": "frictionless rigid support normal to the fitted register-recess floor between the bore and collar radii (the barrel collar), two vertices on that floor holding in-plane rigid motion; no barrel body, no separation (checked after the solve), no cam housing, manifold, flange-stud or plug-tightening loads",
+      "colour": "analytic_hypothesis",
+      "retire_with": "the barrel, its joint to the head (gasket or not) and the cam housing of this engine"
+    },
+    {
+      "id": "H20-elastic-screen",
+      "region": "the material model of the mechanical screen",
+      "status": "declared_values_no_source",
+      "how": "linear isotropic elasticity with one room-temperature modulus per candidate and Poisson's ratio 0.33 for all; expansion 23.5e-6 /K (the AlSi10Mg value) for candidates that publish none; 70 GPa for CP1, which publishes no modulus; the hottest candidate field (95 W/(m K)) for A205, which publishes no conductivity; no plasticity, creep or temperature-dependent modulus",
+      "colour": "analytic_hypothesis",
+      "retire_with": "temperature-dependent elastic, expansion and conductivity data of the selected alloy as printed and heat treated"
+    },
+    {
+      "id": "H21-fatigue-screen",
+      "region": "the fatigue screen of the head (#704)",
+      "status": "declared_values_no_source",
+      "how": "one firing cycle between the hot assembled and hot firing states; Goodman on the fully reversed fatigue amplitude and tensile strength at the location's temperature, both from coupons of other heat treatments where the condition has none; duty 5.76e6 firing cycles (24 h at 8000 rpm, a hypothesis); no life is stated",
+      "colour": "analytic_hypothesis",
+      "retire_with": "S-N points of the selected alloy and process at the head's temperature with mean stress, and a duty from the owner"
     }
   ]
 }

@@ -1,0 +1,31 @@
+{
+  "schema": "935-cad-twin-alloy-compromise-rule/1",
+  "date": "2026-11-22",
+  "issues": [705, 703, 704],
+  "owner_decision": "2026-11-22: research what is needed, work with declared assumptions; the alloy is chosen by testing every candidate and taking the best compromise; professional review by Wolfe Classics (not contacted by this work)",
+  "written_before_results": "this rule, params/mechanical-load-case.json, params/head-alloy-properties.json and params/head-stress-convergence-rule.json were committed before any stress of the head was computed",
+  "what_the_pick_is": "the owner's policy pick for the next study steps: a screen under declared hypotheses, not qualified, not released; it requires professional review (Wolfe Classics) and physical validation before any use",
+  "candidates": "every row of params/head-alloy-properties.json",
+  "criteria": {
+    "C1_cold_static": "cold assembly: at each of the three studied locations, room-temperature yield of the condition over the reported von Mises stress",
+    "C2_hot_static": "hot firing: at each of the three studied locations of that candidate, yield at the location's temperature over the reported von Mises stress. Computable only where the location temperature lies within the published yield temperatures (never extrapolated)",
+    "C3_fatigue": "Goodman factor of the firing cycle (params/head-stress-convergence-rule.json, fatigue) at the studied locations of the hot case, on the fatigue amplitude at the location's temperature; 'upper bound' when the location is hotter than the hottest published fatigue point (the strength of that point is used, and strength falls with temperature)",
+    "C4_printability": "listed for the accepted Eplus3D EP-M300 (2) / listed by another maker of the survey, or in development (1) / by no maker of the survey (0)",
+    "C5_peak_temperature": "hottest head-alloy temperature of the candidate's field",
+    "C6_mass": "density of the condition (the volume is common)",
+    "reported_not_ranked": ["published head-temperature limits (235 to 250 degC, Mackerle; under about 300 degC, Heywood): every field is above them", "the elastic shakedown check of the start-stop cycle", "the support-tension check", "where the hot elastic stress exceeds the hot yield"]
+  },
+  "status_of_a_reported_value": {
+    "converged": "the location's peak passes the convergence rule: its L2 value is used",
+    "not_converged": "the L2 value is used and the margin is marked 'at most' if the peak was still rising",
+    "diverging": "a singular corner: no stress is quoted there and the location does not enter a margin; the next highest converged or not-converged location of the same case is used instead, and the corner is listed"
+  },
+  "rule": [
+    "1. Exclude a candidate whose cold static margin (C1) is below 1.0 at any studied location.",
+    "2. Hot tier. Tier A: C2 computable at all three hot studied locations. Tier B: C2 not computable at one or more (no published strength at that temperature). Every tier-A candidate ranks above every tier-B candidate: a quantified deficit can be addressed by design and checked, an unknown cannot.",
+    "3. Within tier A, rank by the smallest C2 margin (higher first). Two candidates whose smallest margins differ by less than 10 % of the larger are tied; a tie is broken by data quality (C2 on Q1 data before Q2), then by C3 (higher first; computed before upper bound before not computable), then C4 (higher first), then C5 (lower first), then C6 (lower first).",
+    "4. Within tier B, rank by the number of hot studied locations where C2 is computable (more first), then by the smallest computable C2 margin, then C3, C4, C5, C6 as in step 3.",
+    "5. The first candidate is the best compromise. If its smallest C2 margin is below 1.0, the record says that the pick does not survive the screened temperature, and by how much; the pick then names the least deficit under this rule, not an alloy fit for the head."
+  ],
+  "why_lexicographic": "a weighted sum would need weights for quantities measured on different scales and with different evidence; the order above puts what the screen computes from published data first (strength at temperature, cold and hot), then fatigue (thinner data), then manufacture and mass, as the owner's brief of 2026-11-11 put heat and strength first"
+}

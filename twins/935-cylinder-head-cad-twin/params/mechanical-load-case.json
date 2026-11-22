@@ -1,0 +1,115 @@
+{
+  "schema": "935-cad-twin-mechanical-load-case/1",
+  "date": "2026-11-22",
+  "issues": [703, 704, 705],
+  "extends": ["params/assembly-case.json", "params/assembly-heat-paths-case.json"],
+  "rule": "Every value is a fit of this head, a published value with what it was published for, or a declared hypothesis with its register id. Published values describe other engines or generic practice; none is a measurement of this head. Written and committed before any mechanical result of the head existed. This is a screen under declared hypotheses: it qualifies no alloy, process or part and releases nothing; a cylinder head is a highly loaded engine part and needs documented professional review (Wolfe Classics, by owner decision of 2026-11-22) and physical validation.",
+  "sources": {
+    "porsche-911-wm-1972-1981": {
+      "title": "Porsche 911 workshop manual 1972-1981 (English), Technical Data section",
+      "url": "https://www.turbosition.com/media/documents/Porsche_911_Workshop_Manual_1972-1981_EN.pdf",
+      "accessed": "2026-11-22",
+      "file_sha256": "868dabc8568f015c5ccb00c8a941d3b5d3ab5cb1636c3ece2f5f9e47a69ad024",
+      "terms": "Porsche workshop manual; not redistributed, numbers only",
+      "note": "a manual of the production 911, not of the 930, the 935 or this aftermarket head"
+    },
+    "efunda-fasteners": {
+      "title": "eFunda: fasteners, torque and preload",
+      "url": "https://www.efunda.com/designstandards/screws/fasteners_intro.cfm",
+      "accessed": "2026-11-22",
+      "file_sha256": "37a3022116e5e5e5812c3e24460b5e25217e7d3d76d0be111f38faafe3e2778a",
+      "terms": "copyright eFunda, Inc.; numbers only"
+    },
+    "chalmers-clasen-2022": {
+      "title": "PhD thesis, Chalmers University of Technology, 2022 (downsized turbocharged SI engines)",
+      "accessed": "2026-11-22",
+      "note": "full reference, URL and hash in docs/research/935-loads-alloys-20261122.md"
+    },
+    "ms-trw-vsi": {"title": "Motorservice / Kolbenschmidt-TRW valve seat insert brochure", "accessed": "2026-11-22"},
+    "aera-tb052925": {"title": "AERA technical bulletin, valve seat insert press fits", "accessed": "2026-11-22"},
+    "us5586530a": {"title": "US patent 5,586,530 (Yamaha), valve seat insert", "accessed": "2026-11-22"},
+    "scn-935-77": {"title": "Supercar Nostalgia: Porsche 935/77 Werks, a historical and technical appraisal (secondary)", "accessed": "2026-11-22"}
+  },
+  "geometry": {
+    "body": "the v2 CAD body (0.25 mm occupancy of v2-loft-s025) minus the guide and plug cylinders of params/assembly-case.json (assembly_thermal.build_components): the guides are pressed-in bronze parts and the plugs are separate; the seat inserts stay head alloy, as in both thermal screens",
+    "hypothesis": "H16-mechanical-body",
+    "smoothing": {
+      "sigma_mm": {"value": 0.5, "status": "hypothesis, declared; no source", "hypothesis": "H16-mechanical-body",
+                   "why": "the binary occupancy's marching-cubes surface is a staircase whose steps are re-entrant corners at the voxel scale; a Gaussian of this width keeps flat faces and rounds every edge and corner. No corner radius of the head is acquired"},
+      "reference_block": 2,
+      "reference_pitch_mm": 0.5
+    },
+    "seat_inserts_not_modelled_because": "no insert outside diameter or height is acquired (H05); the fitted valve heads are 1.0 mm apart at the valve bridge (inlet head radius 25.24 mm, exhaust 22.30 mm, face centres 48.53 mm apart), so inserts one millimetre wider than the valve heads would overlap: no insert geometry can be drawn without a drawing of this head"
+  },
+  "temperature": {
+    "cold_assembly_C": {"value": 20.0, "status": "declared: assembly at room temperature, strain-free"},
+    "hot_field": {
+      "record": "params/assembly-heat-paths.json",
+      "variant": "published_loading_oil",
+      "what": "the steady heat-path field at the published wall loadings with barrel, oil and joint conductances (H13 to H15), solved again on the prepared heat-path mesh with the committed calibrated coefficients, at the conductivity of each candidate; the solver run of 2026-11-20 kept no field, so the field is regenerated and must reproduce the record's peak",
+      "conductivity_rule": "for each candidate condition, the lowest published conductivity of that condition (the hotter field)",
+      "status": "hypothesis screen, uncorrelated with any engine (H12 to H15). Issue #702 may later correlate this field with a measured operating point; the stresses here would then have to be solved again",
+      "mapping": "linear interpolation in the head-alloy tetrahedra of the heat-path mesh at the vertices of each mechanical mesh; a vertex outside every alloy tetrahedron takes its nearest alloy node"
+    }
+  },
+  "holds": {
+    "what": "the head stands on the barrel collar: zero displacement normal to the register-recess floor on its faces between the fitted bore and collar radii, frictionless; in-plane rigid motion removed at two vertices of that floor on the x axis (x and y at one, y at the other)",
+    "hypothesis": "H19-mechanical-holds",
+    "register_floor_z_mm": {"value": 2.17, "status": "fit", "source": "params/deck-features.json register.floor_z"},
+    "bore_radius_mm": {"value": 46.4015, "status": "fit", "source": "half the fitted chamber shoulder diameter 92.8029 mm (params/deck-features.json)"},
+    "collar_radius_mm": {"value": 56.68, "status": "fit", "source": "half the fitted register recess diameter 113.36 mm (params/assembly-case.json)"},
+    "not_modelled": ["the barrel as a body and contact separation (the support reaction is checked for tension after the solve)", "friction at the joint", "the cam housing, its studs and the manifold flanges", "spark-plug tightening", "the six cam-side and four flange studs"]
+  },
+  "studs": {
+    "count": {"value": 4, "status": "fit", "source": "four through passages fitted on the scan (params/feature-fits.json, H02); 24 head studs per six-cylinder engine is a seller declaration (docs/research/935-loads-alloys-20261122.md)"},
+    "thread": {"value": "M10", "status": "published for the 911 1972-1981", "source": "porsche-911-wm-1972-1981, Technical Data, tightening torques for engine (PDF page 43, read on the rendered page): 'Cylinder head nuts M 10 socket head 33 3.3'", "hypothesis": "H17-stud-preload", "fit_check": "fitted passages 10.50 to 10.96 mm"},
+    "nut_torque_Nm": {"value": 33.0, "status": "published for the 911 1972-1981; applied here as a hypothesis", "source": "porsche-911-wm-1972-1981, same row (33 Nm, 3.3 kpm)", "hypothesis": "H17-stud-preload"},
+    "nut_factor": {"value": 0.2, "range": [0.15, 0.3], "status": "published generic value", "source": "efunda-fasteners: 'For most small to mid size bolts, K is between 0.15 and 0.3. As a rough approximation: dry (un-lubricated) mid-size steel bolts: K = 0.2'", "hypothesis": "H17-stud-preload"},
+    "preload_kN": {"value": 16.5, "range": [11.0, 22.0], "status": "computed here: F = T / (K d) = 33 / (0.2 x 0.010) N; the range from K = 0.3 and 0.15", "hypothesis": "H17-stud-preload"},
+    "nut_bearing_diameter_mm": {"value": 20.0, "status": "hypothesis, declared; no source", "hypothesis": "H17-stud-preload", "check": "inside the fitted nut counterbores, 24.27 to 25.22 mm; the bearing face is the counterbore floor, the lower end of each fitted counterbore"},
+    "hot_force_factor": {"value": 0.0, "sweep": [0.5, 1.0], "status": "hypothesis, declared; no number published", "hypothesis": "H17-stud-preload", "what": "hot stud force = preload x (1 + factor). Dilavar studs are said to expand 'about the same as the alloy case' (seller declaration and Porsche magazine, qualitative); no expansion, modulus or stud length of this engine was found, so the differential expansion is not computed"},
+    "gas_load_share": {"value": 0.0, "sweep": [0.3], "status": "hypothesis, declared; no source", "hypothesis": "H17-stud-preload", "what": "share of the gas force on the head that raises the stud force in firing (joint diagram); 0 means the barrel support takes it all"}
+  },
+  "gas": {
+    "peak_pressure_MPa": {"value": 12.0, "range": [10.0, 16.7], "status": "published for other engines; applied here as a hypothesis", "hypothesis": "H18-peak-firing-pressure",
+                          "source": "chalmers-clasen-2022 (printed page 93): 'peak cylinder pressure, that was limited to 120 bar in the multi-cylinder engine and 100 bar in the single-cylinder engine' (modern downsized turbocharged SI research engines); upper end 167 bar measured on the Honda RA168E (2.5 bar boost, Formula 1), reported second-hand in a forum post: a lead, not a design value",
+                          "not_found": "no peak cylinder pressure of a 930, 934 or 935 engine and no published estimation method; the 935/77 ran 1.4 bar boost at a 6.5:1 compression ratio (secondary source)"},
+    "bore_mm": {"value": 92.8029, "status": "fit", "source": "fitted chamber shoulder (params/deck-features.json); the 935/77 bore is published as 92.8 mm by a secondary source (scn-935-77)"},
+    "chamber_z_max_mm": {"value": 30.0, "status": "the rule of params/assembly-case.json"},
+    "where": "the pressure acts on every face of the chamber inside the bore radius, below the chamber limit, outside the valve throats and the plug bores; each closed valve carries the pressure times its seat-circle area (fitted mid-band radius) onto its seat faces as a normal pressure; each plug carries the pressure times its thread-bore area onto its thread faces as an axial traction away from the chamber"
+  },
+  "press_fits": {
+    "seat_inserts": {
+      "material": {"value": "grey cast iron, shrunk in", "status": "published for the 911 1972", "source": "porsche-911-wm-1972-1981, Technical Data (PDF page 27): 'Valve seat inserts shrunk-in, grey-cast iron'"},
+      "interference_diametral_mm": {"published": {"40-50 mm OD, aluminium head": [0.12, 0.18], "50-60 mm OD, aluminium head": [0.14, 0.20]}, "source": "ms-trw-vsi (0.12, 0.14) and aera-tb052925 (0.18, 0.20): generic recommendations, not Porsche values"},
+      "applied": false,
+      "blocker": "insert outside diameter and height of this head (H05): see geometry.seat_inserts_not_modelled_because",
+      "hot_check": "computed here, not solved: loss of diametral interference = (alpha_head - alpha_insert) x D x (T_seat - 20 degC); alpha of a sintered-iron seat 12e-6 /K and of an aluminium head 23e-6 /K (us5586530a, a generic patent value)"
+    },
+    "guides": {
+      "material": {"value": "special bronze, shrunk in", "status": "published for the 911 1972", "source": "porsche-911-wm-1972-1981, Technical Data (PDF page 27): 'Valve guides shrunk-in, special bronze'"},
+      "interference_diametral_mm": {"value": null, "blocker": "no published guide press fit for this head or for aluminium heads in a source that could be opened (a bulletin with figures returned 404; its numbers seen only in a search excerpt are not used)"},
+      "applied": false,
+      "unit_case": "a 1 MPa pressure on each guide bore is solved; the record gives the head stress per 0.01 mm of interference with the contact pressure of a bronze tube of the fitted bore and outside diameters in an infinite aluminium body (Lame), bronze modulus 110.3 GPa (C64200 datasheet, converted)"
+    }
+  },
+  "material_model": {
+    "what": "linear isotropic elasticity, small strain; one stiffness for every unit case; thermal stress scaled by E alpha of each candidate; no temperature-dependent modulus, no plasticity, no creep",
+    "hypothesis": "H20-elastic-screen",
+    "poisson_ratio": {"value": 0.33, "status": "hypothesis, declared; no candidate publishes one in the sheets read"},
+    "modulus": "each candidate's published room-temperature modulus (params/head-stress-screen.json lists the source of each); a modulus falling with temperature would lower the thermal stress: the room-temperature modulus is the conservative choice",
+    "expansion_where_unpublished_per_K": {"value": 2.35e-5, "status": "hypothesis: the AlSi10Mg value (Yang 2018, as built, room temperature to 350 degC) applied to candidates that publish none", "hypothesis": "H20-elastic-screen"}
+  },
+  "cases": {
+    "cold_assembly": "preload on the four nut seats, 20 degC everywhere, no gas",
+    "hot_assembled": "hot stud force on the nut seats, the candidate's hot field, no gas: the lower end of the firing cycle",
+    "hot_firing": "hot_assembled plus the peak gas pressure and the gas share of the stud force",
+    "same_mesh": "all three cases of every candidate are right-hand sides of one factorised stiffness per mesh level"
+  },
+  "fatigue_duty": {
+    "hypothesis": "H21-fatigue-screen",
+    "firing_cycle": "one cycle per firing, between hot_assembled and hot_firing",
+    "duty_cycles": {"value": 5760000, "status": "computed here: 24 h at 8000 rpm, one firing per two revolutions; 8000 rpm is the speed of peak power of the 935/77 in a secondary source (scn-935-77); the duration of one endurance race is a hypothesis", "hypothesis": "H21-fatigue-screen"},
+    "start_stop_cycle": "cold_assembly to hot_firing: checked for elastic shakedown only; no process-specific strain-life data at temperature was found, so no low-cycle life is stated"
+  }
+}

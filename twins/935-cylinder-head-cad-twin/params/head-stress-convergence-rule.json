@@ -1,0 +1,40 @@
+{
+  "schema": "935-cad-twin-head-stress-convergence-rule/1",
+  "date": "2026-11-22",
+  "issues": [703, 704],
+  "written_before_results": true,
+  "levels": {
+    "L0": "the reference surface remeshed isotropically at 3.5 mm target edge, vertices kept within 0.2 mm of the reference, then Gmsh HXT tetrahedra up to 5 mm; quadratic displacement (P2) on straight tetrahedra",
+    "L1": "L0 with every zone remeshed at 1.75 mm: a sphere of 12 mm radius about each studied location",
+    "L2": "L1 with a sphere of 6 mm radius about each studied location remeshed at 0.875 mm",
+    "refinement_ratio": 2.0,
+    "zones": "the studied locations are chosen on L0 before L1 and L2 exist, by the rule below; L1 and L2 refine all of them at once, so every case of every candidate is read on the same three meshes"
+  },
+  "studied_locations": {
+    "stress": "von Mises of the vertex stress: the six components averaged at each vertex over the tetrahedra that share it, weighted by volume",
+    "per_case": "for the cold assembly (one set: its stresses do not depend on the alloy) and for the hot firing of each candidate: the vertex of highest von Mises stress, then the highest vertex farther than 15 mm from every location already taken, three times",
+    "zones": "the union of all these locations; two locations closer than 15 mm share one zone",
+    "peak_at_a_location": "the highest vertex von Mises stress within 3 mm of the location, on each level"
+  },
+  "status": {
+    "increments": "d01 = P1 - P0 and d12 = P2 - P1, with P0, P1, P2 the peaks at the location on L0, L1, L2",
+    "converged": "|d12| <= 0.05 P2 and |d12| <= 0.5 |d01| (a smooth peak with an error of order h^2 or h gives 0.25 or 0.5); the reported value is P2",
+    "diverging": "d01 > 0 and d12 > 0 and d12 >= 0.7 d01: the peak keeps rising at least as fast as a weak singularity would; it is reported as a singular corner and never as a stress",
+    "not_converged": "anything else; the reported value is P2, marked 'at most' for a margin if the peak was still rising (d12 > 0)",
+    "slope": "the log-log slope log(P2 / P1) / log 2 is recorded for each location (the WE43 impeller root of 2026-10-28 rose with 0.295)",
+    "geometry_note": "every edge of the mechanical body is rounded by the declared Gaussian of 0.5 mm (H16); no corner radius of the head is acquired. A corner whose rounding the finest level does not resolve (h about 0.26 r for a blend of radius r) can rise on every level: such a peak is a property of the declared rounding, not of the head"
+  },
+  "solver_witness": {
+    "cases": "thick cylinder under internal pressure (Lame, plane strain), its uniform heating between fixed end planes, a free block with a linear temperature (no stress); P2 tetrahedra, the same code path as the head",
+    "acceptance": "hoop stress at the bore within 2 % of the closed form on average, radial displacement within 1 %, axial stress of the heated ring within 1 %, largest von Mises of the free block below 0.1 % of E alpha dT; the same results on 1 and 4 processes within 1e-6 relative"
+  },
+  "fatigue": {
+    "cycle": "the firing cycle between hot_assembled and hot_firing (params/mechanical-load-case.json)",
+    "amplitude": "von Mises of half the stress-range tensor",
+    "mean": "von Mises of the mean tensor with the sign of its first invariant",
+    "criterion": "Goodman: factor n = 1 / (amplitude / S_a(T) + max(mean, 0) / S_u(T)), with S_a the fully reversed fatigue amplitude at the location's temperature and S_u the tensile strength at that temperature, both read by straight lines between published temperatures",
+    "duty": "no life is stated: the factor compares the cycle with the fatigue strength at the source's run-out (2e6 or 1e7 cycles), which is shorter than or near the hypothesis duty of 5.76e6 cycles (H21)",
+    "elastic_validity": "where the hot mean stress exceeds the hot yield, the elastic mean is not a stress the alloy can hold: the factor is reported with that flag",
+    "start_stop": "elastic shakedown is possible only if the von Mises range from cold assembly to hot firing does not exceed the room-temperature yield plus the yield at the location's temperature (a Melan-type screen); otherwise every start-stop cycle yields again, which is low-cycle and thermo-mechanical fatigue, and no life is stated without strain-life data at temperature"
+  }
+}
