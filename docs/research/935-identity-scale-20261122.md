@@ -5,7 +5,7 @@ measurement of the scanned head.** Published values are declared hypotheses
 with their sources. The records are the twin's
 [specimen-identity.json](../../twins/935-cylinder-head-cad-twin/params/specimen-identity.json)
 and [scale-check.json](../../twins/935-cylinder-head-cad-twin/params/scale-check.json);
-the assumed identity is H16 and H17 in the
+the assumed identity is H18 and H19 in the
 [hypotheses register](../../twins/935-cylinder-head-cad-twin/hypotheses.json).
 
 ## Why
@@ -21,14 +21,14 @@ which read the 930 Turbo and 964 Turbo homologation forms. Neither was redone.
 
 ## Result in short
 
-- **Assumed identity (H16, H17):** a new Xtreme Cylinder Heads casting, cast
+- **Assumed identity (H18, H19):** a new Xtreme Cylinder Heads casting, cast
   then machined, for a Porsche 935; two valves, two plugs, four head studs,
   8 mm stems and M12 × 1.25 plugs; the maker's 2.0–2.9 litre program, for the
   2.85 L 935 engine, bore at most 92.8 mm. Status: assumed by owner decision
   2026-11-22, not confirmed. The 3.0–3.5 litre program stays open.
 - **Scale:** the 1 mm unit holds within the primary check, the plug thread
   bore against M12 × 1.25: s from 0.934 to 1.053. The chamber shoulder agrees
-  to within 0.9% but rests on H17, so it is not counted. The guide bore reads
+  to within 0.9% but rests on H19, so it is not counted. The guide bore reads
   0.49 to 0.56 mm larger than an 8 mm guide (s 0.935 to 0.942), unexplained.
 - **No published figure describes this specimen.** The only published
   statement about it is the listing: "Made specifically for a 935 racecar but
@@ -79,7 +79,7 @@ turbo press kit; the FIA historic database form 645.
 | [repository dossier](935-faithful-replica-20261028/README.md) | the seller's private statement: Xtreme, cast then machined | same head (private) |
 | [Xtreme programs](https://www.xtremecylinderheads.com/programs), [2.0–2.9 L](https://www.xtremecylinderheads.com/castings-1), [3.0–3.5 L](https://www.xtremecylinderheads.com/castings-2), [3.6–4.0 L NA](https://www.xtremecylinderheads.com/castings-3), [3.6–4.0 L turbo](https://www.xtremecylinderheads.com/castings-4) | process, programs, 8 mm stems, 12 or 14 mm plugs, valve and chamber ranges | same family |
 | [Xtreme shop](https://www.xtremecylinderheads.com/ourshop) | the maker engraves its logo on its castings | same family |
-| [Porsche Newsroom turbo press kit](https://newsroom.porsche.com/en/press-kits/50-years-porsche-turbo/Porsche-and-turbo-technology-in-motorsport--from-pioneer-to-world-champion.html) | the 935 of 1976: 2.85 litres | same engine family (H17) |
+| [Porsche Newsroom turbo press kit](https://newsroom.porsche.com/en/press-kits/50-years-porsche-turbo/Porsche-and-turbo-technology-in-motorsport--from-pioneer-to-world-champion.html) | the 935 of 1976: 2.85 litres | same engine family (H19) |
 | [Wikipedia: Porsche 935](https://en.wikipedia.org/w/index.php?title=Porsche_935&oldid=1385579704) | the 1.4 turbo factor and the 4.0 L class; capacities 2.8 to 3.3 L; optional 3.0 L customer engine | same engine family |
 | [Supercars.net 935/76](https://www.supercars.net/blog/1976-porsche-93576/) | bore 92.8, stroke 70.4, 2856 cm³; dual ignition | same engine family |
 | [Supercar Nostalgia 935/76](https://supercarnostalgia.com/blog/porsche-935-76) | bore 92.4, stroke 70.4, 2856 cm³; twin plug ignition | same engine family |

@@ -2,7 +2,7 @@
   "schema": "935-cad-twin-scale-check/1",
   "date": "2026-11-22",
   "issue": "#693",
-  "depends_on": "#692: params/specimen-identity.json, hypotheses H16 and H17",
+  "depends_on": "#692: params/specimen-identity.json, hypotheses H18 and H19",
   "claims": "A check of the owner's instruction 1 OBJ unit = 1 mm against published values of the assumed identity. It is not a measurement and not a calibration: no length was measured on the specimen. The twin is not rescaled and the owner's instruction stays in force.",
   "definition": "s = published length / fitted length of the same feature. s = 1 means the 1 mm unit agrees with the published value; s = 1.02 would mean every fitted length is 2% too small.",
   "twin_rescaled": false,
@@ -14,7 +14,7 @@
     "feature-confirmation.json": "e69ee678cd949f0ed3f880aa2c85dfc6fec7c97b2c419822bc26d31062b394ad",
     "reference-sheet.json": "e5ac2f95c2b352820d4b10b1d57064802e5812303bb8ace7f10bac5280f2efc7"
   },
-  "selection": "The published length best suited to the check is the one whose published value applies to the specimen with the fewest identity assumptions, on a feature the CloudCompare check confirms, with a published tolerance. Only the spark-plug thread meets all three: the maker offers 12 or 14 mm plugs on every program, ISO 28741 fixes the thread, and the plug_x_plus thread bore is confirmed. The chamber shoulder is larger and fitted more tightly, but its published bore needs H17 and an unstated design rule. The guide bore is the only other feature with a maker's published size, and it is not confirmed.",
+  "selection": "The published length best suited to the check is the one whose published value applies to the specimen with the fewest identity assumptions, on a feature the CloudCompare check confirms, with a published tolerance. Only the spark-plug thread meets all three: the maker offers 12 or 14 mm plugs on every program, ISO 28741 fixes the thread, and the plug_x_plus thread bore is confirmed. The chamber shoulder is larger and fitted more tightly, but its published bore needs H19 and an unstated design rule. The guide bore is the only other feature with a maker's published size, and it is not confirmed.",
   "checks": [
     {
       "id": "plug-thread-x-plus",
@@ -31,7 +31,7 @@
         "fit_uncertainty": "diameter sigma 0.0067 mm from the fit (a lower bound), 0.07 mm of taper along 14.2 mm of bore: 0.06% and 0.6% of the diameter"
       },
       "premises": [
-        "H16: the plug is the maker's 12 mm option (pv-xtreme-plugs) with the ISO 28741 thread M12 x 1.25 (pv-iso-28741-m12)",
+        "H18: the plug is the maker's 12 mm option (pv-xtreme-plugs) with the ISO 28741 thread M12 x 1.25 (pv-iso-28741-m12)",
         "a cylinder fitted through a scanned internal thread lies between its crest, the minor diameter D1, and its root, at or beyond the major diameter D (pv-iso-68-profile)"
       ],
       "published": {
@@ -104,8 +104,8 @@
         "fit_uncertainty": "2 x 0.2151 / sqrt(415) = 0.021 mm, a statistical lower bound: 0.02% of the diameter"
       },
       "premises": [
-        "H17: the head serves the 2.85 L 935 engine",
-        "H17: the chamber edge at the register floor is the bore; no source states this design rule"
+        "H19: the head serves the 2.85 L 935 engine",
+        "H19: the chamber edge at the register floor is the bore; no source states this design rule"
       ],
       "published": {
         "bores_mm": [92.0, 92.4, 92.8],
@@ -126,7 +126,7 @@
       },
       "unit_holds_within_uncertainty": true,
       "independent_of_H17": false,
-      "result": "s between 0.991 and 1.000; not counted, because H17 was chosen partly from this same agreement under the 1 mm unit"
+      "result": "s between 0.991 and 1.000; not counted, because H19 was chosen partly from this same agreement under the 1 mm unit"
     },
     {
       "id": "guide-bore-8mm-stem",
@@ -142,7 +142,7 @@
         "radius_sigma_mm": 0.00416
       },
       "premises": [
-        "H16: 8 mm valve stems (pv-xtreme-stems)",
+        "H18: 8 mm valve stems (pv-xtreme-stems)",
         "the guide is reamed to the stem as on another head: 8.00 to 8.015 mm for the 993's 8 mm stems (pv-993-guide-bore, OCR unreviewed)"
       ],
       "published": {

@@ -121,7 +121,7 @@ class IdentityRecordTests(unittest.TestCase):
         items = by_id(reg["items"])
         assumed = self.rec["assumed_identity"]
         self.assertEqual(assumed["status"], ASSUMED)
-        self.assertEqual(assumed["hypotheses"], ["H16-specimen-identity", "H17-bore-family"])
+        self.assertEqual(assumed["hypotheses"], ["H18-specimen-identity", "H19-bore-family"])
         for hid in assumed["hypotheses"]:
             self.assertIn(hid, items)
             self.assertEqual(items[hid]["status"], ASSUMED)
@@ -147,7 +147,7 @@ class IdentityRecordTests(unittest.TestCase):
         qs = by_id(self.rec["questions_for_reviewer"])
         self.assertEqual(list(qs), [f"Q{n}" for n in range(1, len(qs) + 1)])
         settles = " ".join(q["settles"] for q in qs.values())
-        for target in ("H16", "H17", "#693", "H09"):
+        for target in ("H18", "H19", "#693", "H09"):
             self.assertIn(target, settles)
 
     def test_stud_pattern_quoted_in_the_record_reproduces_from_the_fits(self):

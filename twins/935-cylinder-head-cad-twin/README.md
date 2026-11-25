@@ -236,8 +236,8 @@ works on declared assumptions, to be reviewed by Wolfe Classics. Nobody was
 contacted. From the seller's listing, the seller's private statement and the
 maker's pages, the twin assumes a new Xtreme Cylinder Heads casting, cast then
 machined, for a Porsche 935: two valves, two plugs, four head studs, 8 mm
-stems and M12 × 1.25 plugs (H16), of the maker's 2.0–2.9 litre program for
-the 2.85 L engine, bore at most 92.8 mm (H17). No published figure describes
+stems and M12 × 1.25 plugs (H18), of the maker's 2.0–2.9 litre program for
+the 2.85 L engine, bore at most 92.8 mm (H19). No published figure describes
 this specimen; each figure compared so far is marked "same family" or "other
 head" in the identity record, which also keeps the 3.0–3.5 litre program
 open and lists eleven questions for the reviewer.
@@ -245,7 +245,7 @@ open and lists eleven questions for the reviewer.
 | Check of 1 unit = 1 mm | Published | Fitted | Scale s |
 |---|---|---|---|
 | plug thread bore, confirmed (primary) | M12 × 1.25: crest 10.647 mm, root 12.0 mm | 11.40 mm | 0.934 to 1.053 |
-| chamber shoulder (needs H17; not counted) | 2.85 L 935 bore 92.0 to 92.8 mm | 92.80 mm | 0.991 to 1.000 |
+| chamber shoulder (needs H19; not counted) | 2.85 L 935 bore 92.0 to 92.8 mm | 92.80 mm | 0.991 to 1.000 |
 | guide bore, not confirmed (discordant) | maker's 8 mm stem; 993 guide 8.00 to 8.015 mm | 8.51 mm | 0.935 to 0.942 |
 
 The unit holds within the primary check's ±6%; the guide bore reads half a
