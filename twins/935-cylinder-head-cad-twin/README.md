@@ -1427,6 +1427,89 @@ the [orientation screen](params/print-body-supports.json) to 0.0003%: 476,689 mm
   no powder escape from the support cells.
 - Every gate of the record is false.
 
+### Supports from an open build-preparation library: PySLM against the rule layout ([plan](params/support-build-processor-plan.json), [witness](params/support-build-processor-witness.json), [record](params/support-build-processor.json))
+
+![The print body on its plate, seen through, from two sides, twice. Top row, the rule layout: a blue bed of supports from the plate up to the body and orange blocks in its openings. Bottom row, PySLM's layout: a few thin blue and orange columns, and red over most of the down-facing surface, including the whole face 33 mm above the plate](media/support-build-processor.png)
+
+*Both layouts on 1 mm blocks of the 0.25 mm grid. Red marks overhang within
+45 degrees of straight down that the layout leaves without a support.
+Geometry only, not a build file.*
+
+**PySLM, with its own defaults, supports 2.7% of the overhang the rule
+layout starts from; the rule layout supports 98.7%.** The print body went to PySLM 0.6.1
+(LGPL-2.1), the open library the carrier already pins, at the same
+revision, flange y+ on the plate, at a critical angle of 45 degrees. It
+prepared 19 block supports holding 343 mm² of the
+12,538 mm² of down-facing surface; the rule layout holds
+12,376 mm². What would be compared was committed before the run
+([plan](params/support-build-processor-plan.json)); both layouts are measured
+on the same grid by the same code
+([support_build_processor.py](source/support_build_processor.py)), which first
+gives back the rule layout's committed area, envelope and landing exactly.
+
+| Quantity, projected areas | Rule layout | PySLM, 0.5 mm surface | PySLM, 1.0 mm surface (not in the plan) |
+|---|---|---|---|
+| Overhang supported, of 12,538 mm² | 12,376 mm² (98.7%) | 343 mm² (2.7%) | 3,606 mm² (28.8%) |
+| Support envelope | 470,685 mm³ | 11,580 mm³ | 118,311 mm³ |
+| … standing on the plate / on the part | 246,716 / 223,970 mm³ | 6,059 / 5,496 mm³ | 87,268 / 30,297 mm³ |
+| Contact with the part, under the surface + at the foot | 12,376 + 5,911 mm² | 441 + 256 mm² | 3,716 + 1,039 mm² |
+| Overhang left bare | 162 mm² in 226 patches | 12,196 mm² in 394 patches | 8,932 mm² in 415 patches |
+| Widest bare patch | 1.0 mm (11 mm²) | 19.7 mm (2,705 mm², 33 mm above the plate) | 14.6 mm (432 mm², 154 mm above the plate) |
+| Tallest support column | 175 mm | 72 mm | 114 mm |
+
+- **The two layouts barely overlap.** Of the overhang, 343 mm² is supported
+  by both, 12,033 mm² by the rule only and none by PySLM only; 162 mm² is
+  bare in both, the narrow ledges the rule leaves. PySLM's blocks also touch
+  99 mm² of the part outside the 45-degree surface.
+- **The face 33 mm above the plate is left bare.** It lies where the flange
+  face does, the face the rule layout stands on its blue bed; in PySLM's
+  layout the body hangs on a few thin columns (picture, bottom row).
+- **Where the overhang is lost, read from the library's own steps**
+  ([diagnosis](params/support-build-processor.json)): PySLM takes the
+  overhang from raw face normals, and on the 0.5 mm surface it falls apart
+  into 5,144 regions, 4,369 of them under 0.5 mm². 5,063 regions
+  (4,404 mm²) are under its 5 mm² minimum once inset by 0.5 mm. 26 regions
+  (4,344 mm², among them the largest, 2,600 mm²) are split by that inset
+  and every piece is then refused: the library loads each piece as a path
+  that trimesh 5.1.1, the version the repository pins, does not report as
+  closed. The 49 regions left (2,828 mm²) end as 19 blocks holding
+  343 mm² of the surface; that last loss, through the height maps and their
+  contours, was not traced step by step.
+- **The result depends on the surface it reads.** On the 1.0 mm surface of
+  the same body the regions are fewer (1,120), most of the flange face gets
+  a bed (seen in a private render of that run), and 28.8% of the overhang is
+  supported. An answer that moves tenfold with the tessellation does not
+  prepare this part.
+- **The grid truss runs on the blocks it has:** 17 of 19 blocks, 5,607 mm²
+  of truss surface; the two thinnest, about half a millimetre tall, stop with
+  the library's own "please share a bug report".
+
+**What it took to run.** Each departure is recorded in the record.
+
+- Upstream PySLM stopped on its extrusion error, the one the carrier met:
+  the declared fallback applied the carrier's historical patch to that
+  extrusion only.
+- On the 0.5 mm surface its spline simplification raised "MultiPolygon
+  error": the declared fallback switched it off, as the carrier does.
+- Under Xvfb and llvmpipe the 52nd height-map window of a process fails
+  its framebuffer check; a wrapper lets Qt delete each window after PySLM
+  has read it. The library's code and its height maps are unchanged.
+- The witness found one more limit: trimesh 5 fills boundary loops of three
+  or four edges when it splits the overhang, so the cap of the square T of
+  the rule layout's witness is never supported.
+
+**Does this count as "prepared by a build processor" for #706? No.**
+PySLM is an open research library, not the machine maker's build processor,
+and on this body it supports a small and unstable share of the overhang.
+What stays open is the tool the issue asks for: the machine maker's build
+processor for the selected machine, or a commercial preparation suite with
+a build processor for it (Materialise Magics, for example). None is
+installed or licensed here. It would add support templates and exposure
+parameters qualified for the alloy and the machine, a machine build file
+with scan order, support types beyond blocks, and checks this library does
+not make: recoater collision, powder removal, heat through the supports.
+The build screen keeps its levels; none was changed or added.
+
 ### Melt-pool check of the declared heat input ([record](params/melt-pool-check.json))
 
 ![One laser track on a block of solid alloy, seen from above and from the side: a bright spot travels to the right with a white outline, the melting isotherm, trailing behind it like a comet](media/melt-pool.gif)
