@@ -17,7 +17,12 @@
       "status": "modelled_as_inferred_closure",
       "how": "winding-number 0.5 iso-surface of the open scan; the scanner never saw these surfaces (the 87 boundary loops of 20 mm or more hold 67% of open edges, mostly here)",
       "colour": "inferred_closure",
-      "retire_with": "CT of the specimen, a rescan with fin-gap coverage, or a supplier drawing of the fin roots"
+      "retire_with": "CT of the specimen, a rescan with fin-gap coverage, or a supplier drawing of the fin roots",
+      "searched_on_2026_11_22": {
+        "what": "no published fin pitch, fin thickness, root radius or gap-floor shape of a 911, 930, 935 or Xtreme head was found; the closure is kept and the request stays open. The class that holds these regions is 13.6% of the v2 body's area (75% of its inferred area), together with the rest of the outer closure",
+        "record": "docs/research/935-valves-ports-20261122.md",
+        "share": "params/inferred-share.json"
+      }
     },
     {
       "id": "H02-stud-passages",
@@ -47,15 +52,31 @@
       "status": "modelled_as_inferred_closure",
       "how": "winding-number closure; v1 lofts the ports through observed cross-sections only and marks the interpolated span",
       "colour": "inferred_closure",
-      "retire_with": "port moulds, CT, or a borescope survey with registered sections"
+      "retire_with": "port moulds, CT, or a borescope survey with registered sections",
+      "searched_on_2026_11_22": {
+        "what": "no published port diameter, shape, bowl, throat, short-side radius, guide boss or port volume of a 935 or Xtreme head was found, and no captioned cutaway; the maker states that it digitises and machines its ports, but publishes no geometry. In the v2 body the port voids hold 2.2% of the body's area as inferred closure (12% of the inferred area); that closure is kept",
+        "record": "docs/research/935-valves-ports-20261122.md",
+        "share": "params/inferred-share.json"
+      },
+      "declared_rule_on_2026_11_22": {
+        "what": "in the port domain only, the closure beyond the last scan section is replaced by the declared rule H17; the v2 body keeps the closure",
+        "hypothesis": "H17-port-continuation-declared",
+        "record": "params/port-domain.json"
+      }
     },
     {
       "id": "H05-valve-seats-guides",
       "region": "valve seat inserts, guide bores and their interference fits",
-      "status": "not_modelled_in_v0",
-      "how": "the twin is the head body only; seat/guide geometry, materials and fits are unknown",
+      "status": "modelled_from_published_values_and_declared_assumptions",
+      "how": "valve, seat insert and guide of each valve are separate solids of revolution on the fitted axes (params/valve-seat-guide.json), every value from params/valve-seat-guide-case.json: published values of other heads and the maker's catalogue ranges (H16), fits on the scan, and explicit assumptions where nothing was found (insert height, valve margin and tulip, stem clearance). The v2 body still holds the scanned guides and seats as one solid; no interference fit is modelled",
       "colour": "analytic_hypothesis",
       "retire_with": "supplier valvetrain specification for this head variant",
+      "modelled_on_2026_11_22": {
+        "what": "bodies built and checked: no overlap closed or at the published largest lifts, stems run in the guides, the two heads stay 0.59 mm apart with both at their largest lift. The inlet contact band lies inside the fitted seat window; the exhaust band reaches 0.09 mm (radius) inside its inner edge",
+        "record": "params/valve-seat-guide.json",
+        "case": "params/valve-seat-guide-case.json",
+        "why_not_retired": "the maker publishes ranges for families of heads, not the specification of this head; no part of the specimen was measured"
+      },
       "fitted_on_2026_11_11": {
         "what": "guide bores, guide outside diameters, throats, seats and spring seats fitted where the scanner reached them: guide bore 8.51 mm seen over 48.8 mm on valve_y_minus, seats near 45 and 49 degrees, valve axes 25.9 and 29.9 degrees from the bore axis. Of these fits CloudCompare confirms the valve_y_plus throat and seat only. Nothing is modelled in a body: the status stays as it was, and inserts, materials, interference fits and the valves themselves remain unknown",
         "record": "params/feature-fits.json",
@@ -83,7 +104,11 @@
       "status": "not_modelled",
       "how": "none is invented; the twin contains no internal gallery",
       "colour": "analytic_hypothesis",
-      "retire_with": "CT or drawing"
+      "retire_with": "CT or drawing",
+      "searched_on_2026_11_22": {
+        "what": "a Porsche patent (US 4941436 A, priority 1988) describes oil led through bores of an air-cooled head, perpendicular to the cam-housing joint, to a cooling ring around the exhaust valve seat; a seller describes 935 heads with oil-cooled exhaust guides (recorded 2026-10-28; its page refused automated readers on 2026-11-22). Neither shows that this head has a gallery, nor where; none is modelled and the request stays open",
+        "record": "docs/research/935-valves-ports-20261122.md"
+      }
     },
     {
       "id": "H08-unclassified-cam-side-protrusion",
@@ -91,15 +116,20 @@
       "status": "kept_as_body_unclassified",
       "how": "it does not pass the stud test (axis inclined 36 degrees to the bore axis, protrudes 10 mm), so it is kept as head body and flagged",
       "colour": "hardware",
-      "retire_with": "photograph or drawing identifying the feature"
+      "retire_with": "photograph or drawing identifying the feature",
+      "searched_on_2026_11_22": {
+        "what": "no source describes a pin, rod or tube of about 4 mm standing out of the cam-side face of a 911, 930, 935 or Xtreme head; the nearest published features (the head temperature sensor of the 993, the oil bores of US 4941436 A) give neither this diameter nor this angle. The feature stays unclassified",
+        "record": "docs/research/935-valves-ports-20261122.md"
+      }
     },
     {
       "id": "H09-valve-roles",
       "region": "which valve is the inlet and which the exhaust",
-      "status": "assumed_for_the_assembly_thermal_screen",
-      "how": "the valve with the larger seat (valve_y_minus, 49.0 mm at mid-band) is taken as the inlet and the other as the exhaust; the 993 manual gives 49 mm and 42.5 mm valve heads, but describes another head",
+      "status": "declared_with_published_indications",
+      "how": "valve_y_minus is taken as the inlet and valve_y_plus as the exhaust. Three published relations of other heads point the same way and none against: the larger seat and throat (48.97 and 45.81 mm against 43.10 and 38.47 mm) match the larger inlet valve of the production 930 Turbo (49 against 41.5 mm) and of both maker catalogue families whose ranges do not overlap; the valve angles (25.89 and 29.89 degrees) match the published inlet and exhaust angles of the 964 Turbo 3.3 (25.5 and 30.25), the other way round would miss by 4.4 degrees; and the larger flange opening (41.8 against 40.5 mm equivalent diameter) matches a 935 head set listed with 41 mm intake and 40 mm exhaust ports. None of these describes this head",
       "colour": "analytic_hypothesis",
-      "retire_with": "supplier documentation of this head, or an inspection of the ports and valves of the specimen"
+      "retire_with": "supplier documentation of this head, or an inspection of the ports and valves of the specimen",
+      "record_2026_11_22": "params/valve-seat-guide.json"
     },
     {
       "id": "H10-valves-guides-plugs-as-solids",
@@ -107,7 +137,8 @@
       "status": "modelled_as_hypothesis_solids_for_one_screen",
       "how": "solids of revolution about the fitted axes: valve heads on the fitted seat cones, stems filling the fitted guide bores, guides as tubes of the fitted outside diameter, plugs filling the thread bores; every other length comes from params/assembly-case.json. They exist only in the united thermal domain, not in the CAD body, the USD stages or the 3MF",
       "colour": "analytic_hypothesis",
-      "retire_with": "valve, guide and plug drawings or the parts themselves"
+      "retire_with": "valve, guide and plug drawings or the parts themselves",
+      "kept_on_2026_11_22": "the two thermal screens ran on these solids and were not rerun, so their records still rest on them. The separate valve, seat insert and guide bodies of params/valve-seat-guide.json (H16) are the ones to use for any new screen; neither set is a drawing or a part, so the retiring evidence has not arrived"
     },
     {
       "id": "H11-assembly-materials-and-contacts",
@@ -148,6 +179,22 @@
       "how": "no published number was found for any joint (params/thermal-literature-bounds.json); each takes 10,000 W/(m2 K), swept from 1,000 to 100,000. The meshed interface of each joint is scaled to the area it projects onto the part surface (about 0.6 of the meshed area)",
       "colour": "analytic_hypothesis",
       "retire_with": "a contact conductance from test or literature for each joint, with its contact pressure and surface finish"
+    },
+    {
+      "id": "H16-valve-seat-guide-published-values",
+      "region": "dimensions, angles, lifts and materials of the valves, seat inserts and guides of both valves",
+      "status": "declared_values_with_sources",
+      "how": "published values of other heads (production 930 Turbo and 911 parts, a valve maker's 8 mm-stem 911 valves, a workshop's 911 seat and guide practice) and the ranges of the head maker's catalogue, each with its source in params/valve-seat-guide-case.json; where nothing was found the value is an explicit assumption with a range: seat-insert height (7 mm), inlet insert outside diameter (derived from the exhaust ring), valve margin, face and tulip, stem clearance (0.05 mm). Valve heads 49 and 41.5 mm, the only sizes common to the two catalogue families a 935 head could belong to",
+      "colour": "analytic_hypothesis",
+      "retire_with": "the supplier's valvetrain specification of this head, or the valves, seats and guides of the specimen measured"
+    },
+    {
+      "id": "H17-port-continuation-declared",
+      "region": "each port between its last closed scan section and the fitted valve throat: the bend, the bowl and the guide boss in it",
+      "status": "modelled_as_declared_rule_in_the_port_domain",
+      "how": "the convex hull of the last scan section, with the guide boss taken out of its outline, and the fitted throat circle at the top of the throat window; the fitted guide cylinder is cut from it (source/port_domain.py, params/port-domain.json). The rule adds no port dimension of its own; its only setting is the 1 mm margin that picks the rays ending on the guide boss. It lives in the port domain only, not in the v2 body",
+      "colour": "inferred_closure",
+      "retire_with": "registered sections of the port bend and bowl from CT, moulds or a borescope survey (the evidence that retires H04)"
     },
     {
       "id": "H18-specimen-identity",

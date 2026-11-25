@@ -1,0 +1,595 @@
+{
+ "schema": "935-cad-twin-support-build-processor/1",
+ "date": "2026-11-22",
+ "scope": "supports for the print body prepared by PySLM's block support generator with its defaults at a 45 degree critical angle, flange y+ on the plate, measured against the rule layout on the 0.25 mm occupancy grid by the same code. An open research library, not the machine maker's build processor; geometry only",
+ "plan_file": "params/support-build-processor-plan.json",
+ "plan_sha256": "358107fbe1e5ba07802f5cbba63a6e52ba5aee71a0c8386082e2f27ec57b4843",
+ "occupancy_sha256": "5faadb782b822f1a974ab562b53a2f88bdbfce08fe2324fdc66c6ade55c006a7",
+ "rule_envelope_sha256": "f7fa6f082ce0a84b184b0a3b1da63c1d44a1934d09336f4cd558ee44335394de",
+ "processor_run": {
+  "library": {
+   "packages": {
+    "PythonSLM": "0.6.1",
+    "numpy": "1.26.4",
+    "trimesh": "5.1.1",
+    "shapely": "2.2.0",
+    "pyclipr": "0.1.8",
+    "manifold3d": "3.5.4",
+    "vispy": "0.17.0",
+    "PyQt5": "5.15.11",
+    "scipy": "1.17.1",
+    "scikit-image": "0.26.0",
+    "networkx": "3.6.1",
+    "rtree": "1.4.1",
+    "triangle": "20250106",
+    "mapbox_earcut": "2.1.0",
+    "matplotlib": "3.11.2"
+   },
+   "source_sha256": {
+    "support.py": "fea7275ce46ad8d4f9c9471457c260111e7a1278b2dce315d126c8341e957c52",
+    "gridBlockSupport.py": "9cb01123079a43827a60fe4e87fc81658b5973f4ef006c99ab255dfd9fef7c53",
+    "utils.py": "0ae04b4275b81091775df8cc5e2858f5079af20f7cea913315e948b333716808",
+    "geometry.py": "f85b89bd646403807b41ea0117f53e318568c9acfcc37b845f5c19a7fbc362ba",
+    "render.py": "f92b0056e90db349d68acf6271528fdf57f72dcc35f034ee0020111408675091"
+   },
+   "state": "declared fallback 1: parts/993-eng-carrier-0001/source/process-20261016/pyslm-support-projection.patch (the extrusion keeps its 3D vertex correspondence); the rest upstream"
+  },
+  "mesh_file": "print-body-mc050.stl",
+  "mesh_sha256": "61ea373d0eed9831fded46394c9bb485a9e41dbb07074f7cd31fd869e0cf5c22",
+  "triangles": 1684604,
+  "watertight": true,
+  "volume_mm3": 1116026.9661644537,
+  "lowest_point_in_the_grid_frame_mm": 1.59375,
+  "fallback": "splineSimplificationFactor None after: Exception('MultiPolygon error please submit a bug report')",
+  "settings": {
+   "rayProjectionResolution": 0.2,
+   "minimumAreaThreshold": 5.0,
+   "innerSupportEdgeGap": 0.2,
+   "outerSupportEdgeGap": 0.5,
+   "lowerProjectionOffset": 0.05,
+   "upperProjectionOffset": 0.05,
+   "triangulationSpacing": 2.0,
+   "simplifyPolygonFactor": 0.5,
+   "splineSimplificationFactor": null,
+   "gridSpacing": [
+    3.0,
+    3.0
+   ],
+   "supportWallThickness": 3.0,
+   "supportBorderDistance": 3.0,
+   "trussWidth": 1.0,
+   "trussAngle": 45.0,
+   "supportTeethHeight": 1.5,
+   "supportTeethTopLength": 0.1,
+   "supportTeethBottomLength": 1.5,
+   "supportTeethBaseInterval": 0.2,
+   "supportTeethUpperPenetration": 0.2,
+   "useUpperSupportTeeth": true,
+   "useLowerSupportTeeth": true
+  },
+  "seconds": 515.4,
+  "log": {
+   "subregions": 5144,
+   "no_valid_region": 26,
+   "area_too_small": 5063,
+   "base_plate_block": 16,
+   "could_not_flatten": 6
+  },
+  "overhang_face_area_mm2": 12779.830644541371,
+  "overhang_projected_area_mm2": 11539.63570017182,
+  "blocks": 19,
+  "closed_blocks": 19,
+  "intersecting_the_part": 19,
+  "mesh_volume_mm3": 12647.537460877118,
+  "smallest_block_mm3": 5.383266308733688,
+  "largest_block_mm3": 3147.476520478243,
+  "regions": {
+   "count": 5144,
+   "area_after_the_split_mm2": 12836.154410053088,
+   "not_flattened": 6,
+   "not_flattened_area_mm2": 3.8366947601944217,
+   "largest_not_flattened_mm2": 1.0786395525387806
+  },
+  "blocks_file": "pyslm-blocks.npz",
+  "blocks_sha256": "a6e2b5257a3d261cf39a050c3760c636b5b45a9a4e0bd1afc114ef1535020814",
+  "wall_seconds": 763.2,
+  "peak_rss_gib": 2.07
+ },
+ "voxelised": {
+  "blocks": 19,
+  "inside_the_part_dropped_mm3": 5.59375,
+  "at_or_below_the_plate_level_dropped_mm3": 47.015625,
+  "kept_mm3": 11580.453125,
+  "blocks_one_by_one_mm3": 12507.546875,
+  "one_by_one_against_the_block_meshes": -0.011068604169796159,
+  "overlap_between_blocks_mm3": 874.484375,
+  "union_against_the_block_meshes": -0.0802112635772152
+ },
+ "plate_level_mm": 1.75,
+ "consistency_with_the_committed_rule_layout": {
+  "supported_projected_area_mm2": {
+   "measured_here": 12375.875,
+   "committed": 12375.875,
+   "equal": true,
+   "at_the_planned_tolerance": 12376.0
+  },
+  "envelope_volume_mm3": {
+   "measured_here": 470685.3125,
+   "committed": 470685.3125,
+   "equal": true
+  },
+  "landing_area_on_part_mm2": {
+   "measured_here": 5911.25,
+   "committed": 5911.25,
+   "equal": true
+  },
+  "note": "the supported area is checked at the rule's own adjacency (no air voxel between surface and support); at the planned 0.5 mm tolerance the same layout reads the value given beside it"
+ },
+ "rule_layout": {
+  "supported_projected_area_mm2": 12376.0,
+  "supported_share_of_the_reference_surface": 0.987044837125838,
+  "envelope_volume_mm3": 470685.3125,
+  "envelope_by_landing": {
+   "on_plate_mm3": 246715.65625,
+   "on_part_mm3": 223969.65625,
+   "ending_in_air_mm3": 0.0
+  },
+  "contact_with_the_part_projected_mm2": {
+   "under_the_supported_surface": 12375.875,
+   "at_the_foot": 5911.25,
+   "total": 18287.125
+  },
+  "plate_contact_projected_mm2": 6464.625,
+  "column_tops_in_air_projected_mm2": 0.0,
+  "column_feet_in_air_projected_mm2": 0.0,
+  "tallest_column_mm": 175.25,
+  "unsupported_reference_surface": {
+   "count": 226,
+   "projected_area_mm2": 162.4375,
+   "largest_patch_mm2": 11.4375,
+   "largest_inscribed_width_mm": 1.0,
+   "widest_patches": [
+    {
+     "projected_area_mm2": 11.4375,
+     "inscribed_width_mm": 1.0,
+     "height_above_plate_mm": 42.5,
+     "centre_build_frame_mm": [
+      103.92,
+      65.17,
+      46.66
+     ]
+    },
+    {
+     "projected_area_mm2": 11.375,
+     "inscribed_width_mm": 1.0,
+     "height_above_plate_mm": 40.0,
+     "centre_build_frame_mm": [
+      103.17,
+      59.5,
+      44.59
+     ]
+    },
+    {
+     "projected_area_mm2": 7.5,
+     "inscribed_width_mm": 1.0,
+     "height_above_plate_mm": 86.5,
+     "centre_build_frame_mm": [
+      11.25,
+      47.13,
+      89.02
+     ]
+    },
+    {
+     "projected_area_mm2": 3.9375,
+     "inscribed_width_mm": 1.0,
+     "height_above_plate_mm": 47.25,
+     "centre_build_frame_mm": [
+      109.53,
+      76.25,
+      50.5
+     ]
+    },
+    {
+     "projected_area_mm2": 3.875,
+     "inscribed_width_mm": 1.0,
+     "height_above_plate_mm": 43.0,
+     "centre_build_frame_mm": [
+      112.29,
+      37.06,
+      46.07
+     ]
+    },
+    {
+     "projected_area_mm2": 3.4375,
+     "inscribed_width_mm": 1.0,
+     "height_above_plate_mm": 131.25,
+     "centre_build_frame_mm": [
+      111.76,
+      47.47,
+      134.53
+     ]
+    },
+    {
+     "projected_area_mm2": 3.3125,
+     "inscribed_width_mm": 1.0,
+     "height_above_plate_mm": 170.0,
+     "centre_build_frame_mm": [
+      26.92,
+      75.34,
+      173.53
+     ]
+    },
+    {
+     "projected_area_mm2": 3.3125,
+     "inscribed_width_mm": 1.0,
+     "height_above_plate_mm": 41.25,
+     "centre_build_frame_mm": [
+      106.7,
+      42.83,
+      43.72
+     ]
+    }
+   ]
+  }
+ },
+ "processor_layout": {
+  "supported_projected_area_mm2": 342.6875,
+  "supported_share_of_the_reference_surface": 0.02733095730628318,
+  "envelope_volume_mm3": 11580.453125,
+  "envelope_by_landing": {
+   "on_plate_mm3": 6058.734375,
+   "on_part_mm3": 5496.125,
+   "ending_in_air_mm3": 25.59375
+  },
+  "contact_with_the_part_projected_mm2": {
+   "under_the_supported_surface": 441.0625,
+   "at_the_foot": 256.1875,
+   "total": 697.25
+  },
+  "plate_contact_projected_mm2": 188.0625,
+  "column_tops_in_air_projected_mm2": 5.1875,
+  "column_feet_in_air_projected_mm2": 2.0,
+  "tallest_column_mm": 72.25,
+  "unsupported_reference_surface": {
+   "count": 394,
+   "projected_area_mm2": 12195.75,
+   "largest_patch_mm2": 2705.3125,
+   "largest_inscribed_width_mm": 19.67866865415443,
+   "widest_patches": [
+    {
+     "projected_area_mm2": 2705.3125,
+     "inscribed_width_mm": 19.67866865415443,
+     "height_above_plate_mm": 33.25,
+     "centre_build_frame_mm": [
+      60.9,
+      36.56,
+      35.48
+     ]
+    },
+    {
+     "projected_area_mm2": 431.875,
+     "inscribed_width_mm": 14.577379737113251,
+     "height_above_plate_mm": 153.5,
+     "centre_build_frame_mm": [
+      59.92,
+      15.86,
+      162.88
+     ]
+    },
+    {
+     "projected_area_mm2": 237.25,
+     "inscribed_width_mm": 12.806248474865697,
+     "height_above_plate_mm": 186.0,
+     "centre_build_frame_mm": [
+      59.37,
+      81.84,
+      192.01
+     ]
+    },
+    {
+     "projected_area_mm2": 235.3125,
+     "inscribed_width_mm": 11.180339887498949,
+     "height_above_plate_mm": 96.75,
+     "centre_build_frame_mm": [
+      60.98,
+      35.04,
+      102.53
+     ]
+    },
+    {
+     "projected_area_mm2": 160.625,
+     "inscribed_width_mm": 10.51189802081432,
+     "height_above_plate_mm": 82.0,
+     "centre_build_frame_mm": [
+      102.16,
+      46.76,
+      86.74
+     ]
+    },
+    {
+     "projected_area_mm2": 262.125,
+     "inscribed_width_mm": 10.5,
+     "height_above_plate_mm": 62.75,
+     "centre_build_frame_mm": [
+      59.18,
+      83.88,
+      70.47
+     ]
+    },
+    {
+     "projected_area_mm2": 522.6875,
+     "inscribed_width_mm": 9.5524865872714,
+     "height_above_plate_mm": 168.75,
+     "centre_build_frame_mm": [
+      105.36,
+      61.06,
+      174.42
+     ]
+    },
+    {
+     "projected_area_mm2": 60.5,
+     "inscribed_width_mm": 7.905694150420948,
+     "height_above_plate_mm": 161.75,
+     "centre_build_frame_mm": [
+      60.05,
+      84.29,
+      165.47
+     ]
+    }
+   ]
+  }
+ },
+ "regions": {
+  "reference_surface_projected_mm2": 12538.4375,
+  "supported_by_both_mm2": 342.6875,
+  "supported_by_the_processor_only_mm2": 0.0,
+  "supported_by_the_rule_only_mm2": 12033.3125,
+  "supported_by_neither_mm2": 162.4375,
+  "envelope_in_both_mm3": 9894.546875,
+  "envelope_of_the_processor_only_mm3": 1685.90625,
+  "envelope_of_the_rule_only_mm3": 460790.765625,
+  "processor_top_contacts_off_the_reference_surface_mm2": 98.625
+ },
+ "private_outputs": {
+  "pyslm-envelope.npy": "8ccee240b95c3f03933711033c5902e5ea190c547a7be3582385dade52b45a66",
+  "pyslm-blocks.npz": "a6e2b5257a3d261cf39a050c3760c636b5b45a9a4e0bd1afc114ef1535020814",
+  "pyslm-prepare.json": "9c4953db5ad62fc443c1d4bb75e83c7cd8c2308625bf7512ca868e2a4d64b75c"
+ },
+ "gates": {
+  "prepared_by_the_machine_makers_build_processor": false,
+  "support_parameters_from_the_machine_maker": false,
+  "removal_judged_by_a_person": false,
+  "build_file_written": false,
+  "metal_print_authorized": false
+ },
+ "seconds": 85.8,
+ "peak_rss_gib": 2.28,
+ "witness_file": "params/support-build-processor-witness.json",
+ "witness_sha256": "228de4ae0ad5f04173b0a64f08837f6a770752398a3cb613d7b02eac08fb2005",
+ "diagnosis_of_the_dropped_overhang": {
+  "mesh_file": "print-body-mc050.stl",
+  "mesh_sha256": "61ea373d0eed9831fded46394c9bb485a9e41dbb07074f7cd31fd869e0cf5c22",
+  "regions": 5144,
+  "projected_area_mm2": 11579.707371856572,
+  "regions_by_projected_area_mm2": {
+   "0 to 0.5": 4369,
+   "0.5 to 1": 343,
+   "1 to 5": 265,
+   "5 to 50": 110,
+   "50 and more": 57
+  },
+  "steps": {
+   "split by the inset, every piece refused as an open path": {
+    "regions": 26,
+    "projected_area_mm2": 4344.094138917553,
+    "largest_projected_mm2": 2599.6924373413367,
+    "flattened_area_mm2": 3988.7019000980836
+   },
+   "under the minimum area once inset": {
+    "regions": 5063,
+    "projected_area_mm2": 4403.925064527556,
+    "largest_projected_mm2": 296.9579158626693,
+    "flattened_area_mm2": 1957.7820429753538
+   },
+   "kept for projection": {
+    "regions": 49,
+    "projected_area_mm2": 2828.4433811952754,
+    "largest_projected_mm2": 274.72837835561586,
+    "flattened_area_mm2": 3248.1954999433983
+   },
+   "could not be flattened": {
+    "regions": 6,
+    "projected_area_mm2": 3.2447872161865234,
+    "largest_projected_mm2": 1.0,
+    "flattened_area_mm2": 0.0
+   }
+  },
+  "reading": "flattenSupportRegion keeps only the first polygon of a region's outline; the inset is outerSupportEdgeGap; a MultiPolygon piece is loaded with trimesh.load_path(process=False), whose entities trimesh 5.1.1 does not report closed, so the piece is refused"
+ },
+ "truss_after_the_comparison": {
+  "blocks": 19,
+  "finished": 17,
+  "failed": [
+   {
+    "block": 0,
+    "volume_mm3": 5.383266308733688,
+    "error": "Exception('Error: please share a bug report')"
+   },
+   {
+    "block": 18,
+    "volume_mm3": 5.741845415205286,
+    "error": "Exception('Error: please share a bug report')"
+   }
+  ],
+  "truss_surface_area_mm2": 5607.452571304843,
+  "truss_triangles": 101574,
+  "seconds": 3.0,
+  "peak_rss_gib": 0.17
+ },
+ "sensitivity_not_in_the_plan": {
+  "why": "the 1.0 mm surface of the same occupancy, run although the primary finished, to see how much the result depends on the tessellation the library reads its face normals from",
+  "mesh_file": "print-body-mc100.stl",
+  "mesh_sha256": "02a2cfb3714423eb0c4d864a7d0c6f6a07534a0c0a9592436d98eda2ed19f117",
+  "triangles": 398652,
+  "library_state": "declared fallback 1: parts/993-eng-carrier-0001/source/process-20261016/pyslm-support-projection.patch (the extrusion keeps its 3D vertex correspondence); the rest upstream",
+  "spline_fallback": "not needed: splineSimplificationFactor stayed at 20",
+  "log": {
+   "subregions": 1120,
+   "area_too_small": 1036,
+   "no_valid_region": 20,
+   "base_plate_block": 30,
+   "projections_not_matching": 2,
+   "could_not_flatten": 1
+  },
+  "blocks": 43,
+  "block_mesh_volume_mm3": 124929.54956439997,
+  "voxelised": {
+   "blocks": 43,
+   "inside_the_part_dropped_mm3": 205.890625,
+   "at_or_below_the_plate_level_dropped_mm3": 671.703125,
+   "kept_mm3": 118311.0625,
+   "blocks_one_by_one_mm3": 124986.015625,
+   "one_by_one_against_the_block_meshes": 0.00045198322412032255,
+   "overlap_between_blocks_mm3": 5797.359375,
+   "union_against_the_block_meshes": -0.04595304581195658
+  },
+  "processor_layout": {
+   "supported_projected_area_mm2": 3606.0625,
+   "supported_share_of_the_reference_surface": 0.2876006280686888,
+   "envelope_volume_mm3": 118311.0625,
+   "envelope_by_landing": {
+    "on_plate_mm3": 87267.671875,
+    "on_part_mm3": 30297.40625,
+    "ending_in_air_mm3": 745.984375
+   },
+   "contact_with_the_part_projected_mm2": {
+    "under_the_supported_surface": 3716.25,
+    "at_the_foot": 1038.8125,
+    "total": 4755.0625
+   },
+   "plate_contact_projected_mm2": 2665.4375,
+   "column_tops_in_air_projected_mm2": 10.375,
+   "column_feet_in_air_projected_mm2": 22.375,
+   "tallest_column_mm": 114.0,
+   "unsupported_reference_surface": {
+    "count": 415,
+    "projected_area_mm2": 8932.375,
+    "largest_patch_mm2": 522.6875,
+    "largest_inscribed_width_mm": 14.577379737113251,
+    "widest_patches": [
+     {
+      "projected_area_mm2": 431.875,
+      "inscribed_width_mm": 14.577379737113251,
+      "height_above_plate_mm": 153.5,
+      "centre_build_frame_mm": [
+       59.92,
+       15.86,
+       162.88
+      ]
+     },
+     {
+      "projected_area_mm2": 237.25,
+      "inscribed_width_mm": 12.806248474865697,
+      "height_above_plate_mm": 186.0,
+      "centre_build_frame_mm": [
+       59.37,
+       81.84,
+       192.01
+      ]
+     },
+     {
+      "projected_area_mm2": 235.3125,
+      "inscribed_width_mm": 11.180339887498949,
+      "height_above_plate_mm": 96.75,
+      "centre_build_frame_mm": [
+       60.98,
+       35.04,
+       102.53
+      ]
+     },
+     {
+      "projected_area_mm2": 522.6875,
+      "inscribed_width_mm": 9.5524865872714,
+      "height_above_plate_mm": 168.75,
+      "centre_build_frame_mm": [
+       105.36,
+       61.06,
+       174.42
+      ]
+     },
+     {
+      "projected_area_mm2": 223.25,
+      "inscribed_width_mm": 6.5,
+      "height_above_plate_mm": 151.0,
+      "centre_build_frame_mm": [
+       60.9,
+       9.22,
+       159.21
+      ]
+     },
+     {
+      "projected_area_mm2": 93.6875,
+      "inscribed_width_mm": 5.5,
+      "height_above_plate_mm": 168.5,
+      "centre_build_frame_mm": [
+       15.37,
+       65.83,
+       174.73
+      ]
+     },
+     {
+      "projected_area_mm2": 89.125,
+      "inscribed_width_mm": 5.5,
+      "height_above_plate_mm": 82.5,
+      "centre_build_frame_mm": [
+       15.87,
+       72.78,
+       87.72
+      ]
+     },
+     {
+      "projected_area_mm2": 102.1875,
+      "inscribed_width_mm": 5.385164807134504,
+      "height_above_plate_mm": 168.5,
+      "centre_build_frame_mm": [
+       14.45,
+       48.88,
+       174.5
+      ]
+     }
+    ]
+   }
+  },
+  "regions": {
+   "reference_surface_projected_mm2": 12538.4375,
+   "supported_by_both_mm2": 3604.6875,
+   "supported_by_the_processor_only_mm2": 1.375,
+   "supported_by_the_rule_only_mm2": 8771.3125,
+   "supported_by_neither_mm2": 161.0625,
+   "envelope_in_both_mm3": 113405.359375,
+   "envelope_of_the_processor_only_mm3": 4905.703125,
+   "envelope_of_the_rule_only_mm3": 357279.953125,
+   "processor_top_contacts_off_the_reference_surface_mm2": 181.0625
+  },
+  "blocks_sha256": "e83ba4bd01af7e8ce76d20f0e258cc710849ef25ad797573f11805a4be5baaaf",
+  "envelope_sha256": "09620ee5cd5233139a0de40c23fe6fdc518ec886b1b2a29c5c2b3f79840eb927"
+ },
+ "deviations_from_the_plan": [
+  "declared fallback 1 applied: upstream PySLM raised its extrusion error on the print body (value array of shape (411,) against an index of (406,)); support.py was patched with the carrier's historical patch (process-20261016/pyslm-support-projection.patch, installed support.py sha256 fea7275ce46ad8d4f9c9471457c260111e7a1278b2dce315d126c8341e957c52)",
+  "declared fallback 2 applied on the 0.5 mm surface: the spline simplification raised \"MultiPolygon error please submit a bug report\"; the run was repeated with splineSimplificationFactor None",
+  "not declared: release_canvases() processes Qt's events after each height map, because the 52nd canvas of a process fails under Xvfb and llvmpipe (witness G1); the library's code and its height maps are unchanged",
+  "the consistency check of the supported area is made at the rule's own adjacency (tolerance 0): at the planned 0.5 mm tolerance the rule layout reads 12,376.0 mm2 against its committed 12,375.875 mm2, two voxels more",
+  "the 1.0 mm surface ran as a sensitivity although the primary finished; it does not replace the primary"
+ ],
+ "for_issue_706": {
+  "counts_as_prepared_by_a_build_processor": false,
+  "why": "PySLM is an open research library, not the machine maker's build processor, and on this body with its defaults it supports 2.7% of the overhang the rule layout starts from (28.8% on the 1.0 mm surface)",
+  "the_missing_tool": "the machine maker's build processor for the selected machine, or a commercial preparation suite with a build processor for it (for example Materialise Magics): none is installed or licensed here",
+  "what_it_would_add": [
+   "support templates and exposure parameters qualified by the maker for the alloy and the machine",
+   "a machine build file, with scan order and support exposure",
+   "support types beyond blocks (cones, lattices, contour and gusset supports) chosen per surface",
+   "checks the library does not make: recoater collision, powder removal, thermal load on supports"
+  ]
+ }
+}
