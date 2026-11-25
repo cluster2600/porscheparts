@@ -1,0 +1,151 @@
+{
+  "schema": "935-cad-twin-valve-seat-guide/1",
+  "case": "params/valve-seat-guide-case.json",
+  "fits": "params/feature-fits.json",
+  "hypotheses": [
+    "H09",
+    "H16"
+  ],
+  "roles": {
+    "valve_y_minus": "inlet",
+    "valve_y_plus": "exhaust"
+  },
+  "bodies": {
+    "valve_y_minus": {
+      "seat_mid_band": {
+        "diameter_mm": 48.971,
+        "station_mm": -45.483
+      },
+      "contact_band_diameters_mm": [
+        46.596,
+        48.293
+      ],
+      "contact_band_stations_mm": [
+        -45.144,
+        -44.295
+      ],
+      "valve_face_edge_station_mm": -45.498,
+      "valve_combustion_face_station_mm": -46.498,
+      "valve_tip_station_mm": 62.502,
+      "insert_stations_mm": [
+        -46.498,
+        -39.498
+      ],
+      "insert_diameters_mm": [
+        45.807,
+        53.5
+      ],
+      "insert_knife_edge_at_chamber_face": false,
+      "bottom_cut_top_station_mm": -42.823,
+      "guide_stations_mm": [
+        -19.174,
+        29.621
+      ],
+      "guide_diameters_mm": [
+        8.05,
+        12.875
+      ],
+      "stem_clearance_diametral_mm": 0.05,
+      "throat_to_valve_ratio": 0.935
+    },
+    "valve_y_plus": {
+      "seat_mid_band": {
+        "diameter_mm": 43.103,
+        "station_mm": -6.626
+      },
+      "contact_band_diameters_mm": [
+        38.813,
+        40.793
+      ],
+      "contact_band_stations_mm": [
+        -5.471,
+        -4.481
+      ],
+      "valve_face_edge_station_mm": -5.825,
+      "valve_combustion_face_station_mm": -6.825,
+      "valve_tip_station_mm": 101.175,
+      "insert_stations_mm": [
+        -6.825,
+        0.175
+      ],
+      "insert_diameters_mm": [
+        38.473,
+        46.0
+      ],
+      "insert_knife_edge_at_chamber_face": false,
+      "bottom_cut_top_station_mm": -3.847,
+      "guide_stations_mm": [
+        22.07,
+        72.284
+      ],
+      "guide_diameters_mm": [
+        8.05,
+        13.019
+      ],
+      "stem_clearance_diametral_mm": 0.05,
+      "throat_to_valve_ratio": 0.927
+    }
+  },
+  "volumes_mm3": {
+    "valve_valve_y_minus": 18643.8,
+    "insert_valve_y_minus": 3559.1,
+    "guide_valve_y_minus": 3755.5,
+    "valve_valve_y_plus": 14529.1,
+    "insert_valve_y_plus": 3001.2,
+    "guide_valve_y_plus": 4128.5
+  },
+  "checks": {
+    "valve_y_minus": {
+      "overlap_mm3": {
+        "valve_insert_closed": 0.0,
+        "valve_guide": 0.0,
+        "insert_guide": 0.0,
+        "lifted_valve_insert": 0.0,
+        "lifted_valve_guide": 0.0
+      },
+      "distance_valve_to_insert_closed_mm": 0.0,
+      "contact_band_in_fitted_seat_window": {
+        "window_diameters_mm": [
+          45.067,
+          53.095
+        ],
+        "band_inside_window": true
+      }
+    },
+    "valve_y_plus": {
+      "overlap_mm3": {
+        "valve_insert_closed": 0.0,
+        "valve_guide": 0.0,
+        "insert_guide": 0.0,
+        "lifted_valve_insert": 0.0,
+        "lifted_valve_guide": 0.0
+      },
+      "distance_valve_to_insert_closed_mm": 0.0,
+      "contact_band_in_fitted_seat_window": {
+        "window_diameters_mm": [
+          38.987,
+          47.383
+        ],
+        "band_inside_window": false
+      }
+    },
+    "valve_heads_both_at_largest_lift_distance_mm": 0.586,
+    "valve_heads_closed_distance_mm": 8.648,
+    "bodies_consistent": true,
+    "contact_bands_inside_fitted_windows": {
+      "valve_y_minus": true,
+      "valve_y_plus": false
+    }
+  },
+  "private_files_sha256": {
+    "valve_valve_y_minus.step": "56884a3698a59c97054af32942b3f3c7240623a519d732239a3b0629f6650446",
+    "insert_valve_y_minus.step": "5086801567cea7f517b14eb5c3b19d3e3da69f950e99508f3d07952e8aa8d0f9",
+    "guide_valve_y_minus.step": "e6630a9333aeb90d87e25aefeee4147252084b05b41221dfdd7e7eda89d36f59",
+    "valve_valve_y_plus.step": "d55d5e0d720a818103dfde52ded0d19a2e3e10275bb414d3f2430d3ad7578be1",
+    "insert_valve_y_plus.step": "3342b588450a745fef132c8fd43f01437f54fdb297ac76c9198b9aec82a8121f",
+    "guide_valve_y_plus.step": "d5dbaf05a364f1ba1b2113b0a853d9debba0eb46e0b5d1f152d70c7ed972dd7d",
+    "valve-seat-guide-closed.stl": "a217760566bb17b4f4fb381e3cc80b36e45c033e681c0a4c890af46a13d0fa28",
+    "valves-at-largest-lift.stl": "74e0fba8df9ab4a35ee76178b40d0a3c98c1f8bc3c284600cbbb49465143cadf"
+  },
+  "claims": "separate solids of revolution on the fitted axes, from published values of other heads, the maker's catalogue ranges and explicit assumptions; no dimension of the specimen. The v2 body still holds the scanned guides and seats as one solid with the head"
+}

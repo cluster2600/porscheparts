@@ -1,0 +1,45 @@
+{
+  "schema": "935-cad-twin-inferred-share/1",
+  "body": "v2-loft-s025 (private), the reference CAD body",
+  "support_threshold_mm": 0.2,
+  "distance_tool": "Open3D RaycastingScene.compute_distance (float32), scan facets with the studs removed by score_twin.hardware_mask",
+  "body_area_mm2": 192793.9,
+  "inferred_mm2": 34849.1,
+  "inferred_share_of_body_area": 0.18076,
+  "scorecard": {
+    "record": "params/scorecard-v2-loft-s025.json",
+    "inferred_mm2": 34849.1,
+    "inferred_share": 0.18076,
+    "difference_mm2": -0.0
+  },
+  "probe_mm": 1.5,
+  "port_labels": 2,
+  "cavity_labels": 7,
+  "by_region": {
+    "H04": {
+      "what": "port interiors (the two port voids)",
+      "inferred_mm2": 4161.9,
+      "share_of_body_area": 0.0216,
+      "share_of_inferred_area": 0.1194
+    },
+    "cav": {
+      "what": "other enclosed voids: pockets, passages and the chamber",
+      "inferred_mm2": 4112.8,
+      "share_of_body_area": 0.0213,
+      "share_of_inferred_area": 0.118
+    },
+    "H02": {
+      "what": "stud passages, within 7.5 mm of a fitted passage axis",
+      "inferred_mm2": 413.8,
+      "share_of_body_area": 0.0021,
+      "share_of_inferred_area": 0.0119
+    },
+    "rest": {
+      "what": "everything else: fin roots and fin-gap floors (H01) and the outer closure",
+      "inferred_mm2": 26160.5,
+      "share_of_body_area": 0.1357,
+      "share_of_inferred_area": 0.7507
+    }
+  },
+  "claims": "a sort of the CAD body's unobserved area by where it lies; no region gained acquired data. The declared port continuation (H17) lives in the port domain, not in this body"
+}

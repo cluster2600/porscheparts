@@ -1,0 +1,43 @@
+{
+  "schema": "935-cad-twin-port-cfd/1",
+  "date": "2026-11-22",
+  "issue": "#700",
+  "question": "a discharge coefficient of one port at stated valve lifts, under declared hypotheses",
+  "rule": "the three admissibility gates of source/audit_port_domain.py are applied unchanged, before any solver; a gate that fails stops the chain there",
+  "audits": {
+    "twin_as_held": {
+      "record": "params/port-cfd-audit.json",
+      "domain": "the scan sections of params/port-fit.json and the valve, seat and guide bodies of params/valve-seat-guide.json",
+      "verdict": "not_admissible",
+      "failing_gates": ["closed_sections_along_whole_centreline", "wall_observed_share_at_least_min"]
+    },
+    "declared_domain": {
+      "record": "params/port-domain.json",
+      "domain": "scan sections, the declared bowl of H17 and the fitted throat, with the same bodies",
+      "verdict": "not_admissible",
+      "failing_gates": ["wall_observed_share_at_least_min"],
+      "observed_share": {"port_y_minus": 0.641, "port_y_plus": 0.706},
+      "gate_2_needs_on_added_stations": {"port_y_minus": 1.196, "port_y_plus": 0.979}
+    }
+  },
+  "stopped_at": "gate 2, wall_observed_share_at_least_min, on both ports and both domains",
+  "why": "gate 2 counts wall points that lie on acquired facets. A declared rule closes the sections (gate 1) and a modelled valve passes gate 3, but no declared surface is acquired data: on port_y_minus the stations added beyond the scan sections would need 119.6% of their points observed, which no rule can give, and on port_y_plus 97.9%, against 20% in the declared bowl and 72% in the fitted throat. What fails is the scanner's coverage of the bend and the bowl, which only acquired sections can supply",
+  "not_run": {
+    "poiseuille_witness_rerun": false,
+    "mesh": false,
+    "check_mesh": false,
+    "solver": false,
+    "discharge_coefficient": null,
+    "mesh_sensitivity": null
+  },
+  "rental": {"rented": false, "spend_usd": 0.0, "note": "the chain stopped at the audit, before any compute"},
+  "reopens_with": [
+    "registered sections of the port bend and bowl of the specimen (CT, port moulds or a borescope survey tied to the flange face and the valve axis), which retire H04 and H17",
+    "or an owner decision to change gate 2; this record does not take it"
+  ],
+  "references_for_a_later_comparison": {
+    "record": "docs/research/935-valves-ports-20261122.md",
+    "note": "published flow coefficients of other heads use different reference areas (valve head, inner or outer seat cone, curtain); convert to one definition before comparing. No flow figure of a 930, 934, 935 or Xtreme head could be opened"
+  },
+  "claims": "a stop record: no flow number exists for this head, measured or computed"
+}

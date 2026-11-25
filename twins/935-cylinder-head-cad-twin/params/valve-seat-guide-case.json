@@ -1,0 +1,82 @@
+{
+  "schema": "935-cad-twin-valve-seat-guide-case/1",
+  "date": "2026-11-22",
+  "owner_decision": "On 2026-11-22 the owner asked for the valve, seat and guide gap to be filled from published data under declared assumptions. Review: Wolfe Classics, the seller of the scanned head; nobody has been contacted.",
+  "rule": "Every value below is a published value of another head, a range from the maker's catalogue, a fit on the scan, or an explicitly assumed value. Each carries its source id or its hypothesis id. None is a measurement of the specimen. Published values are hypothesis H16; the inlet and exhaust roles are hypothesis H09.",
+  "frame": "stations s along each valve's datum axis (params/feature-fits.json, group_datums), positive toward the cam side; radii r from that axis",
+  "sources": {
+    "xtreme-castings-1": {"url": "https://www.xtremecylinderheads.com/castings-1", "title": "Xtreme Cylinder Heads, 2.0 - 2.9 liter casting", "kind": "maker catalogue", "accessed": "2026-11-22", "terms": "© 2024 Xtreme Cylinder Heads. All Rights Reserved.", "private_copy_sha256": "dcad5a3ece632df6eba669f5b2b4334bdf1427c2a4bc18065a2949a9168009be"},
+    "xtreme-castings-2": {"url": "https://www.xtremecylinderheads.com/castings-2", "title": "Xtreme Cylinder Heads, 3.0 - 3.5 liter casting", "kind": "maker catalogue", "accessed": "2026-11-22", "terms": "© 2024 Xtreme Cylinder Heads. All Rights Reserved.", "private_copy_sha256": "65b939947ec6691ee1e7a478524d20104e04028cfceb3c5980a9a181c3a61ca1"},
+    "xtreme-ourshop": {"url": "https://www.xtremecylinderheads.com/ourshop", "title": "Xtreme Cylinder Heads, our shop", "kind": "maker page", "accessed": "2026-11-22", "terms": "© 2024 Xtreme Cylinder Heads. All Rights Reserved.", "private_copy_sha256": "f8b5380806e8251df70023ebfa57bbb40671c6e379fee49da51251c12b2d4068"},
+    "fia-3076": {"url": "https://historicdb.fia.com/sites/default/files/car_attachment/1601075701/homologation_form_number_3076_group_3.pdf", "title": "FIA / ONS homologation form no. 3076, Porsche Turbo, Group 3, 1977", "kind": "homologation form", "accessed": "2026-11-16", "terms": "FIA historic database: forms for consultation only", "private_copy_sha256": "801e56f9b066c7bbed5731c1ca3cada81075f28ee4e4b3ebcf0049f664e42adf", "record": "docs/research/935-head-published-data-20261116/findings.json"},
+    "fisa-b-298": {"url": "https://historicdb.fia.com/sites/default/files/car_attachment/1479168902/homologation_form_number_298_group_b.pdf", "title": "FISA / ONS Group B homologation form B-298, Porsche 911 Turbo 2 (3299 cm3), 1993", "kind": "homologation form", "accessed": "2026-11-16", "terms": "FIA historic database: forms for consultation only", "private_copy_sha256": "42084321e44be6845d2cc508b273111504a55878426449dec588382b58f8eb67", "record": "docs/research/935-head-published-data-20261116/findings.json"},
+    "mhteile-trw-30279": {"url": "https://www.mhteile.com/en/911/1-engine/1.3.00-cylinder-head/1845/trw-intake-valve-964/3.3-turbo-30279-na", "title": "TRW intake valve 964 / 3.3 Turbo 30279 (page also lists TRW 3071 exhaust valve and SM 884412-4 guide)", "kind": "seller listing", "accessed": "2026-11-22", "terms": "© 2026 Maria Habeck Autoteile GmbH – All Rights Reserved.", "private_copy_sha256": "18a411437ac2a8075a582a97a29d0429fe9ec3aca3488ecba824d9e26136b7a2"},
+    "stuttgart-valvejobs": {"url": "http://www.stuttgartperformanceengineering.com/VALVEJOBSVER2.html", "title": "Stuttgart Performance Engineering: valve jobs", "kind": "shop technical article", "accessed": "2026-11-22", "terms": "none found", "private_copy_sha256": "4a7dfd79af07d5e2ce595f3c79532a48518081033f256b8d3710a290bb994f1f"},
+    "schrick-000513003": {"url": "https://schrick.com/en/Valve-Porsche-911-52-mm-Intake/000513003", "title": "Schrick valve Porsche 911, 52 mm intake", "kind": "valve maker shop page", "accessed": "2026-11-22", "terms": "none found; footer links to general terms and conditions", "private_copy_sha256": "cb265117d20c1289b1e4bb4fa7f72e750fedb365fcfd4ffdb7763b7ca3ab796b"},
+    "schrick-000513004": {"url": "https://schrick.com/en/Valve-Porsche-911-44-mm-Exhaust/000513004", "title": "Schrick valve Porsche 911, 44 mm exhaust", "kind": "valve maker shop page", "accessed": "2026-11-22", "terms": "none found; footer links to general terms and conditions", "private_copy_sha256": "f88c3875d747b5ca45be60fd6a5190a7f153f446eae191d8bcb7a9e36987cbdd"},
+    "stoddard-93010433556": {"url": "https://www.stoddard.com/93010433556.html", "title": "Stoddard: valve seat 46 mm, exhaust, 930 104 335 56", "kind": "seller listing", "accessed": "2026-11-22", "terms": "none found (trademark disclaimer only)", "private_copy_sha256": "6cbcb97f4e030dc89b4e9dc2fc90ecbf092e056285ec056fef5deb7db7da00bc"}
+  },
+  "valves": {
+    "valve_y_minus": {
+      "role": {"value": "inlet", "hypothesis": "H09"},
+      "head_diameter_mm": {"value": 49.0, "hypothesis": "H16", "sources": ["xtreme-castings-1", "xtreme-castings-2", "fia-3076", "mhteile-trw-30279"], "how": "the only intake diameter common to both catalogue families that a 935 head of 2.85 to 3.3 litres could belong to (45-49 and 49-53 mm), and the production 930 Turbo value", "range_mm": [45.0, 53.0], "quotes": ["45mm - 49mm intake valve", "49mm - 53mm intake valve", "Valve head diameter [mm]: 49"]},
+      "stem_diameter_mm": {"value": 8.0, "hypothesis": "H16", "sources": ["xtreme-castings-1", "xtreme-castings-2", "schrick-000513003"], "how": "the maker lists 8 mm stems for every family; the production 9 mm stem does not enter the fitted guide bore of 8.51 mm", "quotes": ["Ev8 stainless 8mm lightweight intake valves", "Stem diameter d (mm) | 8"]},
+      "face_angle_deg": {"value": 45.0, "hypothesis": "H16", "sources": ["mhteile-trw-30279", "stuttgart-valvejobs"], "quotes": ["Valve seat angle [degrees]: 45"]},
+      "overall_length_mm": {"value": 109.0, "hypothesis": "H16", "sources": ["schrick-000513003"], "how": "length of a published 8 mm-stem inlet valve for the 911 two-valve head (52 mm head); the production 9 mm valve is 110.1 mm", "quotes": ["Length L (mm) | 109"]},
+      "seat_contact_width_mm": {"value": 1.2, "hypothesis": "H16", "sources": ["stuttgart-valvejobs"], "how": "911 3.0 and 3.2 inlet seat width, measured on the 45 degree surface", "quotes": ["911 3.2 | same | 1.2mm in, 1.4 ex"]},
+      "contact_inset_from_face_edge_mm": {"value": 0.5, "hypothesis": "H16", "sources": ["stuttgart-valvejobs"], "how": "read as the slant distance from the outer edge of the valve's 45 degree face to the contact line; the page's wording ('the top of the edge of the 45 angle') admits another reading", "quotes": ["We want this line to be about .5mm from the top of the edge of the 45 angle"]},
+      "margin_thickness_mm": {"value": 1.0, "hypothesis": "H16", "sources": [], "how": "explicit assumption, no source; the value of the assembly screen (params/assembly-case.json, H10)", "range_mm": [0.8, 1.5]},
+      "face_radial_width_mm": {"value": 3.0, "hypothesis": "H16", "sources": [], "how": "explicit assumption, no source; the value of the assembly screen", "range_mm": [2.0, 4.0]},
+      "tulip_length_mm": {"value": 12.0, "hypothesis": "H16", "sources": [], "how": "explicit assumption, no source; a straight cone from the face to the stem, as in the assembly screen", "range_mm": [8.0, 16.0]},
+      "largest_lift_mm": {"value": 9.7, "hypothesis": "H16", "sources": ["fia-3076"], "how": "the production 930 Turbo 3.0 inlet lift; no lift of a 934, 935 or Xtreme cam was found", "field": "item 162"}
+    },
+    "valve_y_plus": {
+      "role": {"value": "exhaust", "hypothesis": "H09"},
+      "head_diameter_mm": {"value": 41.5, "hypothesis": "H16", "sources": ["xtreme-castings-1", "xtreme-castings-2", "fia-3076", "mhteile-trw-30279"], "how": "the only exhaust diameter common to both catalogue families (38-41.5 and 41.5-42.5 mm), and the production 930 Turbo value", "range_mm": [38.0, 42.5], "quotes": ["38mm - 41.5mm exhaust valve", "41.5mm - 42.5mm exhaust valve", "Valve head diameter [mm]: 41.5"]},
+      "stem_diameter_mm": {"value": 8.0, "hypothesis": "H16", "sources": ["xtreme-castings-1", "xtreme-castings-2", "schrick-000513004"], "how": "as for the inlet", "quotes": ["Inconel 8mm lightweight exhaust valves", "Stem diameter d (mm) | 8"]},
+      "face_angle_deg": {"value": 45.0, "hypothesis": "H16", "sources": ["mhteile-trw-30279", "stuttgart-valvejobs"], "quotes": ["Valve seat angle [degrees]: 45"]},
+      "overall_length_mm": {"value": 108.0, "hypothesis": "H16", "sources": ["schrick-000513004"], "how": "length of a published 8 mm-stem exhaust valve for the 911 two-valve head (44 mm head); the production 9 mm valve is 108.4 mm", "quotes": ["Length L (mm) | 108"]},
+      "seat_contact_width_mm": {"value": 1.4, "hypothesis": "H16", "sources": ["stuttgart-valvejobs"], "how": "911 3.0 and 3.2 exhaust seat width", "quotes": ["911 3.2 | same | 1.2mm in, 1.4 ex"]},
+      "contact_inset_from_face_edge_mm": {"value": 0.5, "hypothesis": "H16", "sources": ["stuttgart-valvejobs"], "how": "as for the inlet", "quotes": ["We want this line to be about .5mm from the top of the edge of the 45 angle"]},
+      "margin_thickness_mm": {"value": 1.0, "hypothesis": "H16", "sources": [], "how": "explicit assumption, no source", "range_mm": [0.8, 1.5]},
+      "face_radial_width_mm": {"value": 3.0, "hypothesis": "H16", "sources": [], "how": "explicit assumption, no source", "range_mm": [2.0, 4.0]},
+      "tulip_length_mm": {"value": 12.0, "hypothesis": "H16", "sources": [], "how": "explicit assumption, no source", "range_mm": [8.0, 16.0]},
+      "largest_lift_mm": {"value": 8.9, "hypothesis": "H16", "sources": ["fia-3076"], "how": "the production 930 Turbo 3.0 exhaust lift", "field": "item 172"}
+    }
+  },
+  "seats": {
+    "angles_deg": {"value": {"top_cut": 30.0, "seat": 45.0, "bottom_cut": 75.0}, "hypothesis": "H16", "sources": ["stuttgart-valvejobs"], "how": "911 2.0 to 3.2 seat angles, each measured from the valve's plane: cone half-angles from the axis of 60, 45 and 15 degrees", "quotes": ["911 2.0 | 30, 45, 75"]},
+    "placement": {"value": "the 45 degree seat cone passes through the mid-band circle of the fitted seat (params/feature-fits.json, about the datum axis); the closed valve's contact band lies on it", "hypothesis": "H16"},
+    "material": {"value": {"valve_y_minus": "hardened ductile iron", "valve_y_plus": "hardened ductile iron (B5 copper optional)"}, "hypothesis": "H16", "sources": ["xtreme-castings-1", "xtreme-castings-2"], "quotes": ["Hardened ductile iron intake and exhaust valve seats", "B5 copper exhaust valve seats (optional)"]},
+    "inner_diameter": {"value": "the fitted throat diameter of each valve", "hypothesis": "H16", "how": "the insert bore is taken as the fitted throat (confirmed on held-out vertices for both valves, params/feature-confirmation.json)"},
+    "outer_diameter_mm": {
+      "valve_y_plus": {"value": 46.0, "hypothesis": "H16", "sources": ["stoddard-93010433556"], "how": "the 930 Turbo exhaust seat ring is listed as 46 mm without saying which dimension; read as the outside diameter because a 41.5 mm valve must seal inside it", "quotes": ["Valve Seat 46 MM / EXHAUST"]},
+      "valve_y_minus": {"value": 53.5, "hypothesis": "H16", "sources": ["stoddard-93010433556"], "how": "no inlet figure was found; the exhaust ring's outside diameter less its valve (46 - 41.5 = 4.5 mm) added to the inlet valve: a derived assumption"}
+    },
+    "height_mm": {"value": 7.0, "hypothesis": "H16", "sources": [], "how": "explicit assumption, no source: no published height of a 911 or 930 seat ring was found", "range_mm": [6.0, 10.0]},
+    "chamber_face": {"value": "flush with the combustion face of the closed valve", "hypothesis": "H16", "how": "explicit assumption, no source"},
+    "interference_mm": {"value": null, "blocker": "no published interference of a 911 or 930 seat ring was found; not needed by any body"}
+  },
+  "guides": {
+    "valve_y_minus": {
+      "outside_diameter": {"value": "fitted valve_y_minus_guide_od_cam (12.87 mm about the datum axis)", "how": "the scan shows the guide where it stands out of the spring pocket; the published 911 guide is 13.06 mm", "sources": ["mhteile-trw-30279"], "quotes": ["Outer diameter : 13.0600 mm"]},
+      "port_end": {"value": "the fitted cone valve_y_minus_guide_od_port (11.99 mm at mid-band, half-angle 5.85 degrees about the datum axis) from the guide tip until it reaches the outside diameter"},
+      "stations": {"value": "from the start of the guide-bore window to its end: the bore is acquired at both ends (valve_y_minus_guide_bore)"}
+    },
+    "valve_y_plus": {
+      "outside_diameter": {"value": "fitted valve_y_plus_guide_od_cam (13.02 mm about the datum axis)", "sources": ["mhteile-trw-30279"], "quotes": ["Outer diameter : 13.0600 mm"]},
+      "port_end": {"value": "straight: the fitted port-end boss valve_y_plus_guide_boss_port is a cylinder of 13.04 mm"},
+      "stations": {"value": "from the start of the port-end boss window to the end of the cam-end outside-diameter window; the middle is not acquired"}
+    },
+    "inside_diameter_mm": {"value": 8.05, "hypothesis": "H16", "sources": [], "how": "the 8 mm stem plus a running clearance of 0.05 mm, an explicit assumption; the published wear limits of the 9 mm production guide (9.10 and 9.13 mm) bound the clearance at 0.10 to 0.13 mm. The fitted guide bore of 8.51 mm is not used: it would leave 0.51 mm of clearance", "range_mm": [8.02, 8.13]},
+    "press_fit_mm": {"value": 0.05, "hypothesis": "H16", "sources": ["stuttgart-valvejobs"], "how": "911 guide press fit in a reamed boss bore; not modelled in the head body, which keeps the scanned guides", "quotes": ["Use .05mm for a press fit"]},
+    "material": {"value": "bronze (brass, bronze or silicon bronze)", "hypothesis": "H16", "sources": ["stuttgart-valvejobs"], "quotes": ["a tubular section of brass, bronze, or silicon bronze, called a valve guide"]}
+  },
+  "not_modelled": [
+    "valve springs, retainers, keepers and rockers",
+    "the head bores the guides and seats are pressed into: the v2 body keeps the scanned guides and seats as one solid",
+    "fillets of the valve head and the throat blends",
+    "the concave underside of a real valve head: the tulip here is a straight solid cone, so the valves' volumes (18.6 and 14.5 cm3) overstate any real valve and give no mass",
+    "the oil cooling of an exhaust guide or seat that some 935 heads are described with"
+  ]
+}

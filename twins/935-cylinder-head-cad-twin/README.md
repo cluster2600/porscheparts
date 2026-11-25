@@ -38,9 +38,10 @@ stated blocker. What the twin still does not have:
   two valve axes, 25.9° and 29.9° from the bore axis, a guide bore of 8.51 mm
   and seats near 45° and 49°. CloudCompare confirms 11 of the 32 fits within
   0.2 mm, 7 of them after a [declared re-fit](#the-declared-re-fit-of-the-28-declaration-re-fits-check-standing),
-  so they are nominal sizes and axes, not inspected surfaces. No
-  valve, seat insert or guide is modelled in a body (H05), no port-flow domain
-  is admissible and no port CFD was run.
+  so they are nominal sizes and axes, not inspected surfaces. Valve, seat
+  insert and guide are separate bodies built only from published values of
+  other heads and explicit assumptions ([H05, H16](#valves-seats-guides-and-a-declared-port-domain-2026-11-22-case-bodies-port-domain-stop-record-inferred-share)),
+  no port-flow domain is admissible and no port CFD was run.
 - **Any physical calibration.** Every distance is to the scan, whose scale is
   an owner instruction. The 993 workshop manual does not contradict that
   scale, but it describes another head.
@@ -188,6 +189,9 @@ process values, with every qualification gate closed.*
 | LPBF orientation screen | NumPy voxel columns on the occupancy grid | [am_supports.py](source/am_supports.py) |
 | Cooldown screen | Adamantine 1.1.9 (`rombur/adamantine:1.1`) with an independent VTU reader | [am_cooldown.py](source/am_cooldown.py) |
 | Port-flow admissibility | reads the port fit and the hypotheses register | [audit_port_domain.py](source/audit_port_domain.py) |
+| Valve, seat insert and guide bodies | build123d revolved profiles on the fitted axes, OCCT booleans for the overlap checks | [valve_seat_guide.py](source/valve_seat_guide.py) |
+| Port domain under a declared rule | `manifold3d` hull and union, the audit's own gates | [port_domain.py](source/port_domain.py) |
+| Inferred area by region | Open3D 0.20 raycasting distance, fit_ports.py's void labels | [inferred_share.py](source/inferred_share.py) |
 | Revolved machined features | [`primitive_fit.py`](../../benchmarks/scan-primitive-fitting/primitive_fit.py), the assigned cylinder and cone fit, in its own locked environment | [fit_features.py](source/fit_features.py) |
 | Independent deviation of each feature and of the v2 body | CloudCompare 2.13.2 in the `free-tools-cloudcompare` image, no network | [check_features.py](source/check_features.py) |
 | Declared re-fit of the unconfirmed features (#696) | SciPy `least_squares` with a soft-L1 loss, on the fitted half only, under a rule committed before the check | [refit_features.py](source/refit_features.py), [feature_confirmation.py](source/feature_confirmation.py) |
@@ -1519,6 +1523,89 @@ the [orientation screen](params/print-body-supports.json) to 0.0003%: 476,689 mm
   no powder escape from the support cells.
 - Every gate of the record is false.
 
+### Supports from an open build-preparation library: PySLM against the rule layout ([plan](params/support-build-processor-plan.json), [witness](params/support-build-processor-witness.json), [record](params/support-build-processor.json))
+
+![The print body on its plate, seen through, from two sides, twice. Top row, the rule layout: a blue bed of supports from the plate up to the body and orange blocks in its openings. Bottom row, PySLM's layout: a few thin blue and orange columns, and red over most of the down-facing surface, including the whole face 33 mm above the plate](media/support-build-processor.png)
+
+*Both layouts on 1 mm blocks of the 0.25 mm grid. Red marks overhang within
+45 degrees of straight down that the layout leaves without a support.
+Geometry only, not a build file.*
+
+**PySLM, with its own defaults, supports 2.7% of the overhang the rule
+layout starts from; the rule layout supports 98.7%.** The print body went to PySLM 0.6.1
+(LGPL-2.1), the open library the carrier already pins, at the same
+revision, flange y+ on the plate, at a critical angle of 45 degrees. It
+prepared 19 block supports holding 343 mm² of the
+12,538 mm² of down-facing surface; the rule layout holds
+12,376 mm². What would be compared was committed before the run
+([plan](params/support-build-processor-plan.json)); both layouts are measured
+on the same grid by the same code
+([support_build_processor.py](source/support_build_processor.py)), which first
+gives back the rule layout's committed area, envelope and landing exactly.
+
+| Quantity, projected areas | Rule layout | PySLM, 0.5 mm surface | PySLM, 1.0 mm surface (not in the plan) |
+|---|---|---|---|
+| Overhang supported, of 12,538 mm² | 12,376 mm² (98.7%) | 343 mm² (2.7%) | 3,606 mm² (28.8%) |
+| Support envelope | 470,685 mm³ | 11,580 mm³ | 118,311 mm³ |
+| … standing on the plate / on the part | 246,716 / 223,970 mm³ | 6,059 / 5,496 mm³ | 87,268 / 30,297 mm³ |
+| Contact with the part, under the surface + at the foot | 12,376 + 5,911 mm² | 441 + 256 mm² | 3,716 + 1,039 mm² |
+| Overhang left bare | 162 mm² in 226 patches | 12,196 mm² in 394 patches | 8,932 mm² in 415 patches |
+| Widest bare patch | 1.0 mm (11 mm²) | 19.7 mm (2,705 mm², 33 mm above the plate) | 14.6 mm (432 mm², 154 mm above the plate) |
+| Tallest support column | 175 mm | 72 mm | 114 mm |
+
+- **The two layouts barely overlap.** Of the overhang, 343 mm² is supported
+  by both, 12,033 mm² by the rule only and none by PySLM only; 162 mm² is
+  bare in both, the narrow ledges the rule leaves. PySLM's blocks also touch
+  99 mm² of the part outside the 45-degree surface.
+- **The face 33 mm above the plate is left bare.** It lies where the flange
+  face does, the face the rule layout stands on its blue bed; in PySLM's
+  layout the body hangs on a few thin columns (picture, bottom row).
+- **Where the overhang is lost, read from the library's own steps**
+  ([diagnosis](params/support-build-processor.json)): PySLM takes the
+  overhang from raw face normals, and on the 0.5 mm surface it falls apart
+  into 5,144 regions, 4,369 of them under 0.5 mm². 5,063 regions
+  (4,404 mm²) are under its 5 mm² minimum once inset by 0.5 mm. 26 regions
+  (4,344 mm², among them the largest, 2,600 mm²) are split by that inset
+  and every piece is then refused: the library loads each piece as a path
+  that trimesh 5.1.1, the version the repository pins, does not report as
+  closed. The 49 regions left (2,828 mm²) end as 19 blocks holding
+  343 mm² of the surface; that last loss, through the height maps and their
+  contours, was not traced step by step.
+- **The result depends on the surface it reads.** On the 1.0 mm surface of
+  the same body the regions are fewer (1,120), most of the flange face gets
+  a bed (seen in a private render of that run), and 28.8% of the overhang is
+  supported. An answer that moves tenfold with the tessellation does not
+  prepare this part.
+- **The grid truss runs on the blocks it has:** 17 of 19 blocks, 5,607 mm²
+  of truss surface; the two thinnest, about half a millimetre tall, stop with
+  the library's own "please share a bug report".
+
+**What it took to run.** Each departure is recorded in the record.
+
+- Upstream PySLM stopped on its extrusion error, the one the carrier met:
+  the declared fallback applied the carrier's historical patch to that
+  extrusion only.
+- On the 0.5 mm surface its spline simplification raised "MultiPolygon
+  error": the declared fallback switched it off, as the carrier does.
+- Under Xvfb and llvmpipe the 52nd height-map window of a process fails
+  its framebuffer check; a wrapper lets Qt delete each window after PySLM
+  has read it. The library's code and its height maps are unchanged.
+- The witness found one more limit: trimesh 5 fills boundary loops of three
+  or four edges when it splits the overhang, so the cap of the square T of
+  the rule layout's witness is never supported.
+
+**Does this count as "prepared by a build processor" for #706? No.**
+PySLM is an open research library, not the machine maker's build processor,
+and on this body it supports a small and unstable share of the overhang.
+What stays open is the tool the issue asks for: the machine maker's build
+processor for the selected machine, or a commercial preparation suite with
+a build processor for it (Materialise Magics, for example). None is
+installed or licensed here. It would add support templates and exposure
+parameters qualified for the alloy and the machine, a machine build file
+with scan order, support types beyond blocks, and checks this library does
+not make: recoater collision, powder removal, heat through the supports.
+The build screen keeps its levels; none was changed or added.
+
 ### Melt-pool check of the declared heat input ([record](params/melt-pool-check.json))
 
 ![One laser track on a block of solid alloy, seen from above and from the side: a bright spot travels to the right with a white outline, the melting isotherm, trailing behind it like a comet](media/melt-pool.gif)
@@ -2300,16 +2387,115 @@ on what the twin holds:
 
 | Port | Centreline | Closed sections | Lofted | Wall observed on the loft | Valve, seat, guide |
 |---|---|---|---|---|---|
-| `port_y_minus` | 90 mm | 21 of 31 | 51 mm (57%) | 77% | not modelled (H05) |
-| `port_y_plus` | 54 mm | 10 of 19 | 24 mm (44%) | 92% | not modelled (H05) |
+| `port_y_minus` | 90 mm | 21 of 31 | 51 mm (57%) | 77% | modelled from published values (H05, H16) |
+| `port_y_plus` | 54 mm | 10 of 19 | 24 mm (44%) | 92% | modelled from published values (H05, H16) |
 
-**Verdict: no admissible fluid domain.** Each port fails all three gates.
-Beyond the lofted part the sections open into the valve pocket, 8% to 23% of
-the lofted wall is winding-number closure, and without a valve the throat is
-an open hole. A flow number on this domain would record the closure
-hypotheses and the missing valve, not the port, so no solver was run. The
-row reopens with registered sections of the bend and pocket (H04) and the
-valve, seat and guide geometry (H05).
+**Verdict: no admissible fluid domain.** Each port fails gates 1 and 2.
+Beyond the lofted part the sections open into the valve pocket, and 8% to
+23% of the lofted wall is winding-number closure. Gate 3 has passed since
+2026-11-22, when the valve, seat and guide bodies were built (next section).
+A flow number on this domain would record the open sections and the
+unobserved walls, not the port, so no solver was run. The row reopens with
+registered sections of the bend and pocket (H04).
+
+### Valves, seats, guides and a declared port domain, 2026-11-22 ([case](params/valve-seat-guide-case.json), [bodies](params/valve-seat-guide.json), [port domain](params/port-domain.json), [stop record](params/port-cfd.json), [inferred share](params/inferred-share.json))
+
+On 2026-11-22 the owner asked for #698, #697 and #700 to be worked from
+published data under declared assumptions. The [search log](../../docs/research/935-valves-ports-20261122.md)
+found the maker's catalogue ranges, production 930 Turbo and 911 parts and a
+workshop's seat and guide practice, each value read twice in a saved copy;
+nothing published describes this head's hidden geometry or its flow.
+
+**Bodies.** [valve_seat_guide.py](source/valve_seat_guide.py) builds the
+valve, the seat insert and the guide of each valve as separate solids of
+revolution on the fitted axes (private STEP files, hashes in the record).
+Every value names its source or its hypothesis:
+
+| | `valve_y_minus`, inlet (H09) | `valve_y_plus`, exhaust (H09) | From |
+|---|---|---|---|
+| valve head | 49 mm | 41.5 mm | the only sizes common to the maker's two candidate families, 45–53 and 38–42.5 mm; the production 930 Turbo (H16) |
+| stem, overall length | 8 mm, 109 mm | 8 mm, 108 mm | the maker's 8 mm stems; published 8 mm-stem 911 valves (H16) |
+| seat | 45° through the fitted mid-band circle (48.97 mm), 30° and 75° cuts, contact 1.2 mm | same on 43.10 mm, contact 1.4 mm | 911 seat practice (H16) |
+| insert bore, outside, height | 45.81 (fitted throat), 53.5 (derived), 7 mm (assumed) | 38.47 (fitted throat), 46.0 (930 Turbo ring), 7 mm (assumed) | H16 |
+| guide | 8.05 × 12.87 mm, fitted stations −19.2 to 29.6 | 8.05 × 13.02 mm, 22.1 to 72.3 | fitted outside and stations; assumed 0.05 mm stem clearance (H16) |
+
+The bodies do not overlap, closed or at the published largest lifts (9.7 and
+8.9 mm, the production 930 Turbo), and the two heads stay 0.59 mm apart with
+both at full lift. Beside the scan: the inlet contact band lies inside the
+fitted seat window; the exhaust band reaches 0.09 mm (radius) inside the
+window's inner edge, so a 41.5 mm exhaust valve sits at the edge of what the
+scanner saw, where a 42.5 mm one, also in the catalogue, would not. A
+section render through both axes was read: bodies in place, no stray piece.
+Nothing here is a dimension of the specimen.
+
+**Roles (H09).** `valve_y_minus` is the inlet: its larger seat and throat,
+its angle (25.89° against the published inlet 25.5° and exhaust 30.25°; the
+other way round misses by 4.4°) and its larger flange opening (41.8 against
+40.5 mm, beside a 935 head set listed with 41 and 40 mm ports) all point the
+same way. None of these describes this head, so H09 is declared, not retired.
+
+**Hypotheses.** H05 is now *modelled from published values and declared
+assumptions*, kept until the head's specification arrives; H09 is declared
+and kept; H10 is kept, because both thermal screens ran on its solids and
+were not rerun. New: H16 (the published values and explicit assumptions of
+the bodies) and H17 (the port continuation below). H01, H04, H07 and H08 were
+searched for and nothing describes this head (a 1988 Porsche patent routes
+oil through an air-cooled head to the exhaust seat; that is not evidence of a
+gallery here): their closures stay and their requests stay open.
+
+**Inferred area, restated.** [inferred_share.py](source/inferred_share.py)
+repeats the scorecard's split with Open3D and finds the same inferred area
+(34,849 mm², 18.1% of the v2 body). By region: the port voids (H04) 2.2%,
+other enclosed voids 2.1%, stud passages 0.2%, and the rest, fin roots,
+fin-gap floors and the outer closure (H01), 13.6%. No evidence was admitted,
+so the 18.1% stands.
+
+**Port domain under a declared rule, gates unchanged.**
+[port_domain.py](source/port_domain.py) replaces, in a fluid domain only, the
+closure beyond the last scan section by rule H17: the convex hull of that
+section (guide boss taken out) and the fitted throat circle, then the fitted
+throat and seat, minus the fitted guide. The rule adds no port
+dimension of its own; its one setting is a 1 mm margin that finds the rays
+ending on the guide boss.
+
+| Port | Stations: scan / bowl (H17) / throat | Observed on each | All | Gate 1 | Gate 2, 95% | Gate 3 |
+|---|---|---|---|---|---|---|
+| `port_y_minus` | 18 / 7 / 6 | 77% / 14% / 83% | 64% | passes by construction | fails | passes |
+| `port_y_plus` | 9 / 4 / 5 | 92% / 20% / 72% | 71% | passes by construction | fails | passes |
+
+**The port CFD stops at gate 2.** The stations beyond the scan sections would
+need 119.6% (`port_y_minus`) and 97.9% (`port_y_plus`) of their points on
+acquired facets. No declared rule can supply that: what fails is the
+scanner's coverage of the bend and the bowl. No Poiseuille rerun, mesh or
+solver followed, and nothing was rented. The row reopens with registered
+sections of the bend and bowl (H04, H17), or with an owner decision to change
+gate 2, which this work does not take.
+
+### Interface contract: written, nothing measured ([contract](params/interface-contract.json), [check](params/interface-contract-check.json), #694)
+
+AGENTS.md asks for an interface contract before any functional part. The
+[contract](params/interface-contract.json) lists 11 interfaces and 170 quantities:
+the deck face and register, the four stud passages, the ten studs and their
+tapped holes, both port flanges, both plug bores, the cam-housing face, a
+valve-cover face, and the guides and seats of both valves. Each quantity names
+its datum in the [twin frame](params/frame.json).
+
+**Nothing is measured.** Every value, uncertainty and source is null. Each
+quantity names what would fill it: a contribution under
+[decision 0019](../../docs/decisions/0019-accept-contributed-measurements.md)
+or a drawing, once the specimen is identified (#692). A length can be compared
+with the twin only after the scale is measured (#693). Where a hypothesis
+applies, it is named: H02 for the passages, H03 for the tapped holes, H05 and
+H09 for the valves, H06 for the plug threads. The twin's own number sits beside
+89 quantities, under `twin_nominal_not_evidence`. It is never the value.
+
+[check_interface_contract.py](source/check_interface_contract.py) reads the
+contract and the params files. It imports the standard library only and shares
+no code with the scripts that built the twin. It reports pass, fail or not
+checkable for each quantity. Today all 170 are not checkable. A pass will also
+need a threshold committed before the values arrive, as for the
+[carrier scan](../../docs/decisions/0024-engine-carrier-interfaces-from-a-scan.md).
+The clocking datum about the bore axis has no physical feature yet.
 
 ### Prepared work: what the four parts that never ran need ([register](params/prepared-work.json))
 
@@ -2326,18 +2512,18 @@ was read. It moved no part out of its blocked state.
 
 | Part | State | Tool | Witness of the tool |
 |---|---|---|---|
-| Port flow | blocked on geometry | OpenFOAM with foamlib ([TOOLCHAIN.md](../../docs/TOOLCHAIN.md)); Gmsh for meshing ([AGENT_TOOL_GUIDE.md](../../docs/AGENT_TOOL_GUIDE.md)) | [openfoam-poiseuille-f25](../../outils/benchmarks/openfoam-poiseuille-f25): exists with its test ([test_openfoam_poiseuille_f25.py](../../tests/test_openfoam_poiseuille_f25.py)); to be rerun on the image used before any port case |
+| Port flow | blocked on geometry: gate 2 (acquired port walls) fails on both ports, also on the declared domain of 2026-11-22 | OpenFOAM with foamlib ([TOOLCHAIN.md](../../docs/TOOLCHAIN.md)); Gmsh for meshing ([AGENT_TOOL_GUIDE.md](../../docs/AGENT_TOOL_GUIDE.md)) | [openfoam-poiseuille-f25](../../outils/benchmarks/openfoam-poiseuille-f25): exists with its test ([test_openfoam_poiseuille_f25.py](../../tests/test_openfoam_poiseuille_f25.py)); to be rerun on the image used before any port case |
 | Fatigue | blocked on a stress history and on material data | pyLife 2.3 ([TOOLCHAIN.md](../../docs/TOOLCHAIN.md)): rainflow counting, Wöhler curves, Miner damage | [witness_rainflow_miner.py](../../benchmarks/fatigue-postprocessor/witness_rainflow_miner.py): passed on 2026-11-10 ([results-20261110.json](../../benchmarks/fatigue-postprocessor/results-20261110.json)): rainflow against the ASTM E1049 table, Basquin and Miner against a closed form |
 | Valve-train dynamics | blocked on kinematics and on a dynamics tool | none. Chrono is a candidate, not installed: no image, lock or witness ([AGENT_TOOL_GUIDE.md](../../docs/AGENT_TOOL_GUIDE.md)) | [test_m64_valvetrain_v1.py](../../tests/test_m64_valvetrain_v1.py): analytic checks of that model (derivatives, spring rate, harmonic limit, energy); a sensitivity study, no cam data and no bench correlation |
 | Drawing | reference sheet of the 11 confirmed features drawn (#708); a dimensioned drawing waits for a scale, more features and sourced tolerances | build123d projection to DXF, with ezdxf dimensions and a title block ([TOOLCHAIN.md](../../docs/TOOLCHAIN.md), 2026-11-19, #708) | [drawing_witness.py](source/drawing_witness.py): passed on 2026-11-19 ([drawing-witness.json](params/drawing-witness.json)): three views of a known solid read back from DXF; one third-angle sheet whose seven dimensions show their own measurement at 3.5 mm from definition points on drawn edges, and whose title block reads back field by field; five planted faults caught; sections not checked |
 
 **Port flow:** the flow through each port at stated valve lifts and pressure difference.
 
-- Held: port centrelines and section lofts ([port-fit.json](params/port-fit.json): lofted over 57% and 44% of the centreline; 8% to 23% of the lofted wall is closure, not scan); the admissibility audit and its three gates ([port-cfd-audit.json](params/port-cfd-audit.json): both ports fail all three gates); two valve axes, seats and throats fitted on the scan ([feature-fits.json](params/feature-fits.json): nominal; one throat and one seat confirmed on held-out vertices ([feature-check.json](params/feature-check.json))); the load-case contract ([load-cases-f1.json](../../twins/engine-simulation-contracts/load-cases-f1.json): LC-935-PORT-COLD-FLOW, 9 of 9 inputs empty); published port openings of the production 964 Turbo 3.3 head, the definition of the flow coefficient, and two validated port computations on other heads ([findings.json](../../docs/research/935-head-published-data-20261116/findings.json): another head and other ports; the two computations sit 6% and 8% from their bench, which is the size of agreement a comparison could expect).
-- Missing: registered sections of the port bend and of the valve pocket (retires H04); valve, seat and guide geometry of this head (retires H05); which port is inlet and which is exhaust (retires H09); valve lifts, pressure difference, air state and wall roughness for the cases; a measured flow number to compare with.
+- Held: port centrelines and section lofts ([port-fit.json](params/port-fit.json): lofted over 57% and 44% of the centreline; 8% to 23% of the lofted wall is closure, not scan); the admissibility audit and its three gates ([port-cfd-audit.json](params/port-cfd-audit.json): both ports fail gates 1 and 2; gate 3 passes since the valve, seat and guide bodies exist (2026-11-22)); valve, seat insert and guide of each valve as separate bodies on the fitted axes ([valve-seat-guide.json](params/valve-seat-guide.json): published values of other heads, the maker's catalogue ranges and explicit assumptions (H16), roles declared (H09); no dimension of the specimen); a port domain closed by a declared rule, audited with the same gates, and the stop record ([port-cfd.json](params/port-cfd.json): gate 2 fails on both ports (64% and 71% of wall points observed against 95%); no solver, no witness rerun, no rental); two valve axes, seats and throats fitted on the scan ([feature-fits.json](params/feature-fits.json): nominal; one throat and one seat confirmed on held-out vertices ([feature-check.json](params/feature-check.json))); the load-case contract ([load-cases-f1.json](../../twins/engine-simulation-contracts/load-cases-f1.json): LC-935-PORT-COLD-FLOW, 9 of 9 inputs empty); published port openings of the production 964 Turbo 3.3 head, the definition of the flow coefficient, and two validated port computations on other heads ([findings.json](../../docs/research/935-head-published-data-20261116/findings.json): another head and other ports; the two computations sit 6% and 8% from their bench, which is the size of agreement a comparison could expect).
+- Missing: registered sections of the port bend and of the valve pocket (retires H04); valve, seat and guide geometry of this head (the bodies held rest on other heads' values, H16) (retires H05); confirmation of which port is inlet and which is exhaust (declared from three published relations, H09) (retires H09); valve lifts, pressure difference, air state and wall roughness for the cases; a measured flow number to compare with.
 - A contribution must hold: the specimen: head type, part number or casting marks; the instrument, its resolution and a stated uncertainty; reference marks that tie the sections to the flange face and the valve axis; at least three dimensions that the twin already holds, for a scale check (the flange, the seat, the guide bore); an explicit licence to use and redistribute the files.
 - First steps once the inputs exist: rebuild the port lofts through the new sections and rerun source/audit_port_domain.py: the three gates must pass; rerun the Poiseuille witness on the image used; mesh one port with the valve at one lift, checkMesh first, three mesh levels; report the discharge coefficient with its mesh sensitivity, beside the measured number if one exists.
-- Runnable today: nothing beyond the audit: a solver run on the present domain would measure the closure hypotheses and the missing valve.
+- Runnable today: nothing beyond the audit: a solver run on either domain would measure the unobserved walls of the bend and the bowl (H04, H17), not the port.
 
 **Fatigue:** damage of the head under a stated duty, for a stated alloy and process.
 
@@ -2389,7 +2575,8 @@ contributor. No contributor is named here, and none has been asked.
 | v2 body | occupancy, datum faces | private closed solid; [summary](params/v2-loft-s025-summary.json) | manifold status, watertight, volume; whole-scan [scorecard](params/scorecard-v2-loft-s025.json) with oracle; three section steps | done: p95 0.157 mm, 97.4% within 0.2 mm; area 14% above T1s; no B-rep |
 | Thermal from CAD | v2 body occupancy at 1.0 mm | private deck and fields; [result](params/thermal-screen-cad.json) | energy balance 0.28%; comparison with T3 at the same pitch | done: mean −0.53 °C, heat −0.36% against T3 |
 | USD and 3MF from CAD | v2 body | private `.usdc` and 3MF; [USD](params/usd-cad-summary.json), [3MF](params/print-cad-summary.json) | 30 OpenUSD validators, NVIDIA validator; streaming round trip | done: 0 OpenUSD findings; NVIDIA 0 failures, 2 warnings (35 flat triangles, co-located points); 3MF exact |
-| Port CFD | port fit, hypotheses | [audit](params/port-cfd-audit.json) | three admissibility gates | closed by audit: no admissible domain, no solver run; reopens with H04 and H05 evidence; [prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register) |
+| Port CFD | port fit, hypotheses | [audit](params/port-cfd-audit.json) | three admissibility gates | closed by audit: no admissible domain, no solver run; gate 3 passes since 2026-11-22; reopens with H04 evidence; [prepared](#prepared-work-what-the-four-parts-that-never-ran-need-register) |
+| Valves, seats, guides; declared port domain | fits, [published values and assumptions](params/valve-seat-guide-case.json), H16, H17 | [bodies](params/valve-seat-guide.json), [port domain](params/port-domain.json), [stop record](params/port-cfd.json), [inferred share](params/inferred-share.json); private STEP and meshes | overlaps closed and at lift; contact band against the fitted seat window; the unchanged three gates; scorecard's inferred area reproduced with Open3D | done 2026-11-22: bodies consistent, exhaust band 0.09 mm past the window; gate 2 fails on both ports (64% and 71% observed), CFD stopped there, nothing rented |
 | SimReady tools | v1 deck plate STEP, two port loft STEPs, both stages | private stages; [deck](params/simready-deck-plate.json), [ports](params/simready-ports.json) | NVIDIA validator; independent bounding box and volume against the STEP | done for the three B-rep inputs (pass) and both stages; profile validation and RTX done on the CAD-body package (#707), agents not attempted; no STEP of the v2 body |
 | AM screen | occupancy | [supports](params/am-supports.json), [cooldown](params/am-cooldown.json) | analytic witnesses within 2.5%; independent VTU reader, energy imbalance 1.5e-4 | done as a screen: six orientations, two cooldown levels; no orientation chosen, no support designed |
 | Feature fit | bare scan, frame, [32 windows](params/feature-rois.json) | [feature-fits.json](params/feature-fits.json); private vertex split | the tool's own `determined` flag and standard deviations; two-centre construction against a guide bore axis (0.42°) | done: 25 determined, 7 detected only; two valve axes, guide bore, seats, plug bores, stud passages |
@@ -2424,9 +2611,10 @@ contributor. No contributor is named here, and none has been asked.
 - The v2 body is a triangle solid lofted through sections of the occupancy
   field. Where the scanner saw nothing it reproduces the winding-number
   closure, not the part; 18% of its area is such closure.
-- The valve guides, seats and valves are not modelled. The bosses the scan
-  shows in the spring pockets are in the v2 body as scanned, without bores
-  beyond what was acquired.
+- The valves, seat inserts and guides are separate bodies from published
+  values of other heads and explicit assumptions (H16), not from the
+  specimen. The v2 body keeps the scanned guides and seats as one solid with
+  the head, without bores beyond what was acquired.
 - The fitted features are numbers on scan vertices. CloudCompare confirms 11
   of 32 within 0.2 mm; none is a dimension of the specimen, a tolerance, a
   fit or a thread, and the valve named by a flange side is not identified as
@@ -2448,7 +2636,9 @@ contributor. No contributor is named here, and none has been asked.
   nothing, and the build screen's declared value is unchanged.
 - The prepared work is a register of what is missing. It holds no result, and
   it names no contributor.
-- No port-flow result exists. The audit found no admissible fluid domain.
+- No port-flow result exists. The audit found no admissible fluid domain,
+  also with the port closed by the declared rule H17: too little of the bend
+  and bowl was acquired.
 - The alloy rankings are screens on room-temperature conductivities and
   declared boundaries. The assembly screen's valves, guides and plugs are
   hypothesis solids in perfect contact, with an oil film on the spring
