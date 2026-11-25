@@ -1432,7 +1432,7 @@ the [orientation screen](params/print-body-supports.json) to 0.0003%: 476,689 mm
 Geometry only, not a build file.*
 
 **PySLM, with its own defaults, supports 2.7% of the overhang the rule
-layout supports.** The print body went to PySLM 0.6.1
+layout starts from; the rule layout supports 98.7%.** The print body went to PySLM 0.6.1
 (LGPL-2.1), the open library the carrier already pins, at the same
 revision, flange y+ on the plate, at a critical angle of 45 degrees. It
 prepared 19 block supports holding 343 mm² of the
