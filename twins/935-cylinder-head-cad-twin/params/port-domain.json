@@ -1,0 +1,145 @@
+{
+  "schema": "935-cad-twin-port-domain/1",
+  "rule": "H17-port-continuation-declared",
+  "inputs": {
+    "port_fit": "params/port-fit.json",
+    "feature_fits": "params/feature-fits.json",
+    "observed_within_mm": 0.35,
+    "station_step_mm": 3.0,
+    "rays": 48,
+    "boss_margin_mm": 1.0
+  },
+  "ports": [
+    {
+      "name": "port_y_minus",
+      "valve": "valve_y_minus",
+      "parts": {
+        "loft": {
+          "evidence": "scan sections of params/port-fit.json; an unobserved point is winding-number closure (H04)",
+          "stations": 18,
+          "observed_share": 0.772
+        },
+        "bowl": {
+          "evidence": "declared rule H17-port-continuation-declared: convex hull of the last scan section (guide boss removed) and the fitted throat circle at the top of the throat window",
+          "stations": 7,
+          "length_mm": 23.26,
+          "guide_boss_rays_replaced": 0,
+          "observed_share": 0.14
+        },
+        "throat": {
+          "evidence": "fitted throat diameter and seat cone about the datum axis (params/feature-fits.json)",
+          "stations": 6,
+          "from_station_mm": -31.92,
+          "to_station_mm": -45.48,
+          "diameter_mm": 45.807,
+          "observed_share": 0.833
+        },
+        "guide": {
+          "evidence": "fitted port-end guide diameter, from the fitted guide tip upward; subtracted",
+          "diameter_mm": 11.99,
+          "tip_station_mm": -19.17
+        }
+      },
+      "stations": 31,
+      "closed_stations": 31,
+      "closed_by": "the scan for the loft; the declared rule for the bowl and the fitted features for the throat",
+      "wall_points_observed_share": 0.641,
+      "domain": {
+        "volume_mm3": 126188.8,
+        "genus": 0,
+        "slivers_dropped": 21,
+        "triangles": 3832,
+        "edges_not_used_twice_after_merge": 0
+      },
+      "gate_2_needs_on_added_stations": 1.196
+    },
+    {
+      "name": "port_y_plus",
+      "valve": "valve_y_plus",
+      "parts": {
+        "loft": {
+          "evidence": "scan sections of params/port-fit.json; an unobserved point is winding-number closure (H04)",
+          "stations": 9,
+          "observed_share": 0.921
+        },
+        "bowl": {
+          "evidence": "declared rule H17-port-continuation-declared: convex hull of the last scan section (guide boss removed) and the fitted throat circle at the top of the throat window",
+          "stations": 4,
+          "length_mm": 15.59,
+          "guide_boss_rays_replaced": 9,
+          "observed_share": 0.203
+        },
+        "throat": {
+          "evidence": "fitted throat diameter and seat cone about the datum axis (params/feature-fits.json)",
+          "stations": 5,
+          "from_station_mm": 5.03,
+          "to_station_mm": -6.63,
+          "diameter_mm": 38.473,
+          "observed_share": 0.721
+        },
+        "guide": {
+          "evidence": "fitted port-end guide diameter, from the fitted guide tip upward; subtracted",
+          "diameter_mm": 13.04,
+          "tip_station_mm": 22.07
+        }
+      },
+      "stations": 18,
+      "closed_stations": 18,
+      "closed_by": "the scan for the loft; the declared rule for the bowl and the fitted features for the throat",
+      "wall_points_observed_share": 0.706,
+      "domain": {
+        "volume_mm3": 61593.1,
+        "genus": 0,
+        "slivers_dropped": 0,
+        "triangles": 3202,
+        "edges_not_used_twice_after_merge": 0
+      },
+      "gate_2_needs_on_added_stations": 0.979
+    }
+  ],
+  "audit_unchanged_gates": {
+    "schema": "935-cad-twin-port-cfd-audit/1",
+    "wall_observed_min": 0.95,
+    "hypothesis_h05_status": "modelled_from_published_values_and_declared_assumptions",
+    "ports": [
+      {
+        "name": "port_y_minus",
+        "centreline_length_mm": 90.0,
+        "stations": 31,
+        "closed_stations": 31,
+        "lofted_length_mm": 90.0,
+        "lofted_share_of_centreline": 1.0,
+        "wall_points_observed_share_on_loft": 0.641,
+        "gates": {
+          "closed_sections_along_whole_centreline": true,
+          "wall_observed_share_at_least_min": false,
+          "valve_seat_guide_modelled": true
+        },
+        "admissible": false
+      },
+      {
+        "name": "port_y_plus",
+        "centreline_length_mm": 51.0,
+        "stations": 18,
+        "closed_stations": 18,
+        "lofted_length_mm": 51.0,
+        "lofted_share_of_centreline": 1.0,
+        "wall_points_observed_share_on_loft": 0.706,
+        "gates": {
+          "closed_sections_along_whole_centreline": true,
+          "wall_observed_share_at_least_min": false,
+          "valve_seat_guide_modelled": true
+        },
+        "admissible": false
+      }
+    ],
+    "verdict": "not_admissible",
+    "consequence": "no port-flow solver run: a flow number on this domain would record the unobserved walls, not the port",
+    "retire_with": "registered sections of the port bend and valve pocket (CT, moulds or borescope, H04) and the valve, seat and guide geometry (H05)"
+  },
+  "private_files_sha256": {
+    "port-domain-port_y_minus.stl": "2eecee3bfe8239fbeaa5038d2271bb71c31eeabd7584aef25456ecdca2fe8b78",
+    "port-domain-port_y_plus.stl": "27a3503827334d34e0bbdab0d93fd6b4e85648a7f98d29313b2997c29e2a6533"
+  },
+  "claims": "a fluid domain under a declared continuation rule; it shows what the rule adds, not the port of the specimen. Gate 1 passes by construction; gate 2 counts acquired facets only"
+}

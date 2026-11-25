@@ -117,7 +117,12 @@ hp reference "/p/assembly-hp-again-$STAMP" /params /p/assembly-heat-paths-summar
   "$PRIV/assembly-hp-again.json" "$PRIV/assembly-hp-joint-witness.json" "$PARAMS/assembly-heat-paths.json"
 "$PY" -I "$HERE/alloy_tradeoff.py" "$PARAMS" "$TWIN/media"
 
-# Port CFD: the audit only. It finds no admissible fluid domain, so no solver runs.
+# Valves, seats and guides from published values (H16), the port domain under the declared
+# rule H17, the inferred area by region, then the audit. Gate 2 fails on both domains, so no
+# solver runs (params/port-cfd.json).
+MEM=5G cap "$PY" -I "$HERE/valve_seat_guide.py" "$PARAMS" "$PRIV/valve-seat-guide-$STAMP"
+MEM=5G cap "$PY" -I "$HERE/port_domain.py" "$PRIV" "$PARAMS" "$TWIN/hypotheses.json" "$PRIV/port-domain-$STAMP"
+MEM=5G cap "$PY" -I "$HERE/inferred_share.py" "$PRIV" "$PARAMS"
 "$PY" -I "$HERE/audit_port_domain.py" "$PARAMS" "$TWIN/hypotheses.json" "$PARAMS/port-cfd-audit.json"
 
 # AM screen (Adamantine runs in rombur/adamantine:1.1, capped at 4 GiB).

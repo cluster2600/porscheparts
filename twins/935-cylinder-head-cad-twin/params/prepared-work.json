@@ -18,7 +18,7 @@
   {
    "id": "port-flow",
    "ledger_row": "Port CFD",
-   "state": "blocked on geometry",
+   "state": "blocked on geometry: gate 2 (acquired port walls) fails on both ports, also on the declared domain of 2026-11-22",
    "question": "the flow through each port at stated valve lifts and pressure difference",
    "tool": {
     "assigned": "OpenFOAM with foamlib (docs/TOOLCHAIN.md); Gmsh for meshing (docs/AGENT_TOOL_GUIDE.md)",
@@ -35,7 +35,17 @@
     {
      "what": "the admissibility audit and its three gates",
      "where": "twins/935-cylinder-head-cad-twin/params/port-cfd-audit.json",
-     "standing": "both ports fail all three gates"
+     "standing": "both ports fail gates 1 and 2; gate 3 passes since the valve, seat and guide bodies exist (2026-11-22)"
+    },
+    {
+     "what": "valve, seat insert and guide of each valve as separate bodies on the fitted axes",
+     "where": "twins/935-cylinder-head-cad-twin/params/valve-seat-guide.json",
+     "standing": "published values of other heads, the maker's catalogue ranges and explicit assumptions (H16), roles declared (H09); no dimension of the specimen"
+    },
+    {
+     "what": "a port domain closed by a declared rule, audited with the same gates, and the stop record",
+     "where": "twins/935-cylinder-head-cad-twin/params/port-cfd.json",
+     "standing": "gate 2 fails on both ports (64% and 71% of wall points observed against 95%); no solver, no witness rerun, no rental"
     },
     {
      "what": "two valve axes, seats and throats fitted on the scan",
@@ -60,12 +70,12 @@
      "could_arrive_as": "port moulds, a CT volume, or a borescope survey with sections registered to the flange face"
     },
     {
-     "what": "valve, seat and guide geometry of this head",
+     "what": "valve, seat and guide geometry of this head (the bodies held rest on other heads' values, H16)",
      "retires": "H05",
      "could_arrive_as": "the supplier's valve-train specification"
     },
     {
-     "what": "which port is inlet and which is exhaust",
+     "what": "confirmation of which port is inlet and which is exhaust (declared from three published relations, H09)",
      "retires": "H09",
      "could_arrive_as": "the same specification, or a marked photograph of the specimen"
     },
@@ -93,7 +103,7 @@
     "mesh one port with the valve at one lift, checkMesh first, three mesh levels",
     "report the discharge coefficient with its mesh sensitivity, beside the measured number if one exists"
    ],
-   "runnable_today": "nothing beyond the audit: a solver run on the present domain would measure the closure hypotheses and the missing valve"
+   "runnable_today": "nothing beyond the audit: a solver run on either domain would measure the unobserved walls of the bend and the bowl (H04, H17), not the port"
   },
   {
    "id": "fatigue",
