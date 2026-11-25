@@ -262,6 +262,33 @@ class SyntheticCheckTests(unittest.TestCase):
         self.assertIn("caveat", rows["d_pass"])  # a length waits on #693
         self.assertNotIn("caveat", rows["a_pass"])  # an angle does not
 
+    def test_open_preconditions_block_the_verdict(self):
+        def gated(qid, kind, key, value, unc, thr, requires=(), compare_requires=()):
+            q = synthetic_q(qid, kind, key, value, unc, thr)
+            q["blocker"] = q["blocker"] | {"requires": list(requires), "compare_requires": list(compare_requires)}
+            return q
+
+        qs = [
+            gated("identity", "diameter", ["bore"], 10.0, 0.02, 0.2, requires=["#692-identity"]),
+            gated("scaled", "diameter", ["bore"], 10.0, 0.02, 0.2, compare_requires=["#693-scale"]),
+            gated("angle", "angle", ["angle"], 45.0, 0.1, 1.0, requires=["drawing"]),
+            gated("null", "diameter", ["bore"], None, None, 0.2, requires=["#692-identity"]),
+        ]
+        contract = synthetic_contract(qs)
+        contract["preconditions"] = [{"id": "#692-identity", "state": "open"}, {"id": "#693-scale", "state": "open"}]
+        rows = {r["id"].split(".", 1)[1]: r for r in ck.check(contract, self.hyp, self.twin)["rows"]}
+        self.assertEqual(rows["identity"]["status"], "not_checkable")
+        self.assertIn("#692-identity", rows["identity"]["reason"])
+        self.assertEqual(rows["scaled"]["status"], "not_checkable")
+        self.assertIn("#693-scale", rows["scaled"]["reason"])
+        self.assertEqual(rows["angle"]["status"], "pass")  # a fill code is not a precondition
+        self.assertEqual(rows["null"]["reason"], ck.NOT_MEASURED)
+
+        contract["preconditions"] = [{"id": "#692-identity", "state": "closed"}, {"id": "#693-scale", "state": "closed"}]
+        rows = {r["id"].split(".", 1)[1]: r for r in ck.check(contract, self.hyp, self.twin)["rows"]}
+        self.assertEqual((rows["identity"]["status"], rows["scaled"]["status"]), ("pass", "pass"))
+        self.assertNotIn("caveat", rows["scaled"])
+
     def test_not_checkable_for_each_missing_piece(self):
         rows = self.rows([
             synthetic_q("null", "diameter", ["bore"]),

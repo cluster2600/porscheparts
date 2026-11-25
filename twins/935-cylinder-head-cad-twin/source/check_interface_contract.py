@@ -270,7 +270,8 @@ def validate(contract: dict, hypotheses: dict, params: Params) -> list[str]:
     return errors
 
 
-def check_quantity(q: dict, params: Params, scale_open: bool, interface: str | None = None) -> dict:
+def check_quantity(q: dict, params: Params, scale_open: bool, interface: str | None = None,
+                   open_preconditions: frozenset = frozenset()) -> dict:
     kind, value, unc, thr = q["kind"], q["value"], q["uncertainty"], q["threshold"]
     ref = q.get("twin_nominal_not_evidence")
     twin = params.number(ref) if ref is not None else None
@@ -297,6 +298,14 @@ def check_quantity(q: dict, params: Params, scale_open: bool, interface: str | N
 
     if value is None:
         return verdict("not_checkable", NOT_MEASURED)
+    # A precondition the blocker names stays binding while it is open: a value it gates cannot be
+    # admitted (requires), and a comparison it gates cannot be made (compare_requires).
+    blocker = q.get("blocker") or {}
+    for field, reason in (("requires", "the value cannot be admitted while a precondition is open"),
+                          ("compare_requires", "the comparison waits on an open precondition")):
+        waiting = [c for c in blocker.get(field, []) if c in open_preconditions]
+        if waiting:
+            return verdict("not_checkable", f"{reason}: {', '.join(waiting)}")
     if ref is None:
         return verdict("not_checkable", "the twin holds no number for this quantity")
     if not ref["comparable"]:
@@ -321,11 +330,11 @@ def check(contract: dict, hypotheses: dict, twin_dir: Path, contract_sha256: str
     errors = validate(contract, hypotheses, params)
     if errors:
         raise ContractError("\n".join(errors))
-    scale_open = any(p.get("id") == "#693-scale" and p.get("state") != "closed"
-                     for p in contract.get("preconditions", []))
+    open_pre = frozenset(p.get("id") for p in contract.get("preconditions", []) if p.get("state") != "closed")
+    scale_open = "#693-scale" in open_pre
     rows, per_iface = [], {}
     for iface, q in quantities(contract):
-        row = check_quantity(q, params, scale_open, iface["id"])
+        row = check_quantity(q, params, scale_open, iface["id"], open_pre)
         rows.append(row)
         tally = per_iface.setdefault(iface["id"], {"pass": 0, "fail": 0, "not_checkable": 0})
         tally[row["status"]] += 1
