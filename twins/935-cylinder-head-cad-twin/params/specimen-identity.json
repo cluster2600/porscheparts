@@ -1,0 +1,807 @@
+{
+  "schema": "935-cad-twin-specimen-identity/1",
+  "date": "2026-11-22",
+  "issues": ["#692", "#693"],
+  "owner_decision": "On 2026-11-22 the owner decided that what is needed is researched online and the twin works on declared assumptions; the professional review of these assumptions will be by Wolfe Classics, the seller of the scan. Nobody was contacted for this record.",
+  "rule": "A published value is a declared hypothesis with its source, never a measurement of the specimen. A value with no source stays null with a named blocker. A fitted value is a number fitted on the scan, whose unit is the owner's instruction (1 OBJ unit = 1 mm); its check against published values is params/scale-check.json.",
+  "claims": "This record names the identity the twin assumes from now on and the evidence for and against it. It identifies nothing by resemblance: no published document names this specimen's engine, bore, program, part number or casting mark. The assumed identity is H18 and H19 in hypotheses.json.",
+  "scan": {
+    "sha256": "4623d5d3b73fe3d03ca988a47543a8dd1be7834d3040e6f7efd1e1e95c766486",
+    "file": "935-xtreme-cylinder-head.obj (private, outside Git)",
+    "unit": "1 OBJ unit = 1 mm by owner instruction; checked against published values in params/scale-check.json, never measured"
+  },
+  "how_it_was_read": "Pages were saved privately on 2026-11-22 (work/935-cad-twin/agents-20261122/692-693/pages, with their SHA-256), turned into text, and every value below was read again in that saved text before it was written here. Each host's robots.txt was read first; hosts that refused automated readers or answered with a bot check were left alone (decision 0003). Search log: docs/research/935-identity-scale-20261122.md.",
+  "sources": [
+    {
+      "id": "wolfe-listing",
+      "title": "Wolfe Classics: Porsche Billet Cylinder head 3D Scan (store listing of the scan)",
+      "url": "https://www.wolfeclassics.com/shop/p/p-car-billet-cylinder-head-scan",
+      "accessed": "2026-11-22",
+      "publisher": "Wolfe Classics, Sugar Land, Texas",
+      "kind": "seller of the scan",
+      "applies_to": "same head: the listing sells this scan",
+      "terms": "no licence stated on the page; copyright by default. robots.txt (Squarespace default) lists ClaudeBot with '*' and disallows /config, /search, /account, /api, /static, not /shop/p/. Numbers and short quotes only.",
+      "private_copy_sha256": "c7a09246bea771cb9053250cd821f5e2b1991497047561323177657edea9c6ba"
+    },
+    {
+      "id": "wolfe-services",
+      "title": "Wolfe Classics: Services (3D scanning)",
+      "url": "https://www.wolfeclassics.com/services",
+      "accessed": "2026-11-22",
+      "publisher": "Wolfe Classics",
+      "kind": "seller of the scan",
+      "applies_to": "the seller's equipment in general; the page does not say which scanner took this scan",
+      "terms": "no licence stated; same robots.txt as wolfe-listing. Short quotes only.",
+      "private_copy_sha256": "b85335031f2432e46663a06d79dfe3e3ca2b2c274735b77a52073d075abba29d"
+    },
+    {
+      "id": "faithful-replica-dossier",
+      "title": "Repository dossier: faithful replica of the Wolfe/Xtreme 935 cylinder head (research of 2026-10-28)",
+      "url": "https://github.com/cluster2600/porscheparts/blob/main/docs/research/935-faithful-replica-20261028/README.md",
+      "repo_path": "docs/research/935-faithful-replica-20261028/README.md",
+      "accessed": "2026-11-22",
+      "publisher": "this repository",
+      "kind": "repository record of a private seller statement (evidence reference PRIVATE-WOLFE-20261011, kept outside Git)",
+      "applies_to": "same head: the seller's statement about this specimen, as recorded in the repository; the message itself is not published",
+      "terms": "repository licence; the correspondence itself stays private"
+    },
+    {
+      "id": "xtreme-programs",
+      "title": "Xtreme Cylinder Heads: Programs",
+      "url": "https://www.xtremecylinderheads.com/programs",
+      "accessed": "2026-11-22",
+      "publisher": "Xtreme Cylinder Heads, Palm City, Florida",
+      "kind": "maker",
+      "applies_to": "same maker: every head of the maker's programs; not a statement about this specimen",
+      "terms": "page footer: '© 2024 Xtreme Cylinder Heads. All Rights Reserved.' robots.txt (Squarespace default) as for wolfe-listing. Numbers and short quotes only.",
+      "private_copy_sha256": "aa12c1af3168283cde93a2596af685f4105c3df9e4607303e7b269528346ed57"
+    },
+    {
+      "id": "xtreme-2.0-2.9",
+      "title": "Xtreme Cylinder Heads: 2.0 - 2.9 Liter",
+      "url": "https://www.xtremecylinderheads.com/castings-1",
+      "accessed": "2026-11-22",
+      "publisher": "Xtreme Cylinder Heads",
+      "kind": "maker",
+      "applies_to": "same maker, one program: catalogue ranges, not this specimen",
+      "terms": "'© 2024 Xtreme Cylinder Heads. All Rights Reserved.' Numbers and short quotes only.",
+      "private_copy_sha256": "dcad5a3ece632df6eba669f5b2b4334bdf1427c2a4bc18065a2949a9168009be"
+    },
+    {
+      "id": "xtreme-3.0-3.5",
+      "title": "Xtreme Cylinder Heads: 3.0 - 3.5 Liter",
+      "url": "https://www.xtremecylinderheads.com/castings-2",
+      "accessed": "2026-11-22",
+      "publisher": "Xtreme Cylinder Heads",
+      "kind": "maker",
+      "applies_to": "same maker, one program: catalogue ranges, not this specimen",
+      "terms": "'© 2024 Xtreme Cylinder Heads. All Rights Reserved.' Numbers and short quotes only.",
+      "private_copy_sha256": "65b939947ec6691ee1e7a478524d20104e04028cfceb3c5980a9a181c3a61ca1"
+    },
+    {
+      "id": "xtreme-3.6-4.0",
+      "title": "Xtreme Cylinder Heads: 3.6 - 4.0 Liter NA and 3.6 - 4.0 Turbo",
+      "url": "https://www.xtremecylinderheads.com/castings-3",
+      "url_second_page": "https://www.xtremecylinderheads.com/castings-4",
+      "accessed": "2026-11-22",
+      "publisher": "Xtreme Cylinder Heads",
+      "kind": "maker",
+      "applies_to": "same maker, two programs: catalogue ranges, not this specimen",
+      "terms": "'© 2024 Xtreme Cylinder Heads. All Rights Reserved.' Numbers and short quotes only.",
+      "private_copy_sha256": "de424ddb400e09f71516b1bb2d991e9fae9f39818d4bf76802bd798f230a4247",
+      "private_copy_sha256_second_page": "22521e3663ab01276a04cd2233f1439cac190438272441cab4b580b3d807f0e6"
+    },
+    {
+      "id": "xtreme-shop",
+      "title": "Xtreme Cylinder Heads: Our Shop",
+      "url": "https://www.xtremecylinderheads.com/ourshop",
+      "accessed": "2026-11-22",
+      "publisher": "Xtreme Cylinder Heads",
+      "kind": "maker",
+      "applies_to": "same maker: its equipment and practice in general",
+      "terms": "'© 2024 Xtreme Cylinder Heads. All Rights Reserved.' Short quotes only.",
+      "private_copy_sha256": "f8b5380806e8251df70023ebfa57bbb40671c6e379fee49da51251c12b2d4068"
+    },
+    {
+      "id": "porsche-newsroom-turbo",
+      "title": "Porsche Newsroom: Porsche and turbo technology in motorsport, from pioneer to world champion (press kit '50 years Porsche Turbo')",
+      "url": "https://newsroom.porsche.com/en/press-kits/50-years-porsche-turbo/Porsche-and-turbo-technology-in-motorsport--from-pioneer-to-world-champion.html",
+      "accessed": "2026-11-22",
+      "publisher": "Dr. Ing. h.c. F. Porsche AG",
+      "kind": "car maker, press material",
+      "applies_to": "same engine family: the 935 race car, not this head",
+      "terms": "Newsroom terms, point 1: 'subject to copyright or other legislation for the protection of intellectual property' and intended for journalists. robots.txt: 'User-agent: * allow: /'. Short quotes only.",
+      "private_copy_sha256": "83860aa344866fa253b84241592484ac9e3b45b8dc4850a23efaab7959ef6f1d"
+    },
+    {
+      "id": "wikipedia-porsche-935",
+      "title": "Wikipedia: Porsche 935 (revision 1385579704, 2026-11-14)",
+      "url": "https://en.wikipedia.org/w/index.php?title=Porsche_935&oldid=1385579704",
+      "accessed": "2026-11-22",
+      "publisher": "Wikipedia contributors",
+      "kind": "encyclopedia, secondary",
+      "applies_to": "same engine family: the 935 race car, not this head",
+      "terms": "CC BY-SA 4.0; the cited sentence is attributed to Boschen and Barth, Das Große Buch der Porsche Typen (1983), p. 700",
+      "private_copy_sha256": "0365009f8b863f6d4cd09944d59b6de561853501975537f349b9a2e374e3ca47"
+    },
+    {
+      "id": "supercars-935-76",
+      "title": "Supercars.net: 1976 Porsche 935/76",
+      "url": "https://www.supercars.net/blog/1976-porsche-93576/",
+      "accessed": "2026-11-22",
+      "publisher": "Supercars.net",
+      "kind": "enthusiast specification page, secondary",
+      "applies_to": "same engine family: the 1976 works 935, not this head",
+      "terms": "'© 2021 Supercars.net'; robots.txt disallows only AhrefsBot and grapeshot. Numbers and short quotes only.",
+      "private_copy_sha256": "59d10c5d5a52a7bb4ad519ca927c686d0b991621ddbef33cd66f72c772a0d2d6"
+    },
+    {
+      "id": "supercarnostalgia-935-76",
+      "title": "Supercar Nostalgia: Guide: Porsche 935/76 Werks, a historical and technical appraisal",
+      "url": "https://supercarnostalgia.com/blog/porsche-935-76",
+      "accessed": "2026-11-22",
+      "publisher": "Supercar Nostalgia",
+      "kind": "enthusiast article, secondary",
+      "applies_to": "same engine family: the 1976 works 935, not this head",
+      "terms": "'Text copyright: Supercar Nostalgia'; robots.txt (Squarespace default) as for wolfe-listing. Short quotes only.",
+      "private_copy_sha256": "eed76d671d8f70fe868bfa563c4f53ffb153efb78877289037b14000f31948a5"
+    },
+    {
+      "id": "ultimatecarpage-935",
+      "title": "Ultimatecarpage.com: 1976 Porsche 935 Specifications",
+      "url": "https://www.ultimatecarpage.com/spec/423/Porsche-935.html",
+      "accessed": "2026-11-22",
+      "publisher": "Ultimatecarpage.com (author Wouter Melissen, last updated 2012-03-02)",
+      "kind": "enthusiast specification page, secondary",
+      "applies_to": "same engine family: the 1976 935, not this head",
+      "terms": "'© 1998 - 2026 Ultimatecarpage.com'. Numbers and short quotes only.",
+      "private_copy_sha256": "b4bf152f12814434a390d5cfa6fc6a0f13f5de98dfa8fbf19f9a11e2e861f145"
+    },
+    {
+      "id": "fia-3076",
+      "title": "FIA / ONS homologation form no. 3076, Porsche Turbo, Group 3",
+      "url": "https://historicdb.fia.com/sites/default/files/car_attachment/1601075701/homologation_form_number_3076_group_3.pdf",
+      "accessed": "2026-11-16 (copy saved then; re-read 2026-11-22)",
+      "publisher": "FIA historic database",
+      "kind": "homologation form",
+      "applies_to": "other head: the production 930 Turbo 3.0 engine",
+      "terms": "as recorded in docs/research/935-head-published-data-20261116/findings.json; numbers only",
+      "private_copy_sha256": "801e56f9b066c7bbed5731c1ca3cada81075f28ee4e4b3ebcf0049f664e42adf"
+    },
+    {
+      "id": "fisa-b-298",
+      "title": "FISA / ONS Group B homologation form B-298, Porsche 911 Turbo 2 (3299 cm3)",
+      "url": "https://historicdb.fia.com/sites/default/files/car_attachment/1479168902/homologation_form_number_298_group_b.pdf",
+      "accessed": "2026-11-16 (copy saved then; re-read 2026-11-22)",
+      "publisher": "FIA historic database",
+      "kind": "homologation form",
+      "applies_to": "other head: the production 964 Turbo 3.3 engine",
+      "terms": "as recorded in docs/research/935-head-published-data-20261116/findings.json; numbers only",
+      "private_copy_sha256": "42084321e44be6845d2cc508b273111504a55878426449dec588382b58f8eb67"
+    },
+    {
+      "id": "manual-993",
+      "title": "993 Repair Manual (Porsche AG, 2001 printing), as transcribed in catalog/manual/993-workshop-manual-measurements.json",
+      "url": "https://github.com/cluster2600/porscheparts/blob/main/catalog/manual/993-workshop-manual-measurements.json",
+      "repo_path": "catalog/manual/993-workshop-manual-measurements.json",
+      "accessed": "2026-11-22",
+      "publisher": "Dr. Ing. h.c. F. Porsche AG; transcription by this repository (OCR, unreviewed)",
+      "kind": "workshop manual",
+      "applies_to": "other head: the 993 Carrera engine",
+      "terms": "proprietary manual; the repository holds transcribed numbers only"
+    },
+    {
+      "id": "etb-iso-28741",
+      "title": "The Engineering ToolBox (2018): ISO 28741 Metric Thread Dimensions for Spark Plugs",
+      "url": "https://www.engineeringtoolbox.com/spark-plugs-iso-metric-threads-d_2032.html",
+      "accessed": "2026-11-22",
+      "publisher": "The Engineering ToolBox",
+      "kind": "engineering reference, transcribing ISO 28741",
+      "applies_to": "a standard: every 12 mm and 14 mm spark-plug thread and its tapped hole",
+      "terms": "no licence stated; the page asks to be cited as 'The Engineering ToolBox (2018)'. Numbers and a short quote only.",
+      "private_copy_sha256": "96a0026afd7f05063d501c55fda1c8c72011cebdd1adc970934dfdfd1786a3ea"
+    },
+    {
+      "id": "wikipedia-iso-thread",
+      "title": "Wikipedia: ISO metric screw thread (revision 1381962783, 2026-10-25)",
+      "url": "https://en.wikipedia.org/w/index.php?title=ISO_metric_screw_thread&oldid=1381962783",
+      "accessed": "2026-11-22",
+      "publisher": "Wikipedia contributors",
+      "kind": "encyclopedia, transcribing ISO 68-1",
+      "applies_to": "a standard: the basic profile of every ISO metric thread",
+      "terms": "CC BY-SA 4.0",
+      "private_copy_sha256": "9d2ea50487090421f6ce8747b7a8dca57261509a6a7a8a1a4892b643d11e3096"
+    }
+  ],
+  "published_values": [
+    {
+      "id": "pv-listing-text",
+      "quantity": "seller's description of the scanned object",
+      "value": "Billet Cylinder head Scan; made specifically for a 935 racecar",
+      "unit": null,
+      "source": "wolfe-listing",
+      "quote": "Billet Cylinder head Scan with good detail. Made specifically for a 935 racecar but can fit other 70s or 80s models of 911. You will receive an obj. file upon purchase",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "same head"
+    },
+    {
+      "id": "pv-maker-statement",
+      "quantity": "maker and process of the specimen, as stated privately by the seller",
+      "value": "Xtreme, cast then machined",
+      "unit": null,
+      "source": "faithful-replica-dossier",
+      "quote": "Seller correspondence dated 11 October 2026 identifies **Xtreme, cast then machined** and corrects the listing's “billet” description.",
+      "second_reading": "re-read in the repository file",
+      "relation_to_specimen": "same head (private statement; not published by the seller or the maker)"
+    },
+    {
+      "id": "pv-wolfe-scanners",
+      "quantity": "scanners the seller names",
+      "value": "Creaform Handyscan 700, Einstar Vega",
+      "unit": null,
+      "source": "wolfe-services",
+      "quote": "We currently have 2 scanners in our hands that are helping both Wolfe Classics and others outside of the shop design and build their dreams - The Creaform Handyscan 700 and the Einstar Vega.",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "the seller's equipment; which one scanned this head is not stated"
+    },
+    {
+      "id": "pv-xtreme-process",
+      "quantity": "casting process of the maker's heads",
+      "value": "cast in the USA by lost wax; RR350; HIP processed",
+      "unit": null,
+      "source": "xtreme-programs",
+      "quote": "Our cylinder heads are cast in the USA, utilizing the Lost Wax casting process to ensure the highest quality product. The cores are manufactured from RR350 aluminum alloy for superior heat dissipation. All castings are HIP processed to guarantee maximum reliability.",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "same family (the maker's heads in general)"
+    },
+    {
+      "id": "pv-xtreme-programs",
+      "quantity": "the maker's four programs",
+      "value": "2.0 - 2.9 LITER; 3.0 - 3.5 LITER; 3.6 - 4.0 LITER NA; 3.6 - 4.0 LITER TURBO",
+      "unit": null,
+      "source": "xtreme-programs",
+      "quote": "2.0 - 2.9 LITER 3.0 - 3.5 LITER 3.6 - 4.0 LITER NA 3.6 - 4.0 LITER TURBO",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "same family"
+    },
+    {
+      "id": "pv-xtreme-stems",
+      "quantity": "valve stem diameter, every program",
+      "value": "8",
+      "unit": "mm",
+      "source": "xtreme-2.0-2.9",
+      "also_in": ["xtreme-3.0-3.5", "xtreme-3.6-4.0"],
+      "quote": "Ev8 stainless 8mm lightweight intake valves / Inconel 8mm lightweight exhaust valves",
+      "reading": "read as the stem diameter: the valve head diameters are listed separately on the same page (45 to 53 mm)",
+      "second_reading": "re-read in the saved copies of all four program pages",
+      "relation_to_specimen": "same family"
+    },
+    {
+      "id": "pv-xtreme-plugs",
+      "quantity": "spark-plug size, every program",
+      "value": "12 or 14",
+      "unit": "mm",
+      "source": "xtreme-2.0-2.9",
+      "also_in": ["xtreme-3.0-3.5", "xtreme-3.6-4.0"],
+      "quote": "12mm or 14mm spark plugs",
+      "reading": "thread pitch and reach are not stated; the number of plugs per cylinder is not stated",
+      "second_reading": "re-read in the saved copies of all four program pages",
+      "relation_to_specimen": "same family"
+    },
+    {
+      "id": "pv-xtreme-2.0-2.9-valves",
+      "quantity": "valve head diameters, 2.0 - 2.9 liter program (intake; exhaust)",
+      "value": "45 - 49; 38 - 41.5",
+      "unit": "mm",
+      "source": "xtreme-2.0-2.9",
+      "quote": "45mm - 49mm intake valve / 38mm - 41.5mm exhaust valve",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "same family, one program"
+    },
+    {
+      "id": "pv-xtreme-2.0-2.9-chamber",
+      "quantity": "chamber volume, 2.0 - 2.9 liter program",
+      "value": "68 - 73",
+      "unit": "cm3",
+      "source": "xtreme-2.0-2.9",
+      "quote": "68 - 73 cc chamber volume",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "same family, one program"
+    },
+    {
+      "id": "pv-xtreme-3.0-3.5-valves",
+      "quantity": "valve head diameters, 3.0 - 3.5 liter program (intake; exhaust)",
+      "value": "49 - 53; 41.5 - 42.5",
+      "unit": "mm",
+      "source": "xtreme-3.0-3.5",
+      "quote": "49mm - 53mm intake valve / 41.5mm - 42.5mm exhaust valve",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "same family, one program"
+    },
+    {
+      "id": "pv-xtreme-3.0-3.5-chamber",
+      "quantity": "chamber volume, 3.0 - 3.5 liter program",
+      "value": "86 - 90",
+      "unit": "cm3",
+      "source": "xtreme-3.0-3.5",
+      "quote": "86 - 90 cc chamber volume",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "same family, one program"
+    },
+    {
+      "id": "pv-xtreme-3.0-3.5-flange",
+      "quantity": "intake flange option, 3.0 - 3.5 liter program",
+      "value": "930 or carrera intake flange",
+      "unit": null,
+      "source": "xtreme-3.0-3.5",
+      "quote": "930 or carrera intake flange",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "same family, one program"
+    },
+    {
+      "id": "pv-xtreme-engraving",
+      "quantity": "maker's mark on its castings",
+      "value": "logo engraved by laser",
+      "unit": null,
+      "source": "xtreme-shop",
+      "quote": "Boss Laser Engraver Used for engraving our castings with our logo",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "same family; where the mark sits on a casting is not stated"
+    },
+    {
+      "id": "pv-935-displacement-porsche",
+      "quantity": "displacement of the 1976 935",
+      "value": "2.85",
+      "unit": "L",
+      "source": "porsche-newsroom-turbo",
+      "quote": "While the 935 was launched in 1976 with a 2.85-litre single-turbo engine and 434 kW (590 PS), a twin-turbo engine, producing 463 kW (630 PS), arrived just a year later.",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "same engine family (assumed, H19)"
+    },
+    {
+      "id": "pv-935-class-rule",
+      "quantity": "why 2.85 L: turbo factor and class",
+      "value": "1.4; 4.0 L class",
+      "unit": null,
+      "source": "wikipedia-porsche-935",
+      "quote": "Capacity was reduced to 2.85 L, and with the turbo charging penalty factor of 1.4, it fit into the 4.0 L class",
+      "second_reading": "re-read in the saved wikitext",
+      "relation_to_specimen": "same engine family (assumed, H19)"
+    },
+    {
+      "id": "pv-935-other-capacities",
+      "quantity": "other capacities raced in the 935",
+      "value": "2.8 - 3.3 L; optional 3.0 L customer engine",
+      "unit": null,
+      "source": "wikipedia-porsche-935",
+      "quote": "engine = 2.8–3.3 L Type 935 twin-turbocharged Flat 6 / Kremer went on to develop yet another special 935, the K2, and also ran the optional 3.0L engine offered by Porsche",
+      "second_reading": "re-read in the saved wikitext (infobox and section '935/77A customer')",
+      "relation_to_specimen": "same engine family: the alternative to H19"
+    },
+    {
+      "id": "pv-935-bore-supercars",
+      "quantity": "bore / stroke / displacement of the 1976 935",
+      "value": "92.8 / 70.4 / 2856",
+      "unit": "mm / mm / cm3",
+      "source": "supercars-935-76",
+      "quote": "displacement 2856 cc / 174.28 in³ bore 92.8 mm / 3.7 in stroke 70.4 mm / 2.8 in",
+      "contradiction": "the same page's text says 'the 2808cc flat-6'",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "same engine family (assumed, H19)"
+    },
+    {
+      "id": "pv-935-bore-supercarnostalgia",
+      "quantity": "bore / stroke / displacement of the 1976 935",
+      "value": "92.4 / 70.4 / 2856",
+      "unit": "mm / mm / cm3",
+      "source": "supercarnostalgia-935-76",
+      "quote": "displacement was scaled back from 2994cc to 2856cc. ... The cubic capacity was reduced thanks to a bore reduction of 2.6mm (92.4mm instead of 95mm). Stroke stayed at 70.4mm.",
+      "contradiction": "92.4 mm with a 70.4 mm stroke gives 2832 cm3, not 2856",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "same engine family (assumed, H19)"
+    },
+    {
+      "id": "pv-935-bore-ultimatecarpage",
+      "quantity": "bore / stroke / displacement of the 1976 935 (Type 930/72)",
+      "value": "92.0 / 70.4 / 2,808",
+      "unit": "mm / mm / cm3",
+      "source": "ultimatecarpage-935",
+      "quote": "Type 930/72 B6 ... Displacement 2,808 cc / 171.4 cu in Bore / Stroke 92.0 mm (3.6 in) / 70.4 mm (2.8 in)",
+      "contradiction": "2,808 cm3 is not Porsche's 2.85 L",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "same engine family (assumed, H19)"
+    },
+    {
+      "id": "pv-935-twin-ignition",
+      "quantity": "ignition of the 1976 935 engine",
+      "value": "twin plug ignition",
+      "unit": null,
+      "source": "supercarnostalgia-935-76",
+      "also_in": ["supercars-935-76"],
+      "quote": "Special parts included a horizontal cooling fan, titanium connecting rods, forged steel rocker arms, twin plug ignition and mechanical plunger-type fuel-injection.",
+      "quote_second_source": "The engine used dual-ignition, a 908-style fuel pump, plunger-type fuel injection and spraybar lubrication.",
+      "second_reading": "re-read in both saved copies",
+      "relation_to_specimen": "same engine family (assumed, H19)"
+    },
+    {
+      "id": "pv-930-plugs-per-cylinder",
+      "quantity": "spark plugs per cylinder, production 930 Turbo 3.0",
+      "value": "1",
+      "unit": null,
+      "source": "fia-3076",
+      "quote": "88. Anzahl der Zündkerzen je Zylinder ... 1 / Number of spark plugs per cylinder",
+      "reading": "text layer of the scanned form, letter spacing normalised",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "other head"
+    },
+    {
+      "id": "pv-930-chamber",
+      "quantity": "volume of the combustion chamber in the head, production 930 Turbo 3.0",
+      "value": "89.6",
+      "unit": "cm3",
+      "source": "fia-3076",
+      "quote": "140b. Volumen des Verbrennungsraumes im Zylinderkopf ... 89,6 ccm / 5,46 cu in / Volume of combustion chamber in head",
+      "reading": "text layer of the scanned form, letter spacing normalised; 89.6 cm3 = 5.47 cu in, consistent",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "other head"
+    },
+    {
+      "id": "pv-964t-valve-angles",
+      "quantity": "angles between inlet / exhaust valve and the vertical, 964 Turbo 3.3",
+      "value": "25° 30' / 30°15'",
+      "unit": "degrees",
+      "source": "fisa-b-298",
+      "quote": "e) Winkel zwischen Einlaßventil und Vertikale 25° 30' / f) Winkel zwischen Auslaßventil und Vertikale 30°15'",
+      "reading": "text layer of the scanned form, spacing and ß normalised; items 321 e and 321 f",
+      "second_reading": "re-read in the saved copy (also in findings.json of 2026-11-16)",
+      "relation_to_specimen": "other head"
+    },
+    {
+      "id": "pv-964t-stem",
+      "quantity": "valve stem diameter, 964 Turbo 3.3",
+      "value": "9,0",
+      "unit": "mm",
+      "source": "fisa-b-298",
+      "quote": "e) Durchmesser des Ventilschafts 9,0 ± 0,2 mm / Diameter of the valve stem in guide",
+      "reading": "text layer of the scanned form, spacing normalised; item 327 e",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "other head"
+    },
+    {
+      "id": "pv-993-guide-bore",
+      "quantity": "reamed valve-guide bore, 993 Carrera",
+      "value": "8.00 to 8.015",
+      "unit": "mm",
+      "source": "manual-993",
+      "quote": "of \"g\" = 8.00 to 8.015 mm using a broach or",
+      "reading": "manual p. 153, OCR occurrence, extraction_status ocr_unreviewed",
+      "second_reading": "re-read in the repository record",
+      "relation_to_specimen": "other head"
+    },
+    {
+      "id": "pv-993-plug-thread",
+      "quantity": "spark-plug thread, 993 Carrera",
+      "value": "M 14 x 1.25",
+      "unit": null,
+      "source": "manual-993",
+      "quote": "Spark plugs M 14 x 1.25 30 (22)",
+      "reading": "manual p. 60, torque table",
+      "second_reading": "re-read in the repository record",
+      "relation_to_specimen": "other head"
+    },
+    {
+      "id": "pv-iso-28741-m12",
+      "quantity": "M12 x 1.25 spark-plug thread: major diameter; minor diameter (6H); pitch",
+      "value": "12.0; 10.912 - 10.647; 1.25",
+      "unit": "mm",
+      "source": "etb-iso-28741",
+      "quote": "M12 x 1.25 12.0 10.912 - 10.647 1.25 ... 1) Tolerance class 6H.",
+      "second_reading": "re-read in the saved copy (table rows in the text: size, major, minor, pitch, tap drill, depth)",
+      "relation_to_specimen": "a standard; applies if the plug is the 12 mm option (H18)"
+    },
+    {
+      "id": "pv-iso-28741-m14",
+      "quantity": "M14 x 1.25 spark-plug thread: major diameter; minor diameter (6H); pitch",
+      "value": "14.0; 12.912 - 12.647; 1.25",
+      "unit": "mm",
+      "source": "etb-iso-28741",
+      "quote": "M14 x 1.25 14.0 12.912 - 12.647 1.25",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "a standard; the alternative to H18's 12 mm plug"
+    },
+    {
+      "id": "pv-iso-28741-conformity",
+      "quantity": "tapped holes of spark plugs follow the ISO metric thread",
+      "value": "ISO 68-1, ISO 261, ISO 965-1, ISO 965-3; 60°",
+      "unit": null,
+      "source": "etb-iso-28741",
+      "quote": "The threads of spark-plugs and the corresponding tapped holes in the cylinder heads shall conform to ISO 68-1, ISO 261, ISO 965-1, and ISO 965-3 with thread angle 60o.",
+      "second_reading": "re-read in the saved copy",
+      "relation_to_specimen": "a standard"
+    },
+    {
+      "id": "pv-iso-68-profile",
+      "quantity": "basic profile of an ISO metric thread: minor and pitch diameters from the major diameter and pitch; internal-thread limits",
+      "value": "D_min = D_maj - 1.082532 P; D_p = D_maj - 0.649519 P",
+      "unit": null,
+      "source": "wikipedia-iso-thread",
+      "quote": "D_min = D_maj - 1.082532 · P ... D_p = D_maj - 0.649519 · P ... in an internal (female) thread (e.g. in a nut), the major and minor diameters are minimum dimensions; therefore the thread profile must end flat at D_min but may be rounded out beyond D_maj.",
+      "second_reading": "re-read in the saved wikitext (formulas transcribed from LaTeX)",
+      "relation_to_specimen": "a standard"
+    }
+  ],
+  "identity": [
+    {
+      "field": "seller_of_the_scan",
+      "value": "Wolfe Classics, Sugar Land, Texas",
+      "status": "published by the seller",
+      "evidence": ["pv-listing-text"]
+    },
+    {
+      "field": "maker_of_the_head",
+      "value": "Xtreme Cylinder Heads, Palm City, Florida",
+      "status": "assumed (H18): the seller's private statement recorded in the repository; neither the seller's listing nor the maker's pages name this specimen",
+      "evidence": ["pv-maker-statement"]
+    },
+    {
+      "field": "process",
+      "value": "cast then machined; the maker publishes lost-wax casting with HIP for its heads",
+      "status": "assumed (H18); the listing's word 'billet' is superseded by the seller's statement",
+      "evidence": ["pv-maker-statement", "pv-xtreme-process"]
+    },
+    {
+      "field": "period_part_or_new_casting",
+      "value": "new aftermarket casting",
+      "status": "assumed (H18), from the maker statement; no date of manufacture is known",
+      "evidence": ["pv-maker-statement", "pv-xtreme-process"]
+    },
+    {
+      "field": "product_name",
+      "value": null,
+      "status": "unknown",
+      "blocker": "the maker publishes programs by displacement, not product names; '935 Xtreme' is this repository's label and 'Billet Cylinder head' the listing's title",
+      "evidence": ["pv-listing-text", "pv-xtreme-programs"]
+    },
+    {
+      "field": "intended_application",
+      "value": "a Porsche 935 race car; may fit other 1970s or 1980s 911 engines",
+      "status": "published by the seller",
+      "evidence": ["pv-listing-text"]
+    },
+    {
+      "field": "head_type",
+      "value": "one air-cooled, two-valve, twin-plug head per cylinder, held by four head studs, of the 911 flat-six pattern",
+      "status": "observed on the scan (two valve axes, two plug bores, four stud passages: params/feature-fits.json) and assumed for the rest (H18)",
+      "evidence": ["pv-935-twin-ignition", "pv-964t-valve-angles"]
+    },
+    {
+      "field": "program_and_bore_family",
+      "value": "the maker's 2.0 - 2.9 liter program, for the 2.85 L 935 engine, bore at most 92.8 mm",
+      "status": "assumed (H19), not confirmed; the 3.0 - 3.5 liter program stays a live alternative",
+      "evidence": ["pv-xtreme-programs", "pv-935-displacement-porsche", "pv-935-class-rule", "pv-935-bore-supercars", "pv-935-other-capacities"]
+    },
+    {
+      "field": "valve_stem_diameter",
+      "value": "8 mm",
+      "status": "assumed (H18) from the maker's catalogue; the fitted guide bore disagrees by 0.51 mm (params/scale-check.json)",
+      "evidence": ["pv-xtreme-stems"]
+    },
+    {
+      "field": "spark_plug_thread",
+      "value": "M12 x 1.25",
+      "status": "assumed (H18): the maker's 12 mm option, with the pitch of ISO 28741; M14 would need the scan to be 11% to 23% too small",
+      "evidence": ["pv-xtreme-plugs", "pv-iso-28741-m12"]
+    },
+    {
+      "field": "engine_type_number",
+      "value": null,
+      "status": "unknown",
+      "blocker": "no published document links this head to an engine number; secondary pages give Type 930/72 for the 1976 works engine, which is not this specimen"
+    },
+    {
+      "field": "part_number_or_casting_mark",
+      "value": null,
+      "status": "unknown",
+      "blocker": "no mark is legible on the twin's renders; the maker engraves its logo on castings (pv-xtreme-engraving) but does not say where"
+    },
+    {
+      "field": "material_of_the_specimen",
+      "value": null,
+      "status": "unknown for this specimen",
+      "blocker": "the maker's RR350 and HIP are statements about its heads in general (pv-xtreme-process), not about this casting's batch or treatment"
+    },
+    {
+      "field": "scanner",
+      "value": null,
+      "status": "unknown",
+      "blocker": "the seller names two scanners (pv-wolfe-scanners) but not which one took this scan, nor its calibration or export unit"
+    }
+  ],
+  "discriminating_features": [
+    {
+      "id": "f-plug-count",
+      "feature": "spark-plug bores per chamber",
+      "twin_value": "2 (plug_x_plus and plug_x_minus; axes 29.19° and 28.61° from the bore axis, 57.76° apart)",
+      "twin_record": "params/feature-fits.json",
+      "confirmed": "both plug wells, both chamber reliefs and both seat faces confirmed; the thread bore of plug_x_plus confirmed",
+      "published": ["pv-935-twin-ignition", "pv-930-plugs-per-cylinder"],
+      "discriminates": "twin plug: consistent with a 935 head; excludes an unmodified production 930 3.0 head (one plug); does not separate the maker's programs, which do not state the plug count"
+    },
+    {
+      "id": "f-plug-thread",
+      "feature": "spark-plug thread bore diameter",
+      "twin_value": "11.40 mm (plug_x_plus, re-fit, confirmed); 11.28 mm (plug_x_minus, first fit, not confirmed)",
+      "twin_record": "params/reference-sheet.json; params/feature-fits.json",
+      "confirmed": "plug_x_plus thread bore: 94.3% of held-out vertices within 0.2 mm",
+      "published": ["pv-xtreme-plugs", "pv-iso-28741-m12", "pv-iso-28741-m14", "pv-993-plug-thread"],
+      "discriminates": "12 mm plug under the 1 mm unit (M14 needs a scale of 1.109 or more); differs from the 993's M14 x 1.25; does not separate the maker's programs"
+    },
+    {
+      "id": "f-chamber-shoulder",
+      "feature": "chamber shoulder diameter at the register floor",
+      "twin_value": "92.80 mm (radial RMS 0.22 mm over 415 facets, 7.99 mm below the deck)",
+      "twin_record": "params/frame.json",
+      "confirmed": "ring fit on acquired facets; not part of the CloudCompare feature check",
+      "published": ["pv-935-bore-supercars", "pv-935-bore-supercarnostalgia", "pv-935-bore-ultimatecarpage", "pv-935-class-rule", "pv-935-displacement-porsche"],
+      "discriminates": "under the 1 mm unit it equals the largest bore the 4.0 L class allowed a 70.4 mm stroke (92.80 mm, arithmetic in scale-check.json) and the 92.8 mm published bore of the 2.85 L 935; a 95 mm or larger bore would overhang the chamber edge. Separates the programs only if the chamber edge is the bore, which no source states"
+    },
+    {
+      "id": "f-register",
+      "feature": "register recess diameter (cylinder spigot)",
+      "twin_value": "113.88 mm (ring fit, radial RMS 0.29 mm); 113.36 mm (feature fit over a 212° arc, not confirmed)",
+      "twin_record": "params/frame.json; params/feature-fits.json",
+      "confirmed": "no",
+      "published": [],
+      "discriminates": "nothing yet: no published register diameter of any candidate head or cylinder was found in a page that could be opened"
+    },
+    {
+      "id": "f-stud-pattern",
+      "feature": "head-stud passages",
+      "twin_value": "4 passages parallel to the bore axis (0.5° to 1.3°), 10.50 to 10.96 mm across, on a square of 85.6 to 85.8 mm sides and 121.2 to 121.4 mm diagonals, centred about 0.1 mm from the axis point of the fitted register recess",
+      "twin_record": "params/feature-fits.json (axis points carried to z = 20 mm; arithmetic in tests/test_935_identity_scale.py)",
+      "confirmed": "no passage confirmed; two axes not determined by the fit",
+      "published": [],
+      "discriminates": "nothing yet: no stud pattern or stud thread of any candidate was found in a page that could be opened (retailer pages naming M10 x 1.5 studs refused automated readers)"
+    },
+    {
+      "id": "f-valve-angles",
+      "feature": "valve axes to the bore axis",
+      "twin_value": "25.89° (valve_y_minus) and 29.89° (valve_y_plus), 55.76° apart",
+      "twin_record": "params/feature-fits.json",
+      "confirmed": "axes built on fits of which the valve_y_plus throat and seat are confirmed",
+      "published": ["pv-964t-valve-angles"],
+      "discriminates": "the 911 two-valve geometry (25.5° and 30.25° on the 964 Turbo, 55.75° apart); dimensionless, so it carries no scale; does not separate the maker's programs"
+    },
+    {
+      "id": "f-guide-bore",
+      "feature": "valve-guide bore",
+      "twin_value": "8.51 mm over 48 mm (valve_y_minus, first fit; 8.56 mm on the re-fit attempt), not confirmed",
+      "twin_record": "params/feature-fits.json; params/feature-refits.json",
+      "confirmed": "no (84% of held-out vertices within 0.2 mm against 90% required)",
+      "published": ["pv-xtreme-stems", "pv-964t-stem", "pv-993-guide-bore"],
+      "discriminates": "excludes the production 9 mm stem under the 1 mm unit (bore smaller than the stem); 0.51 mm larger than the 8 mm stem and the 993's 8.00 to 8.015 mm guide bore: unexplained (scale-check.json)"
+    },
+    {
+      "id": "f-seats-throats",
+      "feature": "valve seats and throats",
+      "twin_value": "valve_y_minus: seat cone 45.4 to 52.7 mm, 49.10 mm at mid-band (not confirmed), throat 45.86 mm (confirmed); valve_y_plus: seat cone 38.9 to 47.2 mm, 43.00 mm at mid-band (confirmed), throat 38.47 mm (confirmed)",
+      "twin_record": "params/feature-fits.json; params/reference-sheet.json",
+      "confirmed": "valve_y_plus seat and throat, valve_y_minus throat",
+      "published": ["pv-xtreme-2.0-2.9-valves", "pv-xtreme-3.0-3.5-valves"],
+      "discriminates": "weakly: where on its cone a valve of each program would seat is not published; a 43.0 mm mid-band seat on valve_y_plus sits above the 2.0 - 2.9 program's 41.5 mm largest exhaust valve and inside or above the 3.0 - 3.5 program's 41.5 - 42.5 mm, which leans toward the larger program if valve_y_plus is the exhaust (H09)"
+    },
+    {
+      "id": "f-chamber-volume",
+      "feature": "chamber volume",
+      "twin_value": null,
+      "twin_record": null,
+      "blocker": "not computed: it needs the valve faces closed at a seat position that is not published, and the occupancy-grid descriptor of the private run was not found on 2026-11-22",
+      "published": ["pv-xtreme-2.0-2.9-chamber", "pv-xtreme-3.0-3.5-chamber", "pv-930-chamber"],
+      "discriminates": "the strongest separator of the two programs (68 - 73 against 86 - 90 cm3), once measured or computed with declared valve faces; it scales with the cube of the unit"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "A",
+      "description": "Xtreme casting of the 2.0 - 2.9 liter program, prepared for the 2.85 L 935 (bore at most 92.8 mm), twin plug",
+      "evidence_for": [
+        "the seller says the head was made for a 935 race car (pv-listing-text) and the seller's private statement names the maker (pv-maker-statement)",
+        "Porsche gives the 935 a 2.85 L engine (pv-935-displacement-porsche), inside this program's range",
+        "under the 1 mm unit the chamber shoulder (92.80 mm) equals the 92.8 mm published bore and the class-limit bore (f-chamber-shoulder)",
+        "two plug bores, as in the 935's twin ignition (f-plug-count)"
+      ],
+      "evidence_against": [
+        "published bores of the 2.85 L 935 disagree (92.0, 92.4, 92.8 mm)",
+        "valve_y_plus's 43.0 mm mid-band seat is larger than this program's largest exhaust valve, 41.5 mm (f-seats-throats; weak, since where a valve seats on the cone is not published)",
+        "the 935 also raced with 3.0 to 3.3 L engines (pv-935-other-capacities)"
+      ],
+      "verdict": "assumed (H18 and H19), not confirmed"
+    },
+    {
+      "id": "B",
+      "description": "Xtreme casting of the 3.0 - 3.5 liter program (bores of 95 mm and more), twin plug, for a 3.0 to 3.3 L 935-type engine",
+      "evidence_for": [
+        "the 935 raced with 3.0 to 3.3 L engines (pv-935-other-capacities)",
+        "valve_y_plus's seat and throat sizes sit closer to this program's exhaust valves (f-seats-throats)",
+        "this program lists a 930 intake flange option (pv-xtreme-3.0-3.5-flange)"
+      ],
+      "evidence_against": [
+        "under the 1 mm unit the chamber edge (92.80 mm) is 2.2 mm smaller than a 95 mm bore: either the head overhangs the bore, which no source describes, or the scale is at least 1.024, while the guide-bore check points the other way (scale-check.json)"
+      ],
+      "verdict": "kept open; the chamber volume or the maker's statement would separate A and B"
+    },
+    {
+      "id": "C",
+      "description": "period Porsche 935 head (factory casting) or a modified production 930 head",
+      "evidence_for": [
+        "the listing says the head was made specifically for a 935 (pv-listing-text)"
+      ],
+      "evidence_against": [
+        "the seller's statement names an aftermarket maker and a casting (pv-maker-statement)",
+        "the fitted guide bore (8.51 mm) is smaller than the production 9 mm stem (pv-964t-stem), so the head does not take the production valve under the 1 mm unit",
+        "the production 930 head has one plug per cylinder (pv-930-plugs-per-cylinder); the scan has two"
+      ],
+      "verdict": "not retained"
+    },
+    {
+      "id": "D",
+      "description": "Xtreme casting of a 3.6 - 4.0 liter program",
+      "evidence_for": [
+        "the maker publishes these programs with the same 8 mm stems and 12 or 14 mm plugs (pv-xtreme-stems, pv-xtreme-plugs)"
+      ],
+      "evidence_against": [
+        "the seller ties the head to a 935 race car (pv-listing-text); the encyclopedia's summary gives the 935 engines of 2.8 to 3.3 L (pv-935-other-capacities)",
+        "if the chamber edge is the bore, a bore of 100 mm or more against the 92.80 mm chamber edge needs a scale of 1.078 or more, above the plug check's upper bound of 1.053 (scale-check.json)"
+      ],
+      "verdict": "not retained"
+    }
+  ],
+  "assumed_identity": {
+    "hypotheses": ["H18-specimen-identity", "H19-bore-family"],
+    "statement": "From 2026-11-22 the twin assumes candidate A: a new casting by Xtreme Cylinder Heads, cast then machined, for a Porsche 935: one air-cooled two-valve twin-plug head per cylinder with four head-stud passages, 8 mm valve stems and M12 x 1.25 spark plugs (H18), of the maker's 2.0 - 2.9 liter program for the 2.85 L 935 engine, bore at most 92.8 mm, taken equal to the fitted chamber shoulder (H19).",
+    "status": "assumed by owner decision 2026-11-22, not confirmed",
+    "uses_allowed": [
+      "choosing which published values to compare with the twin, each marked 'same family' at best",
+      "the scale check of params/scale-check.json, with H19 not counted as an independent check",
+      "the barrel bore of H13, which already sits on the fitted chamber shoulder"
+    ],
+    "uses_not_allowed": [
+      "stating any dimension, tolerance, thread, fit, material or compression ratio of the specimen",
+      "retiring the owner's unit instruction or closing #692 or #693",
+      "any interface claim toward a 993 or any engine use"
+    ],
+    "reviewer": "Wolfe Classics (owner decision 2026-11-22); not contacted for this record"
+  },
+  "published_figures_already_compared": [
+    {"record": "params/published-993-comparison.json", "figures": "993 workshop manual: valve heads, seat angle, guide bore, spark-plug thread, bore", "relation": "other head", "note": "the 993 Carrera engine"},
+    {"record": "params/published-993-comparison.json", "figures": "DDK forum figures: port, valve and guide sizes", "relation": "other head", "note": "3.2 Carrera and RSR-type builds, reported by forum members"},
+    {"record": "docs/research/935-head-published-data-20261116/findings.json", "figures": "form 3076: valve sizes, lifts, timing, cam lobes, bore and stroke", "relation": "other head", "note": "the production 930 Turbo 3.0"},
+    {"record": "docs/research/935-head-published-data-20261116/findings.json", "figures": "form B-298: valve angles, stems, lengths, port openings", "relation": "other head", "note": "the production 964 Turbo 3.3"},
+    {"record": "docs/research/935-head-published-data-20261116/findings.json", "figures": "Web Cam grind 233 timing card", "relation": "other head", "note": "an aftermarket camshaft for 911 engines in general"},
+    {"record": "docs/research/935-faithful-replica-20261028/README.md", "figures": "Xtreme catalogue ranges of the four programs: ports, valves, stems, plugs, chamber volume", "relation": "same family", "note": "the maker's catalogue, if H18 holds; ranges, not this specimen"},
+    {"record": "docs/research/935-faithful-replica-20261028/README.md", "figures": "Retro Sport restored 935 head set 930 104 048 01: ports, restored height", "relation": "other head", "note": "period factory 935 heads"},
+    {"record": "params/assembly-heat-paths-case.json", "figures": "MAHLE 503 WR 44 00 cylinder heights (H13)", "relation": "other head", "note": "a 993 Turbo barrel"},
+    {"record": "params/scale-check.json", "figures": "8 mm stems and 12 mm plugs of the maker; ISO 28741 thread", "relation": "same family", "note": "the maker's options for every program and a standard"},
+    {"record": "params/scale-check.json", "figures": "bores of the 2.85 L 935", "relation": "same family", "note": "the engine family assumed by H19"}
+  ],
+  "same_head_figures": "none: no published figure describes this specimen; the only published statement about it is the seller's listing text",
+  "questions_for_reviewer": [
+    {"id": "Q1", "question": "Is the scanned head an Xtreme Cylinder Heads casting, cast then machined, and of which program and pattern revision? Is there a part number, serial or engraved logo on it, and where?", "settles": "H18, candidates A to D"},
+    {"id": "Q2", "question": "Which engine was it made for: displacement, bore and stroke, engine type, single or twin turbo? Is it a 935 replica build or a period configuration?", "settles": "H19"},
+    {"id": "Q3", "question": "What bore is the chamber machined for, and is the chamber edge diameter equal to the bore? What are the register (cylinder spigot recess) diameter and depth, and is a fire ring fitted?", "settles": "H19, the conditional check of scale-check.json, the barrel of H13"},
+    {"id": "Q4", "question": "What is the chamber volume as cc'd, with valves and plugs in, and to which face?", "settles": "A against B"},
+    {"id": "Q5", "question": "Which spark plugs: thread, pitch and reach (12 or 14 mm), and the same in both bores?", "settles": "H18 and the primary check of scale-check.json"},
+    {"id": "Q6", "question": "Which flange side is the inlet? What are the valve head and stem diameters, the finished guide bore and guide material, and the seat insert materials and angles?", "settles": "H09, H05, the guide-bore discrepancy of scale-check.json"},
+    {"id": "Q7", "question": "Was the head finish-machined when it was scanned (guides reamed, seats cut, studs fitted)? The scan's guide bore reads 8.51 mm against 8 mm stems.", "settles": "the guide-bore discrepancy"},
+    {"id": "Q8", "question": "How many head studs, of which thread, on which spacing; which thread for the cam-housing studs?", "settles": "H02, H03"},
+    {"id": "Q9", "question": "Which scanner took the scan (Creaform Handyscan 700 or Einstar Vega), was it calibrated at the time, was spray used, and is the OBJ in millimetres with no scaling or registration applied?", "settles": "#693: whether 1 OBJ unit = 1 mm is the scanner's own unit"},
+    {"id": "Q10", "question": "What is the alloy, heat treatment and HIP state of this casting?", "settles": "material of the specimen"},
+    {"id": "Q11", "question": "Under what licence may the project reuse the scan and any figure given in reply?", "settles": "#462"}
+  ],
+  "unresolved": [
+    "the program (A or B) and the bore: no published statement and no computed chamber volume",
+    "engine type number, part number, casting mark, material batch, scanner and its unit",
+    "the guide bore: 0.51 mm larger than an 8 mm stem with the 993's reamed bore, unexplained",
+    "no published register diameter, stud pattern or stud thread of any candidate could be opened"
+  ]
+}

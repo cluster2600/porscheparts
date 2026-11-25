@@ -1,0 +1,188 @@
+{
+  "schema": "935-cad-twin-scale-check/1",
+  "date": "2026-11-22",
+  "issue": "#693",
+  "depends_on": "#692: params/specimen-identity.json, hypotheses H18 and H19",
+  "claims": "A check of the owner's instruction 1 OBJ unit = 1 mm against published values of the assumed identity. It is not a measurement and not a calibration: no length was measured on the specimen. The twin is not rescaled and the owner's instruction stays in force.",
+  "definition": "s = published length / fitted length of the same feature. s = 1 means the 1 mm unit agrees with the published value; s = 1.02 would mean every fitted length is 2% too small.",
+  "twin_rescaled": false,
+  "owner_instruction": "kept: 1 OBJ unit = 1 mm (frame.json 'units'); it is retired only by a contributed measurement of at least three lengths the twin holds (#693), or by the seller's statement of the scanner's unit and calibration (questions_for_reviewer Q9 of specimen-identity.json)",
+  "inputs_at_check_sha256": {
+    "frame.json": "4f9afc16085df25745863802e9d86237360168b6a9f360d8d981a75ee440c451",
+    "feature-fits.json": "aac00fc56eb66834bde8b1aa09ef99db24181b7380a3d17eed8e362cabab7ac8",
+    "feature-refits.json": "08b37f03cb1cdfbcd42f343d597d9bec2925b6a779b8378be8ff8bcda66ad8fb",
+    "feature-confirmation.json": "e69ee678cd949f0ed3f880aa2c85dfc6fec7c97b2c419822bc26d31062b394ad",
+    "reference-sheet.json": "e5ac2f95c2b352820d4b10b1d57064802e5812303bb8ace7f10bac5280f2efc7"
+  },
+  "selection": "The published length best suited to the check is the one whose published value applies to the specimen with the fewest identity assumptions, on a feature the CloudCompare check confirms, with a published tolerance. Only the spark-plug thread meets all three: the maker offers 12 or 14 mm plugs on every program, ISO 28741 fixes the thread, and the plug_x_plus thread bore is confirmed. The chamber shoulder is larger and fitted more tightly, but its published bore needs H19 and an unstated design rule. The guide bore is the only other feature with a maker's published size, and it is not confirmed.",
+  "checks": [
+    {
+      "id": "plug-thread-x-plus",
+      "role": "primary",
+      "feature": "plug_x_plus_thread_bore",
+      "twin": {
+        "value_mm": 11.4011,
+        "what": "diameter at mid-band of the declared re-fit (a cone of half-angle 0.14°)",
+        "record": "params/reference-sheet.json",
+        "confirmed": "declared re-fit (#696): 94.33% of held-out vertices within 0.2 mm",
+        "radius_sigma_mm": 0.00337,
+        "radius_sigma_record": "params/feature-refits.json",
+        "diameter_along_bore_mm": [11.3666, 11.4356],
+        "fit_uncertainty": "diameter sigma 0.0067 mm from the fit (a lower bound), 0.07 mm of taper along 14.2 mm of bore: 0.06% and 0.6% of the diameter"
+      },
+      "premises": [
+        "H18: the plug is the maker's 12 mm option (pv-xtreme-plugs) with the ISO 28741 thread M12 x 1.25 (pv-iso-28741-m12)",
+        "a cylinder fitted through a scanned internal thread lies between its crest, the minor diameter D1, and its root, at or beyond the major diameter D (pv-iso-68-profile)"
+      ],
+      "published": {
+        "thread": "M12 x 1.25",
+        "major_diameter_mm": 12.0,
+        "minor_diameter_6H_mm": [10.647, 10.912],
+        "pitch_mm": 1.25,
+        "values": ["pv-iso-28741-m12", "pv-iso-68-profile"],
+        "tolerance": "6H minor-diameter band 0.265 mm; the major diameter of an internal thread is a minimum only, so the root may lie beyond 12.0 mm"
+      },
+      "interval": {
+        "published_low_mm": 10.647,
+        "published_high_mm": 12.0,
+        "s_low": 0.9339,
+        "s_high": 1.0525,
+        "arithmetic": "s_low = 10.647 / 11.4011, s_high = 12.0 / 11.4011"
+      },
+      "central_estimate": {
+        "model": "declared: the fit returns the axial mean radius of a fully resolved profile. On the basic profile (flanks at 60°, crest flat P/4 at D1, root flat P/8 at D) that mean is D1 + 7/16 (D - D1).",
+        "published_mean_mm": [11.2389, 11.388],
+        "s": [0.9858, 0.9989],
+        "arithmetic": "mean = D1 + 7/16 (12.0 - D1) for D1 = 10.647 and 10.912; s = mean / 11.4011"
+      },
+      "alternative_thread": {
+        "thread": "M14 x 1.25",
+        "values": ["pv-iso-28741-m14"],
+        "s_low": 1.1093,
+        "s_high": 1.228,
+        "arithmetic": "12.647 / 11.4011 and 14.0 / 11.4011",
+        "reading": "an M14 plug would make every fitted length 11% to 23% too small; the chamber edge would then be 103 to 114 mm across, larger than any bore published for the 935"
+      },
+      "unit_holds_within_uncertainty": true,
+      "independent_of_H17": true,
+      "result": "s between 0.934 and 1.053 (0.986 to 0.999 under the declared profile model): the 1 mm unit holds within about 6%, the resolution this check can give"
+    },
+    {
+      "id": "plug-thread-x-minus",
+      "role": "supporting",
+      "feature": "plug_x_minus_thread_bore",
+      "twin": {
+        "value_mm": 11.2778,
+        "what": "diameter of the first fit (a cylinder)",
+        "record": "params/feature-fits.json",
+        "confirmed": "no: not confirmable from this scan (89.7% of held-out vertices within 0.2 mm after the declared re-fit, 90% required)",
+        "radius_sigma_mm": 0.00503
+      },
+      "premises": ["as plug-thread-x-plus"],
+      "published": {"thread": "M12 x 1.25", "values": ["pv-iso-28741-m12", "pv-iso-68-profile"]},
+      "interval": {
+        "published_low_mm": 10.647,
+        "published_high_mm": 12.0,
+        "s_low": 0.9441,
+        "s_high": 1.064,
+        "arithmetic": "s_low = 10.647 / 11.2778, s_high = 12.0 / 11.2778"
+      },
+      "unit_holds_within_uncertainty": true,
+      "independent_of_H17": true,
+      "result": "agrees with the primary check; not confirmed, so it adds no weight"
+    },
+    {
+      "id": "chamber-shoulder-bore",
+      "role": "conditional: not counted as a check of the unit",
+      "feature": "chamber_shoulder ring",
+      "twin": {
+        "value_mm": 92.8029,
+        "what": "ring fitted on the chamber shoulder at the register floor",
+        "record": "params/frame.json",
+        "confirmed": "ring fit on 415 acquired facets, radial RMS 0.2151 mm; outside the CloudCompare feature check",
+        "diameter_sigma_mm": 0.0211,
+        "fit_uncertainty": "2 x 0.2151 / sqrt(415) = 0.021 mm, a statistical lower bound: 0.02% of the diameter"
+      },
+      "premises": [
+        "H19: the head serves the 2.85 L 935 engine",
+        "H19: the chamber edge at the register floor is the bore; no source states this design rule"
+      ],
+      "published": {
+        "bores_mm": [92.0, 92.4, 92.8],
+        "values": ["pv-935-bore-ultimatecarpage", "pv-935-bore-supercarnostalgia", "pv-935-bore-supercars"],
+        "class_limit": {
+          "rule": "turbo factor 1.4 and the 4.0 L class (pv-935-class-rule), stroke 70.4 mm (pv-935-bore-supercars, pv-935-bore-supercarnostalgia, pv-935-bore-ultimatecarpage)",
+          "largest_displacement_cm3": 2857.14,
+          "largest_bore_mm": 92.8024,
+          "arithmetic": "bore = sqrt(4000 / 1.4 x 1000 / (6 x pi / 4 x 70.4)) mm"
+        },
+        "porsche_displacement_L": 2.85,
+        "tolerance": "the published bores disagree by 0.8 mm; 2856 and 2857 cm3 give 92.78 and 92.80 mm with the 70.4 mm stroke, 92.0 mm gives 2808 cm3 and 92.4 mm gives 2832 cm3"
+      },
+      "interval": {
+        "s_low": 0.9913,
+        "s_high": 1.0,
+        "arithmetic": "92.0 / 92.8029 and 92.8 / 92.8029 = 0.99997"
+      },
+      "unit_holds_within_uncertainty": true,
+      "independent_of_H17": false,
+      "result": "s between 0.991 and 1.000; not counted, because H19 was chosen partly from this same agreement under the 1 mm unit"
+    },
+    {
+      "id": "guide-bore-8mm-stem",
+      "role": "discordant",
+      "feature": "valve_y_minus_guide_bore",
+      "twin": {
+        "value_mm": 8.5081,
+        "what": "diameter of the first fit (a cylinder over 48.2 mm); the re-fit attempt gives 8.5569 mm",
+        "record": "params/feature-fits.json",
+        "refit_value_mm": 8.5569,
+        "refit_record": "params/feature-refits.json",
+        "confirmed": "no: not confirmable from this scan (83.6% of held-out vertices within 0.2 mm after the declared re-fit, 90% required)",
+        "radius_sigma_mm": 0.00416
+      },
+      "premises": [
+        "H18: 8 mm valve stems (pv-xtreme-stems)",
+        "the guide is reamed to the stem as on another head: 8.00 to 8.015 mm for the 993's 8 mm stems (pv-993-guide-bore, OCR unreviewed)"
+      ],
+      "published": {
+        "guide_bore_mm": [8.0, 8.015],
+        "values": ["pv-xtreme-stems", "pv-993-guide-bore"]
+      },
+      "interval": {
+        "s_low": 0.9349,
+        "s_high": 0.942,
+        "arithmetic": "8.0 / 8.5569 and 8.015 / 8.5081"
+      },
+      "lower_bound_only": {
+        "premise": "only that the bore passes an 8 mm stem",
+        "s_at_least": 0.9349,
+        "unit_holds": true
+      },
+      "unit_holds_within_uncertainty": false,
+      "independent_of_H17": true,
+      "explanations_not_excluded": [
+        "the guides were not finish-reamed when the head was scanned, or were worn",
+        "the stem is not 8 mm (for example 11/32 in, 8.73 mm, which no source ties to this maker)",
+        "an optical scan of an 8.5 mm bore 48 mm deep reads it large; the fit is not confirmed",
+        "the scan is about 6% too large, which the conditional bore check contradicts"
+      ],
+      "result": "s between 0.935 and 0.942: the bore reads 0.49 to 0.56 mm larger than an 8 mm guide; unexplained and recorded as question Q7 for the reviewer"
+    }
+  ],
+  "unit_alternatives": {
+    "factors": {"inch": 25.4, "centimetre": 10.0, "metre": 1000.0},
+    "result": "each would put the plug thread bore at 114 mm or more; every check excludes them by more than an order of magnitude"
+  },
+  "verdict": {
+    "unit_holds": "within the uncertainty of the primary check: s from 0.934 to 1.053",
+    "agreement": "the conditional bore check agrees to 0.0% to 0.9%, but is not independent of the identity",
+    "disagreement": "the guide-bore check alone points to s of 0.935 to 0.942; with the primary check that range is possible, with the conditional bore check it is not, so at least one premise fails; which one is open",
+    "status": "checked against published values, not measured; the owner's instruction is kept and #693 stays open"
+  },
+  "what_would_settle_it": [
+    "a contributed measurement, under decision 0019, of at least three lengths the twin holds: for example the plug seat face to the chamber relief, a throat and the chamber shoulder",
+    "the seller's statement of the scanner, its calibration and the OBJ export unit (Q9)",
+    "the maker's or the seller's statement of the plug thread, the bore and the finished guide bore (Q3, Q5, Q7)"
+  ]
+}
