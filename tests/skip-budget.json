@@ -1,5 +1,5 @@
 {
-  "max_skips": 119,
+  "max_skips": 120,
   "measured": "2026-11-05, make check in a venv mirroring validate.yml (requirements-check.txt), clean agent worktree: 5203 tests, 415 skipped",
   "reduced": "2026-11-07: declared trimesh 5.1.0, rtree 1.4.1 and networkx 3.7 enable synthetic geometry checks; 935 skips fall from 33 to 11 and full-suite skips from 414 to 336, so lower the budget by 78",
   "shapely_reduced": "2026-11-07: Shapely 2.2.0 enables constrained-triangulation and polygon checks; the full suite passes 5902 tests with 252 skips, 84 fewer than the preceding 336. Five repair tests explicitly retain their separate patched-PySLM requirement; keep two skips of headroom.",
@@ -14,5 +14,6 @@
   "cgal_reduced": "2026-11-07: compile the unchanged source with the recorded CGAL 5.6 package and select M64_CGAL_INTERSECTIONS in the main Linux suite. Enable the existing crossing, coplanar-overlap, separation, shared-edge, degeneracy and input-preservation control; lower the base skip budget by one.",
   "distance_dfam_reduced": "2026-11-07: cascading-upper-bounds 1.0.0 enables the analytic offset/translation control; the reviewed SHA-256-checked external DfAM script enables four synthetic CLI fixtures. Lower the base budget by two. The isolated Torch precision tests are not subtracted from this count.",
   "calculix_reduced": "2026-11-07: install the recorded calculix-ccx 2.21-1 package in the main Linux job, enabling the existing analytic cantilever integration-point bending control. Lower the base budget by one; no vehicle strength qualification.",
-  "field_preflight_added": "2026-11-07: add one optional exact-diagnostic control alongside the hash-pinned field-lattice test. A failing executable alone must not count as validation rejection. The recorded local runtime passes all four messages; CI has no redistributable managed-runtime provenance, so retain this explicit skip."
+  "field_preflight_added": "2026-11-07: add one optional exact-diagnostic control alongside the hash-pinned field-lattice test. A failing executable alone must not count as validation rejection. The recorded local runtime passes all four messages; CI has no redistributable managed-runtime provenance, so retain this explicit skip.",
+  "mujoco_raised": "2026-11-25, issue #699 (PR #742): +1 for tests/test_935_dynamics_witness.py, whose MuJoCo witness runs only where the hash-locked MuJoCo 3.9.0 environment is installed; CI's requirements-check.txt is a pinned recipe input and does not carry it. The closed-form checks in the same file run in CI."
 }
