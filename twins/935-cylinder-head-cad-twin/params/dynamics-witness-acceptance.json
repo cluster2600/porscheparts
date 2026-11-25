@@ -1,0 +1,69 @@
+{
+ "schema": "935-cad-twin-dynamics-witness-acceptance/1",
+ "written": "2026-11-22, before the first run of the dynamics witness (#699)",
+ "scope": "the acceptance, the tool settings and the witness inputs of the MuJoCo witness, fixed before any witness run. None may change after the first run; a change is a new declared attempt, recorded with its reason beside the first",
+ "tool": {
+  "name": "MuJoCo",
+  "version": "3.9.0",
+  "lock": "twins/935-cylinder-head-cad-twin/source/dynamics-requirements.lock.txt"
+ },
+ "witness_inputs": {
+  "status": "witness input: round numbers chosen so that the closed forms are easy to check by hand. Not a value of the 935 head, of its valve train or of any engine",
+  "follower_mass_kg": 0.25,
+  "spring_rate_N_per_m": 40000.0,
+  "spring_preload_N": 200.0,
+  "cam": "eccentric circle under a flat-faced follower, radial, no lash, no friction, no gravity: lift = e (1 - cos theta), simple harmonic",
+  "cam_eccentricity_m": 0.005,
+  "cam_circle_radius_m": 0.02,
+  "two_mass_chain": {
+   "m1_kg": 0.25,
+   "k1_N_per_m": 40000.0,
+   "m2_kg": 0.1,
+   "k2_N_per_m": 400000.0,
+   "layout": "ground - k1 - m1 - k2 - m2, both on one axis"
+  },
+  "free_oscillation_amplitude_m": 0.001,
+  "speeds_as_fraction_of_closed_form_float_speed": {
+   "contact_force_cases": [0.5, 0.9],
+   "float_detector_must_stay_in_contact": 0.9,
+   "float_detector_must_separate": 1.1,
+   "float_bisection_bracket": [0.8, 1.2]
+  }
+ },
+ "settings": {
+  "timestep_s": 1e-06,
+  "integrator": "Euler (MuJoCo's default, semi-implicit)",
+  "solver": "Newton",
+  "solver_tolerance": 1e-10,
+  "solver_iterations": 100,
+  "gravity_m_per_s2": [0.0, 0.0, 0.0],
+  "contact": {
+   "condim": 1,
+   "solref": [5e-05, 1.0],
+   "solimp": [0.99, 0.99, 0.001, 0.5, 2.0],
+   "margin_m": 0.0,
+   "why": "MuJoCo contacts are soft constraints. A time constant of 5e-5 s puts the contact's own frequency (about 1/5e-5 = 20,000 rad/s) some 30 times above the fastest cam speed of the force cases (0.9 x 693 rad/s), so the contact should add about (623 x 5e-5)^2 = 0.1% to the follower force; the constant impedance 0.99 makes the contact nearly hard"
+  },
+  "cam_drive": "the cam body carries 1000 kg m2 about its hinge and starts at the case speed: no motor; the drift of its speed is recorded",
+  "spring": "joint stiffness on the follower's slide joint, spring reference at -preload/rate, so the spring pushes the follower onto the cam with the preload at zero lift",
+  "cycles_per_cam_case": 3,
+  "evaluated": "the last full cam cycle for force and lift; the last two for the float detector",
+  "free_oscillation_periods": 20
+ },
+ "accept_when": {
+  "natural_frequency_relative_error_within": 0.001,
+  "two_mass_mode_frequency_relative_error_within": 0.001,
+  "two_mass_mode_shape_deviation_within": 0.01,
+  "follower_lift_error_over_full_lift_within": 0.005,
+  "contact_force_error_over_peak_closed_form_force_within": 0.02,
+  "float_speed_relative_error_within": 0.01,
+  "float_detector": "contact never lost at 0.9 of the closed-form float speed; contact lost and the follower more than 0.01 mm off the cam at 1.1",
+  "cam_speed_drift_relative_within": 0.0001
+ },
+ "why_these_tolerances": "each is about ten times the error the settings above should leave (time step 1e-6 s against a 9 ms cam cycle and a 16 ms oscillation period; contact error near 0.1%), and well inside what a valve-train screen would notice: inputs of a real head will not be known to 1%",
+ "controls_that_must_fail": [
+  "natural frequency with the model's mass 10% above the declared mass",
+  "cam case at 0.9 of the float speed with the spring preload left out of the model",
+  "cam case at 0.9 of the float speed with MuJoCo's default contact (solref 0.02 s 1, solimp 0.9 0.95 0.001 0.5 2)"
+ ]
+}

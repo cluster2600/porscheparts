@@ -1,0 +1,343 @@
+{
+ "schema": "935-cad-twin-dynamics-witness/1",
+ "date": "2026-11-22",
+ "attempt": 2,
+ "cam": "lift-law",
+ "scope": "MuJoCo against closed forms: a spring-mass natural frequency, the two modes of a two-mass chain, a preloaded follower on a simple-harmonic cam (lift and contact force) and its float speed. A witness of the tool with round witness inputs, not a run of the head; docs/TOOLCHAIN.md assigns the tool on it",
+ "tool": {
+  "name": "MuJoCo",
+  "version": "3.9.0",
+  "engine": "3.9.0",
+  "licence": "Apache-2.0",
+  "maintainer": "Google DeepMind",
+  "source": "https://github.com/google-deepmind/mujoco",
+  "wheel": {
+   "file": "mujoco-3.9.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+   "sha256": "f8c6769ac1463752ff392d8c4d20014e54220112d772e6ccecdf6bcdb6d43e07"
+  },
+  "lock": "twins/935-cylinder-head-cad-twin/source/dynamics-requirements.lock.txt",
+  "lock_sha256": "4810214b78d113f1fd44f4f47bb5c744557c99735fbb3a70b7f20ec0711cd071",
+  "environment": "private venv built with uv from the lock (--require-hashes); never committed"
+ },
+ "acceptance_file": "twins/935-cylinder-head-cad-twin/params/dynamics-witness-acceptance.json",
+ "acceptance_sha256": "2f1fc28e9aab7e9fb97c16c38f99397e148a05f88f74792b9b097b1357116652",
+ "acceptance": {
+  "natural_frequency_relative_error_within": 0.001,
+  "two_mass_mode_frequency_relative_error_within": 0.001,
+  "two_mass_mode_shape_deviation_within": 0.01,
+  "follower_lift_error_over_full_lift_within": 0.005,
+  "contact_force_error_over_peak_closed_form_force_within": 0.02,
+  "float_speed_relative_error_within": 0.01,
+  "float_detector": "contact never lost at 0.9 of the closed-form float speed; contact lost and the follower more than 0.01 mm off the cam at 1.1",
+  "cam_speed_drift_relative_within": 0.0001
+ },
+ "settings": {
+  "timestep_s": 1e-06,
+  "integrator": "Euler (MuJoCo's default, semi-implicit)",
+  "solver": "Newton",
+  "solver_tolerance": 1e-10,
+  "solver_iterations": 100,
+  "gravity_m_per_s2": [
+   0.0,
+   0.0,
+   0.0
+  ],
+  "contact": {
+   "condim": 1,
+   "solref": [
+    5e-05,
+    1.0
+   ],
+   "solimp": [
+    0.99,
+    0.99,
+    0.001,
+    0.5,
+    2.0
+   ],
+   "margin_m": 0.0,
+   "why": "MuJoCo contacts are soft constraints. A time constant of 5e-5 s puts the contact's own frequency (about 1/5e-5 = 20,000 rad/s) some 30 times above the fastest cam speed of the force cases (0.9 x 693 rad/s), so the contact should add about (623 x 5e-5)^2 = 0.1% to the follower force; the constant impedance 0.99 makes the contact nearly hard"
+  },
+  "cam_drive": "the cam body carries 1000 kg m2 about its hinge and starts at the case speed: no motor; the drift of its speed is recorded",
+  "spring": "joint stiffness on the follower's slide joint, spring reference at -preload/rate, so the spring pushes the follower onto the cam with the preload at zero lift",
+  "cycles_per_cam_case": 3,
+  "evaluated": "the last full cam cycle for force and lift; the last two for the float detector",
+  "free_oscillation_periods": 20
+ },
+ "witness_inputs": {
+  "status": "witness input: round numbers chosen so that the closed forms are easy to check by hand. Not a value of the 935 head, of its valve train or of any engine",
+  "follower_mass_kg": 0.25,
+  "spring_rate_N_per_m": 40000.0,
+  "spring_preload_N": 200.0,
+  "cam": "eccentric circle under a flat-faced follower, radial, no lash, no friction, no gravity: lift = e (1 - cos theta), simple harmonic",
+  "cam_eccentricity_m": 0.005,
+  "cam_circle_radius_m": 0.02,
+  "two_mass_chain": {
+   "m1_kg": 0.25,
+   "k1_N_per_m": 40000.0,
+   "m2_kg": 0.1,
+   "k2_N_per_m": 400000.0,
+   "layout": "ground - k1 - m1 - k2 - m2, both on one axis"
+  },
+  "free_oscillation_amplitude_m": 0.001,
+  "speeds_as_fraction_of_closed_form_float_speed": {
+   "contact_force_cases": [
+    0.5,
+    0.9
+   ],
+   "float_detector_must_stay_in_contact": 0.9,
+   "float_detector_must_separate": 1.1,
+   "float_bisection_bracket": [
+    0.8,
+    1.2
+   ]
+  }
+ },
+ "script": "twins/935-cylinder-head-cad-twin/source/dynamics_witness.py",
+ "script_sha256": "ae48e6c6e2a07c1f1f689ef36dda947cc5117bff95bb89c24a23ca1d4ac107f3",
+ "runtime": {
+  "python": "3.12.3",
+  "numpy": "2.5.4",
+  "machine": "x86_64",
+  "system": "Linux",
+  "wall_time_s": 23.6
+ },
+ "cases": [
+  {
+   "case": "spring-mass natural frequency",
+   "closed_form": {
+    "frequency_hz": 63.66197723675813
+   },
+   "tool": {
+    "frequency_hz": 63.6619776614663,
+    "amplitude_last_period_m": 0.0010000000161870355
+   },
+   "relative_error": 6.671300319471992e-09,
+   "periods": 20
+  },
+  {
+   "case": "two-mass chain, mode 1",
+   "closed_form": {
+    "frequency_hz": 53.58143639688679,
+    "shape_x2_over_x1": 1.0291616465790583
+   },
+   "tool": {
+    "frequency_hz_from_m1": 53.58143665037198,
+    "frequency_hz_from_m2": 53.58143665037198,
+    "largest_shape_deviation_over_amplitude": 8.427847470526336e-16
+   },
+   "relative_error": 4.730839768718108e-09,
+   "periods": 20
+  },
+  {
+   "case": "two-mass chain, mode 2",
+   "closed_form": {
+    "frequency_hz": 378.19510060101624,
+    "shape_x2_over_x1": -2.429161646579058
+   },
+   "tool": {
+    "frequency_hz_from_m1": 378.19518958058006,
+    "frequency_hz_from_m2": 378.19518958088116,
+    "largest_shape_deviation_over_amplitude": 8.908701235789236e-14
+   },
+   "relative_error": 2.3527503340322835e-07,
+   "periods": 20
+  },
+  {
+   "case": "cam follower at 0.5 of the float speed",
+   "cam_speed_rad_s": 346.41016151377545,
+   "closed_form": {
+    "force_min_N": 350.00000000048504,
+    "force_max_N": 449.99999999924216,
+    "lift_max_m": 0.01
+   },
+   "tool": {
+    "force_min_N": 349.99844835777594,
+    "force_max_N": 449.99835108606715,
+    "largest_lift_error_m": 4.4998300937834634e-08,
+    "largest_force_error_N": 0.0016495005426122589,
+    "tappet_off_lift_law_over_full_lift": 5.049519830047089e-12
+   }
+  },
+  {
+   "case": "cam follower at 0.9 of the float speed",
+   "cam_speed_rad_s": 623.5382907247958,
+   "closed_form": {
+    "force_min_N": 114.00000650922738,
+    "force_max_N": 685.9999940814594,
+    "lift_max_m": 0.01
+   },
+   "tool": {
+    "force_min_N": 113.99679097472809,
+    "force_max_N": 686.0000096727582,
+    "largest_lift_error_m": 6.857141573980856e-08,
+    "largest_force_error_N": 0.0032195916789277135,
+    "tappet_off_lift_law_over_full_lift": 2.2121193765656244e-12
+   }
+  },
+  {
+   "case": "float speed",
+   "closed_form": {
+    "float_speed_rad_s": 692.8203230275509,
+    "float_speed_cam_rpm": 6615.946745061505
+   },
+   "detector": "contact force zero or no contact at any step of the last two cycles",
+   "tool": {
+    "bracket_holds": true,
+    "float_speed_rad_s": 692.7864939102155,
+    "float_speed_cam_rpm": 6615.623700786844,
+    "bracket_rad_s": [
+     692.7526647928803,
+     692.8203230275509
+    ],
+    "bisection_steps": 12
+   },
+   "relative_error": 4.8828125000041236e-05
+  }
+ ],
+ "controls": [
+  {
+   "control": "natural frequency with the model's mass 10% above the declared mass",
+   "value": 0.04653740497153213,
+   "limit": 0.001,
+   "caught": true
+  },
+  {
+   "control": "cam case at 0.9 of the float speed with the spring preload left out of the model",
+   "value": 24.313311190606576,
+   "limit": 0.02,
+   "caught": true
+  },
+  {
+   "control": "cam case at 0.9 of the float speed with MuJoCo's default contact (solref 0.02 s 1, solimp 0.9 0.95 0.001 0.5 2)",
+   "value": {
+    "contact_force_error_over_peak": 0.28534105598853793,
+    "lift_error_over_full_lift": 0.4179597964259644
+   },
+   "limit": {
+    "contact_force_error_over_peak": 0.02,
+    "lift_error_over_full_lift": 0.005
+   },
+   "caught": true
+  }
+ ],
+ "checks": [
+  {
+   "check": "natural frequency within the declared relative error",
+   "value": 6.671300319471992e-09,
+   "limit": 0.001,
+   "passed": true
+  },
+  {
+   "check": "two-mass mode 1: frequency within the declared relative error",
+   "value": 4.730839768718108e-09,
+   "limit": 0.001,
+   "passed": true
+  },
+  {
+   "check": "two-mass mode 1: stays in its shape",
+   "value": 8.427847470526336e-16,
+   "limit": 0.01,
+   "passed": true
+  },
+  {
+   "check": "two-mass mode 2: frequency within the declared relative error",
+   "value": 2.3527503340322835e-07,
+   "limit": 0.001,
+   "passed": true
+  },
+  {
+   "check": "two-mass mode 2: stays in its shape",
+   "value": 8.908701235789236e-14,
+   "limit": 0.01,
+   "passed": true
+  },
+  {
+   "check": "cam at 0.5: follower lift within the declared share of the full lift",
+   "value": 4.4998300937834634e-06,
+   "limit": 0.005,
+   "passed": true
+  },
+  {
+   "check": "cam at 0.5: contact force within the declared share of the peak force",
+   "value": 3.665556761366748e-06,
+   "limit": 0.02,
+   "passed": true
+  },
+  {
+   "check": "cam at 0.5: tappet on the lift law",
+   "value": 5.049519830047089e-12,
+   "limit": 0.0001,
+   "passed": true
+  },
+  {
+   "check": "cam at 0.9: follower lift within the declared share of the full lift",
+   "value": 6.857141573980856e-06,
+   "limit": 0.005,
+   "passed": true
+  },
+  {
+   "check": "cam at 0.9: contact force within the declared share of the peak force",
+   "value": 4.6932823712902275e-06,
+   "limit": 0.02,
+   "passed": true
+  },
+  {
+   "check": "cam at 0.9: tappet on the lift law",
+   "value": 2.2121193765656244e-12,
+   "limit": 0.0001,
+   "passed": true
+  },
+  {
+   "check": "float detector: contact kept at 0.9 of the float speed",
+   "passed": true,
+   "detail": {
+    "contact_lost": false,
+    "largest_separation_m": -1.1428284367454022e-08,
+    "first_zero_force_cam_angle_rad": null
+   }
+  },
+  {
+   "check": "float detector: contact lost and the follower more than 0.01 mm off the cam at 1.1",
+   "passed": true,
+   "detail": {
+    "contact_lost": true,
+    "largest_separation_m": 0.0008709232199201099,
+    "first_zero_force_cam_angle_rad": 2.4352656377976274
+   }
+  },
+  {
+   "check": "float speed within the declared relative error",
+   "value": 4.8828125000041236e-05,
+   "limit": 0.01,
+   "passed": true
+  },
+  {
+   "check": "control: natural frequency with the model's mass 10% above the declared mass: caught",
+   "passed": true
+  },
+  {
+   "check": "control: cam case at 0.9 of the float speed with the spring preload left out of the model: caught",
+   "passed": true
+  },
+  {
+   "check": "control: cam case at 0.9 of the float speed with MuJoCo's default contact (solref 0.02 s 1, solimp 0.9 0.95 0.001 0.5 2): caught",
+   "passed": true
+  }
+ ],
+ "passed": true,
+ "declaration_file": "twins/935-cylinder-head-cad-twin/params/dynamics-witness-attempt-2.json",
+ "declaration_sha256": "2f856c1bdc415bcab3b91a438ff84e58756e5cfcac9055912d1fe06d0ce6fd15",
+ "limitations": [
+  {
+   "limitation": "a follower on a rotating cam floats in MuJoCo where the cam surface accelerates away from it",
+   "cam_speed_rad_s": 346.41016151377545,
+   "closed_form_force_min_N": 350.00000000048504,
+   "tool_force_min_N": 0.0,
+   "contact_lost": true,
+   "first_zero_force_cam_angle_rad": 1.633326113895487,
+   "largest_separation_m": 7.608260136487965e-09,
+   "reading": "rerun of the first attempt's rotating cam at 0.5 of the float speed, where the closed form keeps the contact force at 350 N or more"
+  }
+ ]
+}

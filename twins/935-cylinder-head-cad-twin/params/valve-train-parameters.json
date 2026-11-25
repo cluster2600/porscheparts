@@ -1,0 +1,58 @@
+{
+ "schema": "935-cad-twin-valve-train-parameters/1",
+ "date": "2026-11-22",
+ "scope": "the parameter set a valve-train dynamics run of this head needs, in the tool assigned by docs/TOOLCHAIN.md (MuJoCo, witness in params/dynamics-witness.json) or in the one-mass model of the M64 head. Every value is null: none is known for this head. Nothing here is a value, a hypothesis or a study assumption",
+ "rule": "an entry leaves null only with a source: a supplier specification or drawing of the identified head, or a contributed measurement admitted under decision 0019. Published values of other heads are not entries of this one: the production 930 Turbo lifts, timing and lobe dimensions in docs/research/935-head-published-data-20261116/findings.json belong to another engine. The witness inputs of params/dynamics-witness-acceptance.json are round numbers for closed forms, not values of this head",
+ "blockers": {
+  "698": "#698: valve, seat and guide geometry of the identified head and which valve is the inlet. Waits on #692 (identify the specimen) and on a supplier specification or a contributed measurement",
+  "0019": "docs/decisions/0019-accept-contributed-measurements.md: the project measures nothing itself and pays nobody to measure; a contributed measurement needs its capture protocol, an explicit licence, an identified specimen and a review independent of the contributor. No contributor is named and none has been asked",
+  "692": "#692: identify the specimen and the engine it belongs to"
+ },
+ "load_case": {
+  "id": "LC-993-VALVE-DYNAMIC-CYCLE",
+  "file": "twins/engine-simulation-contracts/load-cases-f1.json",
+  "note": "written for the 993; each of its required inputs maps to the entries named in lc_input below"
+ },
+ "valves": {
+  "valve_y_minus": "the valve axis fitted on the y-minus flange side (params/feature-fits.json); role unknown",
+  "valve_y_plus": "the valve axis fitted on the y-plus flange side (params/feature-fits.json); role unknown"
+ },
+ "per_valve": {
+  "role": {"value": null, "unit": "inlet or exhaust", "status": "missing", "source": null, "blockers": ["698"], "note": "H09 assumes valve_y_minus is the inlet for one thermal screen only; that assumption is not an entry here"},
+  "cam_lift_curve": {"value": null, "unit": "mm of cam lift against degrees of camshaft angle", "status": "missing", "source": null, "blockers": ["698", "0019"], "lc_input": "cam_lift_profile", "note": "a measured cam card with its reference lift and lash, or the supplier's lift table"},
+  "cam_timing_centreline": {"value": null, "unit": "crank degrees after top dead centre", "status": "missing", "source": null, "blockers": ["698", "0019"], "lc_input": "cam_lift_profile"},
+  "rocker_ratio": {"value": null, "unit": "-", "status": "missing", "source": null, "blockers": ["698", "0019"], "lc_input": "cam_lift_profile"},
+  "rocker_pivot_to_cam_pad": {"value": null, "unit": "mm", "status": "missing", "source": null, "blockers": ["698", "0019"]},
+  "rocker_pivot_to_valve_tip": {"value": null, "unit": "mm", "status": "missing", "source": null, "blockers": ["698", "0019"]},
+  "rocker_pad_radius": {"value": null, "unit": "mm", "status": "missing", "source": null, "blockers": ["698", "0019"]},
+  "rocker_inertia_about_pivot": {"value": null, "unit": "kg m2", "status": "missing", "source": null, "blockers": ["0019"], "lc_input": "moving_masses_kg"},
+  "valve_mass": {"value": null, "unit": "kg", "status": "missing", "source": null, "blockers": ["698", "0019"], "lc_input": "moving_masses_kg"},
+  "retainer_and_keepers_mass": {"value": null, "unit": "kg", "status": "missing", "source": null, "blockers": ["698", "0019"], "lc_input": "moving_masses_kg"},
+  "spring_count": {"value": null, "unit": "springs per valve", "status": "missing", "source": null, "blockers": ["698", "0019"], "lc_input": "spring_force_curve"},
+  "spring_rate": {"value": null, "unit": "N/mm", "status": "missing", "source": null, "blockers": ["698", "0019"], "lc_input": "spring_force_curve"},
+  "spring_free_length": {"value": null, "unit": "mm", "status": "missing", "source": null, "blockers": ["698", "0019"], "lc_input": "spring_force_curve"},
+  "spring_installed_height": {"value": null, "unit": "mm", "status": "missing", "source": null, "blockers": ["698", "0019"], "lc_input": "spring_force_curve"},
+  "spring_force_at_installed_height": {"value": null, "unit": "N", "status": "missing", "source": null, "blockers": ["698", "0019"], "lc_input": "spring_force_curve"},
+  "spring_coil_bind_height": {"value": null, "unit": "mm", "status": "missing", "source": null, "blockers": ["698", "0019"], "lc_input": "spring_force_curve"},
+  "spring_mass": {"value": null, "unit": "kg", "status": "missing", "source": null, "blockers": ["0019"], "lc_input": "moving_masses_kg"},
+  "lash_cold": {"value": null, "unit": "mm", "status": "missing", "source": null, "blockers": ["698"], "lc_input": "hot_clearances_mm"},
+  "lash_hot": {"value": null, "unit": "mm", "status": "missing", "source": null, "blockers": ["698", "0019"], "lc_input": "hot_clearances_mm"},
+  "valve_head_diameter": {"value": null, "unit": "mm", "status": "missing", "source": null, "blockers": ["698"], "note": "the fitted seat and throat diameters of params/feature-fits.json are nominal fits on a scan, not the valve"},
+  "valve_stem_diameter": {"value": null, "unit": "mm", "status": "missing", "source": null, "blockers": ["698"], "note": "the fitted guide bore is 8.51 mm, a nominal fit on a scan; the production 930 stem does not fit it"},
+  "seat_angle": {"value": null, "unit": "deg", "status": "missing", "source": null, "blockers": ["698"]},
+  "seat_width": {"value": null, "unit": "mm", "status": "missing", "source": null, "blockers": ["698"]}
+ },
+ "per_head": {
+  "engine_speed_cases": {"value": null, "unit": "rpm", "status": "missing", "source": null, "blockers": ["692"], "lc_input": "engine_speed_rpm_cases", "note": "a speed range declared by the owner makes a screen; the engine's limit needs a source"},
+  "seat_contact_and_friction_model": {"value": null, "unit": "model and its parameters", "status": "missing", "source": null, "blockers": ["698", "0019"], "lc_input": "seat_contact_and_friction_model"},
+  "damping_model": {"value": null, "unit": "model and its parameters", "status": "missing", "source": null, "blockers": ["0019"], "lc_input": "damping_model"},
+  "measured_component_temperatures": {"value": null, "unit": "degC", "status": "missing", "source": null, "blockers": ["0019"], "lc_input": "measured_component_temperatures_c"}
+ },
+ "how_the_tool_takes_them": "the assigned tool takes a cam as its lift law at the valve (cam lift times the rocker ratio, after lash) on a translating body, and a rocker as a reduced mass or a translating body of its own: its contact on a turning cam failed the witness (params/dynamics-witness-rotating-cam.json)",
+ "first_steps_once_held": [
+  "fill the entries with their sources, every value with its instrument and uncertainty or its document",
+  "rerun the dynamics witness in the locked environment",
+  "spring margin and float speed over the declared speeds, then the valve-to-valve and valve-to-plug clearances on the fitted axes at full lift",
+  "report the result as a sensitivity study until a bench trace exists"
+ ]
+}
