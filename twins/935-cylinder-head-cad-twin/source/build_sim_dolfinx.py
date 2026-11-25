@@ -745,7 +745,9 @@ def record(private_dir, ccx_record_file, acceptance_file, out, build_dir) -> Non
         m = json.loads(run.read_text())
         if ccx["levels"][m["level"]]["mechanics"]:
             continue                                               # CalculiX ran it: it is a comparison, above
-        assert m["level"] not in levels and m["linear_solver"] == "blr"
+        # blr, or gamg where blr does not fit the machine (c4s3-l12 on this host, 2026-11-25); on c4-l8 both
+        # reproduced CalculiX within the acceptance (compare-c4-l8-*.json above)
+        assert m["level"] not in levels and m["linear_solver"] in ("blr", "gamg")
         model = ccx["levels"][m["level"]]["model"]
         assert model["nodes"] == m["nodes"] and sum(model["hexahedra"].values()) == m["cells"]
         levels[m["level"]] = {"cell_mm": model["cell_mm"], "lump_height_mm": model["lump_height_mm"],
